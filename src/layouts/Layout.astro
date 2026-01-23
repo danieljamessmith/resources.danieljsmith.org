@@ -1,0 +1,22 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Free educational resources - practice papers, mark schemes, and study materials' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white antialiased">
+    <slot />
+  </body>
+</html>
