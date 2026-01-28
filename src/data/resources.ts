@@ -9,20 +9,26 @@ export interface Resource {
 export const resources: Resource[] = [
   // Example resources - replace with your actual PDFs
   {
-    id: 'tmua-paper-1-2023',
-    title: 'TMUA Paper 1 - 2023',
-    description: 'Full paper with mark scheme',
-    file: '/pdfs/tmua-paper-1-2023.pdf',
+    id: 'tmua-setA-paper1',
+    title: 'TMUA Set A  Paper 1',
+    description: '20x Paper 1 Style TMUA Questions',
+    file: '/pdfs/TMUA_SetA_Paper1.pdf',
     category: 'TMUA',
   },
   {
-    id: 'tmua-paper-2-2023',
-    title: 'TMUA Paper 2 - 2023',
-    description: 'Full paper with mark scheme',
-    file: '/pdfs/tmua-paper-2-2023.pdf',
+    id: 'tmua-setA-paper2',
+    title: 'TMUA Set A  Paper 2',
+    description: '20x Paper 2 Style TMUA Questions',
+    file: '/pdfs/TMUA_SetA_Paper2.pdf',
     category: 'TMUA',
   },
-  // Add more resources here...
+  {
+    id: 'tmua-setA-keys',
+    title: 'TMUA Set A Answer Keys',
+    description: 'Answer Keys to Set A Papers',
+    file: '/pdfs/TMUA_SetA_AnswerKeys.pdf',
+    category: 'TMUA',
+  },
 ];
 
 export const categories = [...new Set(resources.map((r) => r.category))];
