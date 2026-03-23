@@ -1,0 +1,83 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+import { getResourcePairs, type Resource } from '~/data/resources';
+
+const rawPairs = getResourcePairs('A-level Further Maths');
+const pairs = rawPairs.filter(
+  (p): p is { questions: Resource; solutions: Resource } => p.solutions !== undefined,
+);
+---
+
+<Layout title="A-level Further Maths | resources.danieljsmith.org">
+  <div class="min-h-screen flex flex-col">
+    <Header showBack={true} />
+    <main class="flex-1 max-w-6xl mx-auto px-4 py-12 w-full">
+      <h1 class="text-2xl font-bold text-white">A-level Further Maths</h1>
+      <p class="text-slate-300 mt-2"></p>
+
+      <h2 class="text-lg font-semibold text-white mt-10 mb-2 flex items-center gap-3">
+        <span class="w-8 h-0.5 bg-blue-500 rounded-full" />
+        Differential Equations
+      </h2>
+      <p class="text-sm text-slate-400 mb-6"></p>
+
+      <div class="space-y-6">
+        {pairs.map((pair) => (
+          <div class="grid sm:grid-cols-2 gap-4">
+            <a
+              href={`/view/${pair.questions.id}`}
+              class="group block p-4 bg-blue-950/40 rounded-xl border border-blue-800/40 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/5 hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <p class="text-xs font-medium text-blue-400 uppercase tracking-wider">Questions</p>
+              <div class="mt-2 flex items-start gap-3">
+                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="text-white font-medium group-hover:text-blue-300 transition-colors">
+                    {pair.questions.title}
+                  </h3>
+                  <p class="text-sm text-slate-400 mt-1">{pair.questions.description}</p>
+                </div>
+              </div>
+            </a>
+            <a
+              href={`/view/${pair.solutions.id}`}
+              class="group block p-4 bg-emerald-950/40 rounded-xl border border-emerald-800/40 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/5 hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <p class="text-xs font-medium text-emerald-400 uppercase tracking-wider">Solutions</p>
+              <div class="mt-2 flex items-start gap-3">
+                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="text-white font-medium group-hover:text-emerald-300 transition-colors">
+                    {pair.solutions.title}
+                  </h3>
+                  <p class="text-sm text-slate-400 mt-1">{pair.solutions.description}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+    </main>
+    <Footer />
+  </div>
+</Layout>
