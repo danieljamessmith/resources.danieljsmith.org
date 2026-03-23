@@ -2,9 +2,12 @@
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
-import { getResourcePairs, type Resource } from '~/data/resources';
+import { getResourcePairs, getResourcesByTopic, type Resource } from '~/data/resources';
 
-const rawPairs = getResourcePairs('A-level Further Maths');
+const FM = 'A-level Further Maths';
+const vectorsNotes = getResourcesByTopic(FM, 'Vectors').filter((r) => r.type === 'notes');
+
+const rawPairs = getResourcePairs(FM, 'Differential Equations');
 const pairs = rawPairs.filter(
   (p): p is { questions: Resource; solutions: Resource } => p.solutions !== undefined,
 );
@@ -18,7 +21,40 @@ const pairs = rawPairs.filter(
       <p class="text-slate-300 mt-2"></p>
 
       <h2 class="text-lg font-semibold text-white mt-10 mb-2 flex items-center gap-3">
-        <span class="w-8 h-0.5 bg-blue-500 rounded-full" />
+        <span class="w-8 h-0.5 bg-slate-500 rounded-full" />
+        Vectors
+      </h2>
+      <p class="text-sm text-slate-400 mb-6"></p>
+
+      <div class="grid sm:grid-cols-2 gap-4 mb-12">
+        {vectorsNotes.map((note) => (
+          <a
+            href={`/view/${note.id}`}
+            class="group block p-4 bg-purple-950/40 rounded-xl border border-purple-800/40 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/5 hover:-translate-y-0.5 transition-all duration-200 min-w-0"
+          >
+            <p class="text-xs font-medium text-purple-400 uppercase tracking-wider">Notes</p>
+            <div class="mt-2 flex items-start gap-3">
+              <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                  />
+                </svg>
+              </div>
+              <div class="min-w-0">
+                <h3 class="text-white font-medium group-hover:text-purple-300 transition-colors">{note.title}</h3>
+                <p class="text-sm text-slate-400 mt-1">{note.description}</p>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <h2 class="text-lg font-semibold text-white mt-10 mb-2 flex items-center gap-3">
+        <span class="w-8 h-0.5 bg-slate-500 rounded-full" />
         Differential Equations
       </h2>
       <p class="text-sm text-slate-400 mb-6"></p>
