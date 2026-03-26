@@ -7,6 +7,11 @@ import { getResourcePairs, getResourcesByTopic, type Resource } from '~/data/res
 const FM = 'A-level Further Maths';
 const vectorsNotes = getResourcesByTopic(FM, 'Vectors').filter((r) => r.type === 'notes');
 
+const rawVectorPairs = getResourcePairs(FM, 'Vectors');
+const vectorPairs = rawVectorPairs.filter(
+  (p): p is { questions: Resource; solutions: Resource } => p.solutions !== undefined,
+);
+
 const rawPairs = getResourcePairs(FM, 'Differential Equations');
 const pairs = rawPairs.filter(
   (p): p is { questions: Resource; solutions: Resource } => p.solutions !== undefined,
@@ -26,30 +31,85 @@ const pairs = rawPairs.filter(
       </h2>
       <p class="text-sm text-slate-400 mb-6"></p>
 
-      <div class="grid sm:grid-cols-2 gap-4 mb-12">
-        {vectorsNotes.map((note) => (
-          <a
-            href={`/view/${note.id}`}
-            class="group block p-4 bg-purple-950/40 rounded-xl border border-purple-800/40 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/5 hover:-translate-y-0.5 transition-all duration-200 min-w-0"
-          >
-            <p class="text-xs font-medium text-purple-400 uppercase tracking-wider">Notes</p>
-            <div class="mt-2 flex items-start gap-3">
-              <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                  />
-                </svg>
+      <div class="mb-12 space-y-6">
+        <div class="grid sm:grid-cols-2 gap-4">
+          {vectorsNotes.map((note) => (
+            <a
+              href={`/view/${note.id}`}
+              class="group block p-4 bg-purple-950/40 rounded-xl border border-purple-800/40 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/5 hover:-translate-y-0.5 transition-all duration-200 min-w-0"
+            >
+              <p class="text-xs font-medium text-purple-400 uppercase tracking-wider">Notes</p>
+              <div class="mt-2 flex items-start gap-3">
+                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                    />
+                  </svg>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="text-white font-medium group-hover:text-purple-300 transition-colors">{note.title}</h3>
+                  <p class="text-sm text-slate-400 mt-1">{note.description}</p>
+                </div>
               </div>
-              <div class="min-w-0">
-                <h3 class="text-white font-medium group-hover:text-purple-300 transition-colors">{note.title}</h3>
-                <p class="text-sm text-slate-400 mt-1">{note.description}</p>
+            </a>
+          ))}
+        </div>
+
+        {vectorPairs.map((pair) => (
+          <div class="grid sm:grid-cols-2 gap-4">
+            <a
+              href={`/view/${pair.questions.id}`}
+              class="group block p-4 bg-blue-950/40 rounded-xl border border-blue-800/40 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/5 hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <p class="text-xs font-medium text-blue-400 uppercase tracking-wider">Questions</p>
+              <div class="mt-2 flex items-start gap-3">
+                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="text-white font-medium group-hover:text-blue-300 transition-colors">
+                    {pair.questions.title}
+                  </h3>
+                  <p class="text-sm text-slate-400 mt-1">{pair.questions.description}</p>
+                </div>
               </div>
-            </div>
-          </a>
+            </a>
+            <a
+              href={`/view/${pair.solutions.id}`}
+              class="group block p-4 bg-emerald-950/40 rounded-xl border border-emerald-800/40 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/5 hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <p class="text-xs font-medium text-emerald-400 uppercase tracking-wider">Solutions</p>
+              <div class="mt-2 flex items-start gap-3">
+                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="text-white font-medium group-hover:text-emerald-300 transition-colors">
+                    {pair.solutions.title}
+                  </h3>
+                  <p class="text-sm text-slate-400 mt-1">{pair.solutions.description}</p>
+                </div>
+              </div>
+            </a>
+          </div>
         ))}
       </div>
 

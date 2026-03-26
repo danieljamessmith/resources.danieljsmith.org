@@ -43,6 +43,26 @@ export const resources: Resource[] = [
     type: 'notes',
     topic: 'Vectors',
   },
+  {
+    id: 'fm-vectors-shortest-distances',
+    title: 'Shortest Distances',
+    description: '8 exam-style questions',
+    file: '/pdfs/further-maths/vectors/qbt/_QBT__Vectors___Shortest_Distances.pdf',
+    category: 'A-level Further Maths',
+    type: 'questions',
+    pairId: 'fm-vectors-shortest-distances-solns',
+    topic: 'Vectors',
+  },
+  {
+    id: 'fm-vectors-shortest-distances-solns',
+    title: 'Shortest Distances',
+    description: 'Full worked solutions',
+    file: '/pdfs/further-maths/vectors/soln/_QBT___Solns__Vectors___Shortest_Distances.pdf',
+    category: 'A-level Further Maths',
+    type: 'solutions',
+    pairId: 'fm-vectors-shortest-distances',
+    topic: 'Vectors',
+  },
 
   // --- A-level Further Maths: Differential Equations (teaching progression order) ---
   {
