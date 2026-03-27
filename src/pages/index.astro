@@ -2,10 +2,21 @@
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
-import { getResourcesByCategory } from '~/data/resources';
+import {
+  getFurtherMathsQuestionTotalRoundedDownTen,
+  getFurtherMathsTotalQuestionCount,
+  getResourcesByCategory,
+} from '~/data/resources';
 
 const tmuaCount = getResourcesByCategory('TMUA').length;
-const fmTopicCount = getResourcesByCategory('A-level Further Maths').filter((r) => r.type === 'questions').length;
+const fmQuestionTotal = getFurtherMathsTotalQuestionCount();
+const fmOverQuestions = getFurtherMathsQuestionTotalRoundedDownTen();
+const fmQuestionsLine =
+  fmOverQuestions >= 10
+    ? `Over ${fmOverQuestions} custom exam questions with worked solutions`
+    : fmQuestionTotal > 0
+      ? `${fmQuestionTotal} custom exam questions with worked solutions`
+      : 'Question-by-topic booklets with worked solutions';
 ---
 
 <Layout
@@ -76,7 +87,7 @@ const fmTopicCount = getResourcesByCategory('A-level Further Maths').filter((r) 
             <p class="text-slate-300 mt-2 text-sm">
               Question-by-topic booklets with worked solutions for A-level Further Maths
             </p>
-            <p class="text-xs text-slate-400 mt-4">{fmTopicCount} question packs with solutions</p>
+            <p class="text-xs text-slate-400 mt-4">{fmQuestionsLine}</p>
             <div class="mt-4 flex items-center text-blue-400 text-sm font-medium">
               <span>Open</span>
               <svg
