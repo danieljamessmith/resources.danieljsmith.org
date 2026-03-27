@@ -2,7 +2,12 @@
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
-import { getResourcePairs, getResourcesByTopic, type Resource } from '~/data/resources';
+import {
+  getResourceDisplayDescription,
+  getResourcePairs,
+  getResourcesByTopic,
+  type Resource,
+} from '~/data/resources';
 
 const FM = 'A-level Further Maths';
 const vectorsNotes = getResourcesByTopic(FM, 'Vectors').filter((r) => r.type === 'notes');
@@ -85,7 +90,7 @@ const pairs = rawPairs.filter(
                   <h3 class="text-white font-medium group-hover:text-blue-300 transition-colors">
                     {pair.questions.title}
                   </h3>
-                  <p class="text-sm text-slate-400 mt-1">{pair.questions.description}</p>
+                  <p class="text-sm text-slate-400 mt-1">{getResourceDisplayDescription(pair.questions)}</p>
                 </div>
               </div>
             </a>
@@ -145,7 +150,7 @@ const pairs = rawPairs.filter(
                   <h3 class="text-white font-medium group-hover:text-blue-300 transition-colors">
                     {pair.questions.title}
                   </h3>
-                  <p class="text-sm text-slate-400 mt-1">{pair.questions.description}</p>
+                  <p class="text-sm text-slate-400 mt-1">{getResourceDisplayDescription(pair.questions)}</p>
                 </div>
               </div>
             </a>
