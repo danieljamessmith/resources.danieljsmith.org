@@ -8,9 +8,9 @@ export default {
       },
       colors: {
         surface: {
-          DEFAULT: '#0f1629',
-          raised: '#162036',
-          overlay: '#1c2844',
+          DEFAULT: '#161b22',
+          raised: '#1c2128',
+          overlay: '#22272e',
         },
       },
     },
