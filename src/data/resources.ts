@@ -37,6 +37,29 @@ export const resources: Resource[] = [
     category: 'TMUA',
   },
 
+  // --- A-level Further Maths: Complex Numbers (Complex Series QBT sheets) ---
+  {
+    id: 'fm-complex-series',
+    title: 'Complex Series',
+    description: '',
+    file: '/pdfs/further-maths/complex-numbers/qbt/_QBT__Complex_Series.pdf',
+    category: FM,
+    type: 'questions',
+    pairId: 'fm-complex-series-solns',
+    topic: 'Complex Numbers',
+    questionCount: 7,
+  },
+  {
+    id: 'fm-complex-series-solns',
+    title: 'Complex Series',
+    description: 'Full worked solutions',
+    file: '/pdfs/further-maths/complex-numbers/soln/_QBT___Solns__Complex_Series.pdf',
+    category: FM,
+    type: 'solutions',
+    pairId: 'fm-complex-series',
+    topic: 'Complex Numbers',
+  },
+
   // --- A-level Further Maths: Vectors (Notes → pairs in teaching order) ---
   {
     id: 'fm-vectors-formulae-notes',
