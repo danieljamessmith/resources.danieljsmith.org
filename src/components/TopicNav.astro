@@ -1,0 +1,145 @@
+---
+interface TopicItem {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  variant?: 'sidebar' | 'mobile';
+}
+
+const { variant = 'sidebar' } = Astro.props;
+
+const topics: TopicItem[] = [
+  { id: 'further-calculus', label: 'Further Calculus' },
+  { id: 'differential-equations', label: 'Differential Equations' },
+  { id: 'complex-numbers', label: 'Complex Numbers' },
+  { id: 'vectors', label: 'Vectors' },
+];
+
+const linkInactive =
+  'block border-l-2 border-transparent pl-4 py-2 text-sm text-slate-400 hover:border-slate-400 hover:text-white transition-colors duration-150';
+const linkActive = 'block border-l-2 border-purple-500 pl-4 py-2 text-sm font-medium text-white';
+const mobileInactive =
+  'flex-shrink-0 whitespace-nowrap rounded-full border border-slate-600/80 px-3 py-1.5 text-xs font-medium text-slate-300 transition-colors hover:border-purple-500/50 hover:text-white';
+const mobileActive =
+  'flex-shrink-0 whitespace-nowrap rounded-full border border-purple-500 bg-purple-500/15 px-3 py-1.5 text-xs font-medium text-white';
+---
+
+{
+  variant === 'sidebar' ? (
+    <nav
+      class="topic-nav-sidebar hidden w-52 shrink-0 lg:block"
+      aria-label="Topic navigation"
+      data-topic-nav="sidebar"
+    >
+      <div class="sticky top-24 pr-4">
+        <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">Pure Mathematics</p>
+        <ul class="space-y-1" role="list">
+          {topics.map((t) => (
+            <li>
+              <a
+                href={`#${t.id}`}
+                class={linkInactive}
+                data-topic-target={t.id}
+                data-topic-link="sidebar"
+              >
+                {t.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  ) : (
+    <nav
+      class="topic-nav-mobile -mx-1 mb-6 flex gap-2 overflow-x-auto pb-1 pt-1 lg:hidden"
+      aria-label="Topic navigation"
+      data-topic-nav="mobile"
+    >
+      {topics.map((t) => (
+        <a
+          href={`#${t.id}`}
+          class={mobileInactive}
+          data-topic-target={t.id}
+          data-topic-link="mobile"
+        >
+          {t.label}
+        </a>
+      ))}
+    </nav>
+  )
+}
+
+{variant === 'sidebar' && (
+<script>
+  function setupFurtherMathsTopicNav() {
+    const main = document.querySelector('main');
+    if (!main) return;
+
+    const headings = [...main.querySelectorAll('h2[id]')] as HTMLElement[];
+    if (headings.length === 0) return;
+
+    const sidebarLinks = document.querySelectorAll<HTMLAnchorElement>('[data-topic-link="sidebar"]');
+    const mobileLinks = document.querySelectorAll<HTMLAnchorElement>('[data-topic-link="mobile"]');
+
+    const lineY = 96;
+
+    function setActive(id: string) {
+      sidebarLinks.forEach((a) => {
+        const isActive = a.dataset.topicTarget === id;
+        a.classList.toggle('text-white', isActive);
+        a.classList.toggle('font-medium', isActive);
+        a.classList.toggle('border-purple-500', isActive);
+        a.classList.toggle('text-slate-400', !isActive);
+        a.classList.toggle('border-transparent', !isActive);
+        if (isActive) a.setAttribute('aria-current', 'location');
+        else a.removeAttribute('aria-current');
+      });
+      mobileLinks.forEach((a) => {
+        const isActive = a.dataset.topicTarget === id;
+        a.classList.toggle('border-purple-500', isActive);
+        a.classList.toggle('bg-purple-500/15', isActive);
+        a.classList.toggle('text-white', isActive);
+        a.classList.toggle('border-slate-600/80', !isActive);
+        a.classList.toggle('text-slate-300', !isActive);
+        if (isActive) a.setAttribute('aria-current', 'location');
+        else a.removeAttribute('aria-current');
+      });
+    }
+
+    const lastHeading = headings[headings.length - 1];
+
+    function computeActiveId(): string {
+      // If within 64 px of the page bottom, always highlight the last section.
+      const nearBottom =
+        window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 64;
+      if (nearBottom && lastHeading) return lastHeading.id;
+
+      let activeId = headings[0]?.id ?? '';
+      for (const h of headings) {
+        if (h.getBoundingClientRect().top <= lineY) activeId = h.id;
+      }
+      return activeId;
+    }
+
+    setActive(computeActiveId());
+
+    // Scroll listener (rAF-throttled) is more reliable than IntersectionObserver
+    // alone, especially for short last sections that can't reach the threshold.
+    let rafPending = false;
+    function onScroll() {
+      if (rafPending) return;
+      rafPending = true;
+      requestAnimationFrame(() => {
+        setActive(computeActiveId());
+        rafPending = false;
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  setupFurtherMathsTopicNav();
+</script>
+)}
