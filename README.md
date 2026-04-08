@@ -1,6 +1,6 @@
 # resources.danieljsmith.org
 
-Free TMUA practice papers and study materials.
+Resources Site
 
 Built with [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com).
 
