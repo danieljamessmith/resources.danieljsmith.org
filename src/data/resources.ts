@@ -37,7 +37,28 @@ export const resources: Resource[] = [
     category: 'TMUA',
   },
 
-  // --- A-level Further Maths: Complex Numbers (Complex Series QBT sheets) ---
+  // --- A-level Further Maths: Complex Numbers (QBT sheets) ---
+  {
+    id: 'fm-complex-roots-geometry',
+    title: 'Complex Roots and Geometry Problems',
+    description: '',
+    file: '/pdfs/further-maths/complex-numbers/qbt/_QBT__Complex_Roots_and_Geometry_Problems.pdf',
+    category: FM,
+    type: 'questions',
+    pairId: 'fm-complex-roots-geometry-solns',
+    topic: 'Complex Numbers',
+    questionCount: 13,
+  },
+  {
+    id: 'fm-complex-roots-geometry-solns',
+    title: 'Complex Roots and Geometry Problems',
+    description: 'Full worked solutions',
+    file: '/pdfs/further-maths/complex-numbers/soln/_QBT___Solns__Complex_Roots_and_Geometry_Problems.pdf',
+    category: FM,
+    type: 'solutions',
+    pairId: 'fm-complex-roots-geometry',
+    topic: 'Complex Numbers',
+  },
   {
     id: 'fm-complex-series',
     title: 'Complex Series',
