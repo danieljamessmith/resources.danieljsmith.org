@@ -1,0 +1,48 @@
+{
+    "workbench.editorAssociations": {
+      "*.pdf": "latex-workshop-pdf-hook"
+    },
+  
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.outDir": "%DIR%/build",
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.view.pdf.tab.editorGroup": "right",
+    "latex-workshop.synctex.afterBuild.enabled": true,
+  
+    "latex-workshop.latex.tools": [
+      {
+        "name": "latexmk",
+        "command": "latexmk",
+        "args": [
+          "-pdf",
+          "-cd",
+          "-interaction=nonstopmode",
+          "-synctex=1",
+          "-file-line-error",
+          "-outdir=%OUTDIR%",
+          "%DOCFILE%"
+        ]
+      }
+    ],
+  
+    "latex-workshop.latex.recipes": [
+      {
+        "name": "latexmk",
+        "tools": ["latexmk"]
+      }
+    ],
+  
+    "latex-workshop.latex.recipe.default": "lastUsed",
+  
+    "files.exclude": {
+      "**/build": true
+    },
+  
+    "search.exclude": {
+      "**/build": true
+    },
+  
+    "files.watcherExclude": {
+      "**/build/**": true
+    }
+  }
