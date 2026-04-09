@@ -21,6 +21,25 @@ const categoryBack: Record<string, { href: string; aria: string }> = {
 };
 const back = categoryBack[resource.category] ?? { href: '/', aria: 'All resources' };
 const displayDescription = getResourceDisplayDescription(resource);
+
+const paired =
+  resource.pairId &&
+  (resource.type === 'questions' || resource.type === 'solutions') &&
+  getResourceById(resource.pairId)
+    ? {
+        href: `/view/${resource.pairId}` as const,
+        label: resource.type === 'questions' ? '-> Solutions' : '<- Questions',
+        aria:
+          resource.type === 'questions'
+            ? 'Open solutions for this question sheet'
+            : 'Back to the questions sheet',
+        /** Emerald = solutions; blue matches Further Maths “Questions” cards on further-maths.astro. */
+        buttonClass:
+          resource.type === 'questions'
+            ? 'border-emerald-500/55 text-emerald-100 hover:bg-emerald-950/45 hover:border-emerald-400/70'
+            : 'border-blue-800/45 text-blue-300 hover:bg-blue-950/40 hover:border-blue-500/50',
+      }
+    : null;
 /*
   PDF open param #view=FitH: Firefox fits width as intended. Chromium (Chrome/Edge PDFium)
   over-zooms inside iframes. Plain URL + full-width iframe keeps Chromium readable; we only
@@ -49,6 +68,18 @@ const displayDescription = getResourceDisplayDescription(resource);
           </div>
         </div>
         <div class="flex flex-shrink-0 items-center gap-2">
+          {paired && (
+            <a
+              href={paired.href}
+              class:list={[
+                'inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg border text-sm font-medium transition-colors whitespace-nowrap',
+                paired.buttonClass,
+              ]}
+              aria-label={paired.aria}
+            >
+              {paired.label}
+            </a>
+          )}
           <a
             href={resource.file}
             download
