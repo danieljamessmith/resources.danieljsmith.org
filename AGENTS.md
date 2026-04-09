@@ -18,27 +18,29 @@ Dual-purpose repository:
 
 | Path                    | Purpose                                                |
 | ----------------------- | ------------------------------------------------------ |
-| `src/`                  | Astro site source (components, pages, layouts, styles) |
-| `tex/`                  | LaTeX source files, organised by topic                 |
-| `tex/**/build/`         | latexmk output — PDF and `.synctex.gz` files           |
-| `tex/**/build/aux/`     | latexmk auxiliary files (`.aux`, `.log`, `.fls`, etc.) |
-| `public/`               | Static assets served as-is by Astro                    |
-| `.vscode/settings.json` | Workspace settings including latexmk build args        |
+| `src/`                   | Astro site source (components, pages, layouts, styles)           |
+| `public/tex/`            | LaTeX source files and deployed PDFs, co-located by topic        |
+| `public/tex/**/build/`   | latexmk output — PDF and `.synctex.gz` files (gitignored staging)|
+| `public/tex/**/build/aux/` | latexmk auxiliary files (`.aux`, `.log`, `.fls`, etc.)         |
+| `public/`                | Static assets served as-is by Astro                              |
+| `.vscode/settings.json`  | Workspace settings including latexmk build args                  |
 
 
 ### LaTeX directory layout
 
 ```
-tex/
+public/tex/
   further-maths/
     differential-equations/
       qbt/
-        _QBT__<Topic>.tex           ← question paper
-        build/
-          _QBT__<Topic>.pdf
+        _QBT__<Topic>.tex           ← question paper (source, tracked)
+        _QBT__<Topic>.pdf           ← deployed PDF (tracked)
+        build/                      ← gitignored staging area
+          _QBT__<Topic>.pdf         ← compiled output; review then copy up
           aux/
       soln/
-        _QBT___Solns__<Topic>.tex   ← solutions
+        _QBT___Solns__<Topic>.tex   ← solutions (source, tracked)
+        _QBT___Solns__<Topic>.pdf   ← deployed PDF (tracked)
         build/
           _QBT___Solns__<Topic>.pdf
           aux/
@@ -100,6 +102,7 @@ Use this loop whenever you need to fix build errors in a `.tex` file. **Never re
      -auxdir=<outdir>/aux -outdir=<outdir> <texfile>
 
    where <outdir> = the sibling "build" directory next to the .tex file.
+   Example: public/tex/further-maths/differential-equations/qbt/build
 
 5. ReadLints again → confirm no [ERROR] entries remain
    • If errors remain, return to step 2 for the next error
