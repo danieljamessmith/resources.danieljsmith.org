@@ -291,6 +291,27 @@ export const resources: Resource[] = [
     pairId: 'fm-further-volumes-revolution',
     topic: 'Further Calculus',
   },
+  {
+    id: 'fm-further-maclaurin-series',
+    title: 'Maclaurin Series',
+    description: '',
+    file: '/pdfs/further-maths/further-calculus/qbt/_QBT__Maclaurin_Series.pdf',
+    category: FM,
+    type: 'questions',
+    pairId: 'fm-further-maclaurin-series-solns',
+    topic: 'Further Calculus',
+    questionCount: 17,
+  },
+  {
+    id: 'fm-further-maclaurin-series-solns',
+    title: 'Maclaurin Series',
+    description: 'Full worked solutions',
+    file: '/pdfs/further-maths/further-calculus/soln/_QBT___Solns__Maclaurin_Series.pdf',
+    category: FM,
+    type: 'solutions',
+    pairId: 'fm-further-maclaurin-series',
+    topic: 'Further Calculus',
+  },
 
   // --- A-level Further Maths: Differential Equations (teaching progression order) ---
   {
