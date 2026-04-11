@@ -455,7 +455,7 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-systems-de-solns',
     topic: 'Differential Equations',
-    questionCount: 11,
+    questionCount: 12,
   },
   {
     id: 'fm-systems-de-solns',
