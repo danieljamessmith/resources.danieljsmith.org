@@ -292,6 +292,27 @@ export const resources: Resource[] = [
     topic: 'Further Calculus',
   },
   {
+    id: 'fm-further-integration-inverse-trig',
+    title: 'Integration with Inverse Trig',
+    description: '',
+    file: '/tex/further-maths/further-calculus/qbt/_QBT__Integration_with_Inverse_Trig.pdf',
+    category: FM,
+    type: 'questions',
+    pairId: 'fm-further-integration-inverse-trig-solns',
+    topic: 'Further Calculus',
+    questionCount: 17,
+  },
+  {
+    id: 'fm-further-integration-inverse-trig-solns',
+    title: 'Integration with Inverse Trig',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-calculus/soln/_QBT___Solns__Integration_with_Inverse_Trig.pdf',
+    category: FM,
+    type: 'solutions',
+    pairId: 'fm-further-integration-inverse-trig',
+    topic: 'Further Calculus',
+  },
+  {
     id: 'fm-further-volumes-revolution',
     title: 'Volumes of Revolution',
     description: '',
@@ -439,6 +460,29 @@ export const resources: Resource[] = [
     type: 'solutions',
     pairId: 'fm-systems-de',
     topic: 'Differential Equations',
+  },
+
+  // --- A-level Further Maths: Polar Coordinates ---
+  {
+    id: 'fm-polar-integration-polar-curves',
+    title: 'Integration of Polar Curves',
+    description: '',
+    file: '/tex/further-maths/polar-coordinates/qbt/_QBT__Integration_of_Polar_Curves.pdf',
+    category: FM,
+    type: 'questions',
+    pairId: 'fm-polar-integration-polar-curves-solns',
+    topic: 'Polar Coordinates',
+    questionCount: 12,
+  },
+  {
+    id: 'fm-polar-integration-polar-curves-solns',
+    title: 'Integration of Polar Curves',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/polar-coordinates/soln/_QBT___Solns__Integration_of_Polar_Curves.pdf',
+    category: FM,
+    type: 'solutions',
+    pairId: 'fm-polar-integration-polar-curves',
+    topic: 'Polar Coordinates',
   },
 ];
 
