@@ -9,6 +9,8 @@ export interface Resource {
   topic?: string;
   /** Set on A-level Further Maths `questions` packs; drives list/view copy. */
   questionCount?: number;
+  /** Optional label shown after question count, e.g. "FM Level". */
+  note?: string;
 }
 
 const FM = 'A-level Further Maths';
@@ -156,7 +158,7 @@ export const resources: Resource[] = [
   },
   {
     id: 'fm-vectors-vector-product',
-    title: 'Vector Product (Cross Product)',
+    title: 'Vector Product',
     description: '',
     file: '/tex/further-maths/vectors/qbt/_QBT__Vector_Product.pdf',
     category: FM,
@@ -164,6 +166,7 @@ export const resources: Resource[] = [
     pairId: 'fm-vectors-vector-product-solns',
     topic: 'Vectors',
     questionCount: 10,
+    note: 'Cross Product',
   },
   {
     id: 'fm-vectors-vector-product-solns',
@@ -251,7 +254,7 @@ export const resources: Resource[] = [
   },
   {
     id: 'fm-further-integration-by-parts',
-    title: 'Integration by Parts (FM Level)',
+    title: 'Integration by Parts',
     description: '',
     file: '/tex/further-maths/further-calculus/qbt/_QBT__Integration_by_Parts__FM_Level_.pdf',
     category: FM,
@@ -259,6 +262,7 @@ export const resources: Resource[] = [
     pairId: 'fm-further-integration-by-parts-solns',
     topic: 'Further Calculus',
     questionCount: 15,
+    note: 'FM Level',
   },
   {
     id: 'fm-further-integration-by-parts-solns',
@@ -272,7 +276,7 @@ export const resources: Resource[] = [
   },
   {
     id: 'fm-further-integration-by-substitution',
-    title: 'Integration by Substitution (FM Level)',
+    title: 'Integration by Substitution',
     description: '',
     file: '/tex/further-maths/further-calculus/qbt/_QBT__Integration_by_Substitution__FM_Level_.pdf',
     category: FM,
@@ -280,6 +284,7 @@ export const resources: Resource[] = [
     pairId: 'fm-further-integration-by-substitution-solns',
     topic: 'Further Calculus',
     questionCount: 15,
+    note: 'FM Level',
   },
   {
     id: 'fm-further-integration-by-substitution-solns',
@@ -301,6 +306,7 @@ export const resources: Resource[] = [
     pairId: 'fm-further-integration-inverse-trig-solns',
     topic: 'Further Calculus',
     questionCount: 17,
+    note: 'Inverse Trig/Hyperbolic Trig',
   },
   {
     id: 'fm-further-integration-inverse-trig-solns',
