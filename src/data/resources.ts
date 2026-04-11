@@ -1,3 +1,5 @@
+import { questionCounts } from './questionCounts.generated';
+
 export interface Resource {
   id: string;
   title: string;
@@ -15,7 +17,7 @@ export interface Resource {
 
 const FM = 'A-level Further Maths';
 
-export const resources: Resource[] = [
+const rawResources: Resource[] = [
   // --- TMUA ---
   {
     id: 'tmua-setA-paper1',
@@ -49,7 +51,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-complex-loci-argand-solns',
     topic: 'Complex Numbers',
-    questionCount: 10,
   },
   {
     id: 'fm-complex-loci-argand-solns',
@@ -70,7 +71,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-complex-roots-geometry-solns',
     topic: 'Complex Numbers',
-    questionCount: 13,
   },
   {
     id: 'fm-complex-roots-geometry-solns',
@@ -91,7 +91,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-complex-series-solns',
     topic: 'Complex Numbers',
-    questionCount: 7,
   },
   {
     id: 'fm-complex-series-solns',
@@ -123,7 +122,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-vectors-linear-transformations-solns',
     topic: 'Vectors',
-    questionCount: 11,
   },
   {
     id: 'fm-vectors-linear-transformations-solns',
@@ -144,7 +142,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-vectors-invariant-points-and-lines-solns',
     topic: 'Vectors',
-    questionCount: 9,
   },
   {
     id: 'fm-vectors-invariant-points-and-lines-solns',
@@ -165,7 +162,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-vectors-vector-product-solns',
     topic: 'Vectors',
-    questionCount: 10,
     note: 'Cross Product',
   },
   {
@@ -187,7 +183,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-vectors-shortest-distances-solns',
     topic: 'Vectors',
-    questionCount: 8,
   },
   {
     id: 'fm-vectors-shortest-distances-solns',
@@ -208,7 +203,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-vectors-plane-intersections-solns',
     topic: 'Vectors',
-    questionCount: 7,
   },
   {
     id: 'fm-vectors-plane-intersections-solns',
@@ -229,7 +223,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-vectors-reflections-in-planes-solns',
     topic: 'Vectors',
-    questionCount: 7,
   },
   {
     id: 'fm-vectors-reflections-in-planes-solns',
@@ -261,7 +254,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-further-integration-by-parts-solns',
     topic: 'Further Calculus',
-    questionCount: 15,
     note: 'FM Level',
   },
   {
@@ -283,7 +275,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-further-integration-by-substitution-solns',
     topic: 'Further Calculus',
-    questionCount: 15,
     note: 'FM Level',
   },
   {
@@ -305,7 +296,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-further-integration-inverse-trig-solns',
     topic: 'Further Calculus',
-    questionCount: 17,
     note: 'Inverse Trig/Hyperbolic Trig',
   },
   {
@@ -327,7 +317,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-further-volumes-revolution-solns',
     topic: 'Further Calculus',
-    questionCount: 15,
   },
   {
     id: 'fm-further-volumes-revolution-solns',
@@ -348,7 +337,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-further-maclaurin-series-solns',
     topic: 'Further Calculus',
-    questionCount: 17,
   },
   {
     id: 'fm-further-maclaurin-series-solns',
@@ -371,7 +359,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-integrating-factor-solns',
     topic: 'Differential Equations',
-    questionCount: 15,
   },
   {
     id: 'fm-integrating-factor-solns',
@@ -392,7 +379,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-modelling-1st-order-solns',
     topic: 'Differential Equations',
-    questionCount: 14,
   },
   {
     id: 'fm-modelling-1st-order-solns',
@@ -413,7 +399,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-2nd-order-de-solns',
     topic: 'Differential Equations',
-    questionCount: 12,
   },
   {
     id: 'fm-2nd-order-de-solns',
@@ -434,7 +419,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-modelling-2nd-order-solns',
     topic: 'Differential Equations',
-    questionCount: 12,
   },
   {
     id: 'fm-modelling-2nd-order-solns',
@@ -455,7 +439,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-systems-de-solns',
     topic: 'Differential Equations',
-    questionCount: 12,
   },
   {
     id: 'fm-systems-de-solns',
@@ -478,7 +461,6 @@ export const resources: Resource[] = [
     type: 'questions',
     pairId: 'fm-polar-integration-polar-curves-solns',
     topic: 'Polar Coordinates',
-    questionCount: 12,
   },
   {
     id: 'fm-polar-integration-polar-curves-solns',
@@ -491,6 +473,14 @@ export const resources: Resource[] = [
     topic: 'Polar Coordinates',
   },
 ];
+
+/** Populate questionCount from the generated counts file for all QBT question sheets. */
+export const resources: Resource[] = rawResources.map((r) => ({
+  ...r,
+  ...(r.type === 'questions' && questionCounts[r.file] !== undefined
+    ? { questionCount: questionCounts[r.file] }
+    : {}),
+}));
 
 export const categories = [...new Set(resources.map((r) => r.category))];
 
