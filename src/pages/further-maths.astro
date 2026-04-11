@@ -24,6 +24,11 @@ const pairs = rawPairs.filter(
   (p): p is { questions: Resource; solutions: Resource } => p.solutions !== undefined,
 );
 
+const rawPolarPairs = getResourcePairs(FM, 'Polar Coordinates');
+const polarPairs = rawPolarPairs.filter(
+  (p): p is { questions: Resource; solutions: Resource } => p.solutions !== undefined,
+);
+
 const rawComplexPairs = getResourcePairs(FM, 'Complex Numbers');
 const complexPairs = rawComplexPairs.filter(
   (p): p is { questions: Resource; solutions: Resource } => p.solutions !== undefined,
@@ -154,6 +159,69 @@ const vectorPairs = rawVectorPairs.filter(
 
       <div class="mb-6 space-y-1.5">
         {pairs.map((pair) => (
+          <div class="grid sm:grid-cols-2 gap-x-2 gap-y-1.5">
+            <a
+              href={`/view/${pair.questions.id}`}
+              class="group block px-2 py-1.5 bg-blue-950/40 rounded-xl border border-blue-800/40 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/5 hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <p class="text-xs font-medium text-blue-400 uppercase tracking-wider leading-none">Questions</p>
+              <div class="mt-0.5 flex items-start gap-2">
+                <div class="flex-shrink-0 w-7 h-7 rounded-md bg-blue-500/10 flex items-center justify-center text-blue-400">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="text-sm text-white font-medium leading-snug group-hover:text-blue-300 transition-colors">
+                    {pair.questions.title}
+                  </h3>
+                  <p class="text-xs text-slate-400 leading-snug mt-0">{getResourceDisplayDescription(pair.questions)}</p>
+                </div>
+              </div>
+            </a>
+            <a
+              href={`/view/${pair.solutions.id}`}
+              class="group block px-2 py-1.5 bg-emerald-950/40 rounded-xl border border-emerald-800/40 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/5 hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <p class="text-xs font-medium text-emerald-400 uppercase tracking-wider leading-none">Solutions</p>
+              <div class="mt-0.5 flex items-start gap-2">
+                <div class="flex-shrink-0 w-7 h-7 rounded-md bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="text-sm text-white font-medium leading-snug group-hover:text-emerald-300 transition-colors">
+                    {pair.solutions.title}
+                  </h3>
+                  <p class="text-xs text-slate-400 leading-snug mt-0">{pair.solutions.description}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+
+          <h2
+            id="polar-coordinates"
+            class="scroll-mt-24 text-lg font-semibold text-white mt-5 mb-3 flex items-center gap-3"
+          >
+            <span class="w-8 h-0.5 bg-slate-500 rounded-full" />
+            Polar Coordinates
+          </h2>
+
+      <div class="mb-6 space-y-1.5">
+        {polarPairs.map((pair) => (
           <div class="grid sm:grid-cols-2 gap-x-2 gap-y-1.5">
             <a
               href={`/view/${pair.questions.id}`}
