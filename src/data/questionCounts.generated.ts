@@ -17,6 +17,7 @@ export const questionCounts: Record<string, number> = {
   '/tex/further-maths/polar-coordinates/qbt/_QBT__Integration_of_Polar_Curves.pdf': 12,
   '/tex/further-maths/vectors/qbt/_QBT__Invariant_Points_and_Lines.pdf': 9,
   '/tex/further-maths/vectors/qbt/_QBT__Linear_Transformations.pdf': 11,
+  '/tex/further-maths/vectors/qbt/_QBT__Matrix_Determinants___Inverses.pdf': 10,
   '/tex/further-maths/vectors/qbt/_QBT__Plane_Intersections.pdf': 7,
   '/tex/further-maths/vectors/qbt/_QBT__Reflections_in_Planes.pdf': 7,
   '/tex/further-maths/vectors/qbt/_QBT__Vector_Product.pdf': 10,
