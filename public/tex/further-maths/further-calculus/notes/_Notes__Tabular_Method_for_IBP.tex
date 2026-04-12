@@ -1,0 +1,326 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage[hidelinks]{hyperref}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{The Tabular Method for Integration by Parts}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\definecolor{accent}{RGB}{33,84,140}
+\definecolor{accent2}{RGB}{21,112,98}
+\definecolor{softblue}{RGB}{242,247,252}
+\definecolor{softgreen}{RGB}{242,250,247}
+\definecolor{softamber}{RGB}{255,249,238}
+\definecolor{softrose}{RGB}{252,245,246}
+
+\newcommand{\basicibptable}[4]{%
+\begin{center}
+\begin{tikzpicture}[
+  >=Stealth,
+  diag/.style={-{Stealth[length=2.8mm]}, very thick, accent2},
+  every node/.style={font=\small}
+]
+\def\wA{1.35}
+\def\wB{3.4}
+\def\wC{3.4}
+\def\h{#4}
+\draw[thick] (0,0) rectangle ({\wA+\wB+\wC},{(#1+1)*\h});
+\draw[thick] (\wA,0) -- (\wA,{(#1+1)*\h});
+\draw[thick] ({\wA+\wB},0) -- ({\wA+\wB},{(#1+1)*\h});
+\foreach \r in {1,...,#1} {\draw[thick] (0,{\r*\h}) -- ({\wA+\wB+\wC},{\r*\h});}
+\fill[softblue] (0,{#1*\h}) rectangle ({\wA+\wB+\wC},{(#1+1)*\h});
+\node[font=\bfseries\small] at ({0.5*\wA},{(#1+0.5)*\h}) {Sign};
+\node[font=\bfseries\small] at ({\wA+0.5*\wB},{(#1+0.5)*\h}) {Differentiate};
+\node[font=\bfseries\small] at ({\wA+\wB+0.5*\wC},{(#1+0.5)*\h}) {Integrate};
+#2
+#3
+\end{tikzpicture}
+\end{center}%
+}
+
+\newcommand{\tableA}{%
+\basicibptable{4}{%
+\node at ({0.5*\wA},{3.5*\h}) {$+$};
+\node at ({\wA+0.5*\wB},{3.5*\h}) {$x^2$};
+\node at ({\wA+\wB+0.5*\wC},{3.5*\h}) {$e^x$};
+\node at ({0.5*\wA},{2.5*\h}) {$-$};
+\node at ({\wA+0.5*\wB},{2.5*\h}) {$2x$};
+\node at ({\wA+\wB+0.5*\wC},{2.5*\h}) {$e^x$};
+\node at ({0.5*\wA},{1.5*\h}) {$+$};
+\node at ({\wA+0.5*\wB},{1.5*\h}) {$2$};
+\node at ({\wA+\wB+0.5*\wC},{1.5*\h}) {$e^x$};
+\node at ({0.5*\wA},{0.5*\h}) {$-$};
+\node at ({\wA+0.5*\wB},{0.5*\h}) {$0$};
+\node at ({\wA+\wB+0.5*\wC},{0.5*\h}) {$e^x$};
+}{%
+\draw[diag] ({\wA+0.72*\wB},{3.5*\h}) -- ({\wA+\wB+0.28*\wC},{2.5*\h});
+\draw[diag] ({\wA+0.72*\wB},{2.5*\h}) -- ({\wA+\wB+0.28*\wC},{1.5*\h});
+\draw[diag] ({\wA+0.72*\wB},{1.5*\h}) -- ({\wA+\wB+0.28*\wC},{0.5*\h});
+}{0.82}}
+
+\newcommand{\tableB}{%
+\basicibptable{5}{%
+\node at ({0.5*\wA},{4.5*\h}) {$+$};
+\node at ({\wA+0.5*\wB},{4.5*\h}) {$x^3$};
+\node at ({\wA+\wB+0.5*\wC},{4.5*\h}) {$-\cos x$};
+\node at ({0.5*\wA},{3.5*\h}) {$-$};
+\node at ({\wA+0.5*\wB},{3.5*\h}) {$3x^2$};
+\node at ({\wA+\wB+0.5*\wC},{3.5*\h}) {$-\sin x$};
+\node at ({0.5*\wA},{2.5*\h}) {$+$};
+\node at ({\wA+0.5*\wB},{2.5*\h}) {$6x$};
+\node at ({\wA+\wB+0.5*\wC},{2.5*\h}) {$\cos x$};
+\node at ({0.5*\wA},{1.5*\h}) {$-$};
+\node at ({\wA+0.5*\wB},{1.5*\h}) {$6$};
+\node at ({\wA+\wB+0.5*\wC},{1.5*\h}) {$\sin x$};
+\node at ({0.5*\wA},{0.5*\h}) {$+$};
+\node at ({\wA+0.5*\wB},{0.5*\h}) {$0$};
+\node at ({\wA+\wB+0.5*\wC},{0.5*\h}) {$-\cos x$};
+}{%
+\draw[diag] ({\wA+0.72*\wB},{4.5*\h}) -- ({\wA+\wB+0.28*\wC},{3.5*\h});
+\draw[diag] ({\wA+0.72*\wB},{3.5*\h}) -- ({\wA+\wB+0.28*\wC},{2.5*\h});
+\draw[diag] ({\wA+0.72*\wB},{2.5*\h}) -- ({\wA+\wB+0.28*\wC},{1.5*\h});
+\draw[diag] ({\wA+0.72*\wB},{1.5*\h}) -- ({\wA+\wB+0.28*\wC},{0.5*\h});
+}{0.82}}
+
+\newcommand{\tableC}{%
+\basicibptable{6}{%
+\node at ({0.5*\wA},{5.5*\h}) {$+$};
+\node at ({\wA+0.5*\wB},{5.5*\h}) {$x^4$};
+\node at ({\wA+\wB+0.5*\wC},{5.5*\h}) {$\dfrac{1}{2}e^{2x}$};
+\node at ({0.5*\wA},{4.5*\h}) {$-$};
+\node at ({\wA+0.5*\wB},{4.5*\h}) {$4x^3$};
+\node at ({\wA+\wB+0.5*\wC},{4.5*\h}) {$\dfrac{1}{4}e^{2x}$};
+\node at ({0.5*\wA},{3.5*\h}) {$+$};
+\node at ({\wA+0.5*\wB},{3.5*\h}) {$12x^2$};
+\node at ({\wA+\wB+0.5*\wC},{3.5*\h}) {$\dfrac{1}{8}e^{2x}$};
+\node at ({0.5*\wA},{2.5*\h}) {$-$};
+\node at ({\wA+0.5*\wB},{2.5*\h}) {$24x$};
+\node at ({\wA+\wB+0.5*\wC},{2.5*\h}) {$\dfrac{1}{16}e^{2x}$};
+\node at ({0.5*\wA},{1.5*\h}) {$+$};
+\node at ({\wA+0.5*\wB},{1.5*\h}) {$24$};
+\node at ({\wA+\wB+0.5*\wC},{1.5*\h}) {$\dfrac{1}{32}e^{2x}$};
+\node at ({0.5*\wA},{0.5*\h}) {$-$};
+\node at ({\wA+0.5*\wB},{0.5*\h}) {$0$};
+\node at ({\wA+\wB+0.5*\wC},{0.5*\h}) {$\dfrac{1}{64}e^{2x}$};
+}{%
+\draw[diag] ({\wA+0.72*\wB},{5.5*\h}) -- ({\wA+\wB+0.28*\wC},{4.5*\h});
+\draw[diag] ({\wA+0.72*\wB},{4.5*\h}) -- ({\wA+\wB+0.28*\wC},{3.5*\h});
+\draw[diag] ({\wA+0.72*\wB},{3.5*\h}) -- ({\wA+\wB+0.28*\wC},{2.5*\h});
+\draw[diag] ({\wA+0.72*\wB},{2.5*\h}) -- ({\wA+\wB+0.28*\wC},{1.5*\h});
+\draw[diag] ({\wA+0.72*\wB},{1.5*\h}) -- ({\wA+\wB+0.28*\wC},{0.5*\h});
+}{0.95}}
+
+\newcommand{\tableD}{%
+\basicibptable{3}{%
+\node at ({0.5*\wA},{2.5*\h}) {$+$};
+\node at ({\wA+0.5*\wB},{2.5*\h}) {$\ln x$};
+\node at ({\wA+\wB+0.5*\wC},{2.5*\h}) {$\dfrac{x^2}{2}$};
+\node at ({0.5*\wA},{1.5*\h}) {$-$};
+\node at ({\wA+0.5*\wB},{1.5*\h}) {$\dfrac{1}{x}$};
+\node at ({\wA+\wB+0.5*\wC},{1.5*\h}) {$\dfrac{x^3}{6}$};
+\node at ({0.5*\wA},{0.5*\h}) {$+$};
+\node at ({\wA+0.5*\wB},{0.5*\h}) {$-\dfrac{1}{x^2}$};
+\node at ({\wA+\wB+0.5*\wC},{0.5*\h}) {$\dfrac{x^4}{24}$};
+}{%
+\draw[diag] ({\wA+0.72*\wB},{2.5*\h}) -- ({\wA+\wB+0.28*\wC},{1.5*\h});
+\draw[diag] ({\wA+0.72*\wB},{1.5*\h}) -- ({\wA+\wB+0.28*\wC},{0.5*\h});
+}{1.04}}
+
+\newcommand{\tableE}{%
+\basicibptable{3}{%
+\node at ({0.5*\wA},{2.5*\h}) {$+$};
+\node at ({\wA+0.5*\wB},{2.5*\h}) {$\sin x$};
+\node at ({\wA+\wB+0.5*\wC},{2.5*\h}) {$e^x$};
+\node at ({0.5*\wA},{1.5*\h}) {$-$};
+\node at ({\wA+0.5*\wB},{1.5*\h}) {$\cos x$};
+\node at ({\wA+\wB+0.5*\wC},{1.5*\h}) {$e^x$};
+\node at ({0.5*\wA},{0.5*\h}) {$+$};
+\node at ({\wA+0.5*\wB},{0.5*\h}) {$-\sin x$};
+\node at ({\wA+\wB+0.5*\wC},{0.5*\h}) {$e^x$};
+}{%
+\draw[diag] ({\wA+0.72*\wB},{2.5*\h}) -- ({\wA+\wB+0.28*\wC},{1.5*\h});
+\draw[diag] ({\wA+0.72*\wB},{1.5*\h}) -- ({\wA+\wB+0.28*\wC},{0.5*\h});
+}{0.82}}
+
+\begin{document}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=softblue,
+  colframe=accent,
+  colbacktitle=accent!50!white,
+  boxrule=0.9pt,
+  arc=2mm,
+  title=The IBP Formula,
+  fonttitle=\bfseries,
+  coltitle=black
+]
+Integration by parts may be written as
+\[
+\int u\,\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x
+= uv - \int v\,\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
+\]
+In the tabular method, the left column is differentiated repeatedly, the right column is integrated repeatedly, and the answer is read from the diagonal products with alternating signs.
+\end{tcolorbox}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=softgreen,
+  colframe=accent2,
+  colbacktitle=accent2!50!white,
+  boxrule=0.9pt,
+  arc=2mm,
+  title=The Tabular Method,
+  fonttitle=\bfseries,
+  coltitle=black
+]
+Choose
+\[
+ u=\text{the factor to differentiate},
+ \qquad
+ \frac{\mathrm{d}v}{\mathrm{d}x}=\text{the factor to integrate}
+\]
+Then:
+\begin{enumerate}[leftmargin=*,itemsep=0.15em,topsep=0.2em]
+    \item write the alternating signs \(+, -, +, -, \dots\),
+    \item differentiate the \(u\)-column downward,
+    \item integrate the \(\dfrac{\mathrm{d}v}{\mathrm{d}x}\)-column downward,
+    \item read each arrow diagonally to form the terms,
+    \item and include the final remainder integral when needed (if the Differentiate column didn't reach 0) by adding the integral of the product of the final row.
+\end{enumerate}
+\end{tcolorbox}
+
+\section*{Example 1: \(\int x^2e^x\,\mathrm{d}x\)}
+Take
+\[
+ u=x^2,
+ \qquad
+ \frac{\mathrm{d}v}{\mathrm{d}x}=e^x
+\]
+\tableA
+So
+\[
+\int x^2e^x\,\mathrm{d}x=x^2e^x-2xe^x+2e^x
+\]
+Hence
+\[
+\boxed{\int x^2e^x\,\mathrm{d}x=e^x(x^2-2x+2)+C}
+\]
+
+\newpage
+\section*{Example 2: \(\int x^3\sin x\,\mathrm{d}x\)}
+Take
+\[
+ u=x^3,
+ \qquad
+ \frac{\mathrm{d}v}{\mathrm{d}x}=\sin x
+\]
+\tableB
+Reading the diagonals gives
+\[
+\boxed{\int x^3\sin x\,\mathrm{d}x=-x^3\cos x+3x^2\sin x+6x\cos x-6\sin x+C}
+\]
+
+\section*{Example 3: \(\int x^4e^{2x}\,\mathrm{d}x\)}
+Take
+\[
+ u=x^4,
+ \qquad
+ \frac{\mathrm{d}v}{\mathrm{d}x}=e^{2x}
+\]
+\tableC
+So
+\[
+\int x^4e^{2x}\,\mathrm{d}x
+=\frac12x^4e^{2x}-x^3e^{2x}+\frac32x^2e^{2x}-\frac32xe^{2x}+\frac34e^{2x}+C
+\]
+Hence
+\[
+\boxed{\int x^4e^{2x}\,\mathrm{d}x
+=e^{2x}\left(\frac12x^4-x^3+\frac32x^2-\frac32x+\frac34\right)+C}
+\]
+\newpage
+\section*{Example 4: \(\int x\ln x\,\mathrm{d}x\)}
+Choose the logarithm for the differentiated column:
+\[
+ u=\ln x,
+ \qquad
+ \frac{\mathrm{d}v}{\mathrm{d}x}=x
+\]
+\tableD
+From the first diagonal term,
+\[
+\int x\ln x\,\mathrm{d}x
+=\frac{x^2}{2}\ln x-\int \frac{x^2}{2}\cdot\frac{1}{x}\,\mathrm{d}x
+\]
+Therefore
+\[
+\int x\ln x\,\mathrm{d}x
+=\frac{x^2}{2}\ln x-\frac12\int x\,\mathrm{d}x
+=\frac{x^2}{2}\ln x-\frac{x^2}{4}+C
+\]
+So
+\[
+\boxed{\int x\ln x\,\mathrm{d}x=\frac{x^2}{2}\ln x-\frac{x^2}{4}+C}
+\]
+
+\section*{Example 5: \(\int e^x\sin x\,\mathrm{d}x\)}
+Take
+\[
+ u=\sin x,
+ \qquad
+ \frac{\mathrm{d}v}{\mathrm{d}x}=e^x
+\]
+\tableE
+Let
+\[
+I=\int e^x\sin x\,\mathrm{d}x
+\]
+The table gives
+\[
+I=e^x\sin x-e^x\cos x+\int (-\sin x)e^x\,\mathrm{d}x
+\]
+Since
+\[
+\int (-\sin x)e^x\,\mathrm{d}x=-I
+\]
+we obtain
+\[
+I=e^x\sin x-e^x\cos x-I
+\]
+Hence
+\[
+2I=e^x(\sin x-\cos x)
+\qquad
+I=\frac12e^x(\sin x-\cos x)+C
+\]
+So
+\[
+\boxed{\int e^x\sin x\,\mathrm{d}x=\frac12e^x(\sin x-\cos x)+C}
+\]
+
+\end{document}

@@ -1,0 +1,393 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{Linear Transformations}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\roman*)}]
+  \item In each of the following cases, find a $2\times 2$ matrix that represents
+  \begin{enumerate}[label=(\alph*)]
+    \item a reflection in the line $y=x$ \marks{1}
+    \item a rotation of $60^\circ$ clockwise about $(0,0)$ \marks{1}
+    \item a rotation of $60^\circ$ clockwise about $(0,0)$ followed by a reflection in the line $y=x$ \marks{2} \\
+  \end{enumerate}
+  \item The triangle $T$ has vertices at the points $(1,2)$, $(5,5)$ and $(k,-1)$, where $k>-3$ is a constant. \\
+
+  Triangle $T$ is transformed onto the triangle $T'$ by the matrix
+  \[
+  \begin{pmatrix}
+  2 & 5 \\
+  1 & -1
+  \end{pmatrix}
+  \]
+  Given that the area of triangle $T'$ is $84$ square units, find the value of $k$. \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+\[
+\mathbf{P}=\begin{pmatrix} p+1 & 2 \\ 2 & p+1 \end{pmatrix}
+\] \\
+where $p$ is a positive constant. \\
+
+The matrix $\mathbf{P}$ represents a linear transformation $U$. \\
+The parallelogram $S$ has vertices at the points with coordinates $(1,1)$, $(4,2)$, $(6,5)$ and $(3,4)$. \\
+The area of the image of $S$ under the linear transformation $U$ is $35$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Determine the value of $p$. \marks{4} \\
+\end{enumerate}
+
+The transformation $V$ consists of a reflection in the line $y=x$ followed by a stretch of scale factor $2$ parallel to the $x$-axis with the $y$-axis invariant. The transformation $V$ is represented by the matrix $\mathbf{Q}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Write down the matrix $\mathbf{Q}$. \marks{2} \\
+\end{enumerate}
+
+Given that $U$ followed by $V$ is the transformation $W$, which is represented by the matrix $\mathbf{R}$ \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item find the matrix $\mathbf{R}$. \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Specify fully the transformation $\mathbf{T}$ of the plane associated with the matrix $\mathbf{M}$, where
+  \[
+  \mathbf{M} = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}
+  \]
+  and $0<\theta<2\pi$. \marks{2} \\
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Find $\det \mathbf{M}$. \marks{1}
+    \item Deduce \textbf{two properties} of the transformation $\mathbf{T}$ from the value of $\det \mathbf{M}$. \marks{2} \\
+  \end{enumerate}
+  \item Prove that
+  \[
+  \mathbf{M}^n = \begin{pmatrix} \cos n\theta & -\sin n\theta \\ \sin n\theta & \cos n\theta \end{pmatrix}
+  \]
+  where $n$ is a positive integer. \marks{4} \\
+  
+  \item Hence specify fully a \textbf{single} transformation which is equivalent to $n$ applications of the transformation $\mathbf{T}$. \marks{1} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+Consider the matrix
+\[
+A=\begin{pmatrix}
+-\frac{1}{2} & \frac{\sqrt{3}}{2}\\[6pt]
+\frac{\sqrt{3}}{2} & \frac{1}{2}
+\end{pmatrix}
+\] \\
+
+\begin{enumerate}[label=\textbf{(\roman*)}]
+  \item Calculate $A^2$. \marks{1} \\
+\end{enumerate}
+
+You are told that the matrix $A$ represents a reflection in a line through the origin. \\
+
+\begin{enumerate}[label=\textbf{(\roman*)}, resume]
+  \item Explain why your answer to part (i) is consistent with this information. \marks{1} \\
+  \item By finding the invariant points of the transformation, determine the equation of the mirror line. \marks{3} \\
+  \item Describe fully the transformation represented by
+  \[
+  B=\begin{pmatrix}
+  -\frac{1}{2} & -\frac{\sqrt{3}}{2}\\[6pt]
+  \frac{\sqrt{3}}{2} & -\frac{1}{2}
+  \end{pmatrix}
+  \]
+  \marks[-30pt]{2}
+  \item A composite transformation is formed by the transformation represented by $A$ followed by the transformation represented by $B$. Find the single matrix that represents this composite transformation. \marks{2} \\
+  \item The composite transformation described in part (v) is equivalent to a single reflection. Find the equation of the mirror line of this reflection. \marks{1} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+The transformation $U$, represented by the $2\times 2$ matrix $P$, is a reflection in the $x$-axis. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Write down the matrix $P$. \marks{1} \\
+\end{enumerate}
+
+The transformation $V$, represented by the $2\times 2$ matrix $Q$, is a reflection in the line $y=x$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Write down the matrix $Q$. \marks{1} \\
+\end{enumerate}
+
+Given that $U$ followed by $V$ is transformation $T$, which is represented by the matrix $R$ \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item express $R$ in terms of $P$ and $Q$, \marks{1}
+  \item find the matrix $R$, \marks{2}
+  \item give a full geometrical description of $T$ as a single transformation. \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+The matrix $\mathbf{M}$ is given by
+\[
+\mathbf{M} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & k \end{pmatrix}
+\]
+where $k>0$ and $k \ne 1$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item The matrix $\mathbf{M}$ represents a sequence of two geometrical transformations. State the type of each transformation, and make clear the order in which they are applied. \marks{2} \\
+\end{enumerate}
+
+The unit square in the $x$-$y$ plane is transformed by $\mathbf{M}$ onto rectangle $OABC$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find, in terms of $k$, the area of rectangle $OABC$ and the matrix which transforms $OABC$ onto the unit square. \marks{3} \\
+  \item Show that the line through the origin with gradient $\frac{1}{\sqrt{k}}$ is invariant under the transformation in the $x$-$y$ plane represented by $\mathbf{M}$. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+You are given the matrix $\mathbf{A} = \begin{pmatrix}0 & 1 & 0\\0 & 0 & 1\\1 & 0 & 0\end{pmatrix}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find $\mathbf{A}^5$. \marks{1} \\
+  \item Describe the transformation that $\mathbf{A}$ represents. \marks{2} \\
+\end{enumerate}
+
+The matrix $\mathbf{B}$ represents a reflection in the plane $x = y$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Write down the matrix $\mathbf{B}$. \marks{1} \\
+\end{enumerate}
+
+The point $Q$ has coordinates $(4, -1, 2)$. The point $Q'$ is the image of $Q$ under the transformation represented by $\mathbf{B}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find the coordinates of $Q'$. \marks{1} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+A right-angled triangle $T$ has vertices $A(-2,1)$, $B(1,1)$ and $C(1,5)$. When $T$ is transformed by the matrix
+\[
+P = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}
+\]
+the image is $T'$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the coordinates of the vertices of $T'$. \marks{2} \\
+  \item Describe fully the transformation represented by $P$. \marks{2} \\
+\end{enumerate}
+
+The matrices
+\[
+Q = \begin{pmatrix} 2 & -1 \\ 0 & 3 \end{pmatrix}
+\]
+and
+\[
+R = \begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix}
+\]
+represent two transformations. When $T$ is transformed by the matrix $QR$, the image is $T''$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find $QR$. \marks{2} \\
+  \item Find the determinant of $QR$. \marks{2} \\
+  \item Using your answer to part (d), find the area of $T''$. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+Given that the matrix $\mathbf{M}$, where
+\[
+\mathbf{M} = \begin{pmatrix}
+-\frac{\sqrt{2}}{2} & 0 & -\frac{\sqrt{2}}{2} \\
+0 & 1 & 0 \\
+\frac{\sqrt{2}}{2} & 0 & -\frac{\sqrt{2}}{2}
+\end{pmatrix}
+\]
+represents a rotation through $\alpha^\circ$ about the $y$-axis in the positive sense given by the right-hand rule. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item determine the value of $\alpha$. \marks{1} \\
+  \item Hence determine the smallest possible positive integer value of $k$ for which $\mathbf{M}^k = \mathbf{I}$. \marks{2} \\
+\end{enumerate}
+
+The $3\times 3$ matrix $\mathbf{N}$ represents a reflection in the plane with equation $x = 0$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Write down the matrix $\mathbf{N}$. \marks{1} \\
+\end{enumerate}
+
+The point $A$ has coordinates $(1, 2, 3)$. \\
+
+The point $B$ is the image of the point $A$ under the transformation represented by matrix $\mathbf{M}$ followed by the transformation represented by matrix $\mathbf{N}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Show that the coordinates of $B$ are $(2\sqrt{2}, 2, -\sqrt{2})$. \marks{2} \\
+\end{enumerate}
+
+Given that $O$ is the origin \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item show that, to $3$ significant figures, the size of angle $AOB$ is $79.4^\circ$. \marks{2} \\
+  \item Hence determine the area of triangle $AOB$, giving your answer to $3$ significant figures. \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+Bilal has been asked to describe the transformation given by the matrix
+\[
+\begin{pmatrix}
+\frac{\sqrt{3}}{2} & 0 & -\frac{1}{2} \\
+0 & 1 & 0 \\
+\frac{1}{2} & 0 & \frac{\sqrt{3}}{2}
+\end{pmatrix}
+\]
+
+He writes his answer as follows: \\
+
+
+\fbox{%
+\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+The transformation is a rotation about the $y$-axis through an angle of $\theta$, where
+\[
+\cos \theta = \frac{\sqrt{3}}{2} \quad \text{and} \quad \sin \theta = \frac{1}{2}
+\]
+\[
+\theta = 30^\circ
+\]
+}%
+} \\[10pt]
+
+Identify and correct the error in Bilal's work. \marks{2}
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+
+Three non-singular $3 \times 3$ matrices, $\mathbf{A}$, $\mathbf{B}$ and $\mathbf{R}$, are such that
+\[
+\mathbf{R}\mathbf{A}=\mathbf{B}
+\] \\
+The matrix $\mathbf{R}$ represents a rotation about the $x$-axis through an angle $\theta$ and
+\[
+\mathbf{B}=\begin{bmatrix}
+1 & 0 & 0 \\
+0 & -\sin\theta & \cos\theta \\
+0 & \cos\theta & \sin\theta
+\end{bmatrix}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that $\mathbf{A}$ is independent of the value of $\theta$. \marks{3} \\
+  \item Give a full description of the single transformation represented by the matrix $\mathbf{A}$. \marks{1} \\
+\end{enumerate}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,300 @@
+\documentclass{article}
+
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage[most]{tcolorbox}
+\usepackage{microtype}
+\usepackage{multicol}
+\usepackage[
+  a4paper,
+  left=0.55in,
+  right=0.55in,
+  top=0.5in,
+  bottom=0.5in,
+]{geometry}
+\setlength{\parindent}{0pt}
+\usepackage[colorlinks=true,linkcolor=red!70!black,urlcolor=black]{hyperref}
+\urlstyle{same}
+
+% --- Colour palette (accent colours only; bodies are white) ---
+\definecolor{ink}{RGB}{31,39,46}
+\definecolor{warmline}{RGB}{194,92,62}
+\definecolor{coolline}{RGB}{58,115,166}
+\definecolor{mintline}{RGB}{67,126,79}
+\definecolor{goldline}{RGB}{181,142,39}
+\definecolor{plumline}{RGB}{121,88,155}
+\definecolor{coralline}{RGB}{195,68,90}
+
+% --- Maths shortcuts ---
+\newcommand{\Rthree}{\mathbb{R}^3}
+\newcommand{\modulus}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\length}[1]{\left\lvert #1 \right\rvert}
+
+% --- Shared section-box style ---
+\tcbset{
+  sectionbox/.style={
+    enhanced,
+    sharp corners,
+    boxrule=0.3pt,
+    colframe=ink!15,
+    colback=white,
+    fonttitle=\bfseries\sffamily,
+    coltitle=white,
+    title filled,
+    titlerule=0mm,
+    boxsep=1mm,
+    left=3mm,
+    right=2.2mm,
+    top=1.5mm,
+    bottom=1.5mm,
+    toptitle=1.8mm,
+    bottomtitle=1.8mm,
+    lefttitle=3mm,
+    righttitle=2.2mm,
+    before skip=4mm,
+    after skip=4mm,
+  }
+}
+
+\newtcolorbox{warmbox}[1]{sectionbox,
+  colbacktitle=warmline,
+  borderline west={1.5pt}{0pt}{warmline},
+  title={#1}}
+
+\newtcolorbox{coolbox}[1]{sectionbox,
+  colbacktitle=coolline,
+  borderline west={1.5pt}{0pt}{coolline},
+  title={#1}}
+
+\newtcolorbox{mintbox}[1]{sectionbox,
+  colbacktitle=mintline,
+  borderline west={1.5pt}{0pt}{mintline},
+  title={#1}}
+
+\newtcolorbox{goldbox}[1]{sectionbox,
+  colbacktitle=goldline,
+  borderline west={1.5pt}{0pt}{goldline},
+  title={#1}}
+
+\newtcolorbox{plumbox}[1]{sectionbox,
+  colbacktitle=plumline,
+  borderline west={1.5pt}{0pt}{plumline},
+  title={#1}}
+
+\newtcolorbox{coralbox}[1]{sectionbox,
+  colbacktitle=coralline,
+  borderline west={1.5pt}{0pt}{coralline},
+  title={#1}}
+
+% --- Title banner ---
+\newtcolorbox{titlebox}{
+  enhanced,
+  sharp corners,
+  colback=ink,
+  colframe=ink,
+  coltext=white,
+  boxrule=0mm,
+  left=5mm, right=5mm, top=3mm, bottom=3mm,
+}
+
+% --- Column settings ---
+\setlength{\columnsep}{5.5mm}
+\setlength{\columnseprule}{0pt}
+
+% =====================================================================
+\begin{document}
+\pagestyle{empty}
+
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\setlength{\abovedisplayshortskip}{2pt}
+\setlength{\belowdisplayshortskip}{2pt}
+
+\begin{titlebox}
+\centering
+{\Large\bfseries\sffamily Vectors in \(\Rthree\)\!\,: Distances, Closest Points \& Reflections}
+\end{titlebox}
+
+\vspace{1.5mm}
+
+\begin{multicols}{2}
+\raggedcolumns
+\small
+
+% ============ WARM — Point to a Line ============
+\begin{warmbox}{Point to a Line}
+\vspace{2.5pt}
+Line $L\!:\;\mathbf r=\mathbf a+\lambda\mathbf b$,\; point $\mathbf p$ \\[2.5pt]
+
+\underline{\textbf{Closest point on the line}}
+\[
+  \lambda_*=\frac{(\mathbf p-\mathbf a)\cdot\mathbf b}{\mathbf b\cdot\mathbf b},
+  \qquad
+  \mathbf r=\mathbf a+\lambda_*\mathbf b \\[10pt]
+\]
+
+\underline{\textbf{Shortest distance}}\; (cross-product)
+\[
+  \;\mathrm{dist}
+  =\frac{\length{(\mathbf p-\mathbf a)\times\mathbf b}}{\length{\mathbf b}}\; \\[10pt]
+\]
+
+\underline{\textbf{Shortest distance}}\; (dot-product)
+\[
+  \mathrm{dist}^{2}
+  =(\mathbf p-\mathbf a)\cdot(\mathbf p-\mathbf a)
+   -\frac{\bigl((\mathbf p-\mathbf a)\cdot\mathbf b\bigr)^{2}}
+         {\mathbf b\cdot\mathbf b}
+\]
+\end{warmbox}
+
+% ============ COOL — Point to a Plane ============
+\begin{coolbox}{Point to a Plane}
+Plane $\Pi\!:\;\mathbf r\cdot\mathbf n=d$,\; point $\mathbf p$
+
+\medskip
+\underline{\textbf{Closest point on the plane}}
+\[
+  \mathbf r
+  =\mathbf p
+   -\frac{\mathbf p\cdot\mathbf n-d}
+         {|\mathbf{n}|^2}\,\mathbf n
+\]
+
+\underline{\textbf{Shortest distance}}
+\[
+  \mathrm{dist}
+  =\frac{\modulus{\mathbf p\cdot\mathbf n-d}}{\length{\mathbf n}} \\[10pt]
+\]
+
+\underline{\textbf{Cartesian form}}\\
+$\Pi\!: ax+by+cz=d$,\; $P=(x_0,y_0,z_0)$
+\[
+  \mathrm{dist}
+  =\frac{\modulus{ax_0+by_0+cz_0-d}}{\sqrt{a^{2}+b^{2}+c^{2}}}
+\]
+\end{coolbox}
+
+% ============ GOLD — Distance Between Two Lines ============
+\begin{goldbox}{Distance Between Two Lines}
+\[
+  L_1\!:\;\mathbf r=\mathbf a_1+\lambda\mathbf b_1,
+  \qquad
+  L_2\!:\;\mathbf r=\mathbf a_2+\mu\mathbf b_2 \\[10pt]
+\]
+
+\underline{\textbf{Skew lines}}
+\[
+  \;\mathrm{dist}
+  =\frac{\modulus{(\mathbf a_2-\mathbf a_1)
+         \cdot(\mathbf b_1\times\mathbf b_2)}}
+        {\length{\mathbf b_1\times\mathbf b_2}}\; \\[10pt]
+\]
+
+\underline{\textbf{Parallel lines}}\; (shared direction $\mathbf b$)\vspace*{2pt}
+\[
+  \mathrm{dist}
+  =\frac{\length{(\mathbf a_2-\mathbf a_1)\times\mathbf b}}
+        {\length{\mathbf b}} \\[10pt]
+\]
+
+\underline{\textbf{Closest points on skew lines}} --- solve simultaneously:
+\[\begin{cases}
+  \bigl((\mathbf a_1+\lambda\mathbf b_1)
+       -(\mathbf a_2+\mu\mathbf b_2)\bigr)
+  \cdot\mathbf b_1=0\\
+
+  \bigl((\mathbf a_1+\lambda\mathbf b_1)
+       -(\mathbf a_2+\mu\mathbf b_2)\bigr)
+  \cdot\mathbf b_2=0
+\end{cases}\]
+\end{goldbox}
+
+% ============ PLUM — Line–Plane & Parallel Planes ============
+\begin{plumbox}{Line--Plane \& Parallel Planes}
+\underline{\textbf{Line meets / parallels a plane}} \vspace*{5pt}
+
+$L\!:\;\mathbf r=\mathbf a+\lambda\mathbf b$,\quad
+$\Pi\!:\;\mathbf r\cdot\mathbf n=d$
+
+\smallskip
+If $\mathbf b\cdot\mathbf n\neq 0$: the line meets the plane
+$(\mathrm{dist}=0)$ \\ at parameter $\lambda_*$ given by
+\[
+  \lambda_*=\frac{d-\mathbf a\cdot\mathbf n}{\mathbf b\cdot\mathbf n} \\[10pt]
+\]
+
+If $\mathbf b\cdot\mathbf n=0$: the line is parallel to the plane.
+\[
+  \mathrm{dist}
+  =\frac{\modulus{\mathbf a\cdot\mathbf n-d}}{\length{\mathbf n}}
+\]
+
+\medskip
+\underline{\textbf{Distance between parallel planes}}
+\vspace*{5pt}
+
+$\Pi_1\!:\;\mathbf r\cdot\mathbf n=d_1$,\quad
+$\Pi_2\!:\;\mathbf r\cdot\mathbf n=d_2$ \\
+Same normal $\mathbf{n} \implies$ parallel planes.\\[4pt]
+\[
+  \mathrm{dist}
+  =\frac{\modulus{d_2-d_1}}{\length{\mathbf n}}
+\]
+\end{plumbox}
+
+% ============ MINT — Reflections ============
+\begin{mintbox}{Reflections in a Plane}
+Plane $\Pi\!:\;\mathbf r\cdot\mathbf n=d$
+
+\medskip
+\underline{\textbf{Reflect a point}}
+\[
+  \mathbf p'
+  =\mathbf p
+   -2\,\frac{\mathbf p\cdot\mathbf n-d}
+            {|\mathbf{n}|^2}\,\mathbf n \\
+\]
+
+\underline{\textbf{Reflect a direction vector}}
+\[
+  \mathbf b'
+  =\mathbf b
+   -2\,\frac{\mathbf b\cdot\mathbf n}
+            {|\mathbf{n}|^2}\,\mathbf n\\[10pt]
+\]
+
+\underline{\textbf{Reflect an entire line}}\;
+$L\!:\;\mathbf r=\mathbf a+\lambda\mathbf b$
+\[
+ L'\!:\;\mathbf r=\mathbf a'+\lambda\mathbf b'
+\]
+where $\mathbf{a}'$ and $\mathbf{b}'$ given by the above.
+\end{mintbox}
+
+% ============ CORAL — Angle Formulae ============
+\begin{coralbox}{Angle Formulae}
+\underline{\textbf{Acute angle between two lines}}
+\[
+  \cos\theta
+  =\frac{\modulus{\mathbf b_1\cdot\mathbf b_2}}
+        {\length{\mathbf b_1}\,\length{\mathbf b_2}} \\[10pt]
+\]
+
+\underline{\textbf{Acute angle between two planes}}
+\[
+  \cos\theta
+  =\frac{\modulus{\mathbf n_1\cdot\mathbf n_2}}
+        {\length{\mathbf n_1}\,\length{\mathbf n_2}} \\[10pt]
+\]
+
+\underline{\textbf{Acute angle between a line and a plane}}
+\[
+  \sin\theta
+  =\frac{\modulus{\mathbf b\cdot\mathbf n}}
+        {\length{\mathbf b}\,\length{\mathbf n}}
+\]
+\end{coralbox}
+
+\end{multicols}
+\end{document}

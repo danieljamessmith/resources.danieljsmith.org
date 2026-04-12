@@ -1,0 +1,282 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{Integration by Substitution (FM Level)}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+Show that
+\[
+\int_0^{\pi/2} \frac{\cos^5 \theta}{2 + \sin \theta}\,\mathrm{d}\theta = 9\ln\!\left(\frac{3}{2}\right) - \frac{41}{12}
+\]
+\marks[-30pt]{8}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use the substitution $u = 1 + x^2$ to show that
+  \[
+  \int_0^2 \frac{x^9}{1+x^2}\,\mathrm{d}x = \int_p^q \frac{(u-1)^4}{2u}\,\mathrm{d}u
+  \]
+  where $p$ and $q$ are constants to be found. \marks{3} \\
+  \item Hence show that
+  \[
+  \int_0^2 \frac{x^9}{1+x^2}\,\mathrm{d}x = A + B\ln 5
+  \]
+  where $A$ and $B$ are constants to be found. \marks{5} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+Show that 
+
+\[
+\int \frac{\sqrt{x^2 - 16}}{x^2}\,\mathrm{d}x = \operatorname{arcosh}\left(\frac{x}{4}\right) - \frac{\sqrt{x^2 - 16}}{x} + c
+\]
+\marks[-30pt]{6}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+Find the exact value of 
+\[
+\int_0^{\frac{1}{2}\ln(2+\sqrt{3})} \frac{\operatorname{sech}^2 x}{\sqrt{4 - 9\tanh^2 x}}\,\mathrm{d}x
+\]
+\marks[-30pt]{8}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+Using calculus, find the exact values of \\
+\begin{enumerate}[label=(\roman*)]
+  \item
+  \[
+  \int_1^2 \frac{1}{x^2 + 3x + 2}\,\mathrm{d}x
+  \]
+  \marks[-20pt]{3}
+  \item
+  \[
+  \int_1^{\sqrt{3}} \frac{\sqrt{4 - x^2}}{x^2}\,\mathrm{d}x
+  \]
+  \marks[-30pt]{5}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+Find the exact value of \\
+\[
+\int_2^4 \frac{\sqrt{x^2-4}}{x^2} \, \mathrm{d}x
+\]
+Give your answer in simplest exact form. \marks{9}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+Show that\\
+\[
+\int \frac{x^2}{\sqrt{x^2 + 16}}\,\mathrm{d}x = \frac{1}{2}x\sqrt{x^2 + 16} - 8\operatorname{arsinh}\left(\frac{x}{4}\right) + c
+\]
+\marks[-30pt]{6}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+Show that
+\[
+\int_0^{\ln 2} \frac{e^{3x}+2e^{2x}}{\sqrt{e^x+4}}\,\mathrm{d}x = \frac{32\sqrt{6}-30\sqrt{5}}{5}
+\]
+\marks[-30pt]{7}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+Using the substitution $u = \frac{2}{3}\tanh x$, evaluate
+\[
+\int_0^1 \frac{\operatorname{sech}^2 x}{\sqrt{9 - 4\tanh^2 x}}\,\mathrm{d}x
+\]
+\marks[-30pt]{8}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+Show that
+\[
+\int_0^{\pi/2} \frac{\sin 3\theta}{2 + \cos \theta}\,\mathrm{d}\theta = 15\ln\left(\frac{3}{2}\right) - 6
+\]
+\marks[-20pt]{7}
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use the substitution $u=\sqrt{2x+1}$ to show that
+  \[
+  \int_0^{15/2} \frac{x}{2+\sqrt{2x+1}}\,\mathrm{d}x = \int_p^q \frac{u(u^2-1)}{2(u+2)}\,\mathrm{d}u
+  \]
+  where $p$ and $q$ are constants to be found.
+  \marks{3} \\
+  \item Hence show that
+  \[
+  \int_0^{15/2} \frac{x}{2+\sqrt{2x+1}}\,\mathrm{d}x = A - B\ln 2
+  \]
+  where $A$ and $B$ are constants to be found.
+  \marks{4}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+
+Use an appropriate substitution to find the exact value of
+\[
+\int_0^{\pi/6} \frac{\cos x\cos 2x}{(1 + \sin x)^{3/2}}\,\mathrm{d}x
+\]
+Give your answer in the form $a+b\sqrt{6}$, where $a$ and $b$ are rational numbers to be determined. \marks{7} \\
+
+\newpage
+
+% ---- Question 13 ----
+\questionitem
+
+Using calculus, find the exact values of \\
+
+\begin{enumerate}[label=(\roman*)]
+  \item
+  \[
+  \int_{-2}^0 \frac{1}{x^2 + 4x + 8}\,\mathrm{d}x
+  \]
+  \marks[-30pt]{3}
+  \item
+  \[
+  \int_0^{\sqrt{3}} \frac{x^2}{\sqrt{4 - x^2}}\,\mathrm{d}x
+  \]
+  \marks[-30pt]{5}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 14 ----
+\questionitem
+
+Show that
+\[
+\int_1^3 \frac{(x-1)^2}{\sqrt{x+1}}\,\mathrm{d}x = \frac{16}{15}(7-4\sqrt{2})
+\]
+\marks[-20pt]{7}
+
+\newpage
+
+% ---- Question 15 ----
+\questionitem
+
+Use an appropriate substitution to find the exact value of
+\[
+\int_0^{2\sqrt{2}} \frac{x^2}{\sqrt{16-x^2}}\,\mathrm{d}x
+\]
+Give your answer in the form $a+b\pi$, where $a$ and $b$ are rational numbers. \marks{9} \\
+\end{enumerate}
+\end{document}

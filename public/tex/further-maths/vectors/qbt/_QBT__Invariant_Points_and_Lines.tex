@@ -1,0 +1,257 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{Invariant Points and Lines}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+
+% ---- Question 1 ----
+\questionitem
+
+The matrix $M$ represents the transformation $T$ and is given by
+\[
+M = \begin{pmatrix}
+p + 3 & -2 \\[6pt]
+ p + 2 & 1 - p
+\end{pmatrix}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item In the case when $p = -1$ show that the image of the point $(3, 4)$ under $T$ is the point $(-2, 11)$. \marks{2} \\
+  \item In the case when $p = 2$ find the gradient of the line of invariant points under $T$. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+A linear transformation of the plane is represented by
+\[
+\begin{pmatrix}
+1 & 4 \\
+2 & 3
+\end{pmatrix}
+\]
+Determine the invariant line with negative gradient. \marks{4}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+The matrix $A$ is given by
+\[
+A = \frac{1}{5}\begin{pmatrix}-3 & -4 \\ -4 & 3\end{pmatrix}
+\] \\
+You are given that $A$ represents the transformation $T$, where $T$ is a reflection in a straight line through the origin, $O$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Explain why $T$ must have a line of invariant points. State the geometric significance of this line. \marks{2} \\
+  \item By considering the line of invariant points for $T$, determine the equation of the mirror line.
+
+Give your answer in the form $y = mx + c$. \marks{4} \\
+  \item The coordinates of the point $P$ are $(4, 7)$. \\
+  By considering the image of $P$ under the transformation $T$, or otherwise, determine the coordinates of the point on the mirror line which is closest to $P$. \marks{3} \\
+  \item The line with equation $2x + by = 6$ is an invariant line for $T$. \\
+  Determine the value of $b$. \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+The matrix $M$ is given by
+\[
+M = \begin{pmatrix} 1 & 0 \\[6pt] 0 & 6 \end{pmatrix}\begin{pmatrix} \frac{1}{2} & \frac{\sqrt{3}}{2} \\[6pt] \frac{\sqrt{3}}{2} & -\frac{1}{2} \end{pmatrix}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item The matrix $M$ represents a sequence of two geometrical transformations in the $x$-$y$ plane. \\
+  Give full details of the two transformations, stating clearly the order in which they are applied. \marks{4} \\
+  \item Write $M^{-1}$ as the product of two matrices, neither of which is $I$. \marks{2} \\
+  \item Find the equations of the invariant lines, through the origin, of the transformation represented by $M$. \marks{5} \\
+\end{enumerate}
+
+\newpage
+
+
+% ---- Question 5 ----
+\questionitem
+
+A linear transformation of the plane is represented by the matrix
+\[
+\mathbf{M}=\begin{pmatrix}2 & -1\\ p & 0\end{pmatrix}
+\]
+where $p$ is a constant. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that the line $x=0$ is not invariant. For a line through the origin with equation $y=mx$, show that it is invariant only if
+  \[
+  m^2-2m+p=0
+  \]
+  Hence find the set of values of $p$ for which the transformation has no invariant lines through the origin. \marks{5}\\
+  \item Given that the transformation multiplies areas by $3$ and reverses orientation, find the invariant lines. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+The $2 \times 2$ matrix $\mathbf{A}$ represents a transformation $\mathbf{T}$ which has the following properties. \\
+
+\begin{itemize}
+\item The image of the point $(1,-1)$ is the point $(2,0)$.
+\item An object shape whose area is $4$ is transformed to an image shape whose area is $24$.
+\item $\mathbf{T}$ has a line of invariant points. \\
+\end{itemize}
+
+\begin{enumerate}[label=(\roman*)]
+  \item Find a possible matrix for $\mathbf{A}$. \marks{8} \\
+\end{enumerate}
+
+The transformation $\mathbf{S}$ is represented by the matrix $\mathbf{B}$ where
+\[
+\mathbf{B} = \begin{pmatrix}2 & 1 \\ 2 & 3\end{pmatrix}
+\] \\
+\begin{enumerate}[label=(\roman*), resume]
+  \item Find the equation of the line of invariant points of $\mathbf{S}$. \marks{2} \\
+  \item Show that any line of the form $y = 2x + c$ is an invariant line of $\mathbf{S}$. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+The matrix
+\[
+B = \begin{pmatrix} 1 & -4 \\ 2 & -1 \end{pmatrix}
+\]
+represents the linear transformation $T$. \\
+Any invariant line for $T$ must be parallel to an invariant line through the origin. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item A line through the origin has equation $y=mx$, where $m$ is real. Show that, for $m \ne \tfrac{1}{4}$, its image under $T$ has equation
+  \[
+  y = \frac{2-m}{1-4m}x
+  \]
+  State also the image of the line $y=\tfrac{1}{4}x$ and the image of the vertical line $x=0$. \marks{3}\\
+  \item Hence prove that $T$ has no invariant lines. \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+The matrix of a linear transformation $T$ is
+\[
+M = \begin{pmatrix} p+2 & -5 \\[6pt] -2 & p-1 \end{pmatrix}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the values of $p$ for which $T$ is not invertible. \marks{2} \\
+\end{enumerate}
+It is now given that $p = 3$, so that
+\[
+M = \begin{pmatrix} 5 & -5 \\ -2 & 2 \end{pmatrix}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find the equations of the invariant lines, through the origin, of the transformation represented by $M$. \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+\[
+A = \begin{pmatrix} b & a - 3 \\[6pt] 2a - 1 & -2 \end{pmatrix}
+\]
+where $a$ and $b$ are non-zero constants. \\
+Given that the matrix $A$ is self-inverse, \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item determine the value of $b$ and the possible values of $a$. \marks{5} \\
+\end{enumerate}
+The matrix $A$ represents a linear transformation $M$ of the plane. \\
+Using the smaller value of $a$ from part (a), \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item show that the invariant points of the linear transformation $M$ form a line, stating the equation of this line. \marks{3} \\
+\end{enumerate}
+\end{enumerate}
+\end{document}

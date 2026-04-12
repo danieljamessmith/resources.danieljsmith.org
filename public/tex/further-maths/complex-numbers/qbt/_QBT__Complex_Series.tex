@@ -1,0 +1,247 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{Complex Series}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+The infinite series $C$ and $S$ are defined by
+\begin{align*}
+ C&= \cos 2\theta - \frac{1}{3}\cos 5\theta + \frac{1}{9}\cos 8\theta - \frac{1}{27}\cos 11\theta + \cdots \\[4pt]
+S &= \sin 2\theta - \frac{1}{3}\sin 5\theta + \frac{1}{9}\sin 8\theta - \frac{1}{27}\sin 11\theta + \cdots  
+\end{align*}
+
+Given that the series $C$ and $S$ are both convergent. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[
+  C+ \mathrm{i}S = \frac{3e^{2\mathrm{i}\theta}}{3 + e^{3\mathrm{i}\theta}}
+  \]
+  \marks[-20pt]{4}
+  \item Hence show that
+  \[
+  S = \frac{9\sin 2\theta - 3\sin \theta}{10 + 6\cos 3\theta}
+  \]
+  \marks[-30pt]{4}
+\end{enumerate}
+
+\newpage
+
+
+% ---- Question 2 ----
+\questionitem
+
+\begin{enumerate}[label=(\roman*)]
+  \item Show that \[(1 - 2e^{2\mathrm{i}\theta})(1 - 2e^{-2\mathrm{i}\theta}) = 5 - 4\cos 2\theta\] \marks[-15pt]{3} \\
+\end{enumerate}
+
+For a positive integer $n$, series $C$ and $S$ are defined by\\
+
+\[
+\begin{aligned}
+C &= \cos\theta + 2\cos 3\theta + 4\cos 5\theta + \cdots + 2^{n-1}\cos((2n-1)\theta)\\[5pt]
+S &= \sin\theta + 2\sin 3\theta + 4\sin 5\theta + \cdots + 2^{n-1}\sin((2n-1)\theta)
+\end{aligned}
+\] \\
+\begin{enumerate}[label=(\roman*), resume]
+  \item Show that
+  \[
+  C = \frac{2^{n+1}\cos((2n-1)\theta) - 2^n\cos((2n+1)\theta) - \cos\theta}{5 - 4\cos 2\theta}
+  \]
+  and find a similar expression for $S$. \marks{9}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\roman*)}]
+  \item Show that
+  \[
+  1 - e^{i2\theta} = 2\sin\theta(\sin\theta - i\cos\theta)
+  \] \marks[-15pt]{3}\\
+  \item For a positive integer $n$, the series $C$ and $S$ are defined as follows.
+  \begin{align*}
+  C &= 1 - \binom{n}{1}\cos 2\theta + \binom{n}{2}\cos 4\theta - \ldots + (-1)^n\cos 2n\theta \\[5pt]
+  S &=\quad -\binom{n}{1}\sin 2\theta + \binom{n}{2}\sin 4\theta - \ldots + (-1)^n\sin 2n\theta
+  \end{align*} \\
+  By considering $C + iS$, show that
+  \[
+  C = 2^n\sin^n\theta\cos\left(n\theta - \frac{n\pi}{2}\right)
+  \]
+  and find a corresponding expression for $S$.\marks{9} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+The infinite series $C$ and $S$ are defined as follows: \\
+\begin{align*}
+C&= \cos\alpha + r\cos(\alpha + \beta) + r^2\cos(\alpha + 2\beta) + \ldots \\[10pt]
+S &= \sin\alpha + r\sin(\alpha + \beta) + r^2\sin(\alpha + 2\beta) + \ldots \\
+\end{align*}
+
+where $r$ is a real number and $|r| < 1$. \\
+
+
+By considering $C+ \mathrm{i}S$, show that \\
+\[
+C= \frac{\cos\alpha - r\cos(\alpha - \beta)}{1 + r^2 - 2r\cos\beta} \\
+\] 
+and find a corresponding expression for $S$. \marks{8}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+\begin{enumerate}[label=(\roman*)]
+  \item For values of $\theta$ for which the expressions are defined, show that
+  \[
+  1+\mathrm{i}\tan\theta=\sec\theta(\cos\theta+\mathrm{i}\sin\theta)
+  \]
+  \marks[-20pt]{2}
+
+  \item For a positive integer $n$, the series $C$ and $S$ are defined by
+  \begin{align*}
+    C&=\,1-\binom{n}{2}\tan^2\theta+\binom{n}{4}\tan^4\theta-\cdots\\[10pt]
+  S&=\qquad\binom{n}{1}\tan\theta-\binom{n}{3}\tan^3\theta+\binom{n}{5}\tan^5\theta-\cdots
+  \end{align*}
+
+  where in each case the pattern continues until the power of $\tan\theta$ is at most $n$. \\
+
+  By considering $C+\mathrm{i}S$, show that
+  \[
+  C=\sec^n\theta\cos n\theta
+  \]
+  and find a corresponding expression for $S$. \marks{7}
+\end{enumerate}
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+The convergent series $C$ and $S$ are defined by
+\begin{align*}
+C &= \sum_{n=0}^{\infty} \left(-\frac{1}{2}\right)^n \cos\bigl((4n+1)\theta\bigr)
+\\[10pt]
+S &= \sum_{n=0}^{\infty} \left(-\frac{1}{2}\right)^n \sin\bigl((4n+1)\theta\bigr)
+\end{align*} \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[
+  C + \mathrm{i}S = \frac{2e^{\mathrm{i}\theta}}{2 + e^{4\mathrm{i}\theta}}
+  \]
+  \marks[-20pt]{4}
+  \item Hence show that
+  \[
+  C = \frac{4\cos \theta + 2\cos 3\theta}{5 + 4\cos 4\theta}
+  \]
+  \marks[-30pt]{4}
+\end{enumerate}
+\newpage
+% ---- Question 7 ----
+\questionitem
+
+Let
+\begin{align*}
+C&= \sum_{r=0}^{n-1}\cos^2\left(\theta + \frac{2\pi r}{n}\right)\\[10pt]
+S &= \sum_{r=0}^{n-1}\sin\left(\theta + \frac{2\pi r}{n}\right)\cos\left(\theta + \frac{2\pi r}{n}\right)\\
+\end{align*}
+
+where $n$ is an integer greater than $2$. Let $\exp(x)$ denote $e^x$.\\
+
+
+By considering the real and imaginary parts of
+\[
+\sum_{r=0}^{n-1} \exp\left(2\mathrm{i}\left(\theta + \dfrac{2\pi r}{n}\right)\right)
+\]
+show that $C= \dfrac{n}{2}$ and $S = 0$. \marks{7} \\
+
+\newpage
+\end{enumerate}
+\end{document}

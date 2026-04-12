@@ -1,0 +1,304 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{1st Order Differential Equations - Integrating Factor}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that an appropriate integrating factor for
+  \[
+  x^2\,\frac{\mathrm{d}y}{\mathrm{d}x}+y=1,\qquad x>0
+  \]
+  is $e^{-1/x}$ \marks{4} \\
+  \item Hence find the solution of the differential equation
+  \[
+  x^2\,\frac{\mathrm{d}y}{\mathrm{d}x}+y=1,\qquad x>0
+  \]
+  for which $y=3$ when $x=1$ \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}\bigl(\ln(\cosh x+1)\bigr)=\tanh\!\left(\frac{x}{2}\right)
+  \]
+  \marks[-20pt]{3}
+  \item Hence solve the differential equation
+  \[
+  \frac{\mathrm{d}y}{\mathrm{d}x}+\tanh\!\left(\frac{x}{2}\right)y=\sinh x
+  \]
+  for which $y=2$ when $x=0$. Give your answer in exact form \marks{7} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item For $x>-1$, determine the general solution of the differential equation
+  \[
+  (1+x)\,\frac{\mathrm{d}y}{\mathrm{d}x}+y=\ln(1+x)
+  \]
+  giving your answer in the form $y=f(x)$ \marks{4} \\
+  \item Given that $y=-1$ when $x=0$, determine the positive value of $x$ for which $y=0$ \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that, for $0<x<\frac{\pi}{2}$, an appropriate integrating factor for
+  \[
+  \cos x\,\frac{\mathrm{d}y}{\mathrm{d}x}+y\sin x=x
+  \]
+  is $\sec x$ \marks{4} \\
+  \item Hence find the solution of
+  \[
+  \cos x\,\frac{\mathrm{d}y}{\mathrm{d}x}+y\sin x=x
+  \]
+  for $0<x<\frac{\pi}{2}$, given that $y=1$ when $x=\frac{\pi}{4}$ \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that, for $x>0$,
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}\!\left(\ln\!\left(\coth \frac{x}{2}\right)\right)=-\operatorname{cosech} x
+  \]
+  \marks[-20pt]{3}
+  \item Hence solve the differential equation
+  \[
+  \frac{\mathrm{d}y}{\mathrm{d}x}-\operatorname{cosech} x\,y=\tanh \frac{x}{2},\qquad x>0
+  \]
+  for which $y=1$ when $x=\ln 3$. Give your answer in exact form \marks{7} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that an appropriate integrating factor for
+  \[
+  x(x-1)\,\frac{\mathrm{d}y}{\mathrm{d}x}+(x+1)y=x(x-1)^2
+  \]
+  is $\dfrac{(x-1)^2}{x}$ \marks{4} \\
+  \item Hence find the solution of the differential equation
+  \[
+  x(x-1)\,\frac{\mathrm{d}y}{\mathrm{d}x}+(x+1)y=x(x-1)^2
+  \]
+  for $x>1$, given that $y=2$ when $x=2$ \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+Find the general solution of the differential equation\\
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}+\cot x\,y=\frac{\cos x}{\sin^2 x\left(1+\ln^2(\sin x)\right)}
+\]\\
+where $0<x<\pi$ \marks{7}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Solve the differential equation
+  \[
+  (1+x)\,\frac{\mathrm{d}y}{\mathrm{d}x}-2y=(1+x)^4,\qquad x>-1
+  \]
+  giving your answer in the form $y=f(x)$ \marks{3} \\
+  \item The solution curve passes through the point $(0,-1)$. Find the exact positive value of $x$ for which $y=0$ \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+Find the general solution of the differential equation\\
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}-2y\tan x=\sec^3 x
+\]\\
+where $-\frac{\pi}{2}<x<\frac{\pi}{2}$ \marks{7}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}\!\left(\ln\!\left(\frac{\cosh x+1}{\sinh x}\right)\right)=-\operatorname{cosech} x
+  \]
+  \marks[-20pt]{3}
+  \item Hence solve, for $x>0$,
+  \[
+  \sinh x\,\frac{\mathrm{d}y}{\mathrm{d}x}-y=1-\cosh x
+  \]
+  given that $y=2$ when $x=\ln 3$. Give your answer in exact form \marks{7} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the general solution of the differential equation\\
+  \[
+  \frac{\mathrm{d}y}{\mathrm{d}x}+\frac{2x}{x^2+1}y=6x
+  \]
+  giving your answer in the form $y=f(x)$ \marks{3} \\
+  \item Given that $y=\tfrac{7}{2}$ when $x=0$, find the smallest positive value of $x$ for which $y=4$ \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+
+For $x>0$, solve the differential equation\\
+\[
+\sinh x\,\frac{\mathrm{d}y}{\mathrm{d}x} - 2y\cosh x = \sinh^2 x\cosh x
+\] \\
+given that $y=5$ when $x=\ln(1+\sqrt{2})$. \\
+Give your answer in exact form. \marks{7}
+
+\newpage
+
+% ---- Question 13 ----
+\questionitem
+
+For $x>0$, a function $y$ satisfies \\
+\[
+\sinh x\,\frac{\mathrm{d}y}{\mathrm{d}x}-y\cosh x=\sinh x\,\cosh^3 x
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item By first writing the equation in the form $\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)$, find an integrating factor \marks{2} \\
+  \item Hence solve the differential equation, given that $y=2$ when $x=\ln(1+\sqrt{2})$ \marks{5} \\
+\end{enumerate}
+Give your answer in exact form.
+
+\newpage
+
+% ---- Question 14 ----
+\questionitem
+
+For $x>0$, solve the differential equation\\
+\[
+\sinh x\,\frac{\mathrm{d}y}{\mathrm{d}x} - y\cosh x = \sinh x\cosh x
+\] \\
+given that $y = 2$ when $x = \ln(1+\sqrt{2})$. \\
+Give your answer in exact form. \marks{7}
+
+\newpage
+
+% ---- Question 15 ----
+\questionitem
+
+Find the general solution of the differential equation\\
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x} - y\tan x = \frac{1}{\sqrt{1+\sin x}}
+\] \\
+where $-\tfrac{\pi}{2} < x < \tfrac{\pi}{2}$ \marks{7}
+\end{enumerate}
+\end{document}

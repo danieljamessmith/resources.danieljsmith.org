@@ -1,0 +1,254 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{2nd Order Differential Equations}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that \[3\cosh x - \sinh x = e^x + 2e^{-x}\] \marks{2} \\
+  \item Hence solve the differential equation
+  \[
+  \frac{\mathrm{d}^2 y}{\mathrm{d}x^2} - \frac{\mathrm{d}y}{\mathrm{d}x} - 2y = 6(3\cosh x - \sinh x)
+  \]
+  given that, when $x=0$, $y=1$ and $\frac{\mathrm{d}y}{\mathrm{d}x}=1$. \marks{10} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+Find the particular solution of the differential equation \\
+\[
+\frac{\mathrm{d}^2 y}{\mathrm{d}t^2}+4\frac{\mathrm{d}y}{\mathrm{d}t}+13y=8e^{-2t}\sin t
+\] \\
+given that, when $t=0$, $y=1$ and $\frac{\mathrm{d}y}{\mathrm{d}t}=2$. \marks{10}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+A damped oscillator is governed by \\
+\[
+\frac{\mathrm{d}^2 y}{\mathrm{d}t^2}+6\frac{\mathrm{d}y}{\mathrm{d}t}+13y=75\sin 2t
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the general solution of this differential equation. \marks{6} \\
+  \item Show that, whatever the initial conditions, the motion is approximately of the form
+  \[
+  y\approx R\sin(2t-\phi)
+  \]
+  for large positive values of $t$, where $R>0$ and $0<\phi<\frac{\pi}{2}$. Determine $R$ and $\phi$. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+A function $y(t)$ satisfies the differential equation \\
+\[
+\frac{\mathrm{d}^2 y}{\mathrm{d}t^2}+2\frac{\mathrm{d}y}{\mathrm{d}t}+5y=10\cos t
+\] \\
+Given that, when $t=0$, $y=5$ and $\frac{\mathrm{d}y}{\mathrm{d}t}=2$, find the particular solution. \marks{10}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the general solution of the differential equation
+  \[
+  \frac{\mathrm{d}^2 y}{\mathrm{d}x^2}+4\frac{\mathrm{d}y}{\mathrm{d}x}+13y=0
+  \]
+  \marks[-20pt]{2}
+  \item Hence find the general solution of the differential equation
+  \[
+  \frac{\mathrm{d}^2 y}{\mathrm{d}x^2}+4\frac{\mathrm{d}y}{\mathrm{d}x}+13y=e^{-2x}(6\cos x-8\sin x)
+  \]
+  \marks[-20pt]{4}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that \[\frac{\cosh x - \sinh x}{\cosh x + \sinh x}=e^{-2x}\] \marks{2} \\
+  \item Hence find the particular solution of the differential equation
+  \[
+  \frac{\mathrm{d}^2 y}{\mathrm{d}x^2} + 4\frac{\mathrm{d}y}{\mathrm{d}x} + 4y = 4\left(\frac{\cosh x - \sinh x}{\cosh x + \sinh x}\right)
+  \]
+  given that, when $x=0$, $y=1$ and $\frac{\mathrm{d}y}{\mathrm{d}x}=1$. \marks{10} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+Solve the differential equation \\
+\[
+\frac{\mathrm{d}^2 y}{\mathrm{d}x^2}-\frac{\mathrm{d}y}{\mathrm{d}x}-6y=50\sin x
+\] \\
+subject to the conditions $y(0)=3$ and $y'(0)=-6$. \marks{10}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+Determine the solution $y(x)$ of the initial value problem \\
+\[
+\frac{\mathrm{d}^2 y}{\mathrm{d}x^2} - 4\frac{\mathrm{d}y}{\mathrm{d}x} + 4y = xe^{2x}
+\] \\
+subject to
+\[
+ y(0)=1, \qquad \left.\frac{\mathrm{d}y}{\mathrm{d}x}\right|_{x=0} = 0
+\] \marks[-20pt]{10}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the general solution of the differential equation
+  \[
+  \frac{\mathrm{d}^2 y}{\mathrm{d}x^2}+4y=0
+  \]
+  \marks[-20pt]{2}
+  \item Hence, by considering a particular integral of the form $x(A\cos 2x+B\sin 2x)$, find the general solution of the differential equation
+  \[
+  \frac{\mathrm{d}^2 y}{\mathrm{d}x^2}+4y=8\cos 2x-12\sin 2x
+  \]
+  \marks[-20pt]{4}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+Find the particular solution of the differential equation\\
+
+\[
+\frac{\mathrm{d}^2 y}{\mathrm{d}t^2}+4\frac{\mathrm{d}y}{\mathrm{d}t}+13y=28\cos 3t-4\sin 3t
+\]\\
+given that, when $t=0$, $y=5$ and $\frac{\mathrm{d}y}{\mathrm{d}t}=7 \marks{10}$ \\
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+
+Find the particular solution of the differential equation\\
+\[
+\frac{\mathrm{d}^2 y}{\mathrm{d}t^2}+4\frac{\mathrm{d}y}{\mathrm{d}t}+5y=8\cos t
+\]\\
+given that, when $t=0$, $y=3$ and $\frac{\mathrm{d}y}{\mathrm{d}t}=1 \marks{10}$ \\
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that, for all real $x$, \\
+  \[
+  (1+\tanh x)\cosh x = e^{x}
+  \]
+  \marks[-20pt]{2} \\
+  \item Hence solve the differential equation \\
+  \[
+  \frac{\mathrm{d}^2 y}{\mathrm{d}x^2} - 2\frac{\mathrm{d}y}{\mathrm{d}x} + y = 3(1+\tanh x)\cosh x
+  \]\\
+  given that, when $x=0$, $y=1$ and $\frac{\mathrm{d}y}{\mathrm{d}x}=0$ \marks{10} \\
+\end{enumerate}
+
+\end{enumerate}
+\end{document}

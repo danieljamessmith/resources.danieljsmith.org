@@ -1,0 +1,277 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{Geometry of Plane Intersections}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+Three planes have equations
+\[
+\begin{aligned}
+x-y+2z&=3\\
+2x+y+z&=4\\
+3x+(m+1)z&=7
+\end{aligned}
+\] \\
+where $m$ is a constant. \\
+\begin{enumerate}[label=(\roman*)]
+  \item Investigate the arrangement of the planes:
+
+  when $m=2$;
+
+  when $m\ne 2$. \marks{6} \\
+  \item A student claims that the position vectors $\mathbf{i}-\mathbf{j}+2\mathbf{k}$, $2\mathbf{i}+\mathbf{j}+\mathbf{k}$ and $3\mathbf{i}+4\mathbf{k}$ all lie in a plane through the origin. Determine whether or not the student is correct. \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Consider the linear system $A\mathbf{x}=\mathbf{b}$, where
+  \[
+  A=\begin{pmatrix}
+  3&-2&1\\
+  2&1&-4\\
+  7&0&-7
+  \end{pmatrix},
+  \qquad
+  \mathbf{x}=\begin{pmatrix}x\\y\\z\end{pmatrix},
+  \qquad
+  \mathbf{b}=\begin{pmatrix}5\\1\\7\end{pmatrix}
+  \]
+  Show that $A$ is singular, and deduce that the system does not have a unique solution. \marks{2}\\
+  
+  \item Show that the system is consistent. Interpret the solution set geometrically. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that the system of equations
+  \[
+  \begin{aligned}
+  x+2y-z&=3\\
+  2x-y+4z&=1\\
+  3x+y+3z&=a
+  \end{aligned}
+  \]
+  where $a$ is a constant, does not have a unique solution. \marks{2}\\
+  \item Given that $a=4$, show that the system of equations in part (a) is consistent. Interpret this situation geometrically. \marks{3} \\
+  \item Given instead that $a\ne 4$, show that the system of equations in part (a) is inconsistent. Interpret this situation geometrically. \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+The equations
+\[
+\begin{aligned}
+x-y+2z&=4\\
+(k+1)x+ky+(2-k)z&=4-k\\
+(5-2k)x+(2-2k)y+(k+2)z&=8-k
+\end{aligned}
+\] \\
+represent three planes, where $k$ is a real constant. \\
+The planes do not intersect in exactly one point. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the possible values of $k$. \marks{3} \\
+  \item For each value of $k$ found in part (a), describe the configuration of the planes. \\
+  Fully justify your answer, stating in each case whether the corresponding system is consistent or inconsistent. \marks{5} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+Three planes have equations
+\[
+\begin{aligned}
+x+ay&=-1\\
+2x+y+z&=3\\
+3x+by+2z&=c
+\end{aligned}
+\] \\
+where $a$, $b$ and $c$ are constants. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item In the case where the planes \textbf{do not} intersect at a unique point,
+  \begin{enumerate}[label=(\roman*)]
+    \item find $b$ in terms of $a$ \marks{4}
+    \item find the value of $c$ for which the planes form a sheaf. \marks{3} \\
+  \end{enumerate}
+  \item In the case where $b=1-a$ and $c=5$, find the coordinates of the point of intersection of the planes in terms of $a$. \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+\[
+\mathbf{M}=\begin{pmatrix}
+1&1&0\\
+3&k&1\\
+2&-1&1
+\end{pmatrix}
+\] \\
+where $k$ is a constant. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the values of $k$ for which the matrix $\mathbf{M}$ has an inverse. \marks{2} \\
+  \item Find, in terms of $p$, the coordinates of the point where the following planes intersect:
+  \[
+  \begin{aligned}
+  x+y&=1\\
+  3x+2y+z&=p\\
+  2x-y+z&=4
+  \end{aligned}
+  \]
+  \marks[-20pt]{5}
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Find the value of $q$ for which the set of simultaneous equations
+    \[
+    \begin{aligned}
+    x+y&=1\\
+    3x+z&=q\\
+    2x-y+z&=4
+    \end{aligned}
+    \]
+    has at least one solution. \marks[-20pt]{2}
+    \item For this value of $q$, interpret the solution set geometrically. \marks{2} \\
+  \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+You are given that $a$ is a parameter which can take only real values. \\
+The matrix $A$ is given by
+\[
+A=\begin{pmatrix}
+3&2&a\\
+1&3&0\\
+2&-1&1
+\end{pmatrix}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find an expression for the determinant of $A$ in terms of $a$. \marks{2} \\
+\end{enumerate}
+You are given the following system of equations in $x$, $y$ and $z$.
+\[
+\begin{aligned}
+3x+2y+az&=8\\
+x+3y&=5\\
+2x-y+z&=3
+\end{aligned}
+\] \\
+The system can be written in the form
+\[
+A\begin{pmatrix}x\\ y\\ z\end{pmatrix}=\begin{pmatrix}8\\5\\3\end{pmatrix}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item In the case where $A$ is not singular, solve the given system by using $A^{-1}$. \marks{5}
+    \item In the case where $A$ is singular, describe the configuration of the planes whose equations are the three equations of the system. \marks{3} \\
+  \end{enumerate}
+\end{enumerate}
+The transformation represented by $A$ is denoted by $T$. \\
+A 3-D solid of volume $a^2+3$ is transformed by $T$ to an image. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Determine the range of values of $a$ for which the orientation of the image is the reverse of the orientation of the object. \marks{1}
+    \item Determine the range of values of $a$ for which the volume of the image is less than the volume of the object. \marks{2} \\
+  \end{enumerate}
+\end{enumerate}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,848 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{\textit{Solutions} - Complex Series}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+The infinite series $C$ and $S$ are defined by
+\begin{align*}
+ C&= \cos 2\theta - \frac{1}{3}\cos 5\theta + \frac{1}{9}\cos 8\theta - \frac{1}{27}\cos 11\theta + \cdots \\[4pt]
+S &= \sin 2\theta - \frac{1}{3}\sin 5\theta + \frac{1}{9}\sin 8\theta - \frac{1}{27}\sin 11\theta + \cdots
+\end{align*}
+
+Given that the series $C$ and $S$ are both convergent. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[
+  C+ \mathrm{i}S = \frac{3e^{2\mathrm{i}\theta}}{3 + e^{3\mathrm{i}\theta}}
+  \]
+  \marks[-20pt]{4}
+  \item Hence show that
+  \[
+  S = \frac{9\sin 2\theta - 3\sin \theta}{10 + 6\cos 3\theta}
+  \]
+  \marks[-30pt]{4}
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Using Euler's formula,
+\[
+\cos x + \mathrm{i}\sin x = e^{\mathrm{i}x}
+\]
+
+So
+\begin{align*}
+C+\mathrm{i}S
+&= \left(\cos 2\theta+\mathrm{i}\sin 2\theta\right)
+-\frac13\left(\cos 5\theta+\mathrm{i}\sin 5\theta\right)
++\frac19\left(\cos 8\theta+\mathrm{i}\sin 8\theta\right)-\cdots \\
+&= e^{2\mathrm{i}\theta}-\frac13 e^{5\mathrm{i}\theta}+\frac19 e^{8\mathrm{i}\theta}-\frac1{27}e^{11\mathrm{i}\theta}+\cdots
+\end{align*}
+
+Factor out \(e^{2\mathrm{i}\theta}\):
+\begin{align*}
+C+\mathrm{i}S
+&= e^{2\mathrm{i}\theta}\left(1-\frac13 e^{3\mathrm{i}\theta}+\frac19 e^{6\mathrm{i}\theta}-\frac1{27}e^{9\mathrm{i}\theta}+\cdots\right)
+\end{align*}
+
+This is a geometric series with first term \(1\) and common ratio
+\[
+r=-\frac{e^{3\mathrm{i}\theta}}{3}
+\]
+Since
+\[
+|r|=\frac{|e^{3\mathrm{i}\theta}|}{3}=\frac13<1
+\]
+the series converges, so
+\begin{align*}
+C+\mathrm{i}S
+&= e^{2\mathrm{i}\theta}\cdot \frac{1}{1-(-e^{3\mathrm{i}\theta}/3)} \\
+&= e^{2\mathrm{i}\theta}\cdot \frac{1}{1+e^{3\mathrm{i}\theta}/3} \\
+&= \frac{3e^{2\mathrm{i}\theta}}{3+e^{3\mathrm{i}\theta}}
+\end{align*}
+
+Hence
+\[
+C+\mathrm{i}S=\frac{3e^{2\mathrm{i}\theta}}{3+e^{3\mathrm{i}\theta}}
+\]
+
+  \item From part (a),
+\[
+C+\mathrm{i}S=\frac{3e^{2\mathrm{i}\theta}}{3+e^{3\mathrm{i}\theta}}
+\]
+
+Multiply numerator and denominator by \(3+e^{-3\mathrm{i}\theta}\):
+\begin{align*}
+C+\mathrm{i}S
+&= \frac{3e^{2\mathrm{i}\theta}(3+e^{-3\mathrm{i}\theta})}{(3+e^{3\mathrm{i}\theta})(3+e^{-3\mathrm{i}\theta})} \\[10pt]
+&= \frac{9e^{2\mathrm{i}\theta}+3e^{-\mathrm{i}\theta}}{9+3e^{3\mathrm{i}\theta}+3e^{-3\mathrm{i}\theta}+e^{3\mathrm{i}\theta}e^{-3\mathrm{i}\theta}} \\[10pt]
+&= \frac{9e^{2\mathrm{i}\theta}+3e^{-\mathrm{i}\theta}}{10+3\left(e^{3\mathrm{i}\theta}+e^{-3\mathrm{i}\theta}\right)}
+\end{align*}
+
+Now use
+\[
+e^{3\mathrm{i}\theta}+e^{-3\mathrm{i}\theta}=2\cos 3\theta
+\]
+so the denominator becomes
+\[
+10+6\cos 3\theta
+\]
+
+Therefore
+\[
+C+\mathrm{i}S=\frac{9e^{2\mathrm{i}\theta}+3e^{-\mathrm{i}\theta}}{10+6\cos 3\theta}
+\]
+
+The denominator is real, so taking imaginary parts gives
+\begin{align*}
+S
+&= \operatorname{Im}\left[\frac{9e^{2\mathrm{i}\theta}+3e^{-\mathrm{i}\theta}}{10+6\cos 3\theta}\right] \\[10pt]
+&= \frac{9\sin 2\theta+3(-\sin\theta)}{10+6\cos 3\theta}
+\end{align*}
+
+Hence
+\[
+S=\frac{9\sin 2\theta-3\sin\theta}{10+6\cos 3\theta}
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+\begin{enumerate}[label=(\roman*)]
+  \item Show that \[(1 - 2e^{2\mathrm{i}\theta})(1 - 2e^{-2\mathrm{i}\theta}) = 5 - 4\cos 2\theta\] \marks[-15pt]{3} \\
+\end{enumerate}
+
+For a positive integer $n$, series $C$ and $S$ are defined by\\
+
+\[
+\begin{aligned}
+C &= \cos\theta + 2\cos 3\theta + 4\cos 5\theta + \cdots + 2^{n-1}\cos((2n-1)\theta)\\[5pt]
+S &= \sin\theta + 2\sin 3\theta + 4\sin 5\theta + \cdots + 2^{n-1}\sin((2n-1)\theta)
+\end{aligned}
+\] \\
+\begin{enumerate}[label=(\roman*), resume]
+  \item Show that
+  \[
+  C = \frac{2^{n+1}\cos((2n-1)\theta) - 2^n\cos((2n+1)\theta) - \cos\theta}{5 - 4\cos 2\theta}
+  \]
+  and find a similar expression for $S$. \marks{9}
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\roman*)}]
+  \item Expanding the product,
+  \begin{align*}
+  (1-2e^{2\mathrm{i}\theta})(1-2e^{-2\mathrm{i}\theta})
+  &=1-2e^{2\mathrm{i}\theta}-2e^{-2\mathrm{i}\theta}+4\\
+  &=5-2\left(e^{2\mathrm{i}\theta}+e^{-2\mathrm{i}\theta}\right)
+  \end{align*}
+  Using
+  \[
+  e^{2\mathrm{i}\theta}+e^{-2\mathrm{i}\theta}=2\cos 2\theta
+  \]
+  gives
+  \begin{align*}
+  (1-2e^{2\mathrm{i}\theta})(1-2e^{-2\mathrm{i}\theta})
+  &=5-2(2\cos 2\theta)\\
+  &=5-4\cos 2\theta
+  \end{align*}
+  as required.
+
+  \item Let
+  \[
+  Z=C+\mathrm{i}S
+  \]
+  Then, using $\cos x+\mathrm{i}\sin x=e^{\mathrm{i}x}$,
+  \begin{align*}
+  Z&=(\cos\theta+\mathrm{i}\sin\theta)+2(\cos3\theta+\mathrm{i}\sin3\theta)+\cdots+2^{n-1}(\cos((2n-1)\theta)+\mathrm{i}\sin((2n-1)\theta))\\
+  &=e^{\mathrm{i}\theta}+2e^{3\mathrm{i}\theta}+4e^{5\mathrm{i}\theta}+\cdots+2^{n-1}e^{(2n-1)\mathrm{i}\theta}\\
+  &=e^{\mathrm{i}\theta}\left(1+2e^{2\mathrm{i}\theta}+(2e^{2\mathrm{i}\theta})^2+\cdots+(2e^{2\mathrm{i}\theta})^{n-1}\right)
+  \end{align*}
+  This is a geometric series with first term $1$ and common ratio $2e^{2\mathrm{i}\theta}$, so
+  \[
+  Z=e^{\mathrm{i}\theta}\frac{1-(2e^{2\mathrm{i}\theta})^n}{1-2e^{2\mathrm{i}\theta}}
+  =e^{\mathrm{i}\theta}\frac{1-2^n e^{2n\mathrm{i}\theta}}{1-2e^{2\mathrm{i}\theta}}
+  \]
+  Multiply numerator and denominator by $1-2e^{-2\mathrm{i}\theta}$:
+  \begin{align*}
+  Z&=e^{\mathrm{i}\theta}\frac{1-2^n e^{2n\mathrm{i}\theta}}{1-2e^{2\mathrm{i}\theta}}\cdot\frac{1-2e^{-2\mathrm{i}\theta}}{1-2e^{-2\mathrm{i}\theta}}\\
+  &=\frac{e^{\mathrm{i}\theta}(1-2^n e^{2n\mathrm{i}\theta})(1-2e^{-2\mathrm{i}\theta})}{(1-2e^{2\mathrm{i}\theta})(1-2e^{-2\mathrm{i}\theta})}
+  \end{align*}
+  Using part (i), the denominator is $5-4\cos2\theta$, so
+  \begin{align*}
+  Z&=\frac{e^{\mathrm{i}\theta}(1-2^n e^{2n\mathrm{i}\theta})(1-2e^{-2\mathrm{i}\theta})}{5-4\cos2\theta}\\[10pt]
+  &=\frac{e^{\mathrm{i}\theta}-2e^{-\mathrm{i}\theta}-2^n e^{\mathrm{i}(2n+1)\theta}+2^{n+1}e^{\mathrm{i}(2n-1)\theta}}{5-4\cos2\theta}
+  \end{align*}
+  Now simplify the first two terms:
+  \begin{align*}
+  e^{\mathrm{i}\theta}-2e^{-\mathrm{i}\theta}
+  &=(\cos\theta+\mathrm{i}\sin\theta)-2(\cos\theta-\mathrm{i}\sin\theta)\\
+  &=-\cos\theta+3\mathrm{i}\sin\theta
+  \end{align*}
+  Hence
+  \[
+  Z=\frac{-\cos\theta+3\mathrm{i}\sin\theta-2^n e^{\mathrm{i}(2n+1)\theta}+2^{n+1}e^{\mathrm{i}(2n-1)\theta}}{5-4\cos2\theta}
+  \]
+  Writing the exponential terms in sine and cosine form,
+  \begin{align*}
+  Z
+  &=\frac{-\cos\theta-2^n\cos((2n+1)\theta)+2^{n+1}\cos((2n-1)\theta)}{5-4\cos2\theta}\\[10pt]
+  &\qquad+\mathrm{i}\,\frac{3\sin\theta-2^n\sin((2n+1)\theta)+2^{n+1}\sin((2n-1)\theta)}{5-4\cos2\theta}
+  \end{align*}
+  Since $Z=C+\mathrm{i}S$, equating real and imaginary parts gives
+  \[
+  C=\frac{2^{n+1}\cos((2n-1)\theta)-2^n\cos((2n+1)\theta)-\cos\theta}{5-4\cos2\theta}\\[10pt]
+  \]
+  and
+  \[
+  S=\frac{2^{n+1}\sin((2n-1)\theta)-2^n\sin((2n+1)\theta)+3\sin\theta}{5-4\cos2\theta}\\[10pt]
+  \]
+  So the required similar expression for $S$ is
+  \[
+  S=\frac{2^{n+1}\sin((2n-1)\theta)-2^n\sin((2n+1)\theta)+3\sin\theta}{5-4\cos2\theta}\\[10pt]
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\roman*)}]
+  \item Show that
+  \[
+  1 - e^{i2\theta} = 2\sin\theta(\sin\theta - i\cos\theta)
+  \] \marks[-15pt]{3}\\
+  \item For a positive integer $n$, the series $C$ and $S$ are defined as follows.
+  \begin{align*}
+  C &= 1 - \binom{n}{1}\cos 2\theta + \binom{n}{2}\cos 4\theta - \ldots + (-1)^n\cos 2n\theta \\[5pt]
+  S &=\quad -\binom{n}{1}\sin 2\theta + \binom{n}{2}\sin 4\theta - \ldots + (-1)^n\sin 2n\theta
+  \end{align*} \\
+  By considering $C + iS$, show that
+  \[
+  C = 2^n\sin^n\theta\cos\left(n\theta - \frac{n\pi}{2}\right)
+  \]
+  and find a corresponding expression for $S$.\marks{9} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\roman*)}]
+  \item Using Euler's formula \(e^{i2\theta}=\cos 2\theta+i\sin 2\theta\),
+\begin{align*}
+1-e^{i2\theta}
+&=1-\cos 2\theta-i\sin 2\theta\\
+&=(1-\cos 2\theta)-i\sin 2\theta\\
+&=2\sin^2\theta-i(2\sin\theta\cos\theta)\\
+&=2\sin\theta(\sin\theta-i\cos\theta)
+\end{align*}
+Hence
+\[
+1-e^{i2\theta}=2\sin\theta(\sin\theta-i\cos\theta)
+\]
+
+  \item Combine the two series into one complex expression:
+\begin{align*}
+C+iS
+&=1-\binom{n}{1}(\cos 2\theta+i\sin 2\theta)+\binom{n}{2}(\cos 4\theta+i\sin 4\theta)-\cdots+(-1)^n(\cos 2n\theta+i\sin 2n\theta)\\
+&=1-\binom{n}{1}e^{i2\theta}+\binom{n}{2}e^{i4\theta}-\cdots+(-1)^n e^{i2n\theta}\\
+&=\sum_{r=0}^{n}\binom{n}{r}(-1)^r e^{i2r\theta}\\
+&=\sum_{r=0}^{n}\binom{n}{r}\bigl(-e^{i2\theta}\bigr)^r\\
+&=(1-e^{i2\theta})^n
+\end{align*}
+by the binomial theorem.
+
+From part (i),
+\[
+1-e^{i2\theta}=2\sin\theta(\sin\theta-i\cos\theta)
+\]
+so
+\begin{align*}
+C+iS
+&=\left[2\sin\theta(\sin\theta-i\cos\theta)\right]^n\\
+&=2^n\sin^n\theta\,(\sin\theta-i\cos\theta)^n
+\end{align*}
+
+Now factor out \(-i\):
+\[
+\sin\theta-i\cos\theta
+=
+-i(\cos\theta+i\sin\theta)
+\]
+Since
+\[
+-i=e^{-i\pi/2}
+\]
+this becomes
+\[
+\sin\theta-i\cos\theta
+=
+e^{-i\pi/2}(\cos\theta+i\sin\theta)
+\]
+
+Therefore, by De Moivre's theorem,
+\begin{align*}
+(\sin\theta-i\cos\theta)^n
+&=\left(e^{-i\pi/2}(\cos\theta+i\sin\theta)\right)^n\\
+&=e^{-in\pi/2}\,e^{in\theta}\\
+&=\cos\left(n\theta-\frac{n\pi}{2}\right)+i\sin\left(n\theta-\frac{n\pi}{2}\right)
+\end{align*}
+
+Substituting this into \(C+iS\),
+\begin{align*}
+C+iS
+&=2^n\sin^n\theta\left(\cos\left(n\theta-\frac{n\pi}{2}\right)+i\sin\left(n\theta-\frac{n\pi}{2}\right)\right)
+\end{align*}
+
+Equating real and imaginary parts gives
+\[
+C=2^n\sin^n\theta\cos\left(n\theta-\frac{n\pi}{2}\right)
+\]
+and
+\[
+S=2^n\sin^n\theta\sin\left(n\theta-\frac{n\pi}{2}\right)
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+The infinite series $C$ and $S$ are defined as follows: \\
+\begin{align*}
+C&= \cos\alpha + r\cos(\alpha + \beta) + r^2\cos(\alpha + 2\beta) + \ldots \\[10pt]
+S &= \sin\alpha + r\sin(\alpha + \beta) + r^2\sin(\alpha + 2\beta) + \ldots \\
+\end{align*}
+
+where $r$ is a real number and $|r| < 1$. \\
+
+
+By considering $C+ \mathrm{i}S$, show that \\
+\[
+C= \frac{\cos\alpha - r\cos(\alpha - \beta)}{1 + r^2 - 2r\cos\beta} \\
+\]
+and find a corresponding expression for $S$. \marks{8}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+Z=C+\mathrm{i}S
+\]
+
+Then
+\begin{align*}
+Z&=\left(\cos\alpha+r\cos(\alpha+\beta)+r^2\cos(\alpha+2\beta)+\cdots\right) \\
+&\qquad +\mathrm{i}\left(\sin\alpha+r\sin(\alpha+\beta)+r^2\sin(\alpha+2\beta)+\cdots\right) \\
+&=\sum_{n=0}^{\infty} r^n\left(\cos(\alpha+n\beta)+\mathrm{i}\sin(\alpha+n\beta)\right)
+\end{align*}
+
+Using Euler's formula,
+\[
+\cos\theta+\mathrm{i}\sin\theta=e^{\mathrm{i}\theta}
+\]
+
+so
+\begin{align*}
+Z&=\sum_{n=0}^{\infty} r^n e^{\mathrm{i}(\alpha+n\beta)} \\
+&=e^{\mathrm{i}\alpha}\sum_{n=0}^{\infty}\left(re^{\mathrm{i}\beta}\right)^n
+\end{align*}
+
+Since
+\[
+\left|re^{\mathrm{i}\beta}\right|=|r|<1
+\]
+this is a convergent geometric series, so
+\begin{align*}
+Z&=e^{\mathrm{i}\alpha}\cdot \frac{1}{1-re^{\mathrm{i}\beta}} \\
+&=\frac{e^{\mathrm{i}\alpha}}{1-re^{\mathrm{i}\beta}}
+\end{align*}
+
+Now multiply top and bottom by the conjugate-like factor \(1-re^{-\mathrm{i}\beta}\):
+\begin{align*}
+Z&=\frac{e^{\mathrm{i}\alpha}(1-re^{-\mathrm{i}\beta})}{(1-re^{\mathrm{i}\beta})(1-re^{-\mathrm{i}\beta})}
+\end{align*}
+
+First simplify the denominator:
+\begin{align*}
+(1-re^{\mathrm{i}\beta})(1-re^{-\mathrm{i}\beta})
+&=1-r(e^{\mathrm{i}\beta}+e^{-\mathrm{i}\beta})+r^2 \\
+&=1-r(2\cos\beta)+r^2 \\
+&=1+r^2-2r\cos\beta
+\end{align*}
+
+Now simplify the numerator:
+\begin{align*}
+e^{\mathrm{i}\alpha}(1-re^{-\mathrm{i}\beta})
+&=e^{\mathrm{i}\alpha}-re^{\mathrm{i}\alpha}e^{-\mathrm{i}\beta} \\
+&=e^{\mathrm{i}\alpha}-re^{\mathrm{i}(\alpha-\beta)}
+\end{align*}
+
+Hence
+\[
+Z=\frac{e^{\mathrm{i}\alpha}-re^{\mathrm{i}(\alpha-\beta)}}{1+r^2-2r\cos\beta}
+\]
+
+Write the exponentials in terms of sine and cosine:
+\begin{align*}
+Z&=\frac{\cos\alpha+\mathrm{i}\sin\alpha-r\left(\cos(\alpha-\beta)+\mathrm{i}\sin(\alpha-\beta)\right)}{1+r^2-2r\cos\beta} \\
+&=\frac{\left(\cos\alpha-r\cos(\alpha-\beta)\right)+\mathrm{i}\left(\sin\alpha-r\sin(\alpha-\beta)\right)}{1+r^2-2r\cos\beta}
+\end{align*}
+
+But \(Z=C+\mathrm{i}S\), so equating real and imaginary parts gives
+\[
+C=\frac{\cos\alpha-r\cos(\alpha-\beta)}{1+r^2-2r\cos\beta}
+\]
+and
+\[
+S=\frac{\sin\alpha-r\sin(\alpha-\beta)}{1+r^2-2r\cos\beta}
+\]
+
+Therefore,
+\[
+C=\frac{\cos\alpha-r\cos(\alpha-\beta)}{1+r^2-2r\cos\beta},
+\qquad
+S=\frac{\sin\alpha-r\sin(\alpha-\beta)}{1+r^2-2r\cos\beta}
+\]
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+\begin{enumerate}[label=(\roman*)]
+  \item For values of $\theta$ for which the expressions are defined, show that
+  \[
+  1+\mathrm{i}\tan\theta=\sec\theta(\cos\theta+\mathrm{i}\sin\theta)
+  \]
+  \marks[-20pt]{2}
+
+  \item For a positive integer $n$, the series $C$ and $S$ are defined by
+  \begin{align*}
+    C&=\,1-\binom{n}{2}\tan^2\theta+\binom{n}{4}\tan^4\theta-\cdots\\[10pt]
+  S&=\qquad\binom{n}{1}\tan\theta-\binom{n}{3}\tan^3\theta+\binom{n}{5}\tan^5\theta-\cdots
+  \end{align*}
+
+  where in each case the pattern continues until the power of $\tan\theta$ is at most $n$. \\
+
+  By considering $C+\mathrm{i}S$, show that
+  \[
+  C=\sec^n\theta\cos n\theta
+  \]
+  and find a corresponding expression for $S$. \marks{7}
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\item For the expressions to be defined, we need
+\[
+\cos\theta\neq 0
+\]
+
+Now
+\begin{align*}
+\sec\theta(\cos\theta+\mathrm{i}\sin\theta)
+&=\sec\theta\cos\theta+\mathrm{i}\sec\theta\sin\theta \\
+&=1+\mathrm{i}\tan\theta
+\end{align*}
+
+So
+\[
+1+\mathrm{i}\tan\theta=\sec\theta(\cos\theta+\mathrm{i}\sin\theta)
+\]
+
+as required.
+
+\item Consider \(C+\mathrm{i}S\).
+
+Using the given definitions,
+\begin{align*}
+C+\mathrm{i}S
+&=\left(1-\binom{n}{2}\tan^2\theta+\binom{n}{4}\tan^4\theta-\cdots\right)
++\mathrm{i}\left(\binom{n}{1}\tan\theta-\binom{n}{3}\tan^3\theta+\binom{n}{5}\tan^5\theta-\cdots\right)
+\end{align*}
+
+Now note that
+\[
+(\mathrm{i}\tan\theta)^0=1,\qquad
+(\mathrm{i}\tan\theta)^1=\mathrm{i}\tan\theta,\qquad
+(\mathrm{i}\tan\theta)^2=-\tan^2\theta,\qquad
+(\mathrm{i}\tan\theta)^3=-\mathrm{i}\tan^3\theta
+\]
+
+so the terms in \(C+\mathrm{i}S\) match the binomial expansion of \((1+\mathrm{i}\tan\theta)^n\). Hence
+\[
+C+\mathrm{i}S=\sum_{k=0}^{n}\binom{n}{k}(\mathrm{i}\tan\theta)^k=(1+\mathrm{i}\tan\theta)^n
+\]
+
+Using part (i),
+\[
+1+\mathrm{i}\tan\theta=\sec\theta(\cos\theta+\mathrm{i}\sin\theta)
+\]
+
+Therefore
+\begin{align*}
+C+\mathrm{i}S
+&=(1+\mathrm{i}\tan\theta)^n \\
+&=\left[\sec\theta(\cos\theta+\mathrm{i}\sin\theta)\right]^n \\
+&=\sec^n\theta\,(\cos\theta+\mathrm{i}\sin\theta)^n
+\end{align*}
+
+By de Moivre's theorem,
+\[
+(\cos\theta+\mathrm{i}\sin\theta)^n=\cos n\theta+\mathrm{i}\sin n\theta
+\]
+
+So
+\[
+C+\mathrm{i}S=\sec^n\theta(\cos n\theta+\mathrm{i}\sin n\theta)
+\]
+
+Equating real and imaginary parts gives
+\[
+C=\sec^n\theta\cos n\theta
+\]
+and
+\[
+S=\sec^n\theta\sin n\theta
+\]
+
+Hence the corresponding expression for \(S\) is
+\[
+S=\sec^n\theta\sin n\theta
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+The convergent series $C$ and $S$ are defined by
+\begin{align*}
+C &= \sum_{n=0}^{\infty} \left(-\frac{1}{2}\right)^n \cos\bigl((4n+1)\theta\bigr)
+\\[10pt]
+S &= \sum_{n=0}^{\infty} \left(-\frac{1}{2}\right)^n \sin\bigl((4n+1)\theta\bigr)
+\end{align*} \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[
+  C + \mathrm{i}S = \frac{2e^{\mathrm{i}\theta}}{2 + e^{4\mathrm{i}\theta}}
+  \]
+  \marks[-20pt]{4}
+  \item Hence show that
+  \[
+  C = \frac{4\cos \theta + 2\cos 3\theta}{5 + 4\cos 4\theta}
+  \]
+  \marks[-30pt]{4}
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Using Euler's formula,
+\[
+\cos x+\mathrm{i}\sin x=e^{\mathrm{i}x}
+\]
+so
+\begin{align*}
+C+\mathrm{i}S
+&=\sum_{n=0}^{\infty}\left(-\frac12\right)^n\left(\cos\bigl((4n+1)\theta\bigr)+\mathrm{i}\sin\bigl((4n+1)\theta\bigr)\right)\\
+&=\sum_{n=0}^{\infty}\left(-\frac12\right)^n e^{\mathrm{i}(4n+1)\theta}\\
+&=e^{\mathrm{i}\theta}\sum_{n=0}^{\infty}\left(-\frac{e^{4\mathrm{i}\theta}}{2}\right)^n
+\end{align*}
+
+This is a geometric series with common ratio
+\[
+r=-\frac{e^{4\mathrm{i}\theta}}{2}
+\]
+and
+\[
+|r|=\frac12<1
+\]
+so it converges and its sum is
+\begin{align*}
+C+\mathrm{i}S
+&=e^{\mathrm{i}\theta}\cdot \frac{1}{1-r}\\
+&=e^{\mathrm{i}\theta}\cdot \frac{1}{1+\frac12 e^{4\mathrm{i}\theta}}\\
+&=\frac{2e^{\mathrm{i}\theta}}{2+e^{4\mathrm{i}\theta}}
+\end{align*}
+
+Hence
+\[
+C+\mathrm{i}S=\frac{2e^{\mathrm{i}\theta}}{2+e^{4\mathrm{i}\theta}}
+\]
+
+  \item Starting from part (a),
+\[
+C+\mathrm{i}S=\frac{2e^{\mathrm{i}\theta}}{2+e^{4\mathrm{i}\theta}}
+\]
+
+Multiply top and bottom by \(2+e^{-4\mathrm{i}\theta}\):
+\begin{align*}
+C+\mathrm{i}S
+&=\frac{2e^{\mathrm{i}\theta}(2+e^{-4\mathrm{i}\theta})}{(2+e^{4\mathrm{i}\theta})(2+e^{-4\mathrm{i}\theta})}\\
+&=\frac{4e^{\mathrm{i}\theta}+2e^{-3\mathrm{i}\theta}}{(2+e^{4\mathrm{i}\theta})(2+e^{-4\mathrm{i}\theta})}
+\end{align*}
+
+Now simplify the denominator:
+\begin{align*}
+(2+e^{4\mathrm{i}\theta})(2+e^{-4\mathrm{i}\theta})
+&=4+2e^{4\mathrm{i}\theta}+2e^{-4\mathrm{i}\theta}+1\\
+&=5+2\left(e^{4\mathrm{i}\theta}+e^{-4\mathrm{i}\theta}\right)\\
+&=5+4\cos 4\theta
+\end{align*}
+since \(e^{\mathrm{i}x}+e^{-\mathrm{i}x}=2\cos x\).
+
+Therefore
+\[
+C+\mathrm{i}S=\frac{4e^{\mathrm{i}\theta}+2e^{-3\mathrm{i}\theta}}{5+4\cos 4\theta}
+\]
+
+The denominator is real, so taking real parts gives
+\begin{align*}
+C
+&=\frac{4\cos\theta+2\cos(-3\theta)}{5+4\cos4\theta}\\[10pt]
+&=\frac{4\cos\theta+2\cos3\theta}{5+4\cos4\theta}
+\end{align*}
+
+Hence
+\[
+C=\frac{4\cos \theta + 2\cos 3\theta}{5 + 4\cos 4\theta}
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+Let
+\begin{align*}
+C&= \sum_{r=0}^{n-1}\cos^2\left(\theta + \frac{2\pi r}{n}\right)\\[10pt]
+S &= \sum_{r=0}^{n-1}\sin\left(\theta + \frac{2\pi r}{n}\right)\cos\left(\theta + \frac{2\pi r}{n}\right)\\
+\end{align*}
+
+where $n$ is an integer greater than $2$. Let $\exp(x)$ denote $e^x$.\\
+
+
+By considering the real and imaginary parts of
+\[
+\sum_{r=0}^{n-1} \exp\left(2\mathrm{i}\left(\theta + \dfrac{2\pi r}{n}\right)\right)
+\]
+show that $C= \dfrac{n}{2}$ and $S = 0$. \marks{7} \\
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+Z=\sum_{r=0}^{n-1}\exp\left(2\mathrm{i}\left(\theta+\frac{2\pi r}{n}\right)\right)
+\]
+
+Using \(\exp(\mathrm{i}x)=\cos x+\mathrm{i}\sin x\), this becomes
+\begin{align*}
+Z
+&=\sum_{r=0}^{n-1}\left(\cos\left(2\theta+\frac{4\pi r}{n}\right)+\mathrm{i}\sin\left(2\theta+\frac{4\pi r}{n}\right)\right)
+\end{align*}
+
+So
+\begin{align*}
+\operatorname{Re}(Z)&=\sum_{r=0}^{n-1}\cos\left(2\theta+\frac{4\pi r}{n}\right) \\
+\operatorname{Im}(Z)&=\sum_{r=0}^{n-1}\sin\left(2\theta+\frac{4\pi r}{n}\right)
+\end{align*}
+
+Now rewrite \(Z\) as a geometric series:
+\begin{align*}
+Z
+&=\sum_{r=0}^{n-1}\exp\left(2\mathrm{i}\theta+\frac{4\pi \mathrm{i}r}{n}\right) \\
+&=\exp(2\mathrm{i}\theta)\sum_{r=0}^{n-1}\left(\exp\left(\frac{4\pi \mathrm{i}}{n}\right)\right)^r
+\end{align*}
+
+Let
+\[
+\omega=\exp\left(\frac{4\pi \mathrm{i}}{n}\right)
+\]
+
+Then
+\[
+Z=\exp(2\mathrm{i}\theta)\sum_{r=0}^{n-1}\omega^r
+\]
+
+Since \(n>2\), we have \(0<\frac{2}{n}<1\), so \(\omega\neq 1\). Therefore the geometric series formula gives
+\begin{align*}
+Z
+&=\exp(2\mathrm{i}\theta)\frac{1-\omega^n}{1-\omega}
+\end{align*}
+
+But
+\begin{align*}
+\omega^n
+&=\left(\exp\left(\frac{4\pi \mathrm{i}}{n}\right)\right)^n \\[5pt]
+&=\exp(4\pi \mathrm{i}) \\
+&=1
+\end{align*}
+
+So
+\begin{align*}
+Z
+&=\exp(2\mathrm{i}\theta)\frac{1-1}{1-\omega} \\
+&=0
+\end{align*}
+
+Hence both the real and imaginary parts of \(Z\) are zero:
+\begin{align*}
+\sum_{r=0}^{n-1}\cos\left(2\theta+\frac{4\pi r}{n}\right)&=0 \\
+\sum_{r=0}^{n-1}\sin\left(2\theta+\frac{4\pi r}{n}\right)&=0
+\end{align*}
+
+Now use the double-angle identities.
+
+For \(C\),
+\[
+\cos^2 x=\frac{1+\cos 2x}{2}
+\]
+
+with \(x=\theta+\frac{2\pi r}{n}\). Then
+\begin{align*}
+C
+&=\sum_{r=0}^{n-1}\cos^2\left(\theta+\frac{2\pi r}{n}\right) \\[10pt]
+&=\sum_{r=0}^{n-1}\frac{1+\cos\left(2\theta+\frac{4\pi r}{n}\right)}{2} \\[10pt]
+&=\frac12\sum_{r=0}^{n-1}1+\frac12\sum_{r=0}^{n-1}\cos\left(2\theta+\frac{4\pi r}{n}\right) \\[10pt]
+&=\frac12(n)+\frac12(0) =\frac{n}{2}
+\end{align*}
+
+For \(S\),
+\[
+\sin x\cos x=\frac12\sin 2x
+\]
+
+so, again with \(x=\theta+\frac{2\pi r}{n}\),
+\begin{align*}
+S
+&=\sum_{r=0}^{n-1}\sin\left(\theta+\frac{2\pi r}{n}\right)\cos\left(\theta+\frac{2\pi r}{n}\right) \\[10pt]
+&=\frac12\sum_{r=0}^{n-1}\sin\left(2\theta+\frac{4\pi r}{n}\right) \\[10pt]
+&=\frac12(0) 
+=0
+\end{align*}
+
+Therefore
+\[
+C=\frac{n}{2}
+\qquad \text{and} \qquad
+S=0
+\]
+\end{tcolorbox}
+
+
+\newpage
+\end{enumerate}
+\end{document}
