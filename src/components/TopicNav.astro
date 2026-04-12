@@ -25,6 +25,7 @@ const mobileInactive =
   'flex-shrink-0 whitespace-nowrap rounded-full border border-slate-600/80 px-3 py-1.5 text-xs font-medium text-slate-300 transition-colors hover:border-purple-500/50 hover:text-white';
 const mobileActive =
   'flex-shrink-0 whitespace-nowrap rounded-full border border-purple-500 bg-purple-500/15 px-3 py-1.5 text-xs font-medium text-white';
+const enableLiveTopicHighlight = false;
 ---
 
 {
@@ -72,7 +73,7 @@ const mobileActive =
   )
 }
 
-{variant === 'sidebar' && (
+{variant === 'sidebar' && enableLiveTopicHighlight && (
 <script>
   function setupFurtherMathsTopicNav() {
     const main = document.querySelector('main');
@@ -84,7 +85,10 @@ const mobileActive =
     const sidebarLinks = document.querySelectorAll<HTMLAnchorElement>('[data-topic-link="sidebar"]');
     const mobileLinks = document.querySelectorAll<HTMLAnchorElement>('[data-topic-link="mobile"]');
 
-    const lineY = 96;
+    const focusLineY = 96;
+    const hashLockMs = 900;
+    const validTopicIds = new Set(headings.map((h) => h.id));
+    let hashLockUntil = 0;
 
     function setActive(id: string) {
       sidebarLinks.forEach((a) => {
@@ -109,22 +113,53 @@ const mobileActive =
       });
     }
 
-    const lastHeading = headings[headings.length - 1];
-
-    function computeActiveId(): string {
-      // If within 64 px of the page bottom, always highlight the last section.
-      const nearBottom =
-        window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 64;
-      if (nearBottom && lastHeading) return lastHeading.id;
-
+    function computeActiveIdFromScroll(): string {
       let activeId = headings[0]?.id ?? '';
+      let closestDistance = Number.POSITIVE_INFINITY;
+
       for (const h of headings) {
-        if (h.getBoundingClientRect().top <= lineY) activeId = h.id;
+        const distance = Math.abs(h.getBoundingClientRect().top - focusLineY);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          activeId = h.id;
+        }
       }
+
       return activeId;
     }
 
-    setActive(computeActiveId());
+    function getHashTopicId(): string | null {
+      const hashId = window.location.hash.replace(/^#/, '');
+      if (!hashId) return null;
+      return validTopicIds.has(hashId) ? hashId : null;
+    }
+
+    function lockToHash() {
+      hashLockUntil = performance.now() + hashLockMs;
+    }
+
+    function isHashLocked() {
+      return performance.now() < hashLockUntil;
+    }
+
+    function setActiveFromHash(lock = true) {
+      const hashId = getHashTopicId();
+      if (!hashId) return;
+      if (lock) lockToHash();
+      setActive(hashId);
+    }
+
+    function syncHashToActive(id: string) {
+      const nextHash = `#${id}`;
+      if (window.location.hash === nextHash) return;
+      history.replaceState(null, '', nextHash);
+    }
+
+    // Initial sync: prefer URL hash when present.
+    setActiveFromHash(false);
+    if (!window.location.hash) {
+      setActive(computeActiveIdFromScroll());
+    }
 
     // Scroll listener (rAF-throttled) is more reliable than IntersectionObserver
     // alone, especially for short last sections that can't reach the threshold.
@@ -133,12 +168,28 @@ const mobileActive =
       if (rafPending) return;
       rafPending = true;
       requestAnimationFrame(() => {
-        setActive(computeActiveId());
+        if (isHashLocked()) {
+          const hashId = getHashTopicId();
+          if (hashId) {
+            setActive(hashId);
+            rafPending = false;
+            return;
+          }
+        }
+
+        const activeId = computeActiveIdFromScroll();
+        setActive(activeId);
+        syncHashToActive(activeId);
         rafPending = false;
       });
     }
 
+    sidebarLinks.forEach((link) => link.addEventListener('click', () => lockToHash()));
+    mobileLinks.forEach((link) => link.addEventListener('click', () => lockToHash()));
+
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    window.addEventListener('hashchange', () => setActiveFromHash());
   }
 
   setupFurtherMathsTopicNav();
