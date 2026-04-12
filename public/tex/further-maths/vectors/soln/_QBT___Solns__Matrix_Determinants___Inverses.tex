@@ -1,0 +1,1525 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{\textit{Solutions} - Matrix Determinants \& Inverses}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+\[
+B = \begin{pmatrix} 1 & a \\ 1 & 3 \end{pmatrix}
+\] \\
+where $a$ is a real constant and $a \neq 3$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find $B^{-1}$ in terms of $a$. \marks{3} \\
+\end{enumerate}
+
+Given that
+\[
+B^{-1} = 2\mathbf{I} - \frac{1}{2}B
+\] \\
+where $\mathbf{I}$ is the $2 \times 2$ identity matrix, \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item find the value of $a$. \marks{3} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item For
+\[
+B=\begin{pmatrix}1&a\\1&3\end{pmatrix},
+\]
+the determinant is
+\[
+\det(B)=1\cdot 3-1\cdot a=3-a.
+\]
+Since $a\neq 3$, $\det(B)\neq 0$, so $B^{-1}$ exists.
+
+So
+\[
+B^{-1}
+=\frac{1}{3-a}\begin{pmatrix}3&-a\\-1&1\end{pmatrix}
+\]
+
+Hence
+\[
+B^{-1}=\frac{1}{3-a}\begin{pmatrix}3&-a\\-1&1\end{pmatrix}
+\]
+
+  \item We are given
+\[
+B^{-1}=2\mathbf I-\frac12 B.
+\]
+Now
+\[
+2\mathbf I=\begin{pmatrix}2&0\\0&2\end{pmatrix},
+\qquad
+\frac12 B=\begin{pmatrix}\frac12&\frac a2\\[2pt]\frac12&\frac32\end{pmatrix}
+\]
+So
+\[
+2\mathbf I-\frac12 B
+=
+\begin{pmatrix}
+2-\frac12 & 0-\frac a2\\[4pt]
+0-\frac12 & 2-\frac32
+\end{pmatrix}
+=
+\begin{pmatrix}
+\frac32 & -\frac a2\\[4pt]
+-\frac12 & \frac12
+\end{pmatrix}
+=
+\frac12
+\begin{pmatrix}
+3 & -a\\
+-1 & 1
+\end{pmatrix}.
+\]
+
+From part (a),
+\[
+B^{-1}=\frac{1}{3-a}\begin{pmatrix}3&-a\\-1&1\end{pmatrix}.
+\]
+Since this is equal to
+\[
+\frac12\begin{pmatrix}3&-a\\-1&1\end{pmatrix},
+\]
+the scalar factors must be equal:
+\[
+\frac{1}{3-a}=\frac12.
+\]
+Hence
+\[
+3-a=2
+\]
+and therefore
+\[
+a=1.
+\]
+
+So the value of $a$ is $1$.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+Given that
+\[
+A=\begin{pmatrix}k+1 & 2\\ 1-2k & k-4\\ 2k-1 & 4-k\end{pmatrix}
+\quad \text{and} \quad
+B=\begin{pmatrix}1 & 1 & 1\\ 1 & 0 & 1\end{pmatrix}
+\] \\
+where $k$ is a constant, \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item determine the matrix $BA$. \marks{2} \\
+  \item hence find the values of $k$ for which $BA$ is singular. \marks{3} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Since $B$ is $2\times 3$ and $A$ is $3\times 2$, the product $BA$ is a $2\times 2$ matrix.
+
+  Multiply rows of $B$ by columns of $A$:
+  \[
+  BA=
+  \begin{pmatrix}
+  1 & 1 & 1\\
+  1 & 0 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+  k+1 & 2\\
+  1-2k & k-4\\
+  2k-1 & 4-k
+  \end{pmatrix}
+  \]
+
+  \begin{align*}
+  (1,1)\text{  entry  }  &=(1)(k+1)+(1)(1-2k)+(1)(2k-1)=k+1 \\
+  (1,2)\text{  entry  } &=(1)(2)+(1)(k-4)+(1)(4-k)=2 \\
+  (2,1)\text{  entry  } &=(1)(k+1)+(0)(1-2k)+(1)(2k-1)=3k \\
+  (2,2)\text{  entry  } &=(1)(2)+(0)(k-4)+(1)(4-k)=6-k
+  \end{align*}
+
+  Therefore
+  \[
+  BA=\begin{pmatrix}k+1 & 2\\ 3k & 6-k\end{pmatrix}
+  \]
+
+  \item A matrix is singular if its determinant is $0$.
+
+  So
+  \[
+  \det(BA)=
+  \begin{vmatrix}
+  k+1 & 2\\
+  3k & 6-k
+  \end{vmatrix}
+  =(k+1)(6-k)-2(3k)
+  \]
+
+  \begin{align*}
+  \det(BA)&=6k+6-k^2-k-6k \\
+          &=-k^2-k+6 \\
+          &=-(k^2+k-6) \\
+          &=-(k+3)(k-2)
+  \end{align*}
+
+  For singularity,
+  \[
+  -(k+3)(k-2)=0
+  \]
+
+  Hence
+  \[
+  k=-3 \quad \text{or} \quad k=2
+  \]
+
+  So the values of $k$ for which $BA$ is singular are $k=2$ and $k=-3$.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+A community centre offers three evening courses: art, dance and pottery. At the start of the year there were $580$ enrolments in total. The number enrolled in art was $20$ more than the total number enrolled in dance and pottery combined. \\
+
+By the end of the year:
+\begin{itemize}
+\item the number enrolled in art had decreased by $5\%$
+\item the number enrolled in dance had increased by $10\%$
+\item the number enrolled in pottery had increased by $15\%$
+\item overall enrolment had increased by $20$
+\end{itemize}
+Form and solve a matrix equation to find the initial number enrolled in each course. \marks{7} \\
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let the initial numbers enrolled in art, dance and pottery be \(A\), \(D\) and \(P\) respectively.
+
+From the information given,
+
+\[
+A+D+P=580
+\]
+
+Art was \(20\) more than dance and pottery combined, so
+
+\[
+A=D+P+20
+\]
+
+which gives
+
+\[
+A-D-P=20
+\]
+
+By the end of the year, the total enrolment had increased by \(20\), so the new total was \(600\). Therefore
+
+\[
+0.95A+1.10D+1.15P=600
+\]
+
+To avoid decimals, multiply this last equation by \(20\):
+
+\[
+19A+22D+23P=12000
+\]
+
+So the matrix equation is
+
+\[
+\begin{pmatrix}
+1&1&1\\
+1&-1&-1\\
+19&22&23
+\end{pmatrix}
+\begin{pmatrix}
+A\\
+D\\
+P
+\end{pmatrix}
+=
+\begin{pmatrix}
+580\\
+20\\
+12000
+\end{pmatrix}
+\]
+
+Now solve the equivalent system of equations.
+
+Adding the first two equations:
+
+\begin{align*}
+(A+D+P)+(A-D-P)&=580+20\\
+2A&=600\\
+A&=300
+\end{align*}
+
+Substitute into \(A+D+P=580\):
+
+\begin{align*}
+300+D+P&=580\\
+D+P&=280
+\end{align*}
+
+Now substitute \(A=300\) into \(19A+22D+23P=12000\):
+
+\begin{align*}
+19(300)+22D+23P&=12000\\
+5700+22D+23P&=12000\\
+22D+23P&=6300
+\end{align*}
+
+Using \(D+P=280\), multiply by \(22\):
+
+\[
+22D+22P=6160
+\]
+
+Subtract this from \(22D+23P=6300\):
+
+\begin{align*}
+(22D+23P)-(22D+22P)&=6300-6160\\
+P&=140
+\end{align*}
+Then
+\begin{align*}
+D+P&=280\\
+D+140&=280\\
+D&=140
+\end{align*}
+
+Hence the initial enrolments were:
+
+\[
+\text{Art }=300,\qquad \text{Dance }=140,\qquad \text{Pottery }=140
+\] \\
+
+Alternatively compute (using your calculator)
+
+\[
+\begin{pmatrix}
+1&1&1\\
+1&-1&-1\\
+19&22&23
+\end{pmatrix}^{-1} = \begin{pmatrix}
+\frac12&\frac12&0\\
+21&-2&-1\\
+-\frac{41}{2}&\frac32&1
+\end{pmatrix}\]
+
+To obtain 
+
+\begin{align*}
+\begin{pmatrix}
+    A \\ D \\ P
+\end{pmatrix}
+&=
+\begin{pmatrix}
+1&1&1\\
+1&-1&-1\\
+19&22&23
+\end{pmatrix}^{-1}\begin{pmatrix}
+580\\
+20\\
+12000
+\end{pmatrix} \\[5pt]
+&= \begin{pmatrix}
+\frac12&\frac12&0\\
+21&-2&-1\\
+-\frac{41}{2}&\frac32&1
+\end{pmatrix}\begin{pmatrix}
+580\\
+20\\
+12000
+\end{pmatrix} \\[5pt]
+&= \begin{pmatrix}
+300\\
+140\\
+140
+\end{pmatrix}
+\end{align*}
+
+So
+\[
+\text{Art }=300,\qquad \text{Dance }=140,\qquad \text{Pottery }=140
+\] 
+
+
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+The matrix $A$ is given by
+\[
+A=\begin{pmatrix}
+2 & k & 1\\
+1 & 0 & 2\\
+k & -1 & 1
+\end{pmatrix}
+\] \\
+where $k$ is a real constant. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that $A$ is non-singular for all real values of $k$. \marks{3} \\
+  \item Given that
+  \[
+\renewcommand{\arraystretch}{1.5}
+A^{-1}=\begin{pmatrix}
+  \tfrac{1}{2} & -\frac{1}{2} & \frac{1}{2}\\
+  \frac{1}{4} & \frac{1}{4} & -\frac{3}{4}\\
+  -\frac{1}{4} & \frac{3}{4} & -\frac{1}{4}
+\end{pmatrix}
+  \]
+  find the value of $k$. \marks{2} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Expanding $\det A$ along the first row,
+\begin{align*}
+\det A
+&=2\begin{vmatrix}0&2\\-1&1\end{vmatrix}
+-k\begin{vmatrix}1&2\\ k&1\end{vmatrix}
++1\begin{vmatrix}1&0\\ k&-1\end{vmatrix}\\
+&=2(0\cdot 1-2(-1))-k(1\cdot 1-2k)+1(1\cdot(-1)-0\cdot k)\\
+&=2(2)-k(1-2k)-1\\
+&=4-k+2k^2-1\\
+&=2k^2-k+3
+\end{align*}
+Now consider the quadratic $2k^2-k+3$. Its discriminant is
+\[
+(-1)^2-4(2)(3)=1-24=-23<0
+\]
+and the coefficient of $k^2$ is positive, so
+\[
+2k^2-k+3>0 \quad \text{for all } k\in\mathbb{R}
+\]
+Hence
+\[
+\det A\neq 0 \quad \text{for all real } k
+\]
+Therefore $A$ is non-singular for all real values of $k$.
+
+  \item Let the given matrix be $B$. Since $B=A^{-1}$, we must have
+\[
+AB=I
+\]
+Using the $(1,1)$ entry of $AB$,
+\begin{align*}
+\begin{pmatrix}2 & k & 1\end{pmatrix}
+\begin{pmatrix}
+\frac12\\[2pt]
+\frac14\\[2pt]
+-\frac14
+\end{pmatrix}
+&=1\\
+2\cdot \frac12+k\cdot \frac14+1\cdot\left(-\frac14\right)&=1\\
+1+\frac{k}{4}-\frac14&=1\\
+\frac{k+3}{4}&=1\\
+k+3&=4\\
+k&=1
+\end{align*}
+Therefore, $k=1$.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+A cinema chain sells three types of annual pass, $A$, $B$ and $C$. \\
+
+It is known that pass $A$ makes a profit of \pounds 16 per pass sold, pass $B$ makes a profit of \pounds 15 per pass sold and pass $C$ makes a profit of \pounds 12 per pass sold. \\
+
+Between 2023 and 2024
+\begin{itemize}
+\item sales of pass $A$ increased by $25\%$
+\item sales of pass $B$ decreased by $20\%$
+\item sales of pass $C$ increased by $50\%$
+\end{itemize}
+
+In total $900\,000$ passes were sold in 2023. \\
+
+In total $1\,050\,000$ passes were sold in 2024. \\
+
+The total profit from these passes in 2024 was \pounds 15.12 million. \\
+
+Form and solve a matrix equation to find, to $2$ significant figures, the number of each type of pass sold in 2023. \marks{8} \\
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+x,\ y,\ z
+\]
+be the numbers of passes of types \(A\), \(B\) and \(C\) sold in 2023.
+
+Then the numbers sold in 2024 were:
+\[
+1.25x,\quad 0.8y,\quad 1.5z
+\]
+
+Since \(900\,000\) passes were sold in 2023,
+\[
+x+y+z=900000
+\]
+
+Since \(1\,050\,000\) passes were sold in 2024,
+\[
+1.25x+0.8y+1.5z=1050000
+\]
+
+To avoid decimals, multiply this equation by \(20\):
+\[
+25x+16y+30z=21000000
+\]
+
+Now use the 2024 profit information.
+
+Profit per pass is:
+\[
+A:\pounds 16,\qquad B:\pounds 15,\qquad C:\pounds 12
+\]
+
+So the total profit in 2024 is
+\[
+16(1.25x)+15(0.8y)+12(1.5z)=15120000
+\]
+
+This simplifies to
+\[
+20x+12y+18z=15120000
+\]
+
+So the matrix equation is
+\[
+\begin{pmatrix}
+1&1&1\\
+25&16&30\\
+20&12&18
+\end{pmatrix}
+\begin{pmatrix}
+x\\y\\z
+\end{pmatrix}
+=
+\begin{pmatrix}
+900000\\21000000\\15120000
+\end{pmatrix}
+\]
+
+Let
+\[
+M=
+\begin{pmatrix}
+1&1&1\\
+25&16&30\\
+20&12&18
+\end{pmatrix}
+\]
+
+Then
+\[
+\det(M)=
+1\begin{vmatrix}16&30\\12&18\end{vmatrix}
+-1\begin{vmatrix}25&30\\20&18\end{vmatrix}
++1\begin{vmatrix}25&16\\20&12\end{vmatrix}
+\]
+\[
+=(-72)-(-150)+(-20)=58
+\]
+
+Since \(\det(M)\neq 0\), the inverse exists.
+
+The matrix of cofactors is
+\[
+\begin{pmatrix}
+-72&150&-20\\
+-6&-2&8\\
+14&-5&-9
+\end{pmatrix}
+\]
+
+So the adjugate matrix is
+\[
+\operatorname{adj}(M)=
+\begin{pmatrix}
+-72&-6&14\\
+150&-2&-5\\
+-20&8&-9
+\end{pmatrix}
+\]
+
+Hence
+\[
+M^{-1}=\frac1{58}
+\begin{pmatrix}
+-72&-6&14\\
+150&-2&-5\\
+-20&8&-9
+\end{pmatrix}
+\]
+
+Now multiply both sides of the matrix equation by \(M^{-1}\):
+\[
+\begin{pmatrix}
+x\\y\\z
+\end{pmatrix}
+=
+\frac1{58}
+\begin{pmatrix}
+-72&-6&14\\
+150&-2&-5\\
+-20&8&-9
+\end{pmatrix}
+\begin{pmatrix}
+900000\\21000000\\15120000
+\end{pmatrix}
+\]
+
+This gives
+\[
+\begin{pmatrix}
+x\\y\\z
+\end{pmatrix}
+=
+\frac1{58}
+\begin{pmatrix}
+20880000\\17400000\\13920000
+\end{pmatrix}
+=
+\begin{pmatrix}
+360000\\300000\\240000
+\end{pmatrix}
+\]
+
+Therefore, the numbers of passes sold in 2023 were
+\[
+A=360000,\qquad B=300000,\qquad C=240000
+\]
+
+To \(2\) significant figures:
+\[
+A=3.6\times 10^5,\qquad B=3.0\times 10^5,\qquad C=2.4\times 10^5
+\]
+
+So the 2023 sales were \(3.6\times 10^5\) of \(A\), \(3.0\times 10^5\) of \(B\), and \(2.4\times 10^5\) of \(C\).
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+\[
+A = \begin{pmatrix}
+a & 1 & 0 \\
+2 & 3 & 1 \\
+0 & 1 & a
+\end{pmatrix}
+\] \\
+where $a$ is a real constant. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Determine the values of $a$ for which $A$ is singular. \marks{2} \\
+  \item Hence, for all other values of $a$, find $A^{-1}$ in terms of $a$. \marks{4} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Expand $\det(A)$ along the first row:
+  \[
+  \det(A)=
+  a\begin{vmatrix}3&1\\[2pt]1&a\end{vmatrix}
+  -\begin{vmatrix}2&1\\[2pt]0&a\end{vmatrix}
+  +0\begin{vmatrix}2&3\\[2pt]0&1\end{vmatrix}
+  \]
+  \[
+  =a(3a-1)-2a
+  =3a^2-3a
+  =3a(a-1)
+  \]
+  $A$ is singular when $\det(A)=0$, so
+  \[
+  3a(a-1)=0 \implies a=0 \text{ or } a=1
+  \]
+  Therefore, $A$ is singular for $\boxed{a=0,1}$.
+
+  \item For $a\neq 0,1$, the inverse exists and
+  \[
+  A^{-1}=\frac{1}{\det(A)}\operatorname{adj}(A)
+  \]
+  From part (a),
+  \[
+  \det(A)=3a(a-1)
+  \]
+  The matrix of cofactors is
+  \[
+  \begin{pmatrix}
+  3a-1 & -2a & 2\\
+  -a & a^2 & -a\\
+  1 & -a & 3a-2
+  \end{pmatrix}
+  \]
+  So the adjugate matrix is its transpose:
+  \[
+  \operatorname{adj}(A)=
+  \begin{pmatrix}
+  3a-1 & -a & 1\\
+  -2a & a^2 & -a\\
+  2 & -a & 3a-2
+  \end{pmatrix}
+  \]
+  Therefore
+  \[
+  A^{-1}
+  =\frac{1}{3a(a-1)}
+  \begin{pmatrix}
+  3a-1 & -a & 1\\
+  -2a & a^2 & -a\\
+  2 & -a & 3a-2
+  \end{pmatrix}
+  \qquad (a\neq 0,1)
+  \]
+  Hence, for all other values of $a$,
+  \[
+  \boxed{
+  A^{-1}=\frac{1}{3a(a-1)}
+  \begin{pmatrix}
+  3a-1 & -a & 1\\
+  -2a & a^2 & -a\\
+  2 & -a & 3a-2
+  \end{pmatrix}}
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+You are given that $a$ is a real parameter. \\
+
+The matrix $A$ is given by
+\[
+A=\begin{pmatrix}
+1 & -2 & 3 \\
+4 & 1 & -1 \\
+a & 0 & 1
+\end{pmatrix}
+\] \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find an expression for $\det(A)$ in terms of $a$. \marks{2} \\
+\end{enumerate}
+
+You are given the following system of equations in $x$, $y$ and $z$. \\
+
+\[
+\begin{aligned}
+x-2y+3z&=-6 \\
+4x+y-z&=7 \\
+ax+z&=a-1
+\end{aligned}
+\] \\
+
+The system can be written in the form
+\[
+A\begin{pmatrix}x \\ y \\ z\end{pmatrix}=\begin{pmatrix}-6 \\ 7 \\ a-1\end{pmatrix}
+\] \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item In the case where $A$ is not singular, solve the given system by using $A^{-1}$. \marks{5}
+    \item In the case where $A$ is singular, describe the configuration of the planes whose equations are the three equations of the system. \marks{3} \\
+  \end{enumerate}
+\end{enumerate}
+
+The transformation represented by $A$ is denoted by $T$. \\
+A solid of volume $12$ is transformed by $T$ to an image in 3-D space. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Determine the range of values of $a$ for which the orientation of the image is the reverse of the orientation of the object. \marks{1}
+    \item Determine the range of values of $a$ for which the volume of the image is less than the volume of the object. \marks{2} \\
+  \end{enumerate}
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Expanding along the first row,
+  \begin{align*}
+  \det(A)
+  &=1\begin{vmatrix}1&-1\\0&1\end{vmatrix}
+  -(-2)\begin{vmatrix}4&-1\\ a&1\end{vmatrix}
+  +3\begin{vmatrix}4&1\\ a&0\end{vmatrix} \\
+  &=1(1)+2(4+a)+3(0-a) \\
+  &=1+8+2a-3a \\
+  &=9-a
+  \end{align*}
+  Therefore,
+  \[
+  \det(A)=9-a
+  \]
+
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item From part (a), \(A\) is non-singular when
+    \[
+    9-a\neq 0 \quad \Rightarrow \quad a\neq 9
+    \]
+
+    Using
+    \[
+    A^{-1}=\frac{1}{\det(A)}\operatorname{adj}(A)
+    \]
+
+    the matrix of cofactors is
+    \[
+    \begin{pmatrix}
+    1 & -a-4 & -a \\
+    2 & 1-3a & -2a \\
+    -1 & 13 & 9
+    \end{pmatrix}
+    \]
+
+    so
+    \[
+    \operatorname{adj}(A)=
+    \begin{pmatrix}
+    1 & 2 & -1 \\
+    -a-4 & 1-3a & 13 \\
+    -a & -2a & 9
+    \end{pmatrix}
+    \]
+
+    Hence
+    \[
+    A^{-1}=\frac{1}{9-a}
+    \begin{pmatrix}
+    1 & 2 & -1 \\
+    -a-4 & 1-3a & 13 \\
+    -a & -2a & 9
+    \end{pmatrix}
+    \]
+
+    Therefore
+    \begin{align*}
+    \begin{pmatrix}x\\y\\z\end{pmatrix}
+    &=A^{-1}\begin{pmatrix}-6\\7\\a-1\end{pmatrix} \\
+    &=\frac{1}{9-a}
+    \begin{pmatrix}
+    1 & 2 & -1 \\
+    -a-4 & 1-3a & 13 \\
+    -a & -2a & 9
+    \end{pmatrix}
+    \begin{pmatrix}-6\\7\\a-1\end{pmatrix} \\
+    &=\frac{1}{9-a}
+    \begin{pmatrix}
+    -6+14-(a-1) \\
+    (-a-4)(-6)+(1-3a)7+13(a-1) \\
+    (-a)(-6)+(-2a)7+9(a-1)
+    \end{pmatrix} \\
+    &=\frac{1}{9-a}
+    \begin{pmatrix}
+    9-a \\
+    18-2a \\
+    a-9
+    \end{pmatrix} \\
+    &=\frac{1}{9-a}
+    \begin{pmatrix}
+    9-a \\
+    2(9-a) \\
+    -(9-a)
+    \end{pmatrix} \\
+    &=\begin{pmatrix}1\\2\\-1\end{pmatrix}
+    \end{align*}
+
+    So, for \(a\neq 9\),
+    \[
+    x=1,\qquad y=2,\qquad z=-1
+    \]
+
+    \item \(A\) is singular when
+    \[
+    9-a=0 \quad \Rightarrow \quad a=9
+    \]
+
+    Then the three plane equations are
+    \begin{align*}
+    x-2y+3z&=-6 \\
+    4x+y-z&=7 \\
+    9x+z&=8
+    \end{align*}
+
+    Now
+    \[
+    (9,0,1)=(1,-2,3)+2(4,1,-1)
+    \]
+    and
+    \[
+    8=-6+2\cdot 7
+    \]
+
+    So the third equation is obtained by adding the first equation to \(2\) times the second equation.
+
+    Therefore any point which lies on the intersection of the first two planes also lies on the third plane. Since the first two planes are distinct and not parallel, they intersect in a line.
+
+    Hence, when \(a=9\), the three planes are distinct planes with a common line of intersection, so there are infinitely many solutions.
+  \end{enumerate}
+
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item The orientation is reversed when \(\det(A)<0\).
+
+    \[
+    9-a<0
+    \]
+    \[
+    a>9
+    \]
+
+    Therefore, the orientation is reversed for
+    \[
+    a>9
+    \]
+
+    \item The volume scale factor is
+    \[
+    |\det(A)|=|9-a|
+    \]
+
+    So the image volume is
+    \[
+    12|9-a|
+    \]
+
+    We want this to be less than \(12\), so
+    \[
+    12|9-a|<12
+    \]
+    \[
+    |9-a|<1
+    \]
+
+    Therefore
+    \[
+    -1<9-a<1
+    \]
+    \[
+    8<a<10
+    \]
+
+    So the required range is
+    \[
+    8<a<10
+    \]
+  \end{enumerate}
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+\[
+A = \begin{pmatrix}
+k & 2 & 1 \\
+-1 & 3 & 0 \\
+4 & -2 & 1
+\end{pmatrix}
+\qquad
+B = \begin{pmatrix}
+3 & -4 & -3 \\
+1 & k - 4 & -1 \\
+-10 & 2k + 8 & 3k + 2
+\end{pmatrix}
+\] \\
+where $k$ is a constant. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Determine the value of the constant $c$ for which
+  \[
+  AB = (3k - c)I
+  \]
+  \marks[-20pt]{2}
+  \item Hence determine the value of $k$ for which $A^{-1}$ does not exist. \marks{2} \\
+\end{enumerate}
+
+Given that $A^{-1}$ does exist, \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item write down $A^{-1}$ in terms of $k$. \marks{1} \\
+  \item Use the answer to part (c) to solve the simultaneous equations
+  \[
+  \begin{aligned}
+  kx + 2y + z &= 1 \\
+  -x + 3y &= 2 \\
+  4x - 2y + z &= 3
+  \end{aligned}
+  \]
+  giving the values of $x$, $y$ and $z$ in simplest form in terms of $k$. \marks{3} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Multiplying \(A\) by \(B\),
+\begin{align*}
+AB&=
+\begin{pmatrix}
+k & 2 & 1\\
+-1 & 3 & 0\\
+4 & -2 & 1
+\end{pmatrix}
+\begin{pmatrix}
+3 & -4 & -3\\
+1 & k-4 & -1\\
+-10 & 2k+8 & 3k+2
+\end{pmatrix}\\
+&=
+\begin{pmatrix}
+3k+2-10 & -4k+2(k-4)+(2k+8) & -3k+2(-1)+(3k+2)\\
+-3+3 & 4+3(k-4) & 3-3\\
+12-2-10 & -16-2(k-4)+(2k+8) & -12+2+(3k+2)
+\end{pmatrix}\\
+&=
+\begin{pmatrix}
+3k-8 & 0 & 0\\
+0 & 3k-8 & 0\\
+0 & 0 & 3k-8
+\end{pmatrix}
+=(3k-8)I
+\end{align*}
+Comparing with \((3k-c)I\), we get \(c=8\).
+
+  \item From part (a),
+\[
+AB=(3k-8)I
+\]
+If \(3k-8\neq 0\), then
+\[
+A\left(\frac{1}{3k-8}B\right)=I
+\]
+so \(A^{-1}\) exists.
+
+Therefore \(A^{-1}\) does not exist when
+\[
+3k-8=0
+\]
+Hence \(k=\dfrac{8}{3}\).
+
+  \item Given that \(A^{-1}\) exists, \(k\neq \dfrac{8}{3}\), so from part (a)
+\[
+A^{-1}=\frac{1}{3k-8}B
+=\frac{1}{3k-8}
+\begin{pmatrix}
+3 & -4 & -3\\
+1 & k-4 & -1\\
+-10 & 2k+8 & 3k+2
+\end{pmatrix}
+\]
+This is \(A^{-1}\).
+
+  \item Write the equations as
+\[
+A\begin{pmatrix}x\\y\\z\end{pmatrix}
+=
+\begin{pmatrix}1\\2\\3\end{pmatrix}
+\]
+So
+\[
+\begin{pmatrix}x\\y\\z\end{pmatrix}
+=A^{-1}\begin{pmatrix}1\\2\\3\end{pmatrix}
+=
+\frac{1}{3k-8}
+\begin{pmatrix}
+3 & -4 & -3\\
+1 & k-4 & -1\\
+-10 & 2k+8 & 3k+2
+\end{pmatrix}
+\begin{pmatrix}
+1\\2\\3
+\end{pmatrix}
+\]
+Now multiply the matrices:
+\[
+\begin{pmatrix}x\\y\\z\end{pmatrix}
+=
+\frac{1}{3k-8}
+\begin{pmatrix}
+3-8-9\\
+1+2(k-4)-3\\
+-10+2(2k+8)+3(3k+2)
+\end{pmatrix}
+=
+\frac{1}{3k-8}
+\begin{pmatrix}
+-14\\
+2k-10\\
+13k+12
+\end{pmatrix}
+\]
+Hence
+\[
+x=-\frac{14}{3k-8},\qquad
+y=\frac{2k-10}{3k-8},\qquad
+z=\frac{13k+12}{3k-8}
+\]
+So the solution is \(x=-\dfrac{14}{3k-8}\), \(y=\dfrac{2k-10}{3k-8}\) and \(z=\dfrac{13k+12}{3k-8}\).
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+A company manufactures only three models of bicycle: Commuter, Electric and Folding. \\
+
+Each bicycle manufactured is one of these three models. \\
+
+In 2023, a total of $1000$ bicycles were manufactured. \\
+
+The number of Folding bicycles manufactured was $200$ fewer than the combined number of Commuter and Electric bicycles. \\
+
+In 2024 the number manufactured of
+\begin{itemize}
+\item Commuter increased by $10\%$
+\item Electric decreased by $5\%$
+\item Folding increased by $5\%$
+\end{itemize}
+In 2024, the total number of bicycles manufactured increased by $3.8\%$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Define, for each model, a variable for the number of bicycles manufactured in 2023. \marks{2}
+    \item Using your variables from part (a)(i), write down three equations that model this situation. \marks{2}
+  \end{enumerate}
+  \item By forming and solving a matrix equation, determine how many bicycles of each model were manufactured in 2023. \marks{4} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Let
+    \[
+    C=\text{number of Commuter bicycles made in 2023}
+    \]
+    \[
+    E=\text{number of Electric bicycles made in 2023}
+    \]
+    \[
+    F=\text{number of Folding bicycles made in 2023}
+    \]
+
+    \item In 2023, the total number manufactured was 1000, so
+    \[
+    C+E+F=1000
+    \]
+
+    The number of Folding bicycles was 200 fewer than the combined number of Commuter and Electric bicycles, so
+    \[
+    F=C+E-200
+    \]
+
+    In 2024, the total increased by \(3.8\%\), so the new total was
+    \[
+    1000\times 1.038=1038
+    \]
+
+    Using the percentage changes for each model gives
+    \[
+    1.10C+0.95E+1.05F=1038
+    \]
+
+    So the three equations are
+    \[
+    C+E+F=1000,\qquad F=C+E-200,\qquad 1.10C+0.95E+1.05F=1038
+    \]
+  \end{enumerate}
+
+  \item Let
+  \[
+  A=\begin{pmatrix}
+  1&1&1\\
+  -1&-1&1\\
+  1.10&0.95&1.05
+  \end{pmatrix},
+  \qquad
+  \mathbf{x}=\begin{pmatrix}C\\E\\F\end{pmatrix},
+  \qquad
+  \mathbf{b}=\begin{pmatrix}1000\\-200\\1038\end{pmatrix}
+  \]
+
+  Then the matrix equation is
+  \[
+  A\mathbf{x}=\mathbf{b}
+  \]
+  that is,
+  \begin{align*}
+  C+E+F&=1000\\
+  -C-E+F&=-200\\
+  1.10C+0.95E+1.05F&=1038
+  \end{align*}
+
+  Add the first two equations:
+  \[
+  2F=800
+  \]
+  so
+  \[
+  F=400
+  \]
+
+  Substitute into \(C+E+F=1000\):
+  \[
+  C+E+400=1000
+  \]
+  \[
+  C+E=600
+  \]
+
+  Substitute \(F=400\) into the third equation:
+  \begin{align*}
+  1.10C+0.95E+1.05(400)&=1038\\
+  1.10C+0.95E+420&=1038\\
+  1.10C+0.95E&=618
+  \end{align*}
+
+  Now use \(E=600-C\):
+  \begin{align*}
+  1.10C+0.95(600-C)&=618\\
+  1.10C+570-0.95C&=618\\
+  0.15C&=48\\
+  C&=320
+  \end{align*}
+
+  Then
+  \[
+  E=600-320=280
+  \]
+
+  Therefore, in 2023:
+  \[
+  \text{Commuter }=320,\qquad \text{Electric }=280,\qquad \text{Folding }=400
+  \]
+
+Alternatively compute (using your calculator)
+
+\[
+A^{-1}
+=
+\begin{pmatrix}
+1&1&1\\
+-1&-1&1\\
+1.10&0.95&1.05
+\end{pmatrix}^{-1}
+=
+\renewcommand{\arraystretch}{1.4}
+\begin{pmatrix}
+-\frac{20}{3}&-\frac{1}{3}&\frac{20}{3}\\
+\frac{43}{6}&-\frac{1}{6}&-\frac{20}{3}\\
+\frac12&\frac12&0
+\end{pmatrix}
+\]
+
+To obtain
+
+\begin{align*}
+\begin{pmatrix}
+C\\
+E\\
+F
+\end{pmatrix}
+&=
+\begin{pmatrix}
+1&1&1\\
+-1&-1&1\\
+1.10&0.95&1.05
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+1000\\
+-200\\
+1038
+\end{pmatrix} \\[5pt]
+&=
+\renewcommand{\arraystretch}{1.4}
+\begin{pmatrix}
+-\frac{20}{3}&-\frac{1}{3}&\frac{20}{3}\\
+\frac{43}{6}&-\frac{1}{6}&-\frac{20}{3}\\
+\frac12&\frac12&0
+\end{pmatrix}
+\begin{pmatrix}
+1000\\
+-200\\
+1038
+\end{pmatrix} \\[5pt]
+&=
+\begin{pmatrix}
+320\\
+280\\
+400
+\end{pmatrix}
+\end{align*}
+
+So
+
+\[
+\text{Commuter }=320,\qquad \text{Electric }=280,\qquad \text{Folding }=400
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+Three planes have equations
+\[
+\begin{aligned}
+x+2y-z&=4,\\
+3x+ky+2z&=k+11,\\
+ky+4z&=k+4
+\end{aligned}
+\] \\
+where $k$ is a constant. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that the planes have a unique point of intersection except for one value of $k$, which should be found. \marks{4} \\
+  \item Show that, whenever the planes have a unique point of intersection, this point is independent of $k$. Find the point. \marks{6} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Write the equations in matrix form as
+\[
+A\begin{pmatrix}x\\y\\z\end{pmatrix}
+=
+\begin{pmatrix}4\\k+11\\k+4\end{pmatrix},
+\qquad
+A=
+\begin{pmatrix}
+1&2&-1\\
+3&k&2\\
+0&k&4
+\end{pmatrix}
+\]
+
+The three planes have a unique point of intersection exactly when this linear system has a unique solution, that is when
+\[
+\det(A)\neq 0
+\]
+
+Now expand the determinant along the first row:
+\begin{align*}
+\det(A)
+&=
+1\begin{vmatrix}k&2\\k&4\end{vmatrix}
+-2\begin{vmatrix}3&2\\0&4\end{vmatrix}
++(-1)\begin{vmatrix}3&k\\0&k\end{vmatrix}\\
+&=1(4k-2k)-2(12)+(-1)(3k)\\
+&=2k-24-3k\\
+&=-(k+24)
+\end{align*}
+
+So
+\[
+\det(A)\neq 0 \iff -(k+24)\neq 0 \iff k\neq -24
+\]
+
+Hence the planes have a unique point of intersection for all values of $k$ except
+\[
+k=-24
+\]
+
+  \item To find the intersection point, eliminate the $ky$ term first.
+
+From the second and third equations,
+\begin{align*}
+(3x+ky+2z)-(ky+4z)&=(k+11)-(k+4)\\
+3x-2z&=7
+\end{align*}
+
+Now multiply the first equation by $3$:
+\[
+3x+6y-3z=12
+\]
+
+Subtract $3x-2z=7$ from this:
+\begin{align*}
+(3x+6y-3z)-(3x-2z)&=12-7\\
+6y-z&=5
+\end{align*}
+so
+\[
+z=6y-5
+\]
+
+Substitute this into the first equation:
+\begin{align*}
+x+2y-(6y-5)&=4\\
+x-4y+5&=4\\
+x&=4y-1
+\end{align*}
+
+Now substitute $z=6y-5$ into the third equation:
+\begin{align*}
+ky+4(6y-5)&=k+4\\
+ky+24y-20&=k+4\\
+(k+24)y&=k+24
+\end{align*}
+
+Whenever there is a unique point of intersection, part (a) shows that $k\neq -24$. So we may divide by $k+24$:
+\[
+y=1
+\]
+
+Then
+\[
+z=6(1)-5=1
+\]
+and
+\[
+x=4(1)-1=3
+\]
+
+Therefore, whenever the planes have a unique common point, it is
+\[
+(3,1,1)
+\]
+
+This point is independent of $k$.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\end{enumerate}
+\end{document}

@@ -1,0 +1,365 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{Matrix Determinants \& Inverses}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+\[
+B = \begin{pmatrix} 1 & a \\ 1 & 3 \end{pmatrix}
+\] \\
+where $a$ is a real constant and $a \neq 3$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find $B^{-1}$ in terms of $a$. \marks{3} \\
+\end{enumerate}
+
+Given that
+\[
+B^{-1} = 2\mathbf{I} - \frac{1}{2}B
+\] \\
+where $\mathbf{I}$ is the $2 \times 2$ identity matrix, \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item find the value of $a$. \marks{3} \\
+\end{enumerate}
+
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+Given that
+\[
+A=\begin{pmatrix}k+1 & 2\\ 1-2k & k-4\\ 2k-1 & 4-k\end{pmatrix}
+\quad \text{and} \quad
+B=\begin{pmatrix}1 & 1 & 1\\ 1 & 0 & 1\end{pmatrix}
+\] \\
+where $k$ is a constant, \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item determine the matrix $BA$. \marks{2} \\
+  \item hence find the values of $k$ for which $BA$ is singular. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+A community centre offers three evening courses: art, dance and pottery. At the start of the year there were $580$ enrolments in total. The number enrolled in art was $20$ more than the total number enrolled in dance and pottery combined. \\
+
+By the end of the year:
+\begin{itemize}
+\item the number enrolled in art had decreased by $5\%$
+\item the number enrolled in dance had increased by $10\%$
+\item the number enrolled in pottery had increased by $15\%$
+\item overall enrolment had increased by $20$
+\end{itemize}
+Form and solve a matrix equation to find the initial number enrolled in each course. \marks{7} \\
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+The matrix $A$ is given by
+\[
+A=\begin{pmatrix}
+2 & k & 1\\
+1 & 0 & 2\\
+k & -1 & 1
+\end{pmatrix}
+\] \\
+where $k$ is a real constant. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that $A$ is non-singular for all real values of $k$. \marks{3} \\
+  \item Given that
+  \[
+\renewcommand{\arraystretch}{1.5}
+A^{-1}=\begin{pmatrix}
+  \tfrac{1}{2} & -\frac{1}{2} & \frac{1}{2}\\
+  \frac{1}{4} & \frac{1}{4} & -\frac{3}{4}\\
+  -\frac{1}{4} & \frac{3}{4} & -\frac{1}{4}
+\end{pmatrix}
+  \]
+  find the value of $k$. \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+A cinema chain sells three types of annual pass, $A$, $B$ and $C$. \\
+
+It is known that pass $A$ makes a profit of \pounds 16 per pass sold, pass $B$ makes a profit of \pounds 15 per pass sold and pass $C$ makes a profit of \pounds 12 per pass sold. \\
+
+Between 2023 and 2024
+\begin{itemize}
+\item sales of pass $A$ increased by $25\%$
+\item sales of pass $B$ decreased by $20\%$
+\item sales of pass $C$ increased by $50\%$
+\end{itemize}
+
+In total $900\,000$ passes were sold in 2023. \\
+
+In total $1\,050\,000$ passes were sold in 2024. \\
+
+The total profit from these passes in 2024 was \pounds 15.12 million. \\
+
+Form and solve a matrix equation to find, to $2$ significant figures, the number of each type of pass sold in 2023. \marks{8} \\
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+\[
+A = \begin{pmatrix}
+a & 1 & 0 \\
+2 & 3 & 1 \\
+0 & 1 & a
+\end{pmatrix}
+\] \\
+where $a$ is a real constant. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Determine the values of $a$ for which $A$ is singular. \marks{2} \\
+  \item Hence, for all other values of $a$, find $A^{-1}$ in terms of $a$. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+You are given that $a$ is a real parameter. \\
+
+The matrix $A$ is given by
+\[
+A=\begin{pmatrix}
+1 & -2 & 3 \\
+4 & 1 & -1 \\
+a & 0 & 1
+\end{pmatrix}
+\] \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find an expression for $\det(A)$ in terms of $a$. \marks{2} \\
+\end{enumerate}
+
+You are given the following system of equations in $x$, $y$ and $z$. \\
+
+\[
+\begin{aligned}
+x-2y+3z&=-6 \\
+4x+y-z&=7 \\
+ax+z&=a-1
+\end{aligned}
+\] \\
+
+The system can be written in the form
+\[
+A\begin{pmatrix}x \\ y \\ z\end{pmatrix}=\begin{pmatrix}-6 \\ 7 \\ a-1\end{pmatrix}
+\] \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item In the case where $A$ is not singular, solve the given system by using $A^{-1}$. \marks{5}
+    \item In the case where $A$ is singular, describe the configuration of the planes whose equations are the three equations of the system. \marks{3} \\
+  \end{enumerate}
+\end{enumerate}
+
+The transformation represented by $A$ is denoted by $T$. \\
+A solid of volume $12$ is transformed by $T$ to an image in 3-D space. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Determine the range of values of $a$ for which the orientation of the image is the reverse of the orientation of the object. \marks{1}
+    \item Determine the range of values of $a$ for which the volume of the image is less than the volume of the object. \marks{2} \\
+  \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+\[
+A = \begin{pmatrix}
+k & 2 & 1 \\
+-1 & 3 & 0 \\
+4 & -2 & 1
+\end{pmatrix}
+\qquad
+B = \begin{pmatrix}
+3 & -4 & -3 \\
+1 & k - 4 & -1 \\
+-10 & 2k + 8 & 3k + 2
+\end{pmatrix}
+\] \\
+where $k$ is a constant. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Determine the value of the constant $c$ for which
+  \[
+  AB = (3k - c)I
+  \]
+  \marks[-20pt]{2}
+  \item Hence determine the value of $k$ for which $A^{-1}$ does not exist. \marks{2} \\
+\end{enumerate}
+
+Given that $A^{-1}$ does exist, \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item write down $A^{-1}$ in terms of $k$. \marks{1} \\
+  \item Use the answer to part (c) to solve the simultaneous equations
+  \[
+  \begin{aligned}
+  kx + 2y + z &= 1 \\
+  -x + 3y &= 2 \\
+  4x - 2y + z &= 3
+  \end{aligned}
+  \]
+  giving the values of $x$, $y$ and $z$ in simplest form in terms of $k$. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+A company manufactures only three models of bicycle: Commuter, Electric and Folding. \\
+
+Each bicycle manufactured is one of these three models. \\
+
+In 2023, a total of $1000$ bicycles were manufactured. \\
+
+The number of Folding bicycles manufactured was $200$ fewer than the combined number of Commuter and Electric bicycles. \\
+
+In 2024 the number manufactured of
+\begin{itemize}
+\item Commuter increased by $10\%$
+\item Electric decreased by $5\%$
+\item Folding increased by $5\%$
+\end{itemize}
+In 2024, the total number of bicycles manufactured increased by $3.8\%$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Define, for each model, a variable for the number of bicycles manufactured in 2023. \marks{2}
+    \item Using your variables from part (a)(i), write down three equations that model this situation. \marks{2}
+  \end{enumerate}
+  \item By forming and solving a matrix equation, determine how many bicycles of each model were manufactured in 2023. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+Three planes have equations
+\[
+\begin{aligned}
+x+2y-z&=4,\\
+3x+ky+2z&=k+11,\\
+ky+4z&=k+4
+\end{aligned}
+\] \\
+where $k$ is a constant. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that the planes have a unique point of intersection except for one value of $k$, which should be found. \marks{4} \\
+  \item Show that, whenever the planes have a unique point of intersection, this point is independent of $k$. Find the point. \marks{6} \\
+\end{enumerate}
+\end{enumerate}
+\end{document}
