@@ -1,0 +1,498 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{Modelling with 1st Order Differential Equations}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+A laboratory mixing vessel initially contains $4$ litres of solution in which $4$ mg of dye is dissolved. \\
+
+A wash solution enters the vessel at a constant rate of $300$ ml per minute. \\
+
+At the same time, well-mixed liquid leaves the vessel at a constant rate of $200$ ml per minute. \\
+
+The concentration of dye in the liquid entering the vessel, at time $t$ minutes after pumping begins, is modelled by $2e^{-0.1t}$ mg per litre. \\
+
+Let $m$ be the amount of dye, in milligrams, in the vessel at time $t$ minutes. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that the volume of liquid in the vessel is $(4+0.1t)$ litres, and hence show that $m$ satisfies
+  \[
+  \frac{\mathrm{d}m}{\mathrm{d}t}=0.6e^{-0.1t}-\frac{2m}{40+t}
+  \] \marks[-30pt]{4}
+  \item Solve this differential equation, given that $m=4$ when $t=0$, to find an expression for $m$ in terms of $t$ \marks{8} \\
+  \item After $20$ minutes, the concentration of dye in the vessel was measured as $0.82$ mg per litre. Assess the model in light of this information, giving a reason for your answer \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+A particle $P$, of mass $2\,\mathrm{kg}$, moves in a straight line and has velocity $v\,\mathrm{m\,s^{-1}}$. \\
+
+At time $t$ seconds, where $t\ge 0$, a variable force of $\dfrac{12t-4v}{1+t}\,\mathrm{N}$ acts on $P$.\\
+
+There are no other forces acting on $P$. Initially, when $t=0$, $P$ has velocity $-5\,\mathrm{m\,s^{-1}}$. \\
+
+The motion of $P$ can be modelled by the differential equation
+\[
+\frac{\mathrm{d}v}{\mathrm{d}t}+P(t)v=Q(t)
+\]
+where $P(t)$ and $Q(t)$ are functions of $t$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the functions $P(t)$ and $Q(t)$ \marks{2} \\
+  \item Using an integrating factor, determine the first time at which $P$ is stationary according to the model \marks{8} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+A brief flushing cycle in an industrial pipe is to be modelled. The flow rate of liquid, $R$ litres per second, at time $t$ seconds is measured from the instant the valve is opened. The cycle starts when $t=0$ and there is initially no flow through the pipe. When $t=1$, the flow rate is measured as $\pi e^{-1}\sin (1)$ litres per second. \\
+
+While the cycle is occurring, $R$ is modelled by the differential equation
+\[
+\frac{\mathrm{d}R}{\mathrm{d}t}+(1-\cot t)R=\frac{e^{-t}\sin t}{1+t^2}
+\]\\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item By using an integrating factor show that, according to the model, while the cycle is occurring,
+  \[
+  R=e^{-t}\sin t\left(\tan^{-1}t+\frac{3\pi}{4}\right)
+  \] \marks[-20pt]{6}
+\end{enumerate}
+The cycle ends when there is again no flow through the pipe. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Determine the length of time that the cycle lasts according to the model \marks{2} \\
+  \item Determine, according to the model, the rate of increase of the flow rate at the start of the cycle. Give your answer in exact form \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+A mixing tank initially contains $600$ litres of pure water. \\
+
+Brine flows into the tank at a constant rate of $20$ litres per hour. Each litre of brine contains $3$ grams of dissolved salt. \\
+
+The well-stirred mixture is pumped out of the tank at a constant rate of $30$ litres per hour. \\
+
+It is assumed that the salt is instantly and uniformly mixed throughout the liquid. \\
+
+Given that there are $x$ grams of salt in the tank after $t$ hours, \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item show that, while the tank still contains liquid, the situation can be modelled by
+  \[
+  \frac{\mathrm{d}x}{\mathrm{d}t}=60-\frac{3x}{60-t}
+  \] \marks[-30pt]{4}
+  \item Hence find the number of grams of salt in the tank after $30$ hours \marks{5} \\
+  \item State one limitation of this model and explain briefly how the model could be refined \marks{1} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+The concentration $C$, in suitable units, of a pollutant in a reservoir at time $t$ hours after a filtration system is switched on is to be modelled by a differential equation. Initially, the concentration is $A$, and its long-term value is $0$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item One simple model is to assume that the rate of decrease of concentration is directly proportional to $C$.
+  \begin{enumerate}[label=(\roman*)]
+    \item Formulate a differential equation for this model \marks{1}
+    \item Verify that $C=Ae^{-kt}$, where $k$ is a positive constant, satisfies this differential equation, the initial condition and the long-term condition \marks{3} \\
+  \end{enumerate}
+  \end{enumerate}
+  An alternative model uses the differential equation
+  \[
+  \frac{\mathrm{d}C}{\mathrm{d}t}+\frac{2t}{1+t^2}C=R(t)
+  \]
+  where $R(t)$ is a function of $t$. \\
+    \begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find the integrating factor for this differential equation, showing that it can be written in the form
+  \[
+  1+t^2
+  \] \marks[-20pt]{3}
+  \item Suppose that $R(t)=0$.
+  \begin{enumerate}[label=(\roman*)]
+    \item Show that
+    \[
+    C=\frac{A}{1+t^2}
+    \] \marks[-20pt]{4}
+    \item Find the time predicted by this model for the concentration to fall to half its initial value. Give your answer correct to the nearest minute \marks{2} \\
+  \end{enumerate}
+  \item Now suppose that
+  \[
+  R(t)=\frac{te^{-t}}{1+t^2}
+  \]
+  Show that
+  \[
+  C=\frac{A+1-(1+t)e^{-t}}{1+t^2}
+  \] \marks[-30pt]{6}
+    \end{enumerate}
+    
+  It is found that the initial concentration is $5$, and the concentration falls to half this value after $63$ minutes. \\
+  \begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Determine which of the models proposed in parts (c) and (d) is more consistent with these data \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+A processing tank initially contains $15$ litres of water in which $6$ mg of dye is dissolved. \\
+
+A dye solution enters the tank at a constant rate of $200$ ml per minute. The concentration of dye in this incoming solution, at time $t$ minutes after the flow begins, is modelled by $(4+e^{-0.1t})$ mg per litre. \\
+
+At the same time, pure water enters through a second pipe at a constant rate of $100$ ml per minute. The liquid in the tank is continually mixed and leaves the tank at a constant rate of $300$ ml per minute. \\
+
+Let $m$ be the amount of dye, in milligrams, in the tank at time $t$ minutes after the flow begins. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item 
+  \begin{enumerate}[label=(\roman*)]
+    \item Write down the volume of liquid in the tank at time $t$
+    \item Hence show that $m$ satisfies the differential equation
+    \[
+    \frac{\mathrm{d}m}{\mathrm{d}t}=0.8+0.2e^{-0.1t}-\frac{m}{50}
+    \]
+  \end{enumerate}
+  \marks[-25pt]{4} \\
+  \item By solving the differential equation, find an expression for $m$ in terms of $t$ \marks{8} \\
+\end{enumerate}
+After $30$ minutes, the concentration of dye in the tank was measured as $1.52$ mg per litre. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Assess the model in light of this information, giving a reason for your answer \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+A particle $P$, of mass $2\,\mathrm{kg}$, moves in a straight line and has velocity $v\,\mathrm{m\,s^{-1}}$. \\
+
+At time $t$ seconds, where $t\ge 0$, a variable force of $-2t(v+3)\,\mathrm{N}$ acts on $P$. There are no other forces acting on $P$. Initially, when $t=0$, $P$ has velocity $5\,\mathrm{m\,s^{-1}}$. \\
+
+The motion of $P$ can be modelled by the differential equation
+\[
+\frac{\mathrm{d}v}{\mathrm{d}t}+P(t)v=Q(t)
+\]
+where $P(t)$ and $Q(t)$ are functions of $t$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the functions $P(t)$ and $Q(t)$ \marks{2} \\
+  \item Using an integrating factor, determine the first time at which $P$ is stationary according to the model \marks{8} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+A small rescue boat moves in a straight line on calm water. It starts from rest, is driven by its engine for $5$ seconds and then, for the next $5$ seconds, the engine is cut and a drogue is deployed. The boat comes to rest at the end of the $10$ seconds. The total mass of the boat and crew is $m\,\mathrm{kg}$, and at time $t$ seconds, for $0\le t\le 10$, the boat’s velocity is $v\,\mathrm{m\,s^{-1}}$. \\
+A resistance to motion, modelled by a force of magnitude $0.2mv\,\mathrm{N}$, acts on the boat throughout the $10$ seconds. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Explain why modelling the resistance to motion in this way is likely to be more realistic than assuming this force is constant \marks{1} \\
+  \item During the drogue phase of the motion, for $5\le t\le 10$, the drogue exerts an additional constant resistance force of magnitude $m\,\mathrm{N}$ and the engine provides no driving force. Show that, for $5\le t\le 10$,
+  \[
+  \frac{\mathrm{d}v}{\mathrm{d}t}+0.2v=-1
+  \] \marks[-20pt]{1}
+  \item 
+  \begin{enumerate}[label=(\roman*)]
+    \item Solve the differential equation in part (b) \marks{4}
+    \item Hence find the velocity of the boat when $t=5$ \marks{1} \\
+  \end{enumerate}
+  \item During the powered phase $(0\le t\le 5)$, the propeller provides a driving force of magnitude directly proportional to $t^2$. Show that, for $0\le t\le 5$,
+  \[
+  \frac{\mathrm{d}v}{\mathrm{d}t}+0.2v=\lambda t^2
+  \]
+  where $\lambda$ is a positive constant \marks[-20pt]{1}
+  \item 
+  \begin{enumerate}[label=(\roman*)]
+    \item Show by integration that, for $0\le t\le 5$,
+    \[
+    v=5\lambda\bigl(t^2-10t+50-50e^{-t/5}\bigr)
+    \] \marks[-20pt]{6}
+    \item Hence find $\lambda$ \marks{2} \\
+  \end{enumerate}
+  \item Find the total distance, to the nearest metre, travelled by the boat during the motion \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+A winch raises a lift cage vertically. The cage starts from rest and comes to rest again $8$ seconds later. The combined mass of the cage and its load is $m\,\mathrm{kg}$, and at time $t$ seconds, for $0\le t\le 8$, the cage has upward velocity $v\,\mathrm{m\,s^{-1}}$. \\
+A resistance to the motion, modelled by a force of magnitude $0.25mv\,\mathrm{N}$, acts on the cage throughout the $8$ seconds. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Explain why modelling the resistance to the motion in this way is likely to be more realistic than assuming this force is constant \marks{1} \\
+  \item During the final stage of the motion, for $4\le t\le 8$, the winch provides a constant upward tension of magnitude $0.75mg\,\mathrm{N}$. Show that, for $4\le t\le 8$,
+  \[
+  \frac{\mathrm{d}v}{\mathrm{d}t}+0.25v=-\frac{1}{4}g
+  \] \marks[-20pt]{1}
+  \item 
+  \begin{enumerate}[label=(\roman*)]
+    \item Solve the differential equation in part (b) \marks{5}
+    \item Hence find the velocity of the cage when $t=4$ \marks{1} \\
+  \end{enumerate}
+  \item During the first stage of the motion, for $0\le t\le 4$, the winch provides an upward tension of magnitude $m(g+\lambda t)\,\mathrm{N}$, where $\lambda$ is a positive constant. Show that, for $0\le t\le 4$,
+  \[
+  \frac{\mathrm{d}v}{\mathrm{d}t}+0.25v=\lambda t
+  \] \marks[-20pt]{1}
+  \item 
+  \begin{enumerate}[label=(\roman*)]
+    \item Show by integration that, for $0\le t\le 4$,
+    \[
+    v=4\lambda\bigl(t-4+4e^{-t/4}\bigr)
+    \] \marks[-20pt]{5}
+    \item Hence find $\lambda$ \marks{2} \\
+  \end{enumerate}
+  \item Find the total distance, to the nearest metre, through which the cage rises during the motion \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+A short filling pulse in a buffer tank is to be modelled. The volume of liquid in the tank at time $t$ seconds is $V$ litres. The pulse starts when $t=0$, and initially the tank is empty. After $1$ second the volume is measured to be $4$ litres. While the pulse is occurring, $V$ is modelled by the differential equation
+\[
+(3t-t^2)\frac{\mathrm{d}V}{\mathrm{d}t}=\frac{(3t-t^2)^2}{1+(t-1)^2}+(3-2t)V 
+    \]\\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item By using an integrating factor show that, according to the model, while the pulse is occurring,
+  \[
+  V=(3t-t^2)\left(\tan^{-1}(t-1)+2\right)
+  \] \marks[-20pt]{6}
+\end{enumerate}
+The pulse ends when the tank is again empty. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Determine the length of time that the pulse lasts according to the model \marks{2} \\
+  \item Determine, according to the model, the rate of increase of the volume at the start of the pulse. Give your answer in an exact form \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+
+A horticultural mixing tank initially contains 600 litres of pure water. \\
+
+A fertiliser solution flows into the tank at a constant rate of 6 litres per minute. The incoming solution contains 2 grams of fertiliser in every litre of solution. \\
+
+At the same time, liquid is pumped out of the well-stirred tank at a constant rate of 9 litres per minute. \\
+
+It is assumed that the fertiliser instantly dissolves uniformly throughout the tank. \\
+
+Given that there are $x$ grams of fertiliser in the tank after $t$ minutes, \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that, while the tank still contains liquid, the situation can be modelled by the differential equation
+  \[
+  \frac{\mathrm{d}x}{\mathrm{d}t}=12-\frac{3x}{200-t}
+  \]
+  \marks[-20pt]{4}
+  \item Hence determine after how many minutes the concentration of fertiliser in the tank first reaches $1.5$ grams per litre. \marks{5} \\
+  \item Explain briefly one way in which the model could be refined. \marks{1} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+
+A mixing tank initially contains 2 litres of solution in which 4 grams of dye are dissolved. \\
+A dye solution containing 10 grams of dye per litre is pumped into the tank at a constant rate of $r$ litres per minute and mixes instantly and uniformly with the liquid already in the tank. \\
+At the same time, liquid is removed from the tank at a constant rate of $s$ litres per minute. \\
+After $t$ minutes, the tank contains $m$ grams of dye. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Show that the concentration of dye in the tank after $t$ minutes is
+    \[
+    \frac{m}{2+(r-s)t}
+    \]
+    grams per litre. \marks{2} \\
+    \item Hence show that
+    \[
+    \frac{\mathrm{d}m}{\mathrm{d}t}+\frac{s m}{2+(r-s)t}=10r
+    \]
+    \marks[-20pt]{2}
+  \end{enumerate}
+  \item First, consider the case where $s=r$. \\
+  \begin{enumerate}[label=(\roman*)]
+    \item Solve the differential equation to find $m$ in terms of $r$ and $t$. \marks{4} \\
+    \item Given that after $2$ minutes the concentration of dye in the tank is $8$ grams per litre, find $r$. \marks{2} \\
+  \end{enumerate}
+  \item Now consider the case where $s=2r$. \\
+  \begin{enumerate}[label=(\roman*)]
+    \item Explain why the differential equation in part (a)(ii) is no longer valid for $t\geq \frac{2}{r}$. \marks{1} \\
+    \item Find the maximum mass of dye in the tank. \marks{9} \\
+  \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 13 ----
+\questionitem
+
+The concentration $C$, in suitable units, of a drug in a patient's bloodstream at time $t$ hours after an intravenous infusion begins is to be modelled. Initially, the concentration is zero, and its long-term value is $M$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item One simple model assumes that the rate of change of concentration is directly proportional to $M-C$. \\
+  \begin{enumerate}[label=(\roman*)]
+    \item Formulate a differential equation for this model. \marks{1} \\
+    \item Verify that $C=M(1-e^{-kt})$, where $k$ is a positive constant, satisfies this differential equation, the initial condition and the long-term condition. \marks{3} \\
+  \end{enumerate}
+\end{enumerate}
+An alternative model uses, for $t>0$, the differential equation
+\[
+\frac{\mathrm{d}C}{\mathrm{d}t}-\frac{t+2}{t(1+t+t^2)}\,C=S(t),
+\]
+where $S(t)$ is a function of $t$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find the integrating factor for this differential equation, showing that it can be written in the form
+  \[
+  \frac{1+t+t^2}{t^2}
+  \]
+  \marks[-20pt]{8}
+  \item Suppose that $S(t)=0$. \\
+  \begin{enumerate}[label=(\roman*)]
+    \item Show that
+    \[
+    C=\frac{Mt^2}{1+t+t^2}
+    \]
+    \marks[-20pt]{4}
+    \item Find the time predicted by this model for the concentration to reach half its long-term value. Give your answer correct to the nearest minute. \marks{2} \\
+  \end{enumerate}
+  \item Now suppose that
+  \[
+  S(t)=\frac{3t^2 e^{-t}}{1+t+t^2}
+  \]
+  Show that
+  \[
+  C=\frac{Mt^2-3t^2 e^{-t}}{1+t+t^2}
+  \] \marks[-20pt]{5} \\
+  \item It is found that the long-term concentration is $10$, and $C$ reaches half this value after $105$ minutes. Determine which of the models proposed in parts (c) and (d) is more consistent with this data. \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 14 ----
+\questionitem
+
+A drinks manufacturer uses a mixing tank that initially contains 4 litres of water. A flavouring liquid, which is $60\%$ fruit concentrate by volume, is pumped into the tank at a constant rate of $p$ litres per minute. At the same time, the contents of the tank are thoroughly mixed and drawn off at a constant rate of $q$ litres per minute. \\
+
+After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank. You may assume that mixing is instantaneous and uniform. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Show that the proportion of fruit concentrate in the tank after $t$ minutes is
+    \[
+    \frac{x}{4+(p-q)t}
+    \]
+    \marks[-20pt]{2} \\
+    \item Hence show that
+    \[
+    \frac{\mathrm{d}x}{\mathrm{d}t}+\frac{q x}{4+(p-q)t}=\frac{3p}{5}
+    \]
+    \marks[-20pt]{2}
+  \end{enumerate}
+  \item Now consider the case where $q=p$. \\
+  \begin{enumerate}[label=(\roman*)]
+    \item Solve the differential equation to find $x$ in terms of $p$ and $t$. \marks{4} \\
+    \item Given that after $4$ minutes the liquid in the tank is $30\%$ fruit concentrate, find the value of $p$. \marks{2} \\
+  \end{enumerate}
+  \item Now consider the case where $q=2p$. \\
+  \begin{enumerate}[label=(\roman*)]
+    \item Explain why the differential equation in part (a)(ii) is no longer valid for $t\geq \frac{4}{p}$. \marks{1} \\
+    \item Find the maximum amount of fruit concentrate in the tank before the tank empties. \marks{9} \\
+  \end{enumerate}
+\end{enumerate}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,388 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{Integration with Inverse Trig}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+Find the exact value of the improper integral
+\[
+\int_0^4 \frac{1}{\sqrt{x(4-x)}}\,\mathrm{d}x
+\]
+\marks[-30pt]{5}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+Show that
+\[
+\int_{0}^{3} \frac{1}{x^2 - 2x + 5}\,\mathrm{d}x = \frac{1}{2}\arctan (3)
+\]
+\marks[-20pt]{5}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+\begin{enumerate}[label=(\roman*)]
+  \item Prove, from definitions involving exponentials, that
+  \[
+  1-\tanh^2u=\operatorname{sech}^2u
+  \]
+  \marks[-20pt]{3}
+  \item Prove that, for $|y|<1$,
+  \[
+  \operatorname{artanh}y=\frac{1}{2}\ln\left(\frac{1+y}{1-y}\right)
+  \]
+  \marks[-20pt]{4}
+  \item Use the substitution $x=4\tanh u$ to show that, for $|x|<4$,
+  \[
+  \int \frac{1}{16-x^2}\,\mathrm{d}x=\frac{1}{4}\operatorname{artanh}\frac{x}{4}+c
+  \]
+  Hence deduce that
+  \[
+  \int \frac{1}{16-x^2}\,\mathrm{d}x=\frac{1}{8}\ln\left(\frac{4+x}{4-x}\right)+c
+  \]
+  where $c$ is an arbitrary constant. \marks{6} \\
+  \item By first expressing $-t^2+6t+7$ in completed square form, show that
+  \[
+  \int_{1}^{5} \frac{1}{-t^2+6t+7}\,\mathrm{d}t=\frac{1}{4}\ln 3
+  \]
+  \marks[-20pt]{5}
+\end{enumerate}
+\newpage
+% ---- Question 4 ----
+\questionitem
+
+\begin{enumerate}[label=(\roman*), start=1]
+  \item For $x>5$, find
+  \[
+  \int \frac{1}{\sqrt{x^2-6x+5}}\,\mathrm{d}x
+  \] \\
+  expressing your answer first in terms of $\operatorname{arcosh}$ and hence in logarithmic form. \marks{3} \\
+  \item Use integration by substitution with $x-3=2\cosh u$ to show that, for $x>5$,
+  \[
+  \int \sqrt{x^2-6x+5}\,\mathrm{d}x=2\left(\frac{x-3}{2}\sqrt{\frac{(x-3)^2}{4}-1}-\ln\left|\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right|\right)+c
+  \]
+  where $c$ is an arbitrary constant. \marks{7} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+\[
+g(x)=\frac{2x^2-3x+31}{x^3-3x^2+9x+13}
+\]
+\\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Express $g(x)$ in the form \[\frac{P}{x+1}+\frac{Q}{x^2-4x+13}\] where $P$ and $Q$ are constants to be found. \marks{3} \\
+  \item Find $\int g(x)\,\mathrm{d}x$, giving your answer in the form \[A\ln|x+1|+B\arctan\left(\frac{x-2}{3}\right)+c\] where $A$ and $B$ are constants to be found. \marks{4} \\
+  \item Hence show that $\int_0^\infty g(x)\,\mathrm{d}x$ diverges. \marks{2} \\
+\end{enumerate}
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+Show that
+\[
+\int_{1}^{4} \frac{1}{\sqrt{10 + 8x - 2x^2}}\,\mathrm{d}x = \frac{1}{\sqrt{2}}\left(\arcsin \left(\frac{2}{3}\right) + \arcsin \left(\frac{1}{3}\right)\right)
+\]
+\marks[-20pt]{6}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Explain why
+  \[
+  \int_{0}^{\infty} \frac{1}{x^2 - 6x + 18} \, \mathrm{d}x
+  \]
+  is an improper integral. \marks{1} \\
+  \item Show that
+  \[
+  \int_{0}^{\infty} \frac{1}{x^2 - 6x + 18} \, \mathrm{d}x = k\pi
+  \]
+  where $k$ is a constant to be determined. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+Evaluate
+\[
+\int_{0}^{4} \frac{1}{x^2-4x+8}\, \mathrm{d}x
+\]
+giving your answer as an exact multiple of $\pi$. \marks{8}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+\[f(x)=\frac{6x+1}{4x^2-8x+13}\] \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find $\int f(x)\,\mathrm{d}x$, giving your answer in the form \[A\ln(4x^2-8x+13)+B\arctan\left(\frac{2x-2}{3}\right)+c\] where $c$ is an arbitrary constant and $A$ and $B$ are constants to be found. \marks{4} \\
+  \item Hence show that the mean value of $f(x)$ over the interval $\left[1,\frac{5}{2}\right]$ is \[\frac{1}{2}\ln 2+\frac{7\pi}{36}\] \marks[-20pt]{3} 
+  \item Hence write down the mean value of $3-2f(x)$ over the interval $\left[1,\frac{5}{2}\right]$. \marks{1} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+\[
+g(x)=\frac{4x-1}{x^2-4x+8}
+\] \\
+Show that
+\[
+\int g(x)\,\mathrm{d}x=A\arctan\left(\frac{x-2}{2}\right)+B\ln(x^2-4x+8)+c
+\]
+where $c$ is an arbitrary constant and $A$ and $B$ are constants to be found. \marks{5} \\
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+
+You are given that $y=\operatorname{arcosh}x$, where $x\ge 1$. \\
+
+\begin{enumerate}[label=(\roman*), start=1]
+  \item Show that
+  \[
+  \frac{\mathrm{d}y}{\mathrm{d}x}=\frac{1}{\sqrt{x^2-1}}
+  \]
+  \marks[-20pt]{4}
+  \item Show, by integrating the result in part (ii), that
+  \[
+  y=\ln\left(x+\sqrt{x^2-1}\right)
+  \]
+  \marks[-20pt]{4}
+  \item Hence show that
+  \[
+  \int_{15/8}^{5/2} \frac{1}{\sqrt{4x^2-9}}\,\mathrm{d}x=\frac{1}{2}\left(\operatorname{arcosh}\frac{5}{3}-\operatorname{arcosh}\frac{5}{4}\right)
+  \]
+  Express this answer in logarithmic form. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+
+% ---- Question 12 ----
+\questionitem
+
+Determine each of the following integrals. \\
+\begin{enumerate}[label=(\roman*)]
+  \item
+  \[
+  \int \frac{1}{9x^2+12x+20}\,\mathrm{d}x
+  \]
+  \marks[-20pt]{4}
+  \item
+  \[
+  \int \frac{1}{\sqrt{45+12x-9x^2}}\,\mathrm{d}x
+  \]
+  \marks[-20pt]{4}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 13 ----
+\questionitem
+
+Without using a calculator, find \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \[
+  \int_{-1/5}^{1} \frac{1}{25x^2-20x+13}\,\mathrm{d}x
+  \] \\
+  giving your answer as a multiple of $\pi$ \marks{5} \\
+  \item
+  \[
+  \int_{-1/5}^{1} \frac{1}{\sqrt{25x^2-20x+13}}\,\mathrm{d}x
+  \] \\
+  giving your answer in the form $p\ln(q+r\sqrt{2})$, where $p$, $q$ and $r$ are rational numbers to be found. \marks{7} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 14 ----
+\questionitem
+
+\begin{enumerate}[label=(\roman*)]
+  \item Given that $\tanh y=x$, where $|x|<1$, show that
+  \[
+  y=\frac{1}{2}\ln\left(\frac{1+x}{1-x}\right)
+  \]
+  and hence that
+  \[
+  \operatorname{artanh}x=\frac{1}{2}\ln\left(\frac{1+x}{1-x}\right)
+  \]
+  \marks[-20pt]{6}
+  \item Use your result in part (i), or otherwise, to find
+  \[
+  \int_{1/5}^{2/5} \frac{1}{4-9x^2}\,\mathrm{d}x
+  \]
+  expressing your answer in an exact logarithmic form. \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 15 ----
+\questionitem
+
+Show that
+\[
+\int \frac{x^2+14x+21}{(x-1)(x^2+4x+13)}\,\mathrm{d}x=A\ln|x-1|+B\ln(x^2+4x+13)+D\arctan\left(\frac{x+2}{3}\right)+c
+\]
+where $A$, $B$ and $D$ are constants to be found. \marks{7} \\
+
+\newpage
+
+% ---- Question 16 ----
+\questionitem
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.3]
+\def\xmin{-2.2}
+\def\xmax{5.2}
+\def\ymin{-0.3}
+\def\ymax{2.8}
+\def\num{9}
+\def\peak{1}
+\def\den{4}
+\def\xL{-1}
+\def\xR{4}
+\pgfmathsetmacro{\yL}{\num/((\xL-\peak)*(\xL-\peak)+\den)}
+\pgfmathsetmacro{\yR}{\num/((\xR-\peak)*(\xR-\peak)+\den)}
+\coordinate (O) at (0,0);
+\coordinate (L) at (\xL,0);
+\coordinate (R) at (\xR,0);
+\coordinate (LT) at (\xL,\yL);
+\coordinate (RT) at (\xR,\yR);
+\draw[thick,-{Stealth[length=3mm]}] (\xmin,0) -- (\xmax,0) node[right] {$x$};
+\draw[thick,-{Stealth[length=3mm]}] (0,\ymin) -- (0,\ymax) node[above] {$y$};
+\draw[thick] plot[domain=\xL:\xR,samples=200] (\x,{\num/((\x-\peak)*(\x-\peak)+\den)});
+\draw[thick] (L) -- (LT);
+\draw[thick] (R) -- (RT);
+\node[below] at (L) {$-1$};
+\node[below] at (R) {$4$};
+\node[below left] at (O) {$O$};
+\end{tikzpicture}
+\end{figure}
+
+
+The diagram shows the cross-section of a solid wooden beam. \\
+Each unit on the axes represents $6$ cm. The curved upper boundary of the beam is modelled by the equation
+\[
+y=\frac{9}{(x-1)^2+4}
+\] \\
+The cross-section is bounded by the curve, the $x$-axis and the lines $x=-1$ and $x=4$. \\
+Assuming that the beam is a prism of length $240$ cm, find, correct to $3$ significant figures, the volume of the beam. \marks{6} \\
+
+\newpage
+
+% ---- Question 17 ----
+\questionitem
+
+Find
+\[
+\int_1^{e} \frac{1}{x\sqrt{4-(\ln x)^2}} \, \mathrm{d}x
+\]
+expressing your answer in terms of $\pi$. \marks{8}
+
+\end{enumerate}
+\end{document}

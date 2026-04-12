@@ -1,0 +1,1618 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{\textit{Solutions} - Vector Product}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item The vectors
+  \[
+  \mathbf{p}=\begin{pmatrix}1\\3\\2\end{pmatrix}
+  \quad\text{and}\quad
+  \mathbf{q}=\begin{pmatrix}2\\m\\-1\end{pmatrix}
+  \]
+  span a plane with normal vector
+  \[
+  \mathbf{n}=\begin{pmatrix}1\\-1\\1\end{pmatrix}
+  \]
+  Given that $\mathbf{q}\times\mathbf{p}$ is in the same direction as $\mathbf{n}$, find $m$ and the positive constant $\lambda$ such that
+  \[
+  \mathbf{q}\times\mathbf{p}=\lambda\mathbf{n}
+  \]
+  \marks[-20pt]{3}
+  \item Using $\mathbf{q}\times\mathbf{p}$, determine the acute angle between $\mathbf{p}$ and $\mathbf{q}$. \marks{3} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Taking
+\[
+\mathbf q=\begin{pmatrix}2\\m\\-1\end{pmatrix},
+\qquad
+\mathbf p=\begin{pmatrix}1\\3\\2\end{pmatrix}
+\]
+we find the cross product:
+\begin{align*}
+\mathbf q\times \mathbf p
+&=
+\begin{vmatrix}
+\mathbf i & \mathbf j & \mathbf k\\
+2 & m & -1\\
+1 & 3 & 2
+\end{vmatrix} \\
+&=
+\mathbf i(2m+3)-\mathbf j(4+1)+\mathbf k(6-m) \\
+&=
+\begin{pmatrix}
+2m+3\\
+-5\\
+6-m
+\end{pmatrix}
+\end{align*}
+
+Since $\mathbf q\times \mathbf p$ is in the same direction as
+\[
+\mathbf n=\begin{pmatrix}1\\-1\\1\end{pmatrix}
+\]
+we can write
+\[
+\mathbf q\times \mathbf p=\lambda \mathbf n
+=
+\begin{pmatrix}
+\lambda\\
+-\lambda\\
+\lambda
+\end{pmatrix}
+\]
+
+So
+\[
+\begin{pmatrix}
+2m+3\\
+-5\\
+6-m
+\end{pmatrix}
+=
+\begin{pmatrix}
+\lambda\\
+-\lambda\\
+\lambda
+\end{pmatrix}
+\]
+
+Equating components:
+\[
+-5=-\lambda \implies \lambda=5
+\]
+
+Then
+\[
+2m+3=5 \implies 2m=2 \implies m=1
+\]
+
+Checking the third component:
+\[
+6-m=6-1=5
+\]
+which is consistent.
+
+Hence
+\[
+m=1,\qquad \lambda=5
+\]
+
+  \item Using $m=1$,
+\[
+\mathbf q=\begin{pmatrix}2\\1\\-1\end{pmatrix}
+\]
+
+Also
+\[
+\mathbf q\times \mathbf p=\begin{pmatrix}5\\-5\\5\end{pmatrix}
+\]
+so
+\begin{align*}
+|\mathbf q\times \mathbf p|
+&=\sqrt{5^2+(-5)^2+5^2} \\
+&=\sqrt{75} \\
+&=5\sqrt3
+\end{align*}
+
+Now
+\begin{align*}
+|\mathbf p|&=\sqrt{1^2+3^2+2^2}=\sqrt{14} \\
+|\mathbf q|&=\sqrt{2^2+1^2+(-1)^2}=\sqrt6
+\end{align*}
+
+Using
+\[
+|\mathbf q\times \mathbf p|=|\mathbf q|\,|\mathbf p|\sin\theta
+\]
+gives
+\begin{align*}
+\sin\theta
+&=\frac{|\mathbf q\times \mathbf p|}{|\mathbf q|\,|\mathbf p|} \\
+&=\frac{5\sqrt3}{\sqrt6\,\sqrt{14}} \\
+&=\frac{5\sqrt3}{\sqrt{84}} \\
+&=\frac{5}{2\sqrt7}
+\end{align*}
+
+So the acute angle is
+\[
+\theta=\sin^{-1}\!\left(\frac{5}{2\sqrt7}\right)\approx 70.9^\circ
+\]
+
+Hence the acute angle between $\mathbf p$ and $\mathbf q$ is
+\[
+\sin^{-1}\!\left(\frac{5}{2\sqrt7}\right)\approx 70.9^\circ
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+You are given the fixed points $A(1,0,1)$ and $C(4,0,2)$, and the variable point $B(t,2,5-t)$, where $t$ is a real parameter. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Using only the geometrical properties of the vector product, explain why the statement ``$\overrightarrow{AB} \times \overrightarrow{AC} = 0$" is false for all values of $t$. \marks{2} \\
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Use the vector product to find an expression, in terms of $t$, for the area of triangle $ABC$. \marks{4}
+    \item Hence determine the value of $t$ for which the area of triangle $ABC$ is a minimum. \marks{2} \\
+  \end{enumerate}
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item 
+  \[
+  \overrightarrow{AB}=B-A=(t-1,\,2,\,4-t), \qquad \overrightarrow{AC}=C-A=(3,\,0,\,1)
+  \]
+
+  Geometrically, \(\overrightarrow{AB}\times\overrightarrow{AC}=\mathbf 0\) only if \(\overrightarrow{AB}\) and \(\overrightarrow{AC}\) are parallel, or if one of them is the zero vector.
+
+  Here \(\overrightarrow{AC}=(3,0,1)\neq \mathbf 0\), and \(\overrightarrow{AB}\) can never be parallel to \(\overrightarrow{AC}\) because:
+
+  \[
+  \text{\(y\)-component of }\overrightarrow{AB}=2, \qquad \text{\(y\)-component of }\overrightarrow{AC}=0
+  \]
+
+  So no scalar multiple of \((3,0,1)\) can equal \((t-1,2,4-t)\) for any real \(t\).
+
+  Therefore \(\overrightarrow{AB}\times\overrightarrow{AC}\neq \mathbf 0\) for all values of \(t\), so the statement is false for all \(t\).
+
+  \item 
+  \begin{enumerate}[label=(\roman*)]
+    \item 
+    First find the two sides of the triangle:
+
+    \[
+    \overrightarrow{AB}=(t-1,\,2,\,4-t), \qquad \overrightarrow{AC}=(3,\,0,\,1)
+    \]
+
+    Now calculate the vector product:
+
+    \begin{align*}
+    \overrightarrow{AB}\times\overrightarrow{AC}
+    &=
+    \begin{vmatrix}
+    \mathbf i & \mathbf j & \mathbf k \\
+    t-1 & 2 & 4-t \\
+    3 & 0 & 1
+    \end{vmatrix} \\
+    &= \mathbf i\bigl(2\cdot 1-(4-t)\cdot 0\bigr)
+    -\mathbf j\bigl((t-1)\cdot 1-(4-t)\cdot 3\bigr)
+    +\mathbf k\bigl((t-1)\cdot 0-2\cdot 3\bigr) \\
+    &= 2\mathbf i-\mathbf j\bigl(t-1-12+3t\bigr)-6\mathbf k \\
+    &= 2\mathbf i-(4t-13)\mathbf j-6\mathbf k \\
+    &= (2,\,13-4t,\,-6)
+    \end{align*}
+
+    The area of triangle \(ABC\) is
+
+    \[
+    \frac12\left|\overrightarrow{AB}\times\overrightarrow{AC}\right|
+    \]
+
+    So
+
+    \begin{align*}
+    \text{Area}
+    &= \frac12\sqrt{2^2+(13-4t)^2+(-6)^2} \\
+    &= \frac12\sqrt{4+(13-4t)^2+36} \\
+    &= \frac12\sqrt{(13-4t)^2+40}
+    \end{align*}
+
+    Hence the area of triangle \(ABC\) is
+
+    \[
+    \frac12\sqrt{(13-4t)^2+40}
+    \]
+
+    \item 
+    To minimise the area, it is enough to minimise
+
+    \[
+    (13-4t)^2+40
+    \]
+
+    Since \((13-4t)^2\geq 0\), its smallest value is \(0\), which occurs when
+
+    \[
+    13-4t=0
+    \]
+
+    Hence
+
+    \[
+    t=\frac{13}{4}
+    \]
+
+    The minimum area is then
+
+    \[
+    \frac12\sqrt{40}=\sqrt{10}
+    \]
+
+    Therefore the area is minimised when \(t=\dfrac{13}{4}\), and the minimum area is \(\sqrt{10}\).
+  \end{enumerate}
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+With respect to a fixed origin $O$, the points $A$ and $B$ have coordinates $(1, 1, 0)$ and $(p, 3, 2)$ respectively, where $p$ is a constant. \\
+
+For each of the following, determine the possible values of $p$ for which \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item $\overrightarrow{AB}$ makes an angle of $60^\circ$ with the positive $y$-axis. \marks{3} \\
+  \item $\overrightarrow{OA} \times \overrightarrow{AB}$ is parallel to
+  \[
+  \begin{pmatrix}2\\-2\\1\end{pmatrix}
+  \]
+  \marks[-20pt]{3}
+  \item the area of triangle $OAB$ is $\tfrac{3}{2}$. \marks{3} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  First find the vector
+  \[
+  \overrightarrow{AB}
+  =\begin{pmatrix}p-1\\3-1\\2-0\end{pmatrix}
+  =\begin{pmatrix}p-1\\2\\2\end{pmatrix}
+  \]
+
+  The positive \(y\)-axis has direction vector
+  \[
+  \mathbf{j}=\begin{pmatrix}0\\1\\0\end{pmatrix}
+  \]
+
+  Using the scalar product formula,
+  \[
+  \overrightarrow{AB}\cdot \mathbf{j}
+  =\left|\overrightarrow{AB}\right|\left|\mathbf{j}\right|\cos 60^\circ
+  \]
+
+  So
+  \begin{align*}
+  2&=\sqrt{(p-1)^2+2^2+2^2}\times 1\times \frac12 \\
+  2&=\frac12\sqrt{(p-1)^2+8} \\
+  4&=\sqrt{(p-1)^2+8} \\
+  16&=(p-1)^2+8 \\
+  (p-1)^2&=8
+  \end{align*}
+
+  Hence
+  \[
+  p-1=\pm 2\sqrt{2}
+  \]
+
+  Therefore the possible values of \(p\) are
+  \[
+  p=1\pm 2\sqrt{2}
+  \]
+
+  \item
+  \[
+  \overrightarrow{OA}=\begin{pmatrix}1\\1\\0\end{pmatrix},
+  \qquad
+  \overrightarrow{AB}=\begin{pmatrix}p-1\\2\\2\end{pmatrix}
+  \]
+
+  Now calculate the cross product:
+  \begin{align*}
+  \overrightarrow{OA}\times \overrightarrow{AB}
+  &=
+  \begin{vmatrix}
+  \mathbf{i}&\mathbf{j}&\mathbf{k}\\
+  1&1&0\\
+  p-1&2&2
+  \end{vmatrix} \\
+  &=\mathbf{i}(1\cdot 2-0\cdot 2)-\mathbf{j}(1\cdot 2-0\cdot (p-1))+\mathbf{k}(1\cdot 2-1\cdot (p-1)) \\
+  &=\begin{pmatrix}2\\-2\\3-p\end{pmatrix}
+  \end{align*}
+
+  For this to be parallel to \(\begin{pmatrix}2\\-2\\1\end{pmatrix}\), we must have
+  \[
+  \begin{pmatrix}2\\-2\\3-p\end{pmatrix}
+  =\lambda \begin{pmatrix}2\\-2\\1\end{pmatrix}
+  \]
+
+  Comparing first components,
+  \[
+  2=2\lambda \implies \lambda=1
+  \]
+
+  Then comparing third components,
+  \[
+  3-p=1
+  \]
+
+  So
+  \[
+  p=2
+  \]
+
+  \item
+  For triangle \(OAB\), the area is
+  \[
+  \text{Area}=\frac12\left|\overrightarrow{OA}\times \overrightarrow{OB}\right|
+  \]
+
+  Since
+  \[
+  \overrightarrow{OB}=\overrightarrow{OA}+\overrightarrow{AB}
+  \]
+
+  we have
+  \begin{align*}
+  \overrightarrow{OA}\times \overrightarrow{OB}
+  &=\overrightarrow{OA}\times (\overrightarrow{OA}+\overrightarrow{AB}) \\
+  &=\overrightarrow{OA}\times \overrightarrow{OA}+\overrightarrow{OA}\times \overrightarrow{AB} \\
+  &=\mathbf{0}+\overrightarrow{OA}\times \overrightarrow{AB} \\
+  &=\begin{pmatrix}2\\-2\\3-p\end{pmatrix}
+  \end{align*}
+
+  Therefore
+  \begin{align*}
+  \frac12\sqrt{2^2+(-2)^2+(3-p)^2}&=\frac32 \\
+  \frac12\sqrt{8+(3-p)^2}&=\frac32 \\
+  \sqrt{8+(3-p)^2}&=3 \\
+  8+(3-p)^2&=9 \\
+  (3-p)^2&=1
+  \end{align*}
+
+  So
+  \[
+  3-p=\pm 1
+  \]
+
+  Hence the possible values of \(p\) are
+  \[
+  p=2 \text{ or } p=4
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+Points $P$, $Q$ and $R$ have position vectors $\mathbf{p}$, $\mathbf{q}$ and $\mathbf{r}$ respectively, relative to origin $O$. \\
+
+It is given that $(\mathbf{q}-\mathbf{p}) \times (\mathbf{r}-\mathbf{q}) = 2\mathbf{p}$ and that $\lvert \mathbf{p} \rvert = 5$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Determine each of the following as either a single vector or a scalar quantity.
+  \begin{enumerate}[label=(\roman*)]
+    \item $(\mathbf{r}-\mathbf{q}) \times (\mathbf{q}-\mathbf{p})$ \marks{1}
+    \item $\mathbf{p} \times \big((\mathbf{q}-\mathbf{p}) \times (\mathbf{r}-\mathbf{q})\big)$ \marks{2}
+    \item $\mathbf{p} \cdot \big((\mathbf{q}-\mathbf{p}) \times (\mathbf{r}-\mathbf{q})\big)$ \marks{2} \\
+  \end{enumerate}
+  \item Describe a geometrical relationship between the points $O$, $P$, $Q$ and $R$ which can be deduced from
+  \begin{enumerate}[label=(\roman*)]
+    \item the statement $(\mathbf{q}-\mathbf{p}) \times (\mathbf{r}-\mathbf{q}) = 2\mathbf{p}$ \marks{1}
+    \item the result of part (a)(iii) \marks{1} \\
+  \end{enumerate}
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Using the fact that $\mathbf a\times\mathbf b=-\mathbf b\times\mathbf a$,
+    \[
+    (\mathbf r-\mathbf q)\times(\mathbf q-\mathbf p)
+    =-\big((\mathbf q-\mathbf p)\times(\mathbf r-\mathbf q)\big)
+    =-2\mathbf p
+    \]
+    So the vector is $-2\mathbf p$.
+
+    \item Substitute the given result directly:
+    \[
+    \mathbf p\times\big((\mathbf q-\mathbf p)\times(\mathbf r-\mathbf q)\big)
+    =\mathbf p\times 2\mathbf p
+    =2(\mathbf p\times\mathbf p)
+    =\mathbf 0
+    \]
+    So the vector is $\mathbf 0$.
+
+    \item Again using the given result,
+    \begin{align*}
+    \mathbf p\cdot\big((\mathbf q-\mathbf p)\times(\mathbf r-\mathbf q)\big)
+    &=\mathbf p\cdot 2\mathbf p\\
+    &=2(\mathbf p\cdot\mathbf p)\\
+    &=2\lvert\mathbf p\rvert^2\\
+    &=2(5^2)\\
+    &=50
+    \end{align*}
+    So the scalar is $50$.
+  \end{enumerate}
+
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item The vector $\mathbf q-\mathbf p$ is in the direction of $PQ$, and $\mathbf r-\mathbf q$ is in the direction of $QR$.
+
+    Their cross product is perpendicular to both of these vectors. Since
+    \[
+    (\mathbf q-\mathbf p)\times(\mathbf r-\mathbf q)=2\mathbf p
+    \]
+    the vector $\mathbf p$ is parallel to this perpendicular direction.
+
+    But $\mathbf p$ is the position vector of $P$, so it is the direction of $OP$. Therefore $OP$ is perpendicular to both $PQ$ and $QR$, so $OP$ is normal to the plane $PQR$.
+
+    Hence $OP\perp$ plane $PQR$.
+
+    \item From part (a)(iii),
+    \[
+    \mathbf p\cdot\big((\mathbf q-\mathbf p)\times(\mathbf r-\mathbf q)\big)=50\neq 0
+    \]
+    A non-zero scalar triple product means the three vectors involved are not coplanar.
+
+    Therefore the points $O$, $P$, $Q$ and $R$ are not coplanar.
+  \end{enumerate}
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let
+  \[
+  \mathbf{p}=\begin{pmatrix}1\\1\\2\end{pmatrix}
+  \quad\text{and}\quad
+  \mathbf{q}=\begin{pmatrix}x\\0\\1\end{pmatrix}
+  \]
+  The area of the parallelogram formed by $\mathbf{p}$ and $\mathbf{q}$ is $\sqrt{2}$.\\
+  It is also given that $\mathbf{p}\times\mathbf{q}$ is perpendicular to
+  \[
+  \begin{pmatrix}1\\3\\m\end{pmatrix}
+  \]
+  Find $x$ and $m$. \marks{4} \\
+  \item Hence, using $|\mathbf{p}\times\mathbf{q}|$, determine the acute angle between $\mathbf{p}$ and $\mathbf{q}$. \marks{3} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item For two vectors, the area of the parallelogram they form is
+\[
+|\mathbf p\times \mathbf q|
+\]
+
+First find \(\mathbf p\times \mathbf q\):
+\begin{align*}
+\mathbf p\times \mathbf q
+&=
+\begin{vmatrix}
+\mathbf i & \mathbf j & \mathbf k\\
+1&1&2\\
+x&0&1
+\end{vmatrix} \\
+&= \mathbf i(1\cdot 1-2\cdot 0)-\mathbf j(1\cdot 1-2x)+\mathbf k(1\cdot 0-1\cdot x) \\
+&= \mathbf i-\mathbf j(1-2x)-x\mathbf k \\
+&= \begin{pmatrix}1\\2x-1\\-x\end{pmatrix}
+\end{align*}
+
+Since the area is \(\sqrt2\),
+\begin{align*}
+|\mathbf p\times \mathbf q|&=\sqrt2 \\
+\therefore \ |\mathbf p\times \mathbf q|^2&=2
+\end{align*}
+
+So
+\begin{align*}
+1^2+(2x-1)^2+(-x)^2&=2 \\
+1+(4x^2-4x+1)+x^2&=2 \\
+5x^2-4x&=0 \\
+x(5x-4)&=0
+\end{align*}
+
+Hence
+\[
+x=0 \quad \text{or} \quad x=\frac45
+\]
+
+Now use the condition that \(\mathbf p\times \mathbf q\) is perpendicular to \(\begin{pmatrix}1\\3\\m\end{pmatrix}\).
+
+Perpendicular vectors have zero dot product, so
+\begin{align*}
+\begin{pmatrix}1\\2x-1\\-x\end{pmatrix}\cdot \begin{pmatrix}1\\3\\m\end{pmatrix}&=0 \\
+1+3(2x-1)+(-x)m&=0 \\
+1+6x-3-mx&=0 \\
+x(6-m)&=2
+\end{align*}
+
+This shows \(x\neq 0\), so the value \(x=0\) must be rejected.
+
+Therefore
+\[
+x=\frac45
+\]
+
+Substitute into \(x(6-m)=2\):
+\begin{align*}
+\frac45(6-m)&=2 \\
+6-m&=\frac{5}{2} \\
+m&=6-\frac52=\frac72
+\end{align*}
+
+Therefore,
+\[
+x=\frac45,\qquad m=\frac72
+\]
+
+  \item Using
+\[
+|\mathbf p\times \mathbf q|=|\mathbf p|\,|\mathbf q|\sin\theta
+\]
+where \(\theta\) is the angle between \(\mathbf p\) and \(\mathbf q\).
+
+From part (a),
+\[
+|\mathbf p\times \mathbf q|=\sqrt2
+\]
+
+Also,
+\begin{align*}
+|\mathbf p|
+&=\sqrt{1^2+1^2+2^2}
+=\sqrt6
+\end{align*}
+
+and with \(x=\frac45\),
+\begin{align*}
+|\mathbf q|
+&=\sqrt{\left(\frac45\right)^2+0^2+1^2} \\
+&=\sqrt{\frac{16}{25}+1}
+=\sqrt{\frac{41}{25}}
+=\frac{\sqrt{41}}{5}
+\end{align*}
+
+So
+\begin{align*}
+\sqrt2
+&=\sqrt6\cdot \frac{\sqrt{41}}{5}\sin\theta \\
+\sin\theta
+&=\frac{\sqrt2}{\sqrt6(\sqrt{41}/5)} \\
+&=\frac{5\sqrt2}{\sqrt{246}} \\
+&=\frac{5}{\sqrt{123}}
+\end{align*}
+
+Hence the acute angle is
+\[
+\theta=\sin^{-1}\left(\frac{5}{\sqrt{123}}\right)\approx 26.8^\circ
+\]
+
+Therefore, the acute angle between \(\mathbf p\) and \(\mathbf q\) is
+\[
+\sin^{-1}\left(\frac{5}{\sqrt{123}}\right)\approx 26.8^\circ
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+The point $P$ has coordinates $P(2,-1,1)$. The vector $\overrightarrow{PQ}=(1,2,0)$ and the midpoint of $PR$ is $M(1,0,2)$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use a vector product to show that the area of triangle $PQR$ is $\sqrt{14}$. \marks{4} \\
+  \item Find a vector equation of the plane containing $P$, $Q$ and $R$ in the form $\mathbf{r} \cdot \mathbf{n} = k$. \marks{1} \\
+  \item Hence find the exact distance of the plane from the origin. \marks{1} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item First find the coordinates of $Q$ and $R$.
+
+  Since $\overrightarrow{PQ}=(1,2,0)$,
+  \[
+  Q=P+\overrightarrow{PQ}=(2,-1,1)+(1,2,0)=(3,1,1)
+  \]
+
+  Since $M(1,0,2)$ is the midpoint of $PR$,
+  \[
+  M=\frac{1}{2}(P+R)
+  \]
+  so
+  \[
+  R=2M-P=(2,0,4)-(2,-1,1)=(0,1,3)
+  \]
+
+  Now
+  \[
+  \overrightarrow{PR}=R-P=(0,1,3)-(2,-1,1)=(-2,2,2)
+  \]
+
+  Using the vector product,
+  \[
+  \overrightarrow{PQ}\times\overrightarrow{PR}
+  =
+  \begin{pmatrix}
+  1\\
+  2\\
+  0
+  \end{pmatrix}
+  \times
+  \begin{pmatrix}
+  -2\\
+  2\\
+  2
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+  2\cdot 2-0\cdot 2\\
+  0\cdot(-2)-1\cdot 2\\
+  1\cdot 2-2\cdot(-2)
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+  4\\
+  -2\\
+  6
+  \end{pmatrix}
+  \]
+
+  Its magnitude is
+  \[
+  \left|\overrightarrow{PQ}\times\overrightarrow{PR}\right|
+  =\sqrt{4^2+(-2)^2+6^2}
+  =\sqrt{16+4+36}
+  =\sqrt{56}
+  =2\sqrt{14}
+  \]
+
+  The area of triangle $PQR$ is half the area of the parallelogram:
+  \[
+  \text{Area of } \triangle PQR=\frac{1}{2}\left|\overrightarrow{PQ}\times\overrightarrow{PR}\right|
+  =\frac{1}{2}(2\sqrt{14})
+  =\sqrt{14}
+  \]
+
+  Hence the area of triangle $PQR$ is $\sqrt{14}$.
+
+  \item A normal vector to the plane is
+  \[
+  \mathbf n=
+  \begin{pmatrix}
+  4\\
+  -2\\
+  6
+  \end{pmatrix}
+  \]
+  which can be simplified to
+  \[
+  \mathbf n=
+  \begin{pmatrix}
+  2\\
+  -1\\
+  3
+  \end{pmatrix}
+  \]
+
+  Using the point $P(2,-1,1)$,
+  \[
+  k=\mathbf p\cdot \mathbf n
+  =
+  \begin{pmatrix}
+  2\\
+  -1\\
+  1
+  \end{pmatrix}
+  \cdot
+  \begin{pmatrix}
+  2\\
+  -1\\
+  3
+  \end{pmatrix}
+  =4+1+3=8
+  \]
+
+  So the plane is
+  \[
+  \mathbf r\cdot
+  \begin{pmatrix}
+  2\\
+  -1\\
+  3
+  \end{pmatrix}
+  =8
+  \]
+
+  \item For a plane $\mathbf r\cdot\mathbf n=d$, the distance from a point $\mathbf p$ is
+  \[
+  \mathrm{dist}=\frac{\left|\mathbf p\cdot\mathbf n-d\right|}{|\mathbf n|}
+  \]
+
+  Here the point is the origin, so $\mathbf p=\mathbf 0$, and the plane is
+  \[
+  \mathbf r\cdot
+  \begin{pmatrix}
+  2\\
+  -1\\
+  3
+  \end{pmatrix}
+  =8
+  \]
+
+  Therefore
+  \[
+  \mathrm{dist}
+  =
+  \frac{|0-8|}{\sqrt{2^2+(-1)^2+3^2}}
+  =
+  \frac{8}{\sqrt{14}}
+  =
+  \frac{4\sqrt{14}}{7}
+  \]
+
+  Hence the exact distance of the plane from the origin is $\dfrac{4\sqrt{14}}{7}$.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+The points $P$, $Q$ and $R$ have position vectors $\mathbf{p}=2\mathbf{i}-2\mathbf{k}$, $\mathbf{q}=3\mathbf{j}+3\mathbf{k}$ and $\mathbf{r}=t\mathbf{i}-\mathbf{j}+\mathbf{k}$ respectively, relative to the origin $O$. \\
+
+Determine the value(s) of $t$ in each of the following cases. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item The line $OR$ is parallel to a normal to the plane $OPQ$. \marks{2} \\
+  \item The volume of tetrahedron $OPQR$ is $9$. \marks{4} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item The plane $OPQ$ contains the vectors
+\[
+\mathbf p=\begin{pmatrix}2\\0\\-2\end{pmatrix},
+\qquad
+\mathbf q=\begin{pmatrix}0\\3\\3\end{pmatrix}
+\]
+
+A normal to the plane is $\mathbf p\times \mathbf q$:
+\begin{align*}
+\mathbf p\times \mathbf q
+&=
+\begin{vmatrix}
+\mathbf i & \mathbf j & \mathbf k\\
+2&0&-2\\
+0&3&3
+\end{vmatrix} \\
+&= \mathbf i(0\cdot 3-(-2)\cdot 3)-\mathbf j(2\cdot 3-(-2)\cdot 0)+\mathbf k(2\cdot 3-0\cdot 0) \\
+&= 6\mathbf i-6\mathbf j+6\mathbf k \\
+&= 6(\mathbf i-\mathbf j+\mathbf k)
+\end{align*}
+
+The line $OR$ has direction vector
+\[
+\mathbf r=t\mathbf i-\mathbf j+\mathbf k
+\]
+
+If $OR$ is parallel to a normal to the plane, then $\mathbf r$ must be parallel to $\mathbf i-\mathbf j+\mathbf k$.
+
+So
+\[
+(t,-1,1)\parallel (1,-1,1)
+\]
+
+Comparing components gives $t=1$.
+
+Hence the value of $t$ is $1$.
+
+  \item Using the vector formula for the volume of a tetrahedron,
+\[
+\text{Volume of }OPQR=\frac16\left|\mathbf p\cdot(\mathbf q\times \mathbf r)\right|
+\]
+
+Equivalently,
+\[
+\text{Volume}=\frac16\left|(\mathbf p\times \mathbf q)\cdot \mathbf r\right|
+\]
+
+From part (a),
+\[
+\mathbf p\times \mathbf q=6(\mathbf i-\mathbf j+\mathbf k)
+\]
+
+Also,
+\[
+\mathbf r=t\mathbf i-\mathbf j+\mathbf k
+\]
+
+So the scalar triple product is
+\begin{align*}
+(\mathbf p\times \mathbf q)\cdot \mathbf r
+&=6(\mathbf i-\mathbf j+\mathbf k)\cdot (t\mathbf i-\mathbf j+\mathbf k) \\
+&=6(t+1+1) \\
+&=6(t+2)
+\end{align*}
+
+Therefore
+\begin{align*}
+\text{Volume}
+&=\frac16|6(t+2)| \\
+&=|t+2|
+\end{align*}
+
+Given that the volume is $9$,
+\[
+|t+2|=9
+\]
+
+So
+\begin{align*}
+t+2&=9 \quad \text{or} \quad t+2=-9 \\
+t&=7 \quad \text{or} \quad t=-11
+\end{align*}
+
+Hence the values of $t$ are $7$ and $-11$.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+The points $A$, $B$ and $C$ lie on the plane $\Pi$. \\
+
+The position vectors of $A$ and $B$ are $\mathbf{a}=2\mathbf{i}-\mathbf{j}+3\mathbf{k}$ and $\mathbf{b}=5\mathbf{i}+\mathbf{j}$ respectively. \\
+
+The centroid $G$ of triangle $ABC$ has position vector $4\mathbf{i}+\mathbf{j}+2\mathbf{k}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find $\overrightarrow{AB} \times \overrightarrow{AC}$. \marks{4} \\
+  \item Find an equation for $\Pi$ in the form $\mathbf{r} \cdot \mathbf{n} = p$. \marks{2} \\
+\end{enumerate}
+The point $D$ has position vector $\mathbf{i}+5\mathbf{j}+4\mathbf{k}$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Determine the volume of the tetrahedron $ABCD$. \marks{4} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item The centroid of triangle \(ABC\) has position vector
+\[
+\mathbf{g}=\frac{\mathbf{a}+\mathbf{b}+\mathbf{c}}{3}
+\]
+So
+\[
+\mathbf{c}=3\mathbf{g}-\mathbf{a}-\mathbf{b}
+\]
+
+Using
+\[
+\mathbf{a}=\begin{pmatrix}2\\-1\\3\end{pmatrix},
+\quad
+\mathbf{b}=\begin{pmatrix}5\\1\\0\end{pmatrix},
+\quad
+\mathbf{g}=\begin{pmatrix}4\\1\\2\end{pmatrix}
+\]
+gives
+\begin{align*}
+\mathbf{c}
+&=3\begin{pmatrix}4\\1\\2\end{pmatrix}
+-\begin{pmatrix}2\\-1\\3\end{pmatrix}
+-\begin{pmatrix}5\\1\\0\end{pmatrix} \\
+&=\begin{pmatrix}12\\3\\6\end{pmatrix}
+-\begin{pmatrix}2\\-1\\3\end{pmatrix}
+-\begin{pmatrix}5\\1\\0\end{pmatrix} \\
+&=\begin{pmatrix}5\\3\\3\end{pmatrix}
+\end{align*}
+
+Now
+\begin{align*}
+\overrightarrow{AB}
+&=\mathbf{b}-\mathbf{a}
+=\begin{pmatrix}5\\1\\0\end{pmatrix}-\begin{pmatrix}2\\-1\\3\end{pmatrix}
+=\begin{pmatrix}3\\2\\-3\end{pmatrix} \\
+\overrightarrow{AC}
+&=\mathbf{c}-\mathbf{a}
+=\begin{pmatrix}5\\3\\3\end{pmatrix}-\begin{pmatrix}2\\-1\\3\end{pmatrix}
+=\begin{pmatrix}3\\4\\0\end{pmatrix}
+\end{align*}
+
+Hence
+\begin{align*}
+\overrightarrow{AB}\times\overrightarrow{AC}
+&=
+\begin{vmatrix}
+\mathbf{i} & \mathbf{j} & \mathbf{k} \\
+3 & 2 & -3 \\
+3 & 4 & 0
+\end{vmatrix} \\
+&=\mathbf{i}(2\cdot 0-(-3)\cdot 4)-\mathbf{j}(3\cdot 0-(-3)\cdot 3)+\mathbf{k}(3\cdot 4-2\cdot 3) \\
+&=12\mathbf{i}-9\mathbf{j}+6\mathbf{k}
+\end{align*}
+
+So
+\[
+\overrightarrow{AB}\times\overrightarrow{AC}=12\mathbf{i}-9\mathbf{j}+6\mathbf{k}
+\]
+
+  \item A normal vector to the plane is \(\overrightarrow{AB}\times\overrightarrow{AC}\), so we may take
+\[
+\mathbf{n}=12\mathbf{i}-9\mathbf{j}+6\mathbf{k}=3(4\mathbf{i}-3\mathbf{j}+2\mathbf{k})
+\]
+A simpler normal vector is
+\[
+\mathbf{n}=4\mathbf{i}-3\mathbf{j}+2\mathbf{k}
+\]
+
+The plane has equation \(\mathbf{r}\cdot\mathbf{n}=p\). Since \(A\) lies on the plane,
+\begin{align*}
+p&=\mathbf{a}\cdot\mathbf{n} \\
+&=(2,-1,3)\cdot(4,-3,2) \\
+&=2(4)+(-1)(-3)+3(2) \\
+&=8+3+6=17
+\end{align*}
+
+Therefore the equation of \(\Pi\) is
+\[
+\mathbf{r}\cdot(4\mathbf{i}-3\mathbf{j}+2\mathbf{k})=17
+\]
+
+  \item First find
+\[
+\mathbf{d}=\begin{pmatrix}1\\5\\4\end{pmatrix}
+\]
+so
+\begin{align*}
+\overrightarrow{AD}
+&=\mathbf{d}-\mathbf{a}
+=\begin{pmatrix}1\\5\\4\end{pmatrix}-\begin{pmatrix}2\\-1\\3\end{pmatrix}
+=\begin{pmatrix}-1\\6\\1\end{pmatrix}
+\end{align*}
+
+The volume of a tetrahedron with three edges \(\overrightarrow{AB}\), \(\overrightarrow{AC}\), \(\overrightarrow{AD}\) meeting at \(A\) is
+\[
+V=\frac{1}{6}\left|(\overrightarrow{AB}\times\overrightarrow{AC})\cdot\overrightarrow{AD}\right|
+\]
+
+Using the result from part (a),
+\begin{align*}
+V
+&=\frac{1}{6}\left|(12,-9,6)\cdot(-1,6,1)\right| \\
+&=\frac{1}{6}\left|12(-1)+(-9)(6)+6(1)\right| \\
+&=\frac{1}{6}\left|-12-54+6\right| \\
+&=\frac{1}{6}\left|-60\right| \\
+&=10
+\end{align*}
+
+So the volume of tetrahedron \(ABCD\) is
+\(10\)
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+With respect to a fixed origin $O$ the point $A$ has coordinates $(9,10,-1)$ and the line $\ell$ is the intersection of the planes $x-z=-2$ and $x+2y=5$. \\
+
+The points $B$ and $C$ lie on $\ell$ such that $AB=AC=15$. \\
+
+Given that $A$ does not lie on $\ell$ and that the $z$ coordinate of $B$ is negative \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item determine the coordinates of $B$ and the coordinates of $C$. \marks{4} \\
+  \item Hence determine a Cartesian equation of the plane containing the points $A$, $B$ and $C$. \marks{3} \\
+\end{enumerate}
+The point $D$ has coordinates $(8,4,\alpha)$, where $\alpha$ is a constant. \\
+
+Given that the volume of the tetrahedron $ABCD$ is $156$ \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item determine the possible values of $\alpha$. \marks{4} \\
+\end{enumerate}
+Given that $\alpha>0$ \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item determine the shortest distance between the line $\ell$ and the line passing through the points $A$ and $D$, giving your answer to $2$ significant figures. \marks{4} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Since $l$ is the intersection of
+\[
+x-z=-2
+\qquad\text{and}\qquad
+x+2y=5
+\]
+let $z=t$. Then
+\[
+x=t-2
+\]
+and substituting into $x+2y=5$ gives
+\[
+t-2+2y=5
+\]
+so
+\[
+2y=7-t
+\qquad\Rightarrow\qquad
+y=\frac{7-t}{2}
+\]
+Hence a general point $P$ on $l$ is
+\[
+P\left(t-2,\frac{7-t}{2},t\right)
+\]
+
+Now $AB=AC=15$, so points $B$ and $C$ on $l$ satisfy $AP=15$.
+
+Using $A=(9,10,-1)$,
+\begin{align*}
+AP^2
+&=(t-2-9)^2+\left(\frac{7-t}{2}-10\right)^2+(t-(-1))^2\\
+&=(t-11)^2+\left(\frac{-t-13}{2}\right)^2+(t+1)^2
+\end{align*}
+Since $AP=15$,
+\[
+(t-11)^2+\left(\frac{t+13}{2}\right)^2+(t+1)^2=225
+\]
+Multiply by $4$:
+\begin{align*}
+4(t-11)^2+(t+13)^2+4(t+1)^2&=900\\
+4(t^2-22t+121)+(t^2+26t+169)+4(t^2+2t+1)&=900\\
+9t^2-54t+657&=900\\
+9t^2-54t-243&=0\\
+t^2-6t-27&=0\\
+(t-9)(t+3)&=0
+\end{align*}
+So
+\[
+t=9 \quad \text{or} \quad t=-3
+\]
+
+If $t=-3$,
+\[
+P=\left(-5,5,-3\right)
+\]
+If $t=9$,
+\[
+P=\left(7,-1,9\right)
+\]
+
+Given that the $z$-coordinate of $B$ is negative, we take
+\[
+B=(-5,5,-3)
+\]
+and
+\[
+C=(7,-1,9)
+\]
+
+Therefore the coordinates are $B=(-5,5,-3)$ and $C=(7,-1,9)$.
+
+\item The plane through $A$, $B$ and $C$ has normal vector
+\[
+\overrightarrow{AB}\times\overrightarrow{AC}
+\]
+
+First find the two vectors:
+\[
+\overrightarrow{AB}=B-A=(-5-9,\,5-10,\,-3-(-1))=(-14,-5,-2)
+\]
+\[
+\overrightarrow{AC}=C-A=(7-9,\,-1-10,\,9-(-1))=(-2,-11,10)
+\]
+
+Now
+\begin{align*}
+\overrightarrow{AB}\times\overrightarrow{AC}
+&=
+\begin{vmatrix}
+\mathbf i & \mathbf j & \mathbf k\\
+-14 & -5 & -2\\
+-2 & -11 & 10
+\end{vmatrix}\\
+&=(-72,144,144)
+\end{align*}
+So a normal vector is
+\[
+(-1,2,2)
+\]
+
+Using the point $A=(9,10,-1)$, the plane equation is
+\[
+-(x-9)+2(y-10)+2(z+1)=0
+\]
+Simplifying,
+\begin{align*}
+-x+9+2y-20+2z+2&=0\\
+-x+2y+2z-9&=0
+\end{align*}
+Hence
+\[
+x-2y-2z+9=0
+\]
+
+Therefore a Cartesian equation of the plane is $x-2y-2z+9=0$.
+
+\item From part (a),
+\[
+\overrightarrow{AB}=(-14,-5,-2),
+\qquad
+\overrightarrow{AC}=(-2,-11,10)
+\]
+and from part (b),
+\[
+\overrightarrow{AB}\times\overrightarrow{AC}=(-72,144,144)
+\]
+
+Also
+\[
+D=(8,4,\alpha)
+\]
+so
+\[
+\overrightarrow{AD}=D-A=(8-9,\,4-10,\,\alpha-(-1))=(-1,-6,\alpha+1)
+\]
+
+The volume of tetrahedron $ABCD$ is
+\[
+V=\frac16\left|(\overrightarrow{AB}\times\overrightarrow{AC})\cdot\overrightarrow{AD}\right|
+\]
+
+So
+\begin{align*}
+(\overrightarrow{AB}\times\overrightarrow{AC})\cdot\overrightarrow{AD}
+&=(-72,144,144)\cdot(-1,-6,\alpha+1)\\
+&=72-864+144(\alpha+1)\\
+&=72-864+144\alpha+144\\
+&=144\alpha-648
+\end{align*}
+
+Given that the volume is $156$,
+\[
+\frac16|144\alpha-648|=156
+\]
+So
+\[
+|144\alpha-648|=936
+\]
+Divide by $72$:
+\[
+|2\alpha-9|=13
+\]
+Hence
+\[
+2\alpha-9=13
+\quad\text{or}\quad
+2\alpha-9=-13
+\]
+giving
+\[
+\alpha=11
+\quad\text{or}\quad
+\alpha=-2
+\]
+
+Therefore the possible values of $\alpha$ are $11$ and $-2$.
+
+\item Since $\alpha>0$, from part (c) we use
+\[
+\alpha=11
+\]
+So
+\[
+D=(8,4,11)
+\]
+
+A direction vector for $l$ is obtained from its parametric form:
+\[
+(x,y,z)=\left(t-2,\frac{7-t}{2},t\right)
+\]
+so a direction vector is
+\[
+\left(1,-\frac12,1\right)
+\]
+and hence we can use
+\[
+\mathbf d_1=(2,-1,2)
+\]
+
+The line through $A$ and $D$ has direction vector
+\[
+\mathbf d_2=\overrightarrow{AD}=(8-9,4-10,11-(-1))=(-1,-6,12)
+\]
+
+Using $B=(-5,5,-3)$ on $l$, we have
+\[
+\overrightarrow{BA}=A-B=(14,5,2)
+\]
+
+For two skew lines,
+\[
+\text{shortest distance}=
+\frac{\left|\,\overrightarrow{BA}\cdot(\mathbf d_1\times \mathbf d_2)\right|}{|\mathbf d_1\times \mathbf d_2|}
+\]
+
+Now find the cross product:
+\begin{align*}
+\mathbf d_1\times \mathbf d_2
+&=
+\begin{vmatrix}
+\mathbf i & \mathbf j & \mathbf k\\
+2 & -1 & 2\\
+-1 & -6 & 12
+\end{vmatrix}\\
+&=(0,-26,-13)
+\end{align*}
+Its magnitude is
+\[
+|\mathbf d_1\times \mathbf d_2|
+=\sqrt{0^2+(-26)^2+(-13)^2}
+=\sqrt{845}
+=13\sqrt5
+\]
+
+Also
+\begin{align*}
+\overrightarrow{BA}\cdot(\mathbf d_1\times \mathbf d_2)
+&=(14,5,2)\cdot(0,-26,-13)\\
+&=0-130-26\\
+&=-156
+\end{align*}
+So the distance is
+\begin{align*}
+\frac{|-156|}{13\sqrt5}
+&=\frac{156}{13\sqrt5}\\
+&=\frac{12}{\sqrt5}\\
+&=\frac{12\sqrt5}{5}
+\end{align*}
+and numerically
+\[
+\frac{12\sqrt5}{5}\approx 5.37
+\]
+
+Therefore the shortest distance is
+\[
+\frac{12\sqrt5}{5}
+\]
+which is $5.4$ to $2$ significant figures.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+The lines $L_1$, $L_2$ and $L_3$ are given by
+\begin{align*}
+L_1: &\quad \mathbf{r}=\begin{pmatrix}8\\3\\1\end{pmatrix}+\lambda\begin{pmatrix}3\\2\\-1\end{pmatrix}\\[6pt]
+L_2: &\quad x=9-4\mu,\ y=-2+3\mu,\ z=-1+3\mu\\[6pt]
+L_3: &\quad \dfrac{x-3}{1}=\dfrac{y+6}{-5}=\dfrac{z-1}{-2}
+\end{align*}
+The pairwise intersections of these lines are the vertices of a triangle. \\
+
+Find the area of this triangle. \marks{9}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Write the lines in parametric form:
+\[
+L_1:\ (x,y,z)=(8+3\lambda,\ 3+2\lambda,\ 1-\lambda)
+\]
+\[
+L_2:\ (x,y,z)=(9-4\mu,\ -2+3\mu,\ -1+3\mu)
+\]
+and for \(L_3\), let the common value be \(t\). Then
+\[
+\frac{x-3}{1}=\frac{y+6}{-5}=\frac{z-1}{-2}=t
+\]
+so
+\[
+L_3:\ (x,y,z)=(3+t,\ -6-5t,\ 1-2t)
+\]
+
+Let the three vertices of the triangle be
+\[
+A=L_1\cap L_2,\qquad B=L_1\cap L_3,\qquad C=L_2\cap L_3
+\]
+
+For \(A=L_1\cap L_2\), equate coordinates:
+\begin{align*}
+8+3\lambda&=9-4\mu \\
+3+2\lambda&=-2+3\mu \\
+1-\lambda&=-1+3\mu
+\end{align*}
+From the third equation,
+\[
+2-\lambda=3\mu
+\]
+so
+\[
+\mu=\frac{2-\lambda}{3}
+\]
+Substitute into the first equation:
+\begin{align*}
+8+3\lambda&=9-\frac{4(2-\lambda)}{3} \\
+24+9\lambda&=27-8+4\lambda \\
+24+9\lambda&=19+4\lambda \\
+5\lambda&=-5 \\
+\lambda&=-1
+\end{align*}
+Hence
+\[
+\mu=\frac{2-(-1)}{3}=1
+\]
+So
+\[
+A=(8+3(-1),\ 3+2(-1),\ 1-(-1))=(5,1,2)
+\]
+
+For \(B=L_1\cap L_3\), equate coordinates:
+\begin{align*}
+8+3\lambda&=3+t \\
+3+2\lambda&=-6-5t \\
+1-\lambda&=1-2t
+\end{align*}
+From the third equation,
+\[
+\lambda=2t
+\]
+Substitute into the first equation:
+\begin{align*}
+8+3(2t)&=3+t \\
+8+6t&=3+t \\
+5t&=-5 \\
+t&=-1
+\end{align*}
+Hence
+\[
+\lambda=2(-1)=-2
+\]
+So
+\[
+B=(8+3(-2),\ 3+2(-2),\ 1-(-2))=(2,-1,3)
+\]
+
+For \(C=L_2\cap L_3\), equate coordinates:
+\begin{align*}
+9-4\mu&=3+t \\
+-2+3\mu&=-6-5t \\
+-1+3\mu&=1-2t
+\end{align*}
+From the first equation,
+\[
+t=6-4\mu
+\]
+Substitute into the third equation:
+\begin{align*}
+-1+3\mu&=1-2(6-4\mu) \\
+-1+3\mu&=1-12+8\mu \\
+-1+3\mu&=-11+8\mu \\
+10&=5\mu \\
+\mu&=2
+\end{align*}
+Hence
+\[
+t=6-4(2)=-2
+\]
+So
+\[
+C=(9-4(2),\ -2+3(2),\ -1+3(2))=(1,4,5)
+\]
+
+Now use the formula for the area of a triangle:
+\[
+\text{Area}=\frac12\left|\mathbf{u}\times\mathbf{v}\right|
+\]
+where \(\mathbf{u}\) and \(\mathbf{v}\) are two side vectors.
+
+Take
+\[
+\overrightarrow{AB}=
+\begin{pmatrix}
+2-5\\
+-1-1\\
+3-2
+\end{pmatrix}
+=
+\begin{pmatrix}
+-3\\
+-2\\
+1
+\end{pmatrix},
+\qquad
+\overrightarrow{AC}=
+\begin{pmatrix}
+1-5\\
+4-1\\
+5-2
+\end{pmatrix}
+=
+\begin{pmatrix}
+-4\\
+3\\
+3
+\end{pmatrix}
+\]
+
+Then
+\[
+\overrightarrow{AB}\times\overrightarrow{AC}
+=
+\begin{pmatrix}
+(-2)(3)-(1)(3)\\
+(1)(-4)-(-3)(3)\\
+(-3)(3)-(-2)(-4)
+\end{pmatrix}
+=
+\begin{pmatrix}
+-9\\
+5\\
+-17
+\end{pmatrix}
+\]
+
+So
+\[
+\left|\overrightarrow{AB}\times\overrightarrow{AC}\right|
+=\sqrt{(-9)^2+5^2+(-17)^2}
+=\sqrt{81+25+289}
+=\sqrt{395}
+\]
+
+Therefore
+\[
+\text{Area of triangle}=\frac12\sqrt{395}
+\]
+
+So the area is \(\dfrac{\sqrt{395}}{2}\) square units, which is approximately \(9.94\) square units.
+\end{tcolorbox}
+
+
+\end{enumerate}
+\end{document}

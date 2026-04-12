@@ -1,0 +1,1555 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{\textit{Solutions} - Integration by Substitution}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+Show that
+\[
+\int_0^{\pi/2} \frac{\cos^5 \theta}{2 + \sin \theta}\,\mathrm{d}\theta = 9\ln\!\left(\frac{3}{2}\right) - \frac{41}{12}
+\]
+\marks[-30pt]{8}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+I=\int_0^{\pi/2}\frac{\cos^5\theta}{2+\sin\theta}\,\mathrm{d}\theta
+\]
+
+Use the substitution
+\[
+u=\sin\theta
+\]
+so that
+\[
+\frac{\mathrm{d}u}{\mathrm{d}\theta}=\cos\theta
+\qquad\Rightarrow\qquad
+\mathrm{d}u=\cos\theta\,\mathrm{d}\theta
+\]
+
+Also,
+\[
+\cos^5\theta=\cos^4\theta\cos\theta=(1-\sin^2\theta)^2\cos\theta=(1-u^2)^2\cos\theta
+\]
+
+When $\theta=0$, $u=\sin 0=0$, and when $\theta=\frac{\pi}{2}$, $u=\sin\frac{\pi}{2}=1$.
+
+So the integral becomes
+\begin{align*}
+I&=\int_0^1 \frac{(1-u^2)^2}{2+u}\,\mathrm{d}u \\
+&=\int_0^1 \frac{1-2u^2+u^4}{u+2}\,\mathrm{d}u
+\end{align*}
+
+Now divide $u^4-2u^2+1$ by $u+2$:
+\[
+\frac{u^4-2u^2+1}{u+2}=u^3-2u^2+2u-4+\frac{9}{u+2}
+\]
+
+Hence
+\[
+I=\int_0^1\left(u^3-2u^2+2u-4+\frac{9}{u+2}\right)\,\mathrm{d}u
+\]
+
+Integrating term by term,
+\begin{align*}
+I&=\left[\frac{u^4}{4}-\frac{2u^3}{3}+u^2-4u+9\ln(u+2)\right]_0^1
+\end{align*}
+
+Now substitute the limits:
+\begin{align*}
+I&=\left(\frac{1}{4}-\frac{2}{3}+1-4+9\ln 3\right)-\left(0-0+0-0+9\ln 2\right) \\
+&=\frac{1}{4}-\frac{2}{3}+1-4+9(\ln 3-\ln 2) \\
+&=\frac{3-8+12-48}{12}+9\ln\left(\frac{3}{2}\right) \\
+&=-\frac{41}{12}+9\ln\left(\frac{3}{2}\right)
+\end{align*}
+
+Therefore,
+\[
+\int_0^{\pi/2} \frac{\cos^5 \theta}{2 + \sin \theta}\,\mathrm{d}\theta
+= 9\ln\left(\frac{3}{2}\right)-\frac{41}{12}
+\]
+
+as required.
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use the substitution $u = 1 + x^2$ to show that
+  \[
+  \int_0^2 \frac{x^9}{1+x^2}\,\mathrm{d}x = \int_p^q \frac{(u-1)^4}{2u}\,\mathrm{d}u
+  \]
+  where $p$ and $q$ are constants to be found. \marks{3} \\
+  \item Hence show that
+  \[
+  \int_0^2 \frac{x^9}{1+x^2}\,\mathrm{d}x = A + B\ln 5
+  \]
+  where $A$ and $B$ are constants to be found. \marks{5} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let
+\[
+u=1+x^2
+\]
+Then
+\[
+\frac{\mathrm{d}u}{\mathrm{d}x}=2x \qquad \Rightarrow \qquad \mathrm{d}u=2x\,\mathrm{d}x
+\]
+Also,
+\[
+x^9\,\mathrm{d}x=x^8(x\,\mathrm{d}x)=(x^2)^4\cdot \frac{\mathrm{d}u}{2}=(u-1)^4\cdot \frac{\mathrm{d}u}{2}
+\]
+and
+\[
+1+x^2=u
+\]
+So
+\begin{align*}
+\int_0^2 \frac{x^9}{1+x^2}\,\mathrm{d}x
+&=\int \frac{x^9\,\mathrm{d}x}{1+x^2} \\
+&=\int \frac{(u-1)^4/2}{u}\,\mathrm{d}u
+\end{align*}
+Now change the limits:
+\[
+x=0 \Rightarrow u=1+0^2=1
+\]
+\[
+x=2 \Rightarrow u=1+2^2=5
+\]
+Hence
+\[
+\int_0^2 \frac{x^9}{1+x^2}\,\mathrm{d}x=\int_1^5 \frac{(u-1)^4}{2u}\,\mathrm{d}u
+\]
+Therefore,
+\[
+p=1,\qquad q=5
+\]
+
+  \item From part (a),
+\[
+\int_0^2 \frac{x^9}{1+x^2}\,\mathrm{d}x=\int_1^5 \frac{(u-1)^4}{2u}\,\mathrm{d}u
+\]
+Expand:
+\begin{align*}
+(u-1)^4&=u^4-4u^3+6u^2-4u+1 \\
+\frac{(u-1)^4}{u}&=u^3-4u^2+6u-4+\frac1u
+\end{align*}
+So
+\begin{align*}
+\int_0^2 \frac{x^9}{1+x^2}\,\mathrm{d}x
+&=\frac12\int_1^5 \left(u^3-4u^2+6u-4+\frac1u\right)\,\mathrm{d}u \\
+&=\left[\frac{u^4}{8}-\frac{2u^3}{3}+\frac{3u^2}{2}-2u+\frac12\ln u\right]_1^5
+\end{align*}
+Now substitute the limits:
+\begin{align*}
+\int_0^2 \frac{x^9}{1+x^2}\,\mathrm{d}x
+&=\left(\frac{625}{8}-\frac{250}{3}+\frac{75}{2}-10+\frac12\ln 5\right)
+-\left(\frac18-\frac23+\frac32-2+\frac12\ln 1\right) \\
+&=\left(\frac{625}{8}-\frac{250}{3}+\frac{75}{2}-10+\frac12\ln 5\right)
+-\left(\frac18-\frac23+\frac32-2\right)
+\end{align*}
+Since
+\[
+\frac{625}{8}-\frac{250}{3}+\frac{75}{2}-10=\frac{535}{24}
+\]
+and
+\[
+\frac18-\frac23+\frac32-2=-\frac{25}{24}
+\]
+we get
+\begin{align*}
+\int_0^2 \frac{x^9}{1+x^2}\,\mathrm{d}x
+&=\frac{535}{24}+\frac12\ln 5-\left(-\frac{25}{24}\right) \\
+&=\frac{560}{24}+\frac12\ln 5 \\
+&=\frac{70}{3}+\frac12\ln 5
+\end{align*}
+Hence
+\[
+A=\frac{70}{3},\qquad B=\frac12
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+Show that 
+
+\[
+\int \frac{\sqrt{x^2 - 16}}{x^2}\,\mathrm{d}x = \operatorname{arcosh}\left(\frac{x}{4}\right) - \frac{\sqrt{x^2 - 16}}{x} + c
+\]
+\marks[-30pt]{6}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+I=\int \frac{\sqrt{x^2-16}}{x^2}\,\mathrm{d}x
+\]
+
+Use the substitution
+\[
+x=4\cosh u
+\]
+
+Then
+\[
+\frac{\mathrm{d}x}{\mathrm{d}u}=4\sinh u
+\qquad\Rightarrow\qquad
+\mathrm{d}x=4\sinh u\,\mathrm{d}u
+\]
+
+Also,
+\begin{align*}
+\sqrt{x^2-16}
+&=\sqrt{16\cosh^2u-16} \\
+&=4\sqrt{\cosh^2u-1} \\
+&=4\sqrt{\sinh^2u} \\
+&=4\sinh u
+\end{align*}
+since $u>0$ gives $\sinh u>0$.
+
+Substituting into the integral,
+\begin{align*}
+I
+&=\int \frac{4\sinh u}{(4\cosh u)^2}\cdot 4\sinh u\,\mathrm{d}u \\
+&=\int \frac{16\sinh^2u}{16\cosh^2u}\,\mathrm{d}u \\
+&=\int \frac{\sinh^2u}{\cosh^2u}\,\mathrm{d}u \\
+&=\int \tanh^2u\,\mathrm{d}u
+\end{align*}
+
+Now use
+\[
+\tanh^2u=1-\operatorname{sech}^2u
+\]
+so
+\begin{align*}
+I
+&=\int \left(1-\operatorname{sech}^2u\right)\,\mathrm{d}u \\
+&=u-\tanh u+c
+\end{align*}
+
+Now write this in terms of $x$.
+
+From $x=4\cosh u$,
+\[
+\cosh u=\frac{x}{4}
+\]
+so, since $u>0$,
+\[
+u=\operatorname{arcosh}\left(\frac{x}{4}\right)
+\]
+
+Also,
+\begin{align*}
+\tanh u
+&=\frac{\sinh u}{\cosh u} \\
+&=\frac{\sqrt{x^2-16}/4}{x/4} \\
+&=\frac{\sqrt{x^2-16}}{x}
+\end{align*}
+
+Therefore,
+\[
+I=\operatorname{arcosh}\left(\frac{x}{4}\right)-\frac{\sqrt{x^2-16}}{x}+c
+\]
+
+Hence,
+\[
+\int \frac{\sqrt{x^2 - 16}}{x^2}\,\mathrm{d}x = \operatorname{arcosh}\left(\frac{x}{4}\right) - \frac{\sqrt{x^2 - 16}}{x} + c
+\]
+
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+Find the exact value of
+\[
+\int_0^{\frac{1}{2}\ln(2+\sqrt{3})} \frac{\operatorname{sech}^2 x}{\sqrt{4 - 9\tanh^2 x}}\,\mathrm{d}x
+\]
+\marks[-30pt]{8}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+I=\int_0^{\frac{1}{2}\ln(2+\sqrt{3})} \frac{\operatorname{sech}^2 x}{\sqrt{4 - 9\tanh^2 x}}\,\mathrm{d}x
+\]
+
+Use the substitution
+\[
+u=\frac{3}{2}\tanh x
+\]
+Then
+\[
+\frac{\mathrm{d}u}{\mathrm{d}x}=\frac{3}{2}\operatorname{sech}^2 x
+\]
+so
+\[
+\mathrm{d}u=\frac{3}{2}\operatorname{sech}^2 x\,\mathrm{d}x
+\qquad\Rightarrow\qquad
+\operatorname{sech}^2 x\,\mathrm{d}x=\frac{2}{3}\,\mathrm{d}u
+\]
+
+Also, from \(u=\frac{3}{2}\tanh x\),
+\[
+\tanh x=\frac{2u}{3}
+\]
+so
+\begin{align*}
+\sqrt{4-9\tanh^2 x}
+&=\sqrt{4-9\left(\frac{2u}{3}\right)^2} \\
+&=\sqrt{4-4u^2} \\
+&=2\sqrt{1-u^2}
+\end{align*}
+
+Now change the limits.
+
+When \(x=0\),
+\[
+u=\frac{3}{2}\tanh 0=0
+\]
+
+When \(x=\frac{1}{2}\ln(2+\sqrt{3})\), we have
+\[
+e^{2x}=2+\sqrt{3}
+\]
+and
+\begin{align*}
+\tanh x
+&=\frac{e^{2x}-1}{e^{2x}+1} \\
+&=\frac{(2+\sqrt{3})-1}{(2+\sqrt{3})+1} \\
+&=\frac{1+\sqrt{3}}{3+\sqrt{3}}
+\end{align*}
+Rationalising,
+\begin{align*}
+\frac{1+\sqrt{3}}{3+\sqrt{3}}
+&=\frac{(1+\sqrt{3})(3-\sqrt{3})}{(3+\sqrt{3})(3-\sqrt{3})} \\
+&=\frac{3-\sqrt{3}+3\sqrt{3}-3}{9-3} \\
+&=\frac{2\sqrt{3}}{6} \\
+&=\frac{1}{\sqrt{3}}
+\end{align*}
+Hence
+\[
+u=\frac{3}{2}\cdot\frac{1}{\sqrt{3}}=\frac{\sqrt{3}}{2}
+\]
+
+So the integral becomes
+\begin{align*}
+I
+&=\int_0^{\sqrt{3}/2} \frac{\frac{2}{3}\,\mathrm{d}u}{2\sqrt{1-u^2}} \\
+&=\frac{1}{3}\int_0^{\sqrt{3}/2}\frac{1}{\sqrt{1-u^2}}\,\mathrm{d}u
+\end{align*}
+
+Now
+\[
+\int \frac{1}{\sqrt{1-u^2}}\,\mathrm{d}u=\arcsin u
+\]
+so
+\begin{align*}
+I
+&=\frac{1}{3}\left[\arcsin u\right]_0^{\sqrt{3}/2} \\
+&=\frac{1}{3}\left(\arcsin\frac{\sqrt{3}}{2}-\arcsin 0\right) \\
+&=\frac{1}{3}\left(\frac{\pi}{3}-0\right) \\
+&=\frac{\pi}{9}
+\end{align*}
+
+Therefore,
+\[
+\int_0^{\frac{1}{2}\ln(2+\sqrt{3})} \frac{\operatorname{sech}^2 x}{\sqrt{4 - 9\tanh^2 x}}\,\mathrm{d}x=\frac{\pi}{9}
+\]
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+Using calculus, find the exact values of \\
+\begin{enumerate}[label=(\roman*)]
+  \item
+  \[
+  \int_1^2 \frac{1}{x^2 + 3x + 2}\,\mathrm{d}x
+  \]
+  \marks[-20pt]{3}
+  \item
+  \[
+  \int_1^{\sqrt{3}} \frac{\sqrt{4 - x^2}}{x^2}\,\mathrm{d}x
+  \]
+  \marks[-30pt]{5}
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\item First factorise the denominator:
+\[
+x^2+3x+2=(x+1)(x+2)
+\]
+
+Use partial fractions:
+\[
+\frac{1}{(x+1)(x+2)}=\frac{A}{x+1}+\frac{B}{x+2}
+\]
+
+So
+\[
+1=A(x+2)+B(x+1)
+\]
+
+Putting $x=-1$ gives $A=1$, and putting $x=-2$ gives $B=-1$. Hence
+\[
+\frac{1}{x^2+3x+2}=\frac{1}{x+1}-\frac{1}{x+2}
+\]
+
+Therefore
+\begin{align*}
+\int_1^2 \frac{1}{x^2+3x+2}\,\mathrm{d}x
+&=\int_1^2 \left(\frac{1}{x+1}-\frac{1}{x+2}\right)\,\mathrm{d}x\\
+&=\left[\ln(x+1)-\ln(x+2)\right]_1^2\\
+&=(\ln 3-\ln 4)-(\ln 2-\ln 3)\\
+&=2\ln 3-\ln 4-\ln 2\\
+&=\ln\!\left(\frac{9}{8}\right)
+\end{align*}
+
+The exact value is $\ln\!\left(\frac{9}{8}\right)$.
+
+\item Use the substitution
+\[
+x=2\sin\theta
+\]
+
+Then
+\[
+\frac{\mathrm{d}x}{\mathrm{d}\theta}=2\cos\theta
+\qquad\Rightarrow\qquad
+\mathrm{d}x=2\cos\theta\,\mathrm{d}\theta
+\]
+
+Also,
+\[
+\sqrt{4-x^2}=\sqrt{4-4\sin^2\theta}=2\cos\theta
+\]
+since on the interval we use, $\theta$ lies between $\frac{\pi}{6}$ and $\frac{\pi}{3}$, so $\cos\theta>0$.
+
+Now change the limits.
+
+When $x=1$,
+\[
+1=2\sin\theta \quad\Rightarrow\quad \sin\theta=\frac12 \quad\Rightarrow\quad \theta=\frac{\pi}{6}
+\]
+
+When $x=\sqrt3$,
+\[
+\sqrt3=2\sin\theta \quad\Rightarrow\quad \sin\theta=\frac{\sqrt3}{2} \quad\Rightarrow\quad \theta=\frac{\pi}{3}
+\]
+
+So
+\begin{align*}
+\int_1^{\sqrt3}\frac{\sqrt{4-x^2}}{x^2}\,\mathrm{d}x
+&=\int_{\pi/6}^{\pi/3}\frac{2\cos\theta}{(2\sin\theta)^2}\cdot 2\cos\theta\,\mathrm{d}\theta\\
+&=\int_{\pi/6}^{\pi/3}\frac{4\cos^2\theta}{4\sin^2\theta}\,\mathrm{d}\theta\\
+&=\int_{\pi/6}^{\pi/3}\cot^2\theta\,\mathrm{d}\theta
+\end{align*}
+
+Use the identity
+\[
+\cot^2\theta=\operatorname{cosec}^2\theta-1
+\]
+
+Then
+\begin{align*}
+\int_{\pi/6}^{\pi/3}\cot^2\theta\,\mathrm{d}\theta
+&=\int_{\pi/6}^{\pi/3}(\operatorname{cosec}^2\theta-1)\,\mathrm{d}\theta\\
+&=\left[-\cot\theta-\theta\right]_{\pi/6}^{\pi/3}
+\end{align*}
+
+Now evaluate:
+\begin{align*}
+\left[-\cot\theta-\theta\right]_{\pi/6}^{\pi/3}
+&=\left(-\cot\frac{\pi}{3}-\frac{\pi}{3}\right)-\left(-\cot\frac{\pi}{6}-\frac{\pi}{6}\right)\\
+&=\left(-\frac{1}{\sqrt3}-\frac{\pi}{3}\right)-\left(-\sqrt3-\frac{\pi}{6}\right)\\
+&=-\frac{\sqrt3}{3}-\frac{\pi}{3}+\sqrt3+\frac{\pi}{6}\\
+&=\frac{2\sqrt3}{3}-\frac{\pi}{6}
+\end{align*}
+
+The exact value is $\frac{2\sqrt3}{3}-\frac{\pi}{6}$.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+Find the exact value of \\
+\[
+\int_2^4 \frac{\sqrt{x^2-4}}{x^2} \, \mathrm{d}x
+\]
+Give your answer in simplest exact form. \marks{9}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+I=\int_2^4 \frac{\sqrt{x^2-4}}{x^2}\,\mathrm{d}x
+\]
+
+Use the substitution
+\[
+x=2\sec\theta
+\]
+
+Then
+\[
+\frac{\mathrm{d}x}{\mathrm{d}\theta}=2\sec\theta\tan\theta
+\quad\Rightarrow\quad
+\mathrm{d}x=2\sec\theta\tan\theta\,\mathrm{d}\theta
+\]
+
+Also,
+\begin{align*}
+\sqrt{x^2-4}
+&=\sqrt{4\sec^2\theta-4} \\
+&=\sqrt{4(\sec^2\theta-1)} \\
+&=\sqrt{4\tan^2\theta} \\
+&=2\tan\theta
+\end{align*}
+
+For the limits:
+
+When \(x=2\),
+\[
+2=2\sec\theta \Rightarrow \sec\theta=1 \Rightarrow \theta=0
+\]
+
+When \(x=4\),
+\[
+4=2\sec\theta \Rightarrow \sec\theta=2 \Rightarrow \theta=\frac{\pi}{3}
+\]
+
+So the integral becomes
+\begin{align*}
+I
+&=\int_0^{\pi/3} \frac{2\tan\theta}{(2\sec\theta)^2}\cdot 2\sec\theta\tan\theta\,\mathrm{d}\theta \\
+&=\int_0^{\pi/3} \frac{2\tan\theta}{4\sec^2\theta}\cdot 2\sec\theta\tan\theta\,\mathrm{d}\theta \\
+&=\int_0^{\pi/3} \frac{\tan^2\theta}{\sec\theta}\,\mathrm{d}\theta
+\end{align*}
+
+Now use \(\tan^2\theta=\sec^2\theta-1\):
+\begin{align*}
+\frac{\tan^2\theta}{\sec\theta}
+&=\frac{\sec^2\theta-1}{\sec\theta} \\
+&=\sec\theta-\frac{1}{\sec\theta} \\
+&=\sec\theta-\cos\theta
+\end{align*}
+
+Hence
+\[
+I=\int_0^{\pi/3} (\sec\theta-\cos\theta)\,\mathrm{d}\theta
+\]
+
+Integrating,
+\begin{align*}
+I
+&=\left[\ln(\sec\theta+\tan\theta)-\sin\theta\right]_0^{\pi/3} \\
+&=\left(\ln\left(2+\sqrt{3}\right)-\sin\frac{\pi}{3}\right)-\left(\ln(1+0)-\sin0\right) \\
+&=\ln\left(2+\sqrt{3}\right)-\frac{\sqrt{3}}{2}
+\end{align*}
+
+Therefore, the exact value is
+\[
+\ln(2+\sqrt{3})-\frac{\sqrt{3}}{2}
+\]
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+Show that \\
+\[
+\int \frac{x^2}{\sqrt{x^2 + 16}}\,\mathrm{d}x = \frac{1}{2}x\sqrt{x^2 + 16} - 8\operatorname{arsinh}\left(\frac{x}{4}\right) + c
+\]
+\marks[-30pt]{6}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+x=4\sinh u
+\]
+Then
+\[
+\frac{\mathrm{d}x}{\mathrm{d}u}=4\cosh u
+\qquad\Rightarrow\qquad
+\mathrm{d}x=4\cosh u\,\mathrm{d}u
+\]
+
+Also,
+\begin{align*}
+\sqrt{x^2+16}
+&=\sqrt{16\sinh^2u+16} \\
+&=\sqrt{16(\sinh^2u+1)} \\
+&=\sqrt{16\cosh^2u} \\
+&=4\cosh u
+\end{align*}
+since $\cosh u>0$ for real $u$.
+
+Now substitute into the integral:
+\begin{align*}
+\int \frac{x^2}{\sqrt{x^2+16}}\,\mathrm{d}x
+&=\int \frac{(4\sinh u)^2}{4\cosh u}\cdot 4\cosh u\,\mathrm{d}u \\
+&=\int 16\sinh^2u\,\mathrm{d}u \\
+&=16\int \sinh^2u\,\mathrm{d}u
+\end{align*}
+
+Use the identity
+\[
+\sinh^2u=\frac{\cosh 2u-1}{2}
+\]
+So
+\begin{align*}
+16\int \sinh^2u\,\mathrm{d}u
+&=16\int \frac{\cosh 2u-1}{2}\,\mathrm{d}u \\
+&=8\int (\cosh 2u-1)\,\mathrm{d}u \\
+&=8\left(\frac{1}{2}\sinh 2u-u\right)+c \\
+&=4\sinh 2u-8u+c
+\end{align*}
+
+Now use
+\[
+\sinh 2u=2\sinh u\cosh u
+\]
+giving
+\begin{align*}
+4\sinh 2u-8u
+&=8\sinh u\cosh u-8u
+\end{align*}
+
+Now convert back to $x$.
+
+From $x=4\sinh u$,
+\[
+\sinh u=\frac{x}{4}
+\]
+and since $\sqrt{x^2+16}=4\cosh u$,
+\[
+\cosh u=\frac{\sqrt{x^2+16}}{4}
+\]
+Also,
+\[
+u=\operatorname{arsinh}\left(\frac{x}{4}\right)
+\]
+
+Therefore
+\begin{align*}
+8\sinh u\cosh u-8u+c
+&=8\left(\frac{x}{4}\right)\left(\frac{\sqrt{x^2+16}}{4}\right)-8\operatorname{arsinh}\left(\frac{x}{4}\right)+c \\
+&=\frac{1}{2}x\sqrt{x^2+16}-8\operatorname{arsinh}\left(\frac{x}{4}\right)+c
+\end{align*}
+
+Hence
+\[
+\int \frac{x^2}{\sqrt{x^2+16}}\,\mathrm{d}x
+=
+\frac{1}{2}x\sqrt{x^2+16}-8\operatorname{arsinh}\left(\frac{x}{4}\right)+c
+\]
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+Show that
+\[
+\int_0^{\ln 2} \frac{e^{3x}+2e^{2x}}{\sqrt{e^x+4}}\,\mathrm{d}x = \frac{32\sqrt{6}-30\sqrt{5}}{5}
+\]
+\marks[-30pt]{7}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+I=\int_0^{\ln 2} \frac{e^{3x}+2e^{2x}}{\sqrt{e^x+4}}\,\mathrm{d}x
+\]
+
+Use the substitution $u=e^x$. Then
+\[
+\frac{\mathrm{d}u}{\mathrm{d}x}=e^x=u
+\qquad\Rightarrow\qquad
+\mathrm{d}u=e^x\,\mathrm{d}x,\quad \mathrm{d}x=\frac{\mathrm{d}u}{u}
+\]
+
+Also, the limits change as follows:
+\[
+x=0 \Rightarrow u=1,\qquad x=\ln 2 \Rightarrow u=2
+\]
+
+So
+\begin{align*}
+I&=\int_1^2 \frac{u^3+2u^2}{\sqrt{u+4}}\cdot \frac{1}{u}\,\mathrm{d}u\\
+&=\int_1^2 \frac{u^2+2u}{\sqrt{u+4}}\,\mathrm{d}u
+\end{align*}
+
+Now use a second substitution:
+\[
+v=u+4
+\qquad\Rightarrow\qquad
+\mathrm{d}v=\mathrm{d}u,\quad u=v-4
+\]
+
+The new limits are
+\[
+u=1 \Rightarrow v=5,\qquad u=2 \Rightarrow v=6
+\]
+
+Therefore
+\begin{align*}
+I&=\int_5^6 \frac{(v-4)^2+2(v-4)}{\sqrt v}\,\mathrm{d}v\\
+&=\int_5^6 \frac{v^2-8v+16+2v-8}{\sqrt v}\,\mathrm{d}v\\
+&=\int_5^6 \frac{v^2-6v+8}{\sqrt v}\,\mathrm{d}v\\
+&=\int_5^6 \left(v^{3/2}-6v^{1/2}+8v^{-1/2}\right)\,\mathrm{d}v
+\end{align*}
+
+Integrate term by term:
+\begin{align*}
+I&=\left[\frac{2}{5}v^{5/2}-4v^{3/2}+16v^{1/2}\right]_5^6
+\end{align*}
+
+Now substitute the limits:
+\begin{align*}
+I&=\left(\frac{2}{5}\cdot 6^{5/2}-4\cdot 6^{3/2}+16\cdot 6^{1/2}\right)
+-\left(\frac{2}{5}\cdot 5^{5/2}-4\cdot 5^{3/2}+16\cdot 5^{1/2}\right)\\
+&=\left(\frac{2}{5}\cdot 36\sqrt6-4\cdot 6\sqrt6+16\sqrt6\right)
+-\left(\frac{2}{5}\cdot 25\sqrt5-4\cdot 5\sqrt5+16\sqrt5\right)\\
+&=\left(\frac{72}{5}\sqrt6-24\sqrt6+16\sqrt6\right)
+-\left(10\sqrt5-20\sqrt5+16\sqrt5\right)\\
+&=\left(\frac{72}{5}-8\right)\sqrt6-6\sqrt5\\
+&=\frac{32}{5}\sqrt6-6\sqrt5\\
+&=\frac{32\sqrt6-30\sqrt5}{5}
+\end{align*}
+
+Hence
+\[
+\int_0^{\ln 2} \frac{e^{3x}+2e^{2x}}{\sqrt{e^x+4}}\,\mathrm{d}x
+= \frac{32\sqrt6-30\sqrt5}{5}
+\]
+
+as required
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+Using the substitution $u = \frac{2}{3}\tanh x$, evaluate
+\[
+\int_0^1 \frac{\operatorname{sech}^2 x}{\sqrt{9 - 4\tanh^2 x}}\,\mathrm{d}x
+\]
+\marks[-30pt]{8}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+I=\int_0^1 \frac{\operatorname{sech}^2 x}{\sqrt{9-4\tanh^2 x}}\,\mathrm{d}x
+\]
+
+Use the given substitution
+\[
+u=\frac{2}{3}\tanh x
+\]
+
+Differentiate:
+\[
+\frac{\mathrm{d}u}{\mathrm{d}x}=\frac{2}{3}\operatorname{sech}^2 x
+\]
+so
+\[
+\mathrm{d}u=\frac{2}{3}\operatorname{sech}^2 x\,\mathrm{d}x
+\]
+and hence
+\[
+\operatorname{sech}^2 x\,\mathrm{d}x=\frac{3}{2}\,\mathrm{d}u
+\]
+
+Also, from \(u=\frac{2}{3}\tanh x\),
+\[
+\tanh x=\frac{3}{2}u
+\]
+so the expression inside the square root becomes
+\begin{align*}
+9-4\tanh^2 x
+&=9-4\left(\frac{3}{2}u\right)^2 \\
+&=9-4\cdot \frac{9}{4}u^2 \\
+&=9-9u^2 \\
+&=9(1-u^2)
+\end{align*}
+Therefore,
+\[
+\sqrt{9-4\tanh^2 x}=3\sqrt{1-u^2}
+\]
+
+Now change the limits.
+
+When \(x=0\),
+\[
+u=\frac{2}{3}\tanh 0=0
+\]
+
+When \(x=1\),
+\[
+u=\frac{2}{3}\tanh 1
+\]
+
+Substituting everything into the integral:
+\begin{align*}
+I
+&=\int_0^1 \frac{\operatorname{sech}^2 x}{\sqrt{9-4\tanh^2 x}}\,\mathrm{d}x \\
+&=\int_0^{\frac{2}{3}\tanh 1} \frac{\frac{3}{2}\,\mathrm{d}u}{3\sqrt{1-u^2}} \\
+&=\frac{1}{2}\int_0^{\frac{2}{3}\tanh 1}\frac{1}{\sqrt{1-u^2}}\,\mathrm{d}u
+\end{align*}
+
+Using
+\[
+\int \frac{1}{\sqrt{1-u^2}}\,\mathrm{d}u=\arcsin u
+\]
+we get
+\begin{align*}
+I
+&=\frac{1}{2}\left[\arcsin u\right]_0^{\frac{2}{3}\tanh 1} \\
+&=\frac{1}{2}\arcsin\!\left(\frac{2}{3}\tanh 1\right)-\frac{1}{2}\arcsin(0) \\
+&=\frac{1}{2}\arcsin\!\left(\frac{2}{3}\tanh 1\right)
+\end{align*}
+
+So the exact value is
+\[
+\int_0^1 \frac{\operatorname{sech}^2 x}{\sqrt{9-4\tanh^2 x}}\,\mathrm{d}x
+=\frac{1}{2}\arcsin\!\left(\frac{2}{3}\tanh 1\right)
+\]
+
+Numerically,
+\[
+\frac{1}{2}\arcsin\!\left(\frac{2}{3}\tanh 1\right)\approx 0.266
+\]
+
+Therefore, the integral is \(\displaystyle \frac{1}{2}\arcsin\!\left(\frac{2}{3}\tanh 1\right)\approx 0.266\).
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+Show that
+\[
+\int_0^{\pi/2} \frac{\sin 3\theta}{2 + \cos \theta}\,\mathrm{d}\theta = 15\ln\left(\frac{3}{2}\right) - 6
+\]
+\marks[-20pt]{7}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+I=\int_0^{\pi/2}\frac{\sin 3\theta}{2+\cos\theta}\,\mathrm{d}\theta
+\]
+
+First rewrite $\sin 3\theta$ in terms of $\sin\theta$ and $\cos\theta$.
+
+Using
+\[
+\sin 3\theta=3\sin\theta-4\sin^3\theta
+\]
+and $\sin^2\theta=1-\cos^2\theta$,
+\begin{align*}
+\sin 3\theta
+&=\sin\theta\bigl(3-4\sin^2\theta\bigr)\\
+&=\sin\theta\bigl(3-4(1-\cos^2\theta)\bigr)\\
+&=\sin\theta(4\cos^2\theta-1)
+\end{align*}
+
+So
+\[
+I=\int_0^{\pi/2}\frac{\sin\theta(4\cos^2\theta-1)}{2+\cos\theta}\,\mathrm{d}\theta
+\]
+
+Now use the substitution
+\[
+u=\cos\theta
+\qquad\Rightarrow\qquad
+\mathrm{d}u=-\sin\theta\,\mathrm{d}\theta
+\]
+
+When $\theta=0$, $u=1$.
+
+When $\theta=\frac{\pi}{2}$, $u=0$.
+
+Hence
+\begin{align*}
+I
+&=\int_0^{\pi/2}\frac{\sin\theta(4\cos^2\theta-1)}{2+\cos\theta}\,\mathrm{d}\theta\\
+&=\int_1^0\frac{4u^2-1}{u+2}(-\mathrm{d}u)\\
+&=\int_0^1\frac{4u^2-1}{u+2}\,\mathrm{d}u
+\end{align*}
+
+Now divide $4u^2-1$ by $u+2$:
+\[
+4u^2-1=(u+2)(4u-8)+15
+\]
+
+So
+\[
+\frac{4u^2-1}{u+2}=4u-8+\frac{15}{u+2}
+\]
+
+Therefore
+\begin{align*}
+I
+&=\int_0^1\left(4u-8+\frac{15}{u+2}\right)\,\mathrm{d}u\\
+&=\left[2u^2-8u+15\ln(u+2)\right]_0^1
+\end{align*}
+
+Now substitute the limits:
+\begin{align*}
+I
+&=\left(2(1)^2-8(1)+15\ln 3\right)-\left(2(0)^2-8(0)+15\ln 2\right)\\
+&=(2-8+15\ln 3)-15\ln 2\\
+&=-6+15\ln\left(\frac{3}{2}\right)
+\end{align*}
+
+Hence
+\[
+\int_0^{\pi/2}\frac{\sin 3\theta}{2+\cos\theta}\,\mathrm{d}\theta
+=15\ln\left(\frac{3}{2}\right)-6
+\]
+
+So the required result is shown.
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use the substitution $u=\sqrt{2x+1}$ to show that
+  \[
+  \int_0^{15/2} \frac{x}{2+\sqrt{2x+1}}\,\mathrm{d}x = \int_p^q \frac{u(u^2-1)}{2(u+2)}\,\mathrm{d}u
+  \]
+  where $p$ and $q$ are constants to be found.
+  \marks{3} \\
+  \item Hence show that
+  \[
+  \int_0^{15/2} \frac{x}{2+\sqrt{2x+1}}\,\mathrm{d}x = A - B\ln 2
+  \]
+  where $A$ and $B$ are constants to be found.
+  \marks{4}
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let
+  \[
+  u=\sqrt{2x+1}
+  \]
+  Then
+  \[
+  u^2=2x+1 \qquad \Rightarrow \qquad x=\frac{u^2-1}{2}
+  \]
+
+  Differentiate \(u^2=2x+1\) with respect to \(x\):
+  \[
+  2u\frac{\mathrm{d}u}{\mathrm{d}x}=2
+  \]
+  so
+  \[
+  \frac{\mathrm{d}x}{\mathrm{d}u}=u \qquad \Rightarrow \qquad \mathrm{d}x=u\,\mathrm{d}u
+  \]
+
+  Also,
+  \[
+  \sqrt{2x+1}=u
+  \]
+
+  Now change the limits.
+
+  When \(x=0\),
+  \[
+  u=\sqrt{2(0)+1}=1
+  \]
+
+  When \(x=\frac{15}{2}\),
+  \[
+  u=\sqrt{2\cdot \frac{15}{2}+1}=\sqrt{16}=4
+  \]
+
+  Therefore
+  \begin{align*}
+  \int_0^{15/2}\frac{x}{2+\sqrt{2x+1}}\,\mathrm{d}x
+  &=\int_1^4 \frac{\frac{u^2-1}{2}}{2+u}\cdot u\,\mathrm{d}u\\
+  &=\int_1^4 \frac{u(u^2-1)}{2(u+2)}\,\mathrm{d}u
+  \end{align*}
+
+  Hence \(p=1\) and \(q=4\).
+
+  \item Using part (a),
+  \[
+  \int_0^{15/2}\frac{x}{2+\sqrt{2x+1}}\,\mathrm{d}x
+  =\int_1^4 \frac{u(u^2-1)}{2(u+2)}\,\mathrm{d}u
+  \]
+
+  First simplify the integrand. Since
+  \[
+  u(u^2-1)=u^3-u
+  \]
+  divide \(u^3-u\) by \(u+2\):
+  \[
+  u^3-u=(u+2)(u^2-2u+3)-6
+  \]
+
+  So
+  \[
+  \frac{u(u^2-1)}{2(u+2)}
+  =\frac{1}{2}\left(u^2-2u+3-\frac{6}{u+2}\right)
+  \]
+
+  Hence
+  \begin{align*}
+  \int_1^4 \frac{u(u^2-1)}{2(u+2)}\,\mathrm{d}u
+  &=\frac12\int_1^4 \left(u^2-2u+3-\frac{6}{u+2}\right)\mathrm{d}u\\
+  &=\frac12\left[\frac{u^3}{3}-u^2+3u-6\ln(u+2)\right]_1^4
+  \end{align*}
+
+  Now substitute the limits:
+  \begin{align*}
+  &=\frac12\left[\left(\frac{4^3}{3}-4^2+3\cdot4-6\ln6\right)-\left(\frac{1^3}{3}-1^2+3\cdot1-6\ln3\right)\right]\\
+  &=\frac12\left[\left(\frac{64}{3}-16+12-6\ln6\right)-\left(\frac13-1+3-6\ln3\right)\right]\\
+  &=\frac12\left[\left(\frac{52}{3}-6\ln6\right)-\left(\frac73-6\ln3\right)\right]\\
+  &=\frac12\left[\frac{45}{3}-6(\ln6-\ln3)\right]\\
+  &=\frac12\left[15-6\ln\left(\frac63\right)\right]\\
+  &=\frac12\left(15-6\ln2\right)\\
+  &=\frac{15}{2}-3\ln2
+  \end{align*}
+
+  Therefore
+  \[
+  \int_0^{15/2}\frac{x}{2+\sqrt{2x+1}}\,\mathrm{d}x=\frac{15}{2}-3\ln2
+  \]
+
+  So
+  \[
+  A=\frac{15}{2}, \qquad B=3
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+
+Use an appropriate substitution to find the exact value of
+\[
+\int_0^{\pi/6} \frac{\cos x\cos 2x}{(1 + \sin x)^{3/2}}\,\mathrm{d}x
+\]
+Give your answer in the form $a+b\sqrt{6}$, where $a$ and $b$ are rational numbers to be determined. \marks{7} \\
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+I=\int_0^{\frac{\pi}{6}} \frac{\cos x\cos 2x}{(1+\sin x)^{3/2}}\,\mathrm{d}x
+\]
+
+Use the substitution
+\[
+u=1+\sin x
+\]
+Then
+\[
+\frac{\mathrm{d}u}{\mathrm{d}x}=\cos x
+\qquad\Rightarrow\qquad
+\mathrm{d}u=\cos x\,\mathrm{d}x
+\]
+
+The limits change as follows:
+\[
+x=0 \Rightarrow u=1+\sin 0=1
+\]
+\[
+x=\frac{\pi}{6} \Rightarrow u=1+\sin\frac{\pi}{6}=1+\frac12=\frac32
+\]
+
+Also,
+\[
+\sin x=u-1
+\]
+so
+\[
+\cos 2x=1-2\sin^2 x=1-2(u-1)^2
+\]
+Now expand:
+\begin{align*}
+\cos 2x
+&=1-2(u^2-2u+1)\\
+&=1-2u^2+4u-2\\
+&=-2u^2+4u-1
+\end{align*}
+
+So the integral becomes
+\begin{align*}
+I
+&=\int_1^{3/2}\frac{\cos 2x}{u^{3/2}}\,\mathrm{d}u\\
+&=\int_1^{3/2}\frac{-2u^2+4u-1}{u^{3/2}}\,\mathrm{d}u\\
+&=\int_1^{3/2}\left(-2u^{1/2}+4u^{-1/2}-u^{-3/2}\right)\,\mathrm{d}u
+\end{align*}
+
+Integrating term by term,
+\begin{align*}
+I
+&=\left[-2\cdot\frac{2}{3}u^{3/2}+4\cdot 2u^{1/2}-\frac{u^{-1/2}}{-1/2}\right]_1^{3/2}\\
+&=\left[-\frac{4}{3}u^{3/2}+8u^{1/2}+2u^{-1/2}\right]_1^{3/2}
+\end{align*}
+
+Now evaluate at \(u=\frac32\):
+\[
+\left(\frac32\right)^{1/2}=\sqrt{\frac32}=\frac{\sqrt6}{2}
+\]
+\[
+\left(\frac32\right)^{3/2}=\frac32\cdot\frac{\sqrt6}{2}=\frac{3\sqrt6}{4}
+\]
+\[
+\left(\frac32\right)^{-1/2}=\frac{1}{\sqrt{3/2}}=\sqrt{\frac23}=\frac{\sqrt6}{3}
+\]
+
+Hence
+\begin{align*}
+-\frac{4}{3}\left(\frac{3\sqrt6}{4}\right)+8\left(\frac{\sqrt6}{2}\right)+2\left(\frac{\sqrt6}{3}\right)
+&=-\sqrt6+4\sqrt6+\frac{2\sqrt6}{3}\\
+&=\frac{11\sqrt6}{3}
+\end{align*}
+
+At \(u=1\),
+\begin{align*}
+-\frac{4}{3}(1)^{3/2}+8(1)^{1/2}+2(1)^{-1/2}
+&=-\frac43+8+2\\
+&=\frac{26}{3}
+\end{align*}
+
+Therefore
+\begin{align*}
+I
+&=\frac{11\sqrt6}{3}-\frac{26}{3}\\
+&=\frac{11\sqrt6-26}{3}
+\end{align*}
+
+So the exact value is
+\[
+-\frac{26}{3}+\frac{11}{3}\sqrt6
+\]
+
+Hence
+\[
+a=-\frac{26}{3}, \qquad b=\frac{11}{3}
+\]
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 13 ----
+\questionitem
+
+Using calculus, find the exact values of \\
+
+\begin{enumerate}[label=(\roman*)]
+  \item
+  \[
+  \int_{-2}^0 \frac{1}{x^2 + 4x + 8}\,\mathrm{d}x
+  \]
+  \marks[-30pt]{3}
+  \item
+  \[
+  \int_0^{\sqrt{3}} \frac{x^2}{\sqrt{4 - x^2}}\,\mathrm{d}x
+  \]
+  \marks[-30pt]{5}
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\item Complete the square in the denominator:
+\[
+x^2+4x+8=(x+2)^2+4
+\]
+
+Let \(u=x+2\). Then \(\mathrm{d}u=\mathrm{d}x\), and the limits change as
+\[
+x=-2 \Rightarrow u=0, \qquad x=0 \Rightarrow u=2
+\]
+
+So
+\begin{align*}
+\int_{-2}^0 \frac{1}{x^2+4x+8}\,\mathrm{d}x
+&=\int_0^2 \frac{1}{u^2+4}\,\mathrm{d}u \\
+&=\frac12 \arctan\!\left(\frac{u}{2}\right)\Big|_0^2 \\
+&=\frac12\left(\arctan 1-\arctan 0\right) \\
+&=\frac12\left(\frac{\pi}{4}-0\right) \\
+&=\frac{\pi}{8}
+\end{align*}
+
+Hence the exact value is \(\displaystyle \frac{\pi}{8}\).
+
+\item Use the substitution
+\[
+x=2\sin\theta
+\]
+Then
+\[
+\mathrm{d}x=2\cos\theta\,\mathrm{d}\theta
+\]
+and
+\[
+\sqrt{4-x^2}=\sqrt{4-4\sin^2\theta}=2\cos\theta
+\]
+Since \(0\le x\le \sqrt3\), we have \(0\le \theta\le \frac{\pi}{3}\), so \(\cos\theta>0\).
+
+Change the limits:
+\[
+x=0 \Rightarrow \theta=0, \qquad x=\sqrt3 \Rightarrow 2\sin\theta=\sqrt3 \Rightarrow \theta=\frac{\pi}{3}
+\]
+
+Now substitute:
+\begin{align*}
+\int_0^{\sqrt3} \frac{x^2}{\sqrt{4-x^2}}\,\mathrm{d}x
+&=\int_0^{\pi/3} \frac{(2\sin\theta)^2}{2\cos\theta}\cdot 2\cos\theta\,\mathrm{d}\theta \\
+&=\int_0^{\pi/3} 4\sin^2\theta\,\mathrm{d}\theta
+\end{align*}
+
+Use
+\[
+\sin^2\theta=\frac{1-\cos 2\theta}{2}
+\]
+So
+\begin{align*}
+\int_0^{\pi/3} 4\sin^2\theta\,\mathrm{d}\theta
+&=4\int_0^{\pi/3} \frac{1-\cos 2\theta}{2}\,\mathrm{d}\theta \\
+&=2\int_0^{\pi/3} (1-\cos 2\theta)\,\mathrm{d}\theta \\
+&=2\left[\theta-\frac12\sin 2\theta\right]_0^{\pi/3}
+\end{align*}
+
+Now evaluate:
+\begin{align*}
+2\left[\theta-\frac12\sin 2\theta\right]_0^{\pi/3}
+&=2\left(\frac{\pi}{3}-\frac12\sin\frac{2\pi}{3}\right) \\
+&=2\left(\frac{\pi}{3}-\frac12\cdot\frac{\sqrt3}{2}\right) \\
+&=\frac{2\pi}{3}-\frac{\sqrt3}{2}
+\end{align*}
+
+Hence the exact value is \(\displaystyle \frac{2\pi}{3}-\frac{\sqrt3}{2}\).
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 14 ----
+\questionitem
+
+Show that
+\[
+\int_1^3 \frac{(x-1)^2}{\sqrt{x+1}}\,\mathrm{d}x = \frac{16}{15}(7-4\sqrt{2})
+\]
+\marks[-20pt]{7}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+I=\int_1^3 \frac{(x-1)^2}{\sqrt{x+1}}\,\mathrm{d}x
+\]
+
+Use the substitution
+\[
+u=x+1
+\]
+so that
+\[
+x=u-1,\qquad x-1=u-2,\qquad \mathrm{d}x=\mathrm{d}u
+\]
+
+The limits also change:
+\[
+x=1 \Rightarrow u=2,\qquad x=3 \Rightarrow u=4
+\]
+
+So
+\begin{align*}
+I&=\int_2^4 \frac{(u-2)^2}{\sqrt{u}}\,\mathrm{d}u \\
+&=\int_2^4 (u-2)^2u^{-1/2}\,\mathrm{d}u \\
+&=\int_2^4 (u^2-4u+4)u^{-1/2}\,\mathrm{d}u \\
+&=\int_2^4 \left(u^{3/2}-4u^{1/2}+4u^{-1/2}\right)\,\mathrm{d}u
+\end{align*}
+
+Integrating term by term,
+\begin{align*}
+I&=\left[\frac{2}{5}u^{5/2}-4\cdot\frac{2}{3}u^{3/2}+4\cdot 2u^{1/2}\right]_2^4 \\
+&=\left[\frac{2}{5}u^{5/2}-\frac{8}{3}u^{3/2}+8u^{1/2}\right]_2^4
+\end{align*}
+
+Now evaluate at the limits.
+
+When $u=4$,
+\[
+4^{1/2}=2,\qquad 4^{3/2}=8,\qquad 4^{5/2}=32
+\]
+so
+\[
+\frac{2}{5}(32)-\frac{8}{3}(8)+8(2)=\frac{64}{5}-\frac{64}{3}+16
+\]
+
+When $u=2$,
+\[
+2^{1/2}=\sqrt{2},\qquad 2^{3/2}=2\sqrt{2},\qquad 2^{5/2}=4\sqrt{2}
+\]
+so
+\[
+\frac{2}{5}(4\sqrt{2})-\frac{8}{3}(2\sqrt{2})+8\sqrt{2}
+=\frac{8\sqrt{2}}{5}-\frac{16\sqrt{2}}{3}+8\sqrt{2}
+\]
+
+Hence
+\begin{align*}
+I&=\left(\frac{64}{5}-\frac{64}{3}+16\right)-\left(\frac{8\sqrt{2}}{5}-\frac{16\sqrt{2}}{3}+8\sqrt{2}\right) \\
+&=\frac{192-320+240}{15}-\frac{24\sqrt{2}-80\sqrt{2}+120\sqrt{2}}{15} \\
+&=\frac{112}{15}-\frac{64\sqrt{2}}{15} \\
+&=\frac{16}{15}(7-4\sqrt{2})
+\end{align*}
+
+Therefore
+\[
+\int_1^3 \frac{(x-1)^2}{\sqrt{x+1}}\,\mathrm{d}x=\frac{16}{15}(7-4\sqrt{2})
+\]
+
+as required.
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 15 ----
+\questionitem
+
+Use an appropriate substitution to find the exact value of
+\[
+\int_0^{2\sqrt{2}} \frac{x^2}{\sqrt{16-x^2}}\,\mathrm{d}x
+\]
+Give your answer in the form $a+b\pi$, where $a$ and $b$ are rational numbers. \marks{9} \\
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Use the substitution
+\[
+x=4\sin\theta
+\]
+
+Then
+\[
+\frac{\mathrm{d}x}{\mathrm{d}\theta}=4\cos\theta
+\qquad\Rightarrow\qquad
+\mathrm{d}x=4\cos\theta\,\mathrm{d}\theta
+\]
+
+Also,
+\begin{align*}
+\sqrt{16-x^2}
+&=\sqrt{16-16\sin^2\theta} \\
+&=\sqrt{16(1-\sin^2\theta)} \\
+&=\sqrt{16\cos^2\theta} \\
+&=4\cos\theta
+\end{align*}
+
+Since the limits will give $0\le \theta \le \frac{\pi}{4}$, we have $\cos\theta \ge 0$, so this square root is indeed $4\cos\theta$.
+
+Now change the limits.
+
+When $x=0$,
+\[
+0=4\sin\theta \qquad\Rightarrow\qquad \sin\theta=0 \qquad\Rightarrow\qquad \theta=0
+\]
+
+When $x=2\sqrt{2}$,
+\[
+2\sqrt{2}=4\sin\theta
+\qquad\Rightarrow\qquad
+\sin\theta=\frac{\sqrt{2}}{2}
+\qquad\Rightarrow\qquad
+\theta=\frac{\pi}{4}
+\]
+
+So the integral becomes
+\begin{align*}
+\int_0^{2\sqrt{2}} \frac{x^2}{\sqrt{16-x^2}}\,\mathrm{d}x
+&=\int_0^{\pi/4} \frac{(4\sin\theta)^2}{4\cos\theta}\cdot 4\cos\theta\,\mathrm{d}\theta \\
+&=\int_0^{\pi/4} \frac{16\sin^2\theta}{4\cos\theta}\cdot 4\cos\theta\,\mathrm{d}\theta \\
+&=16\int_0^{\pi/4}\sin^2\theta\,\mathrm{d}\theta
+\end{align*}
+
+Use the identity
+\[
+\sin^2\theta=\frac{1-\cos2\theta}{2}
+\]
+
+Then
+\begin{align*}
+16\int_0^{\pi/4}\sin^2\theta\,\mathrm{d}\theta
+&=16\int_0^{\pi/4}\frac{1-\cos2\theta}{2}\,\mathrm{d}\theta \\
+&=8\int_0^{\pi/4}(1-\cos2\theta)\,\mathrm{d}\theta \\
+&=8\left[\theta-\frac{1}{2}\sin2\theta\right]_0^{\pi/4}
+\end{align*}
+
+Now substitute the limits:
+\begin{align*}
+8\left[\theta-\frac{1}{2}\sin2\theta\right]_0^{\pi/4}
+&=8\left(\frac{\pi}{4}-\frac{1}{2}\sin\frac{\pi}{2}\right)-8\left(0-\frac{1}{2}\sin0\right) \\
+&=8\left(\frac{\pi}{4}-\frac{1}{2}\right) \\
+&=2\pi-4
+\end{align*}
+
+Hence the exact value of the integral is
+\[
+2\pi-4
+\]
+
+So in the form $a+b\pi$,
+\[
+a=-4,\qquad b=2
+\]
+\end{tcolorbox}
+
+
+\end{enumerate}
+\end{document}

@@ -1,0 +1,282 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{Vector Product}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+
+% ---- Question 1 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item The vectors
+  \[
+  \mathbf{p}=\begin{pmatrix}1\\3\\2\end{pmatrix}
+  \quad\text{and}\quad
+  \mathbf{q}=\begin{pmatrix}2\\m\\-1\end{pmatrix}
+  \]
+  span a plane with normal vector
+  \[
+  \mathbf{n}=\begin{pmatrix}1\\-1\\1\end{pmatrix}
+  \]
+  Given that $\mathbf{q}\times\mathbf{p}$ is in the same direction as $\mathbf{n}$, find $m$ and the positive constant $\lambda$ such that
+  \[
+  \mathbf{q}\times\mathbf{p}=\lambda\mathbf{n}
+  \]
+  \marks[-20pt]{3}
+  \item Using $\mathbf{q}\times\mathbf{p}$, determine the acute angle between $\mathbf{p}$ and $\mathbf{q}$. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+You are given the fixed points $A(1,0,1)$ and $C(4,0,2)$, and the variable point $B(t,2,5-t)$, where $t$ is a real parameter. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Using only the geometrical properties of the vector product, explain why the statement ``$\overrightarrow{AB} \times \overrightarrow{AC} = 0$" is false for all values of $t$. \marks{2} \\
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Use the vector product to find an expression, in terms of $t$, for the area of triangle $ABC$. \marks{4}
+    \item Hence determine the value of $t$ for which the area of triangle $ABC$ is a minimum. \marks{2} \\
+  \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+With respect to a fixed origin $O$, the points $A$ and $B$ have coordinates $(1, 1, 0)$ and $(p, 3, 2)$ respectively, where $p$ is a constant. \\
+
+For each of the following, determine the possible values of $p$ for which \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item $\overrightarrow{AB}$ makes an angle of $60^\circ$ with the positive $y$-axis. \marks{3} \\
+  \item $\overrightarrow{OA} \times \overrightarrow{AB}$ is parallel to
+  \[
+  \begin{pmatrix}2\\-2\\1\end{pmatrix}
+  \]
+  \marks[-20pt]{3}
+  \item the area of triangle $OAB$ is $\tfrac{3}{2}$. \marks{3} \\
+\end{enumerate}
+
+
+\newpage
+
+
+% ---- Question 4 ----
+\questionitem
+
+Points $P$, $Q$ and $R$ have position vectors $\mathbf{p}$, $\mathbf{q}$ and $\mathbf{r}$ respectively, relative to origin $O$. \\
+
+It is given that $(\mathbf{q}-\mathbf{p}) \times (\mathbf{r}-\mathbf{q}) = 2\mathbf{p}$ and that $\lvert \mathbf{p} \rvert = 5$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Determine each of the following as either a single vector or a scalar quantity.
+  \begin{enumerate}[label=(\roman*)]
+    \item $(\mathbf{r}-\mathbf{q}) \times (\mathbf{q}-\mathbf{p})$ \marks{1}
+    \item $\mathbf{p} \times \big((\mathbf{q}-\mathbf{p}) \times (\mathbf{r}-\mathbf{q})\big)$ \marks{2}
+    \item $\mathbf{p} \cdot \big((\mathbf{q}-\mathbf{p}) \times (\mathbf{r}-\mathbf{q})\big)$ \marks{2} \\
+  \end{enumerate}
+  \item Describe a geometrical relationship between the points $O$, $P$, $Q$ and $R$ which can be deduced from
+  \begin{enumerate}[label=(\roman*)]
+    \item the statement $(\mathbf{q}-\mathbf{p}) \times (\mathbf{r}-\mathbf{q}) = 2\mathbf{p}$ \marks{1}
+    \item the result of part (a)(iii) \marks{1} \\
+  \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+
+% ---- Question 5 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let
+  \[
+  \mathbf{p}=\begin{pmatrix}1\\1\\2\end{pmatrix}
+  \quad\text{and}\quad
+  \mathbf{q}=\begin{pmatrix}x\\0\\1\end{pmatrix}
+  \]
+  The area of the parallelogram formed by $\mathbf{p}$ and $\mathbf{q}$ is $\sqrt{2}$.\\
+  It is also given that $\mathbf{p}\times\mathbf{q}$ is perpendicular to
+  \[
+  \begin{pmatrix}1\\3\\m\end{pmatrix}
+  \]
+  Find $x$ and $m$. \marks{4} \\
+  \item Hence, using $|\mathbf{p}\times\mathbf{q}|$, determine the acute angle between $\mathbf{p}$ and $\mathbf{q}$. \marks{3} \\
+\end{enumerate}
+\newpage
+
+
+% ---- Question 6 ----
+\questionitem
+
+The point $P$ has coordinates $P(2,-1,1)$. The vector $\overrightarrow{PQ}=(1,2,0)$ and the midpoint of $PR$ is $M(1,0,2)$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use a vector product to show that the area of triangle $PQR$ is $\sqrt{14}$. \marks{4} \\
+  \item Find a vector equation of the plane containing $P$, $Q$ and $R$ in the form $\mathbf{r} \cdot \mathbf{n} = k$. \marks{1} \\
+  \item Hence find the exact distance of the plane from the origin. \marks{1} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+The points $P$, $Q$ and $R$ have position vectors $\mathbf{p}=2\mathbf{i}-2\mathbf{k}$, $\mathbf{q}=3\mathbf{j}+3\mathbf{k}$ and $\mathbf{r}=t\mathbf{i}-\mathbf{j}+\mathbf{k}$ respectively, relative to the origin $O$. \\
+
+Determine the value(s) of $t$ in each of the following cases. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item The line $OR$ is parallel to a normal to the plane $OPQ$. \marks{2} \\
+  \item The volume of tetrahedron $OPQR$ is $9$. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+The points $A$, $B$ and $C$ lie on the plane $\Pi$. \\
+
+The position vectors of $A$ and $B$ are $\mathbf{a}=2\mathbf{i}-\mathbf{j}+3\mathbf{k}$ and $\mathbf{b}=5\mathbf{i}+\mathbf{j}$ respectively. \\
+
+The centroid $G$ of triangle $ABC$ has position vector $4\mathbf{i}+\mathbf{j}+2\mathbf{k}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find $\overrightarrow{AB} \times \overrightarrow{AC}$. \marks{4} \\
+  \item Find an equation for $\Pi$ in the form $\mathbf{r} \cdot \mathbf{n} = p$. \marks{2} \\
+\end{enumerate}
+The point $D$ has position vector $\mathbf{i}+5\mathbf{j}+4\mathbf{k}$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Determine the volume of the tetrahedron $ABCD$. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+With respect to a fixed origin $O$ the point $A$ has coordinates $(9,10,-1)$ and the line $\ell$ is the intersection of the planes $x-z=-2$ and $x+2y=5$. \\
+
+The points $B$ and $C$ lie on $\ell$ such that $AB=AC=15$. \\
+
+Given that $A$ does not lie on $\ell$ and that the $z$ coordinate of $B$ is negative \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item determine the coordinates of $B$ and the coordinates of $C$. \marks{4} \\
+  \item Hence determine a Cartesian equation of the plane containing the points $A$, $B$ and $C$. \marks{3} \\
+\end{enumerate}
+The point $D$ has coordinates $(8,4,\alpha)$, where $\alpha$ is a constant. \\
+
+Given that the volume of the tetrahedron $ABCD$ is $156$ \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item determine the possible values of $\alpha$. \marks{4} \\
+\end{enumerate}
+Given that $\alpha>0$ \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item determine the shortest distance between the line $\ell$ and the line passing through the points $A$ and $D$, giving your answer to $2$ significant figures. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+The lines $L_1$, $L_2$ and $L_3$ are given by
+\begin{align*}
+L_1: &\quad \mathbf{r}=\begin{pmatrix}8\\3\\1\end{pmatrix}+\lambda\begin{pmatrix}3\\2\\-1\end{pmatrix}\\[6pt]
+L_2: &\quad x=9-4\mu,\ y=-2+3\mu,\ z=-1+3\mu\\[6pt]
+L_3: &\quad \dfrac{x-3}{1}=\dfrac{y+6}{-5}=\dfrac{z-1}{-2}
+\end{align*}
+The pairwise intersections of these lines are the vertices of a triangle. \\
+
+Find the area of this triangle. \marks{9}
+
+
+\end{enumerate}
+\end{document}

@@ -1,0 +1,1457 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{\textit{Solutions} - Vectors - Reflections in Planes}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+The line $\ell_1$ is the intersection of the planes
+\[
+x+y+z=1
+\] \\
+and
+\[
+2x-y+z=4
+\] \\
+The plane $\Pi$ has equation
+\[
+x+y+2z=3
+\] \\
+The line $\ell_2$ is the reflection of the line $\ell_1$ in the plane $\Pi$. \\
+
+Find a vector equation of the line $\ell_2$. \marks{7}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Write the reflecting plane in the form
+\[
+\Pi:\ \mathbf r\cdot \mathbf n=d
+\]
+so here
+\[
+\mathbf n=\begin{pmatrix}1\\1\\2\end{pmatrix},
+\qquad d=3
+\]
+
+To find the reflection of the line \(\ell_1\), we use the reflection formulae for a point and a direction vector in a plane.
+
+First find a direction vector for \(\ell_1\). Since \(\ell_1\) is the intersection of the planes
+\[
+x+y+z=1
+\qquad\text{and}\qquad
+2x-y+z=4
+\]
+their normal vectors are
+\[
+\mathbf n_1=\begin{pmatrix}1\\1\\1\end{pmatrix},
+\qquad
+\mathbf n_2=\begin{pmatrix}2\\-1\\1\end{pmatrix}
+\]
+
+So a direction vector of \(\ell_1\) is
+\begin{align*}
+\mathbf d_1&=\mathbf n_1\times \mathbf n_2\\
+&=
+\begin{vmatrix}
+\mathbf i&\mathbf j&\mathbf k\\
+1&1&1\\
+2&-1&1
+\end{vmatrix}\\
+&=2\mathbf i+\mathbf j-3\mathbf k\\
+&=\begin{pmatrix}2\\1\\-3\end{pmatrix}
+\end{align*}
+
+Now find a convenient point on \(\ell_1\). The best choice is the point where \(\ell_1\) meets \(\Pi\), since a point on the mirror plane is unchanged by reflection.
+
+So solve
+\begin{align*}
+x+y+z&=1\\
+2x-y+z&=4\\
+x+y+2z&=3
+\end{align*}
+
+Subtracting the first equation from the third gives
+\begin{align*}
+z&=2
+\end{align*}
+
+Substituting \(z=2\) into the first two equations:
+\begin{align*}
+x+y+2&=1\\
+2x-y+2&=4
+\end{align*}
+so
+\begin{align*}
+x+y&=-1\\
+2x-y&=2
+\end{align*}
+
+Adding these equations:
+\begin{align*}
+3x&=1\\
+x&=\frac13
+\end{align*}
+
+Then
+\begin{align*}
+y&=-1-\frac13=-\frac43
+\end{align*}
+
+Hence the point is
+\[
+\mathbf q=\begin{pmatrix}\frac13\\-\frac43\\2\end{pmatrix}
+\]
+
+Using the point reflection formula
+\[
+\mathbf q'
+=
+\mathbf q
+-2\,\frac{\mathbf q\cdot\mathbf n-d}{\mathbf n\cdot\mathbf n}\,\mathbf n
+\]
+we note that \(\mathbf q\) lies on \(\Pi\), so \(\mathbf q\cdot \mathbf n=d\). Therefore
+\[
+\mathbf q'=\mathbf q
+\]
+
+So the reflected line \(\ell_2\) passes through the same point
+\[
+\begin{pmatrix}\frac13\\-\frac43\\2\end{pmatrix}
+\]
+
+Now reflect the direction vector using
+\[
+\mathbf d_2
+=
+\mathbf d_1
+-2\,\frac{\mathbf d_1\cdot\mathbf n}{\mathbf n\cdot\mathbf n}\,\mathbf n
+\]
+
+Compute the dot products:
+\begin{align*}
+\mathbf d_1\cdot \mathbf n&=
+\begin{pmatrix}2\\1\\-3\end{pmatrix}\cdot
+\begin{pmatrix}1\\1\\2\end{pmatrix}
+=2+1-6=-3\\
+\mathbf n\cdot \mathbf n&=
+\begin{pmatrix}1\\1\\2\end{pmatrix}\cdot
+\begin{pmatrix}1\\1\\2\end{pmatrix}
+=1+1+4=6
+\end{align*}
+
+Hence
+\begin{align*}
+\mathbf d_2
+&=
+\begin{pmatrix}2\\1\\-3\end{pmatrix}
+-2\left(\frac{-3}{6}\right)
+\begin{pmatrix}1\\1\\2\end{pmatrix}\\
+&=
+\begin{pmatrix}2\\1\\-3\end{pmatrix}
++\begin{pmatrix}1\\1\\2\end{pmatrix}\\
+&=
+\begin{pmatrix}3\\2\\-1\end{pmatrix}
+\end{align*}
+
+Therefore a vector equation of the reflected line \(\ell_2\) is
+\[
+\mathbf r=
+\begin{pmatrix}\frac13\\-\frac43\\2\end{pmatrix}
++t\begin{pmatrix}3\\2\\-1\end{pmatrix},
+\qquad t\in\mathbb{R}
+\]
+
+This is a valid vector equation of the line \(\ell_2\).
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+The plane $\Pi$ has vector equation
+\[
+\mathbf{r}=\begin{pmatrix}1\\2\\-1\end{pmatrix}+s\begin{pmatrix}2\\-1\\1\end{pmatrix}+t\begin{pmatrix}1\\1\\0\end{pmatrix}
+\] \\
+The line $\ell_1$ passes through the point $P(4,1,2)$ and is perpendicular to $\Pi$. \\
+The line $\ell_1$ meets $\Pi$ at the point $Q$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the coordinates of $Q$. \marks{4} \\
+\end{enumerate}
+Given that the point $R(3,1,0)$ lies on $\Pi$, \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item find a Cartesian equation of the plane containing $P$, $Q$ and $R$. \marks{4} \\
+\end{enumerate}
+The line $\ell_2$ passes through $P$ and $R$. \\
+The line $\ell_3$ is the reflection of $\ell_2$ in $\Pi$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find a vector equation of $\ell_3$. \marks{4} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item The plane \(\Pi\) has direction vectors
+\[
+\begin{pmatrix}2\\-1\\1\end{pmatrix}
+\quad \text{and} \quad
+\begin{pmatrix}1\\1\\0\end{pmatrix}
+\]
+
+So a normal vector to \(\Pi\) is
+\begin{align*}
+\mathbf n
+&=
+\begin{pmatrix}2\\-1\\1\end{pmatrix}
+\times
+\begin{pmatrix}1\\1\\0\end{pmatrix}\\
+&=
+\begin{pmatrix}
+(-1)(0)-1(1)\\
+1(1)-2(0)\\
+2(1)-(-1)(1)
+\end{pmatrix}\\
+&=
+\begin{pmatrix}-1\\1\\3\end{pmatrix}
+\end{align*}
+
+Using the point \(\begin{pmatrix}1\\2\\-1\end{pmatrix}\) on \(\Pi\),
+\begin{align*}
+d
+&=
+\begin{pmatrix}1\\2\\-1\end{pmatrix}\cdot
+\begin{pmatrix}-1\\1\\3\end{pmatrix}\\
+&=-1+2-3\\
+&=-2
+\end{align*}
+
+Hence \(\Pi\) is
+\[
+\mathbf r\cdot \begin{pmatrix}-1\\1\\3\end{pmatrix}=-2
+\]
+so in Cartesian form,
+\[
+-x+y+3z+2=0
+\]
+
+Since \(\ell_1\) is perpendicular to \(\Pi\), it has direction vector \(\mathbf n\). Therefore
+\[
+\ell_1:\ \mathbf r=
+\begin{pmatrix}4\\1\\2\end{pmatrix}
++\lambda
+\begin{pmatrix}-1\\1\\3\end{pmatrix}
+\]
+
+Using the line--plane formula
+\[
+\lambda_*=\frac{d-\mathbf a\cdot\mathbf n}{\mathbf b\cdot\mathbf n}
+\]
+with \(\mathbf a=\begin{pmatrix}4\\1\\2\end{pmatrix}\), \(\mathbf b=\begin{pmatrix}-1\\1\\3\end{pmatrix}\), \(d=-2\),
+\begin{align*}
+\lambda
+&=
+\frac{-2-\begin{pmatrix}4\\1\\2\end{pmatrix}\cdot\begin{pmatrix}-1\\1\\3\end{pmatrix}}
+{\begin{pmatrix}-1\\1\\3\end{pmatrix}\cdot\begin{pmatrix}-1\\1\\3\end{pmatrix}}\\
+&=
+\frac{-2-(-4+1+6)}{1+1+9}\\
+&=
+\frac{-2-3}{11}\\
+&=
+-\frac{5}{11}
+\end{align*}
+
+So
+\begin{align*}
+Q
+&=
+\begin{pmatrix}4\\1\\2\end{pmatrix}
+-\frac{5}{11}
+\begin{pmatrix}-1\\1\\3\end{pmatrix}\\
+&=
+\begin{pmatrix}
+4+\frac{5}{11}\\[2pt]
+1-\frac{5}{11}\\[2pt]
+2-\frac{15}{11}
+\end{pmatrix}\\
+&=
+\begin{pmatrix}
+\frac{49}{11}\\[2pt]
+\frac{6}{11}\\[2pt]
+\frac{7}{11}
+\end{pmatrix}
+\end{align*}
+
+Hence
+\[
+Q\left(\frac{49}{11},\frac{6}{11},\frac{7}{11}\right)
+\]
+
+  \item A plane containing \(P,Q,R\) contains the vectors \(\overrightarrow{PQ}\) and \(\overrightarrow{QR}\).
+
+First,
+\begin{align*}
+\overrightarrow{PQ}
+&=
+\begin{pmatrix}\frac{49}{11}\\[2pt]\frac{6}{11}\\[2pt]\frac{7}{11}\end{pmatrix}
+-
+\begin{pmatrix}4\\1\\2\end{pmatrix}\\
+&=
+\begin{pmatrix}
+\frac{5}{11}\\[2pt]
+-\frac{5}{11}\\[2pt]
+-\frac{15}{11}
+\end{pmatrix}
+=
+\frac{5}{11}
+\begin{pmatrix}
+1\\-1\\-3
+\end{pmatrix}
+\end{align*}
+
+Also,
+\begin{align*}
+\overrightarrow{QR}
+&=
+\begin{pmatrix}3\\1\\0\end{pmatrix}
+-
+\begin{pmatrix}\frac{49}{11}\\[2pt]\frac{6}{11}\\[2pt]\frac{7}{11}\end{pmatrix}\\
+&=
+\begin{pmatrix}
+-\frac{16}{11}\\[2pt]
+\frac{5}{11}\\[2pt]
+-\frac{7}{11}
+\end{pmatrix}
+=
+\frac{1}{11}
+\begin{pmatrix}
+-16\\5\\-7
+\end{pmatrix}
+\end{align*}
+
+So a normal vector to the plane \(PQR\) is
+\begin{align*}
+\mathbf n_1
+&=
+\begin{pmatrix}1\\-1\\-3\end{pmatrix}
+\times
+\begin{pmatrix}-16\\5\\-7\end{pmatrix}\\
+&=
+\begin{pmatrix}
+(-1)(-7)-(-3)(5)\\
+(-3)(-16)-1(-7)\\
+1(5)-(-1)(-16)
+\end{pmatrix}\\
+&=
+\begin{pmatrix}
+22\\55\\-11
+\end{pmatrix}\\
+&=
+11\begin{pmatrix}2\\5\\-1\end{pmatrix}
+\end{align*}
+
+Hence we may take the normal vector as
+\[
+\begin{pmatrix}2\\5\\-1\end{pmatrix}
+\]
+
+Using the point \(P(4,1,2)\), the plane equation is
+\[
+\begin{pmatrix}2\\5\\-1\end{pmatrix}\cdot
+\left(
+\begin{pmatrix}x\\y\\z\end{pmatrix}
+-
+\begin{pmatrix}4\\1\\2\end{pmatrix}
+\right)=0
+\]
+
+So
+\begin{align*}
+2(x-4)+5(y-1)-(z-2)&=0\\
+2x-8+5y-5-z+2&=0\\
+2x+5y-z-11&=0
+\end{align*}
+
+Therefore a Cartesian equation of the plane containing \(P,Q,R\) is
+\[
+2x+5y-z-11=0
+\]
+
+  \item The line \(\ell_2\) passes through \(R(3,1,0)\) and \(P(4,1,2)\), so
+\[
+\ell_2:\ \mathbf r=
+\begin{pmatrix}3\\1\\0\end{pmatrix}
++\mu
+\begin{pmatrix}1\\0\\2\end{pmatrix}
+\]
+
+Write \(\Pi\) in the form \(\mathbf r\cdot\mathbf n=d\), where
+\[
+\mathbf n=\begin{pmatrix}-1\\1\\3\end{pmatrix},
+\qquad
+d=-2
+\]
+
+Since \(R\) lies on \(\Pi\), it is unchanged by reflection. Indeed,
+\[
+\begin{pmatrix}3\\1\\0\end{pmatrix}\cdot
+\begin{pmatrix}-1\\1\\3\end{pmatrix}
+=-3+1+0=-2=d
+\]
+
+So to find \(\ell_3\), we reflect the direction vector
+\[
+\mathbf b=\begin{pmatrix}1\\0\\2\end{pmatrix}
+\]
+
+Using the reflection formula for a direction vector,
+\[
+\mathbf b'
+=\mathbf b-2\,\frac{\mathbf b\cdot\mathbf n}{\mathbf n\cdot\mathbf n}\,\mathbf n
+\]
+
+Now
+\begin{align*}
+\mathbf b\cdot\mathbf n
+&=
+\begin{pmatrix}1\\0\\2\end{pmatrix}\cdot
+\begin{pmatrix}-1\\1\\3\end{pmatrix}\\
+&=-1+0+6\\
+&=5
+\end{align*}
+
+and
+\begin{align*}
+\mathbf n\cdot\mathbf n
+&=
+\begin{pmatrix}-1\\1\\3\end{pmatrix}\cdot
+\begin{pmatrix}-1\\1\\3\end{pmatrix}\\
+&=1+1+9\\
+&=11
+\end{align*}
+
+Therefore
+\begin{align*}
+\mathbf b'
+&=
+\begin{pmatrix}1\\0\\2\end{pmatrix}
+-2\cdot \frac{5}{11}
+\begin{pmatrix}-1\\1\\3\end{pmatrix}\\
+&=
+\begin{pmatrix}1\\0\\2\end{pmatrix}
+-\begin{pmatrix}-\frac{10}{11}\\[2pt]\frac{10}{11}\\[2pt]\frac{30}{11}\end{pmatrix}\\
+&=
+\begin{pmatrix}
+\frac{21}{11}\\[2pt]
+-\frac{10}{11}\\[2pt]
+-\frac{8}{11}
+\end{pmatrix}
+\end{align*}
+
+This is parallel to \(\begin{pmatrix}21\\-10\\-8\end{pmatrix}\). Hence
+\[
+\ell_3:\ \mathbf r=
+\begin{pmatrix}3\\1\\0\end{pmatrix}
++\mu
+\begin{pmatrix}21\\-10\\-8\end{pmatrix}
+\]
+
+So a vector equation of \(\ell_3\) is
+\[
+\mathbf r=
+\begin{pmatrix}3\\1\\0\end{pmatrix}
++\mu
+\begin{pmatrix}21\\-10\\-8\end{pmatrix}
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+A plane passes through the points $C(1,-1,2)$, $D(3,0,1)$ and $E(2,2,2)$. \\
+
+The point $A$ has coordinates $(4,-2,7)$ and the point $B$ is the reflection of $A$ in the plane. \\
+
+Find the coordinates of the point $B$. \marks{7}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let the plane be \(\Pi\).
+
+Two direction vectors in the plane are
+\[
+\overrightarrow{CD}=(3-1,\;0-(-1),\;1-2)=(2,1,-1)
+\]
+and
+\[
+\overrightarrow{CE}=(2-1,\;2-(-1),\;2-2)=(1,3,0)
+\]
+
+So a normal vector to the plane is
+\begin{align*}
+\mathbf n
+&=\overrightarrow{CD}\times\overrightarrow{CE}\\
+&=
+\begin{vmatrix}
+\mathbf i & \mathbf j & \mathbf k\\
+2 & 1 & -1\\
+1 & 3 & 0
+\end{vmatrix}\\
+&=\mathbf i(1\cdot 0-(-1)\cdot 3)-\mathbf j(2\cdot 0-(-1)\cdot 1)+\mathbf k(2\cdot 3-1\cdot 1)\\
+&=3\mathbf i-\mathbf j+5\mathbf k\\
+&=(3,-1,5)
+\end{align*}
+
+Using the form \(\mathbf r\cdot\mathbf n=d\), we find \(d\) from point \(C(1,-1,2)\):
+\begin{align*}
+d&=(1,-1,2)\cdot(3,-1,5)\\
+&=1\cdot 3+(-1)\cdot(-1)+2\cdot 5\\
+&=3+1+10\\
+&=14
+\end{align*}
+
+Hence the plane is
+\[
+\mathbf r\cdot(3,-1,5)=14
+\]
+so in Cartesian form,
+\[
+3x-y+5z-14=0
+\]
+
+Now use the reflection formula for a point in a plane:
+\[
+\mathbf p'
+=\mathbf p
+-2\,\frac{\mathbf p\cdot\mathbf n-d}{\mathbf n\cdot\mathbf n}\,\mathbf n
+\]
+
+Here
+\[
+\mathbf p=(4,-2,7),\qquad \mathbf n=(3,-1,5),\qquad d=14
+\]
+
+First calculate \(\mathbf p\cdot\mathbf n-d\):
+\begin{align*}
+\mathbf p\cdot\mathbf n-d
+&=(4,-2,7)\cdot(3,-1,5)-14\\
+&=4\cdot 3+(-2)\cdot(-1)+7\cdot 5-14\\
+&=12+2+35-14\\
+&=35
+\end{align*}
+
+Also,
+\[
+\mathbf n\cdot\mathbf n=3^2+(-1)^2+5^2=9+1+25=35
+\]
+
+Substituting into the reflection formula:
+\begin{align*}
+\mathbf p'
+&=(4,-2,7)-2\left(\frac{35}{35}\right)(3,-1,5)\\
+&=(4,-2,7)-2(3,-1,5)\\
+&=(4,-2,7)-(6,-2,10)\\
+&=(-2,0,-3)
+\end{align*}
+
+Therefore the coordinates of \(B\) are
+\[
+B=(-2,0,-3)
+\]
+
+As a quick check, the closest point on the plane to \(A\) is
+\[
+\mathbf p-\frac{\mathbf p\cdot\mathbf n-d}{\mathbf n\cdot\mathbf n}\mathbf n
+=(4,-2,7)-\frac{35}{35}(3,-1,5)
+=(1,-1,2)=C
+\]
+so \(C\) is the midpoint of \(AB\), which confirms the result.
+
+Final answer: \(B=(-2,0,-3)\).
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+A line $\ell$ has equation
+\[
+\mathbf{r}=\begin{pmatrix}4\\2\\-3\end{pmatrix}+\lambda\begin{pmatrix}2\\-1\\1\end{pmatrix}
+\] \\
+Another line $m$ has equation
+\[
+\mathbf{r}=\begin{pmatrix}1\\1\\2\end{pmatrix}+\mu\begin{pmatrix}2\\1\\0\end{pmatrix}
+\] \\
+A plane $\Pi$ contains $m$ and is parallel to $\ell$. \\
+\begin{enumerate}[label=\textbf{(\roman*)}]
+  \item Find an equation of $\Pi$, giving your answer in the form $\mathbf{r}\cdot\mathbf{n}=p$. \marks{4} \\
+  \item Find the distance between $\ell$ and $\Pi$. \marks{4} \\
+  \item Find an equation of the line which is the reflection of $\ell$ in $\Pi$, giving your answer in the form $\mathbf{r}=\mathbf{a}+t\mathbf{b}$. \marks{4} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\roman*)}]
+  \item Let the direction vector of line \(\ell\) be
+\[
+\mathbf b=\begin{pmatrix}2\\-1\\1\end{pmatrix}
+\]
+and the direction vector of line \(m\) be
+\[
+\mathbf d=\begin{pmatrix}2\\1\\0\end{pmatrix}
+\]
+
+Since \(\Pi\) contains \(m\) and is parallel to \(\ell\), both \(\mathbf d\) and \(\mathbf b\) lie in the plane, so a normal vector is
+\begin{align*}
+\mathbf n&=\mathbf d\times \mathbf b \\
+&=\begin{pmatrix}2\\1\\0\end{pmatrix}\times \begin{pmatrix}2\\-1\\1\end{pmatrix} \\
+&=\begin{pmatrix}
+1\cdot 1-0\cdot (-1)\\
+-\left(2\cdot 1-0\cdot 2\right)\\
+2\cdot (-1)-1\cdot 2
+\end{pmatrix} \\
+&=\begin{pmatrix}1\\-2\\-4\end{pmatrix}
+\end{align*}
+
+A point on \(m\) is \(\begin{pmatrix}1\\1\\2\end{pmatrix}\), so for the plane equation \(\mathbf r\cdot \mathbf n=p\),
+\begin{align*}
+p&=\begin{pmatrix}1\\-2\\-4\end{pmatrix}\cdot \begin{pmatrix}1\\1\\2\end{pmatrix} \\
+&=1-2-8 \\
+&=-9
+\end{align*}
+
+Hence the plane is
+\[
+\mathbf r\cdot \begin{pmatrix}1\\-2\\-4\end{pmatrix}=-9
+\]
+
+So an equation of \(\Pi\) is
+\[
+\mathbf r\cdot \begin{pmatrix}1\\-2\\-4\end{pmatrix}=-9
+\]
+
+  \item From the line--plane formula, if \(\mathbf b\cdot \mathbf n=0\), then the line is parallel to the plane.
+
+Here
+\begin{align*}
+\mathbf b\cdot \mathbf n&=\begin{pmatrix}2\\-1\\1\end{pmatrix}\cdot \begin{pmatrix}1\\-2\\-4\end{pmatrix} \\
+&=2+2-4 \\
+&=0
+\end{align*}
+
+So \(\ell\parallel \Pi\).
+
+Take the point \(P=(4,2,-3)\) on \(\ell\). Using the point-to-plane distance formula
+\[
+\mathrm{dist}=\frac{|\mathbf p\cdot \mathbf n-d|}{|\mathbf n|}
+\]
+with \(\mathbf p=\begin{pmatrix}4\\2\\-3\end{pmatrix}\), \(\mathbf n=\begin{pmatrix}1\\-2\\-4\end{pmatrix}\) and \(d=-9\),
+
+\begin{align*}
+\mathbf p\cdot \mathbf n&=\begin{pmatrix}4\\2\\-3\end{pmatrix}\cdot \begin{pmatrix}1\\-2\\-4\end{pmatrix} \\
+&=4-4+12 \\
+&=12
+\end{align*}
+
+Also,
+\begin{align*}
+|\mathbf n|&=\sqrt{1^2+(-2)^2+(-4)^2} \\
+&=\sqrt{1+4+16} \\
+&=\sqrt{21}
+\end{align*}
+
+Therefore
+\begin{align*}
+\mathrm{dist}&=\frac{|12-(-9)|}{\sqrt{21}} \\
+&=\frac{21}{\sqrt{21}} \\
+&=\sqrt{21}
+\end{align*}
+
+So the distance between \(\ell\) and \(\Pi\) is
+\[
+\sqrt{21}
+\]
+
+  \item Use the reflection formulae for a plane \(\Pi:\mathbf r\cdot \mathbf n=d\).
+
+For a point,
+\[
+\mathbf p'
+=\mathbf p
+-2\,\frac{\mathbf p\cdot\mathbf n-d}{\mathbf n\cdot\mathbf n}\,\mathbf n
+\]
+
+For a direction vector,
+\[
+\mathbf b'
+=\mathbf b
+-2\,\frac{\mathbf b\cdot\mathbf n}{\mathbf n\cdot\mathbf n}\,\mathbf n
+\]
+
+Here
+\[
+\mathbf n=\begin{pmatrix}1\\-2\\-4\end{pmatrix},\qquad d=-9
+\]
+
+First reflect the direction vector of \(\ell\):
+\begin{align*}
+\mathbf b\cdot \mathbf n&=0
+\end{align*}
+so
+\begin{align*}
+\mathbf b'
+&=\mathbf b-2\,\frac{0}{\mathbf n\cdot\mathbf n}\,\mathbf n \\
+&=\mathbf b \\
+&=\begin{pmatrix}2\\-1\\1\end{pmatrix}
+\end{align*}
+
+So the direction is unchanged.
+
+Now reflect the point \(P=(4,2,-3)\) on \(\ell\):
+\begin{align*}
+\mathbf n\cdot \mathbf n&=1^2+(-2)^2+(-4)^2=21 \\
+\mathbf p\cdot \mathbf n-d&=12-(-9)=21
+\end{align*}
+
+Hence
+\begin{align*}
+\mathbf p'
+&=\begin{pmatrix}4\\2\\-3\end{pmatrix}
+-2\left(\frac{21}{21}\right)\begin{pmatrix}1\\-2\\-4\end{pmatrix} \\
+&=\begin{pmatrix}4\\2\\-3\end{pmatrix}
+-2\begin{pmatrix}1\\-2\\-4\end{pmatrix} \\
+&=\begin{pmatrix}4\\2\\-3\end{pmatrix}
+-\begin{pmatrix}2\\-4\\-8\end{pmatrix} \\
+&=\begin{pmatrix}2\\6\\5\end{pmatrix}
+\end{align*}
+
+Therefore the reflected line is
+\[
+\mathbf r=\begin{pmatrix}2\\6\\5\end{pmatrix}+t\begin{pmatrix}2\\-1\\1\end{pmatrix}
+\]
+
+So an equation of the reflected line is
+\[
+\mathbf r=\begin{pmatrix}2\\6\\5\end{pmatrix}+t\begin{pmatrix}2\\-1\\1\end{pmatrix}
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+The line $\ell_1$ has vector equation
+\[
+\mathbf{r}=\begin{pmatrix}1\\4\\0\end{pmatrix}+\lambda\begin{pmatrix}2\\1\\1\end{pmatrix}
+\] \\
+The plane $\Pi_1$ passes through the point $(2,0,0)$ and has normal vector
+\[
+\begin{pmatrix}3\\-1\\2\end{pmatrix}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the point of intersection of $\ell_1$ and $\Pi_1$. \marks{2} \\
+\end{enumerate}
+The line $\ell_2$ is the reflection of the line $\ell_1$ in the plane $\Pi_1$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Show that a vector equation for the line $\ell_2$ is
+  \[
+  \mathbf{r}=\begin{pmatrix}4\\3\\2\end{pmatrix}+\mu\begin{pmatrix}-1\\2\\-1\end{pmatrix}
+  \]
+  where $\mu$ is a scalar parameter. \marks{5}\\
+\end{enumerate}
+The plane $\Pi_2$ contains the line $\ell_1$ and the line $\ell_2$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Determine a vector equation for the line of intersection of $\Pi_1$ and $\Pi_2$. \marks{2} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item The plane $\Pi_1$ passes through $(2,0,0)$ and has normal vector $\begin{pmatrix}3\\-1\\2\end{pmatrix}$, so its equation is
+\[
+\begin{pmatrix}3\\-1\\2\end{pmatrix}\cdot
+\left(
+\begin{pmatrix}x\\y\\z\end{pmatrix}
+-
+\begin{pmatrix}2\\0\\0\end{pmatrix}
+\right)=0
+\]
+Hence
+\[
+3(x-2)-y+2z=0
+\]
+so
+\[
+3x-y+2z=6
+\]
+
+A general point on $\ell_1$ is
+\[
+(x,y,z)=(1+2\lambda,\ 4+\lambda,\ \lambda)
+\]
+
+Substituting into the plane equation:
+\begin{align*}
+3(1+2\lambda)-(4+\lambda)+2\lambda&=6\\
+3+6\lambda-4-\lambda+2\lambda&=6\\
+7\lambda-1&=6\\
+7\lambda&=7\\
+\lambda&=1
+\end{align*}
+
+So the point of intersection is
+\[
+(1+2,\ 4+1,\ 1)=(3,5,1)
+\]
+
+Therefore $\ell_1$ meets $\Pi_1$ at $(3,5,1)$.
+
+  \item Let
+\[
+\mathbf a=\begin{pmatrix}1\\4\\0\end{pmatrix},
+\qquad
+\mathbf u=\begin{pmatrix}2\\1\\1\end{pmatrix},
+\qquad
+\mathbf n=\begin{pmatrix}3\\-1\\2\end{pmatrix}
+\]
+so that
+\[
+\ell_1:\ \mathbf r=\mathbf a+\lambda \mathbf u
+\]
+
+Since $\Pi_1$ passes through $(2,0,0)$,
+\[
+\Pi_1:\ \mathbf r\cdot \mathbf n=6
+\]
+because
+\[
+\begin{pmatrix}2\\0\\0\end{pmatrix}\cdot \begin{pmatrix}3\\-1\\2\end{pmatrix}=6
+\]
+
+Using the reflection formulae for a plane $\mathbf r\cdot \mathbf n=6$,
+
+\[
+\mathbf p'
+=
+\mathbf p
+-2\,\frac{\mathbf p\cdot\mathbf n-6}{\mathbf n\cdot\mathbf n}\,\mathbf n
+\]
+for a point, and
+\[
+\mathbf u'
+=
+\mathbf u
+-2\,\frac{\mathbf u\cdot\mathbf n}{\mathbf n\cdot\mathbf n}\,\mathbf n
+\]
+for a direction vector.
+
+First reflect the point $\mathbf a$.
+
+\begin{align*}
+\mathbf a\cdot\mathbf n
+&=
+\begin{pmatrix}1\\4\\0\end{pmatrix}\cdot
+\begin{pmatrix}3\\-1\\2\end{pmatrix}\\
+&=3-4+0\\
+&=-1
+\end{align*}
+
+Also,
+\[
+\mathbf n\cdot\mathbf n=3^2+(-1)^2+2^2=14
+\]
+
+So
+\begin{align*}
+\mathbf a'
+&=
+\mathbf a
+-2\,\frac{\mathbf a\cdot\mathbf n-6}{\mathbf n\cdot\mathbf n}\,\mathbf n\\
+&=
+\mathbf a
+-2\,\frac{-1-6}{14}\,\mathbf n\\
+&=
+\mathbf a
+-2\left(\frac{-7}{14}\right)\mathbf n\\
+&=
+\mathbf a+\mathbf n\\
+&=
+\begin{pmatrix}1\\4\\0\end{pmatrix}
++
+\begin{pmatrix}3\\-1\\2\end{pmatrix}\\
+&=
+\begin{pmatrix}4\\3\\2\end{pmatrix}
+\end{align*}
+
+Now reflect the direction vector $\mathbf u$.
+
+\begin{align*}
+\mathbf u\cdot\mathbf n
+&=
+\begin{pmatrix}2\\1\\1\end{pmatrix}\cdot
+\begin{pmatrix}3\\-1\\2\end{pmatrix}\\
+&=6-1+2\\
+&=7
+\end{align*}
+
+Hence
+\begin{align*}
+\mathbf u'
+&=
+\mathbf u
+-2\,\frac{\mathbf u\cdot\mathbf n}{\mathbf n\cdot\mathbf n}\,\mathbf n\\
+&=
+\mathbf u
+-2\,\frac{7}{14}\,\mathbf n\\
+&=
+\mathbf u-\mathbf n\\
+&=
+\begin{pmatrix}2\\1\\1\end{pmatrix}
+-
+\begin{pmatrix}3\\-1\\2\end{pmatrix}\\
+&=
+\begin{pmatrix}-1\\2\\-1\end{pmatrix}
+\end{align*}
+
+Therefore the reflected line $\ell_2$ has vector equation
+\[
+\mathbf r=
+\begin{pmatrix}4\\3\\2\end{pmatrix}
++
+\mu
+\begin{pmatrix}-1\\2\\-1\end{pmatrix}
+\]
+
+which is the required result.
+
+  \item From part (a), the point
+\[
+P=(3,5,1)
+\]
+lies on $\Pi_1$ and on $\ell_1$.
+
+Since $\ell_1\subset \Pi_2$, the point $P$ also lies on $\Pi_2$. So the line of intersection of $\Pi_1$ and $\Pi_2$ passes through $P$.
+
+A direction vector of $\ell_1$ is
+\[
+\mathbf u_1=\begin{pmatrix}2\\1\\1\end{pmatrix}
+\]
+and a direction vector of $\ell_2$ is
+\[
+\mathbf u_2=\begin{pmatrix}-1\\2\\-1\end{pmatrix}
+\]
+
+Because $\Pi_2$ contains both lines, it contains both direction vectors, so it also contains
+\[
+\mathbf u_1+\mathbf u_2
+=
+\begin{pmatrix}2\\1\\1\end{pmatrix}
++
+\begin{pmatrix}-1\\2\\-1\end{pmatrix}
+=
+\begin{pmatrix}1\\3\\0\end{pmatrix}
+\]
+
+To check that this is also parallel to $\Pi_1$, take the dot product with the normal to $\Pi_1$:
+\[
+\begin{pmatrix}1\\3\\0\end{pmatrix}\cdot
+\begin{pmatrix}3\\-1\\2\end{pmatrix}
+=3-3+0=0
+\]
+
+So $\begin{pmatrix}1\\3\\0\end{pmatrix}$ is a direction vector for the line $\Pi_1\cap\Pi_2$.
+
+Hence a vector equation for the line of intersection is
+\[
+\mathbf r=
+\begin{pmatrix}3\\5\\1\end{pmatrix}
++t\begin{pmatrix}1\\3\\0\end{pmatrix}
+\]
+where $t$ is a scalar parameter.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+The triangle $ABC$ lies in the plane $\Pi$. The vertices are
+\[
+A(1,0,0),\ B(2,2,1) \text{ and } C(1,1,c)
+\] \\
+where $c$ is a constant. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find, in terms of $c$, $\overrightarrow{BA}\times\overrightarrow{BC}$. \marks{3} \\
+\end{enumerate}
+Given that $\overrightarrow{BA}\times\overrightarrow{BC}=d\mathbf{i}+2\mathbf{j}-\mathbf{k}$, where $d$ is a constant, \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item find the value of $c$ and show that $d=-3$. \marks{2} \\
+  \item find an equation of $\Pi$ in the form $\mathbf{r}\cdot\mathbf{n}=p$, where $p$ is a constant. \marks{3} \\
+\end{enumerate}
+The point $S$ has position vector $3\mathbf{i}+\mathbf{j}+2\mathbf{k}$. The point $S'$ is the image of $S$ under reflection in $\Pi$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find the position vector of $S'$. \marks{5} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item First find the two side vectors from \(B\):
+\[
+\overrightarrow{BA}=\overrightarrow{OA}-\overrightarrow{OB}=(1,0,0)-(2,2,1)=(-1,-2,-1)
+\]
+\[
+\overrightarrow{BC}=\overrightarrow{OC}-\overrightarrow{OB}=(1,1,c)-(2,2,1)=(-1,-1,c-1)
+\]
+
+Now take the cross product:
+\begin{align*}
+\overrightarrow{BA}\times \overrightarrow{BC}
+&=
+\begin{vmatrix}
+\mathbf i & \mathbf j & \mathbf k\\
+-1 & -2 & -1\\
+-1 & -1 & c-1
+\end{vmatrix} \\
+&=\mathbf i\bigl((-2)(c-1)-(-1)(-1)\bigr)
+-\mathbf j\bigl((-1)(c-1)-(-1)(-1)\bigr)
++\mathbf k\bigl((-1)(-1)-(-2)(-1)\bigr) \\
+&=\mathbf i\bigl(-2c+2-1\bigr)
+-\mathbf j\bigl(-c+1-1\bigr)
++\mathbf k(1-2) \\
+&=(1-2c)\mathbf i+c\mathbf j-\mathbf k
+\end{align*}
+
+So,
+\[
+\overrightarrow{BA}\times \overrightarrow{BC}=(1-2c)\mathbf i+c\mathbf j-\mathbf k
+\]
+
+  \item We are given that
+\[
+\overrightarrow{BA}\times \overrightarrow{BC}=d\mathbf i+2\mathbf j-\mathbf k
+\]
+
+From part (a),
+\[
+\overrightarrow{BA}\times \overrightarrow{BC}=(1-2c)\mathbf i+c\mathbf j-\mathbf k
+\]
+
+Comparing coefficients of \(\mathbf j\),
+\[
+c=2
+\]
+
+Then comparing coefficients of \(\mathbf i\),
+\[
+d=1-2c=1-2(2)=1-4=-3
+\]
+
+Hence,
+\[
+c=2 \quad \text{and} \quad d=-3
+\]
+
+  \item A normal vector to the plane \(\Pi\) is
+\[
+\mathbf n=\overrightarrow{BA}\times \overrightarrow{BC}
+\]
+
+Using \(c=2\), part (a) gives
+\[
+\mathbf n=(1-2(2),2,-1)=(-3,2,-1)
+\]
+
+So we can take
+\[
+\mathbf n=-3\mathbf i+2\mathbf j-\mathbf k
+\]
+
+The plane has equation \(\mathbf r\cdot \mathbf n=p\). Since point \(A(1,0,0)\) lies on \(\Pi\),
+\begin{align*}
+p&=\overrightarrow{OA}\cdot \mathbf n \\
+&=(1,0,0)\cdot(-3,2,-1) \\
+&=-3
+\end{align*}
+
+Therefore the equation of \(\Pi\) is
+\[
+\mathbf r\cdot(-3\mathbf i+2\mathbf j-\mathbf k)=-3
+\]
+
+Equivalently, in Cartesian form,
+\[
+-3x+2y-z=-3
+\]
+
+  \item Let the position vector of \(S\) be
+\[
+\mathbf p=3\mathbf i+\mathbf j+2\mathbf k=(3,1,2)
+\]
+
+From part (c), the plane is
+\[
+\mathbf r\cdot \mathbf n=d
+\]
+with
+\[
+\mathbf n=(-3,2,-1), \qquad d=-3
+\]
+
+Using the reflection formula for a point in a plane,
+\[
+\mathbf p'
+=\mathbf p
+-2\,\frac{\mathbf p\cdot\mathbf n-d}
+{\mathbf n\cdot\mathbf n}\,\mathbf n
+\]
+
+We now calculate the required quantities:
+\begin{align*}
+\mathbf p\cdot\mathbf n
+&=(3,1,2)\cdot(-3,2,-1) \\
+&=3(-3)+1(2)+2(-1) \\
+&=-9+2-2 \\
+&=-9
+\end{align*}
+
+\begin{align*}
+\mathbf n\cdot\mathbf n
+&=(-3)^2+2^2+(-1)^2 \\
+&=9+4+1 \\
+&=14
+\end{align*}
+
+So
+\begin{align*}
+\mathbf p'
+&=\mathbf p-2\frac{-9-(-3)}{14}\mathbf n \\
+&=\mathbf p-2\frac{-6}{14}\mathbf n \\
+&=\mathbf p+\frac{12}{14}\mathbf n \\
+&=\mathbf p+\frac67\mathbf n
+\end{align*}
+
+Substituting \(\mathbf p=(3,1,2)\) and \(\mathbf n=(-3,2,-1)\),
+\begin{align*}
+\mathbf p'
+&=(3,1,2)+\frac67(-3,2,-1) \\
+&=\left(3-\frac{18}{7},\,1+\frac{12}{7},\,2-\frac67\right) \\
+&=\left(\frac{21}{7}-\frac{18}{7},\,\frac{7}{7}+\frac{12}{7},\,\frac{14}{7}-\frac67\right) \\
+&=\left(\frac37,\frac{19}{7},\frac87\right)
+\end{align*}
+
+Hence the position vector of \(S'\) is
+\[
+\frac37\mathbf i+\frac{19}{7}\mathbf j+\frac87\mathbf k
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+The line $\ell$ has equation
+\[
+\mathbf{r}=(\mathbf{i}+\mathbf{k})+\lambda(\mathbf{i}+2\mathbf{j}+3\mathbf{k})
+\] \\
+where $\lambda$ is a scalar parameter, and the plane $\Pi$ has equation
+\[
+\mathbf{r}\cdot(2\mathbf{i}-\mathbf{j}+\mathbf{k})=9
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the coordinates of the point of intersection of $\ell$ and $\Pi$. \marks{4} \\
+\end{enumerate}
+The perpendicular to $\Pi$ from the point $A\,(0,4,1)$ meets $\Pi$ at the point $B$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Verify that the coordinates of $B$ are $(4,2,3)$. \marks{3} \\
+\end{enumerate}
+The point $A\,(0,4,1)$ is reflected in the plane $\Pi$ to give the image point $A'$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find the coordinates of the point $A'$. \marks{2} \\
+  \item Find an equation for the line obtained by reflecting the line $\ell$ in the plane $\Pi$, giving your answer in the form
+  \[
+  \mathbf{r}\times\mathbf{a}=\mathbf{b}
+  \]
+  \marks[-20pt]{4}
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Write the line \(\ell\) in component form:
+  \[
+  \mathbf r=(1,0,1)+\lambda(1,2,3)
+  \]
+  so
+  \[
+  (x,y,z)=(1+\lambda,\,2\lambda,\,1+3\lambda)
+  \]
+
+  The plane \(\Pi\) has equation
+  \[
+  \mathbf r\cdot(2,-1,1)=9
+  \]
+  so in Cartesian form,
+  \[
+  2x-y+z=9
+  \]
+
+  Substituting the line coordinates into the plane equation:
+  \begin{align*}
+  2(1+\lambda)-2\lambda+(1+3\lambda)&=9\\
+  2+2\lambda-2\lambda+1+3\lambda&=9\\
+  3+3\lambda&=9\\
+  3\lambda&=6\\
+  \lambda&=2
+  \end{align*}
+
+  Hence the point of intersection is
+  \[
+  (x,y,z)=(1+2,\,2\cdot 2,\,1+3\cdot 2)=(3,4,7)
+  \]
+
+  Therefore, the line \(\ell\) meets the plane \(\Pi\) at \((3,4,7)\).
+
+  \item A normal vector to the plane \(\Pi\) is
+  \[
+  \mathbf n=(2,-1,1)
+  \]
+
+  So the perpendicular through \(A(0,4,1)\) has equation
+  \[
+  \mathbf r=(0,4,1)+t(2,-1,1)
+  \]
+
+  Hence points on this line have coordinates
+  \[
+  (x,y,z)=(2t,\,4-t,\,1+t)
+  \]
+
+  Substituting into the plane equation \(2x-y+z=9\):
+  \begin{align*}
+  2(2t)-(4-t)+(1+t)&=9\\
+  4t-4+t+1+t&=9\\
+  6t-3&=9\\
+  6t&=12\\
+  t&=2
+  \end{align*}
+
+  So
+  \[
+  B=(2\cdot 2,\,4-2,\,1+2)=(4,2,3)
+  \]
+
+  Hence the coordinates of \(B\) are verified to be \((4,2,3)\).
+
+  \item Using the reflection formula for a point in the plane \(\Pi:\mathbf r\cdot\mathbf n=d\),
+  \[
+  \mathbf p'
+  =\mathbf p-2\,\frac{\mathbf p\cdot\mathbf n-d}{\mathbf n\cdot\mathbf n}\,\mathbf n
+  \]
+
+  Here
+  \[
+  \mathbf p=(0,4,1),\qquad \mathbf n=(2,-1,1),\qquad d=9
+  \]
+
+  First calculate:
+  \[
+  \mathbf p\cdot\mathbf n=0\cdot 2+4(-1)+1\cdot 1=-3,
+  \qquad
+  \mathbf n\cdot\mathbf n=2^2+(-1)^2+1^2=6
+  \]
+
+  Therefore
+  \begin{align*}
+  \mathbf p'
+  &=(0,4,1)-2\,\frac{-3-9}{6}(2,-1,1)\\
+  &=(0,4,1)-2\left(\frac{-12}{6}\right)(2,-1,1)\\
+  &=(0,4,1)+4(2,-1,1)\\
+  &=(8,0,5)
+  \end{align*}
+
+  So the image point is \(A'=(8,0,5)\).
+
+  \item Let \(P\) be the point where \(\ell\) meets \(\Pi\). From part (a),
+  \[
+  P=(3,4,7)
+  \]
+
+  Since \(P\) lies in the mirror plane, it stays fixed under reflection.
+
+  The direction vector of \(\ell\) is
+  \[
+  \mathbf d=(1,2,3)
+  \]
+
+  Using the reflection formula for a direction vector,
+  \[
+  \mathbf d'
+  =\mathbf d-2\,\frac{\mathbf d\cdot\mathbf n}{\mathbf n\cdot\mathbf n}\,\mathbf n
+  \]
+  with \(\mathbf n=(2,-1,1)\).
+
+  First calculate:
+  \[
+  \mathbf d\cdot\mathbf n=1\cdot 2+2(-1)+3\cdot 1=3,
+  \qquad
+  \mathbf n\cdot\mathbf n=6
+  \]
+
+  So
+  \begin{align*}
+  \mathbf d'
+  &=(1,2,3)-2\left(\frac{3}{6}\right)(2,-1,1)\\
+  &=(1,2,3)-(2,-1,1)\\
+  &=(-1,3,2)
+  \end{align*}
+
+  Hence the reflected line \(\ell'\) is
+  \[
+  \mathbf r=(3,4,7)+\mu(-1,3,2)
+  \]
+
+  To write this in the form \(\mathbf r\times\mathbf a=\mathbf b\), take
+  \[
+  \mathbf a=(-1,3,2)
+  \]
+
+  Then
+  \[
+  \mathbf r=(3,4,7)+\mu\mathbf a
+  \]
+  implies
+  \[
+  \mathbf r\times\mathbf a=((3,4,7)+\mu\mathbf a)\times\mathbf a=(3,4,7)\times\mathbf a
+  \]
+  since \(\mathbf a\times\mathbf a=\mathbf 0\).
+
+  Now calculate
+  \begin{align*}
+  (3,4,7)\times(-1,3,2)
+  &=\begin{vmatrix}
+  \mathbf i & \mathbf j & \mathbf k\\
+  3&4&7\\
+  -1&3&2
+  \end{vmatrix}\\
+  &=\mathbf i(4\cdot 2-7\cdot 3)-\mathbf j(3\cdot 2-7(-1))+\mathbf k(3\cdot 3-4(-1))\\
+  &=\mathbf i(8-21)-\mathbf j(6+7)+\mathbf k(9+4)\\
+  &=-13\mathbf i-13\mathbf j+13\mathbf k
+  \end{align*}
+
+  Therefore an equation of the reflected line is
+  \[
+  \mathbf r\times(-\mathbf i+3\mathbf j+2\mathbf k)=-13\mathbf i-13\mathbf j+13\mathbf k
+  \]
+
+  So
+  \[
+  \mathbf a=(-1,3,2),\qquad \mathbf b=(-13,-13,13)
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\end{enumerate}
+\end{document}

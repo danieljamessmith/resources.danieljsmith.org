@@ -1,0 +1,2095 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{\textit{Solutions} - Maclaurin Series}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Given that $f(x)=e^{-2x}$, find $f'(x)$ and $f''(x)$. \marks{2}
+    \item Hence, find the first three terms of the Maclaurin series for $e^{-2x}$. \marks{2} \\
+  \end{enumerate}
+  \item Hence, using a suitable value of $x$, show that \[e^{-1/4}\approx \frac{25}{32}\]. \marks{2} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Differentiate \(f(x)=e^{-2x}\) using the chain rule:
+    \[
+    f'(x)=(-2)e^{-2x}=-2e^{-2x}
+    \]
+    Differentiate again:
+    \[
+    f''(x)=(-2)(-2)e^{-2x}=4e^{-2x}
+    \]
+    So
+    \[
+    f'(x)=-2e^{-2x}, \qquad f''(x)=4e^{-2x}
+    \]
+
+    \item The Maclaurin series is
+    \[
+    f(x)=f(0)+xf'(0)+\frac{x^2}{2!}f''(0)+\cdots
+    \]
+    Now
+    \[
+    f(0)=e^0=1,\qquad f'(0)=-2e^0=-2,\qquad f''(0)=4e^0=4
+    \]
+    So
+    \begin{align*}
+    e^{-2x}
+    &=1+x(-2)+\frac{x^2}{2}(4)+\cdots \\
+    &=1-2x+2x^2+\cdots
+    \end{align*}
+    Hence the first three terms are
+    \[
+    1-2x+2x^2
+    \]
+  \end{enumerate}
+
+  \item To get \(e^{-1/4}\), choose \(x\) so that
+  \[
+  -2x=-\frac14
+  \]
+  Hence
+  \[
+  x=\frac18
+  \]
+  Using the Maclaurin expansion found in part (a),
+  \[
+  e^{-2x}\approx 1-2x+2x^2
+  \]
+  Substituting \(x=\frac18\),
+  \begin{align*}
+  e^{-1/4}
+  &=e^{-2(1/8)} \\
+  &\approx 1-2\left(\frac18\right)+2\left(\frac18\right)^2 \\
+  &=1-\frac14+2\cdot\frac{1}{64} \\
+  &=1-\frac14+\frac{1}{32} \\
+  &=\frac{25}{32}
+  \end{align*}
+  So
+  \[
+  e^{-1/4}\approx \frac{25}{32}
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+\begin{enumerate}[label=(\roman*)]
+  \item Use the Maclaurin series for $\sin x$ and $\cos x$ to work out the series expansion of \[\sin 2x(\cos x-\cos 3x)\] up to and including the term in $x^5$. \marks{4} \\
+  \item Hence find, in exact surd form, an approximation to the least positive root of the equation \[2\sin 2x(\cos x-\cos 3x)=x\] \marks[-20pt]{3} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\item Using the standard Maclaurin series,
+\[
+\sin x=x-\frac{x^3}{3!}+\frac{x^5}{5!}+\cdots,
+\qquad
+\cos x=1-\frac{x^2}{2!}+\frac{x^4}{4!}+\cdots
+\]
+
+First expand \(\sin 2x\):
+\begin{align*}
+\sin 2x
+&=2x-\frac{(2x)^3}{3!}+\frac{(2x)^5}{5!}+\cdots\\
+&=2x-\frac{8x^3}{6}+\frac{32x^5}{120}+\cdots\\
+&=2x-\frac{4}{3}x^3+\frac{4}{15}x^5+\cdots
+\end{align*}
+
+Now expand \(\cos x-\cos 3x\):
+\begin{align*}
+\cos x&=1-\frac{x^2}{2}+\frac{x^4}{24}+\cdots\\
+\cos 3x&=1-\frac{(3x)^2}{2}+\frac{(3x)^4}{24}+\cdots\\
+&=1-\frac{9x^2}{2}+\frac{81x^4}{24}+\cdots
+\end{align*}
+
+So
+\begin{align*}
+\cos x-\cos 3x
+&=\left(1-\frac{x^2}{2}+\frac{x^4}{24}\right)-\left(1-\frac{9x^2}{2}+\frac{81x^4}{24}\right)+\cdots\\
+&=4x^2-\frac{80x^4}{24}+\cdots\\
+&=4x^2-\frac{10}{3}x^4+\cdots
+\end{align*}
+
+Now multiply:
+\begin{align*}
+\sin 2x(\cos x-\cos 3x)
+&=\left(2x-\frac{4}{3}x^3+\frac{4}{15}x^5+\cdots\right)\left(4x^2-\frac{10}{3}x^4+\cdots\right)
+\end{align*}
+
+Keeping terms up to \(x^5\),
+\begin{align*}
+\sin 2x(\cos x-\cos 3x)
+&=(2x)(4x^2)+(2x)\left(-\frac{10}{3}x^4\right)+\left(-\frac{4}{3}x^3\right)(4x^2)+\cdots\\
+&=8x^3-\frac{20}{3}x^5-\frac{16}{3}x^5+\cdots\\
+&=8x^3-12x^5+\cdots
+\end{align*}
+
+Hence,
+\[
+\sin 2x(\cos x-\cos 3x)=8x^3-12x^5+\cdots
+\]
+
+\item From part (i),
+\[
+2\sin 2x(\cos x-\cos 3x)\approx 2(8x^3-12x^5)=16x^3-24x^5
+\]
+
+So the equation
+\[
+2\sin 2x(\cos x-\cos 3x)=x
+\]
+becomes approximately
+\[
+16x^3-24x^5=x
+\]
+
+Rearranging,
+\begin{align*}
+16x^3-24x^5-x&=0\\
+x(16x^2-24x^4-1)&=0\\
+x(24x^4-16x^2+1)&=0
+\end{align*}
+
+Since we want the least positive root, \(x\neq 0\), so
+\[
+24x^4-16x^2+1=0
+\]
+
+Let \(y=x^2\). Then
+\[
+24y^2-16y+1=0
+\]
+
+Using the quadratic formula,
+\begin{align*}
+y&=\frac{16\pm\sqrt{(-16)^2-4(24)(1)}}{2(24)}\\
+&=\frac{16\pm\sqrt{256-96}}{48}\\
+&=\frac{16\pm\sqrt{160}}{48}\\
+&=\frac{16\pm 4\sqrt{10}}{48}\\
+&=\frac{4\pm\sqrt{10}}{12}
+\end{align*}
+
+For the least positive root, take the smaller value:
+\[
+x^2\approx \frac{4-\sqrt{10}}{12}
+\]
+
+Hence
+\[
+x\approx \sqrt{\frac{4-\sqrt{10}}{12}}
+\]
+
+So the least positive root is approximately
+\[
+\sqrt{\frac{4-\sqrt{10}}{12}}\approx 0.264
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Starting from the series given in the formulae booklet, show that the general term of the Maclaurin series for
+  \[
+  2(1-\cos x)-x\sin x
+  \]
+  is
+  \[
+  (-1)^r\frac{2(r-1)}{(2r)!}x^{2r}
+  \]
+  \marks[-20pt]{4}
+  \item Show that
+  \[
+  \lim_{x\to 0}\left[\frac{2(1-\cos x)-x\sin x}{(1-\cos x)^2}\right]=\frac{1}{3}
+  \]
+  \marks[-30pt]{4}
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item From the formula booklet,
+\[
+\cos x=\sum_{r=0}^{\infty}(-1)^r\frac{x^{2r}}{(2r)!},
+\qquad
+\sin x=\sum_{r=0}^{\infty}(-1)^r\frac{x^{2r+1}}{(2r+1)!}
+\]
+
+So
+\begin{align*}
+2(1-\cos x)
+&=2\left(1-\sum_{r=0}^{\infty}(-1)^r\frac{x^{2r}}{(2r)!}\right)\\
+&=2\sum_{r=1}^{\infty}(-1)^{r+1}\frac{x^{2r}}{(2r)!}
+\end{align*}
+
+Also,
+\begin{align*}
+x\sin x
+&=x\sum_{r=0}^{\infty}(-1)^r\frac{x^{2r+1}}{(2r+1)!}\\
+&=\sum_{r=0}^{\infty}(-1)^r\frac{x^{2r+2}}{(2r+1)!}
+\end{align*}
+
+Re-index this sum by writing \(r-1\) instead of \(r\), so that it is also in powers of \(x^{2r}\):
+\[
+x\sin x=\sum_{r=1}^{\infty}(-1)^{r-1}\frac{x^{2r}}{(2r-1)!}
+\]
+
+Hence
+\[
+2(1-\cos x)-x\sin x
+=
+\sum_{r=1}^{\infty}
+\left(
+\frac{2(-1)^{r+1}}{(2r)!}
+-
+\frac{(-1)^{r-1}}{(2r-1)!}
+\right)x^{2r}
+\]
+
+So the coefficient of \(x^{2r}\) is
+\begin{align*}
+\frac{2(-1)^{r+1}}{(2r)!}-\frac{(-1)^{r-1}}{(2r-1)!}
+&=(-1)^r\left(-\frac{2}{(2r)!}+\frac{1}{(2r-1)!}\right)\\
+&=(-1)^r\left(-\frac{2}{(2r)!}+\frac{2r}{(2r)!}\right)\\
+&=(-1)^r\frac{2(r-1)}{(2r)!}
+\end{align*}
+
+Therefore the general term of the Maclaurin series is
+\[
+(-1)^r\frac{2(r-1)}{(2r)!}x^{2r}
+\]
+
+as required.
+
+  \item Using part (a), the first non-zero term in the numerator comes from \(r=2\):
+\begin{align*}
+2(1-\cos x)-x\sin x
+&=\frac{2(2-1)}{4!}x^4+\cdots\\
+&=\frac{x^4}{12}+\cdots
+\end{align*}
+
+Now expand \(1-\cos x\):
+\begin{align*}
+1-\cos x
+&=\frac{x^2}{2!}-\frac{x^4}{4!}+\cdots\\
+&=\frac{x^2}{2}-\frac{x^4}{24}+\cdots
+\end{align*}
+
+Squaring gives
+\begin{align*}
+(1-\cos x)^2
+&=\left(\frac{x^2}{2}-\frac{x^4}{24}+\cdots\right)^2\\
+&=\frac{x^4}{4}+\cdots
+\end{align*}
+
+Therefore
+\[
+\frac{2(1-\cos x)-x\sin x}{(1-\cos x)^2}
+=
+\frac{\frac{x^4}{12}+\cdots}{\frac{x^4}{4}+\cdots}
+\]
+and so, comparing the leading terms as \(x\to 0\),
+\[
+\lim_{x\to 0}\left[\frac{2(1-\cos x)-x\sin x}{(1-\cos x)^2}\right]
+=
+\frac{1/12}{1/4}
+=
+\frac13
+\]
+
+So the limit is \(\frac13\).
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+Let $f(x)=\ln(1+\sin x)$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Determine $f''(x)$. \marks{2}
+    \item Determine the first two non-zero terms of the Maclaurin expansion for $f(x)$. \marks{3}
+    \item By considering the first two non-zero terms of the Maclaurin expansion for $f(x)$, find an approximation to
+    \[
+    \int_0^{\frac{2}{5}} f(x)\,\mathrm{d}x
+    \]
+    Give your answer correct to $6$ decimal places. \marks{2} \\
+  \end{enumerate}
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item
+    Given
+    \[
+    f(x)=\ln(1+\sin x)
+    \]
+    first differentiate using
+    \[
+    \frac{\mathrm{d}}{\mathrm{d}x}\bigl(\ln u\bigr)=\frac{1}{u}\frac{\mathrm{d}u}{\mathrm{d}x}
+    \]
+    so
+    \[
+    f'(x)=\frac{\cos x}{1+\sin x}
+    \]
+    Differentiate again using the quotient rule:
+    \begin{align*}
+    f''(x)
+    &=\frac{(-\sin x)(1+\sin x)-\cos x(\cos x)}{(1+\sin x)^2} \\
+    &=\frac{-\sin x-\sin^2x-\cos^2x}{(1+\sin x)^2} \\
+    &=\frac{-\sin x-1}{(1+\sin x)^2} \\
+    &=-\frac{1}{1+\sin x}
+    \end{align*}
+    Hence
+    \[
+    f''(x)=-\frac{1}{1+\sin x}
+    \]
+
+    \item
+    For the Maclaurin expansion, find the values at \(x=0\):
+    \[
+    f(0)=\ln(1+\sin 0)=\ln 1=0
+    \]
+    \[
+    f'(0)=\frac{\cos 0}{1+\sin 0}=\frac{1}{1}=1
+    \]
+    \[
+    f''(0)=-\frac{1}{1+\sin 0}=-1
+    \]
+    Using
+    \[
+    f(x)=f(0)+f'(0)x+\frac{f''(0)}{2!}x^2+\cdots
+    \]
+    gives
+    \begin{align*}
+    f(x)
+    &=0+1\cdot x+\frac{-1}{2}x^2+\cdots \\
+    &=x-\frac{x^2}{2}+\cdots
+    \end{align*}
+    So the first two non-zero terms are
+    \[
+    x-\frac{x^2}{2}
+    \]
+
+    \item
+    Using the first two non-zero terms,
+    \[
+    f(x)\approx x-\frac{x^2}{2}
+    \]
+    Therefore
+    \begin{align*}
+    \int_0^{2/5} f(x)\,\mathrm{d}x
+    &\approx \int_0^{2/5}\left(x-\frac{x^2}{2}\right)\,\mathrm{d}x \\
+    &=\left[\frac{x^2}{2}-\frac{x^3}{6}\right]_0^{2/5} \\
+    &=\frac{(2/5)^2}{2}-\frac{(2/5)^3}{6} \\
+    &=\frac{2}{25}-\frac{4}{375} \\
+    &=\frac{26}{375}
+    \end{align*}
+    Hence the required approximation is
+    \[
+    \frac{26}{375}\approx 0.069333
+    \]
+    correct to 6 decimal places.
+  \end{enumerate}
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Given that \[y=\cosh^{-1}\left(\frac{3+x}{2+x}\right)\] show that \[(x+2)\sqrt{5+2x}\,\frac{\mathrm{d}y}{\mathrm{d}x}+1=0\] \marks{4} \\
+  \item Hence find the first three terms in the Maclaurin series for $\cosh^{-1}\left(\frac{3+x}{2+x}\right)$ in the form
+  \[
+  a\ln\left(\frac{3+\sqrt{5}}{2}\right)+bx+cx^2
+  \]
+  where $a$, $b$ and $c$ are constants to be determined. \marks{5} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let
+\[
+y=\cosh^{-1}\left(\frac{x+3}{x+2}\right)
+\]
+Then
+\[
+\cosh y=\frac{x+3}{x+2}
+\]
+
+Differentiate implicitly with respect to \(x\):
+\begin{align*}
+\sinh y\;\frac{\mathrm{d}y}{\mathrm{d}x}
+&=\frac{(x+2)(1)-(x+3)(1)}{(x+2)^2} \\
+&=\frac{x+2-x-3}{(x+2)^2} \\
+&=-\frac{1}{(x+2)^2}
+\end{align*}
+
+Now use
+\[
+\sinh^2 y=\cosh^2 y-1
+\]
+So
+\begin{align*}
+\sinh^2 y
+&=\left(\frac{x+3}{x+2}\right)^2-1 \\
+&=\frac{(x+3)^2-(x+2)^2}{(x+2)^2} \\
+&=\frac{x^2+6x+9-(x^2+4x+4)}{(x+2)^2} \\
+&=\frac{2x+5}{(x+2)^2}
+\end{align*}
+
+Since \(y=\cosh^{-1}(\cdots)\), we have \(y\ge 0\), so \(\sinh y\ge 0\). Also near \(x=0\), \(x+2>0\). Hence
+\[
+\sinh y=\frac{\sqrt{2x+5}}{x+2}
+\]
+
+Substituting into the differentiated equation:
+\begin{align*}
+\frac{\sqrt{2x+5}}{x+2}\frac{\mathrm{d}y}{\mathrm{d}x}
+&=-\frac{1}{(x+2)^2}
+\end{align*}
+so
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}=-\frac{1}{(x+2)\sqrt{2x+5}}
+\]
+
+Therefore
+\[
+(x+2)\sqrt{5+2x}\,\frac{\mathrm{d}y}{\mathrm{d}x}+1=0
+\]
+
+So the given result is shown.
+
+  \item From part (a),
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}=-\frac{1}{(x+2)\sqrt{5+2x}}
+\]
+
+Rewrite this in a form suitable for the binomial expansion:
+\begin{align*}
+\frac{\mathrm{d}y}{\mathrm{d}x}
+&=-\frac{1}{2\sqrt5}\left(1+\frac{x}{2}\right)^{-1}\left(1+\frac{2x}{5}\right)^{-1/2}
+\end{align*}
+
+Using the standard expansions near \(x=0\),
+\[
+(1+u)^{-1}=1-u+\cdots, \qquad (1+u)^{-1/2}=1-\frac12u+\cdots
+\]
+we get
+\begin{align*}
+\left(1+\frac{x}{2}\right)^{-1}
+&=1-\frac{x}{2}+\cdots \\
+\left(1+\frac{2x}{5}\right)^{-1/2}
+&=1-\frac{1}{2}\cdot\frac{2x}{5}+\cdots \\
+&=1-\frac{x}{5}+\cdots
+\end{align*}
+
+Hence
+\begin{align*}
+\frac{\mathrm{d}y}{\mathrm{d}x}
+&=-\frac{1}{2\sqrt5}\left(1-\frac{x}{2}+\cdots\right)\left(1-\frac{x}{5}+\cdots\right) \\
+&=-\frac{1}{2\sqrt5}\left(1-\frac{x}{2}-\frac{x}{5}+\cdots\right) \\
+&=-\frac{1}{2\sqrt5}\left(1-\frac{7x}{10}+\cdots\right)
+\end{align*}
+
+Now integrate term by term:
+\begin{align*}
+y
+&=\int \frac{\mathrm{d}y}{\mathrm{d}x}\,\mathrm{d}x \\
+&=\int -\frac{1}{2\sqrt5}\left(1-\frac{7x}{10}+\cdots\right)\,\mathrm{d}x \\
+&=C-\frac{x}{2\sqrt5}+\frac{7x^2}{40\sqrt5}+\cdots
+\end{align*}
+
+To find \(C\), put \(x=0\):
+\[
+C=\cosh^{-1}\left(\frac{3}{2}\right)
+\]
+
+Using
+\[
+\cosh^{-1}t=\ln\left(t+\sqrt{t^2-1}\right)
+\]
+we have
+\begin{align*}
+C
+&=\ln\left(\frac32+\sqrt{\frac94-1}\right) \\
+&=\ln\left(\frac32+\sqrt{\frac54}\right) \\
+&=\ln\left(\frac32+\frac{\sqrt5}{2}\right) \\
+&=\ln\left(\frac{3+\sqrt5}{2}\right)
+\end{align*}
+
+Therefore the first three terms are
+\[
+\cosh^{-1}\left(\frac{3+x}{2+x}\right)
+=
+\ln\left(\frac{3+\sqrt5}{2}\right)
+-\frac{x}{2\sqrt5}
++\frac{7x^2}{40\sqrt5}
++\cdots
+\]
+
+So
+\[
+a=1,\qquad b=-\frac{1}{2\sqrt5},\qquad c=\frac{7}{40\sqrt5}
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+\[ y=(1+\cosh x)^n \qquad n\geq 2\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Show that
+    \[
+    \frac{\mathrm{d}^2 y}{\mathrm{d}x^2}=n^2(1+\cosh x)^n-n(2n-1)(1+\cosh x)^{n-1}
+    \]
+    \marks[-20pt]{4}
+    \item Determine an expression for
+    \[
+    \frac{\mathrm{d}^4 y}{\mathrm{d}x^4}
+    \]
+    \marks[-20pt]{2}
+  \end{enumerate}
+  \item Hence determine the first three non-zero terms of the Maclaurin series for $y$, giving each coefficient in simplest form. \marks{2} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=\textbf{(\roman*)}]
+    \item Let
+    \[
+    y=(1+\cosh x)^n
+    \]
+
+    Differentiate once:
+    \[
+    \frac{\mathrm{d}y}{\mathrm{d}x}=n(1+\cosh x)^{n-1}\sinh x
+    \]
+
+    Differentiate again using the product rule:
+    \begin{align*}
+    \frac{\mathrm{d}^2y}{\mathrm{d}x^2}
+    &=n\left((n-1)(1+\cosh x)^{n-2}\sinh^2 x+(1+\cosh x)^{n-1}\cosh x\right) \\
+    &=n(n-1)(1+\cosh x)^{n-2}\sinh^2 x+n(1+\cosh x)^{n-1}\cosh x
+    \end{align*}
+
+    Now use
+    \[
+    \sinh^2 x=\cosh^2 x-1=(\cosh x-1)(\cosh x+1)
+    \]
+
+    Since $\cosh x+1=1+\cosh x$,
+    \begin{align*}
+    \frac{\mathrm{d}^2y}{\mathrm{d}x^2}
+    &=n(n-1)(1+\cosh x)^{n-2}(\cosh x-1)(1+\cosh x)+n(1+\cosh x)^{n-1}\cosh x \\
+    &=n(n-1)(1+\cosh x)^{n-1}(\cosh x-1)+n(1+\cosh x)^{n-1}\cosh x \\
+    &=n(1+\cosh x)^{n-1}\left((n-1)(\cosh x-1)+\cosh x\right) \\
+    &=n(1+\cosh x)^{n-1}\left(n\cosh x-(n-1)\right)
+    \end{align*}
+
+    Write
+    \[
+    n\cosh x=n(1+\cosh x)-n
+    \]
+
+    Then
+    \[
+    n\cosh x-(n-1)=n(1+\cosh x)-(2n-1)
+    \]
+
+    So
+    \begin{align*}
+    \frac{\mathrm{d}^2y}{\mathrm{d}x^2}
+    &=n(1+\cosh x)^{n-1}\left(n(1+\cosh x)-(2n-1)\right) \\
+    &=n^2(1+\cosh x)^n-n(2n-1)(1+\cosh x)^{n-1}
+    \end{align*}
+
+    Hence
+    \[
+    \frac{\mathrm{d}^2 y}{\mathrm{d}x^2} = n^2(1+\cosh x)^n - n(2n-1)(1+\cosh x)^{n-1}
+    \]
+
+    \item From part (i),
+    \[
+    y''=n^2(1+\cosh x)^n-n(2n-1)(1+\cosh x)^{n-1}
+    \]
+
+    Differentiate twice again. Using part (i) with powers $n$ and $n-1$:
+
+    \[
+    \frac{\mathrm{d}^2}{\mathrm{d}x^2}(1+\cosh x)^n
+    =n^2(1+\cosh x)^n-n(2n-1)(1+\cosh x)^{n-1}
+    \]
+
+    and
+    \[
+    \frac{\mathrm{d}^2}{\mathrm{d}x^2}(1+\cosh x)^{n-1}
+    =(n-1)^2(1+\cosh x)^{n-1}-(n-1)(2n-3)(1+\cosh x)^{n-2}
+    \]
+
+    Therefore
+    \begin{align*}
+    \frac{\mathrm{d}^4y}{\mathrm{d}x^4}
+    &=n^2\frac{\mathrm{d}^2}{\mathrm{d}x^2}(1+\cosh x)^n
+    -n(2n-1)\frac{\mathrm{d}^2}{\mathrm{d}x^2}(1+\cosh x)^{n-1} \\
+    &=n^2\left[n^2(1+\cosh x)^n-n(2n-1)(1+\cosh x)^{n-1}\right] \\
+    &\quad -n(2n-1)\left[(n-1)^2(1+\cosh x)^{n-1}-(n-1)(2n-3)(1+\cosh x)^{n-2}\right] \\
+    &=n^4(1+\cosh x)^n-n(2n-1)\left(n^2+(n-1)^2\right)(1+\cosh x)^{n-1} \\
+    &\quad +n(n-1)(2n-1)(2n-3)(1+\cosh x)^{n-2}
+    \end{align*}
+
+    Since
+    \[
+    n^2+(n-1)^2=2n^2-2n+1
+    \]
+
+    we get
+    \[
+    \frac{\mathrm{d}^4 y}{\mathrm{d}x^4}
+    =n^4(1+\cosh x)^n-n(2n-1)(2n^2-2n+1)(1+\cosh x)^{n-1}
+    +n(n-1)(2n-1)(2n-3)(1+\cosh x)^{n-2}
+    \]
+  \end{enumerate}
+
+  \item Since $\cosh x$ is an even function, $y=(1+\cosh x)^n$ is also even. So its Maclaurin series contains only even powers, and
+  \[
+  y'(0)=0,\qquad y'''(0)=0
+  \]
+
+  Also,
+  \[
+  y(0)=(1+\cosh 0)^n=(1+1)^n=2^n
+  \]
+
+  From part (a)(i),
+  \begin{align*}
+  y''(0)
+  &=n^2(2^n)-n(2n-1)(2^{\,n-1}) \\
+  &=n2^{\,n-1}\left(2n-(2n-1)\right) \\
+  &=n2^{\,n-1}
+  \end{align*}
+
+  From part (a)(ii),
+  \begin{align*}
+  y''''(0)
+  &=n^4 2^n-n(2n-1)(2n^2-2n+1)2^{\,n-1}+n(n-1)(2n-1)(2n-3)2^{\,n-2} \\
+  &=n2^{\,n-2}\left[4n^3-2(2n-1)(2n^2-2n+1)+(n-1)(2n-1)(2n-3)\right]
+  \end{align*}
+
+  Expand the bracket:
+  \begin{align*}
+  2(2n-1)(2n^2-2n+1)&=8n^3-12n^2+8n-2 \\
+  (n-1)(2n-1)(2n-3)&=4n^3-12n^2+11n-3
+  \end{align*}
+
+  Hence
+  \begin{align*}
+  y''''(0)
+  &=n2^{\,n-2}\left[4n^3-(8n^3-12n^2+8n-2)+(4n^3-12n^2+11n-3)\right] \\
+  &=n2^{\,n-2}(3n-1)
+  \end{align*}
+
+  Using
+  \[
+  y=y(0)+\frac{y''(0)}{2!}x^2+\frac{y''''(0)}{4!}x^4+\cdots
+  \]
+
+  gives
+  \begin{align*}
+  y
+  &=2^n+\frac{n2^{\,n-1}}{2}x^2+\frac{n(3n-1)2^{\,n-2}}{24}x^4+\cdots \\
+  &=2^n+n2^{\,n-2}x^2+\frac{n(3n-1)2^{\,n-2}}{24}x^4+\cdots
+  \end{align*}
+
+  So the first three non-zero terms are
+  \[
+  2^n+n2^{\,n-2}x^2+\frac{n(3n-1)2^{\,n-2}}{24}x^4
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+\begin{enumerate}[label=(\roman*)]
+  \item Prove that, if $y=\arctan x$, then
+  \[
+  \frac{\mathrm{d}y}{\mathrm{d}x}=\frac{1}{1+x^2}
+  \]
+  \marks[-20pt]{3}
+  \item Find the Maclaurin series for $\arctan x$, up to and including the term in $x^5$. \marks{4} \\
+  \item Use the result of part (ii) and the Maclaurin series for $\ln(1+t)$ to find the Maclaurin series for $\ln(1+\arctan x)$, up to and including the term in $x^4$. \marks{5} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\roman*)}]
+  \item Let
+  \[
+  y=\arctan x
+  \]
+  so equivalently
+  \[
+  x=\tan y
+  \]
+  Differentiate implicitly with respect to $x$:
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}(x)=\frac{\mathrm{d}}{\mathrm{d}x}(\tan y)
+  \]
+  \[
+  1=\sec^2 y\frac{\mathrm{d}y}{\mathrm{d}x}
+  \]
+  Hence
+  \[
+  \frac{\mathrm{d}y}{\mathrm{d}x}=\frac{1}{\sec^2 y}
+  \]
+  Using the identity $\sec^2 y=1+\tan^2 y$, and $\tan y=x$, we get
+  \[
+  \frac{\mathrm{d}y}{\mathrm{d}x}=\frac{1}{1+\tan^2 y}=\frac{1}{1+x^2}
+  \]
+  Therefore
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}(\arctan x)=\frac{1}{1+x^2}
+  \]
+
+  \item From part (i),
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}(\arctan x)=\frac{1}{1+x^2}
+  \]
+  Using the geometric series
+  \[
+  \frac{1}{1-r}=1+r+r^2+r^3+\cdots \qquad (|r|<1)
+  \]
+  with $r=-x^2$, we have
+  \[
+  \frac{1}{1+x^2}=1-x^2+x^4-x^6+\cdots \qquad (|x|<1)
+  \]
+  So
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}(\arctan x)=1-x^2+x^4-\cdots
+  \]
+  Integrating term by term,
+  \[
+  \arctan x=\int (1-x^2+x^4-\cdots)\,\mathrm{d}x
+  \]
+  \[
+  \arctan x=x-\frac{x^3}{3}+\frac{x^5}{5}+\cdots +C
+  \]
+  To find $C$, put $x=0$:
+  \[
+  \tan^{-1}0=0
+  \]
+  so $C=0$.
+
+  Therefore the Maclaurin series is
+  \[
+  \arctan x=x-\frac{x^3}{3}+\frac{x^5}{5}+\cdots
+  \]
+
+  \item Let
+  \[
+  t=\arctan x
+  \]
+  Then from part (ii),
+  \[
+  t=x-\frac{x^3}{3}+\cdots
+  \]
+  We use the Maclaurin series
+  \[
+  \ln(1+t)=t-\frac{t^2}{2}+\frac{t^3}{3}-\frac{t^4}{4}+\cdots
+  \]
+
+  Now find the powers of $t$ needed up to the term in $x^4$.
+
+  First,
+  \[
+  t^2=\left(x-\frac{x^3}{3}+\cdots\right)^2
+  \]
+  \[
+  t^2=x^2-\frac{2x^4}{3}+\cdots
+  \]
+
+  Next,
+  \[
+  t^3=\left(x-\frac{x^3}{3}+\cdots\right)^3=x^3+\cdots
+  \]
+
+  Also,
+  \[
+  t^4=\left(x-\frac{x^3}{3}+\cdots\right)^4=x^4+\cdots
+  \]
+
+  Substitute into the logarithm series:
+  \begin{align*}
+  \ln(1+\arctan x)
+  &=\ln(1+t)\\
+  &=t-\frac{t^2}{2}+\frac{t^3}{3}-\frac{t^4}{4}+\cdots\\
+  &=\left(x-\frac{x^3}{3}+\cdots\right)
+   -\frac12\left(x^2-\frac{2x^4}{3}+\cdots\right)
+   +\frac13\left(x^3+\cdots\right)
+   -\frac14\left(x^4+\cdots\right)
+   +\cdots
+  \end{align*}
+
+  Now simplify:
+  \begin{align*}
+  \ln(1+\arctan x)
+  &=x-\frac{x^3}{3}-\frac{x^2}{2}+\frac{x^4}{3}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots\\
+  &=x-\frac{x^2}{2}+\left(\frac13-\frac14\right)x^4+\cdots\\
+  &=x-\frac{x^2}{2}+\frac{x^4}{12}+\cdots
+  \end{align*}
+
+  Therefore
+  \[
+  \ln(1+\arctan x)=x-\frac{x^2}{2}+\frac{x^4}{12}+\cdots
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item The function $f$ is defined as $f(x)=\operatorname{sech}^2 x$. \\
+  \begin{enumerate}[label=(\roman*)]
+    \item Show that $f^{(4)}(0)=16$. \marks{4}
+    \item Hence find the first three non-zero terms of the Maclaurin series for $f(x)=\operatorname{sech}^2 x$. \marks{2} \\
+  \end{enumerate}
+  \item Prove that
+  \[
+  \lim_{x\to 0}\left(\frac{\operatorname{sech}^2 x-\cos(\sqrt{2}\,x)}{x^4}\right)=\frac{1}{2}
+  \]
+  \marks[-30pt]{4}
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Let
+    \[
+    f(x)=\operatorname{sech}^2 x
+    \]
+    Using
+    \[
+    \frac{\mathrm{d}}{\mathrm{d}x}(\operatorname{sech}x)=-\operatorname{sech}x\tanh x
+    \]
+    we get
+    \[
+    f'(x)=2\operatorname{sech}x\bigl(-\operatorname{sech}x\tanh x\bigr)=-2\operatorname{sech}^2x\tanh x=-2f\tanh x
+    \]
+
+    Differentiate again:
+    \begin{align*}
+    f''(x)
+    &= -2f'\tanh x-2f\operatorname{sech}^2x \\
+    &= -2f'\tanh x-2f^2
+    \end{align*}
+
+    Since
+    \[
+    \tanh^2x=1-\operatorname{sech}^2x=1-f
+    \]
+    and \(f'=-2f\tanh x\),
+    \begin{align*}
+    f''(x)
+    &= -2(-2f\tanh x)\tanh x-2f^2 \\
+    &= 4f\tanh^2x-2f^2 \\
+    &= 4f(1-f)-2f^2 \\
+    &= 4f-6f^2
+    \end{align*}
+
+    Now evaluate at \(x=0\). Since \(\operatorname{sech}0=1\) and \(\tanh 0=0\),
+    \[
+    f(0)=1
+    \]
+    \[
+    f'(0)=-2f(0)\tanh 0=0
+    \]
+    \[
+    f''(0)=4f(0)-6f(0)^2=4-6=-2
+    \]
+
+    Differentiate \(f''=4f-6f^2\):
+    \[
+    f'''=4f'-12ff'
+    \]
+    so
+    \[
+    f'''(0)=4f'(0)-12f(0)f'(0)=0
+    \]
+
+    Differentiate once more:
+    \[
+    f^{(4)}=4f''-12\bigl((f')^2+ff''\bigr)
+    \]
+    Hence
+    \begin{align*}
+    f^{(4)}(0)
+    &= 4f''(0)-12\bigl((f'(0))^2+f(0)f''(0)\bigr) \\
+    &= 4(-2)-12\bigl(0+1(-2)\bigr) \\
+    &= -8+24 \\
+    &= 16
+    \end{align*}
+
+    Therefore
+    \[
+    f^{(4)}(0)=16
+    \]
+
+    \item The Maclaurin series for \(f(x)\) is
+    \[
+    f(x)=f(0)+f'(0)x+\frac{f''(0)}{2!}x^2+\frac{f'''(0)}{3!}x^3+\frac{f^{(4)}(0)}{4!}x^4+\cdots
+    \]
+
+    Substituting the values found in part (i),
+    \begin{align*}
+    f(x)
+    &= 1+0x+\frac{-2}{2!}x^2+\frac{0}{3!}x^3+\frac{16}{4!}x^4+\cdots \\
+    &= 1-x^2+\frac{16}{24}x^4+\cdots \\
+    &= 1-x^2+\frac{2}{3}x^4+\cdots
+    \end{align*}
+
+    So the first three non-zero terms are
+    \[
+    \operatorname{sech}^2x=1-x^2+\frac{2}{3}x^4+\cdots
+    \]
+  \end{enumerate}
+
+  \item From part (a),
+  \[
+  \operatorname{sech}^2x=1-x^2+\frac{2}{3}x^4+\cdots
+  \]
+
+  Also, from the standard Maclaurin series,
+  \[
+  \cos t=1-\frac{t^2}{2!}+\frac{t^4}{4!}+\cdots
+  \]
+  Put \(t=\sqrt{2}\,x\):
+  \begin{align*}
+  \cos(\sqrt{2}\,x)
+  &= 1-\frac{(\sqrt{2}\,x)^2}{2!}+\frac{(\sqrt{2}\,x)^4}{4!}+\cdots \\
+  &= 1-\frac{2x^2}{2}+\frac{4x^4}{24}+\cdots \\
+  &= 1-x^2+\frac{1}{6}x^4+\cdots
+  \end{align*}
+
+  Therefore
+  \begin{align*}
+  \operatorname{sech}^2x-\cos(\sqrt{2}\,x)
+  &= \left(1-x^2+\frac{2}{3}x^4+\cdots\right)-\left(1-x^2+\frac{1}{6}x^4+\cdots\right) \\
+  &= \left(\frac{2}{3}-\frac{1}{6}\right)x^4+\cdots \\
+  &= \frac{1}{2}x^4+\cdots
+  \end{align*}
+
+  So
+  \[
+  \frac{\operatorname{sech}^2x-\cos(\sqrt{2}\,x)}{x^4}
+  = \frac{1}{2}+\text{terms involving positive powers of }x
+  \]
+
+  As \(x\to 0\), those remaining terms tend to \(0\). Hence
+  \[
+  \lim_{x\to 0}\left(\frac{\operatorname{sech}^2 x-\cos(\sqrt{2}\,x)}{x^4}\right)=\frac{1}{2}
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+Using the Maclaurin series for $\sin x$, show that, for small values of $x$,
+\[
+\frac{x}{\sin x} \approx 1 + ax^2 + bx^4 + cx^6
+\]
+where the values of $a$, $b$ and $c$ are to be given in exact form. \marks{5}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Using the Maclaurin series,
+\[
+\sin x=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\cdots
+\]
+so
+\[
+\sin x=x-\frac{x^3}{6}+\frac{x^5}{120}-\frac{x^7}{5040}+\cdots
+\]
+
+Factor out $x$:
+\[
+\sin x=x\left(1-\frac{x^2}{6}+\frac{x^4}{120}-\frac{x^6}{5040}+\cdots\right)
+\]
+
+Hence
+\[
+\frac{x}{\sin x}
+=\frac{1}{1-\frac{x^2}{6}+\frac{x^4}{120}-\frac{x^6}{5040}+\cdots}
+\]
+
+We are told that, for small $x$,
+\[
+\frac{x}{\sin x}\approx 1+ax^2+bx^4+cx^6
+\]
+
+So this expression must satisfy
+\[
+(1+ax^2+bx^4+cx^6)\left(1-\frac{x^2}{6}+\frac{x^4}{120}-\frac{x^6}{5040}\right)=1+\cdots
+\]
+
+Now expand and collect powers of $x$:
+\begin{align*}
+&(1+ax^2+bx^4+cx^6)\left(1-\frac{x^2}{6}+\frac{x^4}{120}-\frac{x^6}{5040}\right) \\
+&=1+\left(a-\frac16\right)x^2+\left(b-\frac{a}{6}+\frac1{120}\right)x^4
++\left(c-\frac{b}{6}+\frac{a}{120}-\frac1{5040}\right)x^6+\cdots
+\end{align*}
+
+For this to equal \(1\) up to and including the term in \(x^6\), the coefficients of \(x^2\), \(x^4\) and \(x^6\) must each be \(0\).
+
+So:
+\[
+a-\frac16=0
+\qquad\Rightarrow\qquad
+a=\frac16
+\]
+
+\[
+b-\frac{a}{6}+\frac1{120}=0
+\qquad\Rightarrow\qquad
+b=\frac{a}{6}-\frac1{120}
+\]
+Substituting $a=\frac16$,
+\[
+b=\frac{1}{36}-\frac{1}{120}
+=\frac{7}{360}
+\]
+
+\[
+c-\frac{b}{6}+\frac{a}{120}-\frac1{5040}=0
+\qquad\Rightarrow\qquad
+c=\frac{b}{6}-\frac{a}{120}+\frac1{5040}
+\]
+Substituting $a=\frac16$ and $b=\frac7{360}$,
+\begin{align*}
+c&=\frac{7}{2160}-\frac{1}{720}+\frac{1}{5040}\\
+&=\frac{49-21+3}{15120}\\
+&=\frac{31}{15120}
+\end{align*}
+
+Therefore,
+\[
+a=\frac16,\qquad b=\frac7{360},\qquad c=\frac{31}{15120}
+\]
+
+and
+\[
+\frac{x}{\sin x}\approx 1+\frac{x^2}{6}+\frac{7x^4}{360}+\frac{31x^6}{15120}
+\]
+for small values of $x$.
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use the Maclaurin series expansion for $\ln(1+x)$ to show that the first three non-zero terms of the Maclaurin series expansion of
+  \[
+  \ln\left(\frac{1+2x}{1-x}\right)
+  \]
+  are
+  \[
+  3x-\frac{3}{2}x^2+3x^3
+  \]
+  \marks[-20pt]{2}
+  \item Sam attempts to use the series expansion found in part (a) to find an approximation for $\ln 6$. \\
+
+  Sam's incorrect working is shown below.
+\begin{tcolorbox}[enhanced,boxrule=0.4pt,colback=white,arc=0mm,outer arc=0mm]
+  \[
+  \begin{aligned}
+  \text{Let } \frac{1+2x}{1-x} &= 6\\
+  1+2x &= 6-6x\\
+  8x &= 5\\
+  x &= \frac{5}{8}
+  \end{aligned}
+  \] \\
+  \[
+  \begin{aligned}
+  \text{So } \ln 6 &\approx 3\left(\frac{5}{8}\right)-\frac{3}{2}\left(\frac{5}{8}\right)^2+3\left(\frac{5}{8}\right)^3\\
+  &\approx 2.02
+  \end{aligned}
+  \]
+\end{tcolorbox}
+  Explain the error in Sam's working. \marks{2} \\
+  \item Use $x=\frac{1}{4}$ in the series expansion found in part (a) to find an approximation for $\ln 8$. \\
+
+  Fully justify your answer. \marks{3} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Using
+\[
+\ln\left(\frac{1+2x}{1-x}\right)=\ln(1+2x)-\ln(1-x)
+\]
+
+and the Maclaurin series
+\[
+\ln(1+u)=u-\frac{u^2}{2}+\frac{u^3}{3}+\cdots
+\]
+
+we have, with $u=2x$,
+\[
+\ln(1+2x)=2x-\frac{(2x)^2}{2}+\frac{(2x)^3}{3}+\cdots
+=2x-2x^2+\frac{8}{3}x^3+\cdots
+\]
+
+Also, with $u=-x$,
+\[
+\ln(1-x)=(-x)-\frac{(-x)^2}{2}+\frac{(-x)^3}{3}+\cdots
+=-x-\frac12x^2-\frac13x^3+\cdots
+\]
+
+So
+\begin{align*}
+\ln\left(\frac{1+2x}{1-x}\right)
+&=\left(2x-2x^2+\frac{8}{3}x^3+\cdots\right)-\left(-x-\frac12x^2-\frac13x^3+\cdots\right) \\
+&=3x-\frac32x^2+3x^3+\cdots
+\end{align*}
+
+Hence the first three non-zero terms are
+\[
+3x-\frac32x^2+3x^3
+\]
+
+  \item Sam’s algebra for finding $x$ is correct, since
+\[
+\frac{1+2x}{1-x}=6 \quad \Rightarrow \quad x=\frac58
+\]
+
+The error is that the series from part (a) is not valid for this value of $x$.
+
+For $\ln(1+2x)$, the Maclaurin series for $\ln(1+u)$ requires
+\[
+-1<u\leq 1
+\]
+so here
+\[
+-1<2x\leq 1 \quad \Rightarrow \quad -\frac12<x\leq \frac12
+\]
+
+Therefore the series for
+\[
+\ln\left(\frac{1+2x}{1-x}\right)
+\]
+is only valid for
+\[
+-\frac12<x\leq \frac12
+\]
+
+But
+\[
+\frac58>\frac12
+\]
+
+So Sam substituted a value of $x$ outside the interval of convergence, and the approximation is invalid.
+
+  \item Put $x=\frac14$ into the expression inside the logarithm:
+\[
+\frac{1+2x}{1-x}
+=\frac{1+2\left(\frac14\right)}{1-\frac14}
+=\frac{1+\frac12}{\frac34}
+=\frac{\frac32}{\frac34}
+=2
+\]
+
+So the series from part (a) gives an approximation for $\ln 2$:
+\begin{align*}
+\ln 2
+&\approx 3\left(\frac14\right)-\frac32\left(\frac14\right)^2+3\left(\frac14\right)^3 \\
+&=\frac34-\frac{3}{32}+\frac{3}{64} \\
+&=\frac{48-6+3}{64} \\
+&=\frac{45}{64}
+\end{align*}
+
+Now
+\[
+\ln 8=\ln(2^3)=3\ln 2
+\]
+
+Hence
+\[
+\ln 8 \approx 3\times \frac{45}{64}=\frac{135}{64}=2.109375
+\]
+
+So
+\[
+\ln 8 \approx \frac{135}{64} \approx 2.11
+\]
+
+This is justified because $x=\frac14$ lies in the valid interval
+\[
+-\frac12<x\leq \frac12
+\]
+
+Also, the next term in the series is found by continuing part (a):
+\[
+\ln(1+2x)=2x-2x^2+\frac83x^3-4x^4+\cdots
+\]
+\[
+\ln(1-x)=-x-\frac12x^2-\frac13x^3-\frac14x^4+\cdots
+\]
+so
+\[
+\ln\left(\frac{1+2x}{1-x}\right)=3x-\frac32x^2+3x^3-\frac{15}{4}x^4+\cdots
+\]
+
+At $x=\frac14$ this becomes
+\[
+\ln 2=\frac34-\frac{3}{32}+\frac{3}{64}-\frac{15}{1024}+\cdots
+\]
+
+This is an alternating series with decreasing terms, so the error is less than the first omitted term:
+\[
+\left|\text{error in } \ln 2\right|<\frac{15}{1024}
+\]
+
+Therefore
+\[
+\left|\text{error in } \ln 8\right|<3\cdot \frac{15}{1024}=\frac{45}{1024}\approx 0.0439
+\]
+
+Since the next omitted term is negative, $\frac{135}{64}$ is an overestimate.
+
+Hence the approximation is
+\[
+\ln 8 \approx \frac{135}{64} \approx 2.11
+\]
+  \end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item By using an appropriate Maclaurin series prove that if $0 < x < 1$ then $-\ln(1-x) > x$. \marks{2} \\
+  \item Hence, by using a suitable substitution, deduce that $\ln t > 1 - \frac{1}{t}$ for $t > 1$. \marks{1} \\
+  \item Using the inequality in part (b), and by making a suitable choice for $t$, determine which is greater, \[\left(\frac{5}{4}\right)^5 \quad \text{or}\quad e\] \marks{3} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Using the Maclaurin series
+  \[
+  \ln(1+u)=u-\frac{u^2}{2}+\frac{u^3}{3}-\frac{u^4}{4}+\cdots \qquad (|u|<1)
+  \]
+  put $u=-x$. Then, for $0<x<1$,
+  \begin{align*}
+  \ln(1-x)&=-x-\frac{x^2}{2}-\frac{x^3}{3}-\frac{x^4}{4}-\cdots \\
+  \therefore\quad -\ln(1-x)&=x+\frac{x^2}{2}+\frac{x^3}{3}+\frac{x^4}{4}+\cdots
+  \end{align*}
+  Since $0<x<1$, every term after the first is positive, so
+  \[
+  -\ln(1-x)>x
+  \]
+  Hence proved.
+
+  \item Let
+  \[
+  x=1-\frac1t=\frac{t-1}{t}
+  \]
+  If $t>1$, then $0<x<1$, so part (a) applies:
+  \[
+  -\ln(1-x)>x
+  \]
+  Substituting $x=1-\frac1t$ gives
+  \begin{align*}
+  -\ln\!\left(1-\left(1-\frac1t\right)\right)&>1-\frac1t \\
+  -\ln\!\left(\frac1t\right)&>1-\frac1t \\
+  \ln t&>1-\frac1t
+  \end{align*}
+  So, for $t>1$,
+  \[
+  \ln t>1-\frac1t
+  \]
+
+  \item Choose $t=\dfrac54$ in part (b). Since $\dfrac54>1$,
+  \[
+  \ln\left(\frac54\right)>1-\frac{1}{5/4}=1-\frac45=\frac15
+  \]
+  Multiply both sides by $5$:
+  \[
+  5\ln\left(\frac54\right)>1
+  \]
+  But $1=\ln e$, so
+  \[
+  \ln\left(\left(\frac54\right)^5\right)>\ln e
+  \]
+  Since $\ln x$ is an increasing function,
+  \[
+  \left(\frac54\right)^5>e
+  \]
+  Therefore, $\left(\dfrac54\right)^5$ is greater than $e$.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Write down the first three non-zero terms of the Maclaurin series for $\ln\left(\dfrac{1+2x}{1-x}\right)$. \marks{2} \\
+  \item Use these three terms to show that
+  \[
+  \ln\left(\dfrac{10}{7}\right) \approx \dfrac{183}{512}
+  \]
+  \marks[-20pt]{2}
+  \item Dana uses the same first three terms of the series to approximate $\ln 10$ and gets an answer of $2.67$, correct to $3$ significant figures. However, $\ln 10 = 2.30$ correct to $3$ significant figures. \\
+
+  Explain Dana's error. \marks{2} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Using
+  \[
+  \ln(1+u)=u-\frac{u^2}{2}+\frac{u^3}{3}+\cdots
+  \]
+  we have
+  \[
+  \ln\left(\frac{1+2x}{1-x}\right)=\ln(1+2x)-\ln(1-x)
+  \]
+  Now expand each logarithm:
+  \[
+  \ln(1+2x)=2x-\frac{(2x)^2}{2}+\frac{(2x)^3}{3}+\cdots
+  =2x-2x^2+\frac{8x^3}{3}+\cdots
+  \]
+  \[
+  \ln(1-x)=-x-\frac{x^2}{2}-\frac{x^3}{3}+\cdots
+  \]
+  So
+  \begin{align*}
+  \ln\left(\frac{1+2x}{1-x}\right)
+  &=\left(2x-2x^2+\frac{8x^3}{3}\right)-\left(-x-\frac{x^2}{2}-\frac{x^3}{3}\right)+\cdots \\
+  &=3x-\frac{3x^2}{2}+3x^3+\cdots
+  \end{align*}
+  The first three non-zero terms are
+  \[
+  3x-\frac{3x^2}{2}+3x^3
+  \]
+
+  \item To use the series for \(\ln\left(\dfrac{10}{7}\right)\), first find \(x\) such that
+  \[
+  \frac{1+2x}{1-x}=\frac{10}{7}
+  \]
+  Hence
+  \[
+  7(1+2x)=10(1-x)
+  \]
+  \[
+  7+14x=10-10x
+  \]
+  \[
+  24x=3 \implies x=\frac18
+  \]
+  Substitute \(x=\dfrac18\) into the first three terms:
+  \begin{align*}
+  \ln\left(\frac{10}{7}\right)
+  &\approx 3\left(\frac18\right)-\frac32\left(\frac18\right)^2+3\left(\frac18\right)^3 \\
+  &=\frac38-\frac{3}{128}+\frac{3}{512} \\
+  &=\frac{192}{512}-\frac{12}{512}+\frac{3}{512} \\
+  &=\frac{183}{512}
+  \end{align*}
+  So
+  \[
+  \ln\left(\frac{10}{7}\right)\approx \frac{183}{512}
+  \]
+
+  \item For \(\ln 10\), Dana must have used
+  \[
+  \frac{1+2x}{1-x}=10
+  \]
+  so
+  \[
+  1+2x=10-10x \implies 12x=9 \implies x=\frac34
+  \]
+  However, the series in part (a) comes from the Maclaurin expansions of \(\ln(1+2x)\) and \(\ln(1-x)\).
+
+  The expansion for \(\ln(1+2x)\) is only valid when
+  \[
+  |2x|<1 \implies |x|<\frac12
+  \]
+  Since \(x=\dfrac34\), this is outside the interval where the series converges.
+
+  So Dana's error was using the first three terms of the Maclaurin series at a value of \(x\) for which the series is not valid. That is why her answer \(2.67\) is not reliable.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 13 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use the Maclaurin series expansions for $\sin x$ and $\cos x$ to determine the series expansion of
+  \[
+  \left(\frac{\sin(x/2)}{x/2}\right)\cos\left(\frac{x}{3}\right)
+  \]
+  in ascending powers of $x$, up to and including the term in $x^4$. \\
+
+  Give each term in simplest form. \marks{3} \\
+  \item Use the answer to part (a) and calculus to find an approximation, to $5$ decimal places, for
+  \[
+  \int_{\pi/6}^{2\pi/3} \left( \frac{1}{x}\left(\frac{\sin(x/2)}{x/2}\right)\cos\left(\frac{x}{3}\right) \right) \, \mathrm{d}x
+  \]
+  \marks[-30pt]{3}
+  \item Use the integration function on your calculator to evaluate
+  \[
+  \int_{\pi/6}^{2\pi/3} \left( \frac{1}{x}\left(\frac{\sin(x/2)}{x/2}\right)\cos\left(\frac{x}{3}\right) \right) \, \mathrm{d}x
+  \]
+
+  Give your answer to $5$ decimal places. \marks{1} \\
+  \item Assuming that the calculator answer in part (c) is accurate to $5$ decimal places, comment on the accuracy of the approximation found in part (b). \marks{1} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Using the standard Maclaurin series,
+\[
+\sin u=u-\frac{u^3}{3!}+\frac{u^5}{5!}+\cdots,
+\qquad
+\cos u=1-\frac{u^2}{2!}+\frac{u^4}{4!}+\cdots
+\]
+
+With \(u=\dfrac{x}{2}\),
+\begin{align*}
+\sin\left(\frac{x}{2}\right)
+&=\frac{x}{2}-\frac{1}{3!}\left(\frac{x}{2}\right)^3+\frac{1}{5!}\left(\frac{x}{2}\right)^5+\cdots \\
+&=\frac{x}{2}-\frac{x^3}{48}+\frac{x^5}{3840}+\cdots
+\end{align*}
+So
+\[
+\frac{\sin(x/2)}{x/2}
+=1-\frac{x^2}{24}+\frac{x^4}{1920}+\cdots
+\]
+
+Also, with \(u=\dfrac{x}{3}\),
+\begin{align*}
+\cos\left(\frac{x}{3}\right)
+&=1-\frac{1}{2!}\left(\frac{x}{3}\right)^2+\frac{1}{4!}\left(\frac{x}{3}\right)^4+\cdots \\
+&=1-\frac{x^2}{18}+\frac{x^4}{1944}+\cdots
+\end{align*}
+
+Now multiply the two series, keeping terms up to \(x^4\):
+\begin{align*}
+\left(\frac{\sin(x/2)}{x/2}\right)\cos\left(\frac{x}{3}\right)
+&=\left(1-\frac{x^2}{24}+\frac{x^4}{1920}\right)\left(1-\frac{x^2}{18}+\frac{x^4}{1944}\right) \\
+&=1-\left(\frac{1}{24}+\frac{1}{18}\right)x^2
++\left(\frac{1}{1920}+\frac{1}{1944}+\frac{1}{24}\cdot\frac{1}{18}\right)x^4+\cdots \\
+&=1-\frac{7x^2}{72}+\frac{521x^4}{155520}+\cdots
+\end{align*}
+
+Hence
+\[
+\left(\frac{\sin(x/2)}{x/2}\right)\cos\left(\frac{x}{3}\right)
+=1-\frac{7x^2}{72}+\frac{521x^4}{155520}+O(x^6)
+\]
+
+  \item Using part (a),
+\[
+\frac{1}{x}\left(\frac{\sin(x/2)}{x/2}\right)\cos\left(\frac{x}{3}\right)
+\approx \frac{1}{x}\left(1-\frac{7x^2}{72}+\frac{521x^4}{155520}\right)
+= \frac{1}{x}-\frac{7x}{72}+\frac{521x^3}{155520}
+\]
+
+Therefore
+\begin{align*}
+I&=\int_{\pi/6}^{2\pi/3}\left(\frac{1}{x}\left(\frac{\sin(x/2)}{x/2}\right)\cos\left(\frac{x}{3}\right)\right)\,\mathrm{d}x \\
+&\approx \int_{\pi/6}^{2\pi/3}\left(\frac{1}{x}-\frac{7x}{72}+\frac{521x^3}{155520}\right)\,\mathrm{d}x \\
+&= \left[\ln x-\frac{7x^2}{144}+\frac{521x^4}{622080}\right]_{\pi/6}^{2\pi/3}
+\end{align*}
+
+Now simplify:
+\begin{align*}
+\ln\left(\frac{2\pi}{3}\right)-\ln\left(\frac{\pi}{6}\right)
+&=\ln\left(\frac{2\pi/3}{\pi/6}\right) \\
+&=\ln 4
+\end{align*}
+
+\begin{align*}
+-\frac{7}{144}\left[\left(\frac{2\pi}{3}\right)^2-\left(\frac{\pi}{6}\right)^2\right]
+&=-\frac{7}{144}\left(\frac{4\pi^2}{9}-\frac{\pi^2}{36}\right) \\
+&=-\frac{7}{144}\cdot\frac{15\pi^2}{36} \\
+&=-\frac{35\pi^2}{1728}
+\end{align*}
+
+\begin{align*}
+\frac{521}{622080}\left[\left(\frac{2\pi}{3}\right)^4-\left(\frac{\pi}{6}\right)^4\right]
+&=\frac{521}{622080}\left(\frac{16\pi^4}{81}-\frac{\pi^4}{1296}\right) \\
+&=\frac{521}{622080}\cdot\frac{255\pi^4}{1296} \\
+&=\frac{8857\pi^4}{53747712}
+\end{align*}
+
+So
+\[
+I\approx \ln 4-\frac{35\pi^2}{1728}+\frac{8857\pi^4}{53747712}
+\]
+
+Hence
+\[
+I\approx 1.20244
+\]
+
+So the approximation is \(1.20244\) to 5 decimal places.
+
+  \item Using the calculator integration function,
+\[
+\int_{\pi/6}^{2\pi/3}\left(\frac{1}{x}\left(\frac{\sin(x/2)}{x/2}\right)\cos\left(\frac{x}{3}\right)\right)\,\mathrm{d}x \approx 1.20169
+\]
+
+So the calculator value is \(1.20169\).
+
+  \item Comparing the two answers,
+\[
+1.20244-1.20169=0.00075
+\]
+
+So the approximation in part (b) is an overestimate by about \(0.00075\).
+
+It is accurate to \(3\) decimal places, but not to \(4\) decimal places.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 14 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find and simplify the first five terms in the Maclaurin series for $e^x$. \marks{2} \\
+  \item Hence, or otherwise, write down the first five terms in the Maclaurin series for $e^{-x}$. \marks{1} \\
+  \item Use your answers, together with the identity $\cosh x + 1 = 2\cosh^2\left(\frac{x}{2}\right)$, to show that the Maclaurin series for $\cosh^2\left(\frac{x}{2}\right)$ is
+  \[
+  a + bx^2 + cx^4 + \cdots
+  \]
+  where $a$, $b$ and $c$ are rational numbers to be determined. \marks{3} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Using the standard Maclaurin series
+\[
+e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\frac{x^4}{4!}+\cdots
+\]
+so the first five terms, simplified, are
+\[
+e^x=1+x+\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24}+\cdots
+\]
+
+  \item Replace $x$ by $-x$ in the series for $e^x$:
+\[
+e^{-x}=1+(-x)+\frac{(-x)^2}{2}+\frac{(-x)^3}{6}+\frac{(-x)^4}{24}+\cdots
+\]
+Hence
+\[
+e^{-x}=1-x+\frac{x^2}{2}-\frac{x^3}{6}+\frac{x^4}{24}+\cdots
+\]
+
+  \item Using
+\[
+\cosh x=\frac{e^x+e^{-x}}{2}
+\]
+and the expansions from parts (a) and (b),
+\begin{align*}
+e^x+e^{-x}
+&=\left(1+x+\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24}+\cdots\right)
++\left(1-x+\frac{x^2}{2}-\frac{x^3}{6}+\frac{x^4}{24}+\cdots\right) \\
+&=2+x^2+\frac{x^4}{12}+\cdots
+\end{align*}
+So
+\[
+\cosh x=\frac{2+x^2+\frac{x^4}{12}+\cdots}{2}
+=1+\frac{x^2}{2}+\frac{x^4}{24}+\cdots
+\]
+
+Now use the identity
+\[
+\cosh x+1=2\cosh^2\left(\frac{x}{2}\right)
+\]
+Substituting the series for $\cosh x$:
+\[
+2\cosh^2\left(\frac{x}{2}\right)
+= \left(1+\frac{x^2}{2}+\frac{x^4}{24}+\cdots\right)+1
+=2+\frac{x^2}{2}+\frac{x^4}{24}+\cdots
+\]
+Divide by $2$:
+\[
+\cosh^2\left(\frac{x}{2}\right)=1+\frac{x^2}{4}+\frac{x^4}{48}+\cdots
+\]
+
+Therefore,
+\[
+a=1,\qquad b=\frac14,\qquad c=\frac1{48}
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 15 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\roman*)}]
+  \item Use the Maclaurin series for $\ln(1+x)$ and $\ln(1-x)$ to obtain the first three non-zero terms in the Maclaurin series for
+  \[
+  \ln\left(\frac{(1+x)^2}{1-2x}\right)
+  \]
+  State the range of validity of this series. \marks{4} \\
+  \item Find the value of $x$ in the range of validity for which
+  \[
+  \frac{(1+x)^2}{1-2x}=2
+  \]
+  Hence find an approximation to $\ln 2$, giving your answer to three decimal places. \marks{4} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\item Using
+\[
+\ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}-\cdots
+\]
+and
+\[
+\ln(1-x)=-\left(x+\frac{x^2}{2}+\frac{x^3}{3}+\cdots\right)
+\]
+
+we have
+\[
+\ln\left(\frac{(1+x)^2}{1-2x}\right)=2\ln(1+x)-\ln(1-2x)
+\]
+
+Now substitute into each series.
+
+For \(2\ln(1+x)\),
+\[
+2\ln(1+x)=2\left(x-\frac{x^2}{2}+\frac{x^3}{3}-\cdots\right)
+=2x-x^2+\frac{2x^3}{3}-\cdots
+\]
+
+For \(-\ln(1-2x)\),
+\[
+\ln(1-2x)=-\left(2x+\frac{(2x)^2}{2}+\frac{(2x)^3}{3}+\cdots\right)
+\]
+so
+\[
+-\ln(1-2x)=2x+\frac{(2x)^2}{2}+\frac{(2x)^3}{3}+\cdots
+=2x+2x^2+\frac{8x^3}{3}+\cdots
+\]
+
+Hence
+\begin{align*}
+\ln\left(\frac{(1+x)^2}{1-2x}\right)
+&=\left(2x-x^2+\frac{2x^3}{3}\right)+\left(2x+2x^2+\frac{8x^3}{3}\right)+\cdots \\
+&=4x+x^2+\frac{10x^3}{3}+\cdots
+\end{align*}
+
+So the first three non-zero terms are
+\[
+4x+x^2+\frac{10x^3}{3}
+\]
+
+For validity:
+
+\(\ln(1+x)\) requires \(-1<x\le 1\), and \(\ln(1-2x)\) requires \(-\frac12\le x<\frac12\).
+
+So the combined series is valid for
+\[
+|x|<\frac12
+\]
+and it also converges at \(x=-\frac12\).
+
+\item We solve
+\[
+\frac{(1+x)^2}{1-2x}=2
+\]
+
+So
+\begin{align*}
+(1+x)^2&=2(1-2x) \\
+1+2x+x^2&=2-4x \\
+x^2+6x-1&=0
+\end{align*}
+
+Using the quadratic formula,
+\[
+x=\frac{-6\pm\sqrt{36+4}}{2}=\frac{-6\pm\sqrt{40}}{2}=-3\pm\sqrt{10}
+\]
+
+The root in the range of validity is
+\[
+x=\sqrt{10}-3
+\]
+since \(\sqrt{10}-3\approx 0.162\), while \(-3-\sqrt{10}\) is not in the valid range.
+
+Now
+\[
+\ln 2=\ln\left(\frac{(1+x)^2}{1-2x}\right)
+\]
+so using the series from part (i),
+\[
+\ln 2 \approx 4x+x^2+\frac{10x^3}{3}
+\]
+
+Substituting \(x=\sqrt{10}-3\),
+\[
+\ln 2 \approx 4(\sqrt{10}-3)+(\sqrt{10}-3)^2+\frac{10}{3}(\sqrt{10}-3)^3
+\]
+
+This simplifies to
+\[
+\ln 2 \approx \frac{364\sqrt{10}-1149}{3}
+\]
+
+Hence
+\[
+\ln 2 \approx 0.689688\ldots
+\]
+
+So, to three decimal places,
+\[
+\ln 2 \approx 0.690
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 16 ----
+\questionitem
+
+Find the Maclaurin series for \[e^{e^{x^2}-x}\] up to and including the term in $x^2$. \marks{4}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Using the standard Maclaurin expansion
+\[
+e^t=1+t+\frac{t^2}{2}+\cdots
+\]
+we first expand \(e^{x^2}\):
+
+\[
+e^{x^2}=1+x^2+\cdots
+\]
+
+So the exponent becomes
+\[
+e^{x^2}-x=1-x+x^2+\cdots
+\]
+
+Hence
+\[
+e^{e^{x^2}-x}=e^{\,1-x+x^2+\cdots}=e\cdot e^{-x+x^2+\cdots}
+\]
+
+Let
+\[
+u=-x+x^2+\cdots
+\]
+
+Then
+\[
+e^u=1+u+\frac{u^2}{2}+\cdots
+\]
+
+Now
+\[
+u^2=(-x+x^2+\cdots)^2=x^2-2x^3+\cdots
+\]
+so, up to the term in \(x^2\),
+\[
+u^2=x^2+\cdots
+\]
+
+Therefore
+\begin{align*}
+e^u&=1+\left(-x+x^2\right)+\frac{1}{2}\left(x^2\right)+\cdots\\
+&=1-x+\frac{3}{2}x^2+\cdots
+\end{align*}
+
+Multiplying by \(e\),
+\[
+e^{e^{x^2}-x}=e\left(1-x+\frac{3}{2}x^2+\cdots\right)
+\]
+
+So the Maclaurin series up to and including the term in \(x^2\) is
+\[
+e^{e^{x^2}-x}=e-ex+\frac{3e}{2}x^2+\cdots
+\]
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 17 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Using the definitions of $\sinh x$ and $\cosh x$, together with the Maclaurin series expansion of $e^x$, find the first three non-zero terms in the Maclaurin series expansion of $x\cosh x-\sinh x$. \marks{3} \\
+  \item Hence, by replacing $x$ with $\mathrm{i}x$ in your answer to part (a), find the first three non-zero terms in the Maclaurin series expansion of $x\cos x-\sin x$. \marks{3} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Using
+  \[
+  e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\frac{x^4}{4!}+\frac{x^5}{5!}+\frac{x^6}{6!}+\frac{x^7}{7!}+\cdots
+  \]
+  we have
+  \[
+  e^{-x}=1-x+\frac{x^2}{2!}-\frac{x^3}{3!}+\frac{x^4}{4!}-\frac{x^5}{5!}+\frac{x^6}{6!}-\frac{x^7}{7!}+\cdots
+  \]
+
+  From the definitions,
+  \[
+  \cosh x=\frac{e^x+e^{-x}}{2},\qquad \sinh x=\frac{e^x-e^{-x}}{2}
+  \]
+
+  So
+  \begin{align*}
+  \cosh x
+  &=\frac{1}{2}\left[\left(1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\frac{x^4}{4!}+\cdots\right)
+  +\left(1-x+\frac{x^2}{2!}-\frac{x^3}{3!}+\frac{x^4}{4!}+\cdots\right)\right] \\
+  &=1+\frac{x^2}{2!}+\frac{x^4}{4!}+\frac{x^6}{6!}+\cdots \\
+  &=1+\frac{x^2}{2}+\frac{x^4}{24}+\frac{x^6}{720}+\cdots
+  \end{align*}
+
+  and
+  \begin{align*}
+  \sinh x
+  &=\frac{1}{2}\left[\left(1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\frac{x^4}{4!}+\cdots\right)
+  -\left(1-x+\frac{x^2}{2!}-\frac{x^3}{3!}+\frac{x^4}{4!}+\cdots\right)\right] \\
+  &=x+\frac{x^3}{3!}+\frac{x^5}{5!}+\frac{x^7}{7!}+\cdots \\
+  &=x+\frac{x^3}{6}+\frac{x^5}{120}+\frac{x^7}{5040}+\cdots
+  \end{align*}
+
+  Therefore
+  \begin{align*}
+  x\cosh x-\sinh x
+  &=x\left(1+\frac{x^2}{2}+\frac{x^4}{24}+\frac{x^6}{720}+\cdots\right)
+  -\left(x+\frac{x^3}{6}+\frac{x^5}{120}+\frac{x^7}{5040}+\cdots\right) \\
+  &=\left(x+\frac{x^3}{2}+\frac{x^5}{24}+\frac{x^7}{720}+\cdots\right)
+  -\left(x+\frac{x^3}{6}+\frac{x^5}{120}+\frac{x^7}{5040}+\cdots\right) \\
+  &=\left(\frac{1}{2}-\frac{1}{6}\right)x^3+\left(\frac{1}{24}-\frac{1}{120}\right)x^5+\left(\frac{1}{720}-\frac{1}{5040}\right)x^7+\cdots \\
+  &=\frac{x^3}{3}+\frac{x^5}{30}+\frac{x^7}{840}+\cdots
+  \end{align*}
+
+  Hence the first three non-zero terms are
+  \[
+  x\cosh x-\sinh x=\frac{x^3}{3}+\frac{x^5}{30}+\frac{x^7}{840}+\cdots
+  \]
+
+  \item Replace $x$ by $\mathrm{i}x$ in the result from part (a):
+  \[
+  (\mathrm{i}x)\cosh(\mathrm{i}x)-\sinh(\mathrm{i}x)
+  =\frac{(\mathrm{i}x)^3}{3}+\frac{(\mathrm{i}x)^5}{30}+\frac{(\mathrm{i}x)^7}{840}+\cdots
+  \]
+
+  Using
+  \[
+  \cosh(\mathrm{i}x)=\cos x,\qquad \sinh(\mathrm{i}x)=\mathrm{i}\sin x
+  \]
+  gives
+  \[
+  \mathrm{i}(x\cos x-\sin x)
+  =\frac{(\mathrm{i}x)^3}{3}+\frac{(\mathrm{i}x)^5}{30}+\frac{(\mathrm{i}x)^7}{840}+\cdots
+  \]
+
+  Now simplify the powers of $\mathrm{i}$:
+  \[
+  (\mathrm{i}x)^3=-\mathrm{i}x^3,\qquad
+  (\mathrm{i}x)^5=\mathrm{i}x^5,\qquad
+  (\mathrm{i}x)^7=-\mathrm{i}x^7
+  \]
+
+  So
+  \[
+  \mathrm{i}(x\cos x-\sin x)
+  =-\frac{\mathrm{i}x^3}{3}+\frac{\mathrm{i}x^5}{30}-\frac{\mathrm{i}x^7}{840}+\cdots
+  \]
+
+  Dividing through by $\mathrm{i}$,
+  \[
+  x\cos x-\sin x=-\frac{x^3}{3}+\frac{x^5}{30}-\frac{x^7}{840}+\cdots
+  \]
+
+  Hence the first three non-zero terms are
+  \[
+  x\cos x-\sin x=-\frac{x^3}{3}+\frac{x^5}{30}-\frac{x^7}{840}+\cdots
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\end{enumerate}
+\end{document}

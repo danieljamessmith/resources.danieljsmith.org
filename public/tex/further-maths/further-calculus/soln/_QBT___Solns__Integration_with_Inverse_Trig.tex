@@ -1,0 +1,2142 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{\textit{Solutions} - Integration with Inverse Trig}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+Find the exact value of the improper integral
+\[
+\int_0^4 \frac{1}{\sqrt{x(4-x)}}\,\mathrm{d}x
+\]
+\marks[-30pt]{5}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+I=\int_0^4 \frac{1}{\sqrt{x(4-x)}}\,\mathrm{d}x
+\]
+
+This is an improper integral because the denominator is \(0\) at \(x=0\) and \(x=4\). So we write
+\[
+I=\lim_{\substack{a\to 0^+\\ b\to 4^-}}\int_a^b \frac{1}{\sqrt{x(4-x)}}\,\mathrm{d}x
+\]
+
+Now simplify the expression inside the square root:
+\[
+x(4-x)=4x-x^2=4-(x^2-4x+4)=4-(x-2)^2
+\]
+
+So
+\[
+I=\lim_{\substack{a\to 0^+\\ b\to 4^-}}\int_a^b \frac{1}{\sqrt{4-(x-2)^2}}\,\mathrm{d}x
+\]
+
+Let
+\[
+u=x-2
+\]
+Then
+\[
+\mathrm{d}u=\mathrm{d}x
+\]
+and the limits become
+\[
+x=a \Rightarrow u=a-2,\qquad x=b \Rightarrow u=b-2
+\]
+
+Hence
+\[
+I=\lim_{\substack{a\to 0^+\\ b\to 4^-}}\int_{a-2}^{b-2} \frac{1}{\sqrt{4-u^2}}\,\mathrm{d}u
+\]
+
+Using the standard result
+\[
+\int \frac{1}{\sqrt{a^2-u^2}}\,\mathrm{d}u=\arcsin \!\left(\frac{u}{a}\right)+c
+\]
+with \(a=2\), we get
+\[
+I=\lim_{\substack{a\to 0^+\\ b\to 4^-}}\left[\arcsin \!\left(\frac{u}{2}\right)\right]_{a-2}^{b-2}
+\]
+
+So
+\[
+I=\lim_{\substack{a\to 0^+\\ b\to 4^-}}\left(\arcsin \!\left(\frac{b-2}{2}\right)-\arcsin \!\left(\frac{a-2}{2}\right)\right)
+\]
+
+Now
+\[
+\frac{b-2}{2}\to 1 \quad \text{as } b\to 4^-
+\]
+and
+\[
+\frac{a-2}{2}\to -1 \quad \text{as } a\to 0^+
+\]
+
+Therefore
+\[
+I=\arcsin (1)-\arcsin (-1)=\frac{\pi}{2}-\left(-\frac{\pi}{2}\right)=\pi
+\]
+
+The exact value of the integral is \(\pi\)
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+Show that
+\[
+\int_{0}^{3} \frac{1}{x^2 - 2x + 5}\,\mathrm{d}x = \frac{1}{2}\arctan (3)
+\]
+\marks[-20pt]{5}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+I=\int_{0}^{3}\frac{1}{x^2-2x+5}\,\mathrm{d}x
+\]
+
+First complete the square in the denominator:
+\[
+x^2-2x+5=(x-1)^2+4=(x-1)^2+2^2
+\]
+
+So
+\[
+I=\int_{0}^{3}\frac{1}{(x-1)^2+2^2}\,\mathrm{d}x
+\]
+
+Now use the standard result from the formula booklet:
+\[
+\int \frac{1}{u^2+a^2}\,\mathrm{d}u=\frac{1}{a}\arctan \!\left(\frac{u}{a}\right)+c
+\]
+
+Here, take \(u=x-1\), so \(\mathrm{d}u=\mathrm{d}x\), and \(a=2\). Hence
+\[
+I=\frac{1}{2}\left[\arctan \!\left(\frac{x-1}{2}\right)\right]_{0}^{3}
+\]
+
+Substituting the limits gives
+\begin{align*}
+I&=\frac{1}{2}\left(\arctan \!\left(\frac{3-1}{2}\right)-\arctan \!\left(\frac{0-1}{2}\right)\right)\\
+&=\frac{1}{2}\left(\arctan (1)-\arctan \!\left(-\frac12\right)\right)\\
+&=\frac{1}{2}\left(\frac{\pi}{4}+\arctan \!\left(\frac12\right)\right)
+\end{align*}
+
+To simplify this, let
+\[
+\theta=\frac{\pi}{4}+\arctan \!\left(\frac12\right)
+\]
+
+Then
+\begin{align*}
+\tan\theta
+&=\frac{\tan\left(\frac{\pi}{4}\right)+\tan\left(\arctan \!\left(\frac12\right)\right)}
+{1-\tan\left(\frac{\pi}{4}\right)\tan\left(\arctan \!\left(\frac12\right)\right)}\\
+&=\frac{1+\frac12}{1-1\cdot\frac12}\\
+&=\frac{\frac32}{\frac12}\\
+&=3
+\end{align*}
+
+Also, both \(\frac{\pi}{4}\) and \(\arctan \!\left(\frac12\right)\) are between \(0\) and \(\frac{\pi}{2}\), so \(\theta\) is in the first quadrant. Therefore
+\[
+\theta=\arctan (3)
+\]
+
+Hence
+\[
+I=\frac{1}{2}\arctan (3)
+\]
+
+So
+\[
+\int_{0}^{3}\frac{1}{x^2-2x+5}\,\mathrm{d}x=\frac{1}{2}\arctan (3)
+\]
+
+as required.
+\end{tcolorbox}
+
+
+\newpage
+
+
+% ---- Question 3 ----
+\questionitem
+
+\begin{enumerate}[label=(\roman*)]
+  \item Prove, from definitions involving exponentials, that
+  \[
+  1-\tanh^2u=\operatorname{sech}^2u
+  \]
+  \marks[-20pt]{3}
+  \item Prove that, for $|y|<1$,
+  \[
+  \operatorname{artanh}y=\frac{1}{2}\ln\left(\frac{1+y}{1-y}\right)
+  \]
+  \marks[-20pt]{4}
+  \item Use the substitution $x=4\tanh u$ to show that, for $|x|<4$,
+  \[
+  \int \frac{1}{16-x^2}\,\mathrm{d}x=\frac{1}{4}\operatorname{artanh}\frac{x}{4}+c
+  \]
+  Hence deduce that
+  \[
+  \int \frac{1}{16-x^2}\,\mathrm{d}x=\frac{1}{8}\ln\left(\frac{4+x}{4-x}\right)+c
+  \]
+  where $c$ is an arbitrary constant. \marks{6} \\
+  \item By first expressing $-t^2+6t+7$ in completed square form, show that
+  \[
+  \int_{1}^{5} \frac{1}{-t^2+6t+7}\,\mathrm{d}t=\frac{1}{4}\ln 3
+  \]
+  \marks[-20pt]{5}
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\item Using the exponential definitions,
+\[
+\tanh u=\frac{e^u-e^{-u}}{e^u+e^{-u}}
+\qquad\text{and}\qquad
+\operatorname{sech}u=\frac{2}{e^u+e^{-u}}
+\]
+
+Then
+\[
+\begin{aligned}
+1-\tanh^2u
+&=1-\left(\frac{e^u-e^{-u}}{e^u+e^{-u}}\right)^2 \\
+&=\frac{(e^u+e^{-u})^2-(e^u-e^{-u})^2}{(e^u+e^{-u})^2} \\
+&=\frac{(e^{2u}+2+e^{-2u})-(e^{2u}-2+e^{-2u})}{(e^u+e^{-u})^2} \\
+&=\frac{4}{(e^u+e^{-u})^2} \\
+&=\left(\frac{2}{e^u+e^{-u}}\right)^2 \\
+&=\operatorname{sech}^2u
+\end{aligned}
+\]
+
+Hence
+\[
+1-\tanh^2u=\operatorname{sech}^2u
+\]
+
+\item Let
+\[
+u=\operatorname{artanh}y
+\]
+so that
+\[
+y=\tanh u
+\]
+
+Using the exponential form of $\tanh u$,
+\[
+y=\frac{e^u-e^{-u}}{e^u+e^{-u}}
+\]
+
+Multiply top and bottom by $e^u$:
+\[
+y=\frac{e^{2u}-1}{e^{2u}+1}
+\]
+
+Now solve for $u$:
+\[
+\begin{aligned}
+y(e^{2u}+1)&=e^{2u}-1 \\
+ye^{2u}+y&=e^{2u}-1 \\
+e^{2u}-ye^{2u}&=1+y \\
+e^{2u}(1-y)&=1+y \\
+e^{2u}&=\frac{1+y}{1-y}
+\end{aligned}
+\]
+
+Since $|y|<1$, both $1+y$ and $1-y$ are positive, so taking logarithms is valid:
+\[
+2u=\ln\left(\frac{1+y}{1-y}\right)
+\]
+
+Therefore
+\[
+u=\frac12\ln\left(\frac{1+y}{1-y}\right)
+\]
+
+But $u=\operatorname{artanh}y$, so
+\[
+\operatorname{artanh}y=\frac12\ln\left(\frac{1+y}{1-y}\right)
+\]
+
+\item Let
+\[
+x=4\tanh u
+\]
+
+Then
+\[
+\frac{\mathrm{d}x}{\mathrm{d}u}=4\operatorname{sech}^2u
+\qquad\Rightarrow\qquad
+\mathrm{d}x=4\operatorname{sech}^2u\,\mathrm{d}u
+\]
+
+Also,
+\[
+\begin{aligned}
+16-x^2
+&=16-16\tanh^2u \\
+&=16(1-\tanh^2u) \\
+&=16\operatorname{sech}^2u
+\end{aligned}
+\]
+using part (i).
+
+So
+\[
+\begin{aligned}
+\int \frac{1}{16-x^2}\,\mathrm{d}x
+&=\int \frac{1}{16\operatorname{sech}^2u}\left(4\operatorname{sech}^2u\,\mathrm{d}u\right) \\
+&=\frac14\int 1\,\mathrm{d}u \\
+&=\frac{u}{4}+c
+\end{aligned}
+\]
+
+Now $x=4\tanh u$ gives
+\[
+\tanh u=\frac{x}{4}
+\]
+so
+\[
+u=\operatorname{artanh}\frac{x}{4}
+\]
+
+Hence
+\[
+\int \frac{1}{16-x^2}\,\mathrm{d}x=\frac14\operatorname{artanh}\frac{x}{4}+c
+\]
+for $|x|<4$.
+
+Now use part (ii) with $y=\dfrac{x}{4}$. Since $|x|<4$, we have $\left|\dfrac{x}{4}\right|<1$, so
+\[
+\operatorname{artanh}\frac{x}{4}
+=\frac12\ln\left(\frac{1+\frac{x}{4}}{1-\frac{x}{4}}\right)
+=\frac12\ln\left(\frac{4+x}{4-x}\right)
+\]
+
+Therefore
+\[
+\int \frac{1}{16-x^2}\,\mathrm{d}x
+=\frac14\cdot \frac12\ln\left(\frac{4+x}{4-x}\right)+c
+=\frac18\ln\left(\frac{4+x}{4-x}\right)+c
+\]
+
+So
+\[
+\int \frac{1}{16-x^2}\,\mathrm{d}x=\frac18\ln\left(\frac{4+x}{4-x}\right)+c
+\]
+
+\item First complete the square:
+\[
+\begin{aligned}
+-t^2+6t+7
+&=-(t^2-6t+9)+16 \\
+&=16-(t-3)^2
+\end{aligned}
+\]
+
+So
+\[
+\int_1^5 \frac{1}{-t^2+6t+7}\,\mathrm{d}t
+=
+\int_1^5 \frac{1}{16-(t-3)^2}\,\mathrm{d}t
+\]
+
+Let
+\[
+x=t-3
+\]
+Then $\mathrm{d}x=\mathrm{d}t$, and the limits become
+\[
+t=1 \Rightarrow x=-2,
+\qquad
+t=5 \Rightarrow x=2
+\]
+
+Hence
+\[
+\int_1^5 \frac{1}{-t^2+6t+7}\,\mathrm{d}t
+=
+\int_{-2}^{2}\frac{1}{16-x^2}\,\mathrm{d}x
+\]
+
+Using part (iii),
+\[
+\int \frac{1}{16-x^2}\,\mathrm{d}x
+=
+\frac18\ln\left(\frac{4+x}{4-x}\right)+c
+\]
+
+Therefore
+\[
+\begin{aligned}
+\int_{-2}^{2}\frac{1}{16-x^2}\,\mathrm{d}x
+&=
+\left[\frac18\ln\left(\frac{4+x}{4-x}\right)\right]_{-2}^{2} \\
+&=\frac18\ln\left(\frac{6}{2}\right)-\frac18\ln\left(\frac{2}{6}\right) \\
+&=\frac18\ln 3-\frac18\ln\left(\frac13\right) \\
+&=\frac18\ln 3+\frac18\ln 3 \\
+&=\frac14\ln 3
+\end{aligned}
+\]
+
+Hence
+\[
+\int_{1}^{5} \frac{1}{-t^2 + 6t + 7}\,\mathrm{d}t = \frac{1}{4}\ln 3
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+\begin{enumerate}[label=(\roman*), start=1]
+  \item For $x>5$, find
+  \[
+  \int \frac{1}{\sqrt{x^2-6x+5}}\,\mathrm{d}x
+  \] \\
+  expressing your answer first in terms of $\operatorname{arcosh}$ and hence in logarithmic form. \marks{3} \\
+  \item Use integration by substitution with $x-3=2\cosh u$ to show that, for $x>5$,
+  \[
+  \int \sqrt{x^2-6x+5}\,\mathrm{d}x=2\left(\frac{x-3}{2}\sqrt{\frac{(x-3)^2}{4}-1}-\ln\left|\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right|\right)+c
+  \]
+  where $c$ is an arbitrary constant. \marks{7} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\roman*)}, start=1]
+  \item First complete the square:
+  \[
+  x^2-6x+5=(x-3)^2-4
+  \]
+
+  Since $x>5$, we have $\dfrac{x-3}{2}>1$, so we may let
+  \[
+  x-3=2\cosh u \qquad (u>0)
+  \]
+  Then
+  \[
+  \frac{\mathrm{d}x}{\mathrm{d}u}=2\sinh u
+  \qquad\Rightarrow\qquad
+  \mathrm{d}x=2\sinh u\,\mathrm{d}u
+  \]
+  and
+  \begin{align*}
+  \sqrt{x^2-6x+5}
+  &=\sqrt{(x-3)^2-4} \\
+  &=\sqrt{4\cosh^2u-4} \\
+  &=2\sqrt{\cosh^2u-1} \\
+  &=2\sinh u
+  \end{align*}
+  since $u>0$.
+
+  So
+  \begin{align*}
+  \int \frac{1}{\sqrt{x^2-6x+5}}\,\mathrm{d}x
+  &=\int \frac{1}{2\sinh u}\,(2\sinh u\,\mathrm{d}u) \\
+  &=\int 1\,\mathrm{d}u \\
+  &=u+c
+  \end{align*}
+
+  Now
+  \[
+  \cosh u=\frac{x-3}{2}
+  \]
+  so
+  \[
+  u=\operatorname{arcosh}\left(\frac{x-3}{2}\right)
+  \]
+
+  Hence
+  \[
+  \int \frac{1}{\sqrt{x^2-6x+5}}\,\mathrm{d}x
+  =\operatorname{arcosh}\left(\frac{x-3}{2}\right)+c
+  \]
+
+  Using the standard result
+  \[
+  \operatorname{arcosh} z=\ln\left(z+\sqrt{z^2-1}\right)
+  \]
+  we get
+  \[
+  \int \frac{1}{\sqrt{x^2-6x+5}}\,\mathrm{d}x
+  =\ln\left(\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right)+c
+  \]
+
+  So the answer is
+  \[
+  \operatorname{arcosh}\left(\frac{x-3}{2}\right)+c
+  \]
+  and hence
+  \[
+  \ln\left(\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right)+c
+  \]
+
+  \item Let
+  \[
+  I=\int \sqrt{x^2-6x+5}\,\mathrm{d}x
+  \]
+  and use the substitution
+  \[
+  x-3=2\cosh u \qquad (x>5)
+  \]
+
+  Then, as above,
+  \[
+  \sqrt{x^2-6x+5}=2\sinh u
+  \qquad\text{and}\qquad
+  \mathrm{d}x=2\sinh u\,\mathrm{d}u
+  \]
+
+  So
+  \begin{align*}
+  I
+  &=\int (2\sinh u)(2\sinh u)\,\mathrm{d}u \\
+  &=4\int \sinh^2u\,\mathrm{d}u
+  \end{align*}
+
+  Use the identity
+  \[
+  \cosh 2u=2\sinh^2u+1
+  \]
+  so that
+  \[
+  2\sinh^2u=\cosh 2u-1
+  \]
+
+  Therefore
+  \begin{align*}
+  I
+  &=2\int (\cosh 2u-1)\,\mathrm{d}u \\
+  &=2\left(\frac{1}{2}\sinh 2u-u\right)+c \\
+  &=\sinh 2u-2u+c
+  \end{align*}
+
+  Now express this in terms of $x$.
+
+  Since
+  \[
+  \cosh u=\frac{x-3}{2}
+  \]
+  we have
+  \[
+  \sinh u=\sqrt{\cosh^2u-1}
+  =\sqrt{\frac{(x-3)^2}{4}-1}
+  \]
+  because $u>0$.
+
+  Also
+  \begin{align*}
+  \sinh 2u
+  &=2\sinh u\cosh u \\
+  &=2\left(\sqrt{\frac{(x-3)^2}{4}-1}\right)\left(\frac{x-3}{2}\right) \\
+  &=(x-3)\sqrt{\frac{(x-3)^2}{4}-1}
+  \end{align*}
+
+  Hence
+  \begin{align*}
+  I
+  &=(x-3)\sqrt{\frac{(x-3)^2}{4}-1}-2u+c \\
+  &=2\left(\frac{x-3}{2}\sqrt{\frac{(x-3)^2}{4}-1}-u\right)+c
+  \end{align*}
+
+  From part (ii),
+  \[
+  u=\operatorname{arcosh}\left(\frac{x-3}{2}\right)
+  =\ln\left|\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right|
+  \]
+
+  Therefore
+  \[
+  \int \sqrt{x^2-6x+5}\,\mathrm{d}x
+  =2\left(\frac{x-3}{2}\sqrt{\frac{(x-3)^2}{4}-1}-\ln\left|\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right|\right)+c
+  \]
+
+  This is the required result.
+\end{enumerate}
+\end{tcolorbox}
+
+\newpage
+% ---- Question 5 ----
+\questionitem
+
+\[
+g(x)=\frac{2x^2-3x+31}{x^3-3x^2+9x+13}
+\]
+\\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Express $g(x)$ in the form \[\frac{P}{x+1}+\frac{Q}{x^2-4x+13}\] where $P$ and $Q$ are constants to be found. \marks{3} \\
+  \item Find $\int g(x)\,\mathrm{d}x$, giving your answer in the form \[A\ln|x+1|+B\arctan\left(\frac{x-2}{3}\right)+c\] where $A$ and $B$ are constants to be found. \marks{4} \\
+  \item Hence show that $\int_0^\infty g(x)\,\mathrm{d}x$ diverges. \marks{2} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item First factorise the denominator:
+\[
+x^3-3x^2+9x+13=(x+1)(x^2-4x+13)
+\]
+
+So
+\[
+g(x)=\frac{2x^2-3x+31}{(x+1)(x^2-4x+13)}
+\]
+and we write
+\[
+\frac{2x^2-3x+31}{(x+1)(x^2-4x+13)}
+=\frac{P}{x+1}+\frac{Q}{x^2-4x+13}
+\]
+
+Multiplying through by $(x+1)(x^2-4x+13)$ gives
+\[
+2x^2-3x+31=P(x^2-4x+13)+Q(x+1)
+\]
+
+Expand the right-hand side:
+\[
+2x^2-3x+31=Px^2-4Px+13P+Qx+Q
+\]
+\[
+=Px^2+(-4P+Q)x+(13P+Q)
+\]
+
+Now compare coefficients with
+\[
+2x^2-3x+31
+\]
+
+So
+\[
+P=2
+\]
+and
+\[
+-4P+Q=-3
+\]
+
+Substituting $P=2$:
+\[
+-8+Q=-3
+\]
+\[
+Q=5
+\]
+
+Checking the constant term:
+\[
+13P+Q=13(2)+5=31
+\]
+which is correct.
+
+Hence
+\[
+P=2,\qquad Q=5
+\]
+
+  \item From part (a),
+\[
+g(x)=\frac{2}{x+1}+\frac{5}{x^2-4x+13}
+\]
+
+Complete the square in the quadratic:
+\[
+x^2-4x+13=(x-2)^2+9
+\]
+
+So
+\[
+g(x)=\frac{2}{x+1}+\frac{5}{(x-2)^2+9}
+\]
+
+Therefore
+\[
+\int g(x)\,\mathrm{d}x=\int \frac{2}{x+1}\,\mathrm{d}x+\int \frac{5}{(x-2)^2+9}\,\mathrm{d}x
+\]
+
+For the first integral,
+\[
+\int \frac{2}{x+1}\,\mathrm{d}x=2\ln|x+1|
+\]
+
+For the second integral, use the standard result
+\[
+\int \frac{1}{u^2+a^2}\,\mathrm{d}u=\frac{1}{a}\arctan\!\left(\frac{u}{a}\right)+c
+\]
+
+Here $u=x-2$ and $a=3$, so
+\[
+\int \frac{5}{(x-2)^2+9}\,\mathrm{d}x
+=5\int \frac{1}{(x-2)^2+3^2}\,\mathrm{d}x
+=\frac{5}{3}\arctan\!\left(\frac{x-2}{3}\right)
+\]
+
+Hence
+\[
+\int g(x)\,\mathrm{d}x
+=2\ln|x+1|+\frac{5}{3}\arctan\!\left(\frac{x-2}{3}\right)+c
+\]
+
+So
+\[
+A=2,\qquad B=\frac{5}{3}
+\]
+
+  \item To consider the improper integral, write
+\[
+\int_0^\infty g(x)\,\mathrm{d}x=\lim_{t\to\infty}\int_0^t g(x)\,\mathrm{d}x
+\]
+
+Using the antiderivative from part (b),
+\begin{align*}
+\int_0^t g(x)\,\mathrm{d}x
+&=\left[2\ln|x+1|+\frac{5}{3}\arctan\!\left(\frac{x-2}{3}\right)\right]_0^t \\
+&=2\ln(t+1)+\frac{5}{3}\arctan\!\left(\frac{t-2}{3}\right)
+-\left(2\ln 1+\frac{5}{3}\arctan\!\left(-\frac23\right)\right) \\
+&=2\ln(t+1)+\frac{5}{3}\arctan\!\left(\frac{t-2}{3}\right)+\frac{5}{3}\arctan\!\left(\frac23\right)
+\end{align*}
+
+Now as $t\to\infty$,
+\[
+\arctan\!\left(\frac{t-2}{3}\right)\to \frac{\pi}{2}
+\]
+so that term stays finite, but
+\[
+2\ln(t+1)\to\infty
+\]
+
+Therefore
+\[
+\int_0^\infty g(x)\,\mathrm{d}x
+\]
+diverges, in fact it diverges to $+\infty$.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+Show that
+\[
+\int_{1}^{4} \frac{1}{\sqrt{10 + 8x - 2x^2}}\,\mathrm{d}x = \frac{1}{\sqrt{2}}\left(\arcsin \left(\frac{2}{3}\right) + \arcsin \left(\frac{1}{3}\right)\right)
+\]
+\marks[-20pt]{6}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+I=\int_{1}^{4}\frac{1}{\sqrt{10+8x-2x^2}}\,\mathrm{d}x
+\]
+
+First complete the square in the expression under the root:
+\begin{align*}
+10+8x-2x^2
+&=-2(x^2-4x-5)\\
+&=-2\bigl((x-2)^2-9\bigr)\\
+&=2\bigl(9-(x-2)^2\bigr)
+\end{align*}
+
+So
+\[
+I=\int_{1}^{4}\frac{1}{\sqrt{2\bigl(9-(x-2)^2\bigr)}}\,\mathrm{d}x
+=\frac{1}{\sqrt{2}}\int_{1}^{4}\frac{1}{\sqrt{9-(x-2)^2}}\,\mathrm{d}x
+\]
+
+Now reduce this to the standard form
+\[
+\int \frac{1}{\sqrt{1-u^2}}\,\mathrm{d}u=\arcsin (u)+c
+\]
+
+Let
+\[
+u=\frac{x-2}{3}
+\]
+Then
+\[
+x-2=3u,\qquad \mathrm{d}x=3\,\mathrm{d}u
+\]
+
+Also, when $x=1$,
+\[
+u=\frac{1-2}{3}=-\frac13
+\]
+and when $x=4$,
+\[
+u=\frac{4-2}{3}=\frac23
+\]
+
+Substituting into the integral:
+\begin{align*}
+I
+&=\frac{1}{\sqrt{2}}\int_{1}^{4}\frac{1}{\sqrt{9-(x-2)^2}}\,\mathrm{d}x\\
+&=\frac{1}{\sqrt{2}}\int_{-1/3}^{2/3}\frac{3}{\sqrt{9-(3u)^2}}\,\mathrm{d}u\\
+&=\frac{1}{\sqrt{2}}\int_{-1/3}^{2/3}\frac{3}{\sqrt{9-9u^2}}\,\mathrm{d}u\\
+&=\frac{1}{\sqrt{2}}\int_{-1/3}^{2/3}\frac{3}{3\sqrt{1-u^2}}\,\mathrm{d}u\\
+&=\frac{1}{\sqrt{2}}\int_{-1/3}^{2/3}\frac{1}{\sqrt{1-u^2}}\,\mathrm{d}u
+\end{align*}
+
+Using the standard result:
+\begin{align*}
+I
+&=\frac{1}{\sqrt{2}}\left[\arcsin (u)\right]_{-1/3}^{2/3}\\
+&=\frac{1}{\sqrt{2}}\left(\arcsin \left(\frac23\right)-\arcsin \left(-\frac13\right)\right)
+\end{align*}
+
+Since $\arcsin (-a)=-\arcsin (a)$,
+\[
+I=\frac{1}{\sqrt{2}}\left(\arcsin \left(\frac23\right)+\arcsin \left(\frac13\right)\right)
+\]
+
+Hence
+\[
+\int_{1}^{4} \frac{1}{\sqrt{10 + 8x - 2x^2}}\,\mathrm{d}x
+= \frac{1}{\sqrt{2}}\left(\arcsin \left(\frac{2}{3}\right) + \arcsin \left(\frac{1}{3}\right)\right)
+\]
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Explain why
+  \[
+  \int_{0}^{\infty} \frac{1}{x^2 - 6x + 18} \, \mathrm{d}x
+  \]
+  is an improper integral. \marks{1} \\
+  \item Show that
+  \[
+  \int_{0}^{\infty} \frac{1}{x^2 - 6x + 18} \, \mathrm{d}x = k\pi
+  \]
+  where $k$ is a constant to be determined. \marks{4} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item The integral is improper because the interval of integration is unbounded: the upper limit is $\infty$.
+
+  So it is defined as
+  \[
+  \int_{0}^{\infty} \frac{1}{x^2-6x+18}\,\mathrm{d}x
+  =
+  \lim_{b\to\infty}\int_{0}^{b}\frac{1}{x^2-6x+18}\,\mathrm{d}x
+  \]
+
+  \item Let
+  \[
+  I=\int_{0}^{\infty}\frac{1}{x^2-6x+18}\,\mathrm{d}x
+  \]
+
+  First complete the square in the denominator:
+  \[
+  x^2-6x+18=(x-3)^2+9=(x-3)^2+3^2
+  \]
+
+  Hence
+  \[
+  I=\int_{0}^{\infty}\frac{1}{(x-3)^2+3^2}\,\mathrm{d}x
+  \]
+
+  Since this is an improper integral, write it as a limit:
+  \[
+  I=\lim_{b\to\infty}\int_{0}^{b}\frac{1}{(x-3)^2+3^2}\,\mathrm{d}x
+  \]
+
+  Using the standard result
+  \[
+  \int \frac{1}{u^2+a^2}\,\mathrm{d}u=\frac{1}{a}\arctan\!\left(\frac{u}{a}\right)+c
+  \]
+  with $u=x-3$ and $a=3$, we get
+  \[
+  \int \frac{1}{(x-3)^2+3^2}\,\mathrm{d}x
+  =
+  \frac{1}{3}\arctan\!\left(\frac{x-3}{3}\right)+c
+  \]
+
+  Therefore
+  \begin{align*}
+  I
+  &=\lim_{b\to\infty}\left[\frac{1}{3}\arctan\!\left(\frac{x-3}{3}\right)\right]_{0}^{b} \\
+  &=\frac{1}{3}\lim_{b\to\infty}\left(\arctan\!\left(\frac{b-3}{3}\right)-\arctan(-1)\right)
+  \end{align*}
+
+  Now
+  \[
+  \arctan\!\left(\frac{b-3}{3}\right)\to \frac{\pi}{2}
+  \quad\text{as } b\to\infty
+  \]
+  and
+  \[
+  \arctan(-1)=-\frac{\pi}{4}
+  \]
+
+  So
+  \begin{align*}
+  I
+  &=\frac{1}{3}\left(\frac{\pi}{2}-\left(-\frac{\pi}{4}\right)\right) \\
+  &=\frac{1}{3}\left(\frac{3\pi}{4}\right) \\
+  &=\frac{\pi}{4}
+  \end{align*}
+
+  Hence
+  \[
+  \int_{0}^{\infty}\frac{1}{x^2-6x+18}\,\mathrm{d}x=\frac{\pi}{4}=k\pi
+  \]
+  so
+  \[
+  k=\frac{1}{4}
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+Evaluate
+\[
+\int_{0}^{4} \frac{1}{x^2-4x+8}\, \mathrm{d}x
+\]
+giving your answer as an exact multiple of $\pi$. \marks{8}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+First complete the square in the denominator:
+\[
+x^2-4x+8=(x^2-4x+4)+4=(x-2)^2+4=(x-2)^2+2^2
+\]
+
+So the integral becomes
+\[
+\int_0^4 \frac{1}{x^2-4x+8}\,\mathrm{d}x
+=
+\int_0^4 \frac{1}{(x-2)^2+2^2}\,\mathrm{d}x
+\]
+
+Now use the standard result from the formula booklet:
+\[
+\int \frac{1}{u^2+a^2}\,\mathrm{d}u=\frac{1}{a}\arctan\!\left(\frac{u}{a}\right)+c
+\]
+
+Here we can take
+\[
+u=x-2 \qquad \text{so} \qquad \mathrm{d}u=\mathrm{d}x
+\]
+
+Therefore
+\[
+\int_0^4 \frac{1}{(x-2)^2+2^2}\,\mathrm{d}x
+=
+\left[\frac{1}{2}\arctan\!\left(\frac{x-2}{2}\right)\right]_0^4
+\]
+
+Now substitute the limits:
+\begin{align*}
+\left[\frac{1}{2}\arctan\!\left(\frac{x-2}{2}\right)\right]_0^4
+&=
+\frac{1}{2}\arctan\!\left(\frac{4-2}{2}\right)
+-
+\frac{1}{2}\arctan\!\left(\frac{0-2}{2}\right) \\
+&=
+\frac{1}{2}\arctan(1)-\frac{1}{2}\arctan(-1) \\
+&=
+\frac{1}{2}\cdot\frac{\pi}{4}-\frac{1}{2}\cdot\left(-\frac{\pi}{4}\right) \\
+&=
+\frac{1}{2}\left(\frac{\pi}{4}+\frac{\pi}{4}\right) \\
+&=
+\frac{1}{2}\cdot\frac{\pi}{2} \\
+&=
+\frac{\pi}{4}
+\end{align*}
+
+Hence
+\[
+\int_{0}^{4} \frac{1}{x^2-4x+8}\,\mathrm{d}x=\frac{\pi}{4}
+\]
+
+So the exact value, as a multiple of $\pi$, is $\frac{\pi}{4}$.
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+\[f(x)=\frac{6x+1}{4x^2-8x+13}\] \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find $\int f(x)\,\mathrm{d}x$, giving your answer in the form \[A\ln(4x^2-8x+13)+B\arctan\left(\frac{2x-2}{3}\right)+c\] where $c$ is an arbitrary constant and $A$ and $B$ are constants to be found. \marks{4} \\
+  \item Hence show that the mean value of $f(x)$ over the interval $\left[1,\frac{5}{2}\right]$ is \[\frac{1}{2}\ln 2+\frac{7\pi}{36}\] \marks[-20pt]{3}
+  \item Hence write down the mean value of $3-2f(x)$ over the interval $\left[1,\frac{5}{2}\right]$. \marks{1} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let
+\[
+I=\int \frac{6x+1}{4x^2-8x+13}\,\mathrm{d}x
+\]
+
+Write the numerator in terms of the derivative of the denominator:
+\[
+6x+1=\frac34(8x-8)+7
+\]
+
+So
+\begin{align*}
+I
+&=\frac34\int \frac{8x-8}{4x^2-8x+13}\,\mathrm{d}x
++7\int \frac{1}{4x^2-8x+13}\,\mathrm{d}x
+\end{align*}
+
+For the first integral,
+\[
+\int \frac{g'(x)}{g(x)}\,\mathrm{d}x=\ln|g(x)|+c
+\]
+and here
+\[
+4x^2-8x+13=(2x-2)^2+9>0
+\]
+so no modulus is needed. Hence
+\[
+\frac34\int \frac{8x-8}{4x^2-8x+13}\,\mathrm{d}x
+=\frac34\ln(4x^2-8x+13)
+\]
+
+For the second integral, complete the square:
+\[
+4x^2-8x+13=(2x-2)^2+9
+\]
+
+Let \(u=2x-2\), so \(\mathrm{d}u=2\,\mathrm{d}x\) and \(\mathrm{d}x=\frac12\,\mathrm{d}u\). Then
+\begin{align*}
+7\int \frac{1}{(2x-2)^2+9}\,\mathrm{d}x
+&=7\int \frac{1}{u^2+9}\cdot \frac12\,\mathrm{d}u \\
+&=\frac72 \int \frac{1}{u^2+9}\,\mathrm{d}u
+\end{align*}
+
+Using the standard result
+\[
+\int \frac{1}{a^2+u^2}\,\mathrm{d}u=\frac1a\arctan\left(\frac{u}{a}\right)+c
+\]
+with \(a=3\),
+\begin{align*}
+\frac72 \int \frac{1}{u^2+9}\,\mathrm{d}u
+&=\frac72 \cdot \frac13 \arctan\left(\frac{u}{3}\right) \\
+&=\frac76 \arctan\left(\frac{u}{3}\right)
+\end{align*}
+
+Substituting back \(u=2x-2\),
+\[
+\int f(x)\,\mathrm{d}x
+=\frac34\ln(4x^2-8x+13)+\frac76\arctan\left(\frac{2x-2}{3}\right)+c
+\]
+
+Therefore
+\[
+A=\frac34,\qquad B=\frac76
+\]
+
+  \item From part (a), an antiderivative is
+\[
+F(x)=\frac34\ln(4x^2-8x+13)+\frac76\arctan\left(\frac{2x-2}{3}\right)
+\]
+
+The mean value of \(f(x)\) over \(\left[1,\frac52\right]\) is
+\[
+\frac{1}{\frac52-1}\int_1^{5/2} f(x)\,\mathrm{d}x
+=\frac23\bigl(F(5/2)-F(1)\bigr)
+\]
+
+Now
+\begin{align*}
+F\left(\frac52\right)
+&=\frac34\ln\left(4\cdot\frac{25}{4}-8\cdot\frac52+13\right)
++\frac76\arctan\left(\frac{2\cdot\frac52-2}{3}\right) \\
+&=\frac34\ln(18)+\frac76\arctan(1) \\
+&=\frac34\ln(18)+\frac{7\pi}{24}
+\end{align*}
+
+Also
+\begin{align*}
+F(1)
+&=\frac34\ln(4-8+13)+\frac76\arctan(0) \\
+&=\frac34\ln(9)
+\end{align*}
+
+So
+\begin{align*}
+\frac23\bigl(F(5/2)-F(1)\bigr)
+&=\frac23\left(\frac34\ln\frac{18}{9}+\frac{7\pi}{24}\right) \\
+&=\frac23\left(\frac34\ln 2+\frac{7\pi}{24}\right) \\
+&=\frac12\ln 2+\frac{7\pi}{36}
+\end{align*}
+
+Hence the mean value is
+\[
+\frac12\ln 2+\frac{7\pi}{36}
+\]
+
+  \item Using linearity of the mean value,
+\[
+\text{mean value of }(3-2f(x))
+=3-2\times \text{mean value of }f(x)
+\]
+
+So
+\begin{align*}
+\text{mean value of }(3-2f(x))
+&=3-2\left(\frac12\ln 2+\frac{7\pi}{36}\right) \\
+&=3-\ln 2-\frac{7\pi}{18}
+\end{align*}
+
+Therefore the mean value is
+\[
+3-\ln 2-\frac{7\pi}{18}
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+\[
+g(x)=\frac{4x-1}{x^2-4x+8}
+\] \\
+Show that
+\[
+\int g(x)\,\mathrm{d}x=A\arctan\left(\frac{x-2}{2}\right)+B\ln(x^2-4x+8)+c
+\]
+where $c$ is an arbitrary constant and $A$ and $B$ are constants to be found. \marks{5} \\
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+First complete the square in the denominator:
+\[
+x^2-4x+8=(x-2)^2+4
+\]
+
+Now rewrite the numerator so that part of it is the derivative of the denominator:
+\[
+4x-1=2(2x-4)+7
+\]
+
+So
+\begin{align*}
+g(x)
+&=\frac{4x-1}{x^2-4x+8} \\
+&=\frac{2(2x-4)+7}{x^2-4x+8} \\
+&=2\frac{2x-4}{x^2-4x+8}+\frac{7}{(x-2)^2+4}
+\end{align*}
+
+Hence
+\begin{align*}
+\int g(x)\,\mathrm{d}x
+&=2\int \frac{2x-4}{x^2-4x+8}\,\mathrm{d}x
++7\int \frac{1}{(x-2)^2+4}\,\mathrm{d}x
+\end{align*}
+
+For the first integral, let
+\[
+u=x^2-4x+8
+\qquad\text{so}\qquad
+\frac{\mathrm{d}u}{\mathrm{d}x}=2x-4
+\]
+Then
+\[
+2\int \frac{2x-4}{x^2-4x+8}\,\mathrm{d}x
+=2\int \frac{1}{u}\,\mathrm{d}u
+=2\ln u
+=2\ln(x^2-4x+8)
+\]
+
+For the second integral, use the standard result
+\[
+\int \frac{1}{a^2+u^2}\,\mathrm{d}u
+=\frac{1}{a}\arctan\left(\frac{u}{a}\right)+c
+\]
+Here \(u=x-2\) and \(a=2\), so
+\[
+7\int \frac{1}{(x-2)^2+4}\,\mathrm{d}x
+=7\cdot \frac{1}{2}\arctan\left(\frac{x-2}{2}\right)
+\]
+
+Therefore
+\begin{align*}
+\int g(x)\,\mathrm{d}x
+&=2\ln(x^2-4x+8)+\frac{7}{2}\arctan\left(\frac{x-2}{2}\right)+c
+\end{align*}
+
+This is of the form
+\[
+\int g(x)\,\mathrm{d}x
+=A\arctan\left(\frac{x-2}{2}\right)+B\ln(x^2-4x+8)+c
+\]
+with
+\[
+A=\frac{7}{2},
+\qquad
+B=2
+\]
+
+So the required constants are \(A=\frac{7}{2}\) and \(B=2\).
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+
+You are given that $y=\operatorname{arcosh}x$, where $x\ge 1$. \\
+
+\begin{enumerate}[label=(\roman*), start=1]
+  \item Show that
+  \[
+  \frac{\mathrm{d}y}{\mathrm{d}x}=\frac{1}{\sqrt{x^2-1}}
+  \]
+  \marks[-20pt]{4}
+  \item Show, by integrating the result in part (ii), that
+  \[
+  y=\ln\left(x+\sqrt{x^2-1}\right)
+  \]
+  \marks[-20pt]{4}
+  \item Hence show that
+  \[
+  \int_{15/8}^{5/2} \frac{1}{\sqrt{4x^2-9}}\,\mathrm{d}x=\frac{1}{2}\left(\operatorname{arcosh}\frac{5}{3}-\operatorname{arcosh}\frac{5}{4}\right)
+  \]
+  Express this answer in logarithmic form. \marks{4} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\item Since \(y=\operatorname{arcosh}x\), we have
+\[
+\cosh y=x
+\]
+Differentiate implicitly with respect to \(x\):
+\[
+\sinh y\frac{\mathrm{d}y}{\mathrm{d}x}=1
+\]
+So
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}=\frac{1}{\sinh y}
+\]
+Using the identity
+\[
+\cosh^2 y-\sinh^2 y=1
+\]
+gives
+\[
+\sinh^2 y=\cosh^2 y-1=x^2-1
+\]
+Also \(y=\operatorname{arcosh}x\) with \(x\ge 1\), so \(y\ge 0\), hence \(\sinh y\ge 0\). Therefore
+\[
+\sinh y=\sqrt{x^2-1}
+\]
+and so
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}=\frac{1}{\sqrt{x^2-1}}
+\]
+as required.
+
+\item Integrating the result from part (ii),
+\[
+y=\int \frac{1}{\sqrt{x^2-1}}\,\mathrm{d}x
+\]
+Use the standard result
+\[
+\int \frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}x=\ln\left|x+\sqrt{x^2-a^2}\right|+C
+\]
+With \(a=1\),
+\[
+y=\ln\left|x+\sqrt{x^2-1}\right|+C
+\]
+Since \(x\ge 1\), the quantity \(x+\sqrt{x^2-1}\) is positive, so
+\[
+y=\ln\left(x+\sqrt{x^2-1}\right)+C
+\]
+Now when \(x=1\),
+\[
+y=\operatorname{arcosh}1=0
+\]
+Hence
+\[
+0=\ln\left(1+\sqrt{1^2-1}\right)+C=\ln 1+C=C
+\]
+So \(C=0\), and therefore
+\[
+y=\ln\left(x+\sqrt{x^2-1}\right)
+\]
+
+\item Let
+\[
+u=\frac{2x}{3}
+\]
+Then
+\[
+\mathrm{d}x=\frac{3}{2}\,\mathrm{d}u
+\]
+and
+\[
+\sqrt{4x^2-9}=\sqrt{9u^2-9}=3\sqrt{u^2-1}
+\]
+Also the limits become
+\[
+x=\frac{15}{8}\Rightarrow u=\frac{5}{4},
+\qquad
+x=\frac{5}{2}\Rightarrow u=\frac{5}{3}
+\]
+So
+\begin{align*}
+\int_{15/8}^{5/2}\frac{1}{\sqrt{4x^2-9}}\,\mathrm{d}x
+&=\int_{5/4}^{5/3}\frac{1}{3\sqrt{u^2-1}}\cdot \frac{3}{2}\,\mathrm{d}u\\
+&=\frac12\int_{5/4}^{5/3}\frac{1}{\sqrt{u^2-1}}\,\mathrm{d}u
+\end{align*}
+From part (ii), \(\dfrac{\mathrm{d}}{\mathrm{d}u}(\operatorname{arcosh}u)=\dfrac{1}{\sqrt{u^2-1}}\), so
+\[
+\int_{15/8}^{5/2}\frac{1}{\sqrt{4x^2-9}}\,\mathrm{d}x
+=\frac12\left[\operatorname{arcosh}u\right]_{5/4}^{5/3}
+=\frac12\left(\operatorname{arcosh}\frac53-\operatorname{arcosh}\frac54\right)
+\]
+which is the required result.
+
+Now express this in logarithmic form using part (iii):
+\[
+\operatorname{arcosh}t=\ln\left(t+\sqrt{t^2-1}\right)
+\]
+Hence
+\[
+\operatorname{arcosh}\frac53
+=\ln\left(\frac53+\sqrt{\frac{25}{9}-1}\right)
+=\ln\left(\frac53+\frac43\right)
+=\ln 3
+\]
+and
+\[
+\operatorname{arcosh}\frac54
+=\ln\left(\frac54+\sqrt{\frac{25}{16}-1}\right)
+=\ln\left(\frac54+\frac34\right)
+=\ln 2
+\]
+Therefore
+\[
+\int_{15/8}^{5/2}\frac{1}{\sqrt{4x^2-9}}\,\mathrm{d}x
+=\frac12(\ln 3-\ln 2)
+=\frac12\ln\left(\frac32\right)
+\]
+So the logarithmic form is
+\[
+\frac12\ln\left(\frac32\right)
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+
+Determine each of the following integrals. \\
+\begin{enumerate}[label=(\roman*)]
+  \item
+  \[
+  \int \frac{1}{9x^2+12x+20}\,\mathrm{d}x
+  \]
+  \marks[-20pt]{4}
+  \item
+  \[
+  \int \frac{1}{\sqrt{45+12x-9x^2}}\,\mathrm{d}x
+  \]
+  \marks[-20pt]{4}
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\item Complete the square in the denominator:
+\begin{align*}
+9x^2+12x+20
+&=9\left(x^2+\frac{4}{3}x\right)+20 \\
+&=9\left[\left(x+\frac23\right)^2-\frac49\right]+20 \\
+&=9\left(x+\frac23\right)^2-4+20 \\
+&=9\left(x+\frac23\right)^2+16 \\
+&=9\left[\left(x+\frac23\right)^2+\left(\frac43\right)^2\right]
+\end{align*}
+
+So
+\begin{align*}
+\int \frac{1}{9x^2+12x+20}\,\mathrm{d}x
+&=\frac19\int \frac{1}{\left(x+\frac23\right)^2+\left(\frac43\right)^2}\,\mathrm{d}x
+\end{align*}
+
+Let
+\[
+u=x+\frac23
+\]
+so that $\mathrm{d}u=\mathrm{d}x$. Then
+\begin{align*}
+\int \frac{1}{9x^2+12x+20}\,\mathrm{d}x
+&=\frac19\int \frac{1}{u^2+\left(\frac43\right)^2}\,\mathrm{d}u
+\end{align*}
+
+Using the standard result
+\[
+\int \frac{1}{x^2+a^2}\,\mathrm{d}x=\frac{1}{a}\arctan\!\left(\frac{x}{a}\right)+C
+\]
+with $a=\frac43$,
+\begin{align*}
+\int \frac{1}{9x^2+12x+20}\,\mathrm{d}x
+&=\frac19 \cdot \frac{1}{4/3}\arctan\!\left(\frac{u}{4/3}\right)+C \\
+&=\frac{1}{12}\arctan\!\left(\frac{3u}{4}\right)+C \\
+&=\frac{1}{12}\arctan\!\left(\frac{3x+2}{4}\right)+C
+\end{align*}
+
+Hence,
+\[
+\int \frac{1}{9x^2 + 12x + 20}\,\mathrm{d}x=\frac{1}{12}\arctan\!\left(\frac{3x+2}{4}\right)+C
+\]
+
+\item Rewrite the expression under the root in completed-square form:
+\begin{align*}
+45+12x-9x^2
+&=-9\left(x^2-\frac43x-5\right) \\
+&=-9\left[\left(x-\frac23\right)^2-\frac49-5\right] \\
+&=-9\left[\left(x-\frac23\right)^2-\frac{49}{9}\right] \\
+&=49-9\left(x-\frac23\right)^2 \\
+&=49-(3x-2)^2
+\end{align*}
+
+So
+\begin{align*}
+\int \frac{1}{\sqrt{45+12x-9x^2}}\,\mathrm{d}x
+&=\int \frac{1}{\sqrt{49-(3x-2)^2}}\,\mathrm{d}x
+\end{align*}
+
+Let
+\[
+u=3x-2
+\]
+Then
+\[
+\frac{\mathrm{d}u}{\mathrm{d}x}=3
+\qquad\text{so}\qquad
+\mathrm{d}x=\frac13\,\mathrm{d}u
+\]
+
+Hence
+\begin{align*}
+\int \frac{1}{\sqrt{45+12x-9x^2}}\,\mathrm{d}x
+&=\frac13\int \frac{1}{\sqrt{49-u^2}}\,\mathrm{d}u
+\end{align*}
+
+Using the standard result
+\[
+\int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d}x=\arcsin\!\left(\frac{x}{a}\right)+C
+\]
+with $a=7$,
+\begin{align*}
+\int \frac{1}{\sqrt{45+12x-9x^2}}\,\mathrm{d}x
+&=\frac13\arcsin\!\left(\frac{u}{7}\right)+C \\
+&=\frac13\arcsin\!\left(\frac{3x-2}{7}\right)+C
+\end{align*}
+
+Hence,
+\[
+\int \frac{1}{\sqrt{45 + 12x - 9x^2}}\,\mathrm{d}x=\frac13\arcsin\!\left(\frac{3x-2}{7}\right)+C
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 13 ----
+\questionitem
+
+Without using a calculator, find \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \[
+  \int_{-1/5}^{1} \frac{1}{25x^2-20x+13}\,\mathrm{d}x
+  \] \\
+  giving your answer as a multiple of $\pi$ \marks{5} \\
+  \item
+  \[
+  \int_{-1/5}^{1} \frac{1}{\sqrt{25x^2-20x+13}}\,\mathrm{d}x
+  \] \\
+  giving your answer in the form $p\ln(q+r\sqrt{2})$, where $p$, $q$ and $r$ are rational numbers to be found. \marks{7} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Complete the square in the denominator:
+  \begin{align*}
+  25x^2-20x+13
+  &= (5x-2)^2+9
+  \end{align*}
+
+  So
+  \[
+  \int_{-\frac15}^{1}\frac{1}{25x^2-20x+13}\,\mathrm{d}x
+  = \int_{-\frac15}^{1}\frac{1}{(5x-2)^2+9}\,\mathrm{d}x
+  \]
+
+  Let
+  \[
+  u=\frac{5x-2}{3}
+  \]
+  Then
+  \[
+  5x-2=3u,
+  \qquad \mathrm{d}x=\frac35\,\mathrm{d}u
+  \]
+
+  Change the limits:
+  \[
+  x=-\frac15 \;\Rightarrow\; u=\frac{-1-2}{3}=-1,
+  \qquad
+  x=1 \;\Rightarrow\; u=\frac{5-2}{3}=1
+  \]
+
+  Hence
+  \begin{align*}
+  \int_{-\frac15}^{1}\frac{1}{(5x-2)^2+9}\,\mathrm{d}x
+  &= \int_{-1}^{1}\frac{1}{9u^2+9}\cdot \frac35\,\mathrm{d}u \\
+  &= \frac{1}{15}\int_{-1}^{1}\frac{1}{1+u^2}\,\mathrm{d}u
+  \end{align*}
+
+  Using the standard result
+  \[
+  \int \frac{1}{1+u^2}\,\mathrm{d}u=\arctan u + c
+  \]
+
+  we get
+  \begin{align*}
+  \frac{1}{15}\int_{-1}^{1}\frac{1}{1+u^2}\,\mathrm{d}u
+  &= \frac{1}{15}\left[\arctan u\right]_{-1}^{1} \\
+  &= \frac{1}{15}\left(\arctan 1-\arctan(-1)\right) \\
+  &= \frac{1}{15}\left(\frac{\pi}{4}-\left(-\frac{\pi}{4}\right)\right) \\
+  &= \frac{1}{15}\cdot \frac{\pi}{2} \\
+  &= \frac{\pi}{30}
+  \end{align*}
+
+  Therefore, the value of the integral is
+  \[
+  \frac{\pi}{30}
+  \]
+
+  \item As in part (a),
+  \[
+  25x^2-20x+13=(5x-2)^2+9
+  \]
+
+  So
+  \[
+  \int_{-\frac15}^{1}\frac{1}{\sqrt{25x^2-20x+13}}\,\mathrm{d}x
+  = \int_{-\frac15}^{1}\frac{1}{\sqrt{(5x-2)^2+9}}\,\mathrm{d}x
+  \]
+
+  Let
+  \[
+  u=\frac{5x-2}{3}
+  \]
+  Then
+  \[
+  5x-2=3u,
+  \qquad \mathrm{d}x=\frac35\,\mathrm{d}u
+  \]
+  and the limits again become
+  \[
+  x=-\frac15 \Rightarrow u=-1,
+  \qquad
+  x=1 \Rightarrow u=1
+  \]
+
+  Therefore
+  \begin{align*}
+  \int_{-\frac15}^{1}\frac{1}{\sqrt{(5x-2)^2+9}}\,\mathrm{d}x
+  &= \int_{-1}^{1}\frac{1}{\sqrt{9u^2+9}}\cdot \frac35\,\mathrm{d}u \\
+  &= \frac15\int_{-1}^{1}\frac{1}{\sqrt{u^2+1}}\,\mathrm{d}u
+  \end{align*}
+
+  Using the standard result
+  \[
+  \int \frac{1}{\sqrt{u^2+a^2}}\,\mathrm{d}u
+  = \ln\left|u+\sqrt{u^2+a^2}\right|+c
+  \]
+  with $a=1$, we have
+  \[
+  \int \frac{1}{\sqrt{u^2+1}}\,\mathrm{d}u
+  = \ln\left|u+\sqrt{u^2+1}\right|+c
+  \]
+
+  Hence
+  \begin{align*}
+  \frac15\int_{-1}^{1}\frac{1}{\sqrt{u^2+1}}\,\mathrm{d}u
+  &= \frac15\left[\ln\left(u+\sqrt{u^2+1}\right)\right]_{-1}^{1} \\
+  &= \frac15\left(\ln(1+\sqrt2)-\ln(\sqrt2-1)\right) \\
+  &= \frac15\ln\left(\frac{1+\sqrt2}{\sqrt2-1}\right)
+  \end{align*}
+
+  Now simplify the fraction by rationalising:
+  \begin{align*}
+  \frac{1+\sqrt2}{\sqrt2-1}
+  &= \frac{(1+\sqrt2)(\sqrt2+1)}{(\sqrt2-1)(\sqrt2+1)} \\
+  &= \frac{(1+\sqrt2)^2}{2-1} \\
+  &= (1+\sqrt2)^2 \\
+  &= 1+2\sqrt2+2 \\
+  &= 3+2\sqrt2
+  \end{align*}
+
+  So the integral is
+  \[
+  \frac15\ln(3+2\sqrt2)
+  \]
+
+  Therefore, in the form $p\ln(q+r\sqrt2)$,
+  \[
+  p=\frac15,\qquad q=3,\qquad r=2
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 14 ----
+\questionitem
+
+\begin{enumerate}[label=(\roman*)]
+  \item Given that $\tanh y=x$, where $|x|<1$, show that
+  \[
+  y=\frac{1}{2}\ln\left(\frac{1+x}{1-x}\right)
+  \]
+  and hence that
+  \[
+  \operatorname{artanh}x=\frac{1}{2}\ln\left(\frac{1+x}{1-x}\right)
+  \]
+  \marks[-20pt]{6}
+  \item Use your result in part (i), or otherwise, to find
+  \[
+  \int_{1/5}^{2/5} \frac{1}{4-9x^2}\,\mathrm{d}x
+  \]
+  expressing your answer in an exact logarithmic form. \marks{6} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\item Starting from the definition of the hyperbolic tangent,
+\[
+\tanh y=\frac{e^y-e^{-y}}{e^y+e^{-y}}
+\]
+Multiplying numerator and denominator by $e^y$ gives
+\[
+\tanh y=\frac{e^{2y}-1}{e^{2y}+1}
+\]
+Given that $\tanh y=x$, we have
+\begin{align*}
+x&=\frac{e^{2y}-1}{e^{2y}+1} \\
+x(e^{2y}+1)&=e^{2y}-1 \\
+xe^{2y}+x&=e^{2y}-1 \\
+e^{2y}-xe^{2y}&=x+1 \\
+e^{2y}(1-x)&=1+x
+\end{align*}
+Since $|x|<1$, we have $1-x>0$, so we may divide through by $1-x$:
+\[
+e^{2y}=\frac{1+x}{1-x}
+\]
+Now take natural logarithms:
+\[
+2y=\ln\left(\frac{1+x}{1-x}\right)
+\]
+Hence
+\[
+y=\frac{1}{2}\ln\left(\frac{1+x}{1-x}\right)
+\]
+So the required result is shown.
+
+Since $\operatorname{artanh}x$ is the inverse of $\tanh y$, this means
+\[
+\operatorname{artanh}x=\frac{1}{2}\ln\left(\frac{1+x}{1-x}\right)
+\]
+
+\item From part (i),
+\[
+\operatorname{artanh}u=\frac12\ln\left(\frac{1+u}{1-u}\right)
+\]
+for $|u|<1$.
+
+Differentiating,
+\begin{align*}
+\frac{\mathrm{d}}{\mathrm{d}u}\bigl(\operatorname{artanh}u\bigr)
+&=\frac12\frac{\mathrm{d}}{\mathrm{d}u}\left[\ln(1+u)-\ln(1-u)\right] \\
+&=\frac12\left(\frac{1}{1+u}+\frac{1}{1-u}\right) \\
+&=\frac12\left(\frac{(1-u)+(1+u)}{1-u^2}\right) \\
+&=\frac{1}{1-u^2}
+\end{align*}
+So
+\[
+\int \frac{1}{1-u^2}\,\mathrm{d}u=\operatorname{artanh}u+c
+\]
+
+Now let
+\[
+u=\frac{3x}{2}
+\]
+Then
+\[
+x=\frac{2u}{3}, \qquad \mathrm{d}x=\frac{2}{3}\,\mathrm{d}u
+\]
+Also, when $x=\frac15$, then $u=\frac{3}{10}$, and when $x=\frac25$, then $u=\frac35$.
+
+Therefore
+\begin{align*}
+\int_{1/5}^{2/5}\frac{1}{4-9x^2}\,\mathrm{d}x
+&=\int_{3/10}^{3/5}\frac{1}{4-9\left(\frac{2u}{3}\right)^2}\cdot \frac{2}{3}\,\mathrm{d}u \\
+&=\int_{3/10}^{3/5}\frac{1}{4-4u^2}\cdot \frac{2}{3}\,\mathrm{d}u \\
+&=\frac{1}{6}\int_{3/10}^{3/5}\frac{1}{1-u^2}\,\mathrm{d}u \\
+&=\frac{1}{6}\left[\operatorname{artanh}u\right]_{3/10}^{3/5}
+\end{align*}
+Using the result from part (i),
+\begin{align*}
+\int_{1/5}^{2/5}\frac{1}{4-9x^2}\,\mathrm{d}x
+&=\frac{1}{6}\left[\frac12\ln\left(\frac{1+u}{1-u}\right)\right]_{3/10}^{3/5} \\
+&=\frac{1}{12}\left[\ln\left(\frac{1+u}{1-u}\right)\right]_{3/10}^{3/5} \\
+&=\frac{1}{12}\left(\ln\left(\frac{1+\frac35}{1-\frac35}\right)-\ln\left(\frac{1+\frac{3}{10}}{1-\frac{3}{10}}\right)\right) \\
+&=\frac{1}{12}\left(\ln 4-\ln\left(\frac{13}{7}\right)\right) \\
+&=\frac{1}{12}\ln\left(\frac{28}{13}\right)
+\end{align*}
+Hence the exact value of the integral is
+\[
+\frac{1}{12}\ln\left(\frac{28}{13}\right)
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 15 ----
+\questionitem
+
+Show that
+\[
+\int \frac{x^2+14x+21}{(x-1)(x^2+4x+13)}\,\mathrm{d}x=A\ln|x-1|+B\ln(x^2+4x+13)+D\arctan\left(\frac{x+2}{3}\right)+c
+\]
+where $A$, $B$ and $D$ are constants to be found. \marks{7} \\
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Write
+\[
+\frac{x^2+14x+21}{(x-1)(x^2+4x+13)}=\frac{P}{x-1}+\frac{Qx+R}{x^2+4x+13}
+\]
+
+Then
+\[
+x^2+14x+21=P(x^2+4x+13)+(Qx+R)(x-1)
+\]
+
+Expanding the right-hand side,
+\begin{align*}
+P(x^2+4x+13)+(Qx+R)(x-1)
+&=Px^2+4Px+13P+Qx^2-Qx+Rx-R \\
+&=(P+Q)x^2+(4P-Q+R)x+(13P-R)
+\end{align*}
+
+Comparing coefficients with $x^2+14x+21$ gives
+\begin{align*}
+P+Q&=1 \\
+4P-Q+R&=14 \\
+13P-R&=21
+\end{align*}
+
+From the first equation,
+\[
+Q=1-P
+\]
+
+From the third equation,
+\[
+R=13P-21
+\]
+
+Substitute into the second equation:
+\begin{align*}
+4P-(1-P)+(13P-21)&=14 \\
+4P-1+P+13P-21&=14 \\
+18P-22&=14 \\
+18P&=36 \\
+P&=2
+\end{align*}
+
+So
+\[
+Q=1-2=-1,\qquad R=13(2)-21=5
+\]
+
+Hence
+\[
+\frac{x^2+14x+21}{(x-1)(x^2+4x+13)}
+=\frac{2}{x-1}+\frac{-x+5}{x^2+4x+13}
+\]
+
+Therefore
+\[
+\int \frac{x^2+14x+21}{(x-1)(x^2+4x+13)}\,\mathrm{d}x
+=\int \frac{2}{x-1}\,\mathrm{d}x+\int \frac{-x+5}{x^2+4x+13}\,\mathrm{d}x
+\]
+
+Now rewrite the second numerator in terms of the derivative of the quadratic:
+\[
+-x+5=-\frac12(2x+4)+7
+\]
+
+Also,
+\[
+x^2+4x+13=(x+2)^2+9
+\]
+
+So
+\begin{align*}
+\int \frac{x^2+14x+21}{(x-1)(x^2+4x+13)}\,\mathrm{d}x
+&=\int \frac{2}{x-1}\,\mathrm{d}x
+-\frac12\int \frac{2x+4}{x^2+4x+13}\,\mathrm{d}x
++7\int \frac{1}{(x+2)^2+9}\,\mathrm{d}x \\
+&=2\ln|x-1|-\frac12\ln(x^2+4x+13)+7\int \frac{1}{(x+2)^2+3^2}\,\mathrm{d}x
+\end{align*}
+
+Using the standard result
+\[
+\int \frac{1}{u^2+a^2}\,\mathrm{d}u=\frac{1}{a}\arctan\!\left(\frac{u}{a}\right)+c
+\]
+with $u=x+2$ and $a=3$,
+\[
+\int \frac{1}{(x+2)^2+9}\,\mathrm{d}x
+=\frac13\arctan\!\left(\frac{x+2}{3}\right)
+\]
+
+Hence
+\begin{align*}
+\int \frac{x^2+14x+21}{(x-1)(x^2+4x+13)}\,\mathrm{d}x
+&=2\ln|x-1|-\frac12\ln(x^2+4x+13)+\frac73\arctan\!\left(\frac{x+2}{3}\right)+c
+\end{align*}
+
+So the required constants are
+\[
+A=2,\qquad B=-\frac12,\qquad D=\frac73
+\]
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 16 ----
+\questionitem
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.3]
+\def\xmin{-2.2}
+\def\xmax{5.2}
+\def\ymin{-0.3}
+\def\ymax{2.8}
+\def\num{9}
+\def\peak{1}
+\def\den{4}
+\def\xL{-1}
+\def\xR{4}
+\pgfmathsetmacro{\yL}{\num/((\xL-\peak)*(\xL-\peak)+\den)}
+\pgfmathsetmacro{\yR}{\num/((\xR-\peak)*(\xR-\peak)+\den)}
+\coordinate (O) at (0,0);
+\coordinate (L) at (\xL,0);
+\coordinate (R) at (\xR,0);
+\coordinate (LT) at (\xL,\yL);
+\coordinate (RT) at (\xR,\yR);
+\draw[thick,-{Stealth[length=3mm]}] (\xmin,0) -- (\xmax,0) node[right] {$x$};
+\draw[thick,-{Stealth[length=3mm]}] (0,\ymin) -- (0,\ymax) node[above] {$y$};
+\draw[thick] plot[domain=\xL:\xR,samples=200] (\x,{\num/((\x-\peak)*(\x-\peak)+\den)});
+\draw[thick] (L) -- (LT);
+\draw[thick] (R) -- (RT);
+\node[below] at (L) {$-1$};
+\node[below] at (R) {$4$};
+\node[below left] at (O) {$O$};
+\end{tikzpicture}
+\end{figure}
+
+
+The diagram shows the cross-section of a solid wooden beam. \\
+Each unit on the axes represents $6$ cm. The curved upper boundary of the beam is modelled by the equation
+\[
+y=\frac{9}{(x-1)^2+4}
+\] \\
+The cross-section is bounded by the curve, the $x$-axis and the lines $x=-1$ and $x=4$. \\
+Assuming that the beam is a prism of length $240$ cm, find, correct to $3$ significant figures, the volume of the beam. \marks{6} \\
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+The cross-sectional area is the area under the curve
+\[
+y=\frac{9}{(x-1)^2+4}
+\]
+from $x=-1$ to $x=4$.
+
+First find this area in graph units:
+\[
+A_{\text{units}}=\int_{-1}^{4}\frac{9}{(x-1)^2+4}\,\,\mathrm{d}x
+\]
+
+To reduce this to a standard form, let
+\[
+u=x-1 \qquad \Rightarrow \qquad \mathrm{d}u=\mathrm{d}x
+\]
+When $x=-1$, $u=-2$, and when $x=4$, $u=3$.
+
+So
+\[
+A_{\text{units}}=\int_{-2}^{3}\frac{9}{u^2+2^2}\,\,\mathrm{d}u
+\]
+
+Using the standard result
+\[
+\int \frac{1}{a^2+x^2}\,\,\mathrm{d}x=\frac{1}{a}\arctan\!\left(\frac{x}{a}\right)+c
+\]
+with $a=2$,
+\begin{align*}
+A_{\text{units}}
+&=9\int_{-2}^{3}\frac{1}{u^2+2^2}\,\,\mathrm{d}u \\
+&=9\left[\frac{1}{2}\arctan\!\left(\frac{u}{2}\right)\right]_{-2}^{3} \\
+&=\frac{9}{2}\left[\arctan\!\left(\frac{u}{2}\right)\right]_{-2}^{3} \\
+&=\frac{9}{2}\left(\arctan\!\left(\frac{3}{2}\right)-\arctan(-1)\right) \\
+&=\frac{9}{2}\left(\arctan\!\left(\frac{3}{2}\right)+\frac{\pi}{4}\right)
+\end{align*}
+
+Now convert to $\text{cm}^2$.
+
+Each unit on each axis represents $6$ cm, so
+\[
+1\text{ square unit}=6\times 6=36\text{ cm}^2
+\]
+Hence the cross-sectional area is
+\begin{align*}
+A
+&=36A_{\text{units}} \\
+&=36\cdot \frac{9}{2}\left(\arctan\!\left(\frac{3}{2}\right)+\frac{\pi}{4}\right) \\
+&=162\left(\arctan\!\left(\frac{3}{2}\right)+\frac{\pi}{4}\right) \\
+&\approx 286.447\text{ cm}^2
+\end{align*}
+
+The beam is a prism of length $240$ cm, so
+\begin{align*}
+V&=240A \\
+&=240\times 286.447 \\
+&\approx 68747.3\text{ cm}^3
+\end{align*}
+
+Therefore, correct to $3$ significant figures, the volume of the beam is
+\[
+6.87\times 10^4\text{ cm}^3
+\]
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 17 ----
+\questionitem
+
+Find
+\[
+\int_1^{e} \frac{1}{x\sqrt{4-(\ln x)^2}} \, \mathrm{d}x
+\]
+expressing your answer in terms of $\pi$. \marks{8}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+u=\ln x
+\]
+Then
+\[
+\frac{\mathrm{d}u}{\mathrm{d}x}=\frac{1}{x}
+\qquad\Rightarrow\qquad
+\mathrm{d}u=\frac{1}{x}\,\mathrm{d}x
+\]
+
+We also change the limits:
+
+when \(x=1\), \(u=\ln 1=0\)
+
+when \(x=e\), \(u=\ln e=1\)
+
+So the integral becomes
+\[
+\int_1^{e} \frac{1}{x\sqrt{4-(\ln x)^2}} \,\mathrm{d}x
+=
+\int_0^{1} \frac{1}{\sqrt{4-u^2}} \,\mathrm{d}u
+\]
+
+Now use the standard result
+\[
+\int \frac{1}{\sqrt{a^2-u^2}} \,\mathrm{d}u
+=
+\arcsin\!\left(\frac{u}{a}\right)+c
+\]
+
+Here \(a=2\), so
+\[
+\int_0^{1} \frac{1}{\sqrt{4-u^2}} \,\mathrm{d}u
+=
+\left[\arcsin\!\left(\frac{u}{2}\right)\right]_0^1
+\]
+
+Therefore
+\[
+\left[\arcsin\!\left(\frac{u}{2}\right)\right]_0^1
+=
+\arcsin\!\left(\frac12\right)-\arcsin(0)
+=
+\frac{\pi}{6}-0
+=
+\frac{\pi}{6}
+\]
+
+Hence the value of the integral is
+\[
+\frac{\pi}{6}
+\]
+\end{tcolorbox}
+
+
+\end{enumerate}
+\end{document}

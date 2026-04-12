@@ -1,0 +1,1846 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{\textit{Solutions} - 1st Order Differential Equations - Integrating Factor}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{10pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that an appropriate integrating factor for
+  \[
+  x^2\,\frac{\mathrm{d}y}{\mathrm{d}x}+y=1,\qquad x>0
+  \]
+  is $e^{-1/x}$ \marks{4} \\
+  \item Hence find the solution of the differential equation
+  \[
+  x^2\,\frac{\mathrm{d}y}{\mathrm{d}x}+y=1,\qquad x>0
+  \]
+  for which $y=3$ when $x=1$ \marks{6} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item First write the differential equation in the standard linear form by dividing through by $x^2$:
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}+\frac{1}{x^2}y=\frac{1}{x^2}
+\]
+This is of the form
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)
+\]
+with
+\[
+P(x)=\frac{1}{x^2}=x^{-2}
+\]
+For a linear differential equation, an integrating factor is
+\[
+\mu(x)=e^{\int P(x)\,\mathrm{d}x}
+\]
+So
+\begin{align*}
+\mu(x)&=e^{\int x^{-2}\,\mathrm{d}x} \\
+&=e^{-x^{-1}} \\
+&=e^{-1/x}
+\end{align*}
+Hence an appropriate integrating factor is $e^{-1/x}$.
+
+  \item Using the integrating factor from part (a), multiply
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}+\frac{1}{x^2}y=\frac{1}{x^2}
+\]
+through by $e^{-1/x}$:
+\[
+e^{-1/x}\frac{\mathrm{d}y}{\mathrm{d}x}+\frac{e^{-1/x}}{x^2}y=\frac{e^{-1/x}}{x^2}
+\]
+Now apply the product rule. Since
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(e^{-1/x}\right)=e^{-1/x}\cdot \frac{1}{x^2}
+\]
+we get
+\begin{align*}
+\frac{\mathrm{d}}{\mathrm{d}x}\left(ye^{-1/x}\right)
+&=e^{-1/x}\frac{\mathrm{d}y}{\mathrm{d}x}+y\frac{\mathrm{d}}{\mathrm{d}x}\left(e^{-1/x}\right) \\
+&=e^{-1/x}\frac{\mathrm{d}y}{\mathrm{d}x}+\frac{e^{-1/x}}{x^2}y
+\end{align*}
+So the differential equation becomes
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(ye^{-1/x}\right)=\frac{e^{-1/x}}{x^2}
+\]
+Integrating both sides with respect to $x$ gives
+\[
+ye^{-1/x}=\int \frac{e^{-1/x}}{x^2}\,\mathrm{d}x+C
+\]
+But
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(e^{-1/x}\right)=\frac{e^{-1/x}}{x^2}
+\]
+so
+\[
+\int \frac{e^{-1/x}}{x^2}\,\mathrm{d}x=e^{-1/x}
+\]
+Hence
+\[
+ye^{-1/x}=e^{-1/x}+C
+\]
+Multiplying through by $e^{1/x}$:
+\begin{align*}
+y&=1+Ce^{1/x}
+\end{align*}
+Now use the condition $y=3$ when $x=1$:
+\begin{align*}
+3&=1+Ce \\
+2&=Ce \\
+C&=\frac{2}{e}
+\end{align*}
+Substitute back:
+\begin{align*}
+y&=1+\frac{2}{e}e^{1/x} \\
+&=1+2e^{1/x-1}
+\end{align*}
+Therefore the required solution is $y=1+2e^{1/x-1}$.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}\bigl(\ln(\cosh x+1)\bigr)=\tanh\!\left(\frac{x}{2}\right)
+  \]
+  \marks[-20pt]{3}
+  \item Hence solve the differential equation
+  \[
+  \frac{\mathrm{d}y}{\mathrm{d}x}+\tanh\!\left(\frac{x}{2}\right)y=\sinh x
+  \]
+  for which $y=2$ when $x=0$. Give your answer in exact form \marks{7} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Using \(\dfrac{\mathrm{d}}{\mathrm{d}x}\ln u=\dfrac{1}{u}\dfrac{\mathrm{d}u}{\mathrm{d}x}\),
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\bigl(\ln(\cosh x+1)\bigr)
+=\frac{1}{\cosh x+1}\cdot \frac{\mathrm{d}}{\mathrm{d}x}(\cosh x+1)
+=\frac{\sinh x}{\cosh x+1}
+\]
+Now use the half-angle identities
+\[
+\sinh x=2\sinh\left(\frac{x}{2}\right)\cosh\left(\frac{x}{2}\right),
+\qquad
+\cosh x+1=2\cosh^2\left(\frac{x}{2}\right)
+\]
+So
+\begin{align*}
+\frac{\sinh x}{\cosh x+1}
+&=\frac{2\sinh\left(\frac{x}{2}\right)\cosh\left(\frac{x}{2}\right)}{2\cosh^2\left(\frac{x}{2}\right)} \\
+&=\frac{\sinh\left(\frac{x}{2}\right)}{\cosh\left(\frac{x}{2}\right)} \\
+&=\tanh\left(\frac{x}{2}\right)
+\end{align*}
+Hence
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\bigl(\ln(\cosh x+1)\bigr)=\tanh\left(\frac{x}{2}\right)
+\]
+as required.
+
+  \item The differential equation is linear:
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}+\tanh\left(\frac{x}{2}\right)y=\sinh x
+\]
+From part (a),
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\bigl(\ln(\cosh x+1)\bigr)=\tanh\left(\frac{x}{2}\right)
+\]
+so an integrating factor is
+\[
+\mu(x)=\mathrm{e}^{\int \tanh\left(\frac{x}{2}\right)\,\mathrm{d}x}
+=\mathrm{e}^{\ln(\cosh x+1)}
+=\cosh x+1
+\]
+Multiplying the differential equation throughout by \(\cosh x+1\),
+\[
+(\cosh x+1)\frac{\mathrm{d}y}{\mathrm{d}x}+(\cosh x+1)\tanh\left(\frac{x}{2}\right)y=(\cosh x+1)\sinh x
+\]
+The left-hand side is
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\bigl((\cosh x+1)y\bigr)
+\]
+Hence the differential equation can be written
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\bigl((\cosh x+1)y\bigr)=(\cosh x+1)\sinh x
+\]
+
+We can integrate the right hand side by reversing the chain rule:
+
+\[\int (\cosh x+1)\sinh x \,\mathrm{d}x
+=\frac{1}{2}(\cosh x+1)^2+C\]
+
+So the differential equation becomes
+\begin{align*}
+(\cosh x+1)y
+&=\int (\cosh x+1)\sinh x \,\mathrm{d}x\\[8pt]
+&=\frac{1}{2}(\cosh x+1)^2+C
+\end{align*}
+
+Therefore
+\[
+y=\frac{1}{2}(\cosh x+1)+\frac{C}{\cosh x+1}
+\]
+Use the condition \(y=2\) when \(x=0\). Since \(\cosh 0=1\),
+\begin{align*}
+2&=\frac{1}{2}(1+1)+\frac{C}{1+1} \\
+2&=1+\frac{C}{2}
+\end{align*}
+Hence
+\[
+C=2
+\]
+Substituting back,
+\[
+y=\frac{\cosh x+1}{2}+\frac{2}{\cosh x+1}
+\]
+Therefore the exact solution is
+\[
+\boxed{
+y=\frac{\cosh x+1}{2}+\frac{2}{\cosh x+1}}
+\]
+
+Alternatively, one can integrate using the double angle formula for $\sinh 2x$: \[\int (\cosh x + 1)\sinh x \,\mathrm{d}x = \int \cosh x\sinh x + \cosh x \,\mathrm{d}x = \int \frac{1}{2}\sinh 2x + \cosh x \,\mathrm{d}x \]
+to obtain an equivalent form of the final answer:
+
+\[
+\boxed{
+y = \frac{\frac{1}{4}\cosh 2x + \cosh x + \frac{11}{4}}{\cosh x + 1}
+}
+\]
+  \end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item For $x>-1$, determine the general solution of the differential equation
+  \[
+  (1+x)\,\frac{\mathrm{d}y}{\mathrm{d}x}+y=\ln(1+x)
+  \]
+  giving your answer in the form $y=f(x)$ \marks{4} \\
+  \item Given that $y=-1$ when $x=0$, determine the positive value of $x$ for which $y=0$ \marks{2} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item For $x>-1$, divide the differential equation by $1+x$:
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}+\frac{1}{1+x}y=\frac{\ln(1+x)}{1+x}
+\]
+
+This is a linear differential equation of the form
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)
+\]
+with
+\[
+P(x)=\frac{1}{1+x}
+\]
+
+The integrating factor is
+\begin{align*}
+\mu(x)&=e^{\int \frac{1}{1+x}\, \mathrm{d}x} \\
+&=e^{\ln(1+x)}
+\end{align*}
+
+Since $x>-1$, we have $1+x>0$, so
+\[
+\mu(x)=1+x
+\]
+
+Multiplying the differential equation by $1+x$ gives
+\begin{align*}
+(1+x)\frac{\mathrm{d}y}{\mathrm{d}x}+y&=\ln(1+x)
+\end{align*}
+
+The left-hand side is the derivative of $(1+x)y$:
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\bigl((1+x)y\bigr)=\ln(1+x)
+\]
+
+Integrating both sides with respect to $x$:
+\begin{align*}
+(1+x)y&=\int \ln(1+x)\, \mathrm{d}x + C
+\end{align*}
+
+Now evaluate the integral by letting $u=1+x$, so $\mathrm{d}u=\mathrm{d}x$:
+\begin{align*}
+\int \ln(1+x)\, \mathrm{d}x&=\int \ln u\, \mathrm{d}u \\
+&=u\ln u-u+C \\
+&=(1+x)\ln(1+x)-(1+x)+C
+\end{align*}
+
+So
+\begin{align*}
+(1+x)y&=(1+x)\ln(1+x)-(1+x)+C \\
+&=(1+x)\ln(1+x)-x-1+C
+\end{align*}
+
+Absorbing the constant $-1$ into $C$, we write
+\[
+(1+x)y=(1+x)\ln(1+x)-x+C
+\]
+
+Hence
+\begin{align*}
+y&=\frac{(1+x)\ln(1+x)-x+C}{1+x} \\
+&=\ln(1+x)-\frac{x}{1+x}+\frac{C}{1+x} \\
+&=\ln(1+x)-1+\frac{1}{1+x}+\frac{C}{1+x}
+\end{align*}
+
+Absorbing the extra constant into $C$ again gives
+\[
+y=\ln(1+x)-1+\frac{C}{1+x}
+\]
+
+Therefore, the general solution is
+\[
+y=\ln(1+x)-1+\frac{C}{1+x}
+\]
+
+  \item Use the condition $y=-1$ when $x=0$.
+
+Substituting into the general solution:
+\begin{align*}
+-1&=\ln(1+0)-1+\frac{C}{1+0} \\
+-1&=0-1+C \\
+-1&=-1+C
+\end{align*}
+
+So
+\[
+C=0
+\]
+
+Hence
+\[
+y=\ln(1+x)-1
+\]
+
+Now set $y=0$:
+\begin{align*}
+0&=\ln(1+x)-1 \\
+\ln(1+x)&=1
+\end{align*}
+
+Exponentiating both sides:
+\begin{align*}
+1+x&=e \\
+x&=e-1
+\end{align*}
+
+Since the question asks for the positive value,
+\[
+x=e-1\approx 1.72
+\]
+
+Therefore, the required value is $x=e-1\approx 1.72$.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that, for $0<x<\frac{\pi}{2}$, an appropriate integrating factor for
+  \[
+  \cos x\,\frac{\mathrm{d}y}{\mathrm{d}x}+y\sin x=x
+  \]
+  is $\sec x$ \marks{4} \\
+  \item Hence find the solution of
+  \[
+  \cos x\,\frac{\mathrm{d}y}{\mathrm{d}x}+y\sin x=x
+  \]
+  for $0<x<\frac{\pi}{2}$, given that $y=1$ when $x=\frac{\pi}{4}$ \marks{6} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item First divide the differential equation by $\cos x$:
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}+y\tan x=x\sec x
+\]
+
+This is now in the linear form
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)
+\]
+with
+\[
+P(x)=\tan x
+\]
+
+So an integrating factor is
+\begin{align*}
+\mu(x)&=e^{\int P(x)\,\mathrm{d}x} \\
+&=e^{\int \tan x\,\mathrm{d}x} \\
+&=e^{\int \frac{\sin x}{\cos x}\,\mathrm{d}x} \\
+&=e^{-\ln|\cos x|} \\
+&=e^{\ln|\sec x|}
+\end{align*}
+
+Since $0<x<\frac{\pi}{2}$, we have $\cos x>0$, so $|\sec x|=\sec x$. Hence
+\[
+\mu(x)=e^{\ln(\sec x)}=\sec x
+\]
+
+Therefore an appropriate integrating factor is $\sec x$.
+
+  \item Using the result from part (a), the equation is
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}+y\tan x=x\sec x
+\]
+
+Multiply through by the integrating factor $\sec x$:
+\[
+\sec x\frac{\mathrm{d}y}{\mathrm{d}x}+y\sec x\tan x=x\sec^2 x
+\]
+
+The left-hand side is the derivative of $y\sec x$, so
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}(y\sec x)=x\sec^2 x
+\]
+
+Integrating both sides gives
+\[
+y\sec x=\int x\sec^2 x\,\mathrm{d}x+C
+\]
+
+Integrate by parts with
+\[
+u=x,\qquad \mathrm{d}v=\sec^2 x\,\mathrm{d}x
+\]
+so that
+\[
+\mathrm{d}u=\mathrm{d}x,\qquad v=\tan x
+\]
+
+Then
+\begin{align*}
+\int x\sec^2 x\,\mathrm{d}x
+&=x\tan x-\int \tan x\,\mathrm{d}x \\
+&=x\tan x-(-\ln(\cos x)) \\
+&=x\tan x+\ln(\cos x)
+\end{align*}
+
+Therefore
+\[
+y\sec x=x\tan x+\ln(\cos x)+C
+\]
+
+Now multiply through by $\cos x$:
+\begin{align*}
+y&=\cos x\left(x\tan x+\ln(\cos x)+C\right) \\
+&=x\sin x+\cos x\ln(\cos x)+C\cos x
+\end{align*}
+
+Use the condition $y=1$ when $x=\frac{\pi}{4}$. Substituting into
+\[
+y\sec x=x\tan x+\ln(\cos x)+C
+\]
+gives
+\begin{align*}
+1\cdot \sec\frac{\pi}{4}
+&=\frac{\pi}{4}\tan\frac{\pi}{4}+\ln\left(\cos\frac{\pi}{4}\right)+C \\
+\sqrt{2}
+&=\frac{\pi}{4}+\ln\left(\frac{\sqrt{2}}{2}\right)+C \\
+\sqrt{2}
+&=\frac{\pi}{4}-\frac{1}{2}\ln 2+C
+\end{align*}
+
+So
+\[
+C=\sqrt{2}-\frac{\pi}{4}+\frac{1}{2}\ln 2
+\]
+
+Substitute this into the expression for $y$:
+\[
+y=x\sin x+\cos x\left[\ln(\cos x)+\sqrt{2}-\frac{\pi}{4}+\frac{1}{2}\ln 2\right]
+\]
+
+Hence the required solution is
+\[
+y=x\sin x+\cos x\left[\ln(\cos x)+\sqrt{2}-\frac{\pi}{4}+\frac{1}{2}\ln 2\right]
+\]
+  \end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that, for $x>0$,
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}\!\left(\ln\!\left(\coth \frac{x}{2}\right)\right)=-\operatorname{cosech} x
+  \]
+  \marks[-20pt]{3}
+  \item Hence solve the differential equation
+  \[
+  \frac{\mathrm{d}y}{\mathrm{d}x}-\operatorname{cosech} x\,y=\tanh \frac{x}{2},\qquad x>0
+  \]
+  for which $y=1$ when $x=\ln 3$. Give your answer in exact form \marks{7} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let
+\[
+u=\frac{x}{2}
+\]
+Then, by the chain rule,
+\begin{align*}
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\ln\left(\coth \frac{x}{2}\right)\right)
+&= \frac{\mathrm{d}}{\mathrm{d}x}\bigl(\ln(\coth u)\bigr) \\
+&= \frac{1}{\coth u}\cdot \frac{\mathrm{d}}{\mathrm{d}x}(\coth u) \\
+&= \frac{1}{\coth u}\cdot \left(-\operatorname{cosech}^2 u\right)\cdot \frac{1}{2}
+\end{align*}
+Now simplify:
+\begin{align*}
+\frac{1}{\coth u}\cdot \left(-\operatorname{cosech}^2 u\right)\cdot \frac{1}{2}
+&= -\frac{1}{2}\cdot \frac{\operatorname{cosech}^2 u}{\coth u} \\
+&= -\frac{1}{2}\cdot \frac{1/\sinh^2 u}{\cosh u/\sinh u} \\
+&= -\frac{1}{2\sinh u\cosh u}
+\end{align*}
+Using \(\sinh(2u)=2\sinh u\cosh u\),
+\begin{align*}
+-\frac{1}{2\sinh u\cosh u}
+&= -\frac{1}{\sinh(2u)} \\
+&= -\frac{1}{\sinh x} \\
+&= -\operatorname{cosech} x
+\end{align*}
+Therefore,
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\ln\left(\coth \frac{x}{2}\right)\right)=-\operatorname{cosech} x
+\]
+as required.
+
+  \item The differential equation is
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}-\operatorname{cosech} x\,y=\tanh \frac{x}{2}
+\]
+This is linear, with integrating factor
+\begin{align*}
+\mu(x)
+&= e^{\int -\operatorname{cosech} x\,\mathrm{d}x} \\
+&= e^{\ln\left(\coth \frac{x}{2}\right)} \\
+&= \coth \frac{x}{2}
+\end{align*}
+using part (a).
+
+Next, from part (a),
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\ln\left(\coth \frac{x}{2}\right)\right)=-\operatorname{cosech} x
+\]
+so
+\begin{align*}
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\coth \frac{x}{2}\right)
+&= \coth \frac{x}{2}\cdot \frac{\mathrm{d}}{\mathrm{d}x}\left(\ln\left(\coth \frac{x}{2}\right)\right) \\
+&= -\operatorname{cosech} x\,\coth \frac{x}{2}
+\end{align*}
+Multiply the differential equation by \(\coth \dfrac{x}{2}\):
+\begin{align*}
+\coth \frac{x}{2}\,\frac{\mathrm{d}y}{\mathrm{d}x}
+-\operatorname{cosech} x\,\coth \frac{x}{2}\,y
+&= \coth \frac{x}{2}\tanh \frac{x}{2}
+\end{align*}
+The left-hand side is
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(y\coth \frac{x}{2}\right)
+\]
+and the right-hand side is \(1\), since \(\coth \dfrac{x}{2}\tanh \dfrac{x}{2}=1\). Hence
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(y\coth \frac{x}{2}\right)=1
+\]
+Integrating,
+\[
+y\coth \frac{x}{2}=\int 1\,\mathrm{d}x=x+C
+\]
+So
+\[
+y=(x+C)\tanh \frac{x}{2}
+\]
+Now use \(y=1\) when \(x=\ln 3\):
+\[
+1=(\ln 3+C)\tanh \frac{\ln 3}{2}
+\]
+Evaluate \(\tanh \dfrac{\ln 3}{2}\):
+\begin{align*}
+\tanh \frac{\ln 3}{2}
+&= \frac{e^{\ln 3/2}-e^{-\ln 3/2}}{e^{\ln 3/2}+e^{-\ln 3/2}} \\
+&= \frac{e^{\ln 3}-1}{e^{\ln 3}+1} \\
+&= \frac{3-1}{3+1} \\
+&= \frac{1}{2}
+\end{align*}
+Therefore,
+\begin{align*}
+1&=(\ln 3+C)\cdot \frac{1}{2} \\
+2&=\ln 3+C \\
+C&=2-\ln 3
+\end{align*}
+Substituting back gives
+\[
+y=(x+2-\ln 3)\tanh \frac{x}{2}
+\]
+Therefore, the required exact solution is \(y=(x+2-\ln 3)\tanh \dfrac{x}{2}\).
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that an appropriate integrating factor for
+  \[
+  x(x-1)\,\frac{\mathrm{d}y}{\mathrm{d}x}+(x+1)y=x(x-1)^2
+  \]
+  is $\dfrac{(x-1)^2}{x}$ \marks{4} \\
+  \item Hence find the solution of the differential equation
+  \[
+  x(x-1)\,\frac{\mathrm{d}y}{\mathrm{d}x}+(x+1)y=x(x-1)^2
+  \]
+  for $x>1$, given that $y=2$ when $x=2$ \marks{6} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item First write the differential equation in linear form by dividing through by $x(x-1)$:
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}+\frac{x+1}{x(x-1)}y=x-1
+\]
+
+For a linear equation
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x),
+\]
+an integrating factor is
+\[
+\mu(x)=e^{\int P(x)\,\mathrm{d}x}
+\]
+
+Here
+\[
+P(x)=\frac{x+1}{x(x-1)}
+\]
+
+Decompose into partial fractions:
+\begin{align*}
+\frac{x+1}{x(x-1)}&=\frac{A}{x}+\frac{B}{x-1} \\
+x+1&=A(x-1)+Bx \\
+x+1&=(A+B)x-A
+\end{align*}
+
+Equating coefficients gives
+\[
+A+B=1,\qquad -A=1
+\]
+so
+\[
+A=-1,\qquad B=2
+\]
+
+Hence
+\[
+\frac{x+1}{x(x-1)}=-\frac{1}{x}+\frac{2}{x-1}
+\]
+
+Therefore
+\begin{align*}
+\mu(x)&=e^{\int\left(-\frac{1}{x}+\frac{2}{x-1}\right)\,\mathrm{d}x} \\
+&=e^{-\ln x+2\ln(x-1)} \\
+&=\frac{(x-1)^2}{x}
+\end{align*}
+
+Thus an appropriate integrating factor is
+\[
+\mu(x)=\frac{(x-1)^2}{x}
+\]
+
+  \item Using the integrating factor from part (a),
+\[
+\mu(x)=\frac{(x-1)^2}{x}
+\]
+
+Multiply the linear form
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}+\frac{x+1}{x(x-1)}y=x-1
+\]
+through by $\mu(x)$:
+\[
+\frac{(x-1)^2}{x}\frac{\mathrm{d}y}{\mathrm{d}x}+\frac{(x-1)^2}{x}\cdot\frac{x+1}{x(x-1)}\,y=\frac{(x-1)^2}{x}(x-1)
+\]
+
+Since $\mu$ is an integrating factor, the left-hand side becomes
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{(x-1)^2}{x}y\right)
+\]
+
+So
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{(x-1)^2}{x}y\right)=\frac{(x-1)^3}{x}
+\]
+
+Integrating both sides:
+\[
+\frac{(x-1)^2}{x}y=\int \frac{(x-1)^3}{x}\,\mathrm{d}x
+\]
+
+Expand the integrand:
+\begin{align*}
+\frac{(x-1)^3}{x}&=\frac{x^3-3x^2+3x-1}{x} \\
+&=x^2-3x+3-\frac{1}{x}
+\end{align*}
+
+Hence
+\begin{align*}
+\frac{(x-1)^2}{x}y&=\int \left(x^2-3x+3-\frac{1}{x}\right)\,\mathrm{d}x \\
+&=\frac{x^3}{3}-\frac{3x^2}{2}+3x-\ln x+C
+\end{align*}
+
+So
+\[
+y=\frac{x}{(x-1)^2}\left(\frac{x^3}{3}-\frac{3x^2}{2}+3x-\ln x+C\right)
+\]
+
+Now use the condition $y=2$ when $x=2$:
+\begin{align*}
+2&=\frac{2}{(2-1)^2}\left(\frac{2^3}{3}-\frac{3(2^2)}{2}+3(2)-\ln 2+C\right) \\
+2&=2\left(\frac{8}{3}-6+6-\ln 2+C\right) \\
+2&=2\left(\frac{8}{3}-\ln 2+C\right)
+\end{align*}
+
+Divide by $2$:
+\[
+1=\frac{8}{3}-\ln 2+C
+\]
+
+So
+\[
+C=1-\frac{8}{3}+\ln 2=\ln 2-\frac{5}{3}
+\]
+
+Substituting back:
+\[
+y=\frac{x}{(x-1)^2}\left(\frac{x^3}{3}-\frac{3x^2}{2}+3x-\ln x+\ln 2-\frac{5}{3}\right)
+\]
+
+Therefore the required solution is
+\[
+y=\frac{x}{(x-1)^2}\left(\frac{x^3}{3}-\frac{3x^2}{2}+3x-\ln x+\ln 2-\frac{5}{3}\right)
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+Find the general solution of the differential equation\\
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}+\cot x\,y=\frac{\cos x}{\sin^2 x\left(1+\ln^2(\sin x)\right)}
+\]\\
+where $0<x<\pi$ \marks{7}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+This is a first-order linear differential equation:
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}+\cot x\,y=\frac{\cos x}{\sin^2 x\left(1+\ln^2(\sin x)\right)}
+\]
+
+Its integrating factor is
+\begin{align*}
+\mu(x)
+&=e^{\int \cot x\,\mathrm{d}x} \\
+&=e^{\int \frac{\cos x}{\sin x}\,\mathrm{d}x} \\
+&=e^{\ln(\sin x)}
+\end{align*}
+
+Since $0<x<\pi$, we have $\sin x>0$, so
+\[
+\mu(x)=\sin x
+\]
+
+Multiply the whole differential equation by $\sin x$:
+\begin{align*}
+\sin x\frac{\mathrm{d}y}{\mathrm{d}x}+\sin x\cot x\,y
+&=\sin x\cdot \frac{\cos x}{\sin^2 x\left(1+\ln^2(\sin x)\right)} \\
+\sin x\frac{\mathrm{d}y}{\mathrm{d}x}+\cos x\,y
+&=\frac{\cos x}{\sin x\left(1+\ln^2(\sin x)\right)}
+\end{align*}
+
+Now
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}(y\sin x)=\sin x\frac{\mathrm{d}y}{\mathrm{d}x}+\cos x\,y
+\]
+
+So the equation becomes
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}(y\sin x)=\frac{\cos x}{\sin x\left(1+\ln^2(\sin x)\right)}
+\]
+
+Integrating both sides gives
+\[
+\int \frac{\mathrm{d}}{\mathrm{d}x}(y\sin x)\,\,\mathrm{d}x
+=
+\int \frac{\cos x}{\sin x\left(1+\ln^2(\sin x)\right)}\,\,\mathrm{d}x
+\]
+
+For the right-hand side, let
+\[
+u=\ln(\sin x)
+\]
+
+Then
+\begin{align*}
+\frac{\mathrm{d}u}{\mathrm{d}x}
+&=\frac{1}{\sin x}\cdot \cos x \\
+&=\frac{\cos x}{\sin x}
+\end{align*}
+
+Hence
+\[
+\mathrm{d}u=\frac{\cos x}{\sin x}\,\mathrm{d}x
+\]
+
+So
+\begin{align*}
+\int \frac{\cos x}{\sin x\left(1+\ln^2(\sin x)\right)}\,\,\mathrm{d}x
+&=\int \frac{1}{1+u^2}\,\mathrm{d}u \\
+&=\arctan(u)+C \\
+&=\arctan(\ln(\sin x))+C
+\end{align*}
+
+Therefore
+\[
+y\sin x=\arctan(\ln(\sin x))+C
+\]
+
+Finally, divide by $\sin x$:
+\[
+y=\frac{\arctan(\ln(\sin x))+C}{\sin x}
+\]
+
+The general solution is $y=\dfrac{\arctan(\ln(\sin x))+C}{\sin x}$.
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Solve the differential equation
+  \[
+  (1+x)\,\frac{\mathrm{d}y}{\mathrm{d}x}-2y=(1+x)^4,\qquad x>-1
+  \]
+  giving your answer in the form $y=f(x)$ \marks{3} \\
+  \item The solution curve passes through the point $(0,-1)$. Find the exact positive value of $x$ for which $y=0$ \marks{3} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Rewrite the differential equation in linear form by dividing through by $1+x$:
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}-\frac{2}{1+x}y=(1+x)^3
+\]
+
+Since this is a linear equation, the integrating factor is
+\begin{align*}
+\mu(x)&=e^{\int -\frac{2}{1+x}\,\,\mathrm{d}x} \\
+&=e^{-2\ln(1+x)} \\
+&=(1+x)^{-2}
+\end{align*}
+
+Multiplying the differential equation by $(1+x)^{-2}$ gives
+\begin{align*}
+(1+x)^{-2}\frac{\mathrm{d}y}{\mathrm{d}x}-2(1+x)^{-3}y&=(1+x)
+\end{align*}
+
+The left-hand side is the derivative of $y(1+x)^{-2}$, so
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\bigl(y(1+x)^{-2}\bigr)=1+x
+\]
+
+Integrating both sides:
+\begin{align*}
+y(1+x)^{-2}&=\int (1+x)\,\,\mathrm{d}x \\
+&=x+\frac{x^2}{2}+C
+\end{align*}
+
+Hence
+\[
+y=(1+x)^2\left(\frac{x^2}{2}+x+C\right)
+\]
+
+Now use the point $(0,-1)$:
+\begin{align*}
+-1&=(1+0)^2\left(\frac{0^2}{2}+0+C\right) \\
+-1&=C
+\end{align*}
+
+Therefore
+\[
+y=(1+x)^2\left(\frac{x^2}{2}+x-1\right)
+\]
+
+So the required function is $y=(1+x)^2\left(\frac{x^2}{2}+x-1\right)$.
+
+  \item To find when $y=0$, set the expression from part (a) equal to zero:
+\[
+(1+x)^2\left(\frac{x^2}{2}+x-1\right)=0
+\]
+
+Since $x>-1$, we have $1+x>0$, so $(1+x)^2\neq 0$. Therefore
+\[
+\frac{x^2}{2}+x-1=0
+\]
+
+Multiply by $2$:
+\[
+x^2+2x-2=0
+\]
+
+Solve using the quadratic formula:
+\begin{align*}
+x&=\frac{-2\pm\sqrt{2^2-4(1)(-2)}}{2} \\
+&=\frac{-2\pm\sqrt{4+8}}{2} \\
+&=\frac{-2\pm\sqrt{12}}{2} \\
+&=\frac{-2\pm 2\sqrt{3}}{2} \\
+&=-1\pm \sqrt{3}
+\end{align*}
+
+The positive value is
+\[
+x=\sqrt{3}-1
+\]
+
+So the exact positive value of $x$ is $x=\sqrt{3}-1$.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+Find the general solution of the differential equation\\
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}-2y\tan x=\sec^3 x
+\]\\
+where $-\frac{\pi}{2}<x<\frac{\pi}{2}$ \marks{7}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Write the differential equation in the linear form
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)
+\]
+so here
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}-2y\tan x=\sec^3 x,\qquad P(x)=-2\tan x,\qquad Q(x)=\sec^3 x
+\]
+
+For a linear equation, the integrating factor is
+\[
+\mu(x)=e^{\int P(x)\,\,\mathrm{d}x}
+\]
+
+So
+\begin{align*}
+\mu(x)&=e^{\int -2\tan x\,\,\mathrm{d}x} \\
+&=e^{-2\int \frac{\sin x}{\cos x}\,\,\mathrm{d}x} \\
+&=e^{-2(-\ln(\cos x))} \\
+&=e^{2\ln(\cos x)} \\
+&=\cos^2 x
+\end{align*}
+
+Since $-\frac{\pi}{2}<x<\frac{\pi}{2}$, we have $\cos x>0$, so this is valid without absolute values.
+
+Now multiply the whole differential equation by $\cos^2 x$:
+\begin{align*}
+\cos^2 x\frac{\mathrm{d}y}{\mathrm{d}x}-2y\cos^2 x\tan x&=\cos^2 x\sec^3 x \\
+\cos^2 x\frac{\mathrm{d}y}{\mathrm{d}x}-2y\cos x\sin x&=\sec x
+\end{align*}
+
+Next, observe that
+\begin{align*}
+\frac{\mathrm{d}}{\mathrm{d}x}(y\cos^2 x)
+&=\cos^2 x\frac{\mathrm{d}y}{\mathrm{d}x}+y\frac{\mathrm{d}}{\mathrm{d}x}(\cos^2 x) \\
+&=\cos^2 x\frac{\mathrm{d}y}{\mathrm{d}x}+y(2\cos x)(-\sin x) \\
+&=\cos^2 x\frac{\mathrm{d}y}{\mathrm{d}x}-2y\cos x\sin x
+\end{align*}
+
+So the left-hand side is an exact derivative, and the equation becomes
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}(y\cos^2 x)=\sec x
+\]
+
+Integrating both sides with respect to $x$ gives
+\[
+y\cos^2 x=\int \sec x\,\,\mathrm{d}x
+\]
+
+To integrate $\sec x$, use the standard trick:
+\begin{align*}
+\int \sec x\,\,\mathrm{d}x
+&=\int \sec x\cdot \frac{\sec x+\tan x}{\sec x+\tan x}\,\,\mathrm{d}x \\
+&=\int \frac{\sec^2 x+\sec x\tan x}{\sec x+\tan x}\,\,\mathrm{d}x
+\end{align*}
+
+Let
+\[
+u=\sec x+\tan x
+\]
+Then
+\[
+\frac{\mathrm{d}u}{\mathrm{d}x}=\sec x\tan x+\sec^2 x
+\]
+so
+\[
+\int \sec x\,\,\mathrm{d}x=\int \frac{1}{u}\,\,\mathrm{d}u=\ln|u|+C=\ln|\sec x+\tan x|+C
+\]
+
+On the interval $-\frac{\pi}{2}<x<\frac{\pi}{2}$, we have
+\[
+\sec x+\tan x=\frac{1+\sin x}{\cos x}>0
+\]
+because $1+\sin x>0$ and $\cos x>0$. Hence
+\[
+\ln|\sec x+\tan x|=\ln(\sec x+\tan x)
+\]
+
+Therefore
+\[
+y\cos^2 x=\ln(\sec x+\tan x)+C
+\]
+
+Finally, divide through by $\cos^2 x$:
+\[
+y=\sec^2 x\bigl(\ln(\sec x+\tan x)+C\bigr)
+\]
+
+Hence the general solution is
+\[
+y=\sec^2 x\bigl(\ln(\sec x+\tan x)+C\bigr)
+\]
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}\!\left(\ln\!\left(\frac{\cosh x+1}{\sinh x}\right)\right)=-\operatorname{cosech} x
+  \]
+  \marks[-20pt]{3}
+  \item Hence solve, for $x>0$,
+  \[
+  \sinh x\,\frac{\mathrm{d}y}{\mathrm{d}x}-y=1-\cosh x
+  \]
+  given that $y=2$ when $x=\ln 3$. Give your answer in exact form \marks{7} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Write
+\[
+\ln\left(\frac{\cosh x+1}{\sinh x}\right)=\ln(\cosh x+1)-\ln(\sinh x)
+\]
+
+Differentiate term by term:
+\begin{align*}
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\ln\left(\frac{\cosh x+1}{\sinh x}\right)\right)
+&=\frac{\sinh x}{\cosh x+1}-\frac{\cosh x}{\sinh x} \\
+&=\frac{\sinh^2 x-\cosh x(\cosh x+1)}{\sinh x(\cosh x+1)}
+\end{align*}
+
+Now simplify the numerator using $\cosh^2 x-\sinh^2 x=1$:
+\begin{align*}
+\sinh^2 x-\cosh x(\cosh x+1)
+&=\sinh^2 x-\cosh^2 x-\cosh x \\
+&=-(\cosh^2 x-\sinh^2 x)-\cosh x \\
+&=-1-\cosh x \\
+&=-(\cosh x+1)
+\end{align*}
+
+So
+\begin{align*}
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\ln\left(\frac{\cosh x+1}{\sinh x}\right)\right)
+&=\frac{-(\cosh x+1)}{\sinh x(\cosh x+1)} \\
+&=-\frac{1}{\sinh x} \\
+&=-\operatorname{cosech}x
+\end{align*}
+
+Hence,
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\ln\left(\frac{\cosh x+1}{\sinh x}\right)\right)=-\operatorname{cosech}x
+\]
+
+  \item Start with
+\[
+\sinh x\,\frac{\mathrm{d}y}{\mathrm{d}x}-y=1-\cosh x
+\]
+
+Since $x>0$, we have $\sinh x\neq 0$, so divide through by $\sinh x$:
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}-\operatorname{cosech}x\,y=\frac{1-\cosh x}{\sinh x}
+\]
+
+This is a linear differential equation of the form
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)
+\]
+with
+\[
+P(x)=-\operatorname{cosech}x
+\]
+
+From part (a),
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\ln\left(\frac{\cosh x+1}{\sinh x}\right)\right)=-\operatorname{cosech}x
+\]
+so an integrating factor is
+\[
+\mu(x)=\exp\left(\int -\operatorname{cosech}x\,\mathrm{d}x\right)=\frac{\cosh x+1}{\sinh x}
+\]
+
+Multiply the differential equation throughout by $\mu(x)$:
+\[
+\frac{\cosh x+1}{\sinh x}\frac{\mathrm{d}y}{\mathrm{d}x}-\frac{\cosh x+1}{\sinh^2 x}y
+=\frac{(\cosh x+1)(1-\cosh x)}{\sinh^2 x}
+\]
+
+The left-hand side is
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\mu y\right)
+=\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{\cosh x+1}{\sinh x}y\right)
+\]
+
+Simplify the right-hand side:
+\begin{align*}
+\frac{(\cosh x+1)(1-\cosh x)}{\sinh^2 x}
+&=\frac{1-\cosh^2 x}{\sinh^2 x} \\
+&=\frac{-\sinh^2 x}{\sinh^2 x} \\
+&=-1
+\end{align*}
+
+So
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{\cosh x+1}{\sinh x}y\right)=-1
+\]
+
+Integrate with respect to $x$:
+\[
+\frac{\cosh x+1}{\sinh x}y=-x+C
+\]
+
+Hence
+\[
+y=\frac{(C-x)\sinh x}{\cosh x+1}
+\]
+
+Now use the condition $y=2$ when $x=\ln 3$.
+
+First find $\sinh(\ln 3)$ and $\cosh(\ln 3)$:
+\begin{align*}
+\sinh(\ln 3)&=\frac{e^{\ln 3}-e^{-\ln 3}}{2}=\frac{3-\frac13}{2}=\frac{4}{3} \\
+\cosh(\ln 3)&=\frac{e^{\ln 3}+e^{-\ln 3}}{2}=\frac{3+\frac13}{2}=\frac{5}{3}
+\end{align*}
+
+Substitute into the solution:
+\begin{align*}
+2
+&=\frac{(C-\ln 3)\sinh(\ln 3)}{\cosh(\ln 3)+1} \\
+&=\frac{(C-\ln 3)\cdot \frac43}{\frac53+1} \\
+&=\frac{(C-\ln 3)\cdot \frac43}{\frac83} \\
+&=\frac{C-\ln 3}{2}
+\end{align*}
+
+Therefore
+\begin{align*}
+2&=\frac{C-\ln 3}{2} \\
+4&=C-\ln 3 \\
+C&=4+\ln 3
+\end{align*}
+
+Substituting back,
+\[
+y=\frac{(4+\ln 3-x)\sinh x}{\cosh x+1}
+\]
+
+So the exact solution is
+\[
+y=\frac{(4+\ln 3-x)\sinh x}{\cosh x+1}
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the general solution of the differential equation\\
+  \[
+  \frac{\mathrm{d}y}{\mathrm{d}x}+\frac{2x}{x^2+1}y=6x
+  \]
+  giving your answer in the form $y=f(x)$ \marks{3} \\
+  \item Given that $y=\tfrac{7}{2}$ when $x=0$, find the smallest positive value of $x$ for which $y=4$ \marks{3} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item The differential equation is linear:
+  \[
+  \frac{\mathrm{d}y}{\mathrm{d}x}+\frac{2x}{x^2+1}y=6x
+  \]
+
+  Its integrating factor is
+  \begin{align*}
+  \mu(x)&=e^{\int \frac{2x}{x^2+1}\,\,\mathrm{d}x} \\
+  &=e^{\ln(x^2+1)} \\
+  &=x^2+1
+  \end{align*}
+
+  Multiplying the differential equation by $x^2+1$ gives
+  \begin{align*}
+  (x^2+1)\frac{\mathrm{d}y}{\mathrm{d}x}+2xy&=6x(x^2+1)
+  \end{align*}
+
+  The left-hand side is the derivative of $(x^2+1)y$, so
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}\bigl((x^2+1)y\bigr)=6x(x^2+1)
+  \]
+
+  Integrating both sides:
+  \begin{align*}
+  (x^2+1)y&=\int 6x(x^2+1)\,\,\mathrm{d}x \\
+  &=\int (6x^3+6x)\,\,\mathrm{d}x \\
+  &=\frac{3}{2}x^4+3x^2+C
+  \end{align*}
+
+  Hence
+  \[
+  y=\frac{\frac{3}{2}x^4+3x^2+C}{x^2+1}
+  \]
+
+  Therefore, the general solution is
+  \[
+  y=\frac{\frac{3}{2}x^4+3x^2+C}{x^2+1}
+  \]
+
+  \item Using $y=\tfrac{7}{2}$ when $x=0$:
+  \begin{align*}
+  \frac{7}{2}&=\frac{\frac{3}{2}(0)^4+3(0)^2+C}{(0)^2+1} \\
+  \frac{7}{2}&=C
+  \end{align*}
+
+  So the particular solution is
+  \[
+  y=\frac{\frac{3}{2}x^4+3x^2+\frac{7}{2}}{x^2+1}
+  \]
+
+  Now set $y=4$:
+  \begin{align*}
+  4&=\frac{\frac{3}{2}x^4+3x^2+\frac{7}{2}}{x^2+1}
+  \end{align*}
+
+  Multiply through by $x^2+1$:
+  \begin{align*}
+  4(x^2+1)&=\frac{3}{2}x^4+3x^2+\frac{7}{2}
+  \end{align*}
+
+  Multiply by $2$:
+  \begin{align*}
+  8x^2+8&=3x^4+6x^2+7
+  \end{align*}
+
+  Rearranging:
+  \begin{align*}
+  0&=3x^4-2x^2-1
+  \end{align*}
+
+  Let $u=x^2$. Then
+  \begin{align*}
+  3u^2-2u-1&=0 \\
+  (3u+1)(u-1)&=0
+  \end{align*}
+
+  So
+  \[
+  u=1 \quad \text{or} \quad u=-\frac{1}{3}
+  \]
+
+  Since $u=x^2\geq 0$, we take $x^2=1$, giving
+  \[
+  x=\pm 1
+  \]
+
+  The smallest positive value is
+  \[
+  x=1
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+
+For $x>0$, solve the differential equation\\
+\[
+\sinh x\,\frac{\mathrm{d}y}{\mathrm{d}x} - 2y\cosh x = \sinh^2 x\cosh x
+\] \\
+given that $y=5$ when $x=\ln(1+\sqrt{2})$. \\
+Give your answer in exact form. \marks{7}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Since $x>0$, we have $\sinh x>0$, so in particular $\sinh x \neq 0$. We may therefore divide the differential equation by $\sinh x$ to put it into linear form:
+\begin{align*}
+\sinh x\,\frac{\mathrm{d}y}{\mathrm{d}x} - 2y\cosh x &= \sinh^2 x\cosh x \\
+\frac{\mathrm{d}y}{\mathrm{d}x} - 2\frac{\cosh x}{\sinh x}y &= \sinh x\cosh x \\
+\frac{\mathrm{d}y}{\mathrm{d}x} - 2\coth x\,y &= \sinh x\cosh x
+\end{align*}
+
+This is a first-order linear equation of the form
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x} + P(x)y = Q(x)
+\]
+with
+\[
+P(x)=-2\coth x
+\]
+
+So the integrating factor is
+\begin{align*}
+\mu(x) &= e^{\int -2\coth x\,\mathrm{d}x} \\
+&= e^{-2\int \coth x\,\mathrm{d}x} \\
+&= e^{-2\ln(\sinh x)} \\
+&= \frac{1}{\sinh^2 x}
+\end{align*}
+
+Multiplying the differential equation by this integrating factor gives
+\begin{align*}
+\frac{1}{\sinh^2 x}\frac{\mathrm{d}y}{\mathrm{d}x} - \frac{2\coth x}{\sinh^2 x}y
+&= \frac{\sinh x\cosh x}{\sinh^2 x} \\
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{y}{\sinh^2 x}\right) &= \coth x
+\end{align*}
+
+Now integrate both sides with respect to $x$:
+\begin{align*}
+\frac{y}{\sinh^2 x} &= \int \coth x\,\mathrm{d}x \\
+&= \ln(\sinh x) + C
+\end{align*}
+
+Hence
+\[
+y=\sinh^2 x\bigl(\ln(\sinh x)+C\bigr)
+\]
+
+Now use the condition $y=5$ when $x=\ln(1+\sqrt{2})$.
+
+We need $\sinh\!\bigl(\ln(1+\sqrt{2})\bigr)$. Using
+\[
+\sinh t=\frac{e^t-e^{-t}}{2}
+\]
+with $t=\ln(1+\sqrt{2})$, we get
+\begin{align*}
+\sinh\!\bigl(\ln(1+\sqrt{2})\bigr)
+&= \frac{(1+\sqrt{2})-\dfrac{1}{1+\sqrt{2}}}{2} \\
+&= \frac{(1+\sqrt{2})-(\sqrt{2}-1)}{2} \\
+&= \frac{2}{2} \\
+&= 1
+\end{align*}
+
+So substituting into the solution:
+\begin{align*}
+5 &= 1^2\bigl(\ln 1 + C\bigr) \\
+5 &= 0 + C \\
+C &= 5
+\end{align*}
+
+Therefore the required exact solution is
+\[
+y=\sinh^2 x\bigl(\ln(\sinh x)+5\bigr)
+\]
+
+So the answer is $y=\sinh^2 x\bigl(\ln(\sinh x)+5\bigr)$.
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 13 ----
+\questionitem
+
+For $x>0$, a function $y$ satisfies \\
+\[
+\sinh x\,\frac{\mathrm{d}y}{\mathrm{d}x}-y\cosh x=\sinh x\,\cosh^3 x
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item By first writing the equation in the form $\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)$, find an integrating factor \marks{2} \\
+  \item Hence solve the differential equation, given that $y=2$ when $x=\ln(1+\sqrt{2})$ \marks{5} \\
+\end{enumerate}
+Give your answer in exact form.
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item First divide the differential equation by \(\sinh x\):
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}-\frac{\cosh x}{\sinh x}y=\cosh^3 x
+\]
+So it is in the form \(\dfrac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with
+\[
+P(x)=-\coth x
+\]
+
+The integrating factor is
+\begin{align*}
+\mu(x)
+&=e^{\int P(x)\,\,\mathrm{d}x} \\
+&=e^{\int -\coth x\,\,\mathrm{d}x} \\
+&=e^{-\ln(\sinh x)} \\
+&=\frac{1}{\sinh x}
+\end{align*}
+since \(x>0\), so \(\sinh x>0\).
+
+Final answer: the integrating factor is \(\dfrac{1}{\sinh x}\).
+
+  \item Multiply the equation
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}-\coth x\,y=\cosh^3 x
+\]
+by the integrating factor \(\dfrac{1}{\sinh x}\):
+\[
+\frac{1}{\sinh x}\frac{\mathrm{d}y}{\mathrm{d}x}-\frac{\cosh x}{\sinh^2 x}y=\frac{\cosh^3 x}{\sinh x}
+\]
+
+Now
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{y}{\sinh x}\right)
+=\frac{1}{\sinh x}\frac{\mathrm{d}y}{\mathrm{d}x}-\frac{\cosh x}{\sinh^2 x}y
+\]
+so the equation becomes
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{y}{\sinh x}\right)=\frac{\cosh^3 x}{\sinh x}
+\]
+
+Integrating both sides gives
+\[
+\frac{y}{\sinh x}=\int \frac{\cosh^3 x}{\sinh x}\,\,\mathrm{d}x+C
+\]
+
+Rewrite the integrand using \(\cosh^2 x=1+\sinh^2 x\):
+\begin{align*}
+\frac{\cosh^3 x}{\sinh x}
+&=\frac{\cosh x\,\cosh^2 x}{\sinh x} \\
+&=\frac{\cosh x(1+\sinh^2 x)}{\sinh x}
+\end{align*}
+
+Let
+\[
+u=\sinh x
+\quad\Rightarrow\quad
+\mathrm{d}u=\cosh x\,\mathrm{d}x
+\]
+Then
+\begin{align*}
+\int \frac{\cosh^3 x}{\sinh x}\,\,\mathrm{d}x
+&=\int \frac{\cosh x(1+\sinh^2 x)}{\sinh x}\,\,\mathrm{d}x \\
+&=\int \left(\frac{1}{u}+u\right)\,\mathrm{d}u \\
+&=\ln u+\frac{u^2}{2}+C \\
+&=\ln(\sinh x)+\frac{1}{2}\sinh^2 x+C
+\end{align*}
+
+Hence
+\[
+\frac{y}{\sinh x}=\ln(\sinh x)+\frac{1}{2}\sinh^2 x+C
+\]
+and so
+\[
+y=\sinh x\ln(\sinh x)+\frac{1}{2}\sinh^3 x+C\sinh x
+\]
+
+Use the condition \(y=2\) when \(x=\ln(1+\sqrt{2})\). First find \(\sinh\bigl(\ln(1+\sqrt{2})\bigr)\):
+\begin{align*}
+\sinh\bigl(\ln(1+\sqrt{2})\bigr)
+&=\frac{e^{\ln(1+\sqrt{2})}-e^{-\ln(1+\sqrt{2})}}{2} \\
+&=\frac{(1+\sqrt{2})-\dfrac{1}{1+\sqrt{2}}}{2} \\
+&=\frac{(1+\sqrt{2})-(\sqrt{2}-1)}{2} \\
+&=1
+\end{align*}
+
+So substituting \(\sinh x=1\) and \(y=2\):
+\begin{align*}
+2&=1\cdot \ln 1+\frac{1}{2}(1)^3+C(1) \\
+2&=0+\frac{1}{2}+C \\
+C&=\frac{3}{2}
+\end{align*}
+
+Therefore
+\[
+y=\sinh x\ln(\sinh x)+\frac{1}{2}\sinh^3 x+\frac{3}{2}\sinh x
+\]
+
+Final answer: \(y=\sinh x\ln(\sinh x)+\dfrac{1}{2}\sinh^3 x+\dfrac{3}{2}\sinh x\).
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 14 ----
+\questionitem
+
+For $x>0$, solve the differential equation\\
+\[
+\sinh x\,\frac{\mathrm{d}y}{\mathrm{d}x} - y\cosh x = \sinh x\cosh x
+\] \\
+given that $y = 2$ when $x = \ln(1+\sqrt{2})$. \\
+Give your answer in exact form. \marks{7}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Since $x>0$, we have $\sinh x>0$, so we may divide through by $\sinh x$ to put the differential equation into linear form:
+
+\begin{align*}
+\sinh x\,\frac{\mathrm{d}y}{\mathrm{d}x} - y\cosh x &= \sinh x\cosh x \\
+\frac{\mathrm{d}y}{\mathrm{d}x} - \frac{\cosh x}{\sinh x}\,y &= \cosh x \\
+\frac{\mathrm{d}y}{\mathrm{d}x} - \coth x\,y &= \cosh x
+\end{align*}
+
+This is a first-order linear equation of the form
+
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x} + P(x)y = Q(x)
+\]
+
+with
+
+\[
+P(x) = -\coth x
+\]
+
+So the integrating factor is
+
+\begin{align*}
+\mu(x) &= e^{\int -\coth x\,\mathrm{d}x} \\
+&= e^{-\int \coth x\,\mathrm{d}x} \\
+&= e^{-\ln(\sinh x)} \\
+&= \frac{1}{\sinh x}
+\end{align*}
+
+Multiplying the differential equation by this integrating factor gives
+
+\begin{align*}
+\frac{1}{\sinh x}\frac{\mathrm{d}y}{\mathrm{d}x} - \frac{\coth x}{\sinh x}y &= \frac{\cosh x}{\sinh x}
+\end{align*}
+
+The left-hand side is the derivative of $\dfrac{y}{\sinh x}$, so
+
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{y}{\sinh x}\right)=\coth x
+\]
+
+Integrating both sides with respect to $x$:
+
+\begin{align*}
+\frac{y}{\sinh x} &= \int \coth x\,\mathrm{d}x + C \\
+&= \ln(\sinh x) + C
+\end{align*}
+
+Hence
+
+\[
+y=\sinh x\bigl(\ln(\sinh x)+C\bigr)
+\]
+
+Now use the condition $y=2$ when $x=\ln(1+\sqrt{2})$.
+
+We need $\sinh\bigl(\ln(1+\sqrt{2})\bigr)$. Using
+\[
+\sinh u=\frac{e^u-e^{-u}}{2}
+\]
+with $u=\ln(1+\sqrt{2})$:
+
+\begin{align*}
+\sinh\bigl(\ln(1+\sqrt{2})\bigr)
+&= \frac{(1+\sqrt{2})-\dfrac{1}{1+\sqrt{2}}}{2}
+\end{align*}
+
+Now rationalise:
+
+\begin{align*}
+\frac{1}{1+\sqrt{2}}
+&= \frac{1-\sqrt{2}}{(1+\sqrt{2})(1-\sqrt{2})} \\
+&= \frac{1-\sqrt{2}}{1-2} \\
+&= \sqrt{2}-1
+\end{align*}
+
+So
+
+\begin{align*}
+\sinh\bigl(\ln(1+\sqrt{2})\bigr)
+&= \frac{(1+\sqrt{2})-(\sqrt{2}-1)}{2} \\
+&= \frac{2}{2} \\
+&= 1
+\end{align*}
+
+Substituting into the general solution:
+
+\begin{align*}
+2 &= 1\bigl(\ln 1 + C\bigr) \\
+2 &= 0 + C \\
+C &= 2
+\end{align*}
+
+Therefore the exact solution is
+
+\[
+y=\sinh x\bigl(\ln(\sinh x)+2\bigr)
+\]
+
+So the required solution is $y=\sinh x\bigl(\ln(\sinh x)+2\bigr)$
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 15 ----
+\questionitem
+
+Find the general solution of the differential equation\\
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x} - y\tan x = \frac{1}{\sqrt{1+\sin x}}
+\] \\
+where $-\tfrac{\pi}{2} < x < \tfrac{\pi}{2}$ \marks{7}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Write the differential equation in linear form:
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x} + P(x)y = Q(x)
+\]
+with
+\[
+P(x)=-\tan x,
+\qquad
+Q(x)=\frac{1}{\sqrt{1+\sin x}}
+\]
+
+So the integrating factor is
+\begin{align*}
+\mu(x)
+&= e^{\int -\tan x\,\mathrm{d}x} \\
+&= e^{\ln(\cos x)}
+\end{align*}
+
+Since $-\tfrac{\pi}{2}<x<\tfrac{\pi}{2}$, we have $\cos x>0$, so
+\[
+\mu(x)=\cos x
+\]
+
+Multiply the differential equation throughout by $\cos x$:
+\begin{align*}
+\cos x\frac{\mathrm{d}y}{\mathrm{d}x} - y\cos x\tan x
+&= \frac{\cos x}{\sqrt{1+\sin x}} \\
+\cos x\frac{\mathrm{d}y}{\mathrm{d}x} - y\sin x
+&= \frac{\cos x}{\sqrt{1+\sin x}}
+\end{align*}
+
+Now
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}(y\cos x)=\cos x\frac{\mathrm{d}y}{\mathrm{d}x}-y\sin x
+\]
+
+So the equation becomes
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}(y\cos x)=\frac{\cos x}{\sqrt{1+\sin x}}
+\]
+
+Integrate both sides with respect to $x$:
+\[
+y\cos x=\int \frac{\cos x}{\sqrt{1+\sin x}}\,\mathrm{d}x + C
+\]
+
+Let
+\[
+u=1+\sin x
+\qquad \Rightarrow \qquad
+\frac{\mathrm{d}u}{\mathrm{d}x}=\cos x
+\qquad \Rightarrow \qquad
+\mathrm{d}u=\cos x\,\mathrm{d}x
+\]
+
+Then
+\begin{align*}
+\int \frac{\cos x}{\sqrt{1+\sin x}}\,\mathrm{d}x
+&= \int u^{-1/2}\,\mathrm{d}u \\
+&= 2u^{1/2} \\
+&= 2\sqrt{1+\sin x}
+\end{align*}
+
+Hence
+\[
+y\cos x=2\sqrt{1+\sin x}+C
+\]
+
+Therefore
+\[
+y=\frac{2\sqrt{1+\sin x}+C}{\cos x}
+\]
+
+So the general solution is
+\[
+y=\frac{2\sqrt{1+\sin x}+C}{\cos x}
+\]
+
+An equivalent form is
+\[
+y=\frac{2}{\sqrt{1-\sin x}}+C\sec x
+\]
+\end{tcolorbox}
+
+\end{enumerate}
+\end{document}
