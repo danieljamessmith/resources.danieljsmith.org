@@ -13,6 +13,7 @@ export const questionCounts: Record<string, number> = {
   '/tex/further-maths/further-calculus/qbt/_QBT__Integration_by_Substitution__FM_Level_.pdf': 15,
   '/tex/further-maths/further-calculus/qbt/_QBT__Integration_with_Inverse_Trig.pdf': 17,
   '/tex/further-maths/further-calculus/qbt/_QBT__Maclaurin_Series.pdf': 17,
+  '/tex/further-maths/further-calculus/qbt/_QBT__Tangents_to_Polar_Curves.pdf': 8,
   '/tex/further-maths/further-calculus/qbt/_QBT__Volumes_of_Revolution.pdf': 15,
   '/tex/further-maths/induction/qbt/_QBT__Proof_by_Induction___Derivatives.pdf': 8,
   '/tex/further-maths/induction/qbt/_QBT__Proof_by_Induction___Divisibility.pdf': 8,
