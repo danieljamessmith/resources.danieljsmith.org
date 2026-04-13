@@ -1,0 +1,231 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{Proof by Induction - Matrices}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+Prove by induction that, for $n \in \mathbb{Z}^+$,
+\[
+\renewcommand{\arraystretch}{1.2}
+\begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix}^n = \begin{pmatrix} 2^n & 3^n - 2^n \\ 0 & 3^n \end{pmatrix}
+\]
+\marks[-20pt]{5}
+
+\newpage
+
+
+% ---- Question 2 ----
+\questionitem
+
+The matrix $A$ is given by
+\[
+A = \begin{pmatrix} 4 & 2 \\ -2 & 0 \end{pmatrix}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Prove by induction that
+  \[
+  A^n = 2^n \begin{pmatrix} n+1 & n \\ -n & 1-n \end{pmatrix}
+  \]
+  for all positive integers $n$. \marks{6} \\
+  \item The matrix $B$ is given by
+  \[
+  B = (A^n)^{-1}
+  \] \\
+  Hence find $B$ in terms of $n$. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+The matrix $A$ is given by
+\[
+A = \begin{pmatrix} 2 & 0 & 0 \\ 1 & 2 & 0 \\ 0 & 1 & 2 \end{pmatrix}
+\] \\
+Prove by induction that, for $n \geq 1$,
+\[
+\renewcommand{\arraystretch}{1.2}
+A^n = \begin{pmatrix} 2^n & 0 & 0 \\ n\,2^{n-1} & 2^n & 0 \\ \frac{n(n-1)}{2}\,2^{n-2} & n\,2^{n-1} & 2^n \end{pmatrix}
+\]
+\marks[-30pt]{7}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+The matrix $M = \begin{pmatrix}3c & 1 \\ 0 & 3c\end{pmatrix}$, where $c$ is a positive constant. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Prove by induction that for all positive integers $n$,
+  \[
+  M^n = \begin{pmatrix}(3c)^n & n(3c)^{n-1} \\ 0 & (3c)^n\end{pmatrix}
+  \]
+  \marks[-20pt]{7}
+  \item Given that $\det(M^n) = 144^n$, find the value of $c$. \marks{5} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+For $n \in \mathbb{Z}^{+}$, show, using mathematical induction, that
+\[
+\renewcommand{\arraystretch}{1.4}
+\begin{pmatrix}
+
+-1 & 1 & 0 \\
+0 & -1 & 1 \\
+0 & 0 & -1
+\end{pmatrix}^{n}
+=
+\begin{pmatrix}
+(-1)^{n} & -n(-1)^{n} & \frac{n(n-1)}{2}(-1)^{n} \\
+0 & (-1)^{n} & -n(-1)^{n} \\
+0 & 0 & (-1)^{n}
+\end{pmatrix}
+\]
+\marks[-30pt]{5}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+The Fibonacci sequence $(F_n)$ is defined by $F_0=0$, $F_1=1$ and $F_{n+1}=F_n+F_{n-1}$ for $n\geq 1$. \\
+You are given that
+\[
+M = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}
+\] \\
+Prove by induction that
+\[
+M^n = \begin{pmatrix} F_{n+1} & F_n \\ F_n & F_{n-1} \end{pmatrix}
+\]
+for all integers $n \geq 1$. \marks{5} \\
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+\[
+\mathbf{A} = \begin{pmatrix}
+1 & 1 & 0 \\
+0 & 2 & 1 \\
+0 & 0 & 2
+\end{pmatrix}
+\] \\
+Prove by induction that, for all positive integers $n$,
+\[
+\renewcommand{\arraystretch}{1.4}
+\mathbf{A}^n = \begin{pmatrix}
+1 & 2^n - 1 & 1 + (n-2)2^{n-1} \\
+0 & 2^n & n2^{n-1} \\
+0 & 0 & 2^n
+\end{pmatrix}
+\]
+\marks[-30pt]{5}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+Prove by mathematical induction that, for $n \in \mathbb{N}$,
+\[
+\begin{pmatrix}
+3 & -1 \\
+1 & 1
+\end{pmatrix}^n = 2^{n-1}
+\begin{pmatrix}
+n+2 & -n \\
+n & 2-n
+\end{pmatrix}
+\]
+\marks[-20pt]{6}
+
+
+\end{enumerate}
+\end{document}

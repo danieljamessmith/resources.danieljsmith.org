@@ -1,0 +1,191 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{Proof by Induction - Derivatives}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+
+% ---- Question 1 ----
+\questionitem
+
+It is given that \[y = x^2 e^{ax}\] where $a$ is a constant. \\
+
+Prove by mathematical induction that, for all integers $n \ge 2$,
+\[
+\frac{\mathrm{d}^n y}{\mathrm{d}x^n} = a^{n-2}\left(a^2x^2 + 2nax + n(n-1)\right)e^{ax}
+\] \marks[-30pt]{6}
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+Prove by mathematical induction that, for every positive integer $n$,
+\[
+\frac{\mathrm{d}^n}{\mathrm{d}x^n}(x^3 e^{-x}) = (-1)^n e^{-x}\bigl(x^3 - 3n x^2 + 3n(n-1)x - n(n-1)(n-2)\bigr)
+\] \marks[-30pt]{7}
+
+\newpage
+
+
+% ---- Question 3 ----
+\questionitem
+
+Given that
+\[
+y=e^{-2x}\cosh 3x
+\]
+prove by induction that for $n \in \mathbb{N}$
+\[
+\frac{\mathrm{d}^n y}{\mathrm{d}x^n}=e^{-2x}\left(\frac{1+(-5)^n}{2}\cosh 3x+\frac{1-(-5)^n}{2}\sinh 3x\right)
+\] \marks[-30pt]{6}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+Let \[y = x^2\cosh x\]
+
+Prove by induction that, for all integers $n \ge 1$,
+\[
+\frac{\mathrm{d}^{2n}y}{\mathrm{d}x^{2n}} = x^2\cosh x + 4nx\sinh x + 2n(2n-1)\cosh x
+\] \marks[-20pt]{6}
+
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+A function is defined by $y=f(t)$ where $f(t)=(1+at)\ln(1+at)$ and $a$ is a constant. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item By considering $\frac{\mathrm{d}^2y}{\mathrm{d}t^2}$, $\frac{\mathrm{d}^3y}{\mathrm{d}t^3}$, $\frac{\mathrm{d}^4y}{\mathrm{d}t^4}$ and $\frac{\mathrm{d}^5y}{\mathrm{d}t^5}$, make a conjecture for a general formula for $\frac{\mathrm{d}^n y}{\mathrm{d}t^n}$ in terms of $n$, $a$ and $t$ for any integer $n \ge 2$. \marks{3} \\
+  \item Use induction to prove the formula conjectured in part $(a)$. \marks{4} \\
+  \item In the case when $f(t)=(1+3t)\ln(1+3t)$, find the rate at which the $6^{\mathrm{th}}$ derivative of $f(t)$ is varying when $t=\frac{5}{3}$. \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+The function $f(x)$ is defined by $f(x)=(1+x)^{-\frac12}$, for $x>-1$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Prove by mathematical induction that the $n$th derivative of $f(x)$, $f^{(n)}(x)$, for all $n \ge 1$, is given by
+  \[
+  f^{(n)}(x)=\frac{(-1)^n(2n)!}{2^{2n}n!(1+x)^{n+\frac12}}
+  \]
+  \marks[-20pt]{4}
+  \item Hence prove that
+  \[
+  (1+x)^{-\frac12}=1-\frac{x}{2}+\frac{3x^2}{8}-\frac{5x^3}{16}+\ldots+(-1)^n\frac{(2n)!}{2^{2n}(n!)^2}x^n+\ldots
+  \]
+  for $-1<x\le 1$. \marks{3} \\
+\end{enumerate}
+
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+It is given that \[y = (ax + 1)^2 \ln(ax + 1)\] where $a$ is a positive constant. Prove by mathematical induction that, for every integer $n \ge 3$,
+\[
+\frac{\mathrm{d}^n y}{\mathrm{d}x^n} = 2(-1)^{n-3} \frac{(n-3)!a^n}{(ax + 1)^{n-2}}
+\] \marks[-20pt]{6}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+The function $f$ is such that $f''(x)=-f(x)$. \\
+
+Prove by mathematical induction that, for every positive integer $n$,
+\[
+\frac{\mathrm{d}^{2n}}{\mathrm{d}x^{2n}}\left(x^2f(x)\right)=(-1)^n\left(x^2f(x)-4nxf'(x)-2n(2n-1)f(x)\right)
+\] \marks[-30pt]{7}
+
+
+\end{enumerate}
+\end{document}

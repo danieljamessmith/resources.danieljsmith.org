@@ -1,0 +1,1091 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{\textit{Solutions} - Proof by Induction - Series}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Prove by induction that, for all integers $n \ge 1$
+  \[
+  \sum_{r=1}^{n} r^3 = \frac{1}{4}n^2(n+1)^2
+  \]
+  \marks[-20pt]{4}
+  \item Hence, or otherwise, write down a factorised expression for the sum of the first $2n$ cubes
+  \[
+  1^3 + 2^3 + 3^3 + \cdots + (2n)^3
+  \]
+  \marks[-20pt]{1}
+  \item Use the formula in part (a) to write down a factorised expression for the sum of the first $n$ even cubes
+  \[
+  2^3 + 4^3 + 6^3 + \cdots + (2n)^3
+  \]
+  \marks[-20pt]{2}
+  \item Hence, or otherwise, show that
+  \[
+  1^3 + 3^3 + 5^3 + \cdots + (2n-1)^3 = an^2(bn^2-1)
+  \]
+  where $a$ and $b$ are rational numbers to be determined. \marks{3} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item We prove the result by mathematical induction.
+
+  \textbf{Base Case:} When $n=1$,
+  \[
+  \sum_{r=1}^{1} r^3 = 1^3 = 1
+  \]
+  and
+  \[
+  \frac{1}{4}(1)^2(1+1)^2=\frac14\cdot 1\cdot 4=1
+  \]
+  So the formula is true for $n=1$.
+
+  \textbf{Inductive Hypothesis:} Assume that for some integer $k \ge 1$,
+  \[
+  \sum_{r=1}^{k} r^3=\frac14 k^2(k+1)^2
+  \]
+
+  \textbf{Inductive Step:} Consider $n=k+1$.
+  \begin{align*}
+  \sum_{r=1}^{k+1} r^3
+  &= \sum_{r=1}^{k} r^3 + (k+1)^3 \\
+  &= \frac14 k^2(k+1)^2 + (k+1)^3 \\
+  &= (k+1)^2\left(\frac{k^2}{4}+k+1\right) \\
+  &= (k+1)^2\left(\frac{k^2+4k+4}{4}\right) \\
+  &= \frac14 (k+1)^2(k+2)^2
+  \end{align*}
+
+  This is exactly the required formula with $n=k+1$.
+
+  Therefore, if the result is true for $n=k$, it is true for $n=k+1$.
+  
+  Since it is true for $n=1$, it follows by induction that for all integers $n\ge1$,
+  \[
+  \sum_{r=1}^{n} r^3=\frac14 n^2(n+1)^2
+  \]
+
+  \item Using part (a) with $n$ replaced by $2n$,
+  \begin{align*}
+  1^3+2^3+3^3+\cdots +(2n)^3
+  &= \sum_{r=1}^{2n} r^3 \\
+  &= \frac14 (2n)^2(2n+1)^2 \\
+  &= n^2(2n+1)^2
+  \end{align*}
+
+  So the factorised expression is
+  \[
+  n^2(2n+1)^2
+  \]
+
+  \item The first $n$ even cubes are
+  \[
+  2^3+4^3+6^3+\cdots +(2n)^3 = \sum_{r=1}^{n} (2r)^3
+  \]
+  Hence
+  \begin{align*}
+  \sum_{r=1}^{n} (2r)^3
+  &= 8\sum_{r=1}^{n} r^3 \\
+  &= 8\left(\frac14 n^2(n+1)^2\right) \\
+  &= 2n^2(n+1)^2
+  \end{align*}
+
+  So the factorised expression is
+  \[
+  2n^2(n+1)^2
+  \]
+
+  \item The odd cubes are found by subtracting the even cubes from the first $2n$ cubes:
+  \begin{align*}
+  1^3+3^3+5^3+\cdots +(2n-1)^3
+  &= \left(1^3+2^3+\cdots +(2n)^3\right) - \left(2^3+4^3+\cdots +(2n)^3\right) \\
+  &= n^2(2n+1)^2 - 2n^2(n+1)^2 \\
+  &= n^2\left((2n+1)^2-2(n+1)^2\right) \\
+  &= n^2\left((4n^2+4n+1)-(2n^2+4n+2)\right) \\
+  &= n^2(2n^2-1)
+  \end{align*}
+
+  Comparing with
+  \[
+  an^2(bn^2-1)
+  \]
+  gives
+  \[
+  a=1,\qquad b=2
+  \]
+
+  So
+  \[
+  1^3+3^3+5^3+\cdots +(2n-1)^3 = n^2(2n^2-1)
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+Prove by induction that, for $n \geq 1$
+\[
+\sum_{r=1}^{n} r\,2^r = 2 + (n-1)2^{n+1}
+\]
+\marks[-20pt]{5}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+P(n): \sum_{r=1}^{n} r\,2^r = 2 + (n-1)2^{n+1}
+\]
+We will prove that $P(n)$ is true for all $n \geq 1$ by induction.
+
+\textbf{Base Case:} For $n=1$,
+\[
+\sum_{r=1}^{1} r\,2^r = 1\cdot 2 = 2
+\]
+Also,
+\[
+2+(1-1)2^{1+1}=2+0=2
+\]
+So the left-hand side equals the right-hand side, and hence $P(1)$ is true.
+
+\textbf{Inductive Hypothesis:} Assume that $P(k)$ is true for some integer $k \geq 1$.
+
+That is, assume
+\[
+\sum_{r=1}^{k} r\,2^r = 2 + (k-1)2^{k+1}
+\]
+
+\textbf{Inductive Step:} We now prove that $P(k+1)$ is true.
+
+Starting with the left-hand side,
+\begin{align*}
+\sum_{r=1}^{k+1} r\,2^r
+&= \sum_{r=1}^{k} r\,2^r + (k+1)2^{k+1} \\
+&= \left(2+(k-1)2^{k+1}\right) + (k+1)2^{k+1} \\
+&= 2 + \bigl((k-1)+(k+1)\bigr)2^{k+1} \\
+&= 2 + 2k\,2^{k+1} \\
+&= 2 + k\,2^{k+2} \\
+&= 2 + \bigl((k+1)-1\bigr)2^{(k+1)+1}
+\end{align*}
+
+This is exactly the required form for $P(k+1)$.
+
+Therefore, if $P(k)$ is true, then $P(k+1)$ is also true.
+
+\textbf{Conclusion:} Since $P(1)$ is true, and $P(k) \Rightarrow P(k+1)$, it follows by mathematical induction that
+\[
+\sum_{r=1}^{n} r\,2^r = 2 + (n-1)2^{n+1}
+\]
+for all $n \geq 1$.
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+Prove by induction that for all positive integers $n$
+\[
+\sum_{r=1}^{n} \log\left(1-\frac{1}{4r^2}\right)=\log\left(\frac{(2n)!(2n+1)!}{2^{4n}(n!)^4}\right)
+\]
+\marks[-30pt]{6}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+S_n=\sum_{r=1}^{n}\log\left(1-\frac{1}{4r^2}\right)
+\]
+
+We prove by induction that
+\[
+S_n=\log\left(\frac{(2n)!(2n+1)!}{2^{4n}(n!)^4}\right)
+\]
+
+for all positive integers \(n\).
+
+\textbf{Base Case: \(n=1\).}
+
+\[
+S_1=\log\left(1-\frac14\right)=\log\left(\frac34\right)
+\]
+
+Also,
+\[
+\log\left(\frac{(2\cdot1)!(2\cdot1+1)!}{2^{4\cdot1}(1!)^4}\right)
+=\log\left(\frac{2!\,3!}{2^4}\right)
+=\log\left(\frac{2\cdot6}{16}\right)
+=\log\left(\frac34\right)
+\]
+
+So the result is true when \(n=1\).
+
+\textbf{Inductive Hypothesis.}
+
+Assume that for some positive integer \(k\),
+\[
+S_k=\log\left(\frac{(2k)!(2k+1)!}{2^{4k}(k!)^4}\right)
+\]
+
+\textbf{Inductive Step.}
+
+We must show that
+\[
+S_{k+1}=\log\left(\frac{(2k+2)!(2k+3)!}{2^{4k+4}((k+1)!)^4}\right)
+\]
+
+Starting from the definition of \(S_{k+1}\),
+\[
+S_{k+1}=S_k+\log\left(1-\frac{1}{4(k+1)^2}\right)
+\]
+
+First simplify the extra term:
+\begin{align*}
+1-\frac{1}{4(k+1)^2}
+&=\frac{4(k+1)^2-1}{4(k+1)^2} \\
+&=\frac{(2k+2)^2-1}{(2k+2)^2} \\
+&=\frac{(2k+1)(2k+3)}{(2k+2)^2}
+\end{align*}
+
+So, using the inductive hypothesis and the law \(\log a+\log b=\log(ab)\),
+\begin{align*}
+S_{k+1}
+&=\log\left(\frac{(2k)!(2k+1)!}{2^{4k}(k!)^4}\right)
++\log\left(\frac{(2k+1)(2k+3)}{(2k+2)^2}\right) \\
+&=\log\left(\frac{(2k)!(2k+1)!(2k+1)(2k+3)}{2^{4k}(k!)^4(2k+2)^2}\right)
+\end{align*}
+
+Now use the factorial identities
+\[
+(2k+2)!=(2k+2)(2k+1)(2k)!
+\]
+and
+\[
+(2k+3)!=(2k+3)(2k+2)(2k+1)!
+\]
+
+Multiplying these together gives
+\begin{align*}
+(2k+2)!(2k+3)!
+&=(2k+2)(2k+1)(2k)!\,(2k+3)(2k+2)(2k+1)! \\
+&=(2k+2)^2(2k+1)(2k+3)(2k)!(2k+1)!
+\end{align*}
+
+Therefore
+\[
+(2k)!(2k+1)!(2k+1)(2k+3)=\frac{(2k+2)!(2k+3)!}{(2k+2)^2}
+\]
+
+Substituting this into the expression for \(S_{k+1}\),
+\[
+S_{k+1}
+=\log\left(\frac{(2k+2)!(2k+3)!}{2^{4k}(k!)^4(2k+2)^4}\right)
+\]
+
+Now simplify the denominator:
+\[
+(2k+2)^4=[2(k+1)]^4=2^4(k+1)^4
+\]
+and
+\[
+((k+1)!)^4=((k+1)k!)^4=(k+1)^4(k!)^4
+\]
+
+Hence
+\[
+2^{4k}(k!)^4(2k+2)^4
+=2^{4k}\cdot 2^4\cdot (k+1)^4(k!)^4
+=2^{4k+4}((k+1)!)^4
+\]
+
+So
+\[
+S_{k+1}
+=\log\left(\frac{(2k+2)!(2k+3)!}{2^{4k+4}((k+1)!)^4}\right)
+\]
+
+This is exactly the required result for \(n=k+1\).
+
+\textbf{Conclusion.}
+
+The statement is true for \(n=1\), and if it is true for \(n=k\), then it is true for \(n=k+1\). Therefore, by mathematical induction,
+\[
+\sum_{r=1}^{n}\log\left(1-\frac{1}{4r^2}\right)=\log\left(\frac{(2n)!(2n+1)!}{2^{4n}(n!)^4}\right)
+\]
+
+for all positive integers \(n\).
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+Prove by induction that, for $n \in \mathbb{Z}^{+}$,
+\[
+\sum_{r=1}^{n} \frac{1}{r(r+1)(r+2)} = \frac{n(n+3)}{4(n+1)(n+2)}
+\]
+\marks[-30pt]{5}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+We prove the result by induction on $n$.
+
+\textbf{Base Case:} $n=1$
+
+The left-hand side is
+\[
+\sum_{r=1}^{1} \frac{1}{r(r+1)(r+2)}=\frac{1}{1\cdot 2\cdot 3}=\frac16
+\]
+
+The right-hand side is
+\[
+\frac{n(n+3)}{4(n+1)(n+2)}\Bigg|_{n=1}
+=\frac{1(1+3)}{4(1+1)(1+2)}
+=\frac{4}{4\cdot 2\cdot 3}
+=\frac16
+\]
+
+So the formula is true when $n=1$.
+
+\textbf{Inductive Hypothesis:}
+
+Assume that for some $k\in\mathbb{Z}^+$,
+\[
+\sum_{r=1}^{k} \frac{1}{r(r+1)(r+2)}
+=
+\frac{k(k+3)}{4(k+1)(k+2)}
+\]
+
+\textbf{Inductive Step:}
+
+We now show that the formula is true for $n=k+1$.
+
+Starting with the left-hand side,
+\begin{align*}
+\sum_{r=1}^{k+1} \frac{1}{r(r+1)(r+2)}
+&=
+\sum_{r=1}^{k} \frac{1}{r(r+1)(r+2)}
++\frac{1}{(k+1)(k+2)(k+3)} \\[4pt]
+&=
+\frac{k(k+3)}{4(k+1)(k+2)}
++\frac{1}{(k+1)(k+2)(k+3)}
+\qquad \text{(by the inductive hypothesis)} \\[4pt]
+&=
+\frac{k(k+3)(k+3)}{4(k+1)(k+2)(k+3)}
++\frac{4}{4(k+1)(k+2)(k+3)} \\[4pt]
+&=
+\frac{k(k+3)^2+4}{4(k+1)(k+2)(k+3)} \\[4pt]
+&=
+\frac{k(k^2+6k+9)+4}{4(k+1)(k+2)(k+3)} \\[4pt]
+&=
+\frac{k^3+6k^2+9k+4}{4(k+1)(k+2)(k+3)} \\[4pt]
+&=
+\frac{(k+1)^2(k+4)}{4(k+1)(k+2)(k+3)} \\[4pt]
+&=
+\frac{(k+1)(k+4)}{4(k+2)(k+3)}
+\end{align*}
+
+Now write this in the required form:
+\[
+\frac{(k+1)(k+4)}{4(k+2)(k+3)}
+=
+\frac{(k+1)\big((k+1)+3\big)}{4\big((k+1)+1\big)\big((k+1)+2\big)}
+\]
+
+So the statement is true for $n=k+1$.
+
+\textbf{Conclusion:}
+
+Since the statement is true for $n=1$, and true for $n=k+1$ whenever it is true for $n=k$, it follows by mathematical induction that
+\[
+\sum_{r=1}^{n} \frac{1}{r(r+1)(r+2)}
+=
+\frac{n(n+3)}{4(n+1)(n+2)}
+\quad \text{for all } n\in\mathbb{Z}^+
+\]
+
+Hence the result is proved.
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+Prove by induction that, for $n \geq 1$
+\[
+\sum_{r=1}^{n} \left(2^r + 2 \times 3^r\right) = 2^{n+1} + 3^{n+1} - 5
+\]
+\marks[-20pt]{5}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+We use proof by induction on $n$.
+
+\textbf{Base Case:} $n=1$.
+
+The left-hand side is
+\[
+\sum_{r=1}^{1}\left(2^r+2\times 3^r\right)=2^1+2\times 3^1=2+6=8
+\]
+
+The right-hand side is
+\[
+2^{1+1}+3^{1+1}-5=2^2+3^2-5=4+9-5=8
+\]
+
+So the result is true when $n=1$.
+
+\textbf{Induction Hypothesis:}
+
+Assume that for some $k\geq 1$,
+\[
+\sum_{r=1}^{k}\left(2^r+2\times 3^r\right)=2^{k+1}+3^{k+1}-5
+\]
+
+\textbf{Inductive Step:} prove the result for $n=k+1$.
+
+Starting with the left-hand side for $n=k+1$,
+\begin{align*}
+\sum_{r=1}^{k+1}\left(2^r+2\times 3^r\right)
+&=\sum_{r=1}^{k}\left(2^r+2\times 3^r\right)+\left(2^{k+1}+2\times 3^{k+1}\right)
+\end{align*}
+
+Now use the induction hypothesis:
+\begin{align*}
+\sum_{r=1}^{k+1}\left(2^r+2\times 3^r\right)
+&=\left(2^{k+1}+3^{k+1}-5\right)+\left(2^{k+1}+2\times 3^{k+1}\right)\\
+&=2^{k+1}+2^{k+1}+3^{k+1}+2\cdot 3^{k+1}-5\\
+&=2^{k+2}+3\cdot 3^{k+1}-5\\
+&=2^{k+2}+3^{k+2}-5
+\end{align*}
+
+This is exactly the required result for $n=k+1$.
+
+\textbf{Conclusion:}
+
+Since the statement is true for $n=1$, and true for $n=k+1$ whenever it is true for $n=k$, it follows by induction that
+\[
+\sum_{r=1}^{n}\left(2^r+2\times 3^r\right)=2^{n+1}+3^{n+1}-5
+\]
+for all $n\geq 1$.
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+Prove by induction that for $n \in \mathbb{Z}^{+}$
+\[
+\sum_{r=1}^{n} r3^{r-1} = \frac{1 + (2n - 1)3^n}{4}
+\]
+\marks[-20pt]{6}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+S_n=\sum_{r=1}^{n} r3^{r-1}
+\]
+We prove by induction that
+\[
+S_n=\frac{1+(2n-1)3^n}{4}
+\]
+for all $n\in\mathbb{Z}^+$.
+
+\textbf{Base Case:} $n=1$.
+
+The left-hand side is
+\[
+\sum_{r=1}^{1} r3^{r-1}=1\cdot 3^0=1
+\]
+
+The right-hand side is
+\[
+\frac{1+(2\cdot 1-1)3^1}{4}=\frac{1+3}{4}=1
+\]
+
+So the formula is true when $n=1$.
+
+\textbf{Induction Hypothesis:}
+
+Assume that the statement is true for $n=k$, where $k\in\mathbb{Z}^+$.
+That is, assume
+\[
+\sum_{r=1}^{k} r3^{r-1}=\frac{1+(2k-1)3^k}{4}
+\]
+
+\textbf{Induction Step:}
+
+We must show that the formula is then true for $n=k+1$.
+
+Starting with the left-hand side for $n=k+1$,
+\begin{align*}
+\sum_{r=1}^{k+1} r3^{r-1}
+&= \sum_{r=1}^{k} r3^{r-1} + (k+1)3^k \\
+&= \frac{1+(2k-1)3^k}{4} + (k+1)3^k
+\end{align*}
+using the induction hypothesis.
+
+Now write the second term over a denominator of $4$:
+\begin{align*}
+\sum_{r=1}^{k+1} r3^{r-1}
+&= \frac{1+(2k-1)3^k}{4} + \frac{4(k+1)3^k}{4} \\
+&= \frac{1+\bigl((2k-1)+4k+4\bigr)3^k}{4} \\
+&= \frac{1+(6k+3)3^k}{4} \\
+&= \frac{1+3(2k+1)3^k}{4} \\
+&= \frac{1+(2k+1)3^{k+1}}{4}
+\end{align*}
+
+But this is exactly the required formula with $n=k+1$, since
+\[
+\frac{1+(2(k+1)-1)3^{k+1}}{4}=\frac{1+(2k+1)3^{k+1}}{4}
+\]
+
+So, assuming the statement is true for $n=k$, we have shown it is true for $n=k+1$.
+
+\textbf{Conclusion:}
+
+The statement is true for $n=1$, and true for $n=k+1$ whenever it is true for $n=k$.
+Therefore, by mathematical induction,
+\[
+\sum_{r=1}^{n} r3^{r-1}=\frac{1+(2n-1)3^n}{4}
+\]
+for all $n\in\mathbb{Z}^+$.
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Prove by induction that, for all positive integers $n$
+  \[
+  \sum_{r=1}^{n} \frac{1}{(2r-1)(2r+1)}=\frac{n}{2n+1}
+  \]
+  \marks[-30pt]{6}
+  \item Hence, show that, for all positive integers $n$
+  \[
+  \sum_{r=n+1}^{2n} \frac{1}{(2r-1)(2r+1)}=\frac{n}{(an+b)(cn+d)}
+  \]
+  where $a$, $b$, $c$ and $d$ are integers to be determined. \marks{3} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Let
+\[
+S_n=\sum_{r=1}^{n}\frac{1}{(2r-1)(2r+1)}
+\]
+
+We prove by induction that
+\[
+S_n=\frac{n}{2n+1}
+\]
+for all positive integers $n$.
+
+\textbf{Base Case:} $n=1$
+
+\[
+S_1=\frac{1}{(2\cdot1-1)(2\cdot1+1)}=\frac{1}{1\cdot3}=\frac13
+\]
+
+and
+\[
+\frac{n}{2n+1}\Bigg|_{n=1}=\frac{1}{2\cdot1+1}=\frac13
+\]
+
+So the result is true when $n=1$.
+
+\textbf{Inductive Hypothesis:}
+
+Assume that for some positive integer $k$,
+\[
+S_k=\sum_{r=1}^{k}\frac{1}{(2r-1)(2r+1)}=\frac{k}{2k+1}
+\]
+
+\textbf{Inductive Step:}
+
+Consider $S_{k+1}$:
+\begin{align*}
+S_{k+1}
+&=\sum_{r=1}^{k+1}\frac{1}{(2r-1)(2r+1)} \\
+&=\sum_{r=1}^{k}\frac{1}{(2r-1)(2r+1)}+\frac{1}{(2(k+1)-1)(2(k+1)+1)} \\
+&=S_k+\frac{1}{(2k+1)(2k+3)}
+\end{align*}
+
+Using the inductive hypothesis,
+\begin{align*}
+S_{k+1}
+&=\frac{k}{2k+1}+\frac{1}{(2k+1)(2k+3)} \\
+&=\frac{k(2k+3)+1}{(2k+1)(2k+3)} \\
+&=\frac{2k^2+3k+1}{(2k+1)(2k+3)} \\
+&=\frac{(2k+1)(k+1)}{(2k+1)(2k+3)} \\
+&=\frac{k+1}{2k+3}
+\end{align*}
+
+But
+\[
+\frac{k+1}{2k+3}=\frac{k+1}{2(k+1)+1}
+\]
+
+So the statement is true for $n=k+1$.
+
+Therefore, by induction, for all positive integers $n$,
+\[
+\sum_{r=1}^{n}\frac{1}{(2r-1)(2r+1)}=\frac{n}{2n+1}
+\]
+
+Hence proved.
+
+\item Using part (a),
+\[
+\sum_{r=n+1}^{2n}\frac{1}{(2r-1)(2r+1)}
+=
+\sum_{r=1}^{2n}\frac{1}{(2r-1)(2r+1)}
+-
+\sum_{r=1}^{n}\frac{1}{(2r-1)(2r+1)}
+\]
+
+So
+\begin{align*}
+\sum_{r=n+1}^{2n}\frac{1}{(2r-1)(2r+1)}
+&=\frac{2n}{2(2n)+1}-\frac{n}{2n+1} \\
+&=\frac{2n}{4n+1}-\frac{n}{2n+1} \\
+&=\frac{2n(2n+1)-n(4n+1)}{(4n+1)(2n+1)} \\
+&=\frac{4n^2+2n-4n^2-n}{(4n+1)(2n+1)} \\
+&=\frac{n}{(4n+1)(2n+1)}
+\end{align*}
+
+Hence
+\[
+\sum_{r=n+1}^{2n}\frac{1}{(2r-1)(2r+1)}=\frac{n}{(an+b)(cn+d)}
+\]
+with
+\[
+a=4,\quad b=1,\quad c=2,\quad d=1
+\]
+
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+Prove by induction that, for $n \ge 1$
+\[
+\sum_{r=1}^{n} \frac{r}{2^r} = 2 - \frac{n+2}{2^n}
+\]
+\marks[-20pt]{5}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+We prove the result by induction.
+
+\textbf{Base case:} $n=1$.
+
+The left-hand side is
+\[
+\sum_{r=1}^{1}\frac{r}{2^r}=\frac{1}{2}
+\]
+
+The right-hand side is
+\[
+2-\frac{1+2}{2^1}=2-\frac{3}{2}=\frac{1}{2}
+\]
+
+So the formula is true when $n=1$.
+
+\textbf{Inductive hypothesis:} Assume that for some integer $k\ge 1$,
+\[
+\sum_{r=1}^{k}\frac{r}{2^r}=2-\frac{k+2}{2^k}
+\]
+
+\textbf{Inductive step:} We must show that
+\[
+\sum_{r=1}^{k+1}\frac{r}{2^r}=2-\frac{(k+1)+2}{2^{k+1}}
+\]
+
+Starting from the left-hand side,
+\begin{align*}
+\sum_{r=1}^{k+1}\frac{r}{2^r}
+&=\sum_{r=1}^{k}\frac{r}{2^r}+\frac{k+1}{2^{k+1}}\\
+&= \left(2-\frac{k+2}{2^k}\right)+\frac{k+1}{2^{k+1}}
+\quad \text{by the inductive hypothesis}\\
+&=2-\frac{2k+4}{2^{k+1}}+\frac{k+1}{2^{k+1}}\\
+&=2-\frac{2k+4-(k+1)}{2^{k+1}}\\
+&=2-\frac{k+3}{2^{k+1}}\\
+&=2-\frac{(k+1)+2}{2^{k+1}}
+\end{align*}
+
+So the statement is true for $n=k+1$.
+
+\textbf{Conclusion:} Since the result is true for $n=1$, and true for $n=k+1$ whenever it is true for $n=k$, it follows by induction that
+\[
+\sum_{r=1}^{n}\frac{r}{2^r}=2-\frac{n+2}{2^n}
+\]
+for all integers $n\ge 1$.
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Prove by induction that for all positive integers $n$
+  \[
+  \sum_{r=1}^{n} (2r-1)^3 = n^2(2n^2-1)
+  \]
+  \marks[-20pt]{6}
+  \item Given that
+  \[
+  \sum_{r=1}^{2n} (2r-1)^3 = k\sum_{r=1}^{n} (2r-1)^3
+  \]
+  show that
+  \[
+  n^2 = \frac{k-4}{2(k-16)}
+  \]
+  \marks[-20pt]{5}
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let
+  \[
+  S_n=\sum_{r=1}^{n}(2r-1)^3
+  \]
+
+  We prove by induction that
+  \[
+  S_n=n^2(2n^2-1)
+  \]
+  for all positive integers $n$.
+
+  \textbf{Base Case:} $n=1$
+
+  \[
+  S_1=(2\cdot1-1)^3=1^3=1
+  \]
+
+  The formula gives
+  \[
+  1^2(2\cdot1^2-1)=1(2-1)=1
+  \]
+
+  So the result is true when $n=1$.
+
+  \textbf{Inductive Hypothesis:}
+
+  Assume that for some positive integer $k$,
+  \[
+  S_k=\sum_{r=1}^{k}(2r-1)^3=k^2(2k^2-1)
+  \]
+
+  \textbf{Inductive Step:} Prove the result for $n=k+1$
+
+  Starting from $S_{k+1}$,
+  \begin{align*}
+  S_{k+1}
+  &=\sum_{r=1}^{k+1}(2r-1)^3 \\
+  &=\sum_{r=1}^{k}(2r-1)^3+(2(k+1)-1)^3 \\
+  &=S_k+(2k+1)^3
+  \end{align*}
+
+  Now use the inductive hypothesis:
+  \begin{align*}
+  S_{k+1}
+  &=k^2(2k^2-1)+(2k+1)^3 \\
+  &=2k^4-k^2+(8k^3+12k^2+6k+1) \\
+  &=2k^4+8k^3+11k^2+6k+1
+  \end{align*}
+
+  We now factor this in the required form:
+  \begin{align*}
+  (k+1)^2\bigl(2(k+1)^2-1\bigr)
+  &=(k+1)^2(2k^2+4k+1) \\
+  &=(k^2+2k+1)(2k^2+4k+1) \\
+  &=2k^4+8k^3+11k^2+6k+1
+  \end{align*}
+
+  Hence
+  \[
+  S_{k+1}=(k+1)^2\bigl(2(k+1)^2-1\bigr)
+  \]
+
+  So, if the formula is true for $n=k$, it is also true for $n=k+1$.
+
+  Therefore, by mathematical induction,
+  \[
+  \sum_{r=1}^{n}(2r-1)^3=n^2(2n^2-1)
+  \]
+  for all positive integers $n$.
+
+  \item From part (a),
+  \[
+  \sum_{r=1}^{n}(2r-1)^3=n^2(2n^2-1)
+  \]
+
+  So with $2n$ in place of $n$,
+  \begin{align*}
+  \sum_{r=1}^{2n}(2r-1)^3
+  &=(2n)^2\bigl(2(2n)^2-1\bigr) \\
+  &=4n^2(8n^2-1)
+  \end{align*}
+
+  We are given that
+  \[
+  \sum_{r=1}^{2n}(2r-1)^3=k\sum_{r=1}^{n}(2r-1)^3
+  \]
+
+  Substitute the formula from part (a):
+  \[
+  4n^2(8n^2-1)=k\bigl(n^2(2n^2-1)\bigr)
+  \]
+
+  Since $n$ is a positive integer, $n^2\neq 0$, so divide through by $n^2$:
+  \[
+  4(8n^2-1)=k(2n^2-1)
+  \]
+
+  Expand:
+  \[
+  32n^2-4=2kn^2-k
+  \]
+
+  Rearranging,
+  \begin{align*}
+  32n^2-2kn^2&=4-k \\
+  (32-2k)n^2&=4-k
+  \end{align*}
+
+  Multiply top and bottom by $-1$:
+  \[
+  (2k-32)n^2=k-4
+  \]
+
+  Hence
+  \[
+  n^2=\frac{k-4}{2k-32}=\frac{k-4}{2(k-16)}
+  \]
+
+  Therefore,
+  \[
+  n^2=\frac{k-4}{2(k-16)}
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+Prove by induction that for all positive integers $n$,
+\[
+\sum_{r=1}^{n} r(r+1)(r+2)=\frac{1}{4}n(n+1)(n+2)(n+3)
+\]
+\marks[-20pt]{6}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+We prove the result by mathematical induction.
+
+We want to show that for all positive integers $n$,
+\[
+\sum_{r=1}^{n} r(r+1)(r+2)=\frac{1}{4}n(n+1)(n+2)(n+3)
+\]
+
+\textbf{Base Case:} $n=1$
+
+The left-hand side is
+\[
+\sum_{r=1}^{1} r(r+1)(r+2)=1(2)(3)=6
+\]
+
+The right-hand side is
+\[
+\frac{1}{4}(1)(2)(3)(4)=6
+\]
+
+So the statement is true when $n=1$.
+
+\textbf{Inductive Hypothesis:}
+
+Assume that the statement is true for $n=k$, where $k$ is a positive integer.
+
+So assume
+\[
+\sum_{r=1}^{k} r(r+1)(r+2)=\frac{1}{4}k(k+1)(k+2)(k+3)
+\]
+
+\textbf{Inductive Step:} prove the statement is true for $n=k+1$
+
+Starting with the left-hand side for $n=k+1$,
+\[
+\sum_{r=1}^{k+1} r(r+1)(r+2)
+\]
+
+Write this as
+\[
+\sum_{r=1}^{k} r(r+1)(r+2) + (k+1)(k+2)(k+3)
+\]
+
+Now use the inductive hypothesis:
+\[
+\sum_{r=1}^{k+1} r(r+1)(r+2)
+=
+\frac{1}{4}k(k+1)(k+2)(k+3) + (k+1)(k+2)(k+3)
+\]
+
+Factor out $(k+1)(k+2)(k+3)$:
+\[
+=
+(k+1)(k+2)(k+3)\left(\frac{k}{4}+1\right)
+\]
+
+Simplify the bracket:
+\[
+\frac{k}{4}+1=\frac{k+4}{4}
+\]
+
+So
+\[
+\sum_{r=1}^{k+1} r(r+1)(r+2)
+=
+(k+1)(k+2)(k+3)\left(\frac{k+4}{4}\right)
+\]
+
+Hence
+\[
+\sum_{r=1}^{k+1} r(r+1)(r+2)
+=
+\frac{1}{4}(k+1)(k+2)(k+3)(k+4)
+\]
+
+This is exactly the required formula with $n=k+1$.
+
+\textbf{Conclusion:}
+
+The statement is true for $n=1$, and true for $n=k+1$ whenever it is true for $n=k$.
+
+Therefore, by mathematical induction,
+\[
+\sum_{r=1}^{n} r(r+1)(r+2)=\frac{1}{4}n(n+1)(n+2)(n+3)
+\]
+for all positive integers $n$.
+\end{tcolorbox}
+
+
+\end{enumerate}
+\end{document}
