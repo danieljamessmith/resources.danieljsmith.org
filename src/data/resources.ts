@@ -389,6 +389,27 @@ const rawResources: Resource[] = [
     pairId: 'fm-further-integration-polar-curves',
     topic: 'Further Calculus',
   },
+  {
+    id: 'fm-further-tangents-polar-curves',
+    title: 'Tangents to Polar Curves',
+    description: '',
+    file: '/tex/further-maths/further-calculus/qbt/_QBT__Tangents_to_Polar_Curves.pdf',
+    category: FM,
+    type: 'questions',
+    pairId: 'fm-further-tangents-polar-curves-solns',
+    topic: 'Further Calculus',
+    note: 'Polar Coordinates',
+  },
+  {
+    id: 'fm-further-tangents-polar-curves-solns',
+    title: 'Tangents to Polar Curves',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-calculus/soln/_QBT___Solns__Tangents_to_Polar_Curves.pdf',
+    category: FM,
+    type: 'solutions',
+    pairId: 'fm-further-tangents-polar-curves',
+    topic: 'Further Calculus',
+  },
 
   // --- A-level Further Maths: Differential Equations (teaching progression order) ---
   {
