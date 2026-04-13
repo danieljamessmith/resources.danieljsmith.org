@@ -1313,7 +1313,7 @@ You are given that $y=\operatorname{arcosh}x$, where $x\ge 1$. \\
   \frac{\mathrm{d}y}{\mathrm{d}x}=\frac{1}{\sqrt{x^2-1}}
   \]
   \marks[-20pt]{4}
-  \item Show, by integrating the result in part (ii), that
+  \item Show, by integrating the result in part (i), that
   \[
   y=\ln\left(x+\sqrt{x^2-1}\right)
   \]
@@ -1387,6 +1387,58 @@ So \(C=0\), and therefore
 \[
 y=\ln\left(x+\sqrt{x^2-1}\right)
 \]
+
+\medskip
+
+\emph{Alternative method (without quoting the standard result):}
+
+Let
+\[
+I=\int \frac{1}{\sqrt{x^2-1}}\,\mathrm{d}x
+\]
+Multiply the integrand by
+\[
+\frac{x+\sqrt{x^2-1}}{x+\sqrt{x^2-1}}
+\]
+to obtain
+\begin{align*}
+I
+&=\int \frac{x+\sqrt{x^2-1}}{\sqrt{x^2-1}\left(x+\sqrt{x^2-1}\right)}\,\mathrm{d}x \\[4pt]
+&=\int \frac{1+\dfrac{x}{\sqrt{x^2-1}}}{x+\sqrt{x^2-1}}\,\mathrm{d}x
+\end{align*}
+Now
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\!\left(x+\sqrt{x^2-1}\right)
+=1+\frac{x}{\sqrt{x^2-1}}
+\]
+so
+\[
+I=\int \frac{f'(x)}{f(x)}\,\mathrm{d}x
+\quad\text{with}\quad
+f(x)=x+\sqrt{x^2-1}
+\]
+Hence
+\[
+I=\ln\left(x+\sqrt{x^2-1}\right)+C
+\]
+since \(x\ge 1\) implies \(x+\sqrt{x^2-1}>0\)
+
+Therefore
+\[
+y=\ln\left(x+\sqrt{x^2-1}\right)+C
+\]
+Now when \(x=1\),
+\[
+y=\operatorname{arcosh}1=0
+\]
+so
+\[
+0=\ln\left(1+\sqrt{1^2-1}\right)+C=\ln 1+C=C
+\]
+Thus \(C=0\), giving
+\[
+y=\ln\left(x+\sqrt{x^2-1}\right)
+\] \\
 
 \item Let
 \[
