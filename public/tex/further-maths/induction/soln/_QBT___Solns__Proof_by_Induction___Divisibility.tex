@@ -1,0 +1,706 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{\textit{Solutions} - Proof by Induction - Divisibility}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+Prove by induction that \[n^5-n\] is divisible by $5$ for all positive integers $n$ \marks{5}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+We prove by induction that \(n^5-n\) is divisible by \(5\) for all positive integers \(n\).
+
+\textbf{Base case:} \(n=1\)
+
+\[
+1^5-1=1-1=0
+\]
+
+Since \(0\) is divisible by \(5\), the statement is true when \(n=1\).
+
+\textbf{Inductive hypothesis:}
+
+Assume that for some positive integer \(k\), the statement is true for \(n=k\).  
+So assume \(k^5-k\) is divisible by \(5\). Equivalently, there exists an integer \(m\) such that
+
+\[
+k^5-k=5m
+\]
+
+\textbf{Inductive step:}
+
+We must show that \((k+1)^5-(k+1)\) is also divisible by \(5\).
+
+Let \(f(n)=n^5-n\). Then
+\[
+f(k+1)=f(k)+\bigl(f(k+1)-f(k)\bigr)
+\]
+
+Now calculate the difference:
+\begin{align*}
+f(k+1)-f(k)
+&=\bigl((k+1)^5-(k+1)\bigr)-\bigl(k^5-k\bigr)\\
+&=(k+1)^5-k^5-1\\
+&=\left(k^5+5k^4+10k^3+10k^2+5k+1\right)-k^5-1\\
+&=5k^4+10k^3+10k^2+5k\\
+&=5(k^4+2k^3+2k^2+k)
+\end{align*}
+
+So
+\begin{align*}
+(k+1)^5-(k+1)
+&=(k^5-k)+5(k^4+2k^3+2k^2+k)
+\end{align*}
+
+By the inductive hypothesis, \(k^5-k\) is divisible by \(5\).  
+Also, \(5(k^4+2k^3+2k^2+k)\) is clearly divisible by \(5\).
+
+Therefore \((k+1)^5-(k+1)\) is divisible by \(5\).
+
+\textbf{Conclusion:}
+
+The statement is true for \(n=1\), and if it is true for \(n=k\), then it is true for \(n=k+1\). Hence, by mathematical induction,
+
+\[
+n^5-n \text{ is divisible by } 5 \text{ for all positive integers } n
+\]
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+Prove by induction that \[9^n-8n-1\] is divisible by $64$ for all positive integers $n\in\mathbb{Z}^+$ \marks{7}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+P(n):\quad 9^n-8n-1 \text{ is divisible by } 64
+\]
+
+We prove \(P(n)\) is true for all positive integers \(n\) by induction.
+
+\textbf{Base case: \(n=1\)}
+
+\[
+9^1-8(1)-1=9-8-1=0
+\]
+
+Since \(0\) is divisible by \(64\), \(P(1)\) is true.
+
+\textbf{Inductive hypothesis}
+
+Assume that \(P(k)\) is true for some positive integer \(k\).
+
+So we assume
+\[
+9^k-8k-1 \text{ is divisible by } 64
+\]
+
+Hence there exists an integer \(m\) such that
+\[
+9^k-8k-1=64m
+\]
+
+\textbf{Inductive step}
+
+We now consider
+\[
+9^{k+1}-8(k+1)-1
+\]
+
+\begin{align*}
+9^{k+1}-8(k+1)-1
+&= 9\cdot 9^k-8k-8-1 \\
+&= 9\cdot 9^k-8k-9 \\
+&= 9(9^k-8k-1)+64k
+\end{align*}
+
+Now use the inductive hypothesis \(9^k-8k-1=64m\):
+
+\begin{align*}
+9^{k+1}-8(k+1)-1
+&= 9(64m)+64k \\
+&= 64(9m+k)
+\end{align*}
+
+Since \(9m+k\) is an integer, \(9^{k+1}-8(k+1)-1\) is divisible by \(64\).
+
+Therefore \(P(k+1)\) is true.
+
+\textbf{Conclusion}
+
+Since \(P(1)\) is true, and \(P(k)\Rightarrow P(k+1)\), it follows by induction that
+\[
+9^n-8n-1 \text{ is divisible by } 64 \text{ for all positive integers } n
+\]
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+Prove by induction that, for $n \in \mathbb{Z}^+$,
+\[13^n+3\cdot 4^n+11\] is divisible by $12$ \marks{7}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let
+  \[
+  P(n): \text{``}13^n+3\cdot 4^n+11 \text{ is divisible by }12\text{''}
+  \]
+
+  We prove \(P(n)\) is true for all \(n\in\mathbb{Z}^+\) by induction.
+
+  \textbf{Base case: \(n=1\).}
+
+  \[
+  13^1+3\cdot 4^1+11=13+12+11=36=12\cdot 3
+  \]
+
+  So \(13^1+3\cdot 4^1+11\) is divisible by \(12\). Hence \(P(1)\) is true.
+
+  \textbf{Inductive hypothesis.}
+
+  Assume that \(P(k)\) is true for some \(k\in\mathbb{Z}^+\).  
+  Then for some integer \(m\),
+  \[
+  13^k+3\cdot 4^k+11=12m
+  \]
+
+  \textbf{Inductive step.}
+
+  We must show that \(P(k+1)\) is true, i.e. that \(13^{k+1}+3\cdot 4^{k+1}+11\) is divisible by \(12\).
+
+  Consider the difference:
+  \begin{align*}
+  &\left(13^{k+1}+3\cdot 4^{k+1}+11\right)-\left(13^k+3\cdot 4^k+11\right) \\
+  &= 13^{k+1}-13^k+3\cdot 4^{k+1}-3\cdot 4^k \\
+  &= 13^k(13-1)+3\cdot 4^k(4-1) \\
+  &= 12\cdot 13^k+9\cdot 4^k \\
+  &= 12\cdot 13^k+12\left(3\cdot 4^{k-1}\right)
+  \end{align*}
+
+  Since \(k\geq 1\), \(4^{k-1}\) is an integer, so this whole difference is a multiple of \(12\).
+
+  Therefore
+  \begin{align*}
+  13^{k+1}+3\cdot 4^{k+1}+11
+  &= \left(13^k+3\cdot 4^k+11\right)
+   + \left[\left(13^{k+1}+3\cdot 4^{k+1}+11\right)-\left(13^k+3\cdot 4^k+11\right)\right] \\
+  &= 12m + 12\cdot 13^k + 12\left(3\cdot 4^{k-1}\right) \\
+  &= 12\left(m+13^k+3\cdot 4^{k-1}\right)
+  \end{align*}
+
+  So \(13^{k+1}+3\cdot 4^{k+1}+11\) is divisible by \(12\). Hence \(P(k+1)\) is true.
+
+  Since \(P(1)\) is true and \(P(k)\Rightarrow P(k+1)\), it follows by mathematical induction that
+  \[
+  13^n+3\cdot 4^n+11
+  \]
+  is divisible by \(12\) for all \(n\in\mathbb{Z}^+\).
+
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+Prove by mathematical induction that, for all non-negative integers $n$,
+\[
+2^n+2\cdot 3^{2n}+4^{2n+1}
+\]
+is divisible by $7$ \marks{6}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+We prove the statement by mathematical induction.
+
+Let \(P(n)\) be the statement
+\[
+2^n + 2\times 3^{2n} + 4^{2n+1} \text{ is divisible by } 7
+\]
+
+\textbf{Base case: \(n=0\).}
+
+\[
+2^0 + 2\times 3^0 + 4^1 = 1+2+4=7
+\]
+
+Since \(7\) is divisible by \(7\), \(P(0)\) is true.
+
+\textbf{Inductive hypothesis.}
+
+Assume that \(P(k)\) is true for some non-negative integer \(k\).  
+So
+\[
+2^k + 2\times 3^{2k} + 4^{2k+1}
+\]
+is divisible by \(7\). Hence, for some integer \(m\),
+\[
+2^k + 2\times 3^{2k} + 4^{2k+1} = 7m
+\]
+
+\textbf{Inductive step.}
+
+We must show that \(P(k+1)\) is true, that is, that
+\[
+2^{k+1} + 2\times 3^{2k+2} + 4^{2k+3}
+\]
+is divisible by \(7\).
+
+Starting with this expression,
+\begin{align*}
+2^{k+1} + 2\times 3^{2k+2} + 4^{2k+3}
+&= 2\cdot 2^k + 2\cdot 3^2\cdot 3^{2k} + 4^2\cdot 4^{2k+1} \\
+&= 2\cdot 2^k + 18\cdot 3^{2k} + 16\cdot 4^{2k+1} \\
+&= 2\bigl(2^k + 2\times 3^{2k} + 4^{2k+1}\bigr) + 14\cdot 3^{2k} + 14\cdot 4^{2k+1}
+\end{align*}
+
+Now use the inductive hypothesis \(2^k + 2\times 3^{2k} + 4^{2k+1}=7m\):
+\begin{align*}
+2^{k+1} + 2\times 3^{2k+2} + 4^{2k+3}
+&= 2(7m) + 14\cdot 3^{2k} + 14\cdot 4^{2k+1} \\
+&= 14m + 14\bigl(3^{2k} + 4^{2k+1}\bigr) \\
+&= 7\bigl(2m + 2\cdot 3^{2k} + 2\cdot 4^{2k+1}\bigr)
+\end{align*}
+
+This is \(7\) multiplied by an integer, so it is divisible by \(7\). Therefore \(P(k+1)\) is true.
+
+Since \(P(0)\) is true and \(P(k)\Rightarrow P(k+1)\), it follows by mathematical induction that
+\[
+2^n + 2\times 3^{2n} + 4^{2n+1}
+\]
+is divisible by \(7\) for all non-negative integers \(n\).
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+For each positive integer $n$, define
+
+\[u_n=5^{2n}-2^n\]
+
+Use proof by induction to show that $23$ is a factor of $u_n$ for all $n \in \mathbb{Z}^+$ \marks{6}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let \(P(n)\) be the statement
+
+\[
+5^{2n}-2^n \text{ is divisible by } 23
+\]
+
+We prove \(P(n)\) for all \(n \in \mathbb{Z}^+\) by induction.
+
+\textbf{Base case: \(n=1\).}
+
+\[
+u_1=5^{2}-2^1=25-2=23
+\]
+
+So \(u_1\) is divisible by \(23\). Hence \(P(1)\) is true.
+
+\textbf{Inductive hypothesis.}
+
+Assume that \(P(k)\) is true for some positive integer \(k\).  
+So \(u_k\) is divisible by \(23\), which means there is an integer \(m\) such that
+
+\[
+u_k=5^{2k}-2^k=23m
+\]
+
+\textbf{Inductive step.}
+
+Now consider \(u_{k+1}\):
+
+\begin{align*}
+u_{k+1}
+&=5^{2(k+1)}-2^{k+1}\\
+&=5^{2k+2}-2\cdot 2^k\\
+&=25\cdot 5^{2k}-2\cdot 2^k\\
+&=(23+2)5^{2k}-2\cdot 2^k\\
+&=23\cdot 5^{2k}+2\cdot 5^{2k}-2\cdot 2^k\\
+&=23\cdot 5^{2k}+2\left(5^{2k}-2^k\right)
+\end{align*}
+
+Using the inductive hypothesis \(5^{2k}-2^k=23m\),
+
+\begin{align*}
+u_{k+1}
+&=23\cdot 5^{2k}+2(23m)\\
+&=23\left(5^{2k}+2m\right)
+\end{align*}
+
+Since \(5^{2k}+2m\) is an integer, it follows that \(u_{k+1}\) is divisible by \(23\).  
+So \(P(k+1)\) is true.
+
+\textbf{Conclusion.}
+
+Since \(P(1)\) is true, and \(P(k)\) true implies \(P(k+1)\) true, \(P(n)\) is true for all \(n\in\mathbb{Z}^+\) by mathematical induction.
+
+Therefore, \(23\) is a factor of \(u_n=5^{2n}-2^n\) for all positive integers \(n\).
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+Prove by induction that, for $n \in \mathbb{Z}^+$,
+
+\[
+7^n-6n-1
+\]
+
+is divisible by $36$ \marks{6}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let \(P(n)\) be the statement
+\[
+7^n-6n-1 \text{ is divisible by } 36
+\]
+
+We prove \(P(n)\) is true for all \(n\in\mathbb{Z}^+\) by mathematical induction.
+
+\textbf{Base case:} \(n=1\).
+
+\[
+7^1-6(1)-1=7-6-1=0
+\]
+
+Since \(0=36\times 0\), \(0\) is divisible by \(36\).  
+So \(P(1)\) is true.
+
+\textbf{Inductive hypothesis:} Assume that \(P(k)\) is true for some \(k\in\mathbb{Z}^+\).
+
+So we assume
+\[
+7^k-6k-1
+\]
+is divisible by \(36\), which means there exists an integer \(m\) such that
+\[
+7^k-6k-1=36m
+\]
+
+\textbf{Inductive step:} We must show that \(P(k+1)\) is true, that is, that
+\[
+7^{k+1}-6(k+1)-1
+\]
+is divisible by \(36\).
+
+Starting with this expression,
+\begin{align*}
+7^{k+1}-6(k+1)-1
+&=7^{k+1}-6k-6-1\\
+&=7^{k+1}-6k-7
+\end{align*}
+
+Now rewrite it to use the inductive hypothesis:
+\begin{align*}
+7^{k+1}-6k-7
+&=7\cdot 7^k-6k-7\\
+&=7(7^k-6k-1)+36k
+\end{align*}
+
+Using the inductive hypothesis \(7^k-6k-1=36m\),
+\begin{align*}
+7^{k+1}-6(k+1)-1
+&=7(36m)+36k\\
+&=36(7m+k)
+\end{align*}
+
+Since \(7m+k\in\mathbb{Z}\), this is a multiple of \(36\). Therefore
+\[
+7^{k+1}-6(k+1)-1
+\]
+is divisible by \(36\).
+
+So \(P(k+1)\) is true.
+
+Since \(P(1)\) is true, and \(P(k)\Rightarrow P(k+1)\), it follows by induction that
+\[
+7^n-6n-1 \text{ is divisible by } 36 \qquad \text{for all } n\in\mathbb{Z}^+
+\]
+
+Hence \(7^n-6n-1\) is divisible by \(36\) for all positive integers \(n\).
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+The function $f$ is defined by
+\[
+f(n)=9^n-8n+63
+\]
+Prove by induction that $f(n)$ is divisible by $64$ for $n \geq 1$ \marks{6}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+We prove by induction that
+\[
+9^n-8n+63 \text{ is divisible by } 64
+\]
+for all $n \ge 1$.
+
+\textbf{Base case:} $n=1$.
+
+\[
+f(1)=9^1-8(1)+63=9-8+63=64
+\]
+
+Since $64$ is divisible by $64$, the statement is true for $n=1$.
+
+\textbf{Induction hypothesis:}
+
+Assume that for some integer $k \ge 1$,
+\[
+f(k)=9^k-8k+63
+\]
+is divisible by $64$.
+
+So we may write
+\[
+9^k-8k+63=64m
+\]
+for some integer $m$.
+
+\textbf{Induction step:}
+
+Now consider $f(k+1)$:
+\begin{align*}
+f(k+1)
+&=9^{k+1}-8(k+1)+63 \\
+&=9\cdot 9^k-8k-8+63 \\
+&=9\cdot 9^k-8k+55
+\end{align*}
+
+We now rewrite this in terms of $f(k)=9^k-8k+63$:
+\begin{align*}
+f(k+1)
+&=9(9^k-8k+63)+64(k-8)
+\end{align*}
+
+To check this expansion:
+\begin{align*}
+9(9^k-8k+63)+64(k-8)
+&=9^{k+1}-72k+567+64k-512 \\
+&=9^{k+1}-8k+55 \\
+&=f(k+1)
+\end{align*}
+
+Using the induction hypothesis $9^k-8k+63=64m$,
+\begin{align*}
+f(k+1)
+&=9(64m)+64(k-8) \\
+&=64(9m+k-8)
+\end{align*}
+
+Since $m$ and $k$ are integers, $9m+k-8$ is an integer, so $f(k+1)$ is divisible by $64$.
+
+Therefore, if the statement is true for $n=k$, it is also true for $n=k+1$.
+
+\textbf{Conclusion:}
+
+The statement is true for $n=1$, and true for $n=k+1$ whenever it is true for $n=k$.
+
+Hence, by mathematical induction,
+\[
+9^n-8n+63 \text{ is divisible by } 64
+\quad \text{for all } n\ge 1
+\]
+
+So $f(n)$ is divisible by $64$ for all $n \ge 1$.
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+Prove by mathematical induction that
+\[
+7^{2n}+8\times 13^n-9
+\]
+is divisible by $36$ for all positive integers $n$ \marks{6}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+We prove the statement by mathematical induction.
+
+Let
+\[
+E_n=7^{2n}+8\times 13^n-9
+\]
+
+We want to show that $E_n$ is divisible by $36$ for all positive integers $n$.
+
+\textbf{Base case:} $n=1$.
+
+\begin{align*}
+E_1&=7^2+8\times 13-9\\
+&=49+104-9\\
+&=144\\
+&=36\times 4
+\end{align*}
+
+So $E_1$ is divisible by $36$.
+
+\textbf{Inductive hypothesis:} assume that for some positive integer $k$,
+\[
+E_k=7^{2k}+8\times 13^k-9
+\]
+is divisible by $36$.
+
+So there exists an integer $q$ such that
+\[
+7^{2k}+8\times 13^k-9=36q
+\]
+
+\textbf{Inductive step:} consider $E_{k+1}$.
+
+\begin{align*}
+E_{k+1}
+&=7^{2(k+1)}+8\times 13^{k+1}-9\\
+&=7^{2k+2}+8\times 13^{k+1}-9\\
+&=49\cdot 7^{2k}+104\cdot 13^k-9
+\end{align*}
+
+Now rewrite this so that $E_k$ appears:
+
+\begin{align*}
+E_{k+1}
+&=13\cdot 7^{2k}+36\cdot 7^{2k}+13\cdot 8\cdot 13^k-117+108\\
+&=13\left(7^{2k}+8\times 13^k-9\right)+36\left(7^{2k}+3\right)\\
+&=13E_k+36\left(7^{2k}+3\right)
+\end{align*}
+
+Using the inductive hypothesis $E_k=36q$,
+
+\begin{align*}
+E_{k+1}
+&=13(36q)+36\left(7^{2k}+3\right)\\
+&=36\left(13q+7^{2k}+3\right)
+\end{align*}
+
+Since $13q+7^{2k}+3$ is an integer, $E_{k+1}$ is divisible by $36$.
+
+So, if the statement is true for $n=k$, it is also true for $n=k+1$.
+
+Since the statement is true for $n=1$, and true for $n=k$ implies true for $n=k+1$, it follows by mathematical induction that
+\[
+7^{2n}+8\times 13^n-9
+\]
+is divisible by $36$ for all positive integers $n$.
+\end{tcolorbox}
+
+
+\end{enumerate}
+\end{document}

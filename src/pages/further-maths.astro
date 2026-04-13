@@ -18,11 +18,6 @@ const pairs = rawPairs.filter(
   (p): p is { questions: Resource; solutions: Resource } => p.solutions !== undefined,
 );
 
-const rawPolarPairs = getResourcePairs(FM, 'Polar Coordinates');
-const polarPairs = rawPolarPairs.filter(
-  (p): p is { questions: Resource; solutions: Resource } => p.solutions !== undefined,
-);
-
 const rawComplexPairs = getResourcePairs(FM, 'Complex Numbers');
 const complexPairs = rawComplexPairs.filter(
   (p): p is { questions: Resource; solutions: Resource } => p.solutions !== undefined,
@@ -31,6 +26,11 @@ const complexPairs = rawComplexPairs.filter(
 const vectorsNotes = getResourcesByTopic(FM, 'Vectors').filter((r) => r.type === 'notes');
 const rawVectorPairs = getResourcePairs(FM, 'Vectors');
 const vectorPairs = rawVectorPairs.filter(
+  (p): p is { questions: Resource; solutions: Resource } => p.solutions !== undefined,
+);
+
+const rawInductionPairs = getResourcePairs(FM, 'Proof by Induction');
+const inductionPairs = rawInductionPairs.filter(
   (p): p is { questions: Resource; solutions: Resource } => p.solutions !== undefined,
 );
 ---
@@ -168,17 +168,17 @@ const vectorPairs = rawVectorPairs.filter(
             ))}
           </div>
 
-          <!-- ── Polar Coordinates ─────────────────────────────────────── -->
+          <!-- ── Complex Numbers ───────────────────────────────────────── -->
           <h2
-            id="polar-coordinates"
+            id="complex-numbers"
             class="scroll-mt-24 text-lg font-semibold text-white mt-5 mb-3 flex items-center gap-3"
           >
             <span class="w-8 h-0.5 bg-slate-500 rounded-full" />
-            Polar Coordinates
+            Complex Numbers
           </h2>
 
           <div class="mb-6 space-y-1.5">
-            {polarPairs.map((pair) => (
+            {complexPairs.map((pair) => (
               <div
                 data-card-href={`/view/${pair.questions.id}`}
                 class="cursor-pointer flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg bg-slate-800/60 border border-slate-700/60 hover:bg-slate-800/80 hover:border-slate-600/70 transition-colors duration-150"
@@ -213,17 +213,17 @@ const vectorPairs = rawVectorPairs.filter(
             ))}
           </div>
 
-          <!-- ── Complex Numbers ───────────────────────────────────────── -->
+          <!-- ── Proof by Induction ────────────────────────────────────── -->
           <h2
-            id="complex-numbers"
+            id="proof-by-induction"
             class="scroll-mt-24 text-lg font-semibold text-white mt-5 mb-3 flex items-center gap-3"
           >
             <span class="w-8 h-0.5 bg-slate-500 rounded-full" />
-            Complex Numbers
+            Proof by Induction
           </h2>
 
           <div class="mb-6 space-y-1.5">
-            {complexPairs.map((pair) => (
+            {inductionPairs.map((pair) => (
               <div
                 data-card-href={`/view/${pair.questions.id}`}
                 class="cursor-pointer flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg bg-slate-800/60 border border-slate-700/60 hover:bg-slate-800/80 hover:border-slate-600/70 transition-colors duration-150"

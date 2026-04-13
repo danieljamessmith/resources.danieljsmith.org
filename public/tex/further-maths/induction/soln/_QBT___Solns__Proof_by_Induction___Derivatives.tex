@@ -1,0 +1,1090 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{\textit{Solutions} - Proof by Induction - Derivatives}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+It is given that \[y = x^2 e^{ax}\] where $a$ is a constant. \\
+
+Prove by mathematical induction that, for all integers $n \ge 2$,
+\[
+\frac{\mathrm{d}^n y}{\mathrm{d}x^n} = a^{n-2}\left(a^2x^2 + 2nax + n(n-1)\right)e^{ax}
+\] \marks[-30pt]{6}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+P(n): \quad \frac{\mathrm{d}^n y}{\mathrm{d}x^n}=a^{n-2}\left(a^2x^2+2nax+n(n-1)\right)e^{ax}
+\]
+We prove \(P(n)\) is true for all integers \(n \ge 2\) by mathematical induction. \\
+
+\textbf{Base case:} \(n=2\)
+
+Since \(y=x^2e^{ax}\),
+\begin{align*}
+\frac{\mathrm{d}y}{\mathrm{d}x}
+&=2xe^{ax}+x^2(ae^{ax}) \\
+&=(ax^2+2x)e^{ax}
+\end{align*}
+
+Differentiate again:
+\begin{align*}
+\frac{\mathrm{d}^2y}{\mathrm{d}x^2}
+&=\frac{\mathrm{d}}{\mathrm{d}x}\left((ax^2+2x)e^{ax}\right) \\
+&=(2ax+2)e^{ax}+(ax^2+2x)(ae^{ax}) \\
+&=(2ax+2+a^2x^2+2ax)e^{ax} \\
+&=(a^2x^2+4ax+2)e^{ax}
+\end{align*}
+
+Now substitute \(n=2\) into the given formula:
+\begin{align*}
+a^{2-2}\left(a^2x^2+2(2)ax+2(2-1)\right)e^{ax}
+&=a^0(a^2x^2+4ax+2)e^{ax} \\
+&=(a^2x^2+4ax+2)e^{ax}
+\end{align*}
+
+This matches \(\dfrac{\mathrm{d}^2y}{\mathrm{d}x^2}\), so \(P(2)\) is true. \\
+
+\textbf{Inductive Step}\\
+Now assume \(P(k)\) is true for some integer \(k\ge2\).  
+That is, assume
+\[
+\frac{\mathrm{d}^k y}{\mathrm{d}x^k}
+=a^{k-2}\left(a^2x^2+2kax+k(k-1)\right)e^{ax}
+\]
+This is the induction hypothesis.
+
+We must show that \(P(k+1)\) is true.
+
+Differentiate the induction hypothesis:
+\begin{align*}
+\frac{\mathrm{d}^{k+1}y}{\mathrm{d}x^{k+1}}
+&=a^{k-2}\frac{\mathrm{d}}{\mathrm{d}x}\left[\left(a^2x^2+2kax+k(k-1)\right)e^{ax}\right]
+\end{align*}
+
+Using the product rule,
+\begin{align*}
+\frac{\mathrm{d}^{k+1}y}{\mathrm{d}x^{k+1}}
+&=a^{k-2}\left[\left(2a^2x+2ka\right)e^{ax}+\left(a^2x^2+2kax+k(k-1)\right)ae^{ax}\right] \\
+&=a^{k-2}\left[2a^2x+2ka+a^3x^2+2ka^2x+ak(k-1)\right]e^{ax}
+\end{align*}
+
+Now simplify the bracket:
+\begin{align*}
+2a^2x+2ka+a^3x^2+2ka^2x+ak(k-1)
+&=a^3x^2+(2+2k)a^2x+\bigl(2k+k(k-1)\bigr)a \\
+&=a^3x^2+2(k+1)a^2x+k(k+1)a
+\end{align*}
+
+So
+\begin{align*}
+\frac{\mathrm{d}^{k+1}y}{\mathrm{d}x^{k+1}}
+&=a^{k-2}\left(a^3x^2+2(k+1)a^2x+k(k+1)a\right)e^{ax} \\
+&=a^{k-1}\left(a^2x^2+2(k+1)ax+k(k+1)\right)e^{ax}
+\end{align*}
+
+Since
+\[
+k(k+1)=(k+1)\bigl((k+1)-1\bigr)
+\]
+this becomes
+\[
+\frac{\mathrm{d}^{k+1}y}{\mathrm{d}x^{k+1}}
+=a^{(k+1)-2}\left(a^2x^2+2(k+1)ax+(k+1)\bigl((k+1)-1\bigr)\right)e^{ax}
+\]
+
+This is exactly \(P(k+1)\), so the inductive step is complete.\\
+
+
+\textbf{Conclusion:}
+
+Therefore, since \(P(2)\) is true and \(P(k)\Rightarrow P(k+1)\), it follows by mathematical induction that, for all integers \(n\ge2\),
+\[
+\frac{\mathrm{d}^n y}{\mathrm{d}x^n}=a^{n-2}\left(a^2x^2+2nax+n(n-1)\right)e^{ax}
+\]
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+Prove by mathematical induction that, for every positive integer $n$,
+\[
+\frac{\mathrm{d}^n}{\mathrm{d}x^n}(x^3 e^{-x}) = (-1)^n e^{-x}\bigl(x^3 - 3n x^2 + 3n(n-1)x - n(n-1)(n-2)\bigr)
+\] \marks[-30pt]{7}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+We prove the result by mathematical induction.
+
+Let
+\[
+P(n):\quad \frac{\mathrm{d}^n}{\mathrm{d}x^n}(x^3e^{-x})
+=
+(-1)^n e^{-x}\bigl(x^3-3nx^2+3n(n-1)x-n(n-1)(n-2)\bigr)
+\]
+
+We must show that $P(n)$ is true for every positive integer $n$.
+
+\textbf{Base case: $n=1$.}
+
+Differentiate $x^3e^{-x}$ using the product rule:
+\begin{align*}
+\frac{\mathrm{d}}{\mathrm{d}x}(x^3e^{-x})
+&=3x^2e^{-x}+x^3(-e^{-x})\\
+&=e^{-x}(3x^2-x^3)\\
+&=(-1)e^{-x}(x^3-3x^2)
+\end{align*}
+
+Now substitute $n=1$ into the required formula:
+\[
+(-1)^1 e^{-x}\bigl(x^3-3(1)x^2+3(1)(0)x-(1)(0)(-1)\bigr)
+=
+(-1)e^{-x}(x^3-3x^2)
+\]
+
+This matches the derivative found above, so $P(1)$ is true.
+
+\textbf{Inductive hypothesis.}
+
+Assume that $P(k)$ is true for some positive integer $k$.
+
+That is, assume
+\[
+\frac{\mathrm{d}^k}{\mathrm{d}x^k}(x^3e^{-x})
+=
+(-1)^k e^{-x}\bigl(x^3-3kx^2+3k(k-1)x-k(k-1)(k-2)\bigr)
+\]
+
+For convenience, let
+\[
+P_k(x)=x^3-3kx^2+3k(k-1)x-k(k-1)(k-2)
+\]
+
+Then the inductive hypothesis is
+\[
+\frac{\mathrm{d}^k}{\mathrm{d}x^k}(x^3e^{-x})=(-1)^k e^{-x}P_k(x)
+\]
+
+\textbf{Inductive step.}
+
+We now show that $P(k+1)$ is true.
+
+Differentiate the inductive hypothesis:
+\begin{align*}
+\frac{\mathrm{d}^{k+1}}{\mathrm{d}x^{k+1}}(x^3e^{-x})
+&=
+(-1)^k\frac{\mathrm{d}}{\mathrm{d}x}\bigl(e^{-x}P_k(x)\bigr)\\
+&=
+(-1)^k\left((-e^{-x})P_k(x)+e^{-x}P_k'(x)\right)\\
+&=
+(-1)^k e^{-x}\bigl(P_k'(x)-P_k(x)\bigr)\\
+&=
+(-1)^{k+1} e^{-x}\bigl(P_k(x)-P_k'(x)\bigr)
+\end{align*}
+
+Now find $P_k'(x)$:
+\[
+P_k'(x)=3x^2-6kx+3k(k-1)
+\]
+
+So
+\begin{align*}
+P_k(x)-P_k'(x)
+&=
+\bigl(x^3-3kx^2+3k(k-1)x-k(k-1)(k-2)\bigr)\\
+&\qquad-\bigl(3x^2-6kx+3k(k-1)\bigr)\\
+&=
+x^3-3(k+1)x^2+\bigl(3k(k-1)+6k\bigr)x\\
+&\qquad-\bigl(k(k-1)(k-2)+3k(k-1)\bigr)\\
+&=
+x^3-3(k+1)x^2+3k(k+1)x-k(k-1)(k+1)\\
+&=
+x^3-3(k+1)x^2+3(k+1)k\,x-(k+1)k\bigl((k+1)-2\bigr)
+\end{align*}
+
+Therefore
+\[
+\frac{\mathrm{d}^{k+1}}{\mathrm{d}x^{k+1}}(x^3e^{-x})
+=
+(-1)^{k+1}e^{-x}\bigl(x^3-3(k+1)x^2+3(k+1)k\,x-(k+1)k((k+1)-2)\bigr)
+\]
+
+This is exactly the required formula with $n=k+1$, so $P(k+1)$ is true.
+
+\textbf{Conclusion.}
+
+Since $P(1)$ is true, and $P(k)\Rightarrow P(k+1)$, the statement holds for all positive integers $n$ by mathematical induction.
+
+Hence
+\[
+\frac{\mathrm{d}^n}{\mathrm{d}x^n}(x^3 e^{-x}) = (-1)^n e^{-x}\bigl(x^3 - 3n x^2 + 3n(n-1)x - n(n-1)(n-2)\bigr)
+\]
+
+for every positive integer $n$.
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+Given that
+\[
+y=e^{-2x}\cosh 3x
+\]
+prove by induction that for $n \in \mathbb{N}$
+\[
+\frac{\mathrm{d}^n y}{\mathrm{d}x^n}=e^{-2x}\left(\frac{1+(-5)^n}{2}\cosh 3x+\frac{1-(-5)^n}{2}\sinh 3x\right)
+\] \marks[-30pt]{6}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+We prove the result by induction on $n$.
+
+Let $P(n)$ be the statement
+\[
+\frac{\mathrm{d}^n y}{\mathrm{d}x^n}
+=
+e^{-2x}\left(\frac{1+(-5)^n}{2}\cosh 3x+\frac{1-(-5)^n}{2}\sinh 3x\right)
+\]
+
+where
+\[
+y=e^{-2x}\cosh 3x
+\]
+
+\textbf{Base case: $n=1$}
+
+Differentiate $y$ using the product rule. Also,
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\big(\cosh 3x\big)=3\sinh 3x
+\]
+
+So
+\begin{align*}
+\frac{\mathrm{d}y}{\mathrm{d}x}
+&=\frac{\mathrm{d}}{\mathrm{d}x}\big(e^{-2x}\cosh 3x\big) \\
+&=e^{-2x}(-2)\cosh 3x+e^{-2x}(3\sinh 3x) \\
+&=e^{-2x}\big(-2\cosh 3x+3\sinh 3x\big)
+\end{align*}
+
+Now check this against the required formula when $n=1$:
+\[
+\frac{1+(-5)^1}{2}=\frac{1-5}{2}=-2,
+\qquad
+\frac{1-(-5)^1}{2}=\frac{1+5}{2}=3
+\]
+
+So
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}
+=
+e^{-2x}\left(\frac{1+(-5)^1}{2}\cosh 3x+\frac{1-(-5)^1}{2}\sinh 3x\right)
+\]
+
+Hence $P(1)$ is true.
+
+\textbf{Inductive hypothesis}
+
+Assume that $P(n)$ is true for some $n\in\mathbb{N}$. That is, assume
+\[
+\frac{\mathrm{d}^n y}{\mathrm{d}x^n}
+=
+e^{-2x}\left(\frac{1+(-5)^n}{2}\cosh 3x+\frac{1-(-5)^n}{2}\sinh 3x\right)
+\]
+
+For simplicity, write
+\[
+A=\frac{1+(-5)^n}{2},
+\qquad
+B=\frac{1-(-5)^n}{2}
+\]
+
+Then the inductive hypothesis becomes
+\[
+\frac{\mathrm{d}^n y}{\mathrm{d}x^n}=e^{-2x}(A\cosh 3x+B\sinh 3x)
+\]
+
+\textbf{Inductive step}
+
+We now differentiate to find $\dfrac{\mathrm{d}^{n+1}y}{\mathrm{d}x^{n+1}}$:
+\begin{align*}
+\frac{\mathrm{d}^{n+1}y}{\mathrm{d}x^{n+1}}
+&=\frac{\mathrm{d}}{\mathrm{d}x}\left[e^{-2x}(A\cosh 3x+B\sinh 3x)\right] \\
+&=-2e^{-2x}(A\cosh 3x+B\sinh 3x)
++e^{-2x}(3A\sinh 3x+3B\cosh 3x) \\
+&=e^{-2x}\left[(-2A+3B)\cosh 3x+(3A-2B)\sinh 3x\right]
+\end{align*}
+
+Now simplify the coefficients.
+
+First,
+\begin{align*}
+-2A+3B
+&=-2\left(\frac{1+(-5)^n}{2}\right)+3\left(\frac{1-(-5)^n}{2}\right) \\
+&=\frac{-2-2(-5)^n+3-3(-5)^n}{2} \\
+&=\frac{1-5(-5)^n}{2} \\
+&=\frac{1+(-5)^{n+1}}{2}
+\end{align*}
+
+since
+\[
+(-5)^{n+1}=-5(-5)^n
+\]
+
+Also,
+\begin{align*}
+3A-2B
+&=3\left(\frac{1+(-5)^n}{2}\right)-2\left(\frac{1-(-5)^n}{2}\right) \\
+&=\frac{3+3(-5)^n-2+2(-5)^n}{2} \\
+&=\frac{1+5(-5)^n}{2} \\
+&=\frac{1-(-5)^{n+1}}{2}
+\end{align*}
+
+Therefore
+\[
+\frac{\mathrm{d}^{n+1}y}{\mathrm{d}x^{n+1}}
+=
+e^{-2x}\left(\frac{1+(-5)^{n+1}}{2}\cosh 3x+\frac{1-(-5)^{n+1}}{2}\sinh 3x\right)
+\]
+
+So $P(n+1)$ is true.
+
+Since $P(1)$ is true, and $P(n)\Rightarrow P(n+1)$, the result follows by induction for all $n\in\mathbb{N}$.
+
+Hence
+\[
+\frac{\mathrm{d}^n y}{\mathrm{d}x^n}=e^{-2x}\left(\frac{1+(-5)^n}{2}\cosh 3x+\frac{1-(-5)^n}{2}\sinh 3x\right)
+\quad \text{for all } n\in\mathbb{N}
+\]
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+Let \[y = x^2\cosh x\]
+
+Prove by induction that, for all integers $n \ge 1$,
+\[
+\frac{\mathrm{d}^{2n}y}{\mathrm{d}x^{2n}} = x^2\cosh x + 4nx\sinh x + 2n(2n-1)\cosh x
+\] \marks[-20pt]{6}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+P(n): \quad \frac{\mathrm{d}^{2n}y}{\mathrm{d}x^{2n}}=x^2\cosh x+4nx\sinh x+2n(2n-1)\cosh x
+\]
+
+We prove \(P(n)\) by mathematical induction for all integers \(n\ge 1\).
+
+\textbf{Base case: \(n=1\).}
+
+Since \(y=x^2\cosh x\),
+\begin{align*}
+\frac{\mathrm{d}y}{\mathrm{d}x}
+&=2x\cosh x+x^2\sinh x
+\end{align*}
+and so
+\begin{align*}
+\frac{\mathrm{d}^2y}{\mathrm{d}x^2}
+&=\frac{\mathrm{d}}{\mathrm{d}x}\bigl(2x\cosh x+x^2\sinh x\bigr)\\
+&=(2\cosh x+2x\sinh x)+(2x\sinh x+x^2\cosh x)\\
+&=x^2\cosh x+4x\sinh x+2\cosh x
+\end{align*}
+
+This is
+\[
+x^2\cosh x+4(1)x\sinh x+2\cdot 1(2\cdot 1-1)\cosh x
+\]
+so \(P(1)\) is true.
+
+\textbf{Inductive step.}
+
+Assume \(P(k)\) is true for some integer \(k\ge 1\). Then
+\[
+\frac{\mathrm{d}^{2k}y}{\mathrm{d}x^{2k}}=x^2\cosh x+4kx\sinh x+2k(2k-1)\cosh x
+\]
+
+We must show that \(P(k+1)\) is true.
+
+Differentiate once:
+\begin{align*}
+\frac{\mathrm{d}^{2k+1}y}{\mathrm{d}x^{2k+1}}
+&=\frac{\mathrm{d}}{\mathrm{d}x}\bigl(x^2\cosh x+4kx\sinh x+2k(2k-1)\cosh x\bigr)\\
+&=(2x\cosh x+x^2\sinh x)+4k(\sinh x+x\cosh x)+2k(2k-1)\sinh x\\
+&=x^2\sinh x+(4k+2)x\cosh x+\bigl(4k+2k(2k-1)\bigr)\sinh x\\
+&=x^2\sinh x+(4k+2)x\cosh x+2k(2k+1)\sinh x
+\end{align*}
+
+Differentiate again:
+\begin{align*}
+\frac{\mathrm{d}^{2k+2}y}{\mathrm{d}x^{2k+2}}
+&=\frac{\mathrm{d}}{\mathrm{d}x}\bigl(x^2\sinh x+(4k+2)x\cosh x+2k(2k+1)\sinh x\bigr)\\
+&=(2x\sinh x+x^2\cosh x)+(4k+2)(\cosh x+x\sinh x)+2k(2k+1)\cosh x\\
+&=x^2\cosh x+\bigl(2+(4k+2)\bigr)x\sinh x+\bigl((4k+2)+2k(2k+1)\bigr)\cosh x\\
+&=x^2\cosh x+4(k+1)x\sinh x+\bigl(4k+2+4k^2+2k\bigr)\cosh x\\
+&=x^2\cosh x+4(k+1)x\sinh x+(4k^2+6k+2)\cosh x
+\end{align*}
+
+Now
+\[
+4k^2+6k+2=2(k+1)(2k+1)=2(k+1)\bigl(2(k+1)-1\bigr)
+\]
+
+So
+\begin{align*}
+\frac{\mathrm{d}^{2k+2}y}{\mathrm{d}x^{2k+2}}
+&=x^2\cosh x+4(k+1)x\sinh x+2(k+1)\bigl(2(k+1)-1\bigr)\cosh x
+\end{align*}
+
+This is exactly \(P(k+1)\). Therefore \(P(k)\Rightarrow P(k+1)\).
+
+Since \(P(1)\) is true, and \(P(k)\Rightarrow P(k+1)\), it follows by induction that for all integers \(n\ge 1\),
+\[
+\frac{\mathrm{d}^{2n}y}{\mathrm{d}x^{2n}}=x^2\cosh x+4nx\sinh x+2n(2n-1)\cosh x
+\]
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+A function is defined by $y=f(t)$ where $f(t)=(1+at)\ln(1+at)$ and $a$ is a constant. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item By considering $\frac{\mathrm{d}^2y}{\mathrm{d}t^2}$, $\frac{\mathrm{d}^3y}{\mathrm{d}t^3}$, $\frac{\mathrm{d}^4y}{\mathrm{d}t^4}$ and $\frac{\mathrm{d}^5y}{\mathrm{d}t^5}$, make a conjecture for a general formula for $\frac{\mathrm{d}^n y}{\mathrm{d}t^n}$ in terms of $n$, $a$ and $t$ for any integer $n \ge 2$. \marks{3} \\
+  \item Use induction to prove the formula conjectured in part $(a)$. \marks{4} \\
+  \item In the case when $f(t)=(1+3t)\ln(1+3t)$, find the rate at which the $6^{\mathrm{th}}$ derivative of $f(t)$ is varying when $t=\frac{5}{3}$. \marks{2} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let
+  \[
+  y=(1+at)\ln(1+at)
+  \]
+
+  First differentiate once:
+  \begin{align*}
+  \frac{\mathrm{d}y}{\mathrm{d}t}
+  &= \frac{\mathrm{d}}{\mathrm{d}t}(1+at)\cdot \ln(1+at) + (1+at)\cdot \frac{\mathrm{d}}{\mathrm{d}t}\bigl(\ln(1+at)\bigr) \\
+  &= a\ln(1+at) + (1+at)\cdot \frac{a}{1+at} \\
+  &= a\ln(1+at)+a
+  \end{align*}
+
+  Now find the next derivatives:
+  \begin{align*}
+  \frac{\mathrm{d}^2y}{\mathrm{d}t^2}
+  &= \frac{\mathrm{d}}{\mathrm{d}t}\bigl(a\ln(1+at)+a\bigr)
+  = a\cdot \frac{a}{1+at}
+  = \frac{a^2}{1+at}
+  \\
+  \frac{\mathrm{d}^3y}{\mathrm{d}t^3}
+  &= \frac{\mathrm{d}}{\mathrm{d}t}\left(a^2(1+at)^{-1}\right)
+  = a^2(-1)(1+at)^{-2}\cdot a
+  = -\frac{a^3}{(1+at)^2}
+  \\
+  \frac{\mathrm{d}^4y}{\mathrm{d}t^4}
+  &= \frac{\mathrm{d}}{\mathrm{d}t}\left(-a^3(1+at)^{-2}\right)
+  = -a^3(-2)(1+at)^{-3}\cdot a
+  = \frac{2a^4}{(1+at)^3}
+  \\
+  \frac{\mathrm{d}^5y}{\mathrm{d}t^5}
+  &= \frac{\mathrm{d}}{\mathrm{d}t}\left(2a^4(1+at)^{-3}\right)
+  = 2a^4(-3)(1+at)^{-4}\cdot a
+  = -\frac{6a^5}{(1+at)^4}
+  \end{align*}
+
+  The pattern is:
+  \[
+  \frac{\mathrm{d}^2y}{\mathrm{d}t^2}=\frac{a^2}{(1+at)^1},\quad
+  \frac{\mathrm{d}^3y}{\mathrm{d}t^3}=-\frac{a^3}{(1+at)^2},\quad
+  \frac{\mathrm{d}^4y}{\mathrm{d}t^4}=\frac{2a^4}{(1+at)^3},\quad
+  \frac{\mathrm{d}^5y}{\mathrm{d}t^5}=-\frac{6a^5}{(1+at)^4}
+  \]
+
+  and the numbers \(1,1,2,6\) are \(0!,1!,2!,3!\).
+
+  So the conjecture is
+  \[
+  f^{(n)}(t)=\frac{(-1)^n(n-2)!a^n}{(1+at)^{\,n-1}}
+  \qquad \text{for all integers } n\ge 2
+  \]
+
+  \item We prove by induction that
+  \[
+  f^{(n)}(t)=\frac{(-1)^n(n-2)!a^n}{(1+at)^{\,n-1}}
+  \qquad (n\ge 2)
+  \]
+
+  \textbf{Base case: \(n=2\).}
+
+  From part (a),
+  \[
+  f''(t)=\frac{a^2}{1+at}
+  \]
+
+  The formula gives
+  \[
+  \frac{(-1)^2(2-2)!a^2}{(1+at)^{2-1}}
+  =\frac{1\cdot 0!\,a^2}{1+at}
+  =\frac{a^2}{1+at}
+  \]
+
+  so the result is true for \(n=2\).
+
+  \textbf{Induction hypothesis.}
+
+  Assume that for some integer \(k\ge 2\),
+  \[
+  f^{(k)}(t)=\frac{(-1)^k(k-2)!a^k}{(1+at)^{\,k-1}}
+  \]
+
+  \textbf{Induction step.}
+
+  Differentiate both sides:
+  \begin{align*}
+  f^{(k+1)}(t)
+  &= \frac{\mathrm{d}}{\mathrm{d}t}\left[(-1)^k(k-2)!a^k(1+at)^{-(k-1)}\right] \\
+  &= (-1)^k(k-2)!a^k \cdot \left(-(k-1)(1+at)^{-k}\cdot a\right) \\
+  &= (-1)^{k+1}(k-1)(k-2)!a^{k+1}(1+at)^{-k} \\
+  &= \frac{(-1)^{k+1}(k-1)!a^{k+1}}{(1+at)^k}
+  \end{align*}
+
+  This is exactly the required formula with \(n=k+1\), since
+  \[
+  (k+1)-2 = k-1
+  \qquad \text{and} \qquad
+  (k+1)-1 = k
+  \]
+
+  So, if the formula is true for \(n=k\), it is also true for \(n=k+1\).
+
+  Since it is true for \(n=2\), it follows by induction that
+  \[
+  f^{(n)}(t)=\frac{(-1)^n(n-2)!a^n}{(1+at)^{\,n-1}}
+  \qquad \text{for all integers } n\ge 2
+  \]
+
+  \item Here \(a=3\), so
+  \[
+  f^{(n)}(t)=\frac{(-1)^n(n-2)!3^n}{(1+3t)^{\,n-1}}
+  \]
+
+  The rate at which the \(6^\text{th}\) derivative is varying is the \(7^\text{th}\) derivative:
+  \[
+  f^{(7)}(t)=\frac{(-1)^7(7-2)!3^7}{(1+3t)^6}
+  =-\frac{5!\,3^7}{(1+3t)^6}
+  \]
+
+  When \(t=\frac{5}{3}\),
+  \[
+  1+3t=1+3\cdot \frac{5}{3}=6
+  \]
+
+  Hence
+  \begin{align*}
+  f^{(7)}\left(\frac{5}{3}\right)
+  &= -\frac{120\cdot 3^7}{6^6} \\
+  &= -\frac{120\cdot 3^7}{(2\cdot 3)^6} \\
+  &= -\frac{120\cdot 3}{2^6} \\
+  &= -\frac{360}{64}
+  = -\frac{45}{8}
+  \end{align*}
+
+  Therefore, the rate is
+  \[
+  -\frac{45}{8}
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+The function $f(x)$ is defined by $f(x)=(1+x)^{-\frac12}$, for $x>-1$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Prove by mathematical induction that the $n$th derivative of $f(x)$, $f^{(n)}(x)$, for all $n \ge 1$, is given by
+  \[
+  f^{(n)}(x)=\frac{(-1)^n(2n)!}{2^{2n}n!(1+x)^{n+\frac12}}
+  \]
+  \marks[-20pt]{4}
+  \item Hence prove that
+  \[
+  (1+x)^{-\frac12}=1-\frac{x}{2}+\frac{3x^2}{8}-\frac{5x^3}{16}+\ldots+(-1)^n\frac{(2n)!}{2^{2n}(n!)^2}x^n+\ldots
+  \]
+  for $-1<x\le 1$. \marks{3} \\
+\end{enumerate}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item We prove the formula by mathematical induction on $n$.
+
+  \textbf{Base case: $n=1$}
+
+  \[
+  f(x)=(1+x)^{-1/2}
+  \]
+
+  Differentiating once,
+
+  \[
+  f'(x)=-\frac12(1+x)^{-3/2}
+  \]
+
+  The given formula gives, when $n=1$,
+
+  \[
+  \frac{(-1)^1(2)!}{2^{2}\cdot 1!\,(1+x)^{1+\frac12}}
+  =\frac{-2}{4(1+x)^{3/2}}
+  =-\frac12(1+x)^{-3/2}
+  \]
+
+  So the result is true for $n=1$.
+
+  \textbf{Induction hypothesis}
+
+  Assume that for some $k\ge 1$,
+
+  \[
+  f^{(k)}(x)=\frac{(-1)^k(2k)!}{2^{2k}k!(1+x)^{k+\frac12}}
+  \]
+
+  \textbf{Induction step}
+
+  Differentiate both sides:
+
+  \begin{align*}
+  f^{(k+1)}(x)
+  &=\frac{(-1)^k(2k)!}{2^{2k}k!}\cdot \frac{\mathrm{d}}{\mathrm{d}x}\left((1+x)^{-k-\frac12}\right) \\
+  &=\frac{(-1)^k(2k)!}{2^{2k}k!}\left(-k-\frac12\right)(1+x)^{-k-\frac32} \\
+  &=\frac{(-1)^{k+1}(2k)!}{2^{2k}k!}\left(k+\frac12\right)(1+x)^{-k-\frac32} \\
+  &=\frac{(-1)^{k+1}(2k)!}{2^{2k}k!}\cdot \frac{2k+1}{2}(1+x)^{-k-\frac32} \\
+  &=\frac{(-1)^{k+1}(2k)!(2k+1)}{2^{2k+1}k!}(1+x)^{-k-\frac32}
+  \end{align*}
+
+  Now simplify the coefficient:
+
+  \begin{align*}
+  \frac{(2k)!(2k+1)}{2^{2k+1}k!}
+  &=\frac{2(k+1)(2k+1)(2k)!}{2^{2k+2}(k+1)k!} \\
+  &=\frac{(2k+2)(2k+1)(2k)!}{2^{2k+2}(k+1)!} \\
+  &=\frac{(2k+2)!}{2^{2k+2}(k+1)!}
+  \end{align*}
+
+  Hence
+
+  \[
+  f^{(k+1)}(x)=\frac{(-1)^{k+1}(2k+2)!}{2^{2k+2}(k+1)!(1+x)^{k+\frac32}}
+  \]
+
+  which is exactly the required formula with $n=k+1$.
+
+  Therefore, by mathematical induction,
+
+  \[
+  f^{(n)}(x)=\frac{(-1)^n(2n)!}{2^{2n}n!(1+x)^{n+\frac12}}
+  \qquad \text{for all } n\ge 1
+  \]
+
+  \item Using the Maclaurin series,
+
+  \[
+  f(x)=f(0)+\sum_{n=1}^{\infty}\frac{f^{(n)}(0)}{n!}x^n
+  \]
+
+  First,
+
+  \[
+  f(0)=(1+0)^{-1/2}=1
+  \]
+
+  From part (a), for $n\ge1$,
+
+  \[
+  f^{(n)}(0)=\frac{(-1)^n(2n)!}{2^{2n}n!}
+  \]
+
+  So
+
+  \begin{align*}
+  (1+x)^{-1/2}
+  &=1+\sum_{n=1}^{\infty}\frac{1}{n!}\cdot \frac{(-1)^n(2n)!}{2^{2n}n!}x^n \\
+  &=1+\sum_{n=1}^{\infty}(-1)^n\frac{(2n)!}{2^{2n}(n!)^2}x^n
+  \end{align*}
+
+  Hence
+
+  \[
+  (1+x)^{-1/2}
+  =1-\frac{x}{2}+\frac{3x^2}{8}-\frac{5x^3}{16}+\cdots+(-1)^n\frac{(2n)!}{2^{2n}(n!)^2}x^n+\cdots
+  \]
+
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+It is given that \[y = (ax + 1)^2 \ln(ax + 1)\] where $a$ is a positive constant. Prove by mathematical induction that, for every integer $n \ge 3$,
+\[
+\frac{\mathrm{d}^n y}{\mathrm{d}x^n} = 2(-1)^{n-3} \frac{(n-3)!a^n}{(ax + 1)^{n-2}}
+\] \marks[-20pt]{6}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+P(n): \quad \frac{\mathrm{d}^n y}{\mathrm{d}x^n}=2(-1)^{n-3}\frac{(n-3)!a^n}{(ax+1)^{\,n-2}}
+\]
+We prove \(P(n)\) is true for all integers \(n \ge 3\) by mathematical induction.
+
+\textbf{Base case: \(n=3\).}
+
+Given
+\[
+y=(ax+1)^2\ln(ax+1)
+\]
+
+Differentiate step by step.
+
+\begin{align*}
+\frac{\mathrm{d}y}{\mathrm{d}x}
+&=\frac{\mathrm{d}}{\mathrm{d}x}\bigl((ax+1)^2\bigr)\ln(ax+1)+(ax+1)^2\frac{\mathrm{d}}{\mathrm{d}x}\bigl(\ln(ax+1)\bigr)\\
+&=2(ax+1)\cdot a\cdot \ln(ax+1)+(ax+1)^2\cdot \frac{a}{ax+1}\\
+&=2a(ax+1)\ln(ax+1)+a(ax+1)\\
+&=a(ax+1)\bigl(2\ln(ax+1)+1\bigr)
+\end{align*}
+
+Now differentiate again.
+
+\begin{align*}
+\frac{\mathrm{d}^2y}{\mathrm{d}x^2}
+&=a\frac{\mathrm{d}}{\mathrm{d}x}\left[(ax+1)\bigl(2\ln(ax+1)+1\bigr)\right]\\
+&=a\left[\frac{\mathrm{d}}{\mathrm{d}x}(ax+1)\bigl(2\ln(ax+1)+1\bigr)+(ax+1)\frac{\mathrm{d}}{\mathrm{d}x}\bigl(2\ln(ax+1)+1\bigr)\right]\\
+&=a\left[a\bigl(2\ln(ax+1)+1\bigr)+(ax+1)\left(2\cdot \frac{a}{ax+1}\right)\right]\\
+&=a\left[a\bigl(2\ln(ax+1)+1\bigr)+2a\right]\\
+&=a^2\bigl(2\ln(ax+1)+3\bigr)
+\end{align*}
+
+Differentiate a third time.
+
+\begin{align*}
+\frac{\mathrm{d}^3y}{\mathrm{d}x^3}
+&=a^2\frac{\mathrm{d}}{\mathrm{d}x}\bigl(2\ln(ax+1)+3\bigr)\\
+&=a^2\left(2\cdot \frac{a}{ax+1}\right)\\
+&=\frac{2a^3}{ax+1}
+\end{align*}
+
+Now substitute \(n=3\) into the claimed formula.
+
+\begin{align*}
+2(-1)^{3-3}\frac{(3-3)!a^3}{(ax+1)^{3-2}}
+&=2(-1)^0\frac{0!\,a^3}{(ax+1)^1}\\
+&=\frac{2a^3}{ax+1}
+\end{align*}
+
+This agrees with \(\dfrac{\mathrm{d}^3y}{\mathrm{d}x^3}\), so \(P(3)\) is true.
+
+\textbf{Induction hypothesis.}
+
+Assume that for some integer \(k\ge 3\),
+\[
+\frac{\mathrm{d}^k y}{\mathrm{d}x^k}=2(-1)^{k-3}\frac{(k-3)!a^k}{(ax+1)^{\,k-2}}
+\]
+
+\textbf{Inductive step.}
+
+We must show that this implies
+\[
+\frac{\mathrm{d}^{k+1} y}{\mathrm{d}x^{k+1}}=2(-1)^{k-2}\frac{(k-2)!a^{k+1}}{(ax+1)^{\,k-1}}
+\]
+
+Starting from the induction hypothesis,
+
+\begin{align*}
+\frac{\mathrm{d}^{k+1} y}{\mathrm{d}x^{k+1}}
+&=\frac{\mathrm{d}}{\mathrm{d}x}\left(2(-1)^{k-3}(k-3)!a^k(ax+1)^{-(k-2)}\right)\\
+&=2(-1)^{k-3}(k-3)!a^k\frac{\mathrm{d}}{\mathrm{d}x}\left((ax+1)^{-(k-2)}\right)\\
+&=2(-1)^{k-3}(k-3)!a^k\left(-(k-2)(ax+1)^{-(k-1)}\cdot a\right)\\
+&=2\bigl[-(-1)^{k-3}\bigr](k-2)(k-3)!a^{k+1}(ax+1)^{-(k-1)}\\
+&=2(-1)^{k-2}(k-2)!a^{k+1}(ax+1)^{-(k-1)}\\
+&=2(-1)^{k-2}\frac{(k-2)!a^{k+1}}{(ax+1)^{\,k-1}}
+\end{align*}
+
+This is exactly the required form for \(P(k+1)\).
+
+So, assuming \(P(k)\) is true has allowed us to prove \(P(k+1)\) is true.
+
+\textbf{Conclusion.}
+
+Since \(P(3)\) is true, and \(P(k)\Rightarrow P(k+1)\) for all integers \(k\ge 3\), it follows by mathematical induction that
+\[
+\frac{\mathrm{d}^n y}{\mathrm{d}x^n}=2(-1)^{n-3}\frac{(n-3)!a^n}{(ax+1)^{\,n-2}}
+\qquad \text{for all integers } n\ge 3
+\]
+
+Hence the result is proved.
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+The function $f$ is such that $f''(x)=-f(x)$. \\
+
+Prove by mathematical induction that, for every positive integer $n$,
+\[
+\frac{\mathrm{d}^{2n}}{\mathrm{d}x^{2n}}\left(x^2f(x)\right)=(-1)^n\left(x^2f(x)-4nxf'(x)-2n(2n-1)f(x)\right)
+\] \marks[-30pt]{7}
+
+\vspace*{30pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+We prove the result by mathematical induction on \(n\).
+
+Let \(P(n)\) be the statement
+\[
+\frac{\mathrm{d}^{2n}}{\mathrm{d}x^{2n}}\left(x^2f(x)\right)=(-1)^n\left(x^2f(x)-4nxf'(x)-2n(2n-1)f(x)\right)
+\]
+
+\textbf{Base case: \(n=1\)}
+
+We calculate the second derivative directly:
+\begin{align*}
+\frac{\mathrm{d}}{\mathrm{d}x}\left(x^2f(x)\right)
+&=2xf(x)+x^2f'(x)
+\\
+\frac{\mathrm{d}^2}{\mathrm{d}x^2}\left(x^2f(x)\right)
+&=\frac{\mathrm{d}}{\mathrm{d}x}\left(2xf+x^2f'\right)
+\\
+&=2f+2xf'+2xf'+x^2f''
+\\
+&=2f+4xf'+x^2f''
+\end{align*}
+
+Given that \(f''(x)=-f(x)\), this becomes
+\begin{align*}
+\frac{\mathrm{d}^2}{\mathrm{d}x^2}\left(x^2f(x)\right)
+&=2f+4xf'-x^2f
+\\
+&=-(x^2f-4xf'-2f)
+\\
+&=(-1)^1\left(x^2f-4(1)xf'-2(1)(2\cdot 1-1)f\right)
+\end{align*}
+
+So \(P(1)\) is true.
+
+\textbf{Inductive hypothesis}
+
+Assume that \(P(k)\) is true for some positive integer \(k\). Then
+\[
+\frac{\mathrm{d}^{2k}}{\mathrm{d}x^{2k}}\left(x^2f\right)
+= (-1)^k\left(x^2f-4kxf'-2k(2k-1)f\right)
+\]
+
+\textbf{Inductive step}
+
+We must show that \(P(k+1)\) is true.
+
+Starting from the inductive hypothesis and differentiating twice,
+\begin{align*}
+\frac{\mathrm{d}^{2k+2}}{\mathrm{d}x^{2k+2}}\left(x^2f\right)
+&= \frac{\mathrm{d}^2}{\mathrm{d}x^2}\left[\frac{\mathrm{d}^{2k}}{\mathrm{d}x^{2k}}(x^2f)\right]
+\\
+&= (-1)^k\frac{\mathrm{d}^2}{\mathrm{d}x^2}\left(x^2f-4kxf'-2k(2k-1)f\right)
+\\
+&= (-1)^k\left((x^2f)''-4k(xf')''-2k(2k-1)f''\right)
+\end{align*}
+
+Now work out each of these second derivatives.
+
+First, from the base case calculation,
+\[
+(x^2f)''=-x^2f+4xf'+2f
+\]
+
+Next,
+\begin{align*}
+(xf')'
+&=f'+xf''
+\\
+(xf')''
+&=f''+f''+xf'''
+\\
+&=2f''+xf'''
+\end{align*}
+
+Since \(f''=-f\), differentiating gives \(f'''=-f'\). Therefore
+\[
+(xf')''=2(-f)+x(-f')=-2f-xf'
+\]
+so
+\[
+(xf')''=-xf'-2f
+\]
+
+Also,
+\[
+f''=-f
+\]
+
+Substituting these into the inductive step,
+\begin{align*}
+\frac{\mathrm{d}^{2k+2}}{\mathrm{d}x^{2k+2}}\left(x^2f\right)
+&= (-1)^k\left[(-x^2f+4xf'+2f)-4k(-xf'-2f)-2k(2k-1)(-f)\right]
+\\
+&= (-1)^k\left[-x^2f+4xf'+2f+4kxf'+8kf+2k(2k-1)f\right]
+\\
+&= (-1)^k\left[-x^2f+4(k+1)xf'+\bigl(2+8k+2k(2k-1)\bigr)f\right]
+\end{align*}
+
+Now simplify the coefficient of \(f\):
+\begin{align*}
+2+8k+2k(2k-1)
+&=2+8k+4k^2-2k
+\\
+&=4k^2+6k+2
+\\
+&=2(k+1)(2k+1)
+\end{align*}
+
+Hence
+\begin{align*}
+\frac{\mathrm{d}^{2k+2}}{\mathrm{d}x^{2k+2}}\left(x^2f\right)
+&= (-1)^k\left[-x^2f+4(k+1)xf'+2(k+1)(2k+1)f\right]
+\\
+&= (-1)^{k+1}\left[x^2f-4(k+1)xf'-2(k+1)(2k+1)f\right]
+\end{align*}
+
+Since \(2(k+1)-1=2k+1\), this is exactly
+\[
+\frac{\mathrm{d}^{2(k+1)}}{\mathrm{d}x^{2(k+1)}}\left(x^2f\right)
+=
+(-1)^{k+1}\left(x^2f-4(k+1)xf'-2(k+1)(2(k+1)-1)f\right)
+\]
+
+So \(P(k+1)\) is true.
+
+\textbf{Conclusion}
+
+\(P(1)\) is true, and \(P(k)\Rightarrow P(k+1)\). Therefore, by mathematical induction,
+\[
+\frac{\mathrm{d}^{2n}}{\mathrm{d}x^{2n}}\left(x^2f(x)\right)=(-1)^n\left(x^2f(x)-4nxf'(x)-2n(2n-1)f(x)\right)
+\]
+for every positive integer \(n\).
+\end{tcolorbox}
+
+
+\end{enumerate}
+\end{document}
