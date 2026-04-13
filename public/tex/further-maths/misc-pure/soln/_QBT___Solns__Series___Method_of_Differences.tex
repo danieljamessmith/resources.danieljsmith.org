@@ -1,0 +1,1539 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\cxl}[2]{%
+  \tikz[baseline=(X.base)]{%
+    \node[inner sep=0pt, outer sep=0pt, text=#1] (X) {$#2$};
+    \draw[#1, line width=0.4pt] (X.south west)--(X.north east);
+  }%
+}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{\textit{Solutions} - Method of Differences}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that, for $r>0$,
+  \[
+  \ln\left(1+\frac{2}{r(r+3)}\right)=\ln\left(\frac{r+1}{r}\right)-\ln\left(\frac{r+3}{r+2}\right)
+  \]
+  \marks[-30pt]{1}
+  \item Hence, using the method of differences, show that for integer $n\geq 1$,
+  \[
+  \sum_{r=1}^{n}\ln\left(1+\frac{2}{r(r+3)}\right)=\ln\left(\frac{3(n+1)}{n+3}\right)
+  \]
+  \marks[-30pt]{4}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Since \(r>0\), all logarithms are defined. Also,
+\[
+1+\frac{2}{r(r+3)}
+=\frac{r(r+3)+2}{r(r+3)}
+=\frac{r^2+3r+2}{r(r+3)}
+=\frac{(r+1)(r+2)}{r(r+3)}
+=\frac{r+1}{r}\cdot\frac{r+2}{r+3}
+\]
+So
+\begin{align*}
+\ln\left(1+\frac{2}{r(r+3)}\right)
+&=\ln\left(\frac{r+1}{r}\right)+\ln\left(\frac{r+2}{r+3}\right) \\
+&=\ln\left(\frac{r+1}{r}\right)-\ln\left(\frac{r+3}{r+2}\right)
+\end{align*}
+which is the required result.
+
+  \item Let
+\[
+S_n=\sum_{r=1}^{n}\ln\left(1+\frac{2}{r(r+3)}\right)
+\]
+Using part (a),
+\begin{align*}
+S_n
+&=\sum_{r=1}^{n}\left[\ln\left(\frac{r+1}{r}\right)-\ln\left(\frac{r+3}{r+2}\right)\right] \\
+&=\left(\ln2-\ln\frac43\right)+\left(\ln\frac32-\ln\frac54\right)+\left(\ln\frac43-\ln\frac65\right)+\cdots+\left(\ln\frac{n+1}{n}-\ln\frac{n+3}{n+2}\right)
+\end{align*}
+
+Now write the positive and negative terms together:
+\begin{align*}
+S_n
+&=\ln2+\ln\frac32+\cxl{blue}{\ln\frac43}+\cxl{red}{\ln\frac54}+\cxl{teal}{\ln\frac65}+\cdots+\cxl{violet}{\ln\frac{n+1}{n}} \\
+&\quad-\cxl{blue}{\ln\frac43}-\cxl{red}{\ln\frac54}-\cxl{teal}{\ln\frac65}-\cdots-\cxl{violet}{\ln\frac{n+1}{n}}-\ln\frac{n+2}{n+1}-\ln\frac{n+3}{n+2}
+\end{align*}
+
+All the coloured middle terms cancel, so
+\begin{align*}
+S_n
+&=\ln2+\ln\frac32-\ln\frac{n+2}{n+1}-\ln\frac{n+3}{n+2} \\
+&=\ln\left(2\cdot\frac32\cdot\frac{n+1}{n+2}\cdot\frac{n+2}{n+3}\right) \\
+&=\ln\left(\frac{3(n+1)}{n+3}\right)
+\end{align*}
+
+Therefore,
+\[
+\sum_{r=1}^{n}\ln\left(1+\frac{2}{r(r+3)}\right)=\ln\left(\frac{3(n+1)}{n+3}\right)
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+Let $a$ be a positive constant. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use the method of differences to find
+  \[
+  \sum_{r=1}^{n} \frac{1}{(r+a)(r+a+1)(r+a+2)}
+  \]
+  in terms of $n$ and $a$. \marks{4} \\
+  \item Hence find the value of $a$ for which
+  \[
+  \sum_{r=1}^{\infty} \frac{1}{(r+a)(r+a+1)(r+a+2)} = \frac{1}{24}
+  \]
+  \marks[-30pt]{3}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let
+\[
+S_n=\sum_{r=1}^{n}\frac{1}{(r+a)(r+a+1)(r+a+2)}
+\]
+
+To use the method of differences, first note that for any \(x\),
+\begin{align*}
+\frac{1}{x(x+1)}-\frac{1}{(x+1)(x+2)}
+&=\frac{x+2-x}{x(x+1)(x+2)}\\
+&=\frac{2}{x(x+1)(x+2)}
+\end{align*}
+
+So
+\[
+\frac{1}{x(x+1)(x+2)}
+=\frac12\left(\frac{1}{x(x+1)}-\frac{1}{(x+1)(x+2)}\right)
+\]
+
+Now put \(x=r+a\). Then
+\begin{align*}
+S_n
+&=\frac12\sum_{r=1}^{n}\left(\frac{1}{(r+a)(r+a+1)}-\frac{1}{(r+a+1)(r+a+2)}\right)
+\end{align*}
+
+Expanding the sum,
+\begin{align*}
+S_n
+&=\frac12\Bigg[
+\frac{1}{(a+1)(a+2)}
+-\cxl{blue}{\frac{1}{(a+2)(a+3)}}\\
+&\qquad
++\cxl{blue}{\frac{1}{(a+2)(a+3)}}
+-\cxl{red}{\frac{1}{(a+3)(a+4)}}\\
+&\qquad
++\cxl{red}{\frac{1}{(a+3)(a+4)}}
+-\cdots\\
+&\qquad
++\cxl{teal}{\frac{1}{(n+a)(n+a+1)}}
+-\cxl{teal}{\frac{1}{(n+a)(n+a+1)}}
+-\frac{1}{(n+a+1)(n+a+2)}
+\Bigg]
+\end{align*}
+
+All the middle terms cancel, leaving
+\[
+S_n=\frac12\left(\frac{1}{(a+1)(a+2)}-\frac{1}{(n+a+1)(n+a+2)}\right)
+\]
+
+Hence
+\[
+\sum_{r=1}^{n}\frac{1}{(r+a)(r+a+1)(r+a+2)}
+=\frac12\left(\frac{1}{(a+1)(a+2)}-\frac{1}{(n+a+1)(n+a+2)}\right)
+\]
+
+  \item From part (a),
+\[
+\sum_{r=1}^{n}\frac{1}{(r+a)(r+a+1)(r+a+2)}
+=\frac12\left(\frac{1}{(a+1)(a+2)}-\frac{1}{(n+a+1)(n+a+2)}\right)
+\]
+
+As \(n\to\infty\),
+\[
+\frac{1}{(n+a+1)(n+a+2)}\to 0
+\]
+
+So
+\[
+\sum_{r=1}^{\infty}\frac{1}{(r+a)(r+a+1)(r+a+2)}
+=\frac{1}{2(a+1)(a+2)}
+\]
+
+Given that this equals \(\frac{1}{24}\),
+\begin{align*}
+\frac{1}{2(a+1)(a+2)}&=\frac{1}{24}\\
+2(a+1)(a+2)&=24\\
+(a+1)(a+2)&=12\\
+a^2+3a+2&=12\\
+a^2+3a-10&=0\\
+(a-2)(a+5)&=0
+\end{align*}
+
+So \(a=2\) or \(a=-5\). Since \(a\) is positive,
+\[
+a=2
+\]
+
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that, for $r \ge 2$,
+  \[
+  \frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}=\sqrt{r(r+2)}-\sqrt{r(r-2)}
+  \]
+  \marks[-30pt]{2}
+  \item Hence use the method of differences to determine
+  \[
+  \sum_{r=2}^{n} \frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}
+  \]
+  giving your answer in simplest form. \marks{3} \\
+  \item Hence show that
+  \[
+  \sum_{r=3}^{7} \frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}} = A\sqrt{2}+B\sqrt{3}+C\sqrt{7}
+  \]
+  where $A$, $B$ and $C$ are integers to be determined. \marks{2} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Rationalise the denominator:
+  \begin{align*}
+  \frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}
+  &=\frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}\cdot
+  \frac{\sqrt{r(r+2)}-\sqrt{r(r-2)}}{\sqrt{r(r+2)}-\sqrt{r(r-2)}}\\
+  &=\frac{4r\left(\sqrt{r(r+2)}-\sqrt{r(r-2)}\right)}{r(r+2)-r(r-2)}\\
+  &=\frac{4r\left(\sqrt{r(r+2)}-\sqrt{r(r-2)}\right)}{4r}\\
+  &=\sqrt{r(r+2)}-\sqrt{r(r-2)}
+  \end{align*}
+  Hence
+  \[
+  \frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}=\sqrt{r(r+2)}-\sqrt{r(r-2)}
+  \]
+  as required.
+
+  \item Let
+  \[
+  u_r=\sqrt{r(r+2)}
+  \]
+  Then from part (a),
+  \[
+  \frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}=u_r-u_{r-2}
+  \]
+  So, if
+  \[
+  S_n=\sum_{r=2}^{n}\frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}
+  \]
+  then
+  \begin{align*}
+  S_n&=\sum_{r=2}^{n}(u_r-u_{r-2})\\
+  &=\sum_{r=2}^{n}u_r-\sum_{r=2}^{n}u_{r-2}\\
+  &=\sum_{r=2}^{n}u_r-\sum_{r=0}^{n-2}u_r
+  \end{align*}
+  using a change of index in the second sum.
+
+  Writing out the terms shows the method of differences clearly:
+
+  {
+  \begin{align*}
+  S_n&=(\cxl{blue}{u_2}+\cxl{red}{u_3}+\cxl{green!50!black}{u_4}+\cxl{orange}{u_5}+\cdots+\cxl{purple}{u_{n-2}}+u_{n-1}+u_n)\\
+  &\qquad -(u_0+u_1+\cxl{blue}{u_2}+\cxl{red}{u_3}+\cxl{green!50!black}{u_4}+\cxl{orange}{u_5}+\cdots+\cxl{purple}{u_{n-2}})\\
+  &=u_{n-1}+u_n-u_0-u_1
+  \end{align*}
+  }
+
+  Now
+  \[
+  u_{n-1}=\sqrt{(n-1)(n+1)},\quad u_n=\sqrt{n(n+2)},\quad u_0=\sqrt{0\cdot 2}=0,\quad u_1=\sqrt{1\cdot 3}=\sqrt3
+  \]
+  Hence
+  \[
+  \sum_{r=2}^{n}\frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}
+  =\sqrt{(n-1)(n+1)}+\sqrt{n(n+2)}-\sqrt3
+  \]
+  This is the required sum.
+
+  \item Using part (b) with $n=7$,
+  \begin{align*}
+  \sum_{r=2}^{7}\frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}
+  &=\sqrt{6\cdot 8}+\sqrt{7\cdot 9}-\sqrt3\\
+  &=\sqrt{48}+\sqrt{63}-\sqrt3\\
+  &=4\sqrt3+3\sqrt7-\sqrt3\\
+  &=3\sqrt3+3\sqrt7
+  \end{align*}
+
+  The $r=2$ term is
+  \[
+  \frac{4(2)}{\sqrt{2(2+2)}+\sqrt{2(2-2)}}=\sqrt{2\cdot 4}-\sqrt{2\cdot 0}=\sqrt8=2\sqrt2
+  \]
+  from part (a).
+
+  Therefore
+  \begin{align*}
+  \sum_{r=3}^{7}\frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}
+  &=\sum_{r=2}^{7}\frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}-2\sqrt2\\
+  &=3\sqrt3+3\sqrt7-2\sqrt2
+  \end{align*}
+  So
+  \[
+  \sum_{r=3}^{7}\frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}=-2\sqrt2+3\sqrt3+3\sqrt7
+  \]
+  Hence
+  \[
+  A=-2,\qquad B=3,\qquad C=3
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+Use the method of differences to show that
+\[
+\sum_{r=1}^{n} \frac{12}{(2r-1)(2r+1)(2r+3)} = \frac{n(an+b)}{(2n+1)(2n+3)}
+\]
+where $a$ and $b$ are integers to be determined. \marks{6} \\
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+S_n=\sum_{r=1}^{n}\frac{12}{(2r-1)(2r+1)(2r+3)}
+\]
+
+To use the method of differences, first write the general term as a difference of two simpler fractions:
+\[
+\frac{3}{(2r-1)(2r+1)}-\frac{3}{(2r+1)(2r+3)}
+\]
+
+Checking this:
+\begin{align*}
+\frac{3}{(2r-1)(2r+1)}-\frac{3}{(2r+1)(2r+3)}
+&=\frac{3(2r+3)-3(2r-1)}{(2r-1)(2r+1)(2r+3)}\\
+&=\frac{6r+9-6r+3}{(2r-1)(2r+1)(2r+3)}\\
+&=\frac{12}{(2r-1)(2r+1)(2r+3)}
+\end{align*}
+
+So
+\[
+S_n=3\sum_{r=1}^{n}\left(\frac{1}{(2r-1)(2r+1)}-\frac{1}{(2r+1)(2r+3)}\right)
+\]
+
+Now expand the sum:
+\begin{align*}
+S_n
+&=3\Bigg[
+\left(\frac{1}{1\cdot3}-\frac{1}{3\cdot5}\right)
++\left(\frac{1}{3\cdot5}-\frac{1}{5\cdot7}\right)
++\left(\frac{1}{5\cdot7}-\frac{1}{7\cdot9}\right)
++\cdots\\
+&\qquad\qquad\qquad\qquad
++\left(\frac{1}{(2n-1)(2n+1)}-\frac{1}{(2n+1)(2n+3)}\right)
+\Bigg]
+\end{align*}
+
+The middle terms cancel in pairs:
+\begin{align*}
+S_n
+&=3\Bigg[
+\frac{1}{1\cdot3}
+-\cxl{blue}{\frac{1}{3\cdot5}}
++\cxl{blue}{\frac{1}{3\cdot5}}
+-\cxl{red}{\frac{1}{5\cdot7}}
++\cxl{red}{\frac{1}{5\cdot7}}
+-\cdots
+-\frac{1}{(2n+1)(2n+3)}
+\Bigg]\\
+&=3\left(\frac{1}{1\cdot3}-\frac{1}{(2n+1)(2n+3)}\right)
+\end{align*}
+
+Hence
+\begin{align*}
+S_n
+&=1-\frac{3}{(2n+1)(2n+3)}\\
+&=\frac{(2n+1)(2n+3)-3}{(2n+1)(2n+3)}\\
+&=\frac{4n^2+8n+3-3}{(2n+1)(2n+3)}\\
+&=\frac{4n^2+8n}{(2n+1)(2n+3)}\\
+&=\frac{n(4n+8)}{(2n+1)(2n+3)}
+\end{align*}
+
+Comparing with
+\[
+\frac{n(an+b)}{(2n+1)(2n+3)}
+\]
+gives
+\[
+a=4,\qquad b=8
+\]
+
+So
+\[
+\sum_{r=1}^{n}\frac{12}{(2r-1)(2r+1)(2r+3)}=\frac{n(4n+8)}{(2n+1)(2n+3)}
+\]
+and the integers are \(a=4\) and \(b=8\).
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use the method of differences to prove that for $n \ge 1$
+  \[
+  \sum_{r=1}^{n} \ln\left(1+\frac{2}{r(r+3)}\right)=\ln\left(\frac{3(n+1)}{n+3}\right)
+  \]
+  \marks[-30pt]{4}
+  \item Hence find the exact value of
+  \[
+  \sum_{r=25}^{74} \ln\left(\left(1+\frac{2}{r(r+3)}\right)^{28}\right)
+  \] \\
+  Give your answer in the form $a\ln\left(\dfrac{b}{c}\right)$ where $a$, $b$ and $c$ are integers to be determined. \marks{3} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let
+\[
+S_n=\sum_{r=1}^{n}\ln\left(1+\frac{2}{r(r+3)}\right)
+\]
+
+First simplify the term inside the logarithm:
+\begin{align*}
+1+\frac{2}{r(r+3)}
+&=\frac{r(r+3)+2}{r(r+3)}\\
+&=\frac{r^2+3r+2}{r(r+3)}\\
+&=\frac{(r+1)(r+2)}{r(r+3)}\\
+&=\frac{r+1}{r}\cdot\frac{r+2}{r+3}
+\end{align*}
+
+So
+\begin{align*}
+\ln\left(1+\frac{2}{r(r+3)}\right)
+&=\ln\left(\frac{r+1}{r}\cdot\frac{r+2}{r+3}\right)\\
+&=\ln(r+1)-\ln r+\ln(r+2)-\ln(r+3)
+\end{align*}
+
+Hence
+\begin{align*}
+S_n
+&=\sum_{r=1}^{n}\bigl(\ln(r+1)-\ln r\bigr)+\sum_{r=1}^{n}\bigl(\ln(r+2)-\ln(r+3)\bigr)
+\end{align*}
+
+Now expand each sum using the method of differences.
+
+For the first sum,
+\begin{align*}
+\sum_{r=1}^{n}\bigl(\ln(r+1)-\ln r\bigr)
+&=\bigl(\cxl{blue}{\ln2}+\cxl{red}{\ln3}+\cxl{teal}{\ln4}+\cdots+\cxl{violet}{\ln n}+\ln(n+1)\bigr)\\
+&\qquad-\bigl(\ln1+\cxl{blue}{\ln2}+\cxl{red}{\ln3}+\cxl{teal}{\ln4}+\cdots+\cxl{violet}{\ln n}\bigr)\\
+&=\ln(n+1)-\ln1
+\end{align*}
+
+For the second sum,
+\begin{align*}
+\sum_{r=1}^{n}\bigl(\ln(r+2)-\ln(r+3)\bigr)
+&=\bigl(\ln3+\cxl{blue}{\ln4}+\cxl{red}{\ln5}+\cdots+\cxl{violet}{\ln(n+2)}\bigr)\\
+&\qquad-\bigl(\cxl{blue}{\ln4}+\cxl{red}{\ln5}+\cdots+\cxl{violet}{\ln(n+2)}+\ln(n+3)\bigr)\\
+&=\ln3-\ln(n+3)
+\end{align*}
+
+Therefore
+\begin{align*}
+S_n
+&=\bigl(\ln(n+1)-\ln1\bigr)+\bigl(\ln3-\ln(n+3)\bigr)\\
+&=\ln(n+1)+\ln3-\ln(n+3)
+\end{align*}
+
+Since $\ln1=0$,
+\begin{align*}
+S_n
+&=\ln\left(\frac{3(n+1)}{n+3}\right)
+\end{align*}
+
+So
+\[
+\sum_{r=1}^{n}\ln\left(1+\frac{2}{r(r+3)}\right)=\ln\left(\frac{3(n+1)}{n+3}\right)
+\]
+
+  \item Using $\ln(a^{28})=28\ln a$,
+\begin{align*}
+\sum_{r=25}^{74}\ln\left(\left(1+\frac{2}{r(r+3)}\right)^{28}\right)
+&=28\sum_{r=25}^{74}\ln\left(1+\frac{2}{r(r+3)}\right)
+\end{align*}
+
+From part (a), if
+\[
+S_n=\sum_{r=1}^{n}\ln\left(1+\frac{2}{r(r+3)}\right)
+\]
+then
+\[
+S_n=\ln\left(\frac{3(n+1)}{n+3}\right)
+\]
+
+So
+\begin{align*}
+\sum_{r=25}^{74}\ln\left(1+\frac{2}{r(r+3)}\right)
+&=S_{74}-S_{24}\\
+&=\ln\left(\frac{3(75)}{77}\right)-\ln\left(\frac{3(25)}{27}\right)\\
+&=\ln\left(\frac{225}{77}\right)-\ln\left(\frac{75}{27}\right)\\
+&=\ln\left(\frac{225}{77}\cdot\frac{27}{75}\right)\\
+&=\ln\left(\frac{81}{77}\right)
+\end{align*}
+
+Hence
+\begin{align*}
+\sum_{r=25}^{74}\ln\left(\left(1+\frac{2}{r(r+3)}\right)^{28}\right)
+&=28\ln\left(\frac{81}{77}\right)
+\end{align*}
+
+So the exact value is
+\[
+28\ln\left(\frac{81}{77}\right)
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+Using partial fractions and a method of differences, prove that for positive integer $n$,
+\[
+\sum_{r=1}^{n} \frac{6}{r(r+1)(r+2)} = \frac{n(an+b)}{2(n+1)(n+2)}
+\]
+where $a$ and $b$ are constants to be found. \marks{6} \\
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+S_n=\sum_{r=1}^{n}\frac{6}{r(r+1)(r+2)}
+\]
+
+Using partial fractions, write
+\[
+\frac{6}{r(r+1)(r+2)}=\frac{A}{r(r+1)}+\frac{B}{(r+1)(r+2)}
+\]
+
+Multiplying through by \(r(r+1)(r+2)\),
+\[
+6=A(r+2)+Br
+\]
+
+So
+\[
+6=(A+B)r+2A
+\]
+
+Comparing coefficients gives
+\[
+A+B=0,\qquad 2A=6
+\]
+
+Hence
+\[
+A=3,\qquad B=-3
+\]
+
+Therefore
+\[
+\frac{6}{r(r+1)(r+2)}=\frac{3}{r(r+1)}-\frac{3}{(r+1)(r+2)}
+\]
+
+So
+\[
+S_n=\sum_{r=1}^{n}\left(\frac{3}{r(r+1)}-\frac{3}{(r+1)(r+2)}\right)
+\]
+
+Now use the method of differences by writing out the first few and last few terms:
+\begin{align*}
+S_n
+&=\left(\frac{3}{1\cdot2}-\cxl{blue}{\frac{3}{2\cdot3}}\right)
++\left(\cxl{blue}{\frac{3}{2\cdot3}}-\cxl{red}{\frac{3}{3\cdot4}}\right)
++\left(\cxl{red}{\frac{3}{3\cdot4}}-\cxl{teal}{\frac{3}{4\cdot5}}\right)
++\cdots \\
+&\qquad
++\left(\cxl{violet}{\frac{3}{(n-1)n}}-\cxl{orange}{\frac{3}{n(n+1)}}\right)
++\left(\cxl{orange}{\frac{3}{n(n+1)}}-\frac{3}{(n+1)(n+2)}\right)
+\end{align*}
+
+All the coloured pairs cancel, leaving
+\[
+S_n=\frac{3}{1\cdot2}-\frac{3}{(n+1)(n+2)}
+\]
+
+So
+\[
+S_n=\frac{3}{2}-\frac{3}{(n+1)(n+2)}
+\]
+
+Put this over the common denominator \(2(n+1)(n+2)\):
+\begin{align*}
+S_n
+&=\frac{3(n+1)(n+2)-6}{2(n+1)(n+2)} \\
+&=\frac{3(n^2+3n+2)-6}{2(n+1)(n+2)} \\
+&=\frac{3n^2+9n}{2(n+1)(n+2)} \\
+&=\frac{3n(n+3)}{2(n+1)(n+2)}
+\end{align*}
+
+We are told this has the form
+\[
+\frac{n(an+b)}{2(n+1)(n+2)}
+\]
+
+Hence
+\[
+n(an+b)=3n(n+3)=n(3n+9)
+\]
+
+Since \(n\) is a positive integer, \(n\neq 0\), so
+\[
+an+b=3n+9
+\]
+
+Therefore
+\[
+a=3,\qquad b=9
+\]
+
+Hence
+\[
+\sum_{r=1}^{n}\frac{6}{r(r+1)(r+2)}=\frac{3n(n+3)}{2(n+1)(n+2)}
+=\frac{n(3n+9)}{2(n+1)(n+2)}
+\]
+so the required constants are \(a=3\) and \(b=9\).
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+Let $T_n = (n+1)^3 + (n+2)^3 + \cdots + (2n)^3$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item By considering $(r+1)^4-(r-1)^4$, use the method of differences to prove that
+  \[
+  \sum_{r=1}^{n} r^3 = \frac{1}{4}n^2(n+1)^2
+  \]
+  \marks[-30pt]{5}
+  \item Show that \[T_n = \frac{1}{4}n^2(an^2+bn+c)\] where $a$, $b$ and $c$ are integers to be determined. \marks{3} \\
+  \item State the value of \[\lim_{n \to \infty} \frac{T_n}{n^4}\] \marks{1} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item First expand
+\[
+(r+1)^4-(r-1)^4
+= \left(r^4+4r^3+6r^2+4r+1\right)-\left(r^4-4r^3+6r^2-4r+1\right)
+=8r^3+8r
+\]
+
+Now sum from $r=1$ to $n$:
+\[
+\sum_{r=1}^n \left((r+1)^4-(r-1)^4\right)=8\sum_{r=1}^n r^3+8\sum_{r=1}^n r
+\]
+
+Using the method of differences on the left-hand side,
+\begin{align*}
+\sum_{r=1}^n \left((r+1)^4-(r-1)^4\right)
+&=\left(\cxl{blue}{2^4}+\cxl{red}{3^4}+\cxl{teal}{4^4}+\cdots+\cxl{violet}{(n-1)^4}+n^4+(n+1)^4\right)\\
+&\qquad-\left(0^4+1^4+\cxl{blue}{2^4}+\cxl{red}{3^4}+\cxl{teal}{4^4}+\cdots+\cxl{violet}{(n-1)^4}\right)\\
+&=(n+1)^4+n^4-1
+\end{align*}
+
+Therefore
+\[
+(n+1)^4+n^4-1=8\sum_{r=1}^n r^3+8\sum_{r=1}^n r
+\]
+
+Using
+\[
+\sum_{r=1}^n r=\frac{n(n+1)}{2}
+\]
+
+we get
+\begin{align*}
+8\sum_{r=1}^n r^3
+&=(n+1)^4+n^4-1-8\left(\frac{n(n+1)}{2}\right)\\
+&=(n+1)^4+n^4-1-4n(n+1)\\
+&=\left(n^4+4n^3+6n^2+4n+1\right)+n^4-1-4n^2-4n\\
+&=2n^4+4n^3+2n^2\\
+&=2n^2(n+1)^2
+\end{align*}
+
+So
+\[
+\sum_{r=1}^n r^3=\frac{2n^2(n+1)^2}{8}=\frac14 n^2(n+1)^2
+\]
+
+Hence
+\[
+\sum_{r=1}^{n} r^3=\frac14 n^2(n+1)^2
+\]
+
+  \item
+\[
+T_n=(n+1)^3+(n+2)^3+\cdots+(2n)^3=\sum_{r=n+1}^{2n} r^3
+\]
+
+So
+\begin{align*}
+T_n
+&=\sum_{r=1}^{2n} r^3-\sum_{r=1}^{n} r^3\\
+&=\frac14(2n)^2(2n+1)^2-\frac14 n^2(n+1)^2
+\end{align*}
+
+Now simplify:
+\begin{align*}
+T_n
+&=\frac14\left(4n^2(2n+1)^2-n^2(n+1)^2\right)\\
+&=\frac14\left(4n^2(4n^2+4n+1)-n^2(n^2+2n+1)\right)\\
+&=\frac14\left(16n^4+16n^3+4n^2-n^4-2n^3-n^2\right)\\
+&=\frac14\left(15n^4+14n^3+3n^2\right)\\
+&=\frac14 n^2(15n^2+14n+3)
+\end{align*}
+
+Therefore
+\[
+T_n=\frac14 n^2(an^2+bn+c)
+\quad\text{with}\quad
+a=15,\ b=14,\ c=3
+\]
+
+  \item From part (b),
+\[
+\frac{T_n}{n^4}
+=\frac14\left(15+\frac{14}{n}+\frac{3}{n^2}\right)
+\]
+
+As $n\to\infty$, $\dfrac{14}{n}\to 0$ and $\dfrac{3}{n^2}\to 0$, so
+\[
+\lim_{n\to\infty}\frac{T_n}{n^4}=\frac{15}{4}
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item By expressing $\dfrac{1}{r(r+2)}$ in partial fractions, show that
+  \[
+  \sum_{r=1}^{n} \frac{1}{r(r+2)} = \frac{3}{4} - \frac{1}{2(n+1)} - \frac{1}{2(n+2)}
+  \]
+  \marks[-30pt]{5}
+  \item Hence determine the value of
+  \[
+  \sum_{r=1}^{\infty} \frac{1}{r(r+2)}
+  \]
+  \marks[-20pt]{2}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let
+  \[
+  S_n=\sum_{r=1}^{n}\frac{1}{r(r+2)}
+  \]
+  First express the general term in partial fractions:
+  \[
+  \frac{1}{r(r+2)}=\frac{A}{r}+\frac{B}{r+2}
+  \]
+  So
+  \[
+  1=A(r+2)+Br=(A+B)r+2A
+  \]
+  Comparing coefficients gives
+  \[
+  A+B=0,\qquad 2A=1
+  \]
+  Hence
+  \[
+  A=\frac12,\qquad B=-\frac12
+  \]
+  Therefore
+  \[
+  \frac{1}{r(r+2)}=\frac12\left(\frac1r-\frac1{r+2}\right)
+  \]
+
+  Substituting into the sum,
+  \begin{align*}
+  S_n
+  &=\frac12\sum_{r=1}^{n}\left(\frac1r-\frac1{r+2}\right)\\
+  &=\frac12\left[\left(1-\frac13\right)+\left(\frac12-\frac14\right)+\left(\frac13-\frac15\right)+\cdots+\left(\frac1n-\frac1{n+2}\right)\right]
+  \end{align*}
+
+  Now use the method of differences:
+  \begin{align*}
+  S_n
+  &=\frac12\Bigl(1+\frac12+\cxl{blue}{\frac13}+\cxl{red}{\frac14}+\cdots+\cxl{teal}{\frac1n}
+  -\cxl{blue}{\frac13}-\cxl{red}{\frac14}-\cdots-\cxl{teal}{\frac1n}
+  -\frac1{n+1}-\frac1{n+2}\Bigr)\\
+  &=\frac12\left(1+\frac12-\frac1{n+1}-\frac1{n+2}\right)\\
+  &=\frac12\left(\frac32-\frac1{n+1}-\frac1{n+2}\right)\\
+  &=\frac34-\frac1{2(n+1)}-\frac1{2(n+2)}
+  \end{align*}
+
+  Hence
+  \[
+  \sum_{r=1}^{n}\frac{1}{r(r+2)}=\frac34-\frac1{2(n+1)}-\frac1{2(n+2)}
+  \]
+
+  \item From part (a),
+  \[
+  \sum_{r=1}^{n}\frac{1}{r(r+2)}=\frac34-\frac1{2(n+1)}-\frac1{2(n+2)}
+  \]
+  Letting $n\to\infty$,
+  \[
+  \frac1{2(n+1)}\to 0,\qquad \frac1{2(n+2)}\to 0
+  \]
+  so
+  \[
+  \sum_{r=1}^{\infty}\frac{1}{r(r+2)}=\frac34
+  \]
+
+  The value of the infinite series is $\frac34$.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+Show that
+\[
+\frac{1}{1 \times 4} + \frac{1}{2 \times 5} + \frac{1}{3 \times 6} + \cdots + \frac{1}{n(n+3)} = \frac{11}{18} - \frac{an^2+bn+c}{3(n+1)(n+2)(n+3)}
+\]
+where $a$, $b$ and $c$ are constants to be found. \marks{6} \\
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+S=\frac{1}{1\times 4}+\frac{1}{2\times 5}+\frac{1}{3\times 6}+\cdots+\frac{1}{n(n+3)}
+=\sum_{r=1}^n \frac{1}{r(r+3)}
+\]
+
+Use partial fractions on the general term:
+\[
+\frac{1}{r(r+3)}=\frac{A}{r}+\frac{B}{r+3}
+\]
+
+So
+\[
+1=A(r+3)+Br=(A+B)r+3A
+\]
+
+Comparing coefficients:
+\[
+A+B=0,\qquad 3A=1
+\]
+
+Hence
+\[
+A=\frac13,\qquad B=-\frac13
+\]
+
+Therefore
+\[
+\frac{1}{r(r+3)}=\frac13\left(\frac1r-\frac1{r+3}\right)
+\]
+
+So
+\[
+S=\frac13\sum_{r=1}^n\left(\frac1r-\frac1{r+3}\right)
+\]
+
+Now write out the terms to use the method of differences:
+\begin{align*}
+S
+&=\frac13\Biggl[
+1+\frac12+\frac13+\cxl{blue}{\frac14}+\cxl{red}{\frac15}+\cdots+\cxl{teal}{\frac1n}\\
+&\qquad\qquad\qquad
+-\cxl{blue}{\frac14}-\cxl{red}{\frac15}-\cdots-\cxl{teal}{\frac1n}-\frac1{n+1}-\frac1{n+2}-\frac1{n+3}
+\Biggr]
+\end{align*}
+
+Everything from $\frac14$ to $\frac1n$ cancels, leaving
+\[
+S=\frac13\left(1+\frac12+\frac13-\frac1{n+1}-\frac1{n+2}-\frac1{n+3}\right)
+\]
+
+Now
+\[
+1+\frac12+\frac13=\frac{6+3+2}{6}=\frac{11}{6}
+\]
+
+Hence
+\[
+S=\frac{11}{18}-\frac13\left(\frac1{n+1}+\frac1{n+2}+\frac1{n+3}\right)
+\]
+
+Combine the three fractions:
+\[
+\frac1{n+1}+\frac1{n+2}+\frac1{n+3}
+=\frac{(n+2)(n+3)+(n+1)(n+3)+(n+1)(n+2)}{(n+1)(n+2)(n+3)}
+\]
+
+Expand the numerator:
+\begin{align*}
+(n+2)(n+3)&=n^2+5n+6 \\
+(n+1)(n+3)&=n^2+4n+3 \\
+(n+1)(n+2)&=n^2+3n+2
+\end{align*}
+
+So
+\[
+(n+2)(n+3)+(n+1)(n+3)+(n+1)(n+2)=3n^2+12n+11
+\]
+
+Therefore
+\[
+S=\frac{11}{18}-\frac{3n^2+12n+11}{3(n+1)(n+2)(n+3)}
+\]
+
+Comparing with
+\[
+\frac{11}{18}-\frac{an^2+bn+c}{3(n+1)(n+2)(n+3)}
+\]
+we get
+\[
+a=3,\qquad b=12,\qquad c=11
+\]
+
+So the required result is
+\[
+\frac{1}{1 \times 4} + \frac{1}{2 \times 5} + \frac{1}{3 \times 6} + \cdots + \frac{1}{n(n+3)}
+= \frac{11}{18} - \frac{3n^2+12n+11}{3(n+1)(n+2)(n+3)}
+\]
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use standard results from formula book to show that
+  \[
+  \sum_{r=1}^{N} r(2r-1)(2r+1)=\frac{1}{2}N(N+1)(2N^2+2N-1)
+  \]
+  \marks[-30pt]{3}
+  \item Express $\dfrac{6r+13}{(2r-1)(2r+3)}$ in partial fractions and hence use the method of differences to find
+  \[
+  \sum_{r=1}^{N} \frac{6r+13}{(2r-1)(2r+3)}\left(\frac{1}{2}\right)^{r+1}
+  \]
+  in terms of $N$. \marks{4} \\
+  \item Deduce the value of
+  \[
+  \sum_{r=1}^{\infty} \frac{6r+13}{(2r-1)(2r+3)}\left(\frac{1}{2}\right)^{r+1}
+  \]
+  \marks[-20pt]{1}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Using
+\[
+(2r-1)(2r+1)=4r^2-1
+\]
+we get
+\[
+r(2r-1)(2r+1)=r(4r^2-1)=4r^3-r
+\]
+
+So
+\[
+\sum_{r=1}^{N} r(2r-1)(2r+1)=4\sum_{r=1}^{N} r^3-\sum_{r=1}^{N} r
+\]
+
+From the formula book,
+\[
+\sum_{r=1}^{N} r=\frac{N(N+1)}{2},
+\qquad
+\sum_{r=1}^{N} r^3=\left(\frac{N(N+1)}{2}\right)^2
+\]
+
+Hence
+\begin{align*}
+\sum_{r=1}^{N} r(2r-1)(2r+1)
+&=4\left(\frac{N(N+1)}{2}\right)^2-\frac{N(N+1)}{2} \\
+&=N^2(N+1)^2-\frac12 N(N+1) \\
+&=\frac12 N(N+1)\bigl(2N(N+1)-1\bigr) \\
+&=\frac12 N(N+1)(2N^2+2N-1)
+\end{align*}
+
+So
+\[
+\sum_{r=1}^{N} r(2r-1)(2r+1)=\frac12 N(N+1)(2N^2+2N-1)
+\]
+
+  \item Let
+\[
+\frac{6r+13}{(2r-1)(2r+3)}=\frac{A}{2r-1}+\frac{B}{2r+3}
+\]
+
+Then
+\[
+6r+13=A(2r+3)+B(2r-1)
+\]
+so
+\[
+6r+13=(2A+2B)r+(3A-B)
+\]
+
+Comparing coefficients,
+\[
+2A+2B=6,\qquad 3A-B=13
+\]
+so
+\[
+A+B=3,\qquad 3A-B=13
+\]
+
+Adding gives \(4A=16\), so \(A=4\), and then \(B=-1\).
+
+Therefore
+\[
+\frac{6r+13}{(2r-1)(2r+3)}=\frac{4}{2r-1}-\frac{1}{2r+3}
+\]
+
+Now let
+\[
+S_N=\sum_{r=1}^{N} \frac{6r+13}{(2r-1)(2r+3)}\left(\frac12\right)^{r+1}
+\]
+
+Then
+\begin{align*}
+S_N
+&=\sum_{r=1}^{N}\left(\frac{4}{2r-1}-\frac{1}{2r+3}\right)\frac{1}{2^{r+1}} \\
+&=\sum_{r=1}^{N}\left(\frac{4}{(2r-1)2^{r+1}}-\frac{1}{(2r+3)2^{r+1}}\right) \\
+&=\sum_{r=1}^{N}\left(\frac{4}{(2r-1)2^{r+1}}-\frac{4}{(2r+3)2^{r+3}}\right)
+\end{align*}
+
+Define
+\[
+u_r=\frac{1}{(2r-1)2^{r+1}}
+\]
+Then
+\[
+u_{r+2}=\frac{1}{(2r+3)2^{r+3}}
+\]
+so
+\[
+S_N=4\sum_{r=1}^{N}(u_r-u_{r+2})
+\]
+
+Using the method of differences,
+\begin{align*}
+S_N
+&=4\Bigl[(u_1+u_2+\cxl{blue}{u_3}+\cxl{red}{u_4}+\cdots+\cxl{teal}{u_N})\\
+&\qquad\qquad-(\cxl{blue}{u_3}+\cxl{red}{u_4}+\cdots+\cxl{teal}{u_N}+u_{N+1}+u_{N+2})\Bigr] \\
+&=4(u_1+u_2-u_{N+1}-u_{N+2})
+\end{align*}
+
+Now
+\[
+u_1=\frac{1}{1\cdot 2^2}=\frac14,
+\qquad
+u_2=\frac{1}{3\cdot 2^3}=\frac{1}{24}
+\]
+and
+\[
+u_{N+1}=\frac{1}{(2N+1)2^{N+2}},
+\qquad
+u_{N+2}=\frac{1}{(2N+3)2^{N+3}}
+\]
+
+So
+\begin{align*}
+S_N
+&=4\left(\frac14+\frac{1}{24}-\frac{1}{(2N+1)2^{N+2}}-\frac{1}{(2N+3)2^{N+3}}\right) \\
+&=\frac76-\frac{1}{(2N+1)2^N}-\frac{1}{(2N+3)2^{N+1}}
+\end{align*}
+
+Combining the two final fractions,
+\begin{align*}
+\frac{1}{(2N+1)2^N}+\frac{1}{(2N+3)2^{N+1}}
+&=\frac{2}{(2N+1)2^{N+1}}+\frac{1}{(2N+3)2^{N+1}} \\
+&=\frac{2(2N+3)+(2N+1)}{(2N+1)(2N+3)2^{N+1}} \\
+&=\frac{6N+7}{(2N+1)(2N+3)2^{N+1}}
+\end{align*}
+
+Hence
+\[
+\sum_{r=1}^{N} \frac{6r+13}{(2r-1)(2r+3)}\left(\frac12\right)^{r+1}
+=\frac76-\frac{1}{(2N+1)2^N}-\frac{1}{(2N+3)2^{N+1}}
+\]
+or equivalently
+\[
+\sum_{r=1}^{N} \frac{6r+13}{(2r-1)(2r+3)}\left(\frac12\right)^{r+1}
+=\frac76-\frac{6N+7}{(2N+1)(2N+3)2^{N+1}}
+\]
+
+  \item From part (b),
+\[
+S_N=\frac76-\frac{6N+7}{(2N+1)(2N+3)2^{N+1}}
+\]
+
+As \(N\to\infty\), the second term tends to \(0\) because the denominator contains the factor \(2^{N+1}\).
+
+Therefore
+\[
+\sum_{r=1}^{\infty} \frac{6r+13}{(2r-1)(2r+3)}\left(\frac12\right)^{r+1}
+=\frac76
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[
+  (2n)^5-(2n-2)^5 \equiv 10(2n-1)^4+20(2n-1)^2+2
+  \]
+  \marks[-20pt]{2}
+  \item Hence, using the method of differences, show that for all positive integer values of $n$,
+  \[
+  \sum_{r=1}^{n}(2r-1)^4=\frac{1}{15}n(2n-1)(2n+1)(an^2+bn+c)
+  \]
+  where $a$, $b$ and $c$ are integers to be determined. \marks{7} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let \(m=2n-1\). Then
+\[
+2n=m+1,\qquad 2n-2=m-1
+\]
+so
+\begin{align*}
+(2n)^5-(2n-2)^5
+&=(m+1)^5-(m-1)^5\\
+&=\left(m^5+5m^4+10m^3+10m^2+5m+1\right)\\
+&\qquad-\left(m^5-5m^4+10m^3-10m^2+5m-1\right)\\
+&=10m^4+20m^2+2
+\end{align*}
+Substituting back \(m=2n-1\),
+\[
+(2n)^5-(2n-2)^5=10(2n-1)^4+20(2n-1)^2+2
+\]
+So the identity is shown.
+
+  \item Let
+\[
+S=\sum_{r=1}^{n}(2r-1)^4
+\]
+Using the result from part (a) with \(n\) replaced by \(r\),
+\[
+(2r)^5-(2r-2)^5=10(2r-1)^4+20(2r-1)^2+2
+\]
+Now sum from \(r=1\) to \(n\):
+\[
+\sum_{r=1}^{n}\left((2r)^5-(2r-2)^5\right)
+=
+10\sum_{r=1}^{n}(2r-1)^4+20\sum_{r=1}^{n}(2r-1)^2+2n
+\]
+That is,
+\[
+\sum_{r=1}^{n}\left((2r)^5-(2r-2)^5\right)=10S+20\sum_{r=1}^{n}(2r-1)^2+2n
+\]
+
+For the left-hand side, use the method of differences:
+\begin{align*}
+\sum_{r=1}^{n}\left((2r)^5-(2r-2)^5\right)
+&=\Bigl(\cxl{blue}{2^5}+\cxl{red}{4^5}+\cxl{teal}{6^5}+\cdots+\cxl{violet}{(2n-2)^5}+(2n)^5\Bigr)\\
+&\qquad-\Bigl(0^5+\cxl{blue}{2^5}+\cxl{red}{4^5}+\cxl{teal}{6^5}+\cdots+\cxl{violet}{(2n-2)^5}\Bigr)\\
+&=(2n)^5\\
+&=32n^5
+\end{align*}
+So
+\[
+32n^5=10S+20\sum_{r=1}^{n}(2r-1)^2+2n
+\]
+
+Now find \(\sum_{r=1}^{n}(2r-1)^2\):
+\begin{align*}
+\sum_{r=1}^{n}(2r-1)^2
+&=\sum_{r=1}^{n}(4r^2-4r+1)\\
+&=4\sum_{r=1}^{n}r^2-4\sum_{r=1}^{n}r+\sum_{r=1}^{n}1\\
+&=4\cdot \frac{n(n+1)(2n+1)}{6}-4\cdot \frac{n(n+1)}{2}+n\\
+&=\frac{2n(n+1)(2n+1)}{3}-2n(n+1)+n\\
+&=\frac{2n(n+1)(2n+1)-6n(n+1)+3n}{3}\\
+&=\frac{n\left(2(n+1)(2n+1)-6(n+1)+3\right)}{3}\\
+&=\frac{n(4n^2-1)}{3}\\
+&=\frac{n(2n-1)(2n+1)}{3}
+\end{align*}
+
+Substitute this into the equation for \(S\):
+\begin{align*}
+32n^5
+&=10S+20\left(\frac{n(2n-1)(2n+1)}{3}\right)+2n
+\end{align*}
+Hence
+\begin{align*}
+10S
+&=32n^5-\frac{20n(2n-1)(2n+1)}{3}-2n\\
+&=32n^5-\frac{20n(4n^2-1)}{3}-2n\\
+&=32n^5-\frac{80}{3}n^3+\frac{20}{3}n-2n\\
+&=32n^5-\frac{80}{3}n^3+\frac{14}{3}n
+\end{align*}
+So
+\begin{align*}
+S
+&=\frac{1}{10}\left(32n^5-\frac{80}{3}n^3+\frac{14}{3}n\right)\\
+&=\frac{48n^5-40n^3+7n}{15}
+\end{align*}
+
+Now factorise:
+\begin{align*}
+48n^5-40n^3+7n
+&=n(48n^4-40n^2+7)\\
+&=n(4n^2-1)(12n^2-7)\\
+&=n(2n-1)(2n+1)(12n^2-7)
+\end{align*}
+Therefore
+\[
+\sum_{r=1}^{n}(2r-1)^4=\frac{1}{15}n(2n-1)(2n+1)(12n^2-7)
+\]
+
+Comparing with
+\[
+\sum_{r=1}^{n}(2r-1)^4=\frac{1}{15}n(2n-1)(2n+1)(an^2+bn+c)
+\]
+gives
+\[
+a=12,\qquad b=0,\qquad c=-7
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+
+Let
+\[
+S_n = \sum_{r=1}^{n} \frac{1}{(3r-2)(3r+4)}
+\]
+where $n \geq 1$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use the method of differences to show that
+  \[
+  S_n = \frac{n(15n+17)}{8(3n+1)(3n+4)}
+  \]
+  \marks[-30pt]{6}
+  \item Show that, for any number $k$ greater than $\dfrac{24}{5}$, if the difference between $\dfrac{5}{24}$ and $S_n$ is less than $\dfrac{1}{k}$, then \\[5pt]
+  \[
+  n > \frac{k - 15 + \sqrt{k^2 + 81}}{18}
+  \]
+  \marks[-30pt]{6}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Write
+\[
+\frac{1}{(3r-2)(3r+4)}=\frac{A}{3r-2}+\frac{B}{3r+4}
+\]
+
+Then
+\[
+1=A(3r+4)+B(3r-2)
+\]
+
+Comparing coefficients of \(r\) and constants gives
+\[
+3A+3B=0,\qquad 4A-2B=1
+\]
+
+So
+\[
+A+B=0 \implies B=-A
+\]
+and hence
+\[
+4A-2(-A)=1 \implies 6A=1 \implies A=\frac16,\quad B=-\frac16
+\]
+
+Therefore
+\[
+\frac{1}{(3r-2)(3r+4)}=\frac16\left(\frac1{3r-2}-\frac1{3r+4}\right)
+\]
+
+So
+\[
+S_n=\frac16\sum_{r=1}^{n}\left(\frac1{3r-2}-\frac1{3r+4}\right)
+\]
+
+Now expand the sum:
+\[
+\begin{aligned}
+S_n
+&=\frac16\Bigg[\left(1-\frac17\right)+\left(\frac14-\frac1{10}\right)+\left(\frac17-\frac1{13}\right)+\left(\frac1{10}-\frac1{16}\right)+\cdots \\
+&\hspace{3cm}+\left(\frac1{3n-5}-\frac1{3n+1}\right)+\left(\frac1{3n-2}-\frac1{3n+4}\right)\Bigg]
+\end{aligned}
+\]
+
+Rearranging to show the cancellation pattern,
+\[
+\begin{aligned}
+S_n
+&=\frac16\Bigg(1+\frac14+\cxl{blue}{\frac17}+\cxl{red}{\frac1{10}}+\cdots+\cxl{teal}{\frac1{3n-2}} \\
+&\hspace{2.3cm}-\cxl{blue}{\frac17}-\cxl{red}{\frac1{10}}-\cdots-\cxl{teal}{\frac1{3n-2}}-\frac1{3n+1}-\frac1{3n+4}\Bigg)
+\end{aligned}
+\]
+
+The coloured middle terms cancel, leaving
+\[
+S_n=\frac16\left(1+\frac14-\frac1{3n+1}-\frac1{3n+4}\right)
+\]
+
+Now simplify:
+\[
+S_n=\frac16\left(\frac54-\frac{(3n+4)+(3n+1)}{(3n+1)(3n+4)}\right)
+\]
+\[
+S_n=\frac16\left(\frac54-\frac{6n+5}{(3n+1)(3n+4)}\right)
+\]
+
+Putting the terms inside the bracket over a common denominator,
+\[
+\begin{aligned}
+S_n
+&=\frac16\left(\frac{5(3n+1)(3n+4)-4(6n+5)}{4(3n+1)(3n+4)}\right) \\
+&=\frac16\left(\frac{5(9n^2+15n+4)-24n-20}{4(3n+1)(3n+4)}\right) \\
+&=\frac16\left(\frac{45n^2+75n+20-24n-20}{4(3n+1)(3n+4)}\right) \\
+&=\frac16\left(\frac{45n^2+51n}{4(3n+1)(3n+4)}\right) \\
+&=\frac16\left(\frac{3n(15n+17)}{4(3n+1)(3n+4)}\right)
+\end{aligned}
+\]
+
+Hence
+\[
+S_n=\frac{n(15n+17)}{8(3n+1)(3n+4)}
+\]
+
+  \item From part (a),
+\[
+S_n=\frac16\left(\frac54-\frac{6n+5}{(3n+1)(3n+4)}\right)
+=\frac5{24}-\frac{6n+5}{6(3n+1)(3n+4)}
+\]
+
+So
+\[
+\frac5{24}-S_n=\frac{6n+5}{6(3n+1)(3n+4)}
+\]
+
+If this difference is less than \(\frac1k\), then
+\[
+\frac{6n+5}{6(3n+1)(3n+4)}<\frac1k
+\]
+
+Since \(k>\frac{24}{5}>0\), all quantities are positive, so we may cross-multiply:
+\[
+k(6n+5)<6(3n+1)(3n+4)
+\]
+
+Expanding:
+\[
+6kn+5k<6(9n^2+15n+4)=54n^2+90n+24
+\]
+
+Hence
+\[
+54n^2+(90-6k)n+(24-5k)>0
+\]
+
+Now solve the corresponding quadratic equation
+\[
+54n^2+(90-6k)n+(24-5k)=0
+\]
+
+Using the quadratic formula,
+\[
+n=\frac{-(90-6k)\pm\sqrt{(90-6k)^2-4(54)(24-5k)}}{108}
+\]
+
+Simplify the discriminant:
+\[
+\begin{aligned}
+(90-6k)^2-4(54)(24-5k)
+&=36(15-k)^2-216(24-5k) \\
+&=36\left((15-k)^2-6(24-5k)\right) \\
+&=36\left(k^2-30k+225-144+30k\right) \\
+&=36(k^2+81)
+\end{aligned}
+\]
+
+Therefore
+\[
+\begin{aligned}
+n
+&=\frac{6k-90\pm 6\sqrt{k^2+81}}{108} \\
+&=\frac{k-15\pm\sqrt{k^2+81}}{18}
+\end{aligned}
+\]
+
+Since the coefficient of \(n^2\) is positive, the inequality
+\[
+54n^2+(90-6k)n+(24-5k)>0
+\]
+holds for values of \(n\) outside the two roots.
+
+Also,
+\[
+k-15-\sqrt{k^2+81}<k-15-k=-15<0
+\]
+
+So the smaller root is negative. As \(n\geq 1\), it follows that
+\[
+n>\frac{k-15+\sqrt{k^2+81}}{18}
+\]
+
+This is the required result.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\end{enumerate}
+\end{document}
