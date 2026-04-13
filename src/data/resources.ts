@@ -43,6 +43,26 @@ const rawResources: Resource[] = [
 
   // --- A-level Further Maths: Complex Numbers (QBT sheets) ---
   {
+    id: 'fm-complex-de-moivres-theorem',
+    title: "De Moivre's Theorem",
+    description: '',
+    file: '/tex/further-maths/complex-numbers/qbt/_QBT__De_Moivres_Theorem.pdf',
+    category: FM,
+    type: 'questions',
+    pairId: 'fm-complex-de-moivres-theorem-solns',
+    topic: 'Complex Numbers',
+  },
+  {
+    id: 'fm-complex-de-moivres-theorem-solns',
+    title: "De Moivre's Theorem",
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/complex-numbers/soln/_QBT___Solns__De_Moivres_Theorem.pdf',
+    category: FM,
+    type: 'solutions',
+    pairId: 'fm-complex-de-moivres-theorem',
+    topic: 'Complex Numbers',
+  },
+  {
     id: 'fm-complex-loci-argand',
     title: 'Loci and Regions in the Argand Diagram',
     description: '',
@@ -614,6 +634,26 @@ const rawResources: Resource[] = [
     category: FM,
     type: 'solutions',
     pairId: 'fm-misc-roots-of-polynomials',
+    topic: 'Miscellaneous Pure',
+  },
+  {
+    id: 'fm-misc-method-of-differences',
+    title: 'Method of Differences',
+    description: '',
+    file: '/tex/further-maths/misc-pure/qbt/_QBT__Series___Method_of_Differences.pdf',
+    category: FM,
+    type: 'questions',
+    pairId: 'fm-misc-method-of-differences-solns',
+    topic: 'Miscellaneous Pure',
+  },
+  {
+    id: 'fm-misc-method-of-differences-solns',
+    title: 'Method of Differences',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/misc-pure/soln/_QBT___Solns__Series___Method_of_Differences.pdf',
+    category: FM,
+    type: 'solutions',
+    pairId: 'fm-misc-method-of-differences',
     topic: 'Miscellaneous Pure',
   },
 ];

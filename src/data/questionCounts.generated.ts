@@ -3,6 +3,7 @@
 export const questionCounts: Record<string, number> = {
   '/tex/further-maths/complex-numbers/qbt/_QBT__Complex_Roots_and_Geometry_Problems.pdf': 13,
   '/tex/further-maths/complex-numbers/qbt/_QBT__Complex_Series.pdf': 7,
+  '/tex/further-maths/complex-numbers/qbt/_QBT__De_Moivres_Theorem.pdf': 18,
   '/tex/further-maths/complex-numbers/qbt/_QBT__Loci_and_Regions_in_the_Argand_Diagram.pdf': 10,
   '/tex/further-maths/differential-equations/qbt/_QBT__2nd_Order_Differential_Equations.pdf': 12,
   '/tex/further-maths/differential-equations/qbt/_QBT__Integrating_Factor_Method.pdf': 15,
@@ -20,6 +21,7 @@ export const questionCounts: Record<string, number> = {
   '/tex/further-maths/induction/qbt/_QBT__Proof_by_Induction___Matrices.pdf': 8,
   '/tex/further-maths/induction/qbt/_QBT__Proof_by_Induction___Series.pdf': 10,
   '/tex/further-maths/misc-pure/qbt/_QBT__Roots_of_Polynomials.pdf': 15,
+  '/tex/further-maths/misc-pure/qbt/_QBT__Series___Method_of_Differences.pdf': 12,
   '/tex/further-maths/polar-coordinates/qbt/_QBT__Integration_of_Polar_Curves.pdf': 12,
   '/tex/further-maths/vectors/qbt/_QBT__Invariant_Points_and_Lines.pdf': 9,
   '/tex/further-maths/vectors/qbt/_QBT__Linear_Transformations.pdf': 11,

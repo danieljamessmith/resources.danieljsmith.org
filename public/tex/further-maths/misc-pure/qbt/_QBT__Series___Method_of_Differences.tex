@@ -1,0 +1,293 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{Method of Differences}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that, for $r>0$,
+  \[
+  \ln\left(1+\frac{2}{r(r+3)}\right)=\ln\left(\frac{r+1}{r}\right)-\ln\left(\frac{r+3}{r+2}\right)
+  \]
+  \marks[-30pt]{1}
+  \item Hence, using the method of differences, show that for integer $n\geq 1$,
+  \[
+  \sum_{r=1}^{n}\ln\left(1+\frac{2}{r(r+3)}\right)=\ln\left(\frac{3(n+1)}{n+3}\right)
+  \]
+  \marks[-30pt]{4}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+Let $a$ be a positive constant. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use the method of differences to find
+  \[
+  \sum_{r=1}^{n} \frac{1}{(r+a)(r+a+1)(r+a+2)}
+  \]
+  in terms of $n$ and $a$. \marks{4} \\
+  \item Hence find the value of $a$ for which
+  \[
+  \sum_{r=1}^{\infty} \frac{1}{(r+a)(r+a+1)(r+a+2)} = \frac{1}{24}
+  \]
+  \marks[-30pt]{3}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that, for $r \ge 2$,
+  \[
+  \frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}=\sqrt{r(r+2)}-\sqrt{r(r-2)}
+  \]
+  \marks[-30pt]{2}
+  \item Hence use the method of differences to determine
+  \[
+  \sum_{r=2}^{n} \frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}
+  \]
+  giving your answer in simplest form. \marks{3} \\
+  \item Hence show that
+  \[
+  \sum_{r=3}^{7} \frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}} = A\sqrt{2}+B\sqrt{3}+C\sqrt{7}
+  \]
+  where $A$, $B$ and $C$ are integers to be determined. \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+Use the method of differences to show that
+\[
+\sum_{r=1}^{n} \frac{12}{(2r-1)(2r+1)(2r+3)} = \frac{n(an+b)}{(2n+1)(2n+3)}
+\]
+where $a$ and $b$ are integers to be determined. \marks{6} \\
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use the method of differences to prove that for $n \ge 1$
+  \[
+  \sum_{r=1}^{n} \ln\left(1+\frac{2}{r(r+3)}\right)=\ln\left(\frac{3(n+1)}{n+3}\right)
+  \]
+  \marks[-30pt]{4}
+  \item Hence find the exact value of
+  \[
+  \sum_{r=25}^{74} \ln\left(\left(1+\frac{2}{r(r+3)}\right)^{28}\right)
+  \] \\
+  Give your answer in the form $a\ln\left(\dfrac{b}{c}\right)$ where $a$, $b$ and $c$ are integers to be determined. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+Using partial fractions and a method of differences, prove that for positive integer $n$,
+\[
+\sum_{r=1}^{n} \frac{6}{r(r+1)(r+2)} = \frac{n(an+b)}{2(n+1)(n+2)}
+\]
+where $a$ and $b$ are constants to be found. \marks{6} \\
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+Let $T_n = (n+1)^3 + (n+2)^3 + \cdots + (2n)^3$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item By considering $(r+1)^4-(r-1)^4$, use the method of differences to prove that
+  \[
+  \sum_{r=1}^{n} r^3 = \frac{1}{4}n^2(n+1)^2
+  \]
+  \marks[-30pt]{5}
+  \item Show that \[T_n = \frac{1}{4}n^2(an^2+bn+c)\] where $a$, $b$ and $c$ are integers to be determined. \marks{3} \\
+  \item State the value of \[\lim_{n \to \infty} \frac{T_n}{n^4}\] \marks{1} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item By expressing $\dfrac{1}{r(r+2)}$ in partial fractions, show that
+  \[
+  \sum_{r=1}^{n} \frac{1}{r(r+2)} = \frac{3}{4} - \frac{1}{2(n+1)} - \frac{1}{2(n+2)}
+  \]
+  \marks[-30pt]{5}
+  \item Hence determine the value of
+  \[
+  \sum_{r=1}^{\infty} \frac{1}{r(r+2)}
+  \]
+  \marks[-20pt]{2}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+Show that
+\[
+\frac{1}{1 \times 4} + \frac{1}{2 \times 5} + \frac{1}{3 \times 6} + \cdots + \frac{1}{n(n+3)} = \frac{11}{18} - \frac{an^2+bn+c}{3(n+1)(n+2)(n+3)}
+\]
+where $a$, $b$ and $c$ are constants to be found. \marks{6} \\
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use standard results from the formula booklet to show that
+  \[
+  \sum_{r=1}^{N} r(2r-1)(2r+1)=\frac{1}{2}N(N+1)(2N^2+2N-1)
+  \]
+  \marks[-30pt]{3}
+  \item Express $\dfrac{6r+13}{(2r-1)(2r+3)}$ in partial fractions and hence use the method of differences to find
+  \[
+  \sum_{r=1}^{N} \frac{6r+13}{(2r-1)(2r+3)}\left(\frac{1}{2}\right)^{r+1}
+  \]
+  in terms of $N$. \marks{4} \\
+  \item Deduce the value of
+  \[
+  \sum_{r=1}^{\infty} \frac{6r+13}{(2r-1)(2r+3)}\left(\frac{1}{2}\right)^{r+1}
+  \]
+  \marks[-20pt]{1}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[
+  (2n)^5-(2n-2)^5 \equiv 10(2n-1)^4+20(2n-1)^2+2
+  \]
+  \marks[-20pt]{2}
+  \item Hence, using the method of differences, show that for all positive integer values of $n$,
+  \[
+  \sum_{r=1}^{n}(2r-1)^4=\frac{1}{15}n(2n-1)(2n+1)(an^2+bn+c)
+  \]
+  where $a$, $b$ and $c$ are integers to be determined. \marks{7} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+
+Let
+\[
+S_n = \sum_{r=1}^{n} \frac{1}{(3r-2)(3r+4)}
+\]
+where $n \geq 1$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use the method of differences to show that
+  \[
+  S_n = \frac{n(15n+17)}{8(3n+1)(3n+4)}
+  \]
+  \marks[-30pt]{6}
+  \item Show that, for any number $k$ greater than $\dfrac{24}{5}$, if the difference between $\dfrac{5}{24}$ and $S_n$ is less than $\dfrac{1}{k}$, then \\[5pt]
+  \[
+  n > \frac{k - 15 + \sqrt{k^2 + 81}}{18}
+  \]
+  \marks[-30pt]{6}
+\end{enumerate}
+\end{enumerate}
+\end{document}
