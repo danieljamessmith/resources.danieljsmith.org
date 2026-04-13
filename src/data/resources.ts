@@ -594,6 +594,28 @@ const rawResources: Resource[] = [
     pairId: 'fm-induction-derivatives',
     topic: 'Proof by Induction',
   },
+
+  // --- A-level Further Maths: Miscellaneous Pure ---
+  {
+    id: 'fm-misc-roots-of-polynomials',
+    title: 'Roots of Polynomials',
+    description: '',
+    file: '/tex/further-maths/misc-pure/qbt/_QBT__Roots_of_Polynomials.pdf',
+    category: FM,
+    type: 'questions',
+    pairId: 'fm-misc-roots-of-polynomials-solns',
+    topic: 'Miscellaneous Pure',
+  },
+  {
+    id: 'fm-misc-roots-of-polynomials-solns',
+    title: 'Roots of Polynomials',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/misc-pure/soln/_QBT___Solns__Roots_of_Polynomials.pdf',
+    category: FM,
+    type: 'solutions',
+    pairId: 'fm-misc-roots-of-polynomials',
+    topic: 'Miscellaneous Pure',
+  },
 ];
 
 /** Populate questionCount from the generated counts file for all QBT question sheets. */

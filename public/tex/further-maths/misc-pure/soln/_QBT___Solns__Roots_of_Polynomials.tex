@@ -1,0 +1,1837 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{\textit{Solutions} - Roots of Polynomials}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+The cubic equation
+\[
+x^3 - 5x^2 + px - q = 0
+\]
+where $p$ and $q$ are positive real constants, has roots $\alpha$, $\beta$ and $\gamma$. \\
+
+Given that
+\[
+(\alpha-\beta)^2 + (\beta-\gamma)^2 + (\gamma-\alpha)^2 = 14
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item show that $p=6$ \marks{3} \\
+\end{enumerate}
+Given that
+\[
+\frac{1}{\alpha} + \frac{1}{\beta} + \frac{1}{\gamma} = 3
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item determine the value of $q$ \marks{3} \\
+  \item Without solving the cubic equation, determine the value of $(\alpha+1)(\beta+1)(\gamma+1)$ \marks{4} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item For the cubic
+  \[
+  x^3-5x^2+px-q=0
+  \]
+  with roots $\alpha,\beta,\gamma$, the relations between roots and coefficients give
+  \[
+  \alpha+\beta+\gamma=5,
+  \qquad
+  \alpha\beta+\beta\gamma+\gamma\alpha=p
+  \]
+
+  Now expand the given expression:
+  \begin{align*}
+  (\alpha-\beta)^2+(\beta-\gamma)^2+(\gamma-\alpha)^2
+  &= (\alpha^2+\beta^2-2\alpha\beta)+(\beta^2+\gamma^2-2\beta\gamma)+(\gamma^2+\alpha^2-2\gamma\alpha) \\
+  &= 2(\alpha^2+\beta^2+\gamma^2)-2(\alpha\beta+\beta\gamma+\gamma\alpha)
+  \end{align*}
+
+  Also,
+  \[
+  \alpha^2+\beta^2+\gamma^2=(\alpha+\beta+\gamma)^2-2(\alpha\beta+\beta\gamma+\gamma\alpha)
+  \]
+
+  So
+  \begin{align*}
+  (\alpha-\beta)^2+(\beta-\gamma)^2+(\gamma-\alpha)^2
+  &=2\big((\alpha+\beta+\gamma)^2-2(\alpha\beta+\beta\gamma+\gamma\alpha)\big)-2(\alpha\beta+\beta\gamma+\gamma\alpha) \\
+  &=2\big((\alpha+\beta+\gamma)^2-3(\alpha\beta+\beta\gamma+\gamma\alpha)\big)
+  \end{align*}
+
+  Substituting the known values,
+  \begin{align*}
+  14&=2(5^2-3p) \\
+  14&=2(25-3p) \\
+  7&=25-3p \\
+  3p&=18 \\
+  p&=6
+  \end{align*}
+
+  Hence, $p=6$.
+
+  \item For this cubic,
+  \[
+  \alpha\beta\gamma=q
+  \]
+
+  Also,
+  \begin{align*}
+  \frac{1}{\alpha}+\frac{1}{\beta}+\frac{1}{\gamma}
+  &=\frac{\beta\gamma+\gamma\alpha+\alpha\beta}{\alpha\beta\gamma} \\
+  &=\frac{p}{q}
+  \end{align*}
+
+  Given that this sum is $3$,
+  \[
+  \frac{p}{q}=3
+  \]
+
+  From part (a), $p=6$, so
+  \begin{align*}
+  \frac{6}{q}&=3 \\
+  6&=3q \\
+  q&=2
+  \end{align*}
+
+  Hence, $q=2$.
+
+  \item Expand:
+  \begin{align*}
+  (\alpha+1)(\beta+1)(\gamma+1)
+  &=\alpha\beta\gamma+(\alpha\beta+\beta\gamma+\gamma\alpha)+(\alpha+\beta+\gamma)+1
+  \end{align*}
+
+  Using the root relations,
+  \[
+  \alpha\beta\gamma=q,\qquad
+  \alpha\beta+\beta\gamma+\gamma\alpha=p,\qquad
+  \alpha+\beta+\gamma=5
+  \]
+
+  Therefore
+  \begin{align*}
+  (\alpha+1)(\beta+1)(\gamma+1)
+  &=q+p+5+1 \\
+  &=2+6+5+1 \\
+  &=14
+  \end{align*}
+
+  Hence,
+  \[
+  (\alpha+1)(\beta+1)(\gamma+1)=14
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+The quartic equation $x^4+bx^3+cx^2+dx+3=0$ has roots $\alpha$, $\beta$, $\gamma$, $\delta$. It is given that
+\[
+\alpha+\beta+\gamma+\delta=-2,\qquad (\alpha+1)^2+(\beta+1)^2+(\gamma+1)^2+(\delta+1)^2=6,\qquad \alpha^{-1}+\beta^{-1}+\gamma^{-1}+\delta^{-1}=2
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the values of $b$, $c$ and $d$ \marks{6} \\
+  \item Given also that
+  \[
+  (\alpha+1)^3+(\beta+1)^3+(\gamma+1)^3+(\delta+1)^3=20
+  \]
+  find the value of $\alpha^4+\beta^4+\gamma^4+\delta^4$ \marks{2} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item For the monic quartic
+  \[
+  x^4+bx^3+cx^2+dx+3=0
+  \]
+  with roots $\alpha,\beta,\gamma,\delta$, the standard relations between coefficients and roots give
+  \[
+  \alpha+\beta+\gamma+\delta=-b
+  \]
+  \[
+  \alpha\beta+\alpha\gamma+\alpha\delta+\beta\gamma+\beta\delta+\gamma\delta=c
+  \]
+  \[
+  \alpha\beta\gamma+\alpha\beta\delta+\alpha\gamma\delta+\beta\gamma\delta=-d
+  \]
+  \[
+  \alpha\beta\gamma\delta=3
+  \]
+
+  We are given
+  \[
+  \alpha+\beta+\gamma+\delta=-2
+  \]
+  so
+  \[
+  -b=-2
+  \]
+  hence
+  \[
+  b=2
+  \]
+
+  Next,
+  \[
+  \alpha^{-1}+\beta^{-1}+\gamma^{-1}+\delta^{-1}
+  =\frac{\beta\gamma\delta+\alpha\gamma\delta+\alpha\beta\delta+\alpha\beta\gamma}{\alpha\beta\gamma\delta}
+  \]
+  Therefore
+  \[
+  2=\frac{-d}{3}
+  \]
+  so
+  \[
+  d=-6
+  \]
+
+  Now use
+  \[
+  (\alpha+1)^2+(\beta+1)^2+(\gamma+1)^2+(\delta+1)^2=6
+  \]
+  Expanding,
+  \[
+  \alpha^2+\beta^2+\gamma^2+\delta^2+2(\alpha+\beta+\gamma+\delta)+4=6
+  \]
+  since there are $4$ lots of $1^2$.
+
+  Substituting $\alpha+\beta+\gamma+\delta=-2$,
+  \[
+  \alpha^2+\beta^2+\gamma^2+\delta^2+2(-2)+4=6
+  \]
+  \[
+  \alpha^2+\beta^2+\gamma^2+\delta^2=6
+  \]
+
+  Also,
+  \[
+  (\alpha+\beta+\gamma+\delta)^2
+  =\alpha^2+\beta^2+\gamma^2+\delta^2+2(\alpha\beta+\alpha\gamma+\alpha\delta+\beta\gamma+\beta\delta+\gamma\delta)
+  \]
+  so
+  \[
+  (-2)^2=6+2c
+  \]
+  \[
+  4=6+2c
+  \]
+  \[
+  2c=-2
+  \]
+  \[
+  c=-1
+  \]
+
+  Therefore,
+  \[
+  b=2,\qquad c=-1,\qquad d=-6
+  \]
+
+  \item Using the extra condition
+  \[
+  (\alpha+1)^3+(\beta+1)^3+(\gamma+1)^3+(\delta+1)^3=20
+  \]
+  expand:
+  \[
+  \sum (\text{root}+1)^3=\sum \text{root}^3+3\sum \text{root}^2+3\sum \text{root}+4
+  \]
+  Hence
+  \[
+  \alpha^3+\beta^3+\gamma^3+\delta^3+3(\alpha^2+\beta^2+\gamma^2+\delta^2)+3(\alpha+\beta+\gamma+\delta)+4=20
+  \]
+  Using $\alpha^2+\beta^2+\gamma^2+\delta^2=6$ and $\alpha+\beta+\gamma+\delta=-2$,
+  \[
+  \alpha^3+\beta^3+\gamma^3+\delta^3+3(6)+3(-2)+4=20
+  \]
+  \[
+  \alpha^3+\beta^3+\gamma^3+\delta^3+18-6+4=20
+  \]
+  \[
+  \alpha^3+\beta^3+\gamma^3+\delta^3=4
+  \]
+
+  From part (a), the quartic is
+  \[
+  x^4+2x^3-x^2-6x+3=0
+  \]
+  so each root $r$ satisfies
+  \[
+  r^4+2r^3-r^2-6r+3=0
+  \]
+  and therefore
+  \[
+  r^4=-2r^3+r^2+6r-3
+  \]
+
+  Summing this for $r=\alpha,\beta,\gamma,\delta$ gives
+  \[
+  \alpha^4+\beta^4+\gamma^4+\delta^4
+  =-2(\alpha^3+\beta^3+\gamma^3+\delta^3)+(\alpha^2+\beta^2+\gamma^2+\delta^2)+6(\alpha+\beta+\gamma+\delta)-12
+  \]
+  \[
+  =-2(4)+6+6(-2)-12
+  \]
+  \[
+  =-8+6-12-12
+  \]
+  \[
+  =-26
+  \]
+
+  Therefore,
+  \[
+  \alpha^4+\beta^4+\gamma^4+\delta^4=-26
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+The equation $x^3 - 4x^2 - x + 6 = 0$ has roots $\alpha$, $\beta$ and $\gamma$. \\
+
+Determine the value of \[\frac{1}{\alpha+\beta} + \frac{1}{\beta+\gamma} + \frac{1}{\gamma+\alpha}\] \marks{4}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Let
+\[
+s_1=\alpha+\beta+\gamma,\qquad s_2=\alpha\beta+\beta\gamma+\gamma\alpha,\qquad s_3=\alpha\beta\gamma
+\]
+
+From
+\[
+x^3-4x^2-x+6=0
+\]
+comparing with \(x^3-s_1x^2+s_2x-s_3=0\), we get
+\[
+s_1=4,\qquad s_2=-1,\qquad s_3=-6
+\]
+
+We need
+\[
+\frac{1}{\alpha+\beta}+\frac{1}{\beta+\gamma}+\frac{1}{\gamma+\alpha}
+\]
+
+Taking a common denominator,
+\begin{align*}
+\frac{1}{\alpha+\beta}+\frac{1}{\beta+\gamma}+\frac{1}{\gamma+\alpha}
+&=\frac{(\beta+\gamma)+(\gamma+\alpha)+(\alpha+\beta)}
+{(\alpha+\beta)(\beta+\gamma)(\gamma+\alpha)}\\
+&=\frac{2(\alpha+\beta+\gamma)}
+{(\alpha+\beta)(\beta+\gamma)(\gamma+\alpha)}\\
+&=\frac{2s_1}{(\alpha+\beta)(\beta+\gamma)(\gamma+\alpha)}
+\end{align*}
+
+Now expand the denominator:
+\begin{align*}
+(\alpha+\beta)(\beta+\gamma)(\gamma+\alpha)
+&=(\alpha+\beta)\bigl(\beta\gamma+\beta\alpha+\gamma^2+\gamma\alpha\bigr)\\
+&=\alpha^2\beta+\alpha^2\gamma+\alpha\beta^2+\beta^2\gamma+\alpha\gamma^2+\beta\gamma^2+2\alpha\beta\gamma
+\end{align*}
+
+Also,
+\begin{align*}
+(\alpha+\beta+\gamma)(\alpha\beta+\beta\gamma+\gamma\alpha)
+&=\alpha^2\beta+\alpha^2\gamma+\alpha\beta^2+\beta^2\gamma+\alpha\gamma^2+\beta\gamma^2+3\alpha\beta\gamma
+\end{align*}
+
+So
+\[
+(\alpha+\beta)(\beta+\gamma)(\gamma+\alpha)=s_1s_2-s_3
+\]
+
+Hence
+\[
+\frac{1}{\alpha+\beta}+\frac{1}{\beta+\gamma}+\frac{1}{\gamma+\alpha}
+=\frac{2s_1}{s_1s_2-s_3}
+\]
+
+Substitute \(s_1=4\), \(s_2=-1\), \(s_3=-6\):
+\begin{align*}
+\frac{2s_1}{s_1s_2-s_3}
+&=\frac{2(4)}{4(-1)-(-6)}\\
+&=\frac{8}{-4+6}\\
+&=\frac{8}{2}\\
+&=4
+\end{align*}
+
+Therefore, the required value is \(4\).
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+The quartic equation $3x^4 - x^3 - 10x^2 + 8x + 4 = 0$ has roots $\alpha$, $\beta$, $\gamma$ and $\delta$. \\
+
+Without solving the equation, find equations with integer coefficients whose roots are \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item $\dfrac{1}{\alpha}$, $\dfrac{1}{\beta}$, $\dfrac{1}{\gamma}$ and $\dfrac{1}{\delta}$ \marks{6} \\
+  \item $\dfrac{2}{\alpha - 1}$, $\dfrac{2}{\beta - 1}$, $\dfrac{2}{\gamma - 1}$ and $\dfrac{2}{\delta - 1}$ \marks{6} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let
+\[
+f(x)=3x^4-x^3-10x^2+8x+4
+\]
+and let \(x=\alpha\) be any root, so \(f(\alpha)=0\).
+
+We want an equation whose roots are
+\[
+\frac1\alpha,\ \frac1\beta,\ \frac1\gamma,\ \frac1\delta
+\]
+
+Since the constant term of \(f(x)\) is \(4\), none of the roots is \(0\), so reciprocals are defined.
+
+Let
+\[
+y=\frac1x
+\]
+so that
+\[
+x=\frac1y
+\]
+
+Substitute \(x=\dfrac1y\) into \(f(x)=0\):
+\[
+3\left(\frac1y\right)^4-\left(\frac1y\right)^3-10\left(\frac1y\right)^2+8\left(\frac1y\right)+4=0
+\]
+
+This gives
+\[
+\frac{3}{y^4}-\frac{1}{y^3}-\frac{10}{y^2}+\frac{8}{y}+4=0
+\]
+
+Multiply through by \(y^4\):
+\[
+3-y-10y^2+8y^3+4y^4=0
+\]
+
+Rearrange in descending powers:
+\[
+4y^4+8y^3-10y^2-y+3=0
+\]
+
+So the equation whose roots are
+\(\dfrac1\alpha,\dfrac1\beta,\dfrac1\gamma,\dfrac1\delta\) is
+\[
+4x^4+8x^3-10x^2-x+3=0
+\]
+
+  \item We now want an equation whose roots are
+\[
+\frac{2}{\alpha-1},\ \frac{2}{\beta-1},\ \frac{2}{\gamma-1},\ \frac{2}{\delta-1}
+\]
+
+First check that \(1\) is not a root of the original equation:
+\[
+f(1)=3-1-10+8+4=4\neq 0
+\]
+so \(\alpha-1,\beta-1,\gamma-1,\delta-1\) are all non-zero.
+
+Let
+\[
+y=\frac{2}{x-1}
+\]
+Then
+\[
+x-1=\frac{2}{y}
+\qquad\Rightarrow\qquad
+x=1+\frac{2}{y}
+\]
+
+Substitute \(x=1+\dfrac{2}{y}\) into \(f(x)=0\):
+\[
+3\left(1+\frac{2}{y}\right)^4-\left(1+\frac{2}{y}\right)^3-10\left(1+\frac{2}{y}\right)^2+8\left(1+\frac{2}{y}\right)+4=0
+\]
+
+Now expand each power:
+\begin{align*}
+\left(1+\frac{2}{y}\right)^2&=1+\frac{4}{y}+\frac{4}{y^2} \\
+\left(1+\frac{2}{y}\right)^3&=1+\frac{6}{y}+\frac{12}{y^2}+\frac{8}{y^3} \\
+\left(1+\frac{2}{y}\right)^4&=1+\frac{8}{y}+\frac{24}{y^2}+\frac{32}{y^3}+\frac{16}{y^4}
+\end{align*}
+
+So
+\begin{align*}
+0={}&3\left(1+\frac{8}{y}+\frac{24}{y^2}+\frac{32}{y^3}+\frac{16}{y^4}\right)
+-\left(1+\frac{6}{y}+\frac{12}{y^2}+\frac{8}{y^3}\right) \\
+&-10\left(1+\frac{4}{y}+\frac{4}{y^2}\right)
++8\left(1+\frac{2}{y}\right)+4
+\end{align*}
+
+Expand fully:
+\begin{align*}
+0={}&\left(3+\frac{24}{y}+\frac{72}{y^2}+\frac{96}{y^3}+\frac{48}{y^4}\right)
+-\left(1+\frac{6}{y}+\frac{12}{y^2}+\frac{8}{y^3}\right) \\
+&-\left(10+\frac{40}{y}+\frac{40}{y^2}\right)
++\left(8+\frac{16}{y}\right)+4
+\end{align*}
+
+Collect like terms:
+\begin{align*}
+0&=\left(3-1-10+8+4\right)
++\left(\frac{24}{y}-\frac{6}{y}-\frac{40}{y}+\frac{16}{y}\right) \\
+&\quad+\left(\frac{72}{y^2}-\frac{12}{y^2}-\frac{40}{y^2}\right)
++\left(\frac{96}{y^3}-\frac{8}{y^3}\right)
++\frac{48}{y^4}
+\end{align*}
+
+Hence
+\[
+0=4-\frac{6}{y}+ \frac{20}{y^2}+\frac{88}{y^3}+\frac{48}{y^4}
+\]
+
+Multiply through by \(y^4\):
+\[
+4y^4-6y^3+20y^2+88y+48=0
+\]
+
+All coefficients are even, so divide by \(2\):
+\[
+2y^4-3y^3+10y^2+44y+24=0
+\]
+
+Therefore the equation whose roots are
+\(\dfrac{2}{\alpha-1},\dfrac{2}{\beta-1},\dfrac{2}{\gamma-1},\dfrac{2}{\delta-1}\) is
+\[
+2x^4-3x^3+10x^2+44x+24=0
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+The cubic equation $x^3 + x^2 - 2x - 1 = 0$ has roots $\alpha$, $\beta$ and $\gamma$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find a cubic equation whose roots are $\frac{1}{\alpha+1}$, $\frac{1}{\beta+1}$ and $\frac{1}{\gamma+1}$ \marks{3} \\
+  \item Find the value of \[\left(\frac{1}{\alpha+1}\right)^2 + \left(\frac{1}{\beta+1}\right)^2 + \left(\frac{1}{\gamma+1}\right)^2\] \marks[-20pt]{2} \\
+  \item Find the value of \[\left(\frac{1}{\alpha+1}\right)^3 + \left(\frac{1}{\beta+1}\right)^3 + \left(\frac{1}{\gamma+1}\right)^3\] \marks{2} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Since $x=-1$ is not a root of $x^3+x^2-2x-1=0$, the quantities
+  \[
+  \frac{1}{\alpha+1},\quad \frac{1}{\beta+1},\quad \frac{1}{\gamma+1}
+  \]
+  are all defined.
+
+  Let
+  \[
+  y=\frac{1}{x+1}
+  \]
+  so
+  \[
+  x=\frac{1}{y}-1=\frac{1-y}{y}
+  \]
+
+  Substitute into the given cubic:
+  \begin{align*}
+  \left(\frac{1-y}{y}\right)^3+\left(\frac{1-y}{y}\right)^2-2\left(\frac{1-y}{y}\right)-1&=0
+  \end{align*}
+
+  Multiply through by $y^3$:
+  \begin{align*}
+  (1-y)^3+y(1-y)^2-2y^2(1-y)-y^3&=0
+  \end{align*}
+
+  Expanding:
+  \begin{align*}
+  (1-3y+3y^2-y^3)+(y-2y^2+y^3)-2y^2+2y^3-y^3&=0
+  \end{align*}
+
+  Collecting terms:
+  \begin{align*}
+  1-2y-y^2+y^3&=0
+  \end{align*}
+
+  So
+  \[
+  y^3-y^2-2y+1=0
+  \]
+
+  When $x=\alpha,\beta,\gamma$, the corresponding values of $y$ are
+  \[
+  \frac{1}{\alpha+1},\quad \frac{1}{\beta+1},\quad \frac{1}{\gamma+1}
+  \]
+  so the required cubic equation is
+  \[
+  y^3-y^2-2y+1=0
+  \]
+
+  \item Let the roots of
+  \[
+  y^3-y^2-2y+1=0
+  \]
+  be $p,q,r$, where
+  \[
+  p=\frac{1}{\alpha+1},\quad q=\frac{1}{\beta+1},\quad r=\frac{1}{\gamma+1}
+  \]
+
+  From the cubic,
+  \[
+  p+q+r=1,\qquad pq+pr+qr=-2
+  \]
+
+  Now
+  \begin{align*}
+  p^2+q^2+r^2&=(p+q+r)^2-2(pq+pr+qr)\\
+  &=1^2-2(-2)\\
+  &=5
+  \end{align*}
+
+  Therefore
+  \[
+  \left(\frac{1}{\alpha+1}\right)^2+\left(\frac{1}{\beta+1}\right)^2+\left(\frac{1}{\gamma+1}\right)^2=5
+  \]
+
+  \item Using the same roots $p,q,r$, we also have
+  \[
+  pqr=-1
+  \]
+
+  Use
+  \[
+  p^3+q^3+r^3=(p+q+r)^3-3(p+q+r)(pq+pr+qr)+3pqr
+  \]
+
+  Hence
+  \begin{align*}
+  p^3+q^3+r^3&=1^3-3(1)(-2)+3(-1)\\
+  &=1+6-3\\
+  &=4
+  \end{align*}
+
+  Therefore
+  \[
+  \left(\frac{1}{\alpha+1}\right)^3+\left(\frac{1}{\beta+1}\right)^3+\left(\frac{1}{\gamma+1}\right)^3=4
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+The equation $x^3 - 14x^2 + 56x + c = 0$, where $c$ is a constant, has three roots in geometric progression. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Determine the roots of the equation \marks{6} \\
+  \item Find $c$ \marks{1} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Let the three roots be
+\[
+\frac{a}{r},\quad a,\quad ar
+\]
+where $r\neq 0$.
+
+For the cubic
+\[
+x^3-14x^2+56x+c=0
+\]
+the sum of the roots is $14$, and the sum of the products of the roots taken two at a time is $56$.
+
+So
+\begin{align*}
+\frac{a}{r}+a+ar&=14 \\
+a\left(\frac1r+1+r\right)&=14
+\end{align*}
+
+Also,
+\begin{align*}
+\left(\frac{a}{r}\right)(a)+a(ar)+\left(\frac{a}{r}\right)(ar)&=56 \\
+\frac{a^2}{r}+a^2r+a^2&=56 \\
+a^2\left(\frac1r+1+r\right)&=56
+\end{align*}
+
+Now divide the second equation by the first:
+\[
+\frac{a^2\left(\frac1r+1+r\right)}{a\left(\frac1r+1+r\right)}=\frac{56}{14}
+\]
+so
+\[
+a=4
+\]
+
+Substitute into
+\[
+a\left(\frac1r+1+r\right)=14
+\]
+to get
+\begin{align*}
+4\left(\frac1r+1+r\right)&=14 \\
+\frac1r+1+r&=\frac72
+\end{align*}
+
+Multiply through by $2r$:
+\begin{align*}
+2+2r+2r^2&=7r \\
+2r^2-5r+2&=0
+\end{align*}
+
+Factorising,
+\[
+(2r-1)(r-2)=0
+\]
+so
+\[
+r=\frac12 \quad \text{or} \quad r=2
+\]
+
+Hence the roots are
+\[
+\frac{4}{2},\ 4,\ 4(2)
+\]
+that is
+\[
+2,\ 4,\ 8
+\]
+
+So the roots are $\boxed{2,\,4,\,8}$.
+
+\item The product of the roots is
+\[
+2\cdot 4\cdot 8=64
+\]
+
+For
+\[
+x^3-14x^2+56x+c=0
+\]
+the product of the roots is $-c$.
+
+So
+\[
+-c=64
+\]
+and therefore
+\[
+c=-64
+\]
+
+So $\boxed{c=-64}$.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+The quadratic equation
+\[
+x^2 - kx + 1 = 0
+\]
+where $k$ is an integer, has roots $\alpha$ and $\beta$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Write down, in terms of $k$ where appropriate, the value of $\alpha + \beta$ and the value of $\alpha\beta$ \marks{2} \\
+  \item Determine, in simplest form in terms of $k$, the value of
+  \[
+  (\alpha^2 + \beta) + (\beta^2 + \alpha)
+  \]
+  \marks[-20pt]{3}
+  \item Determine a quadratic equation which has roots
+  \[
+  \alpha^2 + \beta \text{ and } \beta^2 + \alpha
+  \]
+  giving your answer in the form $px^2 + qx + r = 0$, where $p$, $q$ and $r$ are integer values in terms of $k$ \marks{4} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item For the quadratic \(x^2-kx+1=0\), we use
+  \[
+  \alpha+\beta=-\frac{\text{coefficient of }x}{\text{coefficient of }x^2},
+  \qquad
+  \alpha\beta=\frac{\text{constant term}}{\text{coefficient of }x^2}
+  \]
+  So
+  \[
+  \alpha+\beta=-\frac{-k}{1}=k,
+  \qquad
+  \alpha\beta=\frac{1}{1}=1
+  \]
+  Hence
+  \[
+  \alpha+\beta=k,\qquad \alpha\beta=1
+  \]
+
+  \item
+  \begin{align*}
+  (\alpha^2+\beta)+(\beta^2+\alpha)
+  &=\alpha^2+\beta^2+\alpha+\beta\\
+  &=(\alpha+\beta)^2-2\alpha\beta+(\alpha+\beta)\\
+  &=k^2-2(1)+k\\
+  &=k^2+k-2
+  \end{align*}
+  Hence the value is
+  \[
+  k^2+k-2
+  \]
+
+  \item Let the new roots be
+  \[
+  \alpha^2+\beta \quad \text{and} \quad \beta^2+\alpha
+  \]
+  Their sum is, from part (b),
+  \[
+  (\alpha^2+\beta)+(\beta^2+\alpha)=k^2+k-2
+  \]
+
+  Now find their product:
+  \begin{align*}
+  (\alpha^2+\beta)(\beta^2+\alpha)
+  &=\alpha^2\beta^2+\alpha^3+\beta^3+\alpha\beta\\
+  &=(\alpha\beta)^2+\alpha^3+\beta^3+\alpha\beta\\
+  &=1+\alpha^3+\beta^3+1\\
+  &=\alpha^3+\beta^3+2
+  \end{align*}
+
+  Next,
+  \begin{align*}
+  \alpha^3+\beta^3
+  &=(\alpha+\beta)^3-3\alpha\beta(\alpha+\beta)\\
+  &=k^3-3(1)(k)\\
+  &=k^3-3k
+  \end{align*}
+  So the product is
+  \[
+  (\alpha^2+\beta)(\beta^2+\alpha)=k^3-3k+2
+  \]
+
+  A quadratic with roots \(r_1\) and \(r_2\) is
+  \[
+  x^2-(r_1+r_2)x+r_1r_2=0
+  \]
+  Therefore the required equation is
+  \[
+  x^2-(k^2+k-2)x+(k^3-3k+2)=0
+  \]
+
+  So, in the form \(px^2+qx+r=0\),
+  \[
+  x^2-(k^2+k-2)x+(k^3-3k+2)=0
+  \]
+  with \(p=1\), \(q=-(k^2+k-2)\), \(r=k^3-3k+2\).
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+The roots of the equation
+\[
+x^3 + 5x^2 - 4x - 24 = 0
+\]
+are $\alpha$, $\beta$ and $\gamma$. \\
+
+Without solving the equation,
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item write down the value of each of
+  \[
+  \alpha + \beta + \gamma \qquad \alpha\beta + \beta\gamma + \gamma\alpha \qquad \alpha\beta\gamma
+  \]
+  \marks[-20pt]{1}
+  \item Hence determine the value of
+  \begin{enumerate}[label=(\roman*)]
+    \item \[
+    \frac{1}{\alpha\beta} + \frac{1}{\beta\gamma} + \frac{1}{\gamma\alpha}
+    \]
+    \marks[-20pt]{2}
+    \item \[
+    (\alpha + 2)(\beta + 2)(\gamma + 2)
+    \]
+    \marks[-20pt]{2}
+    \item \[
+    \alpha^2\beta^2 + \beta^2\gamma^2 + \gamma^2\alpha^2
+    \]
+    \marks[-20pt]{3}
+  \end{enumerate}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item For a monic cubic
+  \[
+  x^3+bx^2+cx+d=0
+  \]
+  with roots $\alpha,\beta,\gamma$,
+  \[
+  \alpha+\beta+\gamma=-b,\qquad \alpha\beta+\beta\gamma+\gamma\alpha=c,\qquad \alpha\beta\gamma=-d
+  \]
+  Here
+  \[
+  x^3+5x^2-4x-24=0
+  \]
+  so
+  \[
+  \alpha+\beta+\gamma=-5,\qquad \alpha\beta+\beta\gamma+\gamma\alpha=-4,\qquad \alpha\beta\gamma=24
+  \]
+  Therefore the values are $-5$, $-4$ and $24$.
+
+  \item Using
+  \[
+  \alpha+\beta+\gamma=-5,\qquad \alpha\beta+\beta\gamma+\gamma\alpha=-4,\qquad \alpha\beta\gamma=24
+  \]
+
+  \begin{enumerate}[label=(\roman*)]
+    \item
+    \begin{align*}
+    \frac{1}{\alpha\beta}+\frac{1}{\beta\gamma}+\frac{1}{\gamma\alpha}
+    &=\frac{\gamma}{\alpha\beta\gamma}+\frac{\alpha}{\alpha\beta\gamma}+\frac{\beta}{\alpha\beta\gamma} \\
+    &=\frac{\alpha+\beta+\gamma}{\alpha\beta\gamma} \\
+    &=\frac{-5}{24}
+    \end{align*}
+    Hence
+    \[
+    \frac{1}{\alpha\beta}+\frac{1}{\beta\gamma}+\frac{1}{\gamma\alpha}=-\frac{5}{24}
+    \]
+
+    \item
+    \begin{align*}
+    (\alpha+2)(\beta+2)(\gamma+2)
+    &=(\alpha\beta+2\alpha+2\beta+4)(\gamma+2) \\
+    &=\alpha\beta\gamma+2\alpha\beta+2\alpha\gamma+2\beta\gamma+4\alpha+4\beta+4\gamma+8 \\
+    &=\alpha\beta\gamma+2(\alpha\beta+\beta\gamma+\gamma\alpha)+4(\alpha+\beta+\gamma)+8
+    \end{align*}
+    Substituting the values from part (a),
+    \begin{align*}
+    (\alpha+2)(\beta+2)(\gamma+2)
+    &=24+2(-4)+4(-5)+8 \\
+    &=24-8-20+8 \\
+    &=4
+    \end{align*}
+    Therefore
+    \[
+    (\alpha+2)(\beta+2)(\gamma+2)=4
+    \]
+
+    \item Start with
+    \[
+    (\alpha\beta+\beta\gamma+\gamma\alpha)^2
+    \]
+    Expanding,
+    \begin{align*}
+    (\alpha\beta+\beta\gamma+\gamma\alpha)^2
+    &=\alpha^2\beta^2+\beta^2\gamma^2+\gamma^2\alpha^2
+    +2\alpha\beta\cdot\beta\gamma+2\beta\gamma\cdot\gamma\alpha+2\gamma\alpha\cdot\alpha\beta \\
+    &=\alpha^2\beta^2+\beta^2\gamma^2+\gamma^2\alpha^2
+    +2\alpha\beta^2\gamma+2\alpha\beta\gamma^2+2\alpha^2\beta\gamma \\
+    &=\alpha^2\beta^2+\beta^2\gamma^2+\gamma^2\alpha^2
+    +2\alpha\beta\gamma(\alpha+\beta+\gamma)
+    \end{align*}
+    So
+    \begin{align*}
+    \alpha^2\beta^2+\beta^2\gamma^2+\gamma^2\alpha^2
+    &=(\alpha\beta+\beta\gamma+\gamma\alpha)^2-2\alpha\beta\gamma(\alpha+\beta+\gamma) \\
+    &=(-4)^2-2(24)(-5) \\
+    &=16+240 \\
+    &=256
+    \end{align*}
+    Hence
+    \[
+    \alpha^2\beta^2+\beta^2\gamma^2+\gamma^2\alpha^2=256
+    \]
+  \end{enumerate}
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+The roots of the equation $3x^3 + px^2 - 12x - 8 = 0$ are $\alpha$, $\beta$ and $\gamma$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Given that $\alpha + \beta + \gamma = 2$, write down the value of $p$ \marks{1} \\
+  \item Write down values for $\alpha\beta + \beta\gamma + \gamma\alpha$ and $\alpha\beta\gamma$ \marks{1} \\
+  \item Hence find the value of $\left(1+\frac{1}{\alpha}\right)\left(1+\frac{1}{\beta}\right)\left(1+\frac{1}{\gamma}\right)$ \marks{3} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item For \(3x^3+px^2-12x-8=0\), the sum of the roots is
+  \[
+  \alpha+\beta+\gamma=-\frac{p}{3}
+  \]
+  Given \(\alpha+\beta+\gamma=2\),
+  \[
+  -\frac{p}{3}=2
+  \]
+  so
+  \[
+  p=-6
+  \]
+  Therefore, \(p=-6\).
+
+  \item For \(3x^3+px^2-12x-8=0\),
+  \[
+  \alpha\beta+\beta\gamma+\gamma\alpha=\frac{-12}{3}=-4
+  \]
+  and
+  \[
+  \alpha\beta\gamma=-\frac{-8}{3}=\frac{8}{3}
+  \]
+  Therefore,
+  \[
+  \alpha\beta+\beta\gamma+\gamma\alpha=-4,\qquad \alpha\beta\gamma=\frac{8}{3}
+  \]
+
+  \item
+  \begin{align*}
+  \left(1+\frac{1}{\alpha}\right)\left(1+\frac{1}{\beta}\right)\left(1+\frac{1}{\gamma}\right)
+  &=\frac{(\alpha+1)(\beta+1)(\gamma+1)}{\alpha\beta\gamma} \\
+  &=\frac{\alpha\beta\gamma+\alpha\beta+\beta\gamma+\gamma\alpha+\alpha+\beta+\gamma+1}{\alpha\beta\gamma}
+  \end{align*}
+  Using the results from parts (a) and (b),
+  \[
+  \alpha+\beta+\gamma=2,\qquad
+  \alpha\beta+\beta\gamma+\gamma\alpha=-4,\qquad
+  \alpha\beta\gamma=\frac{8}{3}
+  \]
+  so
+  \begin{align*}
+  \left(1+\frac{1}{\alpha}\right)\left(1+\frac{1}{\beta}\right)\left(1+\frac{1}{\gamma}\right)
+  &=\frac{\frac{8}{3}-4+2+1}{\frac{8}{3}} \\
+  &=\frac{\frac{8}{3}-1}{\frac{8}{3}} \\
+  &=\frac{\frac{5}{3}}{\frac{8}{3}} \\
+  &=\frac{5}{8}
+  \end{align*}
+  Therefore,
+  \[
+  \left(1+\frac{1}{\alpha}\right)\left(1+\frac{1}{\beta}\right)\left(1+\frac{1}{\gamma}\right)=\frac{5}{8}
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+The roots of the equation $x^3 + 2x^2 - 5x - 3 = 0$ are $\alpha$, $\beta$ and $\gamma$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find $\alpha^2\beta^2 + \beta^2\gamma^2 + \gamma^2\alpha^2$ \marks{4} \\
+  \item Find an equation with integer coefficients whose roots are $\alpha^2$, $\beta^2$ and $\gamma^2$ \marks{4} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Since $\alpha$, $\beta$ and $\gamma$ are roots of
+\[
+x^3+2x^2-5x-3=0
+\]
+the standard relations between roots and coefficients give
+\[
+\alpha+\beta+\gamma=-2,\qquad \alpha\beta+\beta\gamma+\gamma\alpha=-5,\qquad \alpha\beta\gamma=3
+\]
+
+Now expand
+\begin{align*}
+(\alpha\beta+\beta\gamma+\gamma\alpha)^2
+&=\alpha^2\beta^2+\beta^2\gamma^2+\gamma^2\alpha^2
+   +2(\alpha\beta)(\beta\gamma)+2(\beta\gamma)(\gamma\alpha)+2(\gamma\alpha)(\alpha\beta)\\
+&=\alpha^2\beta^2+\beta^2\gamma^2+\gamma^2\alpha^2
+   +2\alpha\beta^2\gamma+2\beta\gamma^2\alpha+2\gamma\alpha^2\beta\\
+&=\alpha^2\beta^2+\beta^2\gamma^2+\gamma^2\alpha^2
+   +2\alpha\beta\gamma(\alpha+\beta+\gamma)
+\end{align*}
+
+So
+\begin{align*}
+\alpha^2\beta^2+\beta^2\gamma^2+\gamma^2\alpha^2
+&=(\alpha\beta+\beta\gamma+\gamma\alpha)^2-2\alpha\beta\gamma(\alpha+\beta+\gamma)\\
+&=(-5)^2-2(3)(-2)\\
+&=25+12\\
+&=37
+\end{align*}
+
+Hence
+\[
+\alpha^2\beta^2+\beta^2\gamma^2+\gamma^2\alpha^2=37
+\]
+
+  \item Let the required equation have roots $\alpha^2$, $\beta^2$ and $\gamma^2$.
+
+First find their sum:
+\begin{align*}
+\alpha^2+\beta^2+\gamma^2
+&=(\alpha+\beta+\gamma)^2-2(\alpha\beta+\beta\gamma+\gamma\alpha)\\
+&=(-2)^2-2(-5)\\
+&=4+10\\
+&=14
+\end{align*}
+
+From part (a),
+\[
+\alpha^2\beta^2+\beta^2\gamma^2+\gamma^2\alpha^2=37
+\]
+
+Also,
+\[
+\alpha^2\beta^2\gamma^2=(\alpha\beta\gamma)^2=3^2=9
+\]
+
+So for roots $\alpha^2,\beta^2,\gamma^2$, the monic cubic is
+\[
+x^3-(\text{sum of roots})x^2+(\text{sum of pairwise products})x-(\text{product of roots})=0
+\]
+
+Therefore
+\[
+x^3-14x^2+37x-9=0
+\]
+
+So the required equation is
+\[
+x^3-14x^2+37x-9=0
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+
+The graph of $y=x^3+3x^2+px-20$, where $p$ is a constant, crosses the $x$-axis at three points whose $x$-coordinates are equally spaced. \\
+
+Find the roots of
+\[
+x^3+3x^2+px-20=0
+\] \marks[-20pt]{6}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Since the three roots are equally spaced, let them be
+\[
+a-d,\quad a,\quad a+d
+\]
+
+For
+\[
+x^3+3x^2+px-20=0
+\]
+the sum of the roots is \(-3\), so
+\[
+(a-d)+a+(a+d)=-3
+\]
+\[
+3a=-3
+\]
+\[
+a=-1
+\]
+
+Also, the product of the roots is \(20\), because for a monic cubic \(x^3+\cdots-20\), the product of the roots is \(-(-20)=20\).
+
+So
+\[
+(a-d)a(a+d)=20
+\]
+
+Now
+\[
+(a-d)(a+d)=a^2-d^2
+\]
+so
+\[
+a(a^2-d^2)=20
+\]
+
+Substitute \(a=-1\):
+\[
+(-1)\bigl(1-d^2\bigr)=20
+\]
+\[
+-1+d^2=20
+\]
+\[
+d^2=21
+\]
+\[
+d=\sqrt{21}
+\]
+
+Therefore the roots are
+\[
+a-d=-1-\sqrt{21},\qquad a=-1,\qquad a+d=-1+\sqrt{21}
+\]
+
+Hence the roots of the equation are
+\[
+-1-\sqrt{21},\quad -1,\quad -1+\sqrt{21}
+\]
+
+(Checking: the pairwise sum is
+\[
+(-1-\sqrt{21})(-1)+(-1)(-1+\sqrt{21})+(-1-\sqrt{21})(-1+\sqrt{21})=-18
+\]
+so \(p=-18\), which is consistent.)
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+
+The cubic equation $x^3-3x+1=0$ has roots $\alpha$, $\beta$ and $\gamma$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find a cubic equation whose roots are $\dfrac{1}{\alpha-1}$, $\dfrac{1}{\beta-1}$, $\dfrac{1}{\gamma-1}$. \marks{3} \\
+  \item Hence find the value of $\dfrac{1}{(\alpha-1)^2}+\dfrac{1}{(\beta-1)^2}+\dfrac{1}{(\gamma-1)^2}$. \marks{2} \\
+  \item Find also the value of $\dfrac{1}{(\alpha-1)^5}+\dfrac{1}{(\beta-1)^5}+\dfrac{1}{(\gamma-1)^5}$. \marks{3} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let
+\[
+t=\frac{1}{x-1}
+\]
+so that
+\[
+x=1+\frac{1}{t}
+\]
+
+We substitute this into the given equation
+\[
+x^3-3x+1=0
+\]
+
+Then
+\begin{align*}
+\left(1+\frac{1}{t}\right)^3-3\left(1+\frac{1}{t}\right)+1&=0\\
+\left(1+\frac{3}{t}+\frac{3}{t^2}+\frac{1}{t^3}\right)-3-\frac{3}{t}+1&=0\\
+\frac{1}{t^3}+\frac{3}{t^2}-1&=0
+\end{align*}
+
+Multiply through by $t^3$:
+\begin{align*}
+1+3t-t^3&=0\\
+t^3-3t-1&=0
+\end{align*}
+
+So the cubic equation whose roots are
+\[
+\frac{1}{\alpha-1},\quad \frac{1}{\beta-1},\quad \frac{1}{\gamma-1}
+\]
+is
+\[
+t^3-3t-1=0
+\]
+
+  \item Let the roots of
+\[
+t^3-3t-1=0
+\]
+be
+\[
+r_1=\frac{1}{\alpha-1},\quad r_2=\frac{1}{\beta-1},\quad r_3=\frac{1}{\gamma-1}
+\]
+
+For the cubic
+\[
+t^3+0t^2-3t-1=0
+\]
+we have
+\[
+r_1+r_2+r_3=0,\qquad r_1r_2+r_2r_3+r_3r_1=-3
+\]
+
+Now
+\[
+(r_1+r_2+r_3)^2=r_1^2+r_2^2+r_3^2+2(r_1r_2+r_2r_3+r_3r_1)
+\]
+
+So
+\begin{align*}
+r_1^2+r_2^2+r_3^2
+&=(r_1+r_2+r_3)^2-2(r_1r_2+r_2r_3+r_3r_1)\\
+&=0^2-2(-3)\\
+&=6
+\end{align*}
+
+Hence
+\[
+\frac{1}{(\alpha-1)^2}+\frac{1}{(\beta-1)^2}+\frac{1}{(\gamma-1)^2}=6
+\]
+
+  \item Using the same roots $r_1,r_2,r_3$, each root satisfies
+\[
+r^3-3r-1=0
+\]
+so
+\[
+r^3=3r+1
+\]
+
+Multiply by $r^2$:
+\[
+r^5=r^2r^3=r^2(3r+1)=3r^3+r^2
+\]
+
+Now substitute again for $r^3$:
+\begin{align*}
+r^5&=3(3r+1)+r^2\\
+&=9r+3+r^2
+\end{align*}
+
+Summing for $r_1,r_2,r_3$ gives
+\begin{align*}
+r_1^5+r_2^5+r_3^5
+&=9(r_1+r_2+r_3)+3\cdot 3+(r_1^2+r_2^2+r_3^2)\\
+&=9(0)+9+6\\
+&=15
+\end{align*}
+
+Therefore
+\[
+\frac{1}{(\alpha-1)^5}+\frac{1}{(\beta-1)^5}+\frac{1}{(\gamma-1)^5}=15
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 13 ----
+\questionitem
+
+The quartic equation $x^4-2x^2+2x+1=0$ has roots $\alpha$, $\beta$, $\gamma$, $\delta$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find a quartic equation whose roots are $\alpha^2$, $\beta^2$, $\gamma^2$, $\delta^2$ and state the value of $\alpha^2+\beta^2+\gamma^2+\delta^2$. \marks{5} \\
+  \item Find the value of $\alpha^6+\beta^6+\gamma^6+\delta^6$. \marks{3} \\
+  \item Find the value of $\alpha^8+\beta^8+\gamma^8+\delta^8$. \marks{2} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let
+\[
+f(x)=x^4-2x^2+2x+1
+\]
+
+If \(f(\alpha)=0\), then \(f(\alpha)f(-\alpha)=0\). So \(\alpha^2\) is a root of the equation obtained from \(f(x)f(-x)=0\) after writing everything in terms of \(x^2\). The same will then be true for \(\beta^2,\gamma^2,\delta^2\).
+
+Now
+\[
+f(x)=(x^2-1)^2+2x,\qquad f(-x)=(x^2-1)^2-2x
+\]
+
+So
+\begin{align*}
+f(x)f(-x)
+&=\bigl((x^2-1)^2+2x\bigr)\bigl((x^2-1)^2-2x\bigr)\\
+&=(x^2-1)^4-4x^2
+\end{align*}
+
+Let \(y=x^2\). Then
+\begin{align*}
+(x^2-1)^4-4x^2
+&=(y-1)^4-4y\\
+&=y^4-4y^3+6y^2-4y+1-4y\\
+&=y^4-4y^3+6y^2-8y+1
+\end{align*}
+
+Hence the required quartic equation is
+\[
+y^4-4y^3+6y^2-8y+1=0
+\]
+
+Its roots are \(\alpha^2,\beta^2,\gamma^2,\delta^2\).
+
+If these roots are \(y_1,y_2,y_3,y_4\), then for a monic quartic,
+\[
+y_1+y_2+y_3+y_4=-(\text{coefficient of }y^3)=4
+\]
+
+Therefore
+\[
+\alpha^2+\beta^2+\gamma^2+\delta^2=4
+\]
+
+  \item Let the roots of
+\[
+h(y)=y^4-4y^3+6y^2-8y+1
+\]
+be \(y_1,y_2,y_3,y_4\), where
+\[
+y_1=\alpha^2,\quad y_2=\beta^2,\quad y_3=\gamma^2,\quad y_4=\delta^2
+\]
+
+Define
+\[
+q_r=y_1^r+y_2^r+y_3^r+y_4^r
+\]
+
+Then
+\[
+\alpha^6+\beta^6+\gamma^6+\delta^6=q_3
+\]
+
+For a monic quartic \(y^4+ay^3+by^2+cy+d\), the power sums satisfy
+\begin{align*}
+q_1+a&=0\\
+q_2+aq_1+2b&=0\\
+q_3+aq_2+bq_1+3c&=0
+\end{align*}
+
+Here \(a=-4,\ b=6,\ c=-8\), so
+\begin{align*}
+q_1-4&=0\\
+q_2-4q_1+12&=0\\
+q_3-4q_2+6q_1-24&=0
+\end{align*}
+
+From the first equation,
+\[
+q_1=4
+\]
+
+Then
+\[
+q_2-4(4)+12=0
+\]
+so
+\[
+q_2=4
+\]
+
+Now
+\[
+q_3-4(4)+6(4)-24=0
+\]
+which gives
+\[
+q_3=16
+\]
+
+Therefore
+\[
+\alpha^6+\beta^6+\gamma^6+\delta^6=16
+\]
+
+  \item Here
+\[
+\alpha^8+\beta^8+\gamma^8+\delta^8=q_4
+\]
+
+Using the next power-sum relation for the same quartic,
+\[
+q_4-4q_3+6q_2-8q_1+4=0
+\]
+
+Substitute \(q_1=4,\ q_2=4,\ q_3=16\):
+\begin{align*}
+q_4-4(16)+6(4)-8(4)+4&=0\\
+q_4-64+24-32+4&=0\\
+q_4-68&=0
+\end{align*}
+
+So
+\[
+q_4=68
+\]
+
+Hence
+\[
+\alpha^8+\beta^8+\gamma^8+\delta^8=68
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 14 ----
+\questionitem
+
+The equation $z^4-2z^3-z^2-2z+1=0$ has roots $\alpha$, $\beta$, $\gamma$ and $\delta$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that a quartic equation whose roots are $\alpha+\dfrac{1}{\alpha}$, $\beta+\dfrac{1}{\beta}$, $\gamma+\dfrac{1}{\gamma}$ and $\delta+\dfrac{1}{\delta}$ is
+  \[
+  w^4-4w^3-2w^2+12w+9=0
+  \]
+  \marks[-20pt]{3}
+  \item Hence determine the exact roots of the equation $z^4-2z^3-z^2-2z+1=0$. \marks{3} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let
+\[
+f(z)=z^4-2z^3-z^2-2z+1
+\]
+and let $z$ be any root of $f(z)=0$.
+
+Since the constant term is $1$, no root is $0$, so we may divide by $z^2$:
+\begin{align*}
+z^2-2z-1-\frac{2}{z}+\frac{1}{z^2}&=0 \\
+\left(z^2+\frac{1}{z^2}\right)-2\left(z+\frac{1}{z}\right)-1&=0
+\end{align*}
+
+Now let
+\[
+w=z+\frac{1}{z}
+\]
+Then
+\[
+z^2+\frac{1}{z^2}=\left(z+\frac{1}{z}\right)^2-2=w^2-2
+\]
+so
+\begin{align*}
+(w^2-2)-2w-1&=0 \\
+w^2-2w-3&=0 \\
+(w-3)(w+1)&=0
+\end{align*}
+
+So the possible values of $w$ are $3$ and $-1$.
+
+Also, the polynomial is unchanged when its coefficients are reversed, so if $z$ is a root then $\frac1z$ is also a root. Therefore the four roots $\alpha,\beta,\gamma,\delta$ occur in reciprocal pairs, and the four values
+\[
+\alpha+\frac1\alpha,\quad \beta+\frac1\beta,\quad \gamma+\frac1\gamma,\quad \delta+\frac1\delta
+\]
+are
+\[
+3,3,-1,-1
+\]
+
+Hence the required quartic is
+\begin{align*}
+(w-3)^2(w+1)^2&=(w^2-2w-3)^2 \\
+&=w^4-4w^3-2w^2+12w+9
+\end{align*}
+
+So the quartic equation is
+\[
+w^4-4w^3-2w^2+12w+9=0
+\]
+
+  \item From part (a), the corresponding values of
+\[
+w=z+\frac1z
+\]
+are $3$ and $-1$.
+
+If $w=3$, then
+\begin{align*}
+z+\frac1z&=3 \\
+z^2-3z+1&=0
+\end{align*}
+So
+\[
+z=\frac{3\pm\sqrt5}{2}
+\]
+
+If $w=-1$, then
+\begin{align*}
+z+\frac1z&=-1 \\
+z^2+z+1&=0
+\end{align*}
+So
+\[
+z=\frac{-1\pm \mathrm{i}\sqrt3}{2}
+\]
+
+Hence the exact roots of
+\[
+z^4-2z^3-z^2-2z+1=0
+\]
+are
+\[
+\frac{3+\sqrt5}{2},\quad \frac{3-\sqrt5}{2},\quad \frac{-1+\mathrm{i}\sqrt3}{2},\quad \frac{-1-\mathrm{i}\sqrt3}{2}
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 15 ----
+\questionitem
+
+The quartic equation $x^4-2x^3+3x^2-4x+1=0$ has roots $\alpha$, $\beta$, $\gamma$, $\delta$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the value of $\dfrac{1}{\alpha}+\dfrac{1}{\beta}+\dfrac{1}{\gamma}+\dfrac{1}{\delta}$. \marks{2} \\
+  \item Find the value of $\dfrac{1}{\alpha^2}+\dfrac{1}{\beta^2}+\dfrac{1}{\gamma^2}+\dfrac{1}{\delta^2}$. \marks{2} \\
+  \item Find the value of
+  \[
+  \left(\dfrac{1}{\alpha}+\dfrac{1}{\beta}+\dfrac{1}{\gamma}\right)^2+\left(\dfrac{1}{\beta}+\dfrac{1}{\gamma}+\dfrac{1}{\delta}\right)^2+\left(\dfrac{1}{\gamma}+\dfrac{1}{\delta}+\dfrac{1}{\alpha}\right)^2+\left(\dfrac{1}{\delta}+\dfrac{1}{\alpha}+\dfrac{1}{\beta}\right)^2
+  \]
+  \marks[-20pt]{5}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item For the monic quartic
+  \[
+  x^4-2x^3+3x^2-4x+1=0
+  \]
+  with roots \(\alpha,\beta,\gamma,\delta\), the standard root relations give
+  \[
+  \alpha+\beta+\gamma+\delta=2
+  \]
+  \[
+  \alpha\beta+\alpha\gamma+\alpha\delta+\beta\gamma+\beta\delta+\gamma\delta=3
+  \]
+  \[
+  \alpha\beta\gamma+\alpha\beta\delta+\alpha\gamma\delta+\beta\gamma\delta=4
+  \]
+  \[
+  \alpha\beta\gamma\delta=1
+  \]
+
+  Hence
+  \begin{align*}
+  \frac{1}{\alpha}+\frac{1}{\beta}+\frac{1}{\gamma}+\frac{1}{\delta}
+  &=\frac{\beta\gamma\delta+\alpha\gamma\delta+\alpha\beta\delta+\alpha\beta\gamma}{\alpha\beta\gamma\delta}\\
+  &=\frac{4}{1}\\
+  &=4
+  \end{align*}
+
+  So
+  \[
+  \frac{1}{\alpha}+\frac{1}{\beta}+\frac{1}{\gamma}+\frac{1}{\delta}=4
+  \]
+
+  \item Let
+  \[
+  r_1=\frac{1}{\alpha},\quad r_2=\frac{1}{\beta},\quad r_3=\frac{1}{\gamma},\quad r_4=\frac{1}{\delta}
+  \]
+
+  Then from part (a),
+  \[
+  r_1+r_2+r_3+r_4=4
+  \]
+
+  Also
+  \begin{align*}
+  r_1r_2+r_1r_3+r_1r_4+r_2r_3+r_2r_4+r_3r_4
+  &=\frac{1}{\alpha\beta}+\frac{1}{\alpha\gamma}+\frac{1}{\alpha\delta}+\frac{1}{\beta\gamma}+\frac{1}{\beta\delta}+\frac{1}{\gamma\delta}\\
+  &=\frac{\gamma\delta+\beta\delta+\beta\gamma+\alpha\delta+\alpha\gamma+\alpha\beta}{\alpha\beta\gamma\delta}\\
+  &=\frac{\alpha\beta+\alpha\gamma+\alpha\delta+\beta\gamma+\beta\delta+\gamma\delta}{\alpha\beta\gamma\delta}\\
+  &=\frac{3}{1}\\
+  &=3
+  \end{align*}
+
+  Now use
+  \[
+  (r_1+r_2+r_3+r_4)^2=r_1^2+r_2^2+r_3^2+r_4^2+2(r_1r_2+r_1r_3+r_1r_4+r_2r_3+r_2r_4+r_3r_4)
+  \]
+
+  So
+  \begin{align*}
+  \frac{1}{\alpha^2}+\frac{1}{\beta^2}+\frac{1}{\gamma^2}+\frac{1}{\delta^2}
+  &=4^2-2(3)\\
+  &=16-6\\
+  &=10
+  \end{align*}
+
+  So
+  \[
+  \frac{1}{\alpha^2}+\frac{1}{\beta^2}+\frac{1}{\gamma^2}+\frac{1}{\delta^2}=10
+  \]
+
+  \item Using the same notation, let
+  \[
+  S=r_1+r_2+r_3+r_4=4
+  \]
+
+  Then each bracket is the sum of all four reciprocals except one:
+  \[
+  \frac{1}{\alpha}+\frac{1}{\beta}+\frac{1}{\gamma}=S-r_4
+  \]
+  \[
+  \frac{1}{\beta}+\frac{1}{\gamma}+\frac{1}{\delta}=S-r_1
+  \]
+  \[
+  \frac{1}{\gamma}+\frac{1}{\delta}+\frac{1}{\alpha}=S-r_2
+  \]
+  \[
+  \frac{1}{\delta}+\frac{1}{\alpha}+\frac{1}{\beta}=S-r_3
+  \]
+
+  So the required expression is
+  \[
+  (S-r_1)^2+(S-r_2)^2+(S-r_3)^2+(S-r_4)^2
+  \]
+
+  Expanding,
+  \begin{align*}
+  \sum_{i=1}^4 (S-r_i)^2
+  &=\sum_{i=1}^4 \left(S^2-2Sr_i+r_i^2\right)\\
+  &=4S^2-2S\sum_{i=1}^4 r_i+\sum_{i=1}^4 r_i^2
+  \end{align*}
+
+  From parts (a) and (b),
+  \[
+  \sum_{i=1}^4 r_i=S=4
+  \qquad\text{and}\qquad
+  \sum_{i=1}^4 r_i^2=10
+  \]
+
+  Therefore
+  \begin{align*}
+  \sum_{i=1}^4 (S-r_i)^2
+  &=4(4^2)-2(4)(4)+10\\
+  &=64-32+10\\
+  &=42
+  \end{align*}
+
+  So the value of the expression is
+  \[
+  42
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\end{enumerate}
+\end{document}
