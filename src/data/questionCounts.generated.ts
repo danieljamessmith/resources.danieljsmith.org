@@ -19,6 +19,7 @@ export const questionCounts: Record<string, number> = {
   '/tex/further-maths/induction/qbt/_QBT__Proof_by_Induction___Divisibility.pdf': 8,
   '/tex/further-maths/induction/qbt/_QBT__Proof_by_Induction___Matrices.pdf': 8,
   '/tex/further-maths/induction/qbt/_QBT__Proof_by_Induction___Series.pdf': 10,
+  '/tex/further-maths/misc-pure/qbt/_QBT__Roots_of_Polynomials.pdf': 15,
   '/tex/further-maths/polar-coordinates/qbt/_QBT__Integration_of_Polar_Curves.pdf': 12,
   '/tex/further-maths/vectors/qbt/_QBT__Invariant_Points_and_Lines.pdf': 9,
   '/tex/further-maths/vectors/qbt/_QBT__Linear_Transformations.pdf': 11,

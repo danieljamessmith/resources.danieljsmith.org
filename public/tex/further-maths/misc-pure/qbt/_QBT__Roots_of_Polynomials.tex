@@ -1,0 +1,331 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{Roots of Polynomials}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+The cubic equation
+\[
+x^3 - 5x^2 + px - q = 0
+\]
+where $p$ and $q$ are positive real constants, has roots $\alpha$, $\beta$ and $\gamma$. \\
+
+Given that
+\[
+(\alpha-\beta)^2 + (\beta-\gamma)^2 + (\gamma-\alpha)^2 = 14
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item show that $p=6$ \marks{3} \\
+\end{enumerate}
+Given that
+\[
+\frac{1}{\alpha} + \frac{1}{\beta} + \frac{1}{\gamma} = 3
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item determine the value of $q$ \marks{3} \\
+  \item Without solving the cubic equation, determine the value of $(\alpha+1)(\beta+1)(\gamma+1)$ \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+The quartic equation $x^4+bx^3+cx^2+dx+3=0$ has roots $\alpha$, $\beta$, $\gamma$, $\delta$. It is given that
+\[
+\alpha+\beta+\gamma+\delta=-2,\qquad (\alpha+1)^2+(\beta+1)^2+(\gamma+1)^2+(\delta+1)^2=6,\qquad \alpha^{-1}+\beta^{-1}+\gamma^{-1}+\delta^{-1}=2
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the values of $b$, $c$ and $d$ \marks{6} \\
+  \item Given also that
+  \[
+  (\alpha+1)^3+(\beta+1)^3+(\gamma+1)^3+(\delta+1)^3=20
+  \]
+  find the value of $\alpha^4+\beta^4+\gamma^4+\delta^4$ \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+The equation $x^3 - 4x^2 - x + 6 = 0$ has roots $\alpha$, $\beta$ and $\gamma$. \\
+
+Determine the value of \[\frac{1}{\alpha+\beta} + \frac{1}{\beta+\gamma} + \frac{1}{\gamma+\alpha}\] \marks{4}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+The quartic equation $3x^4 - x^3 - 10x^2 + 8x + 4 = 0$ has roots $\alpha$, $\beta$, $\gamma$ and $\delta$. \\
+
+Without solving the equation, find equations with integer coefficients whose roots are \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item $\dfrac{1}{\alpha}$, $\dfrac{1}{\beta}$, $\dfrac{1}{\gamma}$ and $\dfrac{1}{\delta}$ \marks{6} \\
+  \item $\dfrac{2}{\alpha - 1}$, $\dfrac{2}{\beta - 1}$, $\dfrac{2}{\gamma - 1}$ and $\dfrac{2}{\delta - 1}$ \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+The cubic equation $x^3 + x^2 - 2x - 1 = 0$ has roots $\alpha$, $\beta$ and $\gamma$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find a cubic equation whose roots are $\frac{1}{\alpha+1}$, $\frac{1}{\beta+1}$ and $\frac{1}{\gamma+1}$ \marks{3} \\
+  \item Find the value of \[\left(\frac{1}{\alpha+1}\right)^2 + \left(\frac{1}{\beta+1}\right)^2 + \left(\frac{1}{\gamma+1}\right)^2\] \marks[-20pt]{2} \\
+  \item Find the value of \[\left(\frac{1}{\alpha+1}\right)^3 + \left(\frac{1}{\beta+1}\right)^3 + \left(\frac{1}{\gamma+1}\right)^3\] \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+The equation $x^3 - 14x^2 + 56x + c = 0$, where $c$ is a constant, has three roots in geometric progression. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Determine the roots of the equation \marks{6} \\
+  \item Find $c$ \marks{1} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+The quadratic equation
+\[
+x^2 - kx + 1 = 0
+\]
+where $k$ is an integer, has roots $\alpha$ and $\beta$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Write down, in terms of $k$ where appropriate, the value of $\alpha + \beta$ and the value of $\alpha\beta$ \marks{2} \\
+  \item Determine, in simplest form in terms of $k$, the value of
+  \[
+  (\alpha^2 + \beta) + (\beta^2 + \alpha)
+  \]
+  \marks[-20pt]{3}
+  \item Determine a quadratic equation which has roots
+  \[
+  \alpha^2 + \beta \text{ and } \beta^2 + \alpha
+  \]
+  giving your answer in the form $px^2 + qx + r = 0$, where $p$, $q$ and $r$ are integer values in terms of $k$ \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+The roots of the equation
+\[
+x^3 + 5x^2 - 4x - 24 = 0
+\]
+are $\alpha$, $\beta$ and $\gamma$. \\
+
+Without solving the equation,
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item write down the value of each of
+  \[
+  \alpha + \beta + \gamma \qquad \alpha\beta + \beta\gamma + \gamma\alpha \qquad \alpha\beta\gamma
+  \]
+  \marks[-20pt]{1}
+  \item Hence determine the value of
+  \begin{enumerate}[label=(\roman*)]
+    \item \[
+    \frac{1}{\alpha\beta} + \frac{1}{\beta\gamma} + \frac{1}{\gamma\alpha}
+    \]
+    \marks[-20pt]{2}
+    \item \[
+    (\alpha + 2)(\beta + 2)(\gamma + 2)
+    \]
+    \marks[-20pt]{2}
+    \item \[
+    \alpha^2\beta^2 + \beta^2\gamma^2 + \gamma^2\alpha^2
+    \]
+    \marks[-20pt]{3}
+  \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+The roots of the equation $3x^3 + px^2 - 12x - 8 = 0$ are $\alpha$, $\beta$ and $\gamma$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Given that $\alpha + \beta + \gamma = 2$, write down the value of $p$ \marks{1} \\
+  \item Write down values for $\alpha\beta + \beta\gamma + \gamma\alpha$ and $\alpha\beta\gamma$ \marks{1} \\
+  \item Hence find the value of $\left(1+\frac{1}{\alpha}\right)\left(1+\frac{1}{\beta}\right)\left(1+\frac{1}{\gamma}\right)$ \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+The roots of the equation $x^3 + 2x^2 - 5x - 3 = 0$ are $\alpha$, $\beta$ and $\gamma$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find $\alpha^2\beta^2 + \beta^2\gamma^2 + \gamma^2\alpha^2$ \marks{4} \\
+  \item Find an equation with integer coefficients whose roots are $\alpha^2$, $\beta^2$ and $\gamma^2$ \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+
+The graph of $y=x^3+3x^2+px-20$, where $p$ is a constant, crosses the $x$-axis at three points whose $x$-coordinates are equally spaced. \\
+
+Find the roots of
+\[
+x^3+3x^2+px-20=0
+\] \marks[-20pt]{6}
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+
+The cubic equation $x^3-3x+1=0$ has roots $\alpha$, $\beta$ and $\gamma$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find a cubic equation whose roots are $\dfrac{1}{\alpha-1}$, $\dfrac{1}{\beta-1}$, $\dfrac{1}{\gamma-1}$. \marks{3} \\
+  \item Hence find the value of $\dfrac{1}{(\alpha-1)^2}+\dfrac{1}{(\beta-1)^2}+\dfrac{1}{(\gamma-1)^2}$. \marks{2} \\
+  \item Find also the value of $\dfrac{1}{(\alpha-1)^5}+\dfrac{1}{(\beta-1)^5}+\dfrac{1}{(\gamma-1)^5}$. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 13 ----
+\questionitem
+
+The quartic equation $x^4-2x^2+2x+1=0$ has roots $\alpha$, $\beta$, $\gamma$, $\delta$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find a quartic equation whose roots are $\alpha^2$, $\beta^2$, $\gamma^2$, $\delta^2$ and state the value of $\alpha^2+\beta^2+\gamma^2+\delta^2$. \marks{5} \\
+  \item Find the value of $\alpha^6+\beta^6+\gamma^6+\delta^6$. \marks{3} \\
+  \item Find the value of $\alpha^8+\beta^8+\gamma^8+\delta^8$. \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 14 ----
+\questionitem
+
+The equation $z^4-2z^3-z^2-2z+1=0$ has roots $\alpha$, $\beta$, $\gamma$ and $\delta$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that a quartic equation whose roots are $\alpha+\dfrac{1}{\alpha}$, $\beta+\dfrac{1}{\beta}$, $\gamma+\dfrac{1}{\gamma}$ and $\delta+\dfrac{1}{\delta}$ is
+  \[
+  w^4-4w^3-2w^2+12w+9=0
+  \]
+  \marks[-20pt]{3}
+  \item Hence determine the exact roots of the equation $z^4-2z^3-z^2-2z+1=0$. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 15 ----
+\questionitem
+
+The quartic equation $x^4-2x^3+3x^2-4x+1=0$ has roots $\alpha$, $\beta$, $\gamma$, $\delta$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the value of $\dfrac{1}{\alpha}+\dfrac{1}{\beta}+\dfrac{1}{\gamma}+\dfrac{1}{\delta}$. \marks{2} \\
+  \item Find the value of $\dfrac{1}{\alpha^2}+\dfrac{1}{\beta^2}+\dfrac{1}{\gamma^2}+\dfrac{1}{\delta^2}$. \marks{2} \\
+  \item Find the value of
+  \[
+  \left(\dfrac{1}{\alpha}+\dfrac{1}{\beta}+\dfrac{1}{\gamma}\right)^2+\left(\dfrac{1}{\beta}+\dfrac{1}{\gamma}+\dfrac{1}{\delta}\right)^2+\left(\dfrac{1}{\gamma}+\dfrac{1}{\delta}+\dfrac{1}{\alpha}\right)^2+\left(\dfrac{1}{\delta}+\dfrac{1}{\alpha}+\dfrac{1}{\beta}\right)^2
+  \]
+  \marks[-20pt]{5}
+\end{enumerate}
+\end{enumerate}
+\end{document}

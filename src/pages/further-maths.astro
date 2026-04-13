@@ -33,6 +33,11 @@ const rawInductionPairs = getResourcePairs(FM, 'Proof by Induction');
 const inductionPairs = rawInductionPairs.filter(
   (p): p is { questions: Resource; solutions: Resource } => p.solutions !== undefined,
 );
+
+const rawMiscPurePairs = getResourcePairs(FM, 'Miscellaneous Pure');
+const miscPurePairs = rawMiscPurePairs.filter(
+  (p): p is { questions: Resource; solutions: Resource } => p.solutions !== undefined,
+);
 ---
 
 <Layout
@@ -295,6 +300,51 @@ const inductionPairs = rawInductionPairs.filter(
             ))}
 
             {vectorPairs.map((pair) => (
+              <div
+                data-card-href={`/view/${pair.questions.id}`}
+                class="cursor-pointer flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg bg-slate-800/60 border border-slate-700/60 hover:bg-slate-800/80 hover:border-slate-600/70 transition-colors duration-150"
+              >
+                <div class="min-w-0">
+                  <p class="text-sm font-medium text-slate-100 truncate">{pair.questions.title}</p>
+                  <p class="text-xs text-slate-400 mt-0.5 leading-none">
+                    {pair.questions.questionCount} questions<span class="hidden sm:inline">{pair.questions.note ? ` · ${pair.questions.note}` : ''}</span>
+                  </p>
+                </div>
+                <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0 pl-1">
+                  <a
+                    href={`/view/${pair.questions.id}`}
+                    class="flex items-center gap-1.5 px-2 py-1 sm:px-2.5 rounded-md text-xs font-medium bg-sky-950/70 text-sky-300 border border-sky-800/50 hover:bg-sky-900/70 hover:text-sky-200 transition-colors"
+                  >
+                    <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                    <span class="hidden sm:inline">Questions</span>
+                  </a>
+                  <a
+                    href={`/view/${pair.solutions.id}`}
+                    class="flex items-center gap-1.5 px-2 py-1 sm:px-2.5 rounded-md text-xs font-medium bg-emerald-950/70 text-emerald-300 border border-emerald-800/50 hover:bg-emerald-900/70 hover:text-emerald-200 transition-colors"
+                  >
+                    <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span class="hidden sm:inline">Solutions</span>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- ── Miscellaneous Pure ─────────────────────────────────────── -->
+          <h2
+            id="miscellaneous-pure"
+            class="scroll-mt-24 text-lg font-semibold text-white mt-5 mb-3 flex items-center gap-3"
+          >
+            <span class="w-8 h-0.5 bg-slate-500 rounded-full" />
+            Miscellaneous Pure
+          </h2>
+
+          <div class="space-y-1.5">
+            {miscPurePairs.map((pair) => (
               <div
                 data-card-href={`/view/${pair.questions.id}`}
                 class="cursor-pointer flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg bg-slate-800/60 border border-slate-700/60 hover:bg-slate-800/80 hover:border-slate-600/70 transition-colors duration-150"
