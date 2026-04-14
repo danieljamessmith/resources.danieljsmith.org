@@ -10,10 +10,11 @@
  * Latexmk args mirror .vscode/settings.json (latex-workshop.latex.tools).
  */
 
-import { readdirSync, copyFileSync, mkdirSync } from 'node:fs';
+import { copyFileSync, mkdirSync } from 'node:fs';
 import { join, dirname, basename, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
+import { shouldProcessTexFile, walkTexFiles } from './lib/tex-utils.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, '..');
@@ -27,33 +28,6 @@ const positional = args.filter((a) => !a.startsWith('-'));
 const scope = positional[0] ?? 'further-maths';
 
 const searchRoot = scope === 'all' ? texRoot : join(texRoot, scope);
-
-// --- File discovery ---------------------------------------------------------
-
-function shouldCompile(absPath) {
-  const p = absPath.replace(/\\/g, '/').toLowerCase();
-  if (!p.endsWith('.tex')) return false;
-  if (p.includes('/notes/')) return false;
-  return p.includes('/qbt/') || p.includes('/soln/');
-}
-
-function walkTexFiles(dir, acc = []) {
-  let entries;
-  try {
-    entries = readdirSync(dir, { withFileTypes: true });
-  } catch {
-    return acc;
-  }
-  for (const entry of entries) {
-    const full = join(dir, entry.name);
-    if (entry.isDirectory()) {
-      walkTexFiles(full, acc);
-    } else if (entry.isFile() && shouldCompile(full)) {
-      acc.push(full);
-    }
-  }
-  return acc;
-}
 
 // --- Build ------------------------------------------------------------------
 
@@ -92,7 +66,7 @@ function deployPdf(absTexPath) {
 
 // --- Main -------------------------------------------------------------------
 
-const files = walkTexFiles(searchRoot).sort();
+const files = walkTexFiles(searchRoot, repoRoot, shouldProcessTexFile).sort();
 
 if (files.length === 0) {
   console.error(`compile-tex: no .tex files found under ${searchRoot}`);

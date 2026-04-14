@@ -43,7 +43,7 @@ if (!TOKEN) {
 // ---------------------------------------------------------------------------
 
 /** Replace every non-alphanumeric character with an underscore. */
-function sanitizeTopic(name) {
+export function sanitizeTopic(name) {
   return name.replace(/[^a-zA-Z0-9]/g, '_');
 }
 
@@ -54,7 +54,7 @@ const EXAM_BOARD_IDS = ['edexcel', 'aqa', 'ocr-a', 'ocr-mei', 'cie'];
  * Prompt for exam boards (numbered multi-select). Returns `null` = all boards.
  * @param {import('node:readline/promises').Interface} rl
  */
-async function promptExamBoards(rl) {
+export async function promptExamBoards(rl) {
   console.log('\nExam boards:');
   console.log('  1. All boards (default)');
   console.log('  2. Edexcel');
@@ -75,7 +75,7 @@ async function promptExamBoards(rl) {
  * @param {string} line
  * @returns {{ ok: true, boardIds: string[] | null } | { ok: false, message: string }}
  */
-function parseBoardSelection(line) {
+export function parseBoardSelection(line) {
   const t = line.trim();
   if (!t) return { ok: true, boardIds: null };
 
@@ -105,7 +105,7 @@ function parseBoardSelection(line) {
 }
 
 /** @param {string[] | null} boardIds */
-function formatBoardsSnippet(boardIds) {
+export function formatBoardsSnippet(boardIds) {
   if (!boardIds || boardIds.length === 0) {
     return '  (omit `boards` — applies to all exam boards)';
   }
@@ -113,7 +113,7 @@ function formatBoardsSnippet(boardIds) {
 }
 
 /** Extract an Overleaf project ID from a full URL or bare ID. */
-function parseProjectId(input) {
+export function parseProjectId(input) {
   const trimmed = input.trim();
   const urlMatch = trimmed.match(/overleaf\.com\/project\/([a-f0-9]+)/i);
   if (urlMatch) return urlMatch[1];

@@ -3,9 +3,10 @@
  * comments except clean question delimiters inserted by clean-tex.mjs.
  */
 
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { join, relative, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { normalizePath, shouldProcessTexFile, walkTexFiles, findDocBoundaries } from './lib/tex-utils.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(__dirname, '..');
@@ -13,57 +14,19 @@ const texRoot = join(repoRoot, 'public', 'tex');
 
 const ALLOWED_FULL_LINE_COMMENT = /^\s*% ---- Question \d+ ----\s*$/;
 
-function normalizePath(p) {
-  return p.replace(/\\/g, '/');
-}
-
-function shouldProcessTexFile(relFromRepo) {
-  const p = normalizePath(relFromRepo).toLowerCase();
-  if (!p.endsWith('.tex')) return false;
-  if (p.includes('/notes/')) return false;
-  return p.includes('/qbt/') || p.includes('/soln/');
-}
-
-function walkTexFiles(dir, acc) {
-  let entries;
-  try {
-    entries = readdirSync(dir, { withFileTypes: true });
-  } catch {
-    return;
-  }
-  for (const entry of entries) {
-    const full = join(dir, entry.name);
-    if (entry.isDirectory()) {
-      walkTexFiles(full, acc);
-    } else if (entry.isFile() && entry.name.endsWith('.tex')) {
-      const rel = relative(repoRoot, full);
-      if (shouldProcessTexFile(rel)) acc.push(full);
-    }
-  }
-}
-
-function findDocBoundaries(lines) {
-  let beginIdx = -1;
-  let endIdx = -1;
-  for (let i = 0; i < lines.length; i++) {
-    if (beginIdx < 0 && lines[i].includes('\\begin{document}')) beginIdx = i;
-    if (lines[i].includes('\\end{document}')) {
-      endIdx = i;
-      break;
-    }
-  }
-  return { beginIdx, endIdx };
-}
-
-function isUnexpectedFullLineComment(line) {
+/**
+ * Returns true if a line is a full-line comment that is NOT a permitted
+ * question delimiter.
+ * @param {string} line
+ */
+export function isUnexpectedFullLineComment(line) {
   const t = line.trimStart();
   if (t.length === 0 || t[0] !== '%') return false;
   return !ALLOWED_FULL_LINE_COMMENT.test(line);
 }
 
 function main() {
-  const files = [];
-  walkTexFiles(texRoot, files);
+  const files = walkTexFiles(texRoot, repoRoot, shouldProcessTexFile);
   files.sort();
 
   /** @type {{ file: string; line: number; text: string }[]} */
