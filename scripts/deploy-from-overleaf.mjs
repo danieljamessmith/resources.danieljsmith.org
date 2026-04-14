@@ -47,6 +47,71 @@ function sanitizeTopic(name) {
   return name.replace(/[^a-zA-Z0-9]/g, '_');
 }
 
+/** Matches `ExamBoard` in `src/data/resources.ts` (order aligns with numbered menu 2–6). */
+const EXAM_BOARD_IDS = ['edexcel', 'aqa', 'ocr-a', 'ocr-mei', 'cie'];
+
+/**
+ * Prompt for exam boards (numbered multi-select). Returns `null` = all boards.
+ * @param {import('node:readline/promises').Interface} rl
+ */
+async function promptExamBoards(rl) {
+  console.log('\nExam boards:');
+  console.log('  1. All boards (default)');
+  console.log('  2. Edexcel');
+  console.log('  3. AQA');
+  console.log('  4. OCR A');
+  console.log('  5. OCR MEI');
+  console.log('  6. CIE');
+
+  for (;;) {
+    const line = await rl.question('Select boards (comma-separated numbers, Enter for all): ');
+    const result = parseBoardSelection(line);
+    if (result.ok) return result.boardIds;
+    console.error(`  ${result.message}`);
+  }
+}
+
+/**
+ * @param {string} line
+ * @returns {{ ok: true, boardIds: string[] | null } | { ok: false, message: string }}
+ */
+function parseBoardSelection(line) {
+  const t = line.trim();
+  if (!t) return { ok: true, boardIds: null };
+
+  const parts = t.split(/[\s,]+/).filter(Boolean);
+  const nums = parts.map((p) => parseInt(p, 10)).filter((n) => !Number.isNaN(n));
+
+  if (nums.length === 0) {
+    return { ok: false, message: 'Enter numbers 1–6, or leave blank for all boards.' };
+  }
+  if (nums.some((n) => n < 1 || n > 6)) {
+    return { ok: false, message: 'Each number must be between 1 and 6.' };
+  }
+
+  if (nums.includes(1)) {
+    if (nums.length > 1) {
+      return { ok: false, message: 'Option 1 (All boards) cannot be combined with other numbers.' };
+    }
+    return { ok: true, boardIds: null };
+  }
+
+  const unique = [...new Set(nums)].sort((a, b) => a - b);
+  const boardIds = unique.map((n) => EXAM_BOARD_IDS[n - 2]).filter(Boolean);
+  if (boardIds.length === 0) {
+    return { ok: false, message: 'Pick one or more of 2–6, or 1 for all boards.' };
+  }
+  return { ok: true, boardIds: [...new Set(boardIds)] };
+}
+
+/** @param {string[] | null} boardIds */
+function formatBoardsSnippet(boardIds) {
+  if (!boardIds || boardIds.length === 0) {
+    return '  (omit `boards` — applies to all exam boards)';
+  }
+  return `  boards: [${boardIds.map((id) => `'${id}'`).join(', ')}],`;
+}
+
 /** Extract an Overleaf project ID from a full URL or bare ID. */
 function parseProjectId(input) {
   const trimmed = input.trim();
@@ -127,6 +192,7 @@ async function main() {
 
     const topicName = await rl.question('Topic name (e.g. "Matrix Determinants & Inverses"): ');
     const sitePath = await rl.question('Site path (e.g. "further-maths/vectors"): ');
+    const examBoardIds = await promptExamBoards(rl);
 
     const qbtInput = await rl.question('\nQuestions Overleaf URL or project ID: ');
     const solnInput = await rl.question('Solutions Overleaf URL or project ID: ');
@@ -232,7 +298,11 @@ async function main() {
       const rel = f.slice(repoRoot.length + 1).replace(/\\/g, '/');
       console.log(`  ${rel}`);
     }
-    console.log();
+    console.log('\n--- Add to src/data/resources.ts (questions + solutions pair) ---');
+    console.log('Set `pairId` / ids to match your naming. On the **questions** resource only:');
+    console.log(formatBoardsSnippet(examBoardIds));
+    console.log(`  file: '/tex/${sitePath.replace(/\\/g, '/')}/qbt/${qbtFileName}.pdf',`);
+    console.log('---\n');
   } finally {
     rl.close();
     for (const d of tempDirs) {
