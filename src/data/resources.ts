@@ -1,4 +1,5 @@
 import { questionCounts } from './questionCounts.generated';
+import { fileHashes } from './fileHashes.generated';
 
 export interface Resource {
   id: string;
@@ -13,6 +14,8 @@ export interface Resource {
   questionCount?: number;
   /** Optional label shown after question count, e.g. "FM Level". */
   note?: string;
+  /** Human-friendly filename for the download attribute, e.g. "De Moivre's Theorem - Questions.pdf". */
+  downloadName: string;
 }
 
 const FM = 'A-level Further Maths';
@@ -658,13 +661,23 @@ const rawResources: Resource[] = [
   },
 ];
 
-/** Populate questionCount from the generated counts file for all QBT question sheets. */
-export const resources: Resource[] = rawResources.map((r) => ({
-  ...r,
-  ...(r.type === 'questions' && questionCounts[r.file] !== undefined
-    ? { questionCount: questionCounts[r.file] }
-    : {}),
-}));
+function buildDownloadName(title: string, type?: string): string {
+  const suffix = type ? ` - ${type.charAt(0).toUpperCase() + type.slice(1)}` : '';
+  return `${title}${suffix}.pdf`;
+}
+
+/** Populate questionCount, downloadName, and cache-busted file URL. */
+export const resources: Resource[] = rawResources.map((r) => {
+  const hash = fileHashes[r.file];
+  return {
+    ...r,
+    file: hash ? `${r.file}?v=${hash}` : r.file,
+    downloadName: buildDownloadName(r.title, r.type),
+    ...(r.type === 'questions' && questionCounts[r.file] !== undefined
+      ? { questionCount: questionCounts[r.file] }
+      : {}),
+  };
+});
 
 export const categories = [...new Set(resources.map((r) => r.category))];
 
