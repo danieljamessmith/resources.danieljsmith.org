@@ -3,9 +3,10 @@
  * collapses long blank runs, and re-inserts numbered question delimiters.
  */
 
-import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { join, relative, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { normalizePath, shouldProcessTexFile, walkTexFiles, findDocBoundaries } from './lib/tex-utils.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(__dirname, '..');
@@ -13,58 +14,22 @@ const texRoot = join(repoRoot, 'public', 'tex');
 
 const QUESTION_ITEM_LINE = /^\s*\\questionitem\s*$/;
 
-function normalizePath(p) {
-  return p.replace(/\\/g, '/');
-}
-
-function shouldProcessTexFile(relFromRepo) {
-  const p = normalizePath(relFromRepo).toLowerCase();
-  if (!p.endsWith('.tex')) return false;
-  if (p.includes('/notes/')) return false;
-  return p.includes('/qbt/') || p.includes('/soln/');
-}
-
-function walkTexFiles(dir, acc) {
-  let entries;
-  try {
-    entries = readdirSync(dir, { withFileTypes: true });
-  } catch {
-    return;
-  }
-  for (const entry of entries) {
-    const full = join(dir, entry.name);
-    if (entry.isDirectory()) {
-      walkTexFiles(full, acc);
-    } else if (entry.isFile() && entry.name.endsWith('.tex')) {
-      const rel = relative(repoRoot, full);
-      if (shouldProcessTexFile(rel)) acc.push(full);
-    }
-  }
-}
-
-function findDocBoundaries(lines) {
-  let beginIdx = -1;
-  let endIdx = -1;
-  for (let i = 0; i < lines.length; i++) {
-    if (beginIdx < 0 && lines[i].includes('\\begin{document}')) beginIdx = i;
-    if (lines[i].includes('\\end{document}')) {
-      endIdx = i;
-      break;
-    }
-  }
-  return { beginIdx, endIdx };
-}
-
-function isFullLineComment(line) {
+/** Returns true if the line consists entirely of a LaTeX comment. */
+export function isFullLineComment(line) {
   const t = line.trimStart();
   return t.length > 0 && t[0] === '%';
 }
 
-function stripBodyLines(bodyLines) {
+/** Removes all full-line comment lines from `bodyLines`. */
+export function stripBodyLines(bodyLines) {
   return bodyLines.filter((line) => !isFullLineComment(line));
 }
 
-function collapseBlankRuns(bodyLines) {
+/**
+ * Collapses runs of more than two consecutive blank lines down to two.
+ * @param {string[]} bodyLines
+ */
+export function collapseBlankRuns(bodyLines) {
   const out = [];
   let blankRun = 0;
   for (const line of bodyLines) {
@@ -80,7 +45,12 @@ function collapseBlankRuns(bodyLines) {
   return out;
 }
 
-function insertQuestionDelimiters(bodyLines) {
+/**
+ * Inserts a `% ---- Question N ----` delimiter before each `\questionitem`
+ * line, with sequential numbering.
+ * @param {string[]} bodyLines
+ */
+export function insertQuestionDelimiters(bodyLines) {
   const out = [];
   let n = 0;
   for (const line of bodyLines) {
@@ -93,7 +63,13 @@ function insertQuestionDelimiters(bodyLines) {
   return out;
 }
 
-function processContent(text) {
+/**
+ * Processes the full text of a .tex file: strips body comments, collapses
+ * blank runs, and inserts question delimiters.
+ * @param {string} text
+ * @returns {string}
+ */
+export function processContent(text) {
   const lines = text.split(/\r?\n/);
   const { beginIdx, endIdx } = findDocBoundaries(lines);
   if (beginIdx < 0 || endIdx < 0) {
@@ -112,8 +88,7 @@ function processContent(text) {
 }
 
 function main() {
-  const files = [];
-  walkTexFiles(texRoot, files);
+  const files = walkTexFiles(texRoot, repoRoot, shouldProcessTexFile);
   files.sort();
 
   let totalComments = 0;
