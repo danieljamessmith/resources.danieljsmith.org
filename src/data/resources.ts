@@ -1,6 +1,17 @@
 import { questionCounts } from './questionCounts.generated';
 import { fileHashes } from './fileHashes.generated';
 
+/** UK/international exam boards for A-level Further Maths filtering. */
+export type ExamBoard = 'edexcel' | 'ocr-a' | 'ocr-mei' | 'aqa' | 'cie';
+
+export const EXAM_BOARDS: { id: ExamBoard; label: string }[] = [
+  { id: 'edexcel', label: 'Edexcel' },
+  { id: 'aqa', label: 'AQA' },
+  { id: 'ocr-a', label: 'OCR A' },
+  { id: 'ocr-mei', label: 'OCR MEI' },
+  { id: 'cie', label: 'CIE' },
+];
+
 export interface Resource {
   id: string;
   title: string;
@@ -14,6 +25,11 @@ export interface Resource {
   questionCount?: number;
   /** Optional label shown after question count, e.g. "FM Level". */
   note?: string;
+  /**
+   * Exam boards this pack is relevant for (typically set on `questions` and `notes` only).
+   * Omitted or empty means all boards.
+   */
+  boards?: ExamBoard[];
   /** Human-friendly filename for the download attribute, e.g. "De Moivre's Theorem - Questions.pdf". */
   downloadName: string;
 }
@@ -206,6 +222,7 @@ const rawResources: Resource[] = [
     pairId: 'fm-vectors-vector-product-solns',
     topic: 'Vectors',
     note: 'Cross Product',
+    boards: ['aqa', 'ocr-a', 'ocr-mei', 'cie'],
   },
   {
     id: 'fm-vectors-vector-product-solns',
@@ -422,6 +439,7 @@ const rawResources: Resource[] = [
     pairId: 'fm-further-tangents-polar-curves-solns',
     topic: 'Further Calculus',
     note: 'Polar Coordinates',
+    boards: ['edexcel', 'aqa'],
   },
   {
     id: 'fm-further-tangents-polar-curves-solns',
@@ -701,6 +719,29 @@ export function getFurtherMathsQuestionTotalRoundedDownTen(): number {
 
 export function getResourceById(id: string): Resource | undefined {
   return resources.find((r) => r.id === id);
+}
+
+/**
+ * Boards a resource applies to. `undefined` means all boards.
+ * For `solutions`, inherits from the paired `questions` resource when not set on the row itself.
+ */
+export function getResourceBoards(r: Resource): ExamBoard[] | undefined {
+  if (r.boards && r.boards.length > 0) return r.boards;
+  if (r.type === 'solutions' && r.pairId) {
+    const q = getResourceById(r.pairId);
+    if (q?.boards && q.boards.length > 0) return q.boards;
+  }
+  return undefined;
+}
+
+/** Value for `data-boards` on listing cards: `"all"` or comma-separated ids. */
+export function boardsToDataAttributeValue(boards: ExamBoard[] | undefined): string {
+  if (!boards || boards.length === 0) return 'all';
+  return boards.join(',');
+}
+
+export function getExamBoardLabel(id: ExamBoard): string {
+  return EXAM_BOARDS.find((b) => b.id === id)?.label ?? id;
 }
 
 export function getResourcesByCategory(category: string): Resource[] {
