@@ -71,6 +71,8 @@ const paired =
           {paired && (
             <a
               href={paired.href}
+              target="_blank"
+              rel="noopener noreferrer"
               class:list={[
                 'inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg border text-sm font-medium transition-colors whitespace-nowrap',
                 paired.buttonClass,
@@ -107,7 +109,7 @@ const paired =
     </header>
 
     <main class="flex-1 flex flex-col min-h-0">
-      <div class="flex-1 bg-surface-raised flex flex-col min-h-0">
+      <div class="hidden md:flex flex-1 bg-surface-raised flex-col min-h-0">
         <iframe
           id="pdf-embed"
           src={resource.file}
@@ -121,6 +123,48 @@ const paired =
             el.src = pdfPath + '#view=FitH';
           })();
         </script>
+      </div>
+
+      <div class="flex md:hidden flex-1 items-center justify-center px-6 py-12">
+        <div class="w-full max-w-sm text-center space-y-6">
+          <div>
+            <h2 class="text-xl font-semibold text-white">{resource.title}</h2>
+            <p class="text-sm text-slate-400 mt-1">{displayDescription}</p>
+          </div>
+
+          <a
+            href={resource.file}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-base font-semibold transition-colors"
+          >
+            Open PDF
+          </a>
+
+          <div class="flex gap-3">
+            <a
+              href={resource.file}
+              download={resource.downloadName}
+              class="flex-1 py-2.5 rounded-lg border border-slate-600 text-slate-200 hover:bg-slate-800/80 text-sm font-medium transition-colors text-center"
+            >
+              Download
+            </a>
+
+            {paired && (
+              <a
+                href={paired.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class:list={[
+                  'flex-1 py-2.5 rounded-lg border text-sm font-medium transition-colors text-center',
+                  paired.buttonClass,
+                ]}
+              >
+                {paired.label}
+              </a>
+            )}
+          </div>
+        </div>
       </div>
     </main>
   </div>

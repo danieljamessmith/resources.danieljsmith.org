@@ -11,12 +11,12 @@ interface Props {
 const { variant = 'sidebar' } = Astro.props;
 
 const topics: TopicItem[] = [
+  { id: 'miscellaneous-pure', label: 'Misc Pure' },
   { id: 'further-calculus', label: 'Further Calculus' },
   { id: 'differential-equations', label: 'Differential Equations' },
   { id: 'complex-numbers', label: 'Complex Numbers' },
   { id: 'proof-by-induction', label: 'Proof by Induction' },
   { id: 'vectors', label: 'Vectors & Matrices' },
-  { id: 'miscellaneous-pure', label: 'Misc. Pure Topics' },
 ];
 
 const linkInactive =
@@ -26,7 +26,7 @@ const mobileInactive =
   'flex-shrink-0 whitespace-nowrap rounded-full border border-slate-600/80 px-3 py-1.5 text-xs font-medium text-slate-300 transition-colors hover:border-purple-500/50 hover:text-white';
 const mobileActive =
   'flex-shrink-0 whitespace-nowrap rounded-full border border-purple-500 bg-purple-500/15 px-3 py-1.5 text-xs font-medium text-white';
-const enableLiveTopicHighlight = false;
+const enableLiveTopicHighlight = true;
 ---
 
 {
@@ -36,7 +36,7 @@ const enableLiveTopicHighlight = false;
       aria-label="Topic navigation"
       data-topic-nav="sidebar"
     >
-      <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">Pure Mathematics</p>
+      <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">Topic</p>
       <ul class="space-y-1 pr-4" role="list">
         {topics.map((t) => (
           <li>

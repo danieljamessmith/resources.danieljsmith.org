@@ -639,6 +639,26 @@ const rawResources: Resource[] = [
 
   // --- A-level Further Maths: Miscellaneous Pure ---
   {
+    id: 'fm-misc-hyperbolic-functions',
+    title: 'Hyperbolic Functions',
+    description: '',
+    file: '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Hyperbolic_Functions.pdf',
+    category: FM,
+    type: 'questions',
+    pairId: 'fm-misc-hyperbolic-functions-solns',
+    topic: 'Miscellaneous Pure',
+  },
+  {
+    id: 'fm-misc-hyperbolic-functions-solns',
+    title: 'Hyperbolic Functions',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/misc-pure/soln/_QBT___Solns__Hyperbolic_Functions.pdf',
+    category: FM,
+    type: 'solutions',
+    pairId: 'fm-misc-hyperbolic-functions',
+    topic: 'Miscellaneous Pure',
+  },
+  {
     id: 'fm-misc-roots-of-polynomials',
     title: 'Roots of Polynomials',
     description: '',
@@ -660,7 +680,7 @@ const rawResources: Resource[] = [
   },
   {
     id: 'fm-misc-method-of-differences',
-    title: 'Method of Differences',
+    title: 'Series - Method of Differences',
     description: '',
     file: '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Series___Method_of_Differences.pdf',
     category: FM,
@@ -670,7 +690,7 @@ const rawResources: Resource[] = [
   },
   {
     id: 'fm-misc-method-of-differences-solns',
-    title: 'Method of Differences',
+    title: 'Series - Method of Differences',
     description: 'Full worked solutions',
     file: '/tex/further-maths/core-pure/misc-pure/soln/_QBT___Solns__Series___Method_of_Differences.pdf',
     category: FM,
