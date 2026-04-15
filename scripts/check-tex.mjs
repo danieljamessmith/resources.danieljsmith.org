@@ -70,4 +70,6 @@ function main() {
   console.log('check-tex: all clean');
 }
 
-main();
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main();
+}
