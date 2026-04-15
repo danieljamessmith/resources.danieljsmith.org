@@ -139,4 +139,6 @@ function main() {
   console.log(`clean-tex: ${fileCount} file(s), ${totalComments} comment line(s) removed total`);
 }
 
-main();
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main();
+}
