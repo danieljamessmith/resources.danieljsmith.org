@@ -283,6 +283,7 @@ const rawResources: Resource[] = [
     type: 'questions',
     pairId: 'fm-vectors-reflections-in-planes-solns',
     topic: 'Vectors',
+    boards: ['edexcel', 'aqa', 'ocr-a'],
   },
   {
     id: 'fm-vectors-reflections-in-planes-solns',
