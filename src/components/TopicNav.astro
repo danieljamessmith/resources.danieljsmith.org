@@ -36,23 +36,21 @@ const enableLiveTopicHighlight = false;
       aria-label="Topic navigation"
       data-topic-nav="sidebar"
     >
-      <div class="sticky top-24 pr-4">
-        <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">Pure Mathematics</p>
-        <ul class="space-y-1" role="list">
-          {topics.map((t) => (
-            <li>
-              <a
-                href={`#${t.id}`}
-                class={linkInactive}
-                data-topic-target={t.id}
-                data-topic-link="sidebar"
-              >
-                {t.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">Pure Mathematics</p>
+      <ul class="space-y-1 pr-4" role="list">
+        {topics.map((t) => (
+          <li>
+            <a
+              href={`#${t.id}`}
+              class={linkInactive}
+              data-topic-target={t.id}
+              data-topic-link="sidebar"
+            >
+              {t.label}
+            </a>
+          </li>
+        ))}
+      </ul>
     </nav>
   ) : (
     <nav

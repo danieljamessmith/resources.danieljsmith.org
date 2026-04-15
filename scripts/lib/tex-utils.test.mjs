@@ -7,11 +7,11 @@ import { normalizePath, shouldProcessTexFile, findDocBoundaries } from './tex-ut
 
 describe('normalizePath', () => {
   it('converts backslashes to forward slashes', () => {
-    expect(normalizePath('public\\tex\\further-maths')).toBe('public/tex/further-maths');
+    expect(normalizePath('public\\tex\\further-maths\\core-pure')).toBe('public/tex/further-maths/core-pure');
   });
 
   it('leaves forward-slash paths unchanged', () => {
-    expect(normalizePath('public/tex/further-maths')).toBe('public/tex/further-maths');
+    expect(normalizePath('public/tex/further-maths/core-pure')).toBe('public/tex/further-maths/core-pure');
   });
 
   it('handles mixed separators', () => {
@@ -25,35 +25,35 @@ describe('normalizePath', () => {
 
 describe('shouldProcessTexFile', () => {
   it('returns true for a qbt .tex file', () => {
-    expect(shouldProcessTexFile('public/tex/further-maths/complex-numbers/qbt/_QBT__Topic.tex')).toBe(true);
+    expect(shouldProcessTexFile('public/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Topic.tex')).toBe(true);
   });
 
   it('returns true for a soln .tex file', () => {
-    expect(shouldProcessTexFile('public/tex/further-maths/complex-numbers/soln/_QBT___Solns__Topic.tex')).toBe(true);
+    expect(shouldProcessTexFile('public/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Topic.tex')).toBe(true);
   });
 
   it('returns false for a notes .tex file', () => {
-    expect(shouldProcessTexFile('public/tex/further-maths/complex-numbers/notes/notes.tex')).toBe(false);
+    expect(shouldProcessTexFile('public/tex/further-maths/core-pure/complex-numbers/notes/notes.tex')).toBe(false);
   });
 
   it('returns false for a .pdf file', () => {
-    expect(shouldProcessTexFile('public/tex/further-maths/complex-numbers/qbt/_QBT__Topic.pdf')).toBe(false);
+    expect(shouldProcessTexFile('public/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Topic.pdf')).toBe(false);
   });
 
   it('returns false for a path outside qbt or soln', () => {
-    expect(shouldProcessTexFile('public/tex/further-maths/complex-numbers/other/file.tex')).toBe(false);
+    expect(shouldProcessTexFile('public/tex/further-maths/core-pure/complex-numbers/other/file.tex')).toBe(false);
   });
 
   it('is case-insensitive for path segments and extension', () => {
     // The function lowercases the entire path, so uppercase variants all match.
     expect(shouldProcessTexFile('public/tex/Further-Maths/Complex-Numbers/QBT/_QBT__Topic.tex')).toBe(true);
     expect(shouldProcessTexFile('public/tex/Further-Maths/Complex-Numbers/QBT/_QBT__Topic.TEX')).toBe(true);
-    expect(shouldProcessTexFile('public/tex/further-maths/complex-numbers/SOLN/_QBT__Topic.tex')).toBe(true);
+    expect(shouldProcessTexFile('public/tex/further-maths/core-pure/complex-numbers/SOLN/_QBT__Topic.tex')).toBe(true);
   });
 
   it('handles Windows-style backslash paths', () => {
     expect(
-      shouldProcessTexFile('public\\tex\\further-maths\\complex-numbers\\qbt\\_QBT__Topic.tex'),
+      shouldProcessTexFile('public\\tex\\further-maths\\core-pure\\complex-numbers\\qbt\\_QBT__Topic.tex'),
     ).toBe(true);
   });
 });
