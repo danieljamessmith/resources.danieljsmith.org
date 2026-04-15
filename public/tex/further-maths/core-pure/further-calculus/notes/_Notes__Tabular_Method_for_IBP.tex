@@ -83,49 +83,55 @@
 }{0.82}}
 
 \newcommand{\tableB}{%
-\basicibptable{5}{%
-\node at ({0.5*\wA},{4.5*\h}) {$+$};
-\node at ({\wA+0.5*\wB},{4.5*\h}) {$x^3$};
-\node at ({\wA+\wB+0.5*\wC},{4.5*\h}) {$-\cos x$};
-\node at ({0.5*\wA},{3.5*\h}) {$-$};
-\node at ({\wA+0.5*\wB},{3.5*\h}) {$3x^2$};
-\node at ({\wA+\wB+0.5*\wC},{3.5*\h}) {$-\sin x$};
-\node at ({0.5*\wA},{2.5*\h}) {$+$};
-\node at ({\wA+0.5*\wB},{2.5*\h}) {$6x$};
-\node at ({\wA+\wB+0.5*\wC},{2.5*\h}) {$\cos x$};
-\node at ({0.5*\wA},{1.5*\h}) {$-$};
-\node at ({\wA+0.5*\wB},{1.5*\h}) {$6$};
-\node at ({\wA+\wB+0.5*\wC},{1.5*\h}) {$\sin x$};
-\node at ({0.5*\wA},{0.5*\h}) {$+$};
-\node at ({\wA+0.5*\wB},{0.5*\h}) {$0$};
-\node at ({\wA+\wB+0.5*\wC},{0.5*\h}) {$-\cos x$};
-}{%
-\draw[diag] ({\wA+0.72*\wB},{4.5*\h}) -- ({\wA+\wB+0.28*\wC},{3.5*\h});
-\draw[diag] ({\wA+0.72*\wB},{3.5*\h}) -- ({\wA+\wB+0.28*\wC},{2.5*\h});
-\draw[diag] ({\wA+0.72*\wB},{2.5*\h}) -- ({\wA+\wB+0.28*\wC},{1.5*\h});
-\draw[diag] ({\wA+0.72*\wB},{1.5*\h}) -- ({\wA+\wB+0.28*\wC},{0.5*\h});
-}{0.82}}
+  \basicibptable{5}{%
+    % Top row: untouched u and dv/dx, so no sign
+    \node at ({0.5*\wA},{4.5*\h}) {$+$};
+    \node at ({\wA+0.5*\wB},{4.5*\h}) {$x^3$};
+    \node at ({\wA+\wB+0.5*\wC},{4.5*\h}) {$\sin x$};
+
+    \node at ({0.5*\wA},{3.5*\h}) {$-$};
+    \node at ({\wA+0.5*\wB},{3.5*\h}) {$3x^2$};
+    \node at ({\wA+\wB+0.5*\wC},{3.5*\h}) {$-\cos x$};
+
+    \node at ({0.5*\wA},{2.5*\h}) {$+$};
+    \node at ({\wA+0.5*\wB},{2.5*\h}) {$6x$};
+    \node at ({\wA+\wB+0.5*\wC},{2.5*\h}) {$-\sin x$};
+
+    \node at ({0.5*\wA},{1.5*\h}) {$-$};
+    \node at ({\wA+0.5*\wB},{1.5*\h}) {$6$};
+    \node at ({\wA+\wB+0.5*\wC},{1.5*\h}) {$\cos x$};
+
+    \node at ({0.5*\wA},{0.5*\h}) {$+$};
+    \node at ({\wA+0.5*\wB},{0.5*\h}) {$0$};
+    \node at ({\wA+\wB+0.5*\wC},{0.5*\h}) {$\sin x$};
+  }{%
+    \draw[diag] ({\wA+0.72*\wB},{4.5*\h}) -- ({\wA+\wB+0.28*\wC},{3.5*\h});
+    \draw[diag] ({\wA+0.72*\wB},{3.5*\h}) -- ({\wA+\wB+0.28*\wC},{2.5*\h});
+    \draw[diag] ({\wA+0.72*\wB},{2.5*\h}) -- ({\wA+\wB+0.28*\wC},{1.5*\h});
+    \draw[diag] ({\wA+0.72*\wB},{1.5*\h}) -- ({\wA+\wB+0.28*\wC},{0.5*\h});
+  }{0.95}%
+}
 
 \newcommand{\tableC}{%
 \basicibptable{6}{%
 \node at ({0.5*\wA},{5.5*\h}) {$+$};
 \node at ({\wA+0.5*\wB},{5.5*\h}) {$x^4$};
-\node at ({\wA+\wB+0.5*\wC},{5.5*\h}) {$\dfrac{1}{2}e^{2x}$};
+\node at ({\wA+\wB+0.5*\wC},{5.5*\h}) {$e^{2x}$};
 \node at ({0.5*\wA},{4.5*\h}) {$-$};
 \node at ({\wA+0.5*\wB},{4.5*\h}) {$4x^3$};
-\node at ({\wA+\wB+0.5*\wC},{4.5*\h}) {$\dfrac{1}{4}e^{2x}$};
+\node at ({\wA+\wB+0.5*\wC},{4.5*\h}) {$\dfrac{1}{2}e^{2x}$};
 \node at ({0.5*\wA},{3.5*\h}) {$+$};
 \node at ({\wA+0.5*\wB},{3.5*\h}) {$12x^2$};
-\node at ({\wA+\wB+0.5*\wC},{3.5*\h}) {$\dfrac{1}{8}e^{2x}$};
+\node at ({\wA+\wB+0.5*\wC},{3.5*\h}) {$\dfrac{1}{4}e^{2x}$};
 \node at ({0.5*\wA},{2.5*\h}) {$-$};
 \node at ({\wA+0.5*\wB},{2.5*\h}) {$24x$};
-\node at ({\wA+\wB+0.5*\wC},{2.5*\h}) {$\dfrac{1}{16}e^{2x}$};
+\node at ({\wA+\wB+0.5*\wC},{2.5*\h}) {$\dfrac{1}{8}e^{2x}$};
 \node at ({0.5*\wA},{1.5*\h}) {$+$};
 \node at ({\wA+0.5*\wB},{1.5*\h}) {$24$};
-\node at ({\wA+\wB+0.5*\wC},{1.5*\h}) {$\dfrac{1}{32}e^{2x}$};
+\node at ({\wA+\wB+0.5*\wC},{1.5*\h}) {$\dfrac{1}{16}e^{2x}$};
 \node at ({0.5*\wA},{0.5*\h}) {$-$};
 \node at ({\wA+0.5*\wB},{0.5*\h}) {$0$};
-\node at ({\wA+\wB+0.5*\wC},{0.5*\h}) {$\dfrac{1}{64}e^{2x}$};
+\node at ({\wA+\wB+0.5*\wC},{0.5*\h}) {$\dfrac{1}{32}e^{2x}$};
 }{%
 \draw[diag] ({\wA+0.72*\wB},{5.5*\h}) -- ({\wA+\wB+0.28*\wC},{4.5*\h});
 \draw[diag] ({\wA+0.72*\wB},{4.5*\h}) -- ({\wA+\wB+0.28*\wC},{3.5*\h});
@@ -135,18 +141,14 @@
 }{0.95}}
 
 \newcommand{\tableD}{%
-\basicibptable{3}{%
-\node at ({0.5*\wA},{2.5*\h}) {$+$};
-\node at ({\wA+0.5*\wB},{2.5*\h}) {$\ln x$};
-\node at ({\wA+\wB+0.5*\wC},{2.5*\h}) {$\dfrac{x^2}{2}$};
-\node at ({0.5*\wA},{1.5*\h}) {$-$};
-\node at ({\wA+0.5*\wB},{1.5*\h}) {$\dfrac{1}{x}$};
-\node at ({\wA+\wB+0.5*\wC},{1.5*\h}) {$\dfrac{x^3}{6}$};
-\node at ({0.5*\wA},{0.5*\h}) {$+$};
-\node at ({\wA+0.5*\wB},{0.5*\h}) {$-\dfrac{1}{x^2}$};
-\node at ({\wA+\wB+0.5*\wC},{0.5*\h}) {$\dfrac{x^4}{24}$};
+\basicibptable{2}{%
+\node at ({0.5*\wA},{1.5*\h}) {$+$};
+\node at ({\wA+0.5*\wB},{1.5*\h}) {$\ln x$};
+\node at ({\wA+\wB+0.5*\wC},{1.5*\h}) {$x$};
+\node at ({0.5*\wA},{0.5*\h}) {$-$};
+\node at ({\wA+0.5*\wB},{0.5*\h}) {$\dfrac{1}{x}$};
+\node at ({\wA+\wB+0.5*\wC},{0.5*\h}) {$\dfrac{x^2}{2}$};
 }{%
-\draw[diag] ({\wA+0.72*\wB},{2.5*\h}) -- ({\wA+\wB+0.28*\wC},{1.5*\h});
 \draw[diag] ({\wA+0.72*\wB},{1.5*\h}) -- ({\wA+\wB+0.28*\wC},{0.5*\h});
 }{1.04}}
 
