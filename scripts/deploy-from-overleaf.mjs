@@ -30,12 +30,14 @@ function loadEnv(filePath) {
   }
 }
 
-loadEnv(join(repoRoot, '.env'));
-
-const TOKEN = process.env.OVERLEAF_GIT_TOKEN;
-if (!TOKEN) {
-  console.error('Error: OVERLEAF_GIT_TOKEN not found in .env or environment.');
-  exit(1);
+function requireToken() {
+  loadEnv(join(repoRoot, '.env'));
+  const token = process.env.OVERLEAF_GIT_TOKEN;
+  if (!token) {
+    console.error('Error: OVERLEAF_GIT_TOKEN not found in .env or environment.');
+    exit(1);
+  }
+  return token;
 }
 
 // ---------------------------------------------------------------------------
@@ -122,9 +124,9 @@ export function parseProjectId(input) {
 }
 
 /** Clone an Overleaf project into a temp directory, return the path. */
-function cloneProject(projectId, label) {
+function cloneProject(projectId, label, token) {
   const dir = join(tmpdir(), `overleaf-${label}-${randomBytes(4).toString('hex')}`);
-  const url = `https://git:${TOKEN}@git.overleaf.com/${projectId}`;
+  const url = `https://git:${token}@git.overleaf.com/${projectId}`;
   try {
     execSync(`git clone --depth 1 ${url} "${dir}"`, { stdio: 'pipe' });
   } catch (e) {
@@ -184,6 +186,7 @@ function compileTex(texFilePath) {
 // Main
 // ---------------------------------------------------------------------------
 async function main() {
+  const token = requireToken();
   const rl = createInterface({ input: stdin, output: stdout });
   const tempDirs = [];
 
@@ -225,12 +228,12 @@ async function main() {
 
     // -- Clone --
     process.stdout.write('\nCloning questions project... ');
-    const qbtDir = cloneProject(qbtId, 'qbt');
+    const qbtDir = cloneProject(qbtId, 'qbt', token);
     tempDirs.push(qbtDir);
     console.log('done');
 
     process.stdout.write('Cloning solutions project... ');
-    const solnDir = cloneProject(solnId, 'soln');
+    const solnDir = cloneProject(solnId, 'soln', token);
     tempDirs.push(solnDir);
     console.log('done');
 
