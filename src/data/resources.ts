@@ -31,7 +31,7 @@ export interface Resource {
    */
   boards?: ExamBoard[];
   /** Human-friendly filename for the download attribute, e.g. "De Moivre's Theorem - Questions.pdf". */
-  downloadName: string;
+  downloadName?: string;
 }
 
 const FM = 'A-level Further Maths';
