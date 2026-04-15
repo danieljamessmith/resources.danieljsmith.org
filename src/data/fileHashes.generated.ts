@@ -18,7 +18,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/differential-equations/soln/_QBT___Solns__Modelling_with_1st_Order_Differential_Equations.pdf': 'b6b6f240',
   '/tex/further-maths/core-pure/differential-equations/soln/_QBT___Solns__Modelling_with_2nd_Order_Differential_Equations.pdf': '421c5a82',
   '/tex/further-maths/core-pure/differential-equations/soln/_QBT___Solns__Systems_of_Differential_Equations.pdf': '9be7ae2b',
-  '/tex/further-maths/core-pure/further-calculus/notes/_Notes__Tabular_Method_for_IBP.pdf': 'e29376c6',
+  '/tex/further-maths/core-pure/further-calculus/notes/_Notes__Tabular_Method_for_IBP.pdf': 'c2048f8a',
   '/tex/further-maths/core-pure/further-calculus/qbt/_QBT__Integration_by_Parts__FM_Level_.pdf': '13cbafd8',
   '/tex/further-maths/core-pure/further-calculus/qbt/_QBT__Integration_by_Substitution__FM_Level_.pdf': '99d78dc3',
   '/tex/further-maths/core-pure/further-calculus/qbt/_QBT__Integration_of_Polar_Curves.pdf': '07517f23',
