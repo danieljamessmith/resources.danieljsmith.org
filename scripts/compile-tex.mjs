@@ -27,7 +27,12 @@ const deploy = args.includes('--deploy');
 const positional = args.filter((a) => !a.startsWith('-'));
 const scope = positional[0] ?? 'further-maths';
 
-const searchRoot = scope === 'all' ? texRoot : join(texRoot, scope);
+const searchRoot =
+  scope === 'all'
+    ? texRoot
+    : scope === 'further-maths'
+      ? join(texRoot, 'further-maths', 'core-pure')
+      : join(texRoot, scope);
 
 // --- Build ------------------------------------------------------------------
 

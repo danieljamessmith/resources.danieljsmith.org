@@ -194,7 +194,7 @@ async function main() {
     console.log('\n=== Deploy from Overleaf ===\n');
 
     const topicName = await rl.question('Topic name (e.g. "Matrix Determinants & Inverses"): ');
-    const sitePath = await rl.question('Site path (e.g. "further-maths/vectors"): ');
+    const sitePath = await rl.question('Site path (e.g. "further-maths/core-pure/vectors"): ');
     const examBoardIds = await promptExamBoards(rl);
 
     const qbtInput = await rl.question('\nQuestions Overleaf URL or project ID: ');

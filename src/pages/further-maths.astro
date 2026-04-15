@@ -59,7 +59,7 @@ const cardRowClass =
     <Header showBack={true} />
     <main class="flex-1 w-full max-w-7xl mx-auto px-4 py-12 lg:px-6">
       <div class="lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-10 xl:gap-12">
-        <div class="hidden lg:flex lg:flex-col lg:gap-8 lg:w-52 lg:shrink-0">
+        <div class="hidden lg:flex lg:flex-col lg:gap-8 lg:w-52 lg:shrink-0 lg:sticky lg:top-24 lg:self-start">
           <BoardFilter variant="sidebar" />
           <TopicNav variant="sidebar" />
         </div>
@@ -511,6 +511,8 @@ const cardRowClass =
           </div>
         </div>
       </div>
+      <!-- Extra scroll room below the last topic (e.g. sidebar jump targets) -->
+      <div class="h-[50vh] shrink-0" aria-hidden="true" />
     </main>
     <Footer />
   </div>
