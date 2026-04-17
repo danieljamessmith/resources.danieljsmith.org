@@ -1,0 +1,144 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+import {
+  FM_CP,
+  FM_MECH,
+  getQuestionCountByCategory,
+  getWorksheetCountByCategory,
+} from '~/data/resources';
+
+const cpQuestionCount = getQuestionCountByCategory(FM_CP);
+const cpWorksheetCount = getWorksheetCountByCategory(FM_CP);
+const mechQuestionCount = getQuestionCountByCategory(FM_MECH);
+const mechWorksheetCount = getWorksheetCountByCategory(FM_MECH);
+---
+
+<Layout
+  title="A-level Further Maths | resources.danieljsmith.org"
+  description="Browse A-level Further Maths Core Pure and Further Mechanics question-by-topic booklets with worked solutions."
+>
+  <div class="min-h-screen flex flex-col">
+    <Header showBack={true} />
+    <div class="flex-1 flex flex-col">
+      <section class="text-center max-w-2xl mx-auto px-4 py-12 md:py-16">
+        <h1 class="text-3xl md:text-4xl font-bold text-white">A-level Further Maths</h1>
+        <p class="text-lg text-slate-300 mt-4">
+          Choose a strand to browse question-by-topic booklets.
+        </p>
+        <p class="text-sm text-slate-400 mt-3 max-w-xl mx-auto leading-relaxed">
+          Exam-style questions for Edexcel, AQA, OCR A/MEI and CIE. Filterable by exam board.
+        </p>
+      </section>
+
+      <section class="max-w-4xl mx-auto px-4 pb-20 w-full">
+        <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-6">Strands</h2>
+        <div class="grid sm:grid-cols-2 gap-6">
+          <a
+            href="/further-maths/core-pure"
+            class="group relative block overflow-hidden p-6 rounded-2xl border border-slate-700/50 bg-gradient-to-br from-indigo-500/[0.06] via-surface-raised to-surface-raised hover:border-indigo-500/60 motion-safe:hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-200"
+          >
+            <div
+              class="pointer-events-none absolute -top-16 -right-16 w-40 h-40 rounded-full bg-indigo-500/15 blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+              aria-hidden="true"
+            >
+            </div>
+            <div class="relative">
+              <div
+                class="w-12 h-12 rounded-xl bg-indigo-500/15 ring-1 ring-inset ring-indigo-500/20 flex items-center justify-center text-indigo-300 motion-safe:group-hover:scale-105 transition-transform duration-200"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M4 19V5M4 19h16M4 15c2.5-6 5.5-10 8-10s5.5 4 8 10"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold text-white mt-4">Core Pure</h3>
+              <p class="text-slate-300 mt-2 text-sm">
+                Complex numbers, matrices, vectors, differential equations, and more.
+              </p>
+              <div class="mt-5 flex items-center justify-between gap-3">
+                <span
+                  class="inline-flex items-center gap-1.5 rounded-full bg-indigo-500/10 text-indigo-300 text-xs font-medium px-2.5 py-1 ring-1 ring-inset ring-indigo-500/20"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full bg-indigo-400" aria-hidden="true"></span>
+                  {cpWorksheetCount} {cpWorksheetCount === 1 ? 'worksheet' : 'worksheets'} &middot; {cpQuestionCount} questions
+                </span>
+                <svg
+                  class="w-5 h-5 text-slate-500 group-hover:text-indigo-300 motion-safe:group-hover:translate-x-1 transition"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="/further-maths/further-mechanics"
+            class="group relative block overflow-hidden p-6 rounded-2xl border border-slate-700/50 bg-gradient-to-br from-teal-500/[0.06] via-surface-raised to-surface-raised hover:border-teal-500/60 motion-safe:hover:-translate-y-1 hover:shadow-lg hover:shadow-teal-500/10 transition-all duration-200"
+          >
+            <div
+              class="pointer-events-none absolute -top-16 -right-16 w-40 h-40 rounded-full bg-teal-500/15 blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+              aria-hidden="true"
+            >
+            </div>
+            <div class="relative">
+              <div
+                class="w-12 h-12 rounded-xl bg-teal-500/15 ring-1 ring-inset ring-teal-500/20 flex items-center justify-center text-teal-300 motion-safe:group-hover:scale-105 transition-transform duration-200"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="17" cy="12" r="3" stroke-width="1.5" />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M3 12h11M7 8l-4 4 4 4"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold text-white mt-4">Further Mechanics</h3>
+              <p class="text-slate-300 mt-2 text-sm">
+                Momentum, collisions, elastic strings, and circular motion.
+              </p>
+              <div class="mt-5 flex items-center justify-between gap-3">
+                {mechQuestionCount > 0 ? (
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-full bg-teal-500/10 text-teal-300 text-xs font-medium px-2.5 py-1 ring-1 ring-inset ring-teal-500/20"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-teal-400" aria-hidden="true" />
+                    {mechWorksheetCount} {mechWorksheetCount === 1 ? 'worksheet' : 'worksheets'} &middot; {mechQuestionCount} questions
+                  </span>
+                ) : (
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-full bg-slate-500/10 text-slate-400 text-xs font-medium px-2.5 py-1 ring-1 ring-inset ring-slate-500/20"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-slate-400/70" aria-hidden="true" />
+                    Coming soon
+                  </span>
+                )}
+                <svg
+                  class="w-5 h-5 flex-shrink-0 text-slate-500 group-hover:text-teal-300 motion-safe:group-hover:translate-x-1 transition"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+    </div>
+    <Footer />
+  </div>
+</Layout>

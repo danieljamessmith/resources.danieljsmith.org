@@ -1,0 +1,74 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+import TopicNav from '~/components/TopicNav.astro';
+import BoardFilter from '~/components/BoardFilter.astro';
+import TopicSection from '~/components/TopicSection.astro';
+import ResourcePairCard from '~/components/ResourcePairCard.astro';
+import { FM_MECH, getResourcePairs, type Resource } from '~/data/resources';
+
+const mechTopics = [{ id: 'momentum-restitution-collisions', label: 'Momentum & Collisions' }];
+
+function pairedOnly(
+  list: ReturnType<typeof getResourcePairs>,
+): { questions: Resource; solutions: Resource }[] {
+  return list.filter(
+    (p): p is { questions: Resource; solutions: Resource } => p.solutions !== undefined,
+  );
+}
+
+const momentumPairs = pairedOnly(getResourcePairs(FM_MECH, 'Momentum & Collisions'));
+---
+
+<Layout
+  title="Further Mechanics — A-level Further Maths Questions by Topic | resources.danieljsmith.org"
+  description="Further Mechanics question-by-topic booklets for A-level Further Maths with full worked solutions."
+>
+  <div
+    class="min-h-screen flex flex-col"
+    data-board-storage-key="fm-mech-board-filter"
+    data-board-accent="teal"
+  >
+    <Header
+      showBack={true}
+      backHref="/further-maths"
+      backLabel="Back to Further Maths"
+    />
+    <main class="flex-1 w-full max-w-7xl mx-auto px-4 py-12 lg:px-6">
+      <div class="lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-10 xl:gap-12">
+        <div class="hidden lg:flex lg:flex-col lg:gap-8 lg:w-52 lg:shrink-0 lg:sticky lg:top-24 lg:self-start">
+          <BoardFilter variant="sidebar" accent="teal" />
+          <TopicNav variant="sidebar" topics={mechTopics} accent="teal" />
+        </div>
+        <div class="min-w-0">
+          <h1 class="text-2xl font-bold text-white">Further Mechanics</h1>
+
+          <BoardFilter variant="mobile" accent="teal" />
+          <TopicNav variant="mobile" topics={mechTopics} accent="teal" />
+
+          <TopicSection
+            id="momentum-restitution-collisions"
+            title="Momentum & Collisions"
+            accent="teal"
+            count={momentumPairs.length}
+          >
+            {momentumPairs.length === 0 ? (
+              <p class="text-sm text-slate-400 italic px-1">Coming soon.</p>
+            ) : (
+              momentumPairs.map((pair) => <ResourcePairCard pair={pair} />)
+            )}
+          </TopicSection>
+
+          <div class="h-[65vh] shrink-0" aria-hidden="true" />
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </div>
+</Layout>
+
+<script>
+  import { initBoardFilter } from '~/scripts/board-filter';
+  initBoardFilter();
+</script>

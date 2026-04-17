@@ -1,0 +1,40 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  accent?: 'indigo' | 'teal' | 'slate';
+  /** Optional count shown on the right of the heading (e.g. number of booklets). */
+  count?: number;
+  /** Singular form of the label; pluralised automatically when count !== 1. */
+  countLabel?: string;
+}
+
+const { id, title, accent = 'slate', count, countLabel = 'booklet' } = Astro.props;
+
+const barAccent = {
+  indigo: 'bg-indigo-400/70',
+  teal: 'bg-teal-400/70',
+  slate: 'bg-slate-500',
+}[accent];
+
+const countText =
+  count !== undefined && count > 0 ? `${count} ${countLabel}${count === 1 ? '' : 's'}` : null;
+---
+
+<div data-topic-section>
+  <h2
+    id={id}
+    class="topic-section-heading scroll-mt-24 mt-5 mb-3 flex items-center gap-3 opacity-100 transition-opacity duration-200"
+  >
+    <span class:list={['w-1 h-5 rounded-full flex-shrink-0', barAccent]} aria-hidden="true"></span>
+    <span class="text-lg font-semibold text-white flex-1 min-w-0">{title}</span>
+    {countText && (
+      <span class="text-xs text-slate-500 font-normal flex-shrink-0">
+        {countText}
+      </span>
+    )}
+  </h2>
+  <div class="mb-6 space-y-1.5">
+    <slot />
+  </div>
+</div>

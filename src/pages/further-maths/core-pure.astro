@@ -1,0 +1,155 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+import TopicNav from '~/components/TopicNav.astro';
+import BoardFilter from '~/components/BoardFilter.astro';
+import TopicSection from '~/components/TopicSection.astro';
+import ResourcePairCard from '~/components/ResourcePairCard.astro';
+import NotesCard from '~/components/NotesCard.astro';
+import {
+  FM_CP,
+  getResourcePairs,
+  getResourcesByTopic,
+  type Resource,
+} from '~/data/resources';
+
+const corePureTopics = [
+  { id: 'miscellaneous-pure', label: 'Misc Pure' },
+  { id: 'further-calculus', label: 'Further Calculus' },
+  { id: 'polar-coordinates', label: 'Polar Coordinates' },
+  { id: 'differential-equations', label: 'Differential Equations' },
+  { id: 'complex-numbers', label: 'Complex Numbers' },
+  { id: 'proof-by-induction', label: 'Proof by Induction' },
+  { id: 'vectors', label: 'Vectors & Matrices' },
+];
+
+function pairedOnly(
+  list: ReturnType<typeof getResourcePairs>,
+): { questions: Resource; solutions: Resource }[] {
+  return list.filter(
+    (p): p is { questions: Resource; solutions: Resource } => p.solutions !== undefined,
+  );
+}
+
+const miscPurePairs = pairedOnly(getResourcePairs(FM_CP, 'Miscellaneous Pure'));
+
+const furtherCalculusNotes = getResourcesByTopic(FM_CP, 'Further Calculus').filter(
+  (r) => r.type === 'notes',
+);
+const furtherCalculusPairs = pairedOnly(getResourcePairs(FM_CP, 'Further Calculus'));
+
+const polarCoordinatesPairs = pairedOnly(getResourcePairs(FM_CP, 'Polar Coordinates'));
+
+const diffEqPairs = pairedOnly(getResourcePairs(FM_CP, 'Differential Equations'));
+
+const complexPairs = pairedOnly(getResourcePairs(FM_CP, 'Complex Numbers'));
+
+const inductionPairs = pairedOnly(getResourcePairs(FM_CP, 'Proof by Induction'));
+
+const vectorsNotes = getResourcesByTopic(FM_CP, 'Vectors').filter((r) => r.type === 'notes');
+const vectorPairs = pairedOnly(getResourcePairs(FM_CP, 'Vectors'));
+---
+
+<Layout
+  title="Core Pure — A-level Further Maths Questions by Topic | resources.danieljsmith.org"
+  description="Free A-level Further Maths Core Pure questions by topic with full worked solutions. Topics cover core content found across Edexcel, AQA, OCR A and OCR MEI specifications."
+>
+  <div class="min-h-screen flex flex-col" data-board-storage-key="fm-cp-board-filter">
+    <Header
+      showBack={true}
+      backHref="/further-maths"
+      backLabel="Back to Further Maths"
+    />
+    <main class="flex-1 w-full max-w-7xl mx-auto px-4 py-12 lg:px-6">
+      <div class="lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-10 xl:gap-12">
+        <div class="hidden lg:flex lg:flex-col lg:gap-8 lg:w-52 lg:shrink-0 lg:sticky lg:top-24 lg:self-start">
+          <BoardFilter variant="sidebar" />
+          <TopicNav variant="sidebar" topics={corePureTopics} />
+        </div>
+        <div class="min-w-0">
+          <h1 class="text-2xl font-bold text-white">Core Pure</h1>
+
+          <BoardFilter variant="mobile" />
+          <TopicNav variant="mobile" topics={corePureTopics} />
+
+          <TopicSection
+            id="miscellaneous-pure"
+            title="Miscellaneous Pure"
+            accent="indigo"
+            count={miscPurePairs.length}
+          >
+            {miscPurePairs.map((pair) => <ResourcePairCard pair={pair} />)}
+          </TopicSection>
+
+          <TopicSection
+            id="further-calculus"
+            title="Further Calculus"
+            accent="indigo"
+            count={furtherCalculusNotes.length + furtherCalculusPairs.length}
+          >
+            {furtherCalculusNotes.map((note) => <NotesCard note={note} />)}
+            {furtherCalculusPairs.map((pair) => <ResourcePairCard pair={pair} />)}
+          </TopicSection>
+
+          <TopicSection
+            id="polar-coordinates"
+            title="Polar Coordinates"
+            accent="indigo"
+            count={polarCoordinatesPairs.length}
+          >
+            {polarCoordinatesPairs.map((pair) => <ResourcePairCard pair={pair} />)}
+          </TopicSection>
+
+          <TopicSection
+            id="differential-equations"
+            title="Differential Equations"
+            accent="indigo"
+            count={diffEqPairs.length}
+          >
+            {diffEqPairs.map((pair) => <ResourcePairCard pair={pair} />)}
+          </TopicSection>
+
+          <TopicSection
+            id="complex-numbers"
+            title="Complex Numbers"
+            accent="indigo"
+            count={complexPairs.length}
+          >
+            {complexPairs.map((pair) => <ResourcePairCard pair={pair} />)}
+          </TopicSection>
+
+          <TopicSection
+            id="proof-by-induction"
+            title="Proof by Induction"
+            accent="indigo"
+            count={inductionPairs.length}
+          >
+            {inductionPairs.map((pair) => <ResourcePairCard pair={pair} />)}
+          </TopicSection>
+
+          <TopicSection
+            id="vectors"
+            title="Vectors, Matrices & Linear Transformations"
+            accent="indigo"
+            count={vectorsNotes.length + vectorPairs.length}
+          >
+            {vectorsNotes.map((note) => <NotesCard note={note} />)}
+            {vectorPairs.map((pair) => <ResourcePairCard pair={pair} />)}
+          </TopicSection>
+
+          <!-- Extra scroll room below the last topic (e.g. sidebar jump targets).
+               Must live inside this column so the grid row height includes it;
+               otherwise sticky sidebars stop sticking while scrolling this region. -->
+          <div class="h-[65vh] shrink-0" aria-hidden="true" />
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </div>
+</Layout>
+
+<script>
+  import { initBoardFilter } from '~/scripts/board-filter';
+  initBoardFilter();
+</script>
