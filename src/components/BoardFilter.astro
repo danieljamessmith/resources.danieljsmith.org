@@ -1,11 +1,14 @@
 ---
 import { EXAM_BOARDS } from '~/data/resources';
 
+export type BoardFilterAccent = 'purple' | 'teal';
+
 interface Props {
   variant?: 'sidebar' | 'mobile';
+  accent?: BoardFilterAccent;
 }
 
-const { variant = 'sidebar' } = Astro.props;
+const { variant = 'sidebar', accent = 'purple' } = Astro.props;
 
 const filterItems = [
   { id: 'all' as const, label: 'All' },
@@ -14,8 +17,11 @@ const filterItems = [
 
 const linkInactive =
   'block w-full text-left border-l-2 border-transparent pl-4 py-2 text-sm text-slate-400 hover:border-slate-400 hover:text-white transition-colors duration-150';
+// Accent-aware hover colour; explicit branches so Tailwind JIT keeps both sets.
 const mobileInactive =
-  'flex-shrink-0 whitespace-nowrap rounded-full border border-slate-600/80 px-3 py-1.5 text-xs font-medium text-slate-300 transition-colors hover:border-purple-500/50 hover:text-white';
+  accent === 'teal'
+    ? 'flex-shrink-0 whitespace-nowrap rounded-full border border-slate-600/80 px-3 py-1.5 text-xs font-medium text-slate-300 transition-colors hover:border-teal-500/50 hover:text-white'
+    : 'flex-shrink-0 whitespace-nowrap rounded-full border border-slate-600/80 px-3 py-1.5 text-xs font-medium text-slate-300 transition-colors hover:border-purple-500/50 hover:text-white';
 ---
 
 {

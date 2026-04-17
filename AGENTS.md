@@ -19,12 +19,15 @@ Dual-purpose repository:
 | Path                    | Purpose                                                |
 | ----------------------- | ------------------------------------------------------ |
 | `src/`                   | Astro site source (components, pages, layouts, styles)           |
+| `src/pages/further-maths/` | Further Maths routes: landing (`index.astro`), Core Pure, Further Mechanics |
+| `src/scripts/`         | Client-side modules imported by pages (e.g. `board-filter.ts` for FM section pages) |
 | `public/tex/`            | LaTeX source files and deployed PDFs, co-located by topic        |
 | `public/tex/**/build/`   | latexmk output — PDF and `.synctex.gz` files (gitignored staging)|
 | `public/tex/**/build/aux/` | latexmk auxiliary files (`.aux`, `.log`, `.fls`, etc.)         |
 | `public/`                | Static assets served as-is by Astro                              |
 | `.vscode/settings.json`  | Workspace settings including latexmk build args                  |
 
+Further Maths on the site uses three routes: `/further-maths` (strand picker), `/further-maths/core-pure`, and `/further-maths/further-mechanics`. In `src/data/resources.ts`, strand categories are named **`FM - Core Pure`** and **`FM - Further Mechanics`**; helpers that aggregate across strands match the prefix `FM - `.
 
 ### LaTeX directory layout
 
@@ -45,6 +48,11 @@ public/tex/
           build/
             _QBT___Solns__<Topic>.pdf
             aux/
+    further-mechanics/
+      <topic-slug>/
+        qbt/
+        soln/
+          (same qbt/soln + build pattern as core-pure)
 ```
 
 ---
