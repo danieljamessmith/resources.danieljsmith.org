@@ -1,9 +1,15 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
+import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
+import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 import {
   parseProjectId,
   parseBoardSelection,
   sanitizeTopic,
-  formatBoardsSnippet,
+  findPackTex,
+  tryFindPackTex,
+  resolveTexPairFromClone,
+  formatPairPreview,
 } from './deploy-from-overleaf.mjs';
 
 // ---------------------------------------------------------------------------
@@ -116,30 +122,141 @@ describe('sanitizeTopic', () => {
 });
 
 // ---------------------------------------------------------------------------
-// formatBoardsSnippet
+// findPackTex / resolveTexPairFromClone
 // ---------------------------------------------------------------------------
 
-describe('formatBoardsSnippet', () => {
-  it('returns the "omit boards" message for null', () => {
-    const result = formatBoardsSnippet(null);
-    expect(result).toContain('omit');
-    expect(result).toContain('boards');
+function tempDir() {
+  return mkdtempSync(join(tmpdir(), 'deploy-test-'));
+}
+
+describe('findPackTex', () => {
+  const topic = 'Matrix Determinants & Inverses';
+
+  it('finds both kinds in a unified project (exact names)', () => {
+    const dir = tempDir();
+    try {
+      const q = `(QBT) ${topic}.tex`;
+      const s = `(QBT) [Solns] ${topic}.tex`;
+      writeFileSync(join(dir, q), '\\begin{document}\n\\end{document}\n');
+      writeFileSync(join(dir, s), '\\begin{document}\n\\end{document}\n');
+
+      const qbt = findPackTex(dir, 'qbt', topic);
+      const soln = findPackTex(dir, 'soln', topic);
+      expect(qbt.endsWith(q)).toBe(true);
+      expect(soln.endsWith(s)).toBe(true);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 
-  it('returns the "omit boards" message for an empty array', () => {
-    const result = formatBoardsSnippet([]);
-    expect(result).toContain('omit');
+  it('tier-3 legacy: single .tex with document', () => {
+    const dir = tempDir();
+    try {
+      writeFileSync(join(dir, 'main.tex'), '\\begin{document}\n\\end{document}\n');
+      const q = findPackTex(dir, 'qbt', topic);
+      const s = findPackTex(dir, 'soln', topic);
+      expect(q).toBe(s);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 
-  it('formats a single board correctly', () => {
-    const result = formatBoardsSnippet(['edexcel']);
-    expect(result).toContain("'edexcel'");
-    expect(result).toContain('boards:');
+  it('throws when multiple candidates remain for a kind', () => {
+    const dir = tempDir();
+    try {
+      writeFileSync(
+        join(dir, '(QBT) A.tex'),
+        '\\begin{document}\n\\end{document}\n',
+      );
+      writeFileSync(
+        join(dir, '(QBT) B.tex'),
+        '\\begin{document}\n\\end{document}\n',
+      );
+      expect(() => findPackTex(dir, 'qbt', topic)).toThrow(/Ambiguous/);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
+});
 
-  it('formats multiple boards correctly', () => {
-    const result = formatBoardsSnippet(['edexcel', 'aqa']);
-    expect(result).toContain("'edexcel'");
-    expect(result).toContain("'aqa'");
+describe('tryFindPackTex', () => {
+  it('returns null when the kind is missing', () => {
+    const dir = tempDir();
+    try {
+      writeFileSync(
+        join(dir, '(QBT) [Solns] Only.tex'),
+        '\\begin{document}\n\\end{document}\n',
+      );
+      expect(tryFindPackTex(dir, 'qbt', 'Only')).toBeNull();
+      expect(tryFindPackTex(dir, 'soln', 'Only')).not.toBeNull();
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+});
+
+describe('resolveTexPairFromClone', () => {
+  it('splits same-path tier-3 into a single kind (defaults to questions missing soln)', () => {
+    const dir = tempDir();
+    try {
+      writeFileSync(join(dir, 'main.tex'), '\\begin{document}\n\\end{document}\n');
+      const r = resolveTexPairFromClone(dir, 'X');
+      expect(r.qbtPath).not.toBeNull();
+      expect(r.solnPath).toBeNull();
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+});
+
+// ---------------------------------------------------------------------------
+// formatPairPreview
+// ---------------------------------------------------------------------------
+
+describe('formatPairPreview', () => {
+  it('includes ids and sibling hint', () => {
+    const out = formatPairPreview({
+      id: 'fm-vectors-test',
+      topicName: "De Moivre's Theorem",
+      siblingId: 'fm-vectors-prev-solns',
+    });
+    expect(out).toContain("fm-vectors-test");
+    expect(out).toContain('fm-vectors-prev-solns');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Legacy second-URL prompt (orchestration smoke)
+// ---------------------------------------------------------------------------
+
+describe('legacy second clone prompt', () => {
+  it('requests a second URL when only one kind exists in the first clone', async () => {
+    const questions = [
+      'https://overleaf.com/project/aaaaaaaaaaaaaaaaaaaaaaaa',
+      '', // second URL — user aborts
+    ];
+    let i = 0;
+    const rl = {
+      question: vi.fn(async () => questions[i++] ?? ''),
+      close: vi.fn(),
+    };
+
+    const dir = tempDir();
+    try {
+      writeFileSync(
+        join(dir, '(QBT) Topic.tex'),
+        '\\begin{document}\n\\end{document}\n',
+      );
+      const r = resolveTexPairFromClone(dir, 'Topic');
+      expect(r.qbtPath).not.toBeNull();
+      expect(r.solnPath).toBeNull();
+
+      const line = await rl.question(
+        '\nOnly found questions in the first project (or one .tex could not be classified). Paste second Overleaf URL or ID (Enter to abort): ',
+      );
+      expect(line).toContain('aaaaaaaa');
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 });

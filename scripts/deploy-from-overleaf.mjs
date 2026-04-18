@@ -1,9 +1,17 @@
 /**
  * Pull .tex from Overleaf via git, compile PDFs with the same latexmk
- * invocation as LaTeX Workshop, place files, and run clean-tex.
+ * invocation as LaTeX Workshop, place files, run clean-tex, and stage a
+ * `data/resources-pending.json` entry for downstream splicing into `resources.ts`.
  */
 
-import { readFileSync, mkdirSync, readdirSync, rmSync, copyFileSync, existsSync } from 'node:fs';
+import {
+  readFileSync,
+  mkdirSync,
+  readdirSync,
+  rmSync,
+  copyFileSync,
+  existsSync,
+} from 'node:fs';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
@@ -12,9 +20,21 @@ import { createInterface } from 'node:readline/promises';
 import { stdin, stdout, exit } from 'node:process';
 import { randomBytes } from 'node:crypto';
 
+import { listTreeShallow, pickSitePath } from './lib/site-tree.mjs';
+import {
+  derivePathContext,
+  deriveTopicId,
+  loadResourcesEntries,
+  slugify,
+} from './lib/resources-derive.mjs';
+import { addPendingEntry, readPending } from './lib/staging.mjs';
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(__dirname, '..');
 const texRoot = join(repoRoot, 'public', 'tex');
+const pendingPath = join(repoRoot, 'data', 'resources-pending.json');
+
+export const SKIP_TEX_FILES = new Set(['draft.tex', 'original.tex']);
 
 // ---------------------------------------------------------------------------
 // Inline .env loader (avoids adding dotenv as a dependency)
@@ -106,14 +126,6 @@ export function parseBoardSelection(line) {
   return { ok: true, boardIds: [...new Set(boardIds)] };
 }
 
-/** @param {string[] | null} boardIds */
-export function formatBoardsSnippet(boardIds) {
-  if (!boardIds || boardIds.length === 0) {
-    return '  (omit `boards` — applies to all exam boards)';
-  }
-  return `  boards: [${boardIds.map((id) => `'${id}'`).join(', ')}],`;
-}
-
 /** Extract an Overleaf project ID from a full URL or bare ID. */
 export function parseProjectId(input) {
   const trimmed = input.trim();
@@ -121,6 +133,113 @@ export function parseProjectId(input) {
   if (urlMatch) return urlMatch[1];
   if (/^[a-f0-9]+$/i.test(trimmed)) return trimmed;
   return null;
+}
+
+/**
+ * @param {string} name - basename of a `.tex` file
+ * @returns {'qbt' | 'soln' | 'unknown'}
+ */
+export function classifyTexBasename(name) {
+  if (name.includes('[Solns]')) return 'soln';
+  if (name.startsWith('(QBT) ') && !name.includes('[Solns]')) return 'qbt';
+  return 'unknown';
+}
+
+/**
+ * Tiered discovery of the main pack `.tex` in a cloned Overleaf project root.
+ * @param {string} dir
+ * @param {'qbt' | 'soln'} kind
+ * @param {string} topicName
+ * @returns {string | null}
+ */
+export function findPackTex(dir, kind, topicName) {
+  const exactName =
+    kind === 'qbt' ? `(QBT) ${topicName}.tex` : `(QBT) [Solns] ${topicName}.tex`;
+  const exactPath = join(dir, exactName);
+  if (existsSync(exactPath)) {
+    const c = readFileSync(exactPath, 'utf8');
+    if (c.includes('\\begin{document}')) return exactPath;
+  }
+
+  const texFiles = readdirSync(dir).filter((f) => f.endsWith('.tex') && !SKIP_TEX_FILES.has(f));
+
+  const withDoc = [];
+  for (const f of texFiles) {
+    const full = join(dir, f);
+    const content = readFileSync(full, 'utf8');
+    if (content.includes('\\begin{document}')) withDoc.push({ name: f, path: full });
+  }
+
+  if (withDoc.length === 0) {
+    throw new Error(`No .tex with \\\\begin{document} in ${dir}`);
+  }
+
+  if (withDoc.length === 1) {
+    const only = withDoc[0];
+    const cls = classifyTexBasename(only.name);
+    if (cls === 'unknown' || cls === kind) return only.path;
+    throw new Error(
+      `Could not find ${kind} .tex for "${topicName}". The single candidate "${only.name}" classifies as ${cls}.`,
+    );
+  }
+
+  const qbt = [];
+  const soln = [];
+  for (const w of withDoc) {
+    if (w.name.includes('[Solns]')) soln.push(w.path);
+    else if (w.name.startsWith('(QBT) ') && !w.name.includes('[Solns]')) qbt.push(w.path);
+  }
+
+  const pool = kind === 'qbt' ? qbt : soln;
+  if (pool.length === 1) return pool[0];
+  if (pool.length > 1) {
+    throw new Error(
+      `Ambiguous ${kind}: multiple candidates: ${pool.map((p) => basename(p)).join(', ')}`,
+    );
+  }
+
+  throw new Error(
+    `Could not find ${kind} .tex for "${topicName}". Files with \\\\begin{document}: ${withDoc.map((w) => w.name).join(', ')}`,
+  );
+}
+
+/**
+ * Like `findPackTex`, but returns `null` when that kind is missing (second clone may supply it).
+ * Still throws on ambiguous matches or when the project has no `\\begin{document}` .tex at all.
+ * @param {string} dir
+ * @param {'qbt' | 'soln'} kind
+ * @param {string} topicName
+ * @returns {string | null}
+ */
+export function tryFindPackTex(dir, kind, topicName) {
+  try {
+    return findPackTex(dir, kind, topicName);
+  } catch (e) {
+    const msg = String(e.message ?? e);
+    if (msg.includes('Ambiguous')) throw e;
+    if (msg.includes('No .tex with')) throw e;
+    return null;
+  }
+}
+
+/**
+ * Resolve qbt + soln paths from one clone; split same-path tier-3 results by filename.
+ * @returns {{ qbtPath: string | null, solnPath: string | null }}
+ */
+export function resolveTexPairFromClone(dir, topicName) {
+  let qbtPath = tryFindPackTex(dir, 'qbt', topicName);
+  let solnPath = tryFindPackTex(dir, 'soln', topicName);
+
+  if (qbtPath && solnPath && qbtPath === solnPath) {
+    const kind = classifyTexBasename(basename(qbtPath));
+    if (kind === 'qbt') solnPath = null;
+    else if (kind === 'soln') qbtPath = null;
+    else {
+      solnPath = null;
+    }
+  }
+
+  return { qbtPath, solnPath };
 }
 
 /** Clone an Overleaf project into a temp directory, return the path. */
@@ -136,22 +255,6 @@ function cloneProject(projectId, label, token) {
     exit(1);
   }
   return dir;
-}
-
-/**
- * Find the main .tex file in a cloned Overleaf project.
- * Priority: main.tex at root, then any .tex containing \\begin{document}.
- */
-function findMainTex(dir) {
-  const mainTex = join(dir, 'main.tex');
-  if (existsSync(mainTex)) return mainTex;
-
-  const texFiles = readdirSync(dir).filter((f) => f.endsWith('.tex'));
-  for (const f of texFiles) {
-    const content = readFileSync(join(dir, f), 'utf8');
-    if (content.includes('\\begin{document}')) return join(dir, f);
-  }
-  return null;
 }
 
 /**
@@ -182,6 +285,21 @@ function compileTex(texFilePath) {
   return join(outDir, pdfName);
 }
 
+/**
+ * @param {{ id: string; topicName: string; siblingId: string | null }} p
+ */
+export function formatPairPreview(p) {
+  const sid = p.siblingId ? `'${p.siblingId}'` : 'undefined';
+  return [
+    `  { id: '${p.id}', title: '${p.topicName.replace(/'/g, "\\'")}', /* questions row — set description, file, pairId, topic, … */`,
+    `  { id: '${p.id}-solns', title: '${p.topicName.replace(/'/g, "\\'")}', /* solutions row — pairId → questions id */`,
+    `  // insert after sibling id: ${sid}`,
+  ].join('\n');
+}
+
+// Re-export for tests / tooling
+export { derivePathContext, deriveTopicId, slugify, addPendingEntry };
+
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
@@ -192,25 +310,88 @@ async function main() {
 
   try {
     console.log('\n=== Deploy from Overleaf ===\n');
+    console.log('public/tex/ (depth ≤ 3):\n');
+    console.log(listTreeShallow(texRoot, 3));
+    console.log('');
 
-    const topicName = await rl.question('Topic name (e.g. "Matrix Determinants & Inverses"): ');
-    const sitePath = await rl.question('Site path (e.g. "further-maths/core-pure/vectors"): ');
+    const sitePath = await pickSitePath(rl, texRoot);
+    const topicName = await rl.question('\nTopic name (e.g. "Matrix Determinants & Inverses"): ');
     const examBoardIds = await promptExamBoards(rl);
 
-    const qbtInput = await rl.question('\nQuestions Overleaf URL or project ID: ');
-    const solnInput = await rl.question('Solutions Overleaf URL or project ID: ');
-
-    const qbtId = parseProjectId(qbtInput);
-    const solnId = parseProjectId(solnInput);
-
-    if (!qbtId) {
-      console.error(`Could not parse project ID from: ${qbtInput}`);
+    const url1 = await rl.question('\nOverleaf URL or project ID (unified project, or first of two legacy projects): ');
+    const firstId = parseProjectId(url1);
+    if (!firstId) {
+      console.error(`Could not parse project ID from: ${url1}`);
       exit(1);
     }
-    if (!solnId) {
-      console.error(`Could not parse project ID from: ${solnInput}`);
+
+    process.stdout.write('\nCloning first project... ');
+    const dir1 = cloneProject(firstId, 'p1', token);
+    tempDirs.push(dir1);
+    console.log('done');
+
+    let qbtPath;
+    let solnPath;
+    let qbtProjectId;
+    let solnProjectId;
+
+    try {
+      const r1 = resolveTexPairFromClone(dir1, topicName);
+      qbtPath = r1.qbtPath;
+      solnPath = r1.solnPath;
+      if (qbtPath) qbtProjectId = firstId;
+      if (solnPath) solnProjectId = firstId;
+    } catch (e) {
+      console.error(e.message ?? e);
       exit(1);
     }
+
+    if (!qbtPath || !solnPath) {
+      const hint =
+        qbtPath && !solnPath
+          ? 'questions'
+          : !qbtPath && solnPath
+            ? 'solutions'
+            : 'one pack';
+      const line = await rl.question(
+        `\nOnly found ${hint} in the first project (or one .tex could not be classified). Paste second Overleaf URL or ID (Enter to abort): `,
+      );
+      if (!line.trim()) {
+        console.log('Aborted.');
+        exit(0);
+      }
+      const secondId = parseProjectId(line);
+      if (!secondId) {
+        console.error(`Could not parse project ID from: ${line}`);
+        exit(1);
+      }
+      process.stdout.write('Cloning second project... ');
+      const dir2 = cloneProject(secondId, 'p2', token);
+      tempDirs.push(dir2);
+      console.log('done');
+
+      try {
+        const r2 = resolveTexPairFromClone(dir2, topicName);
+        if (!qbtPath && r2.qbtPath) {
+          qbtPath = r2.qbtPath;
+          qbtProjectId = secondId;
+        }
+        if (!solnPath && r2.solnPath) {
+          solnPath = r2.solnPath;
+          solnProjectId = secondId;
+        }
+      } catch (e) {
+        console.error(e.message ?? e);
+        exit(1);
+      }
+    }
+
+    if (!qbtPath || !solnPath) {
+      console.error('Could not resolve both questions and solutions .tex files after clone(s).');
+      exit(1);
+    }
+
+    const unifiedSingleProject = qbtProjectId !== undefined && qbtProjectId === solnProjectId;
 
     const sanitized = sanitizeTopic(topicName);
     const qbtFileName = `_QBT__${sanitized}`;
@@ -220,51 +401,38 @@ async function main() {
     console.log(`  QBT:  ${qbtFileName}`);
     console.log(`  Soln: ${solnFileName}`);
 
+    const allEntries = loadResourcesEntries();
+    let ctx = derivePathContext(sitePath, allEntries);
+    if (ctx.category === 'unknown') {
+      const c = await rl.question(
+        '\nCategory string as in resources.ts (e.g. "FM - Core Pure", "FM - Further Mechanics", "TMUA"): ',
+      );
+      ctx = { ...ctx, category: c.trim() || ctx.category };
+    }
+
+    let id = deriveTopicId(ctx.idPrefix, topicName);
+    const idAns = await rl.question(`\nResource id for questions row (default ${id}): `);
+    if (idAns.trim()) id = idAns.trim();
+
     const confirm = await rl.question('OK? (Y/n): ');
     if (confirm.trim().toLowerCase() === 'n') {
       console.log('Aborted.');
       exit(0);
     }
 
-    // -- Clone --
-    process.stdout.write('\nCloning questions project... ');
-    const qbtDir = cloneProject(qbtId, 'qbt', token);
-    tempDirs.push(qbtDir);
-    console.log('done');
-
-    process.stdout.write('Cloning solutions project... ');
-    const solnDir = cloneProject(solnId, 'soln', token);
-    tempDirs.push(solnDir);
-    console.log('done');
-
-    // -- Find main .tex files --
-    const qbtTex = findMainTex(qbtDir);
-    if (!qbtTex) {
-      console.error('Could not find a main .tex file in the questions project.');
-      exit(1);
-    }
-    const solnTex = findMainTex(solnDir);
-    if (!solnTex) {
-      console.error('Could not find a main .tex file in the solutions project.');
-      exit(1);
-    }
-
-    // -- Destination directories --
     const qbtDest = join(texRoot, sitePath, 'qbt');
     const solnDest = join(texRoot, sitePath, 'soln');
     mkdirSync(qbtDest, { recursive: true });
     mkdirSync(solnDest, { recursive: true });
 
-    // -- Copy .tex to destinations --
     const qbtTexDest = join(qbtDest, `${qbtFileName}.tex`);
     const solnTexDest = join(solnDest, `${solnFileName}.tex`);
-    copyFileSync(qbtTex, qbtTexDest);
-    copyFileSync(solnTex, solnTexDest);
+    copyFileSync(qbtPath, qbtTexDest);
+    copyFileSync(solnPath, solnTexDest);
 
-    // -- Compile --
     const deployed = [qbtTexDest, solnTexDest];
 
-    process.stdout.write('Compiling questions PDF... ');
+    process.stdout.write('\nCompiling questions PDF... ');
     try {
       const qbtPdf = compileTex(qbtTexDest);
       const qbtPdfDest = join(qbtDest, `${qbtFileName}.pdf`);
@@ -290,21 +458,65 @@ async function main() {
       if (cont.trim().toLowerCase() !== 'y') exit(1);
     }
 
-    // -- Clean tex --
     process.stdout.write('Running clean-tex... ');
     execSync('node scripts/clean-tex.mjs', { cwd: repoRoot, stdio: 'pipe' });
     console.log('done');
 
-    // -- Summary --
+    const relSite = sitePath.replace(/\\/g, '/');
+    const qbtPdfRel = `/tex/${relSite}/qbt/${qbtFileName}.pdf`;
+    const solnPdfRel = `/tex/${relSite}/soln/${solnFileName}.pdf`;
+
+    const stagingEntry = {
+      addedAt: new Date().toISOString(),
+      status: 'pending',
+      sitePath: relSite,
+      topicName,
+      id,
+      category: ctx.category,
+      topic: ctx.topic,
+      qbtFile: qbtPdfRel,
+      solnFile: solnPdfRel,
+      boards: examBoardIds,
+      overleafProjectIds: {
+        qbt: qbtProjectId,
+        soln: unifiedSingleProject ? null : solnProjectId,
+      },
+      siblingId: ctx.siblingId,
+      note: null,
+      comments: '',
+    };
+
+    let stageOk = true;
+    const prior = readPending(pendingPath);
+    if (prior.entries.some((e) => e.id === id)) {
+      const dupAns = await rl.question(`\nEntry id "${id}" is already pending — overwrite? (Y/n): `);
+      stageOk = dupAns.trim().toLowerCase() !== 'n';
+    }
+
+    let stageResult = { ok: false, total: prior.entries.length };
+    if (stageOk) {
+      stageResult = addPendingEntry(pendingPath, stagingEntry, {
+        confirmOverwrite: () => true,
+      });
+    } else {
+      console.log('\nStaging skipped (existing entry kept).');
+    }
+
+    const totalPending = readPending(pendingPath).entries.length;
+
     console.log('\nFiles deployed:');
     for (const f of deployed) {
       const rel = f.slice(repoRoot.length + 1).replace(/\\/g, '/');
       console.log(`  ${rel}`);
     }
-    console.log('\n--- Add to src/data/resources.ts (questions + solutions pair) ---');
-    console.log('Set `pairId` / ids to match your naming. On the **questions** resource only:');
-    console.log(formatBoardsSnippet(examBoardIds));
-    console.log(`  file: '/tex/${sitePath.replace(/\\/g, '/')}/qbt/${qbtFileName}.pdf',`);
+
+    console.log('\nStaged for resources.ts splice:');
+    console.log(`  ${pendingPath.replace(/\\/g, '/')} (${totalPending} pending ${totalPending === 1 ? 'entry' : 'entries'} total)`);
+    console.log(`  id: ${id}`);
+    console.log(`  insert after: ${ctx.siblingId ?? '(no sibling — append in topic order)'}`);
+
+    console.log('\n--- Preview (paste into src/data/resources.ts after siblingId\'s pair) ---');
+    console.log(formatPairPreview({ id, topicName, siblingId: ctx.siblingId }));
     console.log('---\n');
   } finally {
     rl.close();
