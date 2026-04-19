@@ -1,0 +1,65 @@
+---
+description: LaTeX question-bank conventions — file layout, naming patterns, and check-tex hygiene rule. Source `.tex` files come from Overleaf; do not hand-edit question bodies.
+globs: public/tex/**/*.tex
+alwaysApply: false
+---
+
+# Question-bank `.tex` files
+
+`.tex` files under `public/tex/` are **deployed snapshots from Overleaf**, not the day-to-day editing surface. Authoring happens in Overleaf; this repo pulls them via `scripts/deploy-from-overleaf.mjs`. Avoid hand-editing question bodies — re-run the deploy script instead. Mechanical hygiene fixes (e.g. trimming editor noise, fixing path/include typos) are fine.
+
+## Build layout
+
+```
+public/tex/**/qbt/
+  _QBT__<Topic>.tex             ← source (tracked, Overleaf-derived)
+  _QBT__<Topic>.pdf             ← deployed PDF (tracked)
+  build/
+    _QBT__<Topic>.pdf           ← latexmk output, never edit
+    aux/                        ← latexmk aux files, never edit
+
+public/tex/**/soln/
+  _QBT___Solns__<Topic>.tex     ← source (tracked, Overleaf-derived)
+  _QBT___Solns__<Topic>.pdf     ← deployed PDF (tracked)
+  build/
+    aux/
+```
+
+PDFs inside `build/` (`public/tex/**/build/*.pdf`) are build outputs — **never read or edit them**. PDFs directly in `qbt/` or `soln/` are the deployed production files.
+
+`scripts/lib/tex-utils.mjs` (`shouldProcessTexFile`) treats anything under `qbt/` or `soln/` (excluding `notes/`) as a tracked QBT/soln pack. That's the set the hygiene scripts operate on.
+
+## Naming patterns
+
+| Pattern | Meaning |
+|---------|---------|
+| `_QBT__<Topic>.tex` | Question pack |
+| `_QBT___Solns__<Topic>.tex` | Solutions pack |
+| `_Notes__<Title>.tex` (under `notes/`) | Standalone notes |
+
+Filenames in this repo are produced by `sanitizeTopic` (in `scripts/deploy-from-overleaf.mjs`), which replaces every non-alphanumeric character in the Overleaf project's topic name with an underscore. Don't rename files by hand — re-deploy if a topic is renamed in Overleaf.
+
+## `check-tex` body-comment hygiene
+
+`scripts/check-tex.mjs` (run automatically by the husky pre-commit hook) lints the **document body** of every QBT/soln `.tex` file (between `\begin{document}` and `\end{document}`). It rejects any full-line comment **except** the canonical question delimiter inserted by `clean-tex`:
+
+```latex
+% ---- Question 1 ----
+```
+
+Any other full-line `% ...` line in the body is a violation. Inline comments after content (`\item foo % note`) are fine.
+
+If `check-tex` flags a file, the usual fix is `npm run clean-tex` — it strips the offending comments, collapses runs of more than two blank lines down to two, and re-numbers the question delimiters.
+
+## Local compilation
+
+If you need a fresh PDF for a single file:
+
+```pwsh
+latexmk -f -pdf -cd -interaction=nonstopmode -synctex=1 -file-line-error `
+  -auxdir=<dir>/build/aux -outdir=<dir>/build <file.tex>
+```
+
+For bulk: `npm run compile-tex [further-maths|tmua|all] [--deploy]`. The `--deploy` flag copies built PDFs up beside the source on success.
+
+The deploy script (`npm run deploy-overleaf`) compiles automatically — manual `latexmk` is rarely needed in this repo.

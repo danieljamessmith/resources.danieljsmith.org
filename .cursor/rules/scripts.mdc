@@ -1,0 +1,55 @@
+---
+description: Node tooling conventions — vitest after every edit, deploy-from-overleaf architecture, staging file invariants.
+globs: scripts/**/*.mjs
+alwaysApply: false
+---
+
+# Node scripts
+
+All build and deploy tooling lives in `scripts/` (Node ≥ 20, ESM). Tests are colocated as `*.test.mjs` next to each module and run via Vitest.
+
+## Run tests after every edit
+
+```pwsh
+npx vitest run
+```
+
+The husky pre-commit hook runs `npx vitest run` then `node scripts/check-tex.mjs`. Both must pass to commit.
+
+- If tests **pass**: proceed normally.
+- If tests **fail**: stop and report the failures. **Do not modify existing test assertions to make them pass** — test updates require explicit user approval.
+- When adding a new pure helper to a tested module, also add a test case (new `describe`/`it` blocks) — don't leave new branches uncovered.
+
+## Module map
+
+| Path | Purpose |
+|------|---------|
+| `scripts/deploy-from-overleaf.mjs` | Interactive: clone Overleaf project → `latexmk` both PDFs → place into `public/tex/<sitePath>/{qbt,soln}/` → `clean-tex` → append staging entry |
+| `scripts/compile-tex.mjs` | Bulk `latexmk` over a scope (`further-maths` (default) / `tmua` / `all`); `--deploy` copies built PDFs up beside source on success |
+| `scripts/check-tex.mjs` | Read-only body-comment hygiene check (rejects full-line comments outside `% ---- Question N ----`) |
+| `scripts/clean-tex.mjs` | Strips full-line body comments, collapses long blank runs, re-inserts numbered question delimiters |
+| `scripts/count-questions.mjs` | npm pre-hook: counts `\questionitem` and writes `src/data/questionCounts.generated.ts` |
+| `scripts/hash-assets.mjs` | npm pre-hook: hashes deployed PDFs and writes `src/data/fileHashes.generated.ts` |
+| `scripts/lib/tex-utils.mjs` | `normalizePath`, `shouldProcessTexFile`, `walkTexFiles`, `findDocBoundaries` — shared by check/clean/deploy |
+| `scripts/lib/site-tree.mjs` | `listTreeShallow`, `pickSitePath` — interactive site-path picker for the deploy script |
+| `scripts/lib/resources-derive.mjs` | Regex-based introspection of `src/data/resources.ts` (no full TS parse): `slugify`, `derivePathContext`, `deriveTopicId`, `loadResourcesEntries` — derives ids and `siblingId` anchors for the staging file |
+| `scripts/lib/staging.mjs` | `readPending`, `writePendingAtomic`, `addPendingEntry` — reads/merges/writes `data/resources-pending.json` |
+
+## Conventions
+
+- **Pure helpers go in `scripts/lib/`** with a colocated `*.test.mjs`. Keep I/O at the script entry point (`main()`); branchy logic should be importable and testable.
+- **Atomic writes** for any file an agent or script consumes: write to `<file>.<rand>.tmp` then `renameSync`. `staging.writePendingAtomic` is the reference pattern — copy it for new staged outputs.
+- **No new dependencies without good reason.** The deploy script intentionally inlines a tiny `.env` parser instead of pulling in `dotenv`.
+- **`SKIP_TEX_FILES`** in `deploy-from-overleaf.mjs` (`draft.tex`, `original.tex`) lists Overleaf scratch files that should never be picked up as a pack — extend the set rather than adding ad-hoc filtering.
+
+## Deploy workflow contract
+
+`deploy-from-overleaf.mjs` is the one workflow that mutates many parts of the repo at once. Hold its invariants when editing it:
+
+1. **One project per topic** is the modern convention; the legacy two-project fallback (separate QBT + Solns Overleaf projects) must keep working — `findPackTex` handles single-`.tex` projects with unambiguous classification (`[Solns]` ⇒ soln, `(QBT) ` ⇒ qbt).
+2. **Site-path picker** is the only way to choose a deploy directory — don't add a freehand path flag without good reason. The tex root itself can never be the deploy target.
+3. **Staging entries** (`data/resources-pending.json`) are append-or-replace by `id`. Re-deploys must prompt for overwrite confirmation. Schema is documented in `data/README.md` — bump `schemaVersion` in lockstep with any field change and update the README.
+4. **The deploy script must not edit `src/data/resources.ts`.** That's the splicer agent's job. The staging file is the only hand-off.
+5. **`OVERLEAF_GIT_TOKEN`** is read from `.env` at the repo root via the inline loader. Never log it.
+
+If you change any of these, update both `AGENTS.md` (Workflows section) and `data/README.md`.
