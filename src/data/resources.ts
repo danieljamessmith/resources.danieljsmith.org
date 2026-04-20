@@ -701,6 +701,27 @@ const rawResources: Resource[] = [
     pairId: 'fm-misc-method-of-differences',
     topic: 'Miscellaneous Pure',
   },
+  {
+    id: 'fm-misc-rational-functions',
+    title: 'Rational Functions',
+    description: '',
+    file: '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Rational_Functions.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-misc-rational-functions-solns',
+    topic: 'Miscellaneous Pure',
+    boards: ['aqa', 'cie'],
+  },
+  {
+    id: 'fm-misc-rational-functions-solns',
+    title: 'Rational Functions',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/misc-pure/soln/_QBT___Solns__Rational_Functions.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-misc-rational-functions',
+    topic: 'Miscellaneous Pure',
+  },
 
   // --- A-level Further Maths: Further Mechanics — Momentum & Collisions ---
   {

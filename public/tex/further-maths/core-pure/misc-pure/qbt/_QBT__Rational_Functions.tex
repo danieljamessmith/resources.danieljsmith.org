@@ -1,0 +1,460 @@
+% --- IMPORTS ---
+\documentclass[leqno]{article}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+% --- TikZ Packages ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+% --- URL Packages ---
+\usepackage[colorlinks=true,linkcolor=red,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+% --- END OF IMPORTS ---
+
+% --- CUSTOM COMMANDS ---
+\RenewDocumentCommand{\marks}{o m}{%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\newcommand{\questionitem}{%
+  \item\phantomsection
+  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+}
+\renewcommand{\contentsname}{Questions}
+% --- END OF CUSTOM COMMANDS ---
+
+% --- HEADER CONFIG ---
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.9pt}
+\lhead{Rational Functions}
+\chead{}
+\rhead{\href{https://danieljsmith.org}{danieljsmith.org}}
+% --- END OF HEADER CONFIG ---
+
+\begin{document}
+\vspace*{20pt}
+\tableofcontents
+\newpage
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+
+A curve has equation
+\[
+y = 2 - \frac{3}{x+1}
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item State the equations of the horizontal and vertical asymptotes of this curve. \marks{2} \\
+  \item The straight line $y=3x+c$ meets the curve. Show that the $x$-coordinates of the points of intersection satisfy
+  \[
+  3x^2+(c+1)x+(c+1)=0
+  \]
+  \marks[-10pt]{3}
+  \item It is given that the line $y=3x+c$ is a tangent to the curve. \\
+  \begin{enumerate}[label=(\roman*)]
+    \item Without using calculus, find the two possible values of $c$.  \marks{3}
+    \item Hence find the coordinates of each point of contact. \marks{4}
+  \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+
+The curve $C$ has equation $y = \dfrac{x+1}{x^2-4x+3}$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the equations of the asymptotes of $C$. \marks{2} \\
+  \item Find the coordinates of any stationary points on $C$. \marks{4} \\
+  \item Sketch $C$, stating the coordinates of the intersections with the axes. \marks{3} \\
+  \item Sketch the curve with equation $y = \left|\dfrac{x+1}{x^2-4x+3}\right|$ and find in exact form the set of values of $x$ for which $2\lvert x+1\rvert > \lvert x^2-4x+3\rvert$. \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[x=0.8cm,y=0.3cm]
+\def\xmin{-7}
+\def\xmax{8}
+\def\ymin{-14}
+\def\ymax{16}
+\def\xa{-1}
+\def\xb{2}
+\begin{scope}
+\clip (\xmin,\ymin) rectangle (\xmax,\ymax);
+\draw[dashed, black] (\xmin,5) -- (\xmax,5);
+\draw[dashed, black] (\xa,\ymin) -- (\xa,\ymax);
+\draw[dashed, black] (\xb,\ymin) -- (\xb,\ymax);
+\draw[thick, black, domain=-7:-1.05, samples=200, smooth] plot (\x, {(5*\x*\x - 2*\x + 1)/(\x*\x - \x - 2)});
+\draw[thick, black, domain=-0.95:1.95, samples=300, smooth] plot (\x, {(5*\x*\x - 2*\x + 1)/(\x*\x - \x - 2)});
+\draw[thick, black, domain=2.05:8, samples=200, smooth] plot (\x, {(5*\x*\x - 2*\x + 1)/(\x*\x - \x - 2)});
+\end{scope}
+\draw[-{Stealth[length=3mm]}, thick] (\xmin,0) -- (\xmax,0) node[right] {$x$};
+\draw[-{Stealth[length=3mm]}, thick] (0,\ymin) -- (0,\ymax) node[above] {$y$};
+\end{tikzpicture}
+\end{figure}
+
+
+The diagram shows the curve $C$ with equation
+\[
+y = \frac{5x^2 + ax - b}{x^2 + bx + a}
+\]
+where $a$ and $b$ are integers. \\
+
+The vertical asymptotes of $C$ are $x=-1$ and $x=2$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item State the equation of the asymptote of $C$ that is parallel to the $x$-axis. \marks{1} \\
+  \item Use the vertical asymptotes to find the value of $a$ and the value of $b$. \marks{2} \\
+  \item Hence, or otherwise, find the coordinates of the point where $C$ meets the $y$-axis. \marks{1} \\
+  \item Without using calculus, show that the line $y=4$ does not intersect $C$. \marks{5} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+
+The function $f$ is defined by
+\[
+f(x)=\frac{-2x^2+11x-20}{2x-3} \qquad (x \in \mathbb{R},\ x \ne \tfrac{3}{2})
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the range of $f$ \marks{5} \\
+  \item Find the coordinates of the two stationary points of the graph of $y=f(x)$. \marks{2} \\
+  \item Show that the graph of $y=f(x)$ has an oblique asymptote and find its equation. \marks{2} \\
+  \item Sketch the graph of $y=f(x)$, showing clearly the asymptotes and stationary points. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+
+The curve $C$ has equation $y = \dfrac{x^2 + ax - 6}{x + 1}$, where $a > 0$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the equations of the asymptotes of $C$. \marks{3} \\
+  \item Show that $C$ has no stationary points. \marks{4} \\
+  \item Sketch $C$, stating the coordinates of the point of intersection with the $y$-axis and labelling the asymptotes. \marks{3} \\
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Sketch the curve with equation $y = \left|\dfrac{x^2 + ax - 6}{x + 1}\right|$. \marks{2}
+    \item On your sketch in part (i), draw the line $y = a + 1$. \marks{1}
+    \item It is given that $\left|\dfrac{x^2 + ax - 6}{x + 1}\right| < a + 1$ for $-11 < x < -3$ and $0 < x < 4$. \\
+    Find the value of $a$. \marks{2}
+  \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+
+
+The function $f$ is defined by
+\[
+f(x)=\frac{x^2+2x-3}{x^2+px+4} \qquad x \in \mathbb{R}
+\]
+where $p$ is a constant. \\
+
+The graph of $y=f(x)$ has only one asymptote. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Write down the equation of the asymptote. \marks{1} \\
+  \item Find the set of possible values of $p$. \marks{4} \\
+  \item Find the coordinates of the points at which the graph of $y=f(x)$ intersects the coordinate axes. \marks{3} \\
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}
+\pgfmathsetmacro{\xM}{4.5}
+\pgfmathsetmacro{\yM}{4/3}
+\pgfmathsetmacro{\kval}{0.2}
+\begin{axis}[
+    axis lines=center,
+    xlabel={$x$},
+    ylabel={$y$},
+    xmin=-7, xmax=7,
+    ymin=-1.2, ymax=1.6,
+    xtick=\empty,
+    ytick=\empty,
+    clip=false,
+    width=10cm,
+    height=6.2cm,
+    every axis x label/.style={at={(ticklabel* cs:1)}, anchor=west},
+    every axis y label/.style={at={(ticklabel* cs:1)}, anchor=south}
+]
+\addplot[thick, black, samples=300, domain=-7:7] {(x^2 + 2*x - 3)/(x^2 - x + 4)};
+\addplot[dashed, black, samples=2, domain=-7:7] {\kval};
+\node[above right] at (axis cs:-7,0.6) {$C$};
+\node[above right] at (axis cs:4.5,\kval) {$y=k$};
+\node[below left] at (axis cs:0,0) {$O$};
+\node[above] at (axis cs:\xM,\yM) {$M$};
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+  
+  \item A curve $C$ has equation
+  \[
+  y=\frac{x^2+2x-3}{x^2-x+4}
+  \]
+  The curve $C$ has a local maximum at the point $M$ as shown in the diagram. \\
+  The line $y=k$ intersects curve $C$. \\
+  \begin{enumerate}[label=(\roman*)]
+    \item Show that
+    \[
+    15k^2-8k-16 \le 0
+    \]
+    \marks[-20pt]{5}
+    \item Hence, find the $y$-coordinate of point $M$. \marks{2}
+  \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+
+A curve has equation
+\[
+y = \frac{x^2 - 9}{x^2 - 4}
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Write down the equations of the asymptotes to the curve. \marks{3} \\
+  \item Sketch the curve, indicating the coordinates of the points where the curve intersects the coordinate axes. \marks{5} \\
+  \item Hence, or otherwise, solve the inequality
+  \[
+  0 < \frac{x^2 - 9}{x^2 - 4} < 1
+  \]
+  \marks[-20pt]{2}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+
+The curve $C$ has equation
+\[
+y=\frac{x^2+3}{x+1}
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the equations of the asymptotes of $C$. \marks{3} \\
+  \item Show that there is no point on $C$ for which $-6<y<2$. \marks{4} \\
+  \item Sketch $C$. \marks{2} \\
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Sketch the graphs of
+    \[
+    y=\left|\frac{x^2+3}{x+1}\right| \text{ and } y=|x-1|
+    \]
+    on the same axes, stating the coordinates of any intersections with the axes. \marks{4}
+    \item Use your sketch to find the set of values of $c$ for which
+    \[
+    \left|\frac{x^2+3}{x+1}\right| \le |x-1|+c
+    \]
+    has no solution. \marks{1}
+  \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+
+Let $a$ be a positive constant. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item The curve $C_1$ has equation
+  \[
+  y=\frac{x^2-a^2}{x^2-4a^2}
+  \]
+  Sketch $C_1$. \marks{2} \\
+  \end{enumerate}
+  The curve $C_2$ has equation
+  \[
+  y=\left(\frac{x^2-a^2}{x^2-4a^2}\right)^2
+  \]
+  The curve $C_3$ has equation
+  \[
+  y=\left|\frac{x^2-a^2}{x^2-4a^2}\right|
+  \]
+  \\
+  \begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Find the coordinates of all stationary points of $C_2$. \marks{3}
+    \item Find also the coordinates of all points of intersection of $C_2$ and $C_3$. \marks{3} \\
+  \end{enumerate}
+  \item Sketch $C_2$ and $C_3$ on a single diagram, clearly identifying each curve. Hence find the set of values of $x$ for which
+  \[
+  \left(\frac{x^2-a^2}{x^2-4a^2}\right)^2 \leq \left|\frac{x^2-a^2}{x^2-4a^2}\right|
+  \]
+  \marks[-30pt]{5}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+
+A curve $C_1$ has equation
+\[
+y=-2+\frac{12}{x+3}
+\]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Write down the equations of the asymptotes of curve $C_1$. \marks{2} \\
+  \item Sketch the graph of curve $C_1$. 
+  Indicate the values of the intercepts of the curve with the axes. \marks{3}
+  \item Hence, or otherwise, solve the inequality
+  \[
+  -2+\frac{12}{x+3}>0
+  \]
+  \marks[-20pt]{2}
+  \item Curve $C_2$ is a reflection of curve $C_1$ in the line $y=-x$.
+  Find an equation for curve $C_2$ in the form $y=f(x)$. \marks{3}
+\end{enumerate}
+
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+
+The curve $C$ has equation
+\[
+y=\frac{x^2-6x+5}{x+2}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the equations of the asymptotes of $C$. \marks{3} \\
+  \item Find the exact coordinates of the stationary points on $C$. \marks{4} \\
+  \item Sketch $C$, stating the coordinates of any intersections with the axes. \marks{3} \\
+  \item Sketch the curve with equation
+  \[
+  y=\left|\frac{x^2-6x+5}{x+2}\right|
+  \] \\
+  and find in exact form the set of values of $x$ for which
+  \[
+  \left|\frac{x^2-6x+5}{x+2}\right|<6
+  \]
+  \marks[-30pt]{5}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+
+A curve has equation $y=\dfrac{x-1}{x^2-x-6}$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Write down the equations of the three asymptotes of the curve. \marks{3}
+    \item Sketch the curve, showing the coordinates of any points of intersection with the coordinate axes. \marks[-10pt]{4} \\
+  \end{enumerate}
+  \item Hence, or otherwise, solve the inequality
+  \[
+  \frac{x-1}{x^2-x-6}>\frac{1}{2}
+  \]
+  \marks[-20pt]{3}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 13 ----
+\questionitem
+
+The curve $C$ has equation
+\[
+y=\frac{(x-1)(x+3)}{x^2-2x+3}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that $C$ has no vertical asymptotes and state the equation of the horizontal asymptote of $C$. \marks{3} \\
+  \item Find the coordinates of the stationary points on $C$. \marks{4} \\
+  \item Sketch $C$, stating the coordinates of the intersections with the axes. \marks{3} \\
+  \item Sketch the curve with equation
+  \[
+  y=\left|\frac{(x-1)(x+3)}{x^2-2x+3}\right|
+  \] \\
+  and state the set of values of $k$ for which
+  \[
+  \left|\frac{(x-1)(x+3)}{x^2-2x+3}\right|=k
+  \]
+  has $4$ distinct real solutions. \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 14 ----
+\questionitem
+
+The curve $C$ has equation
+\[
+y=\dfrac{-x^2+4x+5}{x+2}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the equations of the asymptotes of $C$. \marks{3} \\
+  \item Find the coordinates of the stationary points of $C$. \marks{4} \\
+  \item Sketch $C$, stating the coordinates of the intersections with the axes. \marks{3} \\
+  \item Sketch the curve with equation
+  \[
+  y=\left|\dfrac{-x^2+4x+5}{x+2}\right|
+  \]
+  \marks[-20pt]{2}
+  \item Using your sketch, or otherwise, find the set of values of $x$ for which
+  \[
+  \left|\dfrac{-x^2+4x+5}{x+2}\right|<2
+  \]
+  \marks[-30pt]{4}
+\end{enumerate}
+\end{enumerate}
+\end{document}
