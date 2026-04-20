@@ -94,7 +94,7 @@
   \item Hence, using a suitable value of $x$, show that \[e^{-1/4}\approx \frac{25}{32}\]. \marks{2} \\
 \end{enumerate}
 
-\vspace*{30pt}
+\vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
 \begin{enumerate}[label=\textbf{(\alph*)}]
@@ -169,10 +169,11 @@
 
 \begin{enumerate}[label=(\roman*)]
   \item Use the Maclaurin series for $\sin x$ and $\cos x$ to work out the series expansion of \[\sin 2x(\cos x-\cos 3x)\] up to and including the term in $x^5$. \marks{4} \\
-  \item Hence find, in exact surd form, an approximation to the least positive root of the equation \[2\sin 2x(\cos x-\cos 3x)=x\] \marks[-20pt]{3} \\
+  \item Hence show that, in exact surd form, an approximation to the least positive root of the equation \[2\sin 2x(\cos x-\cos 3x)=x\] is \[\sqrt{\frac{4-\sqrt{10}}{12}}
+\]\marks[-20pt]{3} \\
 \end{enumerate}
 
-\vspace*{30pt}
+\vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
 \begin{enumerate}[label=\textbf{(\roman*)}]
@@ -305,7 +306,7 @@ So the least positive root is approximately
   \marks[-30pt]{4}
 \end{enumerate}
 
-\vspace*{30pt}
+\vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
 \begin{enumerate}[label=\textbf{(\alph*)}]
@@ -422,7 +423,7 @@ Let $f(x)=\ln(1+\sin x)$. \\
   \end{enumerate}
 \end{enumerate}
 
-\vspace*{30pt}
+\vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
 \begin{enumerate}[label=\textbf{(\alph*)}]
@@ -518,7 +519,7 @@ Let $f(x)=\ln(1+\sin x)$. \\
   where $a$, $b$ and $c$ are constants to be determined. \marks{5} \\
 \end{enumerate}
 
-\vspace*{30pt}
+\vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
 \begin{enumerate}[label=\textbf{(\alph*)}]
@@ -574,65 +575,91 @@ Therefore
 
 So the given result is shown.
 
-  \item From part (a),
+\item From part (a),
 \[
-\frac{\mathrm{d}y}{\mathrm{d}x}=-\frac{1}{(x+2)\sqrt{5+2x}}
+(x+2)\sqrt{5+2x}\,\frac{\mathrm{d}y}{\mathrm{d}x}+1=0
 \]
 
-Rewrite this in a form suitable for the binomial expansion:
+First divide through by \(\sqrt{5+2x}\):
+\[
+(x+2)\frac{\mathrm{d}y}{\mathrm{d}x}+\frac{1}{\sqrt{5+2x}}=0
+\]
+
+Differentiate implicitly with respect to \(x\):
 \begin{align*}
-\frac{\mathrm{d}y}{\mathrm{d}x}
-&=-\frac{1}{2\sqrt5}\left(1+\frac{x}{2}\right)^{-1}\left(1+\frac{2x}{5}\right)^{-1/2}
+\frac{\mathrm{d}}{\mathrm{d}x}\left((x+2)\frac{\mathrm{d}y}{\mathrm{d}x}\right)
++\frac{\mathrm{d}}{\mathrm{d}x}\left((5+2x)^{-1/2}\right)&=0 \\
+(x+2)\frac{\mathrm{d}^2y}{\mathrm{d}x^2}
++\frac{\mathrm{d}y}{\mathrm{d}x}
+-(5+2x)^{-3/2}&=0
 \end{align*}
 
-Using the standard expansions near \(x=0\),
+Now evaluate the required quantities at \(x=0\).
+
+First,
 \[
-(1+u)^{-1}=1-u+\cdots, \qquad (1+u)^{-1/2}=1-\frac12u+\cdots
+y(0)=\cosh^{-1}\left(\frac{3}{2}\right)
+\]
+Using
+\[
+\cosh^{-1}t=\ln\left(t+\sqrt{t^2-1}\right),
 \]
 we get
 \begin{align*}
-\left(1+\frac{x}{2}\right)^{-1}
-&=1-\frac{x}{2}+\cdots \\
-\left(1+\frac{2x}{5}\right)^{-1/2}
-&=1-\frac{1}{2}\cdot\frac{2x}{5}+\cdots \\
-&=1-\frac{x}{5}+\cdots
-\end{align*}
-
-Hence
-\begin{align*}
-\frac{\mathrm{d}y}{\mathrm{d}x}
-&=-\frac{1}{2\sqrt5}\left(1-\frac{x}{2}+\cdots\right)\left(1-\frac{x}{5}+\cdots\right) \\
-&=-\frac{1}{2\sqrt5}\left(1-\frac{x}{2}-\frac{x}{5}+\cdots\right) \\
-&=-\frac{1}{2\sqrt5}\left(1-\frac{7x}{10}+\cdots\right)
-\end{align*}
-
-Now integrate term by term:
-\begin{align*}
-y
-&=\int \frac{\mathrm{d}y}{\mathrm{d}x}\,\mathrm{d}x \\
-&=\int -\frac{1}{2\sqrt5}\left(1-\frac{7x}{10}+\cdots\right)\,\mathrm{d}x \\
-&=C-\frac{x}{2\sqrt5}+\frac{7x^2}{40\sqrt5}+\cdots
-\end{align*}
-
-To find \(C\), put \(x=0\):
-\[
-C=\cosh^{-1}\left(\frac{3}{2}\right)
-\]
-
-Using
-\[
-\cosh^{-1}t=\ln\left(t+\sqrt{t^2-1}\right)
-\]
-we have
-\begin{align*}
-C
+y(0)
 &=\ln\left(\frac32+\sqrt{\frac94-1}\right) \\
 &=\ln\left(\frac32+\sqrt{\frac54}\right) \\
 &=\ln\left(\frac32+\frac{\sqrt5}{2}\right) \\
 &=\ln\left(\frac{3+\sqrt5}{2}\right)
 \end{align*}
 
-Therefore the first three terms are
+Also from part (a),
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}
+=-\frac{1}{(x+2)\sqrt{5+2x}}
+\]
+so
+\[
+\left.\frac{\mathrm{d}y}{\mathrm{d}x}\right|_{x=0}
+=-\frac{1}{2\sqrt5}
+\]
+
+Substitute \(x=0\) into
+\[
+(x+2)\frac{\mathrm{d}^2y}{\mathrm{d}x^2}
++\frac{\mathrm{d}y}{\mathrm{d}x}
+-(5+2x)^{-3/2}=0:
+\]
+\[
+2\left.\frac{\mathrm{d}^2y}{\mathrm{d}x^2}\right|_{x=0}
++\left.\frac{\mathrm{d}y}{\mathrm{d}x}\right|_{x=0}
+-5^{-3/2}=0
+\]
+Hence
+\begin{align*}
+2\left.\frac{\mathrm{d}^2y}{\mathrm{d}x^2}\right|_{x=0}
+-\frac{1}{2\sqrt5}
+-\frac{1}{5\sqrt5}&=0 \\
+2\left.\frac{\mathrm{d}^2y}{\mathrm{d}x^2}\right|_{x=0}
+&=\frac{1}{2\sqrt5}+\frac{1}{5\sqrt5} \\
+&=\frac{7}{10\sqrt5}
+\end{align*}
+so
+\[
+\left.\frac{\mathrm{d}^2y}{\mathrm{d}x^2}\right|_{x=0}
+=\frac{7}{20\sqrt5}
+\]
+
+Therefore the Maclaurin series is
+\[
+y
+=
+y(0)
++\left.\frac{\mathrm{d}y}{\mathrm{d}x}\right|_{x=0}x
++\frac{1}{2}\left.\frac{\mathrm{d}^2y}{\mathrm{d}x^2}\right|_{x=0}x^2
++\cdots
+\]
+Thus
 \[
 \cosh^{-1}\left(\frac{3+x}{2+x}\right)
 =
@@ -673,7 +700,7 @@ a=1,\qquad b=-\frac{1}{2\sqrt5},\qquad c=\frac{7}{40\sqrt5}
   \item Hence determine the first three non-zero terms of the Maclaurin series for $y$, giving each coefficient in simplest form. \marks{2} \\
 \end{enumerate}
 
-\vspace*{30pt}
+\vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
 \begin{enumerate}[label=\textbf{(\alph*)}]
@@ -847,7 +874,7 @@ a=1,\qquad b=-\frac{1}{2\sqrt5},\qquad c=\frac{7}{40\sqrt5}
   \item Use the result of part (ii) and the Maclaurin series for $\ln(1+t)$ to find the Maclaurin series for $\ln(1+\arctan x)$, up to and including the term in $x^4$. \marks{5} \\
 \end{enumerate}
 
-\vspace*{30pt}
+\vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
 \begin{enumerate}[label=\textbf{(\roman*)}]
@@ -992,7 +1019,7 @@ a=1,\qquad b=-\frac{1}{2\sqrt5},\qquad c=\frac{7}{40\sqrt5}
   \marks[-30pt]{4}
 \end{enumerate}
 
-\vspace*{30pt}
+\vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
 \begin{enumerate}[label=\textbf{(\alph*)}]
@@ -1138,7 +1165,7 @@ Using the Maclaurin series for $\sin x$, show that, for small values of $x$,
 \]
 where the values of $a$, $b$ and $c$ are to be given in exact form. \marks{5}
 
-\vspace*{30pt}
+\vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
 Using the Maclaurin series,
@@ -1263,7 +1290,7 @@ for small values of $x$.
   Fully justify your answer. \marks{3} \\
 \end{enumerate}
 
-\vspace*{30pt}
+\vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
 \begin{enumerate}[label=\textbf{(\alph*)}]
@@ -1419,7 +1446,7 @@ Hence the approximation is
   \item Using the inequality in part (b), and by making a suitable choice for $t$, determine which is greater, \[\left(\frac{5}{4}\right)^5 \quad \text{or}\quad e\] \marks{3} \\
 \end{enumerate}
 
-\vspace*{30pt}
+\vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
 \begin{enumerate}[label=\textbf{(\alph*)}]
@@ -1495,7 +1522,7 @@ Hence the approximation is
   Explain Dana's error. \marks{2} \\
 \end{enumerate}
 
-\vspace*{30pt}
+\vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
 \begin{enumerate}[label=\textbf{(\alph*)}]
@@ -1601,7 +1628,7 @@ Hence the approximation is
   \item Assuming that the calculator answer in part (c) is accurate to $5$ decimal places, comment on the accuracy of the approximation found in part (b). \marks{1} \\
 \end{enumerate}
 
-\vspace*{30pt}
+\vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
 \begin{enumerate}[label=\textbf{(\alph*)}]
@@ -1727,7 +1754,7 @@ It is accurate to \(3\) decimal places, but not to \(4\) decimal places.
   where $a$, $b$ and $c$ are rational numbers to be determined. \marks{3} \\
 \end{enumerate}
 
-\vspace*{30pt}
+\vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
 \begin{enumerate}[label=\textbf{(\alph*)}]
@@ -1807,7 +1834,7 @@ a=1,\qquad b=\frac14,\qquad c=\frac1{48}
   Hence find an approximation to $\ln 2$, giving your answer to three decimal places. \marks{4} \\
 \end{enumerate}
 
-\vspace*{30pt}
+\vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
 \begin{enumerate}[label=\textbf{(\roman*)}]
@@ -1927,7 +1954,7 @@ So, to three decimal places,
 
 Find the Maclaurin series for \[e^{e^{x^2}-x}\] up to and including the term in $x^2$. \marks{4}
 
-\vspace*{30pt}
+\vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
 Using the standard Maclaurin expansion
@@ -1997,7 +2024,7 @@ e^{e^{x^2}-x}=e-ex+\frac{3e}{2}x^2+\cdots
   \item Hence, by replacing $x$ with $\mathrm{i}x$ in your answer to part (a), find the first three non-zero terms in the Maclaurin series expansion of $x\cos x-\sin x$. \marks{3} \\
 \end{enumerate}
 
-\vspace*{30pt}
+\vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
 \begin{enumerate}[label=\textbf{(\alph*)}]
