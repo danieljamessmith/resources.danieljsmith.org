@@ -11,7 +11,7 @@ Dual-purpose repository:
 - **Astro static site** (`src/`) — a resource-listing website built with Astro, Tailwind CSS, and TypeScript, deployed as a static site.
 - **LaTeX question bank** (`public/tex/`) — A-level Further Maths question-by-topic (QBT) packs and solutions, plus TMUA papers.
 
-The `.tex` sources under `public/tex/` are **deployed snapshots from Overleaf**, not the day-to-day editing surface. Question authoring happens in Overleaf; this repo pulls the latest source via the `deploy-from-overleaf` script, compiles the PDFs locally with `latexmk`, and serves them from the Astro site. Treat `.tex` files here as build inputs — do not hand-edit question bodies in this repo.
+The `.tex` sources under `public/tex/` are the **day-to-day editing surface** for question content. Brand-new topics are typically authored in Overleaf and brought into the repo for the first time via `npm run deploy-overleaf`, but after that initial import the in-repo `.tex` files are edited directly here: typo fixes, statement rewrites, mark adjustments, etc. The QBT pack (`qbt/_QBT__<Topic>.tex`) is the **single source of truth** for question statements; the matching solutions pack (`soln/_QBT___Solns__<Topic>.tex`) owns only the per-question Solution `tcolorbox`. Drift between the two is detected by `check-questions` and rewritten by `sync-questions` (see the QBT ⇄ SOLN contract below). PDFs are rebuilt locally with `latexmk` (via `npm run compile-tex -- <scope> --deploy`) and committed alongside the `.tex` they were built from — CI does not run `latexmk`.
 
 ---
 
@@ -32,7 +32,7 @@ The `.tex` sources under `public/tex/` are **deployed snapshots from Overleaf**,
 | `scripts/` | Node tooling: deploy, compile, hygiene, generators (see below) |
 | `scripts/lib/` | Shared modules (`tex-utils`, `staging`, `site-tree`, `resources-derive`) with colocated `*.test.mjs` |
 | `data/` | Tracked agent hand-off files. Currently `resources-pending.json` (deploy → splicer); see `data/README.md` |
-| `.husky/pre-commit` | Runs `npx vitest run` and `node scripts/check-tex.mjs` |
+| `.husky/pre-commit` | Runs `npx vitest run`, then `check-tex`, `check-questions`, `check-resources`, `check-generated` |
 | `.vscode/settings.json` | LaTeX Workshop config (latexmk recipe, ChkTeX) — kept in sync with `compile-tex.mjs` |
 
 Further Maths on the site uses three routes: `/further-maths` (strand picker), `/further-maths/core-pure`, and `/further-maths/further-mechanics`. In `src/data/resources.ts`, strand categories are named **`FM - Core Pure`** and **`FM - Further Mechanics`** (constants `FM_CP`, `FM_MECH`); helpers that aggregate across strands match the prefix `FM - ` (`FM_PREFIX`).
@@ -71,19 +71,55 @@ public/tex/
 
 `scripts/lib/tex-utils.mjs` (`shouldProcessTexFile`) treats anything under `qbt/` or `soln/` (but not `notes/`) as a tracked QBT/soln pack — that's the set of files `check-tex.mjs` and `clean-tex.mjs` operate on.
 
+### QBT ⇄ SOLN statement contract
+
+For every topic, `_QBT__<Topic>.tex` (under `qbt/`) and `_QBT___Solns__<Topic>.tex` (under `soln/`) share an identical per-question statement region. The QBT file is the **single source of truth** for question statements; the soln file owns only the post-statement Solution `tcolorbox` (and its `\vspace*{10pt}` prelude). A soln block is shaped exactly:
+
+```
+% ---- Question N ----
+\questionitem
+<statement — byte-identical to QBT>
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, ...]
+<solution body>
+\end{tcolorbox}
+```
+
+The boundary is detected by the line containing both `\begin{tcolorbox}` and `title={\textbf{Solution}}`. QBT statements may themselves contain other tcolorboxes (e.g. info/working boxes) — only the `Solution`-titled one demarcates the statement/solution split.
+
+`scripts/check-questions.mjs` enforces the contract (read-only, used in pre-commit and `pre*` hooks); `scripts/sync-questions.mjs` rewrites soln statement regions from QBT when they drift.
+
 ---
 
 ## Workflows
 
-### Deploying a topic from Overleaf — primary workflow
+### Editing question content in-repo — primary workflow
 
-The day-to-day way new content lands in this repo:
+Once a topic exists under `public/tex/`, day-to-day fixes happen here in the repo, not back in Overleaf. Typical loop:
+
+1. Edit the **QBT** `.tex` (`qbt/_QBT__<Topic>.tex`) — the source of truth for question statements. For solution-only edits, edit the SOLN `.tex` directly inside its `Solution` `tcolorbox`.
+2. `npm run check-questions` — read-only drift detector. If a QBT statement was edited, its SOLN twin will now show as drifted; if delimiters or `\questionitem` counts no longer line up, the pair is reported as **structurally broken** (must be fixed by hand before sync can proceed).
+3. `npm run sync-questions` — rewrites SOLN statement regions in place to match QBT. Only the statement region between `\questionitem` and the `\vspace*{10pt}` / Solution `tcolorbox` is touched; the Solution body is never modified.
+4. `npm run check-questions` again to confirm `0 drifted, 0 broken`.
+5. Recompile any PDFs whose `.tex` changed in a way that affects rendering:
+   - **Single file**: invoke `latexmk` with the args in the `latexmk args` section below, then copy `build/<name>.pdf` up beside the source.
+   - **Bulk**: `npm run compile-tex -- <scope> --deploy` rebuilds every QBT/soln `.tex` under the scope and copies the resulting PDFs up on success. Use `git status` to see which PDFs actually changed bytes.
+   - **Skip recompile** for whitespace-only drift fixes that don't affect rendering — `git status` will show the PDF as unchanged anyway.
+6. Commit `.tex` + regenerated `.pdf`s together. Pre-commit will re-run `vitest`, `check-tex`, and `check-questions`; CI on `main` re-runs the same three plus the Astro build.
+
+CI never runs `latexmk`, so whatever `.pdf` is committed is what ships to GitHub Pages — the recompile step is yours.
+
+### Deploying a new topic from Overleaf — initial-import workflow
+
+For a topic that doesn't yet exist under `public/tex/`, the import path is:
 
 ```pwsh
 npm run deploy-overleaf   # → node scripts/deploy-from-overleaf.mjs
 ```
 
-The script is interactive. It clones an Overleaf project over HTTPS using `OVERLEAF_GIT_TOKEN` (in `.env` at the repo root), compiles both PDFs locally with the same `latexmk` flags as LaTeX Workshop, copies the `.tex` + `.pdf` for both QBT and solutions into `public/tex/<sitePath>/{qbt,soln}/`, runs `clean-tex` over them, and stages a `data/resources-pending.json` entry for the splicer.
+The script is interactive. It clones an Overleaf project over HTTPS using `OVERLEAF_GIT_TOKEN` (in `.env` at the repo root), compiles both PDFs locally with the same `latexmk` flags as LaTeX Workshop, copies the `.tex` + `.pdf` for both QBT and solutions into `public/tex/<sitePath>/{qbt,soln}/`, runs `clean-tex` over them, and stages a `data/resources-pending.json` entry for the splicer. Re-running the script for a topic that already exists is supported (it'll prompt to overwrite) but the more common follow-up flow is to just edit the in-repo `.tex` files directly.
 
 - **One project per topic** is the modern convention: a single Overleaf project containing both `(QBT) <Topic>.tex` and `(QBT) [Solns] <Topic>.tex`. The script auto-detects both files via `findPackTex` in `scripts/deploy-from-overleaf.mjs`.
 - **Legacy fallback**: if only one of the two files is found in the first clone, the script prompts for a second Overleaf URL and pulls the missing kind from there. Single-`.tex` projects whose name predates the `(QBT) ` convention are also handled — discovery falls back to the only `.tex` with `\begin{document}` when the basename is unambiguous (`[Solns]` ⇒ soln, `(QBT) ` ⇒ qbt).
@@ -119,7 +155,8 @@ The `*.generated.ts` files **must not be hand-edited** — they're regenerated o
 | Test runner | Vitest (`npm run test` → `vitest run`) — colocated `*.test.mjs` next to each script |
 | LaTeX build | `latexmk` — args mirrored between `.vscode/settings.json` and `scripts/compile-tex.mjs` |
 | LaTeX lint (editor) | ChkTeX via LaTeX Workshop on edit (in-editor only; no CI) |
-| Pre-commit | Husky → `npx vitest run` then `node scripts/check-tex.mjs` |
+| Pre-commit | Husky → `npx vitest run`, then `check-tex`, `check-questions`, `check-resources`, `check-generated` |
+| Pre-`dev`/`build`/`check` | `count-questions` + `hash-assets` + `check-questions` (drift surfaces before the dev server starts; `check-resources`/`check-generated` are pre-commit-only to keep the inner loop fast) |
 
 ### npm scripts
 
@@ -128,6 +165,10 @@ The `*.generated.ts` files **must not be hand-edited** — they're regenerated o
 | `npm run test` | Vitest run over all `*.test.mjs` |
 | `npm run check-tex` | Read-only hygiene check on QBT/soln `.tex` bodies (no full-line comments outside `% ---- Question N ----` delimiters) |
 | `npm run clean-tex` | Strips full-line comments from QBT/soln bodies, collapses blank-line runs, re-numbers question delimiters |
+| `npm run check-questions [scope]` | Read-only drift detector: reports any QBT/soln pair where the SOLN statement region differs from the QBT statement, plus structurally broken pairs (numbering mismatches, duplicate delimiters, missing/extra `\questionitem`, delimiter numbering gaps). Same scope arg as `compile-tex`. Non-zero exit on drift |
+| `npm run sync-questions [scope]` | Rewrites SOLN statement regions in place to match QBT. Solution `tcolorbox` content is never touched. Skips structurally broken pairs (run `check-questions` first to triage) |
+| `npm run check-resources` | Read-only validator for `src/data/resources.ts`: missing files on disk, duplicate ids, broken `pairId` links (unresolved / asymmetric / type or topic mismatch), missing entries in `questionCounts.generated.ts`, orphan PDFs (warning). Non-zero exit on any violation |
+| `npm run check-generated` | Read-only verifier that the `*.generated.ts` files in `src/data/` match what `count-questions` and `hash-assets` would produce now (catches stale generated state from `--no-verify` commits or hand-edits). Non-zero exit on staleness |
 | `npm run compile-tex [scope] [--deploy]` | Bulk latexmk over `further-maths` (default), `tmua`, or `all`; `--deploy` copies built PDFs up beside the source on success |
 | `npm run deploy-overleaf` | Interactive Overleaf clone + compile + place + stage (see workflow above) |
 
@@ -149,10 +190,14 @@ The `*.generated.ts` files **must not be hand-edited** — they're regenerated o
 | `scripts/check-tex.mjs` | `scripts/check-tex.test.mjs` | `isUnexpectedFullLineComment` |
 | `scripts/clean-tex.mjs` | `scripts/clean-tex.test.mjs` | Comment stripping + blank-run collapse + delimiter re-insertion |
 | `scripts/deploy-from-overleaf.mjs` | `scripts/deploy-from-overleaf.test.mjs` | Pure helpers (`parseBoardSelection`, `parseProjectId`, `classifyTexBasename`, `findPackTex`, etc.) |
-| `scripts/lib/tex-utils.mjs` | `scripts/lib/tex-utils.test.mjs` | `shouldProcessTexFile`, `walkTexFiles`, `findDocBoundaries` |
+| `scripts/lib/tex-utils.mjs` | `scripts/lib/tex-utils.test.mjs` | `shouldProcessTexFile`, `walkTexFiles`, `findDocBoundaries`, `findPackPairs` |
+| `scripts/lib/question-blocks.mjs` | `scripts/lib/question-blocks.test.mjs` | `parseDoc`, `serializeDoc` (CRLF/LF preserving), `splitSolnBlock`, `extractQbtStatement`, `rewriteSolnStatement`, `validateBlocks` (missing/extra `\questionitem`, delim-numbering gaps), end-to-end `syncPair` |
 | `scripts/lib/staging.mjs` | `scripts/lib/staging.test.mjs` | `readPending`, `writePendingAtomic`, `addPendingEntry` (dedup + atomic write) |
 | `scripts/lib/site-tree.mjs` | `scripts/lib/site-tree.test.mjs` | `listTreeShallow`, `pickSitePath` |
-| `scripts/lib/resources-derive.mjs` | `scripts/lib/resources-derive.test.mjs` | `slugify`, `derivePathContext`, `deriveTopicId`, `loadResourcesEntries` |
+| `scripts/lib/resources-derive.mjs` | `scripts/lib/resources-derive.test.mjs` | `slugify`, `derivePathContext`, `deriveTopicId`, `loadResourcesEntries`, `parseResourcesEntries` (incl. `pairId`) |
+| `scripts/lib/resources-check.mjs` | `scripts/lib/resources-check.test.mjs` | `checkResources` — duplicate ids, missing files, missing question counts, pair link integrity (unresolved/asymmetric/type/topic), orphan-PDF warnings |
+| `scripts/count-questions.mjs` | `scripts/count-questions.test.mjs` | `findQbtTexFiles`, `countQuestionitemsInText`, `computeQuestionCounts` (temp-dir fixture), `renderQuestionCountsModule` (byte-stable output) |
+| `scripts/hash-assets.mjs` | `scripts/hash-assets.test.mjs` | `findPdfFiles` (skip build/aux), `hashFile`, `computeFileHashes`, `renderFileHashesModule` |
 
 **After editing any `scripts/**/*.mjs` file, run `npx vitest run`.** Pre-commit will also run it. Do not modify existing test assertions without explicit user approval — see the cursor rule.
 
@@ -163,7 +208,7 @@ The `*.generated.ts` files **must not be hand-edited** — they're regenerated o
 | Rule file | Trigger | Purpose |
 |-----------|---------|---------|
 | `.cursor/rules/onboarding.mdc` | Always | Points agents to this file; key orientation facts |
-| `.cursor/rules/tex-bank.mdc` | `public/tex/**/*.tex` | Treats `.tex` files as Overleaf-derived snapshots; documents the build layout, file-naming patterns, and the `check-tex` body-comment hygiene rule |
+| `.cursor/rules/tex-bank.mdc` | `public/tex/**/*.tex` | Documents the QBT/soln build layout, file-naming patterns, the `check-tex` body-comment hygiene rule, the QBT ⇄ SOLN statement contract, and the in-repo edit → `sync-questions` → `compile-tex` loop |
 | `.cursor/rules/scripts.mdc` | `scripts/**/*.mjs` | Run vitest after edits; deploy-script architecture map; staging/atomic-write conventions |
 
 ### Keeping rules in sync
@@ -173,5 +218,6 @@ Cursor rules are documentation that agents rely on. Update the corresponding rul
 - **`scripts/lib/` modules grow or change responsibilities** → update `scripts.mdc` and the test-coverage table above
 - **The Overleaf deploy flow changes** (project layout, env vars, staging schema) → update `scripts.mdc`, `data/README.md`, and the "Deploying a topic from Overleaf" section above
 - **`check-tex` / `clean-tex` rules change** (allowed comment shapes, scoped directories) → update `tex-bank.mdc`
+- **`check-questions` / `sync-questions` boundary detection changes** (Solution `tcolorbox` signature, prelude shape) → update the QBT ⇄ SOLN statement contract section above and `tex-bank.mdc`
 - **The LaTeX directory layout or file-naming patterns change** → update `tex-bank.mdc` and the structure tables above
 - **npm scripts or pre-commit hooks change** → update the Tooling section above

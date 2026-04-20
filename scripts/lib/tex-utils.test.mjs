@@ -1,5 +1,8 @@
-import { describe, it, expect } from 'vitest';
-import { normalizePath, shouldProcessTexFile, findDocBoundaries } from './tex-utils.mjs';
+import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { mkdtempSync, rmSync, mkdirSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { normalizePath, shouldProcessTexFile, findDocBoundaries, findPackPairs } from './tex-utils.mjs';
 
 // ---------------------------------------------------------------------------
 // normalizePath
@@ -95,5 +98,103 @@ describe('findDocBoundaries', () => {
       '\\end{document}',
     ];
     expect(findDocBoundaries(lines)).toEqual({ beginIdx: 0, endIdx: 3 });
+  });
+});
+
+// ---------------------------------------------------------------------------
+// findPackPairs
+// ---------------------------------------------------------------------------
+
+describe('findPackPairs', () => {
+  /** @type {string} */
+  let tmpRoot;
+
+  /**
+   * Creates a fixture tree. `entries` is a map of relative-path → contents
+   * (empty string is fine — the file just needs to exist).
+   * @param {Record<string, string>} entries
+   */
+  function fixture(entries) {
+    for (const [rel, body] of Object.entries(entries)) {
+      const abs = join(tmpRoot, rel);
+      mkdirSync(join(abs, '..'), { recursive: true });
+      writeFileSync(abs, body);
+    }
+  }
+
+  beforeAll(() => {
+    tmpRoot = mkdtempSync(join(tmpdir(), 'pack-pairs-'));
+  });
+
+  afterAll(() => {
+    rmSync(tmpRoot, { recursive: true, force: true });
+  });
+
+  it('pairs matching qbt/soln files by topic name', () => {
+    fixture({
+      'public/tex/fm/core-pure/vectors/qbt/_QBT__Vector_Product.tex': '',
+      'public/tex/fm/core-pure/vectors/soln/_QBT___Solns__Vector_Product.tex': '',
+      'public/tex/fm/core-pure/vectors/qbt/_QBT__Plane_Intersections.tex': '',
+      'public/tex/fm/core-pure/vectors/soln/_QBT___Solns__Plane_Intersections.tex': '',
+    });
+
+    const { pairs, unpaired } = findPackPairs(join(tmpRoot, 'public/tex/fm'), tmpRoot);
+    expect(pairs).toHaveLength(2);
+    expect(unpaired).toEqual([]);
+    const topics = pairs.map((p) => p.topicName).sort();
+    expect(topics).toEqual(['Plane_Intersections', 'Vector_Product']);
+    const pi = pairs.find((p) => p.topicName === 'Plane_Intersections');
+    expect(pi.qbtPath).toMatch(/qbt[/\\]_QBT__Plane_Intersections\.tex$/);
+    expect(pi.solnPath).toMatch(/soln[/\\]_QBT___Solns__Plane_Intersections\.tex$/);
+    expect(normalizePath(pi.topicDir)).toMatch(/public\/tex\/fm\/core-pure\/vectors$/);
+  });
+
+  it('reports unpaired qbt files (no matching soln)', () => {
+    rmSync(tmpRoot, { recursive: true, force: true });
+    mkdirSync(tmpRoot, { recursive: true });
+    fixture({
+      'public/tex/fm/topic/qbt/_QBT__Lonely.tex': '',
+    });
+    const { pairs, unpaired } = findPackPairs(join(tmpRoot, 'public/tex/fm'), tmpRoot);
+    expect(pairs).toEqual([]);
+    expect(unpaired).toHaveLength(1);
+    expect(unpaired[0].kind).toBe('qbt');
+  });
+
+  it('reports unpaired soln files (no matching qbt)', () => {
+    rmSync(tmpRoot, { recursive: true, force: true });
+    mkdirSync(tmpRoot, { recursive: true });
+    fixture({
+      'public/tex/fm/topic/soln/_QBT___Solns__Orphan.tex': '',
+    });
+    const { pairs, unpaired } = findPackPairs(join(tmpRoot, 'public/tex/fm'), tmpRoot);
+    expect(pairs).toEqual([]);
+    expect(unpaired).toHaveLength(1);
+    expect(unpaired[0].kind).toBe('soln');
+  });
+
+  it('ignores notes/ files', () => {
+    rmSync(tmpRoot, { recursive: true, force: true });
+    mkdirSync(tmpRoot, { recursive: true });
+    fixture({
+      'public/tex/fm/topic/qbt/_QBT__T.tex': '',
+      'public/tex/fm/topic/soln/_QBT___Solns__T.tex': '',
+      'public/tex/fm/topic/notes/_Notes__T.tex': '',
+    });
+    const { pairs, unpaired } = findPackPairs(join(tmpRoot, 'public/tex/fm'), tmpRoot);
+    expect(pairs).toHaveLength(1);
+    expect(unpaired).toEqual([]);
+  });
+
+  it('does not pair across different topic directories', () => {
+    rmSync(tmpRoot, { recursive: true, force: true });
+    mkdirSync(tmpRoot, { recursive: true });
+    fixture({
+      'public/tex/fm/topic-a/qbt/_QBT__T.tex': '',
+      'public/tex/fm/topic-b/soln/_QBT___Solns__T.tex': '',
+    });
+    const { pairs, unpaired } = findPackPairs(join(tmpRoot, 'public/tex/fm'), tmpRoot);
+    expect(pairs).toEqual([]);
+    expect(unpaired).toHaveLength(2);
   });
 });

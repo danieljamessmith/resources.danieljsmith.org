@@ -128,8 +128,18 @@ function findMatchingBracket(src, openIdx) {
 }
 
 /**
+ * @typedef {Object} ResourceEntry
+ * @property {string} id
+ * @property {string} file        - `/tex/...` URL path
+ * @property {string} category    - Normalised label (e.g. `'FM - Core Pure'`)
+ * @property {string} [topic]
+ * @property {'questions'|'solutions'|'notes'} [type]
+ * @property {string} [pairId]    - id of the partner entry in a {Q, S} pair
+ */
+
+/**
  * @param {string} resourcesTsContent
- * @returns {Array<{ id: string; file: string; category: string; topic?: string; type?: string }>}
+ * @returns {ResourceEntry[]}
  */
 export function parseResourcesEntries(resourcesTsContent) {
   const startRe = /const\s+rawResources\s*(?::\s*Resource\[\])?\s*=\s*\[/;
@@ -152,6 +162,7 @@ export function parseResourcesEntries(resourcesTsContent) {
     const catRaw = block.match(/category:\s*([^,\n]+?)\s*,/);
     const topicM = block.match(/topic:\s*'([^']*)'/);
     const typeM = block.match(/type:\s*'([^']+)'/);
+    const pairM = block.match(/pairId:\s*'([^']+)'/);
     const category = catRaw ? normalizeCategoryToken(catRaw[1]) : 'unknown';
     entries.push({
       id,
@@ -159,6 +170,7 @@ export function parseResourcesEntries(resourcesTsContent) {
       category,
       topic: topicM ? topicM[1] : undefined,
       type: typeM ? typeM[1] : undefined,
+      pairId: pairM ? pairM[1] : undefined,
     });
   }
   return entries;
