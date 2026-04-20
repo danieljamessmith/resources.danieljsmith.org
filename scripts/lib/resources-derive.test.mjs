@@ -31,6 +31,34 @@ describe('parseResourcesEntries', () => {
     expect(e.category).toBe('FM - Core Pure');
     expect(e.topic).toBe('Vectors');
   });
+
+  it('exposes pairId when present, undefined otherwise', () => {
+    const fixture = `
+const rawResources: Resource[] = [
+  {
+    id: 'fm-foo-questions',
+    title: 'Foo',
+    file: '/tex/further-maths/core-pure/foo/qbt/_QBT__Foo.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-foo-solns',
+    topic: 'Foo',
+  },
+  {
+    id: 'tmua-paper1',
+    title: 'TMUA',
+    file: '/tex/tmua/TMUA_Paper1.pdf',
+    category: 'TMUA',
+  },
+];
+`;
+    const entries = parseResourcesEntries(fixture);
+    expect(entries).toHaveLength(2);
+    expect(entries[0].pairId).toBe('fm-foo-solns');
+    expect(entries[0].type).toBe('questions');
+    expect(entries[1].pairId).toBeUndefined();
+    expect(entries[1].type).toBeUndefined();
+  });
 });
 
 describe('derivePathContext', () => {

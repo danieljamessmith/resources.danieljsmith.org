@@ -50,6 +50,83 @@ export function walkTexFiles(dir, repoRoot, filter = shouldProcessTexFile, acc =
 }
 
 /**
+ * @typedef {Object} PackPair
+ * @property {string} topicDir   - Absolute path to the `<topic>/` directory
+ *                                 that contains both `qbt/` and `soln/`.
+ * @property {string} qbtPath    - Absolute path to `_QBT__<Topic>.tex`.
+ * @property {string} solnPath   - Absolute path to `_QBT___Solns__<Topic>.tex`.
+ * @property {string} topicName  - The shared `<Topic>` segment.
+ */
+
+/**
+ * @typedef {Object} PackPairsResult
+ * @property {PackPair[]} pairs           - Topics with both qbt and soln.
+ * @property {{ topicDir: string; kind: 'qbt' | 'soln'; path: string }[]} unpaired
+ *                                        - Files that lack a sibling.
+ */
+
+/**
+ * Discovers `(qbt, soln)` pack pairs under `searchRoot` by topic directory.
+ *
+ * Pairing rule: for each `<topic>/qbt/_QBT__<Topic>.tex`, look for the
+ * matching `<topic>/soln/_QBT___Solns__<Topic>.tex`. Topic names must match
+ * after stripping the `_QBT__` / `_QBT___Solns__` filename prefix.
+ *
+ * Notes:
+ *  - Files outside `qbt/` or `soln/` (e.g. notes/) are ignored.
+ *  - A `qbt/` file with no matching `soln/` file (or vice versa) is reported
+ *    in `unpaired` rather than silently dropped.
+ *
+ * @param {string} searchRoot - Absolute path to start from.
+ * @param {string} repoRoot   - Absolute path to the repo root.
+ * @returns {PackPairsResult}
+ */
+export function findPackPairs(searchRoot, repoRoot) {
+  const allTex = walkTexFiles(searchRoot, repoRoot, shouldProcessTexFile);
+
+  /** @type {Map<string, { qbt?: string; soln?: string }>} */
+  const byTopic = new Map();
+
+  for (const abs of allTex) {
+    const norm = normalizePath(abs);
+    const segs = norm.split('/');
+    const kindIdx = segs.lastIndexOf('qbt') >= 0 ? segs.lastIndexOf('qbt') : segs.lastIndexOf('soln');
+    if (kindIdx < 1) continue;
+    const kind = segs[kindIdx] === 'qbt' ? 'qbt' : 'soln';
+    const topicDir = segs.slice(0, kindIdx).join('/');
+    const base = segs[segs.length - 1];
+    const topicName =
+      kind === 'qbt'
+        ? base.replace(/^_QBT__(?!_Solns__)/, '').replace(/\.tex$/, '')
+        : base.replace(/^_QBT___Solns__/, '').replace(/\.tex$/, '');
+    const key = `${topicDir}::${topicName}`;
+    const slot = byTopic.get(key) ?? {};
+    slot[kind] = abs;
+    byTopic.set(key, slot);
+  }
+
+  /** @type {PackPair[]} */
+  const pairs = [];
+  /** @type {{ topicDir: string; kind: 'qbt' | 'soln'; path: string }[]} */
+  const unpaired = [];
+
+  for (const [key, slot] of byTopic) {
+    const [topicDir, topicName] = key.split('::');
+    if (slot.qbt && slot.soln) {
+      pairs.push({ topicDir, qbtPath: slot.qbt, solnPath: slot.soln, topicName });
+    } else if (slot.qbt) {
+      unpaired.push({ topicDir, kind: 'qbt', path: slot.qbt });
+    } else if (slot.soln) {
+      unpaired.push({ topicDir, kind: 'soln', path: slot.soln });
+    }
+  }
+
+  pairs.sort((a, b) => a.qbtPath.localeCompare(b.qbtPath));
+  unpaired.sort((a, b) => a.path.localeCompare(b.path));
+  return { pairs, unpaired };
+}
+
+/**
  * Returns the 0-based indices of the lines containing \begin{document} and
  * \end{document}.  Returns -1 for either if not found.
  * @param {string[]} lines

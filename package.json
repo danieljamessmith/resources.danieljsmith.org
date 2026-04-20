@@ -8,16 +8,20 @@
   "scripts": {
     "prepare": "husky",
     "test": "vitest run",
-    "predev": "node scripts/count-questions.mjs && node scripts/hash-assets.mjs",
+    "predev": "node scripts/count-questions.mjs && node scripts/hash-assets.mjs && node scripts/check-questions.mjs",
     "dev": "astro dev",
-    "prebuild": "node scripts/count-questions.mjs && node scripts/hash-assets.mjs",
+    "prebuild": "node scripts/count-questions.mjs && node scripts/hash-assets.mjs && node scripts/check-questions.mjs",
     "build": "astro build",
     "preview": "astro preview",
-    "precheck": "node scripts/count-questions.mjs && node scripts/hash-assets.mjs",
+    "precheck": "node scripts/count-questions.mjs && node scripts/hash-assets.mjs && node scripts/check-questions.mjs",
     "check": "astro check",
     "clean-tex": "node scripts/clean-tex.mjs",
     "check-tex": "node scripts/check-tex.mjs",
     "compile-tex": "node scripts/compile-tex.mjs",
+    "sync-questions": "node scripts/sync-questions.mjs",
+    "check-questions": "node scripts/check-questions.mjs",
+    "check-resources": "node scripts/check-resources.mjs",
+    "check-generated": "node scripts/check-generated.mjs",
     "deploy-overleaf": "node scripts/deploy-from-overleaf.mjs"
   },
   "devDependencies": {
