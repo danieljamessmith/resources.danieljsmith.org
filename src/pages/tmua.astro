@@ -14,7 +14,7 @@ const tmuaResources = getResourcesByCategory('TMUA');
   <div class="min-h-screen flex flex-col">
     <Header showBack={true} />
     <main class="flex-1 max-w-6xl mx-auto px-4 py-12 w-full">
-      <h1 class="text-2xl font-bold text-white">TMUA Resources</h1>
+      <h1 class="font-display text-3xl font-semibold tracking-tight text-white">TMUA Resources</h1>
       <p class="text-slate-300 mt-2">
         Practice papers for the Test of Mathematics for University Admission
       </p>
@@ -22,6 +22,8 @@ const tmuaResources = getResourcesByCategory('TMUA');
         {tmuaResources.map((resource) => (
           <a
             href={`/view/${resource.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
             class="group block p-5 bg-surface-raised rounded-xl border border-slate-700/50 hover:border-blue-500/50 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-200"
           >
             <div class="flex items-start gap-4">

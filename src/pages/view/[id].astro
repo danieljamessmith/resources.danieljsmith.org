@@ -50,24 +50,35 @@ const breadcrumb = categoryBreadcrumb[resource.category] ?? {
 };
 const displayDescription = getResourceDisplayDescription(resource);
 
-const paired =
-  resource.pairId &&
-  (resource.type === 'questions' || resource.type === 'solutions') &&
-  getResourceById(resource.pairId)
-    ? {
-        href: `/view/${resource.pairId}` as const,
-        label: resource.type === 'questions' ? '-> Solutions' : '<- Questions',
-        aria:
-          resource.type === 'questions'
-            ? 'Open solutions for this question sheet'
-            : 'Back to the questions sheet',
-        /** Emerald = solutions; blue matches Further Maths “Questions” cards on section pages. */
-        buttonClass:
-          resource.type === 'questions'
-            ? 'border-emerald-500/55 text-emerald-100 hover:bg-emerald-950/45 hover:border-emerald-400/70'
-            : 'border-blue-800/45 text-blue-300 hover:bg-blue-950/40 hover:border-blue-500/50',
-      }
+const partnerResource =
+  resource.pairId && (resource.type === 'questions' || resource.type === 'solutions')
+    ? (getResourceById(resource.pairId) ?? null)
     : null;
+
+const paired = partnerResource
+  ? {
+      href: `/view/${partnerResource.id}` as const,
+      label: partnerResource.type === 'solutions' ? 'Solutions' : 'Questions',
+      aria:
+        partnerResource.type === 'solutions'
+          ? 'Open solutions in a new tab'
+          : 'Open questions in a new tab',
+      splitAria:
+        partnerResource.type === 'solutions'
+          ? 'Open solutions alongside the questions'
+          : 'Open questions alongside the solutions',
+      /** Emerald = solutions; blue matches Further Maths “Questions” cards on section pages. */
+      buttonClass:
+        partnerResource.type === 'solutions'
+          ? 'border-emerald-500/55 text-emerald-100 hover:bg-emerald-950/45 hover:border-emerald-400/70'
+          : 'border-blue-800/45 text-blue-300 hover:bg-blue-950/40 hover:border-blue-500/50',
+    }
+  : null;
+
+const paneLabel = (type: string | undefined): string =>
+  type === 'questions' ? 'Questions' : type === 'solutions' ? 'Solutions' : 'Document';
+const primaryPaneLabel = paneLabel(resource.type);
+const partnerPaneLabel = partnerResource ? paneLabel(partnerResource.type) : '';
 /*
   PDF open param #view=FitH: Firefox fits width as intended. Chromium (Chrome/Edge PDFium)
   over-zooms inside iframes. Plain URL + full-width iframe keeps Chromium readable; we only
@@ -153,21 +164,42 @@ const paired =
               href={paired.href}
               target="_blank"
               rel="noopener noreferrer"
+              data-pair-link
+              data-hide-on-split
               class:list={[
                 'inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg border text-sm font-medium transition-colors whitespace-nowrap',
                 paired.buttonClass,
               ]}
               aria-label={paired.aria}
+              title={paired.aria}
             >
-              {paired.label}
+              <span>{paired.label}</span>
+              <svg class="w-3.5 h-3.5 flex-shrink-0 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H9M17 7v8" />
+              </svg>
             </a>
+          )}
+          {paired && (
+            <button
+              type="button"
+              data-split-toggle
+              aria-pressed="false"
+              aria-label={paired.splitAria}
+              title={paired.splitAria}
+              class="hidden lg:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-slate-600 text-slate-200 hover:bg-slate-800/80 text-sm font-medium transition-colors whitespace-nowrap"
+            >
+              <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 4.5v15m6-15v15M4.125 19.5h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+              </svg>
+              <span data-split-label>{paired.label} alongside</span>
+            </button>
           )}
           <a
             href={resource.file}
             download={resource.downloadName}
-            class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium transition-colors"
+            class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg border border-slate-600 text-slate-200 hover:bg-slate-800/80 text-sm font-medium transition-colors"
           >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
             </svg>
             <span class="hidden sm:inline">Download</span>
@@ -177,7 +209,8 @@ const paired =
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open PDF in new tab"
-            class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg border border-slate-600 text-slate-200 hover:bg-slate-800/80 text-sm font-medium transition-colors"
+            data-pdf-link
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium transition-colors"
           >
             <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -189,21 +222,193 @@ const paired =
     </header>
 
     <main class="flex-1 flex flex-col min-h-0">
-      <div class="hidden md:flex flex-1 bg-surface-raised flex-col min-h-0">
-        <iframe
-          id="pdf-embed"
-          src={resource.file}
-          class="w-full flex-1 min-h-[calc(100vh-64px)] border-0"
-          title={resource.title}
-        />
-        <script is:inline define:vars={{ pdfPath: resource.file }}>
-          (function () {
-            var el = document.getElementById('pdf-embed');
-            if (!el || !/Firefox\//.test(navigator.userAgent)) return;
-            el.src = pdfPath + '#view=FitH';
-          })();
-        </script>
+      <div
+        id="viewer-container"
+        class="hidden md:flex flex-1 bg-surface-raised min-h-[calc(100vh-64px)]"
+      >
+        <div class="flex flex-1 min-h-0">
+          <div class="flex-1 flex flex-col min-h-0 relative">
+            <div
+              data-primary-label
+              class="hidden border-b border-slate-700/50 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-slate-400"
+            >
+              {primaryPaneLabel}
+            </div>
+            <div class="relative flex-1 min-h-0">
+              <iframe
+                id="pdf-embed"
+                data-src={resource.file}
+                src="about:blank"
+                class="absolute inset-0 w-full h-full border-0"
+                title={resource.title}
+              />
+              <div
+                id="pdf-skeleton"
+                class="pointer-events-none absolute inset-0 flex items-center justify-center bg-surface-raised text-slate-500 text-sm transition-opacity duration-300"
+                aria-hidden="true"
+              >
+                <span class="inline-flex items-center gap-2">
+                  <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Loading PDF…
+                </span>
+              </div>
+            </div>
+          </div>
+          {partnerResource && (
+            <div
+              data-partner-pane
+              class="hidden flex-1 flex-col min-h-0 border-l border-slate-700/50"
+            >
+              <div class="border-b border-slate-700/50 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-slate-400">
+                {partnerPaneLabel}
+              </div>
+              <div class="relative flex-1 min-h-0">
+                <iframe
+                  data-partner-iframe
+                  data-src={partnerResource.file}
+                  src="about:blank"
+                  class="absolute inset-0 w-full h-full border-0"
+                  title={partnerResource.title}
+                />
+                <div
+                  data-partner-skeleton
+                  class="pointer-events-none absolute inset-0 flex items-center justify-center bg-surface-raised text-slate-500 text-sm transition-opacity duration-300"
+                  aria-hidden="true"
+                >
+                  <span class="inline-flex items-center gap-2">
+                    <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Loading PDF…
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
+
+      <script is:inline>
+        (function () {
+          var iframe = document.getElementById('pdf-embed');
+          var partnerIframe = document.querySelector('[data-partner-iframe]');
+          var partnerPane = document.querySelector('[data-partner-pane]');
+          var partnerSkeleton = document.querySelector('[data-partner-skeleton]');
+          var primaryLabel = document.querySelector('[data-primary-label]');
+          var splitToggle = document.querySelector('[data-split-toggle]');
+          var splitLabel = splitToggle ? splitToggle.querySelector('[data-split-label]') : null;
+          var splitLabelDefault = splitLabel ? splitLabel.textContent : 'Split view';
+          var isFirefox = /Firefox\//.test(navigator.userAgent);
+          var params = new URLSearchParams(window.location.search);
+          var pageParam = params.get('page');
+          var hasPage = pageParam && /^\d+$/.test(pageParam);
+          var splitInit = params.get('split') === '1' && !!partnerIframe;
+
+          function applyPdfHash(src, includePage) {
+            var hashParts = [];
+            if (isFirefox) hashParts.push('view=FitH');
+            if (includePage) hashParts.push('page=' + pageParam);
+            return hashParts.length ? src.split('#')[0] + '#' + hashParts.join('&') : src;
+          }
+
+          function bindSkeleton(iframeEl, skeletonEl) {
+            if (!iframeEl || !skeletonEl) return;
+            var hide = function () {
+              skeletonEl.style.opacity = '0';
+            };
+            iframeEl.addEventListener('load', hide, { once: true });
+            // Some browsers don't fire 'load' reliably on embedded PDFs.
+            setTimeout(hide, 4000);
+          }
+
+          if (iframe) {
+            var primaryBase = iframe.getAttribute('data-src');
+            if (primaryBase) {
+              iframe.src = applyPdfHash(primaryBase, hasPage);
+            }
+            bindSkeleton(iframe, document.getElementById('pdf-skeleton'));
+          }
+
+          function activatePartnerIframe() {
+            if (!partnerIframe) return;
+            if (partnerIframe.getAttribute('data-loaded') === '1') return;
+            var src = partnerIframe.getAttribute('data-src');
+            if (!src) return;
+            partnerIframe.setAttribute('data-loaded', '1');
+            partnerIframe.src = applyPdfHash(src, false);
+            bindSkeleton(partnerIframe, partnerSkeleton);
+          }
+
+          function setSplit(on) {
+            if (!partnerPane) return;
+            if (on) {
+              partnerPane.classList.remove('hidden');
+              partnerPane.classList.add('flex');
+              if (primaryLabel) {
+                primaryLabel.classList.remove('hidden');
+                primaryLabel.classList.add('block');
+              }
+              activatePartnerIframe();
+            } else {
+              partnerPane.classList.add('hidden');
+              partnerPane.classList.remove('flex');
+              if (primaryLabel) {
+                primaryLabel.classList.add('hidden');
+                primaryLabel.classList.remove('block');
+              }
+            }
+
+            var hideOnSplit = document.querySelectorAll('[data-hide-on-split]');
+            for (var k = 0; k < hideOnSplit.length; k++) {
+              hideOnSplit[k].style.display = on ? 'none' : '';
+            }
+
+            if (splitToggle) {
+              splitToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+              if (splitLabel) splitLabel.textContent = on ? 'Exit split' : splitLabelDefault;
+            }
+
+            var url = new URL(window.location.href);
+            if (on) url.searchParams.set('split', '1');
+            else url.searchParams.delete('split');
+            history.replaceState(null, '', url.pathname + url.search + url.hash);
+          }
+
+          if (splitToggle) {
+            splitToggle.addEventListener('click', function () {
+              var isOn = splitToggle.getAttribute('aria-pressed') === 'true';
+              setSplit(!isOn);
+            });
+          }
+
+          if (splitInit) setSplit(true);
+
+          if (hasPage) {
+            var pdfLinks = document.querySelectorAll('[data-pdf-link]');
+            for (var i = 0; i < pdfLinks.length; i++) {
+              var a = pdfLinks[i];
+              var href = a.getAttribute('href');
+              if (href && href.indexOf('#') === -1) {
+                a.setAttribute('href', href + '#page=' + pageParam);
+              }
+            }
+
+            var pairLinks = document.querySelectorAll('[data-pair-link]');
+            for (var j = 0; j < pairLinks.length; j++) {
+              var el = pairLinks[j];
+              try {
+                var url2 = new URL(el.getAttribute('href'), window.location.origin);
+                url2.searchParams.set('page', pageParam);
+                el.setAttribute('href', url2.pathname + url2.search);
+              } catch (e) {}
+            }
+          }
+        })();
+      </script>
 
       <div class="flex md:hidden flex-1 items-center justify-center px-6 py-12">
         <div class="w-full max-w-sm text-center space-y-6">
@@ -216,6 +421,7 @@ const paired =
             href={resource.file}
             target="_blank"
             rel="noopener noreferrer"
+            data-pdf-link
             class="block w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-base font-semibold transition-colors"
           >
             Open PDF
@@ -235,6 +441,7 @@ const paired =
                 href={paired.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-pair-link
                 class:list={[
                   'flex-1 py-2.5 rounded-lg border text-sm font-medium transition-colors text-center',
                   paired.buttonClass,
