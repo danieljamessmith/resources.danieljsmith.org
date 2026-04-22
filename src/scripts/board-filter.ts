@@ -113,7 +113,7 @@ export function initBoardFilter(): void {
     card.addEventListener('click', (e) => {
       if ((e.target as Element).closest('a')) return;
       const href = card.dataset.cardHref;
-      if (href) window.location.href = href;
+      if (href) window.open(href, '_blank', 'noopener');
     });
   });
 }
