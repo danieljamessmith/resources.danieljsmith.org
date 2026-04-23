@@ -12,17 +12,20 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(__dirname, '..');
 const texRoot = join(repoRoot, 'public', 'tex');
 
-const ALLOWED_FULL_LINE_COMMENT = /^\s*% ---- Question \d+ ----\s*$/;
+const ALLOWED_FULL_LINE_COMMENTS = [
+  /^\s*% ---- Question \d+ ----\s*$/,
+  /^\s*% \[Source: [A-Za-z0-9_]+, Q\d+\]\s*$/,
+];
 
 /**
  * Returns true if a line is a full-line comment that is NOT a permitted
- * question delimiter.
+ * question delimiter or source hint.
  * @param {string} line
  */
 export function isUnexpectedFullLineComment(line) {
   const t = line.trimStart();
   if (t.length === 0 || t[0] !== '%') return false;
-  return !ALLOWED_FULL_LINE_COMMENT.test(line);
+  return !ALLOWED_FULL_LINE_COMMENTS.some((re) => re.test(line));
 }
 
 function main() {

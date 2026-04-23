@@ -29,6 +29,18 @@ describe('isUnexpectedFullLineComment', () => {
     expect(isUnexpectedFullLineComment('% --- Question 1 ---')).toBe(true);
   });
 
+  it('returns false for a valid source hint', () => {
+    expect(isUnexpectedFullLineComment('% [Source: _QBT__De_Moivres_Theorem, Q1]')).toBe(false);
+    expect(isUnexpectedFullLineComment('% [Source: _QBT___Solns__De_Moivres_Theorem, Q42]')).toBe(false);
+    expect(isUnexpectedFullLineComment('  % [Source: _QBT__Foo, Q1]')).toBe(false);
+  });
+
+  it('returns true for a malformed source hint', () => {
+    expect(isUnexpectedFullLineComment('% [Source: foo bar, Q1]')).toBe(true);
+    expect(isUnexpectedFullLineComment('% [Source: foo, Qx]')).toBe(true);
+    expect(isUnexpectedFullLineComment('% [Source: , Q1]')).toBe(true);
+  });
+
   it('returns false for a line with an inline comment after content', () => {
     expect(isUnexpectedFullLineComment('\\item foo % inline comment')).toBe(false);
   });
