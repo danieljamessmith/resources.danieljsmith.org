@@ -75,11 +75,8 @@ const paired = partnerResource
     }
   : null;
 
-// `resource.file` includes `?v=<hash>` for cache-busting — strip before .tex swap.
-// Guard on `resource.type` being defined: TMUA rows have no type, no .tex source.
-const texHref = resource.type
-  ? resource.file.split('?')[0].replace(/\.pdf$/, '.tex')
-  : null;
+// Guard on `resource.type` being defined: TMUA rows have no source .tex.
+const texViewerHref = resource.type ? `/source/${resource.id}` : null;
 
 const paneLabel = (type: string | undefined): string =>
   type === 'questions' ? 'Questions' : type === 'solutions' ? 'Solutions' : 'Document';
@@ -223,13 +220,13 @@ const partnerPaneLabel = partnerResource ? paneLabel(partnerResource.type) : '';
             </svg>
             <span class="hidden sm:inline">Open in new tab</span>
           </a>
-          {texHref && (
+          {texViewerHref && (
             <a
-              href={texHref}
+              href={texViewerHref}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Open LaTeX source in new tab"
-              title="Open LaTeX source (.tex)"
+              aria-label="Open LaTeX source viewer in new tab"
+              title="Open LaTeX source viewer"
               class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg border border-indigo-500/35 text-indigo-100 hover:bg-indigo-950/35 hover:border-indigo-400/60 text-sm font-medium transition-colors"
             >
               <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

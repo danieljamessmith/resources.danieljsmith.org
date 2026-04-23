@@ -1,0 +1,188 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import { resources, getResourceById } from '~/data/resources';
+
+export function getStaticPaths() {
+  return resources.map((resource) => ({
+    params: { id: resource.id },
+  }));
+}
+
+const { id } = Astro.params;
+const resource = getResourceById(id);
+
+if (!resource) {
+  return Astro.redirect('/404');
+}
+
+const texHref = resource.type ? resource.file.split('?')[0].replace(/\.pdf$/, '.tex') : null;
+---
+
+<Layout title={`Source: ${resource.title} | resources.danieljsmith.org`} description={`LaTeX source for ${resource.title}`}>
+  <div class="min-h-screen bg-surface text-slate-100">
+    <header class="sticky top-0 z-10 border-b border-slate-700/60 bg-surface/90 backdrop-blur">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+        <div class="min-w-0">
+          <a
+            href={`/view/${resource.id}`}
+            class="inline-flex items-center gap-1 text-sm text-slate-300 hover:text-blue-400 transition-colors"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to viewer
+          </a>
+          <h1 class="mt-1 text-base sm:text-lg font-semibold text-white truncate">{resource.title}</h1>
+        </div>
+
+        {texHref && (
+          <a
+            href={texHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-600 text-slate-200 hover:bg-slate-800/80 text-sm font-medium transition-colors whitespace-nowrap"
+            title="Open raw .tex URL"
+          >
+            Open raw
+          </a>
+        )}
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-4 space-y-4">
+      {texHref ? (
+        <>
+          <div class="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              data-copy-all
+              class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-indigo-500/40 text-indigo-100 hover:bg-indigo-950/35 hover:border-indigo-400/60 text-sm font-medium transition-colors"
+            >
+              Copy all
+            </button>
+            <div class="inline-flex items-center gap-2">
+              <label for="q-number" class="text-sm text-slate-300">Q</label>
+              <input
+                id="q-number"
+                data-q-number
+                type="number"
+                min="1"
+                inputmode="numeric"
+                class="w-20 px-2 py-1.5 rounded-md border border-slate-600 bg-surface-raised text-slate-100 text-sm"
+              />
+              <button
+                type="button"
+                data-copy-question
+                class="px-3 py-2 rounded-lg border border-slate-600 text-slate-200 hover:bg-slate-800/80 text-sm font-medium transition-colors"
+              >
+                Copy Q block
+              </button>
+            </div>
+            <span data-copy-status class="text-xs sm:text-sm text-slate-400" aria-live="polite"></span>
+          </div>
+
+          <pre
+            id="tex-viewer"
+            data-tex-src={texHref}
+            class="bg-surface-raised border border-slate-700/60 rounded-xl p-4 overflow-auto text-xs sm:text-sm leading-6 whitespace-pre"
+          >Loading source…</pre>
+        </>
+      ) : (
+        <div class="bg-surface-raised border border-slate-700/60 rounded-xl p-4 text-slate-300">
+          No source `.tex` is available for this resource.
+        </div>
+      )}
+    </main>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var pre = document.getElementById('tex-viewer');
+      if (!pre) return;
+      var texUrl = pre.getAttribute('data-tex-src');
+      if (!texUrl) return;
+
+      var copyAllBtn = document.querySelector('[data-copy-all]');
+      var copyQuestionBtn = document.querySelector('[data-copy-question]');
+      var qInput = document.querySelector('[data-q-number]');
+      var status = document.querySelector('[data-copy-status]');
+      var sourceText = '';
+
+      function setStatus(message, isError) {
+        if (!status) return;
+        status.textContent = message;
+        status.classList.toggle('text-rose-300', !!isError);
+        status.classList.toggle('text-slate-400', !isError);
+      }
+
+      function copyText(text, okMessage) {
+        if (!text) {
+          setStatus('Nothing to copy.', true);
+          return;
+        }
+        navigator.clipboard.writeText(text).then(
+          function () {
+            setStatus(okMessage, false);
+          },
+          function () {
+            setStatus('Clipboard permission failed.', true);
+          }
+        );
+      }
+
+      function getQuestionBlock(text, questionNumber) {
+        var startRe = new RegExp('^% ---- Question ' + questionNumber + ' ----\\r?$', 'm');
+        var startMatch = startRe.exec(text);
+        if (!startMatch || typeof startMatch.index !== 'number') return '';
+
+        var afterStart = text.slice(startMatch.index + startMatch[0].length + 1);
+        var nextMatch = /^% ---- Question \d+ ----\r?$/m.exec(afterStart);
+        if (!nextMatch || typeof nextMatch.index !== 'number') {
+          return text.slice(startMatch.index).trimEnd();
+        }
+        return text.slice(startMatch.index, startMatch.index + startMatch[0].length + 1 + nextMatch.index).trimEnd();
+      }
+
+      fetch(texUrl, { credentials: 'same-origin' })
+        .then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.text();
+        })
+        .then(function (text) {
+          sourceText = text;
+          pre.textContent = text;
+
+          try {
+            var url = new URL(window.location.href);
+            var q = url.searchParams.get('q');
+            if (qInput && q && /^\d+$/.test(q)) qInput.value = q;
+          } catch (e) {}
+        })
+        .catch(function (err) {
+          pre.textContent = 'Unable to load source file.\\n\\n' + (err && err.message ? err.message : 'Unknown error');
+        });
+
+      if (copyAllBtn) {
+        copyAllBtn.addEventListener('click', function () {
+          copyText(sourceText, 'Copied full source.');
+        });
+      }
+
+      if (copyQuestionBtn) {
+        copyQuestionBtn.addEventListener('click', function () {
+          if (!qInput || !qInput.value || !/^\d+$/.test(qInput.value)) {
+            setStatus('Enter a valid question number first.', true);
+            return;
+          }
+          var qn = Number(qInput.value);
+          var block = getQuestionBlock(sourceText, qn);
+          if (!block) {
+            setStatus('Question block not found.', true);
+            return;
+          }
+          copyText(block, 'Copied Question ' + qn + ' block.');
+        });
+      }
+    })();
+  </script>
+</Layout>
