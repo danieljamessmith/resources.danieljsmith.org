@@ -3,7 +3,7 @@ import {
   isFullLineComment,
   stripBodyLines,
   collapseBlankRuns,
-  insertQuestionDelimiters,
+  insertQuestionDelimitersAndHints,
   processContent,
 } from './clean-tex.mjs';
 
@@ -81,32 +81,37 @@ describe('collapseBlankRuns', () => {
 });
 
 // ---------------------------------------------------------------------------
-// insertQuestionDelimiters
+// insertQuestionDelimitersAndHints
 // ---------------------------------------------------------------------------
 
-describe('insertQuestionDelimiters', () => {
-  it('inserts a delimiter before each \\questionitem', () => {
+describe('insertQuestionDelimitersAndHints', () => {
+  it('inserts a delimiter before and a source hint after each \\questionitem', () => {
     const input = ['\\questionitem', '\\item foo'];
-    const result = insertQuestionDelimiters(input);
+    const result = insertQuestionDelimitersAndHints(input, '_QBT__Foo');
     expect(result[0]).toBe('% ---- Question 1 ----');
     expect(result[1]).toBe('\\questionitem');
-    expect(result[2]).toBe('\\item foo');
+    expect(result[2]).toBe('% [Source: _QBT__Foo, Q1]');
+    expect(result[3]).toBe('\\item foo');
   });
 
-  it('numbers delimiters sequentially', () => {
+  it('numbers delimiter and hint sequentially', () => {
     const input = ['\\questionitem', '\\questionitem'];
-    const result = insertQuestionDelimiters(input);
+    const result = insertQuestionDelimitersAndHints(input, '_QBT__Foo');
     expect(result[0]).toBe('% ---- Question 1 ----');
-    expect(result[2]).toBe('% ---- Question 2 ----');
+    expect(result[1]).toBe('\\questionitem');
+    expect(result[2]).toBe('% [Source: _QBT__Foo, Q1]');
+    expect(result[3]).toBe('% ---- Question 2 ----');
+    expect(result[4]).toBe('\\questionitem');
+    expect(result[5]).toBe('% [Source: _QBT__Foo, Q2]');
   });
 
   it('leaves lines without \\questionitem unchanged', () => {
     const input = ['\\item foo', '\\item bar'];
-    expect(insertQuestionDelimiters(input)).toEqual(input);
+    expect(insertQuestionDelimitersAndHints(input, '_QBT__Foo')).toEqual(input);
   });
 
   it('handles an empty array', () => {
-    expect(insertQuestionDelimiters([])).toEqual([]);
+    expect(insertQuestionDelimitersAndHints([], '_QBT__Foo')).toEqual([]);
   });
 });
 
@@ -117,35 +122,51 @@ describe('insertQuestionDelimiters', () => {
 describe('processContent', () => {
   const wrap = (body) =>
     `\\documentclass{article}\n\\begin{document}\n${body}\n\\end{document}`;
+  const STEM = '_QBT__Foo';
 
   it('strips full-line comments from the body', () => {
     const input = wrap('% comment\n\\item foo');
-    const result = processContent(input);
+    const result = processContent(input, STEM);
     expect(result).not.toContain('% comment\n');
     expect(result).toContain('\\item foo');
   });
 
   it('preserves the preamble and closing tag', () => {
     const input = wrap('\\item foo');
-    const result = processContent(input);
+    const result = processContent(input, STEM);
     expect(result).toContain('\\documentclass{article}');
     expect(result).toContain('\\begin{document}');
     expect(result).toContain('\\end{document}');
   });
 
-  it('inserts question delimiters for \\questionitem', () => {
+  it('inserts question delimiter and source hint for \\questionitem', () => {
     const input = wrap('\\questionitem\n\\item foo');
-    const result = processContent(input);
+    const result = processContent(input, STEM);
     expect(result).toContain('% ---- Question 1 ----');
+    expect(result).toContain('% [Source: _QBT__Foo, Q1]');
+  });
+
+  it('refreshes stale source hints on re-run (strip-then-reinsert)', () => {
+    const stale = wrap('% [Source: _QBT__OldName, Q99]\n\\questionitem\n\\item foo');
+    const result = processContent(stale, STEM);
+    expect(result).not.toContain('_QBT__OldName');
+    expect(result).toContain('% [Source: _QBT__Foo, Q1]');
+  });
+
+  it('is idempotent: running twice yields the same output', () => {
+    const input = wrap('\\questionitem\n\\item foo\n\\questionitem\n\\item bar');
+    const once = processContent(input, STEM);
+    const twice = processContent(once, STEM);
+    expect(twice).toBe(once);
   });
 
   it('throws for missing \\begin{document}', () => {
-    expect(() => processContent('no document here')).toThrow();
+    expect(() => processContent('no document here', STEM)).toThrow();
   });
 
   it('collapses excessive blank lines', () => {
     const input = wrap('a\n\n\n\n\nb');
-    const result = processContent(input);
+    const result = processContent(input, STEM);
     // Should not contain four consecutive newlines in the body
     expect(result).not.toMatch(/\n{5,}/);
   });

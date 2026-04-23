@@ -4,7 +4,7 @@
  */
 
 import { readFileSync, writeFileSync } from 'node:fs';
-import { join, relative, dirname } from 'node:path';
+import { join, relative, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { normalizePath, shouldProcessTexFile, walkTexFiles, findDocBoundaries } from './lib/tex-utils.mjs';
 
@@ -47,29 +47,36 @@ export function collapseBlankRuns(bodyLines) {
 
 /**
  * Inserts a `% ---- Question N ----` delimiter before each `\questionitem`
- * line, with sequential numbering.
+ * line and a `% [Source: <fileStem>, QN]` hint after it, with sequential
+ * numbering. Both are stripped and re-generated on every clean-tex run so
+ * renumbering after reordering is automatic.
  * @param {string[]} bodyLines
+ * @param {string} fileStem  basename of the .tex file without extension
  */
-export function insertQuestionDelimiters(bodyLines) {
+export function insertQuestionDelimitersAndHints(bodyLines, fileStem) {
   const out = [];
   let n = 0;
   for (const line of bodyLines) {
     if (QUESTION_ITEM_LINE.test(line)) {
       n++;
       out.push(`% ---- Question ${n} ----`);
+      out.push(line);
+      out.push(`% [Source: ${fileStem}, Q${n}]`);
+    } else {
+      out.push(line);
     }
-    out.push(line);
   }
   return out;
 }
 
 /**
  * Processes the full text of a .tex file: strips body comments, collapses
- * blank runs, and inserts question delimiters.
+ * blank runs, and inserts question delimiters + source hints.
  * @param {string} text
+ * @param {string} fileStem  basename of the .tex file without extension
  * @returns {string}
  */
-export function processContent(text) {
+export function processContent(text, fileStem) {
   const lines = text.split(/\r?\n/);
   const { beginIdx, endIdx } = findDocBoundaries(lines);
   if (beginIdx < 0 || endIdx < 0) {
@@ -82,7 +89,7 @@ export function processContent(text) {
 
   const stripped = stripBodyLines(bodyRaw);
   const collapsed = collapseBlankRuns(stripped);
-  const bodyOut = insertQuestionDelimiters(collapsed);
+  const bodyOut = insertQuestionDelimitersAndHints(collapsed, fileStem);
 
   return [...preamble, ...bodyOut, ...closing].join('\n');
 }
@@ -116,9 +123,10 @@ function main() {
       if (isFullLineComment(line)) removed++;
     }
 
+    const fileStem = basename(absPath, '.tex');
     let out;
     try {
-      out = processContent(text);
+      out = processContent(text, fileStem);
     } catch (e) {
       console.error(`clean-tex: ${rel}:`, e.message || e);
       process.exit(1);
