@@ -764,6 +764,26 @@ const rawResources: Resource[] = [
     pairId: 'fm-mech-collisions-1d',
     topic: 'Momentum & Collisions',
   },
+  {
+    id: 'fm-mech-collisions-in-2-dimensions',
+    title: 'Collisions in 2 Dimensions',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/momentum-restitution-collisions/qbt/_QBT__Collisions_in_2_Dimensions.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'fm-mech-collisions-in-2-dimensions-solns',
+    topic: 'Momentum & Collisions',
+  },
+  {
+    id: 'fm-mech-collisions-in-2-dimensions-solns',
+    title: 'Collisions in 2 Dimensions',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/momentum-restitution-collisions/soln/_QBT___Solns__Collisions_in_2_Dimensions.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'fm-mech-collisions-in-2-dimensions',
+    topic: 'Momentum & Collisions',
+  },
 ];
 
 function buildDownloadName(title: string, type?: string): string {

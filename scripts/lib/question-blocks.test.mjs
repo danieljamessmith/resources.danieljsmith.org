@@ -358,6 +358,24 @@ describe('syncPair', () => {
     expect(result.newSolnText).toBe(SOLN_TWO_Q);
   });
 
+  it('preserves SOLN source metadata when only source hints differ', () => {
+    const qbtWithSource = QBT_TWO_Q.replace(
+      ['\\questionitem', '', 'First question statement.'].join('\n'),
+      ['\\questionitem', '% [Source: _QBT__Foo, Q1]', '', 'First question statement.'].join('\n'),
+    );
+    const solnWithSource = SOLN_TWO_Q.replace(
+      ['\\questionitem', '', 'First question statement.'].join('\n'),
+      ['\\questionitem', '% [Source: _QBT___Solns__Foo, Q1]', '', 'First question statement.'].join('\n'),
+    );
+
+    const result = syncPair(qbtWithSource, solnWithSource);
+
+    expect(result.fatal).toBe(false);
+    expect(result.changed).toBe(false);
+    expect(result.changes).toEqual([]);
+    expect(result.newSolnText).toBe(solnWithSource);
+  });
+
   it('rewrites SOLN statements to match QBT after a QBT edit', () => {
     const editedQbt = QBT_TWO_Q.replace('First question statement.', 'First question statement (edited).');
     const result = syncPair(editedQbt, SOLN_TWO_Q);
@@ -367,6 +385,25 @@ describe('syncPair', () => {
     expect(result.changes[0].n).toBe(1);
     expect(result.newSolnText).toContain('First question statement (edited).');
     expect(result.newSolnText).toContain('Solution to Q1.');
+  });
+
+  it('keeps SOLN source metadata while rewriting edited QBT text', () => {
+    const qbtWithSource = QBT_TWO_Q.replace(
+      ['\\questionitem', '', 'First question statement.'].join('\n'),
+      ['\\questionitem', '% [Source: _QBT__Foo, Q1]', '', 'First question statement (edited).'].join('\n'),
+    );
+    const solnWithSource = SOLN_TWO_Q.replace(
+      ['\\questionitem', '', 'First question statement.'].join('\n'),
+      ['\\questionitem', '% [Source: _QBT___Solns__Foo, Q1]', '', 'First question statement.'].join('\n'),
+    );
+
+    const result = syncPair(qbtWithSource, solnWithSource);
+
+    expect(result.fatal).toBe(false);
+    expect(result.changed).toBe(true);
+    expect(result.newSolnText).toContain('% [Source: _QBT___Solns__Foo, Q1]');
+    expect(result.newSolnText).not.toContain('% [Source: _QBT__Foo, Q1]');
+    expect(result.newSolnText).toContain('First question statement (edited).');
   });
 
   it('refuses to rewrite when QBT and SOLN have different question numbers', () => {

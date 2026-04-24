@@ -24,6 +24,7 @@ import { findDocBoundaries } from './tex-utils.mjs';
 
 const DELIM_RE = /^% ---- Question (\d+) ----$/;
 const SOLUTION_TCOLORBOX_RE = /\\begin\{tcolorbox\}.*title=\{\\textbf\{Solution\}\}/;
+const SOURCE_HINT_RE = /^\s*% \[Source: [A-Za-z0-9_]+, Q\d+\]\s*$/;
 const VSPACE_RE = /^\s*\\vspace\*\{[^}]*\}\s*$/;
 const NEWPAGE_RE = /^\s*\\newpage\s*$/;
 
@@ -242,8 +243,10 @@ export function rewriteSolnStatement(solnBlock, newStatement) {
   const split = splitSolnBlock(solnBlock);
   if (!split) return null;
 
-  // Strip trailing blanks from newStatement so we control the spacing.
-  const trimmed = newStatement.slice();
+  const statement = mergeSolnSourceHint(newStatement, split.statement);
+
+  // Strip trailing blanks from the merged statement so we control the spacing.
+  const trimmed = statement.slice();
   while (trimmed.length > 0 && trimmed[trimmed.length - 1].trim() === '') trimmed.pop();
 
   // Strip leading blanks from solutionRegion: we'll re-insert a single blank.
@@ -446,7 +449,7 @@ export function syncPair(qbtText, solnText) {
       newBlocks.push(solnBlock);
       continue;
     }
-    if (!arraysEqual(rewritten.lines, solnBlock.lines)) {
+    if (!arraysEqualIgnoringSourceHints(rewritten.lines, solnBlock.lines)) {
       changes.push({ n: solnBlock.n, oldStatement: split.statement, newStatement: qbtStatement });
     }
     newBlocks.push(rewritten);
@@ -470,4 +473,47 @@ function arraysEqual(a, b) {
   if (a.length !== b.length) return false;
   for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return false;
   return true;
+}
+
+/**
+ * Source hints are per-file metadata inserted by clean-tex. A SOLN statement
+ * should retain its SOLN hint even when the rest of the statement syncs from
+ * the QBT source of truth.
+ *
+ * @param {string[]} qbtStatement
+ * @param {string[]} solnStatement
+ * @returns {string[]}
+ */
+function mergeSolnSourceHint(qbtStatement, solnStatement) {
+  const solnSourceHint = solnStatement.find((line) => SOURCE_HINT_RE.test(line));
+  if (!solnSourceHint) return qbtStatement.slice();
+
+  const out = [];
+  let inserted = false;
+  for (const line of qbtStatement) {
+    if (SOURCE_HINT_RE.test(line)) {
+      if (!inserted) {
+        out.push(solnSourceHint);
+        inserted = true;
+      }
+      continue;
+    }
+    out.push(line);
+    if (!inserted && /^\s*\\questionitem\s*$/.test(line)) {
+      out.push(solnSourceHint);
+      inserted = true;
+    }
+  }
+  return out;
+}
+
+/**
+ * @param {readonly string[]} a
+ * @param {readonly string[]} b
+ */
+function arraysEqualIgnoringSourceHints(a, b) {
+  return arraysEqual(
+    a.filter((line) => !SOURCE_HINT_RE.test(line)),
+    b.filter((line) => !SOURCE_HINT_RE.test(line)),
+  );
 }
