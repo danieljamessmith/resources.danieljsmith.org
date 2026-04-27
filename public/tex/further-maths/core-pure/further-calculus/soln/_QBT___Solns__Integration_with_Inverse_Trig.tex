@@ -115,31 +115,13 @@ So
 I=\lim_{\substack{a\to 0^+\\ b\to 4^-}}\int_a^b \frac{1}{\sqrt{4-(x-2)^2}}\,\mathrm{d}x
 \]
 
-Let
-\[
-u=x-2
-\]
-Then
-\[
-\mathrm{d}u=\mathrm{d}x
-\]
-and the limits become
-\[
-x=a \Rightarrow u=a-2,\qquad x=b \Rightarrow u=b-2
-\]
-
-Hence
-\[
-I=\lim_{\substack{a\to 0^+\\ b\to 4^-}}\int_{a-2}^{b-2} \frac{1}{\sqrt{4-u^2}}\,\mathrm{d}u
-\]
-
 Using the standard result
 \[
-\int \frac{1}{\sqrt{a^2-u^2}}\,\mathrm{d}u=\arcsin \!\left(\frac{u}{a}\right)+c
+\int \frac{1}{\sqrt{r^2-x^2}}\,\mathrm{d}x=\arcsin \!\left(\frac{x}{r}\right)+c
 \]
-with \(a=2\), we get
+with \(r=2\) and \(x\) replaced by \(x-2\), we get
 \[
-I=\lim_{\substack{a\to 0^+\\ b\to 4^-}}\left[\arcsin \!\left(\frac{u}{2}\right)\right]_{a-2}^{b-2}
+I=\lim_{\substack{a\to 0^+\\ b\to 4^-}}\left[\arcsin \!\left(\frac{x-2}{2}\right)\right]_{a}^{b}
 \]
 
 So
@@ -197,10 +179,10 @@ I=\int_{0}^{3}\frac{1}{(x-1)^2+2^2}\,\mathrm{d}x
 
 Now use the standard result from the formula booklet:
 \[
-\int \frac{1}{u^2+a^2}\,\mathrm{d}u=\frac{1}{a}\arctan \!\left(\frac{u}{a}\right)+c
+\int \frac{1}{x^2+a^2}\,\mathrm{d}x=\frac{1}{a}\arctan \!\left(\frac{x}{a}\right)+c
 \]
 
-Here, take \(u=x-1\), so \(\mathrm{d}u=\mathrm{d}x\), and \(a=2\). Hence
+Here \(a=2\), with \(x\) replaced by \(x-1\). Hence
 \[
 I=\frac{1}{2}\left[\arctan \!\left(\frac{x-1}{2}\right)\right]_{0}^{3}
 \]
@@ -437,37 +419,19 @@ So
 \int_1^5 \frac{1}{16-(t-3)^2}\,\mathrm{d}t
 \]
 
-Let
+Using part (iii), with $x$ replaced by $t-3$,
 \[
-x=t-3
-\]
-Then $\mathrm{d}x=\mathrm{d}t$, and the limits become
-\[
-t=1 \Rightarrow x=-2,
-\qquad
-t=5 \Rightarrow x=2
-\]
-
-Hence
-\[
-\int_1^5 \frac{1}{-t^2+6t+7}\,\mathrm{d}t
+\int \frac{1}{16-(t-3)^2}\,\mathrm{d}t
 =
-\int_{-2}^{2}\frac{1}{16-x^2}\,\mathrm{d}x
-\]
-
-Using part (iii),
-\[
-\int \frac{1}{16-x^2}\,\mathrm{d}x
-=
-\frac18\ln\left(\frac{4+x}{4-x}\right)+c
+\frac18\ln\left(\frac{4+(t-3)}{4-(t-3)}\right)+c
 \]
 
 Therefore
 \[
 \begin{aligned}
-\int_{-2}^{2}\frac{1}{16-x^2}\,\mathrm{d}x
+\int_1^5 \frac{1}{-t^2+6t+7}\,\mathrm{d}t
 &=
-\left[\frac18\ln\left(\frac{4+x}{4-x}\right)\right]_{-2}^{2} \\
+\left[\frac18\ln\left(\frac{t+1}{7-t}\right)\right]_{1}^{5} \\
 &=\frac18\ln\left(\frac{6}{2}\right)-\frac18\ln\left(\frac{2}{6}\right) \\
 &=\frac18\ln 3-\frac18\ln\left(\frac13\right) \\
 &=\frac18\ln 3+\frac18\ln 3 \\
@@ -764,10 +728,10 @@ For the first integral,
 
 For the second integral, use the standard result
 \[
-\int \frac{1}{u^2+a^2}\,\mathrm{d}u=\frac{1}{a}\arctan\!\left(\frac{u}{a}\right)+c
+\int \frac{1}{x^2+a^2}\,\mathrm{d}x=\frac{1}{a}\arctan\!\left(\frac{x}{a}\right)+c
 \]
 
-Here $u=x-2$ and $a=3$, so
+With $a=3$ and $x$ replaced by $x-2$,
 \[
 \int \frac{5}{(x-2)^2+9}\,\mathrm{d}x
 =5\int \frac{1}{(x-2)^2+3^2}\,\mathrm{d}x
@@ -851,43 +815,14 @@ I=\int_{1}^{4}\frac{1}{\sqrt{2\bigl(9-(x-2)^2\bigr)}}\,\mathrm{d}x
 =\frac{1}{\sqrt{2}}\int_{1}^{4}\frac{1}{\sqrt{9-(x-2)^2}}\,\mathrm{d}x
 \]
 
-Now reduce this to the standard form
+Using the standard result
 \[
-\int \frac{1}{\sqrt{1-u^2}}\,\mathrm{d}u=\arcsin (u)+c
+\int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d}x=\arcsin\!\left(\frac{x}{a}\right)+c
 \]
-
-Let
-\[
-u=\frac{x-2}{3}
-\]
-Then
-\[
-x-2=3u,\qquad \mathrm{d}x=3\,\mathrm{d}u
-\]
-
-Also, when $x=1$,
-\[
-u=\frac{1-2}{3}=-\frac13
-\]
-and when $x=4$,
-\[
-u=\frac{4-2}{3}=\frac23
-\]
-
-Substituting into the integral:
+with $a=3$ and $x$ replaced by $x-2$,
 \begin{align*}
 I
-&=\frac{1}{\sqrt{2}}\int_{1}^{4}\frac{1}{\sqrt{9-(x-2)^2}}\,\mathrm{d}x\\
-&=\frac{1}{\sqrt{2}}\int_{-1/3}^{2/3}\frac{3}{\sqrt{9-(3u)^2}}\,\mathrm{d}u\\
-&=\frac{1}{\sqrt{2}}\int_{-1/3}^{2/3}\frac{3}{\sqrt{9-9u^2}}\,\mathrm{d}u\\
-&=\frac{1}{\sqrt{2}}\int_{-1/3}^{2/3}\frac{3}{3\sqrt{1-u^2}}\,\mathrm{d}u\\
-&=\frac{1}{\sqrt{2}}\int_{-1/3}^{2/3}\frac{1}{\sqrt{1-u^2}}\,\mathrm{d}u
-\end{align*}
-
-Using the standard result:
-\begin{align*}
-I
-&=\frac{1}{\sqrt{2}}\left[\arcsin (u)\right]_{-1/3}^{2/3}\\
+&=\frac{1}{\sqrt{2}}\left[\arcsin\!\left(\frac{x-2}{3}\right)\right]_{1}^{4}\\
 &=\frac{1}{\sqrt{2}}\left(\arcsin \left(\frac23\right)-\arcsin \left(-\frac13\right)\right)
 \end{align*}
 
@@ -958,9 +893,9 @@ Hence
 
   Using the standard result
   \[
-  \int \frac{1}{u^2+a^2}\,\mathrm{d}u=\frac{1}{a}\arctan\!\left(\frac{u}{a}\right)+c
+  \int \frac{1}{x^2+a^2}\,\mathrm{d}x=\frac{1}{a}\arctan\!\left(\frac{x}{a}\right)+c
   \]
-  with $u=x-3$ and $a=3$, we get
+  with $a=3$ and $x$ replaced by $x-3$, we get
   \[
   \int \frac{1}{(x-3)^2+3^2}\,\mathrm{d}x
   =
@@ -1033,13 +968,9 @@ So the integral becomes
 
 Now use the standard result from the formula booklet:
 \[
-\int \frac{1}{u^2+a^2}\,\mathrm{d}u=\frac{1}{a}\arctan\!\left(\frac{u}{a}\right)+c
+\int \frac{1}{x^2+a^2}\,\mathrm{d}x=\frac{1}{a}\arctan\!\left(\frac{x}{a}\right)+c
 \]
-
-Here we can take
-\[
-u=x-2 \qquad \text{so} \qquad \mathrm{d}u=\mathrm{d}x
-\]
+with $a=2$ and $x$ replaced by $x-2$.
 
 Therefore
 \[
@@ -1130,25 +1061,18 @@ For the second integral, complete the square:
 4x^2-8x+13=(2x-2)^2+9
 \]
 
-Let \(u=2x-2\), so \(\mathrm{d}u=2\,\mathrm{d}x\) and \(\mathrm{d}x=\frac12\,\mathrm{d}u\). Then
-\begin{align*}
-7\int \frac{1}{(2x-2)^2+9}\,\mathrm{d}x
-&=7\int \frac{1}{u^2+9}\cdot \frac12\,\mathrm{d}u \\
-&=\frac72 \int \frac{1}{u^2+9}\,\mathrm{d}u
-\end{align*}
-
 Using the standard result
 \[
-\int \frac{1}{a^2+u^2}\,\mathrm{d}u=\frac1a\arctan\left(\frac{u}{a}\right)+c
+\int \frac{1}{a^2+x^2}\,\mathrm{d}x=\frac1a\arctan\left(\frac{x}{a}\right)+c
 \]
-with \(a=3\),
+with \(a=3\) and \(x\) replaced by \(2x-2\), noting that \(\dfrac{\mathrm{d}}{\mathrm{d}x}(2x-2)=2\),
 \begin{align*}
-\frac72 \int \frac{1}{u^2+9}\,\mathrm{d}u
-&=\frac72 \cdot \frac13 \arctan\left(\frac{u}{3}\right) \\
-&=\frac76 \arctan\left(\frac{u}{3}\right)
+7\int \frac{1}{(2x-2)^2+9}\,\mathrm{d}x
+&=7\cdot \frac12\cdot \frac13 \arctan\left(\frac{2x-2}{3}\right) \\
+&=\frac76 \arctan\left(\frac{2x-2}{3}\right)
 \end{align*}
 
-Substituting back \(u=2x-2\),
+Therefore
 \[
 \int f(x)\,\mathrm{d}x
 =\frac34\ln(4x^2-8x+13)+\frac76\arctan\left(\frac{2x-2}{3}\right)+c
@@ -1263,26 +1187,23 @@ Hence
 +7\int \frac{1}{(x-2)^2+4}\,\mathrm{d}x
 \end{align*}
 
-For the first integral, let
+For the first integral, use
 \[
-u=x^2-4x+8
-\qquad\text{so}\qquad
-\frac{\mathrm{d}u}{\mathrm{d}x}=2x-4
+\int \frac{f'(x)}{f(x)}\,\mathrm{d}x=\ln|f(x)|+c
 \]
-Then
+with \(f(x)=x^2-4x+8\). Then
 \[
 2\int \frac{2x-4}{x^2-4x+8}\,\mathrm{d}x
-=2\int \frac{1}{u}\,\mathrm{d}u
-=2\ln u
 =2\ln(x^2-4x+8)
 \]
+since \(x^2-4x+8=(x-2)^2+4>0\).
 
 For the second integral, use the standard result
 \[
-\int \frac{1}{a^2+u^2}\,\mathrm{d}u
-=\frac{1}{a}\arctan\left(\frac{u}{a}\right)+c
+\int \frac{1}{a^2+x^2}\,\mathrm{d}x
+=\frac{1}{a}\arctan\left(\frac{x}{a}\right)+c
 \]
-Here \(u=x-2\) and \(a=2\), so
+with \(a=2\) and \(x\) replaced by \(x-2\). Hence
 \[
 7\int \frac{1}{(x-2)^2+4}\,\mathrm{d}x
 =7\cdot \frac{1}{2}\arctan\left(\frac{x-2}{2}\right)
@@ -1451,34 +1372,25 @@ Thus \(C=0\), giving
 y=\ln\left(x+\sqrt{x^2-1}\right)
 \] \\
 
-\item Let
+\item Since
 \[
-u=\frac{2x}{3}
-\]
-Then
-\[
-\mathrm{d}x=\frac{3}{2}\,\mathrm{d}u
+\sqrt{4x^2-9}=3\sqrt{\left(\frac{2x}{3}\right)^2-1}
 \]
 and
 \[
-\sqrt{4x^2-9}=\sqrt{9u^2-9}=3\sqrt{u^2-1}
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{2x}{3}\right)=\frac23
 \]
-Also the limits become
+we use the result from part (i), with \(x\) replaced by \(\dfrac{2x}{3}\):
 \[
-x=\frac{15}{8}\Rightarrow u=\frac{5}{4},
-\qquad
-x=\frac{5}{2}\Rightarrow u=\frac{5}{3}
+\int \frac{1}{\sqrt{4x^2-9}}\,\mathrm{d}x
+=
+\frac12\operatorname{arcosh}\left(\frac{2x}{3}\right)+c
 \]
-So
-\begin{align*}
-\int_{15/8}^{5/2}\frac{1}{\sqrt{4x^2-9}}\,\mathrm{d}x
-&=\int_{5/4}^{5/3}\frac{1}{3\sqrt{u^2-1}}\cdot \frac{3}{2}\,\mathrm{d}u\\
-&=\frac12\int_{5/4}^{5/3}\frac{1}{\sqrt{u^2-1}}\,\mathrm{d}u
-\end{align*}
-From part (ii), \(\dfrac{\mathrm{d}}{\mathrm{d}u}(\operatorname{arcosh}u)=\dfrac{1}{\sqrt{u^2-1}}\), so
+
+Therefore
 \[
 \int_{15/8}^{5/2}\frac{1}{\sqrt{4x^2-9}}\,\mathrm{d}x
-=\frac12\left[\operatorname{arcosh}u\right]_{5/4}^{5/3}
+=\left[\frac12\operatorname{arcosh}\left(\frac{2x}{3}\right)\right]_{15/8}^{5/2}
 =\frac12\left(\operatorname{arcosh}\frac53-\operatorname{arcosh}\frac54\right)
 \]
 which is the required result.
@@ -1555,31 +1467,25 @@ So
 &=\frac19\int \frac{1}{\left(x+\frac23\right)^2+\left(\frac43\right)^2}\,\mathrm{d}x
 \end{align*}
 
-Let
-\[
-u=x+\frac23
-\]
-so that $\mathrm{d}u=\mathrm{d}x$. Then
-\begin{align*}
-\int \frac{1}{9x^2+12x+20}\,\mathrm{d}x
-&=\frac19\int \frac{1}{u^2+\left(\frac43\right)^2}\,\mathrm{d}u
-\end{align*}
-
 Using the standard result
 \[
-\int \frac{1}{x^2+a^2}\,\mathrm{d}x=\frac{1}{a}\arctan\!\left(\frac{x}{a}\right)+C
+\int \frac{1}{x^2+a^2}\,\mathrm{d}x
+=
+\frac{1}{a}\arctan\!\left(\frac{x}{a}\right)+C
 \]
-with $a=\frac43$,
+with $a=\frac43$ and $x$ replaced by $x+\frac23$,
 \begin{align*}
 \int \frac{1}{9x^2+12x+20}\,\mathrm{d}x
-&=\frac19 \cdot \frac{1}{4/3}\arctan\!\left(\frac{u}{4/3}\right)+C \\
-&=\frac{1}{12}\arctan\!\left(\frac{3u}{4}\right)+C \\
+&=\frac19\cdot \frac{1}{4/3}
+\arctan\!\left(\frac{x+\frac23}{4/3}\right)+C \\
 &=\frac{1}{12}\arctan\!\left(\frac{3x+2}{4}\right)+C
 \end{align*}
 
 Hence,
 \[
-\int \frac{1}{9x^2 + 12x + 20}\,\mathrm{d}x=\frac{1}{12}\arctan\!\left(\frac{3x+2}{4}\right)+C
+\int \frac{1}{9x^2 + 12x + 20}\,\mathrm{d}x
+=
+\frac{1}{12}\arctan\!\left(\frac{3x+2}{4}\right)+C
 \]
 
 \item Rewrite the expression under the root in completed-square form:
@@ -1588,47 +1494,35 @@ Hence,
 &=-9\left(x^2-\frac43x-5\right) \\
 &=-9\left[\left(x-\frac23\right)^2-\frac49-5\right] \\
 &=-9\left[\left(x-\frac23\right)^2-\frac{49}{9}\right] \\
-&=49-9\left(x-\frac23\right)^2 \\
-&=49-(3x-2)^2
+&=9\left[\frac{49}{9}-\left(x-\frac23\right)^2\right] \\
+&=9\left[\left(\frac73\right)^2-\left(x-\frac23\right)^2\right]
 \end{align*}
 
 So
 \begin{align*}
 \int \frac{1}{\sqrt{45+12x-9x^2}}\,\mathrm{d}x
-&=\int \frac{1}{\sqrt{49-(3x-2)^2}}\,\mathrm{d}x
-\end{align*}
-
-Let
-\[
-u=3x-2
-\]
-Then
-\[
-\frac{\mathrm{d}u}{\mathrm{d}x}=3
-\qquad\text{so}\qquad
-\mathrm{d}x=\frac13\,\mathrm{d}u
-\]
-
-Hence
-\begin{align*}
-\int \frac{1}{\sqrt{45+12x-9x^2}}\,\mathrm{d}x
-&=\frac13\int \frac{1}{\sqrt{49-u^2}}\,\mathrm{d}u
+&=\int \frac{1}{\sqrt{9\left[\left(\frac73\right)^2-\left(x-\frac23\right)^2\right]}}\,\mathrm{d}x \\
+&=\frac13\int \frac{1}{\sqrt{\left(\frac73\right)^2-\left(x-\frac23\right)^2}}\,\mathrm{d}x
 \end{align*}
 
 Using the standard result
 \[
-\int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d}x=\arcsin\!\left(\frac{x}{a}\right)+C
+\int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d}x
+=
+\arcsin\!\left(\frac{x}{a}\right)+C
 \]
-with $a=7$,
+with $a=\frac73$ and $x$ replaced by $x-\frac23$,
 \begin{align*}
 \int \frac{1}{\sqrt{45+12x-9x^2}}\,\mathrm{d}x
-&=\frac13\arcsin\!\left(\frac{u}{7}\right)+C \\
+&=\frac13\arcsin\!\left(\frac{x-\frac23}{7/3}\right)+C \\
 &=\frac13\arcsin\!\left(\frac{3x-2}{7}\right)+C
 \end{align*}
 
 Hence,
 \[
-\int \frac{1}{\sqrt{45 + 12x - 9x^2}}\,\mathrm{d}x=\frac13\arcsin\!\left(\frac{3x-2}{7}\right)+C
+\int \frac{1}{\sqrt{45 + 12x - 9x^2}}\,\mathrm{d}x
+=
+\frac13\arcsin\!\left(\frac{3x-2}{7}\right)+C
 \]
 \end{enumerate}
 \end{tcolorbox}
@@ -1670,39 +1564,14 @@ Without using a calculator, find \\
   = \int_{-\frac15}^{1}\frac{1}{(5x-2)^2+9}\,\mathrm{d}x
   \]
 
-  Let
-  \[
-  u=\frac{5x-2}{3}
-  \]
-  Then
-  \[
-  5x-2=3u,
-  \qquad \mathrm{d}x=\frac35\,\mathrm{d}u
-  \]
-
-  Change the limits:
-  \[
-  x=-\frac15 \;\Rightarrow\; u=\frac{-1-2}{3}=-1,
-  \qquad
-  x=1 \;\Rightarrow\; u=\frac{5-2}{3}=1
-  \]
-
-  Hence
-  \begin{align*}
-  \int_{-\frac15}^{1}\frac{1}{(5x-2)^2+9}\,\mathrm{d}x
-  &= \int_{-1}^{1}\frac{1}{9u^2+9}\cdot \frac35\,\mathrm{d}u \\
-  &= \frac{1}{15}\int_{-1}^{1}\frac{1}{1+u^2}\,\mathrm{d}u
-  \end{align*}
-
   Using the standard result
   \[
-  \int \frac{1}{1+u^2}\,\mathrm{d}u=\arctan u + c
+  \int \frac{1}{x^2+a^2}\,\mathrm{d}x=\frac{1}{a}\arctan\!\left(\frac{x}{a}\right)+c
   \]
-
-  we get
+  with \(a=3\) and \(x\) replaced by \(5x-2\), noting that \(\dfrac{\mathrm{d}}{\mathrm{d}x}(5x-2)=5\), we get
   \begin{align*}
-  \frac{1}{15}\int_{-1}^{1}\frac{1}{1+u^2}\,\mathrm{d}u
-  &= \frac{1}{15}\left[\arctan u\right]_{-1}^{1} \\
+  \int_{-\frac15}^{1}\frac{1}{(5x-2)^2+9}\,\mathrm{d}x
+  &= \left[\frac{1}{15}\arctan\!\left(\frac{5x-2}{3}\right)\right]_{-\frac15}^{1} \\
   &= \frac{1}{15}\left(\arctan 1-\arctan(-1)\right) \\
   &= \frac{1}{15}\left(\frac{\pi}{4}-\left(-\frac{\pi}{4}\right)\right) \\
   &= \frac{1}{15}\cdot \frac{\pi}{2} \\
@@ -1725,45 +1594,23 @@ Without using a calculator, find \\
   = \int_{-\frac15}^{1}\frac{1}{\sqrt{(5x-2)^2+9}}\,\mathrm{d}x
   \]
 
-  Let
-  \[
-  u=\frac{5x-2}{3}
-  \]
-  Then
-  \[
-  5x-2=3u,
-  \qquad \mathrm{d}x=\frac35\,\mathrm{d}u
-  \]
-  and the limits again become
-  \[
-  x=-\frac15 \Rightarrow u=-1,
-  \qquad
-  x=1 \Rightarrow u=1
-  \]
-
-  Therefore
-  \begin{align*}
-  \int_{-\frac15}^{1}\frac{1}{\sqrt{(5x-2)^2+9}}\,\mathrm{d}x
-  &= \int_{-1}^{1}\frac{1}{\sqrt{9u^2+9}}\cdot \frac35\,\mathrm{d}u \\
-  &= \frac15\int_{-1}^{1}\frac{1}{\sqrt{u^2+1}}\,\mathrm{d}u
-  \end{align*}
-
   Using the standard result
   \[
-  \int \frac{1}{\sqrt{u^2+a^2}}\,\mathrm{d}u
-  = \ln\left|u+\sqrt{u^2+a^2}\right|+c
+  \int \frac{1}{\sqrt{x^2+a^2}}\,\mathrm{d}x
+  = \ln\left|x+\sqrt{x^2+a^2}\right|+c
   \]
-  with $a=1$, we have
+  with \(a=3\) and \(x\) replaced by \(5x-2\), noting that \(\dfrac{\mathrm{d}}{\mathrm{d}x}(5x-2)=5\), we have
   \[
-  \int \frac{1}{\sqrt{u^2+1}}\,\mathrm{d}u
-  = \ln\left|u+\sqrt{u^2+1}\right|+c
+  \int \frac{1}{\sqrt{(5x-2)^2+9}}\,\mathrm{d}x
+  =
+  \frac15\ln\left|(5x-2)+\sqrt{(5x-2)^2+9}\right|+c
   \]
 
   Hence
   \begin{align*}
-  \frac15\int_{-1}^{1}\frac{1}{\sqrt{u^2+1}}\,\mathrm{d}u
-  &= \frac15\left[\ln\left(u+\sqrt{u^2+1}\right)\right]_{-1}^{1} \\
-  &= \frac15\left(\ln(1+\sqrt2)-\ln(\sqrt2-1)\right) \\
+  \int_{-\frac15}^{1}\frac{1}{\sqrt{(5x-2)^2+9}}\,\mathrm{d}x
+  &= \left[\frac15\ln\left|(5x-2)+\sqrt{(5x-2)^2+9}\right|\right]_{-\frac15}^{1} \\
+  &= \frac15\left(\ln(3+3\sqrt2)-\ln(-3+3\sqrt2)\right) \\
   &= \frac15\ln\left(\frac{1+\sqrt2}{\sqrt2-1}\right)
   \end{align*}
 
@@ -1854,46 +1701,41 @@ Since $\operatorname{artanh}x$ is the inverse of $\tanh y$, this means
 
 \item From part (i),
 \[
-\operatorname{artanh}u=\frac12\ln\left(\frac{1+u}{1-u}\right)
+\operatorname{artanh}x=\frac12\ln\left(\frac{1+x}{1-x}\right)
 \]
-for $|u|<1$.
+for $|x|<1$.
 
 Differentiating,
 \begin{align*}
-\frac{\mathrm{d}}{\mathrm{d}u}\bigl(\operatorname{artanh}u\bigr)
-&=\frac12\frac{\mathrm{d}}{\mathrm{d}u}\left[\ln(1+u)-\ln(1-u)\right] \\
-&=\frac12\left(\frac{1}{1+u}+\frac{1}{1-u}\right) \\
-&=\frac12\left(\frac{(1-u)+(1+u)}{1-u^2}\right) \\
-&=\frac{1}{1-u^2}
+\frac{\mathrm{d}}{\mathrm{d}x}\bigl(\operatorname{artanh}x\bigr)
+&=\frac12\frac{\mathrm{d}}{\mathrm{d}x}\left[\ln(1+x)-\ln(1-x)\right] \\
+&=\frac12\left(\frac{1}{1+x}+\frac{1}{1-x}\right) \\
+&=\frac12\left(\frac{(1-x)+(1+x)}{1-x^2}\right) \\
+&=\frac{1}{1-x^2}
 \end{align*}
 So
 \[
-\int \frac{1}{1-u^2}\,\mathrm{d}u=\operatorname{artanh}u+c
+\int \frac{1}{1-x^2}\,\mathrm{d}x=\operatorname{artanh}x+c
 \]
 
-Now let
+Now
 \[
-u=\frac{3x}{2}
+4-9x^2=4\left(1-\left(\frac{3x}{2}\right)^2\right)
 \]
-Then
+and
 \[
-x=\frac{2u}{3}, \qquad \mathrm{d}x=\frac{2}{3}\,\mathrm{d}u
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{3x}{2}\right)=\frac32
 \]
-Also, when $x=\frac15$, then $u=\frac{3}{10}$, and when $x=\frac25$, then $u=\frac35$.
-
 Therefore
 \begin{align*}
 \int_{1/5}^{2/5}\frac{1}{4-9x^2}\,\mathrm{d}x
-&=\int_{3/10}^{3/5}\frac{1}{4-9\left(\frac{2u}{3}\right)^2}\cdot \frac{2}{3}\,\mathrm{d}u \\
-&=\int_{3/10}^{3/5}\frac{1}{4-4u^2}\cdot \frac{2}{3}\,\mathrm{d}u \\
-&=\frac{1}{6}\int_{3/10}^{3/5}\frac{1}{1-u^2}\,\mathrm{d}u \\
-&=\frac{1}{6}\left[\operatorname{artanh}u\right]_{3/10}^{3/5}
+&=\frac16\left[\operatorname{artanh}\left(\frac{3x}{2}\right)\right]_{1/5}^{2/5}
 \end{align*}
 Using the result from part (i),
 \begin{align*}
 \int_{1/5}^{2/5}\frac{1}{4-9x^2}\,\mathrm{d}x
-&=\frac{1}{6}\left[\frac12\ln\left(\frac{1+u}{1-u}\right)\right]_{3/10}^{3/5} \\
-&=\frac{1}{12}\left[\ln\left(\frac{1+u}{1-u}\right)\right]_{3/10}^{3/5} \\
+&=\frac{1}{6}\left[\frac12\ln\left(\frac{1+\frac{3x}{2}}{1-\frac{3x}{2}}\right)\right]_{1/5}^{2/5} \\
+&=\frac{1}{12}\left[\ln\left(\frac{1+\frac{3x}{2}}{1-\frac{3x}{2}}\right)\right]_{1/5}^{2/5} \\
 &=\frac{1}{12}\left(\ln\left(\frac{1+\frac35}{1-\frac35}\right)-\ln\left(\frac{1+\frac{3}{10}}{1-\frac{3}{10}}\right)\right) \\
 &=\frac{1}{12}\left(\ln 4-\ln\left(\frac{13}{7}\right)\right) \\
 &=\frac{1}{12}\ln\left(\frac{28}{13}\right)
@@ -2002,9 +1844,9 @@ So
 
 Using the standard result
 \[
-\int \frac{1}{u^2+a^2}\,\mathrm{d}u=\frac{1}{a}\arctan\!\left(\frac{u}{a}\right)+c
+\int \frac{1}{x^2+a^2}\,\mathrm{d}x=\frac{1}{a}\arctan\!\left(\frac{x}{a}\right)+c
 \]
-with $u=x+2$ and $a=3$,
+with $a=3$ and $x$ replaced by $x+2$,
 \[
 \int \frac{1}{(x+2)^2+9}\,\mathrm{d}x
 =\frac13\arctan\!\left(\frac{x+2}{3}\right)
@@ -2082,27 +1924,15 @@ First find this area in graph units:
 A_{\text{units}}=\int_{-1}^{4}\frac{9}{(x-1)^2+4}\,\,\mathrm{d}x
 \]
 
-To reduce this to a standard form, let
-\[
-u=x-1 \qquad \Rightarrow \qquad \mathrm{d}u=\mathrm{d}x
-\]
-When $x=-1$, $u=-2$, and when $x=4$, $u=3$.
-
-So
-\[
-A_{\text{units}}=\int_{-2}^{3}\frac{9}{u^2+2^2}\,\,\mathrm{d}u
-\]
-
 Using the standard result
 \[
 \int \frac{1}{a^2+x^2}\,\,\mathrm{d}x=\frac{1}{a}\arctan\!\left(\frac{x}{a}\right)+c
 \]
-with $a=2$,
+with $a=2$ and $x$ replaced by $x-1$,
 \begin{align*}
 A_{\text{units}}
-&=9\int_{-2}^{3}\frac{1}{u^2+2^2}\,\,\mathrm{d}u \\
-&=9\left[\frac{1}{2}\arctan\!\left(\frac{u}{2}\right)\right]_{-2}^{3} \\
-&=\frac{9}{2}\left[\arctan\!\left(\frac{u}{2}\right)\right]_{-2}^{3} \\
+&=9\left[\frac{1}{2}\arctan\!\left(\frac{x-1}{2}\right)\right]_{-1}^{4} \\
+&=\frac{9}{2}\left[\arctan\!\left(\frac{x-1}{2}\right)\right]_{-1}^{4} \\
 &=\frac{9}{2}\left(\arctan\!\left(\frac{3}{2}\right)-\arctan(-1)\right) \\
 &=\frac{9}{2}\left(\arctan\!\left(\frac{3}{2}\right)+\frac{\pi}{4}\right)
 \end{align*}
@@ -2151,47 +1981,22 @@ expressing your answer in terms of $\pi$. \marks{8}
 \vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
-Let
+Using the standard result
 \[
-u=\ln x
+\int \frac{1}{\sqrt{a^2-x^2}} \,\mathrm{d}x
+=
+\arcsin\!\left(\frac{x}{a}\right)+c
 \]
-Then
-\[
-\frac{\mathrm{d}u}{\mathrm{d}x}=\frac{1}{x}
-\qquad\Rightarrow\qquad
-\mathrm{d}u=\frac{1}{x}\,\mathrm{d}x
-\]
-
-We also change the limits:
-
-when \(x=1\), \(u=\ln 1=0\)
-
-when \(x=e\), \(u=\ln e=1\)
-
-So the integral becomes
+with \(a=2\) and \(x\) replaced by \(\ln x\), noting that \(\dfrac{\mathrm{d}}{\mathrm{d}x}(\ln x)=\dfrac{1}{x}\),
 \[
 \int_1^{e} \frac{1}{x\sqrt{4-(\ln x)^2}} \,\mathrm{d}x
 =
-\int_0^{1} \frac{1}{\sqrt{4-u^2}} \,\mathrm{d}u
-\]
-
-Now use the standard result
-\[
-\int \frac{1}{\sqrt{a^2-u^2}} \,\mathrm{d}u
-=
-\arcsin\!\left(\frac{u}{a}\right)+c
-\]
-
-Here \(a=2\), so
-\[
-\int_0^{1} \frac{1}{\sqrt{4-u^2}} \,\mathrm{d}u
-=
-\left[\arcsin\!\left(\frac{u}{2}\right)\right]_0^1
+\left[\arcsin\!\left(\frac{\ln x}{2}\right)\right]_1^e
 \]
 
 Therefore
 \[
-\left[\arcsin\!\left(\frac{u}{2}\right)\right]_0^1
+\left[\arcsin\!\left(\frac{\ln x}{2}\right)\right]_1^e
 =
 \arcsin\!\left(\frac12\right)-\arcsin(0)
 =
