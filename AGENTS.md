@@ -1,6 +1,14 @@
-# AGENTS.md — resources.danieljsmith.org
+# AGENTS.md - resources.danieljsmith.org
 
 Agent onboarding document. Read this file before working in this repository.
+
+---
+
+## Instruction precedence
+
+`AGENTS.md` is the authoritative, tool-agnostic instruction file for AI agents working in this repo. If another agent-specific file or editor rule conflicts with this file, follow `AGENTS.md` unless the user explicitly says otherwise.
+
+Durable project instructions belong here first. Do not recreate editor-specific rule directories as a parallel AI-docs system.
 
 ---
 
@@ -71,6 +79,10 @@ public/tex/
 
 `scripts/lib/tex-utils.mjs` (`shouldProcessTexFile`) treats anything under `qbt/` or `soln/` (but not `notes/`) as a tracked QBT/soln pack — that's the set of files `check-tex.mjs` and `clean-tex.mjs` operate on.
 
+PDFs inside `public/tex/**/build/` are build outputs — never read or edit them. PDFs directly in `qbt/` or `soln/` are the deployed production files.
+
+At first import, filenames are produced by `sanitizeTopic` in `scripts/deploy-from-overleaf.mjs`, which replaces every non-alphanumeric character in the Overleaf topic name with an underscore. Do not rename pack files by hand after import; the filenames are referenced from `src/data/resources.ts`.
+
 ### QBT ⇄ SOLN statement contract
 
 For every topic, `_QBT__<Topic>.tex` (under `qbt/`) and `_QBT___Solns__<Topic>.tex` (under `soln/`) share an identical per-question statement region. The QBT file is the **single source of truth** for question statements; the soln file owns only the post-statement Solution `tcolorbox` (and its `\vspace*{10pt}` prelude). A soln block is shaped exactly:
@@ -90,6 +102,20 @@ For every topic, `_QBT__<Topic>.tex` (under `qbt/`) and `_QBT___Solns__<Topic>.t
 The boundary is detected by the line containing both `\begin{tcolorbox}` and `title={\textbf{Solution}}`. QBT statements may themselves contain other tcolorboxes (e.g. info/working boxes) — only the `Solution`-titled one demarcates the statement/solution split.
 
 `scripts/check-questions.mjs` enforces the contract (read-only, used in pre-commit and `pre*` hooks); `scripts/sync-questions.mjs` rewrites soln statement regions from QBT when they drift.
+
+If the boundary detection or block shape changes (Solution `tcolorbox` signature, prelude shape, delimiter regex), update this section and the relevant scripts/tests together.
+
+### `check-tex` body-comment hygiene
+
+`scripts/check-tex.mjs` lints the document body of every QBT/soln `.tex` file between `\begin{document}` and `\end{document}`. It rejects any full-line comment except the canonical question delimiter inserted by `clean-tex`:
+
+```latex
+% ---- Question 1 ----
+```
+
+Any other full-line `% ...` line in the body is a violation. Inline comments after content are fine.
+
+If `check-tex` flags a file, the usual fix is `npm run clean-tex`, which strips the offending comments, collapses runs of more than two blank lines down to two, and re-numbers the question delimiters.
 
 ---
 
@@ -199,25 +225,66 @@ The `*.generated.ts` files **must not be hand-edited** — they're regenerated o
 | `scripts/count-questions.mjs` | `scripts/count-questions.test.mjs` | `findQbtTexFiles`, `countQuestionitemsInText`, `computeQuestionCounts` (temp-dir fixture), `renderQuestionCountsModule` (byte-stable output) |
 | `scripts/hash-assets.mjs` | `scripts/hash-assets.test.mjs` | `findPdfFiles` (skip build/aux), `hashFile`, `computeFileHashes`, `renderFileHashesModule` |
 
-**After editing any `scripts/**/*.mjs` file, run `npx vitest run`.** Pre-commit will also run it. Do not modify existing test assertions without explicit user approval — see the cursor rule.
+**After editing any `scripts/**/*.mjs` file, run `npx vitest run`.** Pre-commit will also run it. Do not modify existing test assertions without explicit user approval.
+
+When adding a new pure helper to a tested module, add a colocated test case. Keep I/O at the script entry point (`main()`); branchy logic should be importable and testable.
+
+### Script module map
+
+| Path | Purpose |
+|------|---------|
+| `scripts/deploy-from-overleaf.mjs` | Interactive Overleaf clone, compile, placement, cleanup, and staging append |
+| `scripts/compile-tex.mjs` | Bulk `latexmk` over `further-maths`, `tmua`, or `all`; `--deploy` promotes built PDFs beside source |
+| `scripts/check-tex.mjs` | Read-only body-comment hygiene check |
+| `scripts/clean-tex.mjs` | Strips full-line body comments, collapses long blank runs, re-inserts numbered question delimiters |
+| `scripts/check-questions.mjs` | Read-only QBT ⇄ SOLN drift and structural integrity detector |
+| `scripts/sync-questions.mjs` | Rewrites SOLN statement regions from QBT while preserving solution boxes and prelude |
+| `scripts/check-resources.mjs` | Read-only validator for `src/data/resources.ts` and generated count coverage |
+| `scripts/check-generated.mjs` | Read-only byte-match verifier for generated TS files |
+| `scripts/count-questions.mjs` | npm pre-hook generator for `src/data/questionCounts.generated.ts` |
+| `scripts/hash-assets.mjs` | npm pre-hook generator for `src/data/fileHashes.generated.ts` |
+| `scripts/lib/tex-utils.mjs` | Shared path, `.tex` discovery, document boundary, and QBT/soln pair helpers |
+| `scripts/lib/question-blocks.mjs` | Pure parser/synchronizer for `check-questions` and `sync-questions`; preserves CRLF/LF |
+| `scripts/lib/site-tree.mjs` | Interactive site-path picker for Overleaf deploys |
+| `scripts/lib/resources-derive.mjs` | Regex-based introspection of `src/data/resources.ts` for staging and validation |
+| `scripts/lib/resources-check.mjs` | Pure resource catalogue invariant checker |
+| `scripts/lib/staging.mjs` | `data/resources-pending.json` read/merge/atomic-write helpers |
+
+### Script conventions
+
+- Pure helpers go in `scripts/lib/` with colocated `*.test.mjs` coverage.
+- Use atomic writes for files consumed by agents or scripts: write to `<file>.<rand>.tmp`, then `renameSync`. `staging.writePendingAtomic` is the reference pattern.
+- Avoid new dependencies without good reason. The deploy script intentionally inlines a small `.env` parser instead of adding `dotenv`.
+- `SKIP_TEX_FILES` in `deploy-from-overleaf.mjs` lists Overleaf scratch files (`draft.tex`, `original.tex`) that should never be selected as packs. Extend the set rather than adding ad hoc filtering.
+
+### Database health invariants
+
+The pre-commit checks split responsibility cleanly:
+
+- **`resources.ts` ↔ filesystem / generated counts:** `check-resources` and `scripts/lib/resources-check.mjs`. Every entry's `file` exists on disk; ids are unique; `pairId` resolves and is symmetric; partner types are `{questions, solutions}`; partner `topic` and `category` match; `type: 'questions'` `/qbt/` entries are keyed in `questionCounts.generated.ts`. `orphan-pdf` is currently a warning while the corpus has a known backlog.
+- **Generated TS freshness:** `check-generated`. Generated files must byte-match what `count-questions` and `hash-assets` would produce now. It stays pre-commit-only because `pre*` hooks already run the generators first.
+- **In-file QBT/SOLN structural integrity:** `validateBlocks` in `scripts/lib/question-blocks.mjs`, surfaced via `check-questions`. Each question block has exactly one `\questionitem`; delimiter numbers are exactly `1..K`.
+- **Pair-level QBT ⇄ SOLN parity:** `syncPair` in `scripts/lib/question-blocks.mjs`. Question-number sets are equal; SOLN statement regions match QBT byte-for-byte.
+
+### Deploy workflow contract
+
+`deploy-from-overleaf.mjs` mutates many parts of the repo at once. Preserve these invariants when editing it:
+
+1. One project per topic is the modern convention; the legacy two-project fallback must keep working.
+2. The site-path picker is the only way to choose a deploy directory. Do not add a freehand path flag without good reason. The tex root itself can never be the deploy target.
+3. Staging entries in `data/resources-pending.json` are append-or-replace by `id`. Re-deploys must prompt for overwrite confirmation. If the schema changes, update `data/README.md` and bump `schemaVersion` in lockstep.
+4. The deploy script must not edit `src/data/resources.ts`; the staging file is the only hand-off to the splicer agent.
+5. `OVERLEAF_GIT_TOKEN` is read from `.env` at the repo root via the inline loader. Never log it.
 
 ---
 
-## Cursor rules
+## Keeping instructions in sync
 
-| Rule file | Trigger | Purpose |
-|-----------|---------|---------|
-| `.cursor/rules/onboarding.mdc` | Always | Points agents to this file; key orientation facts |
-| `.cursor/rules/tex-bank.mdc` | `public/tex/**/*.tex` | Documents the QBT/soln build layout, file-naming patterns, the `check-tex` body-comment hygiene rule, the QBT ⇄ SOLN statement contract, and the in-repo edit → `sync-questions` → `compile-tex` loop |
-| `.cursor/rules/scripts.mdc` | `scripts/**/*.mjs` | Run vitest after edits; deploy-script architecture map; staging/atomic-write conventions |
+When durable project conventions change, update `AGENTS.md` and the directly related source/reference files:
 
-### Keeping rules in sync
-
-Cursor rules are documentation that agents rely on. Update the corresponding rule whenever:
-
-- **`scripts/lib/` modules grow or change responsibilities** → update `scripts.mdc` and the test-coverage table above
-- **The Overleaf deploy flow changes** (project layout, env vars, staging schema) → update `scripts.mdc`, `data/README.md`, and the "Deploying a topic from Overleaf" section above
-- **`check-tex` / `clean-tex` rules change** (allowed comment shapes, scoped directories) → update `tex-bank.mdc`
-- **`check-questions` / `sync-questions` boundary detection changes** (Solution `tcolorbox` signature, prelude shape) → update the QBT ⇄ SOLN statement contract section above and `tex-bank.mdc`
-- **The LaTeX directory layout or file-naming patterns change** → update `tex-bank.mdc` and the structure tables above
-- **npm scripts or pre-commit hooks change** → update the Tooling section above
+- **`scripts/lib/` modules grow or change responsibilities:** update the script module map and test-coverage table above.
+- **The Overleaf deploy flow changes** (project layout, env vars, staging schema): update `data/README.md` and the Deploying a new topic / Deploy workflow contract sections above.
+- **`check-tex` / `clean-tex` rules change** (allowed comment shapes, scoped directories): update the `check-tex` body-comment hygiene section.
+- **`check-questions` / `sync-questions` boundary detection changes** (Solution `tcolorbox` signature, prelude shape): update the QBT ⇄ SOLN statement contract section.
+- **The LaTeX directory layout or file-naming patterns change:** update the structure tables and naming-pattern guidance above.
+- **npm scripts or pre-commit hooks change:** update the Tooling and npm scripts sections.
