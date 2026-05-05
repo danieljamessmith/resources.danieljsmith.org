@@ -71,6 +71,8 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/further-mechanics/momentum-restitution-collisions/soln/_QBT___Solns__Collisions_in_1_Dimension.pdf': '4cf2eda4',
   '/tex/further-maths/further-mechanics/momentum-restitution-collisions/soln/_QBT___Solns__Collisions_in_2_Dimensions.pdf': '4a742e9c',
   '/tex/further-maths/further-mechanics/momentum-restitution-collisions/soln/_QBT___Solns__Vector_Momentum_and_Impulse.pdf': 'd94b12b0',
+  '/tex/further-maths/further-mechanics/work-energy-power/qbt/_QBT__Work_Energy_Principle.pdf': '87965b07',
+  '/tex/further-maths/further-mechanics/work-energy-power/soln/_QBT___Solns__Work_Energy_Principle.pdf': '3d74ae0e',
   '/tex/tmua/TMUA_SetA_AnswerKeys.pdf': 'c72fcbea',
   '/tex/tmua/TMUA_SetA_Paper1.pdf': '21d108c4',
   '/tex/tmua/TMUA_SetA_Paper2.pdf': 'd3eb6e01',
