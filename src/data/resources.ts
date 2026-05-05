@@ -784,6 +784,29 @@ const rawResources: Resource[] = [
     pairId: 'fm-mech-collisions-in-2-dimensions',
     topic: 'Momentum & Collisions',
   },
+
+  // --- A-level Further Maths: Further Mechanics — Work, Energy and Power ---
+  {
+    id: 'further-maths-further-mechanics-work-energy-power-work-energy-principle',
+    title: 'Work-Energy Principle',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/work-energy-power/qbt/_QBT__Work_Energy_Principle.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'further-maths-further-mechanics-work-energy-power-work-energy-principle-solns',
+    topic: 'Work, Energy and Power',
+    note: 'No Elasticity',
+  },
+  {
+    id: 'further-maths-further-mechanics-work-energy-power-work-energy-principle-solns',
+    title: 'Work-Energy Principle',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/work-energy-power/soln/_QBT___Solns__Work_Energy_Principle.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'further-maths-further-mechanics-work-energy-power-work-energy-principle',
+    topic: 'Work, Energy and Power',
+  },
 ];
 
 function buildDownloadName(title: string, type?: string): string {
