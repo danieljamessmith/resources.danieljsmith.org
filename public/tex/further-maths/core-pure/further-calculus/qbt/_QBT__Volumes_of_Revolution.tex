@@ -86,6 +86,14 @@
 \questionitem
 % [Source: _QBT__Volumes_of_Revolution, Q1]
 
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}\ln(\sec x+\tan x)=\sec x
+  \]
+  \marks[-20pt]{2}
+\end{enumerate}
+
 \begin{figure}[H]
     \centering
 \begin{tikzpicture}[scale=1.2]
@@ -117,7 +125,9 @@
 The shaded region is enclosed by the curve $y = \sqrt{\sec x}$, the coordinate axes and the line $x = \frac{\pi}{3}$. \\
 
 The region is rotated completely about the $x$-axis. \\
-Find the exact volume of the solid generated. \marks{3}
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find the exact volume of the solid generated. \marks{3} \\
+\end{enumerate}
 
 \newpage
 
@@ -211,8 +221,8 @@ Given that the volume of the solid of revolution formed is $1$ unit$^3$, find th
 \begin{figure}[H]
     \centering
 \begin{tikzpicture}
-\pgfmathsetmacro{\ya}{sqrt(2)-1}
-\pgfmathsetmacro{\yb}{sqrt(2)+1}
+\pgfmathsetmacro{\ya}{1/sqrt(3)}
+\pgfmathsetmacro{\yb}{sqrt(3)}
 \pgfmathsetmacro{\xa}{6/(1+\ya*\ya)}
 \pgfmathsetmacro{\xb}{6/(1+\yb*\yb)}
 \begin{axis}[
@@ -220,11 +230,11 @@ Given that the volume of the solid of revolution formed is $1$ unit$^3$, find th
     xlabel={$x$},
     ylabel={$y$},
     xmin=-0.2, xmax=6.4,
-    ymin=-0.2, ymax=4.2,
+    ymin=-0.2, ymax=2.4,
     xtick=\empty,
     ytick=\empty,
     width=8cm,
-    height=6.5cm,
+    height=4.5cm,
     clip=false,
     every axis x label/.style={at={(ticklabel* cs:1)}, anchor=west},
     every axis y label/.style={at={(ticklabel* cs:1)}, anchor=south}
@@ -237,17 +247,17 @@ Given that the volume of the solid of revolution formed is $1$ unit$^3$, find th
         (axis cs:{6/(1+\u^2)},{\u})
     -- cycle;
 
-\addplot[thick, black, samples=200, domain=0:4, variable=\u]
+\addplot[thick, black, samples=200, domain=0:2.4, variable=\u]
     ({6/(1+\u^2)}, {\u})
-    node[pos=0.72, above right] {$C$};
+    node[pos=0.85, above right] {$C$};
 
 \addplot[dashed, black] coordinates {(0,\ya) (\xa,\ya)};
 \addplot[dashed, black] coordinates {(0,\yb) (\xb,\yb)};
 
 \node[below left] at (axis cs:0,0) {$O$};
-\node[left] at (axis cs:0,\ya) {$\sqrt{2}-1$};
-\node[left] at (axis cs:0,\yb) {$\sqrt{2}+1$};
-\node at (axis cs:1.1,1.2) {$R$};
+\node[left] at (axis cs:0,\ya) {$1/\sqrt{3}$};
+\node[left] at (axis cs:0,\yb) {$\sqrt{3}$};
+\node at (axis cs:2.0,1.1) {$R$};
 
 \end{axis}
 \end{tikzpicture}
@@ -256,7 +266,7 @@ Given that the volume of the solid of revolution formed is $1$ unit$^3$, find th
 
 The diagram shows part of the curve $C$ with parametric equations $x=6\sin^2\theta$, $y=\cot\theta$, $0<\theta\leq\frac{\pi}{2}$. \\
 
-The finite region $R$ shown in the diagram is bounded by $C$, the lines $y=\sqrt{2}-1$, $y=\sqrt{2}+1$ and the $y$-axis. Region $R$ is rotated through $2\pi$ radians about the $y$-axis to form a solid of revolution. \\
+The finite region $R$ shown in the diagram is bounded by $C$, the lines $y=\dfrac{1}{\sqrt{3}}$, $y=\sqrt{3}$ and the $y$-axis. Region $R$ is rotated through $2\pi$ radians about the $y$-axis to form a solid of revolution. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item Show that the volume of the solid of revolution formed is given by the integral
   \[
@@ -275,7 +285,7 @@ The finite region $R$ shown in the diagram is bounded by $C$, the lines $y=\sqrt
 % [Source: _QBT__Volumes_of_Revolution, Q5]
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Show that $\sinh(2\ln 2)=\frac{15}{8}$. \marks{2} \\
+  \item Show that $\sinh(2\ln 2)=\dfrac{15}{8}$ \marks{2} \\
 \end{enumerate}
 
 \begin{figure}[H]

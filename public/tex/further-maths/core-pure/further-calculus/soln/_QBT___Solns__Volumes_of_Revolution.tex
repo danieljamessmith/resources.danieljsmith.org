@@ -86,6 +86,14 @@
 \questionitem
 % [Source: _QBT___Solns__Volumes_of_Revolution, Q1]
 
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}\ln(\sec x+\tan x)=\sec x
+  \]
+  \marks[-20pt]{2}
+\end{enumerate}
+
 \begin{figure}[H]
     \centering
 \begin{tikzpicture}[scale=1.2]
@@ -117,55 +125,70 @@
 The shaded region is enclosed by the curve $y = \sqrt{\sec x}$, the coordinate axes and the line $x = \frac{\pi}{3}$. \\
 
 The region is rotated completely about the $x$-axis. \\
-Find the exact volume of the solid generated. \marks{3}
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find the exact volume of the solid generated. \marks{3} \\
+\end{enumerate}
 
 \vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
-Since the region is rotated about the $x$-axis, the volume is
-\[
-V=\pi\int_a^b y^2\,\mathrm{d}x
-\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let $u=\sec x+\tan x$. Differentiating,
+  \[
+  \frac{\mathrm{d}u}{\mathrm{d}x}=\sec x\tan x+\sec^2 x=\sec x(\tan x+\sec x)=u\sec x
+  \]
 
-Here the limits are $x=0$ to $x=\frac{\pi}{3}$, and
-\[
-y=\sqrt{\sec x}\implies y^2=\sec x
-\]
+  Hence, by the chain rule,
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}\ln(\sec x+\tan x)=\frac{1}{u}\cdot\frac{\mathrm{d}u}{\mathrm{d}x}=\frac{1}{u}\cdot u\sec x=\sec x
+  \]
+  as required.
 
-So
-\[
-V=\pi\int_0^{\pi/3}\sec x\,\mathrm{d}x
-\]
+  \item Since the region is rotated about the $x$-axis, the volume is
+  \[
+  V=\pi\int_a^b y^2\,\mathrm{d}x
+  \]
 
-Using
-\[
-\int \sec x\,\mathrm{d}x=\ln|\sec x+\tan x|+C
-\]
+  Here the limits are $x=0$ to $x=\frac{\pi}{3}$, and
+  \[
+  y=\sqrt{\sec x}\implies y^2=\sec x
+  \]
 
-we get
-\[
-V=\pi\left[\ln(\sec x+\tan x)\right]_0^{\pi/3}
-\]
+  So
+  \[
+  V=\pi\int_0^{\pi/3}\sec x\,\mathrm{d}x
+  \]
 
-Now substitute the limits:
-\[
-V=\pi\left(\ln\left(\sec\frac{\pi}{3}+\tan\frac{\pi}{3}\right)-\ln(\sec 0+\tan 0)\right)
-\]
+  From part \textbf{(a)},
+  \[
+  \int \sec x\,\mathrm{d}x=\ln|\sec x+\tan x|+C
+  \]
 
-\[
-\sec\frac{\pi}{3}=2,\qquad \tan\frac{\pi}{3}=\sqrt{3},\qquad \sec 0=1,\qquad \tan 0=0
-\]
+  so
+  \[
+  V=\pi\left[\ln(\sec x+\tan x)\right]_0^{\pi/3}
+  \]
 
-Hence
-\[
-V=\pi\left(\ln(2+\sqrt{3})-\ln 1\right)
-\]
+  Now substitute the limits:
+  \[
+  V=\pi\left(\ln\left(\sec\frac{\pi}{3}+\tan\frac{\pi}{3}\right)-\ln(\sec 0+\tan 0)\right)
+  \]
 
-\[
-V=\pi\ln(2+\sqrt{3})
-\]
+  \[
+  \sec\frac{\pi}{3}=2,\qquad \tan\frac{\pi}{3}=\sqrt{3},\qquad \sec 0=1,\qquad \tan 0=0
+  \]
 
-So the exact volume is $\pi\ln(2+\sqrt{3})$.
+  Hence
+  \[
+  V=\pi\left(\ln(2+\sqrt{3})-\ln 1\right)
+  \]
+
+  \[
+  V=\pi\ln(2+\sqrt{3})
+  \]
+
+  So the exact volume is $\pi\ln(2+\sqrt{3})$.
+\end{enumerate}
 \end{tcolorbox}
 
 
@@ -447,8 +470,8 @@ Therefore, the exact value of $k$ is
 \begin{figure}[H]
     \centering
 \begin{tikzpicture}
-\pgfmathsetmacro{\ya}{sqrt(2)-1}
-\pgfmathsetmacro{\yb}{sqrt(2)+1}
+\pgfmathsetmacro{\ya}{1/sqrt(3)}
+\pgfmathsetmacro{\yb}{sqrt(3)}
 \pgfmathsetmacro{\xa}{6/(1+\ya*\ya)}
 \pgfmathsetmacro{\xb}{6/(1+\yb*\yb)}
 \begin{axis}[
@@ -456,11 +479,11 @@ Therefore, the exact value of $k$ is
     xlabel={$x$},
     ylabel={$y$},
     xmin=-0.2, xmax=6.4,
-    ymin=-0.2, ymax=4.2,
+    ymin=-0.2, ymax=2.4,
     xtick=\empty,
     ytick=\empty,
     width=8cm,
-    height=6.5cm,
+    height=4.5cm,
     clip=false,
     every axis x label/.style={at={(ticklabel* cs:1)}, anchor=west},
     every axis y label/.style={at={(ticklabel* cs:1)}, anchor=south}
@@ -473,17 +496,17 @@ Therefore, the exact value of $k$ is
         (axis cs:{6/(1+\u^2)},{\u})
     -- cycle;
 
-\addplot[thick, black, samples=200, domain=0:4, variable=\u]
+\addplot[thick, black, samples=200, domain=0:2.4, variable=\u]
     ({6/(1+\u^2)}, {\u})
-    node[pos=0.72, above right] {$C$};
+    node[pos=0.85, above right] {$C$};
 
 \addplot[dashed, black] coordinates {(0,\ya) (\xa,\ya)};
 \addplot[dashed, black] coordinates {(0,\yb) (\xb,\yb)};
 
 \node[below left] at (axis cs:0,0) {$O$};
-\node[left] at (axis cs:0,\ya) {$\sqrt{2}-1$};
-\node[left] at (axis cs:0,\yb) {$\sqrt{2}+1$};
-\node at (axis cs:1.1,1.2) {$R$};
+\node[left] at (axis cs:0,\ya) {$1/\sqrt{3}$};
+\node[left] at (axis cs:0,\yb) {$\sqrt{3}$};
+\node at (axis cs:2.0,1.1) {$R$};
 
 \end{axis}
 \end{tikzpicture}
@@ -492,7 +515,7 @@ Therefore, the exact value of $k$ is
 
 The diagram shows part of the curve $C$ with parametric equations $x=6\sin^2\theta$, $y=\cot\theta$, $0<\theta\leq\frac{\pi}{2}$. \\
 
-The finite region $R$ shown in the diagram is bounded by $C$, the lines $y=\sqrt{2}-1$, $y=\sqrt{2}+1$ and the $y$-axis. Region $R$ is rotated through $2\pi$ radians about the $y$-axis to form a solid of revolution. \\
+The finite region $R$ shown in the diagram is bounded by $C$, the lines $y=\dfrac{1}{\sqrt{3}}$, $y=\sqrt{3}$ and the $y$-axis. Region $R$ is rotated through $2\pi$ radians about the $y$-axis to form a solid of revolution. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item Show that the volume of the solid of revolution formed is given by the integral
   \[
@@ -540,34 +563,26 @@ The finite region $R$ shown in the diagram is bounded by $C$, the lines $y=\sqrt
 
   We now find the $\theta$-limits.
 
-  When $y=\sqrt2+1$,
+  When $y=\sqrt3$,
   \[
-  \cot\theta=\sqrt2+1
+  \cot\theta=\sqrt3\implies\tan\theta=\frac{1}{\sqrt3}
   \]
-  and since $\tan\frac{\pi}{8}=\sqrt2-1$, it follows that
-  \[
-  \cot\frac{\pi}{8}=\sqrt2+1
-  \]
-  so $\theta=\frac{\pi}{8}$.
+  so $\theta=\dfrac{\pi}{6}$.
 
-  When $y=\sqrt2-1$,
+  When $y=\dfrac{1}{\sqrt3}$,
   \[
-  \cot\theta=\sqrt2-1
+  \cot\theta=\frac{1}{\sqrt3}\implies\tan\theta=\sqrt3
   \]
-  and
-  \[
-  \cot\frac{3\pi}{8}=\tan\frac{\pi}{8}=\sqrt2-1
-  \]
-  so $\theta=\frac{3\pi}{8}$.
+  so $\theta=\dfrac{\pi}{3}$.
 
   Therefore
   \begin{align*}
   V
-  &=\pi\int_{\sqrt2-1}^{\sqrt2+1} x^2\,\mathrm{d}y \\
-  &=\pi\int_{3\pi/8}^{\pi/8} (6\sin^2\theta)^2\frac{\mathrm{d}y}{\mathrm{d}\theta}\,\mathrm{d}\theta \\
-  &=\pi\int_{3\pi/8}^{\pi/8} (6\sin^2\theta)^2(-\operatorname{cosec}^2\theta)\,\mathrm{d}\theta \\
-  &=36\pi\int_{3\pi/8}^{\pi/8} -\sin^2\theta\,\mathrm{d}\theta \\
-  &=36\pi\int_{\pi/8}^{3\pi/8} \sin^2\theta\,\mathrm{d}\theta
+  &=\pi\int_{1/\sqrt3}^{\sqrt3} x^2\,\mathrm{d}y \\
+  &=\pi\int_{\pi/3}^{\pi/6} (6\sin^2\theta)^2\frac{\mathrm{d}y}{\mathrm{d}\theta}\,\mathrm{d}\theta \\
+  &=\pi\int_{\pi/3}^{\pi/6} (6\sin^2\theta)^2(-\operatorname{cosec}^2\theta)\,\mathrm{d}\theta \\
+  &=36\pi\int_{\pi/3}^{\pi/6} -\sin^2\theta\,\mathrm{d}\theta \\
+  &=36\pi\int_{\pi/6}^{\pi/3} \sin^2\theta\,\mathrm{d}\theta
   \end{align*}
 
   So the required form is
@@ -576,34 +591,34 @@ The finite region $R$ shown in the diagram is bounded by $C$, the lines $y=\sqrt
   \]
   with
   \[
-  k=36\pi,\qquad a=\frac{\pi}{8},\qquad b=\frac{3\pi}{8}
+  k=36\pi,\qquad a=\frac{\pi}{6},\qquad b=\frac{\pi}{3}
   \]
 
   \item Using parts (a) and (b),
   \begin{align*}
   V
-  &=36\pi\int_{\pi/8}^{3\pi/8}\sin^2\theta\,\mathrm{d}\theta \\
-  &=36\pi\left[\frac{\theta}{2}-\frac{\sin 2\theta}{4}\right]_{\pi/8}^{3\pi/8} \\
-  &=36\pi\left(\frac{3\pi}{16}-\frac{\sin(3\pi/4)}{4}-\frac{\pi}{16}+\frac{\sin(\pi/4)}{4}\right)
+  &=36\pi\int_{\pi/6}^{\pi/3}\sin^2\theta\,\mathrm{d}\theta \\
+  &=36\pi\left[\frac{\theta}{2}-\frac{\sin 2\theta}{4}\right]_{\pi/6}^{\pi/3} \\
+  &=36\pi\left(\frac{\pi}{6}-\frac{\sin(2\pi/3)}{4}-\frac{\pi}{12}+\frac{\sin(\pi/3)}{4}\right)
   \end{align*}
 
   Since
   \[
-  \sin\frac{3\pi}{4}=\sin\frac{\pi}{4}
+  \sin\frac{2\pi}{3}=\sin\frac{\pi}{3}
   \]
   the sine terms cancel, giving
   \begin{align*}
   V
-  &=36\pi\left(\frac{2\pi}{16}\right) \\
-  &=36\pi\cdot\frac{\pi}{8} \\
-  &=\frac{9\pi^2}{2}
+  &=36\pi\left(\frac{\pi}{6}-\frac{\pi}{12}\right) \\
+  &=36\pi\cdot\frac{\pi}{12} \\
+  &=3\pi^2
   \end{align*}
 
   Hence the exact volume is
   \[
-  \frac{9\pi^2}{2}
+  3\pi^2
   \]
-  so $p=\frac92$.
+  so $p=3$.
 \end{enumerate}
 \end{tcolorbox}
 
@@ -615,7 +630,7 @@ The finite region $R$ shown in the diagram is bounded by $C$, the lines $y=\sqrt
 % [Source: _QBT___Solns__Volumes_of_Revolution, Q5]
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Show that $\sinh(2\ln 2)=\frac{15}{8}$. \marks{2} \\
+  \item Show that $\sinh(2\ln 2)=\dfrac{15}{8}$ \marks{2} \\
 \end{enumerate}
 
 \begin{figure}[H]
