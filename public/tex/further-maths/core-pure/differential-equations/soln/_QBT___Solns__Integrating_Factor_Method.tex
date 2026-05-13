@@ -1054,107 +1054,68 @@ So the exact positive value of $x$ is $x=\sqrt{3}-1$.
 \questionitem
 % [Source: _QBT___Solns__Integrating_Factor_Method, Q9]
 
-Find the general solution of the differential equation\\
-\[
-\frac{\mathrm{d}y}{\mathrm{d}x}-2y\tan x=\sec^3 x
-\]\\
-where $-\frac{\pi}{2}<x<\frac{\pi}{2}$ \marks{7}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}\ln(\sec x+\tan x)=\sec x
+  \]
+  \marks[-20pt]{2}
+\end{enumerate}
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Hence find the general solution of the differential equation
+  \[
+  \frac{\mathrm{d}y}{\mathrm{d}x}-2y\tan x=\sec^3 x
+  \]
+  where $-\frac{\pi}{2}<x<\frac{\pi}{2}$. \marks{5}
+\end{enumerate}
 
 \vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
-Write the differential equation in the linear form
-\[
-\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)
-\]
-so here
-\[
-\frac{\mathrm{d}y}{\mathrm{d}x}-2y\tan x=\sec^3 x,\qquad P(x)=-2\tan x,\qquad Q(x)=\sec^3 x
-\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{align*}
+  \frac{\mathrm{d}}{\mathrm{d}x}\ln(\sec x+\tan x)
+  &=\frac{\sec x\tan x+\sec^2 x}{\sec x+\tan x}\\
+  &=\frac{\sec x(\tan x+\sec x)}{\sec x+\tan x}\\
+  &=\sec x
+  \end{align*}
 
-For a linear equation, the integrating factor is
-\[
-\mu(x)=e^{\int P(x)\,\,\mathrm{d}x}
-\]
+  \item The equation is linear, with
+  \[
+  P(x)=-2\tan x.
+  \]
+  An integrating factor is
+  \begin{align*}
+  \mu(x)
+  &=e^{\int -2\tan x\,\mathrm{d}x}\\
+  &=e^{2\ln(\cos x)}\\
+  &=\cos^2 x,
+  \end{align*}
+  since $\cos x>0$ for $-\frac{\pi}{2}<x<\frac{\pi}{2}$.
 
-So
-\begin{align*}
-\mu(x)&=e^{\int -2\tan x\,\,\mathrm{d}x} \\
-&=e^{-2\int \frac{\sin x}{\cos x}\,\,\mathrm{d}x} \\
-&=e^{-2(-\ln(\cos x))} \\
-&=e^{2\ln(\cos x)} \\
-&=\cos^2 x
-\end{align*}
-
-Since $-\frac{\pi}{2}<x<\frac{\pi}{2}$, we have $\cos x>0$, so this is valid without absolute values.
-
-Now multiply the whole differential equation by $\cos^2 x$:
-\begin{align*}
-\cos^2 x\frac{\mathrm{d}y}{\mathrm{d}x}-2y\cos^2 x\tan x&=\cos^2 x\sec^3 x \\
-\cos^2 x\frac{\mathrm{d}y}{\mathrm{d}x}-2y\cos x\sin x&=\sec x
-\end{align*}
-
-Next, observe that
-\begin{align*}
-\frac{\mathrm{d}}{\mathrm{d}x}(y\cos^2 x)
-&=\cos^2 x\frac{\mathrm{d}y}{\mathrm{d}x}+y\frac{\mathrm{d}}{\mathrm{d}x}(\cos^2 x) \\
-&=\cos^2 x\frac{\mathrm{d}y}{\mathrm{d}x}+y(2\cos x)(-\sin x) \\
-&=\cos^2 x\frac{\mathrm{d}y}{\mathrm{d}x}-2y\cos x\sin x
-\end{align*}
-
-So the left-hand side is an exact derivative, and the equation becomes
-\[
-\frac{\mathrm{d}}{\mathrm{d}x}(y\cos^2 x)=\sec x
-\]
-
-Integrating both sides with respect to $x$ gives
-\[
-y\cos^2 x=\int \sec x\,\,\mathrm{d}x
-\]
-
-To integrate $\sec x$, use the standard trick:
-\begin{align*}
-\int \sec x\,\,\mathrm{d}x
-&=\int \sec x\cdot \frac{\sec x+\tan x}{\sec x+\tan x}\,\,\mathrm{d}x \\
-&=\int \frac{\sec^2 x+\sec x\tan x}{\sec x+\tan x}\,\,\mathrm{d}x
-\end{align*}
-
-Let
-\[
-u=\sec x+\tan x
-\]
-Then
-\[
-\frac{\mathrm{d}u}{\mathrm{d}x}=\sec x\tan x+\sec^2 x
-\]
-so
-\[
-\int \sec x\,\,\mathrm{d}x=\int \frac{1}{u}\,\,\mathrm{d}u=\ln|u|+C=\ln|\sec x+\tan x|+C
-\]
-
-On the interval $-\frac{\pi}{2}<x<\frac{\pi}{2}$, we have
-\[
-\sec x+\tan x=\frac{1+\sin x}{\cos x}>0
-\]
-because $1+\sin x>0$ and $\cos x>0$. Hence
-\[
-\ln|\sec x+\tan x|=\ln(\sec x+\tan x)
-\]
-
-Therefore
-\[
-y\cos^2 x=\ln(\sec x+\tan x)+C
-\]
-
-Finally, divide through by $\cos^2 x$:
-\[
-y=\sec^2 x\bigl(\ln(\sec x+\tan x)+C\bigr)
-\]
-
-Hence the general solution is
-\[
-y=\sec^2 x\bigl(\ln(\sec x+\tan x)+C\bigr)
-\]
+  Multiplying through by $\cos^2 x$,
+  \[
+  \cos^2 x\frac{\mathrm{d}y}{\mathrm{d}x}-2y\cos x\sin x=\sec x.
+  \]
+  The left hand side is
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}(y\cos^2 x),
+  \]
+  so
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}(y\cos^2 x)=\sec x.
+  \]
+  Using part (a),
+  \[
+  y\cos^2 x=\ln(\sec x+\tan x)+C.
+  \]
+  Hence
+  \[
+  y=\sec^2 x\bigl(\ln(\sec x+\tan x)+C\bigr).
+  \]
+\end{enumerate}
 \end{tcolorbox}
 
 
