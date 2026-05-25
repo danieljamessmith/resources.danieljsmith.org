@@ -151,115 +151,51 @@ Find the value of $e$ and the exact value of $\tan \alpha$. \marks{5}
 \vspace*{10pt}
 
 \begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
-Take components parallel and perpendicular to the barrier.
+Let the speed of \(P\) immediately after impact be \(v\).
 
-Before impact:
+The particle loses \(36\%\) of its kinetic energy, so it keeps \(64\%\) of it. Hence
 \[
-\text{parallel component}=u\cos\alpha,\qquad \text{perpendicular component}=u\sin\alpha
+\frac12 mv^2=0.64\left(\frac12 mu^2\right)
 \]
-
-Since the barrier is smooth, the component parallel to the barrier is unchanged, and the perpendicular component is reversed in direction and multiplied by \(e\). So after impact:
-\[
-\text{parallel component}=u\cos\alpha,\qquad \text{perpendicular component}=eu\sin\alpha
-\]
-
-Because the incident path and outgoing path are perpendicular, and both angles are measured from the barrier,
-\[
-\alpha+\theta=90^\circ
-\]
-Hence
-\[
-\tan\theta=\cot\alpha=\frac{1}{\tan\alpha}
-\]
-
-But from the components after impact,
-\[
-\tan\theta=\frac{eu\sin\alpha}{u\cos\alpha}=e\tan\alpha
-\]
-
 So
 \[
-e\tan\alpha=\frac{1}{\tan\alpha}
-\]
-which gives
-\[
-e\tan^2\alpha=1
-\]
-
-Now use the kinetic energy information.
-
-The particle loses \(36\%\) of its kinetic energy, so it keeps \(64\%\) of it.
-
-Initial kinetic energy:
-\[
-\frac12 mu^2
-\]
-
-After impact, the speed is
-\[
-\sqrt{(u\cos\alpha)^2+(eu\sin\alpha)^2}
-\]
-so the kinetic energy after impact is
-\[
-\frac12 m\left((u\cos\alpha)^2+(eu\sin\alpha)^2\right)
-=\frac12 mu^2\left(\cos^2\alpha+e^2\sin^2\alpha\right)
-\]
-
-Therefore
-\[
-\frac12 mu^2\left(\cos^2\alpha+e^2\sin^2\alpha\right)
-=\frac{64}{100}\cdot \frac12 mu^2
-\]
-so
-\[
-\cos^2\alpha+e^2\sin^2\alpha=\frac{16}{25}
-\]
-
-From
-\[
-e\tan^2\alpha=1
-\]
-we have
-\[
-e\frac{\sin^2\alpha}{\cos^2\alpha}=1
+v^2=0.64u^2
 \]
 hence
 \[
-e\sin^2\alpha=\cos^2\alpha
+v=0.8u=\frac45u
 \]
+since \(v>0\).
 
-Using this in the energy equation,
-\begin{align*}
-\cos^2\alpha+e^2\sin^2\alpha
-&=e\sin^2\alpha+e^2\sin^2\alpha \\
-&=e(1+e)\sin^2\alpha
-\end{align*}
-
-Also, since \(\cos^2\alpha+\sin^2\alpha=1\),
+Since the incident and outgoing paths are perpendicular, and both angles are measured from the barrier,
 \[
-e\sin^2\alpha+\sin^2\alpha=(1+e)\sin^2\alpha=1
+\alpha+\theta=90^\circ
 \]
 So
 \[
-e(1+e)\sin^2\alpha=e
+\theta=90^\circ-\alpha
 \]
 
-Therefore
+The barrier is smooth, so the component of velocity parallel to the barrier is unchanged. Therefore
+\begin{align*}
+u\cos\alpha&=v\cos\theta =v\sin\alpha
+\end{align*}
+so
 \[
-\cos^2\alpha+e^2\sin^2\alpha=e
-\]
-and hence
-\[
-e=\frac{16}{25}
+\tan\alpha=\frac{u}{v}=\frac{u}{\frac45u}=\frac54
 \]
 
-Finally,
+For the coefficient of restitution, use the components perpendicular to the barrier:
 \[
-\tan^2\alpha=\frac{1}{e}=\frac{25}{16}
+e=\frac{\text{speed of separation}}{\text{speed of approach}}
+=\frac{v\sin\theta}{u\sin\alpha}
+=\frac{v\cos\alpha}{u\sin\alpha}
 \]
-Since \(\alpha\) is acute,
+Using \(v=\frac45u\) and \(\tan\alpha=\frac54\),
 \[
-\tan\alpha=\frac54
+e=\frac{\frac45u}{u\tan\alpha}
+=\frac{\frac45}{\frac54}
+=\frac{16}{25}
 \]
 
 So the required values are
@@ -376,7 +312,7 @@ Therefore the side-board is not smooth.
 \pic["$\gamma$", draw, angle radius=5mm, angle eccentricity=1.4] {angle=C--E--F};
 
 \fill (P) circle (1.2pt);
-\node[above] at (A) {$A$};
+\node[below left] at (A) {$A$};
 \node[below right] at (B) {$B$};
 \node[above right] at (C) {$C$};
 \node[above left] at (P) {$P$};
