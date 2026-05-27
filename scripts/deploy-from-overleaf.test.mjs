@@ -1,7 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
-import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
-import { join } from 'node:path';
+import { mkdtempSync, writeFileSync, rmSync, readFileSync, mkdirSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
+import { fileURLToPath } from 'node:url';
 import {
   parseProjectId,
   parseBoardSelection,
@@ -10,7 +11,12 @@ import {
   tryFindPackTex,
   resolveTexPairFromClone,
   formatPairPreview,
+  copyNormalizedPackTex,
 } from './deploy-from-overleaf.mjs';
+import { PACK_PREAMBLE_SITE_INPUT } from './lib/pack-preamble.mjs';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const repoRoot = join(__dirname, '..');
 
 // ---------------------------------------------------------------------------
 // parseProjectId
@@ -222,6 +228,51 @@ describe('formatPairPreview', () => {
     });
     expect(out).toContain("fm-vectors-test");
     expect(out).toContain('fm-vectors-prev-solns');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// copyNormalizedPackTex
+// ---------------------------------------------------------------------------
+
+describe('copyNormalizedPackTex', () => {
+  it('rewrites flat Overleaf pack imports while copying into the site tree', () => {
+    const cloneDir = tempDir();
+    const destTopicDir = mkdtempSync(
+      join(repoRoot, 'public', 'tex', 'further-maths', 'core-pure', '__deploy-test-'),
+    );
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    try {
+      const src = join(cloneDir, '(QBT) Test Topic.tex');
+      writeFileSync(
+        src,
+        [
+          String.raw`\documentclass[leqno]{article}`,
+          String.raw`\input{preamble.tex}`,
+          String.raw`\djsQbtHeader{Test Topic}`,
+          String.raw`\begin{document}`,
+          String.raw`\djsFrontMatter`,
+          String.raw`\end{document}`,
+          '',
+        ].join('\n'),
+      );
+
+      const destDir = join(destTopicDir, 'qbt');
+      mkdirSync(destDir, { recursive: true });
+      const dest = join(destDir, '_QBT__Test_Topic.tex');
+
+      copyNormalizedPackTex(src, dest);
+
+      const copied = readFileSync(dest, 'utf8');
+      expect(copied).toContain(PACK_PREAMBLE_SITE_INPUT);
+      expect(copied).not.toContain(String.raw`\input{preamble.tex}`);
+      expect(warn).toHaveBeenCalledWith(expect.stringMatching(/imports preamble\.tex/));
+    } finally {
+      warn.mockRestore();
+      rmSync(cloneDir, { recursive: true, force: true });
+      rmSync(destTopicDir, { recursive: true, force: true });
+    }
   });
 });
 

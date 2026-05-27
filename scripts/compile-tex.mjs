@@ -27,16 +27,17 @@ const deploy = args.includes('--deploy');
 const positional = args.filter((a) => !a.startsWith('-'));
 const scope = positional[0] ?? 'further-maths';
 
-const searchRoot =
-  scope === 'all'
-    ? texRoot
-    : scope === 'further-maths'
-      ? join(texRoot, 'further-maths', 'core-pure')
-      : join(texRoot, scope);
+export function resolveSearchRoot(scopeArg, texRootArg = texRoot) {
+  if (scopeArg === 'all') return texRootArg;
+  if (scopeArg === 'further-maths') return join(texRootArg, 'further-maths');
+  return join(texRootArg, scopeArg);
+}
+
+const searchRoot = resolveSearchRoot(scope);
 
 // --- Build ------------------------------------------------------------------
 
-function buildFile(absTexPath) {
+export function buildFile(absTexPath) {
   const texDir = dirname(absTexPath);
   const outDir = join(texDir, 'build');
 
@@ -61,7 +62,7 @@ function buildFile(absTexPath) {
   return result.status ?? 1;
 }
 
-function deployPdf(absTexPath) {
+export function deployPdf(absTexPath) {
   const texDir = dirname(absTexPath);
   const name = basename(absTexPath, '.tex');
   const buildPdf = join(texDir, 'build', `${name}.pdf`);
@@ -71,41 +72,51 @@ function deployPdf(absTexPath) {
 
 // --- Main -------------------------------------------------------------------
 
-const files = walkTexFiles(searchRoot, repoRoot, shouldProcessTexFile).sort();
-
-if (files.length === 0) {
-  console.error(`compile-tex: no .tex files found under ${searchRoot}`);
-  process.exit(1);
+export function collectCompileFiles(searchRootArg, repoRootArg = repoRoot) {
+  return walkTexFiles(searchRootArg, repoRootArg, shouldProcessTexFile).sort();
 }
 
-console.log(`compile-tex: ${files.length} file(s) | scope=${scope}${deploy ? ' | --deploy' : ''}\n`);
+function main() {
+  const files = collectCompileFiles(searchRoot, repoRoot);
 
-let passed = 0;
-let failed = 0;
-
-for (const absTexPath of files) {
-  const rel = absTexPath.slice(repoRoot.length + 1).replace(/\\/g, '/');
-  console.log(`\n── ${rel}`);
-
-  const exitCode = buildFile(absTexPath);
-
-  if (exitCode === 0) {
-    passed++;
-    if (deploy) {
-      try {
-        deployPdf(absTexPath);
-        console.log(`   ✓ deployed`);
-      } catch (e) {
-        console.error(`   deploy failed: ${e.message}`);
-        failed++;
-        passed--;
-      }
-    }
-  } else {
-    console.error(`   ✗ latexmk exited ${exitCode}`);
-    failed++;
+  if (files.length === 0) {
+    console.error(`compile-tex: no .tex files found under ${searchRoot}`);
+    process.exit(1);
   }
+
+  console.log(`compile-tex: ${files.length} file(s) | scope=${scope}${deploy ? ' | --deploy' : ''}\n`);
+
+  let passed = 0;
+  let failed = 0;
+
+  for (const absTexPath of files) {
+    const rel = absTexPath.slice(repoRoot.length + 1).replace(/\\/g, '/');
+    console.log(`\n── ${rel}`);
+
+    const exitCode = buildFile(absTexPath);
+
+    if (exitCode === 0) {
+      passed++;
+      if (deploy) {
+        try {
+          deployPdf(absTexPath);
+          console.log(`   ✓ deployed`);
+        } catch (e) {
+          console.error(`   deploy failed: ${e.message}`);
+          failed++;
+          passed--;
+        }
+      }
+    } else {
+      console.error(`   ✗ latexmk exited ${exitCode}`);
+      failed++;
+    }
+  }
+
+  console.log(`\ncompile-tex: ${passed} succeeded, ${failed} failed`);
+  if (failed > 0) process.exit(1);
 }
 
-console.log(`\ncompile-tex: ${passed} succeeded, ${failed} failed`);
-if (failed > 0) process.exit(1);
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main();
+}

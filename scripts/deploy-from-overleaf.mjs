@@ -6,6 +6,7 @@
 
 import {
   readFileSync,
+  writeFileSync,
   mkdirSync,
   readdirSync,
   rmSync,
@@ -21,6 +22,10 @@ import { stdin, stdout, exit } from 'node:process';
 import { randomBytes } from 'node:crypto';
 
 import { listTreeShallow, pickSitePath } from './lib/site-tree.mjs';
+import {
+  normalizeImportedPackTex,
+  usesOverleafPackInput,
+} from './lib/pack-preamble.mjs';
 import {
   derivePathContext,
   deriveTopicId,
@@ -297,8 +302,23 @@ export function formatPairPreview(p) {
   ].join('\n');
 }
 
+function repoRel(path) {
+  return path.slice(repoRoot.length + 1).replace(/\\/g, '/');
+}
+
+function copyNormalizedPackTex(srcPath, destPath) {
+  const raw = readFileSync(srcPath, 'utf8');
+  if (usesOverleafPackInput(raw) && !existsSync(join(dirname(srcPath), 'preamble.tex'))) {
+    console.warn(
+      `Warning: ${basename(srcPath)} imports preamble.tex, but no bundled preamble.tex was found in the Overleaf clone; using the site shared pack preamble.`,
+    );
+  }
+  const normalized = normalizeImportedPackTex(raw, repoRel(destPath));
+  writeFileSync(destPath, normalized, 'utf8');
+}
+
 // Re-export for tests / tooling
-export { derivePathContext, deriveTopicId, slugify, addPendingEntry };
+export { derivePathContext, deriveTopicId, slugify, addPendingEntry, copyNormalizedPackTex };
 
 // ---------------------------------------------------------------------------
 // Main
@@ -427,8 +447,8 @@ async function main() {
 
     const qbtTexDest = join(qbtDest, `${qbtFileName}.tex`);
     const solnTexDest = join(solnDest, `${solnFileName}.tex`);
-    copyFileSync(qbtPath, qbtTexDest);
-    copyFileSync(solnPath, solnTexDest);
+    copyNormalizedPackTex(qbtPath, qbtTexDest);
+    copyNormalizedPackTex(solnPath, solnTexDest);
 
     const deployed = [qbtTexDest, solnTexDest];
 
