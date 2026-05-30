@@ -32,8 +32,10 @@ export const questionCounts: Record<string, number> = {
   '/tex/further-maths/core-pure/vectors/qbt/_QBT__Reflections_in_Planes.pdf': 7,
   '/tex/further-maths/core-pure/vectors/qbt/_QBT__Vector_Product.pdf': 10,
   '/tex/further-maths/core-pure/vectors/qbt/_QBT__Vectors___Shortest_Distances.pdf': 8,
+  '/tex/further-maths/further-mechanics/miscellaneous-mechanics/qbt/_QBT__Dimensional_Analysis.pdf': 10,
   '/tex/further-maths/further-mechanics/momentum-restitution-collisions/qbt/_QBT__Collisions_in_1_Dimension.pdf': 12,
   '/tex/further-maths/further-mechanics/momentum-restitution-collisions/qbt/_QBT__Collisions_in_2_Dimensions.pdf': 12,
   '/tex/further-maths/further-mechanics/momentum-restitution-collisions/qbt/_QBT__Vector_Momentum_and_Impulse.pdf': 8,
+  '/tex/further-maths/further-mechanics/work-energy-power/qbt/_QBT___Power_and_Driving_Force_.pdf': 12,
   '/tex/further-maths/further-mechanics/work-energy-power/qbt/_QBT__Work_Energy_Principle.pdf': 10,
 };

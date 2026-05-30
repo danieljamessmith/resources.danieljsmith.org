@@ -1,18 +1,19 @@
 ---
-import { EXAM_BOARDS } from '~/data/resources';
+import { EXAM_BOARDS, type ExamBoard } from '~/data/resources';
 
 export type BoardFilterAccent = 'purple' | 'teal';
 
 interface Props {
   variant?: 'sidebar' | 'mobile';
   accent?: BoardFilterAccent;
+  boards?: { id: ExamBoard; label: string }[];
 }
 
-const { variant = 'sidebar', accent = 'purple' } = Astro.props;
+const { variant = 'sidebar', accent = 'purple', boards = EXAM_BOARDS } = Astro.props;
 
 const filterItems = [
   { id: 'all' as const, label: 'All' },
-  ...EXAM_BOARDS.map((b) => ({ id: b.id, label: b.label })),
+  ...boards.map((b) => ({ id: b.id, label: b.label })),
 ];
 
 const linkInactive =

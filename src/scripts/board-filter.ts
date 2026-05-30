@@ -8,11 +8,14 @@ export function initBoardFilter(): void {
   // Accent is per-strand (e.g. Core Pure = purple, Further Mechanics = teal); falls back to purple.
   const accent = root?.dataset.boardAccent === 'teal' ? 'teal' : 'purple';
 
-  const BOARD_IDS = ['all', 'edexcel', 'ocr-a', 'ocr-mei', 'aqa', 'cie'] as const;
-  type BoardId = (typeof BOARD_IDS)[number];
+  const boardIds = Array.from(
+    document.querySelectorAll<HTMLButtonElement>('[data-board-filter]'),
+    (btn) => btn.dataset.boardFilter,
+  ).filter((id): id is string => id !== undefined);
+  type BoardId = string;
 
-  function isBoardId(s: string): s is BoardId {
-    return (BOARD_IDS as readonly string[]).includes(s);
+  function isBoardId(s: string): boolean {
+    return boardIds.includes(s);
   }
 
   function readInitialBoard(): BoardId {

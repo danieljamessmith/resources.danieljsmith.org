@@ -6,9 +6,10 @@ import TopicNav from '~/components/TopicNav.astro';
 import BoardFilter from '~/components/BoardFilter.astro';
 import TopicSection from '~/components/TopicSection.astro';
 import ResourcePairCard from '~/components/ResourcePairCard.astro';
-import { FM_MECH, getResourcePairs, type Resource } from '~/data/resources';
+import { FM_MECH, FM_MECH_EXAM_BOARDS, getResourcePairs, type Resource } from '~/data/resources';
 
 const mechTopics = [
+  { id: 'miscellaneous-mechanics', label: 'Miscellaneous Mechanics' },
   { id: 'momentum-restitution-collisions', label: 'Momentum & Collisions' },
   { id: 'work-energy-power', label: 'Work, Energy and Power' },
 ];
@@ -23,6 +24,7 @@ function pairedOnly(
 
 const momentumPairs = pairedOnly(getResourcePairs(FM_MECH, 'Momentum & Collisions'));
 const workEnergyPairs = pairedOnly(getResourcePairs(FM_MECH, 'Work, Energy and Power'));
+const miscMechanicsPairs = pairedOnly(getResourcePairs(FM_MECH, 'Miscellaneous Mechanics'));
 ---
 
 <Layout
@@ -42,14 +44,27 @@ const workEnergyPairs = pairedOnly(getResourcePairs(FM_MECH, 'Work, Energy and P
     <main class="flex-1 w-full max-w-7xl mx-auto px-4 py-12 lg:px-6">
       <div class="lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-10 xl:gap-12">
         <div class="hidden lg:flex lg:flex-col lg:gap-8 lg:w-52 lg:shrink-0 lg:sticky lg:top-24 lg:self-start">
-          <BoardFilter variant="sidebar" accent="teal" />
+          <BoardFilter variant="sidebar" accent="teal" boards={FM_MECH_EXAM_BOARDS} />
           <TopicNav variant="sidebar" topics={mechTopics} accent="teal" />
         </div>
         <div class="min-w-0">
           <h1 class="font-display text-3xl font-semibold tracking-tight text-white">Further Mechanics</h1>
 
-          <BoardFilter variant="mobile" accent="teal" />
+          <BoardFilter variant="mobile" accent="teal" boards={FM_MECH_EXAM_BOARDS} />
           <TopicNav variant="mobile" topics={mechTopics} accent="teal" />
+
+          <TopicSection
+            id="miscellaneous-mechanics"
+            title="Miscellaneous Mechanics"
+            accent="teal"
+            count={miscMechanicsPairs.length}
+          >
+            {miscMechanicsPairs.length === 0 ? (
+              <p class="text-sm text-slate-400 italic px-1">Coming soon.</p>
+            ) : (
+              miscMechanicsPairs.map((pair) => <ResourcePairCard pair={pair} />)
+            )}
+          </TopicSection>
 
           <TopicSection
             id="momentum-restitution-collisions"

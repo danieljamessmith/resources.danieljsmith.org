@@ -1,0 +1,278 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/pack_preamble.tex}
+
+\djsQbtHeader{Dimensional Analysis}
+
+\begin{document}
+\djsFrontMatter
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+% [Source: _QBT__Dimensional_Analysis, Q1]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item State the dimensions of force. \marks{1} \\
+  \item The braking distance of a vehicle can be modelled by the formula
+  \[
+  d = m^a u^b R^c
+  \] 
+  where, \\
+
+  $m$ is the mass of the vehicle in $\mathrm{kg}$
+
+  $u$ is the initial speed in $\mathrm{m\,s^{-1}}$
+
+  $R$ is the constant braking force in $\mathrm{N}$ \\
+  
+  Use dimensional analysis to find the values of $a$, $b$ and $c$. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT__Dimensional_Analysis, Q2]
+
+A small satellite moves in a circular orbit of radius $r$ about the centre of a much more massive planet of mass $M$. It is suggested that the period $T$ of the orbit depends only on $G$, $M$ and $r$, and that \\
+\[
+T = kG^{\alpha} M^{\beta} r^{\gamma}
+\] \\
+where $k$ is a dimensionless constant. \\
+
+It is given that
+\[
+G = 6.67 \times 10^{-11}\,\mathrm{m}^3\,\mathrm{kg}^{-1}\,\mathrm{s}^{-2}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Write down the dimensions of $G$. \marks{1} \\
+  \item By using dimensional analysis, determine the values of $\alpha$, $\beta$ and $\gamma$. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT__Dimensional_Analysis, Q3]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.1]
+\def\Height{3.0}
+\def\Range{8.2}
+\def\Angle{38}
+\def\VelLen{2.3}
+\def\DimDrop{0.8}
+\def\DimOff{0.55}
+\pgfmathsetmacro{\TanA}{tan(\Angle)}
+\pgfmathsetmacro{\Coeff}{(\Height+\TanA*\Range)/(\Range*\Range)}
+
+\coordinate (B) at (0,0);
+\coordinate (O) at (0,\Height);
+\coordinate (A) at (\Range,0);
+\coordinate (Href) at ($(O)+(1.6,0)$);
+\coordinate (V) at ($(O)+(\Angle:\VelLen)$);
+\coordinate (R1) at ($(B)+(0,-\DimDrop)$);
+\coordinate (R2) at ($(A)+(0,-\DimDrop)$);
+\coordinate (h1) at ($(B)+(-\DimOff,0)$);
+\coordinate (h2) at ($(O)+(-\DimOff,0)$);
+\coordinate (h3) at ($(O)+(2*\DimOff,0)$);
+
+\draw[thick] (-1.2,0) -- (\Range+1.2,0);
+\draw[thick] (B) -- (O);
+\draw[thick, black, domain=0:\Range, samples=200]
+  plot (\x, {\Height+\TanA*\x-\Coeff*\x*\x});
+
+\draw[-{Stealth[length=3mm]}, thick] (O) -- (V)
+  node[pos=0.65, above] {$v$};
+
+\pic["$\theta$", draw, angle radius=7mm, angle eccentricity=1.35]
+  {angle=Href--O--V};
+
+\draw[dashed] (B) -- (h1);
+\draw[dashed] (O) -- (h3);
+\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (h1) -- (h2)
+  node[midway, left] {$h$};
+
+\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (R1) -- (R2)
+  node[midway, below] {$R$};
+
+\fill[black] (A) circle (1.2pt);
+
+\node[above left] at (O) {$O$};
+\node[below left] at (B) {$B$};
+\node[below right] at (A) {$A$};
+\end{tikzpicture}
+\end{figure}
+
+
+A particle is projected with speed $v$ from a point $O$ at the top of a cliff of height $h$ above horizontal ground. The angle of projection is $\theta$ above the horizontal. The particle lands at the point $A$ on the ground, and $B$ is the foot of the cliff, so that $BA = R$, as shown in the diagram. \\
+
+You are given that
+\[
+R = \frac{v^\alpha \cos\theta}{g^\beta}\left(v^\gamma\sin\theta + \sqrt{v^\delta\sin^2\theta + 2gh}\right)
+\] \\
+Use dimensional analysis to find $\alpha$, $\beta$, $\gamma$ and $\delta$. \marks{4} \\
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT__Dimensional_Analysis, Q4]
+
+The increase in pressure $p$ pascals between the surface and the bottom of a liquid of depth $h$ metres and density $\rho\,\mathrm{kg\,m^{-3}}$ is modelled by
+\[
+p = k\rho^{\alpha}h^{\beta}g
+\] \\
+where $g\,\mathrm{m\,s^{-2}}$ is the acceleration due to gravity and $k$ is a dimensionless constant. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item State the dimensions of $p$. \marks{1} \\
+  \item Use dimensional analysis to find the value of $\alpha$ and the value of $\beta$. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT__Dimensional_Analysis, Q5]
+
+The force, $F$, exerted on a flat plate by a water jet is thought to depend on the density of the water, $\rho$, the cross-sectional area of the jet, $A$, and the speed of the water, $v$. You are given that $\rho$ is measured in $\mathrm{kg\,m^{-3}}$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the dimensions of density $\rho$. \marks{2} \\
+\end{enumerate}
+A model of the force suggests the relationship
+\[
+F = \frac12 \rho^\alpha A^\beta v^\gamma
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Explain whether or not it is possible to use dimensional analysis to verify that the constant $\frac12$ is correct. \marks{1} \\
+  \item Use dimensional analysis to find the values of $\alpha$, $\beta$ and $\gamma$. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+% [Source: _QBT__Dimensional_Analysis, Q6]
+
+A motor pulls a crate of mass $m$ along a rough horizontal floor. The equation below is suggested to model the pulling force exerted by the motor, $F$, while the crate moves in a straight line. \\
+\[
+F = k_1 m v\dfrac{\mathrm{d}v}{\mathrm{d}x} + k_2 \mu mg + k_3 \dfrac{Q}{x}
+\] \\
+in which, \\
+
+$\bullet$ $v$ is the speed of the crate when it has travelled distance $x$
+
+$\bullet$ $\mu$ is the coefficient of friction between the crate and the floor
+
+$\bullet$ $g$ is the acceleration due to gravity
+
+$\bullet$ $Q$ is the total thermal energy transferred to the surroundings after the crate has moved distance $x$
+
+$\bullet$ $k_1$, $k_2$ and $k_3$ are dimensionless constants \\
+
+Determine whether the equation is dimensionally consistent. \marks{6} \\
+
+\newpage
+
+
+% ---- Question 7 ----
+\questionitem
+% [Source: _QBT__Dimensional_Analysis, Q7]
+
+The speed of a particle falling vertically through a resistive medium is modelled by the formula
+\[
+v=\dfrac{mg}{k}\left(1-e^{-kt/m}\right)
+\] 
+where, \\
+
+$v$ is the speed of the particle
+
+$m$ is the mass of the particle
+
+$g$ is the acceleration due to gravity
+
+$t$ is the time since the particle was released
+
+$k$ is a constant \\
+
+Use dimensional analysis to determine the dimensions of $k$. \marks{4} \\
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+% [Source: _QBT__Dimensional_Analysis, Q8]
+
+A comet of mass $m$ measured in $\mathrm{kg}$ follows an elliptical orbit around a planet. The semi-major axis of the orbit is $a$ measured in metres and the orbital period is $T$ measured in seconds. The eccentricity $e$ of the orbit is dimensionless. \\
+
+A constant $\mu$ associated with the planet is defined by
+\[
+T^2 = \frac{4\pi^2 a^3}{\mu}
+\] \\
+and the angular momentum of the comet is given by
+\[
+H = m\sqrt{\mu a(1-e^2)}
+\] \\
+By using dimensional analysis, find the dimensions of:
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item $\mu$ \marks{3}
+  \item $H$ \marks{3}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+% [Source: _QBT__Dimensional_Analysis, Q9]
+
+A small ball of mass $m\,\mathrm{kg}$ is projected vertically upwards with speed $u\,\mathrm{m\,s^{-1}}$. During the motion, when its speed is $v\,\mathrm{m\,s^{-1}}$, it experiences an air resistance of magnitude $kv^2\,\mathrm{N}$, where $k$ is a constant. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Determine the dimensions of $k$. \marks{3} \\
+\end{enumerate}
+The greatest height reached by the ball is $H\,\mathrm{m}$. A formula approximating $H$ is
+\[
+H = \dfrac{u^2}{2g} - \dfrac{ku^4}{4mg^2} + \dfrac{1}{6}k^2 m^\alpha u^\beta g^\gamma
+\] \\
+where $g\,\mathrm{m\,s^{-2}}$ is the acceleration due to gravity. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Use dimensional analysis to find $\alpha$, $\beta$ and $\gamma$. \marks{4} \\
+\end{enumerate}
+
+\newpage 
+
+% ---- Question 10 ----
+\questionitem
+% [Source: _QBT__Dimensional_Analysis, Q10]
+
+A small probe is launched vertically upwards from the surface of a spherical moon. The radius of the moon is $R$ metres, and the probe is at a distance $r$ metres from the centre of the moon. The gravitational field strength $g$ at distance $r$ is modelled by
+\[
+g = \frac{\Gamma}{r^2}
+\]
+where $\Gamma$ is a constant associated with the moon. \\
+
+The probe has initial speed $u$ at the surface and speed $v$ when it reaches distance $r$. These speeds are related by
+\[
+v^2 = u^2 - 2\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
+\]
+The work done against gravity in moving a probe of mass $m$ from the surface to distance $r$ is
+\[
+W = m\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
+\]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the dimensions of $\Gamma$. \marks{2}
+  \item Use dimensional analysis to show that the equation for $v^2$ is dimensionally consistent. \marks{2}
+  \item Find the dimensions and SI units of $W$. \marks{2}
+\end{enumerate}
+
+
+\end{enumerate}
+\end{document}

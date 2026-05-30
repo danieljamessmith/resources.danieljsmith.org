@@ -1,0 +1,926 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/pack_preamble.tex}
+
+\djsSolnHeader{Dimensional Analysis}
+
+\begin{document}
+\djsFrontMatter
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+% [Source: _QBT___Solns__Dimensional_Analysis, Q1]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item State the dimensions of force. \marks{1} \\
+  \item The braking distance of a vehicle can be modelled by the formula
+  \[
+  d = m^a u^b R^c
+  \] 
+  where, \\
+
+  $m$ is the mass of the vehicle in $\mathrm{kg}$
+
+  $u$ is the initial speed in $\mathrm{m\,s^{-1}}$
+
+  $R$ is the constant braking force in $\mathrm{N}$ \\
+  
+  Use dimensional analysis to find the values of $a$, $b$ and $c$. \marks{4} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item Force is mass $\times$ acceleration, so
+  \[
+  [F]=M\times LT^{-2}=MLT^{-2}
+  \]
+  So the dimensions of force are $MLT^{-2}$.
+
+  \item Write the dimensions of each quantity:
+  \[
+  [d]=L,\qquad [m]=M,\qquad [u]=LT^{-1},\qquad [R]=MLT^{-2}
+  \]
+
+  Given
+  \[
+  d=m^a u^b R^c
+  \]
+  the dimensions on the right-hand side are
+  \begin{align*}
+  [m^a u^b R^c]
+  &=M^a(LT^{-1})^b(MLT^{-2})^c\\
+  &=M^aL^bT^{-b}\times M^cL^cT^{-2c}\\
+  &=M^{a+c}L^{b+c}T^{-b-2c}
+  \end{align*}
+
+  Since this must equal the dimensions of $d$,
+  \[
+  M^{a+c}L^{b+c}T^{-b-2c}=L=M^0L^1T^0
+  \]
+
+  Equating powers of $M$, $L$ and $T$ gives
+  \[
+  a+c=0,\qquad b+c=1,\qquad -b-2c=0
+  \]
+
+  From $-b-2c=0$,
+  \[
+  b=-2c
+  \]
+
+  Substitute into $b+c=1$:
+  \[
+  -2c+c=1
+  \]
+  \[
+  -c=1
+  \]
+  \[
+  c=-1
+  \]
+
+  Then
+  \[
+  b=-2(-1)=2
+  \]
+  and from $a+c=0$,
+  \[
+  a+(-1)=0
+  \]
+  so
+  \[
+  a=1
+  \]
+
+  Hence
+  \[
+  a=1,\qquad b=2,\qquad c=-1
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT___Solns__Dimensional_Analysis, Q2]
+
+A small satellite moves in a circular orbit of radius $r$ about the centre of a much more massive planet of mass $M$. It is suggested that the period $T$ of the orbit depends only on $G$, $M$ and $r$, and that \\
+\[
+T = kG^{\alpha} M^{\beta} r^{\gamma}
+\] \\
+where $k$ is a dimensionless constant. \\
+
+It is given that
+\[
+G = 6.67 \times 10^{-11}\,\mathrm{m}^3\,\mathrm{kg}^{-1}\,\mathrm{s}^{-2}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Write down the dimensions of $G$. \marks{1} \\
+  \item By using dimensional analysis, determine the values of $\alpha$, $\beta$ and $\gamma$. \marks{3} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item From
+  \[
+  G=6.67\times 10^{-11}\,\mathrm{m}^3\,\mathrm{kg}^{-1}\,\mathrm{s}^{-2}
+  \]
+  the dimensions of \(G\) are
+  \[
+  [G]=M^{-1}L^3T^{-2}
+  \]
+
+  \item Since \(k\) is dimensionless,
+  \[
+  [T]=[G]^\alpha[M]^\beta[r]^\gamma
+  \]
+  Now
+  \[
+  [T]=T,\qquad [G]=M^{-1}L^3T^{-2},\qquad [r]=L
+  \]
+  so
+  \begin{align*}
+  T&=(M^{-1}L^3T^{-2})^\alpha M^\beta L^\gamma \\
+   &=M^{-\alpha+\beta}L^{3\alpha+\gamma}T^{-2\alpha}
+  \end{align*}
+  Equating powers of \(M\), \(L\) and \(T\) with \(M^0L^0T^1\):
+  \begin{align*}
+  -\alpha+\beta&=0 \\
+  3\alpha+\gamma&=0 \\
+  -2\alpha&=1
+  \end{align*}
+  From \(-2\alpha=1\),
+  \[
+  \alpha=-\frac12
+  \]
+  Then
+  \[
+  \beta=\alpha=-\frac12
+  \]
+  and
+  \[
+  \gamma=-3\alpha=\frac32
+  \]
+  Hence
+  \[
+  \alpha=-\frac12,\qquad \beta=-\frac12,\qquad \gamma=\frac32
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT___Solns__Dimensional_Analysis, Q3]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.1]
+\def\Height{3.0}
+\def\Range{8.2}
+\def\Angle{38}
+\def\VelLen{2.3}
+\def\DimDrop{0.8}
+\def\DimOff{0.55}
+\pgfmathsetmacro{\TanA}{tan(\Angle)}
+\pgfmathsetmacro{\Coeff}{(\Height+\TanA*\Range)/(\Range*\Range)}
+
+\coordinate (B) at (0,0);
+\coordinate (O) at (0,\Height);
+\coordinate (A) at (\Range,0);
+\coordinate (Href) at ($(O)+(1.6,0)$);
+\coordinate (V) at ($(O)+(\Angle:\VelLen)$);
+\coordinate (R1) at ($(B)+(0,-\DimDrop)$);
+\coordinate (R2) at ($(A)+(0,-\DimDrop)$);
+\coordinate (h1) at ($(B)+(-\DimOff,0)$);
+\coordinate (h2) at ($(O)+(-\DimOff,0)$);
+\coordinate (h3) at ($(O)+(2*\DimOff,0)$);
+
+\draw[thick] (-1.2,0) -- (\Range+1.2,0);
+\draw[thick] (B) -- (O);
+\draw[thick, black, domain=0:\Range, samples=200]
+  plot (\x, {\Height+\TanA*\x-\Coeff*\x*\x});
+
+\draw[-{Stealth[length=3mm]}, thick] (O) -- (V)
+  node[pos=0.65, above] {$v$};
+
+\pic["$\theta$", draw, angle radius=7mm, angle eccentricity=1.35]
+  {angle=Href--O--V};
+
+\draw[dashed] (B) -- (h1);
+\draw[dashed] (O) -- (h3);
+\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (h1) -- (h2)
+  node[midway, left] {$h$};
+
+\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (R1) -- (R2)
+  node[midway, below] {$R$};
+
+\fill[black] (A) circle (1.2pt);
+
+\node[above left] at (O) {$O$};
+\node[below left] at (B) {$B$};
+\node[below right] at (A) {$A$};
+\end{tikzpicture}
+\end{figure}
+
+
+A particle is projected with speed $v$ from a point $O$ at the top of a cliff of height $h$ above horizontal ground. The angle of projection is $\theta$ above the horizontal. The particle lands at the point $A$ on the ground, and $B$ is the foot of the cliff, so that $BA = R$, as shown in the diagram. \\
+
+You are given that
+\[
+R = \frac{v^\alpha \cos\theta}{g^\beta}\left(v^\gamma\sin\theta + \sqrt{v^\delta\sin^2\theta + 2gh}\right)
+\] \\
+Use dimensional analysis to find $\alpha$, $\beta$, $\gamma$ and $\delta$. \marks{4} \\
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+Using dimensions,
+\[
+[R]=L,\qquad [v]=LT^{-1},\qquad [g]=LT^{-2},\qquad [h]=L
+\]
+and \(\sin\theta\) and \(\cos\theta\) are dimensionless.
+
+First look at the expression inside the square root. Since terms being added must have the same dimensions,
+\[
+[v^\delta\sin^2\theta]=[2gh]
+\]
+Now
+\[
+[2gh]=[g][h]=(LT^{-2})(L)=L^2T^{-2}
+\]
+So
+\[
+(LT^{-1})^\delta=L^2T^{-2}
+\]
+Comparing powers of \(L\) and \(T\),
+\[
+\delta=2
+\]
+Hence the whole square-root term has dimensions
+\[
+\sqrt{L^2T^{-2}}=LT^{-1}
+\]
+Therefore \(v^\gamma\sin\theta\) must also have dimensions \(LT^{-1}\), so
+\[
+(LT^{-1})^\gamma=LT^{-1}
+\]
+which gives
+\[
+\gamma=1
+\]
+
+Now the bracket
+\[
+v^\gamma\sin\theta+\sqrt{v^\delta\sin^2\theta+2gh}
+\]
+has dimensions \(LT^{-1}\). So
+\begin{align*}
+[R]
+&=\left[\frac{v^\alpha\cos\theta}{g^\beta}\right]\left[ v^\gamma\sin\theta+\sqrt{v^\delta\sin^2\theta+2gh}\right] \\
+L
+&=\frac{(LT^{-1})^\alpha}{(LT^{-2})^\beta}(LT^{-1}) \\
+&=L^{\alpha-\beta+1}T^{-\alpha+2\beta-1}
+\end{align*}
+Comparing powers with \(L^1T^0\),
+\[
+\alpha-\beta+1=1,\qquad -\alpha+2\beta-1=0
+\]
+From the first equation,
+\[
+\alpha=\beta
+\]
+Substitute into the second:
+\[
+-\beta+2\beta-1=0
+\]
+so
+\[
+\beta=1
+\]
+and therefore
+\[
+\alpha=1
+\]
+
+So the values are
+\[
+\alpha=1,\qquad \beta=1,\qquad \gamma=1,\qquad \delta=2
+\]
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT___Solns__Dimensional_Analysis, Q4]
+
+The increase in pressure $p$ pascals between the surface and the bottom of a liquid of depth $h$ metres and density $\rho\,\mathrm{kg\,m^{-3}}$ is modelled by
+\[
+p = k\rho^{\alpha}h^{\beta}g
+\] \\
+where $g\,\mathrm{m\,s^{-2}}$ is the acceleration due to gravity and $k$ is a dimensionless constant. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item State the dimensions of $p$. \marks{1} \\
+  \item Use dimensional analysis to find the value of $\alpha$ and the value of $\beta$. \marks{3} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item Pressure is force per unit area.
+
+  Since \([\text{force}] = MLT^{-2}\) and \([\text{area}] = L^2\),
+  \[
+  [p] = \frac{MLT^{-2}}{L^2} = ML^{-1}T^{-2}
+  \]
+  So the dimensions of \(p\) are \(ML^{-1}T^{-2}\).
+
+  \item Using
+  \[
+  p = k\rho^{\alpha}h^{\beta}g
+  \]
+  and noting that \(k\) is dimensionless,
+  \[
+  [p] = [\rho]^{\alpha}[h]^{\beta}[g]
+  \]
+
+  Now
+  \[
+  [\rho] = ML^{-3}, \qquad [h] = L, \qquad [g] = LT^{-2}
+  \]
+
+  So the dimensions of the right-hand side are
+  \begin{align*}
+  (ML^{-3})^{\alpha}(L)^{\beta}(LT^{-2})
+  &= M^{\alpha}L^{-3\alpha}L^{\beta}LT^{-2} \\
+  &= M^{\alpha}L^{-3\alpha+\beta+1}T^{-2}
+  \end{align*}
+
+  But from part \((a)\),
+  \[
+  [p] = ML^{-1}T^{-2}
+  \]
+
+  Equating powers of \(M\), \(L\) and \(T\):
+  \[
+  \alpha = 1
+  \]
+  and
+  \[
+  -3\alpha + \beta + 1 = -1
+  \]
+
+  Substituting \(\alpha=1\),
+  \begin{align*}
+  -3(1) + \beta + 1 &= -1 \\
+  \beta - 2 &= -1 \\
+  \beta &= 1
+  \end{align*}
+
+  Hence
+  \[
+  \alpha = 1, \qquad \beta = 1
+  \]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT___Solns__Dimensional_Analysis, Q5]
+
+The force, $F$, exerted on a flat plate by a water jet is thought to depend on the density of the water, $\rho$, the cross-sectional area of the jet, $A$, and the speed of the water, $v$. You are given that $\rho$ is measured in $\mathrm{kg\,m^{-3}}$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the dimensions of density $\rho$. \marks{2} \\
+\end{enumerate}
+A model of the force suggests the relationship
+\[
+F = \frac12 \rho^\alpha A^\beta v^\gamma
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Explain whether or not it is possible to use dimensional analysis to verify that the constant $\frac12$ is correct. \marks{1} \\
+  \item Use dimensional analysis to find the values of $\alpha$, $\beta$ and $\gamma$. \marks{4} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item Density is mass per unit volume.
+
+\[
+[\rho]=\frac{M}{L^3}=ML^{-3}
+\]
+
+So the dimensions of density are \(ML^{-3}\).
+
+  \item No, it is not possible.
+
+Dimensional analysis only checks that both sides of an equation have the same dimensions. The number \(\tfrac12\) is a dimensionless constant, so dimensional analysis cannot show whether \(\tfrac12\) is the correct numerical value.
+
+  \item We use
+
+\[
+F=\frac12\rho^{\alpha}A^{\beta}v^{\gamma}
+\]
+
+The factor \(\tfrac12\) is dimensionless, so it does not affect the dimensions.
+
+Now write the dimensions of each quantity:
+
+\[
+[F]=MLT^{-2},\qquad [\rho]=ML^{-3},\qquad [A]=L^2,\qquad [v]=LT^{-1}
+\]
+
+So
+
+\[
+MLT^{-2}=(ML^{-3})^{\alpha}(L^2)^{\beta}(LT^{-1})^{\gamma}
+\]
+
+Combining powers gives
+
+\[
+MLT^{-2}=M^{\alpha}L^{-3\alpha+2\beta+\gamma}T^{-\gamma}
+\]
+
+Equating powers of \(M\), \(L\) and \(T\):
+
+\begin{align*}
+\text{For }M:&\qquad \alpha=1 \\
+\text{For }T:&\qquad -\gamma=-2 \Rightarrow \gamma=2 \\
+\text{For }L:&\qquad -3\alpha+2\beta+\gamma=1
+\end{align*}
+
+Substitute \(\alpha=1\) and \(\gamma=2\) into the \(L\)-equation:
+
+\begin{align*}
+-3(1)+2\beta+2&=1 \\
+-1+2\beta&=1 \\
+2\beta&=2 \\
+\beta&=1
+\end{align*}
+
+Hence
+
+\[
+\alpha=1,\qquad \beta=1,\qquad \gamma=2
+\]
+
+So the model is
+
+\[
+F=\frac12\rho Av^2
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+% [Source: _QBT___Solns__Dimensional_Analysis, Q6]
+
+A motor pulls a crate of mass $m$ along a rough horizontal floor. The equation below is suggested to model the pulling force exerted by the motor, $F$, while the crate moves in a straight line. \\
+\[
+F = k_1 m v\dfrac{\mathrm{d}v}{\mathrm{d}x} + k_2 \mu mg + k_3 \dfrac{Q}{x}
+\] \\
+in which, \\
+
+$\bullet$ $v$ is the speed of the crate when it has travelled distance $x$
+
+$\bullet$ $\mu$ is the coefficient of friction between the crate and the floor
+
+$\bullet$ $g$ is the acceleration due to gravity
+
+$\bullet$ $Q$ is the total thermal energy transferred to the surroundings after the crate has moved distance $x$
+
+$\bullet$ $k_1$, $k_2$ and $k_3$ are dimensionless constants \\
+
+Determine whether the equation is dimensionally consistent. \marks{6} \\
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+For the equation to be dimensionally consistent, every term must have the dimensions of force.
+
+\[
+[F]=MLT^{-2}
+\]
+
+Also, \(k_1\), \(k_2\) and \(k_3\) are dimensionless, and \(\mu\) is dimensionless.
+
+Now consider each term on the right-hand side.
+
+\[
+[v]=LT^{-1}, \qquad [x]=L
+\]
+
+so
+
+\[
+\left[\frac{\mathrm{d}v}{\mathrm{d}x}\right]=\frac{[v]}{[x]}=\frac{LT^{-1}}{L}=T^{-1}
+\]
+
+Hence for the first term,
+
+\begin{align*}
+\left[k_1mv\frac{\mathrm{d}v}{\mathrm{d}x}\right]
+&=[m][v]\left[\frac{\mathrm{d}v}{\mathrm{d}x}\right] \\
+&=M\cdot LT^{-1}\cdot T^{-1} \\
+&=MLT^{-2}
+\end{align*}
+
+For the second term,
+
+\begin{align*}
+\left[k_2\mu mg\right]
+&=[\mu][m][g] \\
+&=1\cdot M\cdot LT^{-2} \\
+&=MLT^{-2}
+\end{align*}
+
+For the third term, \(Q\) is thermal energy transferred, so it has the dimensions of energy:
+
+\[
+[Q]=ML^{2}T^{-2}
+\]
+
+Therefore
+
+\begin{align*}
+\left[k_3\frac{Q}{x}\right]
+&=\frac{[Q]}{[x]} \\
+&=\frac{ML^{2}T^{-2}}{L} \\
+&=MLT^{-2}
+\end{align*}
+
+Each term on the right-hand side has dimensions \(MLT^{-2}\), the same as force.
+
+Therefore the equation is dimensionally consistent.
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+% [Source: _QBT___Solns__Dimensional_Analysis, Q7]
+
+The speed of a particle falling vertically through a resistive medium is modelled by the formula
+\[
+v=\dfrac{mg}{k}\left(1-e^{-kt/m}\right)
+\] 
+where, \\
+
+$v$ is the speed of the particle
+
+$m$ is the mass of the particle
+
+$g$ is the acceleration due to gravity
+
+$t$ is the time since the particle was released
+
+$k$ is a constant \\
+
+Use dimensional analysis to determine the dimensions of $k$. \marks{4} \\
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+For
+\[
+v=\frac{mg}{k}\left(1-e^{-kt/m}\right)
+\]
+the factor \(1-e^{-kt/m}\) must be dimensionless.
+
+In particular, the exponent of an exponential must have no dimensions, so
+\[
+\left[\frac{kt}{m}\right]=1
+\]
+
+Using
+\[
+[t]=T,\qquad [m]=M
+\]
+we get
+\[
+\frac{[k][t]}{[m]}=1
+\]
+so
+\[
+\frac{[k]T}{M}=1
+\]
+Hence
+\[
+[k]=MT^{-1}
+\]
+
+So the dimensions of \(k\) are
+\[
+MT^{-1}
+\]
+
+As a check,
+\[
+\left[\frac{mg}{k}\right]=\frac{M\cdot LT^{-2}}{MT^{-1}}=LT^{-1}
+\]
+which is the dimension of speed, as required.
+
+Therefore \(k\) has dimensions \(MT^{-1}\), with SI unit \(\mathrm{kg\,s^{-1}}\).
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+% [Source: _QBT___Solns__Dimensional_Analysis, Q8]
+
+A comet of mass $m$ measured in $\mathrm{kg}$ follows an elliptical orbit around a planet. The semi-major axis of the orbit is $a$ measured in metres and the orbital period is $T$ measured in seconds. The eccentricity $e$ of the orbit is dimensionless. \\
+
+A constant $\mu$ associated with the planet is defined by
+\[
+T^2 = \frac{4\pi^2 a^3}{\mu}
+\] \\
+and the angular momentum of the comet is given by
+\[
+H = m\sqrt{\mu a(1-e^2)}
+\] \\
+By using dimensional analysis, find the dimensions of:
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item $\mu$ \marks{3}
+  \item $H$ \marks{3}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item From
+  \[
+  T^2=\frac{4\pi^2a^3}{\mu}
+  \]
+  and since \(4\pi^2\) is dimensionless,
+  \[
+  [T]^2=\frac{[a]^3}{[\mu]}
+  \]
+  Using \([T]=T\) and \([a]=L\),
+  \[
+  T^2=\frac{L^3}{[\mu]}
+  \]
+  so
+  \[
+  [\mu]=\frac{L^3}{T^2}=L^3T^{-2}
+  \]
+  Hence the dimensions of \(\mu\) are \(L^3T^{-2}\).
+
+  \item The angular momentum is
+  \[
+  H=m\sqrt{\mu a(1-e^2)}
+  \]
+  Here \([m]=M\), and since \(e\) is dimensionless, \((1-e^2)\) is also dimensionless.
+
+  Therefore
+  \[
+  [H]=[m]\sqrt{[\mu][a]}
+  \]
+  Using \([\mu]=L^3T^{-2}\) from part (a) and \([a]=L\),
+  \begin{align*}
+  [H] &= M\sqrt{(L^3T^{-2})(L)} \\
+       &= M\sqrt{L^4T^{-2}} \\
+       &= ML^2T^{-1}
+  \end{align*}
+  Hence the dimensions of \(H\) are \(ML^2T^{-1}\).
+\end{enumerate}
+\end{tcolorbox}
+
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+% [Source: _QBT___Solns__Dimensional_Analysis, Q9]
+
+A small ball of mass $m\,\mathrm{kg}$ is projected vertically upwards with speed $u\,\mathrm{m\,s^{-1}}$. During the motion, when its speed is $v\,\mathrm{m\,s^{-1}}$, it experiences an air resistance of magnitude $kv^2\,\mathrm{N}$, where $k$ is a constant. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Determine the dimensions of $k$. \marks{3} \\
+\end{enumerate}
+The greatest height reached by the ball is $H\,\mathrm{m}$. A formula approximating $H$ is
+\[
+H = \dfrac{u^2}{2g} - \dfrac{ku^4}{4mg^2} + \dfrac{1}{6}k^2 m^\alpha u^\beta g^\gamma
+\] \\
+where $g\,\mathrm{m\,s^{-2}}$ is the acceleration due to gravity. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Use dimensional analysis to find $\alpha$, $\beta$ and $\gamma$. \marks{4} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item The air resistance has magnitude \(kv^2\), and this is a force.
+
+\[
+[k][v]^2=[F]
+\]
+
+Now
+\[
+[F]=MLT^{-2}, \qquad [v]=LT^{-1}
+\]
+
+So
+\begin{align*}
+[k] &= \frac{[F]}{[v]^2}\\
+&= \frac{MLT^{-2}}{(LT^{-1})^2}\\
+&= \frac{MLT^{-2}}{L^2T^{-2}}\\
+&= ML^{-1}
+\end{align*}
+
+So the dimensions of \(k\) are \(ML^{-1}\).
+
+Hence the SI unit of \(k\) is \(\mathrm{kg\,m^{-1}}\).
+
+  \item Since \(H\) is a height,
+\[
+[H]=L
+\]
+
+Therefore each term in
+\[
+H = \dfrac{u^2}{2g} - \dfrac{ku^4}{4mg^2} + \dfrac{1}{6}k^2 m^\alpha u^\beta g^\gamma
+\]
+must have dimensions of length.
+
+So the third term must satisfy
+\[
+[k^2m^\alpha u^\beta g^\gamma]=L
+\]
+
+Using
+\[
+[k]=ML^{-1}, \qquad [m]=M, \qquad [u]=LT^{-1}, \qquad [g]=LT^{-2}
+\]
+we get
+\begin{align*}
+[k^2m^\alpha u^\beta g^\gamma]
+&=(ML^{-1})^2(M)^\alpha(LT^{-1})^\beta(LT^{-2})^\gamma \\
+&= M^{2+\alpha}L^{-2+\beta+\gamma}T^{-\beta-2\gamma}
+\end{align*}
+
+This must equal \(M^0L^1T^0\), so equating powers gives
+\begin{align*}
+2+\alpha &= 0 \\
+-2+\beta+\gamma &= 1 \\
+-\beta-2\gamma &= 0
+\end{align*}
+
+From the first equation,
+\[
+\alpha=-2
+\]
+
+From the third equation,
+\[
+\beta=-2\gamma
+\]
+
+Substitute into the second equation:
+\begin{align*}
+-2+(-2\gamma)+\gamma &= 1 \\
+-2-\gamma &= 1 \\
+-\gamma &= 3 \\
+\gamma &= -3
+\end{align*}
+
+Then
+\[
+\beta=-2(-3)=6
+\]
+
+Hence
+\[
+\alpha=-2, \qquad \beta=6, \qquad \gamma=-3
+\]
+\end{enumerate}
+\end{tcolorbox}
+
+\newpage 
+
+% ---- Question 10 ----
+\questionitem
+% [Source: _QBT___Solns__Dimensional_Analysis, Q10]
+
+A small probe is launched vertically upwards from the surface of a spherical moon. The radius of the moon is $R$ metres, and the probe is at a distance $r$ metres from the centre of the moon. The gravitational field strength $g$ at distance $r$ is modelled by
+\[
+g = \frac{\Gamma}{r^2}
+\]
+where $\Gamma$ is a constant associated with the moon. \\
+
+The probe has initial speed $u$ at the surface and speed $v$ when it reaches distance $r$. These speeds are related by
+\[
+v^2 = u^2 - 2\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
+\]
+The work done against gravity in moving a probe of mass $m$ from the surface to distance $r$ is
+\[
+W = m\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
+\]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the dimensions of $\Gamma$. \marks{2}
+  \item Use dimensional analysis to show that the equation for $v^2$ is dimensionally consistent. \marks{2}
+  \item Find the dimensions and SI units of $W$. \marks{2}
+\end{enumerate}
+
+\vspace*{20pt}
+
+\begin{tcolorbox}[colback=white, colframe=scarlet, title={\textbf{Solution}}, breakable, grow to left by=6mm, grow to right by=10mm]
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item From
+  \[
+  g=\frac{\Gamma}{r^2}
+  \]
+  and since
+  \[
+  [g]=LT^{-2},\qquad [r]=L
+  \]
+  we have
+  \[
+  [\Gamma]=[g][r^2]=LT^{-2}\times L^2=L^3T^{-2}
+  \]
+  So the dimensions of \(\Gamma\) are
+  \[
+  [\Gamma]=L^3T^{-2}
+  \]
+
+  \item In
+  \[
+  v^2=u^2-2\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
+  \]
+  the dimensions of \(v^2\) and \(u^2\) are
+  \[
+  [v^2]=[u^2]=(LT^{-1})^2=L^2T^{-2}
+  \]
+  Also,
+  \[
+  \left[\frac{1}{R}\right]=\left[\frac{1}{r}\right]=L^{-1}
+  \]
+  so
+  \[
+  \left[\left(\frac{1}{R}-\frac{1}{r}\right)\right]=L^{-1}
+  \]
+  Since \(2\) is dimensionless,
+  \[
+  \left[2\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)\right]=[\Gamma]L^{-1}=L^3T^{-2}\times L^{-1}=L^2T^{-2}
+  \]
+  Therefore every term in the equation has dimensions \(L^2T^{-2}\), so the equation is dimensionally consistent.
+
+  \item Using
+  \[
+  W=m\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
+  \]
+  with
+  \[
+  [m]=M,\qquad [\Gamma]=L^3T^{-2},\qquad \left[\left(\frac{1}{R}-\frac{1}{r}\right)\right]=L^{-1}
+  \]
+  gives
+  \[
+  [W]=M\times L^3T^{-2}\times L^{-1}=ML^2T^{-2}
+  \]
+  So the dimensions of \(W\) are
+  \[
+  [W]=ML^2T^{-2}
+  \]
+  Its SI units are
+  \[
+  \mathrm{kg\,m^2\,s^{-2}}
+  \]
+  which is the joule, \(\mathrm{J}\).
+\end{enumerate}
+\end{tcolorbox}
+
+
+\end{enumerate}
+\end{document}

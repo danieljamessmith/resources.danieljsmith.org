@@ -1,14 +1,33 @@
 import { questionCounts } from './questionCounts.generated';
 import { fileHashes } from './fileHashes.generated';
 
-/** UK/international exam boards for A-level Further Maths filtering. */
-export type ExamBoard = 'edexcel' | 'ocr-a' | 'ocr-mei' | 'aqa' | 'cie';
+/** UK/international exam board or module filters for A-level Further Maths. */
+export type ExamBoard =
+  | 'edexcel'
+  | 'ocr-a'
+  | 'ocr-mei'
+  | 'aqa'
+  | 'cie'
+  | 'edexcel-fm1'
+  | 'edexcel-fm2'
+  | 'ocr-mei-mechanics-minor'
+  | 'ocr-mei-mechanics-major';
 
 export const EXAM_BOARDS: { id: ExamBoard; label: string }[] = [
   { id: 'edexcel', label: 'Edexcel' },
   { id: 'aqa', label: 'AQA' },
   { id: 'ocr-a', label: 'OCR A' },
   { id: 'ocr-mei', label: 'OCR MEI' },
+  { id: 'cie', label: 'CIE' },
+];
+
+export const FM_MECH_EXAM_BOARDS: { id: ExamBoard; label: string }[] = [
+  { id: 'edexcel-fm1', label: 'Edexcel FM1' },
+  { id: 'edexcel-fm2', label: 'Edexcel FM2' },
+  { id: 'aqa', label: 'AQA' },
+  { id: 'ocr-a', label: 'OCR A' },
+  { id: 'ocr-mei-mechanics-minor', label: 'OCR MEI Mechanics Minor' },
+  { id: 'ocr-mei-mechanics-major', label: 'OCR MEI Mechanics Major' },
   { id: 'cie', label: 'CIE' },
 ];
 
@@ -733,6 +752,7 @@ const rawResources: Resource[] = [
     type: 'questions',
     pairId: 'fm-mech-vector-momentum-impulse-solns',
     topic: 'Momentum & Collisions',
+    boards: ['edexcel-fm1', 'aqa', 'ocr-a', 'ocr-mei-mechanics-minor', 'ocr-mei-mechanics-major', 'cie'],
   },
   {
     id: 'fm-mech-vector-momentum-impulse-solns',
@@ -753,6 +773,7 @@ const rawResources: Resource[] = [
     type: 'questions',
     pairId: 'fm-mech-collisions-1d-solns',
     topic: 'Momentum & Collisions',
+    boards: ['edexcel-fm1', 'aqa', 'ocr-a', 'ocr-mei-mechanics-minor', 'ocr-mei-mechanics-major', 'cie'],
   },
   {
     id: 'fm-mech-collisions-1d-solns',
@@ -773,6 +794,7 @@ const rawResources: Resource[] = [
     type: 'questions',
     pairId: 'fm-mech-collisions-in-2-dimensions-solns',
     topic: 'Momentum & Collisions',
+    boards: ['edexcel-fm1', 'aqa', 'ocr-a', 'ocr-mei-mechanics-major', 'cie'],
   },
   {
     id: 'fm-mech-collisions-in-2-dimensions-solns',
@@ -787,6 +809,27 @@ const rawResources: Resource[] = [
 
   // --- A-level Further Maths: Further Mechanics — Work, Energy and Power ---
   {
+    id: 'further-maths-further-mechanics-work-energy-power-work-energy-power-and-driving-force',
+    title: 'Power and Driving Force',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/work-energy-power/qbt/_QBT___Power_and_Driving_Force_.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'further-maths-further-mechanics-work-energy-power-work-energy-power-and-driving-force-solns',
+    topic: 'Work, Energy and Power',
+    boards: ['edexcel-fm1', 'aqa', 'ocr-a', 'ocr-mei-mechanics-minor', 'ocr-mei-mechanics-major'],
+  },
+  {
+    id: 'further-maths-further-mechanics-work-energy-power-work-energy-power-and-driving-force-solns',
+    title: 'Power and Driving Force',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/work-energy-power/soln/_QBT___Solns___Power_and_Driving_Force_.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'further-maths-further-mechanics-work-energy-power-work-energy-power-and-driving-force',
+    topic: 'Work, Energy and Power',
+  },
+  {
     id: 'further-maths-further-mechanics-work-energy-power-work-energy-principle',
     title: 'Work-Energy Principle',
     description: '',
@@ -796,6 +839,7 @@ const rawResources: Resource[] = [
     pairId: 'further-maths-further-mechanics-work-energy-power-work-energy-principle-solns',
     topic: 'Work, Energy and Power',
     note: 'No Elasticity',
+    boards: ['edexcel-fm1', 'aqa', 'ocr-a', 'ocr-mei-mechanics-minor', 'ocr-mei-mechanics-major'],
   },
   {
     id: 'further-maths-further-mechanics-work-energy-power-work-energy-principle-solns',
@@ -806,6 +850,29 @@ const rawResources: Resource[] = [
     type: 'solutions',
     pairId: 'further-maths-further-mechanics-work-energy-power-work-energy-principle',
     topic: 'Work, Energy and Power',
+  },
+
+  // --- A-level Further Maths: Further Mechanics - Miscellaneous Mechanics ---
+  {
+    id: 'further-maths-further-mechanics-miscellaneous-mechanics-dimensional-analysis',
+    title: 'Dimensional Analysis',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/miscellaneous-mechanics/qbt/_QBT__Dimensional_Analysis.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'further-maths-further-mechanics-miscellaneous-mechanics-dimensional-analysis-solns',
+    topic: 'Miscellaneous Mechanics',
+    boards: ['aqa', 'ocr-a', 'ocr-mei-mechanics-minor', 'ocr-mei-mechanics-major'],
+  },
+  {
+    id: 'further-maths-further-mechanics-miscellaneous-mechanics-dimensional-analysis-solns',
+    title: 'Dimensional Analysis',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/miscellaneous-mechanics/soln/_QBT___Solns__Dimensional_Analysis.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'further-maths-further-mechanics-miscellaneous-mechanics-dimensional-analysis',
+    topic: 'Miscellaneous Mechanics',
   },
 ];
 
@@ -896,7 +963,7 @@ export function boardsToDataAttributeValue(boards: ExamBoard[] | undefined): str
 }
 
 export function getExamBoardLabel(id: ExamBoard): string {
-  return EXAM_BOARDS.find((b) => b.id === id)?.label ?? id;
+  return [...EXAM_BOARDS, ...FM_MECH_EXAM_BOARDS].find((b) => b.id === id)?.label ?? id;
 }
 
 export function getResourcesByCategory(category: string): Resource[] {
