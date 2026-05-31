@@ -918,6 +918,27 @@ const rawResources: Resource[] = [
     pairId: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-systems-of-particles',
     topic: 'Centre of Mass',
   },
+  {
+    id: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-polygonal-laminae',
+    title: 'Centre of Mass of Polygonal Laminae',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/centre-of-mass/qbt/_QBT__Centre_of_Mass_of_Polygonal_Laminae.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-polygonal-laminae-solns',
+    topic: 'Centre of Mass',
+    boards: ['edexcel-fm2', 'aqa', 'ocr-a', 'ocr-mei-mechanics-minor', 'ocr-mei-mechanics-major', 'cie-9231'],
+  },
+  {
+    id: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-polygonal-laminae-solns',
+    title: 'Centre of Mass of Polygonal Laminae',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/centre-of-mass/soln/_QBT___Solns__Centre_of_Mass_of_Polygonal_Laminae.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-polygonal-laminae',
+    topic: 'Centre of Mass',
+  },
 ];
 
 function buildDownloadName(title: string, type?: string): string {
