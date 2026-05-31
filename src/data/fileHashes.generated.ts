@@ -65,6 +65,8 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Reflections_in_Planes.pdf': '68c3c687',
   '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Vector_Product.pdf': 'fdf5e25a',
   '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Vectors___Shortest_Distances.pdf': '5f5ec7f9',
+  '/tex/further-maths/further-mechanics/centre-of-mass/qbt/_QBT__Centre_of_Mass_of_Systems_of_Particles.pdf': 'ebeaf8fe',
+  '/tex/further-maths/further-mechanics/centre-of-mass/soln/_QBT___Solns__Centre_of_Mass_of_Systems_of_Particles.pdf': '4d9eceb2',
   '/tex/further-maths/further-mechanics/miscellaneous-mechanics/qbt/_QBT__Dimensional_Analysis.pdf': 'd9f7133b',
   '/tex/further-maths/further-mechanics/miscellaneous-mechanics/soln/_QBT___Solns__Dimensional_Analysis.pdf': '8c55b673',
   '/tex/further-maths/further-mechanics/momentum-restitution-collisions/qbt/_QBT__Collisions_in_1_Dimension.pdf': 'fc48cdd4',

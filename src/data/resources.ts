@@ -895,6 +895,29 @@ const rawResources: Resource[] = [
     pairId: 'further-maths-further-mechanics-miscellaneous-mechanics-dimensional-analysis',
     topic: 'Miscellaneous Mechanics',
   },
+
+  // --- A-level Further Maths: Further Mechanics - Centre of Mass ---
+  {
+    id: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-systems-of-particles',
+    title: 'Centre of Mass of Systems of Particles',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/centre-of-mass/qbt/_QBT__Centre_of_Mass_of_Systems_of_Particles.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-systems-of-particles-solns',
+    topic: 'Centre of Mass',
+    boards: ['edexcel-fm2', 'aqa', 'ocr-a', 'ocr-mei-mechanics-minor', 'ocr-mei-mechanics-major', 'cie-9231'],
+  },
+  {
+    id: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-systems-of-particles-solns',
+    title: 'Centre of Mass of Systems of Particles',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/centre-of-mass/soln/_QBT___Solns__Centre_of_Mass_of_Systems_of_Particles.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-systems-of-particles',
+    topic: 'Centre of Mass',
+  },
 ];
 
 function buildDownloadName(title: string, type?: string): string {

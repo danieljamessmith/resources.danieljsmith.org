@@ -1,0 +1,371 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/pack_preamble.tex}
+
+\djsQbtHeader{Centre of Mass of Systems of Particles}
+
+\begin{document}
+\djsFrontMatter
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Systems_of_Particles, Q1]
+
+Three particles of masses $m$, $2m$ and $km$ are placed at the points $A(a,0)$, $B(-2a,3a)$ and $C(2a,-a)$ respectively, where $k>0$. \\
+
+The centre of mass of the three particles is the point with coordinates $(\bar{x}, \bar{y})$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Find $\bar{x}$ in terms of $a$ and $k$.
+    \item Find $\bar{y}$ in terms of $a$ and $k$.
+  \end{enumerate}
+  \marks{4} 
+  \item Given that the centre of mass lies on the circle with centre $(a,0)$ and radius $\dfrac{\sqrt{2}}{2}a$, find the possible values of $k$. \marks{2} 
+\end{enumerate}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Systems_of_Particles, Q2]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[x=4cm,y=4cm]
+\coordinate (O) at (0,0);
+\coordinate (A) at (2,0);
+\coordinate (B) at (2,1);
+\coordinate (C) at (0,1);
+\coordinate (Xend) at (2.55,0);
+\coordinate (Yend) at (0,1.35);
+
+\draw[-{Stealth[length=3mm]}, thick] (-0.04,0) -- (Xend);
+\draw[-{Stealth[length=3mm]}, thick] (0,-0.04) -- (Yend);
+\draw[thick] (O) -- (A) -- (B) -- (C) -- cycle;
+
+\node[below left] at (O) {$O$};
+\node[below right] at (A) {$A\,(2,0)$};
+\node[above right] at (B) {$B\,(2,1)$};
+\node[above right] at (C) {$C\,(0,1)$};
+\node[right] at (Xend) {$x$};
+\node[above] at (Yend) {$y$};
+\end{tikzpicture}
+\end{figure}
+
+
+The diagram shows a light rectangular lamina $OABC$ where $O$ is the origin of the coordinate system in which the points $A$, $B$ and $C$ have coordinates $(2, 0)$, $(2, 1)$ and $(0, 1)$ respectively. Coordinates refer to the axes shown and the units are metres. \\
+
+The following three forces are applied to the lamina. 
+
+\begin{align*}
+&\begin{pmatrix}
+p \\
+2q
+\end{pmatrix}\,\mathrm{N} \text{ at the point } (1, 0) \\[1em]
+&\begin{pmatrix}
+-q \\
+p
+\end{pmatrix}\,\mathrm{N} \text{ at the point } C \\[1em]
+&\begin{pmatrix}
+-3 \\
+-6
+\end{pmatrix}\,\mathrm{N} \text{ at the point } (t, 1), \text{ where } 0 \le t \le 2 \\
+\end{align*}
+
+The three forces form a couple of magnitude $3\,\mathrm{N\,m}$ in the anticlockwise direction. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Determine the values of $p$, $q$ and $t$. \marks{5} \\
+\end{enumerate}
+
+The three forces are removed. The lamina is in the same position as shown in the diagram. \\
+
+Three particles are now attached to certain points on the lamina as follows. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find the coordinates of the composite body's centre of mass. Give your answer in terms of $\lambda$, where the particles are
+  \begin{itemize}
+    \item a particle of mass $2\,\mathrm{kg}$ at the point $(2\lambda^2, \lambda)$, where $0 \le \lambda \le 1$
+    \item a particle of mass $1\,\mathrm{kg}$ at the point $A$
+    \item a particle of mass $1\,\mathrm{kg}$ at the point $C$
+  \end{itemize}
+  \marks{3} 
+  \item Show that, as $\lambda$ varies, the centre of mass of the combined object lies on the curve
+  \[
+  x = 4y^2 - 2y + k
+  \]
+  where $k$ is a constant to be determined. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Systems_of_Particles, Q3]
+
+Three particles of masses $2m$, $5m$ and $3m$ are placed at the points $(1, -4)$, $(-3, 2)$ and $(q, 2q - 1)$ respectively. \\
+
+The value of $q$ is such that the distance of the centre of mass of the three particles from the point $(1, 0)$ is as small as possible. \\
+
+Find the value of $q$. \marks{7} \\
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Systems_of_Particles, Q4]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=0.7]
+\def\cx{1}
+\def\cy{-1}
+\def\r{5}
+
+\coordinate (O) at (0,0);
+\coordinate (A) at (5,0);
+\coordinate (B) at (-2,1);
+\coordinate (C) at (3,-4);
+\coordinate (D) at (0,-3);
+
+\draw[-{Stealth[length=3mm]}, thick] (-6,0) -- (8,0) node[right] {$x$};
+\draw[-{Stealth[length=3mm]}, thick] (0,-7) -- (0,6) node[above] {$y$};
+\draw[thick] (\cx,\cy) circle (\r);
+
+\fill[black] (A) circle (3pt);
+\node[below right] at (A) {$A$};
+
+\fill[black] (B) circle (3pt);
+\node[above left] at (B) {$B$};
+
+\fill[black] (C) circle (3pt);
+\node[below right] at (C) {$C$};
+
+\fill[black] (D) circle (3pt);
+\node[left] at (D) {$D$};
+
+\node[above right] at (O) {$O$};
+\end{tikzpicture}
+\end{figure}
+
+
+Four sensors are attached to a circular plate. \\
+
+The plate is to be modelled as a uniform lamina and the four sensors as four particles. \\
+
+The diagram shows the lamina, the four particles $A$, $B$, $C$ and $D$, and the coordinate axes. \\
+
+The lamina has mass $6\,\mathrm{kg}$ and its centre of mass is at the point $(1,-1)$. \\
+
+Particle $A$ has mass $4\,\mathrm{kg}$ and is at the point $(5,0)$. \\
+Particle $B$ has mass $3\,\mathrm{kg}$ and is at the point $(-2,1)$. \\
+Particle $C$ has mass $5\,\mathrm{kg}$ and is at the point $(3,-4)$. \\
+Particle $D$ has mass $2\,\mathrm{kg}$ and is at the point $(0,-3)$. \\
+
+Find the coordinates of the centre of mass of the system of plate and sensors. \marks{5} \\
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Systems_of_Particles, Q5]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[x=8cm,y=8cm]
+\def\xA{0.1}
+\def\yA{0.1}
+\def\xB{0.9}
+\def\yB{0.1}
+\def\xC{0.7}
+\def\yC{0.5}
+\def\xD{0.2}
+\def\yD{0.6}
+\coordinate (O) at (0,0);
+\coordinate (A) at (\xA,\yA);
+\coordinate (B) at (\xB,\yB);
+\coordinate (C) at (\xC,\yC);
+\coordinate (D) at (\xD,\yD);
+\coordinate (Xend) at (1.02,0);
+\coordinate (Yend) at (0,0.74);
+
+\draw[-{Stealth[length=3mm]}, thick] (O) -- (Xend) node[right] {$x$};
+\draw[-{Stealth[length=3mm]}, thick] (O) -- (Yend) node[above] {$y$};
+
+\foreach \tick/\lbl in {0.2/0.2,0.4/0.4,0.6/0.6,0.8/0.8} {
+  \draw[thick] (\tick,0) -- ++(0,-0.012);
+  \node[below] at (\tick,0) {$\lbl$};
+}
+\foreach \tick/\lbl in {0.2/0.2,0.4/0.4,0.6/0.6} {
+  \draw[thick] (0,\tick) -- ++(-0.012,0);
+  \node[left] at (0,\tick) {$\lbl$};
+}
+
+\draw[thick] (A) -- (B) -- (C) -- (D) -- cycle;
+
+\node[below left] at (O) {$O$};
+\node[below left] at (A) {$A$};
+\node[below right] at (B) {$B$};
+\node[above right] at (C) {$C$};
+\node[above left] at (D) {$D$};
+
+
+\end{tikzpicture}
+\end{figure}
+
+
+Particles $A$, $B$, $C$ and $D$ of masses $1\,\mathrm{kg}$, $2\,\mathrm{kg}$, $3\,\mathrm{kg}$ and $4\,\mathrm{kg}$ respectively are joined by light rigid rods to form the quadrilateral frame shown in the diagram. The particles are at the points $A(0.1,0.1)$, $B(0.9,0.1)$, $C(0.7,0.5)$ and $D(0.2,0.6)$, where coordinates are measured in metres. \\
+
+$G$, the centre of mass of the frame, has coordinates $(\bar{x},\bar{y})$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that $\bar{y}=0.42$. Find $\bar{x}$. \marks{3} \\
+  \item Using your answer to part (a), explain why the frame cannot be in equilibrium in a horizontal plane if it is supported by a single peg touching the frame at one point. \marks{1} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Systems_of_Particles, Q6]
+
+Four particles of mass $m$, $2m$, $4m$ and $\lambda m$ are placed at points with coordinates $(0,0)$, $(2,3)$, $(1,-1)$ and $(4,2)$ respectively. The centre of mass of the system is at $(2,k)$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that $\lambda = 3$. \marks{4} \\
+  \item Calculate the value of $k$. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Systems_of_Particles, Q7]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[x=0.7cm,y=0.7cm]
+\def\xmax{12}
+\def\ymax{11}
+\pgfmathsetmacro{\xint}{3/2}
+\pgfmathsetmacro{\xtop}{(\ymax+3)/2}
+\coordinate (O) at (0,0);
+\coordinate (X) at (\xmax,0);
+\coordinate (Y) at (0,\ymax);
+\coordinate (A) at (1,9);
+\coordinate (B) at (4,2);
+\coordinate (C) at (10,7);
+\coordinate (D) at (2,5);
+\coordinate (L1) at (\xint,0);
+\coordinate (L2) at (\xtop,\ymax);
+
+\draw[-{Stealth[length=3mm]}, thick] (O) -- (X) node[right] {$x$};
+\draw[-{Stealth[length=3mm]}, thick] (O) -- (Y) node[above] {$y$};
+\draw[dashed, thick] (L1) -- (L2);
+\node[right] at ($(L1)!0.9!(L2)$) {$y=2x-3$};
+
+\fill[black] (A) circle (2pt);
+\fill[black] (B) circle (2pt);
+\fill[black] (C) circle (2pt);
+\fill[black] (D) circle (2pt);
+
+\node[below left] at (O) {$O$};
+\node[above left] at (A) {$A$};
+\node[below right] at (B) {$B$};
+\node[above right] at (C) {$C$};
+\node[below left] at (D) {$D$};
+\end{tikzpicture}
+\end{figure}
+
+
+The diagram shows four particles, $A$, $B$, $C$ and $D$, fixed in a horizontal plane which contains the $x$- and $y$-axes. \\
+
+Particle $A$ has mass $3\,\mathrm{kg}$ and is attached at the point $(1, 9)$. \\
+Particle $B$ has mass $4\,\mathrm{kg}$ and is attached at the point $(4, 2)$. \\
+Particle $C$ has mass $5\,\mathrm{kg}$ and is attached at the point $(10, 7)$. \\
+Particle $D$ has mass $m\,\mathrm{kg}$ and is attached at the point $(2, 5)$. \\
+
+The centre of mass of the four particles lies on the line $y = 2x - 3$. \\
+Find the value of $m$ and the coordinates of the centre of mass. \marks{6} \\
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Systems_of_Particles, Q8]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.1]
+\coordinate (O) at (0,0);
+\coordinate (P) at (-1,3);
+\coordinate (Q) at (1,-1);
+\coordinate (R) at (4,2);
+\coordinate (S) at (6,-2);
+
+\foreach \x in {-2,-1,1,2,3,4,5,6,7} {
+  \draw[dotted] (\x,-3) -- (\x,4);
+}
+\foreach \y in {-3,-2,-1,1,2,3,4} {
+  \draw[dotted] (-2,\y) -- (7,\y);
+}
+
+\draw[-{Stealth[length=3mm]}, thick] (-2.4,0) -- (7.6,0) node[right] {$x$};
+\draw[-{Stealth[length=3mm]}, thick] (0,-3.4) -- (0,4.6) node[above] {$y$};
+
+\foreach \x/\lbl in {-2/-2,2/2,4/4,6/6} {
+  \draw[thick] (\x,0.08) -- (\x,-0.08);
+  \node[below] at (\x,0) {$\lbl$};
+}
+\foreach \y/\lbl in {-2/-2,2/2,4/4} {
+  \draw[thick] (0.08,\y) -- (-0.08,\y);
+  \node[left] at (0,\y) {$\lbl$};
+}
+\node[below left] at (O) {$O$};
+
+\fill[black] (P) circle (1.5pt);
+\fill[black] (Q) circle (1.5pt);
+\fill[black] (R) circle (1.5pt);
+\fill[black] (S) circle (1.5pt);
+
+\node[left=2pt] at (P) {$P$};
+\node[right=2pt] at (P) {$2m$};
+\node[left=2pt] at (Q) {$Q$};
+\node[right=2pt] at (Q) {$4m$};
+\node[left=2pt] at (R) {$R$};
+\node[right=2pt] at (R) {$3m$};
+\node[left=2pt] at (S) {$S$};
+\node[right=2pt] at (S) {$m$};
+\end{tikzpicture}
+\end{figure}
+
+
+The diagram shows a system of four particles of masses $2m$, $4m$, $3m$ and $m$ situated in the $x$-$y$ plane at the points $P(-1,3)$, $Q(1,-1)$, $R(4,2)$ and $S(6,-2)$ respectively. \\
+
+Find the coordinates of the centre of mass of the system. \marks{5} \\
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Systems_of_Particles, Q9]
+
+Four particles of masses $m$, $2m$, $3m$ and $km$ are positioned at the points with coordinates $(-a, a)$, $(2a, -2a)$, $(0, 0)$ and $(\mu a, 2\mu a)$ respectively, where $k$ and $\mu$ are constants. \\
+
+The centre of mass of the four particles is at the point with coordinates $(2a, 3a)$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the value of $k$. \marks{3} \\
+  \item Find the value of $\mu$. \marks{3} \\
+\end{enumerate}
+
+\end{enumerate}
+\end{document}

@@ -12,6 +12,7 @@ const mechTopics = [
   { id: 'miscellaneous-mechanics', label: 'Misc Mechanics' },
   { id: 'momentum-restitution-collisions', label: 'Momentum & Collisions' },
   { id: 'work-energy-power', label: 'Work, Energy and Power' },
+  { id: 'centre-of-mass', label: 'Centre of Mass' },
 ];
 
 function pairedOnly(
@@ -25,6 +26,7 @@ function pairedOnly(
 const momentumPairs = pairedOnly(getResourcePairs(FM_MECH, 'Momentum & Collisions'));
 const workEnergyPairs = pairedOnly(getResourcePairs(FM_MECH, 'Work, Energy and Power'));
 const miscMechanicsPairs = pairedOnly(getResourcePairs(FM_MECH, 'Miscellaneous Mechanics'));
+const centreOfMassPairs = pairedOnly(getResourcePairs(FM_MECH, 'Centre of Mass'));
 ---
 
 <Layout
@@ -89,6 +91,19 @@ const miscMechanicsPairs = pairedOnly(getResourcePairs(FM_MECH, 'Miscellaneous M
               <p class="text-sm text-slate-400 italic px-1">Coming soon.</p>
             ) : (
               workEnergyPairs.map((pair) => <ResourcePairCard pair={pair} />)
+            )}
+          </TopicSection>
+
+          <TopicSection
+            id="centre-of-mass"
+            title="Centre of Mass"
+            accent="teal"
+            count={centreOfMassPairs.length}
+          >
+            {centreOfMassPairs.length === 0 ? (
+              <p class="text-sm text-slate-400 italic px-1">Coming soon.</p>
+            ) : (
+              centreOfMassPairs.map((pair) => <ResourcePairCard pair={pair} />)
             )}
           </TopicSection>
 
