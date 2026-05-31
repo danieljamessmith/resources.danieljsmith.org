@@ -75,7 +75,7 @@ export function sanitizeTopic(name) {
 }
 
 /** Matches `ExamBoard` in `src/data/resources.ts` (order aligns with numbered menu 2–6). */
-const EXAM_BOARD_IDS = ['edexcel', 'aqa', 'ocr-a', 'ocr-mei', 'cie'];
+const EXAM_BOARD_IDS = ['edexcel', 'aqa', 'ocr-a', 'ocr-mei', 'cie-9231'];
 
 /**
  * Prompt for exam boards (numbered multi-select). Returns `null` = all boards.
@@ -88,7 +88,7 @@ export async function promptExamBoards(rl) {
   console.log('  3. AQA');
   console.log('  4. OCR A');
   console.log('  5. OCR MEI');
-  console.log('  6. CIE');
+  console.log('  6. CIE 9231');
 
   for (;;) {
     const line = await rl.question('Select boards (comma-separated numbers, Enter for all): ');

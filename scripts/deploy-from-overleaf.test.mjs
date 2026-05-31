@@ -67,7 +67,7 @@ describe('parseBoardSelection', () => {
     expect(parseBoardSelection('3')).toEqual({ ok: true, boardIds: ['aqa'] });
     expect(parseBoardSelection('4')).toEqual({ ok: true, boardIds: ['ocr-a'] });
     expect(parseBoardSelection('5')).toEqual({ ok: true, boardIds: ['ocr-mei'] });
-    expect(parseBoardSelection('6')).toEqual({ ok: true, boardIds: ['cie'] });
+    expect(parseBoardSelection('6')).toEqual({ ok: true, boardIds: ['cie-9231'] });
   });
 
   it('returns multiple board IDs for a comma-separated selection', () => {

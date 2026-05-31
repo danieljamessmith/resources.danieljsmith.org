@@ -7,7 +7,7 @@ export type ExamBoard =
   | 'ocr-a'
   | 'ocr-mei'
   | 'aqa'
-  | 'cie'
+  | 'cie-9231'
   | 'edexcel-fm1'
   | 'edexcel-fm2'
   | 'ocr-mei-mechanics-minor'
@@ -18,7 +18,7 @@ export const EXAM_BOARDS: { id: ExamBoard; label: string }[] = [
   { id: 'aqa', label: 'AQA' },
   { id: 'ocr-a', label: 'OCR A' },
   { id: 'ocr-mei', label: 'OCR MEI' },
-  { id: 'cie', label: 'CIE' },
+  { id: 'cie-9231', label: 'CIE 9231' },
 ];
 
 export const FM_MECH_EXAM_BOARDS: { id: ExamBoard; label: string }[] = [
@@ -26,9 +26,9 @@ export const FM_MECH_EXAM_BOARDS: { id: ExamBoard; label: string }[] = [
   { id: 'edexcel-fm2', label: 'Edexcel FM2' },
   { id: 'aqa', label: 'AQA' },
   { id: 'ocr-a', label: 'OCR A' },
-  { id: 'ocr-mei-mechanics-minor', label: 'OCR MEI Mechanics Minor' },
-  { id: 'ocr-mei-mechanics-major', label: 'OCR MEI Mechanics Major' },
-  { id: 'cie', label: 'CIE' },
+  { id: 'ocr-mei-mechanics-minor', label: 'OCR MEI Mech Minor' },
+  { id: 'ocr-mei-mechanics-major', label: 'OCR MEI Mech Major' },
+  { id: 'cie-9231', label: 'CIE 9231' },
 ];
 
 export interface Resource {
@@ -244,7 +244,7 @@ const rawResources: Resource[] = [
     pairId: 'fm-vectors-vector-product-solns',
     topic: 'Vectors',
     note: 'Cross Product',
-    boards: ['aqa', 'ocr-a', 'ocr-mei', 'cie'],
+    boards: ['aqa', 'ocr-a', 'ocr-mei', 'cie-9231'],
   },
   {
     id: 'fm-vectors-vector-product-solns',
@@ -729,7 +729,7 @@ const rawResources: Resource[] = [
     type: 'questions',
     pairId: 'fm-misc-rational-functions-solns',
     topic: 'Miscellaneous Pure',
-    boards: ['aqa', 'cie'],
+    boards: ['aqa', 'cie-9231'],
   },
   {
     id: 'fm-misc-rational-functions-solns',
@@ -752,7 +752,7 @@ const rawResources: Resource[] = [
     type: 'questions',
     pairId: 'fm-mech-vector-momentum-impulse-solns',
     topic: 'Momentum & Collisions',
-    boards: ['edexcel-fm1', 'aqa', 'ocr-a', 'ocr-mei-mechanics-minor', 'ocr-mei-mechanics-major', 'cie'],
+    boards: ['edexcel-fm1', 'aqa', 'ocr-a', 'ocr-mei-mechanics-minor', 'ocr-mei-mechanics-major', 'cie-9231'],
   },
   {
     id: 'fm-mech-vector-momentum-impulse-solns',
@@ -773,7 +773,7 @@ const rawResources: Resource[] = [
     type: 'questions',
     pairId: 'fm-mech-collisions-1d-solns',
     topic: 'Momentum & Collisions',
-    boards: ['edexcel-fm1', 'aqa', 'ocr-a', 'ocr-mei-mechanics-minor', 'ocr-mei-mechanics-major', 'cie'],
+    boards: ['edexcel-fm1', 'aqa', 'ocr-a', 'ocr-mei-mechanics-minor', 'ocr-mei-mechanics-major', 'cie-9231'],
   },
   {
     id: 'fm-mech-collisions-1d-solns',
@@ -794,7 +794,7 @@ const rawResources: Resource[] = [
     type: 'questions',
     pairId: 'fm-mech-collisions-in-2-dimensions-solns',
     topic: 'Momentum & Collisions',
-    boards: ['edexcel-fm1', 'aqa', 'ocr-a', 'ocr-mei-mechanics-major', 'cie'],
+    boards: ['edexcel-fm1', 'aqa', 'ocr-a', 'ocr-mei-mechanics-major', 'cie-9231'],
   },
   {
     id: 'fm-mech-collisions-in-2-dimensions-solns',
@@ -849,6 +849,27 @@ const rawResources: Resource[] = [
     category: FM_MECH,
     type: 'solutions',
     pairId: 'further-maths-further-mechanics-work-energy-power-work-energy-principle',
+    topic: 'Work, Energy and Power',
+  },
+  {
+    id: 'further-maths-further-mechanics-work-energy-power-work-energy-elastic-potential-energy',
+    title: 'Elastic Potential Energy',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/work-energy-power/qbt/_QBT__Elastic_Potential_Energy.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'further-maths-further-mechanics-work-energy-power-work-energy-elastic-potential-energy-solns',
+    topic: 'Work, Energy and Power',
+    boards: ['edexcel-fm1', 'aqa', 'ocr-a', 'ocr-mei-mechanics-major', 'cie-9231'],
+  },
+  {
+    id: 'further-maths-further-mechanics-work-energy-power-work-energy-elastic-potential-energy-solns',
+    title: 'Elastic Potential Energy',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/work-energy-power/soln/_QBT___Solns__Elastic_Potential_Energy.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'further-maths-further-mechanics-work-energy-power-work-energy-elastic-potential-energy',
     topic: 'Work, Energy and Power',
   },
 
@@ -964,6 +985,17 @@ export function boardsToDataAttributeValue(boards: ExamBoard[] | undefined): str
 
 export function getExamBoardLabel(id: ExamBoard): string {
   return [...EXAM_BOARDS, ...FM_MECH_EXAM_BOARDS].find((b) => b.id === id)?.label ?? id;
+}
+
+export function getDisplayExamBoards(boards: ExamBoard[] | undefined): ExamBoard[] | undefined {
+  if (!boards) return undefined;
+  if (
+    boards.includes('ocr-mei-mechanics-major') &&
+    boards.includes('ocr-mei-mechanics-minor')
+  ) {
+    return boards.filter((bid) => bid !== 'ocr-mei-mechanics-major');
+  }
+  return boards;
 }
 
 export function getResourcesByCategory(category: string): Resource[] {
