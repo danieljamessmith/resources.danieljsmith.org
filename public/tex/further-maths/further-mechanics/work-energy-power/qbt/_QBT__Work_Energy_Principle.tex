@@ -40,14 +40,14 @@
 
 \draw[thick, black] (base) -- (top);
 \draw[thick, black] (base) -- (horiz);
-\fill[gray!50, yshift=5pt] (A) circle (\particleRadius);
+\fill[black, yshift=5pt] (A) circle (\particleRadius);
 
 \node[below] at (A) {$A$};
 \node[below] at (B) {$B$};
 \draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]}, thick, black]
   (dA) -- node[midway, above=2pt] {$d$} (dB);
 
-\pic["$\alpha$", draw, angle radius=9mm, angle eccentricity=1.35] {angle=horiz--base--top};
+\pic["$\alpha$", draw, angle radius=12mm, angle eccentricity=1.15] {angle=horiz--base--top};
 \end{tikzpicture}
 \end{figure}
 
@@ -182,7 +182,7 @@ After the sledge has moved $5$ metres up the slope, the rope breaks. \\
   \draw[thick] (0,0) rectangle (\bw,\bh);
   \coordinate (Aattach) at (\bw,\bh);
   \coordinate (AupperLeft) at (0,\bh);
-  \node[font=\small] at ({0.5*\bw},{0.5*\bh}) {$3\,\mathrm{kg}$};
+  \node[font=\small, rotate=\ang] at ({0.5*\bw},{0.5*\bh}) {$3\,\mathrm{kg}$};
 \end{scope}
 
 \fill[white] (Pc) circle (\rad);
@@ -313,9 +313,13 @@ The coefficient of friction between the crate and the plane is $0.3$. \\
 \draw[thick, black] ($(D)+(-\ra,0)$) -- ($(D)+(-\ra,\ra)$) -- ($(D)+(0,\ra)$);
 
 \begin{scope}[shift={(A)}, rotate=\ang]
-  \filldraw[fill=gray!30, draw=black] (0,0) circle (\particleRad);
-  \draw[-{Stealth[length=3mm]}, thick, black] (\ustart,\uoffset) -- ++(\ulen,0)
-    node[midway, above, xshift=-8pt] {$U\,\text{ms}^{-1}$};
+
+  \fill[black] (0.05,\particleRad) circle (\particleRad);
+
+  \draw[-{Stealth[length=3mm]}, thick, black]
+    (\ustart,\uoffset) -- ++(\ulen,0)
+    node[midway, above, xshift=-8pt, yshift=5pt] {$U\,\text{ms}^{-1}$};
+
 \end{scope}
 
 \draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick, black]
@@ -476,7 +480,7 @@ Using the work-energy principle, \\
 
 \draw[thick] (C) -- (P) -- (R) -- cycle;
 
-\pic["$45^\circ$", draw, angle radius=10mm, angle eccentricity=1.35]
+\pic["$45^\circ$", draw, angle radius=7mm, angle eccentricity=1.45]
   {angle=R--C--P};
 
 \node[below left] at (C) {$C$};
@@ -486,9 +490,9 @@ Using the work-energy principle, \\
   \draw[thick, fill=white] (-\abw/2,0) rectangle (\abw/2,\abh);
   \coordinate (Acentre) at (0,\abh/2);
   \coordinate (Aattach) at (\abw/2,\pulrad);
-  \node at (Acentre) {$A$};
+  \node[rotate=\ang] at (Acentre) {$A$};
 \end{scope}
-\node at ($(Acentre)+(\ang+90:0.78)$) {$8\,\mathrm{kg}$};
+\node at ($(Acentre)+(\ang+90:-0.6)$) {$8\,\mathrm{kg}$};
 
 \coordinate (T1) at ($(P)+(\ang+90:\pulrad)$);
 \coordinate (T2) at ($(P)+(0:\pulrad)$);
@@ -507,7 +511,7 @@ Using the work-energy principle, \\
   ($(Btop)+(-\bbw/2,0)$) rectangle ($(Btop)+(\bbw/2,-\bbh)$);
 
 \node at (Bcentre) {$B$};
-\node[right=15pt] at (Bcentre) {$2\,\mathrm{kg}$};
+\node[right=12.5pt] at (Bcentre) {$2\,\mathrm{kg}$};
 
 \draw[thick] (T2) -- (Btop);
 
@@ -515,7 +519,7 @@ Using the work-energy principle, \\
 \coordinate (D1) at ($(Afoot)+(\ang+90:\mdist)$);
 
 \draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]}, thick]
-  (D0) -- (D1) node[midway, sloped, below] {$d\,\mathrm{m}$};
+  (D0) -- (D1) node[midway, sloped, above] {$d\,\mathrm{m}$};
 
 \end{tikzpicture}
 \end{figure}

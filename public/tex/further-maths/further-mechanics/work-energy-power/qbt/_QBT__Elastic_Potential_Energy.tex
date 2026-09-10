@@ -133,14 +133,14 @@ The speed of $P$ is greatest when it is at the point $B$. \\
 \begin{scope}[shift={(X)}, rotate=\ang]
   \draw[thick]
     (0,0) -- (\lead,0)
-    \foreach \k in {1,...,8} {
+    \foreach \k in {1,...,9} {
       -- ++(\seg,\amp)
       -- ++(\seg,-\amp)
     }
     -- ++(\seg,0);
 \end{scope}
 
-\fill[black] (Y) circle (2.2pt);
+\fill[black] ([yshift=2.5pt, xshift=2.5pt]Y) circle (2.2pt);
 
 \draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]}, thick] (Xm) -- (Ym)
   node[midway, below=5pt, fill=white, inner sep=1pt] {$4l$};
@@ -148,8 +148,8 @@ The speed of $P$ is greatest when it is at the point $B$. \\
 \pic["$\alpha$", draw, angle radius=8mm, angle eccentricity=1.35]
   {angle=H--A--Top};
 
-\node[above] at (X) {$X$};
-\node[above] at (Y) {$Y$};
+\node[above right, yshift=4pt, xshift=-3.5pt] at (X) {$X$};
+\node[above, yshift=4pt, xshift=2.5pt] at (Y) {$Y$};
 \end{tikzpicture}
 \end{figure}
 
@@ -322,7 +322,8 @@ By modelling the package as a particle, \\
 
 \draw[dashed] (P) -- (H);
 \draw[-{Stealth[length=3mm]}, thick] (P) -- (F) node[below] {$80\,\mathrm{N}$};
-\pic["$20^\circ$", draw, angle radius=9mm, angle eccentricity=1.45] {angle=F--P--H};
+\pic["$20^\circ$" {yshift=1.5pt}, draw, angle radius=10mm, angle eccentricity=1.4]
+  {angle=F--P--H};
 
 \node[left] at (O) {$O$};
 \node[above] at ($(WTL)!0.5!(WTR)$) {Wall};

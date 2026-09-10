@@ -94,13 +94,13 @@ Find the value of $P$ and determine the resistance to motion when the vehicle is
 \begin{scope}[shift={(Cpos)}, rotate=\ang]
   \coordinate (CarTow) at (\clen,\hitchh);
   \draw[thick, fill=white] (0,0) rectangle (\clen,\cheight);
-  \node at ({0.5*\clen},{0.5*\cheight}) {$700\,\mathrm{kg}$};
+  \node[rotate=\ang] at ({0.5*\clen},{0.5*\cheight}) {$700\,\mathrm{kg}$};
 \end{scope}
 
 \begin{scope}[shift={(Tpos)}, rotate=\ang]
   \coordinate (TraTow) at (0,\hitchh);
   \draw[thick, fill=white] (0,0) rectangle (\tlen,\theight);
-  \node at ({0.5*\tlen},{0.5*\theight}) {$200\,\mathrm{kg}$};
+  \node[rotate=\ang] at ({0.5*\tlen},{0.5*\theight}) {$200\,\mathrm{kg}$};
 \end{scope}
 
 \draw[thick] (CarTow) -- (TraTow);
