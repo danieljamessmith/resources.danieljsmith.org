@@ -10,29 +10,16 @@ interface Props {
 }
 
 const { variant = 'sidebar', topics } = Astro.props;
-
-const linkInactive =
-  'block border-l-2 border-transparent pl-4 py-2 text-sm text-muted hover:border-rule hover:text-ink transition-colors duration-150';
-const enableLiveTopicHighlight = true;
 ---
 
 {
   variant === 'sidebar' ? (
-    <nav
-      class="topic-nav-sidebar hidden w-52 shrink-0 lg:block"
-      aria-label="Topic navigation"
-      data-topic-nav="sidebar"
-    >
-      <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-muted">Topic</p>
-      <ul class="space-y-1 pr-4" role="list">
+    <nav aria-labelledby="topic-nav-heading">
+      <p id="topic-nav-heading" class="sidebar-heading">Topics</p>
+      <ul role="list">
         {topics.map((t) => (
           <li>
-            <a
-              href={`#${t.id}`}
-              class={linkInactive}
-              data-topic-target={t.id}
-              data-topic-link="sidebar"
-            >
+            <a href={`#${t.id}`} class="sidebar-link" data-topic-link data-topic-target={t.id}>
               {t.label}
             </a>
           </li>
@@ -49,127 +36,133 @@ const enableLiveTopicHighlight = true;
   )
 }
 
-{variant === 'sidebar' && enableLiveTopicHighlight && (
 <script>
-  function setupFurtherMathsTopicNav() {
-    const main = document.querySelector('main');
-    if (!main) return;
-
-    const headings = [...main.querySelectorAll('h2[id]')] as HTMLElement[];
+  /**
+   * Scroll-spy for strand pages: highlights the current topic in the sidebar,
+   * mirrors it into the mobile picker and the URL hash.
+   */
+  function setupTopicNav() {
+    const headings = [...document.querySelectorAll<HTMLElement>('[data-topic-section] > h2[id]')];
     if (headings.length === 0) return;
 
-    const sidebarLinks = document.querySelectorAll<HTMLAnchorElement>('[data-topic-link="sidebar"]');
-    const mobileSelect = document.querySelector<HTMLSelectElement>('[data-topic-select]');
-
-    const activeBorderClass = 'border-accent';
-
-    const focusLineY = 96;
-    const hashLockMs = 900;
-    const validTopicIds = new Set(headings.map((h) => h.id));
+    const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-topic-link]')];
+    const select = document.querySelector<HTMLSelectElement>('[data-topic-select]');
+    const validIds = new Set(headings.map((h) => h.id));
+    const HASH_LOCK_MS = 900;
     let hashLockUntil = 0;
+    let activeId = '';
+    // Topic the reader explicitly navigated to; wins at the page bottom, where
+    // short final sections can never reach the top of the viewport.
+    let explicitId: string | null = null;
+
+    const focusLine = () =>
+      (parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0) + 8;
+
+    function hashId(): string | null {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      return validIds.has(id) ? id : null;
+    }
+
+    function keepLinkVisible(link: HTMLElement) {
+      const box = link.closest<HTMLElement>('.listing-sidebar');
+      if (!box || box.scrollHeight <= box.clientHeight) return;
+      const b = box.getBoundingClientRect();
+      const r = link.getBoundingClientRect();
+      if (r.top < b.top) box.scrollTop -= b.top - r.top + 8;
+      else if (r.bottom > b.bottom) box.scrollTop += r.bottom - b.bottom + 8;
+    }
 
     function setActive(id: string) {
-      sidebarLinks.forEach((a) => {
-        const isActive = a.dataset.topicTarget === id;
-        a.classList.toggle('text-ink', isActive);
-        a.classList.toggle('font-medium', isActive);
-        a.classList.toggle(activeBorderClass, isActive);
-        a.classList.toggle('text-muted', !isActive);
-        a.classList.toggle('border-transparent', !isActive);
-        if (isActive) a.setAttribute('aria-current', 'location');
-        else a.removeAttribute('aria-current');
-      });
-      if (mobileSelect) mobileSelect.value = id;
-    }
-
-    function computeActiveIdFromScroll(): string {
-      let activeId = headings[0]?.id ?? '';
-      let closestDistance = Number.POSITIVE_INFINITY;
-
-      for (const h of headings) {
-        const distance = Math.abs(h.getBoundingClientRect().top - focusLineY);
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          activeId = h.id;
+      if (id === activeId) return;
+      activeId = id;
+      links.forEach((a) => {
+        if (a.dataset.topicTarget === id) {
+          a.setAttribute('aria-current', 'location');
+          keepLinkVisible(a);
+        } else {
+          a.removeAttribute('aria-current');
         }
+      });
+      if (select) select.value = id;
+    }
+
+    /** Current topic, or null while above the first topic heading. */
+    function computeFromScroll(): string | null {
+      const doc = document.documentElement;
+      const atBottom = window.innerHeight + window.scrollY >= doc.scrollHeight - 2;
+      if (atBottom) {
+        if (explicitId) {
+          const top = document.getElementById(explicitId)?.getBoundingClientRect().top ?? -1;
+          if (top >= 0 && top < window.innerHeight) return explicitId;
+        }
+        return headings[headings.length - 1].id;
       }
-
-      return activeId;
+      const line = focusLine();
+      let current: string | null = null;
+      for (const h of headings) {
+        if (h.getBoundingClientRect().top <= line + 1) current = h.id;
+        else break;
+      }
+      return current;
     }
 
-    function getHashTopicId(): string | null {
-      const hashId = window.location.hash.replace(/^#/, '');
-      if (!hashId) return null;
-      return validTopicIds.has(hashId) ? hashId : null;
+    function syncHash(id: string | null) {
+      const next = id ? `#${id}` : '';
+      if (window.location.hash === next) return;
+      history.replaceState(history.state, '', window.location.pathname + window.location.search + next);
     }
 
-    function lockToHash() {
-      hashLockUntil = performance.now() + hashLockMs;
+    function navigatedTo(id: string) {
+      explicitId = id;
+      hashLockUntil = performance.now() + HASH_LOCK_MS;
+      setActive(id);
     }
 
-    function isHashLocked() {
-      return performance.now() < hashLockUntil;
-    }
+    const initial = hashId();
+    if (initial) navigatedTo(initial);
+    else setActive(computeFromScroll() ?? headings[0].id);
 
-    function setActiveFromHash(lock = true) {
-      const hashId = getHashTopicId();
-      if (!hashId) return;
-      if (lock) lockToHash();
-      setActive(hashId);
-    }
-
-    function syncHashToActive(id: string) {
-      const nextHash = `#${id}`;
-      if (window.location.hash === nextHash) return;
-      history.replaceState(null, '', nextHash);
-    }
-
-    // Initial sync: prefer URL hash when present.
-    setActiveFromHash(false);
-    if (!window.location.hash) {
-      setActive(computeActiveIdFromScroll());
-    }
-
-    // Scroll listener (rAF-throttled) is more reliable than IntersectionObserver
-    // alone, especially for short last sections that can't reach the threshold.
     let rafPending = false;
     function onScroll() {
       if (rafPending) return;
       rafPending = true;
       requestAnimationFrame(() => {
-        if (isHashLocked()) {
-          const hashId = getHashTopicId();
-          if (hashId) {
-            setActive(hashId);
-            rafPending = false;
-            return;
-          }
-        }
-
-        const activeId = computeActiveIdFromScroll();
-        setActive(activeId);
-        syncHashToActive(activeId);
         rafPending = false;
+        if (performance.now() < hashLockUntil) return;
+        const doc = document.documentElement;
+        if (window.innerHeight + window.scrollY < doc.scrollHeight - 2) explicitId = null;
+        const id = computeFromScroll();
+        setActive(id ?? headings[0].id);
+        syncHash(id);
       });
     }
 
-    sidebarLinks.forEach((link) => link.addEventListener('click', () => lockToHash()));
-    mobileSelect?.addEventListener('change', () => {
-      const id = mobileSelect.value;
-      if (!validTopicIds.has(id)) return;
-      lockToHash();
-      window.location.hash = id;
-      setActive(id);
+    links.forEach((link) =>
+      link.addEventListener('click', () => {
+        const id = link.dataset.topicTarget;
+        if (id) navigatedTo(id);
+      }),
+    );
+
+    select?.addEventListener('change', () => {
+      const id = select.value;
+      if (!validIds.has(id)) return;
+      navigatedTo(id);
       const heading = document.getElementById(id);
-      heading?.setAttribute('tabindex', '-1');
-      heading?.focus({ preventScroll: true });
+      if (!heading) return;
+      if (window.location.hash === `#${id}`) heading.scrollIntoView();
+      else window.location.hash = id;
+      heading.setAttribute('tabindex', '-1');
+      heading.focus({ preventScroll: true });
     });
 
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
-    window.addEventListener('hashchange', () => setActiveFromHash());
+    window.addEventListener('hashchange', () => {
+      const id = hashId();
+      if (id) navigatedTo(id);
+    });
   }
 
-  setupFurtherMathsTopicNav();
+  setupTopicNav();
 </script>
-)}

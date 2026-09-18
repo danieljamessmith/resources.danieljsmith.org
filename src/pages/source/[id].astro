@@ -21,7 +21,7 @@ const texHref = resource.type ? resource.file.split('?')[0].replace(/\.pdf$/, '.
 
 <Layout title={`Source: ${resource.title} | resources.danieljsmith.org`} description={`LaTeX source for ${resource.title}`}>
   <div class="min-h-screen bg-surface text-ink">
-    <header class="source-header sticky top-0 z-10 border-b border-rule bg-surface ">
+    <header class="source-header sticky top-0 z-10 border-b border-rule bg-surface">
       <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
         <div class="min-w-0">
           <a
@@ -36,12 +36,10 @@ const texHref = resource.type ? resource.file.split('?')[0].replace(/\.pdf$/, '.
           <h1 class="mt-1 text-base sm:text-lg font-semibold text-ink source-title">{resource.title}</h1>
         </div>
 
-        <ThemeToggle />
+        <ThemeToggle compact />
         {texHref && (
           <a
             href={texHref}
-            target="_blank" data-mobile-same-tab
-            rel="noopener noreferrer"
             class="inline-flex items-center gap-2 px-3 py-2 rounded-sm border border-rule text-ink hover:bg-surface-raised text-sm font-medium transition-colors whitespace-nowrap"
             title="Open raw .tex URL"
           >

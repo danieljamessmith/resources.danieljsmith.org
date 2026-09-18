@@ -9,16 +9,14 @@ const links = [
 ];
 ---
 <header class="site-header">
-  <div class="masthead">
+  <div class="page-container header-bar">
     <a href="/" class="site-name">resources.danieljsmith.org</a>
+    <nav class="primary-nav" aria-label="Main navigation">
+      {links.map(({ href, label }) => <a href={href} aria-current={path === href ? 'page' : undefined}>{label}</a>)}
+    </nav>
     <div class="header-actions">
       <ThemeToggle />
       <a class="tuition-link" href="https://tuition.danieljsmith.org/contact">Tuition enquiries <span aria-hidden="true">&nearr;</span></a>
     </div>
   </div>
-  <nav class="primary-nav" aria-label="Main navigation">
-    <div class="nav-inner">
-      {links.map(({ href, label }) => <a href={href} aria-current={path === href ? 'page' : undefined}>{label}</a>)}
-    </div>
-  </nav>
 </header>

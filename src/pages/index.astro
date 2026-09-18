@@ -10,14 +10,14 @@ const strands = [
 ].map(strand => ({ ...strand, count: getResourcesByCategory(strand.category).filter(r => r.type === 'questions').length }));
 const tmuaPaperCount = getResourcesByCategory('TMUA').filter(r => r.id.includes('paper')).length;
 ---
-<Layout title="Mathematics resources | Daniel James Smith" description="Free A-level Further Maths questions by topic, worked solutions and TMUA practice papers.">
+<Layout title="Mathematics resources | resources.danieljsmith.org" description="Free A-level Further Maths questions by topic, worked solutions and TMUA practice papers.">
   <div class="min-h-screen flex flex-col">
     <Header />
-    <main id="main-content" tabindex="-1" class="home-main">
+    <main id="main-content" tabindex="-1" class="page-container home-main">
       <div class="home-intro">
         <p class="eyebrow">For students and teachers</p>
         <h1>Mathematics resources</h1>
-        <p>Questions by topic, practice papers and worked solutions<br class="hidden sm:block" /> for A-level Further Maths and university admissions.</p>
+        <p>Questions by topic, practice papers and worked solutions for A-level Further Maths and university admissions.</p>
       </div>
       <div class="home-directory">
         <section id="further-maths" aria-labelledby="fm-heading">

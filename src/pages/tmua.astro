@@ -8,16 +8,15 @@ const tmuaResources = getResourcesByCategory('TMUA');
 <Layout title="Free TMUA Practice Papers | resources.danieljsmith.org" description="Free custom practice papers for the Test of Mathematics for University Admission, with answer keys.">
   <div class="min-h-screen flex flex-col">
     <Header />
-    <main id="main-content" tabindex="-1" class="flex-1 max-w-6xl mx-auto px-6 py-12 w-full">
+    <main id="main-content" tabindex="-1" class="page-container listing-main">
       <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">All resources</a><span aria-hidden="true">/</span><span aria-current="page">TMUA</span></nav>
-      <p class="eyebrow">University admissions</p>
       <h1 class="page-title">TMUA practice papers</h1>
       <p class="page-intro">Practice papers for the Test of Mathematics for University Admission. Each paper includes its answer key. All papers are free to view and download.</p>
       <section class="tmua-list" aria-label="Practice papers">
         {tmuaResources.map(resource => (
-          <a class="tmua-row" href={`/view/${resource.id}`} target="_blank" data-mobile-same-tab rel="noopener noreferrer">
+          <a class="tmua-row" href={`/view/${resource.id}`}>
             <div><h2>{resource.title}</h2><p>{resource.description}</p></div>
-            <span class="document-link">View PDF <span aria-hidden="true">&nearr;</span></span>
+            <span class="document-link" aria-hidden="true">View paper &rarr;</span>
           </a>
         ))}
       </section>

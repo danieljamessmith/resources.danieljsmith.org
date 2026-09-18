@@ -9,42 +9,36 @@ interface Props {
 const { variant = 'sidebar', boards = EXAM_BOARDS } = Astro.props;
 
 const filterItems = [
-  { id: 'all' as const, label: 'All' },
+  { id: 'all' as const, label: 'All boards' },
   ...boards.map((b) => ({ id: b.id, label: b.label })),
 ];
-
-const linkInactive =
-  'block w-full text-left border-l-2 border-transparent pl-4 py-2 text-sm text-muted hover:border-rule hover:text-ink transition-colors duration-150';
 ---
 
 {
   variant === 'sidebar' ? (
-    <nav
-      class="board-filter-sidebar hidden w-full shrink-0 lg:block"
-      aria-label="Exam board filter"
-      data-board-filter-nav="sidebar"
-    >
-      <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-muted">Exam Board</p>
-      <ul class="space-y-1" role="list">
+    <div role="group" aria-labelledby="board-filter-heading">
+      <p id="board-filter-heading" class="sidebar-heading">Exam board</p>
+      <ul role="list">
         {filterItems.map((item) => (
           <li>
             <button
               type="button"
-              class={linkInactive}
+              class="sidebar-link"
               data-board-filter={item.id}
-              data-board-filter-link="sidebar"
+              data-board-label={item.label}
+              aria-pressed={item.id === 'all' ? 'true' : 'false'}
             >
               {item.label}
             </button>
           </li>
         ))}
       </ul>
-    </nav>
+    </div>
   ) : (
     <div class="mobile-selector">
       <label for="mobile-exam-board">Exam board</label>
       <select id="mobile-exam-board" data-board-select>
-        {filterItems.map(item => <option value={item.id}>{item.id === 'all' ? 'All boards' : item.label}</option>)}
+        {filterItems.map(item => <option value={item.id}>{item.label}</option>)}
       </select>
     </div>
   )

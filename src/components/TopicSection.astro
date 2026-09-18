@@ -2,7 +2,7 @@
 interface Props {
   id: string;
   title: string;
-  /** Optional count shown on the right of the heading (e.g. number of booklets). */
+  /** Number of booklets listed; shown on the right of the heading. */
   count?: number;
   /** Singular form of the label; pluralised automatically when count !== 1. */
   countLabel?: string;
@@ -14,19 +14,17 @@ const countText =
   count !== undefined && count > 0 ? `${count} ${countLabel}${count === 1 ? '' : 's'}` : null;
 ---
 
-<div data-topic-section>
-  <h2
-    id={id}
-    class="topic-section-heading scroll-mt-24 mt-5 mb-3 flex items-center gap-3 opacity-100 transition-opacity duration-200"
-  >
-    <span class="topic-title flex-1 min-w-0">{title}</span>
+<section data-topic-section aria-labelledby={id}>
+  <h2 id={id} class="topic-section-heading">
+    <span class="topic-title">{title}</span>
     {countText && (
-      <span class="text-xs text-muted font-normal flex-shrink-0">
+      <span class="topic-count" data-topic-count data-total={count} data-label={countLabel}>
         {countText}
       </span>
     )}
   </h2>
-  <div class="mb-6 space-y-1.5">
+  <div>
     <slot />
   </div>
-</div>
+  <p class="topic-empty" data-topic-empty hidden>No booklets in this topic are tagged for this exam board yet.</p>
+</section>
