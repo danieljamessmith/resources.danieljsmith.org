@@ -1,5 +1,6 @@
 ---
 import Layout from '~/layouts/Layout.astro';
+import ThemeToggle from '~/components/ThemeToggle.astro';
 import { resources, getResourceById } from '~/data/resources';
 
 export function getStaticPaths() {
@@ -19,28 +20,29 @@ const texHref = resource.type ? resource.file.split('?')[0].replace(/\.pdf$/, '.
 ---
 
 <Layout title={`Source: ${resource.title} | resources.danieljsmith.org`} description={`LaTeX source for ${resource.title}`}>
-  <div class="min-h-screen bg-surface text-slate-100">
-    <header class="sticky top-0 z-10 border-b border-slate-700/60 bg-surface/90 backdrop-blur">
+  <div class="min-h-screen bg-surface text-ink">
+    <header class="source-header sticky top-0 z-10 border-b border-rule bg-surface ">
       <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
         <div class="min-w-0">
           <a
             href={`/view/${resource.id}`}
-            class="inline-flex items-center gap-1 text-sm text-slate-300 hover:text-blue-400 transition-colors"
+            class="inline-flex items-center gap-1 text-sm text-ink hover:text-accent transition-colors"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>
             Back to viewer
           </a>
-          <h1 class="mt-1 text-base sm:text-lg font-semibold text-white truncate">{resource.title}</h1>
+          <h1 class="mt-1 text-base sm:text-lg font-semibold text-ink source-title">{resource.title}</h1>
         </div>
 
+        <ThemeToggle />
         {texHref && (
           <a
             href={texHref}
-            target="_blank"
+            target="_blank" data-mobile-same-tab
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-600 text-slate-200 hover:bg-slate-800/80 text-sm font-medium transition-colors whitespace-nowrap"
+            class="inline-flex items-center gap-2 px-3 py-2 rounded-sm border border-rule text-ink hover:bg-surface-raised text-sm font-medium transition-colors whitespace-nowrap"
             title="Open raw .tex URL"
           >
             Open raw
@@ -49,46 +51,46 @@ const texHref = resource.type ? resource.file.split('?')[0].replace(/\.pdf$/, '.
       </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 py-4 space-y-4">
+    <main id="main-content" tabindex="-1" class="max-w-6xl mx-auto px-4 py-4 space-y-4">
       {texHref ? (
         <>
           <div class="flex flex-wrap items-center gap-2">
             <button
               type="button"
               data-copy-all
-              class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-indigo-500/40 text-indigo-100 hover:bg-indigo-950/35 hover:border-indigo-400/60 text-sm font-medium transition-colors"
+              class="inline-flex items-center gap-2 px-3 py-2 rounded-sm border border-rule text-accent hover:bg-tint hover:border-rule text-sm font-medium transition-colors"
             >
               Copy all
             </button>
             <div class="inline-flex items-center gap-2">
-              <label for="q-number" class="text-sm text-slate-300">Q</label>
+              <label for="q-number" class="text-sm text-ink">Q</label>
               <input
                 id="q-number"
                 data-q-number
                 type="number"
                 min="1"
                 inputmode="numeric"
-                class="w-20 px-2 py-1.5 rounded-md border border-slate-600 bg-surface-raised text-slate-100 text-sm"
+                class="w-20 px-2 py-1.5 rounded-md border border-rule bg-surface-raised text-ink text-sm"
               />
               <button
                 type="button"
                 data-copy-question
-                class="px-3 py-2 rounded-lg border border-slate-600 text-slate-200 hover:bg-slate-800/80 text-sm font-medium transition-colors"
+                class="px-3 py-2 rounded-sm border border-rule text-ink hover:bg-surface-raised text-sm font-medium transition-colors"
               >
                 Copy Q block
               </button>
             </div>
-            <span data-copy-status class="text-xs sm:text-sm text-slate-400" aria-live="polite"></span>
+            <span data-copy-status class="text-xs sm:text-sm text-muted" aria-live="polite"></span>
           </div>
 
           <pre
             id="tex-viewer"
             data-tex-src={texHref}
-            class="bg-surface-raised border border-slate-700/60 rounded-xl p-4 overflow-auto text-xs sm:text-sm leading-6 whitespace-pre"
+            class="bg-surface-raised border border-rule rounded-sm p-4 overflow-auto text-xs sm:text-sm leading-6 whitespace-pre"
           >Loading source…</pre>
         </>
       ) : (
-        <div class="bg-surface-raised border border-slate-700/60 rounded-xl p-4 text-slate-300">
+        <div class="bg-surface-raised border border-rule rounded-sm p-4 text-ink">
           No source `.tex` is available for this resource.
         </div>
       )}
@@ -111,8 +113,8 @@ const texHref = resource.type ? resource.file.split('?')[0].replace(/\.pdf$/, '.
       function setStatus(message, isError) {
         if (!status) return;
         status.textContent = message;
-        status.classList.toggle('text-rose-300', !!isError);
-        status.classList.toggle('text-slate-400', !isError);
+        status.classList.toggle('text-accent', !!isError);
+        status.classList.toggle('text-muted', !isError);
       }
 
       function copyText(text, okMessage) {

@@ -5,8 +5,6 @@
 export function initBoardFilter(): void {
   const root = document.querySelector<HTMLElement>('[data-board-storage-key]');
   const STORAGE_KEY = root?.dataset.boardStorageKey ?? 'fm-cp-board-filter';
-  // Accent is per-strand (e.g. Core Pure = purple, Further Mechanics = teal); falls back to purple.
-  const accent = root?.dataset.boardAccent === 'teal' ? 'teal' : 'purple';
 
   const boardIds = Array.from(
     document.querySelectorAll<HTMLButtonElement>('[data-board-filter]'),
@@ -22,8 +20,10 @@ export function initBoardFilter(): void {
     const params = new URLSearchParams(window.location.search);
     const q = params.get('board');
     if (q && isBoardId(q)) return q;
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored && isBoardId(stored)) return stored;
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored && isBoardId(stored)) return stored;
+    } catch { /* Filtering remains available without storage. */ }
     return 'all';
   }
 
@@ -32,7 +32,7 @@ export function initBoardFilter(): void {
     if (board === 'all') url.searchParams.delete('board');
     else url.searchParams.set('board', board);
     history.replaceState(null, '', url.pathname + url.search + url.hash);
-    localStorage.setItem(STORAGE_KEY, board);
+    try { localStorage.setItem(STORAGE_KEY, board); } catch { /* Storage is optional. */ }
   }
 
   function cardMatches(dataBoards: string | undefined | null, board: BoardId): boolean {
@@ -42,32 +42,19 @@ export function initBoardFilter(): void {
   }
 
   const sidebarInactive =
-    'block w-full text-left border-l-2 border-transparent pl-4 py-2 text-sm text-slate-400 hover:border-slate-400 hover:text-white transition-colors duration-150';
-  // Full class strings per accent so Tailwind JIT includes them at build time.
+    'block w-full text-left border-l-2 border-transparent pl-4 py-2 text-sm text-muted hover:border-rule hover:text-ink transition-colors duration-150';
   const sidebarActive =
-    accent === 'teal'
-      ? 'block w-full text-left border-l-2 border-teal-500 pl-4 py-2 text-sm font-medium text-white'
-      : 'block w-full text-left border-l-2 border-purple-500 pl-4 py-2 text-sm font-medium text-white';
-  const mobileInactive =
-    accent === 'teal'
-      ? 'flex-shrink-0 whitespace-nowrap rounded-full border border-slate-600/80 px-3 py-1.5 text-xs font-medium text-slate-300 transition-colors hover:border-teal-500/50 hover:text-white'
-      : 'flex-shrink-0 whitespace-nowrap rounded-full border border-slate-600/80 px-3 py-1.5 text-xs font-medium text-slate-300 transition-colors hover:border-purple-500/50 hover:text-white';
-  const mobileActive =
-    accent === 'teal'
-      ? 'flex-shrink-0 whitespace-nowrap rounded-full border border-teal-500 bg-teal-500/15 px-3 py-1.5 text-xs font-medium text-white'
-      : 'flex-shrink-0 whitespace-nowrap rounded-full border border-purple-500 bg-purple-500/15 px-3 py-1.5 text-xs font-medium text-white';
+    'block w-full text-left border-l-2 border-rule pl-4 py-2 text-sm font-medium text-ink';
+
+  const mobileSelect = document.querySelector<HTMLSelectElement>('[data-board-select]');
 
   function setButtonActive(board: BoardId) {
+    if (mobileSelect) mobileSelect.value = board;
     document.querySelectorAll<HTMLButtonElement>('[data-board-filter]').forEach((btn) => {
       const id = btn.dataset.boardFilter;
       if (!id || !isBoardId(id)) return;
       const active = id === board;
-      const isSidebar = btn.matches('[data-board-filter-link="sidebar"]');
-      if (isSidebar) {
-        btn.className = active ? sidebarActive : sidebarInactive;
-      } else {
-        btn.className = active ? mobileActive : mobileInactive;
-      }
+      btn.className = active ? sidebarActive : sidebarInactive;
       if (active) btn.setAttribute('aria-current', 'true');
       else btn.removeAttribute('aria-current');
     });
@@ -98,7 +85,7 @@ export function initBoardFilter(): void {
   }
 
   const current = readInitialBoard();
-  localStorage.setItem(STORAGE_KEY, current);
+  try { localStorage.setItem(STORAGE_KEY, current); } catch { /* Storage is optional. */ }
   setButtonActive(current);
   applyBoardFilter(current);
 
@@ -112,11 +99,24 @@ export function initBoardFilter(): void {
     });
   });
 
+  mobileSelect?.addEventListener('change', () => {
+    const board = mobileSelect.value;
+    if (!isBoardId(board)) return;
+    setButtonActive(board);
+    applyBoardFilter(board);
+    syncUrlAndStorage(board);
+  });
+
   document.querySelectorAll<HTMLElement>('[data-card-href]').forEach((card) => {
     card.addEventListener('click', (e) => {
       if ((e.target as Element).closest('a')) return;
       const href = card.dataset.cardHref;
-      if (href) window.open(href, '_blank', 'noopener');
+      if (!href) return;
+      if (window.matchMedia('(max-width: 767px)').matches && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
+        window.location.assign(href);
+      } else {
+        window.open(href, '_blank', 'noopener');
+      }
     });
   });
 }

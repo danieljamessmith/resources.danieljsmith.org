@@ -4,23 +4,15 @@ export interface TopicItem {
   label: string;
 }
 
-export type TopicNavAccent = 'purple' | 'teal';
-
 interface Props {
   variant?: 'sidebar' | 'mobile';
   topics: TopicItem[];
-  accent?: TopicNavAccent;
 }
 
-const { variant = 'sidebar', topics, accent = 'purple' } = Astro.props;
+const { variant = 'sidebar', topics } = Astro.props;
 
 const linkInactive =
-  'block border-l-2 border-transparent pl-4 py-2 text-sm text-slate-400 hover:border-slate-400 hover:text-white transition-colors duration-150';
-// Accent-aware hover colour for the mobile chip row; explicit branches so Tailwind JIT keeps both sets.
-const mobileInactive =
-  accent === 'teal'
-    ? 'flex-shrink-0 whitespace-nowrap rounded-full border border-slate-600/80 px-3 py-1.5 text-xs font-medium text-slate-300 transition-colors hover:border-teal-500/50 hover:text-white'
-    : 'flex-shrink-0 whitespace-nowrap rounded-full border border-slate-600/80 px-3 py-1.5 text-xs font-medium text-slate-300 transition-colors hover:border-purple-500/50 hover:text-white';
+  'block border-l-2 border-transparent pl-4 py-2 text-sm text-muted hover:border-rule hover:text-ink transition-colors duration-150';
 const enableLiveTopicHighlight = true;
 ---
 
@@ -30,9 +22,8 @@ const enableLiveTopicHighlight = true;
       class="topic-nav-sidebar hidden w-52 shrink-0 lg:block"
       aria-label="Topic navigation"
       data-topic-nav="sidebar"
-      data-topic-accent={accent}
     >
-      <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">Topic</p>
+      <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-muted">Topic</p>
       <ul class="space-y-1 pr-4" role="list">
         {topics.map((t) => (
           <li>
@@ -49,23 +40,12 @@ const enableLiveTopicHighlight = true;
       </ul>
     </nav>
   ) : (
-    <nav
-      class="topic-nav-mobile -mx-1 mb-6 flex gap-2 overflow-x-auto pb-1 pt-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden lg:hidden"
-      aria-label="Topic navigation"
-      data-topic-nav="mobile"
-      data-topic-accent={accent}
-    >
-      {topics.map((t) => (
-        <a
-          href={`#${t.id}`}
-          class={mobileInactive}
-          data-topic-target={t.id}
-          data-topic-link="mobile"
-        >
-          {t.label}
-        </a>
-      ))}
-    </nav>
+    <div class="mobile-selector">
+      <label for="mobile-topic">Jump to topic</label>
+      <select id="mobile-topic" data-topic-select>
+        {topics.map(topic => <option value={topic.id}>{topic.label}</option>)}
+      </select>
+    </div>
   )
 }
 
@@ -79,14 +59,9 @@ const enableLiveTopicHighlight = true;
     if (headings.length === 0) return;
 
     const sidebarLinks = document.querySelectorAll<HTMLAnchorElement>('[data-topic-link="sidebar"]');
-    const mobileLinks = document.querySelectorAll<HTMLAnchorElement>('[data-topic-link="mobile"]');
+    const mobileSelect = document.querySelector<HTMLSelectElement>('[data-topic-select]');
 
-    // Read accent from the rendered nav so the active classes match the strand colour.
-    // Explicit class strings below (not template-built) so Tailwind JIT keeps them.
-    const sidebarNav = document.querySelector<HTMLElement>('[data-topic-nav="sidebar"]');
-    const accent = sidebarNav?.dataset.topicAccent === 'teal' ? 'teal' : 'purple';
-    const activeBorderClass = accent === 'teal' ? 'border-teal-500' : 'border-purple-500';
-    const activeChipBgClass = accent === 'teal' ? 'bg-teal-500/15' : 'bg-purple-500/15';
+    const activeBorderClass = 'border-accent';
 
     const focusLineY = 96;
     const hashLockMs = 900;
@@ -96,24 +71,15 @@ const enableLiveTopicHighlight = true;
     function setActive(id: string) {
       sidebarLinks.forEach((a) => {
         const isActive = a.dataset.topicTarget === id;
-        a.classList.toggle('text-white', isActive);
+        a.classList.toggle('text-ink', isActive);
         a.classList.toggle('font-medium', isActive);
         a.classList.toggle(activeBorderClass, isActive);
-        a.classList.toggle('text-slate-400', !isActive);
+        a.classList.toggle('text-muted', !isActive);
         a.classList.toggle('border-transparent', !isActive);
         if (isActive) a.setAttribute('aria-current', 'location');
         else a.removeAttribute('aria-current');
       });
-      mobileLinks.forEach((a) => {
-        const isActive = a.dataset.topicTarget === id;
-        a.classList.toggle(activeBorderClass, isActive);
-        a.classList.toggle(activeChipBgClass, isActive);
-        a.classList.toggle('text-white', isActive);
-        a.classList.toggle('border-slate-600/80', !isActive);
-        a.classList.toggle('text-slate-300', !isActive);
-        if (isActive) a.setAttribute('aria-current', 'location');
-        else a.removeAttribute('aria-current');
-      });
+      if (mobileSelect) mobileSelect.value = id;
     }
 
     function computeActiveIdFromScroll(): string {
@@ -188,7 +154,16 @@ const enableLiveTopicHighlight = true;
     }
 
     sidebarLinks.forEach((link) => link.addEventListener('click', () => lockToHash()));
-    mobileLinks.forEach((link) => link.addEventListener('click', () => lockToHash()));
+    mobileSelect?.addEventListener('change', () => {
+      const id = mobileSelect.value;
+      if (!validTopicIds.has(id)) return;
+      lockToHash();
+      window.location.hash = id;
+      setActive(id);
+      const heading = document.getElementById(id);
+      heading?.setAttribute('tabindex', '-1');
+      heading?.focus({ preventScroll: true });
+    });
 
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });

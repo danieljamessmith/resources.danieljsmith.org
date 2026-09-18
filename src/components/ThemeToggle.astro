@@ -1,0 +1,27 @@
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode" hidden>
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+    <path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z" />
+  </svg>
+  <span data-theme-label>Dark mode</span>
+</button>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]');
+  function syncButtons() {
+    const dark = document.documentElement.dataset.theme === 'dark';
+    buttons.forEach(button => {
+      button.hidden = false;
+      button.setAttribute('aria-label', `Switch to ${dark ? 'light' : 'dark'} mode`);
+      const label = button.querySelector('[data-theme-label]');
+      if (label) label.textContent = dark ? 'Light mode' : 'Dark mode';
+    });
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#202225' : '#faf9f6');
+  }
+  buttons.forEach(button => button.addEventListener('click', () => {
+    const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = theme;
+    try { localStorage.setItem('resources-theme', theme); } catch { /* The toggle still works when storage is unavailable. */ }
+    syncButtons();
+  }));
+  syncButtons();
+</script>

@@ -4,14 +4,20 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['Roboto', 'Newsreader', 'Georgia', 'Cambria', 'serif'],
+        sans: ['Arial', 'Helvetica', 'sans-serif'],
+        display: ['Georgia', 'Cambria', 'serif'],
       },
       colors: {
+        action: 'rgb(var(--action) / <alpha-value>)',
+        ink: 'rgb(var(--ink) / <alpha-value>)',
+        muted: 'rgb(var(--muted) / <alpha-value>)',
+        accent: 'rgb(var(--accent) / <alpha-value>)',
+        rule: 'rgb(var(--rule) / <alpha-value>)',
+        tint: 'rgb(var(--tint) / <alpha-value>)',
         surface: {
-          DEFAULT: '#161b22',
-          raised: '#1c2128',
-          overlay: '#22272e',
+          DEFAULT: 'rgb(var(--surface) / <alpha-value>)',
+          raised: 'rgb(var(--surface-raised) / <alpha-value>)',
+          overlay: 'rgb(var(--surface-overlay) / <alpha-value>)',
         },
       },
     },

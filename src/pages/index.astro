@@ -2,134 +2,46 @@
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
-import {
-  getFurtherMathsQuestionTotalRoundedDownTen,
-  getFurtherMathsTotalQuestionCount,
-  getResourcesByCategory,
-} from '~/data/resources';
+import { FM_CP, FM_MECH, getResourcesByCategory } from '~/data/resources';
 
-const tmuaPaperCount = getResourcesByCategory('TMUA').filter((r) => r.id.includes('paper')).length;
-const fmQuestionTotal = getFurtherMathsTotalQuestionCount();
-const fmOverQuestions = getFurtherMathsQuestionTotalRoundedDownTen();
-const fmQuestionsLine =
-  fmOverQuestions >= 10
-    ? `Over ${fmOverQuestions} questions`
-    : fmQuestionTotal > 0
-      ? `${fmQuestionTotal} questions`
-      : 'Topic booklets';
+const strands = [
+  { category: FM_CP, title: 'Core Pure', href: '/further-maths/core-pure', description: 'Algebra, calculus, complex numbers, proof, vectors and matrices.' },
+  { category: FM_MECH, title: 'Further Mechanics', href: '/further-maths/further-mechanics', description: 'Momentum and collisions, work and energy, dimensional analysis and centre of mass.' },
+].map(strand => ({ ...strand, count: getResourcesByCategory(strand.category).filter(r => r.type === 'questions').length }));
+const tmuaPaperCount = getResourcesByCategory('TMUA').filter(r => r.id.includes('paper')).length;
 ---
-
-<Layout
-  title="Free Maths Resources — Practice Papers & Questions by Topic"
-  description="Free A-level Further Maths topic booklets and TMUA practice papers with worked solutions."
->
+<Layout title="Mathematics resources | Daniel James Smith" description="Free A-level Further Maths questions by topic, worked solutions and TMUA practice papers.">
   <div class="min-h-screen flex flex-col">
     <Header />
-    <div class="flex-1 flex flex-col">
-      <section class="text-center max-w-2xl mx-auto px-4 py-16 md:py-24">
-        <h1 class="font-display text-4xl md:text-6xl font-semibold tracking-tight text-balance text-white">Free Maths Resources</h1>
-        <p class="text-lg text-slate-300 mt-4">
-          Practice papers, question-by-topic booklets, and worked solutions.
-        </p>
-      </section>
-
-      <section class="max-w-4xl mx-auto px-4 pb-20 w-full">
-        <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-6">Choose your subject</h2>
-        <div class="grid sm:grid-cols-2 gap-6">
-          <a
-            href="/further-maths"
-            class="group relative flex flex-col overflow-hidden p-6 rounded-2xl border border-slate-700/50 bg-gradient-to-br from-rose-500/[0.06] via-surface-raised to-surface-raised hover:border-rose-500/60 motion-safe:hover:-translate-y-1 hover:shadow-lg hover:shadow-rose-500/10 transition-all duration-200"
-          >
-            <div
-              class="pointer-events-none absolute -top-16 -right-16 w-40 h-40 rounded-full bg-rose-500/15 blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-300"
-              aria-hidden="true"
-            >
-            </div>
-            <div class="relative flex flex-col flex-1">
-              <div
-                class="w-12 h-12 rounded-xl bg-rose-500/15 ring-1 ring-inset ring-rose-500/20 flex items-center justify-center text-rose-300 motion-safe:group-hover:scale-105 transition-transform duration-200"
-              >
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                    d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-                  />
-                </svg>
-              </div>
-              <h3 class="font-display text-2xl font-semibold tracking-tight text-white mt-4">A-level Further Maths</h3>
-              <p class="text-slate-300 mt-2 text-sm flex-1">
-                Question-by-topic booklets for Core Pure and Further Mechanics, filterable by exam board.
-              </p>
-              <div class="mt-5 flex items-center justify-between gap-3">
-                <span
-                  class="inline-flex items-center gap-1.5 rounded-full bg-rose-500/10 text-rose-300 text-xs font-medium px-2.5 py-1 ring-1 ring-inset ring-rose-500/20"
-                >
-                  <span class="w-1.5 h-1.5 rounded-full bg-rose-400" aria-hidden="true"></span>
-                  {fmQuestionsLine}
-                </span>
-                <svg
-                  class="w-5 h-5 flex-shrink-0 text-slate-500 group-hover:text-rose-300 motion-safe:group-hover:translate-x-1 transition"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-            </div>
-          </a>
-
-          <a
-            href="/tmua"
-            class="group relative flex flex-col overflow-hidden p-6 rounded-2xl border border-slate-700/50 bg-gradient-to-br from-sky-500/[0.06] via-surface-raised to-surface-raised hover:border-sky-500/60 motion-safe:hover:-translate-y-1 hover:shadow-lg hover:shadow-sky-500/10 transition-all duration-200"
-          >
-            <div
-              class="pointer-events-none absolute -top-16 -right-16 w-40 h-40 rounded-full bg-sky-500/15 blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-300"
-              aria-hidden="true"
-            >
-            </div>
-            <div class="relative flex flex-col flex-1">
-              <div
-                class="w-12 h-12 rounded-xl bg-sky-500/15 ring-1 ring-inset ring-sky-500/20 flex items-center justify-center text-sky-300 motion-safe:group-hover:scale-105 transition-transform duration-200"
-              >
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                  />
-                </svg>
-              </div>
-              <h3 class="font-display text-2xl font-semibold tracking-tight text-white mt-4">TMUA</h3>
-              <p class="text-slate-300 mt-2 text-sm flex-1">
-                Full-length practice papers with answer keys.
-              </p>
-              <div class="mt-5 flex items-center justify-between gap-3">
-                <span
-                  class="inline-flex items-center gap-1.5 rounded-full bg-sky-500/10 text-sky-300 text-xs font-medium px-2.5 py-1 ring-1 ring-inset ring-sky-500/20"
-                >
-                  <span class="w-1.5 h-1.5 rounded-full bg-sky-400" aria-hidden="true"></span>
-                  {tmuaPaperCount} practice papers
-                </span>
-                <svg
-                  class="w-5 h-5 flex-shrink-0 text-slate-500 group-hover:text-sky-300 motion-safe:group-hover:translate-x-1 transition"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-            </div>
-          </a>
-        </div>
-      </section>
-    </div>
+    <main id="main-content" tabindex="-1" class="home-main">
+      <div class="home-intro">
+        <p class="eyebrow">For students and teachers</p>
+        <h1>Mathematics resources</h1>
+        <p>Questions by topic, practice papers and worked solutions<br class="hidden sm:block" /> for A-level Further Maths and university admissions.</p>
+      </div>
+      <div class="home-directory">
+        <section id="further-maths" aria-labelledby="fm-heading">
+          <h2 id="fm-heading" class="eyebrow">A-level Further Mathematics</h2>
+          <div class="subject-list">
+            {strands.map(strand => (
+              <a class="subject-row" href={strand.href}>
+                <div><h3>{strand.title}</h3><p>{strand.description}</p><span class="resource-count">{strand.count} question booklets &middot; Worked solutions</span></div>
+                <span class="row-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            ))}
+          </div>
+        </section>
+        <section aria-labelledby="admissions-heading">
+          <h2 id="admissions-heading" class="eyebrow">Admissions</h2>
+          <div class="subject-list">
+            <a class="subject-row" href="/tmua">
+              <div><h3>TMUA</h3><p>Practice papers and answer keys for the Test of Mathematics for University Admission.</p><span class="resource-count">{tmuaPaperCount} practice papers &middot; Answer keys included</span></div>
+              <span class="row-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
     <Footer />
   </div>
 </Layout>
