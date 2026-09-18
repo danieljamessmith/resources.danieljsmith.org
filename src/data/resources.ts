@@ -63,22 +63,15 @@ const rawResources: Resource[] = [
   {
     id: 'tmua-setA-paper1',
     title: 'TMUA Set A Paper 1',
-    description: '20x Paper 1 Style TMUA Questions',
+    description: '20 Paper 1-style questions, with an answer key included.',
     file: '/tex/tmua/TMUA_SetA_Paper1.pdf',
     category: 'TMUA',
   },
   {
     id: 'tmua-setA-paper2',
     title: 'TMUA Set A Paper 2',
-    description: '20x Paper 2 Style TMUA Questions',
+    description: '20 Paper 2-style questions, with an answer key included.',
     file: '/tex/tmua/TMUA_SetA_Paper2.pdf',
-    category: 'TMUA',
-  },
-  {
-    id: 'tmua-setA-keys',
-    title: 'TMUA Set A Answer Keys',
-    description: 'Answer Keys to Set A Papers',
-    file: '/tex/tmua/TMUA_SetA_AnswerKeys.pdf',
     category: 'TMUA',
   },
 
