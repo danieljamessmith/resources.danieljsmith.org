@@ -1,10 +1,13 @@
 ---
+import { existsSync } from 'node:fs';
 import Layout from '~/layouts/Layout.astro';
 import ThemeToggle from '~/components/ThemeToggle.astro';
 import { resources, getResourceById } from '~/data/resources';
 
 export function getStaticPaths() {
-  return resources.map((resource) => ({
+  return resources.filter((resource) => resource.type && existsSync(
+    new URL(`../../../public${resource.file.split('?')[0].replace(/\.pdf$/, '.tex')}`, import.meta.url),
+  )).map((resource) => ({
     params: { id: resource.id },
   }));
 }
@@ -19,7 +22,7 @@ if (!resource) {
 const texHref = resource.type ? resource.file.split('?')[0].replace(/\.pdf$/, '.tex') : null;
 ---
 
-<Layout title={`Source: ${resource.title} | resources.danieljsmith.org`} description={`LaTeX source for ${resource.title}`}>
+<Layout noindex title={`Source: ${resource.title} | resources.danieljsmith.org`} description={`LaTeX source for ${resource.title}`}>
   <div class="min-h-screen bg-surface text-ink">
     <header class="source-header sticky top-0 z-10 border-b border-rule bg-surface">
       <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">

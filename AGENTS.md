@@ -338,3 +338,7 @@ When durable project conventions change, update `AGENTS.md` and the directly rel
 - **The LaTeX directory layout or file-naming patterns change:** update the structure tables and naming-pattern guidance above.
 - **The shared pack preamble convention changes:** update the LaTeX directory layout section, deploy workflow, `scripts/lib/pack-preamble.mjs`, and the mirrored `exam-question-perturbation/resources/pack_preamble.tex`.
 - **npm scripts or pre-commit hooks change:** update the Tooling and npm scripts sections.
+
+### Search metadata
+
+`Layout.astro` supplies absolute, trailing-slash canonical URLs and Open Graph/Twitter metadata using the existing logo. Document titles distinguish questions and worked solutions. Source viewers are generated only for existing LaTeX files and marked `noindex, follow`; the sitemap excludes source viewers, the 404 page and the legacy Further Maths redirect.

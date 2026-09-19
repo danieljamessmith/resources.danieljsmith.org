@@ -55,6 +55,10 @@ const topicHref = getStrandHrefForResource(resource);
 const breadcrumb =
   baseBreadcrumb.mode === 'fm' && topicHref ? { ...baseBreadcrumb, sectionHref: topicHref } : baseBreadcrumb;
 const displayDescription = getResourceDisplayDescription(resource);
+const resourceKind = resource.type === 'solutions' ? 'Worked solutions' : resource.type === 'questions' ? 'Questions' : 'Notes';
+const pageTitle = resource.category.startsWith('FM - ')
+  ? `${resource.title}: ${resourceKind} | A-level Further Maths`
+  : `${resource.title} | TMUA Practice`;
 
 const partnerResource =
   resource.pairId && (resource.type === 'questions' || resource.type === 'solutions')
@@ -90,7 +94,7 @@ const partnerPaneLabel = partnerResource ? paneLabel(partnerResource.type) : '';
 */
 ---
 
-<Layout title={`${resource.title} | resources.danieljsmith.org`} description={displayDescription}>
+<Layout title={pageTitle} description={displayDescription}>
   <div class="min-h-screen flex flex-col">
     <header class="bg-surface border-b border-rule sticky top-0 z-10">
       <div class="page-container py-2 flex items-center justify-between gap-3">

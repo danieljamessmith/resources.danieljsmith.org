@@ -1,7 +1,9 @@
 ---
 import '~/styles/global.css';
-interface Props { title: string; description?: string; }
-const { title, description = 'Free mathematics resources: practice papers, questions by topic and worked solutions.' } = Astro.props;
+interface Props { title: string; description?: string; noindex?: boolean; }
+const { title, noindex = false, description = 'Free mathematics resources: practice papers, questions by topic and worked solutions.' } = Astro.props;
+const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') + '/', Astro.site);
+const shareImage = new URL('/favicon.png', Astro.site);
 ---
 <!doctype html>
 <html lang="en">
@@ -9,6 +11,20 @@ const { title, description = 'Free mathematics resources: practice papers, quest
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={shareImage} />
+    <meta property="og:image:width" content="693" />
+    <meta property="og:image:height" content="695" />
+    <meta property="og:image:alt" content="Daniel James Smith logo" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={shareImage} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <meta name="theme-color" content="#faf9f6" />
     <script is:inline>
       // Apply a saved choice before painting; new visitors always get light mode.
