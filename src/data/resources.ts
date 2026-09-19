@@ -63,15 +63,29 @@ const rawResources: Resource[] = [
   {
     id: 'tmua-setA-paper1',
     title: 'TMUA Set A Paper 1',
-    description: '20 Paper 1-style questions, with an answer key included.',
+    description: '20 questions in the style of Paper 1: applying mathematical knowledge.',
     file: '/tex/tmua/TMUA_SetA_Paper1.pdf',
     category: 'TMUA',
   },
   {
     id: 'tmua-setA-paper2',
     title: 'TMUA Set A Paper 2',
-    description: '20 Paper 2-style questions, with an answer key included.',
+    description: '20 questions in the style of Paper 2: mathematical reasoning, logic and proof.',
     file: '/tex/tmua/TMUA_SetA_Paper2.pdf',
+    category: 'TMUA',
+  },
+  {
+    id: 'tmua-setB-paper1',
+    title: 'TMUA Set B Paper 1',
+    description: '20 questions in the style of Paper 1: applying mathematical knowledge.',
+    file: '/tex/tmua/TMUA_SetB_Paper1.pdf',
+    category: 'TMUA',
+  },
+  {
+    id: 'tmua-setB-paper2',
+    title: 'TMUA Set B Paper 2',
+    description: '20 questions in the style of Paper 2: mathematical reasoning, logic and proof.',
+    file: '/tex/tmua/TMUA_SetB_Paper2.pdf',
     category: 'TMUA',
   },
 

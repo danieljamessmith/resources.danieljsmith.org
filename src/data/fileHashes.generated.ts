@@ -85,4 +85,6 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/further-mechanics/work-energy-power/soln/_QBT___Solns__Work_Energy_Principle.pdf': '3b202309',
   '/tex/tmua/TMUA_SetA_Paper1.pdf': '2692b6e2',
   '/tex/tmua/TMUA_SetA_Paper2.pdf': 'b53a7d86',
+  '/tex/tmua/TMUA_SetB_Paper1.pdf': '0ef66336',
+  '/tex/tmua/TMUA_SetB_Paper2.pdf': '3f9017cb',
 };

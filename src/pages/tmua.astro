@@ -5,13 +5,13 @@ import Footer from '~/components/Footer.astro';
 import { getResourcesByCategory } from '~/data/resources';
 const tmuaResources = getResourcesByCategory('TMUA');
 ---
-<Layout title="Free TMUA Practice Papers | resources.danieljsmith.org" description="Free custom practice papers for the Test of Mathematics for University Admission, with answer keys.">
+<Layout title="Free TMUA-Style Practice Papers | resources.danieljsmith.org" description="Free TMUA-style practice papers for the Test of Mathematics for University Admission, with answer keys.">
   <div class="min-h-screen flex flex-col">
     <Header />
     <main id="main-content" tabindex="-1" class="page-container listing-main">
       <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">All resources</a><span aria-hidden="true">/</span><span aria-current="page">TMUA</span></nav>
-      <h1 class="page-title">TMUA practice papers</h1>
-      <p class="page-intro">Practice papers for the Test of Mathematics for University Admission. Each paper includes its answer key. All papers are free to view and download.</p>
+      <h1 class="page-title">TMUA-style practice papers</h1>
+      <p class="page-intro">Original practice papers written in the style of the Test of Mathematics for University Admission. Each paper has 20 multiple-choice questions, with an answer key on the final page; worked solutions are in preparation. All papers are free to view and download. These papers are independent and are not affiliated with or endorsed by the organisations that set the TMUA.</p>
       <section class="tmua-list" aria-label="Practice papers">
         {tmuaResources.map(resource => (
           <a class="tmua-row" href={`/view/${resource.id}`}>
