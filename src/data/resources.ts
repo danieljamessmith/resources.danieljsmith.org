@@ -85,6 +85,18 @@ const rawResources: Resource[] = [
     description: '20 questions in the style of Paper 2: mathematical reasoning, logic and proof.',
     file: '/tex/tmua/TMUA_SetA_Paper2.pdf',
     category: 'TMUA',
+    type: 'questions',
+    pairId: 'tmua-setA-paper2-solns',
+  },
+  {
+    id: 'tmua-setA-paper2-solns',
+    title: 'TMUA Set A Paper 2',
+    description:
+      'Worked solutions to TMUA Set A Paper 2: finding errors in proofs, counterexamples, necessary and sufficient conditions, negation and more, with step-by-step reasoning.',
+    file: '/tex/tmua/TMUA_SetA_Paper2_Solutions.pdf',
+    category: 'TMUA',
+    type: 'solutions',
+    pairId: 'tmua-setA-paper2',
   },
   {
     id: 'tmua-setB-paper1',
