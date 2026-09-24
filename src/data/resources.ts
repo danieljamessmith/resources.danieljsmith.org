@@ -1,0 +1,1083 @@
+import { questionCounts } from './questionCounts.generated';
+import { fileHashes } from './fileHashes.generated';
+
+/** UK/international exam board or module filters for A-level Further Maths. */
+export type ExamBoard =
+  | 'edexcel'
+  | 'ocr-a'
+  | 'ocr-mei'
+  | 'aqa'
+  | 'cie-9231'
+  | 'edexcel-fm1'
+  | 'edexcel-fm2'
+  | 'ocr-mei-mechanics-minor'
+  | 'ocr-mei-mechanics-major';
+
+export const EXAM_BOARDS: { id: ExamBoard; label: string }[] = [
+  { id: 'edexcel', label: 'Edexcel' },
+  { id: 'aqa', label: 'AQA' },
+  { id: 'ocr-a', label: 'OCR A' },
+  { id: 'ocr-mei', label: 'OCR MEI' },
+  { id: 'cie-9231', label: 'CIE 9231' },
+];
+
+export const FM_MECH_EXAM_BOARDS: { id: ExamBoard; label: string }[] = [
+  { id: 'edexcel-fm1', label: 'Edexcel FM1' },
+  { id: 'edexcel-fm2', label: 'Edexcel FM2' },
+  { id: 'aqa', label: 'AQA' },
+  { id: 'ocr-a', label: 'OCR A' },
+  { id: 'ocr-mei-mechanics-minor', label: 'OCR MEI Mech Minor' },
+  { id: 'ocr-mei-mechanics-major', label: 'OCR MEI Mech Major' },
+  { id: 'cie-9231', label: 'CIE 9231' },
+];
+
+export interface Resource {
+  id: string;
+  title: string;
+  description: string;
+  file: string;
+  category: string;
+  type?: 'questions' | 'solutions' | 'notes';
+  pairId?: string;
+  topic?: string;
+  /** Set on A-level Further Maths `questions` packs; drives list/view copy. */
+  questionCount?: number;
+  /** Optional label shown after question count, e.g. "FM Level". */
+  note?: string;
+  /**
+   * Exam boards this pack is relevant for (typically set on `questions` and `notes` only).
+   * Omitted or empty means all boards.
+   */
+  boards?: ExamBoard[];
+  /** Human-friendly filename for the download attribute, e.g. "De Moivre's Theorem - Questions.pdf". */
+  downloadName?: string;
+}
+
+/** Further Maths strand categories; prefix used for combined totals across strands. */
+export const FM_CP = 'FM - Core Pure';
+export const FM_MECH = 'FM - Further Mechanics';
+export const FM_PREFIX = 'FM - ';
+
+const rawResources: Resource[] = [
+  // --- TMUA ---
+  {
+    id: 'tmua-setA-paper1',
+    title: 'TMUA Set A Paper 1',
+    description: '20 questions in the style of Paper 1: applying mathematical knowledge.',
+    file: '/tex/tmua/TMUA_SetA_Paper1.pdf',
+    category: 'TMUA',
+    type: 'questions',
+    pairId: 'tmua-setA-paper1-solns',
+  },
+  {
+    id: 'tmua-setA-paper1-solns',
+    title: 'TMUA Set A Paper 1',
+    description:
+      'Worked solutions to TMUA Set A Paper 1: logarithms, modulus inequalities, tangents, counting, sequences and more, with step-by-step methods and alternative approaches.',
+    file: '/tex/tmua/TMUA_SetA_Paper1_Solutions.pdf',
+    category: 'TMUA',
+    type: 'solutions',
+    pairId: 'tmua-setA-paper1',
+  },
+  {
+    id: 'tmua-setA-paper2',
+    title: 'TMUA Set A Paper 2',
+    description: '20 questions in the style of Paper 2: mathematical reasoning, logic and proof.',
+    file: '/tex/tmua/TMUA_SetA_Paper2.pdf',
+    category: 'TMUA',
+  },
+  {
+    id: 'tmua-setB-paper1',
+    title: 'TMUA Set B Paper 1',
+    description: '20 questions in the style of Paper 1: applying mathematical knowledge.',
+    file: '/tex/tmua/TMUA_SetB_Paper1.pdf',
+    category: 'TMUA',
+  },
+  {
+    id: 'tmua-setB-paper2',
+    title: 'TMUA Set B Paper 2',
+    description: '20 questions in the style of Paper 2: mathematical reasoning, logic and proof.',
+    file: '/tex/tmua/TMUA_SetB_Paper2.pdf',
+    category: 'TMUA',
+  },
+
+  // --- A-level Further Maths: Complex Numbers (QBT sheets) ---
+  {
+    id: 'fm-complex-de-moivres-theorem',
+    title: "De Moivre's Theorem",
+    description: '',
+    file: '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__De_Moivres_Theorem.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-complex-de-moivres-theorem-solns',
+    topic: 'Complex Numbers',
+  },
+  {
+    id: 'fm-complex-de-moivres-theorem-solns',
+    title: "De Moivre's Theorem",
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__De_Moivres_Theorem.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-complex-de-moivres-theorem',
+    topic: 'Complex Numbers',
+  },
+  {
+    id: 'fm-complex-loci-argand',
+    title: 'Loci and Regions in the Argand Diagram',
+    description: '',
+    file: '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Loci_and_Regions_in_the_Argand_Diagram.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-complex-loci-argand-solns',
+    topic: 'Complex Numbers',
+  },
+  {
+    id: 'fm-complex-loci-argand-solns',
+    title: 'Loci and Regions in the Argand Diagram',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Loci_and_Regions_in_the_Argand_Diagram.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-complex-loci-argand',
+    topic: 'Complex Numbers',
+  },
+  {
+    id: 'fm-complex-roots-geometry',
+    title: 'Complex Roots and Geometry Problems',
+    description: '',
+    file: '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Roots_and_Geometry_Problems.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-complex-roots-geometry-solns',
+    topic: 'Complex Numbers',
+  },
+  {
+    id: 'fm-complex-roots-geometry-solns',
+    title: 'Complex Roots and Geometry Problems',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Roots_and_Geometry_Problems.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-complex-roots-geometry',
+    topic: 'Complex Numbers',
+  },
+  {
+    id: 'fm-complex-series',
+    title: 'Complex Series',
+    description: '',
+    file: '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Series.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-complex-series-solns',
+    topic: 'Complex Numbers',
+  },
+  {
+    id: 'fm-complex-series-solns',
+    title: 'Complex Series',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Series.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-complex-series',
+    topic: 'Complex Numbers',
+  },
+
+  // --- A-level Further Maths: Vectors (Notes → pairs in teaching order) ---
+  {
+    id: 'fm-vectors-formulae-notes',
+    title: 'Vectors Formula Sheet',
+    description: 'Formula Sheet for Shortest Distances, Reflections, etc',
+    file: '/tex/further-maths/core-pure/vectors/notes/_Notes__Vectors_Formulae.pdf',
+    category: FM_CP,
+    type: 'notes',
+    topic: 'Vectors',
+  },
+  {
+    id: 'fm-vectors-matrix-determinants-inverses',
+    title: 'Matrix Determinants & Inverses',
+    description: '',
+    file: '/tex/further-maths/core-pure/vectors/qbt/_QBT__Matrix_Determinants___Inverses.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-vectors-matrix-determinants-inverses-solns',
+    topic: 'Vectors',
+  },
+  {
+    id: 'fm-vectors-matrix-determinants-inverses-solns',
+    title: 'Matrix Determinants & Inverses',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Matrix_Determinants___Inverses.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-vectors-matrix-determinants-inverses',
+    topic: 'Vectors',
+  },
+  {
+    id: 'fm-vectors-linear-transformations',
+    title: 'Linear Transformations',
+    description: '',
+    file: '/tex/further-maths/core-pure/vectors/qbt/_QBT__Linear_Transformations.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-vectors-linear-transformations-solns',
+    topic: 'Vectors',
+  },
+  {
+    id: 'fm-vectors-linear-transformations-solns',
+    title: 'Linear Transformations',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Linear_Transformations.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-vectors-linear-transformations',
+    topic: 'Vectors',
+  },
+  {
+    id: 'fm-vectors-invariant-points-and-lines',
+    title: 'Invariant Points and Lines',
+    description: '',
+    file: '/tex/further-maths/core-pure/vectors/qbt/_QBT__Invariant_Points_and_Lines.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-vectors-invariant-points-and-lines-solns',
+    topic: 'Vectors',
+  },
+  {
+    id: 'fm-vectors-invariant-points-and-lines-solns',
+    title: 'Invariant Points and Lines',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Invariant_Points_and_Lines.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-vectors-invariant-points-and-lines',
+    topic: 'Vectors',
+  },
+  {
+    id: 'fm-vectors-vector-product',
+    title: 'Vector Product',
+    description: '',
+    file: '/tex/further-maths/core-pure/vectors/qbt/_QBT__Vector_Product.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-vectors-vector-product-solns',
+    topic: 'Vectors',
+    note: 'Cross Product',
+    boards: ['aqa', 'ocr-a', 'ocr-mei', 'cie-9231'],
+  },
+  {
+    id: 'fm-vectors-vector-product-solns',
+    title: 'Vector Product',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Vector_Product.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-vectors-vector-product',
+    topic: 'Vectors',
+  },
+  {
+    id: 'fm-vectors-shortest-distances',
+    title: 'Shortest Distances',
+    description: '',
+    file: '/tex/further-maths/core-pure/vectors/qbt/_QBT__Vectors___Shortest_Distances.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-vectors-shortest-distances-solns',
+    topic: 'Vectors',
+  },
+  {
+    id: 'fm-vectors-shortest-distances-solns',
+    title: 'Shortest Distances',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Vectors___Shortest_Distances.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-vectors-shortest-distances',
+    topic: 'Vectors',
+  },
+  {
+    id: 'fm-vectors-plane-intersections',
+    title: 'Plane Intersections',
+    description: '',
+    file: '/tex/further-maths/core-pure/vectors/qbt/_QBT__Plane_Intersections.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-vectors-plane-intersections-solns',
+    topic: 'Vectors',
+  },
+  {
+    id: 'fm-vectors-plane-intersections-solns',
+    title: 'Plane Intersections',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Plane_Intersections.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-vectors-plane-intersections',
+    topic: 'Vectors',
+  },
+  {
+    id: 'fm-vectors-reflections-in-planes',
+    title: 'Reflections in Planes',
+    description: '',
+    file: '/tex/further-maths/core-pure/vectors/qbt/_QBT__Reflections_in_Planes.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-vectors-reflections-in-planes-solns',
+    topic: 'Vectors',
+    boards: ['edexcel', 'aqa', 'ocr-a'],
+  },
+  {
+    id: 'fm-vectors-reflections-in-planes-solns',
+    title: 'Reflections in Planes',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Reflections_in_Planes.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-vectors-reflections-in-planes',
+    topic: 'Vectors',
+  },
+
+  // --- A-level Further Maths: Further Calculus (notes → pairs in teaching order) ---
+  {
+    id: 'fm-further-tabular-ibp-notes',
+    title: 'Tabular Method for IBP',
+    description: 'Fast method for repeated Integration By Parts',
+    file: '/tex/further-maths/core-pure/further-calculus/notes/_Notes__Tabular_Method_for_IBP.pdf',
+    category: FM_CP,
+    type: 'notes',
+    topic: 'Further Calculus',
+  },
+  {
+    id: 'fm-further-integration-by-parts',
+    title: 'Integration by Parts',
+    description: '',
+    file: '/tex/further-maths/core-pure/further-calculus/qbt/_QBT__Integration_by_Parts__FM_Level_.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-further-integration-by-parts-solns',
+    topic: 'Further Calculus',
+    note: 'FM Level',
+  },
+  {
+    id: 'fm-further-integration-by-parts-solns',
+    title: 'Integration by Parts',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/further-calculus/soln/_QBT___Solns__Integration_by_Parts__FM_Level_.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-further-integration-by-parts',
+    topic: 'Further Calculus',
+  },
+  {
+    id: 'fm-further-integration-by-substitution',
+    title: 'Integration by Substitution',
+    description: '',
+    file: '/tex/further-maths/core-pure/further-calculus/qbt/_QBT__Integration_by_Substitution__FM_Level_.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-further-integration-by-substitution-solns',
+    topic: 'Further Calculus',
+    note: 'FM Level',
+  },
+  {
+    id: 'fm-further-integration-by-substitution-solns',
+    title: 'Integration by Substitution',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/further-calculus/soln/_QBT___Solns__Integration_by_Substitution__FM_Level_.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-further-integration-by-substitution',
+    topic: 'Further Calculus',
+  },
+  {
+    id: 'fm-further-integration-inverse-trig',
+    title: 'Integration with Inverse Trig',
+    description: '',
+    file: '/tex/further-maths/core-pure/further-calculus/qbt/_QBT__Integration_with_Inverse_Trig.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-further-integration-inverse-trig-solns',
+    topic: 'Further Calculus',
+    note: 'Inverse Trig/Hyperbolic Trig',
+  },
+  {
+    id: 'fm-further-integration-inverse-trig-solns',
+    title: 'Integration with Inverse Trig',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/further-calculus/soln/_QBT___Solns__Integration_with_Inverse_Trig.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-further-integration-inverse-trig',
+    topic: 'Further Calculus',
+  },
+  {
+    id: 'fm-further-volumes-revolution',
+    title: 'Volumes of Revolution',
+    description: '',
+    file: '/tex/further-maths/core-pure/further-calculus/qbt/_QBT__Volumes_of_Revolution.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-further-volumes-revolution-solns',
+    topic: 'Further Calculus',
+  },
+  {
+    id: 'fm-further-volumes-revolution-solns',
+    title: 'Volumes of Revolution',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/further-calculus/soln/_QBT___Solns__Volumes_of_Revolution.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-further-volumes-revolution',
+    topic: 'Further Calculus',
+  },
+  {
+    id: 'fm-further-maclaurin-series',
+    title: 'Maclaurin Series',
+    description: '',
+    file: '/tex/further-maths/core-pure/further-calculus/qbt/_QBT__Maclaurin_Series.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-further-maclaurin-series-solns',
+    topic: 'Further Calculus',
+  },
+  {
+    id: 'fm-further-maclaurin-series-solns',
+    title: 'Maclaurin Series',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/further-calculus/soln/_QBT___Solns__Maclaurin_Series.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-further-maclaurin-series',
+    topic: 'Further Calculus',
+  },
+
+  // --- A-level Further Maths: Polar Coordinates ---
+  {
+    id: 'fm-polar-integration-polar-curves',
+    title: 'Integration of Polar Curves',
+    description: '',
+    file: '/tex/further-maths/core-pure/polar-coordinates/qbt/_QBT__Integration_of_Polar_Curves.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-polar-integration-polar-curves-solns',
+    topic: 'Polar Coordinates',
+  },
+  {
+    id: 'fm-polar-integration-polar-curves-solns',
+    title: 'Integration of Polar Curves',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/polar-coordinates/soln/_QBT___Solns__Integration_of_Polar_Curves.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-polar-integration-polar-curves',
+    topic: 'Polar Coordinates',
+  },
+  {
+    id: 'fm-polar-tangents-polar-curves',
+    title: 'Tangents to Polar Curves',
+    description: '',
+    file: '/tex/further-maths/core-pure/polar-coordinates/qbt/_QBT__Tangents_to_Polar_Curves.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-polar-tangents-polar-curves-solns',
+    topic: 'Polar Coordinates',
+    boards: ['edexcel', 'aqa'],
+  },
+  {
+    id: 'fm-polar-tangents-polar-curves-solns',
+    title: 'Tangents to Polar Curves',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/polar-coordinates/soln/_QBT___Solns__Tangents_to_Polar_Curves.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-polar-tangents-polar-curves',
+    topic: 'Polar Coordinates',
+  },
+
+  // --- A-level Further Maths: Differential Equations (teaching progression order) ---
+  {
+    id: 'fm-integrating-factor',
+    title: 'Integrating Factor Method',
+    description: '',
+    file: '/tex/further-maths/core-pure/differential-equations/qbt/_QBT__Integrating_Factor_Method.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-integrating-factor-solns',
+    topic: 'Differential Equations',
+  },
+  {
+    id: 'fm-integrating-factor-solns',
+    title: 'Integrating Factor Method',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/differential-equations/soln/_QBT___Solns__Integrating_Factor_Method.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-integrating-factor',
+    topic: 'Differential Equations',
+  },
+  {
+    id: 'fm-modelling-1st-order',
+    title: 'Modelling with 1st Order Differential Equations',
+    description: '',
+    file: '/tex/further-maths/core-pure/differential-equations/qbt/_QBT__Modelling_with_1st_Order_Differential_Equations.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-modelling-1st-order-solns',
+    topic: 'Differential Equations',
+  },
+  {
+    id: 'fm-modelling-1st-order-solns',
+    title: 'Modelling with 1st Order Differential Equations',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/differential-equations/soln/_QBT___Solns__Modelling_with_1st_Order_Differential_Equations.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-modelling-1st-order',
+    topic: 'Differential Equations',
+  },
+  {
+    id: 'fm-2nd-order-de',
+    title: '2nd Order Differential Equations',
+    description: '',
+    file: '/tex/further-maths/core-pure/differential-equations/qbt/_QBT__2nd_Order_Differential_Equations.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-2nd-order-de-solns',
+    topic: 'Differential Equations',
+  },
+  {
+    id: 'fm-2nd-order-de-solns',
+    title: '2nd Order Differential Equations',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/differential-equations/soln/_QBT___Solns__2nd_Order_Differential_Equations.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-2nd-order-de',
+    topic: 'Differential Equations',
+  },
+  {
+    id: 'fm-modelling-2nd-order',
+    title: 'Modelling with 2nd Order Differential Equations',
+    description: '',
+    file: '/tex/further-maths/core-pure/differential-equations/qbt/_QBT__Modelling_with_2nd_Order_Differential_Equations.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-modelling-2nd-order-solns',
+    topic: 'Differential Equations',
+  },
+  {
+    id: 'fm-modelling-2nd-order-solns',
+    title: 'Modelling with 2nd Order Differential Equations',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/differential-equations/soln/_QBT___Solns__Modelling_with_2nd_Order_Differential_Equations.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-modelling-2nd-order',
+    topic: 'Differential Equations',
+  },
+  {
+    id: 'fm-systems-de',
+    title: 'Systems of Differential Equations',
+    description: '',
+    file: '/tex/further-maths/core-pure/differential-equations/qbt/_QBT__Systems_of_Differential_Equations.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-systems-de-solns',
+    topic: 'Differential Equations',
+  },
+  {
+    id: 'fm-systems-de-solns',
+    title: 'Systems of Differential Equations',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/differential-equations/soln/_QBT___Solns__Systems_of_Differential_Equations.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-systems-de',
+    topic: 'Differential Equations',
+  },
+
+  // --- A-level Further Maths: Proof by Induction ---
+  {
+    id: 'fm-induction-series',
+    title: 'Proof by Induction - Series',
+    description: '',
+    file: '/tex/further-maths/core-pure/induction/qbt/_QBT__Proof_by_Induction___Series.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-induction-series-solns',
+    topic: 'Proof by Induction',
+  },
+  {
+    id: 'fm-induction-series-solns',
+    title: 'Proof by Induction - Series',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/induction/soln/_QBT___Solns__Proof_by_Induction___Series.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-induction-series',
+    topic: 'Proof by Induction',
+  },
+  {
+    id: 'fm-induction-matrices',
+    title: 'Proof by Induction - Matrices',
+    description: '',
+    file: '/tex/further-maths/core-pure/induction/qbt/_QBT__Proof_by_Induction___Matrices.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-induction-matrices-solns',
+    topic: 'Proof by Induction',
+  },
+  {
+    id: 'fm-induction-matrices-solns',
+    title: 'Proof by Induction - Matrices',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/induction/soln/_QBT___Solns__Proof_by_Induction___Matrices.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-induction-matrices',
+    topic: 'Proof by Induction',
+  },
+  {
+    id: 'fm-induction-divisibility',
+    title: 'Proof by Induction - Divisibility',
+    description: '',
+    file: '/tex/further-maths/core-pure/induction/qbt/_QBT__Proof_by_Induction___Divisibility.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-induction-divisibility-solns',
+    topic: 'Proof by Induction',
+  },
+  {
+    id: 'fm-induction-divisibility-solns',
+    title: 'Proof by Induction - Divisibility',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/induction/soln/_QBT___Solns__Proof_by_Induction___Divisibility.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-induction-divisibility',
+    topic: 'Proof by Induction',
+  },
+  {
+    id: 'fm-induction-derivatives',
+    title: 'Proof by Induction - Derivatives',
+    description: '',
+    file: '/tex/further-maths/core-pure/induction/qbt/_QBT__Proof_by_Induction___Derivatives.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-induction-derivatives-solns',
+    topic: 'Proof by Induction',
+  },
+  {
+    id: 'fm-induction-derivatives-solns',
+    title: 'Proof by Induction - Derivatives',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/induction/soln/_QBT___Solns__Proof_by_Induction___Derivatives.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-induction-derivatives',
+    topic: 'Proof by Induction',
+  },
+
+  // --- A-level Further Maths: Miscellaneous Pure ---
+  {
+    id: 'fm-misc-hyperbolic-functions',
+    title: 'Hyperbolic Functions',
+    description: '',
+    file: '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Hyperbolic_Functions.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-misc-hyperbolic-functions-solns',
+    topic: 'Miscellaneous Pure',
+  },
+  {
+    id: 'fm-misc-hyperbolic-functions-solns',
+    title: 'Hyperbolic Functions',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/misc-pure/soln/_QBT___Solns__Hyperbolic_Functions.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-misc-hyperbolic-functions',
+    topic: 'Miscellaneous Pure',
+  },
+  {
+    id: 'fm-misc-roots-of-polynomials',
+    title: 'Roots of Polynomials',
+    description: '',
+    file: '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Roots_of_Polynomials.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-misc-roots-of-polynomials-solns',
+    topic: 'Miscellaneous Pure',
+  },
+  {
+    id: 'fm-misc-roots-of-polynomials-solns',
+    title: 'Roots of Polynomials',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/misc-pure/soln/_QBT___Solns__Roots_of_Polynomials.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-misc-roots-of-polynomials',
+    topic: 'Miscellaneous Pure',
+  },
+  {
+    id: 'fm-misc-method-of-differences',
+    title: 'Series - Method of Differences',
+    description: '',
+    file: '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Series___Method_of_Differences.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-misc-method-of-differences-solns',
+    topic: 'Miscellaneous Pure',
+  },
+  {
+    id: 'fm-misc-method-of-differences-solns',
+    title: 'Series - Method of Differences',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/misc-pure/soln/_QBT___Solns__Series___Method_of_Differences.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-misc-method-of-differences',
+    topic: 'Miscellaneous Pure',
+  },
+  {
+    id: 'fm-misc-rational-functions',
+    title: 'Rational Functions',
+    description: '',
+    file: '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Rational_Functions.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-misc-rational-functions-solns',
+    topic: 'Miscellaneous Pure',
+    boards: ['aqa', 'cie-9231'],
+  },
+  {
+    id: 'fm-misc-rational-functions-solns',
+    title: 'Rational Functions',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/misc-pure/soln/_QBT___Solns__Rational_Functions.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-misc-rational-functions',
+    topic: 'Miscellaneous Pure',
+  },
+
+  // --- A-level Further Maths: Further Mechanics — Momentum & Collisions ---
+  {
+    id: 'fm-mech-vector-momentum-impulse',
+    title: 'Vector Momentum and Impulse',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/momentum-restitution-collisions/qbt/_QBT__Vector_Momentum_and_Impulse.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'fm-mech-vector-momentum-impulse-solns',
+    topic: 'Momentum & Collisions',
+    boards: ['edexcel-fm1', 'aqa', 'ocr-a', 'ocr-mei-mechanics-minor', 'ocr-mei-mechanics-major', 'cie-9231'],
+  },
+  {
+    id: 'fm-mech-vector-momentum-impulse-solns',
+    title: 'Vector Momentum and Impulse',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/momentum-restitution-collisions/soln/_QBT___Solns__Vector_Momentum_and_Impulse.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'fm-mech-vector-momentum-impulse',
+    topic: 'Momentum & Collisions',
+  },
+  {
+    id: 'fm-mech-collisions-1d',
+    title: 'Collisions in 1 Dimension',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/momentum-restitution-collisions/qbt/_QBT__Collisions_in_1_Dimension.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'fm-mech-collisions-1d-solns',
+    topic: 'Momentum & Collisions',
+    boards: ['edexcel-fm1', 'aqa', 'ocr-a', 'ocr-mei-mechanics-minor', 'ocr-mei-mechanics-major', 'cie-9231'],
+  },
+  {
+    id: 'fm-mech-collisions-1d-solns',
+    title: 'Collisions in 1 Dimension',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/momentum-restitution-collisions/soln/_QBT___Solns__Collisions_in_1_Dimension.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'fm-mech-collisions-1d',
+    topic: 'Momentum & Collisions',
+  },
+  {
+    id: 'fm-mech-collisions-in-2-dimensions',
+    title: 'Collisions in 2 Dimensions',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/momentum-restitution-collisions/qbt/_QBT__Collisions_in_2_Dimensions.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'fm-mech-collisions-in-2-dimensions-solns',
+    topic: 'Momentum & Collisions',
+    boards: ['edexcel-fm1', 'aqa', 'ocr-a', 'ocr-mei-mechanics-major', 'cie-9231'],
+  },
+  {
+    id: 'fm-mech-collisions-in-2-dimensions-solns',
+    title: 'Collisions in 2 Dimensions',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/momentum-restitution-collisions/soln/_QBT___Solns__Collisions_in_2_Dimensions.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'fm-mech-collisions-in-2-dimensions',
+    topic: 'Momentum & Collisions',
+  },
+
+  // --- A-level Further Maths: Further Mechanics — Work, Energy and Power ---
+  {
+    id: 'further-maths-further-mechanics-work-energy-power-work-energy-power-and-driving-force',
+    title: 'Power and Driving Force',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/work-energy-power/qbt/_QBT___Power_and_Driving_Force_.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'further-maths-further-mechanics-work-energy-power-work-energy-power-and-driving-force-solns',
+    topic: 'Work, Energy and Power',
+    boards: ['edexcel-fm1', 'aqa', 'ocr-a', 'ocr-mei-mechanics-minor', 'ocr-mei-mechanics-major'],
+  },
+  {
+    id: 'further-maths-further-mechanics-work-energy-power-work-energy-power-and-driving-force-solns',
+    title: 'Power and Driving Force',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/work-energy-power/soln/_QBT___Solns___Power_and_Driving_Force_.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'further-maths-further-mechanics-work-energy-power-work-energy-power-and-driving-force',
+    topic: 'Work, Energy and Power',
+  },
+  {
+    id: 'further-maths-further-mechanics-work-energy-power-work-energy-principle',
+    title: 'Work-Energy Principle',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/work-energy-power/qbt/_QBT__Work_Energy_Principle.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'further-maths-further-mechanics-work-energy-power-work-energy-principle-solns',
+    topic: 'Work, Energy and Power',
+    note: 'No Elasticity',
+    boards: ['edexcel-fm1', 'aqa', 'ocr-a', 'ocr-mei-mechanics-minor', 'ocr-mei-mechanics-major'],
+  },
+  {
+    id: 'further-maths-further-mechanics-work-energy-power-work-energy-principle-solns',
+    title: 'Work-Energy Principle',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/work-energy-power/soln/_QBT___Solns__Work_Energy_Principle.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'further-maths-further-mechanics-work-energy-power-work-energy-principle',
+    topic: 'Work, Energy and Power',
+  },
+  {
+    id: 'further-maths-further-mechanics-work-energy-power-work-energy-elastic-potential-energy',
+    title: 'Elastic Potential Energy',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/work-energy-power/qbt/_QBT__Elastic_Potential_Energy.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'further-maths-further-mechanics-work-energy-power-work-energy-elastic-potential-energy-solns',
+    topic: 'Work, Energy and Power',
+    boards: ['edexcel-fm1', 'aqa', 'ocr-a', 'ocr-mei-mechanics-major', 'cie-9231'],
+  },
+  {
+    id: 'further-maths-further-mechanics-work-energy-power-work-energy-elastic-potential-energy-solns',
+    title: 'Elastic Potential Energy',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/work-energy-power/soln/_QBT___Solns__Elastic_Potential_Energy.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'further-maths-further-mechanics-work-energy-power-work-energy-elastic-potential-energy',
+    topic: 'Work, Energy and Power',
+  },
+
+  // --- A-level Further Maths: Further Mechanics - Miscellaneous Mechanics ---
+  {
+    id: 'further-maths-further-mechanics-miscellaneous-mechanics-dimensional-analysis',
+    title: 'Dimensional Analysis',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/miscellaneous-mechanics/qbt/_QBT__Dimensional_Analysis.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'further-maths-further-mechanics-miscellaneous-mechanics-dimensional-analysis-solns',
+    topic: 'Miscellaneous Mechanics',
+    boards: ['aqa', 'ocr-a', 'ocr-mei-mechanics-minor', 'ocr-mei-mechanics-major'],
+  },
+  {
+    id: 'further-maths-further-mechanics-miscellaneous-mechanics-dimensional-analysis-solns',
+    title: 'Dimensional Analysis',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/miscellaneous-mechanics/soln/_QBT___Solns__Dimensional_Analysis.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'further-maths-further-mechanics-miscellaneous-mechanics-dimensional-analysis',
+    topic: 'Miscellaneous Mechanics',
+  },
+
+  // --- A-level Further Maths: Further Mechanics - Centre of Mass ---
+  {
+    id: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-systems-of-particles',
+    title: 'Centre of Mass of Systems of Particles',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/centre-of-mass/qbt/_QBT__Centre_of_Mass_of_Systems_of_Particles.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-systems-of-particles-solns',
+    topic: 'Centre of Mass',
+    boards: ['edexcel-fm2', 'aqa', 'ocr-a', 'ocr-mei-mechanics-minor', 'ocr-mei-mechanics-major', 'cie-9231'],
+  },
+  {
+    id: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-systems-of-particles-solns',
+    title: 'Centre of Mass of Systems of Particles',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/centre-of-mass/soln/_QBT___Solns__Centre_of_Mass_of_Systems_of_Particles.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-systems-of-particles',
+    topic: 'Centre of Mass',
+  },
+  {
+    id: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-polygonal-laminae',
+    title: 'Centre of Mass of Polygonal Laminae',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/centre-of-mass/qbt/_QBT__Centre_of_Mass_of_Polygonal_Laminae.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-polygonal-laminae-solns',
+    topic: 'Centre of Mass',
+    boards: ['edexcel-fm2', 'aqa', 'ocr-a', 'ocr-mei-mechanics-minor', 'ocr-mei-mechanics-major', 'cie-9231'],
+  },
+  {
+    id: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-polygonal-laminae-solns',
+    title: 'Centre of Mass of Polygonal Laminae',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/centre-of-mass/soln/_QBT___Solns__Centre_of_Mass_of_Polygonal_Laminae.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-polygonal-laminae',
+    topic: 'Centre of Mass',
+  },
+];
+
+function buildDownloadName(title: string, type?: string): string {
+  const suffix = type ? ` - ${type.charAt(0).toUpperCase() + type.slice(1)}` : '';
+  return `${title}${suffix}.pdf`;
+}
+
+/** Populate questionCount, downloadName, and cache-busted file URL. */
+export const resources: Resource[] = rawResources.map((r) => {
+  const hash = fileHashes[r.file];
+  return {
+    ...r,
+    file: hash ? `${r.file}?v=${hash}` : r.file,
+    downloadName: buildDownloadName(r.title, r.type),
+    ...(r.type === 'questions' && questionCounts[r.file] !== undefined
+      ? { questionCount: questionCounts[r.file] }
+      : {}),
+  };
+});
+
+export const categories = [...new Set(resources.map((r) => r.category))];
+
+export function getResourceDisplayDescription(resource: Resource): string {
+  if (
+    resource.category.startsWith(FM_PREFIX) &&
+    resource.type === 'questions' &&
+    resource.questionCount != null
+  ) {
+    return `${resource.questionCount} exam-style questions`;
+  }
+  return resource.description;
+}
+
+/** Question count for one category (e.g. one Further Maths strand). */
+export function getQuestionCountByCategory(cat: string): number {
+  return resources
+    .filter((r) => r.category === cat && r.type === 'questions')
+    .reduce((sum, r) => sum + (r.questionCount ?? 0), 0);
+}
+
+/** Distinct-topic count for one category (e.g. one Further Maths strand). */
+export function getTopicCountByCategory(cat: string): number {
+  const topics = new Set<string>();
+  for (const r of resources) {
+    if (r.category === cat && r.topic) topics.add(r.topic);
+  }
+  return topics.size;
+}
+
+/** Worksheet (question-sheet) count for one category; solutions aren't counted separately. */
+export function getWorksheetCountByCategory(cat: string): number {
+  return resources.filter((r) => r.category === cat && r.type === 'questions').length;
+}
+
+export function getFurtherMathsTotalQuestionCount(): number {
+  return resources
+    .filter((r) => r.category.startsWith(FM_PREFIX) && r.type === 'questions')
+    .reduce((sum, r) => sum + (r.questionCount ?? 0), 0);
+}
+
+/** Rounded down to nearest 10; use for marketing line when >= 10. */
+export function getFurtherMathsQuestionTotalRoundedDownTen(): number {
+  return Math.floor(getFurtherMathsTotalQuestionCount() / 10) * 10;
+}
+
+export function getResourceById(id: string): Resource | undefined {
+  return resources.find((r) => r.id === id);
+}
+
+/**
+ * Boards a resource applies to. `undefined` means all boards.
+ * For `solutions`, inherits from the paired `questions` resource when not set on the row itself.
+ */
+export function getResourceBoards(r: Resource): ExamBoard[] | undefined {
+  if (r.boards && r.boards.length > 0) return r.boards;
+  if (r.type === 'solutions' && r.pairId) {
+    const q = getResourceById(r.pairId);
+    if (q?.boards && q.boards.length > 0) return q.boards;
+  }
+  return undefined;
+}
+
+/** Value for `data-boards` on listing cards: `"all"` or comma-separated ids. */
+export function boardsToDataAttributeValue(boards: ExamBoard[] | undefined): string {
+  if (!boards || boards.length === 0) return 'all';
+  return boards.join(',');
+}
+
+export function getExamBoardLabel(id: ExamBoard): string {
+  return [...EXAM_BOARDS, ...FM_MECH_EXAM_BOARDS].find((b) => b.id === id)?.label ?? id;
+}
+
+export function getDisplayExamBoards(boards: ExamBoard[] | undefined): ExamBoard[] | undefined {
+  if (!boards) return undefined;
+  if (
+    boards.includes('ocr-mei-mechanics-major') &&
+    boards.includes('ocr-mei-mechanics-minor')
+  ) {
+    return boards.filter((bid) => bid !== 'ocr-mei-mechanics-major');
+  }
+  return boards;
+}
+
+export function getResourcesByCategory(category: string): Resource[] {
+  return resources.filter((r) => r.category === category);
+}
+
+export function getResourcesByTopic(category: string, topic: string): Resource[] {
+  return resources.filter((r) => r.category === category && r.topic === topic);
+}
+
+export function getResourcePairs(category: string, topic?: string) {
+  const questions = resources.filter(
+    (r) =>
+      r.category === category &&
+      r.type === 'questions' &&
+      (topic === undefined || r.topic === topic),
+  );
+  return questions.map((q) => ({
+    questions: q,
+    solutions: resources.find((r) => r.id === q.pairId),
+  }));
+}

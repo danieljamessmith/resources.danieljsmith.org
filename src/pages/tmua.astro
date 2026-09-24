@@ -1,0 +1,41 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+import { getResourcesByCategory, getResourceById } from '~/data/resources';
+const tmuaPapers = getResourcesByCategory('TMUA')
+  .filter(r => r.type !== 'solutions')
+  .map(paper => ({ paper, solutions: paper.pairId ? getResourceById(paper.pairId) : undefined }));
+---
+<Layout title="TMUA Practice Papers with Worked Solutions | Free" description="Free TMUA-style practice papers with full worked solutions: step-by-step methods, alternative approaches and exam technique for Paper 1 and Paper 2.">
+  <div class="min-h-screen flex flex-col">
+    <Header />
+    <main id="main-content" tabindex="-1" class="page-container listing-main">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">All resources</a><span aria-hidden="true">/</span><span aria-current="page">TMUA</span></nav>
+      <h1 class="page-title">TMUA practice papers and worked solutions</h1>
+      <p class="page-intro">Original practice papers written in the style of the Test of Mathematics for University Admission.</p>
+      <ul class="page-intro page-intro-list">
+        <li>Each paper has 20 multiple-choice questions with an answer key.</li>
+        <li>Questions are <strong>not in difficulty order</strong>, reflecting the post-2024 TMUA format.</li>
+        <li>Worked solutions explain every step, show alternative methods and point out common mistakes. Use them as worked examples of standard TMUA techniques such as case-splitting, testing the options and spotting a substitution.</li>
+        <li>Worked solutions are available for Set A Paper 1, with more in preparation.</li>
+        <li>All papers are free to view and download.</li>
+        <li>These papers are independent and are not affiliated with or endorsed by the organisations that set the TMUA.</li>
+      </ul>
+      <section class="tmua-list" aria-label="Practice papers">
+        {tmuaPapers.map(({ paper, solutions }) => (
+          <div class="tmua-row">
+            <div><h2><a class="tmua-row-link" href={`/view/${paper.id}`}>{paper.title}</a></h2><p>{paper.description}</p></div>
+            <div class="tmua-row-actions">
+              <span class="document-link" aria-hidden="true">View paper &rarr;</span>
+              {solutions && (
+                <a class="document-link tmua-solutions-link" href={`/view/${solutions.id}`} ><span class="sr-only">{paper.title} </span>Worked solutions &rarr;</a>
+              )}
+            </div>
+          </div>
+        ))}
+      </section>
+    </main>
+    <Footer />
+  </div>
+</Layout>

@@ -1,0 +1,22 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const links = [
+  { href: '/', label: 'All resources' },
+  { href: '/further-maths/core-pure', label: 'Core Pure' },
+  { href: '/further-maths/further-mechanics', label: 'Further Mechanics' },
+  { href: '/tmua', label: 'TMUA' },
+];
+---
+<header class="site-header">
+  <div class="page-container header-bar">
+    <a href="/" class="site-name">resources.danieljsmith.org</a>
+    <nav class="primary-nav" aria-label="Main navigation">
+      {links.map(({ href, label }) => <a href={href} aria-current={path === href ? 'page' : undefined}>{label}</a>)}
+    </nav>
+    <div class="header-actions">
+      <ThemeToggle />
+      <a class="tuition-link" href="https://tuition.danieljsmith.org/" data-umami-event="tuition-click" data-umami-event-location="header">Private tuition <span aria-hidden="true">&nearr;</span></a>
+    </div>
+  </div>
+</header>

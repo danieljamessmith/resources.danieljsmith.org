@@ -1,0 +1,98 @@
+% Shared preamble for TMUA question papers. Local edits here are overwritten.
+
+% Reproducible PDFs: no timestamps, no trailer id, no build-path details.
+\ifdefined\pdfsuppressptexinfo
+  \pdfsuppressptexinfo=-1
+  \pdfinfoomitdate=1
+  \pdftrailerid{}
+\fi
+
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{ragged2e}
+\usepackage{fancyhdr}
+\usepackage{etoolbox}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+
+\usepackage{tocloft}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdfauthor={danieljsmith.org}, pdfcreator={}, pdfsubject={}, pdfkeywords={}}
+\urlstyle{same}
+\tocloftpagestyle{djspaper}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftsubsecindent}{1.5em}
+\setlength{\cftsubsecnumwidth}{0pt}
+\renewcommand{\cftsubsecfont}{\small\color{black}}
+\renewcommand{\cftsubsecpagefont}{\small\color{black}}
+\renewcommand{\cftsubsecleader}{\hfill}
+
+% \djsPaperSetup{<PDF title>}{<header label>}, called once after this file.
+\newcommand{\djsHeaderLabel}{}
+\newcommand{\djsPaperSetup}[2]{%
+  \hypersetup{pdftitle={#1}}%
+  \renewcommand{\djsHeaderLabel}{#2}}
+
+\setlength{\parindent}{0pt}
+\fancypagestyle{djspaper}{%
+  \fancyhead{}%
+  \fancyfoot{}%
+  \renewcommand{\headrulewidth}{0.9pt}%
+  \fancyhead[L]{\djsHeaderLabel}%
+  \fancyhead[R]{\href{https://danieljsmith.org}{danieljsmith.org}}%
+}
+\pagestyle{djspaper}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+
+% Topic labels: a subtle line above each question and a suffix on its
+% contents entry. The bookmark form is spelled out separately, because a PDF
+% bookmark is plain text and would otherwise keep the colour name.
+\newcommand{\djsTocTopic}[1]{%
+  \ifblank{#1}{}{%
+    \texorpdfstring
+      {\hspace{0.9em}{\footnotesize\itshape\color{black!45}#1}}
+      { \textendash\ #1}}}
+\newcommand{\djsTopicLine}[1]{%
+  \ifblank{#1}{}{%
+    {\raggedleft\footnotesize\itshape\color{black!45}#1\par}%
+    \vspace{-0.6\baselineskip}}}
+
+\newcommand{\questionitem}[1][]{%
+  \item\phantomsection
+  \addcontentsline{toc}{subsection}{%
+    Question \number\value{enumi}\protect\djsTocTopic{#1}}%
+}
+\renewcommand{\contentsname}{Questions}
+\newcommand{\djsFrontMatter}{%
+  \vspace*{20pt}%
+  \tableofcontents
+  \newpage
+}

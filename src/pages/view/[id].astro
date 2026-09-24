@@ -1,0 +1,510 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import ThemeToggle from '~/components/ThemeToggle.astro';
+import { resources, getResourceById, getResourceDisplayDescription } from '~/data/resources';
+import { resourceContents } from '~/data/resourceContents';
+import { getStrandHrefForResource } from '~/data/topics';
+
+export function getStaticPaths() {
+  return resources.map((resource) => ({
+    params: { id: resource.id },
+  }));
+}
+
+const { id } = Astro.params;
+const resource = getResourceById(id);
+
+if (!resource) {
+  return Astro.redirect('/404');
+}
+
+type BreadcrumbNav =
+  | { mode: 'single'; href: string; label: string; aria: string }
+  | {
+      mode: 'fm';
+      parentHref: string;
+      parentLabel: string;
+      sectionHref: string;
+      sectionLabel: string;
+    };
+
+const categoryBreadcrumb: Record<string, BreadcrumbNav> = {
+  TMUA: { mode: 'single', href: '/tmua', label: 'TMUA', aria: 'Back to TMUA resources' },
+  'FM - Core Pure': {
+    mode: 'fm',
+    parentLabel: 'All resources',
+    parentHref: '/',
+    sectionLabel: 'Core Pure',
+    sectionHref: '/further-maths/core-pure',
+  },
+  'FM - Further Mechanics': {
+    mode: 'fm',
+    parentLabel: 'All resources',
+    parentHref: '/',
+    sectionLabel: 'Further Mechanics',
+    sectionHref: '/further-maths/further-mechanics',
+  },
+};
+const baseBreadcrumb = categoryBreadcrumb[resource.category] ?? {
+  mode: 'single' as const,
+  href: '/',
+  label: 'Home',
+  aria: 'All resources',
+};
+// Return readers to the booklet's own topic section rather than the top of the strand page.
+const topicHref = getStrandHrefForResource(resource);
+const breadcrumb =
+  baseBreadcrumb.mode === 'fm' && topicHref ? { ...baseBreadcrumb, sectionHref: topicHref } : baseBreadcrumb;
+const displayDescription = getResourceDisplayDescription(resource);
+const contents = resourceContents[resource.id];
+const resourceKind = resource.type === 'solutions' ? 'Worked solutions' : resource.type === 'questions' ? 'Questions' : 'Notes';
+const pageTitle = resource.category.startsWith('FM - ')
+  ? `${resource.title}: ${resourceKind} | A-level Further Maths`
+  : resource.type === 'solutions'
+    ? `${resource.title}: Worked solutions | TMUA-Style Practice`
+    : `${resource.title} | TMUA-Style Practice`;
+
+const partnerResource =
+  resource.pairId && (resource.type === 'questions' || resource.type === 'solutions')
+    ? (getResourceById(resource.pairId) ?? null)
+    : null;
+
+const paired = partnerResource
+  ? {
+      href: `/view/${partnerResource.id}` as const,
+      label: partnerResource.type === 'solutions' ? 'Solutions' : 'Questions',
+      aria:
+        partnerResource.type === 'solutions'
+          ? 'Open solutions'
+          : 'Open questions',
+      splitAria:
+        partnerResource.type === 'solutions'
+          ? 'Open solutions alongside the questions'
+          : 'Open questions alongside the solutions',
+    }
+  : null;
+
+// TMUA papers are typed only for question/solution pairing; they have no published source .tex.
+const texViewerHref = resource.type && resource.category !== 'TMUA' ? `/source/${resource.id}` : null;
+
+const paneLabel = (type: string | undefined): string =>
+  type === 'questions' ? 'Questions' : type === 'solutions' ? 'Solutions' : 'Document';
+const primaryPaneLabel = paneLabel(resource.type);
+const partnerPaneLabel = partnerResource ? paneLabel(partnerResource.type) : '';
+/*
+  PDF open param #view=FitH: Firefox fits width as intended. Chromium (Chrome/Edge PDFium)
+  over-zooms inside iframes. Plain URL + full-width iframe keeps Chromium readable; we only
+  append FitH on Firefox. A PDF.js embed would avoid UA branching but is heavier.
+*/
+---
+
+<Layout title={pageTitle} description={displayDescription}>
+  <div class="min-h-screen flex flex-col">
+    <header class="bg-surface border-b border-rule sticky top-0 z-10">
+      <div class="page-container py-2 flex items-center justify-between gap-3">
+        {/*
+          One slim row: breadcrumb chain ending with the sheet title, then the frequent actions
+          (partner, side by side, download, full screen). Rarer actions live in the "More" menu.
+        */}
+        <nav class="flex items-center gap-2 text-sm min-w-0 flex-1" aria-label="Breadcrumb">
+          {breadcrumb.mode === 'single' ? (
+            <>
+              <a
+                href={breadcrumb.href}
+                class="inline-flex items-center gap-1.5 flex-shrink-0 p-1 -ml-1 rounded-sm text-muted hover:text-accent hover:bg-surface-overlay transition-colors"
+                aria-label={breadcrumb.aria}
+                title={breadcrumb.aria}
+              >
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                <span class="md:hidden text-ink text-sm font-medium">{breadcrumb.label}</span>
+              </a>
+              <a href={breadcrumb.href} class="hidden md:inline text-ink hover:text-accent transition-colors flex-shrink-0">
+                {breadcrumb.label}
+              </a>
+              <span class="hidden md:inline text-muted flex-shrink-0" aria-hidden="true">/</span>
+            </>
+          ) : (
+            <>
+              <a
+                href={breadcrumb.sectionHref}
+                class="inline-flex items-center gap-1.5 flex-shrink-0 p-1 -ml-1 rounded-sm text-muted hover:text-accent hover:bg-surface-overlay transition-colors"
+                aria-label={`Back to ${breadcrumb.sectionLabel}`}
+                title={`Back to ${breadcrumb.sectionLabel}`}
+              >
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                <span class="md:hidden text-ink text-sm font-medium">{breadcrumb.sectionLabel}</span>
+              </a>
+              <a href={breadcrumb.parentHref} class="hidden 2xl:inline text-ink hover:text-accent transition-colors flex-shrink-0">
+                {breadcrumb.parentLabel}
+              </a>
+              <span class="hidden 2xl:inline text-muted flex-shrink-0" aria-hidden="true">/</span>
+              <a href={breadcrumb.sectionHref} class="hidden md:inline text-ink hover:text-accent transition-colors flex-shrink-0">
+                {breadcrumb.sectionLabel}
+              </a>
+              <span class="hidden md:inline text-muted flex-shrink-0" aria-hidden="true">/</span>
+            </>
+          )}
+          {/* Title is shown only at md+; on mobile the "Open PDF" landing already renders a large title + description. */}
+          <h1 class="hidden md:block text-base font-semibold text-ink truncate min-w-[6rem] flex-1" title={resource.title}>
+            {resource.title}
+          </h1>
+        </nav>
+        <div class="hidden md:flex flex-shrink-0 items-center gap-2">
+          {paired && (
+            <a href={paired.href} data-pair-link data-hide-on-split class="viewer-btn viewer-btn--primary" title={paired.aria}>
+              {paired.label}
+            </a>
+          )}
+          {paired && (
+            <button
+              type="button"
+              data-split-toggle
+              aria-pressed="false"
+              title={paired.splitAria}
+              class="viewer-btn viewer-btn--split"
+            >
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 4.5v15m6-15v15M4.125 19.5h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+              </svg>
+              <span data-split-label>Side by side</span>
+            </button>
+          )}
+          <a
+            href={resource.file}
+            download={resource.downloadName}
+            aria-label="Download PDF"
+            title="Download PDF"
+            class:list={['viewer-btn viewer-btn--collapsible', { 'viewer-btn--primary': !paired }]}
+          >
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            <span class="viewer-btn-label">Download</span>
+          </a>
+          <button type="button" class="viewer-btn viewer-btn--collapsible" data-fullscreen aria-label="Full screen" title="Full screen (Esc to exit)" hidden>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" />
+            </svg>
+            <span class="viewer-btn-label">Full screen</span>
+          </button>
+          <div class="relative" data-viewer-menu>
+            <button
+              type="button"
+              class="viewer-btn viewer-btn--icon"
+              aria-label="More options"
+              title="More options"
+              aria-expanded="false"
+              aria-controls="viewer-more"
+              data-menu-toggle
+            >
+              <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="5" cy="12" r="1.8" /><circle cx="12" cy="12" r="1.8" /><circle cx="19" cy="12" r="1.8" />
+              </svg>
+            </button>
+            <div id="viewer-more" class="viewer-menu" hidden>
+              <a href={resource.file} target="_blank" rel="noopener noreferrer" data-pdf-link class="viewer-menu-item">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                Open PDF in a new tab
+              </a>
+              {texViewerHref && (
+                <a href={texViewerHref} class="viewer-menu-item">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  </svg>
+                  View LaTeX source
+                </a>
+              )}
+              <hr />
+              <ThemeToggle menuItem />
+            </div>
+          </div>
+        </div>
+        <div class="md:hidden"><ThemeToggle compact /></div>
+      </div>
+    </header>
+
+    <main id="main-content" tabindex="-1" class="flex-1 flex flex-col min-h-0">
+      <div
+        id="viewer-container"
+        class="hidden md:flex flex-1 bg-surface-raised min-h-[calc(100vh-51px)] relative"
+      >
+        <button type="button" class="viewer-btn viewer-exit-fs" data-exit-fullscreen>Exit full screen</button>
+        <div class="flex flex-1 min-h-0">
+          <div class="flex-1 flex flex-col min-h-0 relative">
+            <div
+              data-primary-label
+              class="hidden border-b border-rule px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-muted"
+            >
+              {primaryPaneLabel}
+            </div>
+            <div class="relative flex-1 min-h-0">
+              <iframe
+                id="pdf-embed"
+                data-src={resource.file}
+                src="about:blank"
+                class="absolute inset-0 w-full h-full border-0"
+                title={resource.title}
+              />
+              <div
+                id="pdf-skeleton"
+                class="pointer-events-none absolute inset-0 flex items-center justify-center bg-surface-raised text-muted text-sm transition-opacity duration-300"
+                aria-hidden="true"
+              >
+                <span class="inline-flex items-center gap-2">
+                  <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Loading PDF…
+                </span>
+              </div>
+            </div>
+          </div>
+          {partnerResource && (
+            <div
+              data-partner-pane
+              class="hidden flex-1 flex-col min-h-0 border-l border-rule"
+            >
+              <div class="border-b border-rule px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-muted">
+                {partnerPaneLabel}
+              </div>
+              <div class="relative flex-1 min-h-0">
+                <iframe
+                  data-partner-iframe
+                  data-src={partnerResource.file}
+                  src="about:blank"
+                  class="absolute inset-0 w-full h-full border-0"
+                  title={partnerResource.title}
+                />
+                <div
+                  data-partner-skeleton
+                  class="pointer-events-none absolute inset-0 flex items-center justify-center bg-surface-raised text-muted text-sm transition-opacity duration-300"
+                  aria-hidden="true"
+                >
+                  <span class="inline-flex items-center gap-2">
+                    <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Loading PDF…
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <script is:inline>
+        (function () {
+          var iframe = document.getElementById('pdf-embed');
+          var partnerIframe = document.querySelector('[data-partner-iframe]');
+          var partnerPane = document.querySelector('[data-partner-pane]');
+          var partnerSkeleton = document.querySelector('[data-partner-skeleton]');
+          var primaryLabel = document.querySelector('[data-primary-label]');
+          var splitToggle = document.querySelector('[data-split-toggle]');
+          var splitLabel = splitToggle ? splitToggle.querySelector('[data-split-label]') : null;
+          var splitLabelDefault = splitLabel ? splitLabel.textContent : 'Split view';
+          var isFirefox = /Firefox\//.test(navigator.userAgent);
+          var params = new URLSearchParams(window.location.search);
+          var pageParam = params.get('page');
+          var hasPage = pageParam && /^\d+$/.test(pageParam);
+          var splitInit = params.get('split') === '1' && !!partnerIframe;
+
+          function applyPdfHash(src, includePage) {
+            var hashParts = [];
+            if (isFirefox) hashParts.push('view=FitH');
+            if (includePage) hashParts.push('page=' + pageParam);
+            return hashParts.length ? src.split('#')[0] + '#' + hashParts.join('&') : src;
+          }
+
+          function bindSkeleton(iframeEl, skeletonEl) {
+            if (!iframeEl || !skeletonEl) return;
+            var hide = function () {
+              skeletonEl.style.opacity = '0';
+            };
+            iframeEl.addEventListener('load', hide, { once: true });
+            // Some browsers don't fire 'load' reliably on embedded PDFs.
+            setTimeout(hide, 4000);
+          }
+
+          if (iframe) {
+            var primaryBase = iframe.getAttribute('data-src');
+            if (primaryBase) {
+              iframe.src = applyPdfHash(primaryBase, hasPage);
+            }
+            bindSkeleton(iframe, document.getElementById('pdf-skeleton'));
+          }
+
+          function activatePartnerIframe() {
+            if (!partnerIframe) return;
+            if (partnerIframe.getAttribute('data-loaded') === '1') return;
+            var src = partnerIframe.getAttribute('data-src');
+            if (!src) return;
+            partnerIframe.setAttribute('data-loaded', '1');
+            partnerIframe.src = applyPdfHash(src, false);
+            bindSkeleton(partnerIframe, partnerSkeleton);
+          }
+
+          function setSplit(on) {
+            if (!partnerPane) return;
+            if (on) {
+              partnerPane.classList.remove('hidden');
+              partnerPane.classList.add('flex');
+              if (primaryLabel) {
+                primaryLabel.classList.remove('hidden');
+                primaryLabel.classList.add('block');
+              }
+              activatePartnerIframe();
+            } else {
+              partnerPane.classList.add('hidden');
+              partnerPane.classList.remove('flex');
+              if (primaryLabel) {
+                primaryLabel.classList.add('hidden');
+                primaryLabel.classList.remove('block');
+              }
+            }
+
+            var hideOnSplit = document.querySelectorAll('[data-hide-on-split]');
+            for (var k = 0; k < hideOnSplit.length; k++) {
+              hideOnSplit[k].style.display = on ? 'none' : '';
+            }
+
+            if (splitToggle) {
+              splitToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+              if (splitLabel) splitLabel.textContent = on ? 'Exit side by side' : splitLabelDefault;
+            }
+
+            var url = new URL(window.location.href);
+            if (on) url.searchParams.set('split', '1');
+            else url.searchParams.delete('split');
+            history.replaceState(null, '', url.pathname + url.search + url.hash);
+          }
+
+          if (splitToggle) {
+            splitToggle.addEventListener('click', function () {
+              var isOn = splitToggle.getAttribute('aria-pressed') === 'true';
+              setSplit(!isOn);
+            });
+          }
+
+          if (splitInit) setSplit(true);
+
+          if (hasPage) {
+            var pdfLinks = document.querySelectorAll('[data-pdf-link]');
+            for (var i = 0; i < pdfLinks.length; i++) {
+              var a = pdfLinks[i];
+              var href = a.getAttribute('href');
+              if (href && href.indexOf('#') === -1) {
+                a.setAttribute('href', href + '#page=' + pageParam);
+              }
+            }
+
+            var pairLinks = document.querySelectorAll('[data-pair-link]');
+            for (var j = 0; j < pairLinks.length; j++) {
+              var el = pairLinks[j];
+              try {
+                var url2 = new URL(el.getAttribute('href'), window.location.origin);
+                url2.searchParams.set('page', pageParam);
+                el.setAttribute('href', url2.pathname + url2.search);
+              } catch (e) {}
+            }
+          }
+
+          var fsButton = document.querySelector('[data-fullscreen]');
+          var fsTarget = document.getElementById('viewer-container');
+          if (fsButton && fsTarget && document.fullscreenEnabled) {
+            fsButton.hidden = false;
+            fsButton.addEventListener('click', function () { fsTarget.requestFullscreen().catch(function () {}); });
+            var exitFs = document.querySelector('[data-exit-fullscreen]');
+            if (exitFs) exitFs.addEventListener('click', function () { document.exitFullscreen(); });
+          }
+
+          var menuToggle = document.querySelector('[data-menu-toggle]');
+          var menu = document.getElementById('viewer-more');
+          if (menuToggle && menu) {
+            var setMenu = function (open, focusToggle) {
+              menu.hidden = !open;
+              menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+              if (open) { var first = menu.querySelector('a, button'); if (first) first.focus(); }
+              else if (focusToggle) menuToggle.focus();
+            };
+            menuToggle.addEventListener('click', function () { setMenu(menu.hidden, false); });
+            menu.addEventListener('click', function (e) { if (e.target.closest('a, button')) setMenu(false, false); });
+            document.addEventListener('click', function (e) {
+              if (!menu.hidden && !e.target.closest('[data-viewer-menu]')) setMenu(false, false);
+            });
+            document.addEventListener('keydown', function (e) {
+              if (e.key === 'Escape' && !menu.hidden) setMenu(false, true);
+            });
+            menu.addEventListener('focusout', function (e) {
+              if (e.relatedTarget && !e.relatedTarget.closest('[data-viewer-menu]')) setMenu(false, false);
+            });
+            // Clicks inside the PDF iframe never reach this document; focus leaving the window does.
+            window.addEventListener('blur', function () { if (!menu.hidden) setMenu(false, false); });
+          }
+
+        })();
+      </script>
+
+      <div class="flex md:hidden flex-1 items-center justify-center px-6 py-12">
+        <div class="mobile-document-actions w-full max-w-sm text-center space-y-6">
+          <div>
+            <h2 class="text-xl font-semibold text-ink">{resource.title}</h2>
+            <p class="text-sm text-muted mt-1">{displayDescription}</p>
+          </div>
+
+          <a
+            href={resource.file}
+            data-pdf-link
+            class="block w-full py-3 rounded-sm bg-action hover:bg-action/90 text-white text-base font-semibold transition-colors"
+          >
+            Open PDF
+          </a>
+
+          <div class="flex gap-3">
+            <a
+              href={resource.file}
+              download={resource.downloadName}
+              class="flex-1 py-2.5 rounded-sm border border-rule text-ink hover:bg-surface-raised text-sm font-medium transition-colors text-center"
+            >
+              Download
+            </a>
+
+            {paired && (
+              <a
+                href={paired.href}
+                data-pair-link
+                class:list={[
+                  'flex-1 py-2.5 rounded-sm border text-sm font-medium transition-colors text-center',
+                  'border-rule text-accent hover:bg-tint hover:border-rule',
+                ]}
+              >
+                {paired.label}
+              </a>
+            )}
+          </div>
+          {texViewerHref && (
+            <a href={texViewerHref} class="mobile-source-link text-sm text-accent underline">LaTeX source</a>
+          )}
+        </div>
+      </div>
+      {contents && (
+        <section class="page-container viewer-contents" aria-labelledby="viewer-contents-heading">
+          <h2 id="viewer-contents-heading">Questions covered in {resource.title}</h2>
+          <ol>
+            {contents.map((item) => (
+              <li><span class="viewer-contents-area">{item.area}:</span> {item.summary}</li>
+            ))}
+          </ol>
+        </section>
+      )}
+    </main>
+  </div>
+</Layout>

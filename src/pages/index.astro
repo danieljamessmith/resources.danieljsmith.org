@@ -1,0 +1,47 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+import { FM_CP, FM_MECH, getResourcesByCategory } from '~/data/resources';
+
+const strands = [
+  { category: FM_CP, title: 'Core Pure', href: '/further-maths/core-pure', description: 'Algebra, calculus, complex numbers, proof, vectors and matrices.' },
+  { category: FM_MECH, title: 'Further Mechanics', href: '/further-maths/further-mechanics', description: 'Momentum and collisions, work and energy, dimensional analysis and centre of mass.' },
+].map(strand => ({ ...strand, count: getResourcesByCategory(strand.category).filter(r => r.type === 'questions').length }));
+const tmuaPaperCount = getResourcesByCategory('TMUA').filter(r => r.type !== 'solutions').length;
+---
+<Layout title="Free Further Maths Resources & TMUA Practice | Daniel James Smith" description="Free A-level Further Maths questions by topic, worked solutions and TMUA practice papers with worked solutions.">
+  <div class="min-h-screen flex flex-col">
+    <Header />
+    <main id="main-content" tabindex="-1" class="page-container home-main">
+      <div class="home-intro">
+        <p class="eyebrow">For students and teachers</p>
+        <h1>Mathematics resources</h1>
+        <p>Questions by topic, practice papers and worked solutions for A-level Further Maths and university admissions.</p>
+      </div>
+      <div class="home-directory">
+        <section id="further-maths" aria-labelledby="fm-heading">
+          <h2 id="fm-heading" class="eyebrow">A-level Further Mathematics</h2>
+          <div class="subject-list">
+            {strands.map(strand => (
+              <a class="subject-row" href={strand.href}>
+                <div><h3>{strand.title}</h3><p>{strand.description}</p><span class="resource-count">{strand.count} question booklets &middot; Worked solutions</span></div>
+                <span class="row-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            ))}
+          </div>
+        </section>
+        <section aria-labelledby="admissions-heading">
+          <h2 id="admissions-heading" class="eyebrow">Admissions</h2>
+          <div class="subject-list">
+            <a class="subject-row" href="/tmua">
+              <div><h3>TMUA</h3><p>TMUA-style practice papers for the Test of Mathematics for University Admission.</p><span class="resource-count">{tmuaPaperCount} practice papers &middot; Answer keys &middot; Worked solutions</span></div>
+              <span class="row-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+    <Footer />
+  </div>
+</Layout>

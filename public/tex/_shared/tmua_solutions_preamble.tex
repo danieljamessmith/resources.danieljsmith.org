@@ -1,0 +1,131 @@
+% Shared preamble for TMUA worked solutions. Local edits here are overwritten.
+
+% Reproducible PDFs: no timestamps, no trailer id, no build-path details.
+\ifdefined\pdfsuppressptexinfo
+  \pdfsuppressptexinfo=-1
+  \pdfinfoomitdate=1
+  \pdftrailerid{}
+\fi
+
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{ragged2e}
+\usepackage{fancyhdr}
+\usepackage{etoolbox}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+
+\usepackage{tocloft}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdfauthor={danieljsmith.org}, pdfcreator={}, pdfsubject={}, pdfkeywords={}}
+\urlstyle{same}
+\tocloftpagestyle{djssolutions}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftsubsecindent}{1.5em}
+\setlength{\cftsubsecnumwidth}{0pt}
+\renewcommand{\cftsubsecfont}{\small\color{black}}
+\renewcommand{\cftsubsecpagefont}{\small\color{black}}
+\renewcommand{\cftsubsecleader}{\hfill}
+
+% `most` carries the breakable and enhanced libraries the solution box needs.
+\usepackage[most]{tcolorbox}
+\definecolor{scarlet}{RGB}{205, 40, 75}
+
+\setlength{\parindent}{0pt}
+
+% \djsSolutionsSetup{<paper title>}, called once after this file.
+\newcommand{\djsSolnPaperTitle}{}
+\newcommand{\djsSolutionsSetup}[1]{%
+  \hypersetup{pdftitle={#1 Solutions}}%
+  \renewcommand{\djsSolnPaperTitle}{#1}}
+
+% The header appears only on the contents page and each question's opening
+% page. Continuation pages use the empty default style.
+\fancypagestyle{djssolutions}{%
+  \fancyhead{}%
+  \fancyfoot{}%
+  \renewcommand{\headrulewidth}{0.9pt}%
+  \fancyhead[L]{\textit{Solutions} - \djsSolnPaperTitle}%
+  \fancyhead[R]{\href{https://danieljsmith.org}{danieljsmith.org}}%
+}
+\pagestyle{empty}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+
+% Question layout, identical to the question paper's.
+\newcommand{\djsTocTopic}[1]{%
+  \ifblank{#1}{}{%
+    \texorpdfstring
+      {\hspace{0.9em}{\footnotesize\itshape\color{black!45}#1}}
+      { \textendash\ #1}}}
+\newcommand{\djsTopicLine}[1]{%
+  \ifblank{#1}{}{%
+    {\raggedleft\footnotesize\itshape\color{black!45}#1\par}%
+    \vspace{-0.6\baselineskip}}}
+\newcommand{\questionitem}[1][]{%
+  \item\phantomsection
+  \addcontentsline{toc}{subsection}{%
+    Question \number\value{enumi}\protect\djsTocTopic{#1}}%
+}
+\renewcommand{\contentsname}{Questions}
+\newcommand{\djsFrontMatter}{%
+  \vspace*{20pt}%
+  \tableofcontents
+  \newpage
+}
+
+% The solution body: a white breakable box with a left scarlet rule. The
+% rule continues onto a continuation page and stops where the solution
+% stops, then turns into a short horizontal of the same weight so the
+% solution visibly ends. The argument is the answer label.
+\newcommand{\djsSolutionAnswer}[1]{%
+  {\color{scarlet}\bfseries Answer\ \ #1}}
+\newtcolorbox{djsSolution}[1]{%
+  enhanced, breakable, frame hidden, sharp corners, colback=white,
+  height fixed for=first and middle, height fill,
+  extras unbroken and last={natural height},
+  borderline west={2.2pt}{0pt}{scarlet},
+  left=11pt, right=0pt, top=5pt, bottom=13pt,
+  before skip=13pt, after skip=4pt,
+  overlay unbroken and last={%
+    \fill[scarlet] (frame.south west)
+      rectangle ([xshift=3.5cm, yshift=2.2pt]frame.south west);},
+  before upper={\setlength{\parskip}{6pt}%
+                {\color{scarlet}\bfseries Solution}%
+                \hfill\djsSolutionAnswer{#1}\par\vspace{4pt}}}
+
+% Solution figures sit inside the box and are drawn smaller than question
+% figures; \scalebox shrinks node text with the drawing.
+\newcommand{\SolnFigureScale}{0.85}
+\newsavebox{\djsSolnFigureBox}
+\newenvironment{djsSolutionFigure}
+  {\par\vspace{4pt}\begin{center}\begin{lrbox}{\djsSolnFigureBox}}
+  {\end{lrbox}\scalebox{\SolnFigureScale}{\usebox{\djsSolnFigureBox}}%
+   \end{center}\vspace{2pt}\par}

@@ -1,0 +1,43 @@
+---
+import BoardPills from '~/components/BoardPills.astro';
+import {
+  boardsToDataAttributeValue,
+  getResourceBoards,
+  type Resource,
+} from '~/data/resources';
+
+interface Props {
+  pair: { questions: Resource; solutions: Resource };
+}
+
+const { pair } = Astro.props;
+const boards = getResourceBoards(pair.questions);
+const boardsAttr = boardsToDataAttributeValue(boards);
+const title = pair.questions.title;
+---
+
+<article class="resource-row" data-boards={boardsAttr}>
+  <div class="resource-main">
+    <h3 class="resource-title">
+      <a class="resource-link" href={`/view/${pair.questions.id}`}>{title}</a>
+    </h3>
+    <p class="resource-meta">
+      <span>{pair.questions.questionCount} questions{pair.questions.note ? ` · ${pair.questions.note}` : ''}</span>
+      <BoardPills boards={boards} />
+    </p>
+  </div>
+  <div class="resource-actions">
+    <a class="resource-action" href={`/view/${pair.questions.id}`}>
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+      </svg>
+      <span>Questions<span class="sr-only">: {title}</span></span>
+    </a>
+    <a class="resource-action" href={`/view/${pair.solutions.id}`}>
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+      </svg>
+      <span>Solutions<span class="sr-only">: {title}</span></span>
+    </a>
+  </div>
+</article>
