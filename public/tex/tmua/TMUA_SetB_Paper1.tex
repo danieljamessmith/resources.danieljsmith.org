@@ -115,90 +115,90 @@ $16$
 \djsTopicLine{Trigonometry}
 \begin{enumerate}[label=\textbf{\arabic*.},leftmargin=*,itemsep=0pt,start=3]
 \questionitem[Trigonometry]
-% begin q000073 stem
-Let \(n\) be a positive integer.
-
-Suppose that
-\[
-\sum_{k=0}^{n-1}\cos\!\left(\theta+\frac{k\pi}{2}\right)=0
-\]
-for every real value of \(\theta\).
-
-Which of the following is the complete set of possible values of \(n\)?
-% end q000073 stem
+% begin q000123 stem
+How many distinct real values of $x$ satisfy the equation \[ \cos(2x)=1-x \] in the range $0\le x\le \pi$?
+% end q000123 stem
 
 \par\vspace*{12pt}
 \begin{tabularx}{\linewidth}{@{}>{\bfseries}l Y@{}}
 A &
-% begin q000073 choice A
-$n$ is odd
-% end q000073 choice A
+% begin q000123 choice A
+$0$
+% end q000123 choice A
 \\[0.8em]
 B &
-% begin q000073 choice B
-$n$ is even
-% end q000073 choice B
+% begin q000123 choice B
+$1$
+% end q000123 choice B
 \\[0.8em]
 C &
-% begin q000073 choice C
-$n$ is a multiple of 3
-% end q000073 choice C
+% begin q000123 choice C
+$2$
+% end q000123 choice C
 \\[0.8em]
 D &
-% begin q000073 choice D
-$n$ is a multiple of 4
-% end q000073 choice D
+% begin q000123 choice D
+$3$
+% end q000123 choice D
 \\[0.8em]
 E &
-% begin q000073 choice E
-$n$ is 1 more than a multiple of 4
-% end q000073 choice E
+% begin q000123 choice E
+$4$
+% end q000123 choice E
 \\[0.8em]
 F &
-% begin q000073 choice F
-$n$ is 2 more than a multiple of 4
-% end q000073 choice F
+% begin q000123 choice F
+$5$
+% end q000123 choice F
+\\[0.8em]
+G &
+% begin q000123 choice G
+$6$
+% end q000123 choice G
 \\
 \end{tabularx}
 \end{enumerate}
 \clearpage
 \thispagestyle{djspaper}
 \vspace*{8pt}
-\djsTopicLine{Exponentials \& Logarithms}
+\djsTopicLine{Integration}
 \begin{enumerate}[label=\textbf{\arabic*.},leftmargin=*,itemsep=0pt,start=4]
-\questionitem[Exponentials \& Logarithms]
-% begin q000056 stem
-For real parameter $t$, consider the equation \[ \log_3 x + \log_x 3 = t \] with $x>0$ and $x\ne 1$.
-
-The number of positive solutions $x$ is
-% end q000056 stem
+\questionitem[Integration]
+% begin q000014 stem
+Use the trapezium rule with $4$ equal strips to estimate \[ \int_{1}^{5} \ln x\,\,\mathrm{d}x \]
+% end q000014 stem
 
 \par\vspace*{12pt}
 \begin{tabularx}{\linewidth}{@{}>{\bfseries}l Y@{}}
 A &
-% begin q000056 choice A
-two if $|t|>2$, one if $|t|=2$, and zero if $|t|<2$
-% end q000056 choice A
+% begin q000014 choice A
+$\dfrac{1}{2}\ln(120)$
+% end q000014 choice A
 \\[0.8em]
 B &
-% begin q000056 choice B
-one if $t>0$, and zero if $t<0$
-% end q000056 choice B
+% begin q000014 choice B
+$\dfrac{1}{2}\ln(180)$
+% end q000014 choice B
 \\[0.8em]
 C &
-% begin q000056 choice C
-zero if $t>2$, one if $t=2$, and two if $0<t<2$
-% end q000056 choice C
+% begin q000014 choice C
+$\dfrac{1}{2}\ln(240)$
+% end q000014 choice C
 \\[0.8em]
 D &
-% begin q000056 choice D
-one for all real $t$
-% end q000056 choice D
+% begin q000014 choice D
+$\dfrac{1}{2}\ln(720)$
+% end q000014 choice D
 \\[0.8em]
 E &
-% begin q000056 choice E
-two if $t<-2$, zero if $t>-2$, and one if $t=-2$
-% end q000056 choice E
+% begin q000014 choice E
+$\dfrac{1}{2}\ln(2880)$
+% end q000014 choice E
+\\[0.8em]
+F &
+% begin q000014 choice F
+$\dfrac{1}{2}\ln(14400)$
+% end q000014 choice F
 \\
 \end{tabularx}
 \end{enumerate}
@@ -356,48 +356,79 @@ $k \ge \frac{1}{4}$ and $k \neq 1$
 \djsTopicLine{Geometry}
 \begin{enumerate}[label=\textbf{\arabic*.},leftmargin=*,itemsep=0pt,start=7]
 \questionitem[Geometry]
-% begin q000055 stem
-In triangle $ABC$, $AB=9$, $\angle ABC=30^\circ$, and $AC=x$, where $x>0$.
+% begin q000652 stem
+A straight line $\ell$ is drawn, and three circles lie on the same side of $\ell$. Each circle touches $\ell$ at exactly one point.
 
-For which values of $x$ is there exactly one possible length of $BC$?
-% end q000055 stem
+Circle $A$ has radius $1$ and circle $B$ has radius $4$, and these two circles touch each other.
+
+Circle $C$ lies in the space between circle $A$, circle $B$ and the line $\ell$, touching circle $A$, circle $B$ and $\ell$.
+
+What is the radius of circle $C$?
+% end q000652 stem
+
+\begin{center}
+% begin q000652 diagram
+\begin{tikzpicture}[scale=0.9]
+\def\rA{1}
+\def\rB{4}
+\def\rC{4/9}
+
+\coordinate (Acenter) at (0,\rA);
+\coordinate (Bcenter) at (4,\rB);
+\coordinate (Ccenter) at (4/3,\rC);
+\coordinate (Ctip) at ($(Ccenter)+(300:\rC)$);
+\coordinate (CLabelPos) at ($(Ccenter)+(0.72,-1.03)$);
+
+\draw[thick, black] ({-\rA-0.45},0) -- ({4+\rB+0.45},0)
+    node[right] {$\ell$};
+\draw[thick, black] (Acenter) circle (\rA);
+\draw[thick, black] (Bcenter) circle (\rB);
+\draw[thick, black] (Ccenter) circle (\rC);
+
+\node at (Acenter) {$A$};
+\node at (Bcenter) {$B$};
+\node (CLabel) at (CLabelPos) {$C$};
+\draw[black] (CLabel.north west) -- (Ctip);
+\end{tikzpicture}
+% end q000652 diagram
+\end{center}
 
 \par\vspace*{12pt}
 \begin{tabularx}{\linewidth}{@{}>{\bfseries}l Y@{}}
 A &
-% begin q000055 choice A
-$x<\frac{9}{2}$
-% end q000055 choice A
+% begin q000652 choice A
+$\dfrac{2}{9}$
+% end q000652 choice A
 \\[0.8em]
 B &
-% begin q000055 choice B
-$x=\frac{9}{2}$ or $x\ge 9$
-% end q000055 choice B
+% begin q000652 choice B
+$\dfrac{4}{9}$
+% end q000652 choice B
 \\[0.8em]
 C &
-% begin q000055 choice C
-$\frac{9}{2}<x<9$
-% end q000055 choice C
+% begin q000652 choice C
+$\dfrac{1}{2}$
+% end q000652 choice C
 \\[0.8em]
 D &
-% begin q000055 choice D
-$x\ge\frac{9}{2}$
-% end q000055 choice D
+% begin q000652 choice D
+$\dfrac{16}{25}$
+% end q000652 choice D
 \\[0.8em]
 E &
-% begin q000055 choice E
-$x=9$ only
-% end q000055 choice E
+% begin q000652 choice E
+$\dfrac{2}{3}$
+% end q000652 choice E
 \\[0.8em]
 F &
-% begin q000055 choice F
-$x>0$
-% end q000055 choice F
+% begin q000652 choice F
+$\dfrac{4}{5}$
+% end q000652 choice F
 \\[0.8em]
 G &
-% begin q000055 choice G
-$0<x<\frac{9}{2}$ or $x>9$
-% end q000055 choice G
+% begin q000652 choice G
+$\dfrac{8}{9}$
+% end q000652 choice G
 \\
 \end{tabularx}
 \end{enumerate}
@@ -532,58 +563,43 @@ $5$
 \clearpage
 \thispagestyle{djspaper}
 \vspace*{8pt}
-\djsTopicLine{Trigonometry}
+\djsTopicLine{Polynomials}
 \begin{enumerate}[label=\textbf{\arabic*.},leftmargin=*,itemsep=0pt,start=10]
-\questionitem[Trigonometry]
-% begin q000618 stem
-Consider the equation
-\[ \sin^2 x - (2k-1)\sin x + k^2 - k = 0 \]
-where $k$ is a real constant.
-
-Find the complete set of values of $k$ for which the equation has exactly three distinct real solutions in the range $0 \le x < 2\pi$.
-% end q000618 stem
+\questionitem[Polynomials]
+% begin q000645 stem
+Find the complete set of real values of $k$ for which the quadratic equation
+\[
+x^2 - (k+2)x + (2k+1) = 0
+\]
+has two distinct \textbf{positive} real roots.
+% end q000645 stem
 
 \par\vspace*{12pt}
 \begin{tabularx}{\linewidth}{@{}>{\bfseries}l Y@{}}
 A &
-% begin q000618 choice A
-$k = 0$ or $k = 1$
-% end q000618 choice A
+% begin q000645 choice A
+$k > 4$
+% end q000645 choice A
 \\[0.8em]
 B &
-% begin q000618 choice B
-$k = -1$ or $k = 2$
-% end q000618 choice B
+% begin q000645 choice B
+$k < 0$ or $k > 4$
+% end q000645 choice B
 \\[0.8em]
 C &
-% begin q000618 choice C
-$k = -1$, $k = 0$, $k = 1$, or $k = 2$
-% end q000618 choice C
+% begin q000645 choice C
+$-\dfrac{1}{2} < k < 0$ or $k > 4$
+% end q000645 choice C
 \\[0.8em]
 D &
-% begin q000618 choice D
-$0 < k < 1$
-% end q000618 choice D
+% begin q000645 choice D
+$-2 < k < 0$ or $k > 4$
+% end q000645 choice D
 \\[0.8em]
 E &
-% begin q000618 choice E
-$-1 < k < 0$ or $1 < k < 2$
-% end q000618 choice E
-\\[0.8em]
-F &
-% begin q000618 choice F
-$-1 < k < 1$
-% end q000618 choice F
-\\[0.8em]
-G &
-% begin q000618 choice G
-$-1 \le k \le 1$
-% end q000618 choice G
-\\[0.8em]
-H &
-% begin q000618 choice H
-There are no values of $k$.
-% end q000618 choice H
+% begin q000645 choice E
+$k > -\dfrac{1}{2}$
+% end q000645 choice E
 \\
 \end{tabularx}
 \end{enumerate}
@@ -721,58 +737,48 @@ $5$
 \clearpage
 \thispagestyle{djspaper}
 \vspace*{8pt}
-\djsTopicLine{Inequalities}
+\djsTopicLine{Functions \& Graphs}
 \begin{enumerate}[label=\textbf{\arabic*.},leftmargin=*,itemsep=0pt,start=14]
-\questionitem[Inequalities]
-% begin q000039 stem
-In this question, $a_1, \ldots, a_{50}$ and $b_1, \ldots, b_{50}$ are real numbers such that \[ a_n \le 2 b_n + 5 \] for each $n$ Consider the following statements: \[ \begin{array}{@{}l l@{}}
-\textbf{I:} & \text{(minimum of $a_1,\ldots,a_{50}$) $\le 2\times$ (minimum of $b_1,\ldots,b_{50}$) $+\,5$} \\[2pt]
-\textbf{II:} & \text{(maximum of $a_1,\ldots,a_{50}$) $\le 2\times$ (maximum of $b_1,\ldots,b_{50}$) $+\,5$} \\[2pt]
-\textbf{III:} & \text{(minimum of $a_1,\ldots,a_{50}$) $\ge 2\times$ (minimum of $b_1,\ldots,b_{50}$) $+\,5$}
-\end{array} \] Which of these statements must be true?
-% end q000039 stem
+\questionitem[Functions \& Graphs]
+% begin q000576 stem
+For each real value of $x$, let $M(x)$ be the larger of the two numbers
+\[
+(x+3)^2+1 \quad \text{and} \quad 4(x-1)^2+1
+\]
+For which value of $x$ is $M(x)$ least?
+% end q000576 stem
 
 \par\vspace*{12pt}
 \begin{tabularx}{\linewidth}{@{}>{\bfseries}l Y@{}}
 A &
-% begin q000039 choice A
-None of them
-% end q000039 choice A
+% begin q000576 choice A
+$-3$
+% end q000576 choice A
 \\[0.8em]
 B &
-% begin q000039 choice B
-I only
-% end q000039 choice B
+% begin q000576 choice B
+$-1$
+% end q000576 choice B
 \\[0.8em]
 C &
-% begin q000039 choice C
-II only
-% end q000039 choice C
+% begin q000576 choice C
+$-\dfrac{1}{3}$
+% end q000576 choice C
 \\[0.8em]
 D &
-% begin q000039 choice D
-III only
-% end q000039 choice D
+% begin q000576 choice D
+$\dfrac{1}{3}$
+% end q000576 choice D
 \\[0.8em]
 E &
-% begin q000039 choice E
-I and II only
-% end q000039 choice E
+% begin q000576 choice E
+$1$
+% end q000576 choice E
 \\[0.8em]
 F &
-% begin q000039 choice F
-I and III only
-% end q000039 choice F
-\\[0.8em]
-G &
-% begin q000039 choice G
-II and III only
-% end q000039 choice G
-\\[0.8em]
-H &
-% begin q000039 choice H
-I, II and III
-% end q000039 choice H
+% begin q000576 choice F
+$5$
+% end q000576 choice F
 \\
 \end{tabularx}
 \end{enumerate}
@@ -1127,17 +1133,17 @@ $\dfrac{25}{4}$
 1 & D \\ \hline
 2 & C \\ \hline
 3 & D \\ \hline
-4 & A \\ \hline
+4 & E \\ \hline
 5 & E \\ \hline
 6 & C \\ \hline
 7 & B \\ \hline
 8 & D \\ \hline
 9 & E \\ \hline
-10 & A \\ \hline
+10 & C \\ \hline
 11 & D \\ \hline
 12 & A \\ \hline
 13 & C \\ \hline
-14 & E \\ \hline
+14 & C \\ \hline
 15 & D \\ \hline
 16 & F \\ \hline
 17 & D \\ \hline

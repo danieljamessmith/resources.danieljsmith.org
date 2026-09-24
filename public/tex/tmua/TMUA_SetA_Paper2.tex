@@ -159,8 +159,8 @@ Attempted proof:
 \begin{array}{@{}rl@{}}
 \textbf{Line 1} & \text{Let } f(x) = ax^2 + bx + c\text{, where } a, b, c \text{ are real constants with } a \ne 0 \\[5pt]
 \textbf{Line 2} & \text{Evaluating the integral gives } \displaystyle\int_{-1}^{1} f(x)\,\mathrm{d}x = \frac{2a}{3} + 2c = 0\text{, so } c = -\frac{a}{3} \\[12pt]
-\textbf{Line 3} & \text{The roots } x_1 \text{ and } x_2 \text{ of } f(x) = 0 \text{ satisfy } x_1 x_2 = \frac{c}{a} = -\frac{1}{3} \\[7pt]
-\textbf{Line 4} & \text{Since } x_1 x_2 < 0\text{, the discriminant } b^2 - 4ac = b^2 + \frac{4a^2}{3} > 0\\ & \text{so the roots are real and distinct} \\[7pt]
+\textbf{Line 3} & \text{The discriminant is } b^2-4ac=b^2+\frac{4a^2}{3}>0\text{, so }f(x)=0\text{ has two distinct real roots} \\[7pt]
+\textbf{Line 4} & \text{Writing these roots as }x_1\text{ and }x_2\text{, we have }x_1x_2=\frac{c}{a}=-\frac{1}{3} \\[7pt]
 \textbf{Line 5} & \text{Since } |x_1 x_2| = \frac{1}{3} < 1\text{, it follows that } |x_1| < 1 \text{ and } |x_2| < 1 \\[7pt]
 \textbf{Line 6} & \text{Therefore, both roots lie in the interval } -1 < x < 1\\[5pt]
 \end{array}
@@ -457,8 +457,8 @@ What is the total shaded area, in $\mathrm{cm}^2$?
 \node[below left] at (A) {$A$};
 \node[above right] at (B) {$B$};
 \node[above right] at (C) {$C$};
-\node[midway, above, yshift=100pt, xshift=15pt] at ($(A)!0.5!(B)$) {$6\,\mathrm{cm}$};
-\node[midway, right, yshift=10pt, xshift=60pt] at ($(A)!0.5!(C)$) {$8\,\mathrm{cm}$};
+\node[midway, above, yshift=100pt, xshift=15pt] at ($(A)!0.5!(B)$) {$8\,\mathrm{cm}$};
+\node[midway, right, yshift=10pt, xshift=60pt] at ($(A)!0.5!(C)$) {$6\,\mathrm{cm}$};
 \end{tikzpicture}
 % end q000569 diagram
 \end{center}
@@ -504,7 +504,9 @@ $50$
 \begin{enumerate}[label=\textbf{\arabic*.},leftmargin=*,itemsep=0pt,start=8]
 \questionitem[Coordinate Geometry]
 % begin q000629 stem
-The line $y=3x+2$ meets the parabola $y=x^2$ at the points $P$ and $Q$. The tangents to the parabola at $P$ and $Q$ meet at $R$, as shown.
+The line $y=3x+2$ meets the parabola $y=x^2$ at the points $P$ and $Q$. 
+
+The tangents to the parabola at $P$ and $Q$ meet at $R$, as shown.
 
 What are the coordinates of $R$?
 % end q000629 stem
@@ -624,13 +626,13 @@ $\left(2,-\dfrac{3}{2}\right)$
 \begin{enumerate}[label=\textbf{\arabic*.},leftmargin=*,itemsep=0pt,start=9]
 \questionitem[Logic]
 % begin q000161 stem
-Consider the statement:
+Consider the statement ($\ast$):
 
 \[ \begin{array}{c}
 \text{\textbf{If} $0 \le f(x) \le 1$ for all real $x$ with $0 \le x \le 1$, \textbf{then}}\\[5pt]
 
-\text{$\displaystyle\int_0^1 f(x)\,\mathrm{d}x \le \int_0^1 (f(x))^2\,\mathrm{d}x$} \\
-\end{array} \tag{$\ast$} \] Which of the following functions is a \textit{counterexample} to ($\ast$)?
+\text{$\displaystyle\int_0^1 f(x)\,\mathrm{d}x \le \int_0^1 (f(x))^2\,\mathrm{d}x$} \\[10pt]
+\end{array} \tag{$\ast$} \] Which of the following functions is a \textbf{counterexample} to ($\ast$)?
 % end q000161 stem
 
 \par\vspace*{12pt}
@@ -647,7 +649,7 @@ $f(x)=x^2+\frac{1}{2}$
 \\[0.8em]
 C &
 % begin q000161 choice C
-$f(x)=\frac{1}{2}$
+$f(x)=1$
 % end q000161 choice C
 \\[0.8em]
 D &
@@ -672,7 +674,7 @@ $f(x)=\sqrt{x}+\frac{1}{2}$
 \\[0.8em]
 H &
 % begin q000161 choice H
-$f(x)=1$
+$f(x)=\frac12$
 % end q000161 choice H
 \\
 \end{tabularx}
@@ -763,7 +765,7 @@ A three-digit code is formed by selecting three different digits from $1,2,3,4,5
 
 Each possible code is equally likely.
 
-It is revealed that the product of the three digits in the code is divisible by $6$.
+It is revealed that when the three digits in the code are multiplied together, the result is divisible by $6$.
 
 What is the probability that the code contains the digit $6$?
 % end q000596 stem
@@ -1034,7 +1036,9 @@ The argument contains an error, but the claim is nevertheless true
 \begin{enumerate}[label=\textbf{\arabic*.},leftmargin=*,itemsep=0pt,start=16]
 \questionitem[Sequences \& Series]
 % begin q000531 stem
-Let $n$ be an integer with $n \ge 6$. In the expansion of $(1+x)^n$, the coefficients of $x^4$, $x^5$ and $x^6$, in that order, are consecutive terms of an arithmetic sequence.
+Let $n$ be an integer with $n \ge 6$. 
+
+In the expansion of $(1+x)^n$ the coefficients of $x^4$, $x^5$ and $x^6$, in that order, are consecutive terms of an arithmetic sequence.
 
 What is the sum of all possible values of $n$?
 % end q000531 stem
@@ -1091,7 +1095,7 @@ $a\le y\le a+\pi$ and $\sin y=\sin x$
 \end{minipage}
 \end{center}
 
-Which condition on $a$ is \textbf{necessary} and \textbf{sufficient} for the statement to be true?
+Which condition on $a$ is \textbf{necessary and sufficient} for the statement to be true?
 % end q000686 stem
 
 \par\vspace*{12pt}
@@ -1143,7 +1147,7 @@ Let $p$ and $q$ be real constants, and let
 S: \, There exists a real number $x$ such that $f'(x)<0$
 \end{minipage}
 \end{center}
-Which of the following conditions is \textbf{necessary} but not \textbf{sufficient} for S?
+Which of the following conditions is \textbf{necessary} but \textbf{not sufficient} for S?
 % end q000683 stem
 
 \par\vspace*{12pt}
@@ -1188,12 +1192,10 @@ $p^2\ge 3|q|$
 \questionitem[Algebra]
 % begin q000589 stem
 A real number $x$ satisfies
-
 \[
-x^2-3x+1=0.
+x^2-3x+1=0
 \]
-
-What is the value of $x^6+x^{-6}$?
+What is the value of $x^6+\dfrac{1}{x^6}$?
 % end q000589 stem
 
 \par\vspace*{12pt}
@@ -1297,7 +1299,7 @@ $-4 < p < 0$
 6 & F \\ \hline
 7 & B \\ \hline
 8 & B \\ \hline
-9 & C \\ \hline
+9 & H \\ \hline
 10 & G \\ \hline
 11 & D \\ \hline
 12 & D \\ \hline
