@@ -7,7 +7,7 @@ const tmuaPapers = getResourcesByCategory('TMUA')
   .filter(r => r.type !== 'solutions')
   .map(paper => ({ paper, solutions: paper.pairId ? getResourceById(paper.pairId) : undefined }));
 ---
-<Layout title="TMUA Practice Papers with Worked Solutions | Free" description="Free TMUA-style practice papers with full worked solutions: step-by-step methods, alternative approaches and exam technique for Paper 1 and Paper 2.">
+<Layout title="Free TMUA Practice Papers with Worked Solutions" description="Free TMUA-style practice papers with full worked solutions: step-by-step methods, alternative approaches and exam technique for Paper 1 and Paper 2.">
   <div class="min-h-screen flex flex-col">
     <Header />
     <main id="main-content" tabindex="-1" class="page-container listing-main">
@@ -15,10 +15,8 @@ const tmuaPapers = getResourcesByCategory('TMUA')
       <h1 class="page-title">TMUA practice papers and worked solutions</h1>
       <p class="page-intro">Original practice papers written in the style of the Test of Mathematics for University Admission.</p>
       <ul class="page-intro page-intro-list">
-        <li>Each paper has 20 multiple-choice questions with an answer key.</li>
-        <li>Questions are <strong>not in difficulty order</strong>, reflecting the post-2024 TMUA format.</li>
-        <li>All papers are free to view and download.</li>
-        <li>These papers are independent and are not affiliated with or endorsed by the organisations that set the TMUA.</li>
+        <li>Each paper has 20 multiple-choice questions with an answer key. Questions are <strong>not in difficulty order</strong>, reflecting the post-2024 TMUA format.</li>
+        <li>All papers are free to view and download. These papers are independent and are not affiliated with or endorsed by the organisations that set the TMUA.</li>
       </ul>
       <section class="tmua-list" aria-label="Practice papers">
         {tmuaPapers.map(({ paper, solutions }) => (

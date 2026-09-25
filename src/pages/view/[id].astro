@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/Layout.astro';
 import ThemeToggle from '~/components/ThemeToggle.astro';
-import { resources, getResourceById, getResourceDisplayDescription } from '~/data/resources';
+import { resources, getResourceById, getResourceDisplayDescription, getResourceMetaDescription } from '~/data/resources';
 import { resourceContents } from '~/data/resourceContents';
 import { getStrandHrefForResource } from '~/data/topics';
 
@@ -98,7 +98,7 @@ const partnerPaneLabel = partnerResource ? paneLabel(partnerResource.type) : '';
 */
 ---
 
-<Layout title={pageTitle} description={displayDescription}>
+<Layout title={pageTitle} description={getResourceMetaDescription(resource)}>
   <div class="min-h-screen flex flex-col">
     <header class="bg-surface border-b border-rule sticky top-0 z-10">
       <div class="page-container py-2 flex items-center justify-between gap-3">

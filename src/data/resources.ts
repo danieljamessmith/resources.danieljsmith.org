@@ -1003,6 +1003,26 @@ export function getResourceDisplayDescription(resource: Resource): string {
   return resource.description;
 }
 
+/** Search-result description for a viewer page; fuller than the on-page display copy. */
+export function getResourceMetaDescription(resource: Resource): string {
+  if (resource.category.startsWith(FM_PREFIX)) {
+    const questions = resource.type === 'solutions' && resource.pairId
+      ? getResourceById(resource.pairId)
+      : resource;
+    const count = questions?.questionCount;
+    const subject = `A-level Further Maths questions on ${resource.title}`;
+    if (resource.type === 'questions') {
+      return count != null
+        ? `${count} free exam-style ${subject}, with full worked solutions.`
+        : `Free exam-style ${subject}, with full worked solutions.`;
+    }
+    if (resource.type === 'solutions') {
+      return `Full worked solutions to ${count != null ? `${count} ` : ''}${subject}. Free to view and download.`;
+    }
+  }
+  return getResourceDisplayDescription(resource) || `${resource.title}: free maths resource with worked solutions.`;
+}
+
 /** Question count for one category (e.g. one Further Maths strand). */
 export function getQuestionCountByCategory(cat: string): number {
   return resources
