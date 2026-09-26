@@ -83,7 +83,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/further-mechanics/work-energy-power/soln/_QBT___Solns___Power_and_Driving_Force_.pdf': 'd3e5d70d',
   '/tex/further-maths/further-mechanics/work-energy-power/soln/_QBT___Solns__Elastic_Potential_Energy.pdf': '2b2b4cc7',
   '/tex/further-maths/further-mechanics/work-energy-power/soln/_QBT___Solns__Work_Energy_Principle.pdf': '93c8736f',
-  '/tex/tmua/TMUA_SetA_Paper1_Solutions.pdf': '38611ea7',
+  '/tex/tmua/TMUA_SetA_Paper1_Solutions.pdf': '6f79db0a',
   '/tex/tmua/TMUA_SetA_Paper1.pdf': '4a95a129',
   '/tex/tmua/TMUA_SetA_Paper2_Solutions.pdf': '5b106152',
   '/tex/tmua/TMUA_SetA_Paper2.pdf': '7a8500fe',
