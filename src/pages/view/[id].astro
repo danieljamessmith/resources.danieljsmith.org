@@ -62,7 +62,8 @@ const baseBreadcrumb = categoryBreadcrumb[resource.category] ?? {
 const topicHref = getStrandHrefForResource(resource);
 const breadcrumb =
   baseBreadcrumb.mode === 'fm' && topicHref ? { ...baseBreadcrumb, sectionHref: topicHref } : baseBreadcrumb;
-const displayDescription = getResourceDisplayDescription(resource);
+// TMUA descriptions stay in search metadata only; on the page they repeat the contents list below.
+const displayDescription = resource.category === 'TMUA' ? '' : getResourceDisplayDescription(resource);
 const contents = resourceContents[resource.id];
 const resourceKind =
   resource.type === 'solutions'
@@ -176,7 +177,7 @@ const partnerPaneLabel = partnerResource ? paneLabel(partnerResource.type) : '';
               <span class="hidden md:inline text-muted flex-shrink-0" aria-hidden="true">/</span>
             </>
           )}
-          {/* Title is shown only at md+; on mobile the "Open PDF" landing already renders a large title + description. */}
+          {/* Title is shown only at md+; on mobile the "Open PDF" landing already renders a large title (and, outside TMUA, a description). */}
           <h1 class="hidden md:block text-base font-semibold text-ink truncate min-w-[6rem] flex-1" title={resource.title}>
             {resource.title}
           </h1>
@@ -491,7 +492,7 @@ const partnerPaneLabel = partnerResource ? paneLabel(partnerResource.type) : '';
         <div class="mobile-document-actions w-full max-w-sm text-center space-y-6">
           <div>
             <h2 class="text-xl font-semibold text-ink">{resource.title}</h2>
-            <p class="text-sm text-muted mt-1">{displayDescription}</p>
+            {displayDescription && <p class="text-sm text-muted mt-1">{displayDescription}</p>}
           </div>
 
           <a
