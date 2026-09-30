@@ -1,0 +1,168 @@
+---
+export interface TopicItem {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  variant?: 'sidebar' | 'mobile';
+  topics: TopicItem[];
+}
+
+const { variant = 'sidebar', topics } = Astro.props;
+---
+
+{
+  variant === 'sidebar' ? (
+    <nav aria-labelledby="topic-nav-heading">
+      <p id="topic-nav-heading" class="sidebar-heading">Topics</p>
+      <ul role="list">
+        {topics.map((t) => (
+          <li>
+            <a href={`#${t.id}`} class="sidebar-link" data-topic-link data-topic-target={t.id}>
+              {t.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  ) : (
+    <div class="mobile-selector">
+      <label for="mobile-topic">Jump to topic</label>
+      <select id="mobile-topic" data-topic-select>
+        {topics.map(topic => <option value={topic.id}>{topic.label}</option>)}
+      </select>
+    </div>
+  )
+}
+
+<script>
+  /**
+   * Scroll-spy for strand pages: highlights the current topic in the sidebar,
+   * mirrors it into the mobile picker and the URL hash.
+   */
+  function setupTopicNav() {
+    const headings = [...document.querySelectorAll<HTMLElement>('[data-topic-section] > h2[id]')];
+    if (headings.length === 0) return;
+
+    const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-topic-link]')];
+    const select = document.querySelector<HTMLSelectElement>('[data-topic-select]');
+    const validIds = new Set(headings.map((h) => h.id));
+    const HASH_LOCK_MS = 900;
+    let hashLockUntil = 0;
+    let activeId = '';
+    // Topic the reader explicitly navigated to; wins at the page bottom, where
+    // short final sections can never reach the top of the viewport.
+    let explicitId: string | null = null;
+
+    const focusLine = () =>
+      (parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0) + 8;
+
+    function hashId(): string | null {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      return validIds.has(id) ? id : null;
+    }
+
+    function keepLinkVisible(link: HTMLElement) {
+      const box = link.closest<HTMLElement>('.listing-sidebar');
+      if (!box || box.scrollHeight <= box.clientHeight) return;
+      const b = box.getBoundingClientRect();
+      const r = link.getBoundingClientRect();
+      if (r.top < b.top) box.scrollTop -= b.top - r.top + 8;
+      else if (r.bottom > b.bottom) box.scrollTop += r.bottom - b.bottom + 8;
+    }
+
+    function setActive(id: string) {
+      if (id === activeId) return;
+      activeId = id;
+      links.forEach((a) => {
+        if (a.dataset.topicTarget === id) {
+          a.setAttribute('aria-current', 'location');
+          keepLinkVisible(a);
+        } else {
+          a.removeAttribute('aria-current');
+        }
+      });
+      if (select) select.value = id;
+    }
+
+    /** Current topic, or null while above the first topic heading. */
+    function computeFromScroll(): string | null {
+      const doc = document.documentElement;
+      const atBottom = window.innerHeight + window.scrollY >= doc.scrollHeight - 2;
+      if (atBottom) {
+        if (explicitId) {
+          const top = document.getElementById(explicitId)?.getBoundingClientRect().top ?? -1;
+          if (top >= 0 && top < window.innerHeight) return explicitId;
+        }
+        return headings[headings.length - 1].id;
+      }
+      const line = focusLine();
+      let current: string | null = null;
+      for (const h of headings) {
+        if (h.getBoundingClientRect().top <= line + 1) current = h.id;
+        else break;
+      }
+      return current;
+    }
+
+    function syncHash(id: string | null) {
+      const next = id ? `#${id}` : '';
+      if (window.location.hash === next) return;
+      history.replaceState(history.state, '', window.location.pathname + window.location.search + next);
+    }
+
+    function navigatedTo(id: string) {
+      explicitId = id;
+      hashLockUntil = performance.now() + HASH_LOCK_MS;
+      setActive(id);
+    }
+
+    const initial = hashId();
+    if (initial) navigatedTo(initial);
+    else setActive(computeFromScroll() ?? headings[0].id);
+
+    let rafPending = false;
+    function onScroll() {
+      if (rafPending) return;
+      rafPending = true;
+      requestAnimationFrame(() => {
+        rafPending = false;
+        if (performance.now() < hashLockUntil) return;
+        const doc = document.documentElement;
+        if (window.innerHeight + window.scrollY < doc.scrollHeight - 2) explicitId = null;
+        const id = computeFromScroll();
+        setActive(id ?? headings[0].id);
+        syncHash(id);
+      });
+    }
+
+    links.forEach((link) =>
+      link.addEventListener('click', () => {
+        const id = link.dataset.topicTarget;
+        if (id) navigatedTo(id);
+      }),
+    );
+
+    select?.addEventListener('change', () => {
+      const id = select.value;
+      if (!validIds.has(id)) return;
+      navigatedTo(id);
+      const heading = document.getElementById(id);
+      if (!heading) return;
+      if (window.location.hash === `#${id}`) heading.scrollIntoView();
+      else window.location.hash = id;
+      heading.setAttribute('tabindex', '-1');
+      heading.focus({ preventScroll: true });
+    });
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    window.addEventListener('hashchange', () => {
+      const id = hashId();
+      if (id) navigatedTo(id);
+    });
+  }
+
+  setupTopicNav();
+</script>

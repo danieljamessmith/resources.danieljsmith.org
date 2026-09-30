@@ -1,0 +1,19 @@
+---
+import { getDisplayExamBoards, getExamBoardLabel, type ExamBoard } from '~/data/resources';
+
+interface Props {
+  boards: ExamBoard[] | undefined;
+}
+
+const { boards } = Astro.props;
+const displayBoards = getDisplayExamBoards(boards);
+---
+
+{displayBoards && displayBoards.length > 0 && (
+  <span class="inline-flex gap-1 flex-wrap">
+    <span class="sr-only">Exam boards:</span>
+    {displayBoards.map((bid) => (
+      <span class="board-pill">{getExamBoardLabel(bid)}</span>
+    ))}
+  </span>
+)}

@@ -1,0 +1,30 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  /** Number of booklets listed; shown on the right of the heading. */
+  count?: number;
+  /** Singular form of the label; pluralised automatically when count !== 1. */
+  countLabel?: string;
+}
+
+const { id, title, count, countLabel = 'booklet' } = Astro.props;
+
+const countText =
+  count !== undefined && count > 0 ? `${count} ${countLabel}${count === 1 ? '' : 's'}` : null;
+---
+
+<section data-topic-section aria-labelledby={id}>
+  <h2 id={id} class="topic-section-heading">
+    <span class="topic-title">{title}</span>
+    {countText && (
+      <span class="topic-count" data-topic-count data-total={count} data-label={countLabel}>
+        {countText}
+      </span>
+    )}
+  </h2>
+  <div>
+    <slot />
+  </div>
+  <p class="topic-empty" data-topic-empty hidden>No booklets in this topic are tagged for this exam board yet.</p>
+</section>

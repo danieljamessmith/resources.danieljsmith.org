@@ -1,0 +1,14 @@
+---
+import StrandPage from '~/components/StrandPage.astro';
+import { FM_CP, getWorksheetCountByCategory } from '~/data/resources';
+import { getStrand } from '~/data/topics';
+
+const strand = getStrand(FM_CP)!;
+const bookletCount = getWorksheetCountByCategory(FM_CP);
+---
+
+<StrandPage
+  strand={strand}
+  title="Further Maths Core Pure Questions by Topic & Solutions"
+  description={`Free A-level Further Maths Core Pure questions in ${bookletCount} topic booklets, all with full worked solutions. Edexcel, AQA, OCR A, OCR MEI and CIE style.`}
+/>

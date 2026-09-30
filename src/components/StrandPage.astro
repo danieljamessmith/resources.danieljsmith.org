@@ -1,0 +1,82 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+import TopicNav from '~/components/TopicNav.astro';
+import BoardFilter from '~/components/BoardFilter.astro';
+import TopicSection from '~/components/TopicSection.astro';
+import ResourcePairCard from '~/components/ResourcePairCard.astro';
+import NotesCard from '~/components/NotesCard.astro';
+import { getResourcePairs, getResourcesByTopic, type Resource } from '~/data/resources';
+import type { Strand } from '~/data/topics';
+
+interface Props {
+  strand: Strand;
+  title: string;
+  description: string;
+}
+
+const { strand, title, description } = Astro.props;
+
+type Pair = { questions: Resource; solutions: Resource };
+const sections = strand.topics.map((topic) => {
+  const notes = getResourcesByTopic(strand.category, topic.topic).filter((r) => r.type === 'notes');
+  const pairs = getResourcePairs(strand.category, topic.topic).filter(
+    (p): p is Pair => p.solutions !== undefined,
+  );
+  return { ...topic, notes, pairs };
+});
+const navTopics = strand.topics.map((t) => ({ id: t.id, label: t.navLabel }));
+---
+
+<Layout title={title} description={description}>
+  <div class="min-h-screen flex flex-col" data-board-storage-key={strand.boardStorageKey}>
+    <Header />
+    <main id="main-content" tabindex="-1" class="page-container listing-main">
+      <div class="listing-grid">
+        <aside class="listing-sidebar" aria-label="Topics and exam board filter">
+          <TopicNav variant="sidebar" topics={navTopics} />
+          <BoardFilter variant="sidebar" boards={strand.boards} />
+        </aside>
+        <div class="min-w-0">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">All resources</a><span aria-hidden="true">/</span>
+            <a href="/#further-maths">Further Maths</a><span aria-hidden="true">/</span>
+            <span aria-current="page">{strand.title}</span>
+          </nav>
+          <h1 class="page-title">{strand.title}</h1>
+          <p class="page-intro">Questions by topic with worked solutions. Filter by exam board to see only the booklets for your course.</p>
+          <p class="filter-status" data-filter-status hidden>
+            <span data-filter-status-text></span>
+            <button type="button" data-filter-clear>Show all boards</button>
+          </p>
+          <p class="sr-only" aria-live="polite" data-filter-live></p>
+
+          <div class="mobile-selectors">
+            <BoardFilter variant="mobile" boards={strand.boards} />
+            <TopicNav variant="mobile" topics={navTopics} />
+          </div>
+
+          {sections.map((section) => (
+            <TopicSection id={section.id} title={section.title} count={section.notes.length + section.pairs.length}>
+              {section.notes.length + section.pairs.length === 0 ? (
+                <p class="topic-empty">Coming soon.</p>
+              ) : (
+                <>
+                  {section.notes.map((note) => <NotesCard note={note} />)}
+                  {section.pairs.map((pair) => <ResourcePairCard pair={pair} />)}
+                </>
+              )}
+            </TopicSection>
+          ))}
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </div>
+</Layout>
+
+<script>
+  import { initBoardFilter } from '~/scripts/board-filter';
+  initBoardFilter();
+</script>

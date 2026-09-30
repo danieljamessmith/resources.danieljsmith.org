@@ -1,0 +1,45 @@
+---
+import { EXAM_BOARDS, type ExamBoard } from '~/data/resources';
+
+interface Props {
+  variant?: 'sidebar' | 'mobile';
+  boards?: { id: ExamBoard; label: string }[];
+}
+
+const { variant = 'sidebar', boards = EXAM_BOARDS } = Astro.props;
+
+const filterItems = [
+  { id: 'all' as const, label: 'All boards' },
+  ...boards.map((b) => ({ id: b.id, label: b.label })),
+];
+---
+
+{
+  variant === 'sidebar' ? (
+    <div role="group" aria-labelledby="board-filter-heading">
+      <p id="board-filter-heading" class="sidebar-heading">Exam board</p>
+      <ul role="list">
+        {filterItems.map((item) => (
+          <li>
+            <button
+              type="button"
+              class="sidebar-link"
+              data-board-filter={item.id}
+              data-board-label={item.label}
+              aria-pressed={item.id === 'all' ? 'true' : 'false'}
+            >
+              {item.label}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ) : (
+    <div class="mobile-selector">
+      <label for="mobile-exam-board">Exam board</label>
+      <select id="mobile-exam-board" data-board-select>
+        {filterItems.map(item => <option value={item.id}>{item.label}</option>)}
+      </select>
+    </div>
+  )
+}

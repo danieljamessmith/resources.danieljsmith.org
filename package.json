@@ -1,0 +1,40 @@
+{
+  "name": "danieljsmith-resources",
+  "type": "module",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "test": "vitest run",
+    "predev": "node scripts/count-questions.mjs && node scripts/hash-assets.mjs && node scripts/check-pack-preamble.mjs && node scripts/check-questions.mjs",
+    "dev": "astro dev",
+    "prebuild": "node scripts/count-questions.mjs && node scripts/hash-assets.mjs && node scripts/check-pack-preamble.mjs && node scripts/check-questions.mjs",
+    "build": "astro build",
+    "preview": "astro preview",
+    "precheck": "node scripts/count-questions.mjs && node scripts/hash-assets.mjs && node scripts/check-pack-preamble.mjs && node scripts/check-questions.mjs",
+    "check": "astro check",
+    "clean-tex": "node scripts/clean-tex.mjs",
+    "check-tex": "node scripts/check-tex.mjs",
+    "check-pack-preamble": "node scripts/check-pack-preamble.mjs",
+    "compile-tex": "node scripts/compile-tex.mjs",
+    "sync-questions": "node scripts/sync-questions.mjs",
+    "check-questions": "node scripts/check-questions.mjs",
+    "check-resources": "node scripts/check-resources.mjs",
+    "check-pairs": "node scripts/check-pairs.mjs",
+    "check-generated": "node scripts/check-generated.mjs",
+    "check-private-terms": "node scripts/check-private-terms.mjs",
+    "deploy-overleaf": "node scripts/deploy-from-overleaf.mjs"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.8",
+    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/tailwind": "^6.0.0",
+    "astro": "^5.1.0",
+    "husky": "^9.1.7",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.4"
+  }
+}

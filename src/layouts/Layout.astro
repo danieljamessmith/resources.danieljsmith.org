@@ -1,0 +1,47 @@
+---
+import '~/styles/global.css';
+interface Props { title: string; description?: string; noindex?: boolean; }
+const { title, noindex = false, description = 'Free mathematics resources: practice papers, questions by topic and worked solutions.' } = Astro.props;
+const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') + '/', Astro.site);
+const shareImage = new URL('/favicon.png', Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={shareImage} />
+    <meta property="og:image:width" content="693" />
+    <meta property="og:image:height" content="695" />
+    <meta property="og:image:alt" content="Daniel James Smith logo" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={shareImage} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta name="theme-color" content="#faf9f6" />
+    <script is:inline>
+      // Apply a saved choice before painting; new visitors always get light mode.
+      try {
+        if (localStorage.getItem('resources-theme') === 'dark') {
+          document.documentElement.dataset.theme = 'dark';
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#202225');
+        }
+      } catch { /* Keep the light default when storage is unavailable. */ }
+    </script>
+    <noscript><style>.theme-toggle { display: none !important; }</style></noscript>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title>{title}</title>
+    <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="53e68529-e7f5-4eb9-be5c-72d523f70d76"></script>
+  </head>
+  <body class="min-h-screen font-sans antialiased">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <slot />
+  </body>
+</html>
