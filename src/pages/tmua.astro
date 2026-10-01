@@ -2,12 +2,18 @@
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
-import { getResourcesByCategory, getPaperFamily } from '~/data/resources';
+import { getResourcesByCategory, getPaperFamily, getTmuaStats, TMUA_SHARE_IMAGE } from '~/data/resources';
 const tmuaPapers = getResourcesByCategory('TMUA')
   .filter(r => r.type === 'questions')
   .map(paper => ({ paper, ...getPaperFamily(paper) }));
+const stats = getTmuaStats();
+const solvedCopy =
+  stats.solvedQuestions === 0 ? 'answer keys'
+  : stats.solvedQuestions === stats.questions ? 'answer keys and step-by-step worked solutions for every question'
+  : `answer keys and step-by-step worked solutions to ${stats.solvedQuestions} of them`;
+const description = `${stats.questions} free TMUA-style questions in ${stats.sets} full practice sets (Paper 1 and Paper 2), with ${solvedCopy}.`;
 ---
-<Layout title="Free TMUA Practice Papers with Worked Solutions" description="Free TMUA-style practice papers with full worked solutions: step-by-step methods, alternative approaches and exam technique for Paper 1 and Paper 2.">
+<Layout title="Free TMUA Practice Papers with Worked Solutions" description={description} shareImage={TMUA_SHARE_IMAGE}>
   <div class="min-h-screen flex flex-col">
     <Header />
     <main id="main-content" tabindex="-1" class="page-container listing-main">

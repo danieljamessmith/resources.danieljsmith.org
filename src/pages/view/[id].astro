@@ -7,6 +7,7 @@ import {
   getPaperFamily,
   getResourceDisplayDescription,
   getResourceMetaDescription,
+  TMUA_SHARE_IMAGE,
   type Resource,
 } from '~/data/resources';
 import { resourceContents } from '~/data/resourceContents';
@@ -127,7 +128,7 @@ const partnerPaneLabel = partnerResource ? paneLabel(partnerResource.type) : '';
 */
 ---
 
-<Layout title={pageTitle} description={getResourceMetaDescription(resource)}>
+<Layout title={pageTitle} description={getResourceMetaDescription(resource)} shareImage={resource.category === 'TMUA' ? TMUA_SHARE_IMAGE : undefined}>
   <div class="min-h-screen flex flex-col">
     <header class="bg-surface border-b border-rule sticky top-0 z-10">
       <div class="page-container py-2 flex items-center justify-between gap-3">

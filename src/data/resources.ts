@@ -1127,6 +1127,35 @@ export function getQuestionCountByCategory(cat: string): number {
     .reduce((sum, r) => sum + (r.questionCount ?? 0), 0);
 }
 
+export interface TmuaStats {
+  sets: number;
+  papers: number;
+  questions: number;
+  /** Questions in papers that have worked solutions. */
+  solvedQuestions: number;
+}
+
+/** Link-preview image for TMUA pages; regenerated from `og-images/`. */
+export const TMUA_SHARE_IMAGE = {
+  src: '/og/tmua.png',
+  alt: 'Free TMUA practice papers with answer keys and worked solutions, beside a diagram of three touching circles',
+  width: 1200,
+  height: 630,
+};
+
+/** Live TMUA totals for listing copy and search descriptions. */
+export function getTmuaStats(): TmuaStats {
+  const papers = resources.filter((r) => r.category === 'TMUA' && r.type === 'questions');
+  const sets = new Set(papers.map((r) => /^tmua-set([^-]+)-paper/.exec(r.id)?.[1] ?? r.id));
+  const count = (rs: Resource[]) => rs.reduce((sum, r) => sum + (r.questionCount ?? 0), 0);
+  return {
+    sets: sets.size,
+    papers: papers.length,
+    questions: count(papers),
+    solvedQuestions: count(papers.filter((r) => r.pairId)),
+  };
+}
+
 /** Distinct-topic count for one category (e.g. one Further Maths strand). */
 export function getTopicCountByCategory(cat: string): number {
   const topics = new Set<string>();

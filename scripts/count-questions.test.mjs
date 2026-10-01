@@ -7,6 +7,7 @@ import {
   computeQuestionCounts,
   renderQuestionCountsModule,
   findQbtTexFiles,
+  findTmuaPaperTexFiles,
 } from './count-questions.mjs';
 
 describe('countQuestionitemsInText', () => {
@@ -84,6 +85,43 @@ describe('computeQuestionCounts (temp fixture)', () => {
 
   it('returns [] when the tex root does not exist', () => {
     expect(computeQuestionCounts(join(workdir, 'no-such-dir'))).toEqual([]);
+  });
+});
+
+describe('computeQuestionCounts with TMUA papers (temp fixture)', () => {
+  /** @type {string} */
+  let workdir;
+
+  beforeEach(() => {
+    workdir = mkdtempSync(join(tmpdir(), 'count-questions-tmua-'));
+    const tmua = join(workdir, 'tex', 'tmua');
+    mkdirSync(tmua, { recursive: true });
+    const items = (n) => Array.from({ length: n }, (_, i) => `\\questionitem\nq${i + 1}`).join('\n');
+    writeFileSync(join(tmua, 'TMUA_SetA_Paper1.tex'), items(3));
+    writeFileSync(join(tmua, 'TMUA_SetA_Paper2.tex'), items(2));
+    // Answer keys and solutions repeat or omit questions, so they are skipped.
+    writeFileSync(join(tmua, 'TMUA_SetA_Paper1_Answers.tex'), items(1));
+    writeFileSync(join(tmua, 'TMUA_SetA_Paper1_Solutions.tex'), items(3));
+  });
+
+  afterEach(() => {
+    rmSync(workdir, { recursive: true, force: true });
+  });
+
+  it('finds only the paper files', () => {
+    const names = findTmuaPaperTexFiles(join(workdir, 'tex')).map((f) => f.split(/[/\\]/).pop());
+    expect(names.sort()).toEqual(['TMUA_SetA_Paper1.tex', 'TMUA_SetA_Paper2.tex']);
+  });
+
+  it('keys TMUA counts by their PDF path', () => {
+    expect(computeQuestionCounts(workdir)).toEqual([
+      ['/tex/tmua/TMUA_SetA_Paper1.pdf', 3],
+      ['/tex/tmua/TMUA_SetA_Paper2.pdf', 2],
+    ]);
+  });
+
+  it('returns [] when there is no tmua folder', () => {
+    expect(findTmuaPaperTexFiles(join(workdir, 'no-such-dir'))).toEqual([]);
   });
 });
 

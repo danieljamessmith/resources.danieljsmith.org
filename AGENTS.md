@@ -47,6 +47,7 @@ The `.tex` sources under `public/tex/` are the **day-to-day editing surface** fo
 | `public/tex/**/build/aux/` | latexmk auxiliary files — gitignored |
 | `scripts/` | Node tooling: deploy, compile, hygiene, generators (see below) |
 | `scripts/lib/` | Shared modules (`tex-utils`, `staging`, `site-tree`, `resources-derive`) with colocated `*.test.mjs` |
+| `og-images/` | Source for link-preview images: TikZ diagram plus `build_tmua.py`, which writes `public/og/tmua.png` (Python + Pillow, run by hand; not part of the build) |
 | `data/` | Tracked agent hand-off files. Currently `resources-pending.json` (deploy → splicer); see `data/README.md` |
 | `.husky/pre-commit`, `.husky/commit-msg` | Pre-commit runs `npx vitest run` and the read-only checks (see Tooling); commit-msg runs `check-private-terms` on the message |
 | `.vscode/settings.json` | LaTeX Workshop config (latexmk recipe, ChkTeX) — kept in sync with `compile-tex.mjs` |
@@ -288,7 +289,7 @@ npm run check    # astro check
 
 Each of these has an npm `pre*` hook that runs:
 
-1. `node scripts/count-questions.mjs` — counts `\questionitem` occurrences in every `_QBT__*.tex` file and writes `src/data/questionCounts.generated.ts`, keyed by the `/tex/...` PDF path used in `resources.ts`.
+1. `node scripts/count-questions.mjs` — counts `\questionitem` occurrences in every `_QBT__*.tex` file and every TMUA paper (`tmua/TMUA_Set<X>_Paper<N>.tex`) and writes `src/data/questionCounts.generated.ts`, keyed by the `/tex/...` PDF path used in `resources.ts`.
 2. `node scripts/hash-assets.mjs` — hashes every deployed PDF under `public/tex/` and writes `src/data/fileHashes.generated.ts` for cache-busting.
 3. `node scripts/check-pack-preamble.mjs` — verifies Further Maths QBT/Soln files use the shared wrapper convention.
 4. `node scripts/check-questions.mjs` — verifies QBT/Soln statement parity.
@@ -416,4 +417,4 @@ When durable project conventions change, update `AGENTS.md` and the directly rel
 
 ### Search metadata
 
-`Layout.astro` supplies absolute, trailing-slash canonical URLs and Open Graph/Twitter metadata using the existing logo. Internal page links must also end in `/` (e.g. `/tmua/`, `/view/<id>/`) so they match the canonical and avoid the host's 301; `trailingSlash: 'always'` in `astro.config.mjs` makes the dev server 404 on a missing slash. Document titles distinguish questions, answer keys and worked solutions. Source viewers are generated only for existing LaTeX files and marked `noindex, follow`; the sitemap excludes source viewers, the 404 page and the legacy Further Maths redirect. `public/robots.txt` points crawlers at the sitemap index and disallows raw `.tex` files, which are linked only from the noindexed source viewers.
+`Layout.astro` supplies absolute, trailing-slash canonical URLs and Open Graph/Twitter metadata. Pages share the square logo by default; a page can pass a wide `shareImage` (which also switches the Twitter card to `summary_large_image`). TMUA pages pass `TMUA_SHARE_IMAGE` from `resources.ts`, built from `og-images/`; it deliberately states no counts so it cannot go stale. The TMUA listing's description is built from `getTmuaStats()` (sets, papers, questions, questions with worked solutions), so its counts update with the catalogue. Internal page links must also end in `/` (e.g. `/tmua/`, `/view/<id>/`) so they match the canonical and avoid the host's 301; `trailingSlash: 'always'` in `astro.config.mjs` makes the dev server 404 on a missing slash. Document titles distinguish questions, answer keys and worked solutions. Source viewers are generated only for existing LaTeX files and marked `noindex, follow`; the sitemap excludes source viewers, the 404 page and the legacy Further Maths redirect. `public/robots.txt` points crawlers at the sitemap index and disallows raw `.tex` files, which are linked only from the noindexed source viewers.

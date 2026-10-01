@@ -1,7 +1,8 @@
 /**
- * Counts \questionitem occurrences in every QBT question .tex file and writes
- * src/data/questionCounts.generated.ts, keyed by the /tex/... PDF path used
- * in resources.ts. Run automatically via npm lifecycle hooks before build/dev/check.
+ * Counts \questionitem occurrences in every QBT question .tex file and every
+ * TMUA paper .tex file, and writes src/data/questionCounts.generated.ts, keyed
+ * by the /tex/... PDF path used in resources.ts. Run automatically via npm
+ * lifecycle hooks before build/dev/check.
  *
  * The compute/render functions are exported pure (no I/O) so that
  * `check-generated.mjs` can verify the on-disk generated file matches what
@@ -47,6 +48,25 @@ export function findQbtTexFiles(dir) {
 }
 
 /**
+ * Finds the TMUA paper files (`TMUA_Set<X>_Paper<N>.tex`) directly under
+ * `<dir>/tmua`, skipping their answer keys and solutions.
+ * Exported so tests can drive it against a temp fixture tree.
+ *
+ * @param {string} dir - the tex root
+ * @returns {string[]}
+ */
+export function findTmuaPaperTexFiles(dir) {
+  const tmuaDir = join(dir, 'tmua');
+  let names;
+  try {
+    names = readdirSync(tmuaDir);
+  } catch {
+    return [];
+  }
+  return names.filter((name) => /^TMUA_Set[^_]+_Paper\d+\.tex$/.test(name)).map((name) => join(tmuaDir, name));
+}
+
+/**
  * Counts `\questionitem` use-sites in a tex file body, excluding any
  * `\newcommand`/`\renewcommand` definition lines.
  *
@@ -68,7 +88,8 @@ export function countQuestionitemsInText(content) {
  * @returns {[string, number][]}
  */
 export function computeQuestionCounts(publicDirArg = publicDir) {
-  const texFiles = findQbtTexFiles(join(publicDirArg, 'tex'));
+  const texRoot = join(publicDirArg, 'tex');
+  const texFiles = [...findQbtTexFiles(texRoot), ...findTmuaPaperTexFiles(texRoot)];
   const counts = {};
   for (const texPath of texFiles) {
     const content = readFileSync(texPath, 'utf-8');

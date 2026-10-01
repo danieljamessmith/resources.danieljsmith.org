@@ -41,4 +41,10 @@ export const questionCounts: Record<string, number> = {
   '/tex/further-maths/further-mechanics/work-energy-power/qbt/_QBT___Power_and_Driving_Force_.pdf': 12,
   '/tex/further-maths/further-mechanics/work-energy-power/qbt/_QBT__Elastic_Potential_Energy.pdf': 10,
   '/tex/further-maths/further-mechanics/work-energy-power/qbt/_QBT__Work_Energy_Principle.pdf': 10,
+  '/tex/tmua/TMUA_SetA_Paper1.pdf': 20,
+  '/tex/tmua/TMUA_SetA_Paper2.pdf': 20,
+  '/tex/tmua/TMUA_SetB_Paper1.pdf': 20,
+  '/tex/tmua/TMUA_SetB_Paper2.pdf': 20,
+  '/tex/tmua/TMUA_SetC_Paper1.pdf': 20,
+  '/tex/tmua/TMUA_SetC_Paper2.pdf': 20,
 };
