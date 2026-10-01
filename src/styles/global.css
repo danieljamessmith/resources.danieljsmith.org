@@ -115,6 +115,7 @@ a { text-underline-offset: .2em; }
 .breadcrumbs a:hover { color: rgb(var(--accent)); text-decoration: underline; }
 .page-title { font: 400 32px/1.15 Georgia, serif; letter-spacing: -.02em; }
 .page-intro { font-size: 15px; color: rgb(var(--muted)); line-height: 1.6; margin: 8px 0 0; max-width: 640px; }
+.page-notice { font-size: 15px; color: rgb(var(--ink)); font-weight: 600; margin: 12px 0 0; }
 .page-intro-list { list-style: disc; padding-left: 1.25em; }
 .page-intro-list li { margin-top: 4px; }
 .page-intro-list strong { color: rgb(var(--ink)); font-weight: 600; }
@@ -197,6 +198,9 @@ a { text-underline-offset: .2em; }
 /* Resource rows: the title link covers the whole row; action links sit above it. */
 .resource-row { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 6px 16px; padding: 12px 8px; border-bottom: 1px solid rgb(var(--rule)); }
 .resource-row[hidden] { display: none; }
+.resource-row.is-dimmed { opacity: 0.4; transition: opacity 0.15s ease; }
+.resource-row.is-dimmed:hover,
+.resource-row.is-dimmed:focus-within { opacity: 0.8; }
 .resource-row:hover { background: rgb(var(--surface-overlay)); }
 .resource-row:has(.resource-link:focus-visible) { outline: 3px solid rgb(var(--accent)); outline-offset: -3px; }
 .resource-main { min-width: 0; }

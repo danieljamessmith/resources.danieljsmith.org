@@ -1,6 +1,7 @@
 /**
  * Exam board filter for Further Maths strand pages.
- * Hides booklets that don't match, updates per-topic counts and announces the result.
+ * Dims booklets that don't match, updates per-topic counts and announces the result.
+ * Dimmed booklets stay in place and stay usable, so a near match is still one click away.
  * Reads the localStorage key from `[data-board-storage-key]` on the page.
  */
 export function initBoardFilter(): void {
@@ -55,7 +56,7 @@ export function initBoardFilter(): void {
       let visible = 0;
       rows.forEach((row) => {
         const match = matches(row.dataset.boards, board);
-        row.hidden = !match;
+        row.classList.toggle('is-dimmed', !match);
         if (match) visible++;
       });
       shown += visible;
