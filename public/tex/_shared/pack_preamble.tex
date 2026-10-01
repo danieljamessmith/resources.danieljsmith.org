@@ -105,14 +105,16 @@
 
 \renewcommand{\contentsname}{Questions}
 
-\newcommand{\djsPackHeader}[1]{%
+% \djsPackHeader[<link content tag>]{<left header>}; the tag says which
+% document a click on the header link came from.
+\newcommand{\djsPackHeader}[2][questions]{%
   \pagestyle{fancy}%
   \fancyhead{}%
   \fancyfoot{}%
   \renewcommand{\headrulewidth}{0.9pt}%
-  \lhead{#1}%
+  \lhead{#2}%
   \chead{}%
-  \rhead{\href{https://danieljsmith.org}{danieljsmith.org}}%
+  \rhead{\href{https://danieljsmith.org/?utm_source=pdf&utm_campaign=further-maths&utm_content=#1}{danieljsmith.org}}%
 }
 
 \newcommand{\djsQbtHeader}[1]{%
@@ -124,7 +126,7 @@
 % \thispagestyle marks the next page shipped out, which is the question's
 % page because every solution question starts after a \newpage.
 \newcommand{\djsSolnHeader}[1]{%
-  \djsPackHeader{\textit{Solutions} - #1}%
+  \djsPackHeader[solutions]{\textit{Solutions} - #1}%
   \pagestyle{empty}%
   \renewcommand{\djsQuestionPageStyle}{\thispagestyle{fancy}}%
 }
