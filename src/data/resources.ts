@@ -175,6 +175,41 @@ const rawResources: Resource[] = [
     pairId: 'tmua-setB-paper2',
   },
 
+  {
+    id: 'tmua-setC-paper1',
+    title: 'TMUA Set C Paper 1',
+    description: '20 questions in the style of Paper 1: applications of mathematical knowledge.',
+    file: '/tex/tmua/TMUA_SetC_Paper1.pdf',
+    category: 'TMUA',
+    type: 'questions',
+  },
+  {
+    id: 'tmua-setC-paper1-answers',
+    title: 'TMUA Set C Paper 1',
+    description: 'Answer key for TMUA Set C Paper 1: the correct option for each of the 20 questions.',
+    file: '/tex/tmua/TMUA_SetC_Paper1_Answers.pdf',
+    category: 'TMUA',
+    type: 'answers',
+    paperId: 'tmua-setC-paper1',
+  },
+  {
+    id: 'tmua-setC-paper2',
+    title: 'TMUA Set C Paper 2',
+    description: '20 questions in the style of Paper 2: mathematical reasoning, logic and proof.',
+    file: '/tex/tmua/TMUA_SetC_Paper2.pdf',
+    category: 'TMUA',
+    type: 'questions',
+  },
+  {
+    id: 'tmua-setC-paper2-answers',
+    title: 'TMUA Set C Paper 2',
+    description: 'Answer key for TMUA Set C Paper 2: the correct option for each of the 20 questions.',
+    file: '/tex/tmua/TMUA_SetC_Paper2_Answers.pdf',
+    category: 'TMUA',
+    type: 'answers',
+    paperId: 'tmua-setC-paper2',
+  },
+
   // --- A-level Further Maths: Complex Numbers (QBT sheets) ---
   {
     id: 'fm-complex-de-moivres-theorem',
