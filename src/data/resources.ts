@@ -182,6 +182,7 @@ const rawResources: Resource[] = [
     file: '/tex/tmua/TMUA_SetC_Paper1.pdf',
     category: 'TMUA',
     type: 'questions',
+    pairId: 'tmua-setC-paper1-solns',
   },
   {
     id: 'tmua-setC-paper1-answers',
@@ -191,6 +192,16 @@ const rawResources: Resource[] = [
     category: 'TMUA',
     type: 'answers',
     paperId: 'tmua-setC-paper1',
+  },
+  {
+    id: 'tmua-setC-paper1-solns',
+    title: 'TMUA Set C Paper 1',
+    description:
+      'Worked solutions to TMUA Set C Paper 1: inequalities, logarithms, trigonometry in triangles, geometric sequences, common tangents, probability and more, with step-by-step methods and alternative approaches.',
+    file: '/tex/tmua/TMUA_SetC_Paper1_Solutions.pdf',
+    category: 'TMUA',
+    type: 'solutions',
+    pairId: 'tmua-setC-paper1',
   },
   {
     id: 'tmua-setC-paper2',
