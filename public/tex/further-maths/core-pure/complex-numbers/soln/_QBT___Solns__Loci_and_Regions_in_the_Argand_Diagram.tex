@@ -696,11 +696,11 @@ A=
     \begin{tikzpicture}[scale=0.9]
       \def\cx{-2}
       \def\cy{1}
-      \def\R{8}
+      \def\R{6}
+      \fill[gray!30] (\cx,\cy) -- ++(-30:\R) arc (-30:45:\R) -- cycle;
       \draw[->] (-6,0) -- (4.5,0) node[right] {Re};
       \draw[->] (0,-3) -- (0,6) node[above] {Im};
       \node[below left] at (0,0) {$O$};
-      \fill[gray!30] (\cx,\cy) -- ++(-30:\R) arc (-30:45:\R) -- cycle;
       \draw[thick,dashed] (\cx,\cy) -- ++(-30:\R);
       \draw[thick,dashed] (\cx,\cy) -- ++(45:\R);
       \draw[fill=white] (\cx,\cy) circle (1.5pt);
@@ -753,7 +753,7 @@ A=
   \item Find the modulus of the complex number $2+2\sqrt{3}\mathrm{i}$, giving your answer as an integer. \marks{2} \\
   \item The locus of points, $L$, satisfies the equation $|z-(2-2\sqrt{3}\mathrm{i})|=2$.
   \begin{enumerate}[label=(\roman*)]
-    \item Sketch the locus $L$ on the Argand diagram below. \marks{3}
+    \item Sketch the locus $L$ on the Argand diagram above. \marks{3}
     \item The complex number $w$ lies on $L$ so that $-\pi<\arg w\leq \pi$. Find the greatest possible value of $\arg w$, giving your answer in terms of $\pi$. \marks{2} \\
   \end{enumerate}
   \item Solve the equation $z^4=2+2\sqrt{3}\mathrm{i}$, giving your answers in the form $re^{\mathrm{i}\theta}$, where $r>0$ and $-\pi<\theta\leq \pi$. \marks{5} \\
@@ -1135,14 +1135,14 @@ The point $Q$ represents a complex number $z$ on an Argand diagram such that
   \def\cy{1}
   \def\rad{2}
 
-  \draw[->] (-2.8,0) -- (2.8,0) node[right] {Re};
-  \draw[->] (0,-1.8) -- (0,4.2) node[above] {Im};
-  \node[below left] at (0,0) {$O$};
-
   \begin{scope}
     \clip (\cx,\cy) circle (\rad);
     \fill[gray!30] (-3,-2) -- (2,-2) -- (-1,4) -- (-3,4) -- cycle;
   \end{scope}
+
+  \draw[->] (-2.8,0) -- (2.8,0) node[right] {Re};
+  \draw[->] (0,-1.8) -- (0,4.2) node[above] {Im};
+  \node[below left] at (0,0) {$O$};
 
   \draw[thick] (\cx,\cy) circle (\rad);
   \draw[thick] (-1.1,4.2) -- (1.9,-1.8);
@@ -1611,7 +1611,7 @@ is an arc of a circle $C$. \\
 
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Sketch, on the Argand diagram below, the locus of points satisfying the equation
+  \item Sketch, on the Argand diagram above, the locus of points satisfying the equation
   \[
   |z-(2+4\mathrm{i})|=3
   \]
