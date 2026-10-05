@@ -37,7 +37,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/induction/soln/_QBT___Solns__Proof_by_Induction___Derivatives.pdf': 'e05c7ed2',
   '/tex/further-maths/core-pure/induction/soln/_QBT___Solns__Proof_by_Induction___Divisibility.pdf': '03fc3737',
   '/tex/further-maths/core-pure/induction/soln/_QBT___Solns__Proof_by_Induction___Matrices.pdf': '315f91cb',
-  '/tex/further-maths/core-pure/induction/soln/_QBT___Solns__Proof_by_Induction___Series.pdf': '7f33ce35',
+  '/tex/further-maths/core-pure/induction/soln/_QBT___Solns__Proof_by_Induction___Series.pdf': 'bc786c18',
   '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Hyperbolic_Functions.pdf': 'b5edd753',
   '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Rational_Functions.pdf': '63037461',
   '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Roots_of_Polynomials.pdf': '0778c91c',
