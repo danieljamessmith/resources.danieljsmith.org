@@ -3,7 +3,7 @@
 
 \djsSolnHeader{Integration by Substitution}
 
-\djsLastUpdated{30 September 2026}
+\djsLastUpdated{5 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -450,8 +450,6 @@ Therefore
 &=\ln\!\left(\frac{9}{8}\right)
 \end{align*}
 
-The exact value is $\ln\!\left(\frac{9}{8}\right)$.
-
 \item Use the substitution
 \[
 x=2\sin\theta
@@ -510,8 +508,6 @@ Now evaluate:
 &=-\frac{\sqrt3}{3}-\frac{\pi}{3}+\sqrt3+\frac{\pi}{6}\\
 &=\frac{2\sqrt3}{3}-\frac{\pi}{6}
 \end{align*}
-
-The exact value is $\frac{2\sqrt3}{3}-\frac{\pi}{6}$.
 \end{enumerate}
 \end{djsSolution}
 
@@ -598,9 +594,41 @@ I
 &=\ln\left(2+\sqrt{3}\right)-\frac{\sqrt{3}}{2}
 \end{align*}
 
-Therefore, the exact value is
+\medskip
+
+\emph{Alternative method (using a hyperbolic substitution):}
+
+Use the substitution
 \[
-\ln(2+\sqrt{3})-\frac{\sqrt{3}}{2}
+x=2\cosh u
+\]
+
+Then
+\[
+\frac{\mathrm{d}x}{\mathrm{d}u}=2\sinh u
+\quad\Rightarrow\quad
+\mathrm{d}x=2\sinh u\,\mathrm{d}u
+\]
+
+Also, since \(u\ge0\) on this interval,
+\[
+\sqrt{x^2-4}=\sqrt{4\cosh^2u-4}=2\sinh u
+\]
+
+When \(x=2\), \(\cosh u=1\), so \(u=0\). When \(x=4\), \(\cosh u=2\), so \(u=\operatorname{arcosh}2=\ln\left(2+\sqrt{3}\right)\).
+
+So the integral becomes
+\begin{align*}
+I
+&=\int_0^{\ln(2+\sqrt{3})} \frac{2\sinh u}{4\cosh^2u}\cdot 2\sinh u\,\mathrm{d}u \\
+&=\int_0^{\ln(2+\sqrt{3})} \tanh^2u\,\mathrm{d}u \\
+&=\int_0^{\ln(2+\sqrt{3})} \left(1-\operatorname{sech}^2u\right)\mathrm{d}u \\
+&=\left[u-\tanh u\right]_0^{\ln(2+\sqrt{3})}
+\end{align*}
+
+At the upper limit, \(\cosh u=2\) and \(\sinh u=\sqrt{\cosh^2u-1}=\sqrt{3}\), so \(\tanh u=\frac{\sqrt{3}}{2}\). Hence
+\[
+I=\ln\left(2+\sqrt{3}\right)-\frac{\sqrt{3}}{2}
 \]
 \end{djsSolution}
 
@@ -785,7 +813,7 @@ Hence
 = \frac{32\sqrt6-30\sqrt5}{5}
 \]
 
-as required
+as required.
 \end{djsSolution}
 
 
@@ -886,8 +914,6 @@ Numerically,
 \[
 \frac{1}{2}\arcsin\!\left(\frac{2}{3}\tanh 1\right)\approx 0.266
 \]
-
-Therefore, the integral is \(\displaystyle \frac{1}{2}\arcsin\!\left(\frac{2}{3}\tanh 1\right)\approx 0.266\).
 \end{djsSolution}
 
 
@@ -1249,22 +1275,19 @@ Using calculus, find the exact values of \\
 x^2+4x+8=(x+2)^2+4
 \]
 
-Let \(u=x+2\). Then \(\mathrm{d}u=\mathrm{d}x\), and the limits change as
+Use the standard result
 \[
-x=-2 \Rightarrow u=0, \qquad x=0 \Rightarrow u=2
+\int \frac{1}{x^2+a^2}\,\mathrm{d}x=\frac{1}{a}\arctan\left(\frac{x}{a}\right)+c
 \]
-
-So
+with \(a=2\), and with \(x\) replaced by \(x+2\):
 \begin{align*}
 \int_{-2}^0 \frac{1}{x^2+4x+8}\,\mathrm{d}x
-&=\int_0^2 \frac{1}{u^2+4}\,\mathrm{d}u \\
-&=\frac12 \arctan\!\left(\frac{u}{2}\right)\Big|_0^2 \\
+&=\int_{-2}^0 \frac{1}{(x+2)^2+4}\,\mathrm{d}x \\
+&=\left[\frac12\arctan\left(\frac{x+2}{2}\right)\right]_{-2}^0 \\
 &=\frac12\left(\arctan 1-\arctan 0\right) \\
 &=\frac12\left(\frac{\pi}{4}-0\right) \\
 &=\frac{\pi}{8}
 \end{align*}
-
-Hence the exact value is \(\displaystyle \frac{\pi}{8}\).
 
 \item Use the substitution
 \[
@@ -1311,8 +1334,6 @@ Now evaluate:
 &=2\left(\frac{\pi}{3}-\frac12\cdot\frac{\sqrt3}{2}\right) \\
 &=\frac{2\pi}{3}-\frac{\sqrt3}{2}
 \end{align*}
-
-Hence the exact value is \(\displaystyle \frac{2\pi}{3}-\frac{\sqrt3}{2}\).
 \end{enumerate}
 \end{djsSolution}
 
@@ -1485,11 +1506,6 @@ Now substitute the limits:
 &=8\left(\frac{\pi}{4}-\frac{1}{2}\right) \\
 &=2\pi-4
 \end{align*}
-
-Hence the exact value of the integral is
-\[
-2\pi-4
-\]
 
 So in the form $a+b\pi$,
 \[
