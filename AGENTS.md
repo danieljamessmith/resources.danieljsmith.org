@@ -142,11 +142,15 @@ grey line at the foot of page one only. After changing student-visible
 question or solution content (including typos, marks or diagrams), manually
 set each affected document's date to today and rebuild its deployed PDF.
 A question edit updates both dates after statement sync; a solution-only
-edit updates only the solutions date. Inspections, comments, whitespace
+edit updates only the solutions date. A completed audit of a pack's questions
+and solutions updates both documents' dates to today, even when no fixes are
+needed. Rebuild each deployed PDF whose source date changed, then record the
+check after the last `.tex` edit. Other inspections, comments, whitespace
 cleanup, routine recompilation and shared layout changes leave dates alone.
 Imports preserve existing dates and initialise undated documents to the
 import date. `check-pack-preamble` requires one valid date, but does not
-detect a forgotten update. These dates are independent of review/check dates.
+detect a forgotten update. Displayed last-updated dates and stored review/check
+dates are separate records; a completed audit refreshes both.
 
 **File-name patterns:**
 
