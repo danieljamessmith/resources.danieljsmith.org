@@ -3,11 +3,11 @@
 export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Roots_and_Geometry_Problems.pdf': '17e5ec88',
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Series.pdf': 'f32b1cf7',
-  '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__De_Moivres_Theorem.pdf': 'c2a16de3',
+  '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__De_Moivres_Theorem.pdf': 'f1016084',
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Loci_and_Regions_in_the_Argand_Diagram.pdf': 'aa5b6a2a',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Roots_and_Geometry_Problems.pdf': '7b47f675',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Series.pdf': '057d10f4',
-  '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__De_Moivres_Theorem.pdf': '1c24e374',
+  '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__De_Moivres_Theorem.pdf': '3e8e9cfb',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Loci_and_Regions_in_the_Argand_Diagram.pdf': 'e8545034',
   '/tex/further-maths/core-pure/differential-equations/qbt/_QBT__2nd_Order_Differential_Equations.pdf': 'c85b9eb3',
   '/tex/further-maths/core-pure/differential-equations/qbt/_QBT__Integrating_Factor_Method.pdf': '326d973b',
