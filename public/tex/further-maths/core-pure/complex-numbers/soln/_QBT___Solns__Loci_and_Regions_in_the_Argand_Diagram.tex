@@ -49,7 +49,7 @@ The Argand diagram shows a circle of radius $4$. The centre of the circle is the
 
 The locus $L$ is defined by
 \[
-L=\Bigl\{z\in\mathbb{C}\;\Bigm|\; |z-(-2+\mathrm{i})|=|z+1-3\mathrm{i}|\Bigr\}
+L=\Bigl\{z\in\mathbb{C}\;\Bigm|\; |z-(2+\mathrm{i})|=|z+1-3\mathrm{i}|\Bigr\}
 \] \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
@@ -78,8 +78,6 @@ So the locus is the set of complex numbers whose distance from \(-2+\mathrm{i}\)
 =
 \{z\in\mathbb{C}\mid |z+2-\mathrm{i}|=4\}
 \]
-
-Hence the locus is \(\{z\in\mathbb{C}\mid |z+2-\mathrm{i}|=4\}\).
 
   \item Let \(z=x+\mathrm{i}y\), where \(x,y\in\mathbb{R}\).
 
@@ -116,7 +114,7 @@ y=\frac{3}{2}x+\frac{5}{4}
 
 This is a straight line. Since it is the set of points equidistant from \(2+\mathrm{i}\) and \(-1+3\mathrm{i}\), it is the perpendicular bisector of the line segment joining those two points.
 
-Its midpoint is
+It passes through the midpoint of that segment,
 \[
 \left(\frac{2+(-1)}{2},\frac{1+3}{2}\right)=\left(\frac12,2\right)
 \]
@@ -155,7 +153,7 @@ Its midpoint is
 
 \node[below left] at (O) {$O$};
 \node[below] at (\cx,0) {$-2$};
-\node[left] at (0,\cy) {$1$};
+\node[right] at (0.12,\cy) {$1$};
 
 \node[above left] at (C) {$-2+\mathrm{i}$};
 \node[below right] at (A) {$2+\mathrm{i}$};
@@ -179,7 +177,7 @@ We are given
 \arg(z+1-2\mathrm{i})=\frac{2\pi}{3}
 \]
 
-So the argument of \((x+1)+3\mathrm{i}\) is \(120^\circ\), which is in the second quadrant. Therefore
+So \((x+1)+3\mathrm{i}\) lies in the second quadrant, with \(x+1<0\). Therefore
 \[
 \tan\frac{2\pi}{3}=\frac{3}{x+1}
 \]
@@ -198,12 +196,10 @@ so
 x=-1-\sqrt{3}
 \]
 
-Therefore
+Therefore the required number is
 \[
 z=-1-\sqrt{3}+5\mathrm{i}
 \]
-
-So the required number is \(-1-\sqrt{3}+5\mathrm{i}\).
 \end{enumerate}
 \end{djsSolution}
 
@@ -267,8 +263,6 @@ The point $P$ also lies on the locus defined by $\Bigl\{ z\in\mathbb{C}\;\Bigm|\
   \[
   w=2+4\sqrt{3}+3\mathrm{i}
   \]
-
-  So the required complex number is $2+4\sqrt{3}+3\mathrm{i}$.
 
   \item From part (a),
   \[
@@ -367,6 +361,8 @@ The point $P$ also lies on the locus defined by $\Bigl\{ z\in\mathbb{C}\;\Bigm|\
   u=4\sqrt{3}\quad \text{or}\quad u=2\sqrt{3}
   \]
 
+  Both values are positive, so both points have $x>2$ and lie on the half-line itself, not on its extension.
+
   The value $u=4\sqrt{3}$ gives the known point $P$ from part (a), so the other intersection has
   \[
   u=2\sqrt{3}
@@ -385,8 +381,6 @@ The point $P$ also lies on the locus defined by $\Bigl\{ z\in\mathbb{C}\;\Bigm|\
   \[
   z=2+2\sqrt{3}+\mathrm{i}
   \]
-
-  So the other complex number is $2+2\sqrt{3}+\mathrm{i}$.
 \end{enumerate}
 \end{djsSolution}
 
@@ -466,21 +460,19 @@ A=
   \end{center}
 
   \item
-  The modulus \(|z|\) is the distance from the origin.
+  The modulus \(|z|\) is the distance from the origin \(O\) to the point representing \(z\).
 
-  For any point in the region,
-  \begin{align*}
-  |z|
-  &= |(z-4+3\mathrm{i})+(4-3\mathrm{i})| \\
-  &\le |z-4+3\mathrm{i}|+|4-3\mathrm{i}| \\
-  &\le 8+\sqrt{4^2+(-3)^2} \\
-  &= 8+5 \\
-  &= 13
-  \end{align*}
+  The centre \(C\) of the circle represents \(4-3\mathrm{i}\), so
+  \[
+  OC=|4-3\mathrm{i}|=\sqrt{4^2+(-3)^2}=5
+  \]
 
-  Equality is possible at the point on the circle lying on the line from the origin through the centre.
+  The point of the region furthest from \(O\) is where the line from \(O\) through \(C\) meets the circle on the far side of \(C\). Its distance from \(O\) is \(OC\) plus the radius.
 
-  Therefore the maximum value of \(|z|\) is \(13\).
+  Therefore the maximum value of \(|z|\) is
+  \[
+  5+8=13
+  \]
 
   \item
   Let \(z=x+\mathrm{i}y\).
@@ -522,25 +514,46 @@ A=
   \]
   the centre lies on the opposite side of the line, so the region \(A\) is the minor segment cut off by the line \(x+y=9\).
 
-  The perpendicular distance from \(C\) to the line \(x+y=9\) is
+  The circle has equation \((x-4)^2+(y+3)^2=64\). To find where the line meets it, substitute \(y=9-x\):
+  \begin{align*}
+  (x-4)^2+(12-x)^2&=64\\
+  x^2-8x+16+x^2-24x+144&=64\\
+  2x^2-32x+96&=0\\
+  x^2-16x+48&=0\\
+  (x-4)(x-12)&=0
+  \end{align*}
+  So the line meets the circle at \(P=(4,5)\) and \(Q=(12,-3)\).
+
+  \(CP\) joins \((4,-3)\) to \((4,5)\), so it is vertical, and \(CQ\) joins \((4,-3)\) to \((12,-3)\), so it is horizontal. Hence
   \[
-  d=\frac{|4+(-3)-9|}{\sqrt{1^2+1^2}}
-   =\frac{8}{\sqrt{2}}
-   =4\sqrt{2}
+  \angle PCQ=\frac{\pi}{2}
   \]
 
-  Let \(P\) and \(Q\) be the points where the line meets the circle, and let \(M\) be the midpoint of chord \(PQ\). Then \(CM\perp PQ\), so in right-angled triangle \(CMP\),
-  \[
-  \cos \angle PCM=\frac{CM}{CP}=\frac{4\sqrt{2}}{8}=\frac{\sqrt{2}}{2}
-  \]
-  Hence
-  \[
-  \angle PCM=\frac{\pi}{4}
-  \]
-  so the angle subtended by the chord is
-  \[
-  \angle PCQ=2\times \frac{\pi}{4}=\frac{\pi}{2}
-  \]
+  \begin{center}
+  \begin{tikzpicture}[scale=0.45]
+    \def\cx{4}
+    \def\cy{-3}
+    \def\rad{8}
+    \begin{scope}
+      \clip (\cx,\cy) circle (\rad);
+      \fill[gray!30] (-1,10) -- (14,-5) -- (14,10) -- cycle;
+    \end{scope}
+    \draw[->] (-6,0) -- (14,0) node[right] {Re};
+    \draw[->] (0,-12) -- (0,8) node[above] {Im};
+    \node[above left] at (0,0) {$O$};
+    \draw[thick] (\cx,\cy) circle (\rad);
+    \draw[thick] (1,8) -- (13,-4) node[below right] {$x+y=9$};
+    \draw[dashed] (\cx,\cy) -- (4,5);
+    \draw[dashed] (\cx,\cy) -- (12,-3);
+    \draw (4.8,-3) -- (4.8,-2.2) -- (4,-2.2);
+    \fill (\cx,\cy) circle (4pt);
+    \fill (4,5) circle (4pt);
+    \fill (12,-3) circle (4pt);
+    \node[below left] at (\cx,\cy) {$C$};
+    \node[above right] at (4,5) {$P$};
+    \node[above right] at (12,-3) {$Q$};
+  \end{tikzpicture}
+  \end{center}
 
   Therefore
   \begin{align*}
@@ -640,11 +653,10 @@ A=
     \[
     |z-(-2+4\mathrm{i})|=3
     \]
-    hence
+    hence the circumference of circle $A$ is
     \[
     |z+2-4\mathrm{i}|=3
     \]
-    So the equation of the circumference of circle $A$ is $|z+2-4\mathrm{i}|=3$.
 
     \item The shaded region is the part inside both circles, and neither circumference is included.
 
@@ -679,7 +691,7 @@ A=
     \]
     is therefore the open sector with vertex at $-2+\mathrm{i}$ between the rays making angles $-\frac{\pi}{6}$ and $\frac{\pi}{4}$ with the positive real axis.
 
-    Since the inequalities are strict, both boundary rays are excluded.
+    Since the inequalities are strict, both boundary rays are excluded. The vertex $-2+\mathrm{i}$ is excluded too, as $\arg 0$ is undefined.
 
     \begin{tikzpicture}[scale=0.9]
       \def\cx{-2}
@@ -691,7 +703,7 @@ A=
       \fill[gray!30] (\cx,\cy) -- ++(-30:\R) arc (-30:45:\R) -- cycle;
       \draw[thick,dashed] (\cx,\cy) -- ++(-30:\R);
       \draw[thick,dashed] (\cx,\cy) -- ++(45:\R);
-      \fill (\cx,\cy) circle (1.5pt);
+      \draw[fill=white] (\cx,\cy) circle (1.5pt);
       \node[below left] at (\cx,\cy) {$-2+\mathrm{i}$};
     \end{tikzpicture}
 
@@ -715,8 +727,6 @@ A=
     0.927>\frac{\pi}{4}
     \]
     the argument is too large, so $1+5\mathrm{i}$ does not lie in the region.
-
-    Therefore, the point $1+5\mathrm{i}$ is not in the region.
   \end{enumerate}
 \end{enumerate}
 \end{djsSolution}
@@ -760,16 +770,15 @@ A=
   =\sqrt{16}
   =4
   \]
-  So the modulus is \(4\).
 
-  \item \begin{enumerate}[label=\textbf{(\roman*)}]
+  \item \begin{enumerate}[label=(\roman*)]
     \item The equation
     \[
     \lvert z-(2-2\sqrt{3}\mathrm{i})\rvert=2
     \]
     represents all points a distance \(2\) from the point \(2-2\sqrt{3}\mathrm{i}\).
 
-    So \(L\) is a circle with centre \((2,-2\sqrt{3})\) and radius \(2\).
+    So \(L\) is a circle with centre \((2,-2\sqrt{3})\) and radius \(2\). The centre is a distance \(2\) from the imaginary axis, so the circle touches the imaginary axis at \(-2\sqrt{3}\mathrm{i}\).
 
 
     \begin{figure}[H]
@@ -946,8 +955,6 @@ A=
   \sqrt{2}e^{-\mathrm{i}11\pi/12},\qquad
   \sqrt{2}e^{-\mathrm{i}5\pi/12}
   \]
-
-  These are the four solutions.
 \end{enumerate}
 \end{djsSolution}
 
@@ -1144,8 +1151,6 @@ The point $Q$ represents a complex number $z$ on an Argand diagram such that
   \node[below left] at (\cx,\cy) {$(0,1)$};
   \end{tikzpicture}
   \end{center}
-
-  So the region is inside the circle and on/below the line.
 \end{enumerate}
 \end{djsSolution}
 
@@ -1169,11 +1174,11 @@ Find the exact coordinates of the points common to these two loci. \marks{7}
 \vspace*{10pt}
 
 \begin{djsSolution}
-Let a point common to both loci have affix
+Let a point common to both loci represent the complex number
 \[
 u=x+y\mathrm{i}
 \]
-so its coordinates are \((x,y)\).
+so its coordinates are \((x,y)\). (A new letter is used because the question uses \(z\) and \(w\) for the two loci.)
 
 For the locus of \(P\),
 \[
@@ -1212,7 +1217,7 @@ Squaring both sides gives
 Expand and simplify:
 \begin{align*}
 x^2+2x+1+y^2-22y+121 &= 9x^2+18x+9+9y^2-54y+81 \\
-0 &= 8x^2+16x+8+8y^2-32y-32 \\
+0 &= 8x^2+16x+8+8y^2-32y-40 \\
 0 &= x^2+2x+y^2-4y-4 \\
 0 &= (x+1)^2+(y-2)^2-9
 \end{align*}
@@ -1230,7 +1235,7 @@ and
 (x+1)^2+(y-2)^2=9
 \]
 
-Subtracting one equation from the other:
+Both right-hand sides equal \(9\), so equating the left-hand sides:
 \begin{align*}
 (x-2)^2+(y+1)^2 &= (x+1)^2+(y-2)^2 \\
 x^2-4x+4+y^2+2y+1 &= x^2+2x+1+y^2-4y+4 \\
@@ -1337,7 +1342,7 @@ Therefore the exact coordinates of the common points are
 
   \item
   \begin{enumerate}[label=(\roman*)]
-    \item If \(\arg(w)=\alpha\), then \(w\) lies on a straight line through the origin, so its equation is
+    \item If \(\arg(w)=\alpha\), then \(w\) lies on the half-line from the origin at angle \(\alpha\). This half-line is part of the line
     \[
     y=mx
     \]
@@ -1346,25 +1351,21 @@ Therefore the exact coordinates of the common points are
     m=\tan\alpha
     \]
 
-    For there to be a unique point \(w\) satisfying both conditions, this line must touch the circle at exactly one point, so it must be a tangent.
+    For there to be a unique point \(w\) satisfying both conditions, the half-line must touch the circle at exactly one point, so it must be a tangent.
 
-    The circle has centre \((3,1)\) and radius \(1\).  
-    The distance from \((3,1)\) to the line \(y=mx\), written as \(mx-y=0\), is
-    \[
-    \frac{|3m-1|}{\sqrt{m^2+1}}
-    \]
-
-    Since this distance equals the radius,
-    \[
-    \frac{|3m-1|}{\sqrt{m^2+1}}=1
-    \]
-
-    Squaring both sides,
+    The circle has equation \((x-3)^2+(y-1)^2=1\). Substituting \(y=mx\),
     \begin{align*}
-    (3m-1)^2 &= m^2+1 \\
-    9m^2-6m+1 &= m^2+1 \\
-    8m^2-6m &= 0 \\
-    2m(4m-3) &= 0
+    (x-3)^2+(mx-1)^2 &= 1 \\
+    x^2-6x+9+m^2x^2-2mx+1 &= 1 \\
+    (1+m^2)x^2-(6+2m)x+9 &= 0
+    \end{align*}
+
+    For a tangent this quadratic has a repeated root, so its discriminant is zero:
+    \begin{align*}
+    (6+2m)^2-4(1+m^2)(9) &= 0 \\
+    36+24m+4m^2-36-36m^2 &= 0 \\
+    24m-32m^2 &= 0 \\
+    8m(3-4m) &= 0
     \end{align*}
 
     So
@@ -1372,7 +1373,7 @@ Therefore the exact coordinates of the common points are
     m=0 \quad \text{or} \quad m=\frac34
     \]
 
-    If \(m=0\), then \(\alpha=0\), but the question states \(0<\alpha<\pi\), so this is not allowed.
+    If \(m=0\), then \(\alpha=0\) (the real axis, which touches the circle at \(3\)), but the question states \(0<\alpha<\pi\), so this is not allowed.
 
     Hence
     \[
@@ -1380,10 +1381,8 @@ Therefore the exact coordinates of the common points are
     \]
     so
     \[
-    \alpha=\arctan\!\left(\frac34\right)\approx 0.64
+    \alpha=\arctan\!\left(\frac34\right)\approx 0.644 \text{ rad}
     \]
-
-    Therefore, \(\alpha=\arctan\!\left(\frac34\right)\approx 0.64\) rad.
 
     \item Using the value of \(m\), the tangent line is
     \[
@@ -1440,19 +1439,9 @@ Therefore the exact coordinates of the common points are
     \theta=\arg(w)=\alpha=\arctan\!\left(\frac34\right)\approx 0.64
     \]
 
-    So in modulus-argument form,
+    So, with \(r=3.0\) and \(\theta=0.64\) to two significant figures,
     \[
-    w=3(\cos 0.64+\mathrm{i}\sin 0.64)
-    \]
-
-    To two significant figures,
-    \[
-    r=3.0,\qquad \theta=0.64
-    \]
-
-    Therefore,
-    \[
-    w=\frac{12}{5}+\frac{9}{5}\mathrm{i}=3(\cos 0.64+\mathrm{i}\sin 0.64)
+    w=\frac{12}{5}+\frac{9}{5}\mathrm{i}=3.0(\cos 0.64+\mathrm{i}\sin 0.64)
     \]
   \end{enumerate}
 \end{enumerate}
@@ -1496,9 +1485,9 @@ is an arc of a circle $C$. \\
   \[
   \arg(z-A)-\arg(z-B)=\frac{\pi}{4}
   \]
-  so the angle between the lines \(ZA\) and \(ZB\) is \(\frac{\pi}{4}\).
+  so, if \(Z\) is the point representing \(z\), the angle \(AZB\) is \(\frac{\pi}{4}\).
 
-  Hence the locus is an arc of a circle through \(A\) and \(B\), and the required arc is the one on the side below/right of the line segment \(AB\). Also, \(A\) and \(B\) are excluded because the expression is undefined there.
+  Angles in the same segment are equal, so the locus is an arc of a circle through \(A\) and \(B\). Since \(\frac{\pi}{4}<\frac{\pi}{2}\), it is the major arc. It lies on the side below/right of the line segment \(AB\), as checked in part (d). Also, \(A\) and \(B\) are excluded because the expression is undefined there.
 
   \[
   \begin{tikzpicture}[scale=0.75]
@@ -1518,8 +1507,6 @@ is an arc of a circle $C$. \\
   \end{tikzpicture}
   \]
 
-  So the sketch is the arc through \((2,1)\) and \((6,5)\) on the side below/right of \(AB\), with endpoints excluded.
-
   \item Since \(A\) and \(B\) lie on circle \(C\), the centre of \(C\) is equidistant from \(A\) and \(B\). Therefore it lies on the perpendicular bisector of \(AB\).
 
   The midpoint of \(AB\) is
@@ -1527,11 +1514,11 @@ is an arc of a circle $C$. \\
   \left(\frac{2+6}{2},\frac{1+5}{2}\right)=(4,3)
   \]
 
-  The slope of \(AB\) is
+  The gradient of \(AB\) is
   \[
   \frac{5-1}{6-2}=1
   \]
-  so the perpendicular bisector has slope \(-1\).
+  so the perpendicular bisector has gradient \(-1\).
 
   Its equation is
   \[
@@ -1543,73 +1530,41 @@ is an arc of a circle $C$. \\
 
   Therefore the centre lies on the line \(y=7-x\).
 
-  \item First find the length of chord \(AB\):
+  \item Let \(P\) be the centre of \(C\) and \(r\) its radius.
+
+  The angle at the circumference is \(\frac{\pi}{4}\), so the angle at the centre subtended by the same chord \(AB\) is
   \[
-  |AB|=\sqrt{(6-2)^2+(5-1)^2}
-  \]
-  \[
-  |AB|=\sqrt{4^2+4^2}=\sqrt{32}=4\sqrt{2}
+  \angle APB=2\times \frac{\pi}{4}=\frac{\pi}{2}
   \]
 
-  The angle at the circumference is \(\frac{\pi}{4}\), so the angle at the centre subtended by the same chord is
+  So triangle \(APB\) is right-angled at \(P\), with \(PA=PB=r\). Also
   \[
-  2\times \frac{\pi}{4}=\frac{\pi}{2}
+  |AB|^2=(6-2)^2+(5-1)^2=32
   \]
 
-  If the radius is \(r\), then using the chord formula
+  By Pythagoras,
   \[
-  |AB|=2r\sin\left(\frac{1}{2}\times \frac{\pi}{2}\right)
+  r^2+r^2=32
   \]
-  \[
-  4\sqrt{2}=2r\sin\frac{\pi}{4}=2r\cdot\frac{\sqrt{2}}{2}=r\sqrt{2}
-  \]
-
-  So
+  so \(r^2=16\), giving
   \[
   r=4
   \]
 
-  Therefore the radius of \(C\) is \(4\).
+  \item From part (b), the centre \(P\) lies on \(y=7-x\), so write \(P=(a,\,7-a)\).
 
-  \item Let \(M\) be the midpoint of \(AB\), so \(M=(4,3)\).
+  From part (c), \(PA=4\), so
+  \begin{align*}
+  (a-2)^2+(7-a-1)^2&=16\\
+  a^2-4a+4+a^2-12a+36&=16\\
+  2a^2-16a+24&=0\\
+  a^2-8a+12&=0\\
+  (a-2)(a-6)&=0
+  \end{align*}
 
-  From part (b), the centre lies on \(y=7-x\), and from part (c) the radius is \(4\).
+  Hence the two possible centres are \((2,5)\) and \((6,1)\).
 
-  Also,
-  \[
-  \frac{|AB|}{2}=2\sqrt{2}
-  \]
-
-  In the right-angled triangle formed by the centre, the midpoint of the chord, and one end of the chord,
-  \[
-  OM=\sqrt{r^2-\left(\frac{|AB|}{2}\right)^2}
-  \]
-  \[
-  OM=\sqrt{4^2-(2\sqrt{2})^2}
-  =\sqrt{16-8}
-  =\sqrt{8}
-  =2\sqrt{2}
-  \]
-
-  The line \(y=7-x\) has direction vector
-  \[
-  \begin{pmatrix}1\\-1\end{pmatrix}
-  \]
-  which has length \(\sqrt{2}\). So moving a distance \(2\sqrt{2}\) along this line means moving by
-  \[
-  \pm 2\begin{pmatrix}1\\-1\end{pmatrix}
-  \]
-
-  Hence the two possible centres are
-  \[
-  (4,3)+(2,-2)=(6,1)
-  \]
-  and
-  \[
-  (4,3)+(-2,2)=(2,5)
-  \]
-
-  To decide which is correct, test a point on the locus. Take \(z=10+\mathrm{i}\):
+  To decide which is correct, test a point on one of the two circles. The point \(z=10+\mathrm{i}\) lies on the circle centred at \((6,1)\), diametrically opposite \(A\):
   \begin{align*}
   \arg\left(\frac{(10+\mathrm{i})-(2+\mathrm{i})}{(10+\mathrm{i})-(6+5\mathrm{i})}\right)
   &=\arg\left(\frac{8}{4-4\mathrm{i}}\right)\\
@@ -1618,19 +1573,11 @@ is an arc of a circle $C$. \\
   &=\frac{\pi}{4}
   \end{align*}
 
-  So \(10+\mathrm{i}\) lies on the locus.
-
-  Now check which circle it lies on:
-  \[
-  \text{distance from }(10,1)\text{ to }(6,1)=4
-  \]
-  so it lies on the circle centred at \((6,1)\).
-
-  But
+  So \(10+\mathrm{i}\) lies on the locus. But
   \[
   \text{distance from }(10,1)\text{ to }(2,5)=\sqrt{(8)^2+(-4)^2}=\sqrt{80}\ne 4
   \]
-  so it does not lie on the circle centred at \((2,5)\).
+  so it does not lie on the circle centred at \((2,5)\). This also confirms that the arc lies below/right of \(AB\).
 
   Therefore the centre of \(C\) is \((6,1)\).
 \end{enumerate}
@@ -1689,7 +1636,7 @@ is an arc of a circle $C$. \\
   \[
   |z-(2+4\mathrm{i})|=3
   \]
-  is a circle with centre at the point representing $2+4\mathrm{i}$ and radius $3$
+  is a circle with centre at the point representing $2+4\mathrm{i}$ and radius $3$.
 
   \begin{figure}[H]
     \centering
@@ -1723,7 +1670,7 @@ is an arc of a circle $C$. \\
   \[
   \arg(z-1)=\frac{\pi}{4}
   \]
-  is the half-line starting at the point representing $1$ on the real axis, making an angle of $\frac{\pi}{4}$ with the positive real axis
+  is the half-line starting at the point representing $1$ on the real axis, making an angle of $\frac{\pi}{4}$ with the positive real axis.
 
   In Cartesian form this is
   \[
@@ -1769,13 +1716,13 @@ is an arc of a circle $C$. \\
   \[
   |w-(2+4\mathrm{i})|\leq 3
   \]
-  means that $w$ lies inside or on the circle from part (a)
+  means that $w$ lies inside or on the circle from part (a).
 
   Also,
   \[
   0\leq \arg(w-1)\leq \frac{\pi}{4}
   \]
-  means that $w$ lies in the region from the real axis up to the line $y=x-1$
+  means that $w$ lies between the half-line from $1$ along the positive real axis and the half-line from part (b).
 
   \begin{figure}[H]
     \centering
@@ -1820,7 +1767,7 @@ is an arc of a circle $C$. \\
 \end{tikzpicture}
 \end{figure}
 
-  Since the circle has lowest point $(2,1)$, every point in the circle has $y\geq 1$, so the condition $\arg(w-1)\geq 0$ is automatically satisfied
+  Since the circle has lowest point $(2,1)$, every point in the circle has $y\geq 1$, so the condition $\arg(w-1)\geq 0$ is automatically satisfied.
 
   Therefore the required region is the part of the disc lying on or below the line
   \[
@@ -1837,37 +1784,15 @@ is an arc of a circle $C$. \\
   x^2-7x+10&=0 \\
   (x-2)(x-5)&=0
   \end{align*}
-  so the intersection points are
-  \[
-  (2,1)\quad \text{and} \quad (5,4)
-  \]
+  so the intersection points are $P(2,1)$ and $Q(5,4)$, as marked on the diagram.
 
-  Now use the circle inequality:
-  \begin{align*}
-  (x-2)^2+(y-4)^2&\leq 9 \\
-  x^2-4x+4+y^2-8y+16&\leq 9 \\
-  x^2+y^2&\leq 4x+8y-11
-  \end{align*}
-  But in the required region, $y\leq x-1$, so
-  \begin{align*}
-  |w|^2=x^2+y^2&\leq 4x+8y-11 \\
-  &\leq 4x+8(x-1)-11 \\
-  &=12x-19
-  \end{align*}
-  Also, inside the circle the greatest possible value of $x$ is $5$, so
+  Now $|w|$ is the distance from $O$ to the point representing $w$. Every point of the region lies in the disc, so $x\leq 2+3=5$. It also lies on or below the line, so $y\leq x-1\leq 4$. Both $x$ and $y$ are positive in the region, since $y\geq 1$ and $x\geq y+1$. Hence
   \[
-  |w|^2\leq 12(5)-19=41
+  |w|^2=x^2+y^2\leq 5^2+4^2=41
   \]
-  Equality is possible when $x=5$ and $y=x-1=4$, giving
-  \[
-  w=5+4\mathrm{i}
-  \]
-  Hence the maximum value of $|w|$ is
-  \[
-  |w|_{\max}=\sqrt{41}
-  \]
+  Equality holds at $Q$, which is in the region.
 
-  So the maximum value is $\sqrt{41}$, attained when $w=5+4\mathrm{i}$
+  Hence the maximum value of $|w|$ is $\sqrt{41}$, attained when $w=5+4\mathrm{i}$.
 
 \end{enumerate}
 \end{djsSolution}
