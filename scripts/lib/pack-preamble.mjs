@@ -5,6 +5,55 @@ export const PACK_PREAMBLE_SITE_INPUT = String.raw`\input{../../../../_shared/pa
 export const PACK_PREAMBLE_OVERLEAF_INPUT = String.raw`\input{preamble.tex}`;
 
 const DOCUMENTCLASS_LINE = String.raw`\documentclass[leqno]{article}`;
+const MONTHS = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+const DATE_COMMAND = String.raw`\djsLastUpdated`;
+
+export function formatPackDate(day = new Date()) {
+  return `${day.getDate()} ${MONTHS[day.getMonth()]} ${day.getFullYear()}`;
+}
+
+export function isValidPackDate(value) {
+  const match = /^([1-9]|[12]\d|3[01]) ([A-Za-z]+) ([1-9]\d{3})$/.exec(value);
+  if (!match) return false;
+  const month = MONTHS.indexOf(match[2]);
+  if (month < 0) return false;
+  const day = new Date(Number(match[3]), month, Number(match[1]));
+  return formatPackDate(day) === value;
+}
+
+/** Date calls in code only, with their location relative to the document. */
+function packDateCalls(text) {
+  const code = text.replace(/(?<!\\)%[^\r\n]*/g, '');
+  const begin = code.indexOf(String.raw`\begin{document}`);
+  return [...code.matchAll(/\\djsLastUpdated\b/g)].map((match) => {
+    const argument = /^\{([^{}\r\n]*)\}/.exec(code.slice(match.index + DATE_COMMAND.length));
+    return {
+      value: argument?.[1] ?? null,
+      inPreamble: begin >= 0 && match.index < begin,
+    };
+  });
+}
+
+/** Initialise an undated import; preserve its existing date without refreshing it. */
+export function initialisePackDate(text, initialDate = formatPackDate()) {
+  const calls = packDateCalls(text);
+  if (calls.length > 0) {
+    if (calls.length !== 1 || !calls[0].inPreamble || !isValidPackDate(calls[0].value)) {
+      throw new Error('expected one valid \\djsLastUpdated{D Month YYYY} before \\begin{document}');
+    }
+    return text;
+  }
+  if (!isValidPackDate(initialDate)) throw new Error(`invalid pack date: ${initialDate}`);
+  const eol = detectEol(text);
+  const lines = splitLines(text);
+  const begin = findBeginDocumentIndex(lines);
+  if (begin < 0) throw new Error('missing \\begin{document}');
+  lines.splice(begin, 0, `${DATE_COMMAND}{${initialDate}}`);
+  return lines.join(eol);
+}
 const DUPLICATED_PREAMBLE_RE =
   /\\usepackage(?:\[[^\]]*\])?\{|\\usetikzlibrary\{|\\usepgfplotslibrary\{|\\pgfplotsset\{|\\RenewDocumentCommand\{\\marks\}|\\newcommand\{\\questionitem\}|\\definecolor\{scarlet\}/;
 
@@ -105,7 +154,7 @@ function extractTopic(lines, relFromRepo, kind) {
   return titleFromFilename(relFromRepo, kind);
 }
 
-export function migratePackPreamble(text, relFromRepo) {
+export function migratePackPreamble(text, relFromRepo, initialDate = formatPackDate()) {
   const kind = packKindFromPath(relFromRepo);
   if (!kind) {
     throw new Error(`cannot determine pack kind from ${relFromRepo}`);
@@ -125,6 +174,8 @@ export function migratePackPreamble(text, relFromRepo) {
   }
 
   const preDocLines = lines.slice(0, beginIdx);
+  const dated = initialisePackDate(text, initialDate);
+  const lastUpdated = packDateCalls(dated)[0].value;
   const topic = extractTopic(preDocLines, relFromRepo, kind);
   const header =
     kind === 'soln'
@@ -136,6 +187,7 @@ export function migratePackPreamble(text, relFromRepo) {
     PACK_PREAMBLE_SITE_INPUT,
     '',
     header,
+    `${DATE_COMMAND}{${lastUpdated}}`,
     '',
     String.raw`\begin{document}`,
     String.raw`\djsFrontMatter`,
@@ -145,12 +197,14 @@ export function migratePackPreamble(text, relFromRepo) {
   return trailingNewline ? migrated.replace(/\r?\n?$/, eol) : migrated;
 }
 
-export function normalizeImportedPackTex(text, relFromRepo) {
-  if (text.includes(PACK_PREAMBLE_SITE_INPUT)) return text;
+export function normalizeImportedPackTex(text, relFromRepo, initialDate = formatPackDate()) {
+  if (text.includes(PACK_PREAMBLE_SITE_INPUT)) return initialisePackDate(text, initialDate);
   if (text.includes(PACK_PREAMBLE_OVERLEAF_INPUT)) {
-    return text.replaceAll(PACK_PREAMBLE_OVERLEAF_INPUT, PACK_PREAMBLE_SITE_INPUT);
+    return initialisePackDate(
+      text.replaceAll(PACK_PREAMBLE_OVERLEAF_INPUT, PACK_PREAMBLE_SITE_INPUT), initialDate,
+    );
   }
-  return migratePackPreamble(text, relFromRepo);
+  return migratePackPreamble(text, relFromRepo, initialDate);
 }
 
 export function usesOverleafPackInput(text) {
@@ -215,6 +269,13 @@ export function checkPackPreambleConvention(text, relFromRepo) {
   const lines = splitLines(text);
   const beginIdx = findBeginDocumentIndex(lines);
   const preDoc = beginIdx >= 0 ? lines.slice(0, beginIdx).join('\n') : text;
+  const dateCalls = packDateCalls(text);
+  if (dateCalls.length !== 1 || !dateCalls[0].inPreamble || !isValidPackDate(dateCalls[0].value)) {
+    violations.push({
+      kind: 'bad-last-updated',
+      message: `${rel}: expected one valid \\djsLastUpdated{D Month YYYY} before \\begin{document}`,
+    });
+  }
   if (DUPLICATED_PREAMBLE_RE.test(preDoc)) {
     violations.push({
       kind: 'duplicated-preamble',

@@ -64,6 +64,17 @@ describe('texPairHash', () => {
     expect(texPairHash('q', 's2')).not.toBe(base);
     expect(texPairHash('s', 'q')).not.toBe(base);
   });
+
+  it('ignores standalone last-updated metadata without hiding content changes', () => {
+    const q = '\\djsQbtHeader{T}\n\\begin{document}\nQuestion\n';
+    const s = '\\djsSolnHeader{T}\n\\begin{document}\nSolution\n';
+    const addDate = (text, day) => text.replace('\\begin{document}', `\\djsLastUpdated{${day} October 2026}\n\\begin{document}`);
+    const baseline = texPairHash(q, s);
+    expect(texPairHash(addDate(q, 1), addDate(s, 5))).toBe(baseline);
+    expect(texPairHash(addDate(q, 5).replace('Question', 'Edited question'), s)).not.toBe(baseline);
+    expect(texPairHash(q, addDate(s, 5).replace('Solution\n', 'Edited solution\n'))).not.toBe(baseline);
+    expect(texPairHash(`\\djsLastUpdated{5 October 2026}\\newcommand{\\x}{1}\n${q}`, s)).not.toBe(baseline);
+  });
 });
 
 describe('resolvePackTex', () => {

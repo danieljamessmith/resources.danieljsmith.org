@@ -36,15 +36,16 @@ export const REVIEWS_PATH = join(repoRoot, 'src', 'data', 'reviews.json');
 
 /**
  * Short md5 hash (first 8 hex chars) of a QBT/soln `.tex` pair. Line endings
- * are normalised first, so a CRLF checkout and an LF checkout of the same
- * commit give the same hash.
+ * are normalised and the last-updated metadata line is excluded, so a CRLF
+ * checkout or a date-only edit does not invalidate a content review.
  *
  * @param {string} qbtText
  * @param {string} solnText
  * @returns {string}
  */
 export function texPairHash(qbtText, solnText) {
-  const norm = (/** @type {string} */ s) => s.replace(/\r\n/g, '\n');
+  const norm = (/** @type {string} */ s) => s.replace(/\r\n/g, '\n')
+    .replace(/^[ \t]*\\djsLastUpdated\{[^{}\n]*\}[ \t]*(?:%[^\n]*)?(?:\n|$)/gm, '');
   return createHash('md5')
     .update(norm(qbtText))
     .update('\0')

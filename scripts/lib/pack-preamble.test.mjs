@@ -3,8 +3,11 @@ import {
   PACK_PREAMBLE_OVERLEAF_INPUT,
   PACK_PREAMBLE_SITE_INPUT,
   checkPackPreambleConvention,
+  formatPackDate,
   hasExpectedFurtherMathsPackDepth,
   isFurtherMathsPackTexFile,
+  initialisePackDate,
+  isValidPackDate,
   migratePackPreamble,
   normalizeImportedPackTex,
 } from './pack-preamble.mjs';
@@ -122,5 +125,50 @@ describe('checkPackPreambleConvention', () => {
     const kinds = checkPackPreambleConvention(tex, QBT_REL).map((v) => v.kind);
     expect(kinds).toContain('wrong-header');
     expect(kinds).toContain('duplicated-preamble');
+  });
+});
+
+describe('pack last-updated dates', () => {
+  it('formats dates without depending on the locale and validates leap days', () => {
+    expect(formatPackDate(new Date(2026, 9, 5))).toBe('5 October 2026');
+    expect(isValidPackDate('29 February 2024')).toBe(true);
+    for (const value of ['29 February 2026', '31 April 2026', '5 october 2026', '', null]) {
+      expect(isValidPackDate(value)).toBe(false);
+    }
+  });
+
+  it('initialises undated imports and preserves their body and line endings', () => {
+    const source = migratePackPreamble(oldInline(), QBT_REL, '1 October 2026')
+      .replace('\\djsLastUpdated{1 October 2026}\n', '').replaceAll('\n', '\r\n');
+    const out = initialisePackDate(source, '5 October 2026');
+    expect(out.replace('\\djsLastUpdated{5 October 2026}\r\n', '')).toBe(source);
+    expect(checkPackPreambleConvention(out, QBT_REL)).toEqual([]);
+  });
+
+  it('keeps an existing date through both import forms and legacy migration', () => {
+    const dated = migratePackPreamble(oldInline(), QBT_REL, '1 October 2026');
+    for (const source of [dated, dated.replace(PACK_PREAMBLE_SITE_INPUT, PACK_PREAMBLE_OVERLEAF_INPUT)]) {
+      expect(normalizeImportedPackTex(source, QBT_REL, '5 October 2026')).toBe(dated);
+    }
+    const legacy = oldInline().replace('\\begin{document}', '\\djsLastUpdated{1 October 2026}\n\\begin{document}');
+    expect(migratePackPreamble(legacy, QBT_REL, '5 October 2026')).toBe(dated);
+  });
+
+  it('refuses missing, duplicate, invalid and body-only dates while ignoring comments', () => {
+    const dated = migratePackPreamble(oldInline(), QBT_REL, '1 October 2026');
+    const call = '\\djsLastUpdated{1 October 2026}';
+    const undated = dated.replace(`${call}\n`, '');
+    for (const source of [
+      undated,
+      dated.replace(call, `${call}\n${call}`),
+      dated.replace(call, '\\djsLastUpdated{31 April 2026}'),
+      undated.replace('\\begin{document}', `\\begin{document}\n${call}`),
+      dated.replace(call, '% ' + call),
+    ]) {
+      expect(checkPackPreambleConvention(source, QBT_REL).map((v) => v.kind)).toContain('bad-last-updated');
+    }
+    expect(checkPackPreambleConvention(`% ${call}\n${dated}`, QBT_REL)).toEqual([]);
+    expect(() => initialisePackDate(dated.replace(call, `${call}\n${call}`))).toThrow(/one valid/);
+    expect(() => initialisePackDate(undated, '31 April 2026')).toThrow(/invalid pack date/);
   });
 });

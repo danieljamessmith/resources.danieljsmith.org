@@ -99,6 +99,7 @@ Further Maths QBT/Soln sources now use the shared pack preamble wrapper:
 \documentclass[leqno]{article}
 \input{../../../../_shared/pack_preamble.tex}
 \djsQbtHeader{<Topic>}      % or \djsSolnHeader{<Topic>}
+\djsLastUpdated{5 October 2026}
 \begin{document}
 \djsFrontMatter
 ...
@@ -106,7 +107,7 @@ Further Maths QBT/Soln sources now use the shared pack preamble wrapper:
 ```
 
 The shared preamble owns the pack-level helpers (`\marks`, `\questionitem`,
-`\djsQbtHeader`, `\djsSolnHeader`, `\djsFrontMatter`, the `djsSolution` box,
+`\djsQbtHeader`, `\djsSolnHeader`, `\djsLastUpdated`, `\djsFrontMatter`, the `djsSolution` box,
 the optional `djsSolutionFigure` environment, and the legacy colored-cancel
 `\cxl` macro). Contents-page links are black (`linkcolor=black`).
 
@@ -134,6 +135,18 @@ labels or tocloft, nor tutoring worksheet timing/student header machinery.
 the old Solution `tcolorbox`. After importing one, run
 `node scripts/migrate-solution-boxes.mjs` to convert its boxes (the importer
 already points packs at the site shared preamble).
+
+**Further Maths last-updated dates:** every QBT/Soln document has exactly one
+`\djsLastUpdated{D Month YYYY}` before `\begin{document}`. It prints a quiet
+grey line at the foot of page one only. After changing student-visible
+question or solution content (including typos, marks or diagrams), manually
+set each affected document's date to today and rebuild its deployed PDF.
+A question edit updates both dates after statement sync; a solution-only
+edit updates only the solutions date. Inspections, comments, whitespace
+cleanup, routine recompilation and shared layout changes leave dates alone.
+Imports preserve existing dates and initialise undated documents to the
+import date. `check-pack-preamble` requires one valid date, but does not
+detect a forgotten update. These dates are independent of review/check dates.
 
 **File-name patterns:**
 
@@ -247,7 +260,7 @@ Once a topic exists under `public/tex/`, day-to-day fixes happen here in the rep
 2. `npm run check-questions` — read-only drift detector. If a QBT statement was edited, its SOLN twin will now show as drifted; if delimiters or `\questionitem` counts no longer line up, the pair is reported as **structurally broken** (must be fixed by hand before sync can proceed).
 3. `npm run sync-questions` — rewrites SOLN statement regions in place to match QBT. Only the statement region between `\questionitem` and the `\vspace*{10pt}` / Solution box is touched; the Solution body is never modified.
 4. `npm run check-questions` again to confirm `0 drifted, 0 broken`.
-5. Recompile any PDFs whose `.tex` changed in a way that affects rendering:
+5. Update `\djsLastUpdated` in each document whose student-visible content changed, then recompile any PDFs whose `.tex` changed in a way that affects rendering:
    - **Single file**: invoke `latexmk` with the args in the `latexmk args` section below, then copy `build/<name>.pdf` up beside the source.
    - **Bulk**: `npm run compile-tex -- <scope> --deploy` rebuilds every QBT/soln `.tex` under the scope and copies the resulting PDFs up on success. Use `git status` to see which PDFs actually changed bytes.
    - **Skip recompile** for whitespace-only drift fixes that don't affect rendering — `git status` will show the PDF as unchanged anyway.
@@ -369,7 +382,7 @@ When adding a new pure helper to a tested module, add a colocated test case. Kee
 | `scripts/mark-checked.mjs` | Writes a pack's check date and `.tex` hash to `src/data/reviews.json` |
 | `scripts/review-status.mjs` | Read-only report of each pack's check status from `src/data/reviews.json` |
 | `scripts/lib/reviews.mjs` | `reviews.json` parse/render/atomic-write, `.tex` pair hashing (CRLF-insensitive) and status classification behind `mark-checked` and `review-status` |
-| `scripts/lib/pack-preamble.mjs` | Further Maths pack path/depth helpers, shared-preamble migration, Overleaf import normalization, convention checks |
+| `scripts/lib/pack-preamble.mjs` | Further Maths pack path/depth helpers, shared-preamble migration, Overleaf import normalization, initial dates, date validation and convention checks |
 | `scripts/lib/pair-presence.mjs` | Pure quartet / tracked-missing checker behind `check-pairs` |
 | `scripts/lib/private-terms.mjs` | Pure term-list parsing and whole-token matching behind `check-private-terms` |
 | `scripts/lib/tex-utils.mjs` | Shared path, `.tex` discovery, document boundary, and QBT/soln pair helpers |
@@ -395,7 +408,7 @@ The pre-commit checks split responsibility cleanly:
 - **Generated TS freshness:** `check-generated`. Generated files must byte-match what `count-questions` and `hash-assets` would produce now. It stays pre-commit-only because `pre*` hooks already run the generators first.
 - **In-file QBT/SOLN structural integrity:** `validateBlocks` in `scripts/lib/question-blocks.mjs`, surfaced via `check-questions`. Each question block has exactly one `\questionitem`; delimiter numbers are exactly `1..K`.
 - **Pair-level QBT ⇄ SOLN parity:** `syncPair` in `scripts/lib/question-blocks.mjs`. Question-number sets are equal; SOLN statement regions match QBT byte-for-byte.
-- **Further Maths shared preamble convention:** `check-pack-preamble` ensures QBT/Soln `.tex` files under `public/tex/further-maths/` stay at the fixed depth and import `../../../../_shared/pack_preamble.tex` with the correct `\djsQbtHeader{}` / `\djsSolnHeader{}` macro.
+- **Further Maths shared preamble convention:** `check-pack-preamble` ensures QBT/Soln `.tex` files under `public/tex/further-maths/` stay at the fixed depth and import `../../../../_shared/pack_preamble.tex` with the correct `\djsQbtHeader{}` / `\djsSolnHeader{}` macro and exactly one valid `\djsLastUpdated{D Month YYYY}` in the preamble.
 
 ### Deploy workflow contract
 
