@@ -6,7 +6,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__De_Moivres_Theorem.pdf': '7dbc4698',
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Loci_and_Regions_in_the_Argand_Diagram.pdf': '208ed53f',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Roots_and_Geometry_Problems.pdf': 'df66e0d2',
-  '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Series.pdf': '78bd4903',
+  '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Series.pdf': '8392e317',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__De_Moivres_Theorem.pdf': '519c1ffa',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Loci_and_Regions_in_the_Argand_Diagram.pdf': 'efe1ea5b',
   '/tex/further-maths/core-pure/differential-equations/qbt/_QBT__2nd_Order_Differential_Equations.pdf': 'c85b9eb3',
