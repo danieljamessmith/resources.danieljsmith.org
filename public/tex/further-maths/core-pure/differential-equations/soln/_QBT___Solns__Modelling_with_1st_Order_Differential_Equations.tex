@@ -3,7 +3,7 @@
 
 \djsSolnHeader{Modelling with 1st Order Differential Equations}
 
-\djsLastUpdated{30 September 2026}
+\djsLastUpdated{6 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -126,18 +126,18 @@ and use integration by parts with
 \[
 u=t^2+80t+1600,
 \qquad
-\mathrm{d}v=0.6e^{-0.1t}\,\mathrm{d}t
+\frac{\mathrm{d}v}{\mathrm{d}t}=0.6e^{-0.1t}
 \]
 Then
 \[
-\mathrm{d}u=(2t+80)\,\mathrm{d}t,
+\frac{\mathrm{d}u}{\mathrm{d}t}=2t+80,
 \qquad
 v=\int 0.6e^{-0.1t}\,\mathrm{d}t=-6e^{-0.1t}
 \]
 So
 \begin{align*}
 I
-&=uv-\int v\,\mathrm{d}u \\
+&=uv-\int v\frac{\mathrm{d}u}{\mathrm{d}t}\,\mathrm{d}t \\
 &=-6(t^2+80t+1600)e^{-0.1t}
   +6\int (2t+80)e^{-0.1t}\,\mathrm{d}t \\
 &=-6(t^2+80t+1600)e^{-0.1t}
@@ -152,18 +152,18 @@ Again integrating by parts, take
 \[
 u=t+40,
 \qquad
-\mathrm{d}v=e^{-0.1t}\,\mathrm{d}t
+\frac{\mathrm{d}v}{\mathrm{d}t}=e^{-0.1t}
 \]
 Then
 \[
-\mathrm{d}u=\mathrm{d}t,
+\frac{\mathrm{d}u}{\mathrm{d}t}=1,
 \qquad
 v=\int e^{-0.1t}\,\mathrm{d}t=-10e^{-0.1t}
 \]
 Hence
 \begin{align*}
 J
-&=uv-\int v\,\mathrm{d}u \\
+&=uv-\int v\frac{\mathrm{d}u}{\mathrm{d}t}\,\mathrm{d}t \\
 &=-10(t+40)e^{-0.1t}+10\int e^{-0.1t}\,\mathrm{d}t \\
 &=-10(t+40)e^{-0.1t}-100e^{-0.1t}+K \\
 &=-10(t+50)e^{-0.1t}+K
@@ -252,13 +252,13 @@ So the model appears reasonable, since its prediction is consistent with the obs
 \questionitem
 % [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q2]
 
-A particle $P$, of mass $2\,\mathrm{kg}$, moves in a straight line and has velocity $v\,\mathrm{m\,s^{-1}}$. \\
+A particle $B$, of mass $2\,\mathrm{kg}$, moves in a straight line and has velocity $v\,\mathrm{m\,s^{-1}}$. \\
 
-At time $t$ seconds, where $t\ge 0$, a variable force of $\dfrac{12t-4v}{1+t}\,\mathrm{N}$ acts on $P$.\\
+At time $t$ seconds, where $t\ge 0$, a variable force of $\dfrac{12t-4v}{1+t}\,\mathrm{N}$ acts on $B$.\\
 
-There are no other forces acting on $P$. Initially, when $t=0$, $P$ has velocity $-5\,\mathrm{m\,s^{-1}}$. \\
+There are no other forces acting on $B$. Initially, when $t=0$, $B$ has velocity $-5\,\mathrm{m\,s^{-1}}$. \\
 
-The motion of $P$ can be modelled by the differential equation
+The motion of $B$ can be modelled by the differential equation
 \[
 \frac{\mathrm{d}v}{\mathrm{d}t}+P(t)v=Q(t)
 \]
@@ -266,14 +266,14 @@ where $P(t)$ and $Q(t)$ are functions of $t$. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Find the functions $P(t)$ and $Q(t)$ \marks{2} \\
-  \item Using an integrating factor, determine the first time at which $P$ is stationary according to the model \marks{8} \\
+  \item Using an integrating factor, determine the first time at which $B$ is stationary according to the model \marks{8} \\
 \end{enumerate}
 
 \vspace*{10pt}
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Since the mass of $P$ is $2$ kg and the only force acting is
+  \item Since the mass of $B$ is $2$ kg and the only force acting is
   \[
   \frac{12t-4v}{1+t}
   \]
@@ -367,7 +367,7 @@ where $P(t)$ and $Q(t)$ are functions of $t$. \\
   t=1
   \]
 
-  Therefore, the first time at which $P$ is stationary is $1$ s.
+  Therefore, the first time at which $B$ is stationary is $1$ s.
 \end{enumerate}
 \end{djsSolution}
 
@@ -504,7 +504,7 @@ The cycle ends when there is again no flow through the pipe. \\
 
 From part (a),
 \[
-R(t)=e^{-t}\sin t\left(\tan^{-1}t+\frac{3\pi}{4}\right).
+R(t)=e^{-t}\sin t\left(\tan^{-1}t+\frac{3\pi}{4}\right)
 \]
 
 Differentiate:
@@ -512,19 +512,19 @@ Differentiate:
 R'(t)
 = e^{-t}\!\left[\cos t\left(\tan^{-1}t+\frac{3\pi}{4}\right)
 +\frac{\sin t}{1+t^2}
--\sin t\left(\tan^{-1}t+\frac{3\pi}{4}\right)\right].
+-\sin t\left(\tan^{-1}t+\frac{3\pi}{4}\right)\right]
 \]
 
 Hence
 \[
 R'(0)
 =1\left[1\cdot\frac{3\pi}{4}+0-0\right]
-=\frac{3\pi}{4}.
+=\frac{3\pi}{4}
 \]
 
 So the rate of increase of the flow rate at the start is
 \[
-\frac{3\pi}{4}\ \mathrm{L\,s^{-2}}.
+\frac{3\pi}{4}\ \mathrm{L\,s^{-2}}
 \]
 \end{enumerate}
 \end{djsSolution}
@@ -736,7 +736,6 @@ The concentration $C$, in suitable units, of a pollutant in a reservoir at time 
     \[
     \frac{\mathrm{d}C}{\mathrm{d}t}=-kC
     \]
-    Hence the differential equation is \(\frac{\mathrm{d}C}{\mathrm{d}t}=-kC\).
 
     \item Take
     \[
@@ -823,10 +822,6 @@ The concentration $C$, in suitable units, of a pollutant in a reservoir at time 
     \[
     C=\frac{A}{1+t^2}
     \]
-    Hence
-    \[
-    C=\frac{A}{1+t^2}
-    \]
 
     \item Half the initial concentration is \(\dfrac{A}{2}\), so set
     \[
@@ -873,16 +868,16 @@ The concentration $C$, in suitable units, of a pollutant in a reservoir at time 
 
   Evaluate the integral by parts. Let
   \[
-  u=t,\qquad \mathrm{d}v=e^{-t}\,\mathrm{d}t
+  u=t,\qquad \frac{\mathrm{d}v}{\mathrm{d}t}=e^{-t}
   \]
   Then
   \[
-  \mathrm{d}u=\mathrm{d}t,\qquad v=-e^{-t}
+  \frac{\mathrm{d}u}{\mathrm{d}t}=1,\qquad v=-e^{-t}
   \]
   So
   \begin{align*}
   \int te^{-t}\,\,\mathrm{d}t
-  &=uv-\int v\,\mathrm{d}u\\
+  &=uv-\int v\frac{\mathrm{d}u}{\mathrm{d}t}\,\mathrm{d}t\\
   &=t(-e^{-t})-\int(-e^{-t})\,\mathrm{d}t\\
   &=-te^{-t}+\int e^{-t}\,\mathrm{d}t\\
   &=-te^{-t}-e^{-t}+K\\
@@ -1061,7 +1056,6 @@ After $30$ minutes, the concentration of dye in the tank was measured as $1.52$ 
   \[
   m=40-2.5e^{-0.1t}-31.5e^{-0.02t}
   \]
-  So the required expression is $m=40-2.5e^{-0.1t}-31.5e^{-0.02t}$.
 
   \item The model predicts that at $t=30$ minutes,
   \[
@@ -1082,18 +1076,18 @@ After $30$ minutes, the concentration of dye in the tank was measured as $1.52$ 
 \questionitem
 % [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q7]
 
-A particle $P$, of mass $2\,\mathrm{kg}$, moves in a straight line and has velocity $v\,\mathrm{m\,s^{-1}}$. \\
+A particle $B$, of mass $2\,\mathrm{kg}$, moves in a straight line and has velocity $v\,\mathrm{m\,s^{-1}}$. \\
 
-At time $t$ seconds, where $t\ge 0$, a variable force of $-2t(v+3)\,\mathrm{N}$ acts on $P$. There are no other forces acting on $P$. Initially, when $t=0$, $P$ has velocity $5\,\mathrm{m\,s^{-1}}$. \\
+At time $t$ seconds, where $t\ge 0$, a variable force of $-2t(v+3)\,\mathrm{N}$ acts on $B$. There are no other forces acting on $B$. Initially, when $t=0$, $B$ has velocity $5\,\mathrm{m\,s^{-1}}$. \\
 
-The motion of $P$ can be modelled by the differential equation
+The motion of $B$ can be modelled by the differential equation
 \[
 \frac{\mathrm{d}v}{\mathrm{d}t}+P(t)v=Q(t)
 \]
 where $P(t)$ and $Q(t)$ are functions of $t$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Find the functions $P(t)$ and $Q(t)$ \marks{2} \\
-  \item Using an integrating factor, determine the first time at which $P$ is stationary according to the model \marks{8} \\
+  \item Using an integrating factor, determine the first time at which $B$ is stationary according to the model \marks{8} \\
 \end{enumerate}
 
 \vspace*{10pt}
@@ -1153,7 +1147,7 @@ where $P(t)$ and $Q(t)$ are functions of $t$. \\
   \[
   v=-3+8e^{-t^2/2}
   \]
-  For $P$ to be stationary, $v=0$. So
+  For $B$ to be stationary, $v=0$. So
   \begin{align*}
   0&=-3+8e^{-t^2/2} \\
   8e^{-t^2/2}&=3 \\
@@ -1173,7 +1167,7 @@ where $P(t)$ and $Q(t)$ are functions of $t$. \\
   \[
   t\approx 1.40\text{ s}
   \]
-  Therefore, the first time at which $P$ is stationary is $\sqrt{2\ln\left(\frac{8}{3}\right)}$ s, approximately $1.40$ s.
+  Therefore, the first time at which $B$ is stationary is $\sqrt{2\ln\left(\frac{8}{3}\right)}$ s, approximately $1.40$ s.
 \end{enumerate}
 \end{djsSolution}
 
@@ -1308,7 +1302,7 @@ A resistance to motion, modelled by a force of magnitude $0.2mv\,\mathrm{N}$, ac
     \[
     I=\int t^2e^{t/5}\,\mathrm{d}t
     \]
-    Integrating by parts with $u=t^2$ and $\mathrm{d}w=e^{t/5}\,\mathrm{d}t$,
+    Integrating by parts with $u=t^2$ and $\dfrac{\mathrm{d}w}{\mathrm{d}t}=e^{t/5}$,
     \begin{align*}
     I&=5t^2e^{t/5}-\int 10te^{t/5}\,\mathrm{d}t \\
     &=5t^2e^{t/5}-10\int te^{t/5}\,\mathrm{d}t
@@ -1409,14 +1403,14 @@ A resistance to motion, modelled by a force of magnitude $0.2mv\,\mathrm{N}$, ac
   \end{align*}
   So
   \[
-  s_2\approx 17.9\text{ m}
+  s_2\approx 18.0\text{ m}
   \]
 
   Therefore the total distance is
   \begin{align*}
   s&=s_1+s_2 \\
   &=\frac{50(e-1)(3-e)}{3(e-2)}+25(e-2) \\
-  &\approx 11.2+17.9 \\
+  &\approx 11.2+18.0 \\
   &\approx 29.2
   \end{align*}
   Hence the total distance travelled, to the nearest metre, is $29\text{ m}$.
@@ -1599,11 +1593,11 @@ A resistance to the motion, modelled by a force of magnitude $0.25mv\,\mathrm{N}
 
     Evaluate the integral by parts. Let
     \[
-    u=t,\qquad \mathrm{d}w=e^{t/4}\,\mathrm{d}t
+    u=t,\qquad \frac{\mathrm{d}w}{\mathrm{d}t}=e^{t/4}
     \]
     so that
     \[
-    \mathrm{d}u=\mathrm{d}t,\qquad w=4e^{t/4}
+    \frac{\mathrm{d}u}{\mathrm{d}t}=1,\qquad w=4e^{t/4}
     \]
 
     Then
@@ -2109,11 +2103,6 @@ After $t$ minutes, the tank contains $m$ grams of dye. \\
     \[
     \frac{\mathrm{d}m}{\mathrm{d}t}+\frac{sm}{2+(r-s)t}=10r
     \]
-
-    Hence,
-    \[
-    \frac{\mathrm{d}m}{\mathrm{d}t}+\frac{sm}{2+(r-s)t}=10r
-    \]
   \end{enumerate}
 
   \item
@@ -2167,11 +2156,6 @@ After $t$ minutes, the tank contains $m$ grams of dye. \\
     \end{align*}
 
     Hence
-    \[
-    m=20-16e^{-rt/2}
-    \]
-
-    So,
     \[
     m=20-16e^{-rt/2}
     \]
@@ -2385,7 +2369,6 @@ where $S(t)$ is a function of $t$. \\
     \[
     \frac{\mathrm{d}C}{\mathrm{d}t}=k(M-C), \qquad k>0
     \]
-    So the differential equation is $\dfrac{\mathrm{d}C}{\mathrm{d}t}=k(M-C)$.
 
     \item Take
     \[
@@ -2399,12 +2382,6 @@ where $S(t)$ is a function of $t$. \\
     &= Mke^{-kt}
     \end{align*}
     Also,
-    \begin{align*}
-    M-C
-    &= M-M(1-e^{-kt}) \\
-    &= M-Me^{-0}+Me^{-kt}? 
-    \end{align*}
-    The previous line should simplify directly as
     \begin{align*}
     M-C
     &= M-M(1-e^{-kt}) \\
@@ -2440,24 +2417,24 @@ where $S(t)$ is a function of $t$. \\
 
   To find the integrating factor, first decompose $P(t)$ into partial fractions:
   \[
-  -\frac{t+2}{t(1+t+t^2)}=\frac{A}{t}+\frac{Bt+C}{1+t+t^2}
+  -\frac{t+2}{t(1+t+t^2)}=\frac{A}{t}+\frac{Bt+D}{1+t+t^2}
   \]
   Multiplying through by $t(1+t+t^2)$ gives
   \begin{align*}
   -(t+2)
-  &= A(1+t+t^2)+t(Bt+C) \\
-  &= A+At+At^2+Bt^2+Ct \\
-  &= A+(A+C)t+(A+B)t^2
+  &= A(1+t+t^2)+t(Bt+D) \\
+  &= A+At+At^2+Bt^2+Dt \\
+  &= A+(A+D)t+(A+B)t^2
   \end{align*}
   Comparing coefficients with $-2-t+0t^2$:
   \begin{align*}
   A&=-2 \\
-  A+C&=-1 \\
+  A+D&=-1 \\
   A+B&=0
   \end{align*}
   So
   \[
-  A=-2,\qquad C=1,\qquad B=2
+  A=-2,\qquad D=1,\qquad B=2
   \]
   Therefore
   \[
@@ -2583,7 +2560,7 @@ where $S(t)$ is a function of $t$. \\
   \[
   \frac{At^2}{1+t+t^2}\to A
   \]
-  and, using the given fact $\lim_{t\to\infty} t^2e^{-t}=0$,
+  and, using the fact that $\lim_{t\to\infty} t^2e^{-t}=0$,
   \[
   \frac{3t^2e^{-t}}{1+t+t^2}\to 0
   \]
@@ -2608,7 +2585,7 @@ where $S(t)$ is a function of $t$. \\
   C
   &= \frac{10t^2-3t^2e^{-t}}{1+t+t^2} \\
   &= \frac{10(1.75)^2-3(1.75)^2e^{-1.75}}{1+1.75+(1.75)^2} \\
-  &\approx \frac{30.625-1.598}{5.8125} \\
+  &\approx \frac{30.625-1.597}{5.8125} \\
   &\approx 4.99
   \end{align*}
   This is essentially $5$.
@@ -2669,7 +2646,6 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     \[
     \frac{x}{4+(p-q)t}
     \]
-    Hence the required proportion is $\displaystyle \frac{x}{4+(p-q)t}$.
 
     \item
     The flavouring liquid entering the tank is $60\%$ concentrate, so the rate at which concentrate enters is
@@ -2743,7 +2719,6 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     \[
     x=\frac{12}{5}\left(1-e^{-pt/4}\right)
     \]
-    So the solution is $\displaystyle x=\frac{12}{5}\left(1-e^{-pt/4}\right)$.
 
     \item
     When $q=p$, the total volume stays constant at $4$ litres.
