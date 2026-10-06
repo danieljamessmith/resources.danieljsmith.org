@@ -3,7 +3,7 @@
 
 \djsSolnHeader{Maclaurin Series}
 
-\djsLastUpdated{5 October 2026}
+\djsLastUpdated{6 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -24,7 +24,7 @@
     \item Given that $f(x)=e^{-2x}$, find $f'(x)$ and $f''(x)$. \marks{2}
     \item Hence, find the first three terms of the Maclaurin series for $e^{-2x}$. \marks{2} \\
   \end{enumerate}
-  \item Hence, using a suitable value of $x$, show that \[e^{-1/4}\approx \frac{25}{32}\]. \marks{2} \\
+  \item Hence, using a suitable value of $x$, show that \[e^{-1/4}\approx \frac{25}{32}\] \marks{2} \\
 \end{enumerate}
 
 \vspace*{10pt}
@@ -87,10 +87,6 @@
   &=1-\frac14+\frac{1}{32} \\
   &=\frac{25}{32}
   \end{align*}
-  So
-  \[
-  e^{-1/4}\approx \frac{25}{32}
-  \]
 \end{enumerate}
 \end{djsSolution}
 
@@ -154,11 +150,6 @@ Keeping terms up to \(x^5\),
 &=8x^3-\frac{20}{3}x^5-\frac{16}{3}x^5+\cdots\\
 &=8x^3-12x^5+\cdots
 \end{align*}
-
-Hence,
-\[
-\sin 2x(\cos x-\cos 3x)=8x^3-12x^5+\cdots
-\]
 
 \item From part (i),
 \[
@@ -333,8 +324,6 @@ and so, comparing the leading terms as \(x\to 0\),
 =
 \frac13
 \]
-
-So the limit is \(\frac13\).
 \end{enumerate}
 \end{djsSolution}
 
@@ -386,10 +375,6 @@ Let $f(x)=\ln(1+\sin x)$. \\
     &=\frac{-\sin x-1}{(1+\sin x)^2} \\
     &=-\frac{1}{1+\sin x}
     \end{align*}
-    Hence
-    \[
-    f''(x)=-\frac{1}{1+\sin x}
-    \]
 
     \item
     For the Maclaurin expansion, find the values at \(x=0\):
@@ -692,11 +677,6 @@ a=1,\qquad b=-\frac{1}{2\sqrt5},\qquad c=\frac{7}{40\sqrt5}
     &=n^2(1+\cosh x)^n-n(2n-1)(1+\cosh x)^{n-1}
     \end{align*}
 
-    Hence
-    \[
-    \frac{\mathrm{d}^2 y}{\mathrm{d}x^2} = n^2(1+\cosh x)^n - n(2n-1)(1+\cosh x)^{n-1}
-    \]
-
     \item From part (i),
     \[
     y''=n^2(1+\cosh x)^n-n(2n-1)(1+\cosh x)^{n-1}
@@ -786,12 +766,12 @@ a=1,\qquad b=-\frac{1}{2\sqrt5},\qquad c=\frac{7}{40\sqrt5}
   \begin{align*}
   y
   &=2^n+\frac{n2^{\,n-1}}{2}x^2+\frac{n(3n-1)2^{\,n-2}}{24}x^4+\cdots \\
-  &=2^n+n2^{\,n-2}x^2+\frac{n(3n-1)2^{\,n-2}}{24}x^4+\cdots
+  &=2^n+n2^{\,n-2}x^2+\frac{n(3n-1)2^{\,n-5}}{3}x^4+\cdots
   \end{align*}
 
   So the first three non-zero terms are
   \[
-  2^n+n2^{\,n-2}x^2+\frac{n(3n-1)2^{\,n-2}}{24}x^4
+  2^n+n2^{\,n-2}x^2+\frac{n(3n-1)2^{\,n-5}}{3}x^4
   \]
 \end{enumerate}
 \end{djsSolution}
@@ -870,7 +850,7 @@ a=1,\qquad b=-\frac{1}{2\sqrt5},\qquad c=\frac{7}{40\sqrt5}
   \]
   To find $C$, put $x=0$:
   \[
-  \tan^{-1}0=0
+  \arctan 0=0
   \]
   so $C=0$.
 
@@ -931,11 +911,6 @@ a=1,\qquad b=-\frac{1}{2\sqrt5},\qquad c=\frac{7}{40\sqrt5}
   &=x-\frac{x^2}{2}+\left(\frac13-\frac14\right)x^4+\cdots\\
   &=x-\frac{x^2}{2}+\frac{x^4}{12}+\cdots
   \end{align*}
-
-  Therefore
-  \[
-  \ln(1+\arctan x)=x-\frac{x^2}{2}+\frac{x^4}{12}+\cdots
-  \]
 \end{enumerate}
 \end{djsSolution}
 
@@ -1030,11 +1005,6 @@ a=1,\qquad b=-\frac{1}{2\sqrt5},\qquad c=\frac{7}{40\sqrt5}
     &= -8+24 \\
     &= 16
     \end{align*}
-
-    Therefore
-    \[
-    f^{(4)}(0)=16
-    \]
 
     \item The Maclaurin series for \(f(x)\) is
     \[
@@ -1339,40 +1309,6 @@ This is justified because $x=\frac14$ lies in the valid interval
 \[
 -\frac12<x\leq \frac12
 \]
-
-Also, the next term in the series is found by continuing part (a):
-\[
-\ln(1+2x)=2x-2x^2+\frac83x^3-4x^4+\cdots
-\]
-\[
-\ln(1-x)=-x-\frac12x^2-\frac13x^3-\frac14x^4+\cdots
-\]
-so
-\[
-\ln\left(\frac{1+2x}{1-x}\right)=3x-\frac32x^2+3x^3-\frac{15}{4}x^4+\cdots
-\]
-
-At $x=\frac14$ this becomes
-\[
-\ln 2=\frac34-\frac{3}{32}+\frac{3}{64}-\frac{15}{1024}+\cdots
-\]
-
-This is an alternating series with decreasing terms, so the error is less than the first omitted term:
-\[
-\left|\text{error in } \ln 2\right|<\frac{15}{1024}
-\]
-
-Therefore
-\[
-\left|\text{error in } \ln 8\right|<3\cdot \frac{15}{1024}=\frac{45}{1024}\approx 0.0439
-\]
-
-Since the next omitted term is negative, $\frac{135}{64}$ is an overestimate.
-
-Hence the approximation is
-\[
-\ln 8 \approx \frac{135}{64} \approx 2.11
-\]
   \end{enumerate}
 \end{djsSolution}
 
@@ -1519,10 +1455,6 @@ Hence the approximation is
   &=\frac{192}{512}-\frac{12}{512}+\frac{3}{512} \\
   &=\frac{183}{512}
   \end{align*}
-  So
-  \[
-  \ln\left(\frac{10}{7}\right)\approx \frac{183}{512}
-  \]
 
   \item For \(\ln 10\), Dana must have used
   \[
@@ -1536,7 +1468,7 @@ Hence the approximation is
 
   The expansion for \(\ln(1+2x)\) is only valid when
   \[
-  |2x|<1 \implies |x|<\frac12
+  -1<2x\leq 1 \implies -\frac12<x\leq \frac12
   \]
   Since \(x=\dfrac34\), this is outside the interval where the series converges.
 
@@ -1612,12 +1544,6 @@ Now multiply the two series, keeping terms up to \(x^4\):
 &=1-\frac{7x^2}{72}+\frac{521x^4}{155520}+\cdots
 \end{align*}
 
-Hence
-\[
-\left(\frac{\sin(x/2)}{x/2}\right)\cos\left(\frac{x}{3}\right)
-=1-\frac{7x^2}{72}+\frac{521x^4}{155520}+O(x^6)
-\]
-
   \item Using part (a),
 \[
 \frac{1}{x}\left(\frac{\sin(x/2)}{x/2}\right)\cos\left(\frac{x}{3}\right)
@@ -1663,14 +1589,10 @@ Hence
 I\approx 1.20244
 \]
 
-So the approximation is \(1.20244\) to 5 decimal places.
-
   \item Using the calculator integration function,
 \[
 \int_{\pi/6}^{2\pi/3}\left(\frac{1}{x}\left(\frac{\sin(x/2)}{x/2}\right)\cos\left(\frac{x}{3}\right)\right)\,\mathrm{d}x \approx 1.20169
 \]
-
-So the calculator value is \(1.20169\).
 
   \item Comparing the two answers,
 \[
@@ -1835,9 +1757,8 @@ For validity:
 
 So the combined series is valid for
 \[
-|x|<\frac12
+-\frac12\le x<\frac12
 \]
-and it also converges at \(x=-\frac12\).
 
 \item We solve
 \[
@@ -1883,7 +1804,7 @@ This simplifies to
 
 Hence
 \[
-\ln 2 \approx 0.689688\ldots
+\ln 2 \approx 0.689689\ldots
 \]
 
 So, to three decimal places,
@@ -2055,11 +1976,6 @@ e^{e^{x^2}-x}=e-ex+\frac{3e}{2}x^2+\cdots
   \]
 
   Dividing through by $i$,
-  \[
-  x\cos x-\sin x=-\frac{x^3}{3}+\frac{x^5}{30}-\frac{x^7}{840}+\cdots
-  \]
-
-  Hence the first three non-zero terms are
   \[
   x\cos x-\sin x=-\frac{x^3}{3}+\frac{x^5}{30}-\frac{x^7}{840}+\cdots
   \]
