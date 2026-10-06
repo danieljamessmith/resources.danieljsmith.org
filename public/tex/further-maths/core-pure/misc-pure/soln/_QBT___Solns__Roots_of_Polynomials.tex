@@ -3,7 +3,7 @@
 
 \djsSolnHeader{Roots of Polynomials}
 
-\djsLastUpdated{5 October 2026}
+\djsLastUpdated{6 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -109,8 +109,6 @@ Given that
   q&=2
   \end{align*}
 
-  Hence, $q=2$.
-
   \item Expand:
   \begin{align*}
   (\alpha+1)(\beta+1)(\gamma+1)
@@ -131,11 +129,6 @@ Given that
   &=2+6+5+1 \\
   &=14
   \end{align*}
-
-  Hence,
-  \[
-  (\alpha+1)(\beta+1)(\gamma+1)=14
-  \]
 \end{enumerate}
 \end{djsSolution}
 
@@ -342,13 +335,18 @@ We need
 \]
 
 Taking a common denominator,
-\begin{align*}
+\[
 \frac{1}{\alpha+\beta}+\frac{1}{\beta+\gamma}+\frac{1}{\gamma+\alpha}
-&=\frac{(\beta+\gamma)+(\gamma+\alpha)+(\alpha+\beta)}
-{(\alpha+\beta)(\beta+\gamma)(\gamma+\alpha)}\\
-&=\frac{2(\alpha+\beta+\gamma)}
-{(\alpha+\beta)(\beta+\gamma)(\gamma+\alpha)}\\
-&=\frac{2s_1}{(\alpha+\beta)(\beta+\gamma)(\gamma+\alpha)}
+=\frac{(\beta+\gamma)(\gamma+\alpha)+(\gamma+\alpha)(\alpha+\beta)+(\alpha+\beta)(\beta+\gamma)}
+{(\alpha+\beta)(\beta+\gamma)(\gamma+\alpha)}
+\]
+
+Expand the numerator. Each product, such as \((\alpha+\beta)(\beta+\gamma)=\beta^2+\alpha\beta+\beta\gamma+\gamma\alpha\), gives one square and all three pairwise products, so
+\begin{align*}
+(\beta+\gamma)(\gamma+\alpha)+(\gamma+\alpha)(\alpha+\beta)+(\alpha+\beta)(\beta+\gamma)
+&=(\alpha^2+\beta^2+\gamma^2)+3(\alpha\beta+\beta\gamma+\gamma\alpha)\\
+&=(s_1^2-2s_2)+3s_2\\
+&=s_1^2+s_2
 \end{align*}
 
 Now expand the denominator:
@@ -372,19 +370,18 @@ So
 Hence
 \[
 \frac{1}{\alpha+\beta}+\frac{1}{\beta+\gamma}+\frac{1}{\gamma+\alpha}
-=\frac{2s_1}{s_1s_2-s_3}
+=\frac{s_1^2+s_2}{s_1s_2-s_3}
 \]
 
 Substitute \(s_1=4\), \(s_2=-1\), \(s_3=-6\):
 \begin{align*}
-\frac{2s_1}{s_1s_2-s_3}
-&=\frac{2(4)}{4(-1)-(-6)}\\
-&=\frac{8}{-4+6}\\
-&=\frac{8}{2}\\
-&=4
+\frac{s_1^2+s_2}{s_1s_2-s_3}
+&=\frac{4^2+(-1)}{4(-1)-(-6)}\\
+&=\frac{16-1}{-4+6}\\
+&=\frac{15}{2}
 \end{align*}
 
-Therefore, the required value is \(4\).
+Therefore, the required value is \(\dfrac{15}{2}\).
 \end{djsSolution}
 
 
@@ -731,16 +728,14 @@ so
 r=\frac12 \quad \text{or} \quad r=2
 \]
 
-Hence the roots are
+Both values of $r$ give the same three roots: $r=2$ gives
 \[
 \frac{4}{2},\ 4,\ 4(2)
 \]
-that is
+and $r=\frac12$ gives them in the reverse order. So the roots are
 \[
 2,\ 4,\ 8
 \]
-
-So the roots are $\boxed{2,\,4,\,8}$.
 
 \item The product of the roots is
 \[
@@ -761,8 +756,6 @@ and therefore
 \[
 c=-64
 \]
-
-So $\boxed{c=-64}$.
 \end{enumerate}
 \end{djsSolution}
 
@@ -809,10 +802,6 @@ where $k$ is an integer, has roots $\alpha$ and $\beta$. \\
   \qquad
   \alpha\beta=\frac{1}{1}=1
   \]
-  Hence
-  \[
-  \alpha+\beta=k,\qquad \alpha\beta=1
-  \]
 
   \item
   \begin{align*}
@@ -822,10 +811,6 @@ where $k$ is an integer, has roots $\alpha$ and $\beta$. \\
   &=k^2-2(1)+k\\
   &=k^2+k-2
   \end{align*}
-  Hence the value is
-  \[
-  k^2+k-2
-  \]
 
   \item Let the new roots be
   \[
@@ -865,12 +850,7 @@ where $k$ is an integer, has roots $\alpha$ and $\beta$. \\
   \[
   x^2-(k^2+k-2)x+(k^3-3k+2)=0
   \]
-
-  So, in the form \(px^2+qx+r=0\),
-  \[
-  x^2-(k^2+k-2)x+(k^3-3k+2)=0
-  \]
-  with \(p=1\), \(q=-(k^2+k-2)\), \(r=k^3-3k+2\).
+  which is in the form \(px^2+qx+r=0\) with \(p=1\), \(q=-(k^2+k-2)\), \(r=k^3-3k+2\).
 \end{enumerate}
 \end{djsSolution}
 
@@ -944,12 +924,8 @@ Without solving the equation,
     \frac{1}{\alpha\beta}+\frac{1}{\beta\gamma}+\frac{1}{\gamma\alpha}
     &=\frac{\gamma}{\alpha\beta\gamma}+\frac{\alpha}{\alpha\beta\gamma}+\frac{\beta}{\alpha\beta\gamma} \\
     &=\frac{\alpha+\beta+\gamma}{\alpha\beta\gamma} \\
-    &=\frac{-5}{24}
+    &=-\frac{5}{24}
     \end{align*}
-    Hence
-    \[
-    \frac{1}{\alpha\beta}+\frac{1}{\beta\gamma}+\frac{1}{\gamma\alpha}=-\frac{5}{24}
-    \]
 
     \item
     \begin{align*}
@@ -965,10 +941,6 @@ Without solving the equation,
     &=24-8-20+8 \\
     &=4
     \end{align*}
-    Therefore
-    \[
-    (\alpha+2)(\beta+2)(\gamma+2)=4
-    \]
 
     \item Start with
     \[
@@ -992,10 +964,6 @@ Without solving the equation,
     &=16+240 \\
     &=256
     \end{align*}
-    Hence
-    \[
-    \alpha^2\beta^2+\beta^2\gamma^2+\gamma^2\alpha^2=256
-    \]
   \end{enumerate}
 \end{enumerate}
 \end{djsSolution}
@@ -1031,7 +999,6 @@ The roots of the equation $3x^3 + px^2 - 12x - 8 = 0$ are $\alpha$, $\beta$ and 
   \[
   p=-6
   \]
-  Therefore, \(p=-6\).
 
   \item For \(3x^3+px^2-12x-8=0\),
   \[
@@ -1066,10 +1033,6 @@ The roots of the equation $3x^3 + px^2 - 12x - 8 = 0$ are $\alpha$, $\beta$ and 
   &=\frac{\frac{5}{3}}{\frac{8}{3}} \\
   &=\frac{5}{8}
   \end{align*}
-  Therefore,
-  \[
-  \left(1+\frac{1}{\alpha}\right)\left(1+\frac{1}{\beta}\right)\left(1+\frac{1}{\gamma}\right)=\frac{5}{8}
-  \]
 \end{enumerate}
 \end{djsSolution}
 
@@ -1120,11 +1083,6 @@ So
 &=37
 \end{align*}
 
-Hence
-\[
-\alpha^2\beta^2+\beta^2\gamma^2+\gamma^2\alpha^2=37
-\]
-
   \item Let the required equation have roots $\alpha^2$, $\beta^2$ and $\gamma^2$.
 
 First find their sum:
@@ -1151,12 +1109,7 @@ So for roots $\alpha^2,\beta^2,\gamma^2$, the monic cubic is
 x^3-(\text{sum of roots})x^2+(\text{sum of pairwise products})x-(\text{product of roots})=0
 \]
 
-Therefore
-\[
-x^3-14x^2+37x-9=0
-\]
-
-So the required equation is
+Hence the required equation is
 \[
 x^3-14x^2+37x-9=0
 \]
@@ -1455,42 +1408,25 @@ Then
 \alpha^6+\beta^6+\gamma^6+\delta^6=q_3
 \]
 
-For a monic quartic \(y^4+ay^3+by^2+cy+d\), the power sums satisfy
+From the coefficients of \(h(y)\),
+\[
+\sum y_i=4,\qquad \sum_{i<j} y_iy_j=6,\qquad \sum_{i<j<k} y_iy_jy_k=8
+\]
+
+So \(q_1=4\), and
 \begin{align*}
-q_1+a&=0\\
-q_2+aq_1+2b&=0\\
-q_3+aq_2+bq_1+3c&=0
+q_2&=\Bigl(\sum y_i\Bigr)^2-2\sum_{i<j} y_iy_j\\
+&=4^2-2(6)\\
+&=4
 \end{align*}
 
-Here \(a=-4,\ b=6,\ c=-8\), so
+The identity for a sum of cubes used with cubics holds for any number of roots, so
 \begin{align*}
-q_1-4&=0\\
-q_2-4q_1+12&=0\\
-q_3-4q_2+6q_1-24&=0
+q_3&=\Bigl(\sum y_i\Bigr)^3-3\Bigl(\sum y_i\Bigr)\Bigl(\sum_{i<j} y_iy_j\Bigr)+3\sum_{i<j<k} y_iy_jy_k\\
+&=4^3-3(4)(6)+3(8)\\
+&=64-72+24\\
+&=16
 \end{align*}
-
-From the first equation,
-\[
-q_1=4
-\]
-
-Then
-\[
-q_2-4(4)+12=0
-\]
-so
-\[
-q_2=4
-\]
-
-Now
-\[
-q_3-4(4)+6(4)-24=0
-\]
-which gives
-\[
-q_3=16
-\]
 
 Therefore
 \[
@@ -1502,7 +1438,11 @@ Therefore
 \alpha^8+\beta^8+\gamma^8+\delta^8=q_4
 \]
 
-Using the next power-sum relation for the same quartic,
+Each \(y_i\) is a root of \(h(y)=0\), so
+\[
+y_i^4=4y_i^3-6y_i^2+8y_i-1
+\]
+Summing over the four roots,
 \[
 q_4-4q_3+6q_2-8q_1+4=0
 \]
@@ -1683,11 +1623,6 @@ The quartic equation $x^4-2x^3+3x^2-4x+1=0$ has roots $\alpha$, $\beta$, $\gamma
   &=4
   \end{align*}
 
-  So
-  \[
-  \frac{1}{\alpha}+\frac{1}{\beta}+\frac{1}{\gamma}+\frac{1}{\delta}=4
-  \]
-
   \item Let
   \[
   r_1=\frac{1}{\alpha},\quad r_2=\frac{1}{\beta},\quad r_3=\frac{1}{\gamma},\quad r_4=\frac{1}{\delta}
@@ -1720,11 +1655,6 @@ The quartic equation $x^4-2x^3+3x^2-4x+1=0$ has roots $\alpha$, $\beta$, $\gamma
   &=16-6\\
   &=10
   \end{align*}
-
-  So
-  \[
-  \frac{1}{\alpha^2}+\frac{1}{\beta^2}+\frac{1}{\gamma^2}+\frac{1}{\delta^2}=10
-  \]
 
   \item Using the same notation, let
   \[
