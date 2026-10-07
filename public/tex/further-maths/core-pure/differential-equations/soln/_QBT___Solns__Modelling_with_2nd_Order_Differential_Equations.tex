@@ -3,7 +3,7 @@
 
 \djsSolnHeader{Modelling with 2nd Order Differential Equations}
 
-\djsLastUpdated{5 October 2026}
+\djsLastUpdated{7 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -68,7 +68,7 @@ where $x$ is the displacement, in metres, of the glider from its equilibrium pos
   \end{enumerate}
 \end{enumerate}
 Initially, the glider is $0.20\,\mathrm{m}$ to the right of equilibrium and is moving towards equilibrium at $0.50\,\mathrm{m\,s^{-1}}$. \\
-Given that, $4$ seconds after the motion begins, the displacement of the glider is $\beta$ m, \\
+Given that $4$ seconds after the motion begins, the displacement of the glider is $\beta$ m, \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item determine, according to the model, the value of $\beta$ to $3$ significant figures \marks{4} \\
   \item Given that the true value of $\beta$ is $0.46\,\mathrm{m}$, comment on the suitability of the model \marks{1} \\
@@ -146,11 +146,6 @@ Given that, $4$ seconds after the motion begins, the displacement of the glider 
     Hence the general solution is
     \[
     x=x_c+x_p=C\cos 4t+D\sin 4t-\frac{3}{8}t\cos 4t
-    \]
-
-    So the general solution is
-    \[
-    x=C\cos 4t+D\sin 4t-\frac{3}{8}t\cos 4t
     \]
   \end{enumerate}
 
@@ -673,11 +668,6 @@ When $t=0$, $q=1$ and $\frac{\mathrm{d} q}{\mathrm{d} t}=15$. \\
   q=\cos 3t+6\sin 3t-e^{-t}\sin 3t
   \]
 
-  Therefore,
-  \[
-  q(t)=\cos 3t+6\sin 3t-e^{-t}\sin 3t
-  \]
-
   \item For large \(t\), the term \(e^{-t}\sin 3t\to 0\), so
   \[
   q\approx \cos 3t+6\sin 3t
@@ -911,7 +901,7 @@ where $p$ is a constant and $p\ge 0$. \\
   xlabel={$t$},
   ylabel={$y$},
   xmin=0, xmax=14,
-  ymin=-1.2, ymax=1.2,
+  ymin=-1.2, ymax=1.5,
   xtick=\empty,
   ytick=\empty,
   domain=0:14,
@@ -944,7 +934,7 @@ Let $y$ metres be the downward displacement of the load from its equilibrium pos
   \]
   and hence show that
   \[
-  y=\mathrm{e}^{-\frac{c t}{2m}}\left(P\cos\left(\frac{\sqrt{4km-c^2}}{2m}\,t\right)+Q\sin\left(\frac{\sqrt{4km-c^2}}{2m}\,t\right)\right),
+  y=e^{-\frac{c t}{2m}}\left(P\cos\left(\frac{\sqrt{4km-c^2}}{2m}\,t\right)+Q\sin\left(\frac{\sqrt{4km-c^2}}{2m}\,t\right)\right),
   \]
   where $P$ and $Q$ are constants. \marks[-30pt]{7} \\
   \item It is given that
@@ -1142,11 +1132,6 @@ Let $y$ metres be the downward displacement of the load from its equilibrium pos
     Therefore,
     \[
     t=\frac{\pi-\arctan 2}{4}\approx 0.509\text{ s}
-    \]
-
-    So the first positive time is
-    \[
-    0.509\text{ s}
     \]
   \end{enumerate}
 
@@ -1434,7 +1419,7 @@ The machine is programmed to print a label only when the displayed mass is less 
 % [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q7]
 
 An analogue meter has a damped pointer. After a short electrical pulse, the angular displacement $\theta$ radians of the pointer from its rest position, measured positive clockwise, is modelled by \\
-\[\frac{\mathrm{d}^2 \theta}{\mathrm{d} t^2}+5\frac{\mathrm{d} \theta}{\mathrm{d} t}+6\theta=4\mathrm{e}^{-4t}\] \\
+\[\frac{\mathrm{d}^2 \theta}{\mathrm{d} t^2}+5\frac{\mathrm{d} \theta}{\mathrm{d} t}+6\theta=4e^{-4t}\] \\
 where $t$ is the time, in seconds, after the motion begins. \\
 
 In one test, at $t=0$ the pointer is passing through its rest position and has angular velocity $1\,\mathrm{rad\,s^{-1}}$ anticlockwise. \\
@@ -1537,8 +1522,6 @@ Therefore
 \[
 \theta=e^{-2t}-3e^{-3t}+2e^{-4t}
 \]
-
-So the required equation is \(\theta=e^{-2t}-3e^{-3t}+2e^{-4t}\).
 
 \item To find the greatest clockwise displacement, we find the stationary points of \(\theta\).
 
@@ -1706,8 +1689,6 @@ Substitute these into
 k&=3
 \end{align*}
 
-Hence, $k=3$.
-
   \item Using $k=3$, the differential equation becomes
 \[
 9\frac{\mathrm{d}^2x}{\mathrm{d}t^2}+6\frac{\mathrm{d}x}{\mathrm{d}t}+5x=0
@@ -1796,10 +1777,10 @@ x(4.5)
 So the distance from the left-hand end is
 \begin{align*}
 1.2+x(4.5)&\approx 1.2-0.0369\\
-&\approx 1.163
+&\approx 1.16
 \end{align*}
 
-Hence, the trolley is approximately $1.163\,\text{m}$ from the left-hand end of the track.
+Hence, the trolley is approximately $1.16\,\text{m}$ from the left-hand end of the track.
 
   \item One limitation is that the model assumes the spring force is proportional to displacement and the damping force is proportional to velocity.
 \end{enumerate}
@@ -1848,7 +1829,7 @@ Initially the error is decreasing at $9$ units per second, so $\frac{\mathrm{d} 
 
   Hence the complementary solution is
   \[
-  E=A\mathrm{e}^{-3t}+B\mathrm{e}^{2t}
+  E=Ae^{-3t}+Be^{2t}
   \]
 
   Since the right-hand side is a constant, try a constant particular solution $E=k$.
@@ -1870,27 +1851,27 @@ Initially the error is decreasing at $9$ units per second, so $\frac{\mathrm{d} 
 
   Therefore the general solution is
   \[
-  E=A\mathrm{e}^{-3t}+B\mathrm{e}^{2t}+2
+  E=Ae^{-3t}+Be^{2t}+2
   \]
 
-  It is given that $E$ tends to a finite limit as $t\to\infty$. Since $\mathrm{e}^{2t}\to\infty$ as $t\to\infty$, the term $B\mathrm{e}^{2t}$ must be absent. Hence
+  It is given that $E$ tends to a finite limit as $t\to\infty$. Since $e^{2t}\to\infty$ as $t\to\infty$, the term $Be^{2t}$ must be absent. Hence
   \[
   B=0
   \]
 
   So
   \[
-  E=A\mathrm{e}^{-3t}+2
+  E=Ae^{-3t}+2
   \]
 
   Differentiate:
   \[
-  \frac{\mathrm{d}E}{\mathrm{d}t}=-3A\mathrm{e}^{-3t}
+  \frac{\mathrm{d}E}{\mathrm{d}t}=-3Ae^{-3t}
   \]
 
   Using the initial condition $\frac{\mathrm{d}E}{\mathrm{d}t}=-9$ when $t=0$,
   \[
-  -3A\mathrm{e}^{0}=-9
+  -3Ae^{0}=-9
   \]
   \[
   -3A=-9
@@ -1901,13 +1882,13 @@ Initially the error is decreasing at $9$ units per second, so $\frac{\mathrm{d} 
 
   Hence
   \[
-  E=3\mathrm{e}^{-3t}+2
+  E=3e^{-3t}+2
   \]
 
   Now put $t=\ln 2$:
   \begin{align*}
-  E(\ln 2)&=3\mathrm{e}^{-3\ln 2}+2 \\
-  &=3\left(\mathrm{e}^{\ln 2}\right)^{-3}+2 \\
+  E(\ln 2)&=3e^{-3\ln 2}+2 \\
+  &=3\left(e^{\ln 2}\right)^{-3}+2 \\
   &=3\cdot 2^{-3}+2 \\
   &=\frac{3}{8}+2 \\
   &=\frac{19}{8}
@@ -1917,10 +1898,10 @@ Initially the error is decreasing at $9$ units per second, so $\frac{\mathrm{d} 
 
   \item From part (a),
   \[
-  E=3\mathrm{e}^{-3t}+2
+  E=3e^{-3t}+2
   \]
 
-  As $t\to\infty$, $\mathrm{e}^{-3t}\to 0$, so
+  As $t\to\infty$, $e^{-3t}\to 0$, so
   \[
   E\to 2
   \]
@@ -2313,11 +2294,13 @@ An automated inspection trolley of mass $2\,\mathrm{kg}$ moves along a straight 
 
 For the interval considered, the trolley stays to the right of $A$ and continues to move away from $A$. \\
 
-For $t\ge 0$, the trolley is subject to three forces modelled as follows: \\
-
-- A driving force of magnitude $4(t+1)\,\mathrm{N}$ acts in the positive $x$-direction. \\[2.5pt]
-- A magnetic force of magnitude $x\,\mathrm{N}$ acts towards $A$. \\[2.5pt]
-- A resistive force of magnitude $2\left|\tfrac{\mathrm{d}x}{\mathrm{d}t}\right|\,\mathrm{N}$ acts opposite to the direction of motion. \\
+For $t\ge 0$, the trolley is subject to three forces modelled as follows:
+\begin{itemize}
+  \item A driving force of magnitude $4(t+1)\,\mathrm{N}$ acts in the positive $x$-direction.
+  \item A magnetic force of magnitude $x\,\mathrm{N}$ acts towards $A$.
+  \item A resistive force of magnitude $2\left|\tfrac{\mathrm{d}x}{\mathrm{d}t}\right|\,\mathrm{N}$ acts opposite to the direction of motion.
+\end{itemize}
+\vspace{\baselineskip}
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Applying Newton's second law gives the differential equation
