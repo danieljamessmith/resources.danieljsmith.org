@@ -3,7 +3,7 @@
 
 \djsSolnHeader{Integration of Polar Curves}
 
-\djsLastUpdated{30 September 2026}
+\djsLastUpdated{7 October 2026}
 \begin{document}
 \djsFrontMatter
 	\begin{enumerate}[
@@ -186,68 +186,31 @@ Find, correct to three significant figures, the area of the shaded region enclos
 \questionitem
 % [Source: _QBT___Solns__Integration_of_Polar_Curves, Q2]
 
+A curve has polar equation $r=a\sin^23\theta$, where $a>0$ and $0\leq \theta<2\pi$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item A curve has polar equation $r=a\sin^23\theta$, where $a>0$ and $0\leq \theta<2\pi$. \\
-  \begin{enumerate}[label=(\roman*)]
-    \item Sketch the curve. \marks{2} \\
-    \item Find, in exact form, the total area of the regions enclosed by the curve. \marks{7} \\
-  \end{enumerate}
+  \item Sketch the curve. \marks{2} \\
+  \item Find, in exact form, the total area of the regions enclosed by the curve. \marks{7} \\
 \end{enumerate}
 
 	\vspace*{10pt}
 	
 	\begin{djsSolution}
 	\begin{enumerate}[label=\textbf{(\alph*)}]
-	  \item
-	  \begin{enumerate}[label=(\roman*)]
-		\item Since
-		\[
-		r=a\sin^2(3\theta)
-		\]
-		we have $r\geq 0$ for all $\theta$.
-	
-		Also,
-		\[
-		\sin^2(3(\theta+\tfrac{\pi}{3}))=\sin^2(3\theta+\pi)=\sin^2(3\theta)
-		\]
-		so the curve has period $\tfrac{\pi}{3}$. Hence the part from $0\leq \theta<\tfrac{\pi}{3}$ repeats 6 times as $\theta$ goes from $0$ to $2\pi$.
-	
-		The curve passes through the pole when
-		\[
-		\sin^2(3\theta)=0 \quad \Rightarrow \quad 3\theta=n\pi \quad \Rightarrow \quad \theta=\frac{n\pi}{3}
-		\]
-		for $n=0,1,2,3,4,5$.
-	
-		The maximum value of $r$ is $a$, and this occurs when
-		\[
-		\sin^2(3\theta)=1 \quad \Rightarrow \quad 3\theta=\frac{\pi}{2}+n\pi
-		\]
-		so
-		\[
-		\theta=\frac{\pi}{6}+\frac{n\pi}{3}
-		\]
-		for $n=0,1,2,3,4,5$.
-	
-		So the curve is a 6-petalled rose, with petals centred on
-		\[
-		\theta=\frac{\pi}{6},\ \frac{\pi}{2},\ \frac{5\pi}{6},\ \frac{7\pi}{6},\ \frac{3\pi}{2},\ \frac{11\pi}{6}
-		\]
-		and each petal has maximum radius $a$.
-	
-		A sketch is shown below.
-	
+	  \item The sketch should look like:
+
 		\begin{tikzpicture}
 		\begin{axis}[
 		  axis lines=middle,
 		  xlabel={$x$},
 		  ylabel={$y$},
-		  width=7cm,
-		  height=7cm,
-		  xmin=-1.2, xmax=1.2,
-		  ymin=-1.2, ymax=1.2,
+		  width=0.75\linewidth,
+		  height=8cm,
+		  xmin=-1.3, xmax=1.3,
+		  ymin=-1.3, ymax=1.3,
 		  ticks=none,
 		  enlargelimits=false,
-		  axis equal image
+		  axis equal image,
+		  clip mode=individual
 		]
 		\addplot[
 		  domain=0:360,
@@ -256,12 +219,16 @@ Find, correct to three significant figures, the area of the shaded region enclos
 		  thick
 		]
 		({(sin(3*x))^2*cos(x)},{(sin(3*x))^2*sin(x)});
+		\coordinate (Top) at (axis cs:0,1);
+		\fill (Top) circle (1.5pt);
+		\node[right, xshift=2pt] at (Top) {$\left(a,\frac{\pi}{2}\right)$};
+		\node[below right] at (axis cs:0,0) {$O$};
 		\end{axis}
 		\end{tikzpicture}
-	
-		Hence the sketch is a 6-petalled rose curve.
-	
-		\item The polar area formula is
+
+		Since $r=a\sin^2 3\theta\geq 0$ for all $\theta$, every $\theta$ gives a point on the curve. It passes through the pole when $\sin 3\theta=0$, that is at $\theta=\frac{n\pi}{3}$ for $n=0,1,\dots,5$, so the curve is a rose with 6 petals, one between each pair of consecutive zeros. The maximum value of $r$ is $a$, when $\sin^2 3\theta=1$, that is at the petal tips $\theta=\frac{\pi}{6},\frac{\pi}{2},\frac{5\pi}{6},\frac{7\pi}{6},\frac{3\pi}{2},\frac{11\pi}{6}$.
+
+	  \item The polar area formula is
 		\[
 		A=\frac{1}{2}\int r^2\,\mathrm{d}\theta
 		\]
@@ -314,12 +281,6 @@ Find, correct to three significant figures, the area of the shaded region enclos
 		&=6\cdot \frac{\pi a^2}{16}\\
 		&=\frac{3\pi a^2}{8}
 		\end{align*}
-	
-		Therefore the total area enclosed by the curve is
-		\[
-		\frac{3\pi a^2}{8}
-		\]
-	  \end{enumerate}
 	\end{enumerate}
 	\end{djsSolution}
 	
@@ -499,11 +460,6 @@ Find the exact area of the shaded region $R$. \marks{9} \\
 	&=\frac12\left(\pi+\frac{3\sqrt3}{2}\right)\\
 	&=\frac{\pi}{2}+\frac{3\sqrt3}{4}
 	\end{align*}
-	
-	Hence the exact area of the shaded region is
-	\[
-	\frac{\pi}{2}+\frac{3\sqrt3}{4}
-	\]
 	\end{djsSolution}
 	
 	
@@ -526,22 +482,58 @@ r^2=\frac{\pi^2-(\theta-\pi)^2}{1+(\theta-\pi)^2}\qquad 0\leq\theta\leq2\pi
 	
 	\begin{djsSolution}
 	\begin{enumerate}[label=\textbf{(\alph*)}]
-	  \item Let
+	  \item The sketch should look like:
+
+	  \begin{tikzpicture}
+	  \begin{axis}[
+		width=0.75\linewidth,
+		height=8cm,
+		axis lines=middle,
+		axis equal image,
+		xmin=-3.9, xmax=1.3,
+		ymin=-2.2, ymax=2.2,
+		xlabel={$x$},
+		ylabel={$y$},
+		xtick=\empty,
+		ytick=\empty,
+		clip mode=individual
+	  ]
+	  \addplot[
+		thick,
+		smooth,
+		samples=300,
+		domain=0:360,
+		variable=\t
+	  ]
+	  (
+		{sqrt((pi^2-((\t*pi/180)-pi)^2)/(1+((\t*pi/180)-pi)^2))*cos(\t)},
+		{sqrt((pi^2-((\t*pi/180)-pi)^2)/(1+((\t*pi/180)-pi)^2))*sin(\t)}
+	  );
+	  \coordinate (Far) at (axis cs:-pi,0);
+	  \fill (Far) circle (1.5pt);
+	  \node[above left] at (Far) {$(\pi,\pi)$};
+	  \node[below left] at (axis cs:0,0) {$O$};
+	  \end{axis}
+	  \end{tikzpicture}
+
+	  When \(\theta=0\) or \(\theta=2\pi\), \(r^2=\frac{\pi^2-\pi^2}{1+\pi^2}=0\), so \(C\) starts and ends at the pole. Since \(r\) depends only on \((\theta-\pi)^2\), \(r(2\pi-\theta)=r(\theta)\), so \(C\) is symmetric about the initial line.
+
+	  For the furthest point, let
 	  \[
-	  u=(\theta-\pi)^2
+	  w=(\theta-\pi)^2
 	  \]
 	  Then
 	  \[
-	  r^2=\frac{\pi^2-u}{1+u}, \qquad 0\le u\le \pi^2
+	  r^2=\frac{\pi^2-w}{1+w}, \qquad 0\le w\le \pi^2
 	  \]
-	  Differentiate with respect to \(u\):
+	  Differentiate with respect to \(w\):
 	  \[
-	  \frac{\mathrm{d}(r^2)}{\mathrm{d}u}
-	  =\frac{-(1+u)-(\pi^2-u)}{(1+u)^2}
-	  =-\frac{\pi^2+1}{(1+u)^2}<0
+	  \frac{\mathrm{d}(r^2)}{\mathrm{d}w}
+	  =\frac{-(1+w)-(\pi^2-w)}{(1+w)^2}
+	  =-\frac{\pi^2+1}{(1+w)^2}<0
 	  \]
-	  So \(r^2\) decreases as \(u\) increases, so its maximum occurs when \(u=0\).
-	
+	  So \(r^2\) decreases as \(w\) increases, and its maximum occurs when \(w=0\).
+
 	  Hence
 	  \[
 	  (\theta-\pi)^2=0 \implies \theta=\pi
@@ -558,50 +550,7 @@ r^2=\frac{\pi^2-(\theta-\pi)^2}{1+(\theta-\pi)^2}\qquad 0\leq\theta\leq2\pi
 	  \[
 	  (\pi,\pi)
 	  \]
-	
-	  For the sketch, note that when \(\theta=0\) or \(\theta=2\pi\),
-	  \[
-	  r^2=\frac{\pi^2-\pi^2}{1+\pi^2}=0
-	  \]
-	  so the curve passes through the pole.
-	
-	  Also \(r\) depends only on \((\theta-\pi)^2\), so
-	  \[
-	  r(2\pi-\theta)=r(\theta)
-	  \]
-	  Hence the curve is symmetric about the polar axis. Therefore \(C\) is a single closed loop through the pole, with greatest extent on the negative \(x\)-axis.
-	
-	  \begin{tikzpicture}
-	  \begin{axis}[
-		width=0.9\linewidth,
-		height=5.6cm,
-		axis lines=middle,
-		axis equal image,
-		xmin=-3.6, xmax=1.3,
-		ymin=-2.2, ymax=2.2,
-		xlabel={$x$},
-		ylabel={$y$},
-		xtick=\empty,
-		ytick=\empty,
-		clip=false
-	  ]
-	  \addplot[
-		thick,
-		smooth,
-		samples=300,
-		domain=0:360,
-		variable=\t
-	  ]
-	  (
-		{sqrt((pi^2-((\t*pi/180)-pi)^2)/(1+((\t*pi/180)-pi)^2))*cos(\t)},
-		{sqrt((pi^2-((\t*pi/180)-pi)^2)/(1+((\t*pi/180)-pi)^2))*sin(\t)}
-	  );
-	  \addplot[only marks, mark=*] coordinates {(0,0) (-3.14159,0)};
-	  \node[below right] at (axis cs:0,0) {$O$};
-	  \node[below] at (axis cs:-3.14159,0) {$(\pi,\pi)$};
-	  \end{axis}
-	  \end{tikzpicture}
-	
+
 	  \item The area enclosed by a polar curve is
 	  \[
 	  A=\frac12\int_{\alpha}^{\beta} r^2\,\mathrm{d}\theta
@@ -649,11 +598,6 @@ r^2=\frac{\pi^2-(\theta-\pi)^2}{1+(\theta-\pi)^2}\qquad 0\leq\theta\leq2\pi
 	  &=\frac12\Bigl[-2\pi+2(\pi^2+1)\arctan\pi\Bigr] \\
 	  &=(\pi^2+1)\arctan(\pi)-\pi
 	  \end{align*}
-	
-	  So the exact area enclosed by \(C\) is
-	  \[
-	  (\pi^2+1)\arctan(\pi)-\pi
-	  \]
 	\end{enumerate}
 	\end{djsSolution}
 	
@@ -700,7 +644,7 @@ r^2=\frac{\pi^2-(\theta-\pi)^2}{1+(\theta-\pi)^2}\qquad 0\leq\theta\leq2\pi
 \vspace*{10pt}
 
 
-The diagram below shows the curve $C$ with polar equation $r^2=8\cos 2\theta$. \\
+The diagram above shows the curve $C$ with polar equation $r^2=8\cos 2\theta$. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Show that a cartesian equation of $C$ is
@@ -751,12 +695,7 @@ The diagram below shows the curve $C$ with polar equation $r^2=8\cos 2\theta$. \
 	\[
 	(x^2+y^2)^2=8(x^2-y^2)
 	\]
-	
-	So a cartesian equation of \(C\) is
-	\[
-	(x^2+y^2)^2=8(x^2-y^2)
-	\]
-	
+
 	\item To test symmetry in the \(x\)-axis, replace \(y\) by \(-y\):
 	\begin{align*}
 	(x^2+(-y)^2)^2&=8(x^2-(-y)^2) \\
@@ -798,11 +737,6 @@ The diagram below shows the curve $C$ with polar equation $r^2=8\cos 2\theta$. \
 	&=2(1-(-1)) \\
 	&=4
 	\end{align*}
-	
-	So the exact area enclosed by each loop is
-	\[
-	4
-	\]
 	\end{enumerate}
 	\end{djsSolution}
 	
@@ -817,24 +751,24 @@ The diagram below shows the curve $C$ with polar equation $r^2=8\cos 2\theta$. \
     \centering
 \begin{tikzpicture}[scale=0.9]
 \def\aval{1.6}
-\def\thA{75.52}
-\def\thB{284.48}
+\def\thA{60}
+\def\thB{300}
 \coordinate (O) at (0,0);
 \coordinate (COneLabel) at ({2.1*\aval*(1-cos(145))*cos(145)},{2.1*\aval*(1-cos(145))*sin(145)});
-\coordinate (CTwoLabel) at (30:1.9*\aval);
+\coordinate (CTwoLabel) at (30:\aval);
 
 \fill[gray!30] (O) --
   plot[smooth, samples=120, domain=0:\thA, variable=\t]
     ({2*\aval*(1-cos(\t))*cos(\t)},{2*\aval*(1-cos(\t))*sin(\t)})
   --
   plot[smooth, samples=180, domain=\thA:\thB, variable=\t]
-    ({1.5*\aval*cos(\t)},{1.5*\aval*sin(\t)})
+    ({\aval*cos(\t)},{\aval*sin(\t)})
   --
   plot[smooth, samples=120, domain=\thB:360, variable=\t]
     ({2*\aval*(1-cos(\t))*cos(\t)},{2*\aval*(1-cos(\t))*sin(\t)})
   -- cycle;
 
-\draw[thick, black] (O) circle (1.5*\aval);
+\draw[thick, black] (O) circle (\aval);
 
 \draw[thick, black]
   plot[smooth, samples=240, domain=0:360, variable=\t]
@@ -844,7 +778,7 @@ The diagram below shows the curve $C$ with polar equation $r^2=8\cos 2\theta$. \
 
 \node[below left] at (O) {$O$};
 \node[above] at (COneLabel) {$C_1$};
-\node[left] at (CTwoLabel) {$C_2$};
+\node[above right] at (CTwoLabel) {$C_2$};
 \node at ({-0.55*\aval},{0.35*\aval}) {$R$};
 \node[below] at ({2.25*\aval},0) {Initial line};
 \end{tikzpicture}
@@ -1140,11 +1074,6 @@ The diagram above shows the curve $C$ with polar equation $r=a(2+\sin 2\theta)$ 
 	  =a^2\left(4+\frac{\pi}{4}\right)
 	  =\frac{a^2(16+\pi)}{4}
 	  \]
-	
-	  Hence the exact total area is
-	  \[
-	  \frac{a^2(16+\pi)}{4}
-	  \]
 	\end{enumerate}
 	\end{djsSolution}
 	
@@ -1315,11 +1244,6 @@ Find the exact area of $R$ in terms of $a$. \marks{8} \\
 	&=\frac12a^2\left(\frac{\pi}{4}-\frac{3\sqrt3}{16}\right) \\
 	&=\frac{a^2(4\pi-3\sqrt3)}{32}
 	\end{align*}
-	
-	Hence the exact area of \(R\) is
-	\[
-	\frac{a^2(4\pi-3\sqrt3)}{32}
-	\]
 	\end{djsSolution}
 	
 	
@@ -1342,52 +1266,38 @@ Find the exact area of $R$ in terms of $a$. \marks{8} \\
 	
 	\begin{djsSolution}
 	\begin{enumerate}[label=\textbf{(\alph*)}]
-	  \item For \(C_1\),
-	\[
-	r=2(1+\cos\theta)
-	\]
-	Since this depends on \(\cos\theta\), the curve is symmetric about the initial line.
-	
-	Key values are
-	\[
-	\theta=0 \implies r=4,\qquad
-	\theta=\pi \implies r=0,\qquad
-	\theta=\frac{\pi}{2},\frac{3\pi}{2} \implies r=2
-	\]
-	So \(C_1\) is a cardioid with maximum \(r=4\) on the initial line and a cusp at the pole.
-	
-	For \(C_2\),
-	\[
-	\theta=\frac{2\pi}{3}
-	\]
-	is the ray through the pole making an angle \(120^\circ\) with the initial line.
-	
-	The other intersection of the two curves is found by substituting \(\theta=\frac{2\pi}{3}\) into \(C_1\):
+	  \item The sketch should look like:
+
+	\begin{tikzpicture}[scale=1.5]
+	\def\ang{120}
+	\coordinate (O) at (0,0);
+	\coordinate (P) at (\ang:1);
+	\coordinate (Q) at (4,0);
+
+	\draw[->] (-1.2,0) -- (4.7,0) node[right] {$x$};
+	\draw[->] (0,-2.6) -- (0,2.6) node[above] {$y$};
+
+	\draw[thick,domain=0:360,samples=300,smooth,variable=\t]
+	plot ({2*(1+cos(\t))*cos(\t)},{2*(1+cos(\t))*sin(\t)});
+
+	\draw[thick,->] (O) -- ++(\ang:3) node[above left] {$C_2:\ \theta=\frac{2\pi}{3}$};
+
+	\node[below right] at (O) {$O$};
+
+	\fill (Q) circle (1.2pt);
+	\node[below right] at (Q) {$(4,0)$};
+	\fill (P) circle (1.2pt);
+	\node[below left] at (P) {$\left(1,\frac{2\pi}{3}\right)$};
+
+	\node[above] at (2.0,1.65) {$C_1$};
+	\end{tikzpicture}
+
+	\(C_1\) is a cardioid, symmetric about the initial line, with \(r=4\) at \(\theta=0\) and a cusp at the pole at \(\theta=\pi\). \(C_2\) is the half-line from the pole at angle \(\frac{2\pi}{3}\) to the initial line. Substituting \(\theta=\frac{2\pi}{3}\) into \(C_1\):
 	\[
 	r=2\left(1+\cos\frac{2\pi}{3}\right)=2\left(1-\frac12\right)=1
 	\]
-	So the curves meet at the pole and at \(r=1,\ \theta=\frac{2\pi}{3}\).
-	
-	A suitable sketch is: \vspace*{15pt}
-	
-	\begin{tikzpicture}[scale=1.0]
-	\draw[->] (-1.2,0) -- (4.7,0) node[right] {$x$};
-	\draw[->] (0,-2.6) -- (0,2.6) node[above] {$y$};
-	
-	\draw[thick,domain=0:360,samples=300,smooth,variable=\t]
-	plot ({2*(1+cos(\t))*cos(\t)},{2*(1+cos(\t))*sin(\t)});
-	
-	\draw[thick,->] (0,0) -- ++(120:3) node[above left] {$C_2:\ \theta=\frac{2\pi}{3}$};
-	
-	\fill (0,0) circle (1.2pt);
-	\node[below left] at (0,0) {$O$};
-	
-	\fill (4,0) circle (1.2pt);
-	\fill (-0.5,0.8660254) circle (1.2pt);
-	
-	\node[above] at (2.0,1.65) {$C_1$};
-	\end{tikzpicture}
-	
+	So the curves meet at the pole and at \(\left(1,\frac{2\pi}{3}\right)\).
+
 	  \item The smaller region is the part inside the cardioid between
 	\[
 	\theta=\frac{2\pi}{3}\quad \text{and}\quad \theta=\pi
@@ -1522,7 +1432,7 @@ r=4a\cos\theta \text{ and } r=2a\sec\theta,\quad a>0
 	
 	So the polar coordinates of $P$ are
 	\[
-	\boxed{\left(2\sqrt2\,a,\frac{\pi}{4}\right)}
+	\left(2\sqrt2\,a,\frac{\pi}{4}\right)
 	\]
 	
 	  \item The required shaded area is between the curves from $\theta=0$ to the intersection at $\theta=\frac{\pi}{4}$.
@@ -1570,11 +1480,6 @@ r=4a\cos\theta \text{ and } r=2a\sec\theta,\quad a>0
 	&=\pi a^2+2a^2-2a^2 \\
 	&=\pi a^2
 	\end{align*}
-	
-	Hence the shaded area is
-	\[
-	\boxed{\pi a^2}
-	\]
 	\end{enumerate}
 	\end{djsSolution}
 	
@@ -1778,7 +1683,7 @@ Find the value of $a$. \marks{8} \\
 \end{figure}
 
 
-The diagram below shows the curve with polar equation $r=1+\sin 2\theta$ for $0\leq\theta\leq2\pi$. \\
+The diagram above shows the curve with polar equation $r=1+\sin 2\theta$ for $0\leq\theta\leq2\pi$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Find the values of $\theta$ at the pole. \marks{1} \\
   \item Find the polar coordinates of the points on the curve where $r$ takes its maximum value. \marks{2} \\
@@ -1849,12 +1754,8 @@ The diagram below shows the curve with polar equation $r=1+\sin 2\theta$ for $0\
 	  \begin{align*}
 	  A&=\frac12\left[\frac32\theta-\cos 2\theta-\frac18\sin 4\theta\right]_0^{2\pi} \\
 	   &=\frac12\left(3\pi-1-0-(-1)\right) \\
-	   &=\frac12(3\pi)
+	   &=\frac{3\pi}{2}
 	  \end{align*}
-	  Hence the exact total area enclosed is
-	  \[
-	  \frac{3\pi}{2}
-	  \]
 	
 	  \item Using
 	  \[

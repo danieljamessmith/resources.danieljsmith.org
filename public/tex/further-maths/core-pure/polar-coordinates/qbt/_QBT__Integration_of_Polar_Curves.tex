@@ -3,7 +3,7 @@
 
 \djsQbtHeader{Integration of Polar Curves}
 
-\djsLastUpdated{30 September 2026}
+\djsLastUpdated{7 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -80,12 +80,10 @@ Find, correct to three significant figures, the area of the shaded region enclos
 \questionitem
 % [Source: _QBT__Integration_of_Polar_Curves, Q2]
 
+A curve has polar equation $r=a\sin^23\theta$, where $a>0$ and $0\leq \theta<2\pi$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item A curve has polar equation $r=a\sin^23\theta$, where $a>0$ and $0\leq \theta<2\pi$. \\
-  \begin{enumerate}[label=(\roman*)]
-    \item Sketch the curve. \marks{2} \\
-    \item Find, in exact form, the total area of the regions enclosed by the curve. \marks{7} \\
-  \end{enumerate}
+  \item Sketch the curve. \marks{2} \\
+  \item Find, in exact form, the total area of the regions enclosed by the curve. \marks{7} \\
 \end{enumerate}
 \newpage
 % ---- Question 3 ----
@@ -200,7 +198,7 @@ r^2=\frac{\pi^2-(\theta-\pi)^2}{1+(\theta-\pi)^2}\qquad 0\leq\theta\leq2\pi
 \vspace*{10pt}
 
 
-The diagram below shows the curve $C$ with polar equation $r^2=8\cos 2\theta$. \\
+The diagram above shows the curve $C$ with polar equation $r^2=8\cos 2\theta$. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Show that a cartesian equation of $C$ is
@@ -223,24 +221,24 @@ The diagram below shows the curve $C$ with polar equation $r^2=8\cos 2\theta$. \
     \centering
 \begin{tikzpicture}[scale=0.9]
 \def\aval{1.6}
-\def\thA{75.52}
-\def\thB{284.48}
+\def\thA{60}
+\def\thB{300}
 \coordinate (O) at (0,0);
 \coordinate (COneLabel) at ({2.1*\aval*(1-cos(145))*cos(145)},{2.1*\aval*(1-cos(145))*sin(145)});
-\coordinate (CTwoLabel) at (30:1.9*\aval);
+\coordinate (CTwoLabel) at (30:\aval);
 
 \fill[gray!30] (O) --
   plot[smooth, samples=120, domain=0:\thA, variable=\t]
     ({2*\aval*(1-cos(\t))*cos(\t)},{2*\aval*(1-cos(\t))*sin(\t)})
   --
   plot[smooth, samples=180, domain=\thA:\thB, variable=\t]
-    ({1.5*\aval*cos(\t)},{1.5*\aval*sin(\t)})
+    ({\aval*cos(\t)},{\aval*sin(\t)})
   --
   plot[smooth, samples=120, domain=\thB:360, variable=\t]
     ({2*\aval*(1-cos(\t))*cos(\t)},{2*\aval*(1-cos(\t))*sin(\t)})
   -- cycle;
 
-\draw[thick, black] (O) circle (1.5*\aval);
+\draw[thick, black] (O) circle (\aval);
 
 \draw[thick, black]
   plot[smooth, samples=240, domain=0:360, variable=\t]
@@ -250,7 +248,7 @@ The diagram below shows the curve $C$ with polar equation $r^2=8\cos 2\theta$. \
 
 \node[below left] at (O) {$O$};
 \node[above] at (COneLabel) {$C_1$};
-\node[left] at (CTwoLabel) {$C_2$};
+\node[above right] at (CTwoLabel) {$C_2$};
 \node at ({-0.55*\aval},{0.35*\aval}) {$R$};
 \node[below] at ({2.25*\aval},0) {Initial line};
 \end{tikzpicture}
@@ -527,7 +525,7 @@ Find the value of $a$. \marks{8} \\
 \end{figure}
 
 
-The diagram below shows the curve with polar equation $r=1+\sin 2\theta$ for $0\leq\theta\leq2\pi$. \\
+The diagram above shows the curve with polar equation $r=1+\sin 2\theta$ for $0\leq\theta\leq2\pi$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Find the values of $\theta$ at the pole. \marks{1} \\
   \item Find the polar coordinates of the points on the curve where $r$ takes its maximum value. \marks{2} \\
