@@ -3,7 +3,7 @@
 
 \djsSolnHeader{Tangents to Polar Curves}
 
-\djsLastUpdated{30 September 2026}
+\djsLastUpdated{7 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -35,7 +35,7 @@
 \coordinate (CL) at ({(1 + 2*cos(2*\thC))*cos(\thC)},{(1 + 2*cos(2*\thC))*sin(\thC)});
 \coordinate (Rlabel) at ($(A)!0.52!(P)+(0.42,0.25)$);
 
-\fill[gray!30] (P) -- (T) -- (A)
+\fill[gray!30] (P) -- (T) -- (A) --
   plot[smooth, samples=120, domain=0:\thP]
     ({(1 + 2*cos(2*\x))*cos(\x)},{(1 + 2*cos(2*\x))*sin(\x)})
   -- cycle;
@@ -515,11 +515,6 @@ Let $\psi$ be the angle that $TPQ$ makes with the initial line. \\
   \tan\psi
   =\frac{\frac{\mathrm{d}r}{\mathrm{d}\theta}\sin\theta+r\cos\theta}{\frac{\mathrm{d}r}{\mathrm{d}\theta}\cos\theta-r\sin\theta}
   \]
-
-  So
-  \[
-  \tan \psi = \frac{\frac{\mathrm{d}r}{\mathrm{d}\theta}\sin\theta + r\cos\theta}{\frac{\mathrm{d}r}{\mathrm{d}\theta}\cos\theta - r\sin\theta}
-  \]
   as required.
 
   \item Let
@@ -802,8 +797,6 @@ Since \(OB\) is the distance from the pole to \(B\),
 OB=\frac65
 \]
 
-So the length of \(OB\) is \(\dfrac65\).
-
 \item Since \(AB\) is vertical, its length is the difference between the \(y\)-coordinates of \(B\) and \(A\).
 
 For \(A\),
@@ -873,6 +866,7 @@ so
 =
 \frac{r'\sin\theta+r\cos\theta}{r'\cos\theta-r\sin\theta}
 \]
+where \(r'=\dfrac{\mathrm{d}r}{\mathrm{d}\theta}\).
 
 A tangent perpendicular to the initial line is vertical, so \(\dfrac{\mathrm{d}y}{\mathrm{d}x}\) is undefined. Therefore
 \[
@@ -1174,11 +1168,6 @@ A logo is modelled by the cardioid $C$, where $a = 8\,\text{cm}$. The logo is cu
   WZ=2a-\left(-\frac a4\right)=\frac{9a}{4}
   \]
 
-  So
-  \[
-  WZ=\frac{9a}{4}
-  \]
-
   \item The area of the rectangle is
   \[
   \text{Area} = WX\times WZ
@@ -1452,7 +1441,7 @@ So
 \begin{align*}
 A_R
 &=16\Biggl[
-\int\left(\frac34+\cos2\theta+\frac14\cos4\theta\right)\,\mathrm{d}\theta
+\frac34\theta+\frac12\sin2\theta+\frac1{16}\sin4\theta
 -3\left(\sin\theta-\frac13\sin^3\theta\right)  \\
 &\qquad\qquad
 -\left(\frac12\theta+\frac14\sin2\theta\right)
@@ -1550,8 +1539,8 @@ Therefore the exact area of \(R\) is
 \node[above left] at (B) {$B$};
 \node[above left] at (\xC,\yC) {$C$};
 \node at (Rpos) {$R$};
-\node[above left] at (-0.1,\yB) {$l_1$};
-\node[right] at (\xA,2.0) {$l_2$};
+\node[above left] at (-0.1,\yB) {$\ell_1$};
+\node[right] at (\xA,2.0) {$\ell_2$};
 \node[below right] at (7.8,0) {initial line};
 \end{tikzpicture}
 \end{figure}
@@ -1687,13 +1676,12 @@ Using \(x=r\cos\theta\), this gives
 \[
 2r-x=6
 \]
-
-Also, since \(r^2=x^2+y^2\),
+so
 \[
 2r=x+6
 \]
 
-Squaring both sides,
+Squaring both sides and using \(r^2=x^2+y^2\),
 \begin{align*}
 4r^2&=(x+6)^2 \\
 4(x^2+y^2)&=x^2+12x+36 \\
@@ -1719,9 +1707,9 @@ y=\frac{\sqrt{3}}{2}\sqrt{16-(x-2)^2}
 
 Now find the bounding lines.
 
-At \(A=(6,0)\), the tangent \(l_2\) is perpendicular to the initial line, so it is vertical:
+At \(A=(6,0)\), the tangent \(\ell_2\) is perpendicular to the initial line, so it is vertical:
 \[
-l_2:\ x=6
+\ell_2:\ x=6
 \]
 
 From part (b), \(B=(4,\pi/3)\), so in Cartesian coordinates
@@ -1731,9 +1719,9 @@ x=4\cos\frac{\pi}{3}=2,
 y=4\sin\frac{\pi}{3}=2\sqrt{3}
 \]
 
-Since \(l_1\) is parallel to the initial line, it is horizontal:
+Since \(\ell_1\) is parallel to the initial line, it is horizontal:
 \[
-l_1:\ y=2\sqrt{3}
+\ell_1:\ y=2\sqrt{3}
 \]
 
 Hence the area of \(R\) is
