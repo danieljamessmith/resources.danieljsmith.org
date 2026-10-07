@@ -59,7 +59,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/vectors/qbt/_QBT__Vector_Product.pdf': 'd59a1dab',
   '/tex/further-maths/core-pure/vectors/qbt/_QBT__Vectors___Shortest_Distances.pdf': 'b71f9cc9',
   '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Invariant_Points_and_Lines.pdf': 'f62e7a9f',
-  '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Linear_Transformations.pdf': 'ba87cf00',
+  '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Linear_Transformations.pdf': '1b8b0fe2',
   '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Matrix_Determinants___Inverses.pdf': 'c170bbc6',
   '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Plane_Intersections.pdf': '83a6f254',
   '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Reflections_in_Planes.pdf': '3194831b',
