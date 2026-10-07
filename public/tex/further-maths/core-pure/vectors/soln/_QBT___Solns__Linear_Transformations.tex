@@ -3,7 +3,7 @@
 
 \djsSolnHeader{Linear Transformations}
 
-\djsLastUpdated{30 September 2026}
+\djsLastUpdated{7 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -117,13 +117,6 @@
     \frac12 & \frac{\sqrt3}{2}
     \end{pmatrix}
     \end{align*}
-    So the matrix is
-    \[
-    \begin{pmatrix}
-    -\frac{\sqrt3}{2} & \frac12\\
-    \frac12 & \frac{\sqrt3}{2}
-    \end{pmatrix}
-    \]
   \end{enumerate}
 
   \item Let
@@ -326,11 +319,6 @@ Since the reflection is followed by the stretch,
 \begin{pmatrix}0&2\\1&0\end{pmatrix}
 \]
 
-So
-\[
-\mathbf Q=\begin{pmatrix}0&2\\1&0\end{pmatrix}
-\]
-
   \item From part (a), $p=2$, so
 \[
 \mathbf P=\begin{pmatrix}3&2\\2&3\end{pmatrix}
@@ -355,11 +343,6 @@ Therefore
 &=
 \begin{pmatrix}4&6\\3&2\end{pmatrix}
 \end{align*}
-
-So
-\[
-\mathbf R=\begin{pmatrix}4&6\\3&2\end{pmatrix}
-\]
 \end{enumerate}
 \end{djsSolution}
 
@@ -425,8 +408,6 @@ So
     \[
     =\cos^2\theta+\sin^2\theta=1
     \]
-
-    Hence $\det \mathbf{M}=1$.
 
     \item Since $|\det \mathbf{M}|=1$, the area scale factor is $1$.
 
@@ -518,9 +499,9 @@ So
   \end{pmatrix}
   \]
 
-  So the statement is true for $k+1$.
+  So the statement is true for $n=k+1$.
 
-  Therefore, by induction,
+  If the statement is true for $n=k$, then it is true for $n=k+1$. Since it is true for $n=1$, by the principle of mathematical induction
   \[
   \mathbf{M}^n=
   \begin{pmatrix}
@@ -625,11 +606,6 @@ A^2
 1&0\\[2pt]
 0&1
 \end{pmatrix}
-\]
-
-So
-\[
-A^2=\begin{pmatrix}1&0\\0&1\end{pmatrix}
 \]
 
 \item
@@ -755,14 +731,6 @@ BA=
 \end{pmatrix}
 \]
 
-So the single matrix is
-\[
-\begin{pmatrix}
--\frac12 & -\frac{\sqrt3}{2}\\[4pt]
--\frac{\sqrt3}{2} & \frac12
-\end{pmatrix}
-\]
-
 \item
 Let
 \[
@@ -872,10 +840,6 @@ Given that $U$ followed by $V$ is transformation $T$, which is represented by th
   \end{pmatrix}
   =\begin{pmatrix}0&-1\\1&0\end{pmatrix}
   \]
-  So the matrix $R$ is
-  \[
-  \begin{pmatrix}0&-1\\1&0\end{pmatrix}
-  \]
 
   \item Apply $R$ to a general point:
   \[
@@ -948,7 +912,7 @@ The unit square in the $x$-$y$ plane is transformed by $\mathbf{M}$ onto rectang
   =
   \begin{pmatrix}
   x\\ky
-  \end{pmatrix},
+  \end{pmatrix}
   \]
   this is a stretch parallel to the $y$-axis, with scale factor $k$.
 
@@ -964,7 +928,7 @@ The unit square in the $x$-$y$ plane is transformed by $\mathbf{M}$ onto rectang
   =
   \begin{pmatrix}
   y\\x
-  \end{pmatrix},
+  \end{pmatrix}
   \]
   which swaps the coordinates, so this is a reflection in the line $y=x$.
 
@@ -1015,7 +979,7 @@ The unit square in the $x$-$y$ plane is transformed by $\mathbf{M}$ onto rectang
   \begin{pmatrix}
   0 & k\\
   1 & 0
-  \end{pmatrix},
+  \end{pmatrix}
   \]
   \[
   \mathbf{M}^{-1}
@@ -1212,7 +1176,9 @@ Since \(\mathbf{A}^3=\mathbf{I}\), three applications give a full turn, so the a
 \frac{360^\circ}{3}=120^\circ
 \]
 
-Therefore \(\mathbf{A}\) represents a rotation of \(120^\circ\) about the line \(x=y=z\).
+For the sense, \(\mathbf{A}\) sends \(\mathbf{i}\mapsto\mathbf{k}\), \(\mathbf{k}\mapsto\mathbf{j}\) and \(\mathbf{j}\mapsto\mathbf{i}\). Viewed from \((1,1,1)\) towards the origin, the positive \(x\)-, \(y\)- and \(z\)-axes appear in anticlockwise order, so \(x\to z\to y\) is clockwise.
+
+Therefore \(\mathbf{A}\) represents a rotation of \(120^\circ\) clockwise about the line \(x=y=z\), viewed from \((1,1,1)\) towards the origin.
 
   \item A reflection in the plane \(x=y\) swaps the \(x\)- and \(y\)-coordinates and leaves \(z\) unchanged.
 
@@ -1371,11 +1337,6 @@ represent two transformations. When $T$ is transformed by the matrix $QR$, the i
   \end{pmatrix}
   \]
 
-  So
-  \[
-  QR=\begin{pmatrix}1&4\\3&0\end{pmatrix}
-  \]
-
   \item Using
   \[
   QR=\begin{pmatrix}1&4\\3&0\end{pmatrix}
@@ -1383,11 +1344,6 @@ represent two transformations. When $T$ is transformed by the matrix $QR$, the i
   its determinant is
   \[
   \det(QR)=1\cdot 0-4\cdot 3=-12
-  \]
-
-  Therefore,
-  \[
-  \det(QR)=-12
   \]
 
   \item The original triangle \(T\) is right-angled with side lengths
@@ -1408,8 +1364,6 @@ represent two transformations. When $T$ is transformed by the matrix $QR$, the i
   \[
   \text{Area of }T''=12\times 6=72
   \]
-
-  So the area of \(T''\) is \(72\).
 \end{enumerate}
 \end{djsSolution}
 
@@ -1428,7 +1382,7 @@ Given that the matrix $\mathbf{M}$, where
 \frac{\sqrt{2}}{2} & 0 & -\frac{\sqrt{2}}{2}
 \end{pmatrix}
 \]
-represents a rotation through $\alpha^\circ$ about the $y$-axis in the positive sense given by the right-hand rule. \\
+represents a rotation through $\alpha^\circ$ about the $y$-axis in the positive sense given by the right-hand rule \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item determine the value of $\alpha$. \marks{1} \\
@@ -1672,20 +1626,20 @@ Identify and correct the error in Bilal's work. \marks{2}
 The standard matrix for a rotation about the $y$-axis is
 \[
 R_y(\theta)=
-\begin{bmatrix}
+\begin{pmatrix}
 \cos\theta & 0 & \sin\theta\\
 0 & 1 & 0\\
 -\sin\theta & 0 & \cos\theta
-\end{bmatrix}
+\end{pmatrix}
 \]
 
 Comparing this with
 \[
-\begin{bmatrix}
+\begin{pmatrix}
 \frac{\sqrt3}{2} & 0 & -\frac12\\
 0 & 1 & 0\\
 \frac12 & 0 & \frac{\sqrt3}{2}
-\end{bmatrix}
+\end{pmatrix}
 \]
 gives
 \[
@@ -1714,11 +1668,11 @@ Three non-singular $3 \times 3$ matrices, $\mathbf{A}$, $\mathbf{B}$ and $\mathb
 \] \\
 The matrix $\mathbf{R}$ represents a rotation about the $x$-axis through an angle $\theta$ and
 \[
-\mathbf{B}=\begin{bmatrix}
+\mathbf{B}=\begin{pmatrix}
 1 & 0 & 0 \\
 0 & -\sin\theta & \cos\theta \\
 0 & \cos\theta & \sin\theta
-\end{bmatrix}
+\end{pmatrix}
 \] \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Show that $\mathbf{A}$ is independent of the value of $\theta$. \marks{3} \\
@@ -1741,48 +1695,48 @@ and $\mathbf{R}$ is non-singular, we can multiply on the left by $\mathbf{R}^{-1
 For a rotation about the $x$-axis through angle $\theta$,
 \[
 \mathbf{R}=
-\begin{bmatrix}
+\begin{pmatrix}
 1&0&0\\
 0&\cos\theta&-\sin\theta\\
 0&\sin\theta&\cos\theta
-\end{bmatrix}
+\end{pmatrix}
 \]
 so
 \[
 \mathbf{R}^{-1}=
-\begin{bmatrix}
+\begin{pmatrix}
 1&0&0\\
 0&\cos\theta&\sin\theta\\
 0&-\sin\theta&\cos\theta
-\end{bmatrix}
+\end{pmatrix}
 \]
 
 Now calculate $\mathbf{A}$:
 \begin{align*}
 \mathbf{A}
 &=
-\begin{bmatrix}
+\begin{pmatrix}
 1&0&0\\
 0&\cos\theta&\sin\theta\\
 0&-\sin\theta&\cos\theta
-\end{bmatrix}
-\begin{bmatrix}
+\end{pmatrix}
+\begin{pmatrix}
 1&0&0\\
 0&-\sin\theta&\cos\theta\\
 0&\cos\theta&\sin\theta
-\end{bmatrix} \\[6pt]
+\end{pmatrix} \\[6pt]
 &=
-\begin{bmatrix}
+\begin{pmatrix}
 1&0&0\\
 0&-\cos\theta\sin\theta+\sin\theta\cos\theta&\cos^2\theta+\sin^2\theta\\
 0&\sin^2\theta+\cos^2\theta&-\sin\theta\cos\theta+\cos\theta\sin\theta
-\end{bmatrix} \\[6pt]
+\end{pmatrix} \\[6pt]
 &=
-\begin{bmatrix}
+\begin{pmatrix}
 1&0&0\\
 0&0&1\\
 0&1&0
-\end{bmatrix}
+\end{pmatrix}
 \end{align*}
 
 This matrix contains no $\theta$, so $\mathbf{A}$ is independent of the value of $\theta$.
@@ -1790,18 +1744,18 @@ This matrix contains no $\theta$, so $\mathbf{A}$ is independent of the value of
 Hence
 \[
 \mathbf{A}=
-\begin{bmatrix}
+\begin{pmatrix}
 1&0&0\\
 0&0&1\\
 0&1&0
-\end{bmatrix}
+\end{pmatrix}
 \]
 
   \item The matrix $\mathbf{A}$ maps
 \[
-\begin{bmatrix}x\\y\\z\end{bmatrix}
+\begin{pmatrix}x\\y\\z\end{pmatrix}
 \mapsto
-\begin{bmatrix}x\\z\\y\end{bmatrix}
+\begin{pmatrix}x\\z\\y\end{pmatrix}
 \]
 so it leaves $x$ unchanged and swaps $y$ and $z$.
 
