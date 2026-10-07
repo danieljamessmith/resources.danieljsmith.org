@@ -3,7 +3,7 @@
 
 \djsSolnHeader{Vector Product}
 
-\djsLastUpdated{30 September 2026}
+\djsLastUpdated{7 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -157,11 +157,6 @@ So the acute angle is
 \[
 \theta=\sin^{-1}\!\left(\frac{5}{2\sqrt7}\right)\approx 70.9^\circ
 \]
-
-Hence the acute angle between $\mathbf p$ and $\mathbf q$ is
-\[
-\sin^{-1}\!\left(\frac{5}{2\sqrt7}\right)\approx 70.9^\circ
-\]
 \end{enumerate}
 \end{djsSolution}
 
@@ -175,7 +170,7 @@ Hence the acute angle between $\mathbf p$ and $\mathbf q$ is
 You are given the fixed points $A(1,0,1)$ and $C(4,0,2)$, and the variable point $B(t,2,5-t)$, where $t$ is a real parameter. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Using only the geometrical properties of the vector product, explain why the statement ``$\overrightarrow{AB} \times \overrightarrow{AC} = 0$" is false for all values of $t$. \marks{2} \\
+  \item Using only the geometrical properties of the vector product, explain why the statement ``$\overrightarrow{AB} \times \overrightarrow{AC} = \mathbf{0}$" is false for all values of $t$. \marks{2} \\
   \item
   \begin{enumerate}[label=(\roman*)]
     \item Use the vector product to find an expression, in terms of $t$, for the area of triangle $ABC$. \marks{4}
@@ -189,18 +184,18 @@ You are given the fixed points $A(1,0,1)$ and $C(4,0,2)$, and the variable point
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item 
   \[
-  \overrightarrow{AB}=B-A=(t-1,\,2,\,4-t), \qquad \overrightarrow{AC}=C-A=(3,\,0,\,1)
+  \overrightarrow{AB}=\begin{pmatrix}t-1\\2\\4-t\end{pmatrix}, \qquad \overrightarrow{AC}=\begin{pmatrix}3\\0\\1\end{pmatrix}
   \]
 
   Geometrically, \(\overrightarrow{AB}\times\overrightarrow{AC}=\mathbf 0\) only if \(\overrightarrow{AB}\) and \(\overrightarrow{AC}\) are parallel, or if one of them is the zero vector.
 
-  Here \(\overrightarrow{AC}=(3,0,1)\neq \mathbf 0\), and \(\overrightarrow{AB}\) can never be parallel to \(\overrightarrow{AC}\) because:
+  Here \(\overrightarrow{AC}\neq \mathbf 0\), and \(\overrightarrow{AB}\) can never be parallel to \(\overrightarrow{AC}\) because:
 
   \[
   \text{\(y\)-component of }\overrightarrow{AB}=2, \qquad \text{\(y\)-component of }\overrightarrow{AC}=0
   \]
 
-  So no scalar multiple of \((3,0,1)\) can equal \((t-1,2,4-t)\) for any real \(t\).
+  So \(\overrightarrow{AB}\) is not a scalar multiple of \(\overrightarrow{AC}\) for any real \(t\).
 
   Therefore \(\overrightarrow{AB}\times\overrightarrow{AC}\neq \mathbf 0\) for all values of \(t\), so the statement is false for all \(t\).
 
@@ -210,7 +205,7 @@ You are given the fixed points $A(1,0,1)$ and $C(4,0,2)$, and the variable point
     First find the two sides of the triangle:
 
     \[
-    \overrightarrow{AB}=(t-1,\,2,\,4-t), \qquad \overrightarrow{AC}=(3,\,0,\,1)
+    \overrightarrow{AB}=\begin{pmatrix}t-1\\2\\4-t\end{pmatrix}, \qquad \overrightarrow{AC}=\begin{pmatrix}3\\0\\1\end{pmatrix}
     \]
 
     Now calculate the vector product:
@@ -228,7 +223,7 @@ You are given the fixed points $A(1,0,1)$ and $C(4,0,2)$, and the variable point
     +\mathbf k\bigl((t-1)\cdot 0-2\cdot 3\bigr) \\
     &= 2\mathbf i-\mathbf j\bigl(t-1-12+3t\bigr)-6\mathbf k \\
     &= 2\mathbf i-(4t-13)\mathbf j-6\mathbf k \\
-    &= (2,\,13-4t,\,-6)
+    &= \begin{pmatrix}2\\13-4t\\-6\end{pmatrix}
     \end{align*}
 
     The area of triangle \(ABC\) is
@@ -647,11 +642,6 @@ Hence the acute angle is
 \[
 \theta=\sin^{-1}\left(\frac{5}{\sqrt{123}}\right)\approx 26.8^\circ
 \]
-
-Therefore, the acute angle between \(\mathbf p\) and \(\mathbf q\) is
-\[
-\sin^{-1}\left(\frac{5}{\sqrt{123}}\right)\approx 26.8^\circ
-\]
 \end{enumerate}
 \end{djsSolution}
 
@@ -662,7 +652,10 @@ Therefore, the acute angle between \(\mathbf p\) and \(\mathbf q\) is
 \questionitem
 % [Source: _QBT___Solns__Vector_Product, Q6]
 
-The point $P$ has coordinates $P(2,-1,1)$. The vector $\overrightarrow{PQ}=(1,2,0)$ and the midpoint of $PR$ is $M(1,0,2)$. \\
+The point $P$ has coordinates $P(2,-1,1)$ and the midpoint of $PR$ is $M(1,0,2)$. The vector $\overrightarrow{PQ}$ is given by
+\[
+\overrightarrow{PQ}=\begin{pmatrix}1\\2\\0\end{pmatrix}
+\]
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Use a vector product to show that the area of triangle $PQR$ is $\sqrt{14}$. \marks{4} \\
@@ -676,23 +669,24 @@ The point $P$ has coordinates $P(2,-1,1)$. The vector $\overrightarrow{PQ}=(1,2,
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item First find the coordinates of $Q$ and $R$.
 
-  Since $\overrightarrow{PQ}=(1,2,0)$,
+  Since $\overrightarrow{OQ}=\overrightarrow{OP}+\overrightarrow{PQ}$,
   \[
-  Q=P+\overrightarrow{PQ}=(2,-1,1)+(1,2,0)=(3,1,1)
+  \overrightarrow{OQ}=\begin{pmatrix}2\\-1\\1\end{pmatrix}+\begin{pmatrix}1\\2\\0\end{pmatrix}=\begin{pmatrix}3\\1\\1\end{pmatrix}
   \]
+  so $Q$ is the point $(3,1,1)$.
 
   Since $M(1,0,2)$ is the midpoint of $PR$,
   \[
-  M=\frac{1}{2}(P+R)
+  \overrightarrow{OM}=\frac{1}{2}\left(\overrightarrow{OP}+\overrightarrow{OR}\right)
   \]
   so
   \[
-  R=2M-P=(2,0,4)-(2,-1,1)=(0,1,3)
+  \overrightarrow{OR}=2\overrightarrow{OM}-\overrightarrow{OP}=\begin{pmatrix}2\\0\\4\end{pmatrix}-\begin{pmatrix}2\\-1\\1\end{pmatrix}=\begin{pmatrix}0\\1\\3\end{pmatrix}
   \]
 
   Now
   \[
-  \overrightarrow{PR}=R-P=(0,1,3)-(2,-1,1)=(-2,2,2)
+  \overrightarrow{PR}=\overrightarrow{OR}-\overrightarrow{OP}=\begin{pmatrix}0\\1\\3\end{pmatrix}-\begin{pmatrix}2\\-1\\1\end{pmatrix}=\begin{pmatrix}-2\\2\\2\end{pmatrix}
   \]
 
   Using the vector product,
@@ -871,12 +865,10 @@ If $OR$ is parallel to a normal to the plane, then $\mathbf r$ must be parallel 
 
 So
 \[
-(t,-1,1)\parallel (1,-1,1)
+\begin{pmatrix}t\\-1\\1\end{pmatrix}\parallel \begin{pmatrix}1\\-1\\1\end{pmatrix}
 \]
 
 Comparing components gives $t=1$.
-
-Hence the value of $t$ is $1$.
 
   \item Using the vector formula for the volume of a tetrahedron,
 \[
@@ -1008,11 +1000,6 @@ Hence
 &=12\mathbf{i}-9\mathbf{j}+6\mathbf{k}
 \end{align*}
 
-So
-\[
-\overrightarrow{AB}\times\overrightarrow{AC}=12\mathbf{i}-9\mathbf{j}+6\mathbf{k}
-\]
-
   \item A normal vector to the plane is \(\overrightarrow{AB}\times\overrightarrow{AC}\), so we may take
 \[
 \mathbf{n}=12\mathbf{i}-9\mathbf{j}+6\mathbf{k}=3(4\mathbf{i}-3\mathbf{j}+2\mathbf{k})
@@ -1025,7 +1012,7 @@ A simpler normal vector is
 The plane has equation \(\mathbf{r}\cdot\mathbf{n}=p\). Since \(A\) lies on the plane,
 \begin{align*}
 p&=\mathbf{a}\cdot\mathbf{n} \\
-&=(2,-1,3)\cdot(4,-3,2) \\
+&=\begin{pmatrix}2\\-1\\3\end{pmatrix}\cdot\begin{pmatrix}4\\-3\\2\end{pmatrix} \\
 &=2(4)+(-1)(-3)+3(2) \\
 &=8+3+6=17
 \end{align*}
@@ -1055,7 +1042,7 @@ V=\frac{1}{6}\left|(\overrightarrow{AB}\times\overrightarrow{AC})\cdot\overright
 Using the result from part (a),
 \begin{align*}
 V
-&=\frac{1}{6}\left|(12,-9,6)\cdot(-1,6,1)\right| \\
+&=\frac{1}{6}\left|\begin{pmatrix}12\\-9\\6\end{pmatrix}\cdot\begin{pmatrix}-1\\6\\1\end{pmatrix}\right| \\
 &=\frac{1}{6}\left|12(-1)+(-9)(6)+6(1)\right| \\
 &=\frac{1}{6}\left|-12-54+6\right| \\
 &=\frac{1}{6}\left|-60\right| \\
@@ -1063,7 +1050,7 @@ V
 \end{align*}
 
 So the volume of tetrahedron \(ABCD\) is
-\(10\)
+\(10\).
 \end{enumerate}
 \end{djsSolution}
 
@@ -1101,7 +1088,7 @@ Given that $\alpha>0$ \\
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-\item Since $l$ is the intersection of
+\item Since $\ell$ is the intersection of
 \[
 x-z=-2
 \qquad\text{and}\qquad
@@ -1121,12 +1108,12 @@ so
 \qquad\Rightarrow\qquad
 y=\frac{7-t}{2}
 \]
-Hence a general point $P$ on $l$ is
+Hence a general point $P$ on $\ell$ is
 \[
 P\left(t-2,\frac{7-t}{2},t\right)
 \]
 
-Now $AB=AC=15$, so points $B$ and $C$ on $l$ satisfy $AP=15$.
+Now $AB=AC=15$, so points $B$ and $C$ on $\ell$ satisfy $AP=15$.
 
 Using $A=(9,10,-1)$,
 \begin{align*}
@@ -1179,10 +1166,10 @@ Therefore the coordinates are $B=(-5,5,-3)$ and $C=(7,-1,9)$.
 
 First find the two vectors:
 \[
-\overrightarrow{AB}=B-A=(-5-9,\,5-10,\,-3-(-1))=(-14,-5,-2)
+\overrightarrow{AB}=\begin{pmatrix}-5-9\\5-10\\-3-(-1)\end{pmatrix}=\begin{pmatrix}-14\\-5\\-2\end{pmatrix}
 \]
 \[
-\overrightarrow{AC}=C-A=(7-9,\,-1-10,\,9-(-1))=(-2,-11,10)
+\overrightarrow{AC}=\begin{pmatrix}7-9\\-1-10\\9-(-1)\end{pmatrix}=\begin{pmatrix}-2\\-11\\10\end{pmatrix}
 \]
 
 Now
@@ -1194,11 +1181,11 @@ Now
 -14 & -5 & -2\\
 -2 & -11 & 10
 \end{vmatrix}\\
-&=(-72,144,144)
+&=\begin{pmatrix}-72\\144\\144\end{pmatrix}
 \end{align*}
 So a normal vector is
 \[
-(-1,2,2)
+\begin{pmatrix}-1\\2\\2\end{pmatrix}
 \]
 
 Using the point $A=(9,10,-1)$, the plane equation is
@@ -1215,17 +1202,9 @@ Hence
 x-2y-2z+9=0
 \]
 
-Therefore a Cartesian equation of the plane is $x-2y-2z+9=0$.
-
-\item From part (a),
+\item From part (b),
 \[
-\overrightarrow{AB}=(-14,-5,-2),
-\qquad
-\overrightarrow{AC}=(-2,-11,10)
-\]
-and from part (b),
-\[
-\overrightarrow{AB}\times\overrightarrow{AC}=(-72,144,144)
+\overrightarrow{AB}\times\overrightarrow{AC}=\begin{pmatrix}-72\\144\\144\end{pmatrix}
 \]
 
 Also
@@ -1234,7 +1213,7 @@ D=(8,4,\alpha)
 \]
 so
 \[
-\overrightarrow{AD}=D-A=(8-9,\,4-10,\,\alpha-(-1))=(-1,-6,\alpha+1)
+\overrightarrow{AD}=\begin{pmatrix}8-9\\4-10\\\alpha-(-1)\end{pmatrix}=\begin{pmatrix}-1\\-6\\\alpha+1\end{pmatrix}
 \]
 
 The volume of tetrahedron $ABCD$ is
@@ -1245,7 +1224,7 @@ V=\frac16\left|(\overrightarrow{AB}\times\overrightarrow{AC})\cdot\overrightarro
 So
 \begin{align*}
 (\overrightarrow{AB}\times\overrightarrow{AC})\cdot\overrightarrow{AD}
-&=(-72,144,144)\cdot(-1,-6,\alpha+1)\\
+&=\begin{pmatrix}-72\\144\\144\end{pmatrix}\cdot\begin{pmatrix}-1\\-6\\\alpha+1\end{pmatrix}\\
 &=72-864+144(\alpha+1)\\
 &=72-864+144\alpha+144\\
 &=144\alpha-648
@@ -1287,27 +1266,27 @@ So
 D=(8,4,11)
 \]
 
-A direction vector for $l$ is obtained from its parametric form:
+A direction vector for $\ell$ is obtained from its parametric form:
 \[
 (x,y,z)=\left(t-2,\frac{7-t}{2},t\right)
 \]
 so a direction vector is
 \[
-\left(1,-\frac12,1\right)
+\begin{pmatrix}1\\-\frac12\\1\end{pmatrix}
 \]
 and hence we can use
 \[
-\mathbf d_1=(2,-1,2)
+\mathbf d_1=\begin{pmatrix}2\\-1\\2\end{pmatrix}
 \]
 
 The line through $A$ and $D$ has direction vector
 \[
-\mathbf d_2=\overrightarrow{AD}=(8-9,4-10,11-(-1))=(-1,-6,12)
+\mathbf d_2=\overrightarrow{AD}=\begin{pmatrix}8-9\\4-10\\11-(-1)\end{pmatrix}=\begin{pmatrix}-1\\-6\\12\end{pmatrix}
 \]
 
-Using $B=(-5,5,-3)$ on $l$, we have
+Using $B=(-5,5,-3)$ on $\ell$, we have
 \[
-\overrightarrow{BA}=A-B=(14,5,2)
+\overrightarrow{BA}=\begin{pmatrix}9-(-5)\\10-5\\-1-(-3)\end{pmatrix}=\begin{pmatrix}14\\5\\2\end{pmatrix}
 \]
 
 For two skew lines,
@@ -1325,7 +1304,7 @@ Now find the cross product:
 2 & -1 & 2\\
 -1 & -6 & 12
 \end{vmatrix}\\
-&=(0,-26,-13)
+&=\begin{pmatrix}0\\-26\\-13\end{pmatrix}
 \end{align*}
 Its magnitude is
 \[
@@ -1338,7 +1317,7 @@ Its magnitude is
 Also
 \begin{align*}
 \overrightarrow{BA}\cdot(\mathbf d_1\times \mathbf d_2)
-&=(14,5,2)\cdot(0,-26,-13)\\
+&=\begin{pmatrix}14\\5\\2\end{pmatrix}\cdot\begin{pmatrix}0\\-26\\-13\end{pmatrix}\\
 &=0-130-26\\
 &=-156
 \end{align*}
