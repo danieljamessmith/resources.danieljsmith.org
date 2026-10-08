@@ -62,7 +62,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Linear_Transformations.pdf': '1b8b0fe2',
   '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Matrix_Determinants___Inverses.pdf': 'c170bbc6',
   '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Plane_Intersections.pdf': 'e005205d',
-  '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Reflections_in_Planes.pdf': 'd7a6f77d',
+  '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Reflections_in_Planes.pdf': '7e47aa49',
   '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Vector_Product.pdf': '22ec2c8d',
   '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Vectors___Shortest_Distances.pdf': 'c85c690e',
   '/tex/further-maths/further-mechanics/centre-of-mass/qbt/_QBT__Centre_of_Mass_of_Polygonal_Laminae.pdf': '3363add0',

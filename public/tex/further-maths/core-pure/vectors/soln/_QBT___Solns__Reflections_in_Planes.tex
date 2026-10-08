@@ -167,6 +167,42 @@ Hence
 \begin{pmatrix}3\\2\\-1\end{pmatrix}
 \end{align*}
 
+{\setlength{\parskip}{8pt}%
+\textit{Alternative Solution:}
+
+We can also find the direction of \(\ell_2\) by reflecting a second point of \(\ell_1\).
+
+Putting \(y=0\) in the equations of the two planes gives \(x+z=1\) and \(2x+z=4\), so \(x=3\) and \(z=-2\). Hence \(A(3,0,-2)\) lies on \(\ell_1\), and since \(3+0-4=-1\neq3\), \(A\) is not on \(\Pi\).
+
+The line through \(A\) perpendicular to \(\Pi\) is
+\[
+\mathbf r=\begin{pmatrix}3\\0\\-2\end{pmatrix}+\lambda\begin{pmatrix}1\\1\\2\end{pmatrix}
+\]
+Substituting into the equation of \(\Pi\):
+\begin{align*}
+(3+\lambda)+\lambda+2(-2+2\lambda)&=3\\
+6\lambda-1&=3\\
+\lambda&=\frac23
+\end{align*}
+so this line meets \(\Pi\) at \(B\left(\frac{11}{3},\frac23,-\frac23\right)\).
+
+Let \(A'\) be the reflection of \(A\). Then \(\overrightarrow{AA'}=2\overrightarrow{AB}\), so, using position vectors \(\mathbf a\), \(\mathbf b\) and \(\mathbf a'\),
+\begin{align*}
+\mathbf a'&=\mathbf a+2(\mathbf b-\mathbf a)\\
+&=\begin{pmatrix}3\\0\\-2\end{pmatrix}+2\begin{pmatrix}\frac23\\[2pt]\frac23\\[2pt]\frac43\end{pmatrix}\\
+&=\begin{pmatrix}\frac{13}{3}\\[2pt]\frac43\\[2pt]\frac23\end{pmatrix}
+\end{align*}
+
+Both \(A'\) and the point \(\mathbf q\), where \(\ell_1\) meets \(\Pi\), lie on \(\ell_2\). So a direction vector of \(\ell_2\) is
+\[
+\mathbf a'-\mathbf q
+=\begin{pmatrix}4\\[2pt]\frac83\\[2pt]-\frac43\end{pmatrix}
+=\frac43\begin{pmatrix}3\\2\\-1\end{pmatrix}
+\]
+which is parallel to \(\mathbf d_2\), as before.
+\par}
+
+\vspace{8pt}
 Therefore a vector equation of the reflected line \(\ell_2\) is
 \[
 \mathbf r=
@@ -462,6 +498,40 @@ Therefore
 \end{pmatrix}
 \end{align*}
 
+{\setlength{\parskip}{8pt}%
+\textit{Alternative Solution:}
+
+We can instead find the direction of \(\ell_3\) by reflecting the point \(P\), which lies on \(\ell_2\) but not on \(\Pi\), and joining its image \(P'\) to \(R\).
+
+From part (a), \(\ell_1\) is the line through \(P\) along \(\mathbf n\), and it meets \(\Pi\) at \(Q\). From part (b),
+\[
+\overrightarrow{PQ}=\begin{pmatrix}\frac{5}{11}\\[2pt]-\frac{5}{11}\\[2pt]-\frac{15}{11}\end{pmatrix}
+\]
+
+Since \(\overrightarrow{PP'}=2\overrightarrow{PQ}\),
+\begin{align*}
+\overrightarrow{OP'}
+&=
+\begin{pmatrix}4\\1\\2\end{pmatrix}
++2\begin{pmatrix}\frac{5}{11}\\[2pt]-\frac{5}{11}\\[2pt]-\frac{15}{11}\end{pmatrix}\\
+&=
+\begin{pmatrix}\frac{54}{11}\\[2pt]\frac{1}{11}\\[2pt]-\frac{8}{11}\end{pmatrix}
+\end{align*}
+
+\(R\) is fixed by the reflection, so \(\ell_3\) passes through \(R\) and \(P'\), and
+\begin{align*}
+\overrightarrow{RP'}
+&=
+\begin{pmatrix}\frac{54}{11}\\[2pt]\frac{1}{11}\\[2pt]-\frac{8}{11}\end{pmatrix}
+-
+\begin{pmatrix}3\\1\\0\end{pmatrix}\\
+&=
+\begin{pmatrix}\frac{21}{11}\\[2pt]-\frac{10}{11}\\[2pt]-\frac{8}{11}\end{pmatrix}
+=\mathbf b'
+\end{align*}
+\par}
+
+\vspace{8pt}
 This is parallel to \(\begin{pmatrix}21\\-10\\-8\end{pmatrix}\). Hence
 \[
 \ell_3:\ \mathbf r=
@@ -571,13 +641,35 @@ Therefore the coordinates of \(B\) are
 B=(-2,0,-3)
 \]
 
-As a quick check, the position vector of the closest point on the plane to \(A\) is
+{\setlength{\parskip}{8pt}%
+\textit{Alternative Solution:}
+
+We find \(B\) by going from \(A\) along the normal to the plane and doubling the distance.
+
+The line through \(A\) perpendicular to \(\Pi\) is
 \[
-\mathbf p-\frac{\mathbf p\cdot\mathbf n-d}{\mathbf n\cdot\mathbf n}\mathbf n
-=\begin{pmatrix}4\\-2\\7\end{pmatrix}-\frac{35}{35}\begin{pmatrix}3\\-1\\5\end{pmatrix}
-=\begin{pmatrix}1\\-1\\2\end{pmatrix}
+\mathbf r=\begin{pmatrix}4\\-2\\7\end{pmatrix}+\lambda\begin{pmatrix}3\\-1\\5\end{pmatrix}
 \]
-which is the position vector of \(C\). So \(C\) is the midpoint of \(AB\), which confirms the result.
+
+Substituting \((x,y,z)=(4+3\lambda,\,-2-\lambda,\,7+5\lambda)\) into \(3x-y+5z=14\):
+\begin{align*}
+3(4+3\lambda)-(-2-\lambda)+5(7+5\lambda)&=14\\
+49+35\lambda&=14\\
+\lambda&=-1
+\end{align*}
+
+So this line meets \(\Pi\) at \((1,-1,2)\), which is the point \(C\).
+
+Since \(C\) is the midpoint of \(AB\), \(\overrightarrow{AB}=2\overrightarrow{AC}\):
+\begin{align*}
+\overrightarrow{OB}
+&=\begin{pmatrix}4\\-2\\7\end{pmatrix}+2\begin{pmatrix}1-4\\-1-(-2)\\2-7\end{pmatrix}\\
+&=\begin{pmatrix}4\\-2\\7\end{pmatrix}+2\begin{pmatrix}-3\\1\\-5\end{pmatrix}\\
+&=\begin{pmatrix}-2\\0\\-3\end{pmatrix}
+\end{align*}
+
+So \(B=(-2,0,-3)\), as before.
+\par}
 \end{djsSolution}
 
 
@@ -734,6 +826,31 @@ Hence
 &=\begin{pmatrix}2\\6\\5\end{pmatrix}
 \end{align*}
 
+{\setlength{\parskip}{8pt}%
+\textit{Alternative Solution:}
+
+Find the image of \(P\) directly, using the line through \(P\) perpendicular to \(\Pi\):
+\[
+\mathbf r=\begin{pmatrix}4\\2\\-3\end{pmatrix}+s\begin{pmatrix}1\\-2\\-4\end{pmatrix}=\begin{pmatrix}4+s\\2-2s\\-3-4s\end{pmatrix}
+\]
+
+Substituting into the plane equation \(\mathbf r\cdot\mathbf n=-9\):
+\begin{align*}
+(4+s)-2(2-2s)-4(-3-4s)&=-9 \\
+12+21s&=-9 \\
+s&=-1
+\end{align*}
+
+So this line meets \(\Pi\) at \(Q(3,4,1)\). Since \(P'\) is as far beyond \(Q\) as \(P\) is before it, \(\overrightarrow{PP'}=2\overrightarrow{PQ}\):
+\begin{align*}
+\mathbf p'&=\mathbf p+2(\mathbf q-\mathbf p) \\
+&=\begin{pmatrix}4\\2\\-3\end{pmatrix}+2\begin{pmatrix}-1\\2\\4\end{pmatrix} \\
+&=\begin{pmatrix}2\\6\\5\end{pmatrix}
+\end{align*}
+as before.
+\par}
+
+\vspace{8pt}
 Therefore an equation of the reflected line is
 \[
 \mathbf r=\begin{pmatrix}2\\6\\5\end{pmatrix}+t\begin{pmatrix}2\\-1\\1\end{pmatrix}
@@ -892,6 +1009,34 @@ So
 \begin{pmatrix}4\\3\\2\end{pmatrix}
 \end{align*}
 
+{\setlength{\parskip}{8pt}%
+\textit{Alternative Solution:}
+
+Reflect $\mathbf a$ by finding where the line through $\mathbf a$ in the direction of $\mathbf n$ meets $\Pi_1$.
+
+This line is
+\[
+\mathbf r=\begin{pmatrix}1\\4\\0\end{pmatrix}+s\begin{pmatrix}3\\-1\\2\end{pmatrix}
+\]
+so a general point on it is $(1+3s,\ 4-s,\ 2s)$.
+
+Substituting into the plane equation $3x-y+2z=6$:
+\begin{align*}
+3(1+3s)-(4-s)+2(2s)&=6\\
+14s-1&=6\\
+s&=\tfrac12
+\end{align*}
+
+So the line meets $\Pi_1$ at $Q\left(\frac52,\frac72,1\right)$. $Q$ is halfway between $(1,4,0)$ and its image, so
+\begin{align*}
+\mathbf a'&=\mathbf a+2(\mathbf q-\mathbf a)\\
+&=\begin{pmatrix}1\\4\\0\end{pmatrix}+2\begin{pmatrix}\frac32\\[2pt]-\frac12\\[2pt]1\end{pmatrix}\\
+&=\begin{pmatrix}4\\3\\2\end{pmatrix}
+\end{align*}
+as before.
+\par}
+
+\vspace{8pt}
 Now reflect the direction vector $\mathbf u$.
 
 \begin{align*}
@@ -922,6 +1067,32 @@ Hence
 \begin{pmatrix}-1\\2\\-1\end{pmatrix}
 \end{align*}
 
+{\setlength{\parskip}{8pt}%
+\textit{Alternative Solution:}
+
+The direction of $\ell_2$ can also be found by joining two points on it.
+
+From part (a), $\ell_1$ meets $\Pi_1$ at $P(3,5,1)$. Since $P$ lies on $\Pi_1$, the reflection does not move it, so $P$ lies on $\ell_2$.
+
+The point $(1,4,0)$ on $\ell_1$ is not on $\Pi_1$, since $\mathbf a\cdot\mathbf n=-1\neq 6$. Its image $A'(4,3,2)$, found above, also lies on $\ell_2$.
+
+So a direction vector of $\ell_2$ is
+\[
+\overrightarrow{PA'}
+=
+\begin{pmatrix}4\\3\\2\end{pmatrix}
+-
+\begin{pmatrix}3\\5\\1\end{pmatrix}
+=
+\begin{pmatrix}1\\-2\\1\end{pmatrix}
+=
+-\begin{pmatrix}-1\\2\\-1\end{pmatrix}
+\]
+
+This is parallel to $\mathbf u'$, as before.
+\par}
+
+\vspace{8pt}
 Therefore the reflected line $\ell_2$ has vector equation
 \[
 \mathbf r=
@@ -1152,6 +1323,37 @@ Hence the position vector of \(S'\) is
 \[
 \frac37\mathbf i+\frac{19}{7}\mathbf j+\frac87\mathbf k
 \]
+
+{\setlength{\parskip}{8pt}%
+\textit{Alternative Solution:}
+
+We find \(S'\) using the line through \(S\) along the normal to \(\Pi\). This line is
+\[
+\mathbf r=\begin{pmatrix}3\\1\\2\end{pmatrix}+\lambda\begin{pmatrix}-3\\2\\-1\end{pmatrix}=\begin{pmatrix}3-3\lambda\\1+2\lambda\\2-\lambda\end{pmatrix}
+\]
+
+Substituting into the plane equation \(-3x+2y-z=-3\):
+\begin{align*}
+-3(3-3\lambda)+2(1+2\lambda)-(2-\lambda)&=-3 \\
+-9+14\lambda&=-3 \\
+\lambda&=\frac37
+\end{align*}
+
+So this line meets \(\Pi\) at the point \(M\left(\frac{12}{7},\frac{13}{7},\frac{11}{7}\right)\), and
+\[
+\overrightarrow{SM}=\frac37\begin{pmatrix}-3\\2\\-1\end{pmatrix}=\begin{pmatrix}-\frac97\\[2pt]\frac67\\[2pt]-\frac37\end{pmatrix}
+\]
+
+\(M\) is the midpoint of \(SS'\), so \(\overrightarrow{SS'}=2\overrightarrow{SM}\) and
+\[
+\mathbf p'=\mathbf p+2\overrightarrow{SM}=\begin{pmatrix}3\\1\\2\end{pmatrix}+\begin{pmatrix}-\frac{18}{7}\\[2pt]\frac{12}{7}\\[2pt]-\frac67\end{pmatrix}=\begin{pmatrix}\frac37\\[2pt]\frac{19}{7}\\[2pt]\frac87\end{pmatrix}
+\]
+
+Hence the position vector of \(S'\) is
+\[
+\frac37\mathbf i+\frac{19}{7}\mathbf j+\frac87\mathbf k
+\]
+\par}
 \end{enumerate}
 \end{djsSolution}
 
@@ -1285,6 +1487,24 @@ The point $A\,(0,4,1)$ is reflected in the plane $\Pi$ to give the image point $
 
   So the image point is \(A'=(8,0,5)\).
 
+  {\setlength{\parskip}{8pt}%
+  \textit{Alternative Solution:}
+
+  Find \(A'\) using the point \(B\) from part (b).
+
+  From part (b), the perpendicular from \(A\) meets \(\Pi\) at \(B(4,2,3)\), so
+  \[
+  \overrightarrow{AB}=\begin{pmatrix}4\\2\\3\end{pmatrix}-\begin{pmatrix}0\\4\\1\end{pmatrix}=\begin{pmatrix}4\\-2\\2\end{pmatrix}
+  \]
+
+  Since \(B\) is the midpoint of \(AA'\), \(\overrightarrow{AA'}=2\overrightarrow{AB}\), so
+  \[
+  \overrightarrow{OA'}=\begin{pmatrix}0\\4\\1\end{pmatrix}+2\begin{pmatrix}4\\-2\\2\end{pmatrix}=\begin{pmatrix}8\\0\\5\end{pmatrix}
+  \]
+
+  So \(A'=(8,0,5)\), as before.
+  \par}
+
   \item Let \(P\) be the point where \(\ell\) meets \(\Pi\). From part (a),
   \[
   P=(3,4,7)
@@ -1319,6 +1539,38 @@ The point $A\,(0,4,1)$ is reflected in the plane $\Pi$ to give the image point $
   &=\begin{pmatrix}-1\\3\\2\end{pmatrix}
   \end{align*}
 
+  {\setlength{\parskip}{8pt}%
+  \textit{Alternative Solution:}
+
+  Find the reflected direction by reflecting a point of \(\ell\) and joining its image to \(P\).
+
+  Take \(C(1,0,1)\) on \(\ell\) (\(\lambda=0\)). It is not on \(\Pi\), since \(2(1)-0+1=3\neq 9\). The line through \(C\) along \(\mathbf n\) is
+  \[
+  \mathbf r=\begin{pmatrix}1\\0\\1\end{pmatrix}+s\begin{pmatrix}2\\-1\\1\end{pmatrix}
+  \]
+  so points on it have coordinates \((1+2s,\,-s,\,1+s)\).
+
+  Substituting into \(2x-y+z=9\):
+  \begin{align*}
+  2(1+2s)+s+(1+s)&=9\\
+  3+6s&=9\\
+  s&=1
+  \end{align*}
+  so this line meets \(\Pi\) at \(Q(3,-1,2)\).
+
+  Since \(\overrightarrow{CC'}=2\overrightarrow{CQ}\),
+  \[
+  \mathbf c'=\mathbf c+2(\mathbf q-\mathbf c)=\begin{pmatrix}1\\0\\1\end{pmatrix}+2\begin{pmatrix}2\\-1\\1\end{pmatrix}=\begin{pmatrix}5\\-2\\3\end{pmatrix}
+  \]
+
+  \(P\) is fixed by the reflection, so the reflected line passes through \(P(3,4,7)\) and \(C'(5,-2,3)\):
+  \[
+  \overrightarrow{PC'}=\begin{pmatrix}2\\-6\\-4\end{pmatrix}=-2\begin{pmatrix}-1\\3\\2\end{pmatrix}
+  \]
+  This is parallel to \(\mathbf d'\), the same direction as above.
+  \par}
+
+  \vspace{8pt}
   Hence the reflected line \(\ell'\) is
   \[
   \mathbf r=\begin{pmatrix}3\\4\\7\end{pmatrix}+\mu\begin{pmatrix}-1\\3\\2\end{pmatrix}
