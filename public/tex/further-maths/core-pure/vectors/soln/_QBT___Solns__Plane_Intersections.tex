@@ -3,7 +3,7 @@
 
 \djsSolnHeader{Geometry of Plane Intersections}
 
-\djsLastUpdated{30 September 2026}
+\djsLastUpdated{8 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -136,11 +136,6 @@ Hence the common line is
 x=\frac73-t,\qquad y=t-\frac23,\qquad z=t
 \]
 
-Therefore, when \(m=2\), all three planes share the line
-\[
-\left(\frac73-t,\ t-\frac23,\ t\right)
-\]
-
 So the arrangements are:
 \begin{itemize}
 \item if \(m\ne 2\), the three planes meet at one point \(\left(\frac73,-\frac23,0\right)\)
@@ -208,6 +203,16 @@ Therefore the student is incorrect.
 \[
 \det(A)=0
 \]
+Alternatively, expanding along the first row:
+\begin{align*}
+\det(A)
+&=3\begin{vmatrix}1&-4\\0&-7\end{vmatrix}
+-(-2)\begin{vmatrix}2&-4\\7&-7\end{vmatrix}
++1\begin{vmatrix}2&1\\7&0\end{vmatrix}\\
+&=3(-7-0)+2(-14+28)+1(0-7)\\
+&=-21+28-7\\
+&=0
+\end{align*}
 Therefore \(A\) is singular.
 
 Since a unique solution to \(A\mathbf{x}=\mathbf{b}\) would require \(A\) to be non-singular, the system does not have a unique solution.
@@ -396,7 +401,7 @@ when $a\ne 4$.
 
 Therefore the system is inconsistent, so there is no solution.
 
-Geometrically, the first two planes intersect in a line, and the plane $3x+y+3z=a$ is parallel to that line but does not contain it.
+Geometrically, the normals $\mathbf{i}+2\mathbf{j}-\mathbf{k}$, $2\mathbf{i}-\mathbf{j}+4\mathbf{k}$ and $3\mathbf{i}+\mathbf{j}+3\mathbf{k}$ are not scalar multiples of one another, so no two planes are parallel and each pair of planes meets in a line. Since the three planes have no common point, these three lines are parallel and distinct, so the planes form a \textbf{triangular prism}.
 \end{enumerate}
 \end{djsSolution}
 
@@ -488,7 +493,7 @@ Adding the first two equations gives
 \]
 so
 \[
-3x+3z=7,
+3x+3z=7
 \]
 which is exactly the third equation.
 
@@ -496,7 +501,7 @@ Therefore any point that lies on the first two planes automatically lies on the 
 
 Now the normals of the first two planes are
 \[
-\mathbf n_1=(1,-1,2), \qquad \mathbf n_2=(2,1,1).
+\mathbf n_1=\begin{pmatrix}1\\-1\\2\end{pmatrix}, \qquad \mathbf n_2=\begin{pmatrix}2\\1\\1\end{pmatrix}
 \]
 These are not scalar multiples, so the first two planes are not parallel. Hence they intersect in a line, and the third plane contains this same line.
 
@@ -504,7 +509,7 @@ Therefore the system is consistent, and the three planes form a \textbf{sheaf}: 
 
 To find the line, add the first two equations:
 \[
-3x+3z=7 \quad \Rightarrow \quad x+z=\frac73.
+3x+3z=7 \quad \Rightarrow \quad x+z=\frac73
 \]
 Then substitute into \(2x+y+z=3\):
 \[
@@ -512,12 +517,12 @@ Then substitute into \(2x+y+z=3\):
 \]
 so
 \[
-x+y=\frac23.
+x+y=\frac23
 \]
 
 Hence the common line is
 \[
-x+y=\frac23,\qquad x+z=\frac73.
+x+y=\frac23,\qquad x+z=\frac73
 \]
 
 \medskip
@@ -533,35 +538,35 @@ x-y+2z&=4\\
 
 Suppose a point lies on the first two planes. Then
 \[
-2(x-y+2z)-(5x+4y-2z)=2\cdot 4-0,
+2(x-y+2z)-(5x+4y-2z)=2\cdot 4-0
 \]
 so
 \[
--3x-6y+6z=8.
+-3x-6y+6z=8
 \]
 
 But the third plane is
 \[
--3x-6y+6z=4.
+-3x-6y+6z=4
 \]
 
 This is impossible, so there is no point common to all three planes. Therefore the system is inconsistent.
 
 Now check how the planes are arranged. Their normals are
 \[
-\mathbf n_1=(1,-1,2),\qquad
-\mathbf n_2=(5,4,-2),\qquad
-\mathbf n_3=(-3,-6,6).
+\mathbf n_1=\begin{pmatrix}1\\-1\\2\end{pmatrix},\qquad
+\mathbf n_2=\begin{pmatrix}5\\4\\-2\end{pmatrix},\qquad
+\mathbf n_3=\begin{pmatrix}-3\\-6\\6\end{pmatrix}
 \]
 No two of these are scalar multiples, so no two planes are parallel. Hence each pair of planes meets in a line.
 
 Let \(\mathbf d_{ij}\) be a direction vector for the line of intersection of planes \(i\) and \(j\). Then
 \[
-\mathbf d_{ij}=\mathbf n_i\times \mathbf n_j.
+\mathbf d_{ij}=\mathbf n_i\times \mathbf n_j
 \]
 Also,
 \[
-\mathbf n_3=2\mathbf n_1-\mathbf n_2.
+\mathbf n_3=2\mathbf n_1-\mathbf n_2
 \]
 
 So
@@ -570,7 +575,7 @@ So
 =\mathbf n_1\times \mathbf n_3
 =\mathbf n_1\times(2\mathbf n_1-\mathbf n_2)
 =-(\mathbf n_1\times \mathbf n_2)
-=-\mathbf d_{12},
+=-\mathbf d_{12}
 \]
 and
 \[
@@ -578,7 +583,7 @@ and
 =\mathbf n_2\times \mathbf n_3
 =\mathbf n_2\times(2\mathbf n_1-\mathbf n_2)
 =-2(\mathbf n_1\times \mathbf n_2)
-=-2\mathbf d_{12}.
+=-2\mathbf d_{12}
 \]
 
 Hence all three pairwise intersection lines are parallel.
@@ -607,7 +612,7 @@ where $a$, $b$ and $c$ are constants. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item In the case where the planes \textbf{do not} intersect at a unique point,
   \begin{enumerate}[label=(\roman*)]
-    \item find $b$ in terms of $a$ \marks{4}
+    \item find $b$ in terms of $a$. \marks{4}
     \item find the value of $c$ for which the planes form a sheaf. \marks{3} \\
   \end{enumerate}
   \item In the case where $b=1-a$ and $c=5$, find the coordinates of the point of intersection of the planes in terms of $a$. \marks{6} \\
@@ -673,8 +678,6 @@ where $a$, $b$ and $c$ are constants. \\
     b&=2-a
     \end{align*}
 
-    Hence \(b=2-a\).
-
     \item A sheaf of planes means that all three planes contain a common line.
 
     First find the line of intersection of \(P_1\) and \(P_2\).
@@ -710,8 +713,6 @@ where $a$, $b$ and $c$ are constants. \\
     \[
     c=7
     \]
-
-    Hence \(c=7\).
   \end{enumerate}
 
   \item Now take \(b=1-a\) and \(c=5\).
@@ -753,8 +754,6 @@ where $a$, $b$ and $c$ are constants. \\
   \[
   (-1-2a,\ 2,\ 4a+3)
   \]
-
-  Hence the coordinates are \((-1-2a,\,2,\,4a+3)\).
 \end{enumerate}
 \end{djsSolution}
 
@@ -892,6 +891,23 @@ where $k$ is a constant. \\
   \left(\frac{7-p}{2},\,\frac{p-5}{2},\,\frac{3p-11}{2}\right)
   \]
 
+  Alternatively, the coefficient matrix is \(\mathbf{M}\) with \(k=2\), which has an inverse by part (a). Using a calculator,
+  \[
+  \mathbf{M}^{-1}=\frac12\begin{pmatrix}
+  3 & -1 & 1\\
+  -1 & 1 & -1\\
+  -7 & 3 & -1
+  \end{pmatrix}
+  \]
+  so
+  \[
+  \begin{pmatrix}x\\y\\z\end{pmatrix}
+  =\mathbf{M}^{-1}\begin{pmatrix}1\\p\\4\end{pmatrix}
+  =\frac12\begin{pmatrix}3-p+4\\-1+p-4\\-7+3p-4\end{pmatrix}
+  =\frac12\begin{pmatrix}7-p\\p-5\\3p-11\end{pmatrix}
+  \]
+  which gives the same point.
+
   \item
   \begin{enumerate}[label=(\roman*)]
     \item The equations are
@@ -1026,11 +1042,6 @@ A 3-D solid of volume $a^2+3$ is transformed by $T$ to an image. \\
 &= 7(1-a)
 \end{align*}
 
-Hence,
-\[
-\det(A)=7(1-a)
-\]
-
   \item \begin{enumerate}[label=(\roman*)]
     \item For $A$ to be non-singular, we need
 \[
@@ -1041,7 +1052,15 @@ So
 7(1-a)\neq 0 \implies a\neq 1
 \]
 
-For $a\neq 1$,
+The matrix of cofactors of $A$ is
+\[
+\begin{pmatrix}
+3 & -1 & -7 \\
+-(2+a) & 3-2a & 7 \\
+-3a & a & 7
+\end{pmatrix}
+\]
+Transposing this gives the adjugate, and dividing by $\det(A)$ gives, for $a\neq 1$,
 \[
 A^{-1}=\frac{1}{7(1-a)}
 \begin{pmatrix}
@@ -1124,7 +1143,7 @@ So the first plane contains the line of intersection of the second and third pla
 
 Also, the second and third planes are not parallel, since their normal vectors
 \[
-(1,3,0)\quad \text{and} \quad (2,-1,1)
+\begin{pmatrix}1\\3\\0\end{pmatrix}\quad \text{and} \quad \begin{pmatrix}2\\-1\\1\end{pmatrix}
 \]
 are not scalar multiples of each other.
 
