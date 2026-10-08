@@ -210,6 +210,7 @@ const rawResources: Resource[] = [
     file: '/tex/tmua/TMUA_SetC_Paper2.pdf',
     category: 'TMUA',
     type: 'questions',
+    pairId: 'tmua-setC-paper2-solns',
   },
   {
     id: 'tmua-setC-paper2-answers',
@@ -219,6 +220,16 @@ const rawResources: Resource[] = [
     category: 'TMUA',
     type: 'answers',
     paperId: 'tmua-setC-paper2',
+  },
+  {
+    id: 'tmua-setC-paper2-solns',
+    title: 'TMUA Set C Paper 2',
+    description:
+      'Worked solutions to TMUA Set C Paper 2: necessary and sufficient conditions, contrapositives, ordering and checking proofs, geometric series, divisibility, independent events and more, with step-by-step reasoning.',
+    file: '/tex/tmua/TMUA_SetC_Paper2_Solutions.pdf',
+    category: 'TMUA',
+    type: 'solutions',
+    pairId: 'tmua-setC-paper2',
   },
 
   // --- A-level Further Maths: Complex Numbers (QBT sheets) ---

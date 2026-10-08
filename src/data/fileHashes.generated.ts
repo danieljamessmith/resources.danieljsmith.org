@@ -99,5 +99,6 @@ export const fileHashes: Record<string, string> = {
   '/tex/tmua/TMUA_SetC_Paper1_Solutions.pdf': 'f51ee7bf',
   '/tex/tmua/TMUA_SetC_Paper1.pdf': 'd4286ef5',
   '/tex/tmua/TMUA_SetC_Paper2_Answers.pdf': '26b9fd5a',
+  '/tex/tmua/TMUA_SetC_Paper2_Solutions.pdf': '497c7fd0',
   '/tex/tmua/TMUA_SetC_Paper2.pdf': '9320ed52',
 };
