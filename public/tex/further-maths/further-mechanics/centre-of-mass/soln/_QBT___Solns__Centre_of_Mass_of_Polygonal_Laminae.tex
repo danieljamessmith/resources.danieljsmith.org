@@ -3,7 +3,7 @@
 
 \djsSolnHeader{Centre of Mass of Polygonal Laminae}
 
-\djsLastUpdated{30 September 2026}
+\djsLastUpdated{9 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -29,17 +29,17 @@
 \coordinate (M) at ($(E)!0.5!(B)$);
 \coordinate (A) at ($(M)+(0,{2*\a})$);
 
-\draw[thick] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+\filldraw[thick, fill=gray!30] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
 \draw[dashed, thick] (E) -- (B);
 \draw[dashed, thick] (A) -- (M);
 \draw[thick] ($(M)+(0,0.18)$) -- ($(M)+(0.18,0.18)$) -- ($(M)+(0.18,0)$);
 
 \draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick]
-    ($(E)+(0,0.45)$) -- node[midway, fill=white, inner sep=1pt] {$4a$} ($(B)+(0,0.45)$);
+    ($(E)+(0,0.45)$) -- node[midway, fill=gray!30, inner sep=1pt] {$4a$} ($(B)+(0,0.45)$);
 \draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick]
     ($(D)+(-0.55,0)$) -- node[midway, fill=white, inner sep=1pt] {$2a$} ($(E)+(-0.55,0)$);
 \draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick]
-    ($(M)+(0.55,0)$) -- node[midway, fill=white, inner sep=1pt] {$2a$} ($(A)+(0.55,0)$);
+    ($(M)+(0.55,0)$) -- node[midway, fill=gray!30, inner sep=1pt] {$2a$} ($(A)+(0.55,0)$);
 
 \node[above] at (A) {$A$};
 \node[right] at (B) {$B$};
@@ -181,7 +181,7 @@ The lamina is freely suspended from the point $B$. \\
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-  \item The lamina is uniform and symmetric about the dashed line \(AM\). Therefore its centre of mass must lie on this line, so \(G\) lies on the dashed line of symmetry.
+  \item The lamina is uniform and symmetric about the dashed line. Therefore its centre of mass must lie on this line, so \(G\) lies on the dashed line of symmetry.
 
   \item Let \(M\) be the midpoint of \(CD\), so \(AM\) is the line of symmetry.
 
@@ -195,13 +195,13 @@ and its centre is halfway up the rectangle, so it is
 \]
 above \(CD\).
 
-For triangle \(ABE\), the base is \(BE=0.8\,\mathrm{m}\), so
+For triangle \(ABE\), the base is \(BE=0.8\,\mathrm{m}\). Let \(N\) be the midpoint of \(BE\), so
 \[
-BM=EM=0.4\,\mathrm{m}
+BN=EN=0.4\,\mathrm{m}
 \]
 Hence its height is
 \begin{align*}
-AM &= \sqrt{AB^2-BM^2} \\
+AN &= \sqrt{AB^2-BN^2} \\
    &= \sqrt{0.5^2-0.4^2} \\
    &= \sqrt{0.25-0.16} \\
    &= 0.3\,\mathrm{m}
@@ -219,14 +219,14 @@ above \(CD\).
 
 Because the density is constant and the materials are the same, we can use areas as weights:
 \[
-Ay = A_1y_1 + A_2y_2
+A\bar y = A_1y_1 + A_2y_2
 \]
 So
 \begin{align*}
-(0.48+0.12)y &= 0.48(0.3)+0.12(0.7) \\
-0.6y &= 0.144+0.084 \\
-0.6y &= 0.228 \\
-y &= 0.38
+(0.48+0.12)\bar y &= 0.48(0.3)+0.12(0.7) \\
+0.6\bar y &= 0.144+0.084 \\
+0.6\bar y &= 0.228 \\
+\bar y &= 0.38
 \end{align*}
 So the perpendicular distance of \(G\) from \(CD\) is \(0.38\,\mathrm{m}\).
 
@@ -238,7 +238,7 @@ below \(B\).
 
 Also, since \(G\) lies on the line of symmetry \(AM\), its horizontal distance from \(B\) is half the width of the rectangle:
 \[
-BM=\frac{CD}{2}=0.4\,\mathrm{m}
+BN=\frac{BE}{2}=0.4\,\mathrm{m}
 \]
 
 When the lamina is freely suspended from \(B\), the centre of mass \(G\) hangs vertically below \(B\). Therefore the lamina must rotate through an angle \(\theta\) where
@@ -252,13 +252,13 @@ Hence
 \theta = \tan^{-1}\!\left(\frac{20}{11}\right) \approx 61.2^\circ
 \]
 
-Since \(G\) is to the left of \(B\), the lamina rotates clockwise, so \(D\) is higher than \(C\).
+Since \(G\) is to the left of \(B\), the lamina turns anticlockwise until \(G\) is vertically below \(B\), so \(D\) swings down and \(C\) is higher than \(D\).
 
 So the acute angle that \(CD\) makes with the horizontal is
 \[
 \tan^{-1}\!\left(\frac{20}{11}\right) \approx 61.2^\circ
 \]
-with \(D\) higher than \(C\).
+with \(C\) higher than \(D\).
 \end{enumerate}
 \end{djsSolution}
 
@@ -298,7 +298,7 @@ with \(D\) higher than \(C\).
 
 \draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (V1) -- (V2) node[midway,left] {$5a$};
 \draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (H1) -- (H2) node[midway,above] {$4a$};
-\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (M1) -- (M2) node[midway,above,fill=white,inner sep=1pt] {$2a$};
+\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (M1) -- (M2) node[pos=0.75,above,fill=white,inner sep=1pt] {$2a$};
 \draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (T1) -- (T2) node[midway,right] {$a$};
 
 \node[below left] at (O) {$O$};
@@ -317,7 +317,7 @@ with \(D\) higher than \(C\).
 
 A letter $F$ from a shop sign is modelled as a uniform plane lamina in the shape shown in the diagram above. \\
 
-The left-hand vertical strip has width $a$ and height $5a$. The top horizontal strip has length $4a$ and thickness $a$. The middle horizontal strip has length $2a$ and thickness $a$. \\
+The left-hand vertical strip has width $a$ and height $5a$. The top horizontal strip has length $4a$ and thickness $a$. The middle horizontal strip has length $2a$ and thickness $a$, and $AB=2a$. \\
 
 Using the model, \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
@@ -517,7 +517,7 @@ Take distances from $SR$, positive downwards.
 
 Because the density is constant and the materials are the same, we can use areas as weights in
 \[
-A\bar y=A_1y_1+A_2y_2+A_3y_3.
+A\bar y=A_1y_1+A_2y_2+A_3y_3
 \]
 
 For the three rectangles:
@@ -532,17 +532,17 @@ So
 (24+8x+16)\bar y&=24(-1)+8x(x)+16(2x+1)\\
 &=-24+8x^2+32x+16\\
 &=8x^2+32x-8\\
-&=8(x^2+4x-1).
+&=8(x^2+4x-1)
 \end{align*}
 
 Also,
 \[
-24+8x+16=8x+40=8(x+5).
+24+8x+16=8x+40=8(x+5)
 \]
 
 Hence
 \[
-\bar y=\frac{8(x^2+4x-1)}{8(x+5)}=\frac{x^2+4x-1}{x+5}.
+\bar y=\frac{8(x^2+4x-1)}{8(x+5)}=\frac{x^2+4x-1}{x+5}
 \]
 
 Since $x>1$, this value is positive, so $G$ is below $SR$.
@@ -555,40 +555,35 @@ below $SR$.
 
   \item From part (a), when $x=2$,
 \[
-OG=\frac{2^2+4(2)-1}{2+5}=\frac{11}{7}\,\mathrm{cm}.
+OG=\frac{2^2+4(2)-1}{2+5}=\frac{11}{7}\,\mathrm{cm}
 \]
 
 So $G$ is $\frac{11}{7}$ cm below $SR$ on the line of symmetry through $O$.
 
 The horizontal distance from $P$ to this line is half of $PQ$, so
 \[
-\text{horizontal distance }=\frac{12}{2}=6\,\mathrm{cm}.
+\text{horizontal distance }=\frac{12}{2}=6\,\mathrm{cm}
 \]
 
 The vertical distance from $P$ down to $G$ is
 \[
-PS+OG=2+\frac{11}{7}=\frac{25}{7}\,\mathrm{cm}.
+PS+OG=2+\frac{11}{7}=\frac{25}{7}\,\mathrm{cm}
 \]
 
 Let $\alpha$ be the angle between $PQ$ and $PG$. Then
 \[
-\tan\alpha=\frac{25/7}{6}=\frac{25}{42}.
+\tan\alpha=\frac{25/7}{6}=\frac{25}{42}
 \]
 
 When the template hangs freely from $P$, the centre of mass is vertically below $P$, so $PG$ is vertical.
 Hence $PQ$ makes an angle $\theta$ with the horizontal where
 \[
-\theta=90^\circ-\alpha.
+\theta=90^\circ-\alpha
 \]
 
 Therefore
 \[
-\tan\theta=\tan(90^\circ-\alpha)=\frac{1}{\tan\alpha}=\frac{42}{25}.
-\]
-
-So
-\[
-\tan\theta=\frac{42}{25}.
+\tan\theta=\tan(90^\circ-\alpha)=\frac{1}{\tan\alpha}=\frac{42}{25}
 \]
 \end{enumerate}
 \end{djsSolution}
@@ -761,7 +756,7 @@ k>\frac{\sqrt{265}-5}{10}
 
 Therefore the centre of mass of $R$ lies in the hole when
 \[
-\boxed{\;k>\frac{\sqrt{265}-5}{10}\;}\approx 1.13
+k>\frac{\sqrt{265}-5}{10}\approx 1.13
 \]
 \end{djsSolution}
 
@@ -808,7 +803,7 @@ Therefore the centre of mass of $R$ lies in the hole when
 \end{figure}
 
 
-A uniform lamina is formed by removing the square $EBGF$ from a square lamina $ABCD$, where $AB=BC=CD=DA=2a$ and $EB=BF=h$, with $0<h<2a$ (see diagram). \\
+A uniform lamina is formed by removing the square $EBFG$ from a square lamina $ABCD$, where $AB=BC=CD=DA=2a$ and $EB=BF=h$, with $0<h<2a$ (see diagram). \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Find the distance of the centre of mass of the remaining lamina from $AD$ and from $AB$, giving your answers in terms of $a$ and $h$. \marks{5} \\
 \end{enumerate}
@@ -823,12 +818,12 @@ The lamina is placed vertically on its edge $AE$ on a horizontal plane. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
   \item Let the centre of mass of the remaining lamina be \((\bar x,\bar y)\), where \(\bar x\) is the distance from \(AD\) and \(\bar y\) is the distance from \(AB\).
 
-Because the density is constant and the materials are the same:
+Because the density is constant and the materials are the same, areas can be used as weights.
 \[
 \text{area of }ABCD=4a^2, \qquad \text{centre }(a,a)
 \]
 \[
-\text{area of removed square }EBGF=h^2, \qquad \text{centre }\left(2a-\frac h2,\frac h2\right)
+\text{area of removed square }EBFG=h^2, \qquad \text{centre }\left(2a-\frac h2,\frac h2\right)
 \]
 So the area of the remaining lamina is
 \[
@@ -860,7 +855,7 @@ from \(AD\), and at distance
 \[
 a+\frac{h^2}{2(2a+h)}
 \]
-from \(AB\)
+from \(AB\).
 
   \item When the lamina is placed vertically on edge \(AE\), it will remain in equilibrium if the vertical line through the centre of mass meets the base \(AE\).
 
@@ -934,8 +929,8 @@ Therefore the lamina remains in equilibrium for
 \node[below right] at (C) {$C$};
 \node[left] at (D) {$D$};
 \node[below] at (E) {$E$};
-\node[left] at ($(A)!0.5!(B)$) {$3a$};
-\node[below] at ($(A)!0.5!(C)$) {$4a$};
+\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (-0.75,0) -- node[midway, left] {$3a$} (-0.75,\yB);
+\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (0,-0.6) -- node[midway, below] {$4a$} (\xC,-0.6);
 \end{tikzpicture}
 \end{figure}
 
@@ -1402,7 +1397,7 @@ F=(0,4a), \qquad M=\left(\frac{44a}{21},\frac{32a}{21}\right)
 Hence
 
 \[
-\overrightarrow{FM}=\left(\frac{44a}{21},\frac{32a}{21}-4a\right)=\left(\frac{44a}{21},-\frac{52a}{21}\right)
+\overrightarrow{FM}=\begin{pmatrix}\dfrac{44a}{21}\\[6pt] \dfrac{32a}{21}-4a\end{pmatrix}=\begin{pmatrix}\dfrac{44a}{21}\\[6pt] -\dfrac{52a}{21}\end{pmatrix}
 \]
 
 The line $FC$ is vertical in the lamina, so after turning through angle $\theta$, it makes angle $\theta$ with the downward vertical.
@@ -1417,10 +1412,10 @@ Using the horizontal and vertical components of $FM$,
 So
 
 \[
-\theta=\arctan\left(\frac{11}{13}\right)\approx 40.2^\circ
+\theta=\arctan\left(\frac{11}{13}\right)\approx 40.2
 \]
 
-Hence the value of $\theta$ is $\arctan\!\left(\dfrac{11}{13}\right)$, which is approximately $40.2^\circ$.
+Hence the value of $\theta$ is $\arctan\!\left(\dfrac{11}{13}\right)$, which is approximately $40.2$.
 \end{enumerate}
 \end{djsSolution}
 
@@ -1469,7 +1464,7 @@ The lamina is placed horizontally so that it rests on three supports, whose poin
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item Determine the range of values of $g$ for the lamina to rest in equilibrium. \marks{3} \\
 \end{enumerate}
-It is now given that $g=8$, and that the lamina has weight $100\mathrm{N}$. \\
+It is now given that $g=8$, and that the lamina has weight $100\,\mathrm{N}$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item Determine the forces exerted on the lamina by each of the supports at $D$, $E$ and $G$. \marks{4} \\
 \end{enumerate}
