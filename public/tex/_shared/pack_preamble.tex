@@ -138,9 +138,24 @@
   \renewcommand{\djsQuestionPageStyle}{\thispagestyle{fancy}}%
 }
 
+% Further Mechanics packs call \djsMechanicsPack in their preamble, so that
+% \djsFrontMatter prints the default value of g above the contents.
+\newcommand{\djsGravityNote}{}
+\newcommand{\djsMechanicsPack}{%
+  \renewcommand{\djsGravityNote}{%
+    \begin{tcolorbox}[sharp corners, colback=white, colframe=black,
+      boxrule=1pt, left=8pt, right=8pt, top=6pt, bottom=6pt]
+    {\bfseries Instructions}\par\vspace{4pt}
+    Unless a question states otherwise, take $g = 9.8\,\mathrm{m\,s^{-2}}$
+    wherever a numerical value of $g$ is required.
+    \end{tcolorbox}%
+    \vspace{16pt}}%
+}
+
 \newcommand{\djsFrontMatter}{%
   \djsQuestionPageStyle
   \vspace*{20pt}%
+  \djsGravityNote
   \tableofcontents
   \newpage
 }
