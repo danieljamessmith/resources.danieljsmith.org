@@ -60,6 +60,45 @@
   \hypersetup{pdftitle={#1}}%
   \renewcommand{\djsHeaderLabel}{#2}}
 
+% \djsTitleSetup{<booklet>}{<title>}{<paper name>}{<questions>}{<minutes>},
+% called once after the setup line, sets the title block that opens the
+% contents page and the answer key: TMUA and the booklet in spaced burgundy
+% capitals, the title, a hairline led by a short scarlet rule, then the
+% paper's name with the question count and, when given, the time allowed.
+% Its colours are the site's accent, rule and muted text colours.
+\definecolor{scarlet}{RGB}{205, 40, 75}
+\definecolor{djsBurgundy}{RGB}{118, 59, 67}
+\definecolor{djsHairline}{RGB}{216, 213, 205}
+\definecolor{djsSlash}{RGB}{170, 166, 158}
+\definecolor{djsMuted}{RGB}{96, 101, 106}
+\makeatletter
+\newcommand{\djs@booklet}{}
+\newcommand{\djs@title}{}
+\newcommand{\djs@papername}{}
+\newcommand{\djs@details}{}
+\newcommand{\djs@caps}[1]{\textls[180]{\MakeUppercase{#1}}}
+\newcommand{\djs@dot}{\hspace{0.45em}\textperiodcentered\hspace{0.45em}}
+\newcommand{\djsTitleSetup}[5]{%
+  \renewcommand{\djs@booklet}{#1}%
+  \renewcommand{\djs@title}{#2}%
+  \renewcommand{\djs@papername}{#3}%
+  \renewcommand{\djs@details}{%
+    #4~question\ifnum#4=1 \else s\fi
+    \ifblank{#5}{}{\djs@dot#5~minutes}}}
+\newcommand{\djsContentsTitle}{%
+  {\raggedright\color{djsBurgundy}\footnotesize\bfseries
+    \djs@caps{TMUA}{\color{djsSlash}\hspace{0.55em}/\hspace{0.55em}}%
+    \djs@caps{\djs@booklet}\par}%
+  \vspace{7pt}%
+  {\raggedright\fontsize{24.88}{28}\selectfont\djs@title\par}%
+  \vspace{9pt}%
+  \noindent\makebox[0pt][l]{\color{djsHairline}\rule[0.9pt]{\linewidth}{0.6pt}}%
+  {\color{scarlet}\rule{3.5cm}{2.2pt}}\par
+  \vspace{5pt}%
+  {\small\color{djsMuted}\djs@papername\hfill\djs@details\par}%
+  \vspace{8pt}}
+\makeatother
+
 \setlength{\parindent}{0pt}
 \fancypagestyle{djspaper}{%
   \fancyhead{}%
@@ -101,7 +140,9 @@
 }
 \renewcommand{\contentsname}{Questions}
 \newcommand{\djsFrontMatter}{%
-  \vspace*{20pt}%
+  \vspace*{6pt}%
+  \djsContentsTitle
+  \vspace{14pt}%
   \tableofcontents
   \newpage
 }

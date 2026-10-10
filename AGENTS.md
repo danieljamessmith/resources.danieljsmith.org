@@ -241,8 +241,18 @@ here, but only in defined places:
   here; answers are changed at the source.
 - Text outside regions (page breaks, spacing, headings) is rewritten
   whenever the file is, so an edit there does not last.
+- **Title block:** each contents page, and the answer key, opens with a title
+  block in the Further Maths style: TMUA and the booklet (PRACTICE PAPER,
+  WORKED SOLUTIONS or ANSWER KEY) in spaced burgundy capitals, the paper's
+  site title without "TMUA" (Set A Paper 1), the scarlet-led hairline, then
+  the paper's name (Applications of Mathematical Knowledge for Paper 1,
+  Mathematical Reasoning for Paper 2) with the question count, and the 75
+  minutes on the question paper. It is set by the `\djsTitleSetup` line
+  after the setup line, which is outside the regions like the rest of the
+  layout.
 - Each paper's answer key is its own file, `TMUA_Set<X>_Paper<N>_Answers.tex`
-  and `.pdf`, laid out as a single page with the paper's header. It has no
+  and `.pdf`, laid out as a single page with the paper's header and title
+  block. It has no
   regions: nothing in it is edited here. It is rewritten with its paper, and
   whenever an answer changes. The paper itself ends with its last question.
 - A solutions file repeats each question. Make question edits in the paper
