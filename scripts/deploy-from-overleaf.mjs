@@ -32,6 +32,8 @@ import {
   derivePathContext,
   deriveTopicId,
   loadResourcesEntries,
+  loadStrands,
+  sitePathLabels,
   slugify,
 } from './lib/resources-derive.mjs';
 import { addPendingEntry, readPending } from './lib/staging.mjs';
@@ -392,15 +394,37 @@ function repoRel(path) {
   return path.slice(repoRoot.length + 1).replace(/\\/g, '/');
 }
 
-function copyNormalizedPackTex(srcPath, destPath) {
+/**
+ * @param {string} srcPath
+ * @param {string} destPath
+ * @param {{ title?: string; strand?: string; section?: string }} [identity]
+ *   - header topic and site path to write (see `applyPackIdentity`)
+ */
+function copyNormalizedPackTex(srcPath, destPath, identity) {
   const raw = readFileSync(srcPath, 'utf8');
   if (usesOverleafPackInput(raw) && !existsSync(join(dirname(srcPath), 'preamble.tex'))) {
     console.warn(
       `Warning: ${basename(srcPath)} imports preamble.tex, but no bundled preamble.tex was found beside it; using the site shared pack preamble.`,
     );
   }
-  const normalized = normalizeImportedPackTex(raw, repoRel(destPath));
+  const normalized = normalizeImportedPackTex(raw, repoRel(destPath), undefined, identity);
   writeFileSync(destPath, normalized, 'utf8');
+}
+
+/**
+ * What an imported Further Maths pack's header and site path should say: the
+ * topic name (which also becomes the site title) and the strand and topic
+ * section the site lists it under. Other packs are left as they are.
+ *
+ * @param {string} sitePath - e.g. `further-maths/core-pure/vectors`
+ * @param {string} topicName
+ * @param {{ category: string; topic: string }} ctx - from `derivePathContext`
+ * @param {import('./lib/resources-derive.mjs').Strand[]} strands
+ */
+export function importedPackIdentity(sitePath, topicName, ctx, strands) {
+  if (!sitePath.replace(/\\/g, '/').startsWith('further-maths/')) return undefined;
+  const labels = sitePathLabels(strands, ctx.category, ctx.topic);
+  return labels ? { title: topicName, ...labels } : { title: topicName };
 }
 
 // Re-export for tests / tooling
@@ -586,8 +610,9 @@ async function main() {
 
     const qbtTexDest = join(qbtDest, `${qbtFileName}.tex`);
     const solnTexDest = join(solnDest, `${solnFileName}.tex`);
-    copyNormalizedPackTex(qbtPath, qbtTexDest);
-    copyNormalizedPackTex(solnPath, solnTexDest);
+    const identity = importedPackIdentity(sitePath, topicName, ctx, loadStrands());
+    copyNormalizedPackTex(qbtPath, qbtTexDest, identity);
+    copyNormalizedPackTex(solnPath, solnTexDest, identity);
 
     const deployed = [qbtTexDest, solnTexDest];
 

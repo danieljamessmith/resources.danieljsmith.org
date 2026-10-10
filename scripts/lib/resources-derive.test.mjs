@@ -5,6 +5,8 @@ import {
   deriveTopicId,
   slugify,
   deriveTopicSlugTitle,
+  parseStrands,
+  sitePathLabels,
 } from './resources-derive.mjs';
 
 const FIXTURE = `
@@ -120,5 +122,101 @@ describe('slugify / deriveTopicId / deriveTopicSlugTitle', () => {
 
   it('title-cases a slug', () => {
     expect(deriveTopicSlugTitle('core-pure')).toBe('Core Pure');
+  });
+});
+
+describe('parseResourcesEntries titles', () => {
+  it('reads single- and double-quoted titles, unescaping quotes', () => {
+    const fixture = `
+const rawResources: Resource[] = [
+  {
+    id: 'fm-a',
+    title: 'Matrix Determinants & Inverses',
+    file: '/tex/further-maths/core-pure/vectors/qbt/_QBT__A.pdf',
+    category: FM_CP,
+  },
+  {
+    id: 'fm-b',
+    title: "De Moivre's Theorem",
+    file: '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__B.pdf',
+    category: FM_CP,
+  },
+  {
+    id: 'fm-c',
+    title: 'Newton\\'s Laws',
+    file: '/tex/further-maths/further-mechanics/m/qbt/_QBT__C.pdf',
+    category: FM_MECH,
+  },
+];
+`;
+    expect(parseResourcesEntries(fixture).map((e) => e.title)).toEqual([
+      'Matrix Determinants & Inverses',
+      "De Moivre's Theorem",
+      "Newton's Laws",
+    ]);
+  });
+});
+
+const TOPICS_FIXTURE = `
+export const STRANDS: Strand[] = [
+  {
+    category: FM_CP,
+    title: 'Core Pure',
+    href: '/further-maths/core-pure/',
+    topics: [
+      { id: 'further-calculus', topic: 'Further Calculus', title: 'Further Calculus', navLabel: 'Further Calculus' },
+      { id: 'vectors', topic: 'Vectors', title: 'Vectors, Matrices & Linear Transformations', navLabel: 'Vectors & Matrices' },
+    ],
+  },
+  {
+    category: FM_MECH,
+    title: 'Further Mechanics',
+    href: '/further-maths/further-mechanics/',
+    topics: [
+      { id: 'centre-of-mass', topic: 'Centre of Mass', title: 'Centre of Mass', navLabel: 'Centre of Mass' },
+    ],
+  },
+];
+`;
+
+describe('parseStrands', () => {
+  it('reads each strand with its topics', () => {
+    const strands = parseStrands(TOPICS_FIXTURE);
+    expect(strands.map((s) => [s.category, s.title, s.topics.length])).toEqual([
+      ['FM - Core Pure', 'Core Pure', 2],
+      ['FM - Further Mechanics', 'Further Mechanics', 1],
+    ]);
+    expect(strands[0].topics[1]).toEqual({
+      id: 'vectors',
+      topic: 'Vectors',
+      title: 'Vectors, Matrices & Linear Transformations',
+    });
+  });
+
+  it('returns nothing without a STRANDS array', () => {
+    expect(parseStrands('export const OTHER = [];')).toEqual([]);
+  });
+});
+
+describe('sitePathLabels', () => {
+  const strands = parseStrands(TOPICS_FIXTURE);
+
+  it('names the strand title and the topic section heading', () => {
+    expect(sitePathLabels(strands, 'FM - Core Pure', 'Vectors')).toEqual({
+      strand: 'Core Pure',
+      section: 'Vectors, Matrices & Linear Transformations',
+    });
+  });
+
+  it('keeps a topic not yet listed in topics.ts', () => {
+    expect(sitePathLabels(strands, 'FM - Further Mechanics', 'Circular Motion')).toEqual({
+      strand: 'Further Mechanics',
+      section: 'Circular Motion',
+    });
+  });
+
+  it('returns null outside the strands or without a topic', () => {
+    expect(sitePathLabels(strands, 'TMUA', 'Paper 1')).toBeNull();
+    expect(sitePathLabels(strands, 'FM - Core Pure', undefined)).toBeNull();
   });
 });

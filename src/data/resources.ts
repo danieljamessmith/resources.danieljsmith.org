@@ -852,7 +852,7 @@ const rawResources: Resource[] = [
   },
   {
     id: 'fm-misc-method-of-differences',
-    title: 'Series - Method of Differences',
+    title: 'Method of Differences',
     description: '',
     file: '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Series___Method_of_Differences.pdf',
     category: FM_CP,
@@ -862,7 +862,7 @@ const rawResources: Resource[] = [
   },
   {
     id: 'fm-misc-method-of-differences-solns',
-    title: 'Series - Method of Differences',
+    title: 'Method of Differences',
     description: 'Full worked solutions',
     file: '/tex/further-maths/core-pure/misc-pure/soln/_QBT___Solns__Series___Method_of_Differences.pdf',
     category: FM_CP,

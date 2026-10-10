@@ -17,6 +17,7 @@ import {
   resolveTexPairFromDir,
   promptTopic,
   stagingProjectIds,
+  importedPackIdentity,
   PACK_MANIFEST,
 } from './deploy-from-overleaf.mjs';
 import { PACK_PREAMBLE_SITE_INPUT } from './lib/pack-preamble.mjs';
@@ -511,5 +512,35 @@ describe('stagingProjectIds', () => {
       qbt: 'a',
       soln: 'b',
     });
+  });
+});
+
+describe('importedPackIdentity', () => {
+  const strands = [
+    {
+      category: 'FM - Core Pure',
+      title: 'Core Pure',
+      topics: [{ id: 'vectors', topic: 'Vectors', title: 'Vectors, Matrices & Linear Transformations' }],
+    },
+  ];
+
+  it('titles a Further Maths pack by its topic name and names its site path', () => {
+    expect(
+      importedPackIdentity('further-maths/core-pure/vectors', 'Plane Intersections', {
+        category: 'FM - Core Pure',
+        topic: 'Vectors',
+      }, strands),
+    ).toEqual({
+      title: 'Plane Intersections',
+      strand: 'Core Pure',
+      section: 'Vectors, Matrices & Linear Transformations',
+    });
+  });
+
+  it('sets only the title when the strand is unknown, and nothing outside Further Maths', () => {
+    expect(
+      importedPackIdentity('further-maths/other/x', 'T', { category: 'unknown', topic: 'X' }, strands),
+    ).toEqual({ title: 'T' });
+    expect(importedPackIdentity('tmua', 'T', { category: 'TMUA', topic: 'T' }, strands)).toBeUndefined();
   });
 });

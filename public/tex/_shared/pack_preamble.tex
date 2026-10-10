@@ -53,9 +53,12 @@
 % Pack macros
 % \marks also adds its value to the current question's total in the .aux
 % file, so the contents show each total from the second pass. The write
-% happens at shipout, so a box typeset more than once counts once.
+% happens at shipout, so a box typeset more than once counts once. The
+% pack's mark total for the contents-page title is summed the same way.
 \makeatletter
+\newcount\djs@totalmarks
 \newcommand{\djsAddMarks}[2]{%
+  \global\advance\djs@totalmarks#2\relax
   \@ifundefined{djs@marks@#1}%
     {\expandafter\xdef\csname djs@marks@#1\endcsname{#2}}%
     {\expandafter\xdef\csname djs@marks@#1\endcsname
@@ -75,6 +78,12 @@
 }
 
 \definecolor{scarlet}{RGB}{205, 40, 75}
+% Site colours for the contents-page title: the accent, the rule colour, a
+% stronger rule colour for the path separator, and the muted text colour.
+\definecolor{djsBurgundy}{RGB}{118, 59, 67}
+\definecolor{djsHairline}{RGB}{216, 213, 205}
+\definecolor{djsSlash}{RGB}{170, 166, 158}
+\definecolor{djsMuted}{RGB}{96, 101, 106}
 
 % Worked-solution box, adapted from the TMUA worked-solutions box. A white breakable box with a left scarlet rule and no surrounding
 % frame or tint. A part that breaks fills the rest of its page, so the rule
@@ -134,11 +143,20 @@
     {Question #1}}
 \makeatother
 
+% The question count for the contents-page title is written to the .aux at
+% the end of the document, so it also appears from the second pass.
+\newcounter{djsQuestions}
 \newcommand{\questionitem}{%
   \djsQuestionPageStyle
   \item\phantomsection
+  \stepcounter{djsQuestions}%
   \addcontentsline{toc}{subsection}{\protect\djsTocEntry{\number\value{enumi}}}%
 }
+\makeatletter
+\newcommand{\djsSetQuestionCount}[1]{\gdef\djs@questioncount{#1}}
+\AtEndDocument{\immediate\write\@auxout
+  {\string\djsSetQuestionCount{\number\value{djsQuestions}}}}
+\makeatother
 
 \renewcommand{\contentsname}{Questions}
 
@@ -154,16 +172,22 @@
   \rhead{\href{https://danieljsmith.org/?utm_source=pdf&utm_campaign=further-maths&utm_content=#1}{danieljsmith.org}}%
 }
 
+% The header's topic is also the contents-page title, under which a label
+% says which booklet this is.
+\newcommand{\djsPackTitle}{}
+\newcommand{\djsBookletLabel}{}
 \newcommand{\djsQbtHeader}[1]{%
   \djsPackHeader{#1}%
+  \renewcommand{\djsPackTitle}{#1}%
+  \renewcommand{\djsBookletLabel}{Questions by topic}%
 }
 
-% One quiet line at the foot of page one, independent of the page style.
+% One line at the foot of page one, independent of the page style.
 % The document supplies the date; recompiling never changes it.
 \newcommand{\djsLastUpdated}[1]{%
   \AtBeginDocument{\AddToHookNext{shipout/foreground}{%
     \put(0.8in,-\dimexpr\paperheight-0.32in\relax){\makebox[0pt][l]{%
-      \footnotesize\color{black!55}Last updated #1}}}}}
+      \footnotesize Last updated #1}}}}}
 
 % Solutions packs show the header only on the contents page and each
 % question's opening page, so it never appears part-way through a solution.
@@ -173,15 +197,36 @@
   \djsPackHeader[solutions]{\textit{Solutions} - #1}%
   \pagestyle{empty}%
   \renewcommand{\djsQuestionPageStyle}{\thispagestyle{fancy}}%
+  \renewcommand{\djsPackTitle}{#1}%
+  \renewcommand{\djsBookletLabel}{Worked solutions}%
 }
 
+% \djsSitePath{<strand>}{<topic>}, called once after the header, names where
+% the pack sits on the site; the contents-page title prints it above the pack
+% title, e.g. CORE PURE / FURTHER CALCULUS. Without it the line is left out.
+\makeatletter
+\newif\ifdjs@sitepath
+\newcommand{\djs@strand}{}
+\newcommand{\djs@section}{}
+\newcommand{\djsSitePath}[2]{%
+  \djs@sitepathtrue
+  \renewcommand{\djs@strand}{#1}%
+  \renewcommand{\djs@section}{#2}%
+}
+\makeatother
+
 % Further Mechanics packs call \djsMechanicsPack in their preamble, so that
-% \djsFrontMatter prints the default value of g above the contents.
-\newcommand{\djsGravityNote}{}
+% \djsFrontMatter prints the default value of g above the contents. The box
+% keeps its own space above it (before skip is the whole gap below the title,
+% not an addition to it). Without the box, \djsGravityNote is just extra space
+% before the contents heading, bringing the gap above it close to the gap
+% between the box and the heading on Further Mechanics pages.
+\newcommand{\djsGravityNote}{\vspace{14pt}}
 \newcommand{\djsMechanicsPack}{%
   \renewcommand{\djsGravityNote}{%
     \begin{tcolorbox}[sharp corners, colback=white, colframe=black,
-      boxrule=1pt, left=8pt, right=8pt, top=6pt, bottom=6pt]
+      boxrule=1pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+      before skip=20pt]
     {\bfseries Instructions}\par\vspace{4pt}
     Unless a question states otherwise, take $g = 9.8\,\mathrm{m\,s^{-2}}$
     wherever a numerical value of $g$ is required. Solutions also give final
@@ -190,9 +235,49 @@
     \vspace{16pt}}%
 }
 
+% Contents-page title: the site path in spaced burgundy capitals, the pack
+% title, a hairline led by a short scarlet rule (the solution box's foot rule),
+% then the booklet label with the question and mark counts. The counts come
+% from the .aux, so they appear from the second pass.
+\makeatletter
+\newsavebox{\djs@eyebrowbox}
+\newcommand{\djs@caps}[1]{\textls[180]{\MakeUppercase{#1}}}
+\newcommand{\djs@eyebrow}{%
+  \color{djsBurgundy}\footnotesize\bfseries
+  \djs@caps{\djs@strand}%
+  {\color{djsSlash}\hspace{0.55em}/\hspace{0.55em}}%
+  \djs@caps{\djs@section}}
+\newcommand{\djs@dot}{\hspace{0.45em}\textperiodcentered\hspace{0.45em}}
+\newcommand{\djs@counts}{%
+  \@ifundefined{djs@questioncount}{}{%
+    \djs@questioncount~question\ifnum\djs@questioncount=1 \else s\fi
+    \ifnum\djs@totalmarks>0
+      \djs@dot\the\djs@totalmarks~mark\ifnum\djs@totalmarks=1 \else s\fi
+    \fi}}
+\newcommand{\djsContentsTitle}{%
+  \ifdjs@sitepath
+    \sbox\djs@eyebrowbox{\djs@eyebrow}%
+    \ifdim\wd\djs@eyebrowbox>\linewidth
+      \@latex@warning@no@line{The \string\djsSitePath\space line is wider
+        than the text, so it wraps. Shorten its topic}%
+    \fi
+    {\raggedright\djs@eyebrow\par}%
+    \vspace{7pt}%
+  \fi
+  {\raggedright\fontsize{24.88}{28}\selectfont\djsPackTitle\par}%
+  \vspace{9pt}%
+  \noindent\makebox[0pt][l]{\color{djsHairline}\rule[0.9pt]{\linewidth}{0.6pt}}%
+  {\color{scarlet}\rule{3.5cm}{2.2pt}}\par
+  \vspace{5pt}%
+  {\small\color{djsMuted}\djsBookletLabel\hfill\djs@counts\par}%
+  \vspace{8pt}%
+}
+\makeatother
+
 \newcommand{\djsFrontMatter}{%
   \djsQuestionPageStyle
-  \vspace*{20pt}%
+  \vspace*{6pt}%
+  \djsContentsTitle
   \djsGravityNote
   \tableofcontents
   \newpage

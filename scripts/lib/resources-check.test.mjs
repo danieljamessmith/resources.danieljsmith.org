@@ -285,3 +285,69 @@ describe('checkResources: orphan PDFs', () => {
     expect(warnings).toEqual([]);
   });
 });
+
+describe('checkResources: Further Maths pack title and site path', () => {
+  const PDF = '/tex/further-maths/core-pure/vectors/qbt/_QBT__Matrix.pdf';
+  const strands = [
+    {
+      category: 'FM - Core Pure',
+      title: 'Core Pure',
+      topics: [{ id: 'vectors', topic: 'Vectors', title: 'Vectors, Matrices & Linear Transformations' }],
+    },
+  ];
+  /** @param {string} preamble */
+  const tex = (preamble) =>
+    [
+      String.raw`\documentclass[leqno]{article}`,
+      String.raw`\input{../../../../_shared/pack_preamble.tex}`,
+      preamble,
+      String.raw`\begin{document}`,
+      String.raw`\end{document}`,
+    ].join('\n');
+  /** @param {string} preamble */
+  const runPack = (preamble) =>
+    run({
+      entries: [
+        entry({ id: 'm', title: 'Matrix Determinants & Inverses', file: PDF, topic: 'Vectors', type: 'questions' }),
+      ],
+      diskFiles: new Set([PDF]),
+      questionCountKeys: new Set([PDF]),
+      packSources: new Map([[PDF, tex(preamble)]]),
+      strands,
+    }).violations.map((v) => v.kind);
+
+  it('passes when the header and site path match the site', () => {
+    expect(
+      runPack(
+        String.raw`\djsQbtHeader{Matrix Determinants \& Inverses}` +
+          '\n' +
+          String.raw`\djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}`,
+      ),
+    ).toEqual([]);
+  });
+
+  it('flags a header that differs from the title', () => {
+    expect(
+      runPack(
+        String.raw`\djsQbtHeader{Matrix Determinants and Inverses}` +
+          '\n' +
+          String.raw`\djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}`,
+      ),
+    ).toEqual(['pack-title-mismatch']);
+  });
+
+  it('flags a missing or wrong site path', () => {
+    const header = String.raw`\djsQbtHeader{Matrix Determinants \& Inverses}`;
+    expect(runPack(header)).toEqual(['pack-site-path-missing']);
+    expect(runPack(`${header}\n\\djsSitePath{Core Pure}{Vectors}`)).toEqual(['pack-site-path-mismatch']);
+  });
+
+  it('skips the pass without pack sources', () => {
+    const { violations } = run({
+      entries: [entry({ id: 'm', title: 'X', file: PDF, topic: 'Vectors' })],
+      diskFiles: new Set([PDF]),
+      strands,
+    });
+    expect(violations).toEqual([]);
+  });
+});

@@ -8,7 +8,8 @@
  *
  *   violation: a structural inconsistency that will break the site or the
  *              splicer agent (missing file, duplicate id, broken pair or
- *              answer-key link).
+ *              answer-key link), or a Further Maths pack whose title or site
+ *              path disagrees with what the site shows.
  *   warning:   surface for triage but does not block (orphan PDFs).
  *
  * `orphan-pdf` is intentionally a warning — the live corpus is expected
@@ -16,6 +17,9 @@
  * block unrelated commits while that backlog is worked down. Promote to
  * violation once the corpus is clean.
  */
+
+import { readPackIdentity } from './pack-preamble.mjs';
+import { sitePathLabels } from './resources-derive.mjs';
 
 /**
  * @typedef {import('./resources-derive.mjs').ResourceEntry} ResourceEntry
@@ -48,9 +52,19 @@
  *                                                   for orphan detection.
  * @param {Set<string>} input.questionCountKeys    - keys present in
  *                                                   `questionCounts.generated.ts`
+ * @param {Map<string, string>} [input.packSources] - Further Maths pack `.tex`
+ *                                                   text, keyed by the entry's
+ *                                                   `/tex/...` PDF path
+ * @param {import('./resources-derive.mjs').Strand[]} [input.strands]
+ *                                                 - parsed `topics.ts`. With
+ *                                                   `packSources`, enables the
+ *                                                   pack title and site-path
+ *                                                   checks
  * @returns {CheckResult}
  */
-export function checkResources({ entries, diskFiles, deployedPdfs, questionCountKeys }) {
+export function checkResources({
+  entries, diskFiles, deployedPdfs, questionCountKeys, packSources, strands,
+}) {
   /** @type {Finding[]} */
   const violations = [];
   /** @type {Finding[]} */
@@ -201,7 +215,46 @@ export function checkResources({ entries, diskFiles, deployedPdfs, questionCount
     }
   }
 
-  // ---- Pass 4: orphan PDFs (disk PDFs not referenced by any entry)
+  // ---- Pass 4: Further Maths packs agree with the catalogue: the header's
+  // topic (also the contents-page title) is the entry's title, and the site
+  // path names the entry's strand and topic section as the site shows them.
+  if (packSources && strands) {
+    for (const e of entries) {
+      const text = packSources.get(e.file);
+      if (text === undefined) continue;
+      const tex = e.file.replace(/\.pdf$/, '.tex');
+      const { title, sitePath } = readPackIdentity(text);
+      if (title !== null && e.title !== undefined && title !== e.title) {
+        violations.push({
+          kind: 'pack-title-mismatch',
+          id: e.id,
+          file: tex,
+          message: `'${e.id}' title is '${e.title}' but ${tex} header says '${title}'`,
+        });
+      }
+      const expected = sitePathLabels(strands, e.category, e.topic);
+      if (!expected) continue;
+      if (!sitePath) {
+        violations.push({
+          kind: 'pack-site-path-missing',
+          id: e.id,
+          file: tex,
+          message: `${tex} needs \\djsSitePath{${expected.strand}}{${expected.section}} after its header`,
+        });
+      } else if (sitePath.strand !== expected.strand || sitePath.section !== expected.section) {
+        violations.push({
+          kind: 'pack-site-path-mismatch',
+          id: e.id,
+          file: tex,
+          message:
+            `${tex} site path is '${sitePath.strand} / ${sitePath.section}' but the site ` +
+            `lists '${e.id}' under '${expected.strand} / ${expected.section}'`,
+        });
+      }
+    }
+  }
+
+  // ---- Pass 5: orphan PDFs (disk PDFs not referenced by any entry)
   const referencedFiles = new Set(entries.map((e) => e.file));
   for (const pdf of deployedPdfs) {
     if (!referencedFiles.has(pdf)) {

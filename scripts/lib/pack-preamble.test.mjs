@@ -10,6 +10,10 @@ import {
   isValidPackDate,
   migratePackPreamble,
   normalizeImportedPackTex,
+  applyPackIdentity,
+  readPackIdentity,
+  texEscapeText,
+  texUnescapeText,
 } from './pack-preamble.mjs';
 
 const QBT_REL =
@@ -170,5 +174,78 @@ describe('pack last-updated dates', () => {
     expect(checkPackPreambleConvention(`% ${call}\n${dated}`, QBT_REL)).toEqual([]);
     expect(() => initialisePackDate(dated.replace(call, `${call}\n${call}`))).toThrow(/one valid/);
     expect(() => initialisePackDate(undated, '31 April 2026')).toThrow(/invalid pack date/);
+  });
+});
+
+describe('pack identity: header title and site path', () => {
+  const dated = () => migratePackPreamble(oldInline('qbt', 'Old Title'), QBT_REL, '1 October 2026');
+
+  it('escapes and unescapes the characters titles use', () => {
+    expect(texEscapeText('Momentum & Collisions, 50% #1')).toBe(String.raw`Momentum \& Collisions, 50\% \#1`);
+    expect(texUnescapeText(texEscapeText('a & b_c {d} $e'))).toBe('a & b_c {d} $e');
+  });
+
+  it('renames the header and adds the site path on the line after it', () => {
+    const out = applyPackIdentity(dated(), {
+      title: 'Matrix Determinants & Inverses',
+      strand: 'Core Pure',
+      section: 'Vectors, Matrices & Linear Transformations',
+    });
+    const lines = out.split('\n');
+    const header = lines.indexOf(String.raw`\djsQbtHeader{Matrix Determinants \& Inverses}`);
+    expect(header).toBeGreaterThan(0);
+    expect(lines[header + 1]).toBe(
+      String.raw`\djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}`,
+    );
+    expect(readPackIdentity(out)).toEqual({
+      title: 'Matrix Determinants & Inverses',
+      sitePath: { strand: 'Core Pure', section: 'Vectors, Matrices & Linear Transformations' },
+    });
+    expect(checkPackPreambleConvention(out, QBT_REL)).toEqual([]);
+  });
+
+  it('replaces an earlier site path, keeps line endings and can leave the header alone', () => {
+    const crlf = applyPackIdentity(dated(), { strand: 'Core Pure', section: 'Old' }).replaceAll('\n', '\r\n');
+    const out = applyPackIdentity(crlf, { strand: 'Core Pure', section: 'Further Calculus' });
+    expect(out.match(/\\djsSitePath/g)).toHaveLength(1);
+    expect(out).toContain('\\djsSitePath{Core Pure}{Further Calculus}\r\n');
+    expect(out).not.toMatch(/(?<!\r)\n/);
+    expect(readPackIdentity(out).title).toBe('Old Title');
+  });
+
+  it('reads a solutions header and a pack without a site path', () => {
+    const soln = migratePackPreamble(oldInline('soln'), SOLN_REL, '1 October 2026');
+    expect(readPackIdentity(soln)).toEqual({ title: 'Maclaurin Series', sitePath: null });
+  });
+
+  it('sets the identity of an imported pack when given one', () => {
+    const out = normalizeImportedPackTex(oldInline('qbt', 'Overleaf Name'), QBT_REL, '5 October 2026', {
+      title: 'Site Name',
+      strand: 'Core Pure',
+      section: 'Further Calculus',
+    });
+    expect(readPackIdentity(out)).toEqual({
+      title: 'Site Name',
+      sitePath: { strand: 'Core Pure', section: 'Further Calculus' },
+    });
+  });
+
+  it('refuses duplicate, body-only and incomplete site paths', () => {
+    const call = '\\djsSitePath{Core Pure}{Further Calculus}';
+    const base = dated();
+    for (const source of [
+      base.replace('\\begin{document}', `${call}\n${call}\n\\begin{document}`),
+      base.replace('\\djsFrontMatter', `\\djsFrontMatter\n${call}`),
+      base.replace('\\begin{document}', '\\djsSitePath{Core Pure}{}\n\\begin{document}'),
+      base.replace('\\begin{document}', '\\djsSitePath{Core Pure}\n\\begin{document}'),
+    ]) {
+      expect(checkPackPreambleConvention(source, QBT_REL).map((v) => v.kind)).toContain('bad-site-path');
+    }
+    expect(checkPackPreambleConvention(`% ${call}\n${base}`, QBT_REL)).toEqual([]);
+  });
+
+  it('refuses a pack without a header', () => {
+    const headerless = dated().replace(/\\djsQbtHeader\{[^}]*\}\n/, '');
+    expect(() => applyPackIdentity(headerless, { title: 'T' })).toThrow(/missing \\djsQbtHeader/);
   });
 });

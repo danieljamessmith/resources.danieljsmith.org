@@ -99,6 +99,7 @@ Further Maths QBT/Soln sources now use the shared pack preamble wrapper:
 \documentclass[leqno]{article}
 \input{../../../../_shared/pack_preamble.tex}
 \djsQbtHeader{<Topic>}      % or \djsSolnHeader{<Topic>}
+\djsSitePath{<Strand>}{<Topic section>}
 \djsLastUpdated{5 October 2026}
 \begin{document}
 \djsFrontMatter
@@ -107,9 +108,18 @@ Further Maths QBT/Soln sources now use the shared pack preamble wrapper:
 ```
 
 The shared preamble owns the pack-level helpers (`\marks`, `\questionitem`,
-`\djsQbtHeader`, `\djsSolnHeader`, `\djsLastUpdated`, `\djsFrontMatter`, `\djsMechanicsPack`, the `djsSolution` box,
+`\djsQbtHeader`, `\djsSolnHeader`, `\djsSitePath`, `\djsLastUpdated`, `\djsFrontMatter`, `\djsMechanicsPack`, the `djsSolution` box,
 the optional `djsSolutionFigure` environment, and the legacy colored-cancel
 `\cxl` macro). Contents-page links are black (`linkcolor=black`).
+
+- **Pack title and site path:** the header's topic is the pack's title. It
+  must equal the pack's `title` in `src/data/resources.ts` (LaTeX-escaped,
+  e.g. `\&`), in both the QBT and soln files. `\djsSitePath`, on the line after
+  the header, names the strand and topic section exactly as the site shows
+  them: the strand `title` and the topic's section `title` in
+  `src/data/topics.ts` (e.g. `\djsSitePath{Core Pure}{Vectors, Matrices \&
+  Linear Transformations}`). `check-resources` enforces both. Pack file names
+  and resource ids are identifiers and stay as imported when a title changes.
 
 - **`djsSolution`** is the worked-solution box, adapted from the TMUA
   worked-solutions box. It has a bold scarlet "Solution" label,
@@ -124,11 +134,22 @@ the optional `djsSolutionFigure` environment, and the legacy colored-cancel
   opening page, never part-way through a solution. This relies on every
   solution question starting after a `\newpage`, because `\thispagestyle`
   marks the next page shipped out. QBT packs keep the header on every page.
+- **Contents-page title:** `\djsFrontMatter` opens with `\djsContentsTitle`:
+  the site path in spaced burgundy capitals (CORE PURE / FURTHER CALCULUS),
+  the pack title, a hairline led by a short scarlet rule, then "Questions by
+  topic" or "Worked solutions" with the question and mark counts. Its colours
+  are the site's accent, rule and muted text colours. A pack without
+  `\djsSitePath` omits the path line, and a path line too wide for one line
+  produces a LaTeX warning. The Further Mechanics g box keeps its own 20pt
+  `before skip`; without the box, `\djsGravityNote` defaults to 14pt of extra
+  space, so the contents heading sits as far below the title as it sits below
+  the box on mechanics pages.
 - **Contents:** `\djsFrontMatter` prints the contents in the TMUA style
   (tocloft: compact entries, no dot leaders), with each question's mark total
   in grey after its label. `\marks` records its value in the `.aux` file
-  against the question number, so the totals appear from the second LaTeX
-  pass (latexmk reruns as needed). PDF bookmarks stay "Question N".
+  against the question number, so the totals (and the title's counts) appear
+  from the second LaTeX pass (latexmk reruns as needed). PDF bookmarks stay
+  "Question N".
 
 All Further Maths QBT/Soln files are expected to stay at the fixed depth
 `public/tex/further-maths/<strand>/<topic>/{qbt,soln}/<file>.tex`, which makes
@@ -166,8 +187,8 @@ exactly if that needs 3 s.f. or fewer. A question whose stem states g has no
 list.
 
 **Further Maths last-updated dates:** every QBT/Soln document has exactly one
-`\djsLastUpdated{D Month YYYY}` before `\begin{document}`. It prints a quiet
-grey line at the foot of page one only. After changing student-visible
+`\djsLastUpdated{D Month YYYY}` before `\begin{document}`. It prints a small
+line in the normal text colour at the foot of page one only. After changing student-visible
 question or solution content (including typos, marks or diagrams), manually
 set each affected document's date to today and rebuild its deployed PDF.
 A question edit updates both dates after statement sync; a solution-only
@@ -317,6 +338,12 @@ bundled into the project. `deploy-from-overleaf.mjs` rewrites this to
 If the flat Overleaf import is present but the bundled `preamble.tex` is
 missing, deploy warns and uses the site shared preamble.
 
+For a Further Maths pack, deploy also sets both files' header topic to the
+topic name typed at the prompt (which becomes the staged site title) and
+writes `\djsSitePath` from the strand and topic section the chosen folder
+belongs to (`importedPackIdentity`), so the pack satisfies `check-resources`
+once it is spliced into `resources.ts`.
+
 - **Local pack folder**: the source prompt also accepts a path to an existing local folder (quotes are stripped) in place of an Overleaf URL. The folder is read in place: no token, no clone, no temporary directory. When it holds a `pack.json` (`format: 1`, with `topic`, `questions` and `solutions` file names), those two files are used directly, filename discovery is skipped, and the topic prompt offers `topic` as its default. Without `pack.json`, the same discovery as for a clone runs on the folder. Everything after that (placement, preamble rewrite, compile, `clean-tex`, staging) is shared with the Overleaf path; the staging entry records no Overleaf project ids.
 - **One project per topic** is the modern convention: a single Overleaf project containing both `(QBT) <Topic>.tex` and `(QBT) [Solns] <Topic>.tex`. The script auto-detects both files via `findPackTex` in `scripts/deploy-from-overleaf.mjs`.
 - **Legacy fallback**: if only one of the two files is found in the first clone, the script prompts for a second Overleaf URL and pulls the missing kind from there. Single-`.tex` projects whose name predates the `(QBT) ` convention are also handled — discovery falls back to the only `.tex` with `\begin{document}` when the basename is unambiguous (`[Solns]` ⇒ soln, `(QBT) ` ⇒ qbt).
@@ -367,7 +394,7 @@ The `*.generated.ts` files **must not be hand-edited** — they're regenerated o
 | `npm run clean-tex` | Strips full-line comments from QBT/soln bodies, collapses blank-line runs, re-numbers question delimiters |
 | `npm run check-questions [scope]` | Read-only drift detector: reports any QBT/soln pair where the SOLN statement region differs from the QBT statement, plus structurally broken pairs (numbering mismatches, duplicate delimiters, missing/extra `\questionitem`, delimiter numbering gaps). Same scope arg as `compile-tex`. Non-zero exit on drift |
 | `npm run sync-questions [scope]` | Rewrites SOLN statement regions in place to match QBT. Solution box content is never touched. Skips structurally broken pairs (run `check-questions` first to triage) |
-| `npm run check-resources` | Read-only validator for `src/data/resources.ts`: missing files on disk, duplicate ids, broken `pairId` links (unresolved / asymmetric / type or topic mismatch), missing entries in `questionCounts.generated.ts`, orphan PDFs (warning). Non-zero exit on any violation |
+| `npm run check-resources` | Read-only validator for `src/data/resources.ts`: missing files on disk, duplicate ids, broken `pairId` links (unresolved / asymmetric / type or topic mismatch), missing entries in `questionCounts.generated.ts`, Further Maths pack headers that differ from their title or site paths that differ from `topics.ts`, orphan PDFs (warning). Non-zero exit on any violation |
 | `npm run check-generated` | Read-only verifier that the `*.generated.ts` files in `src/data/` match what `count-questions` and `hash-assets` would produce now (catches stale generated state from `--no-verify` commits or hand-edits). Non-zero exit on staleness |
 | `npm run check-pairs` | Read-only check that every topic with any pack asset has all four of QBT/soln `.tex`/`.pdf`, and that no tracked file under `public/tex` is missing |
 | `npm run check-private-terms` | Read-only check that no private term appears in tracked/new text files (or, with `--message FILE`, a commit message). The list comes from `PRIVATE_TERMS` (CI secret), `PRIVATE_TERMS_FILE`, or `~/.config/private-terms.txt`; skipped if none. Hits are reported by term number only |
@@ -415,14 +442,14 @@ When adding a new pure helper to a tested module, add a colocated test case. Kee
 | `scripts/mark-checked.mjs` | Writes a pack's check date and `.tex` hash to `src/data/reviews.json` |
 | `scripts/review-status.mjs` | Read-only report of each pack's check status from `src/data/reviews.json` |
 | `scripts/lib/reviews.mjs` | `reviews.json` parse/render/atomic-write, `.tex` pair hashing (CRLF-insensitive) and status classification behind `mark-checked` and `review-status` |
-| `scripts/lib/pack-preamble.mjs` | Further Maths pack path/depth helpers, shared-preamble migration, Overleaf import normalization, initial dates, date validation and convention checks |
+| `scripts/lib/pack-preamble.mjs` | Further Maths pack path/depth helpers, shared-preamble migration, Overleaf import normalization, initial dates, date validation, pack title and site-path read/write (`readPackIdentity`, `applyPackIdentity`) and convention checks |
 | `scripts/lib/pair-presence.mjs` | Pure quartet / tracked-missing checker behind `check-pairs` |
 | `scripts/lib/private-terms.mjs` | Pure term-list parsing and whole-token matching behind `check-private-terms` |
 | `scripts/lib/tex-utils.mjs` | Shared path, `.tex` discovery, document boundary, and QBT/soln pair helpers |
 | `scripts/lib/question-blocks.mjs` | Pure parser/synchronizer for `check-questions` and `sync-questions`; preserves CRLF/LF |
 | `scripts/lib/solution-boxes.mjs` | Pure legacy-Solution-box → `djsSolution` rewrite used by `migrate-solution-boxes` |
 | `scripts/lib/site-tree.mjs` | Interactive site-path picker for Overleaf deploys |
-| `scripts/lib/resources-derive.mjs` | Regex-based introspection of `src/data/resources.ts` for staging and validation |
+| `scripts/lib/resources-derive.mjs` | Regex-based introspection of `src/data/resources.ts` (and the strand/topic labels in `src/data/topics.ts`, `parseStrands`/`sitePathLabels`) for staging and validation |
 | `scripts/lib/resources-check.mjs` | Pure resource catalogue invariant checker |
 | `scripts/lib/staging.mjs` | `data/resources-pending.json` read/merge/atomic-write helpers |
 
@@ -437,11 +464,11 @@ When adding a new pure helper to a tested module, add a colocated test case. Kee
 
 The pre-commit checks split responsibility cleanly:
 
-- **`resources.ts` ↔ filesystem / generated counts:** `check-resources` and `scripts/lib/resources-check.mjs`. Every entry's `file` exists on disk; ids are unique; `pairId` resolves and is symmetric; partner types are `{questions, solutions}`; partner `topic` and `category` match; each `type: 'answers'` entry has a `paperId` naming a `type: 'questions'` entry in its category, at most one per paper, and no other entry carries `paperId`; `type: 'questions'` `/qbt/` entries are keyed in `questionCounts.generated.ts`. `orphan-pdf` is currently a warning while the corpus has a known backlog.
+- **`resources.ts` ↔ filesystem / generated counts:** `check-resources` and `scripts/lib/resources-check.mjs`. Every entry's `file` exists on disk; ids are unique; `pairId` resolves and is symmetric; partner types are `{questions, solutions}`; partner `topic` and `category` match; each `type: 'answers'` entry has a `paperId` naming a `type: 'questions'` entry in its category, at most one per paper, and no other entry carries `paperId`; `type: 'questions'` `/qbt/` entries are keyed in `questionCounts.generated.ts`; each Further Maths QBT/soln entry's `.tex` header topic equals its `title` and its `\djsSitePath` names its strand and `topics.ts` section. `orphan-pdf` is currently a warning while the corpus has a known backlog.
 - **Generated TS freshness:** `check-generated`. Generated files must byte-match what `count-questions` and `hash-assets` would produce now. It stays pre-commit-only because `pre*` hooks already run the generators first.
 - **In-file QBT/SOLN structural integrity:** `validateBlocks` in `scripts/lib/question-blocks.mjs`, surfaced via `check-questions`. Each question block has exactly one `\questionitem`; delimiter numbers are exactly `1..K`.
 - **Pair-level QBT ⇄ SOLN parity:** `syncPair` in `scripts/lib/question-blocks.mjs`. Question-number sets are equal; SOLN statement regions match QBT byte-for-byte.
-- **Further Maths shared preamble convention:** `check-pack-preamble` ensures QBT/Soln `.tex` files under `public/tex/further-maths/` stay at the fixed depth and import `../../../../_shared/pack_preamble.tex` with the correct `\djsQbtHeader{}` / `\djsSolnHeader{}` macro and exactly one valid `\djsLastUpdated{D Month YYYY}` in the preamble.
+- **Further Maths shared preamble convention:** `check-pack-preamble` ensures QBT/Soln `.tex` files under `public/tex/further-maths/` stay at the fixed depth and import `../../../../_shared/pack_preamble.tex` with the correct `\djsQbtHeader{}` / `\djsSolnHeader{}` macro, exactly one valid `\djsLastUpdated{D Month YYYY}` in the preamble, and at most one complete `\djsSitePath{}{}` there (its presence and values are checked by `check-resources`).
 
 ### Deploy workflow contract
 

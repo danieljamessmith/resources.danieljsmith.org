@@ -1,6 +1,7 @@
 /**
  * Derive ids / categories / sibling anchors by scanning `src/data/resources.ts` with regex
- * (no full TypeScript parse).
+ * (no full TypeScript parse), and the Further Maths strand and topic labels from
+ * `src/data/topics.ts` the same way.
  */
 
 import { readFileSync } from 'node:fs';
@@ -128,8 +129,24 @@ function findMatchingBracket(src, openIdx) {
 }
 
 /**
+ * A single- or double-quoted string literal, allowing escaped characters. It
+ * has two capture groups, one per quote style; read it with `tsStringValue`.
+ */
+const TS_STRING = String.raw`(?:'((?:[^'\\\n]|\\.)*)'|"((?:[^"\\\n]|\\.)*)")`;
+
+/**
+ * The value of a `TS_STRING` match, given the match and its first group index.
+ * @param {RegExpMatchArray} m
+ * @param {number} group
+ */
+function tsStringValue(m, group) {
+  return (m[group] ?? m[group + 1] ?? '').replace(/\\(.)/g, '$1');
+}
+
+/**
  * @typedef {Object} ResourceEntry
  * @property {string} id
+ * @property {string} [title]
  * @property {string} file        - `/tex/...` URL path
  * @property {string} category    - Normalised label (e.g. `'FM - Core Pure'`)
  * @property {string} [topic]
@@ -161,6 +178,7 @@ export function parseResourcesEntries(resourcesTsContent) {
     const id = m[1];
     const file = m[2];
     const catRaw = block.match(/category:\s*([^,\n]+?)\s*,/);
+    const titleM = block.match(new RegExp(String.raw`title:\s*${TS_STRING}`));
     const topicM = block.match(/topic:\s*'([^']*)'/);
     const typeM = block.match(/type:\s*'([^']+)'/);
     const pairM = block.match(/pairId:\s*'([^']+)'/);
@@ -168,6 +186,7 @@ export function parseResourcesEntries(resourcesTsContent) {
     const category = catRaw ? normalizeCategoryToken(catRaw[1]) : 'unknown';
     entries.push({
       id,
+      title: titleM ? tsStringValue(titleM, 1) : undefined,
       file,
       category,
       topic: topicM ? topicM[1] : undefined,
@@ -185,6 +204,72 @@ export function parseResourcesEntries(resourcesTsContent) {
 export function loadResourcesEntries(resourcesPath = join(repoRoot, 'src', 'data', 'resources.ts')) {
   const content = readFileSync(resourcesPath, 'utf8');
   return parseResourcesEntries(content);
+}
+
+/**
+ * @typedef {Object} Strand
+ * @property {string} category  - Normalised label (e.g. `'FM - Core Pure'`)
+ * @property {string} title     - Strand title (e.g. `'Core Pure'`)
+ * @property {{ id: string; topic: string; title: string }[]} topics
+ *   - `topic` is the `Resource.topic` value; `title` is the section heading
+ */
+
+/**
+ * Parses the `STRANDS` array in `src/data/topics.ts`.
+ *
+ * @param {string} topicsTsContent
+ * @returns {Strand[]}
+ */
+export function parseStrands(topicsTsContent) {
+  const start = topicsTsContent.search(/export\s+const\s+STRANDS\b/);
+  if (start < 0) return [];
+  const body = topicsTsContent.slice(start);
+  const heads = [
+    ...body.matchAll(
+      new RegExp(String.raw`category:\s*([A-Z_]+|'[^']*')\s*,\s*title:\s*${TS_STRING}`, 'g'),
+    ),
+  ];
+  const topicRe = new RegExp(
+    String.raw`\{\s*id:\s*'([^']+)',\s*topic:\s*${TS_STRING},\s*title:\s*${TS_STRING}`,
+    'g',
+  );
+  return heads.map((head, i) => {
+    const end = i + 1 < heads.length ? heads[i + 1].index : body.length;
+    const segment = body.slice(head.index, end);
+    return {
+      category: normalizeCategoryToken(head[1]),
+      title: tsStringValue(head, 2),
+      topics: [...segment.matchAll(topicRe)].map((t) => ({
+        id: t[1],
+        topic: tsStringValue(t, 2),
+        title: tsStringValue(t, 4),
+      })),
+    };
+  });
+}
+
+/**
+ * @param {string} [topicsPath]
+ */
+export function loadStrands(topicsPath = join(repoRoot, 'src', 'data', 'topics.ts')) {
+  return parseStrands(readFileSync(topicsPath, 'utf8'));
+}
+
+/**
+ * The strand and topic a pack's `\djsSitePath` should name: the strand title
+ * and the topic's section heading on the strand page. A topic not yet listed
+ * in `topics.ts` keeps its `Resource.topic` value.
+ *
+ * @param {Strand[]} strands
+ * @param {string} category
+ * @param {string | undefined} topic
+ * @returns {{ strand: string; section: string } | null} null outside the strands
+ */
+export function sitePathLabels(strands, category, topic) {
+  const strand = strands.find((s) => s.category === category);
+  if (!strand || !topic) return null;
+  const listed = strand.topics.find((t) => t.topic === topic);
+  return { strand: strand.title, section: listed ? listed.title : topic };
 }
 
 /**

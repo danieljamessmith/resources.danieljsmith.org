@@ -10,6 +10,7 @@ const MONTHS = [
   'July', 'August', 'September', 'October', 'November', 'December',
 ];
 const DATE_COMMAND = String.raw`\djsLastUpdated`;
+const SITE_PATH_COMMAND = String.raw`\djsSitePath`;
 
 export function formatPackDate(day = new Date()) {
   return `${day.getDate()} ${MONTHS[day.getMonth()]} ${day.getFullYear()}`;
@@ -35,6 +36,110 @@ function packDateCalls(text) {
       inPreamble: begin >= 0 && match.index < begin,
     };
   });
+}
+
+/**
+ * `\djsSitePath` calls in code only: their two arguments (null when the call
+ * is not followed by two brace groups) and whether they sit in the preamble.
+ */
+function packSitePathCalls(text) {
+  const code = text.replace(/(?<!\\)%[^\r\n]*/g, '');
+  const begin = code.indexOf(String.raw`\begin{document}`);
+  return [...code.matchAll(/\\djsSitePath\b/g)].map((match) => {
+    const args = /^\{([^{}\r\n]*)\}\{([^{}\r\n]*)\}/.exec(
+      code.slice(match.index + SITE_PATH_COMMAND.length),
+    );
+    return {
+      strand: args?.[1] ?? null,
+      section: args?.[2] ?? null,
+      inPreamble: begin >= 0 && match.index < begin,
+    };
+  });
+}
+
+/**
+ * Escape plain text (a site title or label) for a header or site-path
+ * argument. Covers the characters titles use; not a general escaper.
+ */
+export function texEscapeText(text) {
+  return text.replace(/([&%$#_{}])/g, '\\$1');
+}
+
+/** Undo `texEscapeText`. */
+export function texUnescapeText(text) {
+  return text.replace(/\\([&%$#_{}])/g, '$1');
+}
+
+/**
+ * A pack's title (its header's topic) and site path, as plain text.
+ *
+ * @param {string} text
+ * @returns {{ title: string | null; sitePath: { strand: string; section: string } | null }}
+ */
+export function readPackIdentity(text) {
+  const lines = splitLines(text);
+  const beginIdx = findBeginDocumentIndex(lines);
+  const preDoc = beginIdx >= 0 ? lines.slice(0, beginIdx) : lines;
+  let title = null;
+  for (const line of preDoc) {
+    if (/^\s*%/.test(line)) continue;
+    const arg =
+      extractBraceArgument(line, 'djsQbtHeader') ?? extractBraceArgument(line, 'djsSolnHeader');
+    if (arg != null) {
+      title = texUnescapeText(arg.trim());
+      break;
+    }
+  }
+  const calls = packSitePathCalls(text).filter((c) => c.inPreamble && c.strand !== null);
+  const sitePath =
+    calls.length === 1
+      ? { strand: texUnescapeText(calls[0].strand), section: texUnescapeText(calls[0].section) }
+      : null;
+  return { title, sitePath };
+}
+
+/**
+ * Set a pack's header topic to `title` and its `\djsSitePath` to `strand` and
+ * `section` (both plain text), keeping everything else. The site path goes on
+ * the line after the header, replacing any earlier one. Omit `title` to keep
+ * the header, or `strand` to leave the site path alone.
+ *
+ * @param {string} text
+ * @param {{ title?: string; strand?: string; section?: string }} identity
+ */
+export function applyPackIdentity(text, { title, strand, section }) {
+  const eol = detectEol(text);
+  let lines = splitLines(text);
+  const isSitePathLine = (line) => line.trimStart().startsWith(`${SITE_PATH_COMMAND}{`);
+  const beginIdx = findBeginDocumentIndex(lines);
+  if (beginIdx < 0) throw new Error('missing \\begin{document}');
+  if (strand !== undefined) {
+    lines = lines.filter((line, i) => i >= beginIdx || !isSitePathLine(line));
+  }
+
+  const headerIdx = lines.findIndex(
+    (line) => /^\s*\\djs(?:Qbt|Soln)Header\{/.test(line),
+  );
+  if (headerIdx < 0 || headerIdx >= findBeginDocumentIndex(lines)) {
+    throw new Error('missing \\djsQbtHeader{} or \\djsSolnHeader{} before \\begin{document}');
+  }
+
+  if (title !== undefined) {
+    const command = lines[headerIdx].includes('\\djsSolnHeader{') ? 'djsSolnHeader' : 'djsQbtHeader';
+    const old = extractBraceArgument(lines[headerIdx], command);
+    lines[headerIdx] = lines[headerIdx].replace(
+      `\\${command}{${old}}`,
+      () => `\\${command}{${texEscapeText(title)}}`,
+    );
+  }
+  if (strand !== undefined) {
+    lines.splice(
+      headerIdx + 1,
+      0,
+      `${SITE_PATH_COMMAND}{${texEscapeText(strand)}}{${texEscapeText(section ?? '')}}`,
+    );
+  }
+  return lines.join(eol);
 }
 
 /** Initialise an undated import; preserve its existing date without refreshing it. */
@@ -197,14 +302,24 @@ export function migratePackPreamble(text, relFromRepo, initialDate = formatPackD
   return trailingNewline ? migrated.replace(/\r?\n?$/, eol) : migrated;
 }
 
-export function normalizeImportedPackTex(text, relFromRepo, initialDate = formatPackDate()) {
-  if (text.includes(PACK_PREAMBLE_SITE_INPUT)) return initialisePackDate(text, initialDate);
-  if (text.includes(PACK_PREAMBLE_OVERLEAF_INPUT)) {
-    return initialisePackDate(
+/**
+ * Bring an imported pack into the site wrapper. With `identity`, also set its
+ * header topic and site path (see `applyPackIdentity`).
+ */
+export function normalizeImportedPackTex(
+  text, relFromRepo, initialDate = formatPackDate(), identity = undefined,
+) {
+  let out;
+  if (text.includes(PACK_PREAMBLE_SITE_INPUT)) {
+    out = initialisePackDate(text, initialDate);
+  } else if (text.includes(PACK_PREAMBLE_OVERLEAF_INPUT)) {
+    out = initialisePackDate(
       text.replaceAll(PACK_PREAMBLE_OVERLEAF_INPUT, PACK_PREAMBLE_SITE_INPUT), initialDate,
     );
+  } else {
+    out = migratePackPreamble(text, relFromRepo, initialDate);
   }
-  return migratePackPreamble(text, relFromRepo, initialDate);
+  return identity ? applyPackIdentity(out, identity) : out;
 }
 
 export function usesOverleafPackInput(text) {
@@ -274,6 +389,16 @@ export function checkPackPreambleConvention(text, relFromRepo) {
     violations.push({
       kind: 'bad-last-updated',
       message: `${rel}: expected one valid \\djsLastUpdated{D Month YYYY} before \\begin{document}`,
+    });
+  }
+  const sitePathCalls = packSitePathCalls(text);
+  if (
+    sitePathCalls.length > 1 ||
+    sitePathCalls.some((c) => !c.inPreamble || !c.strand || !c.section)
+  ) {
+    violations.push({
+      kind: 'bad-site-path',
+      message: `${rel}: expected at most one \\djsSitePath{<strand>}{<topic>} before \\begin{document}`,
     });
   }
   if (DUPLICATED_PREAMBLE_RE.test(preDoc)) {

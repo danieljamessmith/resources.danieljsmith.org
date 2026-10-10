@@ -17,10 +17,10 @@
  * Exits non-zero on any violation. Exits zero with warnings printed.
  */
 
-import { readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join, relative, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parseResourcesEntries } from './lib/resources-derive.mjs';
+import { parseResourcesEntries, parseStrands } from './lib/resources-derive.mjs';
 import { checkResources } from './lib/resources-check.mjs';
 import { findPdfFiles } from './hash-assets.mjs';
 
@@ -89,11 +89,34 @@ function loadDeployedPdfs() {
   return out;
 }
 
+/**
+ * The `.tex` source of each Further Maths QBT/soln entry that has one, keyed
+ * by the entry's `/tex/...` PDF path.
+ *
+ * @param {import('./lib/resources-derive.mjs').ResourceEntry[]} entries
+ */
+function loadPackSources(entries) {
+  /** @type {Map<string, string>} */
+  const out = new Map();
+  for (const e of entries) {
+    if (!/^\/tex\/further-maths\/.+\/(?:qbt|soln)\/[^/]+\.pdf$/.test(e.file)) continue;
+    const tex = join(publicDir, e.file.replace(/\.pdf$/, '.tex'));
+    if (existsSync(tex)) out.set(e.file, readFileSync(tex, 'utf-8'));
+  }
+  return out;
+}
+
 function main() {
   const resourcesPath = join(repoRoot, 'src', 'data', 'resources.ts');
   const entries = parseResourcesEntries(readFileSync(resourcesPath, 'utf-8'));
   if (entries.length === 0) {
     console.error(`check-resources: parsed 0 entries from ${relative(repoRoot, resourcesPath)} — parser may have lost sync.`);
+    process.exit(1);
+  }
+  const topicsPath = join(repoRoot, 'src', 'data', 'topics.ts');
+  const strands = parseStrands(readFileSync(topicsPath, 'utf-8'));
+  if (strands.length === 0) {
+    console.error(`check-resources: parsed 0 strands from ${relative(repoRoot, topicsPath)} — parser may have lost sync.`);
     process.exit(1);
   }
 
@@ -106,6 +129,8 @@ function main() {
     diskFiles,
     deployedPdfs,
     questionCountKeys,
+    packSources: loadPackSources(entries),
+    strands,
   });
 
   // Group by id for a more scannable report; ungrouped findings (orphan-pdf)
