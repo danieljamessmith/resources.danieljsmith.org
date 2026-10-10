@@ -77,14 +77,14 @@
 }
 \pagestyle{empty}
 
-% \djsLastUpdated{<date>}, called once after the setup line: one quiet line
+% \djsLastUpdated{<date>}, called once after the setup line: one line
 % at the foot of the first page only, left-aligned under the left header at
 % the 0.8in left margin. It is drawn over the page rather than set as a
 % footer, so no page style changes.
 \newcommand{\djsLastUpdated}[1]{%
   \AtBeginDocument{\AddToHookNext{shipout/foreground}{%
     \put(0.8in,-\dimexpr\paperheight-0.32in\relax){\makebox[0pt][l]{%
-      \footnotesize\color{black!55}Last updated #1}}}}}
+      \footnotesize Last updated #1}}}}}
 
 \newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
 
