@@ -37,16 +37,36 @@
 \usetikzlibrary{patterns}
 \usetikzlibrary{intersections}
 
-% Links and contents
+% Links and contents. The contents follow the TMUA papers: compact entries,
+% no dot leaders, and each question's mark total in grey after its label.
+\usepackage{tocloft}
+\tocloftpagestyle{fancy}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftsubsecindent}{1.5em}
+\setlength{\cftsubsecnumwidth}{0pt}
+\renewcommand{\cftsubsecfont}{\small\color{black}}
+\renewcommand{\cftsubsecpagefont}{\small\color{black}}
+\renewcommand{\cftsubsecleader}{\hfill}
 \usepackage[colorlinks=true,linkcolor=black,citecolor=magenta,urlcolor=black]{hyperref}%
 \urlstyle{same}
 
 % Pack macros
+% \marks also adds its value to the current question's total in the .aux
+% file, so the contents show each total from the second pass. The write
+% happens at shipout, so a box typeset more than once counts once.
+\makeatletter
+\newcommand{\djsAddMarks}[2]{%
+  \@ifundefined{djs@marks@#1}%
+    {\expandafter\xdef\csname djs@marks@#1\endcsname{#2}}%
+    {\expandafter\xdef\csname djs@marks@#1\endcsname
+      {\the\numexpr\csname djs@marks@#1\endcsname+#2\relax}}}
 \RenewDocumentCommand{\marks}{o m}{%
+  \protected@write\@auxout{}{\string\djsAddMarks{\number\value{enumi}}{#2}}%
   \IfValueTF{#1}%
     {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
     {\marginnote{\raggedright\textbf{[#2]}}}%
 }
+\makeatother
 
 \newcommand{\vspacerule}[2]{%
   \par\vspace*{#1}%
@@ -97,10 +117,27 @@
 % A no-op for QBT packs; \djsSolnHeader points it at the fancy header.
 \newcommand{\djsQuestionPageStyle}{}
 
+% A contents entry: "Question N" in a box wide enough for two digits, so the
+% mark totals line up, then the total in grey. Bookmarks keep "Question N".
+\makeatletter
+\newlength{\djsTocLabelWidth}
+\newcommand{\djsTocMarks}[1]{%
+  \@ifundefined{djs@marks@#1}{}{%
+    {\footnotesize\itshape\color{black!45}%
+     \csname djs@marks@#1\endcsname~mark%
+     \ifnum\csname djs@marks@#1\endcsname=1 \else s\fi}}}
+\newcommand{\djsTocEntry}[1]{%
+  \texorpdfstring
+    {\settowidth{\djsTocLabelWidth}{Question 00}%
+     \makebox[\dimexpr\djsTocLabelWidth+0.9em\relax][l]{Question #1}%
+     \djsTocMarks{#1}}%
+    {Question #1}}
+\makeatother
+
 \newcommand{\questionitem}{%
   \djsQuestionPageStyle
   \item\phantomsection
-  \addcontentsline{toc}{section}{Question \number\value{enumi}}%
+  \addcontentsline{toc}{subsection}{\protect\djsTocEntry{\number\value{enumi}}}%
 }
 
 \renewcommand{\contentsname}{Questions}

@@ -107,7 +107,7 @@ Further Maths QBT/Soln sources now use the shared pack preamble wrapper:
 ```
 
 The shared preamble owns the pack-level helpers (`\marks`, `\questionitem`,
-`\djsQbtHeader`, `\djsSolnHeader`, `\djsLastUpdated`, `\djsFrontMatter`, the `djsSolution` box,
+`\djsQbtHeader`, `\djsSolnHeader`, `\djsLastUpdated`, `\djsFrontMatter`, `\djsMechanicsPack`, the `djsSolution` box,
 the optional `djsSolutionFigure` environment, and the legacy colored-cancel
 `\cxl` macro). Contents-page links are black (`linkcolor=black`).
 
@@ -124,17 +124,46 @@ the optional `djsSolutionFigure` environment, and the legacy colored-cancel
   opening page, never part-way through a solution. This relies on every
   solution question starting after a `\newpage`, because `\thispagestyle`
   marks the next page shipped out. QBT packs keep the header on every page.
+- **Contents:** `\djsFrontMatter` prints the contents in the TMUA style
+  (tocloft: compact entries, no dot leaders), with each question's mark total
+  in grey after its label. `\marks` records its value in the `.aux` file
+  against the question number, so the totals appear from the second LaTeX
+  pass (latexmk reruns as needed). PDF bookmarks stay "Question N".
 
 All Further Maths QBT/Soln files are expected to stay at the fixed depth
 `public/tex/further-maths/<strand>/<topic>/{qbt,soln}/<file>.tex`, which makes
 the shared `\input` path stable. `scripts/check-pack-preamble.mjs` enforces
-this convention. The shared preamble does not include TMUA topic lines, answer
-labels or tocloft, nor tutoring worksheet timing/student header machinery.
+this convention. The shared preamble does not include TMUA topic lines or
+answer labels, nor tutoring worksheet timing/student header machinery.
 
 **Legacy Solution boxes on import:** packs imported from Overleaf may still use
 the old Solution `tcolorbox`. After importing one, run
 `node scripts/migrate-solution-boxes.mjs` to convert its boxes (the importer
 already points packs at the site shared preamble).
+
+**Value of g:** Further Mechanics packs call `\djsMechanicsPack` in their
+preamble, so the front page says to take g = 9.8 m s⁻² unless a question states
+otherwise, and that solutions also give final answers for g = 10 m s⁻² where
+these differ. A stem states g only when the question needs that value: a
+show-that or printed value that fails with g = 10, an exact or prescribed form
+that becomes unreachable, a later part that no longer follows, or a conclusion
+or comparison that flips. Untidier numbers alone do not justify it. Otherwise
+the stem leaves g out, so boards that use g = 10 can use the question. Packs
+outside Further Mechanics print no default, so their stems always state g when
+a numerical value is needed. When a solution to a question whose stem does not
+state g substitutes a value for g, its `djsSolution` box ends with one line,
+just before `\end{djsSolution}`:
+
+```latex
+\par\medskip\noindent\textbf{Final answers with \(g = 10\):} (a) \(300\,\mathrm{N}\);\quad (b) \(554\,\mathrm{N}\)
+```
+
+It lists only the parts whose final answer depends on g, worked with g = 10
+throughout (a printed value that a later part uses stays as printed), in the
+same form as the main answer: exact, decimal, or exact ≈ decimal. Where the
+main answer is an integer or decimal, give the g = 10 value to 3 s.f., or
+exactly if that needs 3 s.f. or fewer. A question whose stem states g has no
+list.
 
 **Further Maths last-updated dates:** every QBT/Soln document has exactly one
 `\djsLastUpdated{D Month YYYY}` before `\begin{document}`. It prints a quiet
