@@ -4,6 +4,7 @@
 \usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{mleftright}
 \usepackage{amsthm}
 \usepackage{float}
 \usepackage{ragged2e}
@@ -89,10 +90,16 @@
 % frame or tint. A part that breaks fills the rest of its page, so the rule
 % runs to the bottom margin; the unbroken or last part ends in a short
 % horizontal foot rule so a solution visibly stops. Unlike the TMUA box there
-% is no answer label and no extra \parskip: these solutions mix \\ line breaks
-% with blank lines, so paragraph skips would make the spacing uneven. The box
-% does not grow to the left, so the rule sits at the text edge; growing to the
-% right keeps the usable line width close to the old tcolorbox Solution box.
+% is no answer label. The box does not grow to the left, so the rule sits at
+% the text edge; growing to the right keeps the usable line width close to the
+% old tcolorbox Solution box.
+% Spacing inside the box: paragraphs are 6pt apart, so source blank lines show
+% (solutions put one after each display and none between a lead-in and its
+% display). Every display gets 6pt above and 10pt below, whatever the length
+% of its lead-in line; align rows are spread by an 8pt \jot; solution parts
+% are 14pt apart and sub-parts 8pt; \left and \right space like ordinary
+% brackets (mleftright); and no single line is stranded at a page break. No
+% skip can shrink, so full pages are not squeezed.
 \newtcolorbox{djsSolution}{%
   enhanced, breakable, frame hidden, sharp corners, colback=white,
   height fixed for=first and middle, height fill,
@@ -104,7 +111,18 @@
   overlay unbroken and last={%
     \fill[scarlet] (frame.south west)
       rectangle ([xshift=3.5cm, yshift=2.2pt]frame.south west);},
-  before upper={{\color{scarlet}\bfseries Solution}\par\vspace{4pt}}}
+  before upper={{\color{scarlet}\bfseries Solution}\par\vspace{4pt}%
+    \setlength{\parskip}{6pt plus 2pt}%
+    \setlength{\abovedisplayskip}{6pt plus 2pt}%
+    \setlength{\abovedisplayshortskip}{6pt plus 2pt}%
+    \setlength{\belowdisplayskip}{10pt plus 2pt}%
+    \setlength{\belowdisplayshortskip}{10pt plus 2pt}%
+    \setlength{\jot}{8pt}%
+    \setlist{parsep=6pt plus 2pt, topsep=6pt plus 2pt}%
+    \setlist[enumerate,1]{itemsep=14pt plus 2pt}%
+    \setlist[enumerate,2]{itemsep=8pt plus 2pt}%
+    \mleftright
+    \clubpenalty=10000 \widowpenalty=10000 \displaywidowpenalty=10000\relax}}
 
 % Optional smaller figure inside a solution box. \scalebox shrinks node text
 % with the drawing. Not applied to existing figures.

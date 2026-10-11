@@ -44,20 +44,24 @@ where $P(t)$ and $Q(t)$ are functions of $t$. \\
   \[
   \frac{12t-4v}{1+t}
   \]
+
   Newton's second law gives
   \begin{align*}
   2\frac{\mathrm{d}v}{\mathrm{d}t} &= \frac{12t-4v}{1+t}
   \end{align*}
+
   Rearranging into the form
   \[
   \frac{\mathrm{d}v}{\mathrm{d}t}+P(t)v=Q(t)
   \]
+
   gives
   \begin{align*}
   \frac{\mathrm{d}v}{\mathrm{d}t} &= \frac{12t-4v}{2(1+t)} \\
   &= \frac{6t-2v}{1+t} \\
   \frac{\mathrm{d}v}{\mathrm{d}t}+\frac{2}{1+t}v &= \frac{6t}{1+t}
   \end{align*}
+
   Hence
   \[
   P(t)=\frac{2}{1+t}
@@ -69,12 +73,14 @@ where $P(t)$ and $Q(t)$ are functions of $t$. \\
   \[
   \frac{\mathrm{d}v}{\mathrm{d}t}+\frac{2}{1+t}v=\frac{6t}{1+t}
   \]
+
   The integrating factor is
   \begin{align*}
   \mu(t) &= e^{\int \frac{2}{1+t}\, \mathrm{d}t} \\
   &= e^{2\ln(1+t)} \\
   &= (1+t)^2
   \end{align*}
+
   since $t\geq 0$, so $1+t>0$.
 
   Multiplying the differential equation by $(1+t)^2$ gives
@@ -82,6 +88,7 @@ where $P(t)$ and $Q(t)$ are functions of $t$. \\
   (1+t)^2\frac{\mathrm{d}v}{\mathrm{d}t}+\frac{2(1+t)^2}{1+t}v &= \frac{6t(1+t)^2}{1+t} \\
   (1+t)^2\frac{\mathrm{d}v}{\mathrm{d}t}+2(1+t)v &= 6t(1+t)
   \end{align*}
+
   The left-hand side is now the derivative of $(1+t)^2v$, so
   \begin{align*}
   \frac{\mathrm{d}}{\mathrm{d}t}\bigl((1+t)^2v\bigr) &= 6t(1+t)
@@ -99,10 +106,12 @@ where $P(t)$ and $Q(t)$ are functions of $t$. \\
   (1+0)^2(-5) &= 3(0)^2+2(0)^3+c \\
   -5 &= c
   \end{align*}
+
   So
   \begin{align*}
   (1+t)^2v &= 3t^2+2t^3-5
   \end{align*}
+
   and therefore
   \[
   v=\frac{2t^3+3t^2-5}{(1+t)^2}
@@ -112,6 +121,7 @@ where $P(t)$ and $Q(t)$ are functions of $t$. \\
   \begin{align*}
   2t^3+3t^2-5 &= (t-1)(2t^2+5t+5)
   \end{align*}
+
   so
   \[
   v=\frac{(t-1)(2t^2+5t+5)}{(1+t)^2}
@@ -121,14 +131,17 @@ where $P(t)$ and $Q(t)$ are functions of $t$. \\
   \[
   \frac{(t-1)(2t^2+5t+5)}{(1+t)^2}=0
   \]
+
   For $t\geq 0$, we have $(1+t)^2>0$, and also
   \[
   2t^2+5t+5>0
   \]
+
   so the only way $v=0$ is when
   \[
   t-1=0
   \]
+
   Hence
   \[
   t=1
@@ -173,11 +186,12 @@ Given that there are $x$ grams of salt in the tank after $t$ hours, \\
   \[
   V=600+20t-30t=600-10t=10(60-t)
   \]
+
   This is valid while the tank still contains liquid, so $0\le t<60$.
 
   The rate at which salt enters is
   \[
-  20\times 3=60 \text{ g/h}
+  20\times 3=60 \,\mathrm{g/h}
   \]
 
   The concentration of salt in the tank at time $t$ is
@@ -187,13 +201,14 @@ Given that there are $x$ grams of salt in the tank after $t$ hours, \\
 
   Since the mixture leaves at $30$ litres/h, the rate at which salt leaves is
   \[
-  30\left(\frac{x}{600-10t}\right)=\frac{30x}{600-10t}=\frac{3x}{60-t} \text{ g/h}
+  30\left(\frac{x}{600-10t}\right)=\frac{30x}{600-10t}=\frac{3x}{60-t} \,\mathrm{g/h}
   \]
 
   Hence,
   \[
   \frac{\mathrm{d}x}{\mathrm{d}t}=\text{rate in}-\text{rate out}
   \]
+
   so
   \[
   \frac{\mathrm{d}x}{\mathrm{d}t}=60-\frac{3x}{60-t}
@@ -208,6 +223,7 @@ Given that there are $x$ grams of salt in the tank after $t$ hours, \\
   \[
   \frac{\mathrm{d}x}{\mathrm{d}t}+\frac{3x}{60-t}=60
   \]
+
   with the initial condition $x(0)=0$, since the tank initially contains pure water.
 
   The integrating factor is
@@ -274,7 +290,7 @@ Given that there are $x$ grams of salt in the tank after $t$ hours, \\
 
   Hence the number of grams of salt in the tank after $30$ hours is
   \[
-  675\text{ g}
+  675\,\mathrm{g}
   \]
 
   \item One limitation is that the model assumes the salt is mixed instantly and uniformly throughout the tank, which is not completely realistic.
@@ -322,6 +338,7 @@ Given that there are $x$ grams of fertiliser in the tank after $t$ minutes, \\
       &=600-3t\\
       &=3(200-t)
   \end{align*}
+
   This is valid while the tank still contains liquid, so
   \[
   600-3t>0 \quad \Rightarrow \quad t<200
@@ -329,12 +346,12 @@ Given that there are $x$ grams of fertiliser in the tank after $t$ minutes, \\
 
   The fertiliser enters at
   \[
-  6 \times 2 = 12 \text{ g/min}
+  6 \times 2 = 12 \,\mathrm{g/min}
   \]
 
   The concentration in the tank at time \(t\) is
   \[
-  \frac{x}{V}=\frac{x}{600-3t} \text{ g/L}
+  \frac{x}{V}=\frac{x}{600-3t} \,\mathrm{g/L}
   \]
 
   So the fertiliser leaves at the rate
@@ -481,44 +498,53 @@ After $30$ minutes, the concentration of dye in the tank was measured as $1.52$ 
   \begin{enumerate}[label=(\roman*)]
     \item Convert the flow rates to litres per minute:
     \[
-    200\text{ ml min}^{-1}=0.2\text{ L min}^{-1},\qquad 100\text{ ml min}^{-1}=0.1\text{ L min}^{-1},\qquad 300\text{ ml min}^{-1}=0.3\text{ L min}^{-1}
+    200\,\mathrm{ml\,min}^{-1}=0.2\,\mathrm{L\,min}^{-1},\qquad 100\,\mathrm{ml\,min}^{-1}=0.1\,\mathrm{L\,min}^{-1},\qquad 300\,\mathrm{ml\,min}^{-1}=0.3\,\mathrm{L\,min}^{-1}
     \]
+
     So the net rate of change of volume is
     \[
-    0.2+0.1-0.3=0\text{ L min}^{-1}
+    0.2+0.1-0.3=0\,\mathrm{L\,min}^{-1}
     \]
+
     Hence the volume stays constant at its initial value of $15$ litres:
     \[
     V(t)=15
     \]
+
     So the volume of liquid in the tank at time $t$ is $15$ litres.
 
     \item The rate at which dye enters through the first pipe is
     \[
-    0.2\bigl(4+e^{-0.1t}\bigr)\text{ mg min}^{-1}
+    0.2\bigl(4+e^{-0.1t}\bigr)\,\mathrm{mg\,min}^{-1}
     \]
+
     so
     \[
     \text{rate in}=0.8+0.2e^{-0.1t}
     \]
+
     The second pipe contains pure water, so it contributes no dye.
 
     Since the tank is well mixed and has volume $15$ L, the concentration of dye in the tank is
     \[
-    \frac{m}{15}\text{ mg L}^{-1}
+    \frac{m}{15}\,\mathrm{mg\,L}^{-1}
     \]
+
     Therefore the rate at which dye leaves the tank is
     \[
-    0.3\times \frac{m}{15}=\frac{0.3m}{15}=\frac{m}{50}\text{ mg min}^{-1}
+    0.3\times \frac{m}{15}=\frac{0.3m}{15}=\frac{m}{50}\,\mathrm{mg\,min}^{-1}
     \]
+
     Hence
     \[
     \frac{\mathrm{d}m}{\mathrm{d}t}=\text{rate in}-\text{rate out}
     \]
+
     so
     \[
     \frac{\mathrm{d}m}{\mathrm{d}t}=0.8+0.2e^{-0.1t}-\frac{m}{50}
     \]
+
     as required.
   \end{enumerate}
 
@@ -526,24 +552,29 @@ After $30$ minutes, the concentration of dye in the tank was measured as $1.52$ 
   \[
   \frac{\mathrm{d}m}{\mathrm{d}t}+\frac{1}{50}m=0.8+0.2e^{-0.1t}
   \]
+
   The integrating factor is
   \[
-  \exp\!\left(\int \frac{1}{50}\, \mathrm{d}t\right)=e^{t/50}
+  \exp\left(\int \frac{1}{50}\, \mathrm{d}t\right)=e^{t/50}
   \]
+
   Multiply the differential equation by $e^{t/50}$:
   \begin{align*}
   e^{t/50}\frac{\mathrm{d}m}{\mathrm{d}t}+\frac{1}{50}e^{t/50}m
   &=0.8e^{t/50}+0.2e^{-0.1t}e^{t/50} \\
   &=0.8e^{t/50}+0.2e^{-0.08t}
   \end{align*}
+
   The left-hand side is
   \[
   \frac{\mathrm{d}}{\mathrm{d}t}\bigl(me^{t/50}\bigr)
   \]
+
   so
   \[
   \frac{\mathrm{d}}{\mathrm{d}t}\bigl(me^{t/50}\bigr)=0.8e^{t/50}+0.2e^{-0.08t}
   \]
+
   Integrating both sides with respect to $t$:
   \begin{align*}
   me^{t/50}
@@ -551,18 +582,21 @@ After $30$ minutes, the concentration of dye in the tank was measured as $1.52$ 
   &=0.8(50)e^{t/50}+0.2\left(\frac{1}{-0.08}\right)e^{-0.08t}+c \\
   &=40e^{t/50}-2.5e^{-0.08t}+c
   \end{align*}
+
   Divide through by $e^{t/50}$:
   \begin{align*}
   m
   &=40-2.5e^{-0.08t}e^{-t/50}+ce^{-t/50} \\
   &=40-2.5e^{-0.1t}+ce^{-0.02t}
   \end{align*}
+
   Initially there are $6$ mg of dye in the tank, so $m(0)=6$. Substituting $t=0$ gives
   \begin{align*}
   6&=40-2.5+c \\
   6&=37.5+c \\
   c&=-31.5
   \end{align*}
+
   Therefore
   \[
   m=40-2.5e^{-0.1t}-31.5e^{-0.02t}
@@ -572,11 +606,13 @@ After $30$ minutes, the concentration of dye in the tank was measured as $1.52$ 
   \[
   m(30)=40-2.5e^{-3}-31.5e^{-0.6}
   \]
+
   so the concentration is
   \[
-  \frac{m(30)}{15}=\frac{40-2.5e^{-3}-31.5e^{-0.6}}{15}\approx 1.51\text{ mg L}^{-1}
+  \frac{m(30)}{15}=\frac{40-2.5e^{-3}-31.5e^{-0.6}}{15}\approx 1.51\,\mathrm{mg\,L}^{-1}
   \]
-  The measured concentration was $1.52\text{ mg L}^{-1}$, which is very close to the model prediction. Therefore the model appears to be reasonable.
+
+  The measured concentration was $1.52\,\mathrm{mg\,L}^{-1}$, which is very close to the model prediction. Therefore the model appears to be reasonable.
 \end{enumerate}
 \end{djsSolution}
 
@@ -609,75 +645,91 @@ where $P(t)$ and $Q(t)$ are functions of $t$. \\
   \[
   2\frac{\mathrm{d}v}{\mathrm{d}t}=-2t(v+3)
   \]
+
   Expanding and dividing by $2$ gives
   \[
   \frac{\mathrm{d}v}{\mathrm{d}t}=-tv-3t
   \]
+
   Hence
   \[
   \frac{\mathrm{d}v}{\mathrm{d}t}+tv=-3t
   \]
+
   Therefore, $P(t)=t$ and $Q(t)=-3t$.
 
   \item From part (a), the differential equation is
   \[
   \frac{\mathrm{d}v}{\mathrm{d}t}+tv=-3t
   \]
+
   The integrating factor is
   \[
   e^{\int t\,\mathrm{d}t}=e^{t^2/2}
   \]
+
   Multiplying the differential equation by $e^{t^2/2}$ gives
   \[
   e^{t^2/2}\frac{\mathrm{d}v}{\mathrm{d}t}+tve^{t^2/2}=-3te^{t^2/2}
   \]
+
   The left-hand side is
   \[
   \frac{\mathrm{d}}{\mathrm{d}t}\left(ve^{t^2/2}\right)
   \]
+
   so
   \[
   \frac{\mathrm{d}}{\mathrm{d}t}\left(ve^{t^2/2}\right)=-3te^{t^2/2}
   \]
+
   Integrating with respect to $t$,
   \begin{align*}
   ve^{t^2/2} &= \int -3te^{t^2/2}\,\mathrm{d}t \\
   &= -3e^{t^2/2}+c
   \end{align*}
+
   Therefore
   \[
   v=-3+ce^{-t^2/2}
   \]
+
   Using the initial condition $v=5$ when $t=0$,
   \begin{align*}
   5&=-3+ce^{0} \\
   5&=-3+c \\
   c&=8
   \end{align*}
+
   Hence
   \[
   v=-3+8e^{-t^2/2}
   \]
+
   For $B$ to be stationary, $v=0$. So
   \begin{align*}
   0&=-3+8e^{-t^2/2} \\
   8e^{-t^2/2}&=3 \\
   e^{-t^2/2}&=\frac{3}{8}
   \end{align*}
+
   Taking natural logarithms,
   \begin{align*}
   -\frac{t^2}{2}&=\ln\left(\frac{3}{8}\right) \\
   \frac{t^2}{2}&=\ln\left(\frac{8}{3}\right) \\
   t^2&=2\ln\left(\frac{8}{3}\right)
   \end{align*}
+
   Since $t\ge 0$, the first time is
   \[
   t=\sqrt{2\ln\left(\frac{8}{3}\right)}
   \]
+
   Numerically,
   \[
-  t\approx 1.40\text{ s}
+  t\approx 1.40\,\mathrm{s}
   \]
+
   Therefore, the first time at which $B$ is stationary is $\sqrt{2\ln\left(\frac{8}{3}\right)}$ s, approximately $1.40$ s.
 \end{enumerate}
 \end{djsSolution}
@@ -726,7 +778,7 @@ The cycle ends when there is again no flow through the pipe. \\
   &= \frac{e^t}{\sin t}
   \end{align*}
 
-  Multiplying the differential equation by \(\dfrac{e^t}{\sin t}\) gives
+  Multiplying the differential equation by \(\frac{e^t}{\sin t}\) gives
   \begin{align*}
   \frac{e^t}{\sin t}\frac{\mathrm{d}R}{\mathrm{d}t}
   +\frac{e^t}{\sin t}(1-\cot t)R
@@ -741,6 +793,7 @@ The cycle ends when there is again no flow through the pipe. \\
   &= \frac{e^t}{\sin t}\left(1-\frac{\cos t}{\sin t}\right) \\
   &= \frac{e^t}{\sin t}(1-\cot t)
   \end{align*}
+
   so the left-hand side is
   \[
   \frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{e^t}{\sin t}R\right)
@@ -795,6 +848,7 @@ The cycle ends when there is again no flow through the pipe. \\
   \[
   \tan^{-1}t+\frac{3\pi}{4}>0
   \]
+
   so the only way \(R=0\) is if
   \[
   \sin t=0
@@ -804,6 +858,7 @@ The cycle ends when there is again no flow through the pipe. \\
   \[
   t=n\pi \qquad (n\in\mathbb{Z})
   \]
+
   and the first time after \(t=0\) is
   \[
   t=\pi
@@ -821,7 +876,7 @@ R(t)=e^{-t}\sin t\left(\tan^{-1}t+\frac{3\pi}{4}\right)
 Differentiate:
 \[
 R'(t)
-= e^{-t}\!\left[\cos t\left(\tan^{-1}t+\frac{3\pi}{4}\right)
+= e^{-t}\left[\cos t\left(\tan^{-1}t+\frac{3\pi}{4}\right)
 +\frac{\sin t}{1+t^2}
 -\sin t\left(\tan^{-1}t+\frac{3\pi}{4}\right)\right]
 \]
@@ -1039,6 +1094,7 @@ The concentration $C$, in suitable units, of a pollutant in a reservoir at time 
     \[
     -\frac{\mathrm{d}C}{\mathrm{d}t}\propto C
     \]
+
     so, for some constant \(k>0\),
     \[
     \frac{\mathrm{d}C}{\mathrm{d}t}=-kC
@@ -1048,26 +1104,31 @@ The concentration $C$, in suitable units, of a pollutant in a reservoir at time 
     \[
     C=Ae^{-kt}
     \]
+
     Then
     \[
     \frac{\mathrm{d}C}{\mathrm{d}t}=\frac{\mathrm{d}}{\mathrm{d}t}(Ae^{-kt})=-kAe^{-kt}
     \]
+
     Since \(Ae^{-kt}=C\), this becomes
     \[
     \frac{\mathrm{d}C}{\mathrm{d}t}=-kC
     \]
+
     so the differential equation is satisfied.
 
     For the initial condition,
     \[
     C(0)=Ae^{-k\cdot 0}=A
     \]
+
     so the initial concentration is correct.
 
     For the long-term condition, since \(k>0\),
     \[
     \lim_{t\to\infty}C=\lim_{t\to\infty}Ae^{-kt}=A\lim_{t\to\infty}e^{-kt}=0
     \]
+
     Hence \(C=Ae^{-kt}\) satisfies the differential equation, the initial condition and the long-term condition.
   \end{enumerate}
 
@@ -1075,6 +1136,7 @@ The concentration $C$, in suitable units, of a pollutant in a reservoir at time 
   \[
   \frac{\mathrm{d}C}{\mathrm{d}t}+\frac{2t}{1+t^2}C=R(t)
   \]
+
   the integrating factor is
   \[
   \mu(t)=e^{\int \frac{2t}{1+t^2}\,\mathrm{d}t}
@@ -1086,6 +1148,7 @@ The concentration $C$, in suitable units, of a pollutant in a reservoir at time 
   \qquad \Rightarrow \qquad
   \mathrm{d}u=2t\,\mathrm{d}t
   \]
+
   Then
   \begin{align*}
   \int \frac{2t}{1+t^2}\,\mathrm{d}t
@@ -1093,12 +1156,14 @@ The concentration $C$, in suitable units, of a pollutant in a reservoir at time 
   &=\ln u\\
   &=\ln(1+t^2)
   \end{align*}
+
   since \(1+t^2>0\).
 
   Therefore
   \[
   \mu(t)=e^{\ln(1+t^2)}=1+t^2
   \]
+
   Hence an integrating factor is \(1+t^2\).
 
   \item
@@ -1107,37 +1172,44 @@ The concentration $C$, in suitable units, of a pollutant in a reservoir at time 
     \[
     \frac{\mathrm{d}C}{\mathrm{d}t}+\frac{2t}{1+t^2}C=0
     \]
+
     Multiply through by the integrating factor \(1+t^2\):
     \[
     (1+t^2)\frac{\mathrm{d}C}{\mathrm{d}t}+2tC=0
     \]
+
     The left-hand side is the derivative of \((1+t^2)C\), so
     \[
     \frac{\mathrm{d}}{\mathrm{d}t}\bigl((1+t^2)C\bigr)=0
     \]
+
     Integrating gives
     \[
     (1+t^2)C=K
     \]
+
     where \(K\) is a constant.
 
     Use the initial condition \(C(0)=A\):
     \[
     (1+0^2)A=K
     \]
+
     so \(K=A\). Therefore
     \[
     C=\frac{A}{1+t^2}
     \]
 
-    \item Half the initial concentration is \(\dfrac{A}{2}\), so set
+    \item Half the initial concentration is \(\frac{A}{2}\), so set
     \[
     \frac{A}{1+t^2}=\frac{A}{2}
     \]
+
     Cancelling \(A\),
     \[
     \frac{1}{1+t^2}=\frac{1}{2}
     \]
+
     so
     \[
     1+t^2=2
@@ -1145,10 +1217,12 @@ The concentration $C$, in suitable units, of a pollutant in a reservoir at time 
     \[
     t^2=1
     \]
+
     Since \(t\ge 0\),
     \[
     t=1 \text{ hour}
     \]
+
     Therefore the time is \(60\) minutes.
   \end{enumerate}
 
@@ -1156,18 +1230,22 @@ The concentration $C$, in suitable units, of a pollutant in a reservoir at time 
   \[
   R(t)=\frac{te^{-t}}{1+t^2}
   \]
+
   then the differential equation is
   \[
   \frac{\mathrm{d}C}{\mathrm{d}t}+\frac{2t}{1+t^2}C=\frac{te^{-t}}{1+t^2}
   \]
+
   Multiply through by the integrating factor \(1+t^2\):
   \[
   (1+t^2)\frac{\mathrm{d}C}{\mathrm{d}t}+2tC=te^{-t}
   \]
+
   Hence
   \[
   \frac{\mathrm{d}}{\mathrm{d}t}\bigl((1+t^2)C\bigr)=te^{-t}
   \]
+
   Integrating,
   \[
   (1+t^2)C=\int te^{-t}\,\mathrm{d}t
@@ -1177,10 +1255,12 @@ The concentration $C$, in suitable units, of a pollutant in a reservoir at time 
   \[
   u=t,\qquad \frac{\mathrm{d}v}{\mathrm{d}t}=e^{-t}
   \]
+
   Then
   \[
   \frac{\mathrm{d}u}{\mathrm{d}t}=1,\qquad v=-e^{-t}
   \]
+
   So
   \begin{align*}
   \int te^{-t}\,\mathrm{d}t
@@ -1190,6 +1270,7 @@ The concentration $C$, in suitable units, of a pollutant in a reservoir at time 
   &=-te^{-t}-e^{-t}+K\\
   &=-(1+t)e^{-t}+K
   \end{align*}
+
   Therefore
   \[
   (1+t^2)C=-(1+t)e^{-t}+K
@@ -1200,10 +1281,12 @@ The concentration $C$, in suitable units, of a pollutant in a reservoir at time 
   (1+0^2)A&=-(1+0)e^{0}+K\\
   A&=-1+K
   \end{align*}
+
   so
   \[
   K=A+1
   \]
+
   Hence
   \[
   C=\frac{A+1-(1+t)e^{-t}}{1+t^2}
@@ -1213,6 +1296,7 @@ The concentration $C$, in suitable units, of a pollutant in a reservoir at time 
   \[
   \lim_{t\to\infty}C=\lim_{t\to\infty}\frac{A+1-(1+t)e^{-t}}{1+t^2}=0
   \]
+
   so this model also has the correct long-term value.
 
   \item From part (c), model (c) predicts the concentration falls to half its initial value after \(60\) minutes.
@@ -1221,14 +1305,17 @@ The concentration $C$, in suitable units, of a pollutant in a reservoir at time 
   \[
   C=\frac{6-(1+t)e^{-t}}{1+t^2}
   \]
+
   Half the initial concentration is \(2.5\), so solve
   \[
   \frac{6-(1+t)e^{-t}}{1+t^2}=2.5
   \]
+
   Using a calculator gives
   \[
   t\approx 1.055 \text{ hours}
   \]
+
   which is
   \[
   1.055\times 60\approx 63.3 \text{ minutes}
@@ -1270,8 +1357,9 @@ Let $m$ be the amount of dye, in milligrams, in the vessel at time $t$ minutes. 
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item The liquid enters at \(300\) ml/min and leaves at \(200\) ml/min, so the net increase in volume is
 \[
-300-200=100\text{ ml/min}=0.1\text{ L/min}
+300-200=100\,\mathrm{ml/min}=0.1\,\mathrm{L/min}
 \]
+
 Hence, starting from \(4\) L, the volume after \(t\) minutes is
 \[
 V(t)=4+0.1t
@@ -1281,17 +1369,19 @@ Now form a rate equation for the dye.
 
 The dye enters with concentration \(2e^{-0.1t}\) mg/L and flow rate \(0.3\) L/min, so the rate of dye entering is
 \[
-0.3 \times 2e^{-0.1t}=0.6e^{-0.1t}\text{ mg/min}
+0.3 \times 2e^{-0.1t}=0.6e^{-0.1t}\,\mathrm{mg/min}
 \]
 
 The concentration of dye in the vessel at time \(t\) is
 \[
-\frac{m}{4+0.1t}\text{ mg/L}
+\frac{m}{4+0.1t}\,\mathrm{mg/L}
 \]
+
 Since liquid leaves at \(0.2\) L/min, the rate of dye leaving is
 \[
 0.2\left(\frac{m}{4+0.1t}\right)
 \]
+
 Simplifying,
 \[
 0.2\left(\frac{m}{4+0.1t}\right)=\frac{0.2m}{4+0.1t}=\frac{2m}{40+t}
@@ -1303,6 +1393,7 @@ Therefore,
 &=\text{rate in}-\text{rate out} \\
 &=0.6e^{-0.1t}-\frac{2m}{40+t}
 \end{align*}
+
 So
 \[
 V(t)=4+0.1t \text{ litres}, \qquad \frac{\mathrm{d}m}{\mathrm{d}t}=0.6e^{-0.1t}-\frac{2m}{40+t}
@@ -1312,6 +1403,7 @@ V(t)=4+0.1t \text{ litres}, \qquad \frac{\mathrm{d}m}{\mathrm{d}t}=0.6e^{-0.1t}-
 \[
 \frac{\mathrm{d}m}{\mathrm{d}t}+\frac{2m}{40+t}=0.6e^{-0.1t}
 \]
+
 This is a linear differential equation.
 
 The integrating factor is
@@ -1327,6 +1419,7 @@ Multiplying the differential equation by \((40+t)^2\),
 (40+t)^2\frac{\mathrm{d}m}{\mathrm{d}t}+(40+t)^2\frac{2m}{40+t}
 &=0.6(40+t)^2e^{-0.1t}
 \end{align*}
+
 So
 \[
 \frac{\mathrm{d}}{\mathrm{d}t}\left((40+t)^2m\right)=0.6(40+t)^2e^{-0.1t}
@@ -1336,10 +1429,12 @@ Integrating both sides,
 \[
 (40+t)^2m=\int 0.6(40+t)^2e^{-0.1t}\,\mathrm{d}t
 \]
+
 Expand \((40+t)^2\):
 \[
 (40+t)^2=t^2+80t+1600
 \]
+
 So
 \[
 (40+t)^2m=\int 0.6(t^2+80t+1600)e^{-0.1t}\,\mathrm{d}t
@@ -1349,18 +1444,21 @@ Let
 \[
 I=\int 0.6(t^2+80t+1600)e^{-0.1t}\,\mathrm{d}t
 \]
+
 and use integration by parts with
 \[
 u=t^2+80t+1600,
 \qquad
 \frac{\mathrm{d}v}{\mathrm{d}t}=0.6e^{-0.1t}
 \]
+
 Then
 \[
 \frac{\mathrm{d}u}{\mathrm{d}t}=2t+80,
 \qquad
 v=\int 0.6e^{-0.1t}\,\mathrm{d}t=-6e^{-0.1t}
 \]
+
 So
 \begin{align*}
 I
@@ -1375,18 +1473,21 @@ Now let
 \[
 J=\int (t+40)e^{-0.1t}\,\mathrm{d}t
 \]
+
 Again integrating by parts, take
 \[
 u=t+40,
 \qquad
 \frac{\mathrm{d}v}{\mathrm{d}t}=e^{-0.1t}
 \]
+
 Then
 \[
 \frac{\mathrm{d}u}{\mathrm{d}t}=1,
 \qquad
 v=\int e^{-0.1t}\,\mathrm{d}t=-10e^{-0.1t}
 \]
+
 Hence
 \begin{align*}
 J
@@ -1410,6 +1511,7 @@ Therefore,
 \int 0.6(t^2+80t+1600)e^{-0.1t}\,\mathrm{d}t
 =-6e^{-0.1t}(t^2+100t+2600)+c
 \]
+
 where \(c\) is a constant.
 
 So
@@ -1426,6 +1528,7 @@ Now use the initial condition \(m=4\) when \(t=0\):
 6400
 &=-15600+c
 \end{align*}
+
 Thus
 \[
 c=22000
@@ -1435,6 +1538,7 @@ Hence
 \[
 (40+t)^2m=22000-6e^{-0.1t}(t^2+100t+2600)
 \]
+
 and so
 \[
 m=\frac{22000-6e^{-0.1t}(t^2+100t+2600)}{(40+t)^2}
@@ -1442,12 +1546,12 @@ m=\frac{22000-6e^{-0.1t}(t^2+100t+2600)}{(40+t)^2}
 
 Therefore, the amount of dye is
 \[
-m(t)=\frac{22000-6e^{-0.1t}(t^2+100t+2600)}{(40+t)^2}\text{ mg}
+m(t)=\frac{22000-6e^{-0.1t}(t^2+100t+2600)}{(40+t)^2}\,\mathrm{mg}
 \]
 
   \item After \(20\) minutes, the model gives volume
 \[
-V(20)=4+0.1(20)=6\text{ L}
+V(20)=4+0.1(20)=6\,\mathrm{L}
 \]
 
 Using the expression for \(m\),
@@ -1458,12 +1562,13 @@ m(20)
 &=\frac{22000-30000e^{-2}}{3600} \\
 &=\frac{55}{9}-\frac{25}{3}e^{-2}
 \end{align*}
+
 So the predicted concentration is
 \begin{align*}
 \frac{m(20)}{V(20)}
 &=\frac{1}{6}\left(\frac{55}{9}-\frac{25}{3}e^{-2}\right) \\
 &=\frac{55}{54}-\frac{25}{18}e^{-2} \\
-&\approx 0.831\text{ mg/L}
+&\approx 0.831\,\mathrm{mg/L}
 \end{align*}
 
 The measured concentration was \(0.82\) mg/L, which is very close to \(0.831\) mg/L.
@@ -1518,14 +1623,17 @@ A resistance to motion, modelled by a force of magnitude $0.2mv\,\mathrm{N}$, ac
   \[
   0.2mv \quad \text{and} \quad m
   \]
+
   both acting opposite to the motion. Taking the direction of motion as positive and using Newton's second law,
   \[
   m\frac{\mathrm{d}v}{\mathrm{d}t}=-0.2mv-m
   \]
+
   Dividing by $m$ gives
   \[
   \frac{\mathrm{d}v}{\mathrm{d}t}+0.2v=-1
   \]
+
   as required.
 
   \item \begin{enumerate}[label=(\roman*)]
@@ -1533,34 +1641,41 @@ A resistance to motion, modelled by a force of magnitude $0.2mv\,\mathrm{N}$, ac
     \[
     \frac{\mathrm{d}v}{\mathrm{d}t}+\frac15v=-1
     \]
+
     The integrating factor is
     \[
     e^{\int \frac15\,\mathrm{d}t}=e^{t/5}
     \]
+
     Multiplying the differential equation by $e^{t/5}$,
     \begin{align*}
     e^{t/5}\frac{\mathrm{d}v}{\mathrm{d}t}+\frac15e^{t/5}v&=-e^{t/5} \\
     \frac{\mathrm{d}}{\mathrm{d}t}\left(ve^{t/5}\right)&=-e^{t/5}
     \end{align*}
+
     Integrating,
     \begin{align*}
     ve^{t/5}&=\int -e^{t/5}\,\mathrm{d}t \\
     &=-5e^{t/5}+c
     \end{align*}
+
     Hence
     \[
     v=-5+ce^{-t/5}
     \]
+
     The boat comes to rest at $t=10$, so $v=0$ when $t=10$:
     \begin{align*}
     0&=-5+ce^{-2} \\
     ce^{-2}&=5 \\
     c&=5e^2
     \end{align*}
+
     Therefore
     \[
     v=5e^2e^{-t/5}-5=5\left(e^{2-t/5}-1\right)
     \]
+
     So the solution is $v=5\left(e^{2-t/5}-1\right)$ for $5 \le t \le 10$.
 
     \item Substituting $t=5$ into the result from part (i),
@@ -1568,6 +1683,7 @@ A resistance to motion, modelled by a force of magnitude $0.2mv\,\mathrm{N}$, ac
     v(5)&=5\left(e^{2-1}-1\right) \\
     &=5(e-1)
     \end{align*}
+
     Hence the velocity when $t=5$ is $5(e-1)\,\mathrm{m\,s^{-1}}$.
   \end{enumerate}
 
@@ -1575,10 +1691,12 @@ A resistance to motion, modelled by a force of magnitude $0.2mv\,\mathrm{N}$, ac
   \[
   m\frac{\mathrm{d}v}{\mathrm{d}t}=\lambda mt^2-0.2mv
   \]
+
   Dividing by $m$,
   \[
   \frac{\mathrm{d}v}{\mathrm{d}t}+0.2v=\lambda t^2
   \]
+
   as required.
 
   \item \begin{enumerate}[label=(\roman*)]
@@ -1586,58 +1704,70 @@ A resistance to motion, modelled by a force of magnitude $0.2mv\,\mathrm{N}$, ac
     \[
     \frac{\mathrm{d}v}{\mathrm{d}t}+\frac15v=\lambda t^2
     \]
+
     The integrating factor is again
     \[
     e^{t/5}
     \]
+
     Multiplying through by $e^{t/5}$,
     \begin{align*}
     e^{t/5}\frac{\mathrm{d}v}{\mathrm{d}t}+\frac15e^{t/5}v&=\lambda t^2e^{t/5} \\
     \frac{\mathrm{d}}{\mathrm{d}t}\left(ve^{t/5}\right)&=\lambda t^2e^{t/5}
     \end{align*}
+
     So
     \[
     ve^{t/5}=\lambda\int t^2e^{t/5}\,\mathrm{d}t+c
     \]
+
     Let
     \[
     I=\int t^2e^{t/5}\,\mathrm{d}t
     \]
-    Integrating by parts with $u=t^2$ and $\dfrac{\mathrm{d}w}{\mathrm{d}t}=e^{t/5}$,
+
+    Integrating by parts with $u=t^2$ and $\frac{\mathrm{d}w}{\mathrm{d}t}=e^{t/5}$,
     \begin{align*}
     I&=5t^2e^{t/5}-\int 10te^{t/5}\,\mathrm{d}t \\
     &=5t^2e^{t/5}-10\int te^{t/5}\,\mathrm{d}t
     \end{align*}
+
     Now let
     \[
     J=\int te^{t/5}\,\mathrm{d}t
     \]
+
     Again integrating by parts,
     \begin{align*}
     J&=5te^{t/5}-\int 5e^{t/5}\,\mathrm{d}t \\
     &=5te^{t/5}-25e^{t/5}
     \end{align*}
+
     Hence
     \begin{align*}
     I&=5t^2e^{t/5}-10\left(5te^{t/5}-25e^{t/5}\right) \\
     &=5t^2e^{t/5}-50te^{t/5}+250e^{t/5} \\
     &=5e^{t/5}\left(t^2-10t+50\right)
     \end{align*}
+
     Therefore
     \begin{align*}
     ve^{t/5}&=\lambda\left[5e^{t/5}\left(t^2-10t+50\right)\right]+c \\
     v&=5\lambda\left(t^2-10t+50\right)+ce^{-t/5}
     \end{align*}
+
     The boat starts from rest, so $v=0$ when $t=0$:
     \begin{align*}
     0&=5\lambda(50)+c \\
     c&=-250\lambda
     \end{align*}
+
     Hence
     \begin{align*}
     v&=5\lambda\left(t^2-10t+50\right)-250\lambda e^{-t/5} \\
     &=5\lambda\left(t^2-10t+50-50e^{-t/5}\right)
     \end{align*}
+
     Thus, for $0 \le t \le 5$,
     \[
     v=5\lambda\left(t^2-10t+50-50e^{-t/5}\right)
@@ -1650,10 +1780,12 @@ A resistance to motion, modelled by a force of magnitude $0.2mv\,\mathrm{N}$, ac
     v(5)&=5\lambda\left(25-50+50-50e^{-1}\right) \\
     &=5\lambda\left(25-\frac{50}{e}\right)
     \end{align*}
+
     From part (c)(ii),
     \[
     v(5)=5(e-1)
     \]
+
     Equating these,
     \begin{align*}
     5\lambda\left(25-\frac{50}{e}\right)&=5(e-1) \\
@@ -1661,10 +1793,12 @@ A resistance to motion, modelled by a force of magnitude $0.2mv\,\mathrm{N}$, ac
     \lambda\left(\frac{25e-50}{e}\right)&=e-1 \\
     \lambda\left(\frac{25(e-2)}{e}\right)&=e-1
     \end{align*}
+
     So
     \[
     \lambda=\frac{e(e-1)}{25(e-2)}
     \]
+
     Therefore
     \[
     \lambda=\frac{e(e-1)}{25(e-2)}\approx 0.260
@@ -1675,6 +1809,7 @@ A resistance to motion, modelled by a force of magnitude $0.2mv\,\mathrm{N}$, ac
   \[
   s=\int_0^{10} v\,\mathrm{d}t=\int_0^5 v\,\mathrm{d}t+\int_5^{10} v\,\mathrm{d}t
   \]
+
   For the powered phase,
   \begin{align*}
   s_1&=\int_0^5 5\lambda\left(t^2-10t+50-50e^{-t/5}\right)\,\mathrm{d}t \\
@@ -1684,14 +1819,16 @@ A resistance to motion, modelled by a force of magnitude $0.2mv\,\mathrm{N}$, ac
   &=5\lambda\left(-\frac{250}{3}+\frac{250}{e}\right) \\
   &=1250\lambda\left(\frac{3-e}{3e}\right)
   \end{align*}
-  Substituting $\lambda=\dfrac{e(e-1)}{25(e-2)}$,
+
+  Substituting $\lambda=\frac{e(e-1)}{25(e-2)}$,
   \begin{align*}
   s_1&=1250\left(\frac{e(e-1)}{25(e-2)}\right)\left(\frac{3-e}{3e}\right) \\
   &=\frac{50(e-1)(3-e)}{3(e-2)}
   \end{align*}
+
   So
   \[
-  s_1\approx 11.2\text{ m}
+  s_1\approx 11.2\,\mathrm{m}
   \]
 
   For the drogue phase,
@@ -1702,9 +1839,10 @@ A resistance to motion, modelled by a force of magnitude $0.2mv\,\mathrm{N}$, ac
   &=5\left((-5-10)-(-5e-5)\right) \\
   &=25(e-2)
   \end{align*}
+
   So
   \[
-  s_2\approx 18.0\text{ m}
+  s_2\approx 18.0\,\mathrm{m}
   \]
 
   Therefore the total distance is
@@ -1714,7 +1852,8 @@ A resistance to motion, modelled by a force of magnitude $0.2mv\,\mathrm{N}$, ac
   &\approx 11.2+18.0 \\
   &\approx 29.2
   \end{align*}
-  Hence the total distance travelled, to the nearest metre, is $29\text{ m}$.
+
+  Hence the total distance travelled, to the nearest metre, is $29\,\mathrm{m}$.
 \end{enumerate}
 \end{djsSolution}
 
@@ -1761,7 +1900,6 @@ In this question, take $g = 9.8\,\mathrm{m\,s^{-2}}$. \\
   \item A resistive force usually depends on the speed of the moving object. When the cage moves faster, the resistance is greater, so modelling it as proportional to $v$ is more realistic than taking it to be constant.
 
   \item For $4 \le t \le 8$, taking upwards as positive:
-
   \[
   \text{tension} = 0.75mg,\qquad \text{weight} = mg,\qquad \text{resistance} = 0.25mv
   \]
@@ -1897,6 +2035,7 @@ In this question, take $g = 9.8\,\mathrm{m\,s^{-2}}$. \\
     \[
     u=t,\qquad \frac{\mathrm{d}w}{\mathrm{d}t}=e^{t/4}
     \]
+
     so that
     \[
     \frac{\mathrm{d}u}{\mathrm{d}t}=1,\qquad w=4e^{t/4}
@@ -1973,7 +2112,6 @@ In this question, take $g = 9.8\,\mathrm{m\,s^{-2}}$. \\
   \]
 
   Using the expressions found for $v$,
-
   \begin{align*}
   s_1 &= \int_0^4 4\lambda\left(t-4+4e^{-t/4}\right)\, \mathrm{d}t \\
   &= 4\lambda\left(\int_0^4 t\, \mathrm{d}t-\int_0^4 4\, \mathrm{d}t+\int_0^4 4e^{-t/4}\, \mathrm{d}t\right) \\
@@ -1998,7 +2136,7 @@ In this question, take $g = 9.8\,\mathrm{m\,s^{-2}}$. \\
   &= \left(32-\frac{64}{e}\right)\lambda+4g(e-2)
   \end{align*}
 
-  Substitute $\lambda=\dfrac{ge(e-1)}{16}$:
+  Substitute $\lambda=\frac{ge(e-1)}{16}$:
   \begin{align*}
   s &= \left(32-\frac{64}{e}\right)\frac{ge(e-1)}{16}+4g(e-2) \\
   &= \left(2-\frac{4}{e}\right)ge(e-1)+4g(e-2) \\
@@ -2084,18 +2222,21 @@ After $t$ minutes, the tank contains $m$ grams of dye. \\
     \[
     10 \times r = 10r
     \]
+
     grams per minute.
 
     From part (i), the concentration in the tank is $\displaystyle \frac{m}{2+(r-s)t}$ grams per litre, so the rate at which dye leaves is
     \[
     s\cdot \frac{m}{2+(r-s)t}
     \]
+
     grams per minute.
 
     Therefore
     \[
     \frac{\mathrm{d}m}{\mathrm{d}t}=\text{rate in}-\text{rate out}
     \]
+
     so
     \[
     \frac{\mathrm{d}m}{\mathrm{d}t}=10r-\frac{sm}{2+(r-s)t}
@@ -2113,6 +2254,7 @@ After $t$ minutes, the tank contains $m$ grams of dye. \\
     \[
     \frac{\mathrm{d}m}{\mathrm{d}t}+\frac{rm}{2+(r-r)t}=10r
     \]
+
     so
     \[
     \frac{\mathrm{d}m}{\mathrm{d}t}+\frac{r}{2}m=10r
@@ -2204,6 +2346,7 @@ After $t$ minutes, the tank contains $m$ grams of dye. \\
     \[
     t=\frac{2}{r}
     \]
+
     this volume is $0$, so the tank is empty.
 
     For $t\geq \frac{2}{r}$, the denominator in the differential equation is $0$ or negative, so the model is no longer physically valid.
@@ -2214,10 +2357,12 @@ After $t$ minutes, the tank contains $m$ grams of dye. \\
     \[
     \frac{\mathrm{d}m}{\mathrm{d}t}+\frac{2rm}{2+(r-2r)t}=10r
     \]
+
     so
     \[
     \frac{\mathrm{d}m}{\mathrm{d}t}+\frac{2r}{2-rt}m=10r
     \]
+
     with
     \[
     m(0)=4
@@ -2308,7 +2453,7 @@ After $t$ minutes, the tank contains $m$ grams of dye. \\
 
     Therefore the maximum mass of dye in the tank is
     \[
-    \frac{25}{4}\text{ g}
+    \frac{25}{4}\,\mathrm{g}
     \]
   \end{enumerate}
 \end{enumerate}
@@ -2362,6 +2507,7 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     \[
     4+pt-qt=4+(p-q)t
     \]
+
     Since there are $x$ litres of fruit concentrate in the tank, the proportion of fruit concentrate is
     \[
     \frac{x}{4+(p-q)t}
@@ -2372,20 +2518,24 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     \[
     0.6p=\frac{3p}{5}
     \]
+
     From part (i), the proportion of concentrate in the tank is $\displaystyle \frac{x}{4+(p-q)t}$, so the rate at which concentrate leaves is
     \[
     q\left(\frac{x}{4+(p-q)t}\right)=\frac{qx}{4+(p-q)t}
     \]
+
     Therefore
     \begin{align*}
     \frac{\mathrm{d}x}{\mathrm{d}t}
     &= \text{rate in} - \text{rate out} \\
     &= \frac{3p}{5}-\frac{qx}{4+(p-q)t}
     \end{align*}
+
     Rearranging,
     \[
     \frac{\mathrm{d}x}{\mathrm{d}t}+\frac{qx}{4+(p-q)t}=\frac{3p}{5}
     \]
+
     Hence the differential equation is shown.
   \end{enumerate}
 
@@ -2396,10 +2546,12 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     \[
     \frac{\mathrm{d}x}{\mathrm{d}t}+\frac{px}{4+(p-p)t}=\frac{3p}{5}
     \]
+
     so
     \[
     \frac{\mathrm{d}x}{\mathrm{d}t}+\frac{p}{4}x=\frac{3p}{5}
     \]
+
     Initially the tank contains only water, so
     \[
     x(0)=0
@@ -2409,6 +2561,7 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     \[
     \mu(t)=e^{\int \frac{p}{4}\,\mathrm{d}t}=e^{pt/4}
     \]
+
     Multiplying the differential equation by $e^{pt/4}$ gives
     \begin{align*}
     e^{pt/4}\frac{\mathrm{d}x}{\mathrm{d}t}+\frac{p}{4}e^{pt/4}x
@@ -2416,6 +2569,7 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     \frac{\mathrm{d}}{\mathrm{d}t}\left(xe^{pt/4}\right)
     &= \frac{3p}{5}e^{pt/4}
     \end{align*}
+
     Integrating,
     \begin{align*}
     xe^{pt/4}
@@ -2423,18 +2577,22 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     &= \frac{3p}{5}\cdot \frac{4}{p}e^{pt/4}+c \\
     &= \frac{12}{5}e^{pt/4}+c
     \end{align*}
+
     Hence
     \[
     x=\frac{12}{5}+ce^{-pt/4}
     \]
+
     Using $x(0)=0$,
     \begin{align*}
     0 &= \frac{12}{5}+c
     \end{align*}
+
     so
     \[
     c=-\frac{12}{5}
     \]
+
     Therefore
     \[
     x=\frac{12}{5}\left(1-e^{-pt/4}\right)
@@ -2447,27 +2605,33 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     \[
     x=0.3\times 4=\frac{6}{5}
     \]
+
     Substitute $t=4$ into the formula from part (i):
     \[
     \frac{12}{5}\left(1-e^{-p}\right)=\frac{6}{5}
     \]
+
     Multiply through by $5$:
     \[
     12(1-e^{-p})=6
     \]
+
     Hence
     \begin{align*}
     1-e^{-p} &= \frac{1}{2} \\
     e^{-p} &= \frac{1}{2}
     \end{align*}
+
     Taking natural logarithms,
     \[
     -p=\ln\left(\frac{1}{2}\right)=-\ln 2
     \]
+
     so
     \[
     p=\ln 2
     \]
+
     Therefore $\displaystyle p=\ln 2 \approx 0.693\ \text{litres min}^{-1}$.
   \end{enumerate}
 
@@ -2478,10 +2642,12 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     \[
     4+(p-2p)t=4-pt
     \]
+
     At
     \[
     t=\frac{4}{p}
     \]
+
     this volume is $0$, so the tank is empty. For $t\geq \frac{4}{p}$, the denominator $4-pt$ is zero or negative, which is not physically meaningful.
 
     Therefore the differential equation is only valid for $0\leq t<\frac{4}{p}$.
@@ -2491,6 +2657,7 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     \[
     \frac{\mathrm{d}x}{\mathrm{d}t}+\frac{2px}{4-pt}=\frac{3p}{5}
     \]
+
     for $0\leq t<\frac{4}{p}$, with
     \[
     x(0)=0
@@ -2501,6 +2668,7 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     \mu(t)
     &= e^{\int \frac{2p}{4-pt}\,\mathrm{d}t}
     \end{align*}
+
     Now let $u=4-pt$, so $\mathrm{d}u=-p\,\mathrm{d}t$. Then
     \begin{align*}
     \int \frac{2p}{4-pt}\,\mathrm{d}t
@@ -2508,6 +2676,7 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     &= -2\ln u \\
     &= -2\ln(4-pt)
     \end{align*}
+
     Hence
     \[
     \mu(t)=e^{-2\ln(4-pt)}=(4-pt)^{-2}
@@ -2519,10 +2688,12 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     +\frac{2p}{4-pt}(4-pt)^{-2}x
     &= \frac{3p}{5}(4-pt)^{-2}
     \end{align*}
+
     The left-hand side is
     \[
     \frac{\mathrm{d}}{\mathrm{d}t}\left(x(4-pt)^{-2}\right)
     \]
+
     so
     \[
     \frac{\mathrm{d}}{\mathrm{d}t}\left(x(4-pt)^{-2}\right)=\frac{3p}{5}(4-pt)^{-2}
@@ -2532,6 +2703,7 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     \[
     x(4-pt)^{-2}=\int \frac{3p}{5}(4-pt)^{-2}\,\mathrm{d}t
     \]
+
     Again let $u=4-pt$, so $\mathrm{d}u=-p\,\mathrm{d}t$. Then
     \begin{align*}
     \int \frac{3p}{5}(4-pt)^{-2}\,\mathrm{d}t
@@ -2540,23 +2712,28 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     &= \frac{3}{5}u^{-1}+c \\
     &= \frac{3}{5(4-pt)}+c
     \end{align*}
+
     Therefore
     \[
     x(4-pt)^{-2}=\frac{3}{5(4-pt)}+c
     \]
+
     Multiply by $(4-pt)^2$:
     \[
     x=\frac{3}{5}(4-pt)+c(4-pt)^2
     \]
+
     Use $x(0)=0$:
     \begin{align*}
     0 &= \frac{3}{5}(4)+c(4)^2 \\
     0 &= \frac{12}{5}+16c
     \end{align*}
+
     so
     \[
     c=-\frac{3}{20}
     \]
+
     Hence
     \begin{align*}
     x
@@ -2565,6 +2742,7 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     &= \frac{12}{5}-\frac{3pt}{5}-\frac{12}{5}+\frac{6pt}{5}-\frac{3p^2t^2}{20} \\
     &= \frac{3pt}{5}-\frac{3p^2t^2}{20}
     \end{align*}
+
     So
     \[
     x=\frac{3pt}{5}-\frac{3p^2t^2}{20}=\frac{3}{20}pt(4-pt)
@@ -2575,19 +2753,23 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     \frac{\mathrm{d}x}{\mathrm{d}t}
     &= \frac{3p}{5}-\frac{3p^2t}{10}
     \end{align*}
+
     Set this equal to $0$:
     \begin{align*}
     \frac{3p}{5}-\frac{3p^2t}{10} &= 0 \\
     \frac{3p}{10}(2-pt) &= 0
     \end{align*}
+
     Since $p>0$, this gives
     \[
     2-pt=0
     \]
+
     so
     \[
     t=\frac{2}{p}
     \]
+
     This lies in the interval $0\leq t<\frac{4}{p}$, and since the quadratic has negative coefficient of $t^2$, this gives the maximum.
 
     Now substitute $t=\frac{2}{p}$:
@@ -2599,6 +2781,7 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     &= \frac{6}{5}-\frac{3}{5} \\
     &= \frac{3}{5}
     \end{align*}
+
     Therefore the maximum amount of fruit concentrate is $\displaystyle \frac{3}{5}$ litres, occurring at $\displaystyle t=\frac{2}{p}$ minutes.
   \end{enumerate}
 \end{enumerate}
@@ -2666,6 +2849,7 @@ where $S(t)$ is a function of $t$. \\
     \[
     C=M(1-e^{-kt})
     \]
+
     Differentiate:
     \begin{align*}
     \frac{\mathrm{d}C}{\mathrm{d}t}
@@ -2673,6 +2857,7 @@ where $S(t)$ is a function of $t$. \\
     &= M\left(0-(-k)e^{-kt}\right) \\
     &= Mke^{-kt}
     \end{align*}
+
     Also,
     \begin{align*}
     M-C
@@ -2680,10 +2865,12 @@ where $S(t)$ is a function of $t$. \\
     &= M-M+Me^{-kt} \\
     &= Me^{-kt}
     \end{align*}
+
     Hence,
     \[
     \frac{\mathrm{d}C}{\mathrm{d}t}=Mke^{-kt}=k(Me^{-kt})=k(M-C)
     \]
+
     so the differential equation is satisfied.
 
     For the initial condition,
@@ -2695,6 +2882,7 @@ where $S(t)$ is a function of $t$. \\
     \[
     \lim_{t\to\infty} C = \lim_{t\to\infty} M(1-e^{-kt}) = M(1-0)=M
     \]
+
     So $C=M(1-e^{-kt})$ satisfies the differential equation, the initial condition, and the long-term condition.
   \end{enumerate}
 
@@ -2702,6 +2890,7 @@ where $S(t)$ is a function of $t$. \\
   \[
   \frac{\mathrm{d}C}{\mathrm{d}t}+P(t)C=S(t)
   \]
+
   where
   \[
   P(t)=-\frac{t+2}{t(1+t+t^2)}
@@ -2711,6 +2900,7 @@ where $S(t)$ is a function of $t$. \\
   \[
   -\frac{t+2}{t(1+t+t^2)}=\frac{A}{t}+\frac{Bt+D}{1+t+t^2}
   \]
+
   Multiplying through by $t(1+t+t^2)$ gives
   \begin{align*}
   -(t+2)
@@ -2718,16 +2908,19 @@ where $S(t)$ is a function of $t$. \\
   &= A+At+At^2+Bt^2+Dt \\
   &= A+(A+D)t+(A+B)t^2
   \end{align*}
+
   Comparing coefficients with $-2-t+0t^2$:
   \begin{align*}
   A&=-2 \\
   A+D&=-1 \\
   A+B&=0
   \end{align*}
+
   So
   \[
   A=-2,\qquad D=1,\qquad B=2
   \]
+
   Therefore
   \[
   P(t)=-\frac{2}{t}+\frac{2t+1}{1+t+t^2}
@@ -2737,12 +2930,14 @@ where $S(t)$ is a function of $t$. \\
   \[
   \mu(t)=e^{\int P(t)\,\mathrm{d}t}
   \]
+
   Since $t>0$,
   \begin{align*}
   \int P(t)\,\mathrm{d}t
   &= \int\left(-\frac{2}{t}+\frac{2t+1}{1+t+t^2}\right)\,\mathrm{d}t \\
   &= -2\ln t+\ln(1+t+t^2)
   \end{align*}
+
   Hence
   \begin{align*}
   \mu(t)
@@ -2751,7 +2946,8 @@ where $S(t)$ is a function of $t$. \\
   &= (1+t+t^2)t^{-2} \\
   &= \frac{1+t+t^2}{t^2}
   \end{align*}
-  So the integrating factor is $\dfrac{1+t+t^2}{t^2}$.
+
+  So the integrating factor is $\frac{1+t+t^2}{t^2}$.
 
   \item
   \begin{enumerate}[label=(\roman*)]
@@ -2759,18 +2955,22 @@ where $S(t)$ is a function of $t$. \\
     \[
     \frac{\mathrm{d}C}{\mathrm{d}t}-\frac{t+2}{t(1+t+t^2)}C=0
     \]
+
     Using the integrating factor
     \[
     \mu(t)=\frac{1+t+t^2}{t^2}
     \]
+
     gives
     \[
     \frac{\mathrm{d}}{\mathrm{d}t}\bigl(\mu C\bigr)=0
     \]
+
     So
     \[
     \mu C=K
     \]
+
     where $K$ is a constant. Thus
     \begin{align*}
     C
@@ -2778,6 +2978,7 @@ where $S(t)$ is a function of $t$. \\
     &= \frac{K}{(1+t+t^2)/t^2} \\
     &= \frac{Kt^2}{1+t+t^2}
     \end{align*}
+
     Now use the long-term value:
     \begin{align*}
     \lim_{t\to\infty} C
@@ -2785,6 +2986,7 @@ where $S(t)$ is a function of $t$. \\
     &= \lim_{t\to\infty}\frac{K}{t^{-2}+t^{-1}+1} \\
     &= K
     \end{align*}
+
     Since the long-term concentration is $M$, we must have $K=M$.
 
     Therefore
@@ -2792,28 +2994,33 @@ where $S(t)$ is a function of $t$. \\
     C=\frac{Mt^2}{1+t+t^2}
     \]
 
-    \item Half the long-term value is $\dfrac{M}{2}$. Set
+    \item Half the long-term value is $\frac{M}{2}$. Set
     \[
     \frac{Mt^2}{1+t+t^2}=\frac{M}{2}
     \]
+
     Cancelling $M$ and solving:
     \begin{align*}
     \frac{t^2}{1+t+t^2}&=\frac12 \\
     2t^2&=1+t+t^2 \\
     t^2-t-1&=0
     \end{align*}
+
     Hence
     \[
     t=\frac{1\pm\sqrt{5}}{2}
     \]
+
     Since $t>0$,
     \[
     t=\frac{1+\sqrt{5}}{2}\text{ hours}\approx 1.618\text{ hours}
     \]
+
     Converting to minutes:
     \[
     1.618\times 60 \approx 97.1
     \]
+
     So the concentration reaches half its long-term value after $97$ minutes, to the nearest minute.
   \end{enumerate}
 
@@ -2821,26 +3028,31 @@ where $S(t)$ is a function of $t$. \\
   \[
   \mu(t)=\frac{1+t+t^2}{t^2}
   \]
+
   and
   \[
   S(t)=\frac{3t^2e^{-t}}{1+t+t^2}
   \]
+
   Then
   \begin{align*}
   \mu(t)S(t)
   &= \frac{1+t+t^2}{t^2}\cdot \frac{3t^2e^{-t}}{1+t+t^2} \\
   &= 3e^{-t}
   \end{align*}
+
   So the differential equation becomes
   \[
   \frac{\mathrm{d}}{\mathrm{d}t}\bigl(\mu C\bigr)=3e^{-t}
   \]
+
   Integrating:
   \begin{align*}
   \mu C
   &= \int 3e^{-t}\,\mathrm{d}t \\
   &= -3e^{-t}+K
   \end{align*}
+
   Hence
   \begin{align*}
   C
@@ -2848,24 +3060,29 @@ where $S(t)$ is a function of $t$. \\
   &= \frac{t^2(-3e^{-t}+K)}{1+t+t^2} \\
   &= \frac{Kt^2-3t^2e^{-t}}{1+t+t^2}
   \end{align*}
+
   Now use the long-term value. As $t\to\infty$,
   \[
   \frac{Kt^2}{1+t+t^2}\to K
   \]
+
   and, using the fact that $\lim_{t\to\infty} t^2e^{-t}=0$,
   \[
   \frac{3t^2e^{-t}}{1+t+t^2}\to 0
   \]
+
   Therefore
   \[
   \lim_{t\to\infty} C=K
   \]
+
   Since the long-term concentration is $M$, $K=M$.
 
   So
   \[
   C=\frac{Mt^2-3t^2e^{-t}}{1+t+t^2}
   \]
+
   as required.
 
   \item Here $M=10$, so half the long-term concentration is $5$, reached after $105$ minutes $=1.75$ hours.
@@ -2880,6 +3097,7 @@ where $S(t)$ is a function of $t$. \\
   &\approx \frac{30.625-1.597}{5.8125} \\
   &\approx 4.99
   \end{align*}
+
   This is essentially $5$.
 
   Therefore model (d) is more consistent with the data.

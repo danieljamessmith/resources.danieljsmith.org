@@ -249,6 +249,7 @@ This is a linear differential equation of the form
 \[
 \frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)
 \]
+
 with
 \[
 P(x)=\frac{1}{1+x}
@@ -374,6 +375,7 @@ x=e-1\approx 1.72
   \[
   P(x)=-2\tan x
   \]
+
   An integrating factor is
   \begin{align*}
   \mu(x)
@@ -381,24 +383,29 @@ x=e-1\approx 1.72
   &=e^{2\ln(\cos x)}\\
   &=\cos^2 x
   \end{align*}
+
   since $\cos x>0$ for $-\frac{\pi}{2}<x<\frac{\pi}{2}$.
 
   Multiplying through by $\cos^2 x$,
   \[
   \cos^2 x\frac{\mathrm{d}y}{\mathrm{d}x}-2y\cos x\sin x=\sec x
   \]
+
   The left hand side is
   \[
   \frac{\mathrm{d}}{\mathrm{d}x}(y\cos^2 x)
   \]
+
   so
   \[
   \frac{\mathrm{d}}{\mathrm{d}x}(y\cos^2 x)=\sec x
   \]
+
   Using part (a),
   \[
   y\cos^2 x=\ln(\sec x+\tan x)+c
   \]
+
   Hence
   \[
   y=\sec^2 x\bigl(\ln(\sec x+\tan x)+c\bigr)
@@ -426,6 +433,7 @@ Write the differential equation in linear form:
 \[
 \frac{\mathrm{d}y}{\mathrm{d}x} + P(x)y = Q(x)
 \]
+
 with
 \[
 P(x)=-\tan x,
@@ -534,74 +542,90 @@ y=\frac{2}{\sqrt{1-\sin x}}+c\sec x
 \[
 \frac{\mathrm{d}y}{\mathrm{d}x}+\frac{1}{x^2}y=\frac{1}{x^2}
 \]
+
 This is of the form
 \[
 \frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)
 \]
+
 with
 \[
 P(x)=\frac{1}{x^2}=x^{-2}
 \]
+
 For a linear differential equation, an integrating factor is
 \[
 \mu(x)=e^{\int P(x)\,\mathrm{d}x}
 \]
+
 So
 \begin{align*}
 \mu(x)&=e^{\int x^{-2}\,\mathrm{d}x} \\
 &=e^{-x^{-1}} \\
 &=e^{-1/x}
 \end{align*}
+
 Hence an appropriate integrating factor is $e^{-1/x}$.
 
   \item Using the integrating factor from part (a), multiply
 \[
 \frac{\mathrm{d}y}{\mathrm{d}x}+\frac{1}{x^2}y=\frac{1}{x^2}
 \]
+
 through by $e^{-1/x}$:
 \[
 e^{-1/x}\frac{\mathrm{d}y}{\mathrm{d}x}+\frac{e^{-1/x}}{x^2}y=\frac{e^{-1/x}}{x^2}
 \]
+
 Now apply the product rule. Since
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(e^{-1/x}\right)=e^{-1/x}\cdot \frac{1}{x^2}
 \]
+
 we get
 \begin{align*}
 \frac{\mathrm{d}}{\mathrm{d}x}\left(ye^{-1/x}\right)
 &=e^{-1/x}\frac{\mathrm{d}y}{\mathrm{d}x}+y\frac{\mathrm{d}}{\mathrm{d}x}\left(e^{-1/x}\right) \\
 &=e^{-1/x}\frac{\mathrm{d}y}{\mathrm{d}x}+\frac{e^{-1/x}}{x^2}y
 \end{align*}
+
 So the differential equation becomes
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(ye^{-1/x}\right)=\frac{e^{-1/x}}{x^2}
 \]
+
 Integrating both sides with respect to $x$ gives
 \[
 ye^{-1/x}=\int \frac{e^{-1/x}}{x^2}\,\mathrm{d}x+c
 \]
+
 But
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(e^{-1/x}\right)=\frac{e^{-1/x}}{x^2}
 \]
+
 so
 \[
 \int \frac{e^{-1/x}}{x^2}\,\mathrm{d}x=e^{-1/x}
 \]
+
 Hence
 \[
 ye^{-1/x}=e^{-1/x}+c
 \]
+
 Multiplying through by $e^{1/x}$:
 \begin{align*}
 y&=1+ce^{1/x}
 \end{align*}
+
 Now use the condition $y=3$ when $x=1$:
 \begin{align*}
 3&=1+ce \\
 2&=ce \\
 c&=\frac{2}{e}
 \end{align*}
+
 Substitute back:
 \begin{align*}
 y&=1+\frac{2}{e}e^{1/x} \\
@@ -628,7 +652,6 @@ Give your answer in exact form. \marks{7}
 
 \begin{djsSolution}
 Since $x>0$, we have $\sinh x>0$, so we may divide through by $\sinh x$ to put the differential equation into linear form:
-
 \begin{align*}
 \sinh x\,\frac{\mathrm{d}y}{\mathrm{d}x} - y\cosh x &= \sinh x\cosh x \\
 \frac{\mathrm{d}y}{\mathrm{d}x} - \frac{\cosh x}{\sinh x}\,y &= \cosh x \\
@@ -636,19 +659,16 @@ Since $x>0$, we have $\sinh x>0$, so we may divide through by $\sinh x$ to put t
 \end{align*}
 
 This is a first-order linear equation of the form
-
 \[
 \frac{\mathrm{d}y}{\mathrm{d}x} + P(x)y = Q(x)
 \]
 
 with
-
 \[
 P(x) = -\coth x
 \]
 
 So the integrating factor is
-
 \begin{align*}
 \mu(x) &= e^{\int -\coth x\,\mathrm{d}x} \\
 &= e^{-\int \coth x\,\mathrm{d}x} \\
@@ -657,26 +677,22 @@ So the integrating factor is
 \end{align*}
 
 Multiplying the differential equation by this integrating factor gives
-
 \begin{align*}
 \frac{1}{\sinh x}\frac{\mathrm{d}y}{\mathrm{d}x} - \frac{\coth x}{\sinh x}y &= \frac{\cosh x}{\sinh x}
 \end{align*}
 
-The left-hand side is the derivative of $\dfrac{y}{\sinh x}$, so
-
+The left-hand side is the derivative of $\frac{y}{\sinh x}$, so
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{y}{\sinh x}\right)=\coth x
 \]
 
 Integrating both sides with respect to $x$:
-
 \begin{align*}
 \frac{y}{\sinh x} &= \int \coth x\,\mathrm{d}x + c \\
 &= \ln(\sinh x) + c
 \end{align*}
 
 Hence
-
 \[
 y=\sinh x\bigl(\ln(\sinh x)+c\bigr)
 \]
@@ -687,15 +703,14 @@ We need $\sinh\bigl(\ln(1+\sqrt{2})\bigr)$. Using
 \[
 \sinh u=\frac{e^u-e^{-u}}{2}
 \]
-with $u=\ln(1+\sqrt{2})$:
 
+with $u=\ln(1+\sqrt{2})$:
 \begin{align*}
 \sinh\bigl(\ln(1+\sqrt{2})\bigr)
 &= \frac{(1+\sqrt{2})-\dfrac{1}{1+\sqrt{2}}}{2}
 \end{align*}
 
 Now rationalise:
-
 \begin{align*}
 \frac{1}{1+\sqrt{2}}
 &= \frac{1-\sqrt{2}}{(1+\sqrt{2})(1-\sqrt{2})} \\
@@ -704,7 +719,6 @@ Now rationalise:
 \end{align*}
 
 So
-
 \begin{align*}
 \sinh\bigl(\ln(1+\sqrt{2})\bigr)
 &= \frac{(1+\sqrt{2})-(\sqrt{2}-1)}{2} \\
@@ -713,7 +727,6 @@ So
 \end{align*}
 
 Substituting into the general solution:
-
 \begin{align*}
 2 &= 1\bigl(\ln 1 + c\bigr) \\
 2 &= 0 + c \\
@@ -721,7 +734,6 @@ c &= 2
 \end{align*}
 
 Therefore the exact solution is
-
 \[
 y=\sinh x\bigl(\ln(\sinh x)+2\bigr)
 \]
@@ -755,6 +767,7 @@ This is a first-order linear equation of the form
 \[
 \frac{\mathrm{d}y}{\mathrm{d}x} + P(x)y = Q(x)
 \]
+
 with
 \[
 P(x)=-2\coth x
@@ -792,6 +805,7 @@ We need $\sinh\!\bigl(\ln(1+\sqrt{2})\bigr)$. Using
 \[
 \sinh t=\frac{e^t-e^{-t}}{2}
 \]
+
 with $t=\ln(1+\sqrt{2})$, we get
 \begin{align*}
 \sinh\!\bigl(\ln(1+\sqrt{2})\bigr)
@@ -839,7 +853,8 @@ Give your answer in exact form.
 \[
 \frac{\mathrm{d}y}{\mathrm{d}x}-\frac{\cosh x}{\sinh x}y=\cosh^3 x
 \]
-So it is in the form \(\dfrac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with
+
+So it is in the form \(\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with
 \[
 P(x)=-\coth x
 \]
@@ -852,15 +867,17 @@ The integrating factor is
 &=e^{-\ln(\sinh x)} \\
 &=\frac{1}{\sinh x}
 \end{align*}
+
 since \(x>0\), so \(\sinh x>0\).
 
-So the integrating factor is \(\dfrac{1}{\sinh x}\).
+So the integrating factor is \(\frac{1}{\sinh x}\).
 
   \item Multiply the equation
 \[
 \frac{\mathrm{d}y}{\mathrm{d}x}-\coth x\,y=\cosh^3 x
 \]
-by the integrating factor \(\dfrac{1}{\sinh x}\):
+
+by the integrating factor \(\frac{1}{\sinh x}\):
 \[
 \frac{1}{\sinh x}\frac{\mathrm{d}y}{\mathrm{d}x}-\frac{\cosh x}{\sinh^2 x}y=\frac{\cosh^3 x}{\sinh x}
 \]
@@ -870,6 +887,7 @@ Now
 \frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{y}{\sinh x}\right)
 =\frac{1}{\sinh x}\frac{\mathrm{d}y}{\mathrm{d}x}-\frac{\cosh x}{\sinh^2 x}y
 \]
+
 so the equation becomes
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{y}{\sinh x}\right)=\frac{\cosh^3 x}{\sinh x}
@@ -893,6 +911,7 @@ u=\sinh x
 \quad\Rightarrow\quad
 \mathrm{d}u=\cosh x\,\mathrm{d}x
 \]
+
 Then
 \begin{align*}
 \int \frac{\cosh^3 x}{\sinh x}\,\mathrm{d}x
@@ -906,6 +925,7 @@ Hence
 \[
 \frac{y}{\sinh x}=\ln(\sinh x)+\frac{1}{2}\sinh^2 x+c
 \]
+
 and so
 \[
 y=\sinh x\ln(\sinh x)+\frac{1}{2}\sinh^3 x+c\sinh x
@@ -967,6 +987,7 @@ This is now in the linear form
 \[
 \frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)
 \]
+
 with
 \[
 P(x)=\tan x
@@ -1012,6 +1033,7 @@ Integrate by parts with
 \[
 u=x,\qquad \frac{\mathrm{d}v}{\mathrm{d}x}=\sec^2 x
 \]
+
 so that
 \[
 \frac{\mathrm{d}u}{\mathrm{d}x}=1,\qquad v=\tan x
@@ -1040,6 +1062,7 @@ Use the condition $y=1$ when $x=\frac{\pi}{4}$. Substituting into
 \[
 y\sec x=x\tan x+\ln(\cos x)+c
 \]
+
 gives
 \begin{align*}
 1\cdot \sec\frac{\pi}{4}
@@ -1156,7 +1179,7 @@ Finally, divide by $\sin x$:
 y=\frac{\arctan(\ln(\sin x))+c}{\sin x}
 \]
 
-The general solution is $y=\dfrac{\arctan(\ln(\sin x))+c}{\sin x}$.
+The general solution is $y=\frac{\arctan(\ln(\sin x))+c}{\sin x}$.
 \end{djsSolution}
 
 
@@ -1192,6 +1215,7 @@ For a linear equation
 \[
 \frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)
 \]
+
 an integrating factor is
 \[
 \mu(x)=e^{\int P(x)\,\mathrm{d}x}
@@ -1213,6 +1237,7 @@ Equating coefficients gives
 \[
 A+B=1,\qquad -A=1
 \]
+
 so
 \[
 A=-1,\qquad B=2
@@ -1244,6 +1269,7 @@ Multiply the linear form
 \[
 \frac{\mathrm{d}y}{\mathrm{d}x}+\frac{x+1}{x(x-1)}y=x-1
 \]
+
 through by $\mu(x)$:
 \[
 \frac{(x-1)^2}{x}\frac{\mathrm{d}y}{\mathrm{d}x}+\frac{(x-1)^2}{x}\cdot\frac{x+1}{x(x-1)}\,y=\frac{(x-1)^2}{x}(x-1)
@@ -1329,18 +1355,20 @@ y=\frac{x}{(x-1)^2}\left(\frac{x^3}{3}-\frac{3x^2}{2}+3x-\ln x+\ln 2-\frac{5}{3}
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Using \(\dfrac{\mathrm{d}}{\mathrm{d}x}\ln u=\dfrac{1}{u}\dfrac{\mathrm{d}u}{\mathrm{d}x}\),
+  \item Using \(\frac{\mathrm{d}}{\mathrm{d}x}\ln u=\frac{1}{u}\frac{\mathrm{d}u}{\mathrm{d}x}\),
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\bigl(\ln(\cosh x+1)\bigr)
 =\frac{1}{\cosh x+1}\cdot \frac{\mathrm{d}}{\mathrm{d}x}(\cosh x+1)
 =\frac{\sinh x}{\cosh x+1}
 \]
+
 Now use the half-angle identities
 \[
 \sinh x=2\sinh\left(\frac{x}{2}\right)\cosh\left(\frac{x}{2}\right),
 \qquad
 \cosh x+1=2\cosh^2\left(\frac{x}{2}\right)
 \]
+
 So
 \begin{align*}
 \frac{\sinh x}{\cosh x+1}
@@ -1348,41 +1376,47 @@ So
 &=\frac{\sinh\left(\frac{x}{2}\right)}{\cosh\left(\frac{x}{2}\right)} \\
 &=\tanh\left(\frac{x}{2}\right)
 \end{align*}
+
 Hence
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\bigl(\ln(\cosh x+1)\bigr)=\tanh\left(\frac{x}{2}\right)
 \]
+
 as required.
 
   \item The differential equation is linear:
 \[
 \frac{\mathrm{d}y}{\mathrm{d}x}+\tanh\left(\frac{x}{2}\right)y=\sinh x
 \]
+
 From part (a),
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\bigl(\ln(\cosh x+1)\bigr)=\tanh\left(\frac{x}{2}\right)
 \]
+
 so an integrating factor is
 \[
 \mu(x)=e^{\int \tanh\left(\frac{x}{2}\right)\,\mathrm{d}x}
 =e^{\ln(\cosh x+1)}
 =\cosh x+1
 \]
+
 Multiplying the differential equation throughout by \(\cosh x+1\),
 \[
 (\cosh x+1)\frac{\mathrm{d}y}{\mathrm{d}x}+(\cosh x+1)\tanh\left(\frac{x}{2}\right)y=(\cosh x+1)\sinh x
 \]
+
 The left-hand side is
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\bigl((\cosh x+1)y\bigr)
 \]
+
 Hence the differential equation can be written
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\bigl((\cosh x+1)y\bigr)=(\cosh x+1)\sinh x
 \]
 
 We can integrate the right hand side by reversing the chain rule:
-
 \[\int (\cosh x+1)\sinh x \,\mathrm{d}x
 =\frac{1}{2}(\cosh x+1)^2+c\]
 
@@ -1397,23 +1431,26 @@ Therefore
 \[
 y=\frac{1}{2}(\cosh x+1)+\frac{c}{\cosh x+1}
 \]
+
 Use the condition \(y=2\) when \(x=0\). Since \(\cosh 0=1\),
 \begin{align*}
 2&=\frac{1}{2}(1+1)+\frac{c}{1+1} \\
 2&=1+\frac{c}{2}
 \end{align*}
+
 Hence
 \[
 c=2
 \]
+
 Substituting back,
 \[
 y=\frac{\cosh x+1}{2}+\frac{2}{\cosh x+1}
 \]
 
 Alternatively, one can integrate using the double angle formula for $\sinh 2x$: \[\int (\cosh x + 1)\sinh x \,\mathrm{d}x = \int (\cosh x\sinh x + \sinh x) \,\mathrm{d}x = \int \left(\frac{1}{2}\sinh 2x + \sinh x\right) \mathrm{d}x \]
-to obtain an equivalent form of the final answer:
 
+to obtain an equivalent form of the final answer:
 \[
 y = \frac{\frac{1}{4}\cosh 2x + \cosh x + \frac{11}{4}}{\cosh x + 1}
 \]
@@ -1448,6 +1485,7 @@ y = \frac{\frac{1}{4}\cosh 2x + \cosh x + \frac{11}{4}}{\cosh x + 1}
 \[
 u=\frac{x}{2}
 \]
+
 Then, by the chain rule,
 \begin{align*}
 \frac{\mathrm{d}}{\mathrm{d}x}\left(\ln\left(\coth \frac{x}{2}\right)\right)
@@ -1455,6 +1493,7 @@ Then, by the chain rule,
 &= \frac{1}{\coth u}\cdot \frac{\mathrm{d}}{\mathrm{d}x}(\coth u) \\
 &= \frac{1}{\coth u}\cdot \left(-\operatorname{cosech}^2 u\right)\cdot \frac{1}{2}
 \end{align*}
+
 Now simplify:
 \begin{align*}
 \frac{1}{\coth u}\cdot \left(-\operatorname{cosech}^2 u\right)\cdot \frac{1}{2}
@@ -1462,6 +1501,7 @@ Now simplify:
 &= -\frac{1}{2}\cdot \frac{1/\sinh^2 u}{\cosh u/\sinh u} \\
 &= -\frac{1}{2\sinh u\cosh u}
 \end{align*}
+
 Using \(\sinh(2u)=2\sinh u\cosh u\),
 \begin{align*}
 -\frac{1}{2\sinh u\cosh u}
@@ -1469,16 +1509,19 @@ Using \(\sinh(2u)=2\sinh u\cosh u\),
 &= -\frac{1}{\sinh x} \\
 &= -\operatorname{cosech} x
 \end{align*}
+
 Therefore,
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(\ln\left(\coth \frac{x}{2}\right)\right)=-\operatorname{cosech} x
 \]
+
 as required.
 
   \item The differential equation is
 \[
 \frac{\mathrm{d}y}{\mathrm{d}x}-\operatorname{cosech} x\,y=\tanh \frac{x}{2}
 \]
+
 This is linear, with integrating factor
 \begin{align*}
 \mu(x)
@@ -1486,45 +1529,54 @@ This is linear, with integrating factor
 &= e^{\ln\left(\coth \frac{x}{2}\right)} \\
 &= \coth \frac{x}{2}
 \end{align*}
+
 using part (a).
 
 Next, from part (a),
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(\ln\left(\coth \frac{x}{2}\right)\right)=-\operatorname{cosech} x
 \]
+
 so
 \begin{align*}
 \frac{\mathrm{d}}{\mathrm{d}x}\left(\coth \frac{x}{2}\right)
 &= \coth \frac{x}{2}\cdot \frac{\mathrm{d}}{\mathrm{d}x}\left(\ln\left(\coth \frac{x}{2}\right)\right) \\
 &= -\operatorname{cosech} x\,\coth \frac{x}{2}
 \end{align*}
-Multiply the differential equation by \(\coth \dfrac{x}{2}\):
+
+Multiply the differential equation by \(\coth \frac{x}{2}\):
 \begin{align*}
 \coth \frac{x}{2}\,\frac{\mathrm{d}y}{\mathrm{d}x}
 -\operatorname{cosech} x\,\coth \frac{x}{2}\,y
 &= \coth \frac{x}{2}\tanh \frac{x}{2}
 \end{align*}
+
 The left-hand side is
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(y\coth \frac{x}{2}\right)
 \]
-and the right-hand side is \(1\), since \(\coth \dfrac{x}{2}\tanh \dfrac{x}{2}=1\). Hence
+
+and the right-hand side is \(1\), since \(\coth \frac{x}{2}\tanh \frac{x}{2}=1\). Hence
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(y\coth \frac{x}{2}\right)=1
 \]
+
 Integrating,
 \[
 y\coth \frac{x}{2}=\int 1\,\mathrm{d}x=x+c
 \]
+
 So
 \[
 y=(x+c)\tanh \frac{x}{2}
 \]
+
 Now use \(y=1\) when \(x=\ln 3\):
 \[
 1=(\ln 3+c)\tanh \frac{\ln 3}{2}
 \]
-Evaluate \(\tanh \dfrac{\ln 3}{2}\):
+
+Evaluate \(\tanh \frac{\ln 3}{2}\):
 \begin{align*}
 \tanh \frac{\ln 3}{2}
 &= \frac{e^{\ln 3/2}-e^{-\ln 3/2}}{e^{\ln 3/2}+e^{-\ln 3/2}} \\
@@ -1532,12 +1584,14 @@ Evaluate \(\tanh \dfrac{\ln 3}{2}\):
 &= \frac{3-1}{3+1} \\
 &= \frac{1}{2}
 \end{align*}
+
 Therefore,
 \begin{align*}
 1&=(\ln 3+c)\cdot \frac{1}{2} \\
 2&=\ln 3+c \\
 c&=2-\ln 3
 \end{align*}
+
 Substituting back gives
 \[
 y=(x+2-\ln 3)\tanh \frac{x}{2}
@@ -1617,6 +1671,7 @@ This is a linear differential equation of the form
 \[
 \frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)
 \]
+
 with
 \[
 P(x)=-\operatorname{cosech}x
@@ -1626,6 +1681,7 @@ From part (a),
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(\ln\left(\frac{\cosh x+1}{\sinh x}\right)\right)=-\operatorname{cosech}x
 \]
+
 so an integrating factor is
 \[
 \mu(x)=\exp\left(\int -\operatorname{cosech}x\,\mathrm{d}x\right)=\frac{\cosh x+1}{\sinh x}

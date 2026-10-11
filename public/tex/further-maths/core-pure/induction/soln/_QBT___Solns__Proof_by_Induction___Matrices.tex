@@ -40,7 +40,6 @@ A^n=\begin{pmatrix}2^n&3^n-2^n\\0&3^n\end{pmatrix}
 \]
 
 \textbf{Base Case:} $n=1$.
-
 \[
 A^1=A=\begin{pmatrix}2&1\\0&3\end{pmatrix}
 \]
@@ -69,12 +68,12 @@ Starting from $A^{k+1}=A^kA$ and using the inductive hypothesis,
 A^{k+1}
 &=
 \begin{pmatrix}2^k&3^k-2^k\\0&3^k\end{pmatrix}
-\begin{pmatrix}2&1\\0&3\end{pmatrix} \\[1ex]
+\begin{pmatrix}2&1\\0&3\end{pmatrix} \\
 &=
 \begin{pmatrix}
 2^k\cdot2+(3^k-2^k)\cdot0 & 2^k\cdot1+(3^k-2^k)\cdot3 \\
 0\cdot2+3^k\cdot0 & 0\cdot1+3^k\cdot3
-\end{pmatrix} \\[1ex]
+\end{pmatrix} \\
 &=
 \begin{pmatrix}
 2^{k+1} & 2^k+3(3^k-2^k) \\
@@ -338,6 +337,7 @@ A = \begin{pmatrix} 4 & 2 \\ -2 & 0 \end{pmatrix}
 \[
 A^n=2^n\begin{pmatrix}n+1&n\\-n&1-n\end{pmatrix}
 \]
+
 for all positive integers $n$.
 
 \textbf{Base Case:} $n=1$.
@@ -394,6 +394,7 @@ Since
 \[
 -k = 1-(k+1)
 \]
+
 this becomes
 \[
 A^{k+1}=2^{k+1}\begin{pmatrix}k+2&k+1\\-(k+1)&1-(k+1)\end{pmatrix}
@@ -405,12 +406,14 @@ Therefore, by induction,
 \[
 A^n=2^n\begin{pmatrix}n+1&n\\-n&1-n\end{pmatrix}
 \]
+
 for all positive integers $n$.
 
   \item Let
 \[
 M=\begin{pmatrix}n+1&n\\-n&1-n\end{pmatrix}
 \]
+
 so that from part (a),
 \[
 A^n=2^nM
@@ -542,7 +545,7 @@ k\,2^{k-1} & 2^k & 0\\
 2 & 0 & 0\\
 1 & 2 & 0\\
 0 & 1 & 2
-\end{pmatrix} \\[1ex]
+\end{pmatrix} \\
 &=
 \begin{pmatrix}
 2^k\cdot 2 & 0 & 0\\[1ex]
@@ -550,13 +553,13 @@ k\,2^{k-1}\cdot 2 + 2^k\cdot 1 & 2^k\cdot 2 & 0\\[1ex]
 \frac{k(k-1)}{2}\,2^{k-2}\cdot 2 + k\,2^{k-1}\cdot 1 &
 k\,2^{k-1}\cdot 2 + 2^k\cdot 1 &
 2^k\cdot 2
-\end{pmatrix} \\[1ex]
+\end{pmatrix} \\
 &=
 \begin{pmatrix}
 2^{k+1} & 0 & 0\\
 k\,2^k + 2^k & 2^{k+1} & 0\\
 \frac{k(k-1)}{2}\,2^{k-1} + k\,2^{k-1} & k\,2^k + 2^k & 2^{k+1}
-\end{pmatrix} \\[1ex]
+\end{pmatrix} \\
 &=
 \begin{pmatrix}
 2^{k+1} & 0 & 0\\
@@ -591,6 +594,7 @@ This is exactly the required form with \(n=k+1\), since
 \[
 (k+1)2^k=(k+1)2^{(k+1)-1}
 \]
+
 and
 \[
 \frac{k(k+1)}{2}\,2^{k-1}
@@ -637,7 +641,6 @@ The matrix $M = \begin{pmatrix}3c & 1 \\ 0 & 3c\end{pmatrix}$, where $c$ is a po
   \item We prove the result by induction on $n$.
 
   \textbf{Base Case:} $n=1$
-
   \[
   M^1=M=\begin{pmatrix}3c&1\\0&3c\end{pmatrix}
   \]
@@ -788,6 +791,7 @@ A=
 0 & 0 & -1
 \end{pmatrix}
 \]
+
 and let \(P(n)\) be the statement
 \[
 A^{n}=
@@ -815,6 +819,7 @@ Substituting \(n=1\) into the right-hand side gives
 \end{pmatrix}
 =A
 \]
+
 So \(P(1)\) is true.
 
 \textbf{Induction Hypothesis:} Assume \(P(k)\) is true for some \(k \in \mathbb{Z}^{+}\)
@@ -837,6 +842,7 @@ For simplicity, let
 \[
 a=(-1)^{k}, \qquad b=-k(-1)^{k}, \qquad c=\dfrac{k(k-1)}{2}(-1)^{k}
 \]
+
 Then
 \[
 A^{k}=
@@ -913,6 +919,7 @@ Since
 \[
 \dfrac{k(k+1)}{2}=\dfrac{(k+1)\bigl((k+1)-1\bigr)}{2}
 \]
+
 this is exactly the required form for \(n=k+1\).
 
 Therefore \(P(k+1)\) is true.
@@ -961,6 +968,7 @@ Let \(P(n)\) be the statement
 \[
 M^n=\begin{pmatrix}F_{n+1}&F_n\\[2pt]F_n&F_{n-1}\end{pmatrix}
 \]
+
 for integers \(n\geq 1\).
 
 \textbf{Base Case: \(n=1\).}
@@ -986,6 +994,7 @@ Hence
 \[
 M=\begin{pmatrix}F_2&F_1\\F_1&F_0\end{pmatrix}
 \]
+
 so \(P(1)\) is true.
 
 \textbf{Inductive Hypothesis.}
@@ -1093,6 +1102,7 @@ The claimed formula gives
 =
 \mathbf{A}
 \]
+
 So the result is true when $n=1$.
 
 \textbf{Inductive hypothesis:} Assume that for some positive integer $k$,
@@ -1124,7 +1134,6 @@ Using $\mathbf{A}^{k+1}=\mathbf{A}^k\mathbf{A}$,
 \end{align*}
 
 Now multiply row by column:
-
 \begin{align*}
 \mathbf{A}^{k+1}
 &=
@@ -1164,6 +1173,7 @@ This is exactly the given form with $n=k+1$, since
 \[
 1+\bigl((k+1)-2\bigr)2^{(k+1)-1}=1+(k-1)2^k
 \]
+
 and
 \[
 (k+1)2^{(k+1)-1}=(k+1)2^k

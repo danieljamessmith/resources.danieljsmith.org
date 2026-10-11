@@ -32,16 +32,19 @@ Let
 \[
 P(n): \sum_{r=1}^{n} r\,2^r = 2 + (n-1)2^{n+1}
 \]
+
 We will prove that $P(n)$ is true for all $n \geq 1$ by induction.
 
 \textbf{Base Case:} For $n=1$,
 \[
 \sum_{r=1}^{1} r\,2^r = 1\cdot 2 = 2
 \]
+
 Also,
 \[
 2+(1-1)2^{1+1}=2+0=2
 \]
+
 So the left-hand side equals the right-hand side, and hence $P(1)$ is true.
 
 \textbf{Inductive Hypothesis:} Assume that $P(k)$ is true for some integer $k \geq 1$.
@@ -72,6 +75,7 @@ Therefore, if $P(k)$ is true, then $P(k+1)$ is also true.
 \[
 \sum_{r=1}^{n} r\,2^r = 2 + (n-1)2^{n+1}
 \]
+
 for all $n \geq 1$.
 \end{djsSolution}
 
@@ -139,6 +143,7 @@ Since the statement is true for $n=1$, and true for $n=k+1$ whenever it is true 
 \[
 \sum_{r=1}^{n}\left(2^r+2\times 3^r\right)=2^{n+1}+3^{n+1}-5
 \]
+
 for all $n\geq 1$.
 \end{djsSolution}
 
@@ -242,6 +247,7 @@ Therefore, by mathematical induction,
 \[
 \sum_{r=1}^{n} r(r+1)(r+2)=\frac{1}{4}n(n+1)(n+2)(n+3)
 \]
+
 for all positive integers $n$.
 \end{djsSolution}
 
@@ -265,10 +271,12 @@ Let
 \[
 S_n=\sum_{r=1}^{n} r3^{r-1}
 \]
+
 We prove by induction that
 \[
 S_n=\frac{1+(2n-1)3^n}{4}
 \]
+
 for all $n\in\mathbb{Z}^+$.
 
 \textbf{Base Case:} $n=1$.
@@ -303,6 +311,7 @@ Starting with the left-hand side for $n=k+1$,
 &= \sum_{r=1}^{k} r3^{r-1} + (k+1)3^k \\
 &= \frac{1+(2k-1)3^k}{4} + (k+1)3^k
 \end{align*}
+
 using the induction hypothesis.
 
 Now write the second term over a denominator of $4$:
@@ -329,6 +338,7 @@ Therefore, by mathematical induction,
 \[
 \sum_{r=1}^{n} r3^{r-1}=\frac{1+(2n-1)3^n}{4}
 \]
+
 for all $n\in\mathbb{Z}^+$.
 \end{djsSolution}
 
@@ -372,10 +382,12 @@ for all $n\in\mathbb{Z}^+$.
   \[
   \sum_{r=1}^{1} r^3 = 1^3 = 1
   \]
+
   and
   \[
   \frac{1}{4}(1)^2(1+1)^2=\frac14\cdot 1\cdot 4=1
   \]
+
   So the formula is true for $n=1$.
 
   \textbf{Inductive Hypothesis:} Assume that for some integer $k \ge 1$,
@@ -414,6 +426,7 @@ for all $n\in\mathbb{Z}^+$.
   \[
   2^3+4^3+6^3+\cdots +(2n)^3 = \sum_{r=1}^{n} (2r)^3
   \]
+
   Hence
   \begin{align*}
   \sum_{r=1}^{n} (2r)^3
@@ -436,6 +449,7 @@ for all $n\in\mathbb{Z}^+$.
   \[
   an^2(bn^2-1)
   \]
+
   gives
   \[
   a=1,\qquad b=2
@@ -481,10 +495,10 @@ We prove by induction that
 \[
 S_n=\frac{n}{2n+1}
 \]
+
 for all positive integers $n$.
 
 \textbf{Base Case:} $n=1$
-
 \[
 S_1=\frac{1}{(2\cdot1-1)(2\cdot1+1)}=\frac{1}{1\cdot3}=\frac13
 \]
@@ -560,6 +574,7 @@ Hence
 \[
 \sum_{r=n+1}^{2n}\frac{1}{(2r-1)(2r+1)}=\frac{n}{(an+b)(cn+d)}
 \]
+
 with
 \[
 a=4,\quad b=1,\quad c=2,\quad d=1
@@ -628,6 +643,7 @@ So the statement is true for $n=k+1$.
 \[
 \sum_{r=1}^{n}\frac{r}{2^r}=2-\frac{n+2}{2^n}
 \]
+
 for all integers $n\ge 1$.
 \end{djsSolution}
 
@@ -683,22 +699,22 @@ Starting with the left-hand side,
 \sum_{r=1}^{k+1} \frac{1}{r(r+1)(r+2)}
 &=
 \sum_{r=1}^{k} \frac{1}{r(r+1)(r+2)}
-+\frac{1}{(k+1)(k+2)(k+3)} \\[4pt]
++\frac{1}{(k+1)(k+2)(k+3)} \\
 &=
 \frac{k(k+3)}{4(k+1)(k+2)}
 +\frac{1}{(k+1)(k+2)(k+3)}
-\qquad \text{(by the inductive hypothesis)} \\[4pt]
+\qquad \text{(by the inductive hypothesis)} \\
 &=
 \frac{k(k+3)(k+3)}{4(k+1)(k+2)(k+3)}
-+\frac{4}{4(k+1)(k+2)(k+3)} \\[4pt]
++\frac{4}{4(k+1)(k+2)(k+3)} \\
 &=
-\frac{k(k+3)^2+4}{4(k+1)(k+2)(k+3)} \\[4pt]
+\frac{k(k+3)^2+4}{4(k+1)(k+2)(k+3)} \\
 &=
-\frac{k(k^2+6k+9)+4}{4(k+1)(k+2)(k+3)} \\[4pt]
+\frac{k(k^2+6k+9)+4}{4(k+1)(k+2)(k+3)} \\
 &=
-\frac{k^3+6k^2+9k+4}{4(k+1)(k+2)(k+3)} \\[4pt]
+\frac{k^3+6k^2+9k+4}{4(k+1)(k+2)(k+3)} \\
 &=
-\frac{(k+1)^2(k+4)}{4(k+1)(k+2)(k+3)} \\[4pt]
+\frac{(k+1)^2(k+4)}{4(k+1)(k+2)(k+3)} \\
 &=
 \frac{(k+1)(k+4)}{4(k+2)(k+3)}
 \end{align*}
@@ -762,10 +778,10 @@ Hence the result is proved.
   \[
   S_n=n^2(2n^2-1)
   \]
+
   for all positive integers $n$.
 
   \textbf{Base Case:} $n=1$
-
   \[
   S_1=(2\cdot1-1)^3=1^3=1
   \]
@@ -821,6 +837,7 @@ Hence the result is proved.
   \[
   \sum_{r=1}^{n}(2r-1)^3=n^2(2n^2-1)
   \]
+
   for all positive integers $n$.
 
   \item From part (a),
@@ -903,7 +920,6 @@ S_n=\log\left(\frac{(2n)!(2n+1)!}{2^{4n}(n!)^4}\right)
 for all positive integers \(n\).
 
 \textbf{Base Case: \(n=1\).}
-
 \[
 S_1=\log\left(1-\frac14\right)=\log\left(\frac34\right)
 \]
@@ -957,6 +973,7 @@ Now use the factorial identities
 \[
 (2k+2)!=(2k+2)(2k+1)(2k)!
 \]
+
 and
 \[
 (2k+3)!=(2k+3)(2k+2)(2k+1)!
@@ -984,6 +1001,7 @@ Now simplify the denominator:
 \[
 (2k+2)^4=[2(k+1)]^4=2^4(k+1)^4
 \]
+
 and
 \[
 ((k+1)!)^4=((k+1)k!)^4=(k+1)^4(k!)^4

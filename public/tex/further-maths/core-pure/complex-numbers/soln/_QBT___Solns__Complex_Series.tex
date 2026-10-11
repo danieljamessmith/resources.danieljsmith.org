@@ -68,10 +68,12 @@ This is a geometric series with first term \(1\) and common ratio
 \[
 r=-\frac{e^{3i\theta}}{3}
 \]
+
 Since
 \[
 |r|=\frac{|e^{3i\theta}|}{3}=\frac13<1
 \]
+
 the series converges, so
 \begin{align*}
 C+iS
@@ -97,6 +99,7 @@ Now use
 \[
 e^{3i\theta}+e^{-3i\theta}=2\cos 3\theta
 \]
+
 so the denominator becomes
 \[
 10+6\cos 3\theta
@@ -155,6 +158,7 @@ S &= \sum_{n=0}^{\infty} \left(-\frac{1}{2}\right)^n \sin\bigl((4n+1)\theta\bigr
 \[
 \cos x+i\sin x=e^{ix}
 \]
+
 so
 \begin{align*}
 C+iS
@@ -167,10 +171,12 @@ This is a geometric series with common ratio
 \[
 r=-\frac{e^{4i\theta}}{2}
 \]
+
 and
 \[
 |r|=\frac12<1
 \]
+
 so it converges and its sum is
 \begin{align*}
 C+iS
@@ -198,6 +204,7 @@ Now simplify the denominator:
 &=5+2\left(e^{4i\theta}+e^{-4i\theta}\right)\\
 &=5+4\cos 4\theta
 \end{align*}
+
 since \(e^{ix}+e^{-ix}=2\cos x\).
 
 Therefore
@@ -266,6 +273,7 @@ Since
 \[
 \left|re^{i\beta}\right|=|r|<1
 \]
+
 this is a convergent geometric series, so
 \begin{align*}
 Z&=e^{i\alpha}\cdot \frac{1}{1-re^{i\beta}} \\
@@ -307,6 +315,7 @@ But \(Z=C+iS\), so equating real and imaginary parts gives
 \[
 C=\frac{\cos\alpha-r\cos(\alpha-\beta)}{1+r^2-2r\cos\beta}
 \]
+
 and
 \[
 S=\frac{\sin\alpha-r\sin(\alpha-\beta)}{1+r^2-2r\cos\beta}
@@ -416,6 +425,7 @@ Equating real and imaginary parts gives
 \[
 C=\sec^n\theta\cos n\theta
 \]
+
 and
 \[
 S=\sec^n\theta\sin n\theta
@@ -491,7 +501,7 @@ Z
 But
 \begin{align*}
 \omega^n
-&=\left(\exp\left(\frac{4\pi i}{n}\right)\right)^n \\[5pt]
+&=\left(\exp\left(\frac{4\pi i}{n}\right)\right)^n \\
 &=\exp(4\pi i) \\
 &=1
 \end{align*}
@@ -584,63 +594,75 @@ S &= \sin\theta + 2\sin 3\theta + 4\sin 5\theta + \cdots + 2^{n-1}\sin((2n-1)\th
   &=1-2e^{2i\theta}-2e^{-2i\theta}+4\\
   &=5-2\left(e^{2i\theta}+e^{-2i\theta}\right)
   \end{align*}
+
   Using
   \[
   e^{2i\theta}+e^{-2i\theta}=2\cos 2\theta
   \]
+
   gives
   \begin{align*}
   (1-2e^{2i\theta})(1-2e^{-2i\theta})
   &=5-2(2\cos 2\theta)\\
   &=5-4\cos 2\theta
   \end{align*}
+
   as required.
 
   \item Let
   \[
   Z=C+iS
   \]
+
   Then, using $\cos x+i\sin x=e^{ix}$,
   \begin{align*}
   Z&=(\cos\theta+i\sin\theta)+2(\cos3\theta+i\sin3\theta)+\cdots+2^{n-1}(\cos((2n-1)\theta)+i\sin((2n-1)\theta))\\
   &=e^{i\theta}+2e^{3i\theta}+4e^{5i\theta}+\cdots+2^{n-1}e^{(2n-1)i\theta}\\
   &=e^{i\theta}\left(1+2e^{2i\theta}+(2e^{2i\theta})^2+\cdots+(2e^{2i\theta})^{n-1}\right)
   \end{align*}
+
   This is a geometric series with first term $1$ and common ratio $2e^{2i\theta}$, so
   \[
   Z=e^{i\theta}\frac{1-(2e^{2i\theta})^n}{1-2e^{2i\theta}}
   =e^{i\theta}\frac{1-2^n e^{2ni\theta}}{1-2e^{2i\theta}}
   \]
+
   Multiply numerator and denominator by $1-2e^{-2i\theta}$:
   \begin{align*}
   Z&=e^{i\theta}\frac{1-2^n e^{2ni\theta}}{1-2e^{2i\theta}}\cdot\frac{1-2e^{-2i\theta}}{1-2e^{-2i\theta}}\\
   &=\frac{e^{i\theta}(1-2^n e^{2ni\theta})(1-2e^{-2i\theta})}{(1-2e^{2i\theta})(1-2e^{-2i\theta})}
   \end{align*}
+
   Using part (i), the denominator is $5-4\cos2\theta$, so
   \begin{align*}
   Z&=\frac{e^{i\theta}(1-2^n e^{2ni\theta})(1-2e^{-2i\theta})}{5-4\cos2\theta}\\[10pt]
   &=\frac{e^{i\theta}-2e^{-i\theta}-2^n e^{i(2n+1)\theta}+2^{n+1}e^{i(2n-1)\theta}}{5-4\cos2\theta}
   \end{align*}
+
   Now simplify the first two terms:
   \begin{align*}
   e^{i\theta}-2e^{-i\theta}
   &=(\cos\theta+i\sin\theta)-2(\cos\theta-i\sin\theta)\\
   &=-\cos\theta+3i\sin\theta
   \end{align*}
+
   Hence
   \[
   Z=\frac{-\cos\theta+3i\sin\theta-2^n e^{i(2n+1)\theta}+2^{n+1}e^{i(2n-1)\theta}}{5-4\cos2\theta}
   \]
+
   Writing the exponential terms in sine and cosine form,
   \begin{align*}
   Z
   &=\frac{-\cos\theta-2^n\cos((2n+1)\theta)+2^{n+1}\cos((2n-1)\theta)}{5-4\cos2\theta}\\[10pt]
   &\qquad+i\,\frac{3\sin\theta-2^n\sin((2n+1)\theta)+2^{n+1}\sin((2n-1)\theta)}{5-4\cos2\theta}
   \end{align*}
+
   Since $Z=C+iS$, equating real and imaginary parts gives
   \[
   C=\frac{2^{n+1}\cos((2n-1)\theta)-2^n\cos((2n+1)\theta)-\cos\theta}{5-4\cos2\theta}\\[10pt]
   \]
+
   and
   \[
   S=\frac{2^{n+1}\sin((2n-1)\theta)-2^n\sin((2n+1)\theta)+3\sin\theta}{5-4\cos2\theta}\\[10pt]
@@ -693,12 +715,14 @@ C+iS
 &=\sum_{r=0}^{n}\binom{n}{r}\bigl(-e^{i2\theta}\bigr)^r\\
 &=(1-e^{i2\theta})^n
 \end{align*}
+
 by the binomial theorem.
 
 From part (i),
 \[
 1-e^{i2\theta}=2\sin\theta(\sin\theta-i\cos\theta)
 \]
+
 so
 \begin{align*}
 C+iS
@@ -712,10 +736,12 @@ Now factor out \(-i\):
 =
 -i(\cos\theta+i\sin\theta)
 \]
+
 Since
 \[
 -i=e^{-i\pi/2}
 \]
+
 this becomes
 \[
 \sin\theta-i\cos\theta
@@ -741,6 +767,7 @@ Equating real and imaginary parts gives
 \[
 C=2^n\sin^n\theta\cos\left(n\theta-\frac{n\pi}{2}\right)
 \]
+
 and
 \[
 S=2^n\sin^n\theta\sin\left(n\theta-\frac{n\pi}{2}\right)
