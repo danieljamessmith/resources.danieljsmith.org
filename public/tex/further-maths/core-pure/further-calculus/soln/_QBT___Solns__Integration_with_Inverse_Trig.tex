@@ -502,29 +502,59 @@ expressing your answer in terms of $\pi$. \marks{8}
 \vspace*{10pt}
 
 \begin{djsSolution}
-Using the standard result
+Let
 \[
-\int \frac{1}{\sqrt{a^2-x^2}} \,\mathrm{d}x
-=
-\arcsin\!\left(\frac{x}{a}\right)+c
-\]
-with \(a=2\) and \(x\) replaced by \(\ln x\), noting that \(\dfrac{\mathrm{d}}{\mathrm{d}x}(\ln x)=\dfrac{1}{x}\),
-\[
-\int_1^{e} \frac{1}{x\sqrt{4-(\ln x)^2}} \,\mathrm{d}x
-=
-\left[\arcsin\!\left(\frac{\ln x}{2}\right)\right]_1^e
+I=\int_1^{e} \frac{1}{x\sqrt{4-(\ln x)^2}}\,\mathrm{d}x
 \]
 
-Therefore
+Use the substitution
 \[
-\left[\arcsin\!\left(\frac{\ln x}{2}\right)\right]_1^e
-=
-\arcsin\!\left(\frac12\right)-\arcsin(0)
-=
-\frac{\pi}{6}-0
-=
-\frac{\pi}{6}
+u=\ln x
 \]
+Then
+\[
+\frac{\mathrm{d}u}{\mathrm{d}x}=\frac{1}{x}
+\qquad\Rightarrow\qquad
+\mathrm{d}u=\frac{1}{x}\,\mathrm{d}x
+\]
+
+Also, since \(\ln x=u\),
+\[
+\sqrt{4-(\ln x)^2}=\sqrt{4-u^2}
+\]
+
+Now change the limits.
+
+When \(x=1\),
+\[
+u=\ln 1=0
+\]
+
+When \(x=e\),
+\[
+u=\ln e=1
+\]
+
+Now write the integral with the factor \(\dfrac{1}{x}\,\mathrm{d}x\) separated out, so that it can be replaced by \(\mathrm{d}u\):
+\begin{align*}
+I
+&=\int_1^{e} \frac{1}{\sqrt{4-(\ln x)^2}}\cdot\frac{1}{x}\,\mathrm{d}x \\
+&=\int_0^{1} \frac{1}{\sqrt{4-u^2}}\,\mathrm{d}u \\
+&=\int_0^{1} \frac{1}{\sqrt{2^2-u^2}}\,\mathrm{d}u
+\end{align*}
+
+Using the standard result
+\[
+\int \frac{1}{\sqrt{a^2-u^2}}\,\mathrm{d}u=\arcsin\!\left(\frac{u}{a}\right)+c
+\]
+with \(a=2\),
+\begin{align*}
+I
+&=\left[\arcsin\!\left(\frac{u}{2}\right)\right]_0^1 \\
+&=\arcsin\!\left(\frac{1}{2}\right)-\arcsin(0) \\
+&=\frac{\pi}{6}-0 \\
+&=\frac{\pi}{6}
+\end{align*}
 \end{djsSolution}
 
 

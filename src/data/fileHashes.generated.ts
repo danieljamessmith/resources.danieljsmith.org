@@ -27,7 +27,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/further-calculus/qbt/_QBT__Volumes_of_Revolution.pdf': '8f420845',
   '/tex/further-maths/core-pure/further-calculus/soln/_QBT___Solns__Integration_by_Parts__FM_Level_.pdf': '069396a9',
   '/tex/further-maths/core-pure/further-calculus/soln/_QBT___Solns__Integration_by_Substitution__FM_Level_.pdf': '4209dc79',
-  '/tex/further-maths/core-pure/further-calculus/soln/_QBT___Solns__Integration_with_Inverse_Trig.pdf': '21c01712',
+  '/tex/further-maths/core-pure/further-calculus/soln/_QBT___Solns__Integration_with_Inverse_Trig.pdf': '61a2e238',
   '/tex/further-maths/core-pure/further-calculus/soln/_QBT___Solns__Maclaurin_Series.pdf': '10193a68',
   '/tex/further-maths/core-pure/further-calculus/soln/_QBT___Solns__Volumes_of_Revolution.pdf': 'febccd7f',
   '/tex/further-maths/core-pure/induction/qbt/_QBT__Proof_by_Induction___Derivatives.pdf': 'af586bb0',
