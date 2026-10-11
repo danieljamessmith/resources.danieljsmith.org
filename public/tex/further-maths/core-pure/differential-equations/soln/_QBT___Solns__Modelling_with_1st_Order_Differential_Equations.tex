@@ -4,7 +4,7 @@
 \djsSolnHeader{Modelling with 1st Order Differential Equations}
 \djsSitePath{Core Pure}{Differential Equations}
 
-\djsLastUpdated{10 October 2026}
+\djsLastUpdated{11 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -18,240 +18,6 @@
 % ---- Question 1 ----
 \questionitem
 % [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q1]
-
-A laboratory mixing vessel initially contains $4$ litres of solution in which $4$ mg of dye is dissolved. \\
-
-A wash solution enters the vessel at a constant rate of $300$ ml per minute. \\
-
-At the same time, well-mixed liquid leaves the vessel at a constant rate of $200$ ml per minute. \\
-
-The concentration of dye in the liquid entering the vessel, at time $t$ minutes after pumping begins, is modelled by $2e^{-0.1t}$ mg per litre. \\
-
-Let $m$ be the amount of dye, in milligrams, in the vessel at time $t$ minutes. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Show that the volume of liquid in the vessel is $(4+0.1t)$ litres, and hence show that $m$ satisfies
-  \[
-  \frac{\mathrm{d}m}{\mathrm{d}t}=0.6e^{-0.1t}-\frac{2m}{40+t}
-  \] \marks[-30pt]{4}
-  \item Solve this differential equation, given that $m=4$ when $t=0$, to find an expression for $m$ in terms of $t$ \marks{8} \\
-  \item After $20$ minutes, the concentration of dye in the vessel was measured as $0.82$ mg per litre. Assess the model in light of this information, giving a reason for your answer \marks{2} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item The liquid enters at \(300\) ml/min and leaves at \(200\) ml/min, so the net increase in volume is
-\[
-300-200=100\text{ ml/min}=0.1\text{ L/min}
-\]
-Hence, starting from \(4\) L, the volume after \(t\) minutes is
-\[
-V(t)=4+0.1t
-\]
-
-Now form a rate equation for the dye.
-
-The dye enters with concentration \(2e^{-0.1t}\) mg/L and flow rate \(0.3\) L/min, so the rate of dye entering is
-\[
-0.3 \times 2e^{-0.1t}=0.6e^{-0.1t}\text{ mg/min}
-\]
-
-The concentration of dye in the vessel at time \(t\) is
-\[
-\frac{m}{4+0.1t}\text{ mg/L}
-\]
-Since liquid leaves at \(0.2\) L/min, the rate of dye leaving is
-\[
-0.2\left(\frac{m}{4+0.1t}\right)
-\]
-Simplifying,
-\[
-0.2\left(\frac{m}{4+0.1t}\right)=\frac{0.2m}{4+0.1t}=\frac{2m}{40+t}
-\]
-
-Therefore,
-\begin{align*}
-\frac{\mathrm{d}m}{\mathrm{d}t}
-&=\text{rate in}-\text{rate out} \\
-&=0.6e^{-0.1t}-\frac{2m}{40+t}
-\end{align*}
-So
-\[
-V(t)=4+0.1t \text{ litres}, \qquad \frac{\mathrm{d}m}{\mathrm{d}t}=0.6e^{-0.1t}-\frac{2m}{40+t}
-\]
-
-  \item We solve
-\[
-\frac{\mathrm{d}m}{\mathrm{d}t}+\frac{2m}{40+t}=0.6e^{-0.1t}
-\]
-This is a linear differential equation.
-
-The integrating factor is
-\begin{align*}
-\mu(t)
-&=\exp\left(\int \frac{2}{40+t}\,\mathrm{d}t\right) \\
-&=\exp\left(2\ln(40+t)\right) \\
-&=(40+t)^2
-\end{align*}
-
-Multiplying the differential equation by \((40+t)^2\),
-\begin{align*}
-(40+t)^2\frac{\mathrm{d}m}{\mathrm{d}t}+(40+t)^2\frac{2m}{40+t}
-&=0.6(40+t)^2e^{-0.1t}
-\end{align*}
-So
-\[
-\frac{\mathrm{d}}{\mathrm{d}t}\left((40+t)^2m\right)=0.6(40+t)^2e^{-0.1t}
-\]
-
-Integrating both sides,
-\[
-(40+t)^2m=\int 0.6(40+t)^2e^{-0.1t}\,\mathrm{d}t
-\]
-Expand \((40+t)^2\):
-\[
-(40+t)^2=t^2+80t+1600
-\]
-So
-\[
-(40+t)^2m=\int 0.6(t^2+80t+1600)e^{-0.1t}\,\mathrm{d}t
-\]
-
-Let
-\[
-I=\int 0.6(t^2+80t+1600)e^{-0.1t}\,\mathrm{d}t
-\]
-and use integration by parts with
-\[
-u=t^2+80t+1600,
-\qquad
-\frac{\mathrm{d}v}{\mathrm{d}t}=0.6e^{-0.1t}
-\]
-Then
-\[
-\frac{\mathrm{d}u}{\mathrm{d}t}=2t+80,
-\qquad
-v=\int 0.6e^{-0.1t}\,\mathrm{d}t=-6e^{-0.1t}
-\]
-So
-\begin{align*}
-I
-&=uv-\int v\frac{\mathrm{d}u}{\mathrm{d}t}\,\mathrm{d}t \\
-&=-6(t^2+80t+1600)e^{-0.1t}
-  +6\int (2t+80)e^{-0.1t}\,\mathrm{d}t \\
-&=-6(t^2+80t+1600)e^{-0.1t}
-  +12\int (t+40)e^{-0.1t}\,\mathrm{d}t
-\end{align*}
-
-Now let
-\[
-J=\int (t+40)e^{-0.1t}\,\mathrm{d}t
-\]
-Again integrating by parts, take
-\[
-u=t+40,
-\qquad
-\frac{\mathrm{d}v}{\mathrm{d}t}=e^{-0.1t}
-\]
-Then
-\[
-\frac{\mathrm{d}u}{\mathrm{d}t}=1,
-\qquad
-v=\int e^{-0.1t}\,\mathrm{d}t=-10e^{-0.1t}
-\]
-Hence
-\begin{align*}
-J
-&=uv-\int v\frac{\mathrm{d}u}{\mathrm{d}t}\,\mathrm{d}t \\
-&=-10(t+40)e^{-0.1t}+10\int e^{-0.1t}\,\mathrm{d}t \\
-&=-10(t+40)e^{-0.1t}-100e^{-0.1t}+c_1 \\
-&=-10(t+50)e^{-0.1t}+c_1
-\end{align*}
-
-Substituting this into the expression for \(I\), and writing \(c=12c_1\),
-\begin{align*}
-I
-&=-6(t^2+80t+1600)e^{-0.1t}
-  +12\bigl(-10(t+50)e^{-0.1t}\bigr)+c \\
-&=-6e^{-0.1t}\bigl(t^2+80t+1600+20t+1000\bigr)+c \\
-&=-6e^{-0.1t}(t^2+100t+2600)+c
-\end{align*}
-
-Therefore,
-\[
-\int 0.6(t^2+80t+1600)e^{-0.1t}\,\mathrm{d}t
-=-6e^{-0.1t}(t^2+100t+2600)+c
-\]
-where \(c\) is a constant.
-
-So
-\[
-(40+t)^2m=-6e^{-0.1t}(t^2+100t+2600)+c
-\]
-
-Now use the initial condition \(m=4\) when \(t=0\):
-\begin{align*}
-(40)^2(4)
-&=-6e^{0}(0^2+100(0)+2600)+c \\
-6400
-&=-6(2600)+c \\
-6400
-&=-15600+c
-\end{align*}
-Thus
-\[
-c=22000
-\]
-
-Hence
-\[
-(40+t)^2m=22000-6e^{-0.1t}(t^2+100t+2600)
-\]
-and so
-\[
-m=\frac{22000-6e^{-0.1t}(t^2+100t+2600)}{(40+t)^2}
-\]
-
-Therefore, the amount of dye is
-\[
-m(t)=\frac{22000-6e^{-0.1t}(t^2+100t+2600)}{(40+t)^2}\text{ mg}
-\]
-
-  \item After \(20\) minutes, the model gives volume
-\[
-V(20)=4+0.1(20)=6\text{ L}
-\]
-
-Using the expression for \(m\),
-\begin{align*}
-m(20)
-&=\frac{22000-6e^{-2}(20^2+100(20)+2600)}{(40+20)^2} \\
-&=\frac{22000-6e^{-2}(400+2000+2600)}{60^2} \\
-&=\frac{22000-30000e^{-2}}{3600} \\
-&=\frac{55}{9}-\frac{25}{3}e^{-2}
-\end{align*}
-So the predicted concentration is
-\begin{align*}
-\frac{m(20)}{V(20)}
-&=\frac{1}{6}\left(\frac{55}{9}-\frac{25}{3}e^{-2}\right) \\
-&=\frac{55}{54}-\frac{25}{18}e^{-2} \\
-&\approx 0.831\text{ mg/L}
-\end{align*}
-
-The measured concentration was \(0.82\) mg/L, which is very close to \(0.831\) mg/L.
-
-So the model appears reasonable, since its prediction is consistent with the observed value.
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 2 ----
-\questionitem
-% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q2]
 
 A particle $B$, of mass $2\,\mathrm{kg}$, moves in a straight line and has velocity $v\,\mathrm{m\,s^{-1}}$. \\
 
@@ -375,9 +141,553 @@ where $P(t)$ and $Q(t)$ are functions of $t$. \\
 
 \newpage
 
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q2]
+
+A mixing tank initially contains $600$ litres of pure water. \\
+
+Brine flows into the tank at a constant rate of $20$ litres per hour. Each litre of brine contains $3$ grams of dissolved salt. \\
+
+The well-stirred mixture is pumped out of the tank at a constant rate of $30$ litres per hour. \\
+
+It is assumed that the salt is instantly and uniformly mixed throughout the liquid. \\
+
+Given that there are $x$ grams of salt in the tank after $t$ hours, \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item show that, while the tank still contains liquid, the situation can be modelled by
+  \[
+  \frac{\mathrm{d}x}{\mathrm{d}t}=60-\frac{3x}{60-t}
+  \] \marks[-30pt]{4}
+  \item Hence find the number of grams of salt in the tank after $30$ hours \marks{5} \\
+  \item State one limitation of this model and explain briefly how the model could be refined \marks{1} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let the volume of liquid in the tank after $t$ hours be $V$ litres.
+
+  Since liquid flows in at $20$ litres/h and out at $30$ litres/h, the net change in volume is
+  \[
+  V=600+20t-30t=600-10t=10(60-t)
+  \]
+  This is valid while the tank still contains liquid, so $0\le t<60$.
+
+  The rate at which salt enters is
+  \[
+  20\times 3=60 \text{ g/h}
+  \]
+
+  The concentration of salt in the tank at time $t$ is
+  \[
+  \frac{x}{V}=\frac{x}{600-10t} \text{ g/litre}
+  \]
+
+  Since the mixture leaves at $30$ litres/h, the rate at which salt leaves is
+  \[
+  30\left(\frac{x}{600-10t}\right)=\frac{30x}{600-10t}=\frac{3x}{60-t} \text{ g/h}
+  \]
+
+  Hence,
+  \[
+  \frac{\mathrm{d}x}{\mathrm{d}t}=\text{rate in}-\text{rate out}
+  \]
+  so
+  \[
+  \frac{\mathrm{d}x}{\mathrm{d}t}=60-\frac{3x}{60-t}
+  \]
+
+  Therefore, while the tank contains liquid,
+  \[
+  \frac{\mathrm{d}x}{\mathrm{d}t}=60-\frac{3x}{60-t}
+  \]
+
+  \item We solve
+  \[
+  \frac{\mathrm{d}x}{\mathrm{d}t}+\frac{3x}{60-t}=60
+  \]
+  with the initial condition $x(0)=0$, since the tank initially contains pure water.
+
+  The integrating factor is
+  \begin{align*}
+  \mu(t)&=\exp\left(\int \frac{3}{60-t}\,\mathrm{d}t\right) \\
+       &=\exp\left(-3\ln(60-t)\right) \\
+       &=(60-t)^{-3}
+  \end{align*}
+
+  Multiplying the differential equation by $(60-t)^{-3}$ gives
+  \[
+  (60-t)^{-3}\frac{\mathrm{d}x}{\mathrm{d}t}+\frac{3x}{60-t}(60-t)^{-3}=60(60-t)^{-3}
+  \]
+
+  The left-hand side is now the derivative of $x(60-t)^{-3}$, so
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}t}\left[x(60-t)^{-3}\right]=60(60-t)^{-3}
+  \]
+
+  Integrating both sides with respect to $t$,
+  \begin{align*}
+  x(60-t)^{-3}&=\int 60(60-t)^{-3}\,\mathrm{d}t + c
+  \end{align*}
+
+  To evaluate the integral, let $u=60-t$, so $\mathrm{d}u=-\mathrm{d}t$:
+  \begin{align*}
+  \int 60(60-t)^{-3}\,\mathrm{d}t
+  &= -60\int u^{-3}\,\mathrm{d}u \\
+  &= -60\left(\frac{u^{-2}}{-2}\right) \\
+  &= 30u^{-2} \\
+  &= 30(60-t)^{-2}
+  \end{align*}
+
+  Therefore,
+  \[
+  x(60-t)^{-3}=30(60-t)^{-2}+c
+  \]
+
+  Multiplying through by $(60-t)^3$,
+  \[
+  x=30(60-t)+c(60-t)^3
+  \]
+
+  Use $x(0)=0$:
+  \begin{align*}
+  0&=30(60)+c(60)^3 \\
+  0&=1800+216000c \\
+  c&=-\frac{1800}{216000}=-\frac{1}{120}
+  \end{align*}
+
+  So
+  \[
+  x=30(60-t)-\frac{(60-t)^3}{120}
+  \]
+
+  At $t=30$,
+  \begin{align*}
+  x(30)&=30(60-30)-\frac{(60-30)^3}{120} \\
+       &=30\cdot 30-\frac{30^3}{120} \\
+       &=900-\frac{27000}{120} \\
+       &=900-225 \\
+       &=675
+  \end{align*}
+
+  Hence the number of grams of salt in the tank after $30$ hours is
+  \[
+  675\text{ g}
+  \]
+
+  \item One limitation is that the model assumes the salt is mixed instantly and uniformly throughout the tank, which is not completely realistic.
+
+  A refinement would be to use a model with finite mixing time, for example a compartment model or a model where concentration varies in different parts of the tank.
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
 % ---- Question 3 ----
 \questionitem
 % [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q3]
+
+A horticultural mixing tank initially contains 600 litres of pure water. \\
+
+A fertiliser solution flows into the tank at a constant rate of 6 litres per minute. The incoming solution contains 2 grams of fertiliser in every litre of solution. \\
+
+At the same time, liquid is pumped out of the well-stirred tank at a constant rate of 9 litres per minute. \\
+
+It is assumed that the fertiliser instantly dissolves uniformly throughout the tank. \\
+
+Given that there are $x$ grams of fertiliser in the tank after $t$ minutes, \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that, while the tank still contains liquid, the situation can be modelled by the differential equation
+  \[
+  \frac{\mathrm{d}x}{\mathrm{d}t}=12-\frac{3x}{200-t}
+  \]
+  \marks[-20pt]{4}
+  \item Hence determine after how many minutes the concentration of fertiliser in the tank first reaches $1.5$ grams per litre. \marks{5} \\
+  \item Explain briefly one way in which the model could be refined. \marks{1} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let \(V\) be the volume of liquid in the tank after \(t\) minutes.
+
+  Since liquid enters at \(6\) L/min and leaves at \(9\) L/min, the net change in volume is
+  \begin{align*}
+  V(t)&=600+(6-9)t\\
+      &=600-3t\\
+      &=3(200-t)
+  \end{align*}
+  This is valid while the tank still contains liquid, so
+  \[
+  600-3t>0 \quad \Rightarrow \quad t<200
+  \]
+
+  The fertiliser enters at
+  \[
+  6 \times 2 = 12 \text{ g/min}
+  \]
+
+  The concentration in the tank at time \(t\) is
+  \[
+  \frac{x}{V}=\frac{x}{600-3t} \text{ g/L}
+  \]
+
+  So the fertiliser leaves at the rate
+  \begin{align*}
+  9 \times \frac{x}{600-3t}
+  &=\frac{9x}{600-3t}\\
+  &=\frac{9x}{3(200-t)}\\
+  &=\frac{3x}{200-t}
+  \end{align*}
+
+  Hence,
+  \begin{align*}
+  \frac{\mathrm{d}x}{\mathrm{d}t}
+  &=\text{rate in} - \text{rate out}\\
+  &=12-\frac{3x}{200-t}
+  \end{align*}
+
+  So the model is
+  \[
+  \frac{\mathrm{d}x}{\mathrm{d}t}=12-\frac{3x}{200-t}, \qquad t<200
+  \]
+
+  \item From part (a),
+  \[
+  \frac{\mathrm{d}x}{\mathrm{d}t}+\frac{3}{200-t}x=12
+  \]
+
+  This is a linear differential equation. Its integrating factor is
+  \[
+  \mu(t)=\exp\left(\int \frac{3}{200-t}\,\mathrm{d}t\right)
+  =\exp\left(-3\ln(200-t)\right)
+  =(200-t)^{-3}
+  \]
+
+  Multiplying the differential equation by \((200-t)^{-3}\) gives
+  \begin{align*}
+  (200-t)^{-3}\frac{\mathrm{d}x}{\mathrm{d}t}
+  +\frac{3x}{200-t}(200-t)^{-3}
+  &=12(200-t)^{-3}\\
+  \frac{\mathrm{d}}{\mathrm{d}t}\left(x(200-t)^{-3}\right)
+  &=12(200-t)^{-3}
+  \end{align*}
+
+  Integrating,
+  \begin{align*}
+  x(200-t)^{-3}
+  &=\int 12(200-t)^{-3}\,\mathrm{d}t\\
+  &=6(200-t)^{-2}+c
+  \end{align*}
+
+  Therefore,
+  \begin{align*}
+  x
+  &=\left(6(200-t)^{-2}+c\right)(200-t)^3\\
+  &=6(200-t)+c(200-t)^3
+  \end{align*}
+
+  Initially the tank contains pure water, so \(x=0\) when \(t=0\). Substituting \(t=0\) gives
+  \begin{align*}
+  0&=6(200)+c(200)^3\\
+  0&=1200+8\,000\,000c\\
+  c&=-\frac{1200}{8\,000\,000}\\
+   &=-\frac{3}{20000}
+  \end{align*}
+
+  Hence
+  \[
+  x=6(200-t)-\frac{3}{20000}(200-t)^3
+  \]
+
+  The volume at time \(t\) is
+  \[
+  V=3(200-t)
+  \]
+
+  So the concentration is
+  \begin{align*}
+  \frac{x}{V}
+  &=\frac{6(200-t)-\frac{3}{20000}(200-t)^3}{3(200-t)}\\
+  &=2-\frac{(200-t)^2}{20000}
+  \end{align*}
+
+  We want this concentration to be \(1.5\) g/L, so
+  \begin{align*}
+  2-\frac{(200-t)^2}{20000}&=1.5\\
+  \frac{(200-t)^2}{20000}&=0.5\\
+  (200-t)^2&=10000
+  \end{align*}
+
+  Since \(t<200\), we must have \(200-t>0\). Therefore
+  \[
+  200-t=100
+  \]
+
+  So
+  \[
+  t=100
+  \]
+
+  Therefore the concentration first reaches \(1.5\) g/L after \(100\) minutes.
+
+  \item One refinement would be to remove the assumption of perfect instantaneous mixing, and allow the fertiliser concentration to vary in different parts of the tank.
+
+  So a more realistic model could account for imperfect mixing.
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q4]
+
+A processing tank initially contains $15$ litres of water in which $6$ mg of dye is dissolved. \\
+
+A dye solution enters the tank at a constant rate of $200$ ml per minute. The concentration of dye in this incoming solution, at time $t$ minutes after the flow begins, is modelled by $(4+e^{-0.1t})$ mg per litre. \\
+
+At the same time, pure water enters through a second pipe at a constant rate of $100$ ml per minute. The liquid in the tank is continually mixed and leaves the tank at a constant rate of $300$ ml per minute. \\
+
+Let $m$ be the amount of dye, in milligrams, in the tank at time $t$ minutes after the flow begins. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item 
+  \begin{enumerate}[label=(\roman*)]
+    \item Write down the volume of liquid in the tank at time $t$
+    \item Hence show that $m$ satisfies the differential equation
+    \[
+    \frac{\mathrm{d}m}{\mathrm{d}t}=0.8+0.2e^{-0.1t}-\frac{m}{50}
+    \]
+  \end{enumerate}
+  \marks[-25pt]{4} 
+  \item By solving the differential equation, find an expression for $m$ in terms of $t$ \marks{8} \\
+\end{enumerate}
+After $30$ minutes, the concentration of dye in the tank was measured as $1.52$ mg per litre. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Assess the model in light of this information, giving a reason for your answer \marks{2} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Convert the flow rates to litres per minute:
+    \[
+    200\text{ ml min}^{-1}=0.2\text{ L min}^{-1},\qquad 100\text{ ml min}^{-1}=0.1\text{ L min}^{-1},\qquad 300\text{ ml min}^{-1}=0.3\text{ L min}^{-1}
+    \]
+    So the net rate of change of volume is
+    \[
+    0.2+0.1-0.3=0\text{ L min}^{-1}
+    \]
+    Hence the volume stays constant at its initial value of $15$ litres:
+    \[
+    V(t)=15
+    \]
+    So the volume of liquid in the tank at time $t$ is $15$ litres.
+
+    \item The rate at which dye enters through the first pipe is
+    \[
+    0.2\bigl(4+e^{-0.1t}\bigr)\text{ mg min}^{-1}
+    \]
+    so
+    \[
+    \text{rate in}=0.8+0.2e^{-0.1t}
+    \]
+    The second pipe contains pure water, so it contributes no dye.
+
+    Since the tank is well mixed and has volume $15$ L, the concentration of dye in the tank is
+    \[
+    \frac{m}{15}\text{ mg L}^{-1}
+    \]
+    Therefore the rate at which dye leaves the tank is
+    \[
+    0.3\times \frac{m}{15}=\frac{0.3m}{15}=\frac{m}{50}\text{ mg min}^{-1}
+    \]
+    Hence
+    \[
+    \frac{\mathrm{d}m}{\mathrm{d}t}=\text{rate in}-\text{rate out}
+    \]
+    so
+    \[
+    \frac{\mathrm{d}m}{\mathrm{d}t}=0.8+0.2e^{-0.1t}-\frac{m}{50}
+    \]
+    as required.
+  \end{enumerate}
+
+  \item Rearranging the differential equation into linear form gives
+  \[
+  \frac{\mathrm{d}m}{\mathrm{d}t}+\frac{1}{50}m=0.8+0.2e^{-0.1t}
+  \]
+  The integrating factor is
+  \[
+  \exp\!\left(\int \frac{1}{50}\, \mathrm{d}t\right)=e^{t/50}
+  \]
+  Multiply the differential equation by $e^{t/50}$:
+  \begin{align*}
+  e^{t/50}\frac{\mathrm{d}m}{\mathrm{d}t}+\frac{1}{50}e^{t/50}m
+  &=0.8e^{t/50}+0.2e^{-0.1t}e^{t/50} \\
+  &=0.8e^{t/50}+0.2e^{-0.08t}
+  \end{align*}
+  The left-hand side is
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}t}\bigl(me^{t/50}\bigr)
+  \]
+  so
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}t}\bigl(me^{t/50}\bigr)=0.8e^{t/50}+0.2e^{-0.08t}
+  \]
+  Integrating both sides with respect to $t$:
+  \begin{align*}
+  me^{t/50}
+  &=\int 0.8e^{t/50}\, \mathrm{d}t+\int 0.2e^{-0.08t}\, \mathrm{d}t+c \\
+  &=0.8(50)e^{t/50}+0.2\left(\frac{1}{-0.08}\right)e^{-0.08t}+c \\
+  &=40e^{t/50}-2.5e^{-0.08t}+c
+  \end{align*}
+  Divide through by $e^{t/50}$:
+  \begin{align*}
+  m
+  &=40-2.5e^{-0.08t}e^{-t/50}+ce^{-t/50} \\
+  &=40-2.5e^{-0.1t}+ce^{-0.02t}
+  \end{align*}
+  Initially there are $6$ mg of dye in the tank, so $m(0)=6$. Substituting $t=0$ gives
+  \begin{align*}
+  6&=40-2.5+c \\
+  6&=37.5+c \\
+  c&=-31.5
+  \end{align*}
+  Therefore
+  \[
+  m=40-2.5e^{-0.1t}-31.5e^{-0.02t}
+  \]
+
+  \item The model predicts that at $t=30$ minutes,
+  \[
+  m(30)=40-2.5e^{-3}-31.5e^{-0.6}
+  \]
+  so the concentration is
+  \[
+  \frac{m(30)}{15}=\frac{40-2.5e^{-3}-31.5e^{-0.6}}{15}\approx 1.51\text{ mg L}^{-1}
+  \]
+  The measured concentration was $1.52\text{ mg L}^{-1}$, which is very close to the model prediction. Therefore the model appears to be reasonable.
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q5]
+
+A particle $B$, of mass $2\,\mathrm{kg}$, moves in a straight line and has velocity $v\,\mathrm{m\,s^{-1}}$. \\
+
+At time $t$ seconds, where $t\ge 0$, a variable force of $-2t(v+3)\,\mathrm{N}$ acts on $B$. There are no other forces acting on $B$. Initially, when $t=0$, $B$ has velocity $5\,\mathrm{m\,s^{-1}}$. \\
+
+The motion of $B$ can be modelled by the differential equation
+\[
+\frac{\mathrm{d}v}{\mathrm{d}t}+P(t)v=Q(t)
+\]
+where $P(t)$ and $Q(t)$ are functions of $t$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the functions $P(t)$ and $Q(t)$ \marks{2} \\
+  \item Using an integrating factor, determine the first time at which $B$ is stationary according to the model \marks{8} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item By Newton's second law, resultant force $=$ mass $\times$ acceleration, so
+  \[
+  2\frac{\mathrm{d}v}{\mathrm{d}t}=-2t(v+3)
+  \]
+  Expanding and dividing by $2$ gives
+  \[
+  \frac{\mathrm{d}v}{\mathrm{d}t}=-tv-3t
+  \]
+  Hence
+  \[
+  \frac{\mathrm{d}v}{\mathrm{d}t}+tv=-3t
+  \]
+  Therefore, $P(t)=t$ and $Q(t)=-3t$.
+
+  \item From part (a), the differential equation is
+  \[
+  \frac{\mathrm{d}v}{\mathrm{d}t}+tv=-3t
+  \]
+  The integrating factor is
+  \[
+  e^{\int t\,\mathrm{d}t}=e^{t^2/2}
+  \]
+  Multiplying the differential equation by $e^{t^2/2}$ gives
+  \[
+  e^{t^2/2}\frac{\mathrm{d}v}{\mathrm{d}t}+tve^{t^2/2}=-3te^{t^2/2}
+  \]
+  The left-hand side is
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}t}\left(ve^{t^2/2}\right)
+  \]
+  so
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}t}\left(ve^{t^2/2}\right)=-3te^{t^2/2}
+  \]
+  Integrating with respect to $t$,
+  \begin{align*}
+  ve^{t^2/2} &= \int -3te^{t^2/2}\,\mathrm{d}t \\
+  &= -3e^{t^2/2}+c
+  \end{align*}
+  Therefore
+  \[
+  v=-3+ce^{-t^2/2}
+  \]
+  Using the initial condition $v=5$ when $t=0$,
+  \begin{align*}
+  5&=-3+ce^{0} \\
+  5&=-3+c \\
+  c&=8
+  \end{align*}
+  Hence
+  \[
+  v=-3+8e^{-t^2/2}
+  \]
+  For $B$ to be stationary, $v=0$. So
+  \begin{align*}
+  0&=-3+8e^{-t^2/2} \\
+  8e^{-t^2/2}&=3 \\
+  e^{-t^2/2}&=\frac{3}{8}
+  \end{align*}
+  Taking natural logarithms,
+  \begin{align*}
+  -\frac{t^2}{2}&=\ln\left(\frac{3}{8}\right) \\
+  \frac{t^2}{2}&=\ln\left(\frac{8}{3}\right) \\
+  t^2&=2\ln\left(\frac{8}{3}\right)
+  \end{align*}
+  Since $t\ge 0$, the first time is
+  \[
+  t=\sqrt{2\ln\left(\frac{8}{3}\right)}
+  \]
+  Numerically,
+  \[
+  t\approx 1.40\text{ s}
+  \]
+  Therefore, the first time at which $B$ is stationary is $\sqrt{2\ln\left(\frac{8}{3}\right)}$ s, approximately $1.40$ s.
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q6]
 
 A brief flushing cycle in an industrial pipe is to be modelled. The flow rate of liquid, $R$ litres per second, at time $t$ seconds is measured from the instant the valve is opened. The cycle starts when $t=0$ and there is initially no flow through the pipe. When $t=1$, the flow rate is measured as $\pi e^{-1}\sin (1)$ litres per second. \\
 
@@ -533,154 +843,150 @@ So the rate of increase of the flow rate at the start is
 
 \newpage
 
-% ---- Question 4 ----
+% ---- Question 7 ----
 \questionitem
-% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q4]
+% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q7]
 
-A mixing tank initially contains $600$ litres of pure water. \\
-
-Brine flows into the tank at a constant rate of $20$ litres per hour. Each litre of brine contains $3$ grams of dissolved salt. \\
-
-The well-stirred mixture is pumped out of the tank at a constant rate of $30$ litres per hour. \\
-
-It is assumed that the salt is instantly and uniformly mixed throughout the liquid. \\
-
-Given that there are $x$ grams of salt in the tank after $t$ hours, \\
+A short filling pulse in a buffer tank is to be modelled. The volume of liquid in the tank at time $t$ seconds is $V$ litres. The pulse starts when $t=0$, and initially the tank is empty. After $1$ second the volume is measured to be $4$ litres. While the pulse is occurring, $V$ is modelled by the differential equation
+\[
+(3t-t^2)\frac{\mathrm{d}V}{\mathrm{d}t}=\frac{(3t-t^2)^2}{1+(t-1)^2}+(3-2t)V 
+    \]\\
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item show that, while the tank still contains liquid, the situation can be modelled by
+  \item By using an integrating factor show that, according to the model, while the pulse is occurring,
   \[
-  \frac{\mathrm{d}x}{\mathrm{d}t}=60-\frac{3x}{60-t}
-  \] \marks[-30pt]{4}
-  \item Hence find the number of grams of salt in the tank after $30$ hours \marks{5} \\
-  \item State one limitation of this model and explain briefly how the model could be refined \marks{1} \\
+  V=(3t-t^2)\left(\tan^{-1}(t-1)+2\right)
+  \] \marks[-20pt]{6}
+\end{enumerate}
+The pulse ends when the tank is again empty. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Determine the length of time that the pulse lasts according to the model \marks{2} \\
+  \item Determine, according to the model, the rate of increase of the volume at the start of the pulse. Give your answer in an exact form \marks{3} \\
 \end{enumerate}
 
 \vspace*{10pt}
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Let the volume of liquid in the tank after $t$ hours be $V$ litres.
-
-  Since liquid flows in at $20$ litres/h and out at $30$ litres/h, the net change in volume is
+  \item First rearrange the differential equation into linear form:
   \[
-  V=600+20t-30t=600-10t=10(60-t)
+  \frac{\mathrm{d}V}{\mathrm{d}t}-\frac{3-2t}{3t-t^2}V=\frac{3t-t^2}{1+(t-1)^2}
   \]
-  This is valid while the tank still contains liquid, so $0\le t<60$.
-
-  The rate at which salt enters is
-  \[
-  20\times 3=60 \text{ g/h}
-  \]
-
-  The concentration of salt in the tank at time $t$ is
-  \[
-  \frac{x}{V}=\frac{x}{600-10t} \text{ g/litre}
-  \]
-
-  Since the mixture leaves at $30$ litres/h, the rate at which salt leaves is
-  \[
-  30\left(\frac{x}{600-10t}\right)=\frac{30x}{600-10t}=\frac{3x}{60-t} \text{ g/h}
-  \]
-
-  Hence,
-  \[
-  \frac{\mathrm{d}x}{\mathrm{d}t}=\text{rate in}-\text{rate out}
-  \]
-  so
-  \[
-  \frac{\mathrm{d}x}{\mathrm{d}t}=60-\frac{3x}{60-t}
-  \]
-
-  Therefore, while the tank contains liquid,
-  \[
-  \frac{\mathrm{d}x}{\mathrm{d}t}=60-\frac{3x}{60-t}
-  \]
-
-  \item We solve
-  \[
-  \frac{\mathrm{d}x}{\mathrm{d}t}+\frac{3x}{60-t}=60
-  \]
-  with the initial condition $x(0)=0$, since the tank initially contains pure water.
 
   The integrating factor is
   \begin{align*}
-  \mu(t)&=\exp\left(\int \frac{3}{60-t}\,\mathrm{d}t\right) \\
-       &=\exp\left(-3\ln(60-t)\right) \\
-       &=(60-t)^{-3}
+  \mu(t)&=e^{\int -\frac{3-2t}{3t-t^2}\,\mathrm{d}t}
   \end{align*}
 
-  Multiplying the differential equation by $(60-t)^{-3}$ gives
+  Since
   \[
-  (60-t)^{-3}\frac{\mathrm{d}x}{\mathrm{d}t}+\frac{3x}{60-t}(60-t)^{-3}=60(60-t)^{-3}
+  \frac{\mathrm{d}}{\mathrm{d}t}(3t-t^2)=3-2t
   \]
 
-  The left-hand side is now the derivative of $x(60-t)^{-3}$, so
-  \[
-  \frac{\mathrm{d}}{\mathrm{d}t}\left[x(60-t)^{-3}\right]=60(60-t)^{-3}
-  \]
-
-  Integrating both sides with respect to $t$,
+  we have
   \begin{align*}
-  x(60-t)^{-3}&=\int 60(60-t)^{-3}\,\mathrm{d}t + c
+  \int -\frac{3-2t}{3t-t^2}\,\mathrm{d}t
+  &= -\ln(3t-t^2)
   \end{align*}
 
-  To evaluate the integral, let $u=60-t$, so $\mathrm{d}u=-\mathrm{d}t$:
+  Hence
+  \[
+  \mu(t)=e^{-\ln(3t-t^2)}=\frac{1}{3t-t^2}
+  \]
+
+  Multiplying the differential equation by this integrating factor gives
+  \[
+  \frac{1}{3t-t^2}\frac{\mathrm{d}V}{\mathrm{d}t}-\frac{3-2t}{(3t-t^2)^2}V=\frac{1}{1+(t-1)^2}
+  \]
+
+  The left-hand side is
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{V}{3t-t^2}\right)
+  \]
+
+  so
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{V}{3t-t^2}\right)=\frac{1}{1+(t-1)^2}
+  \]
+
+  Integrating with respect to \(t\),
   \begin{align*}
-  \int 60(60-t)^{-3}\,\mathrm{d}t
-  &= -60\int u^{-3}\,\mathrm{d}u \\
-  &= -60\left(\frac{u^{-2}}{-2}\right) \\
-  &= 30u^{-2} \\
-  &= 30(60-t)^{-2}
+  \frac{V}{3t-t^2}
+  &= \int \frac{1}{1+(t-1)^2}\,\mathrm{d}t \\
+  &= \tan^{-1}(t-1)+c
   \end{align*}
 
-  Therefore,
-  \[
-  x(60-t)^{-3}=30(60-t)^{-2}+c
-  \]
-
-  Multiplying through by $(60-t)^3$,
-  \[
-  x=30(60-t)+c(60-t)^3
-  \]
-
-  Use $x(0)=0$:
+  Use the given condition \(V=4\) when \(t=1\):
   \begin{align*}
-  0&=30(60)+c(60)^3 \\
-  0&=1800+216000c \\
-  c&=-\frac{1800}{216000}=-\frac{1}{120}
+  \frac{4}{3(1)-1^2}&=\tan^{-1}(1-1)+c \\
+  \frac{4}{2}&=0+c \\
+  c&=2
   \end{align*}
 
-  So
+  Therefore
   \[
-  x=30(60-t)-\frac{(60-t)^3}{120}
+  \frac{V}{3t-t^2}=\tan^{-1}(t-1)+2
   \]
 
-  At $t=30$,
+  and so
+  \[
+  V=(3t-t^2)\left(\tan^{-1}(t-1)+2\right)
+  \]
+
+  This is the required result.
+
+  \item The pulse ends when the tank is empty again, so set \(V=0\):
+  \[
+  (3t-t^2)\left(\tan^{-1}(t-1)+2\right)=0
+  \]
+
+  Now
+  \[
+  -\frac{\pi}{2}<\tan^{-1}(t-1)<\frac{\pi}{2}
+  \]
+
+  so
+  \[
+  2-\frac{\pi}{2}<\tan^{-1}(t-1)+2<2+\frac{\pi}{2}
+  \]
+
+  Since \(2-\frac{\pi}{2}>0\), the factor \(\tan^{-1}(t-1)+2\) is never zero. Hence
+  \[
+  3t-t^2=0
+  \]
+
+  so
   \begin{align*}
-  x(30)&=30(60-30)-\frac{(60-30)^3}{120} \\
-       &=30\cdot 30-\frac{30^3}{120} \\
-       &=900-\frac{27000}{120} \\
-       &=900-225 \\
-       &=675
+  t(3-t)&=0 \\
+  t&=0 \text{ or } t=3
   \end{align*}
 
-  Hence the number of grams of salt in the tank after $30$ hours is
-  \[
-  675\text{ g}
-  \]
+  The pulse starts at \(t=0\), so it ends when \(t=3\). Therefore the pulse lasts \(3\) seconds.
 
-  \item One limitation is that the model assumes the salt is mixed instantly and uniformly throughout the tank, which is not completely realistic.
+  \item Differentiate the expression for \(V\):
+  \begin{align*}
+  \frac{\mathrm{d}V}{\mathrm{d}t}
+  &= \frac{\mathrm{d}}{\mathrm{d}t}\left[(3t-t^2)\left(\tan^{-1}(t-1)+2\right)\right] \\
+  &= (3-2t)\left(\tan^{-1}(t-1)+2\right)+(3t-t^2)\left(\frac{1}{1+(t-1)^2}\right)
+  \end{align*}
 
-  A refinement would be to use a model with finite mixing time, for example a compartment model or a model where concentration varies in different parts of the tank.
+  At the start of the pulse, \(t=0\):
+  \begin{align*}
+  \left.\frac{\mathrm{d}V}{\mathrm{d}t}\right|_{t=0}
+  &= 3\left(\tan^{-1}(-1)+2\right)+0 \\
+  &= 3\left(-\frac{\pi}{4}+2\right) \\
+  &= 6-\frac{3\pi}{4}
+  \end{align*}
+
+  Therefore the rate of increase of volume at the start is \(6-\frac{3\pi}{4}\,\text{L s}^{-1}\).
 \end{enumerate}
 \end{djsSolution}
 
 
 \newpage
 
-% ---- Question 5 ----
+% ---- Question 8 ----
 \questionitem
-% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q5]
+% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q8]
 
 The concentration $C$, in suitable units, of a pollutant in a reservoir at time $t$ hours after a filtration system is switched on is to be modelled by a differential equation. Initially, the concentration is $A$, and its long-term value is $0$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
@@ -935,249 +1241,243 @@ The concentration $C$, in suitable units, of a pollutant in a reservoir at time 
 
 \newpage
 
-% ---- Question 6 ----
+% ---- Question 9 ----
 \questionitem
-% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q6]
+% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q9]
 
-A processing tank initially contains $15$ litres of water in which $6$ mg of dye is dissolved. \\
+A laboratory mixing vessel initially contains $4$ litres of solution in which $4$ mg of dye is dissolved. \\
 
-A dye solution enters the tank at a constant rate of $200$ ml per minute. The concentration of dye in this incoming solution, at time $t$ minutes after the flow begins, is modelled by $(4+e^{-0.1t})$ mg per litre. \\
+A wash solution enters the vessel at a constant rate of $300$ ml per minute. \\
 
-At the same time, pure water enters through a second pipe at a constant rate of $100$ ml per minute. The liquid in the tank is continually mixed and leaves the tank at a constant rate of $300$ ml per minute. \\
+At the same time, well-mixed liquid leaves the vessel at a constant rate of $200$ ml per minute. \\
 
-Let $m$ be the amount of dye, in milligrams, in the tank at time $t$ minutes after the flow begins. \\
+The concentration of dye in the liquid entering the vessel, at time $t$ minutes after pumping begins, is modelled by $2e^{-0.1t}$ mg per litre. \\
+
+Let $m$ be the amount of dye, in milligrams, in the vessel at time $t$ minutes. \\
+
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item 
-  \begin{enumerate}[label=(\roman*)]
-    \item Write down the volume of liquid in the tank at time $t$
-    \item Hence show that $m$ satisfies the differential equation
-    \[
-    \frac{\mathrm{d}m}{\mathrm{d}t}=0.8+0.2e^{-0.1t}-\frac{m}{50}
-    \]
-  \end{enumerate}
-  \marks[-25pt]{4} 
-  \item By solving the differential equation, find an expression for $m$ in terms of $t$ \marks{8} \\
-\end{enumerate}
-After $30$ minutes, the concentration of dye in the tank was measured as $1.52$ mg per litre. \\
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Assess the model in light of this information, giving a reason for your answer \marks{2} \\
+  \item Show that the volume of liquid in the vessel is $(4+0.1t)$ litres, and hence show that $m$ satisfies
+  \[
+  \frac{\mathrm{d}m}{\mathrm{d}t}=0.6e^{-0.1t}-\frac{2m}{40+t}
+  \] \marks[-30pt]{4}
+  \item Solve this differential equation, given that $m=4$ when $t=0$, to find an expression for $m$ in terms of $t$ \marks{8} \\
+  \item After $20$ minutes, the concentration of dye in the vessel was measured as $0.82$ mg per litre. Assess the model in light of this information, giving a reason for your answer \marks{2} \\
 \end{enumerate}
 
 \vspace*{10pt}
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item
-  \begin{enumerate}[label=(\roman*)]
-    \item Convert the flow rates to litres per minute:
-    \[
-    200\text{ ml min}^{-1}=0.2\text{ L min}^{-1},\qquad 100\text{ ml min}^{-1}=0.1\text{ L min}^{-1},\qquad 300\text{ ml min}^{-1}=0.3\text{ L min}^{-1}
-    \]
-    So the net rate of change of volume is
-    \[
-    0.2+0.1-0.3=0\text{ L min}^{-1}
-    \]
-    Hence the volume stays constant at its initial value of $15$ litres:
-    \[
-    V(t)=15
-    \]
-    So the volume of liquid in the tank at time $t$ is $15$ litres.
-
-    \item The rate at which dye enters through the first pipe is
-    \[
-    0.2\bigl(4+e^{-0.1t}\bigr)\text{ mg min}^{-1}
-    \]
-    so
-    \[
-    \text{rate in}=0.8+0.2e^{-0.1t}
-    \]
-    The second pipe contains pure water, so it contributes no dye.
-
-    Since the tank is well mixed and has volume $15$ L, the concentration of dye in the tank is
-    \[
-    \frac{m}{15}\text{ mg L}^{-1}
-    \]
-    Therefore the rate at which dye leaves the tank is
-    \[
-    0.3\times \frac{m}{15}=\frac{0.3m}{15}=\frac{m}{50}\text{ mg min}^{-1}
-    \]
-    Hence
-    \[
-    \frac{\mathrm{d}m}{\mathrm{d}t}=\text{rate in}-\text{rate out}
-    \]
-    so
-    \[
-    \frac{\mathrm{d}m}{\mathrm{d}t}=0.8+0.2e^{-0.1t}-\frac{m}{50}
-    \]
-    as required.
-  \end{enumerate}
-
-  \item Rearranging the differential equation into linear form gives
-  \[
-  \frac{\mathrm{d}m}{\mathrm{d}t}+\frac{1}{50}m=0.8+0.2e^{-0.1t}
-  \]
-  The integrating factor is
-  \[
-  \exp\!\left(\int \frac{1}{50}\, \mathrm{d}t\right)=e^{t/50}
-  \]
-  Multiply the differential equation by $e^{t/50}$:
-  \begin{align*}
-  e^{t/50}\frac{\mathrm{d}m}{\mathrm{d}t}+\frac{1}{50}e^{t/50}m
-  &=0.8e^{t/50}+0.2e^{-0.1t}e^{t/50} \\
-  &=0.8e^{t/50}+0.2e^{-0.08t}
-  \end{align*}
-  The left-hand side is
-  \[
-  \frac{\mathrm{d}}{\mathrm{d}t}\bigl(me^{t/50}\bigr)
-  \]
-  so
-  \[
-  \frac{\mathrm{d}}{\mathrm{d}t}\bigl(me^{t/50}\bigr)=0.8e^{t/50}+0.2e^{-0.08t}
-  \]
-  Integrating both sides with respect to $t$:
-  \begin{align*}
-  me^{t/50}
-  &=\int 0.8e^{t/50}\, \mathrm{d}t+\int 0.2e^{-0.08t}\, \mathrm{d}t+c \\
-  &=0.8(50)e^{t/50}+0.2\left(\frac{1}{-0.08}\right)e^{-0.08t}+c \\
-  &=40e^{t/50}-2.5e^{-0.08t}+c
-  \end{align*}
-  Divide through by $e^{t/50}$:
-  \begin{align*}
-  m
-  &=40-2.5e^{-0.08t}e^{-t/50}+ce^{-t/50} \\
-  &=40-2.5e^{-0.1t}+ce^{-0.02t}
-  \end{align*}
-  Initially there are $6$ mg of dye in the tank, so $m(0)=6$. Substituting $t=0$ gives
-  \begin{align*}
-  6&=40-2.5+c \\
-  6&=37.5+c \\
-  c&=-31.5
-  \end{align*}
-  Therefore
-  \[
-  m=40-2.5e^{-0.1t}-31.5e^{-0.02t}
-  \]
-
-  \item The model predicts that at $t=30$ minutes,
-  \[
-  m(30)=40-2.5e^{-3}-31.5e^{-0.6}
-  \]
-  so the concentration is
-  \[
-  \frac{m(30)}{15}=\frac{40-2.5e^{-3}-31.5e^{-0.6}}{15}\approx 1.51\text{ mg L}^{-1}
-  \]
-  The measured concentration was $1.52\text{ mg L}^{-1}$, which is very close to the model prediction. Therefore the model appears to be reasonable.
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 7 ----
-\questionitem
-% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q7]
-
-A particle $B$, of mass $2\,\mathrm{kg}$, moves in a straight line and has velocity $v\,\mathrm{m\,s^{-1}}$. \\
-
-At time $t$ seconds, where $t\ge 0$, a variable force of $-2t(v+3)\,\mathrm{N}$ acts on $B$. There are no other forces acting on $B$. Initially, when $t=0$, $B$ has velocity $5\,\mathrm{m\,s^{-1}}$. \\
-
-The motion of $B$ can be modelled by the differential equation
+  \item The liquid enters at \(300\) ml/min and leaves at \(200\) ml/min, so the net increase in volume is
 \[
-\frac{\mathrm{d}v}{\mathrm{d}t}+P(t)v=Q(t)
+300-200=100\text{ ml/min}=0.1\text{ L/min}
 \]
-where $P(t)$ and $Q(t)$ are functions of $t$. \\
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find the functions $P(t)$ and $Q(t)$ \marks{2} \\
-  \item Using an integrating factor, determine the first time at which $B$ is stationary according to the model \marks{8} \\
-\end{enumerate}
+Hence, starting from \(4\) L, the volume after \(t\) minutes is
+\[
+V(t)=4+0.1t
+\]
 
-\vspace*{10pt}
+Now form a rate equation for the dye.
 
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item By Newton's second law, resultant force $=$ mass $\times$ acceleration, so
-  \[
-  2\frac{\mathrm{d}v}{\mathrm{d}t}=-2t(v+3)
-  \]
-  Expanding and dividing by $2$ gives
-  \[
-  \frac{\mathrm{d}v}{\mathrm{d}t}=-tv-3t
-  \]
-  Hence
-  \[
-  \frac{\mathrm{d}v}{\mathrm{d}t}+tv=-3t
-  \]
-  Therefore, $P(t)=t$ and $Q(t)=-3t$.
+The dye enters with concentration \(2e^{-0.1t}\) mg/L and flow rate \(0.3\) L/min, so the rate of dye entering is
+\[
+0.3 \times 2e^{-0.1t}=0.6e^{-0.1t}\text{ mg/min}
+\]
 
-  \item From part (a), the differential equation is
-  \[
-  \frac{\mathrm{d}v}{\mathrm{d}t}+tv=-3t
-  \]
-  The integrating factor is
-  \[
-  e^{\int t\,\mathrm{d}t}=e^{t^2/2}
-  \]
-  Multiplying the differential equation by $e^{t^2/2}$ gives
-  \[
-  e^{t^2/2}\frac{\mathrm{d}v}{\mathrm{d}t}+tve^{t^2/2}=-3te^{t^2/2}
-  \]
-  The left-hand side is
-  \[
-  \frac{\mathrm{d}}{\mathrm{d}t}\left(ve^{t^2/2}\right)
-  \]
-  so
-  \[
-  \frac{\mathrm{d}}{\mathrm{d}t}\left(ve^{t^2/2}\right)=-3te^{t^2/2}
-  \]
-  Integrating with respect to $t$,
-  \begin{align*}
-  ve^{t^2/2} &= \int -3te^{t^2/2}\,\mathrm{d}t \\
-  &= -3e^{t^2/2}+c
-  \end{align*}
-  Therefore
-  \[
-  v=-3+ce^{-t^2/2}
-  \]
-  Using the initial condition $v=5$ when $t=0$,
-  \begin{align*}
-  5&=-3+ce^{0} \\
-  5&=-3+c \\
-  c&=8
-  \end{align*}
-  Hence
-  \[
-  v=-3+8e^{-t^2/2}
-  \]
-  For $B$ to be stationary, $v=0$. So
-  \begin{align*}
-  0&=-3+8e^{-t^2/2} \\
-  8e^{-t^2/2}&=3 \\
-  e^{-t^2/2}&=\frac{3}{8}
-  \end{align*}
-  Taking natural logarithms,
-  \begin{align*}
-  -\frac{t^2}{2}&=\ln\left(\frac{3}{8}\right) \\
-  \frac{t^2}{2}&=\ln\left(\frac{8}{3}\right) \\
-  t^2&=2\ln\left(\frac{8}{3}\right)
-  \end{align*}
-  Since $t\ge 0$, the first time is
-  \[
-  t=\sqrt{2\ln\left(\frac{8}{3}\right)}
-  \]
-  Numerically,
-  \[
-  t\approx 1.40\text{ s}
-  \]
-  Therefore, the first time at which $B$ is stationary is $\sqrt{2\ln\left(\frac{8}{3}\right)}$ s, approximately $1.40$ s.
+The concentration of dye in the vessel at time \(t\) is
+\[
+\frac{m}{4+0.1t}\text{ mg/L}
+\]
+Since liquid leaves at \(0.2\) L/min, the rate of dye leaving is
+\[
+0.2\left(\frac{m}{4+0.1t}\right)
+\]
+Simplifying,
+\[
+0.2\left(\frac{m}{4+0.1t}\right)=\frac{0.2m}{4+0.1t}=\frac{2m}{40+t}
+\]
+
+Therefore,
+\begin{align*}
+\frac{\mathrm{d}m}{\mathrm{d}t}
+&=\text{rate in}-\text{rate out} \\
+&=0.6e^{-0.1t}-\frac{2m}{40+t}
+\end{align*}
+So
+\[
+V(t)=4+0.1t \text{ litres}, \qquad \frac{\mathrm{d}m}{\mathrm{d}t}=0.6e^{-0.1t}-\frac{2m}{40+t}
+\]
+
+  \item We solve
+\[
+\frac{\mathrm{d}m}{\mathrm{d}t}+\frac{2m}{40+t}=0.6e^{-0.1t}
+\]
+This is a linear differential equation.
+
+The integrating factor is
+\begin{align*}
+\mu(t)
+&=\exp\left(\int \frac{2}{40+t}\,\mathrm{d}t\right) \\
+&=\exp\left(2\ln(40+t)\right) \\
+&=(40+t)^2
+\end{align*}
+
+Multiplying the differential equation by \((40+t)^2\),
+\begin{align*}
+(40+t)^2\frac{\mathrm{d}m}{\mathrm{d}t}+(40+t)^2\frac{2m}{40+t}
+&=0.6(40+t)^2e^{-0.1t}
+\end{align*}
+So
+\[
+\frac{\mathrm{d}}{\mathrm{d}t}\left((40+t)^2m\right)=0.6(40+t)^2e^{-0.1t}
+\]
+
+Integrating both sides,
+\[
+(40+t)^2m=\int 0.6(40+t)^2e^{-0.1t}\,\mathrm{d}t
+\]
+Expand \((40+t)^2\):
+\[
+(40+t)^2=t^2+80t+1600
+\]
+So
+\[
+(40+t)^2m=\int 0.6(t^2+80t+1600)e^{-0.1t}\,\mathrm{d}t
+\]
+
+Let
+\[
+I=\int 0.6(t^2+80t+1600)e^{-0.1t}\,\mathrm{d}t
+\]
+and use integration by parts with
+\[
+u=t^2+80t+1600,
+\qquad
+\frac{\mathrm{d}v}{\mathrm{d}t}=0.6e^{-0.1t}
+\]
+Then
+\[
+\frac{\mathrm{d}u}{\mathrm{d}t}=2t+80,
+\qquad
+v=\int 0.6e^{-0.1t}\,\mathrm{d}t=-6e^{-0.1t}
+\]
+So
+\begin{align*}
+I
+&=uv-\int v\frac{\mathrm{d}u}{\mathrm{d}t}\,\mathrm{d}t \\
+&=-6(t^2+80t+1600)e^{-0.1t}
+  +6\int (2t+80)e^{-0.1t}\,\mathrm{d}t \\
+&=-6(t^2+80t+1600)e^{-0.1t}
+  +12\int (t+40)e^{-0.1t}\,\mathrm{d}t
+\end{align*}
+
+Now let
+\[
+J=\int (t+40)e^{-0.1t}\,\mathrm{d}t
+\]
+Again integrating by parts, take
+\[
+u=t+40,
+\qquad
+\frac{\mathrm{d}v}{\mathrm{d}t}=e^{-0.1t}
+\]
+Then
+\[
+\frac{\mathrm{d}u}{\mathrm{d}t}=1,
+\qquad
+v=\int e^{-0.1t}\,\mathrm{d}t=-10e^{-0.1t}
+\]
+Hence
+\begin{align*}
+J
+&=uv-\int v\frac{\mathrm{d}u}{\mathrm{d}t}\,\mathrm{d}t \\
+&=-10(t+40)e^{-0.1t}+10\int e^{-0.1t}\,\mathrm{d}t \\
+&=-10(t+40)e^{-0.1t}-100e^{-0.1t}+c_1 \\
+&=-10(t+50)e^{-0.1t}+c_1
+\end{align*}
+
+Substituting this into the expression for \(I\), and writing \(c=12c_1\),
+\begin{align*}
+I
+&=-6(t^2+80t+1600)e^{-0.1t}
+  +12\bigl(-10(t+50)e^{-0.1t}\bigr)+c \\
+&=-6e^{-0.1t}\bigl(t^2+80t+1600+20t+1000\bigr)+c \\
+&=-6e^{-0.1t}(t^2+100t+2600)+c
+\end{align*}
+
+Therefore,
+\[
+\int 0.6(t^2+80t+1600)e^{-0.1t}\,\mathrm{d}t
+=-6e^{-0.1t}(t^2+100t+2600)+c
+\]
+where \(c\) is a constant.
+
+So
+\[
+(40+t)^2m=-6e^{-0.1t}(t^2+100t+2600)+c
+\]
+
+Now use the initial condition \(m=4\) when \(t=0\):
+\begin{align*}
+(40)^2(4)
+&=-6e^{0}(0^2+100(0)+2600)+c \\
+6400
+&=-6(2600)+c \\
+6400
+&=-15600+c
+\end{align*}
+Thus
+\[
+c=22000
+\]
+
+Hence
+\[
+(40+t)^2m=22000-6e^{-0.1t}(t^2+100t+2600)
+\]
+and so
+\[
+m=\frac{22000-6e^{-0.1t}(t^2+100t+2600)}{(40+t)^2}
+\]
+
+Therefore, the amount of dye is
+\[
+m(t)=\frac{22000-6e^{-0.1t}(t^2+100t+2600)}{(40+t)^2}\text{ mg}
+\]
+
+  \item After \(20\) minutes, the model gives volume
+\[
+V(20)=4+0.1(20)=6\text{ L}
+\]
+
+Using the expression for \(m\),
+\begin{align*}
+m(20)
+&=\frac{22000-6e^{-2}(20^2+100(20)+2600)}{(40+20)^2} \\
+&=\frac{22000-6e^{-2}(400+2000+2600)}{60^2} \\
+&=\frac{22000-30000e^{-2}}{3600} \\
+&=\frac{55}{9}-\frac{25}{3}e^{-2}
+\end{align*}
+So the predicted concentration is
+\begin{align*}
+\frac{m(20)}{V(20)}
+&=\frac{1}{6}\left(\frac{55}{9}-\frac{25}{3}e^{-2}\right) \\
+&=\frac{55}{54}-\frac{25}{18}e^{-2} \\
+&\approx 0.831\text{ mg/L}
+\end{align*}
+
+The measured concentration was \(0.82\) mg/L, which is very close to \(0.831\) mg/L.
+
+So the model appears reasonable, since its prediction is consistent with the observed value.
 \end{enumerate}
 \end{djsSolution}
 
 
 \newpage
 
-% ---- Question 8 ----
+% ---- Question 10 ----
 \questionitem
-% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q8]
+% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q10]
 
 A small rescue boat moves in a straight line on calm water. It starts from rest, is driven by its engine for $5$ seconds and then, for the next $5$ seconds, the engine is cut and a drogue is deployed. The boat comes to rest at the end of the $10$ seconds. The total mass of the boat and crew is $m\,\mathrm{kg}$, and at time $t$ seconds, for $0\le t\le 10$, the boat’s velocity is $v\,\mathrm{m\,s^{-1}}$. \\
 A resistance to motion, modelled by a force of magnitude $0.2mv\,\mathrm{N}$, acts on the boat throughout the $10$ seconds. \\
@@ -1421,9 +1721,9 @@ A resistance to motion, modelled by a force of magnitude $0.2mv\,\mathrm{N}$, ac
 
 \newpage
 
-% ---- Question 9 ----
+% ---- Question 11 ----
 \questionitem
-% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q9]
+% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q11]
 
 A winch raises a lift cage vertically. The cage starts from rest and comes to rest again $8$ seconds later. The combined mass of the cage and its load is $m\,\mathrm{kg}$, and at time $t$ seconds, for $0\le t\le 8$, the cage has upward velocity $v\,\mathrm{m\,s^{-1}}$. \\
 A resistance to the motion, modelled by a force of magnitude $0.25mv\,\mathrm{N}$, acts on the cage throughout the $8$ seconds. \\
@@ -1715,306 +2015,6 @@ In this question, take $g = 9.8\,\mathrm{m\,s^{-2}}$. \\
   \end{align*}
 
   Therefore the total distance risen, to the nearest metre, is $52\,\mathrm{m}$.
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 10 ----
-\questionitem
-% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q10]
-
-A short filling pulse in a buffer tank is to be modelled. The volume of liquid in the tank at time $t$ seconds is $V$ litres. The pulse starts when $t=0$, and initially the tank is empty. After $1$ second the volume is measured to be $4$ litres. While the pulse is occurring, $V$ is modelled by the differential equation
-\[
-(3t-t^2)\frac{\mathrm{d}V}{\mathrm{d}t}=\frac{(3t-t^2)^2}{1+(t-1)^2}+(3-2t)V 
-    \]\\
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item By using an integrating factor show that, according to the model, while the pulse is occurring,
-  \[
-  V=(3t-t^2)\left(\tan^{-1}(t-1)+2\right)
-  \] \marks[-20pt]{6}
-\end{enumerate}
-The pulse ends when the tank is again empty. \\
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Determine the length of time that the pulse lasts according to the model \marks{2} \\
-  \item Determine, according to the model, the rate of increase of the volume at the start of the pulse. Give your answer in an exact form \marks{3} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item First rearrange the differential equation into linear form:
-  \[
-  \frac{\mathrm{d}V}{\mathrm{d}t}-\frac{3-2t}{3t-t^2}V=\frac{3t-t^2}{1+(t-1)^2}
-  \]
-
-  The integrating factor is
-  \begin{align*}
-  \mu(t)&=e^{\int -\frac{3-2t}{3t-t^2}\,\mathrm{d}t}
-  \end{align*}
-
-  Since
-  \[
-  \frac{\mathrm{d}}{\mathrm{d}t}(3t-t^2)=3-2t
-  \]
-
-  we have
-  \begin{align*}
-  \int -\frac{3-2t}{3t-t^2}\,\mathrm{d}t
-  &= -\ln(3t-t^2)
-  \end{align*}
-
-  Hence
-  \[
-  \mu(t)=e^{-\ln(3t-t^2)}=\frac{1}{3t-t^2}
-  \]
-
-  Multiplying the differential equation by this integrating factor gives
-  \[
-  \frac{1}{3t-t^2}\frac{\mathrm{d}V}{\mathrm{d}t}-\frac{3-2t}{(3t-t^2)^2}V=\frac{1}{1+(t-1)^2}
-  \]
-
-  The left-hand side is
-  \[
-  \frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{V}{3t-t^2}\right)
-  \]
-
-  so
-  \[
-  \frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{V}{3t-t^2}\right)=\frac{1}{1+(t-1)^2}
-  \]
-
-  Integrating with respect to \(t\),
-  \begin{align*}
-  \frac{V}{3t-t^2}
-  &= \int \frac{1}{1+(t-1)^2}\,\mathrm{d}t \\
-  &= \tan^{-1}(t-1)+c
-  \end{align*}
-
-  Use the given condition \(V=4\) when \(t=1\):
-  \begin{align*}
-  \frac{4}{3(1)-1^2}&=\tan^{-1}(1-1)+c \\
-  \frac{4}{2}&=0+c \\
-  c&=2
-  \end{align*}
-
-  Therefore
-  \[
-  \frac{V}{3t-t^2}=\tan^{-1}(t-1)+2
-  \]
-
-  and so
-  \[
-  V=(3t-t^2)\left(\tan^{-1}(t-1)+2\right)
-  \]
-
-  This is the required result.
-
-  \item The pulse ends when the tank is empty again, so set \(V=0\):
-  \[
-  (3t-t^2)\left(\tan^{-1}(t-1)+2\right)=0
-  \]
-
-  Now
-  \[
-  -\frac{\pi}{2}<\tan^{-1}(t-1)<\frac{\pi}{2}
-  \]
-
-  so
-  \[
-  2-\frac{\pi}{2}<\tan^{-1}(t-1)+2<2+\frac{\pi}{2}
-  \]
-
-  Since \(2-\frac{\pi}{2}>0\), the factor \(\tan^{-1}(t-1)+2\) is never zero. Hence
-  \[
-  3t-t^2=0
-  \]
-
-  so
-  \begin{align*}
-  t(3-t)&=0 \\
-  t&=0 \text{ or } t=3
-  \end{align*}
-
-  The pulse starts at \(t=0\), so it ends when \(t=3\). Therefore the pulse lasts \(3\) seconds.
-
-  \item Differentiate the expression for \(V\):
-  \begin{align*}
-  \frac{\mathrm{d}V}{\mathrm{d}t}
-  &= \frac{\mathrm{d}}{\mathrm{d}t}\left[(3t-t^2)\left(\tan^{-1}(t-1)+2\right)\right] \\
-  &= (3-2t)\left(\tan^{-1}(t-1)+2\right)+(3t-t^2)\left(\frac{1}{1+(t-1)^2}\right)
-  \end{align*}
-
-  At the start of the pulse, \(t=0\):
-  \begin{align*}
-  \left.\frac{\mathrm{d}V}{\mathrm{d}t}\right|_{t=0}
-  &= 3\left(\tan^{-1}(-1)+2\right)+0 \\
-  &= 3\left(-\frac{\pi}{4}+2\right) \\
-  &= 6-\frac{3\pi}{4}
-  \end{align*}
-
-  Therefore the rate of increase of volume at the start is \(6-\frac{3\pi}{4}\,\text{L s}^{-1}\).
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 11 ----
-\questionitem
-% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q11]
-
-A horticultural mixing tank initially contains 600 litres of pure water. \\
-
-A fertiliser solution flows into the tank at a constant rate of 6 litres per minute. The incoming solution contains 2 grams of fertiliser in every litre of solution. \\
-
-At the same time, liquid is pumped out of the well-stirred tank at a constant rate of 9 litres per minute. \\
-
-It is assumed that the fertiliser instantly dissolves uniformly throughout the tank. \\
-
-Given that there are $x$ grams of fertiliser in the tank after $t$ minutes, \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Show that, while the tank still contains liquid, the situation can be modelled by the differential equation
-  \[
-  \frac{\mathrm{d}x}{\mathrm{d}t}=12-\frac{3x}{200-t}
-  \]
-  \marks[-20pt]{4}
-  \item Hence determine after how many minutes the concentration of fertiliser in the tank first reaches $1.5$ grams per litre. \marks{5} \\
-  \item Explain briefly one way in which the model could be refined. \marks{1} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Let \(V\) be the volume of liquid in the tank after \(t\) minutes.
-
-  Since liquid enters at \(6\) L/min and leaves at \(9\) L/min, the net change in volume is
-  \begin{align*}
-  V(t)&=600+(6-9)t\\
-      &=600-3t\\
-      &=3(200-t)
-  \end{align*}
-  This is valid while the tank still contains liquid, so
-  \[
-  600-3t>0 \quad \Rightarrow \quad t<200
-  \]
-
-  The fertiliser enters at
-  \[
-  6 \times 2 = 12 \text{ g/min}
-  \]
-
-  The concentration in the tank at time \(t\) is
-  \[
-  \frac{x}{V}=\frac{x}{600-3t} \text{ g/L}
-  \]
-
-  So the fertiliser leaves at the rate
-  \begin{align*}
-  9 \times \frac{x}{600-3t}
-  &=\frac{9x}{600-3t}\\
-  &=\frac{9x}{3(200-t)}\\
-  &=\frac{3x}{200-t}
-  \end{align*}
-
-  Hence,
-  \begin{align*}
-  \frac{\mathrm{d}x}{\mathrm{d}t}
-  &=\text{rate in} - \text{rate out}\\
-  &=12-\frac{3x}{200-t}
-  \end{align*}
-
-  So the model is
-  \[
-  \frac{\mathrm{d}x}{\mathrm{d}t}=12-\frac{3x}{200-t}, \qquad t<200
-  \]
-
-  \item From part (a),
-  \[
-  \frac{\mathrm{d}x}{\mathrm{d}t}+\frac{3}{200-t}x=12
-  \]
-
-  This is a linear differential equation. Its integrating factor is
-  \[
-  \mu(t)=\exp\left(\int \frac{3}{200-t}\,\mathrm{d}t\right)
-  =\exp\left(-3\ln(200-t)\right)
-  =(200-t)^{-3}
-  \]
-
-  Multiplying the differential equation by \((200-t)^{-3}\) gives
-  \begin{align*}
-  (200-t)^{-3}\frac{\mathrm{d}x}{\mathrm{d}t}
-  +\frac{3x}{200-t}(200-t)^{-3}
-  &=12(200-t)^{-3}\\
-  \frac{\mathrm{d}}{\mathrm{d}t}\left(x(200-t)^{-3}\right)
-  &=12(200-t)^{-3}
-  \end{align*}
-
-  Integrating,
-  \begin{align*}
-  x(200-t)^{-3}
-  &=\int 12(200-t)^{-3}\,\mathrm{d}t\\
-  &=6(200-t)^{-2}+c
-  \end{align*}
-
-  Therefore,
-  \begin{align*}
-  x
-  &=\left(6(200-t)^{-2}+c\right)(200-t)^3\\
-  &=6(200-t)+c(200-t)^3
-  \end{align*}
-
-  Initially the tank contains pure water, so \(x=0\) when \(t=0\). Substituting \(t=0\) gives
-  \begin{align*}
-  0&=6(200)+c(200)^3\\
-  0&=1200+8\,000\,000c\\
-  c&=-\frac{1200}{8\,000\,000}\\
-   &=-\frac{3}{20000}
-  \end{align*}
-
-  Hence
-  \[
-  x=6(200-t)-\frac{3}{20000}(200-t)^3
-  \]
-
-  The volume at time \(t\) is
-  \[
-  V=3(200-t)
-  \]
-
-  So the concentration is
-  \begin{align*}
-  \frac{x}{V}
-  &=\frac{6(200-t)-\frac{3}{20000}(200-t)^3}{3(200-t)}\\
-  &=2-\frac{(200-t)^2}{20000}
-  \end{align*}
-
-  We want this concentration to be \(1.5\) g/L, so
-  \begin{align*}
-  2-\frac{(200-t)^2}{20000}&=1.5\\
-  \frac{(200-t)^2}{20000}&=0.5\\
-  (200-t)^2&=10000
-  \end{align*}
-
-  Since \(t<200\), we must have \(200-t>0\). Therefore
-  \[
-  200-t=100
-  \]
-
-  So
-  \[
-  t=100
-  \]
-
-  Therefore the concentration first reaches \(1.5\) g/L after \(100\) minutes.
-
-  \item One refinement would be to remove the assumption of perfect instantaneous mixing, and allow the fertiliser concentration to vary in different parts of the tank.
-
-  So a more realistic model could account for imperfect mixing.
 \end{enumerate}
 \end{djsSolution}
 
@@ -2321,288 +2321,6 @@ After $t$ minutes, the tank contains $m$ grams of dye. \\
 \questionitem
 % [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q13]
 
-The concentration $C$, in suitable units, of a drug in a patient's bloodstream at time $t$ hours after an intravenous infusion begins is to be modelled. Initially, the concentration is zero, and its long-term value is $M$. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item One simple model assumes that the rate of change of concentration is directly proportional to $M-C$. \\
-  \begin{enumerate}[label=(\roman*)]
-    \item Formulate a differential equation for this model. \marks{1} \\
-    \item Verify that $C=M(1-e^{-kt})$, where $k$ is a positive constant, satisfies this differential equation, the initial condition and the long-term condition. \marks{3} \\
-  \end{enumerate}
-\end{enumerate}
-An alternative model uses, for $t>0$, the differential equation
-\[
-\frac{\mathrm{d}C}{\mathrm{d}t}-\frac{t+2}{t(1+t+t^2)}\,C=S(t)
-\]
-where $S(t)$ is a function of $t$. \\
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Find the integrating factor for this differential equation, showing that it can be written in the form
-  \[
-  \frac{1+t+t^2}{t^2}
-  \]
-  \marks[-20pt]{8}
-  \item Suppose that $S(t)=0$. \\
-  \begin{enumerate}[label=(\roman*)]
-    \item Show that
-    \[
-    C=\frac{Mt^2}{1+t+t^2}
-    \]
-    \marks[-20pt]{4}
-    \item Find the time predicted by this model for the concentration to reach half its long-term value. Give your answer correct to the nearest minute. \marks{2} \\
-  \end{enumerate}
-  \item Now suppose that
-  \[
-  S(t)=\frac{3t^2 e^{-t}}{1+t+t^2}
-  \]
-  Show that
-  \[
-  C=\frac{Mt^2-3t^2 e^{-t}}{1+t+t^2}
-  \] \marks[-20pt]{5} \\
-  \item It is found that the long-term concentration is $10$, and $C$ reaches half this value after $105$ minutes. Determine which of the models proposed in parts (c) and (d) is more consistent with this data. \marks{2} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item
-  \begin{enumerate}[label=(\roman*)]
-    \item Since the rate of change is directly proportional to $M-C$,
-    \[
-    \frac{\mathrm{d}C}{\mathrm{d}t}=k(M-C), \qquad k>0
-    \]
-
-    \item Take
-    \[
-    C=M(1-e^{-kt})
-    \]
-    Differentiate:
-    \begin{align*}
-    \frac{\mathrm{d}C}{\mathrm{d}t}
-    &= \frac{\mathrm{d}}{\mathrm{d}t}\left[M(1-e^{-kt})\right] \\
-    &= M\left(0-(-k)e^{-kt}\right) \\
-    &= Mke^{-kt}
-    \end{align*}
-    Also,
-    \begin{align*}
-    M-C
-    &= M-M(1-e^{-kt}) \\
-    &= M-M+Me^{-kt} \\
-    &= Me^{-kt}
-    \end{align*}
-    Hence,
-    \[
-    \frac{\mathrm{d}C}{\mathrm{d}t}=Mke^{-kt}=k(Me^{-kt})=k(M-C)
-    \]
-    so the differential equation is satisfied.
-
-    For the initial condition,
-    \[
-    C(0)=M(1-e^{0})=M(1-1)=0
-    \]
-
-    For the long-term condition, since $k>0$, $e^{-kt}\to 0$ as $t\to\infty$. Therefore
-    \[
-    \lim_{t\to\infty} C = \lim_{t\to\infty} M(1-e^{-kt}) = M(1-0)=M
-    \]
-    So $C=M(1-e^{-kt})$ satisfies the differential equation, the initial condition, and the long-term condition.
-  \end{enumerate}
-
-  \item Write the equation in the linear form
-  \[
-  \frac{\mathrm{d}C}{\mathrm{d}t}+P(t)C=S(t)
-  \]
-  where
-  \[
-  P(t)=-\frac{t+2}{t(1+t+t^2)}
-  \]
-
-  To find the integrating factor, first decompose $P(t)$ into partial fractions:
-  \[
-  -\frac{t+2}{t(1+t+t^2)}=\frac{A}{t}+\frac{Bt+D}{1+t+t^2}
-  \]
-  Multiplying through by $t(1+t+t^2)$ gives
-  \begin{align*}
-  -(t+2)
-  &= A(1+t+t^2)+t(Bt+D) \\
-  &= A+At+At^2+Bt^2+Dt \\
-  &= A+(A+D)t+(A+B)t^2
-  \end{align*}
-  Comparing coefficients with $-2-t+0t^2$:
-  \begin{align*}
-  A&=-2 \\
-  A+D&=-1 \\
-  A+B&=0
-  \end{align*}
-  So
-  \[
-  A=-2,\qquad D=1,\qquad B=2
-  \]
-  Therefore
-  \[
-  P(t)=-\frac{2}{t}+\frac{2t+1}{1+t+t^2}
-  \]
-
-  The integrating factor is
-  \[
-  \mu(t)=e^{\int P(t)\,\mathrm{d}t}
-  \]
-  Since $t>0$,
-  \begin{align*}
-  \int P(t)\,\mathrm{d}t
-  &= \int\left(-\frac{2}{t}+\frac{2t+1}{1+t+t^2}\right)\,\mathrm{d}t \\
-  &= -2\ln t+\ln(1+t+t^2)
-  \end{align*}
-  Hence
-  \begin{align*}
-  \mu(t)
-  &= e^{-2\ln t+\ln(1+t+t^2)} \\
-  &= e^{\ln(1+t+t^2)}e^{-2\ln t} \\
-  &= (1+t+t^2)t^{-2} \\
-  &= \frac{1+t+t^2}{t^2}
-  \end{align*}
-  So the integrating factor is $\dfrac{1+t+t^2}{t^2}$.
-
-  \item
-  \begin{enumerate}[label=(\roman*)]
-    \item When $S(t)=0$, the differential equation becomes
-    \[
-    \frac{\mathrm{d}C}{\mathrm{d}t}-\frac{t+2}{t(1+t+t^2)}C=0
-    \]
-    Using the integrating factor
-    \[
-    \mu(t)=\frac{1+t+t^2}{t^2}
-    \]
-    gives
-    \[
-    \frac{\mathrm{d}}{\mathrm{d}t}\bigl(\mu C\bigr)=0
-    \]
-    So
-    \[
-    \mu C=K
-    \]
-    where $K$ is a constant. Thus
-    \begin{align*}
-    C
-    &= \frac{K}{\mu} \\
-    &= \frac{K}{(1+t+t^2)/t^2} \\
-    &= \frac{Kt^2}{1+t+t^2}
-    \end{align*}
-    Now use the long-term value:
-    \begin{align*}
-    \lim_{t\to\infty} C
-    &= \lim_{t\to\infty}\frac{Kt^2}{1+t+t^2} \\
-    &= \lim_{t\to\infty}\frac{K}{t^{-2}+t^{-1}+1} \\
-    &= K
-    \end{align*}
-    Since the long-term concentration is $M$, we must have $K=M$.
-
-    Therefore
-    \[
-    C=\frac{Mt^2}{1+t+t^2}
-    \]
-
-    \item Half the long-term value is $\dfrac{M}{2}$. Set
-    \[
-    \frac{Mt^2}{1+t+t^2}=\frac{M}{2}
-    \]
-    Cancelling $M$ and solving:
-    \begin{align*}
-    \frac{t^2}{1+t+t^2}&=\frac12 \\
-    2t^2&=1+t+t^2 \\
-    t^2-t-1&=0
-    \end{align*}
-    Hence
-    \[
-    t=\frac{1\pm\sqrt{5}}{2}
-    \]
-    Since $t>0$,
-    \[
-    t=\frac{1+\sqrt{5}}{2}\text{ hours}\approx 1.618\text{ hours}
-    \]
-    Converting to minutes:
-    \[
-    1.618\times 60 \approx 97.1
-    \]
-    So the concentration reaches half its long-term value after $97$ minutes, to the nearest minute.
-  \end{enumerate}
-
-  \item Using the integrating factor from part (b),
-  \[
-  \mu(t)=\frac{1+t+t^2}{t^2}
-  \]
-  and
-  \[
-  S(t)=\frac{3t^2e^{-t}}{1+t+t^2}
-  \]
-  Then
-  \begin{align*}
-  \mu(t)S(t)
-  &= \frac{1+t+t^2}{t^2}\cdot \frac{3t^2e^{-t}}{1+t+t^2} \\
-  &= 3e^{-t}
-  \end{align*}
-  So the differential equation becomes
-  \[
-  \frac{\mathrm{d}}{\mathrm{d}t}\bigl(\mu C\bigr)=3e^{-t}
-  \]
-  Integrating:
-  \begin{align*}
-  \mu C
-  &= \int 3e^{-t}\,\mathrm{d}t \\
-  &= -3e^{-t}+K
-  \end{align*}
-  Hence
-  \begin{align*}
-  C
-  &= \frac{-3e^{-t}+K}{\mu} \\
-  &= \frac{t^2(-3e^{-t}+K)}{1+t+t^2} \\
-  &= \frac{Kt^2-3t^2e^{-t}}{1+t+t^2}
-  \end{align*}
-  Now use the long-term value. As $t\to\infty$,
-  \[
-  \frac{Kt^2}{1+t+t^2}\to K
-  \]
-  and, using the fact that $\lim_{t\to\infty} t^2e^{-t}=0$,
-  \[
-  \frac{3t^2e^{-t}}{1+t+t^2}\to 0
-  \]
-  Therefore
-  \[
-  \lim_{t\to\infty} C=K
-  \]
-  Since the long-term concentration is $M$, $K=M$.
-
-  So
-  \[
-  C=\frac{Mt^2-3t^2e^{-t}}{1+t+t^2}
-  \]
-  as required.
-
-  \item Here $M=10$, so half the long-term concentration is $5$, reached after $105$ minutes $=1.75$ hours.
-
-  From part (c), model (c) predicts the half-value time to be $97$ minutes.
-
-  For model (d), at $t=1.75$,
-  \begin{align*}
-  C
-  &= \frac{10t^2-3t^2e^{-t}}{1+t+t^2} \\
-  &= \frac{10(1.75)^2-3(1.75)^2e^{-1.75}}{1+1.75+(1.75)^2} \\
-  &\approx \frac{30.625-1.597}{5.8125} \\
-  &\approx 4.99
-  \end{align*}
-  This is essentially $5$.
-
-  Therefore model (d) is more consistent with the data.
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 14 ----
-\questionitem
-% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q14]
-
 A drinks manufacturer uses a mixing tank that initially contains 4 litres of water. A flavouring liquid, which is $60\%$ fruit concentrate by volume, is pumped into the tank at a constant rate of $p$ litres per minute. At the same time, the contents of the tank are thoroughly mixed and drawn off at a constant rate of $q$ litres per minute. \\
 
 After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank. You may assume that mixing is instantaneous and uniform. \\
@@ -2883,6 +2601,288 @@ After $t$ minutes, let $x$ litres be the amount of fruit concentrate in the tank
     \end{align*}
     Therefore the maximum amount of fruit concentrate is $\displaystyle \frac{3}{5}$ litres, occurring at $\displaystyle t=\frac{2}{p}$ minutes.
   \end{enumerate}
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 14 ----
+\questionitem
+% [Source: _QBT___Solns__Modelling_with_1st_Order_Differential_Equations, Q14]
+
+The concentration $C$, in suitable units, of a drug in a patient's bloodstream at time $t$ hours after an intravenous infusion begins is to be modelled. Initially, the concentration is zero, and its long-term value is $M$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item One simple model assumes that the rate of change of concentration is directly proportional to $M-C$. \\
+  \begin{enumerate}[label=(\roman*)]
+    \item Formulate a differential equation for this model. \marks{1} \\
+    \item Verify that $C=M(1-e^{-kt})$, where $k$ is a positive constant, satisfies this differential equation, the initial condition and the long-term condition. \marks{3} \\
+  \end{enumerate}
+\end{enumerate}
+An alternative model uses, for $t>0$, the differential equation
+\[
+\frac{\mathrm{d}C}{\mathrm{d}t}-\frac{t+2}{t(1+t+t^2)}\,C=S(t)
+\]
+where $S(t)$ is a function of $t$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find the integrating factor for this differential equation, showing that it can be written in the form
+  \[
+  \frac{1+t+t^2}{t^2}
+  \]
+  \marks[-20pt]{8}
+  \item Suppose that $S(t)=0$. \\
+  \begin{enumerate}[label=(\roman*)]
+    \item Show that
+    \[
+    C=\frac{Mt^2}{1+t+t^2}
+    \]
+    \marks[-20pt]{4}
+    \item Find the time predicted by this model for the concentration to reach half its long-term value. Give your answer correct to the nearest minute. \marks{2} \\
+  \end{enumerate}
+  \item Now suppose that
+  \[
+  S(t)=\frac{3t^2 e^{-t}}{1+t+t^2}
+  \]
+  Show that
+  \[
+  C=\frac{Mt^2-3t^2 e^{-t}}{1+t+t^2}
+  \] \marks[-20pt]{5} \\
+  \item It is found that the long-term concentration is $10$, and $C$ reaches half this value after $105$ minutes. Determine which of the models proposed in parts (c) and (d) is more consistent with this data. \marks{2} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Since the rate of change is directly proportional to $M-C$,
+    \[
+    \frac{\mathrm{d}C}{\mathrm{d}t}=k(M-C), \qquad k>0
+    \]
+
+    \item Take
+    \[
+    C=M(1-e^{-kt})
+    \]
+    Differentiate:
+    \begin{align*}
+    \frac{\mathrm{d}C}{\mathrm{d}t}
+    &= \frac{\mathrm{d}}{\mathrm{d}t}\left[M(1-e^{-kt})\right] \\
+    &= M\left(0-(-k)e^{-kt}\right) \\
+    &= Mke^{-kt}
+    \end{align*}
+    Also,
+    \begin{align*}
+    M-C
+    &= M-M(1-e^{-kt}) \\
+    &= M-M+Me^{-kt} \\
+    &= Me^{-kt}
+    \end{align*}
+    Hence,
+    \[
+    \frac{\mathrm{d}C}{\mathrm{d}t}=Mke^{-kt}=k(Me^{-kt})=k(M-C)
+    \]
+    so the differential equation is satisfied.
+
+    For the initial condition,
+    \[
+    C(0)=M(1-e^{0})=M(1-1)=0
+    \]
+
+    For the long-term condition, since $k>0$, $e^{-kt}\to 0$ as $t\to\infty$. Therefore
+    \[
+    \lim_{t\to\infty} C = \lim_{t\to\infty} M(1-e^{-kt}) = M(1-0)=M
+    \]
+    So $C=M(1-e^{-kt})$ satisfies the differential equation, the initial condition, and the long-term condition.
+  \end{enumerate}
+
+  \item Write the equation in the linear form
+  \[
+  \frac{\mathrm{d}C}{\mathrm{d}t}+P(t)C=S(t)
+  \]
+  where
+  \[
+  P(t)=-\frac{t+2}{t(1+t+t^2)}
+  \]
+
+  To find the integrating factor, first decompose $P(t)$ into partial fractions:
+  \[
+  -\frac{t+2}{t(1+t+t^2)}=\frac{A}{t}+\frac{Bt+D}{1+t+t^2}
+  \]
+  Multiplying through by $t(1+t+t^2)$ gives
+  \begin{align*}
+  -(t+2)
+  &= A(1+t+t^2)+t(Bt+D) \\
+  &= A+At+At^2+Bt^2+Dt \\
+  &= A+(A+D)t+(A+B)t^2
+  \end{align*}
+  Comparing coefficients with $-2-t+0t^2$:
+  \begin{align*}
+  A&=-2 \\
+  A+D&=-1 \\
+  A+B&=0
+  \end{align*}
+  So
+  \[
+  A=-2,\qquad D=1,\qquad B=2
+  \]
+  Therefore
+  \[
+  P(t)=-\frac{2}{t}+\frac{2t+1}{1+t+t^2}
+  \]
+
+  The integrating factor is
+  \[
+  \mu(t)=e^{\int P(t)\,\mathrm{d}t}
+  \]
+  Since $t>0$,
+  \begin{align*}
+  \int P(t)\,\mathrm{d}t
+  &= \int\left(-\frac{2}{t}+\frac{2t+1}{1+t+t^2}\right)\,\mathrm{d}t \\
+  &= -2\ln t+\ln(1+t+t^2)
+  \end{align*}
+  Hence
+  \begin{align*}
+  \mu(t)
+  &= e^{-2\ln t+\ln(1+t+t^2)} \\
+  &= e^{\ln(1+t+t^2)}e^{-2\ln t} \\
+  &= (1+t+t^2)t^{-2} \\
+  &= \frac{1+t+t^2}{t^2}
+  \end{align*}
+  So the integrating factor is $\dfrac{1+t+t^2}{t^2}$.
+
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item When $S(t)=0$, the differential equation becomes
+    \[
+    \frac{\mathrm{d}C}{\mathrm{d}t}-\frac{t+2}{t(1+t+t^2)}C=0
+    \]
+    Using the integrating factor
+    \[
+    \mu(t)=\frac{1+t+t^2}{t^2}
+    \]
+    gives
+    \[
+    \frac{\mathrm{d}}{\mathrm{d}t}\bigl(\mu C\bigr)=0
+    \]
+    So
+    \[
+    \mu C=K
+    \]
+    where $K$ is a constant. Thus
+    \begin{align*}
+    C
+    &= \frac{K}{\mu} \\
+    &= \frac{K}{(1+t+t^2)/t^2} \\
+    &= \frac{Kt^2}{1+t+t^2}
+    \end{align*}
+    Now use the long-term value:
+    \begin{align*}
+    \lim_{t\to\infty} C
+    &= \lim_{t\to\infty}\frac{Kt^2}{1+t+t^2} \\
+    &= \lim_{t\to\infty}\frac{K}{t^{-2}+t^{-1}+1} \\
+    &= K
+    \end{align*}
+    Since the long-term concentration is $M$, we must have $K=M$.
+
+    Therefore
+    \[
+    C=\frac{Mt^2}{1+t+t^2}
+    \]
+
+    \item Half the long-term value is $\dfrac{M}{2}$. Set
+    \[
+    \frac{Mt^2}{1+t+t^2}=\frac{M}{2}
+    \]
+    Cancelling $M$ and solving:
+    \begin{align*}
+    \frac{t^2}{1+t+t^2}&=\frac12 \\
+    2t^2&=1+t+t^2 \\
+    t^2-t-1&=0
+    \end{align*}
+    Hence
+    \[
+    t=\frac{1\pm\sqrt{5}}{2}
+    \]
+    Since $t>0$,
+    \[
+    t=\frac{1+\sqrt{5}}{2}\text{ hours}\approx 1.618\text{ hours}
+    \]
+    Converting to minutes:
+    \[
+    1.618\times 60 \approx 97.1
+    \]
+    So the concentration reaches half its long-term value after $97$ minutes, to the nearest minute.
+  \end{enumerate}
+
+  \item Using the integrating factor from part (b),
+  \[
+  \mu(t)=\frac{1+t+t^2}{t^2}
+  \]
+  and
+  \[
+  S(t)=\frac{3t^2e^{-t}}{1+t+t^2}
+  \]
+  Then
+  \begin{align*}
+  \mu(t)S(t)
+  &= \frac{1+t+t^2}{t^2}\cdot \frac{3t^2e^{-t}}{1+t+t^2} \\
+  &= 3e^{-t}
+  \end{align*}
+  So the differential equation becomes
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}t}\bigl(\mu C\bigr)=3e^{-t}
+  \]
+  Integrating:
+  \begin{align*}
+  \mu C
+  &= \int 3e^{-t}\,\mathrm{d}t \\
+  &= -3e^{-t}+K
+  \end{align*}
+  Hence
+  \begin{align*}
+  C
+  &= \frac{-3e^{-t}+K}{\mu} \\
+  &= \frac{t^2(-3e^{-t}+K)}{1+t+t^2} \\
+  &= \frac{Kt^2-3t^2e^{-t}}{1+t+t^2}
+  \end{align*}
+  Now use the long-term value. As $t\to\infty$,
+  \[
+  \frac{Kt^2}{1+t+t^2}\to K
+  \]
+  and, using the fact that $\lim_{t\to\infty} t^2e^{-t}=0$,
+  \[
+  \frac{3t^2e^{-t}}{1+t+t^2}\to 0
+  \]
+  Therefore
+  \[
+  \lim_{t\to\infty} C=K
+  \]
+  Since the long-term concentration is $M$, $K=M$.
+
+  So
+  \[
+  C=\frac{Mt^2-3t^2e^{-t}}{1+t+t^2}
+  \]
+  as required.
+
+  \item Here $M=10$, so half the long-term concentration is $5$, reached after $105$ minutes $=1.75$ hours.
+
+  From part (c), model (c) predicts the half-value time to be $97$ minutes.
+
+  For model (d), at $t=1.75$,
+  \begin{align*}
+  C
+  &= \frac{10t^2-3t^2e^{-t}}{1+t+t^2} \\
+  &= \frac{10(1.75)^2-3(1.75)^2e^{-1.75}}{1+1.75+(1.75)^2} \\
+  &\approx \frac{30.625-1.597}{5.8125} \\
+  &\approx 4.99
+  \end{align*}
+  This is essentially $5$.
+
+  Therefore model (d) is more consistent with the data.
 \end{enumerate}
 \end{djsSolution}
 
