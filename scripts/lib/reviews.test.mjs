@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   isoDate,
   isValidIsoDate,
+  keepCheckAcrossReorder,
   parseReviews,
   renderReviews,
   resolvePackTex,
@@ -169,5 +170,67 @@ describe('isoDate / isValidIsoDate', () => {
     expect(isValidIsoDate('2026-02-30')).toBe(false);
     expect(isValidIsoDate('2026-1-5')).toBe(false);
     expect(isValidIsoDate('today')).toBe(false);
+  });
+});
+
+/**
+ * One file of a two-question pack in the clean-tex layout, questions in
+ * `order` (statement numbers), with the given last-updated date.
+ *
+ * @param {'qbt' | 'soln'} side
+ * @param {number[]} order
+ * @param {string} [date]
+ */
+function packFile(side, order, date = '1 October 2026') {
+  const blocks = order.map((q, i) => {
+    const lines = ['% ---- Question ' + (i + 1) + ' ----', '\\questionitem', 'Statement ' + q + '.'];
+    if (side === 'soln') lines.push('', '\\begin{djsSolution}', 'Solution ' + q + '.', '\\end{djsSolution}');
+    return lines.join('\n');
+  });
+  return [
+    '\\documentclass{article}',
+    '\\djsLastUpdated{' + date + '}',
+    '\\begin{document}',
+    '\\begin{enumerate}',
+    blocks.join('\n\n\\newpage\n\n'),
+    '\\end{enumerate}',
+    '\\end{document}',
+  ].join('\n');
+}
+
+describe('keepCheckAcrossReorder', () => {
+  const before = { qbt: packFile('qbt', [1, 2]), soln: packFile('soln', [1, 2]) };
+  const after = {
+    qbt: packFile('qbt', [2, 1], '11 October 2026'),
+    soln: packFile('soln', [2, 1], '11 October 2026'),
+  };
+  const record = { checked: '2026-10-05', texHash: texPairHash(before.qbt, before.soln) };
+
+  it('keeps the check date and stores the new hash', () => {
+    expect(keepCheckAcrossReorder(record, before, after)).toEqual({
+      ok: true,
+      record: { checked: '2026-10-05', texHash: texPairHash(after.qbt, after.soln) },
+      order: [2, 1],
+    });
+  });
+
+  it('needs an existing check that matched the pack before the reorder', () => {
+    expect(keepCheckAcrossReorder(undefined, before, after).ok).toBe(false);
+    const stale = { ...record, texHash: '00000000' };
+    expect(keepCheckAcrossReorder(stale, before, after)).toEqual({
+      ok: false,
+      reason: 'the pack had changed since its check before the reorder',
+    });
+  });
+
+  it('rejects files reordered differently or with edited content', () => {
+    const mixed = { qbt: after.qbt, soln: before.soln };
+    expect(keepCheckAcrossReorder(record, before, mixed)).toEqual({
+      ok: false,
+      reason: 'the questions and solutions files were reordered differently',
+    });
+    const edited = { qbt: after.qbt, soln: after.soln.replace('Solution 2.', 'Solution 2, edited.') };
+    const result = keepCheckAcrossReorder(record, before, edited);
+    expect(result.ok === false && result.reason).toMatch(/^solutions file: /);
   });
 });

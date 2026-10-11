@@ -409,6 +409,7 @@ The `*.generated.ts` files **must not be hand-edited** — they're regenerated o
 | `npm run check-pairs` | Read-only check that every topic with any pack asset has all four of QBT/soln `.tex`/`.pdf`, and that no tracked file under `public/tex` is missing |
 | `npm run check-private-terms` | Read-only check that no private term appears in tracked/new text files (or, with `--message FILE`, a commit message). The list comes from `PRIVATE_TERMS` (CI secret), `PRIVATE_TERMS_FILE`, or `~/.config/private-terms.txt`; skipped if none. Hits are reported by term number only |
 | `npm run mark-checked <solutions-id> [--date YYYY-MM-DD]` | Records in `src/data/reviews.json` that a pack's worked solutions were checked: the date (default today) and the current hash of the pack's `.tex` pair. Run it after the pack's last `.tex` edit |
+| `npm run mark-checked <solutions-id> --reordered` | After an edit that only put a pack's questions in a new order, keeps its existing check date and stores the new hash. Refuses unless the committed pack matched its record and both working-tree files are the committed ones with their questions reordered the same way (delimiters, source hints and `\djsLastUpdated` may differ) |
 | `npm run review-status [scope \| solutions-id]` | Read-only report of packs never checked, checked and unchanged, or changed since their check. Scope as for `check-questions` (default `further-maths`); a solutions id reports one pack |
 | `npm run compile-tex [scope] [--deploy]` | Bulk latexmk over `further-maths` (default) or `all`; `--deploy` copies built PDFs up beside the source on success. TMUA files are never compiled here (the `tmua` scope is refused) |
 | `npm run deploy-overleaf` | Interactive Overleaf clone (or local pack folder) + compile + place + stage (see workflow above) |
@@ -449,14 +450,14 @@ When adding a new pure helper to a tested module, add a colocated test case. Kee
 | `scripts/check-private-terms.mjs` | Read-only private-term scan of the tree or a commit message (list kept outside the repo) |
 | `scripts/count-questions.mjs` | npm pre-hook generator for `src/data/questionCounts.generated.ts` |
 | `scripts/hash-assets.mjs` | npm pre-hook generator for `src/data/fileHashes.generated.ts` |
-| `scripts/mark-checked.mjs` | Writes a pack's check date and `.tex` hash to `src/data/reviews.json` |
+| `scripts/mark-checked.mjs` | Writes a pack's check date and `.tex` hash to `src/data/reviews.json`; `--reordered` carries an existing check across a pure reorder |
 | `scripts/review-status.mjs` | Read-only report of each pack's check status from `src/data/reviews.json` |
 | `scripts/lib/reviews.mjs` | `reviews.json` parse/render/atomic-write, `.tex` pair hashing (CRLF-insensitive) and status classification behind `mark-checked` and `review-status` |
 | `scripts/lib/pack-preamble.mjs` | Further Maths pack path/depth helpers, shared-preamble migration, Overleaf import normalization, initial dates, date validation, pack title and site-path read/write (`readPackIdentity`, `applyPackIdentity`) and convention checks |
 | `scripts/lib/pair-presence.mjs` | Pure quartet / tracked-missing checker behind `check-pairs` |
 | `scripts/lib/private-terms.mjs` | Pure term-list parsing and whole-token matching behind `check-private-terms` |
 | `scripts/lib/tex-utils.mjs` | Shared path, `.tex` discovery, document boundary, and QBT/soln pair helpers |
-| `scripts/lib/question-blocks.mjs` | Pure parser/synchronizer for `check-questions` and `sync-questions`; preserves CRLF/LF |
+| `scripts/lib/question-blocks.mjs` | Pure parser/synchronizer for `check-questions` and `sync-questions`; preserves CRLF/LF. `questionOrderChange` recognises a file whose questions were only reordered |
 | `scripts/lib/solution-boxes.mjs` | Pure legacy-Solution-box → `djsSolution` rewrite used by `migrate-solution-boxes` |
 | `scripts/lib/site-tree.mjs` | Interactive site-path picker for Overleaf deploys |
 | `scripts/lib/resources-derive.mjs` | Regex-based introspection of `src/data/resources.ts` (and the strand/topic labels in `src/data/topics.ts`, `parseStrands`/`sitePathLabels`) for staging and validation |

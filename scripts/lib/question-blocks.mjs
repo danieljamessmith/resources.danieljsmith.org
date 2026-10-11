@@ -571,3 +571,72 @@ function arraysEqualIgnoringSourceHints(a, b) {
     b.filter((line) => !SOURCE_HINT_RE.test(line)),
   );
 }
+
+const LAST_UPDATED_LINE_RE = /^[ \t]*\\djsLastUpdated\{[^{}]*\}[ \t]*(?:%.*)?$/;
+
+/**
+ * A block's text without the parts that follow its position in the pack:
+ * the delimiter, the source hint and the trailing `\newpage` separator.
+ *
+ * @param {QuestionBlock} block
+ * @returns {string}
+ */
+function positionFreeBlock(block) {
+  return stripTrailingNewpage(block.lines.slice(1).filter((line) => !SOURCE_HINT_RE.test(line)))
+    .join('\n');
+}
+
+/**
+ * Checks that `newText` is `oldText` with its questions in a new order and
+ * nothing else changed except the `\djsLastUpdated` date. Delimiters, source
+ * hints and the separators between questions may differ, since they follow
+ * position. Line endings are ignored.
+ *
+ * @param {string} oldText
+ * @param {string} newText
+ * @returns {{ ok: true, order: number[] } | { ok: false, reason: string }}
+ *   `order[i]` is the old number of the question now numbered `i + 1`.
+ */
+export function questionOrderChange(oldText, newText) {
+  let before;
+  let after;
+  try {
+    before = parseDoc(oldText);
+    after = parseDoc(newText);
+  } catch (e) {
+    return { ok: false, reason: e instanceof Error ? e.message : String(e) };
+  }
+  /** @param {ParsedDoc} doc */
+  const outside = (doc) => [
+    ...doc.fileLines.slice(0, doc.beginIdx + 1).filter((line) => !LAST_UPDATED_LINE_RE.test(line)),
+    '\0',
+    ...doc.preamble,
+    '\0',
+    ...doc.postamble,
+    '\0',
+    ...doc.fileLines.slice(doc.endIdx),
+  ].join('\n');
+  if (outside(before) !== outside(after)) {
+    return { ok: false, reason: 'text outside the questions changed' };
+  }
+  if (before.blocks.length !== after.blocks.length) {
+    return {
+      ok: false,
+      reason: `question count changed from ${before.blocks.length} to ${after.blocks.length}`,
+    };
+  }
+  const oldKeys = before.blocks.map(positionFreeBlock);
+  const used = new Set();
+  /** @type {number[]} */
+  const order = [];
+  for (const [i, block] of after.blocks.entries()) {
+    const key = positionFreeBlock(block);
+    const j = oldKeys.findIndex((k, idx) => k === key && !used.has(idx));
+    if (j < 0) {
+      return { ok: false, reason: `question ${i + 1} is not an unchanged question from before` };
+    }
+    used.add(j);
+    order.push(j + 1);
+  }
+  return { ok: true, order };
+}

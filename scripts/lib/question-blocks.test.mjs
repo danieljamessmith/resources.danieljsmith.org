@@ -10,6 +10,7 @@ import {
   rewriteSolnStatement,
   syncPair,
   validateBlocks,
+  questionOrderChange,
 } from './question-blocks.mjs';
 
 // ---------------------------------------------------------------------------
@@ -758,5 +759,96 @@ describe('splitSolnBlock with djsSolution', () => {
     expect(result.fatal).toBe(false);
     expect(result.changes.map((c) => c.n)).toEqual([1]);
     expect(result.newSolnText).toBe(solnDjs);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// questionOrderChange
+// ---------------------------------------------------------------------------
+
+/**
+ * A pack file in the clean-tex layout: delimiter, `\questionitem`, source
+ * hint, statement (and a solution box when `soln`), `\newpage` between
+ * questions. `order` lists which statement (1-based) goes in each position.
+ *
+ * @param {{ order?: number[], date?: string, soln?: boolean, edit?: (s: string) => string }} [opts]
+ */
+function reorderFixture({ order = [1, 2, 3], date = '1 October 2026', soln = false, edit = (s) => s } = {}) {
+  const stem = soln ? '_QBT___Solns__P' : '_QBT__P';
+  const blocks = order.map((q, i) => {
+    const lines = [
+      `% ---- Question ${i + 1} ----`,
+      '\\questionitem',
+      `% [Source: ${stem}, Q${i + 1}]`,
+      edit(`Statement ${q}.`),
+    ];
+    if (soln) {
+      lines.push('', '\\vspace*{10pt}', '', '\\begin{djsSolution}', `Solution ${q}.`, '\\end{djsSolution}');
+    }
+    return lines.join('\n');
+  });
+  return [
+    '\\documentclass[leqno]{article}',
+    '\\input{preamble.tex}',
+    '',
+    soln ? '\\djsSolnHeader{P}' : '\\djsQbtHeader{P}',
+    '',
+    `\\djsLastUpdated{${date}}`,
+    '\\begin{document}',
+    '\\djsFrontMatter',
+    '\\begin{enumerate}',
+    '',
+    blocks.join('\n\n\\newpage\n\n'),
+    '',
+    '\\end{enumerate}',
+    '\\end{document}',
+    '',
+  ].join('\n');
+}
+
+describe('questionOrderChange', () => {
+  it('reports the identity order for an unchanged file', () => {
+    const text = reorderFixture();
+    expect(questionOrderChange(text, text)).toEqual({ ok: true, order: [1, 2, 3] });
+  });
+
+  it('accepts renumbered delimiters, hints and a new date, in both files', () => {
+    for (const soln of [false, true]) {
+      const before = reorderFixture({ soln });
+      const after = reorderFixture({ soln, order: [3, 1, 2], date: '11 October 2026' });
+      expect(questionOrderChange(before, after)).toEqual({ ok: true, order: [3, 1, 2] });
+    }
+  });
+
+  it('ignores line endings', () => {
+    const before = reorderFixture();
+    const after = reorderFixture({ order: [2, 3, 1] }).replace(/\n/g, '\r\n');
+    expect(questionOrderChange(before, after)).toEqual({ ok: true, order: [2, 3, 1] });
+  });
+
+  it('rejects an edited question', () => {
+    const before = reorderFixture();
+    const after = reorderFixture({ order: [3, 1, 2], edit: (s) => s.replace('2.', '2 (edited).') });
+    const result = questionOrderChange(before, after);
+    expect(result.ok).toBe(false);
+    expect(result.ok === false && result.reason).toMatch(/question 3/);
+  });
+
+  it('rejects a change outside the questions', () => {
+    const before = reorderFixture();
+    const after = reorderFixture({ order: [2, 1, 3] }).replace('\\djsQbtHeader{P}', '\\djsQbtHeader{Q}');
+    expect(questionOrderChange(before, after)).toEqual({
+      ok: false,
+      reason: 'text outside the questions changed',
+    });
+  });
+
+  it('rejects a dropped question', () => {
+    const before = reorderFixture();
+    const after = reorderFixture({ order: [2, 1] });
+    expect(questionOrderChange(before, after)).toEqual({
+      ok: false,
+      reason: 'question count changed from 3 to 2',
+    });
   });
 });

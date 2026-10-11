@@ -12,6 +12,7 @@ import { createHash, randomBytes } from 'node:crypto';
 import { existsSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { questionOrderChange } from './question-blocks.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(__dirname, '..', '..');
@@ -52,6 +53,36 @@ export function texPairHash(qbtText, solnText) {
     .update(norm(solnText))
     .digest('hex')
     .slice(0, 8);
+}
+
+/**
+ * Carries a check across an edit that only put a pack's questions in a new
+ * order. The record must match the pack as it was before the edit, and the
+ * questions and solutions files must have been reordered the same way.
+ * Returns the record to store: the original check date with the new hash.
+ *
+ * @param {ReviewRecord | undefined} record
+ * @param {{ qbt: string, soln: string }} before - `.tex` text before the reorder
+ * @param {{ qbt: string, soln: string }} after - `.tex` text after it
+ * @returns {{ ok: true, record: ReviewRecord, order: number[] } | { ok: false, reason: string }}
+ */
+export function keepCheckAcrossReorder(record, before, after) {
+  if (!record) return { ok: false, reason: 'the pack has no check to keep' };
+  if (texPairHash(before.qbt, before.soln) !== record.texHash) {
+    return { ok: false, reason: 'the pack had changed since its check before the reorder' };
+  }
+  const qbt = questionOrderChange(before.qbt, after.qbt);
+  if (!qbt.ok) return { ok: false, reason: `questions file: ${qbt.reason}` };
+  const soln = questionOrderChange(before.soln, after.soln);
+  if (!soln.ok) return { ok: false, reason: `solutions file: ${soln.reason}` };
+  if (qbt.order.join(',') !== soln.order.join(',')) {
+    return { ok: false, reason: 'the questions and solutions files were reordered differently' };
+  }
+  return {
+    ok: true,
+    record: { checked: record.checked, texHash: texPairHash(after.qbt, after.soln) },
+    order: qbt.order,
+  };
 }
 
 /**
