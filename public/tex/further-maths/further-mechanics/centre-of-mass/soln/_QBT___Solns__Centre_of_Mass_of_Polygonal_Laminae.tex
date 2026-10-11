@@ -5,7 +5,7 @@
 \djsSitePath{Further Mechanics}{Centre of Mass}
 \djsMechanicsPack
 
-\djsLastUpdated{10 October 2026}
+\djsLastUpdated{11 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -429,6 +429,181 @@ Using the model, \\
 
 \begin{figure}[H]
     \centering
+\begin{tikzpicture}[scale=1.0]
+\def\w{4}
+\def\h{2}
+\def\s{2}
+
+\coordinate (O) at (0,0);
+\coordinate (A) at (\w,0);
+\coordinate (G) at ({\w+\s},0);
+\coordinate (B) at (\w,\h);
+\coordinate (C) at (0,\h);
+\coordinate (D) at (\s,\h);
+\coordinate (E) at (\s,{\h+\s});
+\coordinate (F) at (0,{\h+\s});
+
+\fill[gray!30] (O) -- (A) -- (B) -- (C) -- cycle;
+\fill[gray!30] (C) -- (D) -- (E) -- (F) -- cycle;
+\fill[gray!30] (A) -- (G) -- (B) -- cycle;
+
+\draw[thick] (O) -- (A) -- (G) -- (B) -- (D) -- (E) -- (F) -- (C) -- cycle;
+
+\draw[dashed, thick] (A) -- (B);
+\draw[dashed, thick] (C) -- (D);
+
+\node[below] at ($(O)!0.5!(A)$) {$4a$};
+\node[below] at ($(A)!0.5!(G)$) {$2a$};
+\node[left] at ($(O)!0.5!(C)$) {$2a$};
+\node[right] at ($(D)!0.5!(E)$) {$2a$};
+
+\node[below left] at (O) {$O$};
+\node[below] at (A) {$A$};
+\node[below right] at (G) {$G$};
+\node[above] at (B) {$B$};
+\node[left] at (C) {$C$};
+\node[below] at (D) {$D$};
+\node[right] at (E) {$E$};
+\node[left] at (F) {$F$};
+\end{tikzpicture}
+\end{figure}
+
+
+The uniform plane lamina shown in the diagram is formed from the rectangle $OABC$, the square $CDEF$ and the triangle $ABG$. The rectangle has dimensions $4a$ by $2a$, the square has side $2a$ and $AG=2a$. Take $O$ as the origin, with $OA$ as the positive $x$-axis and $OC$ as the positive $y$-axis. \\
+
+In part (a) you may use, without proof, any of the centre of mass formulae given in the formulae booklet. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that the distance of the centre of mass of triangle $ABG$ from $AB$ is $\dfrac{2a}{3}$. \marks{3} \\
+  \item Find the coordinates of the centre of mass of the lamina. \marks{4} \\
+\end{enumerate}
+The lamina is freely suspended from $F$ and hangs in equilibrium with $FC$ at an angle $\theta^\circ$ to the downward vertical. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find the value of $\theta$. \marks{4} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item Let the centre of mass of triangle $ABG$ be $T$.
+
+For a triangular lamina, the centroid has coordinates equal to the mean of the coordinates of its vertices.
+
+\[
+T=\left(\frac{4a+4a+6a}{3},\frac{0+2a+0}{3}\right)=\left(\frac{14a}{3},\frac{2a}{3}\right)
+\]
+
+The line $AB$ is vertical, with equation $x=4a$.
+So the perpendicular distance of $T$ from $AB$ is
+
+\[
+\frac{14a}{3}-4a=\frac{14a-12a}{3}=\frac{2a}{3}
+\]
+
+Hence the distance of the centre of mass of triangle $ABG$ from $AB$ is $\dfrac{2a}{3}$.
+
+  \item Let the centre of mass of the whole lamina be $(\bar{x},\bar{y})$.
+
+Because the density is constant and the materials are the same, areas can be used as weights.
+
+For the three parts:
+\[
+\begingroup
+\renewcommand{\arraystretch}{2.0}
+\begin{array}{c|c|c}
+\text{Shape} & \text{Area} & \text{Centre of mass} \\
+\hline
+\text{Rectangle }OABC & 8a^2 & (2a,a) \\
+\text{Square }CDEF & 4a^2 & (a,3a) \\
+\text{Triangle }ABG & 2a^2 & \left(\dfrac{14a}{3},\dfrac{2a}{3}\right)
+\end{array}
+\endgroup
+\]
+
+So the total area is
+
+\[
+8a^2+4a^2+2a^2=14a^2
+\]
+
+Using $A\bar{x}=A_1x_1+A_2x_2+A_3x_3$,
+
+\begin{align*}
+14a^2\bar{x} &= 8a^2(2a)+4a^2(a)+2a^2\left(\frac{14a}{3}\right) \\
+&= 16a^3+4a^3+\frac{28a^3}{3} \\
+&= \frac{88a^3}{3}
+\end{align*}
+
+Hence
+
+\[
+\bar{x}=\frac{88a^3/3}{14a^2}=\frac{44a}{21}
+\]
+
+Using $A\bar{y}=A_1y_1+A_2y_2+A_3y_3$,
+
+\begin{align*}
+14a^2\bar{y} &= 8a^2(a)+4a^2(3a)+2a^2\left(\frac{2a}{3}\right) \\
+&= 8a^3+12a^3+\frac{4a^3}{3} \\
+&= \frac{64a^3}{3}
+\end{align*}
+
+Hence
+
+\[
+\bar{y}=\frac{64a^3/3}{14a^2}=\frac{32a}{21}
+\]
+
+So the coordinates of the centre of mass of the lamina are
+
+\[
+\left(\frac{44a}{21},\frac{32a}{21}\right)
+\]
+
+  \item Let the centre of mass be $M$.
+
+When the lamina is freely suspended from $F$, the centre of mass lies vertically below $F$ in equilibrium.
+So the downward vertical is along the line $FM$.
+
+Now
+
+\[
+F=(0,4a), \qquad M=\left(\frac{44a}{21},\frac{32a}{21}\right)
+\]
+
+Hence
+
+\[
+\overrightarrow{FM}=\begin{pmatrix}\dfrac{44a}{21}\\[6pt] \dfrac{32a}{21}-4a\end{pmatrix}=\begin{pmatrix}\dfrac{44a}{21}\\[6pt] -\dfrac{52a}{21}\end{pmatrix}
+\]
+
+The line $FC$ is vertical in the lamina, so after turning through angle $\theta$, it makes angle $\theta$ with the downward vertical.
+Therefore $\theta$ is the angle between $FC$ and $FM$.
+
+Using the horizontal and vertical components of $FM$,
+
+\[
+\tan\theta=\frac{44a/21}{52a/21}=\frac{11}{13}
+\]
+
+So
+
+\[
+\theta=\arctan\left(\frac{11}{13}\right)\approx 40.2
+\]
+
+Hence the value of $\theta$ is $\arctan\!\left(\dfrac{11}{13}\right)$, which is approximately $40.2$.
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT___Solns__Centre_of_Mass_of_Polygonal_Laminae, Q5]
+
+\begin{figure}[H]
+    \centering
 \begin{tikzpicture}[scale=0.75]
 \def\Wtop{12}
 \def\Hbar{2}
@@ -588,178 +763,6 @@ Therefore
 \tan\theta=\tan(90^\circ-\alpha)=\frac{1}{\tan\alpha}=\frac{42}{25}
 \]
 \end{enumerate}
-\end{djsSolution}
-
-\newpage
-
-% ---- Question 5 ----
-\questionitem
-% [Source: _QBT___Solns__Centre_of_Mass_of_Polygonal_Laminae, Q5]
-
-\begin{figure}[H]
-    \centering
-\begin{tikzpicture}[scale=1.1]
-\def\alen{1.1}
-\def\kval{2}
-\pgfmathsetmacro{\xinnerL}{\alen}
-\pgfmathsetmacro{\xinnerR}{(\kval+2)*\alen}
-\pgfmathsetmacro{\xouter}{(\kval+4)*\alen}
-\pgfmathsetmacro{\yinnerB}{\alen}
-\pgfmathsetmacro{\yinnerT}{(\kval+1)*\alen}
-\pgfmathsetmacro{\youter}{(\kval+3)*\alen}
-\pgfmathsetmacro{\xmax}{\xouter+1.0}
-\pgfmathsetmacro{\ymax}{\youter+1.0}
-
-\coordinate (O) at (0,0);
-
-\draw[-{Stealth[length=3mm]}, thick] (O) -- (\xmax,0) node[right] {$x$};
-\draw[-{Stealth[length=3mm]}, thick] (O) -- (0,\ymax) node[above] {$y$};
-
-\fill[gray!30, even odd rule] (0,0) rectangle (\xouter,\youter) (\xinnerL,\yinnerB) rectangle (\xinnerR,\yinnerT);
-\draw[thick] (0,0) rectangle (\xouter,\youter);
-\draw[thick] (\xinnerL,\yinnerB) rectangle (\xinnerR,\yinnerT);
-
-\node[below left] at (O) {$O$};
-\node at ({(\xinnerR+\xouter)/2},{(\yinnerT+\youter)/2}) {$R$};
-
-\foreach \x in {\xinnerL,\xinnerR,\xouter} {
-  \draw[thick] (\x,0.08) -- (\x,-0.08);
-}
-
-\foreach \y in {\yinnerB,\yinnerT,\youter} {
-  \draw[thick] (-0.08,\y) -- (0.08,\y);
-}
-
-\node[below=4pt] at (\xinnerL,0) {$a$};
-\node[below=4pt] at (\xinnerR,0) {$(k+2)a$};
-\node[below=4pt] at (\xouter,0) {$(k+4)a$};
-
-\node[left=4pt] at (0,\yinnerB) {$a$};
-\node[left=4pt] at (0,\yinnerT) {$(k+1)a$};
-\node[left=4pt] at (0,\youter) {$(k+3)a$};
-\end{tikzpicture}
-\end{figure}
-
-
-A uniform lamina $R$ is bounded externally by the rectangle with vertices $(0,0)$, $((k+4)a,0)$, \\$((k+4)a,(k+3)a)$ and $(0,(k+3)a)$, where $k>0$.\\
-
-A rectangular hole with vertices $(a,a)$, $((k+2)a,a)$, $((k+2)a,(k+1)a)$ and $(a,(k+1)a)$ is removed, as shown in the diagram. \\
-
-Determine the range of values of $k$ for which the centre of mass of $R$ lies in the hole. \marks{10} \\
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-Let the outer rectangle be $R_1$ and the rectangular hole be $R_2$.
-
-Because the density is constant and the materials are the same, areas can be used as weights.
-
-For $R_1$,
-\[
-A_1=(k+4)(k+3)a^2,
-\qquad
-\left(x_1,y_1\right)=\left(\frac{(k+4)a}{2},\frac{(k+3)a}{2}\right)
-\]
-
-For the hole $R_2$,
-\[
-A_2=\bigl((k+2)a-a\bigr)\bigl((k+1)a-a\bigr)=k(k+1)a^2
-\]
-and its centre is
-\[
-\left(x_2,y_2\right)=\left(\frac{a+(k+2)a}{2},\frac{a+(k+1)a}{2}\right)=\left(\frac{(k+3)a}{2},\frac{(k+2)a}{2}\right)
-\]
-
-So the area of the remaining lamina $R$ is
-\[
-A=A_1-A_2=\bigl((k+4)(k+3)-k(k+1)\bigr)a^2=6(k+2)a^2
-\]
-
-Using subtraction of moments,
-\[
-A\bar x=A_1x_1-A_2x_2,
-\qquad
-A\bar y=A_1y_1-A_2y_2
-\]
-
-Hence
-\begin{align*}
-\bar x
-&=\frac{(k+4)(k+3)a^2\cdot \frac{(k+4)a}{2}-k(k+1)a^2\cdot \frac{(k+3)a}{2}}{6(k+2)a^2}\\[4pt]
-&=\frac{a(k+3)\bigl((k+4)^2-k(k+1)\bigr)}{12(k+2)}\\[4pt]
-&=\frac{a(k+3)(7k+16)}{12(k+2)}
-\end{align*}
-
-and
-\begin{align*}
-\bar y
-&=\frac{(k+4)(k+3)a^2\cdot \frac{(k+3)a}{2}-k(k+1)a^2\cdot \frac{(k+2)a}{2}}{6(k+2)a^2}\\[4pt]
-&=\frac{a\bigl((k+4)(k+3)^2-k(k+1)(k+2)\bigr)}{12(k+2)}\\[4pt]
-&=\frac{a(7k^2+31k+36)}{12(k+2)}
-\end{align*}
-
-For the centre of mass to lie inside the hole, we need
-\[
-a<\bar x<(k+2)a,
-\qquad
-a<\bar y<(k+1)a
-\]
-Since $a>0$ and $k>0$, we can divide through by $a$.
-
-First, for the $x$-coordinate,
-\begin{align*}
-\bar x>a
-&\iff \frac{(k+3)(7k+16)}{12(k+2)}>1\\[4pt]
-&\iff (k+3)(7k+16)>12(k+2)\\[4pt]
-&\iff 7k^2+25k+24>0
-\end{align*}
-which is true for all $k>0$.
-
-Also,
-\begin{align*}
-\bar x<(k+2)a
-&\iff \frac{(k+3)(7k+16)}{12(k+2)}<k+2\\[4pt]
-&\iff (k+3)(7k+16)<12(k+2)^2\\[4pt]
-&\iff 5k^2+11k>0
-\end{align*}
-which is also true for all $k>0$.
-
-Now for the $y$-coordinate,
-\begin{align*}
-\bar y>a
-&\iff \frac{7k^2+31k+36}{12(k+2)}>1\\[4pt]
-&\iff 7k^2+31k+36>12(k+2)\\[4pt]
-&\iff 7k^2+19k+12>0
-\end{align*}
-which is true for all $k>0$.
-
-Finally,
-\begin{align*}
-\bar y<(k+1)a
-&\iff \frac{7k^2+31k+36}{12(k+2)}<k+1\\[4pt]
-&\iff 7k^2+31k+36<12(k+2)(k+1)\\[4pt]
-&\iff 5k^2+5k-12>0
-\end{align*}
-
-Solving $5k^2+5k-12=0$,
-\[
-k=\frac{-5\pm\sqrt{25+240}}{10}=\frac{-5\pm\sqrt{265}}{10}
-\]
-Since the quadratic opens upwards, $5k^2+5k-12>0$ when
-\[
-k<\frac{-5-\sqrt{265}}{10}
-\quad\text{or}\quad
-k>\frac{-5+\sqrt{265}}{10}
-\]
-But $k>0$, so the only possible range is
-\[
-k>\frac{\sqrt{265}-5}{10}
-\]
-
-Therefore the centre of mass of $R$ lies in the hole when
-\[
-k>\frac{\sqrt{265}-5}{10}\approx 1.13
-\]
 \end{djsSolution}
 
 
@@ -1254,182 +1257,6 @@ When the lamina is suspended from the point $D$, the edge $DA$ makes an angle $\
 
 \begin{figure}[H]
     \centering
-\begin{tikzpicture}[scale=1.0]
-\def\w{4}
-\def\h{2}
-\def\s{2}
-
-\coordinate (O) at (0,0);
-\coordinate (A) at (\w,0);
-\coordinate (G) at ({\w+\s},0);
-\coordinate (B) at (\w,\h);
-\coordinate (C) at (0,\h);
-\coordinate (D) at (\s,\h);
-\coordinate (E) at (\s,{\h+\s});
-\coordinate (F) at (0,{\h+\s});
-
-\fill[gray!30] (O) -- (A) -- (B) -- (C) -- cycle;
-\fill[gray!30] (C) -- (D) -- (E) -- (F) -- cycle;
-\fill[gray!30] (A) -- (G) -- (B) -- cycle;
-
-\draw[thick] (O) -- (A) -- (G) -- (B) -- (D) -- (E) -- (F) -- (C) -- cycle;
-
-\draw[dashed, thick] (A) -- (B);
-\draw[dashed, thick] (C) -- (D);
-
-\node[below] at ($(O)!0.5!(A)$) {$4a$};
-\node[below] at ($(A)!0.5!(G)$) {$2a$};
-\node[left] at ($(O)!0.5!(C)$) {$2a$};
-\node[right] at ($(D)!0.5!(E)$) {$2a$};
-
-\node[below left] at (O) {$O$};
-\node[below] at (A) {$A$};
-\node[below right] at (G) {$G$};
-\node[above] at (B) {$B$};
-\node[left] at (C) {$C$};
-\node[below] at (D) {$D$};
-\node[right] at (E) {$E$};
-\node[left] at (F) {$F$};
-\end{tikzpicture}
-\end{figure}
-
-
-The uniform plane lamina shown in the diagram is formed from the rectangle $OABC$, the square $CDEF$ and the triangle $ABG$. The rectangle has dimensions $4a$ by $2a$, the square has side $2a$ and $AG=2a$. Take $O$ as the origin, with $OA$ as the positive $x$-axis and $OC$ as the positive $y$-axis. \\
-
-In part (a) you may use, without proof, any of the centre of mass formulae given in the formulae booklet. \\
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Show that the distance of the centre of mass of triangle $ABG$ from $AB$ is $\dfrac{2a}{3}$. \marks{3} \\
-  \item Find the coordinates of the centre of mass of the lamina. \marks{4} \\
-\end{enumerate}
-The lamina is freely suspended from $F$ and hangs in equilibrium with $FC$ at an angle $\theta^\circ$ to the downward vertical. \\
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Find the value of $\theta$. \marks{4} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-  \item Let the centre of mass of triangle $ABG$ be $T$.
-
-For a triangular lamina, the centroid has coordinates equal to the mean of the coordinates of its vertices.
-
-\[
-T=\left(\frac{4a+4a+6a}{3},\frac{0+2a+0}{3}\right)=\left(\frac{14a}{3},\frac{2a}{3}\right)
-\]
-
-The line $AB$ is vertical, with equation $x=4a$.
-So the perpendicular distance of $T$ from $AB$ is
-
-\[
-\frac{14a}{3}-4a=\frac{14a-12a}{3}=\frac{2a}{3}
-\]
-
-Hence the distance of the centre of mass of triangle $ABG$ from $AB$ is $\dfrac{2a}{3}$.
-
-  \item Let the centre of mass of the whole lamina be $(\bar{x},\bar{y})$.
-
-Because the density is constant and the materials are the same, areas can be used as weights.
-
-For the three parts:
-\[
-\begingroup
-\renewcommand{\arraystretch}{2.0}
-\begin{array}{c|c|c}
-\text{Shape} & \text{Area} & \text{Centre of mass} \\
-\hline
-\text{Rectangle }OABC & 8a^2 & (2a,a) \\
-\text{Square }CDEF & 4a^2 & (a,3a) \\
-\text{Triangle }ABG & 2a^2 & \left(\dfrac{14a}{3},\dfrac{2a}{3}\right)
-\end{array}
-\endgroup
-\]
-
-So the total area is
-
-\[
-8a^2+4a^2+2a^2=14a^2
-\]
-
-Using $A\bar{x}=A_1x_1+A_2x_2+A_3x_3$,
-
-\begin{align*}
-14a^2\bar{x} &= 8a^2(2a)+4a^2(a)+2a^2\left(\frac{14a}{3}\right) \\
-&= 16a^3+4a^3+\frac{28a^3}{3} \\
-&= \frac{88a^3}{3}
-\end{align*}
-
-Hence
-
-\[
-\bar{x}=\frac{88a^3/3}{14a^2}=\frac{44a}{21}
-\]
-
-Using $A\bar{y}=A_1y_1+A_2y_2+A_3y_3$,
-
-\begin{align*}
-14a^2\bar{y} &= 8a^2(a)+4a^2(3a)+2a^2\left(\frac{2a}{3}\right) \\
-&= 8a^3+12a^3+\frac{4a^3}{3} \\
-&= \frac{64a^3}{3}
-\end{align*}
-
-Hence
-
-\[
-\bar{y}=\frac{64a^3/3}{14a^2}=\frac{32a}{21}
-\]
-
-So the coordinates of the centre of mass of the lamina are
-
-\[
-\left(\frac{44a}{21},\frac{32a}{21}\right)
-\]
-
-  \item Let the centre of mass be $M$.
-
-When the lamina is freely suspended from $F$, the centre of mass lies vertically below $F$ in equilibrium.
-So the downward vertical is along the line $FM$.
-
-Now
-
-\[
-F=(0,4a), \qquad M=\left(\frac{44a}{21},\frac{32a}{21}\right)
-\]
-
-Hence
-
-\[
-\overrightarrow{FM}=\begin{pmatrix}\dfrac{44a}{21}\\[6pt] \dfrac{32a}{21}-4a\end{pmatrix}=\begin{pmatrix}\dfrac{44a}{21}\\[6pt] -\dfrac{52a}{21}\end{pmatrix}
-\]
-
-The line $FC$ is vertical in the lamina, so after turning through angle $\theta$, it makes angle $\theta$ with the downward vertical.
-Therefore $\theta$ is the angle between $FC$ and $FM$.
-
-Using the horizontal and vertical components of $FM$,
-
-\[
-\tan\theta=\frac{44a/21}{52a/21}=\frac{11}{13}
-\]
-
-So
-
-\[
-\theta=\arctan\left(\frac{11}{13}\right)\approx 40.2
-\]
-
-Hence the value of $\theta$ is $\arctan\!\left(\dfrac{11}{13}\right)$, which is approximately $40.2$.
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 10 ----
-\questionitem
-% [Source: _QBT___Solns__Centre_of_Mass_of_Polygonal_Laminae, Q10]
-
-\begin{figure}[H]
-    \centering
 \begin{tikzpicture}[x=0.03cm,y=0.03cm]
 \coordinate (O) at (0,0);
 \coordinate (A) at (-120,0);
@@ -1637,6 +1464,179 @@ Therefore the forces exerted on the lamina are:
 \text{at }G:\ 60\,\mathrm{N}\text{ upward}
 \]
 \end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+% [Source: _QBT___Solns__Centre_of_Mass_of_Polygonal_Laminae, Q10]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.1]
+\def\alen{1.1}
+\def\kval{2}
+\pgfmathsetmacro{\xinnerL}{\alen}
+\pgfmathsetmacro{\xinnerR}{(\kval+2)*\alen}
+\pgfmathsetmacro{\xouter}{(\kval+4)*\alen}
+\pgfmathsetmacro{\yinnerB}{\alen}
+\pgfmathsetmacro{\yinnerT}{(\kval+1)*\alen}
+\pgfmathsetmacro{\youter}{(\kval+3)*\alen}
+\pgfmathsetmacro{\xmax}{\xouter+1.0}
+\pgfmathsetmacro{\ymax}{\youter+1.0}
+
+\coordinate (O) at (0,0);
+
+\draw[-{Stealth[length=3mm]}, thick] (O) -- (\xmax,0) node[right] {$x$};
+\draw[-{Stealth[length=3mm]}, thick] (O) -- (0,\ymax) node[above] {$y$};
+
+\fill[gray!30, even odd rule] (0,0) rectangle (\xouter,\youter) (\xinnerL,\yinnerB) rectangle (\xinnerR,\yinnerT);
+\draw[thick] (0,0) rectangle (\xouter,\youter);
+\draw[thick] (\xinnerL,\yinnerB) rectangle (\xinnerR,\yinnerT);
+
+\node[below left] at (O) {$O$};
+\node at ({(\xinnerR+\xouter)/2},{(\yinnerT+\youter)/2}) {$R$};
+
+\foreach \x in {\xinnerL,\xinnerR,\xouter} {
+  \draw[thick] (\x,0.08) -- (\x,-0.08);
+}
+
+\foreach \y in {\yinnerB,\yinnerT,\youter} {
+  \draw[thick] (-0.08,\y) -- (0.08,\y);
+}
+
+\node[below=4pt] at (\xinnerL,0) {$a$};
+\node[below=4pt] at (\xinnerR,0) {$(k+2)a$};
+\node[below=4pt] at (\xouter,0) {$(k+4)a$};
+
+\node[left=4pt] at (0,\yinnerB) {$a$};
+\node[left=4pt] at (0,\yinnerT) {$(k+1)a$};
+\node[left=4pt] at (0,\youter) {$(k+3)a$};
+\end{tikzpicture}
+\end{figure}
+
+
+A uniform lamina $R$ is bounded externally by the rectangle with vertices $(0,0)$, $((k+4)a,0)$, \\$((k+4)a,(k+3)a)$ and $(0,(k+3)a)$, where $k>0$.\\
+
+A rectangular hole with vertices $(a,a)$, $((k+2)a,a)$, $((k+2)a,(k+1)a)$ and $(a,(k+1)a)$ is removed, as shown in the diagram. \\
+
+Determine the range of values of $k$ for which the centre of mass of $R$ lies in the hole. \marks{10} \\
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+Let the outer rectangle be $R_1$ and the rectangular hole be $R_2$.
+
+Because the density is constant and the materials are the same, areas can be used as weights.
+
+For $R_1$,
+\[
+A_1=(k+4)(k+3)a^2,
+\qquad
+\left(x_1,y_1\right)=\left(\frac{(k+4)a}{2},\frac{(k+3)a}{2}\right)
+\]
+
+For the hole $R_2$,
+\[
+A_2=\bigl((k+2)a-a\bigr)\bigl((k+1)a-a\bigr)=k(k+1)a^2
+\]
+and its centre is
+\[
+\left(x_2,y_2\right)=\left(\frac{a+(k+2)a}{2},\frac{a+(k+1)a}{2}\right)=\left(\frac{(k+3)a}{2},\frac{(k+2)a}{2}\right)
+\]
+
+So the area of the remaining lamina $R$ is
+\[
+A=A_1-A_2=\bigl((k+4)(k+3)-k(k+1)\bigr)a^2=6(k+2)a^2
+\]
+
+Using subtraction of moments,
+\[
+A\bar x=A_1x_1-A_2x_2,
+\qquad
+A\bar y=A_1y_1-A_2y_2
+\]
+
+Hence
+\begin{align*}
+\bar x
+&=\frac{(k+4)(k+3)a^2\cdot \frac{(k+4)a}{2}-k(k+1)a^2\cdot \frac{(k+3)a}{2}}{6(k+2)a^2}\\[4pt]
+&=\frac{a(k+3)\bigl((k+4)^2-k(k+1)\bigr)}{12(k+2)}\\[4pt]
+&=\frac{a(k+3)(7k+16)}{12(k+2)}
+\end{align*}
+
+and
+\begin{align*}
+\bar y
+&=\frac{(k+4)(k+3)a^2\cdot \frac{(k+3)a}{2}-k(k+1)a^2\cdot \frac{(k+2)a}{2}}{6(k+2)a^2}\\[4pt]
+&=\frac{a\bigl((k+4)(k+3)^2-k(k+1)(k+2)\bigr)}{12(k+2)}\\[4pt]
+&=\frac{a(7k^2+31k+36)}{12(k+2)}
+\end{align*}
+
+For the centre of mass to lie inside the hole, we need
+\[
+a<\bar x<(k+2)a,
+\qquad
+a<\bar y<(k+1)a
+\]
+Since $a>0$ and $k>0$, we can divide through by $a$.
+
+First, for the $x$-coordinate,
+\begin{align*}
+\bar x>a
+&\iff \frac{(k+3)(7k+16)}{12(k+2)}>1\\[4pt]
+&\iff (k+3)(7k+16)>12(k+2)\\[4pt]
+&\iff 7k^2+25k+24>0
+\end{align*}
+which is true for all $k>0$.
+
+Also,
+\begin{align*}
+\bar x<(k+2)a
+&\iff \frac{(k+3)(7k+16)}{12(k+2)}<k+2\\[4pt]
+&\iff (k+3)(7k+16)<12(k+2)^2\\[4pt]
+&\iff 5k^2+11k>0
+\end{align*}
+which is also true for all $k>0$.
+
+Now for the $y$-coordinate,
+\begin{align*}
+\bar y>a
+&\iff \frac{7k^2+31k+36}{12(k+2)}>1\\[4pt]
+&\iff 7k^2+31k+36>12(k+2)\\[4pt]
+&\iff 7k^2+19k+12>0
+\end{align*}
+which is true for all $k>0$.
+
+Finally,
+\begin{align*}
+\bar y<(k+1)a
+&\iff \frac{7k^2+31k+36}{12(k+2)}<k+1\\[4pt]
+&\iff 7k^2+31k+36<12(k+2)(k+1)\\[4pt]
+&\iff 5k^2+5k-12>0
+\end{align*}
+
+Solving $5k^2+5k-12=0$,
+\[
+k=\frac{-5\pm\sqrt{25+240}}{10}=\frac{-5\pm\sqrt{265}}{10}
+\]
+Since the quadratic opens upwards, $5k^2+5k-12>0$ when
+\[
+k<\frac{-5-\sqrt{265}}{10}
+\quad\text{or}\quad
+k>\frac{-5+\sqrt{265}}{10}
+\]
+But $k>0$, so the only possible range is
+\[
+k>\frac{\sqrt{265}-5}{10}
+\]
+
+Therefore the centre of mass of $R$ lies in the hole when
+\[
+k>\frac{\sqrt{265}-5}{10}\approx 1.13
+\]
 \end{djsSolution}
 
 

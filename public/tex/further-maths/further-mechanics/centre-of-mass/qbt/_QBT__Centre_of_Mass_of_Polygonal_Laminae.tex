@@ -5,7 +5,7 @@
 \djsSitePath{Further Mechanics}{Centre of Mass}
 \djsMechanicsPack
 
-\djsLastUpdated{10 October 2026}
+\djsLastUpdated{11 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -200,6 +200,67 @@ Using the model, \\
 
 \begin{figure}[H]
     \centering
+\begin{tikzpicture}[scale=1.0]
+\def\w{4}
+\def\h{2}
+\def\s{2}
+
+\coordinate (O) at (0,0);
+\coordinate (A) at (\w,0);
+\coordinate (G) at ({\w+\s},0);
+\coordinate (B) at (\w,\h);
+\coordinate (C) at (0,\h);
+\coordinate (D) at (\s,\h);
+\coordinate (E) at (\s,{\h+\s});
+\coordinate (F) at (0,{\h+\s});
+
+\fill[gray!30] (O) -- (A) -- (B) -- (C) -- cycle;
+\fill[gray!30] (C) -- (D) -- (E) -- (F) -- cycle;
+\fill[gray!30] (A) -- (G) -- (B) -- cycle;
+
+\draw[thick] (O) -- (A) -- (G) -- (B) -- (D) -- (E) -- (F) -- (C) -- cycle;
+
+\draw[dashed, thick] (A) -- (B);
+\draw[dashed, thick] (C) -- (D);
+
+\node[below] at ($(O)!0.5!(A)$) {$4a$};
+\node[below] at ($(A)!0.5!(G)$) {$2a$};
+\node[left] at ($(O)!0.5!(C)$) {$2a$};
+\node[right] at ($(D)!0.5!(E)$) {$2a$};
+
+\node[below left] at (O) {$O$};
+\node[below] at (A) {$A$};
+\node[below right] at (G) {$G$};
+\node[above] at (B) {$B$};
+\node[left] at (C) {$C$};
+\node[below] at (D) {$D$};
+\node[right] at (E) {$E$};
+\node[left] at (F) {$F$};
+\end{tikzpicture}
+\end{figure}
+
+
+The uniform plane lamina shown in the diagram is formed from the rectangle $OABC$, the square $CDEF$ and the triangle $ABG$. The rectangle has dimensions $4a$ by $2a$, the square has side $2a$ and $AG=2a$. Take $O$ as the origin, with $OA$ as the positive $x$-axis and $OC$ as the positive $y$-axis. \\
+
+In part (a) you may use, without proof, any of the centre of mass formulae given in the formulae booklet. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that the distance of the centre of mass of triangle $ABG$ from $AB$ is $\dfrac{2a}{3}$. \marks{3} \\
+  \item Find the coordinates of the centre of mass of the lamina. \marks{4} \\
+\end{enumerate}
+The lamina is freely suspended from $F$ and hangs in equilibrium with $FC$ at an angle $\theta^\circ$ to the downward vertical. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find the value of $\theta$. \marks{4} \\
+\end{enumerate}
+
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Polygonal_Laminae, Q5]
+
+\begin{figure}[H]
+    \centering
 \begin{tikzpicture}[scale=0.75]
 \def\Wtop{12}
 \def\Hbar{2}
@@ -277,64 +338,6 @@ Given that $x=2$ and that $\theta$ is the angle that $PQ$ makes with the horizon
   \]
   \marks[-20pt]{4}
 \end{enumerate}
-
-
-\newpage
-
-% ---- Question 5 ----
-\questionitem
-% [Source: _QBT__Centre_of_Mass_of_Polygonal_Laminae, Q5]
-
-\begin{figure}[H]
-    \centering
-\begin{tikzpicture}[scale=1.1]
-\def\alen{1.1}
-\def\kval{2}
-\pgfmathsetmacro{\xinnerL}{\alen}
-\pgfmathsetmacro{\xinnerR}{(\kval+2)*\alen}
-\pgfmathsetmacro{\xouter}{(\kval+4)*\alen}
-\pgfmathsetmacro{\yinnerB}{\alen}
-\pgfmathsetmacro{\yinnerT}{(\kval+1)*\alen}
-\pgfmathsetmacro{\youter}{(\kval+3)*\alen}
-\pgfmathsetmacro{\xmax}{\xouter+1.0}
-\pgfmathsetmacro{\ymax}{\youter+1.0}
-
-\coordinate (O) at (0,0);
-
-\draw[-{Stealth[length=3mm]}, thick] (O) -- (\xmax,0) node[right] {$x$};
-\draw[-{Stealth[length=3mm]}, thick] (O) -- (0,\ymax) node[above] {$y$};
-
-\fill[gray!30, even odd rule] (0,0) rectangle (\xouter,\youter) (\xinnerL,\yinnerB) rectangle (\xinnerR,\yinnerT);
-\draw[thick] (0,0) rectangle (\xouter,\youter);
-\draw[thick] (\xinnerL,\yinnerB) rectangle (\xinnerR,\yinnerT);
-
-\node[below left] at (O) {$O$};
-\node at ({(\xinnerR+\xouter)/2},{(\yinnerT+\youter)/2}) {$R$};
-
-\foreach \x in {\xinnerL,\xinnerR,\xouter} {
-  \draw[thick] (\x,0.08) -- (\x,-0.08);
-}
-
-\foreach \y in {\yinnerB,\yinnerT,\youter} {
-  \draw[thick] (-0.08,\y) -- (0.08,\y);
-}
-
-\node[below=4pt] at (\xinnerL,0) {$a$};
-\node[below=4pt] at (\xinnerR,0) {$(k+2)a$};
-\node[below=4pt] at (\xouter,0) {$(k+4)a$};
-
-\node[left=4pt] at (0,\yinnerB) {$a$};
-\node[left=4pt] at (0,\yinnerT) {$(k+1)a$};
-\node[left=4pt] at (0,\youter) {$(k+3)a$};
-\end{tikzpicture}
-\end{figure}
-
-
-A uniform lamina $R$ is bounded externally by the rectangle with vertices $(0,0)$, $((k+4)a,0)$, \\$((k+4)a,(k+3)a)$ and $(0,(k+3)a)$, where $k>0$.\\
-
-A rectangular hole with vertices $(a,a)$, $((k+2)a,a)$, $((k+2)a,(k+1)a)$ and $(a,(k+1)a)$ is removed, as shown in the diagram. \\
-
-Determine the range of values of $k$ for which the centre of mass of $R$ lies in the hole. \marks{10} \\
 
 \newpage
 
@@ -497,66 +500,6 @@ When the lamina is suspended from the point $D$, the edge $DA$ makes an angle $\
 
 \begin{figure}[H]
     \centering
-\begin{tikzpicture}[scale=1.0]
-\def\w{4}
-\def\h{2}
-\def\s{2}
-
-\coordinate (O) at (0,0);
-\coordinate (A) at (\w,0);
-\coordinate (G) at ({\w+\s},0);
-\coordinate (B) at (\w,\h);
-\coordinate (C) at (0,\h);
-\coordinate (D) at (\s,\h);
-\coordinate (E) at (\s,{\h+\s});
-\coordinate (F) at (0,{\h+\s});
-
-\fill[gray!30] (O) -- (A) -- (B) -- (C) -- cycle;
-\fill[gray!30] (C) -- (D) -- (E) -- (F) -- cycle;
-\fill[gray!30] (A) -- (G) -- (B) -- cycle;
-
-\draw[thick] (O) -- (A) -- (G) -- (B) -- (D) -- (E) -- (F) -- (C) -- cycle;
-
-\draw[dashed, thick] (A) -- (B);
-\draw[dashed, thick] (C) -- (D);
-
-\node[below] at ($(O)!0.5!(A)$) {$4a$};
-\node[below] at ($(A)!0.5!(G)$) {$2a$};
-\node[left] at ($(O)!0.5!(C)$) {$2a$};
-\node[right] at ($(D)!0.5!(E)$) {$2a$};
-
-\node[below left] at (O) {$O$};
-\node[below] at (A) {$A$};
-\node[below right] at (G) {$G$};
-\node[above] at (B) {$B$};
-\node[left] at (C) {$C$};
-\node[below] at (D) {$D$};
-\node[right] at (E) {$E$};
-\node[left] at (F) {$F$};
-\end{tikzpicture}
-\end{figure}
-
-
-The uniform plane lamina shown in the diagram is formed from the rectangle $OABC$, the square $CDEF$ and the triangle $ABG$. The rectangle has dimensions $4a$ by $2a$, the square has side $2a$ and $AG=2a$. Take $O$ as the origin, with $OA$ as the positive $x$-axis and $OC$ as the positive $y$-axis. \\
-
-In part (a) you may use, without proof, any of the centre of mass formulae given in the formulae booklet. \\
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Show that the distance of the centre of mass of triangle $ABG$ from $AB$ is $\dfrac{2a}{3}$. \marks{3} \\
-  \item Find the coordinates of the centre of mass of the lamina. \marks{4} \\
-\end{enumerate}
-The lamina is freely suspended from $F$ and hangs in equilibrium with $FC$ at an angle $\theta^\circ$ to the downward vertical. \\
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Find the value of $\theta$. \marks{4} \\
-\end{enumerate}
-
-\newpage
-
-% ---- Question 10 ----
-\questionitem
-% [Source: _QBT__Centre_of_Mass_of_Polygonal_Laminae, Q10]
-
-\begin{figure}[H]
-    \centering
 \begin{tikzpicture}[x=0.03cm,y=0.03cm]
 \coordinate (O) at (0,0);
 \coordinate (A) at (-120,0);
@@ -597,6 +540,63 @@ It is now given that $g=8$, and that the lamina has weight $100\,\mathrm{N}$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item Determine the forces exerted on the lamina by each of the supports at $D$, $E$ and $G$. \marks{4} \\
 \end{enumerate}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Polygonal_Laminae, Q10]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.1]
+\def\alen{1.1}
+\def\kval{2}
+\pgfmathsetmacro{\xinnerL}{\alen}
+\pgfmathsetmacro{\xinnerR}{(\kval+2)*\alen}
+\pgfmathsetmacro{\xouter}{(\kval+4)*\alen}
+\pgfmathsetmacro{\yinnerB}{\alen}
+\pgfmathsetmacro{\yinnerT}{(\kval+1)*\alen}
+\pgfmathsetmacro{\youter}{(\kval+3)*\alen}
+\pgfmathsetmacro{\xmax}{\xouter+1.0}
+\pgfmathsetmacro{\ymax}{\youter+1.0}
+
+\coordinate (O) at (0,0);
+
+\draw[-{Stealth[length=3mm]}, thick] (O) -- (\xmax,0) node[right] {$x$};
+\draw[-{Stealth[length=3mm]}, thick] (O) -- (0,\ymax) node[above] {$y$};
+
+\fill[gray!30, even odd rule] (0,0) rectangle (\xouter,\youter) (\xinnerL,\yinnerB) rectangle (\xinnerR,\yinnerT);
+\draw[thick] (0,0) rectangle (\xouter,\youter);
+\draw[thick] (\xinnerL,\yinnerB) rectangle (\xinnerR,\yinnerT);
+
+\node[below left] at (O) {$O$};
+\node at ({(\xinnerR+\xouter)/2},{(\yinnerT+\youter)/2}) {$R$};
+
+\foreach \x in {\xinnerL,\xinnerR,\xouter} {
+  \draw[thick] (\x,0.08) -- (\x,-0.08);
+}
+
+\foreach \y in {\yinnerB,\yinnerT,\youter} {
+  \draw[thick] (-0.08,\y) -- (0.08,\y);
+}
+
+\node[below=4pt] at (\xinnerL,0) {$a$};
+\node[below=4pt] at (\xinnerR,0) {$(k+2)a$};
+\node[below=4pt] at (\xouter,0) {$(k+4)a$};
+
+\node[left=4pt] at (0,\yinnerB) {$a$};
+\node[left=4pt] at (0,\yinnerT) {$(k+1)a$};
+\node[left=4pt] at (0,\youter) {$(k+3)a$};
+\end{tikzpicture}
+\end{figure}
+
+
+A uniform lamina $R$ is bounded externally by the rectangle with vertices $(0,0)$, $((k+4)a,0)$, \\$((k+4)a,(k+3)a)$ and $(0,(k+3)a)$, where $k>0$.\\
+
+A rectangular hole with vertices $(a,a)$, $((k+2)a,a)$, $((k+2)a,(k+1)a)$ and $(a,(k+1)a)$ is removed, as shown in the diagram. \\
+
+Determine the range of values of $k$ for which the centre of mass of $R$ lies in the hole. \marks{10} \\
 
 \end{enumerate}
 \end{document}
