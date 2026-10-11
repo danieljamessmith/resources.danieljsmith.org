@@ -4,7 +4,7 @@
 \djsSolnHeader{Invariant Points and Lines}
 \djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}
 
-\djsLastUpdated{10 October 2026}
+\djsLastUpdated{11 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -246,6 +246,150 @@ Equivalently, \(x+2y=0\).
 \questionitem
 % [Source: _QBT___Solns__Invariant_Points_and_Lines, Q3]
 
+The matrix of a linear transformation $T$ is
+\[
+M = \begin{pmatrix} p+2 & -5 \\[6pt] -2 & p-1 \end{pmatrix}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the values of $p$ for which $T$ is not invertible. \marks{2} \\
+\end{enumerate}
+It is now given that $p = 3$, so that
+\[
+M = \begin{pmatrix} 5 & -5 \\ -2 & 2 \end{pmatrix}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find the equations of the invariant lines, through the origin, of the transformation represented by $M$. \marks{6} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item A matrix is not invertible when its determinant is \(0\).
+
+  \[
+  \det(M)=
+  \begin{vmatrix}
+  p+2 & -5\\
+  -2 & p-1
+  \end{vmatrix}
+  =(p+2)(p-1)-(-5)(-2)
+  \]
+
+  \[
+  \det(M)=(p+2)(p-1)-10=p^2+p-2-10=p^2+p-12
+  \]
+
+  Factorising,
+
+  \[
+  p^2+p-12=(p+4)(p-3)
+  \]
+
+  So \(T\) is not invertible when
+
+  \[
+  (p+4)(p-3)=0
+  \]
+
+  Hence \(p=3\) or \(p=-4\).
+
+  \item An invariant line through the origin must map onto itself.
+
+  First check the vertical line \(x=0\). A general point on this line is \(\begin{pmatrix}0\\y\end{pmatrix}\), and
+
+  \[
+  M\begin{pmatrix}0\\y\end{pmatrix}
+  =
+  \begin{pmatrix}
+  5 & -5\\
+  -2 & 2
+  \end{pmatrix}
+  \begin{pmatrix}0\\y\end{pmatrix}
+  =
+  \begin{pmatrix}-5y\\2y\end{pmatrix}
+  \]
+
+  This does not in general have \(x=0\), so \(x=0\) is not invariant.
+
+  Now take a non-vertical line through the origin with equation \(y=mx\).
+
+  A general point on this line is \(\begin{pmatrix}x\\mx\end{pmatrix}\). Its image is
+
+  \[
+  M\begin{pmatrix}x\\mx\end{pmatrix}
+  =
+  \begin{pmatrix}
+  5 & -5\\
+  -2 & 2
+  \end{pmatrix}
+  \begin{pmatrix}x\\mx\end{pmatrix}
+  =
+  \begin{pmatrix}
+  5x-5mx\\
+  -2x+2mx
+  \end{pmatrix}
+  \]
+
+  For the line to be invariant, this image must also lie on \(y=mx\). So its coordinates must satisfy
+
+  \[
+  -2x+2mx = m(5x-5mx)
+  \]
+
+  For a non-zero point, divide by \(x\):
+
+  \[
+  -2+2m = 5m-5m^2
+  \]
+
+  Rearranging,
+
+  \[
+  5m^2-3m-2=0
+  \]
+
+  Factorising,
+
+  \[
+  5m^2-3m-2=(5m+2)(m-1)
+  \]
+
+  So
+
+  \[
+  m=1 \qquad \text{or} \qquad m=-\frac25
+  \]
+
+  Therefore the invariant lines are
+
+  \[
+  y=x
+  \]
+
+  and
+
+  \[
+  y=-\frac25x
+  \]
+
+  Equivalently, the second line may be written as
+
+  \[
+  2x+5y=0
+  \]
+
+  So the invariant lines are \(y=x\) and \(2x+5y=0\).
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT___Solns__Invariant_Points_and_Lines, Q4]
+
 The matrix $A$ is given by
 \[
 A = \frac{1}{5}\begin{pmatrix}-3 & -4 \\ -4 & 3\end{pmatrix}
@@ -393,9 +537,9 @@ Give your answer in the form $y = mx + c$. \marks{4} \\
 
 \newpage
 
-% ---- Question 4 ----
+% ---- Question 5 ----
 \questionitem
-% [Source: _QBT___Solns__Invariant_Points_and_Lines, Q4]
+% [Source: _QBT___Solns__Invariant_Points_and_Lines, Q5]
 
 The matrix $M$ is given by
 \[
@@ -578,9 +722,9 @@ y=-3\sqrt3 x
 
 \newpage
 
-% ---- Question 5 ----
+% ---- Question 6 ----
 \questionitem
-% [Source: _QBT___Solns__Invariant_Points_and_Lines, Q5]
+% [Source: _QBT___Solns__Invariant_Points_and_Lines, Q6]
 
 A linear transformation of the plane is represented by the matrix
 \[
@@ -719,9 +863,287 @@ where $p$ is a constant. \\
 
 \newpage
 
-% ---- Question 6 ----
+% ---- Question 7 ----
 \questionitem
-% [Source: _QBT___Solns__Invariant_Points_and_Lines, Q6]
+% [Source: _QBT___Solns__Invariant_Points_and_Lines, Q7]
+
+The matrix
+\[
+B = \begin{pmatrix} 1 & -4 \\ 2 & -1 \end{pmatrix}
+\]
+represents the linear transformation $T$. \\
+Any invariant line for $T$ must be parallel to an invariant line through the origin. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item A line through the origin has equation $y=mx$, where $m$ is real. Show that, for $m \ne \tfrac{1}{4}$, its image under $T$ has equation
+  \[
+  y = \frac{2-m}{1-4m}x
+  \]
+  State also the image of the line $y=\tfrac{1}{4}x$ and the image of the vertical line $x=0$. \marks{3}\\
+  \item Hence prove that $T$ has no invariant lines. \marks{2} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item A general point on the line \(y=mx\) is
+\[
+\begin{pmatrix}x\\mx\end{pmatrix}
+\]
+
+Under the transformation \(T\) represented by
+\[
+B=\begin{pmatrix}1&-4\\2&-1\end{pmatrix}
+\]
+this point maps to
+\[
+\begin{pmatrix}X\\Y\end{pmatrix}
+=
+\begin{pmatrix}1&-4\\2&-1\end{pmatrix}
+\begin{pmatrix}x\\mx\end{pmatrix}
+=
+\begin{pmatrix}x-4mx\\2x-mx\end{pmatrix}
+=
+\begin{pmatrix}(1-4m)x\\(2-m)x\end{pmatrix}
+\]
+
+If \(m\ne \tfrac14\), then \(1-4m\ne 0\), so
+\[
+\frac{Y}{X}
+=
+\frac{(2-m)x}{(1-4m)x}
+=
+\frac{2-m}{1-4m}
+\]
+
+Hence the image line has equation
+\[
+y=\frac{2-m}{1-4m}x
+\]
+
+Now take the special case \(m=\tfrac14\). A point on \(y=\tfrac14x\) is \(\begin{pmatrix}x\\x/4\end{pmatrix}\), and
+\[
+\begin{pmatrix}1&-4\\2&-1\end{pmatrix}
+\begin{pmatrix}x\\x/4\end{pmatrix}
+=
+\begin{pmatrix}x-x\\2x-x/4\end{pmatrix}
+=
+\begin{pmatrix}0\\7x/4\end{pmatrix}
+\]
+
+So the image of \(y=\tfrac14x\) is
+\[
+x=0
+\]
+
+For the vertical line \(x=0\), a general point is \(\begin{pmatrix}0\\y\end{pmatrix}\). Its image is
+\[
+\begin{pmatrix}1&-4\\2&-1\end{pmatrix}
+\begin{pmatrix}0\\y\end{pmatrix}
+=
+\begin{pmatrix}-4y\\-y\end{pmatrix}
+\]
+
+So
+\[
+Y=\frac14X
+\]
+
+Hence the image of \(x=0\) is
+\[
+y=\frac14x
+\]
+
+Therefore:
+\[
+y=mx \mapsto y=\frac{2-m}{1-4m}x \quad (m\ne \tfrac14), \qquad
+y=\frac14x \mapsto x=0, \qquad
+x=0 \mapsto y=\frac14x
+\]
+
+  \item For a line through the origin to be invariant, its image must have the same slope.
+
+So for a non-vertical line \(y=mx\), we require
+\[
+m=\frac{2-m}{1-4m}
+\]
+
+Hence
+\begin{align*}
+m(1-4m)&=2-m\\
+m-4m^2&=2-m\\
+4m^2-2m+2&=0
+\end{align*}
+
+Its discriminant is
+\[
+(-2)^2-4(4)(2)=4-32=-28<0
+\]
+
+So there is no real value of \(m\), and therefore no invariant non-vertical line through the origin.
+
+From part (a),
+\[
+y=\frac14x \mapsto x=0
+\qquad\text{and}\qquad
+x=0 \mapsto y=\frac14x
+\]
+
+So neither of these two lines is invariant either.
+
+Therefore there are no invariant lines through the origin. Since any invariant line for \(T\) must be parallel to an invariant line through the origin, \(T\) has no invariant lines.
+  \end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+% [Source: _QBT___Solns__Invariant_Points_and_Lines, Q8]
+
+\[
+A = \begin{pmatrix} b & a - 3 \\[6pt] 2a - 1 & -2 \end{pmatrix}
+\]
+where $a$ and $b$ are non-zero constants. \\
+Given that the matrix $A$ is self-inverse, \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item determine the value of $b$ and the possible values of $a$. \marks{5} \\
+\end{enumerate}
+The matrix $A$ represents a linear transformation $M$ of the plane. \\
+Using the smaller value of $a$ from part (a), \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item show that the invariant points of the linear transformation $M$ form a line, stating the equation of this line. \marks{3} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Since \(A\) is self-inverse, \(A^{-1}=A\), so
+\[
+A^2=I
+\]
+
+Now
+\[
+A=\begin{pmatrix} b & a-3 \\ 2a-1 & -2 \end{pmatrix}
+\]
+so
+\[
+A^2=
+\begin{pmatrix} b & a-3 \\ 2a-1 & -2 \end{pmatrix}
+\begin{pmatrix} b & a-3 \\ 2a-1 & -2 \end{pmatrix}
+=
+\begin{pmatrix}
+b^2+(a-3)(2a-1) & b(a-3)-2(a-3) \\
+b(2a-1)-2(2a-1) & (2a-1)(a-3)+4
+\end{pmatrix}
+\]
+
+Therefore
+\[
+\begin{pmatrix}
+b^2+(a-3)(2a-1) & (a-3)(b-2) \\
+(2a-1)(b-2) & (2a-1)(a-3)+4
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 \\
+0 & 1
+\end{pmatrix}
+\]
+
+Equating entries gives
+\[
+(a-3)(b-2)=0
+\]
+\[
+(2a-1)(b-2)=0
+\]
+and
+\[
+(2a-1)(a-3)+4=1
+\]
+
+Using the last equation,
+\begin{align*}
+(2a-1)(a-3)+4&=1\\
+2a^2-7a+3+4&=1\\
+2a^2-7a+6&=0\\
+(2a-3)(a-2)&=0
+\end{align*}
+
+So
+\[
+a=\frac32 \quad \text{or} \quad a=2
+\]
+
+For both of these values, \(a\neq 3\) and \(a\neq \frac12\). Hence
+\[
+a-3\neq 0 \qquad \text{and} \qquad 2a-1\neq 0
+\]
+
+So from
+\[
+(a-3)(b-2)=0 \quad \text{and} \quad (2a-1)(b-2)=0
+\]
+it follows that
+\[
+b-2=0
+\]
+so
+\[
+b=2
+\]
+
+Hence
+\[
+b=2,\qquad a=\frac32 \text{ or } 2
+\]
+
+  \item Using the smaller value \(a=\frac32\), and \(b=2\),
+\[
+A=\begin{pmatrix} 2 & -\frac32 \\ 2 & -2 \end{pmatrix}
+\]
+
+Let \((x,y)\) be an invariant point. Then it is unchanged by the transformation, so
+\[
+\begin{pmatrix} 2 & -\frac32 \\ 2 & -2 \end{pmatrix}
+\begin{pmatrix} x \\ y \end{pmatrix}
+=
+\begin{pmatrix} x \\ y \end{pmatrix}
+\]
+
+This gives the simultaneous equations
+\begin{align*}
+2x-\frac32 y&=x\\
+2x-2y&=y
+\end{align*}
+
+So
+\begin{align*}
+x-\frac32 y&=0\\
+2x-3y&=0
+\end{align*}
+
+These are the same equation, since the second is just twice the first. Therefore there are infinitely many invariant points, and they all lie on a straight line.
+
+The line is
+\[
+2x-3y=0
+\]
+
+So the invariant points form the line \(2x-3y=0\), equivalently \(y=\frac{2}{3}x\).
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+% [Source: _QBT___Solns__Invariant_Points_and_Lines, Q9]
 
 The $2 \times 2$ matrix $\mathbf{A}$ represents a transformation $\mathbf{T}$ which has the following properties. \\
 
@@ -972,428 +1394,6 @@ Y=2X+c
 Therefore the image point also lies on the line $y=2x+c$.
 
 Hence every line of the form $y=2x+c$ is an invariant line of $\mathbf S$.
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 7 ----
-\questionitem
-% [Source: _QBT___Solns__Invariant_Points_and_Lines, Q7]
-
-The matrix
-\[
-B = \begin{pmatrix} 1 & -4 \\ 2 & -1 \end{pmatrix}
-\]
-represents the linear transformation $T$. \\
-Any invariant line for $T$ must be parallel to an invariant line through the origin. \\
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item A line through the origin has equation $y=mx$, where $m$ is real. Show that, for $m \ne \tfrac{1}{4}$, its image under $T$ has equation
-  \[
-  y = \frac{2-m}{1-4m}x
-  \]
-  State also the image of the line $y=\tfrac{1}{4}x$ and the image of the vertical line $x=0$. \marks{3}\\
-  \item Hence prove that $T$ has no invariant lines. \marks{2} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item A general point on the line \(y=mx\) is
-\[
-\begin{pmatrix}x\\mx\end{pmatrix}
-\]
-
-Under the transformation \(T\) represented by
-\[
-B=\begin{pmatrix}1&-4\\2&-1\end{pmatrix}
-\]
-this point maps to
-\[
-\begin{pmatrix}X\\Y\end{pmatrix}
-=
-\begin{pmatrix}1&-4\\2&-1\end{pmatrix}
-\begin{pmatrix}x\\mx\end{pmatrix}
-=
-\begin{pmatrix}x-4mx\\2x-mx\end{pmatrix}
-=
-\begin{pmatrix}(1-4m)x\\(2-m)x\end{pmatrix}
-\]
-
-If \(m\ne \tfrac14\), then \(1-4m\ne 0\), so
-\[
-\frac{Y}{X}
-=
-\frac{(2-m)x}{(1-4m)x}
-=
-\frac{2-m}{1-4m}
-\]
-
-Hence the image line has equation
-\[
-y=\frac{2-m}{1-4m}x
-\]
-
-Now take the special case \(m=\tfrac14\). A point on \(y=\tfrac14x\) is \(\begin{pmatrix}x\\x/4\end{pmatrix}\), and
-\[
-\begin{pmatrix}1&-4\\2&-1\end{pmatrix}
-\begin{pmatrix}x\\x/4\end{pmatrix}
-=
-\begin{pmatrix}x-x\\2x-x/4\end{pmatrix}
-=
-\begin{pmatrix}0\\7x/4\end{pmatrix}
-\]
-
-So the image of \(y=\tfrac14x\) is
-\[
-x=0
-\]
-
-For the vertical line \(x=0\), a general point is \(\begin{pmatrix}0\\y\end{pmatrix}\). Its image is
-\[
-\begin{pmatrix}1&-4\\2&-1\end{pmatrix}
-\begin{pmatrix}0\\y\end{pmatrix}
-=
-\begin{pmatrix}-4y\\-y\end{pmatrix}
-\]
-
-So
-\[
-Y=\frac14X
-\]
-
-Hence the image of \(x=0\) is
-\[
-y=\frac14x
-\]
-
-Therefore:
-\[
-y=mx \mapsto y=\frac{2-m}{1-4m}x \quad (m\ne \tfrac14), \qquad
-y=\frac14x \mapsto x=0, \qquad
-x=0 \mapsto y=\frac14x
-\]
-
-  \item For a line through the origin to be invariant, its image must have the same slope.
-
-So for a non-vertical line \(y=mx\), we require
-\[
-m=\frac{2-m}{1-4m}
-\]
-
-Hence
-\begin{align*}
-m(1-4m)&=2-m\\
-m-4m^2&=2-m\\
-4m^2-2m+2&=0
-\end{align*}
-
-Its discriminant is
-\[
-(-2)^2-4(4)(2)=4-32=-28<0
-\]
-
-So there is no real value of \(m\), and therefore no invariant non-vertical line through the origin.
-
-From part (a),
-\[
-y=\frac14x \mapsto x=0
-\qquad\text{and}\qquad
-x=0 \mapsto y=\frac14x
-\]
-
-So neither of these two lines is invariant either.
-
-Therefore there are no invariant lines through the origin. Since any invariant line for \(T\) must be parallel to an invariant line through the origin, \(T\) has no invariant lines.
-  \end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 8 ----
-\questionitem
-% [Source: _QBT___Solns__Invariant_Points_and_Lines, Q8]
-
-The matrix of a linear transformation $T$ is
-\[
-M = \begin{pmatrix} p+2 & -5 \\[6pt] -2 & p-1 \end{pmatrix}
-\] \\
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find the values of $p$ for which $T$ is not invertible. \marks{2} \\
-\end{enumerate}
-It is now given that $p = 3$, so that
-\[
-M = \begin{pmatrix} 5 & -5 \\ -2 & 2 \end{pmatrix}
-\] \\
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Find the equations of the invariant lines, through the origin, of the transformation represented by $M$. \marks{6} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item A matrix is not invertible when its determinant is \(0\).
-
-  \[
-  \det(M)=
-  \begin{vmatrix}
-  p+2 & -5\\
-  -2 & p-1
-  \end{vmatrix}
-  =(p+2)(p-1)-(-5)(-2)
-  \]
-
-  \[
-  \det(M)=(p+2)(p-1)-10=p^2+p-2-10=p^2+p-12
-  \]
-
-  Factorising,
-
-  \[
-  p^2+p-12=(p+4)(p-3)
-  \]
-
-  So \(T\) is not invertible when
-
-  \[
-  (p+4)(p-3)=0
-  \]
-
-  Hence \(p=3\) or \(p=-4\).
-
-  \item An invariant line through the origin must map onto itself.
-
-  First check the vertical line \(x=0\). A general point on this line is \(\begin{pmatrix}0\\y\end{pmatrix}\), and
-
-  \[
-  M\begin{pmatrix}0\\y\end{pmatrix}
-  =
-  \begin{pmatrix}
-  5 & -5\\
-  -2 & 2
-  \end{pmatrix}
-  \begin{pmatrix}0\\y\end{pmatrix}
-  =
-  \begin{pmatrix}-5y\\2y\end{pmatrix}
-  \]
-
-  This does not in general have \(x=0\), so \(x=0\) is not invariant.
-
-  Now take a non-vertical line through the origin with equation \(y=mx\).
-
-  A general point on this line is \(\begin{pmatrix}x\\mx\end{pmatrix}\). Its image is
-
-  \[
-  M\begin{pmatrix}x\\mx\end{pmatrix}
-  =
-  \begin{pmatrix}
-  5 & -5\\
-  -2 & 2
-  \end{pmatrix}
-  \begin{pmatrix}x\\mx\end{pmatrix}
-  =
-  \begin{pmatrix}
-  5x-5mx\\
-  -2x+2mx
-  \end{pmatrix}
-  \]
-
-  For the line to be invariant, this image must also lie on \(y=mx\). So its coordinates must satisfy
-
-  \[
-  -2x+2mx = m(5x-5mx)
-  \]
-
-  For a non-zero point, divide by \(x\):
-
-  \[
-  -2+2m = 5m-5m^2
-  \]
-
-  Rearranging,
-
-  \[
-  5m^2-3m-2=0
-  \]
-
-  Factorising,
-
-  \[
-  5m^2-3m-2=(5m+2)(m-1)
-  \]
-
-  So
-
-  \[
-  m=1 \qquad \text{or} \qquad m=-\frac25
-  \]
-
-  Therefore the invariant lines are
-
-  \[
-  y=x
-  \]
-
-  and
-
-  \[
-  y=-\frac25x
-  \]
-
-  Equivalently, the second line may be written as
-
-  \[
-  2x+5y=0
-  \]
-
-  So the invariant lines are \(y=x\) and \(2x+5y=0\).
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 9 ----
-\questionitem
-% [Source: _QBT___Solns__Invariant_Points_and_Lines, Q9]
-
-\[
-A = \begin{pmatrix} b & a - 3 \\[6pt] 2a - 1 & -2 \end{pmatrix}
-\]
-where $a$ and $b$ are non-zero constants. \\
-Given that the matrix $A$ is self-inverse, \\
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item determine the value of $b$ and the possible values of $a$. \marks{5} \\
-\end{enumerate}
-The matrix $A$ represents a linear transformation $M$ of the plane. \\
-Using the smaller value of $a$ from part (a), \\
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item show that the invariant points of the linear transformation $M$ form a line, stating the equation of this line. \marks{3} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Since \(A\) is self-inverse, \(A^{-1}=A\), so
-\[
-A^2=I
-\]
-
-Now
-\[
-A=\begin{pmatrix} b & a-3 \\ 2a-1 & -2 \end{pmatrix}
-\]
-so
-\[
-A^2=
-\begin{pmatrix} b & a-3 \\ 2a-1 & -2 \end{pmatrix}
-\begin{pmatrix} b & a-3 \\ 2a-1 & -2 \end{pmatrix}
-=
-\begin{pmatrix}
-b^2+(a-3)(2a-1) & b(a-3)-2(a-3) \\
-b(2a-1)-2(2a-1) & (2a-1)(a-3)+4
-\end{pmatrix}
-\]
-
-Therefore
-\[
-\begin{pmatrix}
-b^2+(a-3)(2a-1) & (a-3)(b-2) \\
-(2a-1)(b-2) & (2a-1)(a-3)+4
-\end{pmatrix}
-=
-\begin{pmatrix}
-1 & 0 \\
-0 & 1
-\end{pmatrix}
-\]
-
-Equating entries gives
-\[
-(a-3)(b-2)=0
-\]
-\[
-(2a-1)(b-2)=0
-\]
-and
-\[
-(2a-1)(a-3)+4=1
-\]
-
-Using the last equation,
-\begin{align*}
-(2a-1)(a-3)+4&=1\\
-2a^2-7a+3+4&=1\\
-2a^2-7a+6&=0\\
-(2a-3)(a-2)&=0
-\end{align*}
-
-So
-\[
-a=\frac32 \quad \text{or} \quad a=2
-\]
-
-For both of these values, \(a\neq 3\) and \(a\neq \frac12\). Hence
-\[
-a-3\neq 0 \qquad \text{and} \qquad 2a-1\neq 0
-\]
-
-So from
-\[
-(a-3)(b-2)=0 \quad \text{and} \quad (2a-1)(b-2)=0
-\]
-it follows that
-\[
-b-2=0
-\]
-so
-\[
-b=2
-\]
-
-Hence
-\[
-b=2,\qquad a=\frac32 \text{ or } 2
-\]
-
-  \item Using the smaller value \(a=\frac32\), and \(b=2\),
-\[
-A=\begin{pmatrix} 2 & -\frac32 \\ 2 & -2 \end{pmatrix}
-\]
-
-Let \((x,y)\) be an invariant point. Then it is unchanged by the transformation, so
-\[
-\begin{pmatrix} 2 & -\frac32 \\ 2 & -2 \end{pmatrix}
-\begin{pmatrix} x \\ y \end{pmatrix}
-=
-\begin{pmatrix} x \\ y \end{pmatrix}
-\]
-
-This gives the simultaneous equations
-\begin{align*}
-2x-\frac32 y&=x\\
-2x-2y&=y
-\end{align*}
-
-So
-\begin{align*}
-x-\frac32 y&=0\\
-2x-3y&=0
-\end{align*}
-
-These are the same equation, since the second is just twice the first. Therefore there are infinitely many invariant points, and they all lie on a straight line.
-
-The line is
-\[
-2x-3y=0
-\]
-
-So the invariant points form the line \(2x-3y=0\), equivalently \(y=\frac{2}{3}x\).
 \end{enumerate}
 \end{djsSolution}
 
