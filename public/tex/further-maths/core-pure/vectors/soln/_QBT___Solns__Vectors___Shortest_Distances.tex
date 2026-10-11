@@ -4,7 +4,7 @@
 \djsSolnHeader{Shortest Distances}
 \djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}
 
-\djsLastUpdated{10 October 2026}
+\djsLastUpdated{11 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -536,6 +536,164 @@ The point $A$ lies on $\ell$. Given that the shortest distance between $A$ and $
 \questionitem
 % [Source: _QBT___Solns__Vectors___Shortest_Distances, Q4]
 
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item The plane $\Pi$ passes through the points $A(1,-2,3)$, $B(2,0,3)$ and $C(2,-2,2)$.\\
+  
+  The point $D$ has coordinates $(4,1,0)$. Find the shortest distance between $D$ and $\Pi$. \marks{4} \\
+  \item Lines $\ell_1$ and $\ell_2$ have the following equations. \\
+  \[
+  \ell_1:\ \mathbf{r}=\begin{pmatrix}1\\2\\-1\end{pmatrix}+\lambda\begin{pmatrix}2\\1\\2\end{pmatrix}
+  \] \\
+  \[
+  \ell_2:\ \mathbf{r}=\begin{pmatrix}3\\-1\\4\end{pmatrix}+\mu\begin{pmatrix}1\\-2\\1\end{pmatrix}
+  \] \\
+  Find, in exact form, the distance between $\ell_1$ and $\ell_2$. \marks{5} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item First find two direction vectors in the plane:
+\[
+\overrightarrow{AB}=\begin{pmatrix}2-1\\0-(-2)\\3-3\end{pmatrix}
+=\begin{pmatrix}1\\2\\0\end{pmatrix},
+\qquad
+\overrightarrow{AC}=\begin{pmatrix}2-1\\-2-(-2)\\2-3\end{pmatrix}
+=\begin{pmatrix}1\\0\\-1\end{pmatrix}
+\]
+
+A normal vector to the plane is
+\begin{align*}
+\mathbf n
+&=\overrightarrow{AB}\times \overrightarrow{AC} \\
+&=
+\begin{vmatrix}
+\mathbf i & \mathbf j & \mathbf k\\
+1&2&0\\
+1&0&-1
+\end{vmatrix} \\
+&=\mathbf i(2\cdot(-1)-0\cdot 0)-\mathbf j(1\cdot(-1)-0\cdot 1)+\mathbf k(1\cdot 0-2\cdot 1) \\
+&=\begin{pmatrix}-2\\1\\-2\end{pmatrix}
+\end{align*}
+
+So we may take the normal as
+\[
+\mathbf n=\begin{pmatrix}2\\-1\\2\end{pmatrix}
+\]
+
+The plane has equation
+\[
+2x-y+2z=d
+\]
+
+Since it passes through \(A(1,-2,3)\),
+\begin{align*}
+d&=2(1)-(-2)+2(3)\\
+&=2+2+6\\
+&=10
+\end{align*}
+
+Hence the plane is
+\[
+\Pi:\;2x-y+2z=10
+\]
+
+Using the point-to-plane distance formula with \(D(4,1,0)\),
+\begin{align*}
+\mathrm{dist}
+&=\frac{\left\lvert 2(4)-1+2(0)-10\right\rvert}{\sqrt{2^2+(-1)^2+2^2}} \\
+&=\frac{\left\lvert 8-1-10\right\rvert}{\sqrt{4+1+4}} \\
+&=\frac{3}{3} \\
+&=1
+\end{align*}
+
+The shortest distance between \(D\) and \(\Pi\) is \(1\).
+
+  \item Write the lines as
+\[
+\ell_1:\;\mathbf r=\mathbf a_1+\lambda \mathbf b_1,
+\qquad
+\mathbf a_1=\begin{pmatrix}1\\2\\-1\end{pmatrix},
+\quad
+\mathbf b_1=\begin{pmatrix}2\\1\\2\end{pmatrix}
+\]
+\[
+\ell_2:\;\mathbf r=\mathbf a_2+\mu \mathbf b_2,
+\qquad
+\mathbf a_2=\begin{pmatrix}3\\-1\\4\end{pmatrix},
+\quad
+\mathbf b_2=\begin{pmatrix}1\\-2\\1\end{pmatrix}
+\]
+
+For the distance between two skew lines, use
+\[
+\mathrm{dist}
+=\frac{\left\lvert(\mathbf a_2-\mathbf a_1)\cdot(\mathbf b_1\times\mathbf b_2)\right\rvert}
+{\left\lvert\mathbf b_1\times\mathbf b_2\right\rvert}
+\]
+
+First find the common normal direction:
+\begin{align*}
+\mathbf b_1\times\mathbf b_2
+&=
+\begin{vmatrix}
+\mathbf i & \mathbf j & \mathbf k\\
+2&1&2\\
+1&-2&1
+\end{vmatrix} \\
+&=\mathbf i(1\cdot 1-2\cdot(-2))-\mathbf j(2\cdot 1-2\cdot 1)+\mathbf k(2\cdot(-2)-1\cdot 1) \\
+&=\begin{pmatrix}5\\0\\-5\end{pmatrix}
+\end{align*}
+
+Also,
+\[
+\mathbf a_2-\mathbf a_1
+=\begin{pmatrix}3-1\\-1-2\\4-(-1)\end{pmatrix}
+=\begin{pmatrix}2\\-3\\5\end{pmatrix}
+\]
+
+Now calculate the numerator:
+\begin{align*}
+(\mathbf a_2-\mathbf a_1)\cdot(\mathbf b_1\times\mathbf b_2)
+&=\begin{pmatrix}2\\-3\\5\end{pmatrix}\cdot\begin{pmatrix}5\\0\\-5\end{pmatrix} \\
+&=2(5)+(-3)(0)+5(-5) \\
+&=10-25 \\
+&=-15
+\end{align*}
+
+So
+\[
+\left\lvert(\mathbf a_2-\mathbf a_1)\cdot(\mathbf b_1\times\mathbf b_2)\right\rvert=15
+\]
+
+And the denominator is
+\begin{align*}
+\left\lvert\mathbf b_1\times\mathbf b_2\right\rvert
+&=\sqrt{5^2+0^2+(-5)^2} \\
+&=\sqrt{25+25} \\
+&=5\sqrt2
+\end{align*}
+
+Therefore,
+\begin{align*}
+\mathrm{dist}
+&=\frac{15}{5\sqrt2} \\
+&=\frac{3}{\sqrt2} \\
+&=\frac{3\sqrt2}{2}
+\end{align*}
+
+The distance between \(\ell_1\) and \(\ell_2\) is \(\dfrac{3\sqrt2}{2}\).
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT___Solns__Vectors___Shortest_Distances, Q5]
+
 The line $\ell_1$ has vector equation
 \[
 \mathbf{r}=\begin{pmatrix}2\\-1\\3\end{pmatrix}+\lambda\begin{pmatrix}1\\2\\-1\end{pmatrix}
@@ -678,9 +836,9 @@ and
 
 \newpage
 
-% ---- Question 5 ----
+% ---- Question 6 ----
 \questionitem
-% [Source: _QBT___Solns__Vectors___Shortest_Distances, Q5]
+% [Source: _QBT___Solns__Vectors___Shortest_Distances, Q6]
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Show that the three planes with equations
@@ -1054,167 +1212,207 @@ Therefore the distance between $\ell$ and the plane is
 
 \newpage
 
-% ---- Question 6 ----
+% ---- Question 7 ----
 \questionitem
-% [Source: _QBT___Solns__Vectors___Shortest_Distances, Q6]
+% [Source: _QBT___Solns__Vectors___Shortest_Distances, Q7]
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item The plane $\Pi$ passes through the points $A(1,-2,3)$, $B(2,0,3)$ and $C(2,-2,2)$.\\
-  
-  The point $D$ has coordinates $(4,1,0)$. Find the shortest distance between $D$ and $\Pi$. \marks{4} \\
-  \item Lines $\ell_1$ and $\ell_2$ have the following equations. \\
-  \[
-  \ell_1:\ \mathbf{r}=\begin{pmatrix}1\\2\\-1\end{pmatrix}+\lambda\begin{pmatrix}2\\1\\2\end{pmatrix}
-  \] \\
-  \[
-  \ell_2:\ \mathbf{r}=\begin{pmatrix}3\\-1\\4\end{pmatrix}+\mu\begin{pmatrix}1\\-2\\1\end{pmatrix}
-  \] \\
-  Find, in exact form, the distance between $\ell_1$ and $\ell_2$. \marks{5} \\
+  \item Given that $\mathbf{u}=\lambda\mathbf{i}-2\mathbf{j}+2\mathbf{k}$ and $\mathbf{v}=\mathbf{i}+\mathbf{j}-\mathbf{k}$, find the following, giving your answers in terms of $\lambda$. 
+  \begin{enumerate}[label=(\roman*)]
+    \item $\mathbf{u}\cdot\mathbf{v}$ \marks{1}
+    \item $\mathbf{u}\times\mathbf{v}$ \marks{2} \\
+  \end{enumerate}
+  \item Hence determine
+  \begin{enumerate}[label=(\roman*)]
+    \item the acute angle between the planes $2x-2y+2z=11$ and $x+y-z=7$ \marks{3}
+    \item the shortest distance between the lines
+    \[
+    \mathbf{r}=\mathbf{i}-\mathbf{k}+s(\mathbf{i}-2\mathbf{j}+2\mathbf{k})
+    \] 
+    and
+    \[
+    \mathbf{r}=2\mathbf{i}+3\mathbf{j}+3\mathbf{k}+t(\mathbf{i}+\mathbf{j}-\mathbf{k})
+    \]\\
+    giving your answer as a multiple of $\sqrt{2}$. \marks{3}
+  \end{enumerate}
 \end{enumerate}
 
 \vspace*{10pt}
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item First find two direction vectors in the plane:
-\[
-\overrightarrow{AB}=\begin{pmatrix}2-1\\0-(-2)\\3-3\end{pmatrix}
-=\begin{pmatrix}1\\2\\0\end{pmatrix},
-\qquad
-\overrightarrow{AC}=\begin{pmatrix}2-1\\-2-(-2)\\2-3\end{pmatrix}
-=\begin{pmatrix}1\\0\\-1\end{pmatrix}
-\]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item
+    \[
+    \mathbf{u}\cdot\mathbf{v}
+    =(\lambda)(1)+(-2)(1)+(2)(-1)
+    =\lambda-2-2
+    =\lambda-4
+    \]
 
-A normal vector to the plane is
-\begin{align*}
-\mathbf n
-&=\overrightarrow{AB}\times \overrightarrow{AC} \\
-&=
-\begin{vmatrix}
-\mathbf i & \mathbf j & \mathbf k\\
-1&2&0\\
-1&0&-1
-\end{vmatrix} \\
-&=\mathbf i(2\cdot(-1)-0\cdot 0)-\mathbf j(1\cdot(-1)-0\cdot 1)+\mathbf k(1\cdot 0-2\cdot 1) \\
-&=\begin{pmatrix}-2\\1\\-2\end{pmatrix}
-\end{align*}
+    \item
+    \begin{align*}
+    \mathbf{u}\times\mathbf{v}
+    &=
+    \begin{vmatrix}
+    \mathbf{i} & \mathbf{j} & \mathbf{k}\\
+    \lambda & -2 & 2\\
+    1 & 1 & -1
+    \end{vmatrix}\\
+    &=
+    \mathbf{i}\bigl((-2)(-1)-2(1)\bigr)
+    -\mathbf{j}\bigl(\lambda(-1)-2(1)\bigr)
+    +\mathbf{k}\bigl(\lambda(1)-(-2)(1)\bigr)\\
+    &=
+    \mathbf{i}(2-2)-\mathbf{j}(-\lambda-2)+\mathbf{k}(\lambda+2)\\
+    &=
+    0\mathbf{i}+(\lambda+2)\mathbf{j}+(\lambda+2)\mathbf{k}\\
+    &=
+    (\lambda+2)(\mathbf{j}+\mathbf{k})
+    \end{align*}
+  \end{enumerate}
 
-So we may take the normal as
-\[
-\mathbf n=\begin{pmatrix}2\\-1\\2\end{pmatrix}
-\]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item
+    The acute angle between two planes is the acute angle between their normal vectors.
 
-The plane has equation
-\[
-2x-y+2z=d
-\]
+    For the planes
+    \[
+    2x-2y+2z=11
+    \qquad\text{and}\qquad
+    x+y-z=7
+    \]
+    the normal vectors are
+    \[
+    \mathbf{n}_1=\begin{pmatrix}2\\-2\\2\end{pmatrix},
+    \qquad
+    \mathbf{n}_2=\begin{pmatrix}1\\1\\-1\end{pmatrix}
+    \]
 
-Since it passes through \(A(1,-2,3)\),
-\begin{align*}
-d&=2(1)-(-2)+2(3)\\
-&=2+2+6\\
-&=10
-\end{align*}
+    Using part (a)(i), \(\mathbf{n}_1\cdot\mathbf{n}_2\) is \(\mathbf{u}\cdot\mathbf{v}\) with \(\lambda=2\), so
+    \[
+    \mathbf{n}_1\cdot\mathbf{n}_2=2-4=-2
+    \]
 
-Hence the plane is
-\[
-\Pi:\;2x-y+2z=10
-\]
+    Also
+    \begin{align*}
+    \left\lvert\mathbf{n}_1\right\rvert
+    &=\sqrt{2^2+(-2)^2+2^2}
+    =\sqrt{12}
+    =2\sqrt{3}\\
+    \left\lvert\mathbf{n}_2\right\rvert
+    &=\sqrt{1^2+1^2+(-1)^2}
+    =\sqrt{3}
+    \end{align*}
 
-Using the point-to-plane distance formula with \(D(4,1,0)\),
-\begin{align*}
-\mathrm{dist}
-&=\frac{\left\lvert 2(4)-1+2(0)-10\right\rvert}{\sqrt{2^2+(-1)^2+2^2}} \\
-&=\frac{\left\lvert 8-1-10\right\rvert}{\sqrt{4+1+4}} \\
-&=\frac{3}{3} \\
-&=1
-\end{align*}
+    Using
+    \[
+    \cos\theta
+    =
+    \frac{\left\lvert\mathbf{n}_1\cdot\mathbf{n}_2\right\rvert}
+    {\left\lvert\mathbf{n}_1\right\rvert\,\left\lvert\mathbf{n}_2\right\rvert}
+    \]
+    gives
+    \begin{align*}
+    \cos\theta
+    &=
+    \frac{\left\lvert-2\right\rvert}{(2\sqrt{3})(\sqrt{3})}\\
+    &=
+    \frac{2}{6}\\
+    &=
+    \frac{1}{3}
+    \end{align*}
 
-The shortest distance between \(D\) and \(\Pi\) is \(1\).
+    Therefore
+    \[
+    \theta=\cos^{-1}\left(\frac{1}{3}\right)\approx 70.5^\circ
+    \]
 
-  \item Write the lines as
-\[
-\ell_1:\;\mathbf r=\mathbf a_1+\lambda \mathbf b_1,
-\qquad
-\mathbf a_1=\begin{pmatrix}1\\2\\-1\end{pmatrix},
-\quad
-\mathbf b_1=\begin{pmatrix}2\\1\\2\end{pmatrix}
-\]
-\[
-\ell_2:\;\mathbf r=\mathbf a_2+\mu \mathbf b_2,
-\qquad
-\mathbf a_2=\begin{pmatrix}3\\-1\\4\end{pmatrix},
-\quad
-\mathbf b_2=\begin{pmatrix}1\\-2\\1\end{pmatrix}
-\]
+    Hence the acute angle between the planes is \(\cos^{-1}\left(\frac{1}{3}\right)\approx 70.5^\circ\).
 
-For the distance between two skew lines, use
-\[
-\mathrm{dist}
-=\frac{\left\lvert(\mathbf a_2-\mathbf a_1)\cdot(\mathbf b_1\times\mathbf b_2)\right\rvert}
-{\left\lvert\mathbf b_1\times\mathbf b_2\right\rvert}
-\]
+    \item
+    Write the lines as
+    \[
+    L_1:\ \mathbf{r}=\mathbf{a}_1+s\mathbf{b}_1,
+    \qquad
+    L_2:\ \mathbf{r}=\mathbf{a}_2+t\mathbf{b}_2
+    \]
+    where
+    \[
+    \mathbf{a}_1=\begin{pmatrix}1\\0\\-1\end{pmatrix},\quad \mathbf{b}_1=\begin{pmatrix}1\\-2\\2\end{pmatrix},
+    \qquad
+    \mathbf{a}_2=\begin{pmatrix}2\\3\\3\end{pmatrix},\quad \mathbf{b}_2=\begin{pmatrix}1\\1\\-1\end{pmatrix}
+    \]
 
-First find the common normal direction:
-\begin{align*}
-\mathbf b_1\times\mathbf b_2
-&=
-\begin{vmatrix}
-\mathbf i & \mathbf j & \mathbf k\\
-2&1&2\\
-1&-2&1
-\end{vmatrix} \\
-&=\mathbf i(1\cdot 1-2\cdot(-2))-\mathbf j(2\cdot 1-2\cdot 1)+\mathbf k(2\cdot(-2)-1\cdot 1) \\
-&=\begin{pmatrix}5\\0\\-5\end{pmatrix}
-\end{align*}
+    Using the formula for the distance between two skew lines,
+    \[
+    \mathrm{dist}
+    =
+    \frac{\left\lvert(\mathbf{a}_2-\mathbf{a}_1)\cdot(\mathbf{b}_1\times\mathbf{b}_2)\right\rvert}
+    {\left\lvert\mathbf{b}_1\times\mathbf{b}_2\right\rvert}
+    \]
 
-Also,
-\[
-\mathbf a_2-\mathbf a_1
-=\begin{pmatrix}3-1\\-1-2\\4-(-1)\end{pmatrix}
-=\begin{pmatrix}2\\-3\\5\end{pmatrix}
-\]
+    From part (a)(ii), with \(\lambda=1\),
+    \[
+    \mathbf{b}_1\times\mathbf{b}_2
+    =(1+2)(\mathbf{j}+\mathbf{k})
+    =3(\mathbf{j}+\mathbf{k})
+    =\begin{pmatrix}0\\3\\3\end{pmatrix}
+    \]
 
-Now calculate the numerator:
-\begin{align*}
-(\mathbf a_2-\mathbf a_1)\cdot(\mathbf b_1\times\mathbf b_2)
-&=\begin{pmatrix}2\\-3\\5\end{pmatrix}\cdot\begin{pmatrix}5\\0\\-5\end{pmatrix} \\
-&=2(5)+(-3)(0)+5(-5) \\
-&=10-25 \\
-&=-15
-\end{align*}
+    Also
+    \[
+    \mathbf{a}_2-\mathbf{a}_1
+    =\begin{pmatrix}2-1\\3-0\\3-(-1)\end{pmatrix}
+    =\begin{pmatrix}1\\3\\4\end{pmatrix}
+    \]
 
-So
-\[
-\left\lvert(\mathbf a_2-\mathbf a_1)\cdot(\mathbf b_1\times\mathbf b_2)\right\rvert=15
-\]
+    Now
+    \begin{align*}
+    (\mathbf{a}_2-\mathbf{a}_1)\cdot(\mathbf{b}_1\times\mathbf{b}_2)
+    &=
+    \begin{pmatrix}1\\3\\4\end{pmatrix}\cdot\begin{pmatrix}0\\3\\3\end{pmatrix}\\
+    &=
+    1\cdot 0+3\cdot 3+4\cdot 3\\
+    &=
+    21
+    \end{align*}
 
-And the denominator is
-\begin{align*}
-\left\lvert\mathbf b_1\times\mathbf b_2\right\rvert
-&=\sqrt{5^2+0^2+(-5)^2} \\
-&=\sqrt{25+25} \\
-&=5\sqrt2
-\end{align*}
+    and
+    \[
+    \left\lvert\mathbf{b}_1\times\mathbf{b}_2\right\rvert
+    =\sqrt{0^2+3^2+3^2}
+    =\sqrt{18}
+    =3\sqrt{2}
+    \]
 
-Therefore,
-\begin{align*}
-\mathrm{dist}
-&=\frac{15}{5\sqrt2} \\
-&=\frac{3}{\sqrt2} \\
-&=\frac{3\sqrt2}{2}
-\end{align*}
+    Therefore
+    \begin{align*}
+    \mathrm{dist}
+    &=
+    \frac{21}{3\sqrt{2}}\\
+    &=
+    \frac{7}{\sqrt{2}}\\
+    &=
+    \frac{7\sqrt{2}}{2}
+    \end{align*}
 
-The distance between \(\ell_1\) and \(\ell_2\) is \(\dfrac{3\sqrt2}{2}\).
+    Hence the shortest distance is
+    \[
+    \frac{7\sqrt{2}}{2}
+    \]
+  \end{enumerate}
 \end{enumerate}
 \end{djsSolution}
 
 
 \newpage
 
-% ---- Question 7 ----
+% ---- Question 8 ----
 \questionitem
-% [Source: _QBT___Solns__Vectors___Shortest_Distances, Q7]
+% [Source: _QBT___Solns__Vectors___Shortest_Distances, Q8]
 
 The position vectors of the points $A$, $B$, $C$, $D$ are
 \[
@@ -1453,204 +1651,6 @@ That is,
 \[
 \theta=\frac{\pi}{6}=30^\circ
 \]
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 8 ----
-\questionitem
-% [Source: _QBT___Solns__Vectors___Shortest_Distances, Q8]
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Given that $\mathbf{u}=\lambda\mathbf{i}-2\mathbf{j}+2\mathbf{k}$ and $\mathbf{v}=\mathbf{i}+\mathbf{j}-\mathbf{k}$, find the following, giving your answers in terms of $\lambda$. 
-  \begin{enumerate}[label=(\roman*)]
-    \item $\mathbf{u}\cdot\mathbf{v}$ \marks{1}
-    \item $\mathbf{u}\times\mathbf{v}$ \marks{2} \\
-  \end{enumerate}
-  \item Hence determine
-  \begin{enumerate}[label=(\roman*)]
-    \item the acute angle between the planes $2x-2y+2z=11$ and $x+y-z=7$ \marks{3}
-    \item the shortest distance between the lines
-    \[
-    \mathbf{r}=\mathbf{i}-\mathbf{k}+s(\mathbf{i}-2\mathbf{j}+2\mathbf{k})
-    \] 
-    and
-    \[
-    \mathbf{r}=2\mathbf{i}+3\mathbf{j}+3\mathbf{k}+t(\mathbf{i}+\mathbf{j}-\mathbf{k})
-    \]\\
-    giving your answer as a multiple of $\sqrt{2}$. \marks{3}
-  \end{enumerate}
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item
-  \begin{enumerate}[label=(\roman*)]
-    \item
-    \[
-    \mathbf{u}\cdot\mathbf{v}
-    =(\lambda)(1)+(-2)(1)+(2)(-1)
-    =\lambda-2-2
-    =\lambda-4
-    \]
-
-    \item
-    \begin{align*}
-    \mathbf{u}\times\mathbf{v}
-    &=
-    \begin{vmatrix}
-    \mathbf{i} & \mathbf{j} & \mathbf{k}\\
-    \lambda & -2 & 2\\
-    1 & 1 & -1
-    \end{vmatrix}\\
-    &=
-    \mathbf{i}\bigl((-2)(-1)-2(1)\bigr)
-    -\mathbf{j}\bigl(\lambda(-1)-2(1)\bigr)
-    +\mathbf{k}\bigl(\lambda(1)-(-2)(1)\bigr)\\
-    &=
-    \mathbf{i}(2-2)-\mathbf{j}(-\lambda-2)+\mathbf{k}(\lambda+2)\\
-    &=
-    0\mathbf{i}+(\lambda+2)\mathbf{j}+(\lambda+2)\mathbf{k}\\
-    &=
-    (\lambda+2)(\mathbf{j}+\mathbf{k})
-    \end{align*}
-  \end{enumerate}
-
-  \item
-  \begin{enumerate}[label=(\roman*)]
-    \item
-    The acute angle between two planes is the acute angle between their normal vectors.
-
-    For the planes
-    \[
-    2x-2y+2z=11
-    \qquad\text{and}\qquad
-    x+y-z=7
-    \]
-    the normal vectors are
-    \[
-    \mathbf{n}_1=\begin{pmatrix}2\\-2\\2\end{pmatrix},
-    \qquad
-    \mathbf{n}_2=\begin{pmatrix}1\\1\\-1\end{pmatrix}
-    \]
-
-    Using part (a)(i), \(\mathbf{n}_1\cdot\mathbf{n}_2\) is \(\mathbf{u}\cdot\mathbf{v}\) with \(\lambda=2\), so
-    \[
-    \mathbf{n}_1\cdot\mathbf{n}_2=2-4=-2
-    \]
-
-    Also
-    \begin{align*}
-    \left\lvert\mathbf{n}_1\right\rvert
-    &=\sqrt{2^2+(-2)^2+2^2}
-    =\sqrt{12}
-    =2\sqrt{3}\\
-    \left\lvert\mathbf{n}_2\right\rvert
-    &=\sqrt{1^2+1^2+(-1)^2}
-    =\sqrt{3}
-    \end{align*}
-
-    Using
-    \[
-    \cos\theta
-    =
-    \frac{\left\lvert\mathbf{n}_1\cdot\mathbf{n}_2\right\rvert}
-    {\left\lvert\mathbf{n}_1\right\rvert\,\left\lvert\mathbf{n}_2\right\rvert}
-    \]
-    gives
-    \begin{align*}
-    \cos\theta
-    &=
-    \frac{\left\lvert-2\right\rvert}{(2\sqrt{3})(\sqrt{3})}\\
-    &=
-    \frac{2}{6}\\
-    &=
-    \frac{1}{3}
-    \end{align*}
-
-    Therefore
-    \[
-    \theta=\cos^{-1}\left(\frac{1}{3}\right)\approx 70.5^\circ
-    \]
-
-    Hence the acute angle between the planes is \(\cos^{-1}\left(\frac{1}{3}\right)\approx 70.5^\circ\).
-
-    \item
-    Write the lines as
-    \[
-    L_1:\ \mathbf{r}=\mathbf{a}_1+s\mathbf{b}_1,
-    \qquad
-    L_2:\ \mathbf{r}=\mathbf{a}_2+t\mathbf{b}_2
-    \]
-    where
-    \[
-    \mathbf{a}_1=\begin{pmatrix}1\\0\\-1\end{pmatrix},\quad \mathbf{b}_1=\begin{pmatrix}1\\-2\\2\end{pmatrix},
-    \qquad
-    \mathbf{a}_2=\begin{pmatrix}2\\3\\3\end{pmatrix},\quad \mathbf{b}_2=\begin{pmatrix}1\\1\\-1\end{pmatrix}
-    \]
-
-    Using the formula for the distance between two skew lines,
-    \[
-    \mathrm{dist}
-    =
-    \frac{\left\lvert(\mathbf{a}_2-\mathbf{a}_1)\cdot(\mathbf{b}_1\times\mathbf{b}_2)\right\rvert}
-    {\left\lvert\mathbf{b}_1\times\mathbf{b}_2\right\rvert}
-    \]
-
-    From part (a)(ii), with \(\lambda=1\),
-    \[
-    \mathbf{b}_1\times\mathbf{b}_2
-    =(1+2)(\mathbf{j}+\mathbf{k})
-    =3(\mathbf{j}+\mathbf{k})
-    =\begin{pmatrix}0\\3\\3\end{pmatrix}
-    \]
-
-    Also
-    \[
-    \mathbf{a}_2-\mathbf{a}_1
-    =\begin{pmatrix}2-1\\3-0\\3-(-1)\end{pmatrix}
-    =\begin{pmatrix}1\\3\\4\end{pmatrix}
-    \]
-
-    Now
-    \begin{align*}
-    (\mathbf{a}_2-\mathbf{a}_1)\cdot(\mathbf{b}_1\times\mathbf{b}_2)
-    &=
-    \begin{pmatrix}1\\3\\4\end{pmatrix}\cdot\begin{pmatrix}0\\3\\3\end{pmatrix}\\
-    &=
-    1\cdot 0+3\cdot 3+4\cdot 3\\
-    &=
-    21
-    \end{align*}
-
-    and
-    \[
-    \left\lvert\mathbf{b}_1\times\mathbf{b}_2\right\rvert
-    =\sqrt{0^2+3^2+3^2}
-    =\sqrt{18}
-    =3\sqrt{2}
-    \]
-
-    Therefore
-    \begin{align*}
-    \mathrm{dist}
-    &=
-    \frac{21}{3\sqrt{2}}\\
-    &=
-    \frac{7}{\sqrt{2}}\\
-    &=
-    \frac{7\sqrt{2}}{2}
-    \end{align*}
-
-    Hence the shortest distance is
-    \[
-    \frac{7\sqrt{2}}{2}
-    \]
-  \end{enumerate}
 \end{enumerate}
 \end{djsSolution}
 
