@@ -4,7 +4,7 @@
 \djsSolnHeader{Tangents to Polar Curves}
 \djsSitePath{Core Pure}{Polar Coordinates}
 
-\djsLastUpdated{10 October 2026}
+\djsLastUpdated{11 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -19,247 +19,119 @@
 \questionitem
 % [Source: _QBT___Solns__Tangents_to_Polar_Curves, Q1]
 
-\begin{figure}[H]
-    \centering
-\begin{tikzpicture}[scale=3.5]
-\def\thP{30}
-\def\thMax{60}
-\def\thC{50}
-\pgfmathsetmacro{\rP}{1 + 2*cos(2*\thP)}
-\pgfmathsetmacro{\xP}{\rP*cos(\thP)}
-\pgfmathsetmacro{\yP}{\rP*sin(\thP)}
-\coordinate (O) at (0,0);
-\coordinate (A) at (3,0);
-\coordinate (P) at (\xP,\yP);
-\coordinate (T) at (3,\yP);
-\coordinate (I) at (3.55,0);
-\coordinate (CL) at ({(1 + 2*cos(2*\thC))*cos(\thC)},{(1 + 2*cos(2*\thC))*sin(\thC)});
-\coordinate (Rlabel) at ($(A)!0.52!(P)+(0.42,0.25)$);
-
-\fill[gray!30] (P) -- (T) -- (A) --
-  plot[smooth, samples=120, domain=0:\thP]
-    ({(1 + 2*cos(2*\x))*cos(\x)},{(1 + 2*cos(2*\x))*sin(\x)})
-  -- cycle;
-
-\draw[-{Stealth[length=3mm]}, thick] (O) -- (I);
-\draw[thick] plot[smooth, samples=200, domain=0:\thMax]
-  ({(1 + 2*cos(2*\x))*cos(\x)},{(1 + 2*cos(2*\x))*sin(\x)});
-\draw[dashed] (P) -- (T) -- (A);
-
-\node[below left] at (O) {$O$};
-\node[below] at (A) {$A$};
-\node[above left] at (P) {$P$};
-\node[above] at (CL) {$C$};
-\node at (Rlabel) {$R$};
-\node[below right] at (I) {Initial line};
-\end{tikzpicture}
-\end{figure}
-
-
-The curve $C$ shown in the figure above has polar equation
+The curve $C$ has polar equation
 \[
-r = 1 + 2\cos 2\theta, \qquad 0 \leq \theta \leq \frac{\pi}{3}
+r = 3\sin 2\theta, \qquad 0 \leq \theta \leq \frac{\pi}{2}
 \]
 \\
-At the point $P$ on $C$, the tangent to $C$ is parallel to the initial line. \\
+At the non-pole point $P$ on $C$, the tangent to $C$ is perpendicular to the initial line. \\
 
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Show that $P$ has polar coordinates $\left(2, \dfrac{\pi}{6}\right)$. \marks{4} \\
-\end{enumerate}
-The point $A$ on $C$ has polar coordinates $(3, 0)$. \\
-
-The finite region $R$, shown shaded in the figure above, is bounded by the arc $AP$ of $C$, the tangent to $C$ at $P$ and the line through $A$ parallel to $\theta = \frac{\pi}{2}$. \\
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Find the exact area of $R$. \marks{9} \\
-\end{enumerate}
+Given that $O$ is the pole, find the exact length of the line $OP$. \marks{7}
 
 \vspace*{10pt}
-
 \begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Using
+For a polar curve,
 \[
 x=r\cos\theta,\qquad y=r\sin\theta
 \]
-with
+so
 \[
-r=1+2\cos 2\theta
+\frac{\mathrm{d}y}{\mathrm{d}x}
+=
+\frac{\dfrac{\mathrm{d}y}{\mathrm{d}\theta}}{\dfrac{\mathrm{d}x}{\mathrm{d}\theta}}
+=
+\frac{r'\sin\theta+r\cos\theta}{r'\cos\theta-r\sin\theta}
+\]
+where \(r'=\dfrac{\mathrm{d}r}{\mathrm{d}\theta}\).
+
+A tangent perpendicular to the initial line is vertical, so \(\dfrac{\mathrm{d}y}{\mathrm{d}x}\) is undefined. Therefore
+\[
+r'\cos\theta-r\sin\theta=0
+\]
+with \(r'\sin\theta+r\cos\theta\neq 0\)
+
+Given
+\[
+r=3\sin 2\theta
 \]
 we have
 \[
-\frac{\mathrm{d}y}{\mathrm{d}x}=\frac{\frac{\mathrm{d}y}{\mathrm{d}\theta}}{\frac{\mathrm{d}x}{\mathrm{d}\theta}}
+r'=6\cos 2\theta
 \]
 
-Since the tangent is parallel to the initial line, it is horizontal, so
+Substituting into the vertical tangent condition gives
 \[
-\frac{\mathrm{d}y}{\mathrm{d}\theta}=0
-\qquad \text{and} \qquad
-\frac{\mathrm{d}x}{\mathrm{d}\theta}\neq 0
+6\cos 2\theta\cos\theta-3\sin 2\theta\sin\theta=0
 \]
 
-First,
+Now use
 \[
-\frac{\mathrm{d}r}{\mathrm{d}\theta}=-4\sin 2\theta
+\cos 2\theta=\cos^2\theta-\sin^2\theta,
+\qquad
+\sin 2\theta=2\sin\theta\cos\theta
+\]
+Then
+\begin{align*}
+6(\cos^2\theta-\sin^2\theta)\cos\theta-3(2\sin\theta\cos\theta)\sin\theta&=0\\
+6(\cos^2\theta-\sin^2\theta)\cos\theta-6\sin^2\theta\cos\theta&=0\\
+6\cos\theta(\cos^2\theta-2\sin^2\theta)&=0
+\end{align*}
+
+Using \(\sin^2\theta=1-\cos^2\theta\),
+\begin{align*}
+6\cos\theta\bigl(\cos^2\theta-2(1-\cos^2\theta)\bigr)&=0\\
+6\cos\theta(3\cos^2\theta-2)&=0
+\end{align*}
+
+Since \(P\) is a non-pole point and \(0\leq \theta \leq \dfrac{\pi}{2}\), we must have
+\[
+0<\theta<\frac{\pi}{2}
+\]
+so \(\cos\theta\neq 0\)
+
+Hence
+\[
+3\cos^2\theta-2=0
+\]
+so
+\[
+\cos^2\theta=\frac{2}{3}
+\]
+
+Also
+\[
+\sin^2\theta=1-\frac{2}{3}=\frac{1}{3}
+\]
+
+Because \(0<\theta<\dfrac{\pi}{2}\), both sine and cosine are positive, so
+\[
+\cos\theta=\sqrt{\frac{2}{3}},
+\qquad
+\sin\theta=\frac{1}{\sqrt{3}}
 \]
 
 Now
 \begin{align*}
-\frac{\mathrm{d}y}{\mathrm{d}\theta}
-&=\frac{\mathrm{d}}{\mathrm{d}\theta}(r\sin\theta) \\
-&=\frac{\mathrm{d}r}{\mathrm{d}\theta}\sin\theta+r\cos\theta \\
-&=-4\sin 2\theta\sin\theta+(1+2\cos 2\theta)\cos\theta \\
-&=-8\sin^2\theta\cos\theta+\bigl(1+2(1-2\sin^2\theta)\bigr)\cos\theta \\
-&=-8\sin^2\theta\cos\theta+(3-4\sin^2\theta)\cos\theta \\
-&=3\cos\theta(1-4\sin^2\theta)
+r&=3\sin 2\theta\\
+&=3(2\sin\theta\cos\theta)\\
+&=6\cdot \frac{1}{\sqrt{3}}\cdot \sqrt{\frac{2}{3}}\\
+&=2\sqrt{2}
 \end{align*}
 
-So
-\[
-3\cos\theta(1-4\sin^2\theta)=0
-\]
-
-For \(0\le \theta \le \frac{\pi}{3}\), we have \(\cos\theta>0\), so
-\[
-1-4\sin^2\theta=0
-\]
-Hence
-\[
-\sin\theta=\frac12
-\]
-and in the given interval this gives
-\[
-\theta=\frac{\pi}{6}
-\]
-
-Now find \(r\):
-\[
-r=1+2\cos\left(2\cdot \frac{\pi}{6}\right)
-=1+2\cos\frac{\pi}{3}
-=1+2\cdot \frac12
-=2
-\]
-
-Also,
-\[
-\frac{\mathrm{d}x}{\mathrm{d}\theta}
-=\frac{\mathrm{d}}{\mathrm{d}\theta}(r\cos\theta)
-=\frac{\mathrm{d}r}{\mathrm{d}\theta}\cos\theta-r\sin\theta
-\]
-and at \(\theta=\frac{\pi}{6}\),
-\[
-\frac{\mathrm{d}x}{\mathrm{d}\theta}
-=(-2\sqrt3)\cdot \frac{\sqrt3}{2}-2\cdot \frac12=-3-1=-4\neq 0
-\]
-so this does give a horizontal tangent.
-
-Therefore \(P\) has polar coordinates
-\[
-\left(2,\frac{\pi}{6}\right)
-\]
-
-  \item Let \(Q\) be the point where the tangent at \(P\) meets the vertical line through \(A\).
-
-From part (a),
-\[
-P=\left(2,\frac{\pi}{6}\right)
-\]
-so in Cartesian coordinates,
-\[
-P=\left(2\cos\frac{\pi}{6},\,2\sin\frac{\pi}{6}\right)=(\sqrt3,1)
-\]
-
-Also \(A=(3,0)\), since its polar coordinates are \((3,0)\).
-
-The tangent at \(P\) is parallel to the initial line, so it is
-\[
-y=1
-\]
-The line through \(A\) parallel to \(\theta=\frac{\pi}{2}\) is vertical, so it is
-\[
-x=3
-\]
-Hence
-\[
-Q=(3,1)
-\]
-
-If the arc \(AP\) were replaced by the chord \(AP\), the region would be triangle \(AQP\). So
-\[
-\text{Area}(R)=\text{Area}(\triangle AQP)-\text{area between chord }AP\text{ and arc }AP
-\]
-
-First,
-\[
-AQ=1,\qquad QP=3-\sqrt3
-\]
-so
-\[
-\text{Area}(\triangle AQP)=\frac12(1)(3-\sqrt3)=\frac{3-\sqrt3}{2}
-\]
-
-Now find the area between the chord and the arc.
-
-This is
-\[
-\text{Area of sector }OAP-\text{Area}(\triangle OAP)
-\]
-
-For the sector,
-\[
-\text{Area of sector }OAP=\frac12\int_0^{\pi/6} r^2\,\mathrm{d}\theta
-=\frac12\int_0^{\pi/6}(1+2\cos 2\theta)^2\,\mathrm{d}\theta
-\]
-
-Expand the square:
+Finally, check that the numerator is non-zero:
 \begin{align*}
-(1+2\cos 2\theta)^2
-&=1+4\cos 2\theta+4\cos^2 2\theta \\
-&=1+4\cos 2\theta+2(1+\cos 4\theta) \\
-&=3+4\cos 2\theta+2\cos 4\theta
+r'\sin\theta+r\cos\theta
+&=6\cos 2\theta\sin\theta+3\sin 2\theta\cos\theta\\
+&=6\left(\frac{1}{3}\right)\left(\frac{1}{\sqrt{3}}\right)
++3\left(\frac{2\sqrt{2}}{3}\right)\left(\sqrt{\frac{2}{3}}\right)\\
+&=\frac{2}{\sqrt{3}}+\frac{4}{\sqrt{3}}\\
+&=\frac{6}{\sqrt{3}}=2\sqrt{3}\neq 0
 \end{align*}
 
-So
-\begin{align*}
-\text{Area of sector }OAP
-&=\frac12\int_0^{\pi/6}\left(3+4\cos 2\theta+2\cos 4\theta\right)\,\mathrm{d}\theta \\
-&=\frac12\left[3\theta+2\sin 2\theta+\frac12\sin 4\theta\right]_0^{\pi/6} \\
-&=\frac12\left(\frac{\pi}{2}+2\sin\frac{\pi}{3}+\frac12\sin\frac{2\pi}{3}\right) \\
-&=\frac12\left(\frac{\pi}{2}+2\cdot \frac{\sqrt3}{2}+\frac12\cdot \frac{\sqrt3}{2}\right) \\
-&=\frac12\left(\frac{\pi}{2}+\sqrt3+\frac{\sqrt3}{4}\right) \\
-&=\frac{\pi}{4}+\frac{5\sqrt3}{8}
-\end{align*}
-
-For triangle \(OAP\),
+So the tangent is genuinely perpendicular to the initial line, and since \(OP=r\),
 \[
-OA=3,\qquad OP=2,\qquad \angle AOP=\frac{\pi}{6}
+OP=2\sqrt{2}
 \]
-so
-\[
-\text{Area}(\triangle OAP)=\frac12\cdot 3\cdot 2\cdot \sin\frac{\pi}{6}=\frac32
-\]
-
-Hence the area between chord \(AP\) and arc \(AP\) is
-\[
-\left(\frac{\pi}{4}+\frac{5\sqrt3}{8}\right)-\frac32
-\]
-
-Therefore
-\begin{align*}
-\text{Area}(R)
-&=\frac{3-\sqrt3}{2}-\left[\left(\frac{\pi}{4}+\frac{5\sqrt3}{8}\right)-\frac32\right] \\
-&=\frac{3-\sqrt3}{2}+\frac32-\frac{\pi}{4}-\frac{5\sqrt3}{8} \\
-&=3-\frac{\pi}{4}-\frac{9\sqrt3}{8}
-\end{align*}
-
-So the exact area of \(R\) is
-\[
-3-\frac{\pi}{4}-\frac{9\sqrt3}{8}
-\]
-equivalently
-\[
-\frac{24-2\pi-9\sqrt3}{8}
-\]
-\end{enumerate}
 \end{djsSolution}
 
 
@@ -409,201 +281,6 @@ OP=r=\frac{3\sqrt6}{4}
 % ---- Question 3 ----
 \questionitem
 % [Source: _QBT___Solns__Tangents_to_Polar_Curves, Q3]
-
-\begin{figure}[H]
-    \centering
-\begin{tikzpicture}[scale=1.5]
-\def\rA{2}
-\def\k{0.60}
-\def\thP{0.82}
-\pgfmathsetmacro{\rP}{\rA*exp(\k*\thP)}
-\pgfmathsetmacro{\xP}{\rP*cos(deg(\thP))}
-\pgfmathsetmacro{\yP}{\rP*sin(deg(\thP))}
-\pgfmathsetmacro{\dx}{\rP*(\k*cos(deg(\thP)) - sin(deg(\thP)))}
-\pgfmathsetmacro{\dy}{\rP*(\k*sin(deg(\thP)) + cos(deg(\thP)))}
-\pgfmathsetmacro{\tT}{-\yP/\dy}
-\pgfmathsetmacro{\xT}{\xP + \tT*\dx}
-\pgfmathsetmacro{\tQ}{0.75}
-\pgfmathsetmacro{\xQ}{\xP + \tQ*\dx}
-\pgfmathsetmacro{\yQ}{\yP + \tQ*\dy}
-\pgfmathsetmacro{\xEnd}{\xT + 0.55}
-\pgfmathsetmacro{\thC}{1.3}
-\pgfmathsetmacro{\rC}{\rA*exp(\k*\thC)}
-\pgfmathsetmacro{\xC}{\rC*cos(deg(\thC))}
-\pgfmathsetmacro{\yC}{\rC*sin(deg(\thC))}
-
-\coordinate (O) at (0,0);
-\coordinate (I) at (1,0);
-\coordinate (A) at (\rA,0);
-\coordinate (P) at (\xP,\yP);
-\coordinate (T) at (\xT,0);
-\coordinate (Q) at (\xQ,\yQ);
-\coordinate (CLabel) at (\xC,\yC);
-
-\draw[thick] (O) -- (\xEnd,0);
-\draw[dashed] (O) -- (P);
-\draw[thick] (Q) -- (T);
-\draw[thick, black] plot[smooth, samples=160, domain=0:1.30, variable=\t]
-  ({\rA*exp(\k*\t)*cos(deg(\t))},{\rA*exp(\k*\t)*sin(deg(\t))});
-
-\pic["$\theta$", draw, angle radius=5mm, angle eccentricity=1.35]
-  {angle=I--O--P};
-
-\node[below left] at (O) {$O$};
-\node[below] at (A) {$A$};
-\node[right] at (P) {$P$};
-\node[below] at (T) {$T$};
-\node[above] at (Q) {$Q$};
-\node[below left] at (CLabel) {$C$};
-\draw[-{Stealth[length=3mm]}, thick] (O) -- (4.5, 0)
-  node[pos=0.95, below] {Initial line};
-\end{tikzpicture}
-\end{figure}
-
-
-The diagram shows part of a spiral $C$. \\
-
-The point $P$ has polar coordinates $(r, \theta)$, where $0 \leq \theta \leq \frac{\pi}{2}$. \\
-
-The tangent at $P$ is the line $TPQ$. The point $A$ lies on $C$ and on the initial line, with $OA = 2$. \\
-
-Let $\psi$ be the angle that $TPQ$ makes with the initial line. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item By expressing the Cartesian coordinates of $P$ in terms of $r$ and $\theta$, show that
-  \[
-  \tan \psi = \frac{\frac{\mathrm{d}r}{\mathrm{d}\theta}\sin\theta + r\cos\theta}{\frac{\mathrm{d}r}{\mathrm{d}\theta}\cos\theta - r\sin\theta}
-  \]
-  \marks[-30pt]{4}
-  \item The spiral is equiangular: at every point $P$, the acute angle between $OP$ and $TPQ$ is a constant $\alpha$, where $0 < \alpha < \frac{\pi}{2}$. \\
-
-  Use the result of part (a) to show that the polar equation of $C$ is
-  \[
-  r = 2e^{(\cot \alpha)\theta}
-  \]
-  \marks[-20pt]{7}
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Let the Cartesian coordinates of \(P\) be \((x,y)\).  
-  Since \(P\) has polar coordinates \((r,\theta)\),
-  \[
-  x=r\cos\theta,\qquad y=r\sin\theta
-  \]
-
-  Differentiate both with respect to \(\theta\):
-  \begin{align*}
-  \frac{\mathrm{d}x}{\mathrm{d}\theta}
-  &= \frac{\mathrm{d}r}{\mathrm{d}\theta}\cos\theta-r\sin\theta \\
-  \frac{\mathrm{d}y}{\mathrm{d}\theta}
-  &= \frac{\mathrm{d}r}{\mathrm{d}\theta}\sin\theta+r\cos\theta
-  \end{align*}
-
-  The angle \(\psi\) is the angle the tangent makes with the initial line, so
-  \[
-  \tan\psi=\frac{\mathrm{d}y}{\mathrm{d}x}
-  \]
-
-  Using
-  \[
-  \frac{\mathrm{d}y}{\mathrm{d}x}=\frac{\frac{\mathrm{d}y}{\mathrm{d}\theta}}{\frac{\mathrm{d}x}{\mathrm{d}\theta}}
-  \]
-  gives
-  \[
-  \tan\psi
-  =\frac{\frac{\mathrm{d}r}{\mathrm{d}\theta}\sin\theta+r\cos\theta}{\frac{\mathrm{d}r}{\mathrm{d}\theta}\cos\theta-r\sin\theta}
-  \]
-  as required.
-
-  \item Let
-  \[
-  r'=\frac{\mathrm{d}r}{\mathrm{d}\theta}
-  \]
-
-  From part (a),
-  \[
-  \tan\psi=\frac{r'\sin\theta+r\cos\theta}{r'\cos\theta-r\sin\theta}
-  \]
-
-  Divide top and bottom by \(r'\cos\theta\):
-  \begin{align*}
-  \tan\psi
-  &=\frac{\tan\theta+\frac{r}{r'}}{1-\tan\theta\frac{r}{r'}}
-  \end{align*}
-
-  Now let \(\beta\) be defined by
-  \[
-  \tan\beta=\frac{r}{r'}
-  \]
-
-  Then
-  \begin{align*}
-  \tan\psi
-  &=\frac{\tan\theta+\tan\beta}{1-\tan\theta\tan\beta} \\
-  &=\tan(\theta+\beta)
-  \end{align*}
-
-  So the angle between \(OP\) and the tangent is \(\beta\).
-
-  But the spiral is equiangular, so this acute angle is the constant \(\alpha\). Hence
-  \[
-  \beta=\alpha
-  \]
-  and therefore
-  \[
-  \tan\alpha=\frac{r}{r'}
-  \]
-
-  So
-  \begin{align*}
-  \frac{r}{\frac{\mathrm{d}r}{\mathrm{d}\theta}} &= \tan\alpha \\
-  \frac{\mathrm{d}r}{\mathrm{d}\theta} &= r\cot\alpha
-  \end{align*}
-
-  This is a separable differential equation:
-  \[
-  \frac{1}{r}\,\mathrm{d}r=\cot\alpha\,\mathrm{d}\theta
-  \]
-
-  Integrating,
-  \begin{align*}
-  \int \frac{1}{r}\,\mathrm{d}r &= \int \cot\alpha\,\mathrm{d}\theta \\
-  \ln r &= (\cot\alpha)\theta + c
-  \end{align*}
-
-  At the point \(A\), the curve is on the initial line and \(OA=2\), so
-  \[
-  \theta=0,\qquad r=2
-  \]
-
-  Substitute into the equation:
-  \begin{align*}
-  \ln 2 &= (\cot\alpha)(0)+c \\
-  c&=\ln 2
-  \end{align*}
-
-  Hence
-  \begin{align*}
-  \ln r &= (\cot\alpha)\theta+\ln 2 \\
-  r &= 2e^{(\cot\alpha)\theta}
-  \end{align*}
-
-  Therefore the polar equation of \(C\) is
-  \[
-  r = 2e^{(\cot \alpha)\theta}
-  \]
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 4 ----
-\questionitem
-% [Source: _QBT___Solns__Tangents_to_Polar_Curves, Q4]
 
 \begin{figure}[H]
     \centering
@@ -840,131 +517,9 @@ to three significant figures.
 
 \newpage
 
-% ---- Question 5 ----
+% ---- Question 4 ----
 \questionitem
-% [Source: _QBT___Solns__Tangents_to_Polar_Curves, Q5]
-
-The curve $C$ has polar equation
-\[
-r = 3\sin 2\theta, \qquad 0 \leq \theta \leq \frac{\pi}{2}
-\]
-\\
-At the non-pole point $P$ on $C$, the tangent to $C$ is perpendicular to the initial line. \\
-
-Given that $O$ is the pole, find the exact length of the line $OP$. \marks{7}
-
-\vspace*{10pt}
-\begin{djsSolution}
-For a polar curve,
-\[
-x=r\cos\theta,\qquad y=r\sin\theta
-\]
-so
-\[
-\frac{\mathrm{d}y}{\mathrm{d}x}
-=
-\frac{\dfrac{\mathrm{d}y}{\mathrm{d}\theta}}{\dfrac{\mathrm{d}x}{\mathrm{d}\theta}}
-=
-\frac{r'\sin\theta+r\cos\theta}{r'\cos\theta-r\sin\theta}
-\]
-where \(r'=\dfrac{\mathrm{d}r}{\mathrm{d}\theta}\).
-
-A tangent perpendicular to the initial line is vertical, so \(\dfrac{\mathrm{d}y}{\mathrm{d}x}\) is undefined. Therefore
-\[
-r'\cos\theta-r\sin\theta=0
-\]
-with \(r'\sin\theta+r\cos\theta\neq 0\)
-
-Given
-\[
-r=3\sin 2\theta
-\]
-we have
-\[
-r'=6\cos 2\theta
-\]
-
-Substituting into the vertical tangent condition gives
-\[
-6\cos 2\theta\cos\theta-3\sin 2\theta\sin\theta=0
-\]
-
-Now use
-\[
-\cos 2\theta=\cos^2\theta-\sin^2\theta,
-\qquad
-\sin 2\theta=2\sin\theta\cos\theta
-\]
-Then
-\begin{align*}
-6(\cos^2\theta-\sin^2\theta)\cos\theta-3(2\sin\theta\cos\theta)\sin\theta&=0\\
-6(\cos^2\theta-\sin^2\theta)\cos\theta-6\sin^2\theta\cos\theta&=0\\
-6\cos\theta(\cos^2\theta-2\sin^2\theta)&=0
-\end{align*}
-
-Using \(\sin^2\theta=1-\cos^2\theta\),
-\begin{align*}
-6\cos\theta\bigl(\cos^2\theta-2(1-\cos^2\theta)\bigr)&=0\\
-6\cos\theta(3\cos^2\theta-2)&=0
-\end{align*}
-
-Since \(P\) is a non-pole point and \(0\leq \theta \leq \dfrac{\pi}{2}\), we must have
-\[
-0<\theta<\frac{\pi}{2}
-\]
-so \(\cos\theta\neq 0\)
-
-Hence
-\[
-3\cos^2\theta-2=0
-\]
-so
-\[
-\cos^2\theta=\frac{2}{3}
-\]
-
-Also
-\[
-\sin^2\theta=1-\frac{2}{3}=\frac{1}{3}
-\]
-
-Because \(0<\theta<\dfrac{\pi}{2}\), both sine and cosine are positive, so
-\[
-\cos\theta=\sqrt{\frac{2}{3}},
-\qquad
-\sin\theta=\frac{1}{\sqrt{3}}
-\]
-
-Now
-\begin{align*}
-r&=3\sin 2\theta\\
-&=3(2\sin\theta\cos\theta)\\
-&=6\cdot \frac{1}{\sqrt{3}}\cdot \sqrt{\frac{2}{3}}\\
-&=2\sqrt{2}
-\end{align*}
-
-Finally, check that the numerator is non-zero:
-\begin{align*}
-r'\sin\theta+r\cos\theta
-&=6\cos 2\theta\sin\theta+3\sin 2\theta\cos\theta\\
-&=6\left(\frac{1}{3}\right)\left(\frac{1}{\sqrt{3}}\right)
-+3\left(\frac{2\sqrt{2}}{3}\right)\left(\sqrt{\frac{2}{3}}\right)\\
-&=\frac{2}{\sqrt{3}}+\frac{4}{\sqrt{3}}\\
-&=\frac{6}{\sqrt{3}}=2\sqrt{3}\neq 0
-\end{align*}
-
-So the tangent is genuinely perpendicular to the initial line, and since \(OP=r\),
-\[
-OP=2\sqrt{2}
-\]
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 6 ----
-\questionitem
-% [Source: _QBT___Solns__Tangents_to_Polar_Curves, Q6]
+% [Source: _QBT___Solns__Tangents_to_Polar_Curves, Q4]
 
 \begin{figure}[H]
     \centering
@@ -1228,9 +783,9 @@ A logo is modelled by the cardioid $C$, where $a = 8\,\text{cm}$. The logo is cu
 
 \newpage
 
-% ---- Question 7 ----
+% ---- Question 5 ----
 \questionitem
-% [Source: _QBT___Solns__Tangents_to_Polar_Curves, Q7]
+% [Source: _QBT___Solns__Tangents_to_Polar_Curves, Q5]
 
 \begin{figure}[H]
     \centering
@@ -1494,6 +1049,451 @@ Therefore the exact area of \(R\) is
 \[
 \frac12(15\sqrt3-8\pi)
 \]
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+% [Source: _QBT___Solns__Tangents_to_Polar_Curves, Q6]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=3.5]
+\def\thP{30}
+\def\thMax{60}
+\def\thC{50}
+\pgfmathsetmacro{\rP}{1 + 2*cos(2*\thP)}
+\pgfmathsetmacro{\xP}{\rP*cos(\thP)}
+\pgfmathsetmacro{\yP}{\rP*sin(\thP)}
+\coordinate (O) at (0,0);
+\coordinate (A) at (3,0);
+\coordinate (P) at (\xP,\yP);
+\coordinate (T) at (3,\yP);
+\coordinate (I) at (3.55,0);
+\coordinate (CL) at ({(1 + 2*cos(2*\thC))*cos(\thC)},{(1 + 2*cos(2*\thC))*sin(\thC)});
+\coordinate (Rlabel) at ($(A)!0.52!(P)+(0.42,0.25)$);
+
+\fill[gray!30] (P) -- (T) -- (A) --
+  plot[smooth, samples=120, domain=0:\thP]
+    ({(1 + 2*cos(2*\x))*cos(\x)},{(1 + 2*cos(2*\x))*sin(\x)})
+  -- cycle;
+
+\draw[-{Stealth[length=3mm]}, thick] (O) -- (I);
+\draw[thick] plot[smooth, samples=200, domain=0:\thMax]
+  ({(1 + 2*cos(2*\x))*cos(\x)},{(1 + 2*cos(2*\x))*sin(\x)});
+\draw[dashed] (P) -- (T) -- (A);
+
+\node[below left] at (O) {$O$};
+\node[below] at (A) {$A$};
+\node[above left] at (P) {$P$};
+\node[above] at (CL) {$C$};
+\node at (Rlabel) {$R$};
+\node[below right] at (I) {Initial line};
+\end{tikzpicture}
+\end{figure}
+
+
+The curve $C$ shown in the figure above has polar equation
+\[
+r = 1 + 2\cos 2\theta, \qquad 0 \leq \theta \leq \frac{\pi}{3}
+\]
+\\
+At the point $P$ on $C$, the tangent to $C$ is parallel to the initial line. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that $P$ has polar coordinates $\left(2, \dfrac{\pi}{6}\right)$. \marks{4} \\
+\end{enumerate}
+The point $A$ on $C$ has polar coordinates $(3, 0)$. \\
+
+The finite region $R$, shown shaded in the figure above, is bounded by the arc $AP$ of $C$, the tangent to $C$ at $P$ and the line through $A$ parallel to $\theta = \frac{\pi}{2}$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find the exact area of $R$. \marks{9} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Using
+\[
+x=r\cos\theta,\qquad y=r\sin\theta
+\]
+with
+\[
+r=1+2\cos 2\theta
+\]
+we have
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}=\frac{\frac{\mathrm{d}y}{\mathrm{d}\theta}}{\frac{\mathrm{d}x}{\mathrm{d}\theta}}
+\]
+
+Since the tangent is parallel to the initial line, it is horizontal, so
+\[
+\frac{\mathrm{d}y}{\mathrm{d}\theta}=0
+\qquad \text{and} \qquad
+\frac{\mathrm{d}x}{\mathrm{d}\theta}\neq 0
+\]
+
+First,
+\[
+\frac{\mathrm{d}r}{\mathrm{d}\theta}=-4\sin 2\theta
+\]
+
+Now
+\begin{align*}
+\frac{\mathrm{d}y}{\mathrm{d}\theta}
+&=\frac{\mathrm{d}}{\mathrm{d}\theta}(r\sin\theta) \\
+&=\frac{\mathrm{d}r}{\mathrm{d}\theta}\sin\theta+r\cos\theta \\
+&=-4\sin 2\theta\sin\theta+(1+2\cos 2\theta)\cos\theta \\
+&=-8\sin^2\theta\cos\theta+\bigl(1+2(1-2\sin^2\theta)\bigr)\cos\theta \\
+&=-8\sin^2\theta\cos\theta+(3-4\sin^2\theta)\cos\theta \\
+&=3\cos\theta(1-4\sin^2\theta)
+\end{align*}
+
+So
+\[
+3\cos\theta(1-4\sin^2\theta)=0
+\]
+
+For \(0\le \theta \le \frac{\pi}{3}\), we have \(\cos\theta>0\), so
+\[
+1-4\sin^2\theta=0
+\]
+Hence
+\[
+\sin\theta=\frac12
+\]
+and in the given interval this gives
+\[
+\theta=\frac{\pi}{6}
+\]
+
+Now find \(r\):
+\[
+r=1+2\cos\left(2\cdot \frac{\pi}{6}\right)
+=1+2\cos\frac{\pi}{3}
+=1+2\cdot \frac12
+=2
+\]
+
+Also,
+\[
+\frac{\mathrm{d}x}{\mathrm{d}\theta}
+=\frac{\mathrm{d}}{\mathrm{d}\theta}(r\cos\theta)
+=\frac{\mathrm{d}r}{\mathrm{d}\theta}\cos\theta-r\sin\theta
+\]
+and at \(\theta=\frac{\pi}{6}\),
+\[
+\frac{\mathrm{d}x}{\mathrm{d}\theta}
+=(-2\sqrt3)\cdot \frac{\sqrt3}{2}-2\cdot \frac12=-3-1=-4\neq 0
+\]
+so this does give a horizontal tangent.
+
+Therefore \(P\) has polar coordinates
+\[
+\left(2,\frac{\pi}{6}\right)
+\]
+
+  \item Let \(Q\) be the point where the tangent at \(P\) meets the vertical line through \(A\).
+
+From part (a),
+\[
+P=\left(2,\frac{\pi}{6}\right)
+\]
+so in Cartesian coordinates,
+\[
+P=\left(2\cos\frac{\pi}{6},\,2\sin\frac{\pi}{6}\right)=(\sqrt3,1)
+\]
+
+Also \(A=(3,0)\), since its polar coordinates are \((3,0)\).
+
+The tangent at \(P\) is parallel to the initial line, so it is
+\[
+y=1
+\]
+The line through \(A\) parallel to \(\theta=\frac{\pi}{2}\) is vertical, so it is
+\[
+x=3
+\]
+Hence
+\[
+Q=(3,1)
+\]
+
+If the arc \(AP\) were replaced by the chord \(AP\), the region would be triangle \(AQP\). So
+\[
+\text{Area}(R)=\text{Area}(\triangle AQP)-\text{area between chord }AP\text{ and arc }AP
+\]
+
+First,
+\[
+AQ=1,\qquad QP=3-\sqrt3
+\]
+so
+\[
+\text{Area}(\triangle AQP)=\frac12(1)(3-\sqrt3)=\frac{3-\sqrt3}{2}
+\]
+
+Now find the area between the chord and the arc.
+
+This is
+\[
+\text{Area of sector }OAP-\text{Area}(\triangle OAP)
+\]
+
+For the sector,
+\[
+\text{Area of sector }OAP=\frac12\int_0^{\pi/6} r^2\,\mathrm{d}\theta
+=\frac12\int_0^{\pi/6}(1+2\cos 2\theta)^2\,\mathrm{d}\theta
+\]
+
+Expand the square:
+\begin{align*}
+(1+2\cos 2\theta)^2
+&=1+4\cos 2\theta+4\cos^2 2\theta \\
+&=1+4\cos 2\theta+2(1+\cos 4\theta) \\
+&=3+4\cos 2\theta+2\cos 4\theta
+\end{align*}
+
+So
+\begin{align*}
+\text{Area of sector }OAP
+&=\frac12\int_0^{\pi/6}\left(3+4\cos 2\theta+2\cos 4\theta\right)\,\mathrm{d}\theta \\
+&=\frac12\left[3\theta+2\sin 2\theta+\frac12\sin 4\theta\right]_0^{\pi/6} \\
+&=\frac12\left(\frac{\pi}{2}+2\sin\frac{\pi}{3}+\frac12\sin\frac{2\pi}{3}\right) \\
+&=\frac12\left(\frac{\pi}{2}+2\cdot \frac{\sqrt3}{2}+\frac12\cdot \frac{\sqrt3}{2}\right) \\
+&=\frac12\left(\frac{\pi}{2}+\sqrt3+\frac{\sqrt3}{4}\right) \\
+&=\frac{\pi}{4}+\frac{5\sqrt3}{8}
+\end{align*}
+
+For triangle \(OAP\),
+\[
+OA=3,\qquad OP=2,\qquad \angle AOP=\frac{\pi}{6}
+\]
+so
+\[
+\text{Area}(\triangle OAP)=\frac12\cdot 3\cdot 2\cdot \sin\frac{\pi}{6}=\frac32
+\]
+
+Hence the area between chord \(AP\) and arc \(AP\) is
+\[
+\left(\frac{\pi}{4}+\frac{5\sqrt3}{8}\right)-\frac32
+\]
+
+Therefore
+\begin{align*}
+\text{Area}(R)
+&=\frac{3-\sqrt3}{2}-\left[\left(\frac{\pi}{4}+\frac{5\sqrt3}{8}\right)-\frac32\right] \\
+&=\frac{3-\sqrt3}{2}+\frac32-\frac{\pi}{4}-\frac{5\sqrt3}{8} \\
+&=3-\frac{\pi}{4}-\frac{9\sqrt3}{8}
+\end{align*}
+
+So the exact area of \(R\) is
+\[
+3-\frac{\pi}{4}-\frac{9\sqrt3}{8}
+\]
+equivalently
+\[
+\frac{24-2\pi-9\sqrt3}{8}
+\]
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+% [Source: _QBT___Solns__Tangents_to_Polar_Curves, Q7]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.5]
+\def\rA{2}
+\def\k{0.60}
+\def\thP{0.82}
+\pgfmathsetmacro{\rP}{\rA*exp(\k*\thP)}
+\pgfmathsetmacro{\xP}{\rP*cos(deg(\thP))}
+\pgfmathsetmacro{\yP}{\rP*sin(deg(\thP))}
+\pgfmathsetmacro{\dx}{\rP*(\k*cos(deg(\thP)) - sin(deg(\thP)))}
+\pgfmathsetmacro{\dy}{\rP*(\k*sin(deg(\thP)) + cos(deg(\thP)))}
+\pgfmathsetmacro{\tT}{-\yP/\dy}
+\pgfmathsetmacro{\xT}{\xP + \tT*\dx}
+\pgfmathsetmacro{\tQ}{0.75}
+\pgfmathsetmacro{\xQ}{\xP + \tQ*\dx}
+\pgfmathsetmacro{\yQ}{\yP + \tQ*\dy}
+\pgfmathsetmacro{\xEnd}{\xT + 0.55}
+\pgfmathsetmacro{\thC}{1.3}
+\pgfmathsetmacro{\rC}{\rA*exp(\k*\thC)}
+\pgfmathsetmacro{\xC}{\rC*cos(deg(\thC))}
+\pgfmathsetmacro{\yC}{\rC*sin(deg(\thC))}
+
+\coordinate (O) at (0,0);
+\coordinate (I) at (1,0);
+\coordinate (A) at (\rA,0);
+\coordinate (P) at (\xP,\yP);
+\coordinate (T) at (\xT,0);
+\coordinate (Q) at (\xQ,\yQ);
+\coordinate (CLabel) at (\xC,\yC);
+
+\draw[thick] (O) -- (\xEnd,0);
+\draw[dashed] (O) -- (P);
+\draw[thick] (Q) -- (T);
+\draw[thick, black] plot[smooth, samples=160, domain=0:1.30, variable=\t]
+  ({\rA*exp(\k*\t)*cos(deg(\t))},{\rA*exp(\k*\t)*sin(deg(\t))});
+
+\pic["$\theta$", draw, angle radius=5mm, angle eccentricity=1.35]
+  {angle=I--O--P};
+
+\node[below left] at (O) {$O$};
+\node[below] at (A) {$A$};
+\node[right] at (P) {$P$};
+\node[below] at (T) {$T$};
+\node[above] at (Q) {$Q$};
+\node[below left] at (CLabel) {$C$};
+\draw[-{Stealth[length=3mm]}, thick] (O) -- (4.5, 0)
+  node[pos=0.95, below] {Initial line};
+\end{tikzpicture}
+\end{figure}
+
+
+The diagram shows part of a spiral $C$. \\
+
+The point $P$ has polar coordinates $(r, \theta)$, where $0 \leq \theta \leq \frac{\pi}{2}$. \\
+
+The tangent at $P$ is the line $TPQ$. The point $A$ lies on $C$ and on the initial line, with $OA = 2$. \\
+
+Let $\psi$ be the angle that $TPQ$ makes with the initial line. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item By expressing the Cartesian coordinates of $P$ in terms of $r$ and $\theta$, show that
+  \[
+  \tan \psi = \frac{\frac{\mathrm{d}r}{\mathrm{d}\theta}\sin\theta + r\cos\theta}{\frac{\mathrm{d}r}{\mathrm{d}\theta}\cos\theta - r\sin\theta}
+  \]
+  \marks[-30pt]{4}
+  \item The spiral is equiangular: at every point $P$, the acute angle between $OP$ and $TPQ$ is a constant $\alpha$, where $0 < \alpha < \frac{\pi}{2}$. \\
+
+  Use the result of part (a) to show that the polar equation of $C$ is
+  \[
+  r = 2e^{(\cot \alpha)\theta}
+  \]
+  \marks[-20pt]{7}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let the Cartesian coordinates of \(P\) be \((x,y)\).  
+  Since \(P\) has polar coordinates \((r,\theta)\),
+  \[
+  x=r\cos\theta,\qquad y=r\sin\theta
+  \]
+
+  Differentiate both with respect to \(\theta\):
+  \begin{align*}
+  \frac{\mathrm{d}x}{\mathrm{d}\theta}
+  &= \frac{\mathrm{d}r}{\mathrm{d}\theta}\cos\theta-r\sin\theta \\
+  \frac{\mathrm{d}y}{\mathrm{d}\theta}
+  &= \frac{\mathrm{d}r}{\mathrm{d}\theta}\sin\theta+r\cos\theta
+  \end{align*}
+
+  The angle \(\psi\) is the angle the tangent makes with the initial line, so
+  \[
+  \tan\psi=\frac{\mathrm{d}y}{\mathrm{d}x}
+  \]
+
+  Using
+  \[
+  \frac{\mathrm{d}y}{\mathrm{d}x}=\frac{\frac{\mathrm{d}y}{\mathrm{d}\theta}}{\frac{\mathrm{d}x}{\mathrm{d}\theta}}
+  \]
+  gives
+  \[
+  \tan\psi
+  =\frac{\frac{\mathrm{d}r}{\mathrm{d}\theta}\sin\theta+r\cos\theta}{\frac{\mathrm{d}r}{\mathrm{d}\theta}\cos\theta-r\sin\theta}
+  \]
+  as required.
+
+  \item Let
+  \[
+  r'=\frac{\mathrm{d}r}{\mathrm{d}\theta}
+  \]
+
+  From part (a),
+  \[
+  \tan\psi=\frac{r'\sin\theta+r\cos\theta}{r'\cos\theta-r\sin\theta}
+  \]
+
+  Divide top and bottom by \(r'\cos\theta\):
+  \begin{align*}
+  \tan\psi
+  &=\frac{\tan\theta+\frac{r}{r'}}{1-\tan\theta\frac{r}{r'}}
+  \end{align*}
+
+  Now let \(\beta\) be defined by
+  \[
+  \tan\beta=\frac{r}{r'}
+  \]
+
+  Then
+  \begin{align*}
+  \tan\psi
+  &=\frac{\tan\theta+\tan\beta}{1-\tan\theta\tan\beta} \\
+  &=\tan(\theta+\beta)
+  \end{align*}
+
+  So the angle between \(OP\) and the tangent is \(\beta\).
+
+  But the spiral is equiangular, so this acute angle is the constant \(\alpha\). Hence
+  \[
+  \beta=\alpha
+  \]
+  and therefore
+  \[
+  \tan\alpha=\frac{r}{r'}
+  \]
+
+  So
+  \begin{align*}
+  \frac{r}{\frac{\mathrm{d}r}{\mathrm{d}\theta}} &= \tan\alpha \\
+  \frac{\mathrm{d}r}{\mathrm{d}\theta} &= r\cot\alpha
+  \end{align*}
+
+  This is a separable differential equation:
+  \[
+  \frac{1}{r}\,\mathrm{d}r=\cot\alpha\,\mathrm{d}\theta
+  \]
+
+  Integrating,
+  \begin{align*}
+  \int \frac{1}{r}\,\mathrm{d}r &= \int \cot\alpha\,\mathrm{d}\theta \\
+  \ln r &= (\cot\alpha)\theta + c
+  \end{align*}
+
+  At the point \(A\), the curve is on the initial line and \(OA=2\), so
+  \[
+  \theta=0,\qquad r=2
+  \]
+
+  Substitute into the equation:
+  \begin{align*}
+  \ln 2 &= (\cot\alpha)(0)+c \\
+  c&=\ln 2
+  \end{align*}
+
+  Hence
+  \begin{align*}
+  \ln r &= (\cot\alpha)\theta+\ln 2 \\
+  r &= 2e^{(\cot\alpha)\theta}
+  \end{align*}
+
+  Therefore the polar equation of \(C\) is
+  \[
+  r = 2e^{(\cot \alpha)\theta}
+  \]
 \end{enumerate}
 \end{djsSolution}
 

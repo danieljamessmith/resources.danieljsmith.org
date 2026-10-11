@@ -4,7 +4,7 @@
 \djsQbtHeader{Tangents to Polar Curves}
 \djsSitePath{Core Pure}{Polar Coordinates}
 
-\djsLastUpdated{10 October 2026}
+\djsLastUpdated{11 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -19,6 +19,206 @@
 % ---- Question 1 ----
 \questionitem
 % [Source: _QBT__Tangents_to_Polar_Curves, Q1]
+
+The curve $C$ has polar equation
+\[
+r = 3\sin 2\theta, \qquad 0 \leq \theta \leq \frac{\pi}{2}
+\]
+\\
+At the non-pole point $P$ on $C$, the tangent to $C$ is perpendicular to the initial line. \\
+
+Given that $O$ is the pole, find the exact length of the line $OP$. \marks{7}
+\newpage
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT__Tangents_to_Polar_Curves, Q2]
+
+The curve $C$ has polar equation
+\[
+r = 2\sin 3\theta, \qquad 0 \leq \theta \leq \frac{\pi}{3}
+\]
+\\
+At the non-pole point $P$ on $C$, the tangent to $C$ is parallel to the initial line. \\
+
+Given that $O$ is the pole, find the exact length of the line $OP$. \marks{7}
+
+\newpage
+
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT__Tangents_to_Polar_Curves, Q3]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.5]
+\def\axislen{5.2}
+\def\labang{60}
+\draw[-{Stealth[length=3mm]}, thick] (0,0) -- (\axislen,0) node[pos=0.95, below] {Initial line};
+\draw[thick, black]
+  plot[smooth, samples=300, domain=-180:180]
+    ({2*(1+cos(\x))*cos(\x)},{2*(1+cos(\x))*sin(\x)});
+\coordinate (L) at ({2*(1+cos(\labang))*cos(\labang)},{2*(1+cos(\labang))*sin(\labang)});
+\node[above right] at (L) {$C_1$};
+\node[below] at (0,0) {$O$};
+\end{tikzpicture}
+\end{figure}
+
+
+The diagram shows the sketch of a curve $C_1$. \\
+
+The polar equation of the curve $C_1$ is
+\[
+r = 2(1 + \cos \theta), \qquad -\pi \leq \theta \leq \pi
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the area of the region bounded by the curve $C_1$. \marks{5} \\
+  \item The curve $C_2$ whose polar equation is
+  \[
+  r = \sin \theta, \qquad 0 \leq \theta \leq \pi
+  \]
+  intersects the curve $C_1$ at the pole $O$ and at the point $A$. The straight line drawn through $A$ perpendicular to the initial line intersects the part of $C_1$ above the initial line again at the point $B$. \\
+  \begin{enumerate}[label=(\roman*)]
+    \item Find the polar coordinates of $A$. \marks{4}
+    \item Show that the length of $OB$ is $\dfrac{6}{5}$. \marks{6}
+    \item Find the length of $AB$, giving your answer to three significant figures. \marks{3}
+  \end{enumerate}
+\end{enumerate}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT__Tangents_to_Polar_Curves, Q4]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.5]
+\def\a{2}
+\pgfmathsetmacro{\xleft}{-3*sqrt(3)*\a/4}
+\pgfmathsetmacro{\xright}{3*sqrt(3)*\a/4}
+\pgfmathsetmacro{\ytop}{2*\a}
+\pgfmathsetmacro{\ybottom}{-\a/4}
+\pgfmathsetmacro{\xab}{sqrt(3)*\a/4}
+
+\coordinate (O) at (0,0);
+\coordinate (W) at (\xleft,\ytop);
+\coordinate (X) at (\xright,\ytop);
+\coordinate (Y) at (\xright,\ybottom);
+\coordinate (Z) at (\xleft,\ybottom);
+\coordinate (A) at (-\xab,\ybottom);
+\coordinate (B) at (\xab,\ybottom);
+\coordinate (Clbl) at ({\a*(1+sin(60))*cos(60)},{\a*(1+sin(60))*sin(60)});
+
+\fill[gray!30]
+  plot[smooth, samples=300, domain=-1.570796:4.712389]
+    ({\a*(1+sin(deg(\x)))*cos(deg(\x))},{\a*(1+sin(deg(\x)))*sin(deg(\x))})
+  -- cycle;
+
+\draw[thick] (W) -- (X) -- (Y) -- (Z) -- cycle;
+\draw[dashed] (\xleft-0.45,0) -- (O);
+\draw[dashed] (0,\ybottom-0.35) -- (0,\ytop+0.45);
+\draw[-{Stealth[length=3mm]}, thick] (O) -- (\xright+1.2,0) node[right] {Initial line};
+
+\draw[thick]
+  plot[smooth, samples=300, domain=-1.570796:4.712389]
+    ({\a*(1+sin(deg(\x)))*cos(deg(\x))},{\a*(1+sin(deg(\x)))*sin(deg(\x))});
+
+\node[above left] at (W) {$W$};
+\node[above right] at (X) {$X$};
+\node[below right] at (Y) {$Y$};
+\node[below left] at (Z) {$Z$};
+\node[below left] at (A) {$A$};
+\node[below right] at (B) {$B$};
+\node[above right] at (O) {$O$};
+\node[above] at (0,\ytop+0.45) {$\theta=\frac{\pi}{2}$};
+\node[above right] at (Clbl) {$C$};
+\end{tikzpicture}
+\end{figure}
+
+
+The figure shows a sketch of the cardioid $C$ with equation
+\[
+r = a(1 + \sin \theta), \qquad 0 \leq \theta < 2\pi
+\]
+\\
+Also shown are the tangents to $C$ that are parallel and perpendicular to the initial line. These tangents form a rectangle $WXYZ$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the area of the finite region, shaded in the figure, enclosed by $C$. \marks{6} \\
+  \item Find the values of $\theta$ for which the tangent to $C$ is parallel to the initial line. Hence find the polar coordinates of the points $A$ and $B$, where $ZY$ touches $C$. \marks{6} \\
+  \item Hence show that the length of $WZ$ is $\dfrac{9a}{4}$. \marks{2} \\
+\end{enumerate}
+Given that the length of $WX$ is $\dfrac{3\sqrt{3}a}{2}$ \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item find the area of the rectangle $WXYZ$. \marks{2} \\
+\end{enumerate}
+A logo is modelled by the cardioid $C$, where $a = 8\,\text{cm}$. The logo is cut from the rectangular card $WXYZ$, shown in the figure. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find a numerical value for the area of card wasted in making the logo. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT__Tangents_to_Polar_Curves, Q5]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=2]
+\pgfmathsetmacro{\thA}{pi/3}
+\pgfmathsetmacro{\thmax}{pi/2}
+\pgfmathsetmacro{\xA}{1}
+\pgfmathsetmacro{\yA}{sqrt(3)}
+
+\coordinate (O) at (0,0);
+\coordinate (X) at (\xA,0);
+\coordinate (A) at (\xA,\yA);
+\coordinate (Rlabel) at ($(O)!0.55!(A)+(0.2,-0.6)$);
+
+\fill[gray!30]
+  (O)
+  plot[smooth, samples=200, domain=0:\thA]
+    ({4*(1-cos(deg(\x)))*cos(deg(\x))},{4*(1-cos(deg(\x)))*sin(deg(\x))})
+  -- (X)
+  -- cycle;
+
+\draw[-{Stealth[length=3mm]}, thick] (-1, 0) -- (2.5,0) node[right] {Initial line};
+\draw[dashed] (\xA,-0.5) -- (\xA,4);
+\draw[thick]
+  plot[smooth, samples=200, domain=0:\thmax]
+    ({4*(1-cos(deg(\x)))*cos(deg(\x))},{4*(1-cos(deg(\x)))*sin(deg(\x))});
+
+\node[below left] at (O) {$O$};
+\node[right] at (A) {$A$};
+\node at (Rlabel) {$R$};
+\end{tikzpicture}
+\end{figure}
+
+
+The diagram above shows a sketch of the curve $C$ with equation
+\[
+r = 4(1 - \cos \theta) \qquad 0 \leq \theta \leq \frac{\pi}{2}
+\]
+\\
+The diagram above also shows the tangent to $C$ at the point $A$, where $A$ is not the pole. \\
+This tangent is perpendicular to the initial line. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use differentiation to prove that the polar coordinates of $A$ are $\left(2, \dfrac{\pi}{3}\right)$. \marks{4} \\
+\end{enumerate}
+The finite region $R$, shown shaded in the diagram above, is bounded by $C$, the tangent at $A$ and the initial line. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Use calculus to show that the exact area of $R$ is $\frac{1}{2}(15\sqrt{3} - 8\pi)$. \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+% [Source: _QBT__Tangents_to_Polar_Curves, Q6]
 
 \begin{figure}[H]
     \centering
@@ -73,26 +273,12 @@ The finite region $R$, shown shaded in the figure above, is bounded by the arc $
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item Find the exact area of $R$. \marks{9} \\
 \end{enumerate}
-\newpage
-% ---- Question 2 ----
-\questionitem
-% [Source: _QBT__Tangents_to_Polar_Curves, Q2]
-
-The curve $C$ has polar equation
-\[
-r = 2\sin 3\theta, \qquad 0 \leq \theta \leq \frac{\pi}{3}
-\]
-\\
-At the non-pole point $P$ on $C$, the tangent to $C$ is parallel to the initial line. \\
-
-Given that $O$ is the pole, find the exact length of the line $OP$. \marks{7}
 
 \newpage
 
-
-% ---- Question 3 ----
+% ---- Question 7 ----
 \questionitem
-% [Source: _QBT__Tangents_to_Polar_Curves, Q3]
+% [Source: _QBT__Tangents_to_Polar_Curves, Q7]
 
 \begin{figure}[H]
     \centering
@@ -166,192 +352,6 @@ Let $\psi$ be the angle that $TPQ$ makes with the initial line. \\
   r = 2e^{(\cot \alpha)\theta}
   \]
   \marks[-20pt]{7}
-\end{enumerate}
-
-
-\newpage
-
-% ---- Question 4 ----
-\questionitem
-% [Source: _QBT__Tangents_to_Polar_Curves, Q4]
-
-\begin{figure}[H]
-    \centering
-\begin{tikzpicture}[scale=1.5]
-\def\axislen{5.2}
-\def\labang{60}
-\draw[-{Stealth[length=3mm]}, thick] (0,0) -- (\axislen,0) node[pos=0.95, below] {Initial line};
-\draw[thick, black]
-  plot[smooth, samples=300, domain=-180:180]
-    ({2*(1+cos(\x))*cos(\x)},{2*(1+cos(\x))*sin(\x)});
-\coordinate (L) at ({2*(1+cos(\labang))*cos(\labang)},{2*(1+cos(\labang))*sin(\labang)});
-\node[above right] at (L) {$C_1$};
-\node[below] at (0,0) {$O$};
-\end{tikzpicture}
-\end{figure}
-
-
-The diagram shows the sketch of a curve $C_1$. \\
-
-The polar equation of the curve $C_1$ is
-\[
-r = 2(1 + \cos \theta), \qquad -\pi \leq \theta \leq \pi
-\]
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find the area of the region bounded by the curve $C_1$. \marks{5} \\
-  \item The curve $C_2$ whose polar equation is
-  \[
-  r = \sin \theta, \qquad 0 \leq \theta \leq \pi
-  \]
-  intersects the curve $C_1$ at the pole $O$ and at the point $A$. The straight line drawn through $A$ perpendicular to the initial line intersects the part of $C_1$ above the initial line again at the point $B$. \\
-  \begin{enumerate}[label=(\roman*)]
-    \item Find the polar coordinates of $A$. \marks{4}
-    \item Show that the length of $OB$ is $\dfrac{6}{5}$. \marks{6}
-    \item Find the length of $AB$, giving your answer to three significant figures. \marks{3}
-  \end{enumerate}
-\end{enumerate}
-
-\newpage
-
-% ---- Question 5 ----
-\questionitem
-% [Source: _QBT__Tangents_to_Polar_Curves, Q5]
-
-The curve $C$ has polar equation
-\[
-r = 3\sin 2\theta, \qquad 0 \leq \theta \leq \frac{\pi}{2}
-\]
-\\
-At the non-pole point $P$ on $C$, the tangent to $C$ is perpendicular to the initial line. \\
-
-Given that $O$ is the pole, find the exact length of the line $OP$. \marks{7}
-
-\newpage
-
-% ---- Question 6 ----
-\questionitem
-% [Source: _QBT__Tangents_to_Polar_Curves, Q6]
-
-\begin{figure}[H]
-    \centering
-\begin{tikzpicture}[scale=1.5]
-\def\a{2}
-\pgfmathsetmacro{\xleft}{-3*sqrt(3)*\a/4}
-\pgfmathsetmacro{\xright}{3*sqrt(3)*\a/4}
-\pgfmathsetmacro{\ytop}{2*\a}
-\pgfmathsetmacro{\ybottom}{-\a/4}
-\pgfmathsetmacro{\xab}{sqrt(3)*\a/4}
-
-\coordinate (O) at (0,0);
-\coordinate (W) at (\xleft,\ytop);
-\coordinate (X) at (\xright,\ytop);
-\coordinate (Y) at (\xright,\ybottom);
-\coordinate (Z) at (\xleft,\ybottom);
-\coordinate (A) at (-\xab,\ybottom);
-\coordinate (B) at (\xab,\ybottom);
-\coordinate (Clbl) at ({\a*(1+sin(60))*cos(60)},{\a*(1+sin(60))*sin(60)});
-
-\fill[gray!30]
-  plot[smooth, samples=300, domain=-1.570796:4.712389]
-    ({\a*(1+sin(deg(\x)))*cos(deg(\x))},{\a*(1+sin(deg(\x)))*sin(deg(\x))})
-  -- cycle;
-
-\draw[thick] (W) -- (X) -- (Y) -- (Z) -- cycle;
-\draw[dashed] (\xleft-0.45,0) -- (O);
-\draw[dashed] (0,\ybottom-0.35) -- (0,\ytop+0.45);
-\draw[-{Stealth[length=3mm]}, thick] (O) -- (\xright+1.2,0) node[right] {Initial line};
-
-\draw[thick]
-  plot[smooth, samples=300, domain=-1.570796:4.712389]
-    ({\a*(1+sin(deg(\x)))*cos(deg(\x))},{\a*(1+sin(deg(\x)))*sin(deg(\x))});
-
-\node[above left] at (W) {$W$};
-\node[above right] at (X) {$X$};
-\node[below right] at (Y) {$Y$};
-\node[below left] at (Z) {$Z$};
-\node[below left] at (A) {$A$};
-\node[below right] at (B) {$B$};
-\node[above right] at (O) {$O$};
-\node[above] at (0,\ytop+0.45) {$\theta=\frac{\pi}{2}$};
-\node[above right] at (Clbl) {$C$};
-\end{tikzpicture}
-\end{figure}
-
-
-The figure shows a sketch of the cardioid $C$ with equation
-\[
-r = a(1 + \sin \theta), \qquad 0 \leq \theta < 2\pi
-\]
-\\
-Also shown are the tangents to $C$ that are parallel and perpendicular to the initial line. These tangents form a rectangle $WXYZ$. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find the area of the finite region, shaded in the figure, enclosed by $C$. \marks{6} \\
-  \item Find the values of $\theta$ for which the tangent to $C$ is parallel to the initial line. Hence find the polar coordinates of the points $A$ and $B$, where $ZY$ touches $C$. \marks{6} \\
-  \item Hence show that the length of $WZ$ is $\dfrac{9a}{4}$. \marks{2} \\
-\end{enumerate}
-Given that the length of $WX$ is $\dfrac{3\sqrt{3}a}{2}$ \\
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item find the area of the rectangle $WXYZ$. \marks{2} \\
-\end{enumerate}
-A logo is modelled by the cardioid $C$, where $a = 8\,\text{cm}$. The logo is cut from the rectangular card $WXYZ$, shown in the figure. \\
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Find a numerical value for the area of card wasted in making the logo. \marks{3} \\
-\end{enumerate}
-
-\newpage
-
-% ---- Question 7 ----
-\questionitem
-% [Source: _QBT__Tangents_to_Polar_Curves, Q7]
-
-\begin{figure}[H]
-    \centering
-\begin{tikzpicture}[scale=2]
-\pgfmathsetmacro{\thA}{pi/3}
-\pgfmathsetmacro{\thmax}{pi/2}
-\pgfmathsetmacro{\xA}{1}
-\pgfmathsetmacro{\yA}{sqrt(3)}
-
-\coordinate (O) at (0,0);
-\coordinate (X) at (\xA,0);
-\coordinate (A) at (\xA,\yA);
-\coordinate (Rlabel) at ($(O)!0.55!(A)+(0.2,-0.6)$);
-
-\fill[gray!30]
-  (O)
-  plot[smooth, samples=200, domain=0:\thA]
-    ({4*(1-cos(deg(\x)))*cos(deg(\x))},{4*(1-cos(deg(\x)))*sin(deg(\x))})
-  -- (X)
-  -- cycle;
-
-\draw[-{Stealth[length=3mm]}, thick] (-1, 0) -- (2.5,0) node[right] {Initial line};
-\draw[dashed] (\xA,-0.5) -- (\xA,4);
-\draw[thick]
-  plot[smooth, samples=200, domain=0:\thmax]
-    ({4*(1-cos(deg(\x)))*cos(deg(\x))},{4*(1-cos(deg(\x)))*sin(deg(\x))});
-
-\node[below left] at (O) {$O$};
-\node[right] at (A) {$A$};
-\node at (Rlabel) {$R$};
-\end{tikzpicture}
-\end{figure}
-
-
-The diagram above shows a sketch of the curve $C$ with equation
-\[
-r = 4(1 - \cos \theta) \qquad 0 \leq \theta \leq \frac{\pi}{2}
-\]
-\\
-The diagram above also shows the tangent to $C$ at the point $A$, where $A$ is not the pole. \\
-This tangent is perpendicular to the initial line. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Use differentiation to prove that the polar coordinates of $A$ are $\left(2, \dfrac{\pi}{3}\right)$. \marks{4} \\
-\end{enumerate}
-The finite region $R$, shown shaded in the diagram above, is bounded by $C$, the tangent at $A$ and the initial line. \\
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Use calculus to show that the exact area of $R$ is $\frac{1}{2}(15\sqrt{3} - 8\pi)$. \marks{6} \\
 \end{enumerate}
 
 \newpage
