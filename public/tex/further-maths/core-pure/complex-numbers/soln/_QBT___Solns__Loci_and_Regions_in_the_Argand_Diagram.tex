@@ -4,7 +4,7 @@
 \djsSolnHeader{Loci and Regions in the Argand Diagram}
 \djsSitePath{Core Pure}{Complex Numbers}
 
-\djsLastUpdated{10 October 2026}
+\djsLastUpdated{11 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -212,177 +212,210 @@ z=-1-\sqrt{3}+5i
 \questionitem
 % [Source: _QBT___Solns__Loci_and_Regions_in_the_Argand_Diagram, Q2]
 
-In an Argand diagram, the point $P$ representing the complex number $w$ lies on the locus defined by \[\Bigl\{ z\in\mathbb{C}\;\Bigm|\; \arg(z-2+i)=\frac{\pi}{6} \Bigr\}\] You are given that $\mathrm{Im}(w)=3$. \\
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=0.9]
+\draw[-{Stealth[length=3mm]}, thick] (-2.2,0) -- (7.7,0) node[right] {$\mathrm{Re}(z)$};
+\draw[-{Stealth[length=3mm]}, thick] (0,-1.2) -- (0,7.7) node[above] {$\mathrm{Im}(z)$};
+
+\foreach \x in {-2,-1,1,2,3,4,5,6,7} {
+  \draw (\x,0.12) -- (\x,-0.12);
+  \node[below] at (\x,-0.12) {$\x$};
+}
+\foreach \y in {-1,1,2,3,4,5,6,7} {
+  \draw (0.12,\y) -- (-0.12,\y);
+  \node[left] at (-0.12,\y) {$\y$};
+}
+
+\node[below left] at (0,0) {$O$};
+\end{tikzpicture}
+\end{figure}
+
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find $w$. \marks{2} \\
+  \item Sketch, on the Argand diagram above, the locus of points satisfying the equation
+  \[
+  |z-(2+4i)|=3
+  \]
+  \marks[-20pt]{2}
+  \item Sketch, also on the Argand diagram, the locus of points satisfying the equation
+  \[
+  \arg(z-1)=\frac{\pi}{4}
+  \]
+  \marks[-20pt]{1}
+  \item For the complex number $w$, find the maximum value of $|w|$ such that
+  \[
+  |w-(2+4i)|\le 3 \qquad \text{and} \qquad 0\le \arg(w-1)\le \frac{\pi}{4}
+  \]
+  \marks[-20pt]{3}
 \end{enumerate}
 
-The point $P$ also lies on the locus defined by $\Bigl\{ z\in\mathbb{C}\;\Bigm|\; \lvert z-2-11i\rvert =k \Bigr\}$, where $k$ is a constant. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Find the complex number represented by the other point of intersection of the loci defined by \[\Bigl\{ z\in\mathbb{C}\;\Bigm|\; \lvert z-2-11i\rvert =k \Bigr\}\quad\text{and}\quad\Bigl\{ z\in\mathbb{C}\;\Bigm|\; \arg(z-2+i)=\frac{\pi}{6} \Bigr\}\] \marks{7} \\
-\end{enumerate}
-
-\vspace*{10pt}
+\vspace*{5pt}
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
+  \item The locus
+  \[
+  |z-(2+4i)|=3
+  \]
+  is a circle with centre at the point representing $2+4i$ and radius $3$.
+
+  \begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=0.7]
+\def\cx{2}
+\def\cy{4}
+\def\rad{3}
+
+\draw[-{Stealth[length=3mm]}, thick] (-2.2,0) -- (7.7,0) node[right] {$\mathrm{Re}(z)$};
+\draw[-{Stealth[length=3mm]}, thick] (0,-1.2) -- (0,7.7) node[above] {$\mathrm{Im}(z)$};
+
+\foreach \x in {-2,-1,1,2,3,4,5,6,7} {
+  \draw (\x,0.12) -- (\x,-0.12);
+  \node[below] at (\x,-0.12) {$\x$};
+}
+\foreach \y in {-1,1,2,3,4,5,6,7} {
+  \draw (0.12,\y) -- (-0.12,\y);
+  \node[left] at (-0.12,\y) {$\y$};
+}
+
+\node[below left] at (0,0) {$O$};
+
+\draw[thick] (\cx,\cy) circle (\rad);
+\fill (\cx,\cy) circle (1.5pt);
+\node[above left] at (\cx,\cy) {$2+4i$};
+
+\end{tikzpicture}
+\end{figure}
+
+  \item The locus
+  \[
+  \arg(z-1)=\frac{\pi}{4}
+  \]
+  is the half-line starting at the point representing $1$ on the real axis, making an angle of $\frac{\pi}{4}$ with the positive real axis.
+
+  In Cartesian form this is
+  \[
+  y=x-1,\qquad x>1
+  \]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=0.7]
+\def\cx{2}
+\def\cy{4}
+\def\rad{3}
+
+\draw[-{Stealth[length=3mm]}, thick] (-2.2,0) -- (7.7,0) node[right] {$\mathrm{Re}(z)$};
+\draw[-{Stealth[length=3mm]}, thick] (0,-1.2) -- (0,7.7) node[above] {$\mathrm{Im}(z)$};
+
+\foreach \x in {-2,-1,1,2,3,4,5,6,7} {
+  \draw (\x,0.12) -- (\x,-0.12);
+  \node[below] at (\x,-0.12) {$\x$};
+}
+\foreach \y in {-1,1,2,3,4,5,6,7} {
+  \draw (0.12,\y) -- (-0.12,\y);
+  \node[left] at (-0.12,\y) {$\y$};
+}
+
+\node[below left] at (0,0) {$O$};
+
+\draw[thick] (\cx,\cy) circle (\rad);
+\fill (\cx,\cy) circle (1.5pt);
+\node[above left] at (\cx,\cy) {$2+4i$};
+
+\draw[thick] (1,0) -- (7,6);
+\draw[fill=white] (1,0) circle (1.7pt);
+
+\end{tikzpicture}
+\end{figure}
+
   \item Let
   \[
-  w=x+3i
+  w=x+iy
   \]
-  since $\mathrm{Im}(w)=3$.
+  The condition
+  \[
+  |w-(2+4i)|\leq 3
+  \]
+  means that $w$ lies inside or on the circle from part (a).
 
-  Then
+  Also,
   \[
-  w-2+i=(x-2)+4i
+  0\leq \arg(w-1)\leq \frac{\pi}{4}
+  \]
+  means that $w$ lies between the half-line from $1$ along the positive real axis and the half-line from part (b).
+
+  \begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=0.7]
+\def\cx{2}
+\def\cy{4}
+\def\rad{3}
+
+\draw[-{Stealth[length=3mm]}, thick] (-2.2,0) -- (7.7,0) node[right] {$\mathrm{Re}(z)$};
+\draw[-{Stealth[length=3mm]}, thick] (0,-1.2) -- (0,7.7) node[above] {$\mathrm{Im}(z)$};
+
+\foreach \x in {-2,-1,1,2,3,4,5,6,7} {
+  \draw (\x,0.12) -- (\x,-0.12);
+  \node[below] at (\x,-0.12) {$\x$};
+}
+\foreach \y in {-1,1,2,3,4,5,6,7} {
+  \draw (0.12,\y) -- (-0.12,\y);
+  \node[left] at (-0.12,\y) {$\y$};
+}
+
+\node[below left] at (0,0) {$O$};
+
+\begin{scope}
+  \clip (\cx,\cy) circle (\rad);
+  \fill[gray!30] (-2,-4) -- (8,-4) -- (8,7) -- (-2,-3) -- cycle;
+\end{scope}
+
+\draw[thick] (\cx,\cy) circle (\rad);
+
+\draw[thick] (1,0) -- (7,6);
+\draw[fill=white] (1,0) circle (1.7pt);
+
+\fill (\cx,\cy) circle (1.5pt);
+\node[above left] at (\cx,\cy) {$2+4i$};
+
+\fill (2,1) circle (1.5pt);
+\node[below] at (2,1) {$P$};
+
+\fill (5,4) circle (1.5pt);
+\node[right] at (5,4) {$Q$};
+
+\end{tikzpicture}
+\end{figure}
+
+  Since the circle has lowest point $(2,1)$, every point in the circle has $y\geq 1$, so the condition $\arg(w-1)\geq 0$ is automatically satisfied.
+
+  Therefore the required region is the part of the disc lying on or below the line
+  \[
+  y=x-1
   \]
 
-  Given
-  \[
-  \arg(w-2+i)=\frac{\pi}{6}
-  \]
-  so
-  \[
-  \tan\frac{\pi}{6}=\frac{4}{x-2}
-  \]
-
-  Hence
-  \[
-  \frac{1}{\sqrt{3}}=\frac{4}{x-2}
-  \]
-  so
-  \[
-  x-2=4\sqrt{3}
-  \]
-  and therefore
-  \[
-  x=2+4\sqrt{3}
-  \]
-
-  Thus
-  \[
-  w=2+4\sqrt{3}+3i
-  \]
-
-  \item From part (a),
-  \[
-  P \text{ represents } w=2+4\sqrt{3}+3i
-  \]
-
-  The second locus is
-  \[
-  \lvert z-2-11i\rvert=k=\lvert z-(2+11i)\rvert
-  \]
-  which is a circle with centre $2+11i$.
-
-  Using the point $P$ to find $k$,
+  First find where this line meets the circle:
   \begin{align*}
-  k&=\left|w-(2+11i)\right| \\
-   &=\left|(2+4\sqrt{3}+3i)-(2+11i)\right| \\
-   &=\left|4\sqrt{3}-8i\right|
+  (x-2)^2+(y-4)^2&=9 \\
+  (x-2)^2+(x-1-4)^2&=9 \\
+  (x-2)^2+(x-5)^2&=9 \\
+  x^2-4x+4+x^2-10x+25&=9 \\
+  2x^2-14x+20&=0 \\
+  x^2-7x+10&=0 \\
+  (x-2)(x-5)&=0
   \end{align*}
+  so the intersection points are $P(2,1)$ and $Q(5,4)$, as marked on the diagram.
 
-  So
-  \begin{align*}
-  k^2&=(4\sqrt{3})^2+(-8)^2 \\
-     &=48+64 \\
-     &=112
-  \end{align*}
-  and hence
+  Now $|w|$ is the distance from $O$ to the point representing $w$. Every point of the region lies in the disc, so $x\leq 2+3=5$. It also lies on or below the line, so $y\leq x-1\leq 4$. Both $x$ and $y$ are positive in the region, since $y\geq 1$ and $x\geq y+1$. Hence
   \[
-  k=4\sqrt{7}
+  |w|^2=x^2+y^2\leq 5^2+4^2=41
   \]
+  Equality holds at $Q$, which is in the region.
 
-  Now let a general point of intersection be
-  \[
-  z=x+yi
-  \]
+  Hence the maximum value of $|w|$ is $\sqrt{41}$, attained when $w=5+4i$.
 
-  Since
-  \[
-  \arg(z-2+i)=\frac{\pi}{6}
-  \]
-  the point lies on the half-line starting at $(2,-1)$ with gradient
-  \[
-  \tan\frac{\pi}{6}=\frac{1}{\sqrt{3}}
-  \]
-  so its equation is
-  \[
-  y+1=\frac{x-2}{\sqrt{3}}
-  \]
-  that is,
-  \[
-  y=\frac{x-2}{\sqrt{3}}-1
-  \]
-
-  The circle has equation
-  \[
-  (x-2)^2+(y-11)^2=112
-  \]
-
-  Substitute $y=\dfrac{x-2}{\sqrt{3}}-1$:
-  \[
-  (x-2)^2+\left(\frac{x-2}{\sqrt{3}}-12\right)^2=112
-  \]
-
-  Let
-  \[
-  u=x-2
-  \]
-  Then
-  \[
-  u^2+\left(\frac{u}{\sqrt{3}}-12\right)^2=112
-  \]
-
-  Expanding,
-  \begin{align*}
-  u^2+\left(\frac{u^2}{3}-8\sqrt{3}\,u+144\right)&=112 \\
-  \frac{4u^2}{3}-8\sqrt{3}\,u+144&=112 \\
-  \frac{4u^2}{3}-8\sqrt{3}\,u+32&=0
-  \end{align*}
-
-  Multiply by $3$:
-  \[
-  4u^2-24\sqrt{3}\,u+96=0
-  \]
-
-  Divide by $4$:
-  \[
-  u^2-6\sqrt{3}\,u+24=0
-  \]
-
-  Factorising,
-  \[
-  (u-4\sqrt{3})(u-2\sqrt{3})=0
-  \]
-
-  So
-  \[
-  u=4\sqrt{3}\quad \text{or}\quad u=2\sqrt{3}
-  \]
-
-  Both values are positive, so both points have $x>2$ and lie on the half-line itself, not on its extension.
-
-  The value $u=4\sqrt{3}$ gives the known point $P$ from part (a), so the other intersection has
-  \[
-  u=2\sqrt{3}
-  \]
-
-  Therefore
-  \[
-  x=2+2\sqrt{3}
-  \]
-  and
-  \[
-  y=\frac{2\sqrt{3}}{\sqrt{3}}-1=2-1=1
-  \]
-
-  Hence the other point represents
-  \[
-  z=2+2\sqrt{3}+i
-  \]
 \end{enumerate}
 \end{djsSolution}
 
@@ -1456,6 +1489,187 @@ Therefore the exact coordinates of the common points are
 \questionitem
 % [Source: _QBT___Solns__Loci_and_Regions_in_the_Argand_Diagram, Q9]
 
+In an Argand diagram, the point $P$ representing the complex number $w$ lies on the locus defined by \[\Bigl\{ z\in\mathbb{C}\;\Bigm|\; \arg(z-2+i)=\frac{\pi}{6} \Bigr\}\] You are given that $\mathrm{Im}(w)=3$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find $w$. \marks{2} \\
+\end{enumerate}
+
+The point $P$ also lies on the locus defined by $\Bigl\{ z\in\mathbb{C}\;\Bigm|\; \lvert z-2-11i\rvert =k \Bigr\}$, where $k$ is a constant. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find the complex number represented by the other point of intersection of the loci defined by \[\Bigl\{ z\in\mathbb{C}\;\Bigm|\; \lvert z-2-11i\rvert =k \Bigr\}\quad\text{and}\quad\Bigl\{ z\in\mathbb{C}\;\Bigm|\; \arg(z-2+i)=\frac{\pi}{6} \Bigr\}\] \marks{7} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let
+  \[
+  w=x+3i
+  \]
+  since $\mathrm{Im}(w)=3$.
+
+  Then
+  \[
+  w-2+i=(x-2)+4i
+  \]
+
+  Given
+  \[
+  \arg(w-2+i)=\frac{\pi}{6}
+  \]
+  so
+  \[
+  \tan\frac{\pi}{6}=\frac{4}{x-2}
+  \]
+
+  Hence
+  \[
+  \frac{1}{\sqrt{3}}=\frac{4}{x-2}
+  \]
+  so
+  \[
+  x-2=4\sqrt{3}
+  \]
+  and therefore
+  \[
+  x=2+4\sqrt{3}
+  \]
+
+  Thus
+  \[
+  w=2+4\sqrt{3}+3i
+  \]
+
+  \item From part (a),
+  \[
+  P \text{ represents } w=2+4\sqrt{3}+3i
+  \]
+
+  The second locus is
+  \[
+  \lvert z-2-11i\rvert=k=\lvert z-(2+11i)\rvert
+  \]
+  which is a circle with centre $2+11i$.
+
+  Using the point $P$ to find $k$,
+  \begin{align*}
+  k&=\left|w-(2+11i)\right| \\
+   &=\left|(2+4\sqrt{3}+3i)-(2+11i)\right| \\
+   &=\left|4\sqrt{3}-8i\right|
+  \end{align*}
+
+  So
+  \begin{align*}
+  k^2&=(4\sqrt{3})^2+(-8)^2 \\
+     &=48+64 \\
+     &=112
+  \end{align*}
+  and hence
+  \[
+  k=4\sqrt{7}
+  \]
+
+  Now let a general point of intersection be
+  \[
+  z=x+yi
+  \]
+
+  Since
+  \[
+  \arg(z-2+i)=\frac{\pi}{6}
+  \]
+  the point lies on the half-line starting at $(2,-1)$ with gradient
+  \[
+  \tan\frac{\pi}{6}=\frac{1}{\sqrt{3}}
+  \]
+  so its equation is
+  \[
+  y+1=\frac{x-2}{\sqrt{3}}
+  \]
+  that is,
+  \[
+  y=\frac{x-2}{\sqrt{3}}-1
+  \]
+
+  The circle has equation
+  \[
+  (x-2)^2+(y-11)^2=112
+  \]
+
+  Substitute $y=\dfrac{x-2}{\sqrt{3}}-1$:
+  \[
+  (x-2)^2+\left(\frac{x-2}{\sqrt{3}}-12\right)^2=112
+  \]
+
+  Let
+  \[
+  u=x-2
+  \]
+  Then
+  \[
+  u^2+\left(\frac{u}{\sqrt{3}}-12\right)^2=112
+  \]
+
+  Expanding,
+  \begin{align*}
+  u^2+\left(\frac{u^2}{3}-8\sqrt{3}\,u+144\right)&=112 \\
+  \frac{4u^2}{3}-8\sqrt{3}\,u+144&=112 \\
+  \frac{4u^2}{3}-8\sqrt{3}\,u+32&=0
+  \end{align*}
+
+  Multiply by $3$:
+  \[
+  4u^2-24\sqrt{3}\,u+96=0
+  \]
+
+  Divide by $4$:
+  \[
+  u^2-6\sqrt{3}\,u+24=0
+  \]
+
+  Factorising,
+  \[
+  (u-4\sqrt{3})(u-2\sqrt{3})=0
+  \]
+
+  So
+  \[
+  u=4\sqrt{3}\quad \text{or}\quad u=2\sqrt{3}
+  \]
+
+  Both values are positive, so both points have $x>2$ and lie on the half-line itself, not on its extension.
+
+  The value $u=4\sqrt{3}$ gives the known point $P$ from part (a), so the other intersection has
+  \[
+  u=2\sqrt{3}
+  \]
+
+  Therefore
+  \[
+  x=2+2\sqrt{3}
+  \]
+  and
+  \[
+  y=\frac{2\sqrt{3}}{\sqrt{3}}-1=2-1=1
+  \]
+
+  Hence the other point represents
+  \[
+  z=2+2\sqrt{3}+i
+  \]
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+% [Source: _QBT___Solns__Loci_and_Regions_in_the_Argand_Diagram, Q10]
+
 The locus of points $z=x+iy$ that satisfy
 \[
 \arg\left(\frac{z-(2+i)}{z-(6+5i)}\right)=\frac{\pi}{4}
@@ -1582,220 +1796,6 @@ is an arc of a circle $C$. \\
   so it does not lie on the circle centred at \((2,5)\). This also confirms that the arc lies below/right of \(AB\).
 
   Therefore the centre of \(C\) is \((6,1)\).
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 10 ----
-\questionitem
-% [Source: _QBT___Solns__Loci_and_Regions_in_the_Argand_Diagram, Q10]
-
-\begin{figure}[H]
-    \centering
-\begin{tikzpicture}[scale=0.9]
-\draw[-{Stealth[length=3mm]}, thick] (-2.2,0) -- (7.7,0) node[right] {$\mathrm{Re}(z)$};
-\draw[-{Stealth[length=3mm]}, thick] (0,-1.2) -- (0,7.7) node[above] {$\mathrm{Im}(z)$};
-
-\foreach \x in {-2,-1,1,2,3,4,5,6,7} {
-  \draw (\x,0.12) -- (\x,-0.12);
-  \node[below] at (\x,-0.12) {$\x$};
-}
-\foreach \y in {-1,1,2,3,4,5,6,7} {
-  \draw (0.12,\y) -- (-0.12,\y);
-  \node[left] at (-0.12,\y) {$\y$};
-}
-
-\node[below left] at (0,0) {$O$};
-\end{tikzpicture}
-\end{figure}
-
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Sketch, on the Argand diagram above, the locus of points satisfying the equation
-  \[
-  |z-(2+4i)|=3
-  \]
-  \marks[-20pt]{2}
-  \item Sketch, also on the Argand diagram, the locus of points satisfying the equation
-  \[
-  \arg(z-1)=\frac{\pi}{4}
-  \]
-  \marks[-20pt]{1}
-  \item For the complex number $w$, find the maximum value of $|w|$ such that
-  \[
-  |w-(2+4i)|\le 3 \qquad \text{and} \qquad 0\le \arg(w-1)\le \frac{\pi}{4}
-  \]
-  \marks[-20pt]{3}
-\end{enumerate}
-
-\vspace*{5pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item The locus
-  \[
-  |z-(2+4i)|=3
-  \]
-  is a circle with centre at the point representing $2+4i$ and radius $3$.
-
-  \begin{figure}[H]
-    \centering
-\begin{tikzpicture}[scale=0.7]
-\def\cx{2}
-\def\cy{4}
-\def\rad{3}
-
-\draw[-{Stealth[length=3mm]}, thick] (-2.2,0) -- (7.7,0) node[right] {$\mathrm{Re}(z)$};
-\draw[-{Stealth[length=3mm]}, thick] (0,-1.2) -- (0,7.7) node[above] {$\mathrm{Im}(z)$};
-
-\foreach \x in {-2,-1,1,2,3,4,5,6,7} {
-  \draw (\x,0.12) -- (\x,-0.12);
-  \node[below] at (\x,-0.12) {$\x$};
-}
-\foreach \y in {-1,1,2,3,4,5,6,7} {
-  \draw (0.12,\y) -- (-0.12,\y);
-  \node[left] at (-0.12,\y) {$\y$};
-}
-
-\node[below left] at (0,0) {$O$};
-
-\draw[thick] (\cx,\cy) circle (\rad);
-\fill (\cx,\cy) circle (1.5pt);
-\node[above left] at (\cx,\cy) {$2+4i$};
-
-\end{tikzpicture}
-\end{figure}
-
-  \item The locus
-  \[
-  \arg(z-1)=\frac{\pi}{4}
-  \]
-  is the half-line starting at the point representing $1$ on the real axis, making an angle of $\frac{\pi}{4}$ with the positive real axis.
-
-  In Cartesian form this is
-  \[
-  y=x-1,\qquad x>1
-  \]
-
-\begin{figure}[H]
-    \centering
-\begin{tikzpicture}[scale=0.7]
-\def\cx{2}
-\def\cy{4}
-\def\rad{3}
-
-\draw[-{Stealth[length=3mm]}, thick] (-2.2,0) -- (7.7,0) node[right] {$\mathrm{Re}(z)$};
-\draw[-{Stealth[length=3mm]}, thick] (0,-1.2) -- (0,7.7) node[above] {$\mathrm{Im}(z)$};
-
-\foreach \x in {-2,-1,1,2,3,4,5,6,7} {
-  \draw (\x,0.12) -- (\x,-0.12);
-  \node[below] at (\x,-0.12) {$\x$};
-}
-\foreach \y in {-1,1,2,3,4,5,6,7} {
-  \draw (0.12,\y) -- (-0.12,\y);
-  \node[left] at (-0.12,\y) {$\y$};
-}
-
-\node[below left] at (0,0) {$O$};
-
-\draw[thick] (\cx,\cy) circle (\rad);
-\fill (\cx,\cy) circle (1.5pt);
-\node[above left] at (\cx,\cy) {$2+4i$};
-
-\draw[thick] (1,0) -- (7,6);
-\draw[fill=white] (1,0) circle (1.7pt);
-
-\end{tikzpicture}
-\end{figure}
-
-  \item Let
-  \[
-  w=x+iy
-  \]
-  The condition
-  \[
-  |w-(2+4i)|\leq 3
-  \]
-  means that $w$ lies inside or on the circle from part (a).
-
-  Also,
-  \[
-  0\leq \arg(w-1)\leq \frac{\pi}{4}
-  \]
-  means that $w$ lies between the half-line from $1$ along the positive real axis and the half-line from part (b).
-
-  \begin{figure}[H]
-    \centering
-\begin{tikzpicture}[scale=0.7]
-\def\cx{2}
-\def\cy{4}
-\def\rad{3}
-
-\draw[-{Stealth[length=3mm]}, thick] (-2.2,0) -- (7.7,0) node[right] {$\mathrm{Re}(z)$};
-\draw[-{Stealth[length=3mm]}, thick] (0,-1.2) -- (0,7.7) node[above] {$\mathrm{Im}(z)$};
-
-\foreach \x in {-2,-1,1,2,3,4,5,6,7} {
-  \draw (\x,0.12) -- (\x,-0.12);
-  \node[below] at (\x,-0.12) {$\x$};
-}
-\foreach \y in {-1,1,2,3,4,5,6,7} {
-  \draw (0.12,\y) -- (-0.12,\y);
-  \node[left] at (-0.12,\y) {$\y$};
-}
-
-\node[below left] at (0,0) {$O$};
-
-\begin{scope}
-  \clip (\cx,\cy) circle (\rad);
-  \fill[gray!30] (-2,-4) -- (8,-4) -- (8,7) -- (-2,-3) -- cycle;
-\end{scope}
-
-\draw[thick] (\cx,\cy) circle (\rad);
-
-\draw[thick] (1,0) -- (7,6);
-\draw[fill=white] (1,0) circle (1.7pt);
-
-\fill (\cx,\cy) circle (1.5pt);
-\node[above left] at (\cx,\cy) {$2+4i$};
-
-\fill (2,1) circle (1.5pt);
-\node[below] at (2,1) {$P$};
-
-\fill (5,4) circle (1.5pt);
-\node[right] at (5,4) {$Q$};
-
-\end{tikzpicture}
-\end{figure}
-
-  Since the circle has lowest point $(2,1)$, every point in the circle has $y\geq 1$, so the condition $\arg(w-1)\geq 0$ is automatically satisfied.
-
-  Therefore the required region is the part of the disc lying on or below the line
-  \[
-  y=x-1
-  \]
-
-  First find where this line meets the circle:
-  \begin{align*}
-  (x-2)^2+(y-4)^2&=9 \\
-  (x-2)^2+(x-1-4)^2&=9 \\
-  (x-2)^2+(x-5)^2&=9 \\
-  x^2-4x+4+x^2-10x+25&=9 \\
-  2x^2-14x+20&=0 \\
-  x^2-7x+10&=0 \\
-  (x-2)(x-5)&=0
-  \end{align*}
-  so the intersection points are $P(2,1)$ and $Q(5,4)$, as marked on the diagram.
-
-  Now $|w|$ is the distance from $O$ to the point representing $w$. Every point of the region lies in the disc, so $x\leq 2+3=5$. It also lies on or below the line, so $y\leq x-1\leq 4$. Both $x$ and $y$ are positive in the region, since $y\geq 1$ and $x\geq y+1$. Hence
-  \[
-  |w|^2=x^2+y^2\leq 5^2+4^2=41
-  \]
-  Equality holds at $Q$, which is in the region.
-
-  Hence the maximum value of $|w|$ is $\sqrt{41}$, attained when $w=5+4i$.
-
 \end{enumerate}
 \end{djsSolution}
 

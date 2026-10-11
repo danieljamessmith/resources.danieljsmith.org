@@ -4,7 +4,7 @@
 \djsQbtHeader{Loci and Regions in the Argand Diagram}
 \djsSitePath{Core Pure}{Complex Numbers}
 
-\djsLastUpdated{10 October 2026}
+\djsLastUpdated{11 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -74,16 +74,42 @@ contains only one number. \\
 \questionitem
 % [Source: _QBT__Loci_and_Regions_in_the_Argand_Diagram, Q2]
 
-In an Argand diagram, the point $P$ representing the complex number $w$ lies on the locus defined by \[\Bigl\{ z\in\mathbb{C}\;\Bigm|\; \arg(z-2+i)=\frac{\pi}{6} \Bigr\}\] You are given that $\mathrm{Im}(w)=3$. \\
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=0.9]
+\draw[-{Stealth[length=3mm]}, thick] (-2.2,0) -- (7.7,0) node[right] {$\mathrm{Re}(z)$};
+\draw[-{Stealth[length=3mm]}, thick] (0,-1.2) -- (0,7.7) node[above] {$\mathrm{Im}(z)$};
+
+\foreach \x in {-2,-1,1,2,3,4,5,6,7} {
+  \draw (\x,0.12) -- (\x,-0.12);
+  \node[below] at (\x,-0.12) {$\x$};
+}
+\foreach \y in {-1,1,2,3,4,5,6,7} {
+  \draw (0.12,\y) -- (-0.12,\y);
+  \node[left] at (-0.12,\y) {$\y$};
+}
+
+\node[below left] at (0,0) {$O$};
+\end{tikzpicture}
+\end{figure}
+
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find $w$. \marks{2} \\
-\end{enumerate}
-
-The point $P$ also lies on the locus defined by $\Bigl\{ z\in\mathbb{C}\;\Bigm|\; \lvert z-2-11i\rvert =k \Bigr\}$, where $k$ is a constant. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Find the complex number represented by the other point of intersection of the loci defined by \[\Bigl\{ z\in\mathbb{C}\;\Bigm|\; \lvert z-2-11i\rvert =k \Bigr\}\quad\text{and}\quad\Bigl\{ z\in\mathbb{C}\;\Bigm|\; \arg(z-2+i)=\frac{\pi}{6} \Bigr\}\] \marks{7} \\
+  \item Sketch, on the Argand diagram above, the locus of points satisfying the equation
+  \[
+  |z-(2+4i)|=3
+  \]
+  \marks[-20pt]{2}
+  \item Sketch, also on the Argand diagram, the locus of points satisfying the equation
+  \[
+  \arg(z-1)=\frac{\pi}{4}
+  \]
+  \marks[-20pt]{1}
+  \item For the complex number $w$, find the maximum value of $|w|$ such that
+  \[
+  |w-(2+4i)|\le 3 \qquad \text{and} \qquad 0\le \arg(w-1)\le \frac{\pi}{4}
+  \]
+  \marks[-20pt]{3}
 \end{enumerate}
 
 \newpage
@@ -304,6 +330,24 @@ Find the exact coordinates of the points common to these two loci. \marks{7}
 \questionitem
 % [Source: _QBT__Loci_and_Regions_in_the_Argand_Diagram, Q9]
 
+In an Argand diagram, the point $P$ representing the complex number $w$ lies on the locus defined by \[\Bigl\{ z\in\mathbb{C}\;\Bigm|\; \arg(z-2+i)=\frac{\pi}{6} \Bigr\}\] You are given that $\mathrm{Im}(w)=3$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find $w$. \marks{2} \\
+\end{enumerate}
+
+The point $P$ also lies on the locus defined by $\Bigl\{ z\in\mathbb{C}\;\Bigm|\; \lvert z-2-11i\rvert =k \Bigr\}$, where $k$ is a constant. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find the complex number represented by the other point of intersection of the loci defined by \[\Bigl\{ z\in\mathbb{C}\;\Bigm|\; \lvert z-2-11i\rvert =k \Bigr\}\quad\text{and}\quad\Bigl\{ z\in\mathbb{C}\;\Bigm|\; \arg(z-2+i)=\frac{\pi}{6} \Bigr\}\] \marks{7} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+% [Source: _QBT__Loci_and_Regions_in_the_Argand_Diagram, Q10]
+
 The locus of points $z=x+iy$ that satisfy
 \[
 \arg\left(\frac{z-(2+i)}{z-(6+5i)}\right)=\frac{\pi}{4}
@@ -315,50 +359,6 @@ is an arc of a circle $C$. \\
   \item Explain why the centre of $C$ lies on the line $y=7-x$. \marks{1} \\
   \item Determine the radius of $C$. \marks{2} \\
   \item Determine the coordinates of the centre of $C$. \marks{2} \\
-\end{enumerate}
-
-\newpage
-
-% ---- Question 10 ----
-\questionitem
-% [Source: _QBT__Loci_and_Regions_in_the_Argand_Diagram, Q10]
-
-\begin{figure}[H]
-    \centering
-\begin{tikzpicture}[scale=0.9]
-\draw[-{Stealth[length=3mm]}, thick] (-2.2,0) -- (7.7,0) node[right] {$\mathrm{Re}(z)$};
-\draw[-{Stealth[length=3mm]}, thick] (0,-1.2) -- (0,7.7) node[above] {$\mathrm{Im}(z)$};
-
-\foreach \x in {-2,-1,1,2,3,4,5,6,7} {
-  \draw (\x,0.12) -- (\x,-0.12);
-  \node[below] at (\x,-0.12) {$\x$};
-}
-\foreach \y in {-1,1,2,3,4,5,6,7} {
-  \draw (0.12,\y) -- (-0.12,\y);
-  \node[left] at (-0.12,\y) {$\y$};
-}
-
-\node[below left] at (0,0) {$O$};
-\end{tikzpicture}
-\end{figure}
-
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Sketch, on the Argand diagram above, the locus of points satisfying the equation
-  \[
-  |z-(2+4i)|=3
-  \]
-  \marks[-20pt]{2}
-  \item Sketch, also on the Argand diagram, the locus of points satisfying the equation
-  \[
-  \arg(z-1)=\frac{\pi}{4}
-  \]
-  \marks[-20pt]{1}
-  \item For the complex number $w$, find the maximum value of $|w|$ such that
-  \[
-  |w-(2+4i)|\le 3 \qquad \text{and} \qquad 0\le \arg(w-1)\le \frac{\pi}{4}
-  \]
-  \marks[-20pt]{3}
 \end{enumerate}
 \end{enumerate}
 \end{document}
