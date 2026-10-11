@@ -5,7 +5,7 @@
 \djsSitePath{Further Mechanics}{Miscellaneous Mechanics}
 \djsMechanicsPack
 
-\djsLastUpdated{10 October 2026}
+\djsLastUpdated{11 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -64,64 +64,26 @@ G = 6.67 \times 10^{-11}\,\mathrm{m}^3\,\mathrm{kg}^{-1}\,\mathrm{s}^{-2}
 \questionitem
 % [Source: _QBT__Dimensional_Analysis, Q3]
 
-\begin{figure}[H]
-    \centering
-\begin{tikzpicture}[scale=1.1]
-\def\Height{3.0}
-\def\Range{8.2}
-\def\Angle{38}
-\def\VelLen{2.3}
-\def\DimDrop{0.8}
-\def\DimOff{0.55}
-\pgfmathsetmacro{\TanA}{tan(\Angle)}
-\pgfmathsetmacro{\Coeff}{(\Height+\TanA*\Range)/(\Range*\Range)}
-
-\coordinate (B) at (0,0);
-\coordinate (O) at (0,\Height);
-\coordinate (A) at (\Range,0);
-\coordinate (Href) at ($(O)+(1.6,0)$);
-\coordinate (V) at ($(O)+(\Angle:\VelLen)$);
-\coordinate (R1) at ($(B)+(0,-\DimDrop)$);
-\coordinate (R2) at ($(A)+(0,-\DimDrop)$);
-\coordinate (h1) at ($(B)+(-\DimOff,0)$);
-\coordinate (h2) at ($(O)+(-\DimOff,0)$);
-\coordinate (h3) at ($(O)+(2*\DimOff,0)$);
-
-\draw[thick] (-1.2,0) -- (\Range+1.2,0);
-\draw[thick] (B) -- (O);
-\draw[thick, black, domain=0:\Range, samples=200]
-  plot (\x, {\Height+\TanA*\x-\Coeff*\x*\x});
-
-\draw[-{Stealth[length=3mm]}, thick] (O) -- (V)
-  node[pos=0.65, above] {$v$};
-
-\pic["$\theta$", draw, angle radius=7mm, angle eccentricity=1.35]
-  {angle=Href--O--V};
-
-\draw[dashed] (B) -- (h1);
-\draw[dashed] (O) -- (h3);
-\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (h1) -- (h2)
-  node[midway, left] {$h$};
-
-\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (R1) -- (R2)
-  node[midway, below] {$R$};
-
-\fill[black] (A) circle (1.2pt);
-
-\node[above left] at (O) {$O$};
-\node[below left] at (B) {$B$};
-\node[below right] at (A) {$A$};
-\end{tikzpicture}
-\end{figure}
-
-
-A particle is projected with speed $v$ from a point $O$ at the top of a cliff of height $h$ above horizontal ground. The angle of projection is $\theta$ above the horizontal. The particle lands at the point $A$ on the ground, and $B$ is the foot of the cliff, so that $BA = R$, as shown in the diagram. \\
-
-You are given that
+A small probe is launched vertically upwards from the surface of a spherical moon. The radius of the moon is $R$ metres, and the probe is at a distance $r$ metres from the centre of the moon. The gravitational field strength $g$ at distance $r$ is modelled by
 \[
-R = \frac{v^\alpha \cos\theta}{g^\beta}\left(v^\gamma\sin\theta + \sqrt{v^\delta\sin^2\theta + 2gh}\right)
-\] \\
-Use dimensional analysis to find $\alpha$, $\beta$, $\gamma$ and $\delta$. \marks{4} \\
+g = \frac{\Gamma}{r^2}
+\]
+where $\Gamma$ is a constant associated with the moon. \\
+
+The probe has initial speed $u$ at the surface and speed $v$ when it reaches distance $r$. These speeds are related by
+\[
+v^2 = u^2 - 2\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
+\]
+The work done against gravity in moving a probe of mass $m$ from the surface to distance $r$ is
+\[
+W = m\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
+\]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the dimensions of $\Gamma$. \marks{2}
+  \item Use dimensional analysis to show that the equation for $v^2$ is dimensionally consistent. \marks{2}
+  \item Find the dimensions and SI units of $W$. \marks{2}
+\end{enumerate}
 
 \newpage
 
@@ -255,26 +217,64 @@ where $g\,\mathrm{m\,s^{-2}}$ is the acceleration due to gravity. \\
 \questionitem
 % [Source: _QBT__Dimensional_Analysis, Q10]
 
-A small probe is launched vertically upwards from the surface of a spherical moon. The radius of the moon is $R$ metres, and the probe is at a distance $r$ metres from the centre of the moon. The gravitational field strength $g$ at distance $r$ is modelled by
-\[
-g = \frac{\Gamma}{r^2}
-\]
-where $\Gamma$ is a constant associated with the moon. \\
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.1]
+\def\Height{3.0}
+\def\Range{8.2}
+\def\Angle{38}
+\def\VelLen{2.3}
+\def\DimDrop{0.8}
+\def\DimOff{0.55}
+\pgfmathsetmacro{\TanA}{tan(\Angle)}
+\pgfmathsetmacro{\Coeff}{(\Height+\TanA*\Range)/(\Range*\Range)}
 
-The probe has initial speed $u$ at the surface and speed $v$ when it reaches distance $r$. These speeds are related by
-\[
-v^2 = u^2 - 2\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
-\]
-The work done against gravity in moving a probe of mass $m$ from the surface to distance $r$ is
-\[
-W = m\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
-\]
+\coordinate (B) at (0,0);
+\coordinate (O) at (0,\Height);
+\coordinate (A) at (\Range,0);
+\coordinate (Href) at ($(O)+(1.6,0)$);
+\coordinate (V) at ($(O)+(\Angle:\VelLen)$);
+\coordinate (R1) at ($(B)+(0,-\DimDrop)$);
+\coordinate (R2) at ($(A)+(0,-\DimDrop)$);
+\coordinate (h1) at ($(B)+(-\DimOff,0)$);
+\coordinate (h2) at ($(O)+(-\DimOff,0)$);
+\coordinate (h3) at ($(O)+(2*\DimOff,0)$);
 
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find the dimensions of $\Gamma$. \marks{2}
-  \item Use dimensional analysis to show that the equation for $v^2$ is dimensionally consistent. \marks{2}
-  \item Find the dimensions and SI units of $W$. \marks{2}
-\end{enumerate}
+\draw[thick] (-1.2,0) -- (\Range+1.2,0);
+\draw[thick] (B) -- (O);
+\draw[thick, black, domain=0:\Range, samples=200]
+  plot (\x, {\Height+\TanA*\x-\Coeff*\x*\x});
+
+\draw[-{Stealth[length=3mm]}, thick] (O) -- (V)
+  node[pos=0.65, above] {$v$};
+
+\pic["$\theta$", draw, angle radius=7mm, angle eccentricity=1.35]
+  {angle=Href--O--V};
+
+\draw[dashed] (B) -- (h1);
+\draw[dashed] (O) -- (h3);
+\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (h1) -- (h2)
+  node[midway, left] {$h$};
+
+\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (R1) -- (R2)
+  node[midway, below] {$R$};
+
+\fill[black] (A) circle (1.2pt);
+
+\node[above left] at (O) {$O$};
+\node[below left] at (B) {$B$};
+\node[below right] at (A) {$A$};
+\end{tikzpicture}
+\end{figure}
+
+
+A particle is projected with speed $v$ from a point $O$ at the top of a cliff of height $h$ above horizontal ground. The angle of projection is $\theta$ above the horizontal. The particle lands at the point $A$ on the ground, and $B$ is the foot of the cliff, so that $BA = R$, as shown in the diagram. \\
+
+You are given that
+\[
+R = \frac{v^\alpha \cos\theta}{g^\beta}\left(v^\gamma\sin\theta + \sqrt{v^\delta\sin^2\theta + 2gh}\right)
+\] \\
+Use dimensional analysis to find $\alpha$, $\beta$, $\gamma$ and $\delta$. \marks{4} \\
 
 
 \end{enumerate}

@@ -5,7 +5,7 @@
 \djsSitePath{Further Mechanics}{Miscellaneous Mechanics}
 \djsMechanicsPack
 
-\djsLastUpdated{10 October 2026}
+\djsLastUpdated{11 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -189,140 +189,84 @@ G = 6.67 \times 10^{-11}\,\mathrm{m}^3\,\mathrm{kg}^{-1}\,\mathrm{s}^{-2}
 \questionitem
 % [Source: _QBT___Solns__Dimensional_Analysis, Q3]
 
-\begin{figure}[H]
-    \centering
-\begin{tikzpicture}[scale=1.1]
-\def\Height{3.0}
-\def\Range{8.2}
-\def\Angle{38}
-\def\VelLen{2.3}
-\def\DimDrop{0.8}
-\def\DimOff{0.55}
-\pgfmathsetmacro{\TanA}{tan(\Angle)}
-\pgfmathsetmacro{\Coeff}{(\Height+\TanA*\Range)/(\Range*\Range)}
-
-\coordinate (B) at (0,0);
-\coordinate (O) at (0,\Height);
-\coordinate (A) at (\Range,0);
-\coordinate (Href) at ($(O)+(1.6,0)$);
-\coordinate (V) at ($(O)+(\Angle:\VelLen)$);
-\coordinate (R1) at ($(B)+(0,-\DimDrop)$);
-\coordinate (R2) at ($(A)+(0,-\DimDrop)$);
-\coordinate (h1) at ($(B)+(-\DimOff,0)$);
-\coordinate (h2) at ($(O)+(-\DimOff,0)$);
-\coordinate (h3) at ($(O)+(2*\DimOff,0)$);
-
-\draw[thick] (-1.2,0) -- (\Range+1.2,0);
-\draw[thick] (B) -- (O);
-\draw[thick, black, domain=0:\Range, samples=200]
-  plot (\x, {\Height+\TanA*\x-\Coeff*\x*\x});
-
-\draw[-{Stealth[length=3mm]}, thick] (O) -- (V)
-  node[pos=0.65, above] {$v$};
-
-\pic["$\theta$", draw, angle radius=7mm, angle eccentricity=1.35]
-  {angle=Href--O--V};
-
-\draw[dashed] (B) -- (h1);
-\draw[dashed] (O) -- (h3);
-\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (h1) -- (h2)
-  node[midway, left] {$h$};
-
-\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (R1) -- (R2)
-  node[midway, below] {$R$};
-
-\fill[black] (A) circle (1.2pt);
-
-\node[above left] at (O) {$O$};
-\node[below left] at (B) {$B$};
-\node[below right] at (A) {$A$};
-\end{tikzpicture}
-\end{figure}
-
-
-A particle is projected with speed $v$ from a point $O$ at the top of a cliff of height $h$ above horizontal ground. The angle of projection is $\theta$ above the horizontal. The particle lands at the point $A$ on the ground, and $B$ is the foot of the cliff, so that $BA = R$, as shown in the diagram. \\
-
-You are given that
+A small probe is launched vertically upwards from the surface of a spherical moon. The radius of the moon is $R$ metres, and the probe is at a distance $r$ metres from the centre of the moon. The gravitational field strength $g$ at distance $r$ is modelled by
 \[
-R = \frac{v^\alpha \cos\theta}{g^\beta}\left(v^\gamma\sin\theta + \sqrt{v^\delta\sin^2\theta + 2gh}\right)
-\] \\
-Use dimensional analysis to find $\alpha$, $\beta$, $\gamma$ and $\delta$. \marks{4} \\
+g = \frac{\Gamma}{r^2}
+\]
+where $\Gamma$ is a constant associated with the moon. \\
 
-\vspace*{10pt}
+The probe has initial speed $u$ at the surface and speed $v$ when it reaches distance $r$. These speeds are related by
+\[
+v^2 = u^2 - 2\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
+\]
+The work done against gravity in moving a probe of mass $m$ from the surface to distance $r$ is
+\[
+W = m\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
+\]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the dimensions of $\Gamma$. \marks{2}
+  \item Use dimensional analysis to show that the equation for $v^2$ is dimensionally consistent. \marks{2}
+  \item Find the dimensions and SI units of $W$. \marks{2}
+\end{enumerate}
+
+\vspace*{20pt}
 
 \begin{djsSolution}
-Using dimensions,
-\[
-[R]=L,\qquad [v]=LT^{-1},\qquad [g]=LT^{-2},\qquad [h]=L
-\]
-and \(\sin\theta\) and \(\cos\theta\) are dimensionless.
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item From
+  \[
+  g=\frac{\Gamma}{r^2}
+  \]
+  and since
+  \[
+  [g]=LT^{-2},\qquad [r]=L
+  \]
+  we have
+  \[
+  [\Gamma]=[g][r^2]=LT^{-2}\times L^2=L^3T^{-2}
+  \]
 
-First look at the expression inside the square root. Since terms being added must have the same dimensions,
-\[
-[v^\delta\sin^2\theta]=[2gh]
-\]
-Now
-\[
-[2gh]=[g][h]=(LT^{-2})(L)=L^2T^{-2}
-\]
-So
-\[
-(LT^{-1})^\delta=L^2T^{-2}
-\]
-Comparing powers of \(L\) and \(T\),
-\[
-\delta=2
-\]
-Hence the whole square-root term has dimensions
-\[
-\sqrt{L^2T^{-2}}=LT^{-1}
-\]
-Therefore \(v^\gamma\sin\theta\) must also have dimensions \(LT^{-1}\), so
-\[
-(LT^{-1})^\gamma=LT^{-1}
-\]
-which gives
-\[
-\gamma=1
-\]
+  \item In
+  \[
+  v^2=u^2-2\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
+  \]
+  the dimensions of \(v^2\) and \(u^2\) are
+  \[
+  [v^2]=[u^2]=(LT^{-1})^2=L^2T^{-2}
+  \]
+  Also,
+  \[
+  \left[\frac{1}{R}\right]=\left[\frac{1}{r}\right]=L^{-1}
+  \]
+  so
+  \[
+  \left[\left(\frac{1}{R}-\frac{1}{r}\right)\right]=L^{-1}
+  \]
+  Since \(2\) is dimensionless,
+  \[
+  \left[2\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)\right]=[\Gamma]L^{-1}=L^3T^{-2}\times L^{-1}=L^2T^{-2}
+  \]
+  Therefore every term in the equation has dimensions \(L^2T^{-2}\), so the equation is dimensionally consistent.
 
-Now the bracket
-\[
-v^\gamma\sin\theta+\sqrt{v^\delta\sin^2\theta+2gh}
-\]
-has dimensions \(LT^{-1}\). So
-\begin{align*}
-[R]
-&=\left[\frac{v^\alpha\cos\theta}{g^\beta}\right]\left[ v^\gamma\sin\theta+\sqrt{v^\delta\sin^2\theta+2gh}\right] \\
-L
-&=\frac{(LT^{-1})^\alpha}{(LT^{-2})^\beta}(LT^{-1}) \\
-&=L^{\alpha-\beta+1}T^{-\alpha+2\beta-1}
-\end{align*}
-Comparing powers with \(L^1T^0\),
-\[
-\alpha-\beta+1=1,\qquad -\alpha+2\beta-1=0
-\]
-From the first equation,
-\[
-\alpha=\beta
-\]
-Substitute into the second:
-\[
--\beta+2\beta-1=0
-\]
-so
-\[
-\beta=1
-\]
-and therefore
-\[
-\alpha=1
-\]
-
-So the values are
-\[
-\alpha=1,\qquad \beta=1,\qquad \gamma=1,\qquad \delta=2
-\]
+  \item Using
+  \[
+  W=m\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
+  \]
+  with
+  \[
+  [m]=M,\qquad [\Gamma]=L^3T^{-2},\qquad \left[\left(\frac{1}{R}-\frac{1}{r}\right)\right]=L^{-1}
+  \]
+  gives
+  \[
+  [W]=M\times L^3T^{-2}\times L^{-1}=ML^2T^{-2}
+  \]
+  Its SI units are
+  \[
+  \mathrm{kg\,m^2\,s^{-2}}
+  \]
+  which is the joule, \(\mathrm{J}\).
+\end{enumerate}
 \end{djsSolution}
 
 
@@ -826,84 +770,140 @@ Hence
 \questionitem
 % [Source: _QBT___Solns__Dimensional_Analysis, Q10]
 
-A small probe is launched vertically upwards from the surface of a spherical moon. The radius of the moon is $R$ metres, and the probe is at a distance $r$ metres from the centre of the moon. The gravitational field strength $g$ at distance $r$ is modelled by
-\[
-g = \frac{\Gamma}{r^2}
-\]
-where $\Gamma$ is a constant associated with the moon. \\
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.1]
+\def\Height{3.0}
+\def\Range{8.2}
+\def\Angle{38}
+\def\VelLen{2.3}
+\def\DimDrop{0.8}
+\def\DimOff{0.55}
+\pgfmathsetmacro{\TanA}{tan(\Angle)}
+\pgfmathsetmacro{\Coeff}{(\Height+\TanA*\Range)/(\Range*\Range)}
 
-The probe has initial speed $u$ at the surface and speed $v$ when it reaches distance $r$. These speeds are related by
-\[
-v^2 = u^2 - 2\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
-\]
-The work done against gravity in moving a probe of mass $m$ from the surface to distance $r$ is
-\[
-W = m\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
-\]
+\coordinate (B) at (0,0);
+\coordinate (O) at (0,\Height);
+\coordinate (A) at (\Range,0);
+\coordinate (Href) at ($(O)+(1.6,0)$);
+\coordinate (V) at ($(O)+(\Angle:\VelLen)$);
+\coordinate (R1) at ($(B)+(0,-\DimDrop)$);
+\coordinate (R2) at ($(A)+(0,-\DimDrop)$);
+\coordinate (h1) at ($(B)+(-\DimOff,0)$);
+\coordinate (h2) at ($(O)+(-\DimOff,0)$);
+\coordinate (h3) at ($(O)+(2*\DimOff,0)$);
 
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find the dimensions of $\Gamma$. \marks{2}
-  \item Use dimensional analysis to show that the equation for $v^2$ is dimensionally consistent. \marks{2}
-  \item Find the dimensions and SI units of $W$. \marks{2}
-\end{enumerate}
+\draw[thick] (-1.2,0) -- (\Range+1.2,0);
+\draw[thick] (B) -- (O);
+\draw[thick, black, domain=0:\Range, samples=200]
+  plot (\x, {\Height+\TanA*\x-\Coeff*\x*\x});
 
-\vspace*{20pt}
+\draw[-{Stealth[length=3mm]}, thick] (O) -- (V)
+  node[pos=0.65, above] {$v$};
+
+\pic["$\theta$", draw, angle radius=7mm, angle eccentricity=1.35]
+  {angle=Href--O--V};
+
+\draw[dashed] (B) -- (h1);
+\draw[dashed] (O) -- (h3);
+\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (h1) -- (h2)
+  node[midway, left] {$h$};
+
+\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] (R1) -- (R2)
+  node[midway, below] {$R$};
+
+\fill[black] (A) circle (1.2pt);
+
+\node[above left] at (O) {$O$};
+\node[below left] at (B) {$B$};
+\node[below right] at (A) {$A$};
+\end{tikzpicture}
+\end{figure}
+
+
+A particle is projected with speed $v$ from a point $O$ at the top of a cliff of height $h$ above horizontal ground. The angle of projection is $\theta$ above the horizontal. The particle lands at the point $A$ on the ground, and $B$ is the foot of the cliff, so that $BA = R$, as shown in the diagram. \\
+
+You are given that
+\[
+R = \frac{v^\alpha \cos\theta}{g^\beta}\left(v^\gamma\sin\theta + \sqrt{v^\delta\sin^2\theta + 2gh}\right)
+\] \\
+Use dimensional analysis to find $\alpha$, $\beta$, $\gamma$ and $\delta$. \marks{4} \\
+
+\vspace*{10pt}
 
 \begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-  \item From
-  \[
-  g=\frac{\Gamma}{r^2}
-  \]
-  and since
-  \[
-  [g]=LT^{-2},\qquad [r]=L
-  \]
-  we have
-  \[
-  [\Gamma]=[g][r^2]=LT^{-2}\times L^2=L^3T^{-2}
-  \]
+Using dimensions,
+\[
+[R]=L,\qquad [v]=LT^{-1},\qquad [g]=LT^{-2},\qquad [h]=L
+\]
+and \(\sin\theta\) and \(\cos\theta\) are dimensionless.
 
-  \item In
-  \[
-  v^2=u^2-2\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
-  \]
-  the dimensions of \(v^2\) and \(u^2\) are
-  \[
-  [v^2]=[u^2]=(LT^{-1})^2=L^2T^{-2}
-  \]
-  Also,
-  \[
-  \left[\frac{1}{R}\right]=\left[\frac{1}{r}\right]=L^{-1}
-  \]
-  so
-  \[
-  \left[\left(\frac{1}{R}-\frac{1}{r}\right)\right]=L^{-1}
-  \]
-  Since \(2\) is dimensionless,
-  \[
-  \left[2\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)\right]=[\Gamma]L^{-1}=L^3T^{-2}\times L^{-1}=L^2T^{-2}
-  \]
-  Therefore every term in the equation has dimensions \(L^2T^{-2}\), so the equation is dimensionally consistent.
+First look at the expression inside the square root. Since terms being added must have the same dimensions,
+\[
+[v^\delta\sin^2\theta]=[2gh]
+\]
+Now
+\[
+[2gh]=[g][h]=(LT^{-2})(L)=L^2T^{-2}
+\]
+So
+\[
+(LT^{-1})^\delta=L^2T^{-2}
+\]
+Comparing powers of \(L\) and \(T\),
+\[
+\delta=2
+\]
+Hence the whole square-root term has dimensions
+\[
+\sqrt{L^2T^{-2}}=LT^{-1}
+\]
+Therefore \(v^\gamma\sin\theta\) must also have dimensions \(LT^{-1}\), so
+\[
+(LT^{-1})^\gamma=LT^{-1}
+\]
+which gives
+\[
+\gamma=1
+\]
 
-  \item Using
-  \[
-  W=m\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
-  \]
-  with
-  \[
-  [m]=M,\qquad [\Gamma]=L^3T^{-2},\qquad \left[\left(\frac{1}{R}-\frac{1}{r}\right)\right]=L^{-1}
-  \]
-  gives
-  \[
-  [W]=M\times L^3T^{-2}\times L^{-1}=ML^2T^{-2}
-  \]
-  Its SI units are
-  \[
-  \mathrm{kg\,m^2\,s^{-2}}
-  \]
-  which is the joule, \(\mathrm{J}\).
-\end{enumerate}
+Now the bracket
+\[
+v^\gamma\sin\theta+\sqrt{v^\delta\sin^2\theta+2gh}
+\]
+has dimensions \(LT^{-1}\). So
+\begin{align*}
+[R]
+&=\left[\frac{v^\alpha\cos\theta}{g^\beta}\right]\left[ v^\gamma\sin\theta+\sqrt{v^\delta\sin^2\theta+2gh}\right] \\
+L
+&=\frac{(LT^{-1})^\alpha}{(LT^{-2})^\beta}(LT^{-1}) \\
+&=L^{\alpha-\beta+1}T^{-\alpha+2\beta-1}
+\end{align*}
+Comparing powers with \(L^1T^0\),
+\[
+\alpha-\beta+1=1,\qquad -\alpha+2\beta-1=0
+\]
+From the first equation,
+\[
+\alpha=\beta
+\]
+Substitute into the second:
+\[
+-\beta+2\beta-1=0
+\]
+so
+\[
+\beta=1
+\]
+and therefore
+\[
+\alpha=1
+\]
+
+So the values are
+\[
+\alpha=1,\qquad \beta=1,\qquad \gamma=1,\qquad \delta=2
+\]
 \end{djsSolution}
 
 
