@@ -5,7 +5,7 @@
 \djsSitePath{Further Mechanics}{Work, Energy and Power}
 \djsMechanicsPack
 
-\djsLastUpdated{10 October 2026}
+\djsLastUpdated{11 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -19,6 +19,372 @@
 % ---- Question 1 ----
 \questionitem
 % [Source: _QBT___Solns___Power_and_Driving_Force_, Q1]
+
+A maintenance train has mass $10\,000\,\mathrm{kg}$ and the maximum power of its engine is $200\,\mathrm{kW}$. In a model of the train's motion, it is assumed that while the train is moving the total resistance to motion is constant. \\
+
+On a straight horizontal track, the greatest constant speed that the train can maintain when the engine is working at maximum power is $20\,\mathrm{m\,s^{-1}}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the resistance to motion. \marks{2} \\
+  \item While the train is still on horizontal track, the engine is delivering $60\,\mathrm{kW}$ when the speed of the train is $8\,\mathrm{m\,s^{-1}}$. \\
+  Find the acceleration of the train at this instant. \marks{2} \\
+  \item The train then climbs a straight track inclined at an angle $\theta$ above the horizontal. When the engine is working at maximum power, the greatest constant speed that the train can maintain is $10\,\mathrm{m\,s^{-1}}$. \\
+  Determine the value of $\theta$. \marks{3} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item At the greatest constant speed on horizontal track, the train has zero acceleration, so the resultant force is zero. Hence the tractive force equals the resistance, say $R$.
+
+Using $P=Fv$,
+\[
+200\,000 = R \times 20
+\]
+so
+\[
+R = 10\,000\ \mathrm{N}
+\]
+
+So the resistance to motion is $10\,000\ \mathrm{N}$.
+
+  \item When the power is $60\,\mathrm{kW}$ and the speed is $8\,\mathrm{m\,s^{-1}}$, the tractive force is
+\[
+F=\frac{P}{v}=\frac{60\,000}{8}=7500\ \mathrm{N}
+\]
+
+So the resultant forward force is
+\[
+7500-10\,000=-2500\ \mathrm{N}
+\]
+
+Using $F=ma$,
+\[
+a=\frac{-2500}{10\,000}=-0.25\ \mathrm{m\,s^{-2}}
+\]
+
+So the acceleration is $-0.25\ \mathrm{m\,s^{-2}}$.
+
+  \item On the incline, at the greatest constant speed $10\,\mathrm{m\,s^{-1}}$, the train again has zero acceleration, so the tractive force balances the resistance and the component of weight down the slope.
+
+At maximum power,
+\[
+F=\frac{P}{v}=\frac{200\,000}{10}=20\,000\ \mathrm{N}
+\]
+
+The forces opposing the motion are
+\[
+R + mg\sin\theta = 10\,000 + 10\,000\times 9.8\sin\theta
+\]
+
+So
+\[
+20\,000 = 10\,000 + 10\,000\times 9.8\sin\theta
+\]
+\[
+10\,000 = 98\,000\sin\theta
+\]
+\[
+\sin\theta = \frac{10\,000}{98\,000}=\frac{5}{49}
+\]
+
+Therefore
+\[
+\theta=\sin^{-1}\left(\frac{5}{49}\right)\approx 5.86^\circ
+\]
+\end{enumerate}
+\par\medskip\noindent\textbf{Final answers with \(g = 10\):} (c) \(\sin^{-1}(0.1)\approx 5.74^\circ\)
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT___Solns___Power_and_Driving_Force_, Q2]
+
+A lorry of mass $2400\,\mathrm{kg}$ is towing a trailer of mass $600\,\mathrm{kg}$ up a straight road inclined at an angle $\theta$ to the horizontal, where $\sin\theta=\dfrac{1}{49}$. \\
+
+When the lorry and trailer move at speed $v\,\mathrm{m\,s^{-1}}$, the total resistance to motion has magnitude $(300+60v)\,\mathrm{N}$. \\
+
+The greatest constant speed that the lorry and trailer can maintain on this hill is $15\,\mathrm{m\,s^{-1}}$. \\
+
+Find the maximum power output of the lorry's engine. \\
+
+Fully justify your answer. \marks{5} \\
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+For the lorry and trailer together, the total mass is
+\[
+2400+600=3000\text{ kg}
+\]
+
+The component of the total weight acting down the slope is
+\[
+3000g\sin\theta=3000\times 9.8\times \frac{1}{49}=600\text{ N}
+\]
+
+When the speed is \(v\,\mathrm{m\,s^{-1}}\), the given resistance to motion is \((300+60v)\,\mathrm{N}\), so the total opposing force is
+\[
+600+(300+60v)=(900+60v)\text{ N}
+\]
+
+At constant speed, the resultant force is zero, so the engine's driving force must be \((900+60v)\text{ N}\).
+
+Using
+\[
+\text{power}=\text{force}\times\text{speed}
+\]
+the power needed to maintain speed \(v\) is
+\[
+P(v)=v(900+60v)=900v+60v^2
+\]
+
+Now justify why we can use \(v=15\). Differentiate:
+\[
+\frac{\mathrm{d}P}{\mathrm{d}v}=900+120v
+\]
+
+For all relevant speeds \(v\ge 0\),
+\[
+900+120v>0
+\]
+
+So \(P(v)\) increases as \(v\) increases. Therefore the greatest constant speed that can be maintained, \(15\,\mathrm{m\,s^{-1}}\), must occur when the engine is producing its maximum power.
+
+Hence
+\[
+P_{\max}=P(15)=15(900+60\times 15)=15(1800)=27\,000\text{ W}
+\]
+
+So the maximum power output of the lorry's engine is \(27\,000\text{ W}=27\text{ kW}\).
+\par\medskip\noindent\textbf{Final answers with \(g = 10\):} \(27\,200\,\mathrm{W}\)
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT___Solns___Power_and_Driving_Force_, Q3]
+
+An airport tug of mass $1800\,\mathrm{kg}$ has an engine that can deliver a maximum power of $72\,\mathrm{kW}$. \\
+
+In an initial model of the motion of the tug, the total resistance to motion is assumed to be constant. \\
+
+\begin{enumerate}[label=(\roman*)]
+  \item Given that the greatest steady speed of the tug on a straight horizontal runway is $18\,\mathrm{m\,s^{-1}}$, find the magnitude of the resistance force. \marks{2} \\
+  \item The tug is connected to a small aircraft of mass $2200\,\mathrm{kg}$ by a light rigid horizontal tow bar. The greatest steady speed of the tug and aircraft on the runway is now $12\,\mathrm{m\,s^{-1}}$. The resistance to motion of the aircraft may also be assumed constant. \\
+
+  Find the magnitude of the resistance force on the aircraft. \marks{2} \\
+  \item The tug and aircraft again travel along the runway. At one instant their speed is $10\,\mathrm{m\,s^{-1}}$ and their acceleration is $0.25\,\mathrm{m\,s^{-2}}$. \\
+
+  \begin{enumerate}[label=(\alph*)]
+    \item Find the power of the engine of the tug at this instant. \marks{4}
+    \item Find the magnitude of the force in the tow bar at this instant. \marks{2}\\
+  \end{enumerate}
+  \item In a refined model of the motion of the tug and aircraft, the resistance to motion of each is assumed to be zero until they reach a speed of $6\,\mathrm{m\,s^{-1}}$. When the speed is $6\,\mathrm{m\,s^{-1}}$ or above, the same constant resistance forces as in the first model are assumed to apply to each. \\
+
+  The tug and aircraft start from rest on the runway and accelerate, using maximum power. \\
+
+  Without carrying out any further calculations,
+  \begin{enumerate}[label=(\alph*)]
+    \item explain whether the time taken to attain a speed of $10\,\mathrm{m\,s^{-1}}$ would be predicted to be lower, the same or higher using the refined model compared with the original model. \marks{2}
+    \item explain whether the greatest steady speed of the system would be predicted to be lower, the same or higher using the refined model compared with the original model. \marks{2}
+  \end{enumerate}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\roman*)}, start=1]
+  \item At greatest steady speed on a horizontal runway, the acceleration is zero, so the driving force equals the resistance.
+
+  Using
+  \[
+  P = Fv
+  \]
+  gives
+  \[
+  R_{\text{tug}} = \frac{72\,000}{18} = 4000\,\mathrm{N}
+  \]
+  Hence the resistance force on the tug is \(4000\,\mathrm{N}\).
+
+  \item For the tug and aircraft together, at the greatest steady speed the total driving force equals the total resistance.
+
+  So
+  \[
+  R_{\text{total}} = \frac{72\,000}{12} = 6000\,\mathrm{N}
+  \]
+  Therefore the resistance on the aircraft is
+  \[
+  R_{\text{aircraft}} = 6000 - 4000 = 2000\,\mathrm{N}
+  \]
+  Hence the resistance force on the aircraft is \(2000\,\mathrm{N}\).
+
+  \item
+  \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+    \item The total mass is
+    \[
+    1800 + 2200 = 4000\,\mathrm{kg}
+    \]
+    So the resultant force is
+    \[
+    ma = 4000 \times 0.25 = 1000\,\mathrm{N}
+    \]
+    The total resistance is
+    \[
+    4000 + 2000 = 6000\,\mathrm{N}
+    \]
+    Hence the driving force of the engine is
+    \[
+    1000 + 6000 = 7000\,\mathrm{N}
+    \]
+    Therefore the power at this instant is
+    \[
+    P = Fv = 7000 \times 10 = 70\,000\,\mathrm{W} = 70\,\mathrm{kW}
+    \]
+    So the power of the engine is \(70\,\mathrm{kW}\).
+
+    \item Let the force in the tow bar be \(T\).
+
+    Considering the aircraft alone,
+    \[
+    T - 2000 = 2200 \times 0.25
+    \]
+    so
+    \begin{align*}
+    T - 2000 &= 550 \\
+    T &= 2550
+    \end{align*}
+    So the magnitude of the force in the tow bar is \(2550\,\mathrm{N}\).
+  \end{enumerate}
+
+  \item
+  \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+    \item The time would be \emph{lower}.
+
+    In the refined model, there is no resistance until the speed reaches \(6\,\mathrm{m\,s^{-1}}\). So below \(6\,\mathrm{m\,s^{-1}}\), the resultant force is greater than in the original model, and hence the acceleration is greater.
+
+    From \(6\) to \(10\,\mathrm{m\,s^{-1}}\), both models are the same. Therefore the refined model predicts a smaller time to reach \(10\,\mathrm{m\,s^{-1}}\).
+
+    \item The greatest steady speed would be \emph{the same}.
+
+    From part (ii), the greatest steady speed of the system is \(12\,\mathrm{m\,s^{-1}}\), which is above \(6\,\mathrm{m\,s^{-1}}\). So at that speed, both models use the same resistance forces. Since the maximum engine power is also the same, the predicted greatest steady speed is unchanged.
+  \end{enumerate}
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT___Solns___Power_and_Driving_Force_, Q4]
+
+A van of mass $1000\,\mathrm{kg}$ is driven up a straight road inclined at an angle $\alpha$ to the horizontal, where $\sin\alpha=\dfrac{1}{20}$. The engine is working at a constant rate of $12\,\mathrm{kW}$ and the van moves at a constant speed of $15\,\mathrm{m\,s^{-1}}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the resistance to the motion of the van. \marks{4} \\
+  \item The van now tows a trailer of mass $600\,\mathrm{kg}$ up the same road using a tow rope parallel to the line of motion. The resistance to the motion of the van is the same as in part (a), and the resistance to the motion of the trailer is a constant force of magnitude $106\,\mathrm{N}$. \\
+
+  The engine is still working at a constant rate of $12\,\mathrm{kW}$. \\
+
+  The tow rope is modelled as light and inextensible. \\
+
+  Using the model, find the tension in the tow rope at the instant when the speed of the van is $7.5\,\mathrm{m\,s^{-1}}$. \marks{5} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item Let the resistance to the motion of the van be \(R\,\mathrm{N}\).
+
+  The engine power is \(12\,\mathrm{kW}=12\,000\,\mathrm{W}\). Using
+  \[
+  P=Fv
+  \]
+  gives the driving force:
+  \[
+  12\,000=F\times 15
+  \]
+  \[
+  F=800\,\mathrm{N}
+  \]
+
+  The van moves at constant speed, so its acceleration is zero. Hence the resultant force along the slope is zero.
+
+  Taking up the slope as positive,
+  \[
+  800=R+1000\times 9.8\times \frac{1}{20}
+  \]
+  \[
+  800=R+490
+  \]
+  \[
+  R=310
+  \]
+
+  So the resistance to the motion of the van is \(310\,\mathrm{N}\).
+
+  \item When the speed is \(7.5\,\mathrm{m\,s^{-1}}\), the engine is still working at \(12\,000\,\mathrm{W}\), so the driving force is
+  \[
+  F=\frac{P}{v}=\frac{12\,000}{7.5}=1600\,\mathrm{N}
+  \]
+
+  First consider the van and trailer together as one system.
+
+  Their total mass is
+  \[
+  1000+600=1600\,\mathrm{kg}
+  \]
+
+  The total force opposing the motion up the slope is
+  \[
+  310+106+1600\times 9.8\times \frac{1}{20}
+  \]
+  \[
+  =310+106+784=1200\,\mathrm{N}
+  \]
+
+  So the resultant force up the slope is
+  \[
+  1600-1200=400\,\mathrm{N}
+  \]
+
+  Hence the acceleration is
+  \[
+  a=\frac{400}{1600}=0.25\,\mathrm{m\,s^{-2}}
+  \]
+
+  The tow rope is light and inextensible, so the trailer has the same acceleration.
+
+  Now consider the trailer alone. Taking up the slope as positive,
+  \[
+  T-106-600\times 9.8\times \frac{1}{20}=600\times 0.25
+  \]
+  \[
+  T-106-294=150
+  \]
+  \[
+  T=550
+  \]
+
+  So the tension in the tow rope is \(550\,\mathrm{N}\).
+\end{enumerate}
+\par\medskip\noindent\textbf{Final answers with \(g = 10\):} (a) \(300\,\mathrm{N}\);\quad (b) \(554\,\mathrm{N}\)
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT___Solns___Power_and_Driving_Force_, Q5]
 
 A delivery van of mass $2000\,\mathrm{kg}$ is travelling up a straight road inclined at angle $\alpha$ to the horizontal, where $\sin\alpha=0.05$. \\
 
@@ -106,9 +472,9 @@ Hence the maximum possible acceleration of the van is $0.602\,\mathrm{m\,s^{-2}}
 
 \newpage
 
-% ---- Question 2 ----
+% ---- Question 6 ----
 \questionitem
-% [Source: _QBT___Solns___Power_and_Driving_Force_, Q2]
+% [Source: _QBT___Solns___Power_and_Driving_Force_, Q6]
 
 A delivery van has mass $1300\,\mathrm{kg}$ and travels on a straight horizontal road. \\
 
@@ -217,9 +583,9 @@ So the constant-power model is reasonable at higher speeds, but not at low speed
 
 \newpage
 
-% ---- Question 3 ----
+% ---- Question 7 ----
 \questionitem
-% [Source: _QBT___Solns___Power_and_Driving_Force_, Q3]
+% [Source: _QBT___Solns___Power_and_Driving_Force_, Q7]
 
 A maintenance vehicle of mass $1000\,\mathrm{kg}$ moves on a straight slope inclined at an angle $\theta$ to the horizontal, where $\sin\theta=0.08$. When the motor is switched off, the vehicle coasts down the slope and reaches a limiting speed of $14\,\mathrm{m\,s^{-1}}$. The resistance to motion is proportional to the square of the speed. The motor is then switched on and works at a constant power $P\,\mathrm{W}$, allowing the vehicle to travel up the same slope with a limiting speed of $10\,\mathrm{m\,s^{-1}}$. \\
 
@@ -309,9 +675,9 @@ Therefore, the motor power is \(11\,840\,\mathrm{W}\) \((11.84\,\mathrm{kW})\), 
 
 \newpage
 
-% ---- Question 4 ----
+% ---- Question 8 ----
 \questionitem
-% [Source: _QBT___Solns___Power_and_Driving_Force_, Q4]
+% [Source: _QBT___Solns___Power_and_Driving_Force_, Q8]
 
 \begin{figure}[H]
     \centering
@@ -438,123 +804,9 @@ Therefore, the force in the towbar is $150\,\mathrm{N}$, in compression.
 
 \newpage
 
-% ---- Question 5 ----
+% ---- Question 9 ----
 \questionitem
-% [Source: _QBT___Solns___Power_and_Driving_Force_, Q5]
-
-An airport tug of mass $1800\,\mathrm{kg}$ has an engine that can deliver a maximum power of $72\,\mathrm{kW}$. \\
-
-In an initial model of the motion of the tug, the total resistance to motion is assumed to be constant. \\
-
-\begin{enumerate}[label=(\roman*)]
-  \item Given that the greatest steady speed of the tug on a straight horizontal runway is $18\,\mathrm{m\,s^{-1}}$, find the magnitude of the resistance force. \marks{2} \\
-  \item The tug is connected to a small aircraft of mass $2200\,\mathrm{kg}$ by a light rigid horizontal tow bar. The greatest steady speed of the tug and aircraft on the runway is now $12\,\mathrm{m\,s^{-1}}$. The resistance to motion of the aircraft may also be assumed constant. \\
-
-  Find the magnitude of the resistance force on the aircraft. \marks{2} \\
-  \item The tug and aircraft again travel along the runway. At one instant their speed is $10\,\mathrm{m\,s^{-1}}$ and their acceleration is $0.25\,\mathrm{m\,s^{-2}}$. \\
-
-  \begin{enumerate}[label=(\alph*)]
-    \item Find the power of the engine of the tug at this instant. \marks{4}
-    \item Find the magnitude of the force in the tow bar at this instant. \marks{2}\\
-  \end{enumerate}
-  \item In a refined model of the motion of the tug and aircraft, the resistance to motion of each is assumed to be zero until they reach a speed of $6\,\mathrm{m\,s^{-1}}$. When the speed is $6\,\mathrm{m\,s^{-1}}$ or above, the same constant resistance forces as in the first model are assumed to apply to each. \\
-
-  The tug and aircraft start from rest on the runway and accelerate, using maximum power. \\
-
-  Without carrying out any further calculations,
-  \begin{enumerate}[label=(\alph*)]
-    \item explain whether the time taken to attain a speed of $10\,\mathrm{m\,s^{-1}}$ would be predicted to be lower, the same or higher using the refined model compared with the original model. \marks{2}
-    \item explain whether the greatest steady speed of the system would be predicted to be lower, the same or higher using the refined model compared with the original model. \marks{2}
-  \end{enumerate}
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\roman*)}, start=1]
-  \item At greatest steady speed on a horizontal runway, the acceleration is zero, so the driving force equals the resistance.
-
-  Using
-  \[
-  P = Fv
-  \]
-  gives
-  \[
-  R_{\text{tug}} = \frac{72\,000}{18} = 4000\,\mathrm{N}
-  \]
-  Hence the resistance force on the tug is \(4000\,\mathrm{N}\).
-
-  \item For the tug and aircraft together, at the greatest steady speed the total driving force equals the total resistance.
-
-  So
-  \[
-  R_{\text{total}} = \frac{72\,000}{12} = 6000\,\mathrm{N}
-  \]
-  Therefore the resistance on the aircraft is
-  \[
-  R_{\text{aircraft}} = 6000 - 4000 = 2000\,\mathrm{N}
-  \]
-  Hence the resistance force on the aircraft is \(2000\,\mathrm{N}\).
-
-  \item
-  \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-    \item The total mass is
-    \[
-    1800 + 2200 = 4000\,\mathrm{kg}
-    \]
-    So the resultant force is
-    \[
-    ma = 4000 \times 0.25 = 1000\,\mathrm{N}
-    \]
-    The total resistance is
-    \[
-    4000 + 2000 = 6000\,\mathrm{N}
-    \]
-    Hence the driving force of the engine is
-    \[
-    1000 + 6000 = 7000\,\mathrm{N}
-    \]
-    Therefore the power at this instant is
-    \[
-    P = Fv = 7000 \times 10 = 70\,000\,\mathrm{W} = 70\,\mathrm{kW}
-    \]
-    So the power of the engine is \(70\,\mathrm{kW}\).
-
-    \item Let the force in the tow bar be \(T\).
-
-    Considering the aircraft alone,
-    \[
-    T - 2000 = 2200 \times 0.25
-    \]
-    so
-    \begin{align*}
-    T - 2000 &= 550 \\
-    T &= 2550
-    \end{align*}
-    So the magnitude of the force in the tow bar is \(2550\,\mathrm{N}\).
-  \end{enumerate}
-
-  \item
-  \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-    \item The time would be \emph{lower}.
-
-    In the refined model, there is no resistance until the speed reaches \(6\,\mathrm{m\,s^{-1}}\). So below \(6\,\mathrm{m\,s^{-1}}\), the resultant force is greater than in the original model, and hence the acceleration is greater.
-
-    From \(6\) to \(10\,\mathrm{m\,s^{-1}}\), both models are the same. Therefore the refined model predicts a smaller time to reach \(10\,\mathrm{m\,s^{-1}}\).
-
-    \item The greatest steady speed would be \emph{the same}.
-
-    From part (ii), the greatest steady speed of the system is \(12\,\mathrm{m\,s^{-1}}\), which is above \(6\,\mathrm{m\,s^{-1}}\). So at that speed, both models use the same resistance forces. Since the maximum engine power is also the same, the predicted greatest steady speed is unchanged.
-  \end{enumerate}
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 6 ----
-\questionitem
-% [Source: _QBT___Solns___Power_and_Driving_Force_, Q6]
+% [Source: _QBT___Solns___Power_and_Driving_Force_, Q9]
 
 A snowmobile of mass $800\,\mathrm{kg}$ tows a rescue sledge of mass $200\,\mathrm{kg}$ up a straight slope that is inclined at angle $\theta$ to the horizontal. The sledge is attached to the snowmobile by a light inextensible rope. The resistance to the motion of the snowmobile from non-gravitational forces is modelled as a constant force of magnitude $216\,\mathrm{N}$. The resistance to the motion of the sledge from non-gravitational forces is modelled as a constant force of magnitude $294\,\mathrm{N}$. \\
 
@@ -651,9 +903,9 @@ When the engine of the snowmobile is working at a constant rate of $12\,\mathrm{
 
 \newpage
 
-% ---- Question 7 ----
+% ---- Question 10 ----
 \questionitem
-% [Source: _QBT___Solns___Power_and_Driving_Force_, Q7]
+% [Source: _QBT___Solns___Power_and_Driving_Force_, Q10]
 
 A lorry of mass $3200\,\mathrm{kg}$ tows a trailer of mass $1800\,\mathrm{kg}$ down a line of greatest slope of a straight road inclined at an angle $\theta$ to the horizontal, where $\sin\theta=0.06$. \\
 
@@ -761,9 +1013,9 @@ The power developed by the lorry's engine is constant. The resistances to motion
 
 \newpage
 
-% ---- Question 8 ----
+% ---- Question 11 ----
 \questionitem
-% [Source: _QBT___Solns___Power_and_Driving_Force_, Q8]
+% [Source: _QBT___Solns___Power_and_Driving_Force_, Q11]
 
 A lorry of mass $2500\,\mathrm{kg}$ travels up a straight road inclined at an angle $\alpha$ to the horizontal, where $\tan\alpha=\dfrac{7}{24}$. \\
 
@@ -834,258 +1086,6 @@ Therefore,
 P=1.80\times 10^5\text{ W},\qquad R=2140\text{ N}
 \]
 \par\medskip\noindent\textbf{Final answers with \(g = 10\):} \(R = 2000\,\mathrm{N}\)
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 9 ----
-\questionitem
-% [Source: _QBT___Solns___Power_and_Driving_Force_, Q9]
-
-A van of mass $1000\,\mathrm{kg}$ is driven up a straight road inclined at an angle $\alpha$ to the horizontal, where $\sin\alpha=\dfrac{1}{20}$. The engine is working at a constant rate of $12\,\mathrm{kW}$ and the van moves at a constant speed of $15\,\mathrm{m\,s^{-1}}$. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find the resistance to the motion of the van. \marks{4} \\
-  \item The van now tows a trailer of mass $600\,\mathrm{kg}$ up the same road using a tow rope parallel to the line of motion. The resistance to the motion of the van is the same as in part (a), and the resistance to the motion of the trailer is a constant force of magnitude $106\,\mathrm{N}$. \\
-
-  The engine is still working at a constant rate of $12\,\mathrm{kW}$. \\
-
-  The tow rope is modelled as light and inextensible. \\
-
-  Using the model, find the tension in the tow rope at the instant when the speed of the van is $7.5\,\mathrm{m\,s^{-1}}$. \marks{5} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-  \item Let the resistance to the motion of the van be \(R\,\mathrm{N}\).
-
-  The engine power is \(12\,\mathrm{kW}=12\,000\,\mathrm{W}\). Using
-  \[
-  P=Fv
-  \]
-  gives the driving force:
-  \[
-  12\,000=F\times 15
-  \]
-  \[
-  F=800\,\mathrm{N}
-  \]
-
-  The van moves at constant speed, so its acceleration is zero. Hence the resultant force along the slope is zero.
-
-  Taking up the slope as positive,
-  \[
-  800=R+1000\times 9.8\times \frac{1}{20}
-  \]
-  \[
-  800=R+490
-  \]
-  \[
-  R=310
-  \]
-
-  So the resistance to the motion of the van is \(310\,\mathrm{N}\).
-
-  \item When the speed is \(7.5\,\mathrm{m\,s^{-1}}\), the engine is still working at \(12\,000\,\mathrm{W}\), so the driving force is
-  \[
-  F=\frac{P}{v}=\frac{12\,000}{7.5}=1600\,\mathrm{N}
-  \]
-
-  First consider the van and trailer together as one system.
-
-  Their total mass is
-  \[
-  1000+600=1600\,\mathrm{kg}
-  \]
-
-  The total force opposing the motion up the slope is
-  \[
-  310+106+1600\times 9.8\times \frac{1}{20}
-  \]
-  \[
-  =310+106+784=1200\,\mathrm{N}
-  \]
-
-  So the resultant force up the slope is
-  \[
-  1600-1200=400\,\mathrm{N}
-  \]
-
-  Hence the acceleration is
-  \[
-  a=\frac{400}{1600}=0.25\,\mathrm{m\,s^{-2}}
-  \]
-
-  The tow rope is light and inextensible, so the trailer has the same acceleration.
-
-  Now consider the trailer alone. Taking up the slope as positive,
-  \[
-  T-106-600\times 9.8\times \frac{1}{20}=600\times 0.25
-  \]
-  \[
-  T-106-294=150
-  \]
-  \[
-  T=550
-  \]
-
-  So the tension in the tow rope is \(550\,\mathrm{N}\).
-\end{enumerate}
-\par\medskip\noindent\textbf{Final answers with \(g = 10\):} (a) \(300\,\mathrm{N}\);\quad (b) \(554\,\mathrm{N}\)
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 10 ----
-\questionitem
-% [Source: _QBT___Solns___Power_and_Driving_Force_, Q10]
-
-A lorry of mass $2400\,\mathrm{kg}$ is towing a trailer of mass $600\,\mathrm{kg}$ up a straight road inclined at an angle $\theta$ to the horizontal, where $\sin\theta=\dfrac{1}{49}$. \\
-
-When the lorry and trailer move at speed $v\,\mathrm{m\,s^{-1}}$, the total resistance to motion has magnitude $(300+60v)\,\mathrm{N}$. \\
-
-The greatest constant speed that the lorry and trailer can maintain on this hill is $15\,\mathrm{m\,s^{-1}}$. \\
-
-Find the maximum power output of the lorry's engine. \\
-
-Fully justify your answer. \marks{5} \\
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-For the lorry and trailer together, the total mass is
-\[
-2400+600=3000\text{ kg}
-\]
-
-The component of the total weight acting down the slope is
-\[
-3000g\sin\theta=3000\times 9.8\times \frac{1}{49}=600\text{ N}
-\]
-
-When the speed is \(v\,\mathrm{m\,s^{-1}}\), the given resistance to motion is \((300+60v)\,\mathrm{N}\), so the total opposing force is
-\[
-600+(300+60v)=(900+60v)\text{ N}
-\]
-
-At constant speed, the resultant force is zero, so the engine's driving force must be \((900+60v)\text{ N}\).
-
-Using
-\[
-\text{power}=\text{force}\times\text{speed}
-\]
-the power needed to maintain speed \(v\) is
-\[
-P(v)=v(900+60v)=900v+60v^2
-\]
-
-Now justify why we can use \(v=15\). Differentiate:
-\[
-\frac{\mathrm{d}P}{\mathrm{d}v}=900+120v
-\]
-
-For all relevant speeds \(v\ge 0\),
-\[
-900+120v>0
-\]
-
-So \(P(v)\) increases as \(v\) increases. Therefore the greatest constant speed that can be maintained, \(15\,\mathrm{m\,s^{-1}}\), must occur when the engine is producing its maximum power.
-
-Hence
-\[
-P_{\max}=P(15)=15(900+60\times 15)=15(1800)=27\,000\text{ W}
-\]
-
-So the maximum power output of the lorry's engine is \(27\,000\text{ W}=27\text{ kW}\).
-\par\medskip\noindent\textbf{Final answers with \(g = 10\):} \(27\,200\,\mathrm{W}\)
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 11 ----
-\questionitem
-% [Source: _QBT___Solns___Power_and_Driving_Force_, Q11]
-
-A maintenance train has mass $10\,000\,\mathrm{kg}$ and the maximum power of its engine is $200\,\mathrm{kW}$. In a model of the train's motion, it is assumed that while the train is moving the total resistance to motion is constant. \\
-
-On a straight horizontal track, the greatest constant speed that the train can maintain when the engine is working at maximum power is $20\,\mathrm{m\,s^{-1}}$. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find the resistance to motion. \marks{2} \\
-  \item While the train is still on horizontal track, the engine is delivering $60\,\mathrm{kW}$ when the speed of the train is $8\,\mathrm{m\,s^{-1}}$. \\
-  Find the acceleration of the train at this instant. \marks{2} \\
-  \item The train then climbs a straight track inclined at an angle $\theta$ above the horizontal. When the engine is working at maximum power, the greatest constant speed that the train can maintain is $10\,\mathrm{m\,s^{-1}}$. \\
-  Determine the value of $\theta$. \marks{3} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-  \item At the greatest constant speed on horizontal track, the train has zero acceleration, so the resultant force is zero. Hence the tractive force equals the resistance, say $R$.
-
-Using $P=Fv$,
-\[
-200\,000 = R \times 20
-\]
-so
-\[
-R = 10\,000\ \mathrm{N}
-\]
-
-So the resistance to motion is $10\,000\ \mathrm{N}$.
-
-  \item When the power is $60\,\mathrm{kW}$ and the speed is $8\,\mathrm{m\,s^{-1}}$, the tractive force is
-\[
-F=\frac{P}{v}=\frac{60\,000}{8}=7500\ \mathrm{N}
-\]
-
-So the resultant forward force is
-\[
-7500-10\,000=-2500\ \mathrm{N}
-\]
-
-Using $F=ma$,
-\[
-a=\frac{-2500}{10\,000}=-0.25\ \mathrm{m\,s^{-2}}
-\]
-
-So the acceleration is $-0.25\ \mathrm{m\,s^{-2}}$.
-
-  \item On the incline, at the greatest constant speed $10\,\mathrm{m\,s^{-1}}$, the train again has zero acceleration, so the tractive force balances the resistance and the component of weight down the slope.
-
-At maximum power,
-\[
-F=\frac{P}{v}=\frac{200\,000}{10}=20\,000\ \mathrm{N}
-\]
-
-The forces opposing the motion are
-\[
-R + mg\sin\theta = 10\,000 + 10\,000\times 9.8\sin\theta
-\]
-
-So
-\[
-20\,000 = 10\,000 + 10\,000\times 9.8\sin\theta
-\]
-\[
-10\,000 = 98\,000\sin\theta
-\]
-\[
-\sin\theta = \frac{10\,000}{98\,000}=\frac{5}{49}
-\]
-
-Therefore
-\[
-\theta=\sin^{-1}\left(\frac{5}{49}\right)\approx 5.86^\circ
-\]
-\end{enumerate}
-\par\medskip\noindent\textbf{Final answers with \(g = 10\):} (c) \(\sin^{-1}(0.1)\approx 5.74^\circ\)
 \end{djsSolution}
 
 
