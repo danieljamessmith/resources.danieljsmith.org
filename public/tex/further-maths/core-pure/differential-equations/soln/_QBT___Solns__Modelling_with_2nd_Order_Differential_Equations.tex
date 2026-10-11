@@ -4,7 +4,7 @@
 \djsSolnHeader{Modelling with 2nd Order Differential Equations}
 \djsSitePath{Core Pure}{Differential Equations}
 
-\djsLastUpdated{10 October 2026}
+\djsLastUpdated{11 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -19,61 +19,22 @@
 \questionitem
 % [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q1]
 
-\begin{figure}[H]
-    \centering
-\begin{tikzpicture}[scale=1.3]
-\def\wallx{-3.2}
-\def\eqx{1.1}
-\def\disp{0.9}
-\def\bw{1.2}
-\def\bh{0.8}
-\pgfmathsetmacro{\midy}{\bh/2}
-\pgfmathsetmacro{\cx}{\eqx+\disp}
-\pgfmathsetmacro{\leftx}{\cx-\bw/2}
-\pgfmathsetmacro{\rightx}{\cx+\bw/2}
-\pgfmathsetmacro{\lead}{0.35}
-\pgfmathsetmacro{\amp}{0.18}
-\pgfmathsetmacro{\coilstart}{\wallx+\lead}
-\pgfmathsetmacro{\coilend}{\leftx-\lead}
-\pgfmathsetmacro{\step}{(\coilend-\coilstart)/8}
-\pgfmathsetmacro{\arrowy}{\bh+0.3}
-\pgfmathsetmacro{\marktop}{\bh+0.55}
+The vertical displacement of the body of a car from its steady running height is measured by $y$ metres, where $y$ is positive upwards. The body can move above or below this level, so $y$ can take positive and negative values. After the car leaves a speed hump, the body is momentarily above its steady running height and at rest at time $t=0$. \\
 
-\fill[pattern=north east lines] (\wallx-0.3,0) rectangle (\wallx,1.2);
-\draw[thick] (\wallx,0) -- (\wallx,1.2);
-\draw[thick] (\wallx,0) -- (4.3,0);
+A proposed model for the subsequent motion, for $t\ge 0$, is
+\[
+4\frac{\mathrm{d}^2 y}{\mathrm{d} t^2}+p\frac{\mathrm{d} y}{\mathrm{d} t}+9y=0
+\]
+where $p$ is a constant and $p\ge 0$. \\
 
-\draw[thick] (\wallx,\midy) -- (\coilstart,\midy)
-  -- ++(\step,\amp) -- ++(\step,{-2*\amp}) -- ++(\step,{2*\amp})
-  -- ++(\step,{-2*\amp}) -- ++(\step,{2*\amp}) -- ++(\step,{-2*\amp})
-  -- ++(\step,{2*\amp}) -- ++(\step,{-\amp}) -- (\leftx,\midy);
-
-\draw[thick] (\leftx,0) rectangle (\rightx,\bh);
-\draw[dashed] (\eqx,-0.2) -- (\eqx,\marktop);
-\draw[-{Stealth[length=3mm]}, thick] (\eqx,\arrowy) -- (\cx,\arrowy) node[midway, above] {$x$};
-\end{tikzpicture}
-\end{figure}
-
-
-The horizontal displacement of a glider attached to a spring, shown in the diagram above, is modelled by the differential equation \\
-\[\frac{\mathrm{d}^2 x}{\mathrm{d} t^2}+16x=3\sin 4t\] \\
-where $x$ is the displacement, in metres, of the glider from its equilibrium position, $t$ seconds after the motion begins. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item
   \begin{enumerate}[label=(\roman*)]
-    \item Show that a particular solution of the differential equation is
-    \[
-    x=-\frac{3}{8} t \cos 4t
-    \] \marks[-20pt]{4}
-    \item Hence, find the general solution of the differential equation \marks{4} \\
+    \item According to the model, for what value of $p$ would the motion be simple harmonic? \marks{1}
+    \item Explain briefly why modelling the motion as simple harmonic is unlikely to be realistic for a car suspension \marks{1} \\
   \end{enumerate}
-\end{enumerate}
-Initially, the glider is $0.20\,\mathrm{m}$ to the right of equilibrium and is moving towards equilibrium at $0.50\,\mathrm{m\,s^{-1}}$. \\
-Given that $4$ seconds after the motion begins, the displacement of the glider is $\beta$ m, \\
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item determine, according to the model, the value of $\beta$ to $3$ significant figures \marks{4} \\
-  \item Given that the true value of $\beta$ is $0.46\,\mathrm{m}$, comment on the suitability of the model \marks{1} \\
-  \item Write down a differential equation for the glider if the periodic driving force is removed, so that the motion becomes simple harmonic \marks{1} \\
+  \item Find the range of values of $p$ for which the model predicts that the body of the car never goes below its steady running height \marks{2} \\
+  \item Sketch a possible graph of $y$ against $t$ when $p$ lies outside the range found in part (b) but the motion is not simple harmonic \marks{1} \\
 \end{enumerate}
 
 \vspace*{10pt}
@@ -82,143 +43,163 @@ Given that $4$ seconds after the motion begins, the displacement of the glider i
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item
   \begin{enumerate}[label=(\roman*)]
-    \item The corresponding homogeneous equation is
-    \[
-    \frac{\mathrm{d}^2x}{\mathrm{d}t^2}+16x=0
-    \]
-    whose solutions involve $\cos 4t$ and $\sin 4t$.
+    \item For simple harmonic motion there is no damping term, so the coefficient of $\dfrac{\mathrm{d}y}{\mathrm{d}t}$ must be zero.
 
-    Since the forcing term is $3\sin 4t$, the usual trial $A\cos 4t+B\sin 4t$ would duplicate the complementary function, so we try
     \[
-    x_p=t(A\cos 4t+B\sin 4t)
+    p=0
     \]
 
-    Differentiate:
-    \begin{align*}
-    \frac{\mathrm{d}x_p}{\mathrm{d}t}
-    &= (A\cos 4t+B\sin 4t)+t(-4A\sin 4t+4B\cos 4t) \\
-    &= A\cos 4t+B\sin 4t-4At\sin 4t+4Bt\cos 4t
-    \end{align*}
+    So the motion is simple harmonic when $p=0$.
 
-    Differentiate again:
-    \begin{align*}
-    \frac{\mathrm{d}^2x_p}{\mathrm{d}t^2}
-    &= -4A\sin 4t+4B\cos 4t-4A\sin 4t-16At\cos 4t+4B\cos 4t-16Bt\sin 4t \\
-    &= -8A\sin 4t+8B\cos 4t-16At\cos 4t-16Bt\sin 4t
-    \end{align*}
-
-    Substitute into the differential equation:
-    \begin{align*}
-    \frac{\mathrm{d}^2x_p}{\mathrm{d}t^2}+16x_p
-    &= \left(-8A\sin 4t+8B\cos 4t-16At\cos 4t-16Bt\sin 4t\right) \\
-    &\quad +16t(A\cos 4t+B\sin 4t) \\
-    &= -8A\sin 4t+8B\cos 4t
-    \end{align*}
-
-    For this to equal $3\sin 4t$, we compare coefficients:
-    \[
-    -8A=3,\qquad 8B=0
-    \]
-
-    Hence
-    \[
-    A=-\frac{3}{8},\qquad B=0
-    \]
-
-    So a particular solution is
-    \[
-    x_p=-\frac{3}{8}t\cos 4t
-    \]
-
-    \item The complementary function $x_c$ comes from
-    \[
-    \lambda^2+16=0
-    \]
-    so
-    \[
-    \lambda=\pm 4i
-    \]
-
-    Therefore
-    \[
-    x_c=C\cos 4t+D\sin 4t
-    \]
-
-    Hence the general solution is
-    \[
-    x=x_c+x_p=C\cos 4t+D\sin 4t-\frac{3}{8}t\cos 4t
-    \]
+    \item In a real car suspension there is damping, due to shock absorbers and friction, so energy is lost and the amplitude decreases with time. Pure simple harmonic motion would have constant amplitude, so it is unlikely to be realistic.
   \end{enumerate}
 
-  \item Using
+  \item Let
   \[
-  x=C\cos 4t+D\sin 4t-\frac{3}{8}t\cos 4t
+  y(0)=A \qquad \text{where } A>0
+  \]
+  since the body is above its steady running height at $t=0$. Also, it is at rest then, so
+  \[
+  \frac{\mathrm{d}y}{\mathrm{d}t}(0)=0
   \]
 
-  First use $x(0)=0.20$:
+  The auxiliary equation for
   \[
-  0.20=C\cos 0+D\sin 0-\frac{3}{8}(0)\cos 0
+  4\frac{\mathrm{d}^2y}{\mathrm{d}t^2}+p\frac{\mathrm{d}y}{\mathrm{d}t}+9y=0
+  \]
+  is
+  \[
+  4\lambda^2+p\lambda+9=0
+  \]
+
+  Its discriminant is
+  \[
+  \Delta=p^2-4(4)(9)=p^2-144
+  \]
+
+  We now consider cases.
+
+  If $0\le p<12$, then $\Delta<0$, so the roots are complex and the motion is oscillatory:
+  \[
+  y=e^{-pt/8}\left(C\cos \omega t+D\sin \omega t\right)
+  \]
+  where
+  \[
+  \omega=\frac{\sqrt{144-p^2}}{8}
+  \]
+
+  This can be written in the form
+  \[
+  y=Re^{-pt/8}\cos(\omega t-\alpha)
+  \]
+  which oscillates about $y=0$. Therefore $y$ takes both positive and negative values, so the body does go below its steady running height.
+
+  If $p=12$, then the auxiliary equation has a repeated root
+  \[
+  \lambda=-\frac{3}{2}
   \]
   so
   \[
-  C=0.20
+  y=(C+Dt)e^{-3t/2}
   \]
 
-  Differentiate $x$:
+  Using $y(0)=A$ gives
+  \[
+  C=A
+  \]
+
+  Differentiate:
   \begin{align*}
-  \frac{\mathrm{d}x}{\mathrm{d}t}
-  &= -4C\sin 4t+4D\cos 4t-\frac{3}{8}\cos 4t+\frac{3}{2}t\sin 4t
+  \frac{\mathrm{d}y}{\mathrm{d}t}
+  &=\left[D-\frac{3}{2}(C+Dt)\right]e^{-3t/2}
   \end{align*}
 
-  Initially the glider is to the right of equilibrium, and moving towards equilibrium, so its initial velocity is negative:
+  Now use $\dfrac{\mathrm{d}y}{\mathrm{d}t}(0)=0$:
   \[
-  \frac{\mathrm{d}x}{\mathrm{d}t}(0)=-0.50
-  \]
-
-  Substitute $t=0$:
-  \[
-  -0.50=-4C\sin 0+4D\cos 0-\frac{3}{8}\cos 0+\frac{3}{2}(0)\sin 0
+  0=D-\frac{3}{2}A
   \]
   so
   \[
-  -0.50=4D-\frac{3}{8}
+  D=\frac{3A}{2}
   \]
 
   Hence
+  \[
+  y=A\left(1+\frac{3t}{2}\right)e^{-3t/2}
+  \]
+
+  For $t\ge0$, all factors are positive, so $y>0$ for all $t\ge0$. Thus the body never goes below its steady running height.
+
+  If $p>12$, then the roots are real and negative. Write them as $-a$ and $-b$, where
+  \[
+  0<a<b
+  \]
+
+  Then
+  \[
+  y=Ce^{-at}+De^{-bt}
+  \]
+
+  Using the initial conditions:
   \begin{align*}
-  4D&=-\frac{1}{2}+\frac{3}{8} \\
-     &=-\frac{1}{8}
+  y(0)=A &\implies C+D=A \\
+  \frac{\mathrm{d}y}{\mathrm{d}t}(0)=0 &\implies -aC-bD=0
   \end{align*}
-  and therefore
+
+  Solving these gives
   \[
-  D=-\frac{1}{32}
+  C=\frac{Ab}{b-a}, \qquad D=-\frac{Aa}{b-a}
   \]
 
-  So the displacement is
-  \[
-  x=0.20\cos 4t-\frac{1}{32}\sin 4t-\frac{3}{8}t\cos 4t
-  \]
-
-  When $t=4$,
+  So
   \begin{align*}
-  \beta=x(4)
-  &=0.20\cos 16-\frac{1}{32}\sin 16-\frac{3}{8}(4)\cos 16 \\
-  &=0.20\cos 16-\frac{1}{32}\sin 16-\frac{3}{2}\cos 16 \\
-  &\approx 1.25
+  y&=\frac{Ab}{b-a}e^{-at}-\frac{Aa}{b-a}e^{-bt} \\
+   &=\frac{A}{b-a}\left(be^{-at}-ae^{-bt}\right) \\
+   &=\frac{Ae^{-bt}}{b-a}\left(be^{(b-a)t}-a\right)
   \end{align*}
 
-  Therefore
+  Now $A>0$, $e^{-bt}>0$, and $b-a>0$. Also, for $t\ge0$,
   \[
-  \beta \approx 1.25\text{ m}
+  e^{(b-a)t}\ge 1
   \]
-  to 3 significant figures.
-
-  \item The model is not very suitable, since it predicts $\beta\approx 1.25$ m whereas the true value is $0.46$ m, so it overestimates the displacement by a large amount.
-
-  \item With the periodic driving force removed, the right-hand side becomes $0$, so the differential equation is
+  so
   \[
-  \frac{\mathrm{d}^2x}{\mathrm{d}t^2}+16x=0
+  be^{(b-a)t}-a \ge b-a >0
   \]
+
+  Hence $y>0$ for all $t\ge0$, so the body never goes below its steady running height.
+
+  Therefore the required range is
+  \[
+  p\ge 12
+  \]
+
+  \item Outside the range found in part (b), but not simple harmonic, we have
+  \[
+  0<p<12
+  \]
+
+  So the graph is a damped oscillation about $y=0$, starting with $y>0$ and a horizontal tangent at $t=0$, and then crossing the axis.
+
+  \begin{center}
+  \begin{tikzpicture}
+  \begin{axis}[
+  width=8cm,
+  height=5cm,
+  axis lines=middle,
+  xlabel={$t$},
+  ylabel={$y$},
+  xmin=0, xmax=14,
+  ymin=-1.2, ymax=1.5,
+  xtick=\empty,
+  ytick=\empty,
+  domain=0:14,
+  samples=200
+  ]
+  \addplot[black, smooth] {exp(-0.2*x)*(cos(deg(x))+0.2*sin(deg(x)))};
+  \end{axis}
+  \end{tikzpicture}
+  \end{center}
 \end{enumerate}
 \end{djsSolution}
 
@@ -228,6 +209,281 @@ Given that $4$ seconds after the motion begins, the displacement of the glider i
 % ---- Question 2 ----
 \questionitem
 % [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q2]
+
+In a feedback system, the error signal $E$ is measured in suitable units. \\
+
+For $t\ge 0$, $E$ is modelled by the differential equation
+\[\frac{\mathrm{d}^2 E}{\mathrm{d} t^2}+\frac{\mathrm{d} E}{\mathrm{d} t}-6E=-12\] \\
+Initially the error is decreasing at $9$ units per second, so $\frac{\mathrm{d} E}{\mathrm{d} t}=-9$ when $t=0$. It is given that $E$ tends to a finite limit as $t\to\infty$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Determine the value of $E$ when $t=\ln 2$ \marks{6} \\
+  \item Determine the limit of $E$ as $t\to\infty$ \marks{1} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item To find $E(\ln 2)$, first solve the differential equation
+  \[
+  \frac{\mathrm{d}^2E}{\mathrm{d}t^2}+\frac{\mathrm{d}E}{\mathrm{d}t}-6E=-12
+  \]
+
+  For the homogeneous equation
+  \[
+  \frac{\mathrm{d}^2E}{\mathrm{d}t^2}+\frac{\mathrm{d}E}{\mathrm{d}t}-6E=0
+  \]
+  the auxiliary equation is
+  \[
+  \lambda^2+\lambda-6=0
+  \]
+  Factorising,
+  \[
+  (\lambda+3)(\lambda-2)=0
+  \]
+  so the roots are $\lambda=-3$ and $\lambda=2$.
+
+  Hence the complementary solution is
+  \[
+  E=Ae^{-3t}+Be^{2t}
+  \]
+
+  Since the right-hand side is a constant, try a constant particular solution $E=k$.
+
+  Then
+  \[
+  \frac{\mathrm{d}E}{\mathrm{d}t}=0, \qquad \frac{\mathrm{d}^2E}{\mathrm{d}t^2}=0
+  \]
+  so substituting into the differential equation gives
+  \[
+  0+0-6k=-12
+  \]
+  \[
+  -6k=-12
+  \]
+  \[
+  k=2
+  \]
+
+  Therefore the general solution is
+  \[
+  E=Ae^{-3t}+Be^{2t}+2
+  \]
+
+  It is given that $E$ tends to a finite limit as $t\to\infty$. Since $e^{2t}\to\infty$ as $t\to\infty$, the term $Be^{2t}$ must be absent. Hence
+  \[
+  B=0
+  \]
+
+  So
+  \[
+  E=Ae^{-3t}+2
+  \]
+
+  Differentiate:
+  \[
+  \frac{\mathrm{d}E}{\mathrm{d}t}=-3Ae^{-3t}
+  \]
+
+  Using the initial condition $\frac{\mathrm{d}E}{\mathrm{d}t}=-9$ when $t=0$,
+  \[
+  -3Ae^{0}=-9
+  \]
+  \[
+  -3A=-9
+  \]
+  \[
+  A=3
+  \]
+
+  Hence
+  \[
+  E=3e^{-3t}+2
+  \]
+
+  Now put $t=\ln 2$:
+  \begin{align*}
+  E(\ln 2)&=3e^{-3\ln 2}+2 \\
+  &=3\left(e^{\ln 2}\right)^{-3}+2 \\
+  &=3\cdot 2^{-3}+2 \\
+  &=\frac{3}{8}+2 \\
+  &=\frac{19}{8}
+  \end{align*}
+
+  Therefore, $E=\frac{19}{8}$ when $t=\ln 2$.
+
+  \item From part (a),
+  \[
+  E=3e^{-3t}+2
+  \]
+
+  As $t\to\infty$, $e^{-3t}\to 0$, so
+  \[
+  E\to 2
+  \]
+
+  Therefore, the finite limit of $E$ as $t\to\infty$ is $2$.
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q3]
+
+A trolley moves on a horizontal track and is attached to a spring and a dashpot. The trolley is pulled to the right of its equilibrium position and released. \\
+
+At time $t$ seconds after release, its horizontal displacement is $x$ metres to the right of a fixed point $P$, where $P$ is the equilibrium position and is $1.2$ metres from the left-hand end of the track. \\
+
+When $t=0$:
+\[
+\renewcommand{\arraystretch}{1.2}
+\begin{array}{l}
+x=0.18\\
+\text{the velocity of the trolley is }0\,\mathrm{m\,s^{-1}}\\
+\text{the acceleration of the trolley is }-0.10\,\mathrm{m\,s^{-2}}
+\end{array}
+\] \\
+In the subsequent motion, the displacement of the trolley is modelled by the differential equation
+\[
+3k\frac{\mathrm{d}^2 x}{\mathrm{d} t^2}+2k\frac{\mathrm{d} x}{\mathrm{d} t}+5x=0,\qquad t\ge 0
+\]
+where $k$ is a positive constant. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the value of $k$ \marks{2} \\
+  \item Find the particular solution of the differential equation \marks{7} \\
+  \item Hence find, according to the model, the distance of the trolley from the left-hand end of the track $4.5$ seconds after it is released \marks{2} \\
+  \item State one limitation of the model \marks{1} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item At $t=0$,
+\[
+x=0.18,\qquad \frac{\mathrm{d}x}{\mathrm{d}t}=0,\qquad \frac{\mathrm{d}^2x}{\mathrm{d}t^2}=-0.10
+\]
+
+Substitute these into
+\[
+3k\frac{\mathrm{d}^2x}{\mathrm{d}t^2}+2k\frac{\mathrm{d}x}{\mathrm{d}t}+5x=0
+\]
+
+\begin{align*}
+3k(-0.10)+2k(0)+5(0.18)&=0\\
+-0.3k+0.9&=0\\
+0.3k&=0.9\\
+k&=3
+\end{align*}
+
+  \item Using $k=3$, the differential equation becomes
+\[
+9\frac{\mathrm{d}^2x}{\mathrm{d}t^2}+6\frac{\mathrm{d}x}{\mathrm{d}t}+5x=0
+\]
+
+The auxiliary equation is
+\[
+9\lambda^2+6\lambda+5=0
+\]
+
+Using the quadratic formula,
+\begin{align*}
+\lambda
+&=\frac{-6\pm\sqrt{6^2-4(9)(5)}}{2(9)}\\
+&=\frac{-6\pm\sqrt{36-180}}{18}\\
+&=\frac{-6\pm\sqrt{-144}}{18}\\
+&=\frac{-6\pm 12i}{18}\\
+&=-\frac13\pm \frac23i
+\end{align*}
+
+So the complementary function is
+\[
+x_c=e^{-t/3}\left(A\cos\frac{2t}{3}+B\sin\frac{2t}{3}\right)
+\]
+
+Since the equation is homogeneous, this is the general solution.  
+Now use the initial conditions to find the required particular solution.
+
+First, use $x(0)=0.18$:
+\begin{align*}
+0.18
+&=e^0\left(A\cos 0+B\sin 0\right)\\
+&=A
+\end{align*}
+
+So
+\[
+A=0.18
+\]
+
+Now differentiate:
+\begin{align*}
+\frac{\mathrm{d}x}{\mathrm{d}t}
+&= -\frac13 e^{-t/3}\left(A\cos\frac{2t}{3}+B\sin\frac{2t}{3}\right)
++e^{-t/3}\left(-\frac{2A}{3}\sin\frac{2t}{3}+\frac{2B}{3}\cos\frac{2t}{3}\right)
+\end{align*}
+
+At $t=0$,
+\begin{align*}
+0
+&= -\frac13(A)+\frac23(B)\\
+0&=-A+2B
+\end{align*}
+
+So
+\[
+2B=A
+\]
+
+Since $A=0.18$,
+\[
+2B=0.18
+\]
+\[
+B=0.09
+\]
+
+Hence the particular solution is
+\[
+x=e^{-t/3}\left(0.18\cos\frac{2t}{3}+0.09\sin\frac{2t}{3}\right)
+\]
+
+  \item The trolley is $1.2$ m from the left-hand end when $x=0$, so its distance from the left-hand end is
+\[
+1.2+x
+\]
+
+At $t=4.5$,
+\begin{align*}
+x(4.5)
+&=e^{-4.5/3}\left(0.18\cos\frac{2(4.5)}{3}+0.09\sin\frac{2(4.5)}{3}\right)\\
+&=e^{-1.5}\left(0.18\cos 3+0.09\sin 3\right)\\
+&\approx -0.0369
+\end{align*}
+
+So the distance from the left-hand end is
+\begin{align*}
+1.2+x(4.5)&\approx 1.2-0.0369\\
+&\approx 1.16
+\end{align*}
+
+Hence, the trolley is approximately $1.16\,\text{m}$ from the left-hand end of the track.
+
+  \item One limitation is that the model assumes the spring force is proportional to displacement and the damping force is proportional to velocity.
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q4]
 
 \begin{figure}[H]
     \centering
@@ -532,9 +788,9 @@ At $t=0$, the particle is $1$ m to the right of $O$ and is projected towards $O$
 
 \newpage
 
-% ---- Question 3 ----
+% ---- Question 5 ----
 \questionitem
-% [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q3]
+% [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q5]
 
 The charge $q$ on a capacitor in a driven RLC circuit is modelled by \\
 \[\frac{\mathrm{d}^2 q}{\mathrm{d} t^2}+2\frac{\mathrm{d} q}{\mathrm{d} t}+10q=37\cos 3t\] \\
@@ -727,200 +983,9 @@ When $t=0$, $q=1$ and $\frac{\mathrm{d} q}{\mathrm{d} t}=15$. \\
 
 \newpage
 
-% ---- Question 4 ----
+% ---- Question 6 ----
 \questionitem
-% [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q4]
-
-The vertical displacement of the body of a car from its steady running height is measured by $y$ metres, where $y$ is positive upwards. The body can move above or below this level, so $y$ can take positive and negative values. After the car leaves a speed hump, the body is momentarily above its steady running height and at rest at time $t=0$. \\
-
-A proposed model for the subsequent motion, for $t\ge 0$, is
-\[
-4\frac{\mathrm{d}^2 y}{\mathrm{d} t^2}+p\frac{\mathrm{d} y}{\mathrm{d} t}+9y=0
-\]
-where $p$ is a constant and $p\ge 0$. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item
-  \begin{enumerate}[label=(\roman*)]
-    \item According to the model, for what value of $p$ would the motion be simple harmonic? \marks{1}
-    \item Explain briefly why modelling the motion as simple harmonic is unlikely to be realistic for a car suspension \marks{1} \\
-  \end{enumerate}
-  \item Find the range of values of $p$ for which the model predicts that the body of the car never goes below its steady running height \marks{2} \\
-  \item Sketch a possible graph of $y$ against $t$ when $p$ lies outside the range found in part (b) but the motion is not simple harmonic \marks{1} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item
-  \begin{enumerate}[label=(\roman*)]
-    \item For simple harmonic motion there is no damping term, so the coefficient of $\dfrac{\mathrm{d}y}{\mathrm{d}t}$ must be zero.
-
-    \[
-    p=0
-    \]
-
-    So the motion is simple harmonic when $p=0$.
-
-    \item In a real car suspension there is damping, due to shock absorbers and friction, so energy is lost and the amplitude decreases with time. Pure simple harmonic motion would have constant amplitude, so it is unlikely to be realistic.
-  \end{enumerate}
-
-  \item Let
-  \[
-  y(0)=A \qquad \text{where } A>0
-  \]
-  since the body is above its steady running height at $t=0$. Also, it is at rest then, so
-  \[
-  \frac{\mathrm{d}y}{\mathrm{d}t}(0)=0
-  \]
-
-  The auxiliary equation for
-  \[
-  4\frac{\mathrm{d}^2y}{\mathrm{d}t^2}+p\frac{\mathrm{d}y}{\mathrm{d}t}+9y=0
-  \]
-  is
-  \[
-  4\lambda^2+p\lambda+9=0
-  \]
-
-  Its discriminant is
-  \[
-  \Delta=p^2-4(4)(9)=p^2-144
-  \]
-
-  We now consider cases.
-
-  If $0\le p<12$, then $\Delta<0$, so the roots are complex and the motion is oscillatory:
-  \[
-  y=e^{-pt/8}\left(C\cos \omega t+D\sin \omega t\right)
-  \]
-  where
-  \[
-  \omega=\frac{\sqrt{144-p^2}}{8}
-  \]
-
-  This can be written in the form
-  \[
-  y=Re^{-pt/8}\cos(\omega t-\alpha)
-  \]
-  which oscillates about $y=0$. Therefore $y$ takes both positive and negative values, so the body does go below its steady running height.
-
-  If $p=12$, then the auxiliary equation has a repeated root
-  \[
-  \lambda=-\frac{3}{2}
-  \]
-  so
-  \[
-  y=(C+Dt)e^{-3t/2}
-  \]
-
-  Using $y(0)=A$ gives
-  \[
-  C=A
-  \]
-
-  Differentiate:
-  \begin{align*}
-  \frac{\mathrm{d}y}{\mathrm{d}t}
-  &=\left[D-\frac{3}{2}(C+Dt)\right]e^{-3t/2}
-  \end{align*}
-
-  Now use $\dfrac{\mathrm{d}y}{\mathrm{d}t}(0)=0$:
-  \[
-  0=D-\frac{3}{2}A
-  \]
-  so
-  \[
-  D=\frac{3A}{2}
-  \]
-
-  Hence
-  \[
-  y=A\left(1+\frac{3t}{2}\right)e^{-3t/2}
-  \]
-
-  For $t\ge0$, all factors are positive, so $y>0$ for all $t\ge0$. Thus the body never goes below its steady running height.
-
-  If $p>12$, then the roots are real and negative. Write them as $-a$ and $-b$, where
-  \[
-  0<a<b
-  \]
-
-  Then
-  \[
-  y=Ce^{-at}+De^{-bt}
-  \]
-
-  Using the initial conditions:
-  \begin{align*}
-  y(0)=A &\implies C+D=A \\
-  \frac{\mathrm{d}y}{\mathrm{d}t}(0)=0 &\implies -aC-bD=0
-  \end{align*}
-
-  Solving these gives
-  \[
-  C=\frac{Ab}{b-a}, \qquad D=-\frac{Aa}{b-a}
-  \]
-
-  So
-  \begin{align*}
-  y&=\frac{Ab}{b-a}e^{-at}-\frac{Aa}{b-a}e^{-bt} \\
-   &=\frac{A}{b-a}\left(be^{-at}-ae^{-bt}\right) \\
-   &=\frac{Ae^{-bt}}{b-a}\left(be^{(b-a)t}-a\right)
-  \end{align*}
-
-  Now $A>0$, $e^{-bt}>0$, and $b-a>0$. Also, for $t\ge0$,
-  \[
-  e^{(b-a)t}\ge 1
-  \]
-  so
-  \[
-  be^{(b-a)t}-a \ge b-a >0
-  \]
-
-  Hence $y>0$ for all $t\ge0$, so the body never goes below its steady running height.
-
-  Therefore the required range is
-  \[
-  p\ge 12
-  \]
-
-  \item Outside the range found in part (b), but not simple harmonic, we have
-  \[
-  0<p<12
-  \]
-
-  So the graph is a damped oscillation about $y=0$, starting with $y>0$ and a horizontal tangent at $t=0$, and then crossing the axis.
-
-  \begin{center}
-  \begin{tikzpicture}
-  \begin{axis}[
-  width=8cm,
-  height=5cm,
-  axis lines=middle,
-  xlabel={$t$},
-  ylabel={$y$},
-  xmin=0, xmax=14,
-  ymin=-1.2, ymax=1.5,
-  xtick=\empty,
-  ytick=\empty,
-  domain=0:14,
-  samples=200
-  ]
-  \addplot[black, smooth] {exp(-0.2*x)*(cos(deg(x))+0.2*sin(deg(x)))};
-  \end{axis}
-  \end{tikzpicture}
-  \end{center}
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 5 ----
-\questionitem
-% [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q5]
+% [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q6]
 
 A load of mass $m\,\mathrm{kg}$ hangs from a light vertical spring and is free to move only vertically in a liquid. \\
 
@@ -1207,9 +1272,9 @@ Let $y$ metres be the downward displacement of the load from its equilibrium pos
 
 \newpage
 
-% ---- Question 6 ----
+% ---- Question 7 ----
 \questionitem
-% [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q6]
+% [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q7]
 
 A manufacturer is testing the response of an electronic weighing platform. The displayed mass, $m$, measured in kilograms, after a box is placed on the platform is modelled by the differential equation \\
 \[4\frac{\mathrm{d}^2 m}{\mathrm{d} t^2}+4\frac{\mathrm{d} m}{\mathrm{d} t}+5m=20\] \\
@@ -1415,9 +1480,9 @@ The machine is programmed to print a label only when the displayed mass is less 
 
 \newpage
 
-% ---- Question 7 ----
+% ---- Question 8 ----
 \questionitem
-% [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q7]
+% [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q8]
 
 An analogue meter has a damped pointer. After a short electrical pulse, the angular displacement $\theta$ radians of the pointer from its rest position, measured positive clockwise, is modelled by \\
 \[\frac{\mathrm{d}^2 \theta}{\mathrm{d} t^2}+5\frac{\mathrm{d} \theta}{\mathrm{d} t}+6\theta=4e^{-4t}\] \\
@@ -1639,284 +1704,9 @@ The measured value is \(0.69\text{ s}\), which is very close and agrees to 2 dec
 
 \newpage
 
-% ---- Question 8 ----
-\questionitem
-% [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q8]
-
-A trolley moves on a horizontal track and is attached to a spring and a dashpot. The trolley is pulled to the right of its equilibrium position and released. \\
-
-At time $t$ seconds after release, its horizontal displacement is $x$ metres to the right of a fixed point $P$, where $P$ is the equilibrium position and is $1.2$ metres from the left-hand end of the track. \\
-
-When $t=0$:
-\[
-\renewcommand{\arraystretch}{1.2}
-\begin{array}{l}
-x=0.18\\
-\text{the velocity of the trolley is }0\,\mathrm{m\,s^{-1}}\\
-\text{the acceleration of the trolley is }-0.10\,\mathrm{m\,s^{-2}}
-\end{array}
-\] \\
-In the subsequent motion, the displacement of the trolley is modelled by the differential equation
-\[
-3k\frac{\mathrm{d}^2 x}{\mathrm{d} t^2}+2k\frac{\mathrm{d} x}{\mathrm{d} t}+5x=0,\qquad t\ge 0
-\]
-where $k$ is a positive constant. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find the value of $k$ \marks{2} \\
-  \item Find the particular solution of the differential equation \marks{7} \\
-  \item Hence find, according to the model, the distance of the trolley from the left-hand end of the track $4.5$ seconds after it is released \marks{2} \\
-  \item State one limitation of the model \marks{1} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item At $t=0$,
-\[
-x=0.18,\qquad \frac{\mathrm{d}x}{\mathrm{d}t}=0,\qquad \frac{\mathrm{d}^2x}{\mathrm{d}t^2}=-0.10
-\]
-
-Substitute these into
-\[
-3k\frac{\mathrm{d}^2x}{\mathrm{d}t^2}+2k\frac{\mathrm{d}x}{\mathrm{d}t}+5x=0
-\]
-
-\begin{align*}
-3k(-0.10)+2k(0)+5(0.18)&=0\\
--0.3k+0.9&=0\\
-0.3k&=0.9\\
-k&=3
-\end{align*}
-
-  \item Using $k=3$, the differential equation becomes
-\[
-9\frac{\mathrm{d}^2x}{\mathrm{d}t^2}+6\frac{\mathrm{d}x}{\mathrm{d}t}+5x=0
-\]
-
-The auxiliary equation is
-\[
-9\lambda^2+6\lambda+5=0
-\]
-
-Using the quadratic formula,
-\begin{align*}
-\lambda
-&=\frac{-6\pm\sqrt{6^2-4(9)(5)}}{2(9)}\\
-&=\frac{-6\pm\sqrt{36-180}}{18}\\
-&=\frac{-6\pm\sqrt{-144}}{18}\\
-&=\frac{-6\pm 12i}{18}\\
-&=-\frac13\pm \frac23i
-\end{align*}
-
-So the complementary function is
-\[
-x_c=e^{-t/3}\left(A\cos\frac{2t}{3}+B\sin\frac{2t}{3}\right)
-\]
-
-Since the equation is homogeneous, this is the general solution.  
-Now use the initial conditions to find the required particular solution.
-
-First, use $x(0)=0.18$:
-\begin{align*}
-0.18
-&=e^0\left(A\cos 0+B\sin 0\right)\\
-&=A
-\end{align*}
-
-So
-\[
-A=0.18
-\]
-
-Now differentiate:
-\begin{align*}
-\frac{\mathrm{d}x}{\mathrm{d}t}
-&= -\frac13 e^{-t/3}\left(A\cos\frac{2t}{3}+B\sin\frac{2t}{3}\right)
-+e^{-t/3}\left(-\frac{2A}{3}\sin\frac{2t}{3}+\frac{2B}{3}\cos\frac{2t}{3}\right)
-\end{align*}
-
-At $t=0$,
-\begin{align*}
-0
-&= -\frac13(A)+\frac23(B)\\
-0&=-A+2B
-\end{align*}
-
-So
-\[
-2B=A
-\]
-
-Since $A=0.18$,
-\[
-2B=0.18
-\]
-\[
-B=0.09
-\]
-
-Hence the particular solution is
-\[
-x=e^{-t/3}\left(0.18\cos\frac{2t}{3}+0.09\sin\frac{2t}{3}\right)
-\]
-
-  \item The trolley is $1.2$ m from the left-hand end when $x=0$, so its distance from the left-hand end is
-\[
-1.2+x
-\]
-
-At $t=4.5$,
-\begin{align*}
-x(4.5)
-&=e^{-4.5/3}\left(0.18\cos\frac{2(4.5)}{3}+0.09\sin\frac{2(4.5)}{3}\right)\\
-&=e^{-1.5}\left(0.18\cos 3+0.09\sin 3\right)\\
-&\approx -0.0369
-\end{align*}
-
-So the distance from the left-hand end is
-\begin{align*}
-1.2+x(4.5)&\approx 1.2-0.0369\\
-&\approx 1.16
-\end{align*}
-
-Hence, the trolley is approximately $1.16\,\text{m}$ from the left-hand end of the track.
-
-  \item One limitation is that the model assumes the spring force is proportional to displacement and the damping force is proportional to velocity.
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
 % ---- Question 9 ----
 \questionitem
 % [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q9]
-
-In a feedback system, the error signal $E$ is measured in suitable units. \\
-
-For $t\ge 0$, $E$ is modelled by the differential equation
-\[\frac{\mathrm{d}^2 E}{\mathrm{d} t^2}+\frac{\mathrm{d} E}{\mathrm{d} t}-6E=-12\] \\
-Initially the error is decreasing at $9$ units per second, so $\frac{\mathrm{d} E}{\mathrm{d} t}=-9$ when $t=0$. It is given that $E$ tends to a finite limit as $t\to\infty$. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Determine the value of $E$ when $t=\ln 2$ \marks{6} \\
-  \item Determine the limit of $E$ as $t\to\infty$ \marks{1} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item To find $E(\ln 2)$, first solve the differential equation
-  \[
-  \frac{\mathrm{d}^2E}{\mathrm{d}t^2}+\frac{\mathrm{d}E}{\mathrm{d}t}-6E=-12
-  \]
-
-  For the homogeneous equation
-  \[
-  \frac{\mathrm{d}^2E}{\mathrm{d}t^2}+\frac{\mathrm{d}E}{\mathrm{d}t}-6E=0
-  \]
-  the auxiliary equation is
-  \[
-  \lambda^2+\lambda-6=0
-  \]
-  Factorising,
-  \[
-  (\lambda+3)(\lambda-2)=0
-  \]
-  so the roots are $\lambda=-3$ and $\lambda=2$.
-
-  Hence the complementary solution is
-  \[
-  E=Ae^{-3t}+Be^{2t}
-  \]
-
-  Since the right-hand side is a constant, try a constant particular solution $E=k$.
-
-  Then
-  \[
-  \frac{\mathrm{d}E}{\mathrm{d}t}=0, \qquad \frac{\mathrm{d}^2E}{\mathrm{d}t^2}=0
-  \]
-  so substituting into the differential equation gives
-  \[
-  0+0-6k=-12
-  \]
-  \[
-  -6k=-12
-  \]
-  \[
-  k=2
-  \]
-
-  Therefore the general solution is
-  \[
-  E=Ae^{-3t}+Be^{2t}+2
-  \]
-
-  It is given that $E$ tends to a finite limit as $t\to\infty$. Since $e^{2t}\to\infty$ as $t\to\infty$, the term $Be^{2t}$ must be absent. Hence
-  \[
-  B=0
-  \]
-
-  So
-  \[
-  E=Ae^{-3t}+2
-  \]
-
-  Differentiate:
-  \[
-  \frac{\mathrm{d}E}{\mathrm{d}t}=-3Ae^{-3t}
-  \]
-
-  Using the initial condition $\frac{\mathrm{d}E}{\mathrm{d}t}=-9$ when $t=0$,
-  \[
-  -3Ae^{0}=-9
-  \]
-  \[
-  -3A=-9
-  \]
-  \[
-  A=3
-  \]
-
-  Hence
-  \[
-  E=3e^{-3t}+2
-  \]
-
-  Now put $t=\ln 2$:
-  \begin{align*}
-  E(\ln 2)&=3e^{-3\ln 2}+2 \\
-  &=3\left(e^{\ln 2}\right)^{-3}+2 \\
-  &=3\cdot 2^{-3}+2 \\
-  &=\frac{3}{8}+2 \\
-  &=\frac{19}{8}
-  \end{align*}
-
-  Therefore, $E=\frac{19}{8}$ when $t=\ln 2$.
-
-  \item From part (a),
-  \[
-  E=3e^{-3t}+2
-  \]
-
-  As $t\to\infty$, $e^{-3t}\to 0$, so
-  \[
-  E\to 2
-  \]
-
-  Therefore, the finite limit of $E$ as $t\to\infty$ is $2$.
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 10 ----
-\questionitem
-% [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q10]
 
 A machine part executes damped forced vibrations. Its displacement $y$ centimetres from equilibrium at time $t$ seconds is modelled by \\
 \[
@@ -2095,9 +1885,390 @@ a=3.30
 
 \newpage
 
+% ---- Question 10 ----
+\questionitem
+% [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q10]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.3]
+\def\wallx{-3.2}
+\def\eqx{1.1}
+\def\disp{0.9}
+\def\bw{1.2}
+\def\bh{0.8}
+\pgfmathsetmacro{\midy}{\bh/2}
+\pgfmathsetmacro{\cx}{\eqx+\disp}
+\pgfmathsetmacro{\leftx}{\cx-\bw/2}
+\pgfmathsetmacro{\rightx}{\cx+\bw/2}
+\pgfmathsetmacro{\lead}{0.35}
+\pgfmathsetmacro{\amp}{0.18}
+\pgfmathsetmacro{\coilstart}{\wallx+\lead}
+\pgfmathsetmacro{\coilend}{\leftx-\lead}
+\pgfmathsetmacro{\step}{(\coilend-\coilstart)/8}
+\pgfmathsetmacro{\arrowy}{\bh+0.3}
+\pgfmathsetmacro{\marktop}{\bh+0.55}
+
+\fill[pattern=north east lines] (\wallx-0.3,0) rectangle (\wallx,1.2);
+\draw[thick] (\wallx,0) -- (\wallx,1.2);
+\draw[thick] (\wallx,0) -- (4.3,0);
+
+\draw[thick] (\wallx,\midy) -- (\coilstart,\midy)
+  -- ++(\step,\amp) -- ++(\step,{-2*\amp}) -- ++(\step,{2*\amp})
+  -- ++(\step,{-2*\amp}) -- ++(\step,{2*\amp}) -- ++(\step,{-2*\amp})
+  -- ++(\step,{2*\amp}) -- ++(\step,{-\amp}) -- (\leftx,\midy);
+
+\draw[thick] (\leftx,0) rectangle (\rightx,\bh);
+\draw[dashed] (\eqx,-0.2) -- (\eqx,\marktop);
+\draw[-{Stealth[length=3mm]}, thick] (\eqx,\arrowy) -- (\cx,\arrowy) node[midway, above] {$x$};
+\end{tikzpicture}
+\end{figure}
+
+
+The horizontal displacement of a glider attached to a spring, shown in the diagram above, is modelled by the differential equation \\
+\[\frac{\mathrm{d}^2 x}{\mathrm{d} t^2}+16x=3\sin 4t\] \\
+where $x$ is the displacement, in metres, of the glider from its equilibrium position, $t$ seconds after the motion begins. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Show that a particular solution of the differential equation is
+    \[
+    x=-\frac{3}{8} t \cos 4t
+    \] \marks[-20pt]{4}
+    \item Hence, find the general solution of the differential equation \marks{4} \\
+  \end{enumerate}
+\end{enumerate}
+Initially, the glider is $0.20\,\mathrm{m}$ to the right of equilibrium and is moving towards equilibrium at $0.50\,\mathrm{m\,s^{-1}}$. \\
+Given that $4$ seconds after the motion begins, the displacement of the glider is $\beta$ m, \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item determine, according to the model, the value of $\beta$ to $3$ significant figures \marks{4} \\
+  \item Given that the true value of $\beta$ is $0.46\,\mathrm{m}$, comment on the suitability of the model \marks{1} \\
+  \item Write down a differential equation for the glider if the periodic driving force is removed, so that the motion becomes simple harmonic \marks{1} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item The corresponding homogeneous equation is
+    \[
+    \frac{\mathrm{d}^2x}{\mathrm{d}t^2}+16x=0
+    \]
+    whose solutions involve $\cos 4t$ and $\sin 4t$.
+
+    Since the forcing term is $3\sin 4t$, the usual trial $A\cos 4t+B\sin 4t$ would duplicate the complementary function, so we try
+    \[
+    x_p=t(A\cos 4t+B\sin 4t)
+    \]
+
+    Differentiate:
+    \begin{align*}
+    \frac{\mathrm{d}x_p}{\mathrm{d}t}
+    &= (A\cos 4t+B\sin 4t)+t(-4A\sin 4t+4B\cos 4t) \\
+    &= A\cos 4t+B\sin 4t-4At\sin 4t+4Bt\cos 4t
+    \end{align*}
+
+    Differentiate again:
+    \begin{align*}
+    \frac{\mathrm{d}^2x_p}{\mathrm{d}t^2}
+    &= -4A\sin 4t+4B\cos 4t-4A\sin 4t-16At\cos 4t+4B\cos 4t-16Bt\sin 4t \\
+    &= -8A\sin 4t+8B\cos 4t-16At\cos 4t-16Bt\sin 4t
+    \end{align*}
+
+    Substitute into the differential equation:
+    \begin{align*}
+    \frac{\mathrm{d}^2x_p}{\mathrm{d}t^2}+16x_p
+    &= \left(-8A\sin 4t+8B\cos 4t-16At\cos 4t-16Bt\sin 4t\right) \\
+    &\quad +16t(A\cos 4t+B\sin 4t) \\
+    &= -8A\sin 4t+8B\cos 4t
+    \end{align*}
+
+    For this to equal $3\sin 4t$, we compare coefficients:
+    \[
+    -8A=3,\qquad 8B=0
+    \]
+
+    Hence
+    \[
+    A=-\frac{3}{8},\qquad B=0
+    \]
+
+    So a particular solution is
+    \[
+    x_p=-\frac{3}{8}t\cos 4t
+    \]
+
+    \item The complementary function $x_c$ comes from
+    \[
+    \lambda^2+16=0
+    \]
+    so
+    \[
+    \lambda=\pm 4i
+    \]
+
+    Therefore
+    \[
+    x_c=C\cos 4t+D\sin 4t
+    \]
+
+    Hence the general solution is
+    \[
+    x=x_c+x_p=C\cos 4t+D\sin 4t-\frac{3}{8}t\cos 4t
+    \]
+  \end{enumerate}
+
+  \item Using
+  \[
+  x=C\cos 4t+D\sin 4t-\frac{3}{8}t\cos 4t
+  \]
+
+  First use $x(0)=0.20$:
+  \[
+  0.20=C\cos 0+D\sin 0-\frac{3}{8}(0)\cos 0
+  \]
+  so
+  \[
+  C=0.20
+  \]
+
+  Differentiate $x$:
+  \begin{align*}
+  \frac{\mathrm{d}x}{\mathrm{d}t}
+  &= -4C\sin 4t+4D\cos 4t-\frac{3}{8}\cos 4t+\frac{3}{2}t\sin 4t
+  \end{align*}
+
+  Initially the glider is to the right of equilibrium, and moving towards equilibrium, so its initial velocity is negative:
+  \[
+  \frac{\mathrm{d}x}{\mathrm{d}t}(0)=-0.50
+  \]
+
+  Substitute $t=0$:
+  \[
+  -0.50=-4C\sin 0+4D\cos 0-\frac{3}{8}\cos 0+\frac{3}{2}(0)\sin 0
+  \]
+  so
+  \[
+  -0.50=4D-\frac{3}{8}
+  \]
+
+  Hence
+  \begin{align*}
+  4D&=-\frac{1}{2}+\frac{3}{8} \\
+     &=-\frac{1}{8}
+  \end{align*}
+  and therefore
+  \[
+  D=-\frac{1}{32}
+  \]
+
+  So the displacement is
+  \[
+  x=0.20\cos 4t-\frac{1}{32}\sin 4t-\frac{3}{8}t\cos 4t
+  \]
+
+  When $t=4$,
+  \begin{align*}
+  \beta=x(4)
+  &=0.20\cos 16-\frac{1}{32}\sin 16-\frac{3}{8}(4)\cos 16 \\
+  &=0.20\cos 16-\frac{1}{32}\sin 16-\frac{3}{2}\cos 16 \\
+  &\approx 1.25
+  \end{align*}
+
+  Therefore
+  \[
+  \beta \approx 1.25\text{ m}
+  \]
+  to 3 significant figures.
+
+  \item The model is not very suitable, since it predicts $\beta\approx 1.25$ m whereas the true value is $0.46$ m, so it overestimates the displacement by a large amount.
+
+  \item With the periodic driving force removed, the right-hand side becomes $0$, so the differential equation is
+  \[
+  \frac{\mathrm{d}^2x}{\mathrm{d}t^2}+16x=0
+  \]
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
 % ---- Question 11 ----
 \questionitem
 % [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q11]
+
+An automated inspection trolley of mass $2\,\mathrm{kg}$ moves along a straight horizontal rail. The point $A$ is fixed on the rail. The displacement of the trolley from $A$ at time $t$ seconds is $x$ metres, for $t\ge 0$. \\
+
+For the interval considered, the trolley stays to the right of $A$ and continues to move away from $A$. \\
+
+For $t\ge 0$, the trolley is subject to three forces modelled as follows:
+\begin{itemize}
+  \item A driving force of magnitude $4(t+1)\,\mathrm{N}$ acts in the positive $x$-direction.
+  \item A magnetic force of magnitude $x\,\mathrm{N}$ acts towards $A$.
+  \item A resistive force of magnitude $2\left|\tfrac{\mathrm{d}x}{\mathrm{d}t}\right|\,\mathrm{N}$ acts opposite to the direction of motion.
+\end{itemize}
+\vspace{\baselineskip}
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Applying Newton's second law gives the differential equation
+  \[
+  4(t+1)-x-2\frac{\mathrm{d}x}{\mathrm{d}t}=2\frac{\mathrm{d}^2 x}{\mathrm{d} t^2}
+  \]
+  \begin{enumerate}[label=(\roman*)]
+    \item Explain the sign of the term involving $\frac{\mathrm{d}x}{\mathrm{d}t}$ in this differential equation \marks{1}
+    \item When $t=0$ the displacement of the trolley is $1\,\mathrm{m}$, and it is moving away from $A$ with speed $1\,\mathrm{m\,s^{-1}}$. Without attempting to solve the differential equation, find the acceleration of the trolley when $t=0$ \marks{2} \\
+  
+  \end{enumerate}
+  \item Let the particular solution to the differential equation in part (a) be a function $g$ such that $x=g(t)$ for $t\ge 0$. The particular solution can be expressed as a Maclaurin series. \\
+  \begin{enumerate}[label=(\roman*)]
+    \item Show that the Maclaurin series for $g(t)$ up to and including the term in $t$ is $1+t$ \marks{1}
+    \item Use your answer to part (a)(ii) to show that the term in $t^2$ in the Maclaurin series for $g(t)$ is $\frac{1}{4}t^2$ \marks{1}
+    \item By differentiating the differential equation in part (a) with respect to $t$, show that the term in $t^3$ in the Maclaurin series for $g(t)$ is $\frac{1}{6}t^3$ \marks{4} \\
+  \end{enumerate}
+  \item You are given that the complete Maclaurin series for the function $g$ is valid for all $t\ge 0$. After $0.4$ seconds a sensor records that the trolley is $1.45\,\mathrm{m}$ from $A$. \\
+  \begin{enumerate}[label=(\roman*)]
+    \item Using the Maclaurin series for $g(t)$ up to and including the term in $t^3$, evaluate the suitability of the model for determining the displacement of the trolley from $A$ when $t=0.4$ \marks{1} \\
+    
+    \item Explain why it would not be sensible to use the Maclaurin series for $g(t)$ up to and including the term in $t^3$ to evaluate the suitability of the model for determining the displacement of the trolley from $A$ when $t=8$ \marks{1} \\
+  \end{enumerate}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Since the trolley is moving away from $A$, its velocity is positive, so
+    \[
+    \frac{\mathrm{d}x}{\mathrm{d}t}>0
+    \]
+    The resistive force acts opposite to the motion, so it acts in the negative $x$-direction. Hence its contribution is
+    \[
+    -2\left|\frac{\mathrm{d}x}{\mathrm{d}t}\right|=-2\frac{\mathrm{d}x}{\mathrm{d}t}
+    \]
+    So the term involving $\frac{\mathrm{d}x}{\mathrm{d}t}$ is negative.
+
+    \item At $t=0$, we have $x=1$ and $\frac{\mathrm{d}x}{\mathrm{d}t}=1$.
+
+    Substituting into
+    \[
+    4(t+1)-x-2\frac{\mathrm{d}x}{\mathrm{d}t}=2\frac{\mathrm{d}^2x}{\mathrm{d}t^2}
+    \]
+    gives
+    \begin{align*}
+    4(0+1)-1-2(1)&=2\frac{\mathrm{d}^2x}{\mathrm{d}t^2}(0)\\
+    4-1-2&=2\frac{\mathrm{d}^2x}{\mathrm{d}t^2}(0)\\
+    1&=2\frac{\mathrm{d}^2x}{\mathrm{d}t^2}(0)
+    \end{align*}
+    Hence
+    \[
+    \frac{\mathrm{d}^2x}{\mathrm{d}t^2}(0)=\frac12
+    \]
+    So the acceleration at $t=0$ is $\frac12\,\text{m s}^{-2}$.
+  \end{enumerate}
+
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item The Maclaurin series for $g(t)$ begins
+    \[
+    g(t)=g(0)+\frac{\mathrm{d}g}{\mathrm{d}t}(0)t+\cdots
+    \]
+    From the initial conditions,
+    \[
+    g(0)=1,\qquad \frac{\mathrm{d}g}{\mathrm{d}t}(0)=1
+    \]
+    Therefore, up to and including the term in $t$,
+    \[
+    g(t)=1+t
+    \]
+    So the required Maclaurin series is $1+t$.
+
+    \item The $t^2$ term in the Maclaurin series is
+    \[
+    \frac{1}{2!}\frac{\mathrm{d}^2g}{\mathrm{d}t^2}(0)t^2
+    \]
+    From part (a)(ii),
+    \[
+    \frac{\mathrm{d}^2g}{\mathrm{d}t^2}(0)=\frac12
+    \]
+    Hence
+    \[
+    \frac{1}{2!}\frac{\mathrm{d}^2g}{\mathrm{d}t^2}(0)t^2
+    =\frac{1}{2}\cdot\frac12\,t^2
+    =\frac14 t^2
+    \]
+    So the term in $t^2$ is $\frac14 t^2$.
+
+    \item For $x=g(t)$, the differential equation is
+    \[
+    4(t+1)-g-2\frac{\mathrm{d}g}{\mathrm{d}t}=2\frac{\mathrm{d}^2g}{\mathrm{d}t^2}
+    \]
+    Differentiate both sides with respect to $t$:
+    \[
+    4-\frac{\mathrm{d}g}{\mathrm{d}t}-2\frac{\mathrm{d}^2g}{\mathrm{d}t^2}
+    =2\frac{\mathrm{d}^3g}{\mathrm{d}t^3}
+    \]
+    Now substitute $t=0$.
+
+    From earlier parts,
+    \[
+    \frac{\mathrm{d}g}{\mathrm{d}t}(0)=1,
+    \qquad
+    \frac{\mathrm{d}^2g}{\mathrm{d}t^2}(0)=\frac12
+    \]
+    So
+    \begin{align*}
+    4-1-2\left(\frac12\right)&=2\frac{\mathrm{d}^3g}{\mathrm{d}t^3}(0)\\
+    4-1-1&=2\frac{\mathrm{d}^3g}{\mathrm{d}t^3}(0)\\
+    2&=2\frac{\mathrm{d}^3g}{\mathrm{d}t^3}(0)
+    \end{align*}
+    Hence
+    \[
+    \frac{\mathrm{d}^3g}{\mathrm{d}t^3}(0)=1
+    \]
+    The $t^3$ term in the Maclaurin series is therefore
+    \[
+    \frac{1}{3!}\frac{\mathrm{d}^3g}{\mathrm{d}t^3}(0)t^3
+    =\frac{1}{6}\cdot 1 \cdot t^3
+    =\frac16 t^3
+    \]
+    So the term in $t^3$ is $\frac16 t^3$.
+  \end{enumerate}
+
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Using the series up to and including the term in $t^3$,
+    \[
+    g(t)\approx 1+t+\frac14 t^2+\frac16 t^3
+    \]
+    At $t=0.4$,
+    \begin{align*}
+    g(0.4)&\approx 1+0.4+\frac14(0.4)^2+\frac16(0.4)^3\\
+    &=1+0.4+0.04+\frac{0.064}{6}\\
+    &=1.450666\ldots
+    \end{align*}
+    So
+    \[
+    g(0.4)\approx 1.451
+    \]
+    This is very close to the sensor reading $1.45\,\text{m}$, differing by about $6.67\times10^{-4}\,\text{m}$. Therefore the model appears suitable.
+
+    \item Although the full Maclaurin series is valid for all $t\ge 0$, using only terms up to $t^3$ at $t=8$ is not sensible because the omitted higher-order terms would be large.
+
+    So a cubic approximation is unlikely to be accurate when $t=8$.
+  \end{enumerate}
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+% [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q12]
 
 A particle $Q$ moves along the $x$-axis under a single force. When the time is $t$ seconds, the displacement of $Q$ from the origin is $x$ metres and its velocity is $v\,\mathrm{m\,s^{-1}}$. \\
 
@@ -2281,177 +2452,6 @@ Later, $Q$ reaches the point $B$ where $x=a$ and comes to instantaneous rest. \\
   \[
   v_{\min}=0.16\ \text{m s}^{-1}
   \]
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 12 ----
-\questionitem
-% [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q12]
-
-An automated inspection trolley of mass $2\,\mathrm{kg}$ moves along a straight horizontal rail. The point $A$ is fixed on the rail. The displacement of the trolley from $A$ at time $t$ seconds is $x$ metres, for $t\ge 0$. \\
-
-For the interval considered, the trolley stays to the right of $A$ and continues to move away from $A$. \\
-
-For $t\ge 0$, the trolley is subject to three forces modelled as follows:
-\begin{itemize}
-  \item A driving force of magnitude $4(t+1)\,\mathrm{N}$ acts in the positive $x$-direction.
-  \item A magnetic force of magnitude $x\,\mathrm{N}$ acts towards $A$.
-  \item A resistive force of magnitude $2\left|\tfrac{\mathrm{d}x}{\mathrm{d}t}\right|\,\mathrm{N}$ acts opposite to the direction of motion.
-\end{itemize}
-\vspace{\baselineskip}
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Applying Newton's second law gives the differential equation
-  \[
-  4(t+1)-x-2\frac{\mathrm{d}x}{\mathrm{d}t}=2\frac{\mathrm{d}^2 x}{\mathrm{d} t^2}
-  \]
-  \begin{enumerate}[label=(\roman*)]
-    \item Explain the sign of the term involving $\frac{\mathrm{d}x}{\mathrm{d}t}$ in this differential equation \marks{1}
-    \item When $t=0$ the displacement of the trolley is $1\,\mathrm{m}$, and it is moving away from $A$ with speed $1\,\mathrm{m\,s^{-1}}$. Without attempting to solve the differential equation, find the acceleration of the trolley when $t=0$ \marks{2} \\
-  
-  \end{enumerate}
-  \item Let the particular solution to the differential equation in part (a) be a function $g$ such that $x=g(t)$ for $t\ge 0$. The particular solution can be expressed as a Maclaurin series. \\
-  \begin{enumerate}[label=(\roman*)]
-    \item Show that the Maclaurin series for $g(t)$ up to and including the term in $t$ is $1+t$ \marks{1}
-    \item Use your answer to part (a)(ii) to show that the term in $t^2$ in the Maclaurin series for $g(t)$ is $\frac{1}{4}t^2$ \marks{1}
-    \item By differentiating the differential equation in part (a) with respect to $t$, show that the term in $t^3$ in the Maclaurin series for $g(t)$ is $\frac{1}{6}t^3$ \marks{4} \\
-  \end{enumerate}
-  \item You are given that the complete Maclaurin series for the function $g$ is valid for all $t\ge 0$. After $0.4$ seconds a sensor records that the trolley is $1.45\,\mathrm{m}$ from $A$. \\
-  \begin{enumerate}[label=(\roman*)]
-    \item Using the Maclaurin series for $g(t)$ up to and including the term in $t^3$, evaluate the suitability of the model for determining the displacement of the trolley from $A$ when $t=0.4$ \marks{1} \\
-    
-    \item Explain why it would not be sensible to use the Maclaurin series for $g(t)$ up to and including the term in $t^3$ to evaluate the suitability of the model for determining the displacement of the trolley from $A$ when $t=8$ \marks{1} \\
-  \end{enumerate}
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item
-  \begin{enumerate}[label=(\roman*)]
-    \item Since the trolley is moving away from $A$, its velocity is positive, so
-    \[
-    \frac{\mathrm{d}x}{\mathrm{d}t}>0
-    \]
-    The resistive force acts opposite to the motion, so it acts in the negative $x$-direction. Hence its contribution is
-    \[
-    -2\left|\frac{\mathrm{d}x}{\mathrm{d}t}\right|=-2\frac{\mathrm{d}x}{\mathrm{d}t}
-    \]
-    So the term involving $\frac{\mathrm{d}x}{\mathrm{d}t}$ is negative.
-
-    \item At $t=0$, we have $x=1$ and $\frac{\mathrm{d}x}{\mathrm{d}t}=1$.
-
-    Substituting into
-    \[
-    4(t+1)-x-2\frac{\mathrm{d}x}{\mathrm{d}t}=2\frac{\mathrm{d}^2x}{\mathrm{d}t^2}
-    \]
-    gives
-    \begin{align*}
-    4(0+1)-1-2(1)&=2\frac{\mathrm{d}^2x}{\mathrm{d}t^2}(0)\\
-    4-1-2&=2\frac{\mathrm{d}^2x}{\mathrm{d}t^2}(0)\\
-    1&=2\frac{\mathrm{d}^2x}{\mathrm{d}t^2}(0)
-    \end{align*}
-    Hence
-    \[
-    \frac{\mathrm{d}^2x}{\mathrm{d}t^2}(0)=\frac12
-    \]
-    So the acceleration at $t=0$ is $\frac12\,\text{m s}^{-2}$.
-  \end{enumerate}
-
-  \item
-  \begin{enumerate}[label=(\roman*)]
-    \item The Maclaurin series for $g(t)$ begins
-    \[
-    g(t)=g(0)+\frac{\mathrm{d}g}{\mathrm{d}t}(0)t+\cdots
-    \]
-    From the initial conditions,
-    \[
-    g(0)=1,\qquad \frac{\mathrm{d}g}{\mathrm{d}t}(0)=1
-    \]
-    Therefore, up to and including the term in $t$,
-    \[
-    g(t)=1+t
-    \]
-    So the required Maclaurin series is $1+t$.
-
-    \item The $t^2$ term in the Maclaurin series is
-    \[
-    \frac{1}{2!}\frac{\mathrm{d}^2g}{\mathrm{d}t^2}(0)t^2
-    \]
-    From part (a)(ii),
-    \[
-    \frac{\mathrm{d}^2g}{\mathrm{d}t^2}(0)=\frac12
-    \]
-    Hence
-    \[
-    \frac{1}{2!}\frac{\mathrm{d}^2g}{\mathrm{d}t^2}(0)t^2
-    =\frac{1}{2}\cdot\frac12\,t^2
-    =\frac14 t^2
-    \]
-    So the term in $t^2$ is $\frac14 t^2$.
-
-    \item For $x=g(t)$, the differential equation is
-    \[
-    4(t+1)-g-2\frac{\mathrm{d}g}{\mathrm{d}t}=2\frac{\mathrm{d}^2g}{\mathrm{d}t^2}
-    \]
-    Differentiate both sides with respect to $t$:
-    \[
-    4-\frac{\mathrm{d}g}{\mathrm{d}t}-2\frac{\mathrm{d}^2g}{\mathrm{d}t^2}
-    =2\frac{\mathrm{d}^3g}{\mathrm{d}t^3}
-    \]
-    Now substitute $t=0$.
-
-    From earlier parts,
-    \[
-    \frac{\mathrm{d}g}{\mathrm{d}t}(0)=1,
-    \qquad
-    \frac{\mathrm{d}^2g}{\mathrm{d}t^2}(0)=\frac12
-    \]
-    So
-    \begin{align*}
-    4-1-2\left(\frac12\right)&=2\frac{\mathrm{d}^3g}{\mathrm{d}t^3}(0)\\
-    4-1-1&=2\frac{\mathrm{d}^3g}{\mathrm{d}t^3}(0)\\
-    2&=2\frac{\mathrm{d}^3g}{\mathrm{d}t^3}(0)
-    \end{align*}
-    Hence
-    \[
-    \frac{\mathrm{d}^3g}{\mathrm{d}t^3}(0)=1
-    \]
-    The $t^3$ term in the Maclaurin series is therefore
-    \[
-    \frac{1}{3!}\frac{\mathrm{d}^3g}{\mathrm{d}t^3}(0)t^3
-    =\frac{1}{6}\cdot 1 \cdot t^3
-    =\frac16 t^3
-    \]
-    So the term in $t^3$ is $\frac16 t^3$.
-  \end{enumerate}
-
-  \item
-  \begin{enumerate}[label=(\roman*)]
-    \item Using the series up to and including the term in $t^3$,
-    \[
-    g(t)\approx 1+t+\frac14 t^2+\frac16 t^3
-    \]
-    At $t=0.4$,
-    \begin{align*}
-    g(0.4)&\approx 1+0.4+\frac14(0.4)^2+\frac16(0.4)^3\\
-    &=1+0.4+0.04+\frac{0.064}{6}\\
-    &=1.450666\ldots
-    \end{align*}
-    So
-    \[
-    g(0.4)\approx 1.451
-    \]
-    This is very close to the sensor reading $1.45\,\text{m}$, differing by about $6.67\times10^{-4}\,\text{m}$. Therefore the model appears suitable.
-
-    \item Although the full Maclaurin series is valid for all $t\ge 0$, using only terms up to $t^3$ at $t=8$ is not sensible because the omitted higher-order terms would be large.
-
-    So a cubic approximation is unlikely to be accurate when $t=8$.
-  \end{enumerate}
 \end{enumerate}
 \end{djsSolution}
 
