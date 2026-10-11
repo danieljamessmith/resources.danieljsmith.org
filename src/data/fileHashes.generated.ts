@@ -2,11 +2,11 @@
 // Regenerated on every `npm run build`, `npm run dev`, and `npm run check`.
 export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Roots_and_Geometry_Problems.pdf': '6ed71c63',
-  '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Series.pdf': '3a7e50cf',
+  '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Series.pdf': '79b3b815',
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__De_Moivres_Theorem.pdf': '5f46a41e',
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Loci_and_Regions_in_the_Argand_Diagram.pdf': '1bbd9fa6',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Roots_and_Geometry_Problems.pdf': '81109016',
-  '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Series.pdf': '97e1645f',
+  '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Series.pdf': '5f1e7476',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__De_Moivres_Theorem.pdf': '4ebb5e6a',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Loci_and_Regions_in_the_Argand_Diagram.pdf': '7ddd4211',
   '/tex/further-maths/core-pure/differential-equations/qbt/_QBT__2nd_Order_Differential_Equations.pdf': '211fba7c',
