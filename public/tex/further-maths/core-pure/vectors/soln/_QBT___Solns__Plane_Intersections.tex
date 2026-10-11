@@ -4,7 +4,7 @@
 \djsSolnHeader{Plane Intersections}
 \djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}
 
-\djsLastUpdated{10 October 2026}
+\djsLastUpdated{11 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -18,6 +18,241 @@
 % ---- Question 1 ----
 \questionitem
 % [Source: _QBT___Solns__Plane_Intersections, Q1]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Consider the linear system $A\mathbf{x}=\mathbf{b}$, where
+  \[
+  A=\begin{pmatrix}
+  3&-2&1\\
+  2&1&-4\\
+  7&0&-7
+  \end{pmatrix},
+  \qquad
+  \mathbf{x}=\begin{pmatrix}x\\y\\z\end{pmatrix},
+  \qquad
+  \mathbf{b}=\begin{pmatrix}5\\1\\7\end{pmatrix}
+  \]
+  Show that $A$ is singular, and deduce that the system does not have a unique solution. \marks{2}\\
+  
+  \item Show that the system is consistent. Interpret the solution set geometrically. \marks{3} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Using a calculator:
+\[
+\det(A)=0
+\]
+Alternatively, expanding along the first row:
+\begin{align*}
+\det(A)
+&=3\begin{vmatrix}1&-4\\0&-7\end{vmatrix}
+-(-2)\begin{vmatrix}2&-4\\7&-7\end{vmatrix}
++1\begin{vmatrix}2&1\\7&0\end{vmatrix}\\
+&=3(-7-0)+2(-14+28)+1(0-7)\\
+&=-21+28-7\\
+&=0
+\end{align*}
+Therefore \(A\) is singular.
+
+Since a unique solution to \(A\mathbf{x}=\mathbf{b}\) would require \(A\) to be non-singular, the system does not have a unique solution.
+
+\item The system is
+\begin{align*}
+3x-2y+z&=5 \\
+2x+y-4z&=1 \\
+7x-7z&=7
+\end{align*}
+
+First check consistency. Take the first equation and add twice the second:
+\begin{align*}
+(3x-2y+z)+2(2x+y-4z)&=5+2(1) \\
+7x-7z&=7
+\end{align*}
+This is exactly the third equation, so the system is consistent.
+
+Now solve using the first two equations. From
+\[
+2x+y-4z=1
+\]
+we get
+\[
+y=1-2x+4z
+\]
+
+Substitute into \(3x-2y+z=5\):
+\begin{align*}
+3x-2(1-2x+4z)+z&=5 \\
+3x-2+4x-8z+z&=5 \\
+7x-7z-2&=5 \\
+7x-7z&=7 \\
+x-z&=1 \\
+x&=z+1
+\end{align*}
+
+Then
+\begin{align*}
+y&=1-2x+4z \\
+&=1-2(z+1)+4z \\
+&=1-2z-2+4z \\
+&=-1+2z
+\end{align*}
+
+Let \(z=t\), where \(t\in\mathbb{R}\). Then
+\[
+x=1+t,\qquad y=-1+2t,\qquad z=t
+\]
+So the general solution is
+\[
+(x,y,z)=(1+t,-1+2t,t),\qquad t\in\mathbb{R}
+\]
+or equivalently
+\[
+\begin{pmatrix}x\\y\\z\end{pmatrix}
+=
+\begin{pmatrix}1\\-1\\0\end{pmatrix}
++t\begin{pmatrix}1\\2\\1\end{pmatrix},
+\qquad t\in\mathbb{R}
+\]
+
+Geometrically, each equation represents a plane in \(\mathbb{R}^3\). Since the third equation is dependent on the first two and is compatible with them, all three planes intersect in the line
+\[
+\mathbf{r}=
+\begin{pmatrix}1\\-1\\0\end{pmatrix}
++t\begin{pmatrix}1\\2\\1\end{pmatrix},
+\qquad t\in\mathbb{R}
+\]
+
+Hence the solution set is a line in \(\mathbb{R}^3\), so the planes form a \textbf{sheaf}.
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT___Solns__Plane_Intersections, Q2]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that the system of equations
+  \[
+  \begin{aligned}
+  x+2y-z&=3\\
+  2x-y+4z&=1\\
+  3x+y+3z&=a
+  \end{aligned}
+  \]
+  where $a$ is a constant, does not have a unique solution. \marks{2}\\
+  \item Given that $a=4$, show that the system of equations in part (a) is consistent. Interpret this situation geometrically. \marks{3} \\
+  \item Given instead that $a\ne 4$, show that the system of equations in part (a) is inconsistent. Interpret this situation geometrically. \marks{2} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let the coefficient matrix be
+\[
+A=\begin{pmatrix}
+1&2&-1\\
+2&-1&4\\
+3&1&3
+\end{pmatrix}
+\]
+and calculate using, for example, a calculator:
+\[
+\det(A)=0
+\]
+Therefore $A$ is not invertible, so the system cannot have a unique solution for any value of $a$.
+
+  \item When $a=4$, the third equation is
+\[
+3x+y+3z=4
+\]
+Now add the first two equations:
+\[
+(x+2y-z)+(2x-y+4z)=3+1
+\]
+which gives
+\[
+3x+y+3z=4
+\]
+So the third equation is exactly the sum of the first two, and adds no new condition. Hence the system is consistent.
+
+To find the solutions, solve the first two equations only. Let
+\[
+z=5t
+\]
+where $t\in\mathbb{R}$.
+
+From
+\[
+x+2y-z=3
+\]
+we have
+\[
+x=3-2y+z
+\]
+Substitute into the second equation:
+\begin{align*}
+2x-y+4z&=1\\
+2(3-2y+z)-y+4z&=1\\
+6-4y+2z-y+4z&=1\\
+6-5y+6z&=1\\
+-5y+6z&=-5\\
+5y-6z&=5\\
+y&=1+\frac{6}{5}z
+\end{align*}
+Since $z=5t$, this gives
+\[
+y=1+6t
+\]
+Then
+\begin{align*}
+x&=3-2y+z\\
+&=3-2(1+6t)+5t\\
+&=3-2-12t+5t\\
+&=1-7t
+\end{align*}
+Hence the solutions are
+\[
+x=1-7t,\qquad y=1+6t,\qquad z=5t,\qquad t\in\mathbb{R}
+\]
+So there are infinitely many solutions.
+
+Geometrically, each equation represents a plane in $\mathbb{R}^3$. The first two planes intersect in a line, and the third plane contains that same line, so the planes form a \textbf{sheaf}.
+
+  \item If $a\ne 4$, then any point satisfying the first two equations must also satisfy
+\begin{align*}
+3x+y+3z&=(x+2y-z)+(2x-y+4z)\\
+&=3+1\\
+&=4
+\end{align*}
+So every common solution of the first two equations lies on the plane
+\[
+3x+y+3z=4
+\]
+It cannot also satisfy
+\[
+3x+y+3z=a
+\]
+when $a\ne 4$.
+
+Therefore the system is inconsistent, so there is no solution.
+
+Geometrically, the normals $\mathbf{i}+2\mathbf{j}-\mathbf{k}$, $2\mathbf{i}-\mathbf{j}+4\mathbf{k}$ and $3\mathbf{i}+\mathbf{j}+3\mathbf{k}$ are not scalar multiples of one another, so no two planes are parallel and each pair of planes meets in a line. Since the three planes have no common point, these three lines are parallel and distinct, so the planes form a \textbf{triangular prism}.
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT___Solns__Plane_Intersections, Q3]
 
 Three planes have equations
 \[
@@ -174,596 +409,9 @@ Therefore the student is incorrect.
 
 \newpage
 
-% ---- Question 2 ----
-\questionitem
-% [Source: _QBT___Solns__Plane_Intersections, Q2]
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Consider the linear system $A\mathbf{x}=\mathbf{b}$, where
-  \[
-  A=\begin{pmatrix}
-  3&-2&1\\
-  2&1&-4\\
-  7&0&-7
-  \end{pmatrix},
-  \qquad
-  \mathbf{x}=\begin{pmatrix}x\\y\\z\end{pmatrix},
-  \qquad
-  \mathbf{b}=\begin{pmatrix}5\\1\\7\end{pmatrix}
-  \]
-  Show that $A$ is singular, and deduce that the system does not have a unique solution. \marks{2}\\
-  
-  \item Show that the system is consistent. Interpret the solution set geometrically. \marks{3} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Using a calculator:
-\[
-\det(A)=0
-\]
-Alternatively, expanding along the first row:
-\begin{align*}
-\det(A)
-&=3\begin{vmatrix}1&-4\\0&-7\end{vmatrix}
--(-2)\begin{vmatrix}2&-4\\7&-7\end{vmatrix}
-+1\begin{vmatrix}2&1\\7&0\end{vmatrix}\\
-&=3(-7-0)+2(-14+28)+1(0-7)\\
-&=-21+28-7\\
-&=0
-\end{align*}
-Therefore \(A\) is singular.
-
-Since a unique solution to \(A\mathbf{x}=\mathbf{b}\) would require \(A\) to be non-singular, the system does not have a unique solution.
-
-\item The system is
-\begin{align*}
-3x-2y+z&=5 \\
-2x+y-4z&=1 \\
-7x-7z&=7
-\end{align*}
-
-First check consistency. Take the first equation and add twice the second:
-\begin{align*}
-(3x-2y+z)+2(2x+y-4z)&=5+2(1) \\
-7x-7z&=7
-\end{align*}
-This is exactly the third equation, so the system is consistent.
-
-Now solve using the first two equations. From
-\[
-2x+y-4z=1
-\]
-we get
-\[
-y=1-2x+4z
-\]
-
-Substitute into \(3x-2y+z=5\):
-\begin{align*}
-3x-2(1-2x+4z)+z&=5 \\
-3x-2+4x-8z+z&=5 \\
-7x-7z-2&=5 \\
-7x-7z&=7 \\
-x-z&=1 \\
-x&=z+1
-\end{align*}
-
-Then
-\begin{align*}
-y&=1-2x+4z \\
-&=1-2(z+1)+4z \\
-&=1-2z-2+4z \\
-&=-1+2z
-\end{align*}
-
-Let \(z=t\), where \(t\in\mathbb{R}\). Then
-\[
-x=1+t,\qquad y=-1+2t,\qquad z=t
-\]
-So the general solution is
-\[
-(x,y,z)=(1+t,-1+2t,t),\qquad t\in\mathbb{R}
-\]
-or equivalently
-\[
-\begin{pmatrix}x\\y\\z\end{pmatrix}
-=
-\begin{pmatrix}1\\-1\\0\end{pmatrix}
-+t\begin{pmatrix}1\\2\\1\end{pmatrix},
-\qquad t\in\mathbb{R}
-\]
-
-Geometrically, each equation represents a plane in \(\mathbb{R}^3\). Since the third equation is dependent on the first two and is compatible with them, all three planes intersect in the line
-\[
-\mathbf{r}=
-\begin{pmatrix}1\\-1\\0\end{pmatrix}
-+t\begin{pmatrix}1\\2\\1\end{pmatrix},
-\qquad t\in\mathbb{R}
-\]
-
-Hence the solution set is a line in \(\mathbb{R}^3\), so the planes form a \textbf{sheaf}.
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 3 ----
-\questionitem
-% [Source: _QBT___Solns__Plane_Intersections, Q3]
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Show that the system of equations
-  \[
-  \begin{aligned}
-  x+2y-z&=3\\
-  2x-y+4z&=1\\
-  3x+y+3z&=a
-  \end{aligned}
-  \]
-  where $a$ is a constant, does not have a unique solution. \marks{2}\\
-  \item Given that $a=4$, show that the system of equations in part (a) is consistent. Interpret this situation geometrically. \marks{3} \\
-  \item Given instead that $a\ne 4$, show that the system of equations in part (a) is inconsistent. Interpret this situation geometrically. \marks{2} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Let the coefficient matrix be
-\[
-A=\begin{pmatrix}
-1&2&-1\\
-2&-1&4\\
-3&1&3
-\end{pmatrix}
-\]
-and calculate using, for example, a calculator:
-\[
-\det(A)=0
-\]
-Therefore $A$ is not invertible, so the system cannot have a unique solution for any value of $a$.
-
-  \item When $a=4$, the third equation is
-\[
-3x+y+3z=4
-\]
-Now add the first two equations:
-\[
-(x+2y-z)+(2x-y+4z)=3+1
-\]
-which gives
-\[
-3x+y+3z=4
-\]
-So the third equation is exactly the sum of the first two, and adds no new condition. Hence the system is consistent.
-
-To find the solutions, solve the first two equations only. Let
-\[
-z=5t
-\]
-where $t\in\mathbb{R}$.
-
-From
-\[
-x+2y-z=3
-\]
-we have
-\[
-x=3-2y+z
-\]
-Substitute into the second equation:
-\begin{align*}
-2x-y+4z&=1\\
-2(3-2y+z)-y+4z&=1\\
-6-4y+2z-y+4z&=1\\
-6-5y+6z&=1\\
--5y+6z&=-5\\
-5y-6z&=5\\
-y&=1+\frac{6}{5}z
-\end{align*}
-Since $z=5t$, this gives
-\[
-y=1+6t
-\]
-Then
-\begin{align*}
-x&=3-2y+z\\
-&=3-2(1+6t)+5t\\
-&=3-2-12t+5t\\
-&=1-7t
-\end{align*}
-Hence the solutions are
-\[
-x=1-7t,\qquad y=1+6t,\qquad z=5t,\qquad t\in\mathbb{R}
-\]
-So there are infinitely many solutions.
-
-Geometrically, each equation represents a plane in $\mathbb{R}^3$. The first two planes intersect in a line, and the third plane contains that same line, so the planes form a \textbf{sheaf}.
-
-  \item If $a\ne 4$, then any point satisfying the first two equations must also satisfy
-\begin{align*}
-3x+y+3z&=(x+2y-z)+(2x-y+4z)\\
-&=3+1\\
-&=4
-\end{align*}
-So every common solution of the first two equations lies on the plane
-\[
-3x+y+3z=4
-\]
-It cannot also satisfy
-\[
-3x+y+3z=a
-\]
-when $a\ne 4$.
-
-Therefore the system is inconsistent, so there is no solution.
-
-Geometrically, the normals $\mathbf{i}+2\mathbf{j}-\mathbf{k}$, $2\mathbf{i}-\mathbf{j}+4\mathbf{k}$ and $3\mathbf{i}+\mathbf{j}+3\mathbf{k}$ are not scalar multiples of one another, so no two planes are parallel and each pair of planes meets in a line. Since the three planes have no common point, these three lines are parallel and distinct, so the planes form a \textbf{triangular prism}.
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
 % ---- Question 4 ----
 \questionitem
 % [Source: _QBT___Solns__Plane_Intersections, Q4]
-
-The equations
-\[
-\begin{aligned}
-x-y+2z&=4\\
-(k+1)x+ky+(2-k)z&=4-k\\
-(5-2k)x+(2-2k)y+(k+2)z&=8-k
-\end{aligned}
-\] \\
-represent three planes, where $k$ is a real constant. \\
-The planes do not intersect in exactly one point. \\
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find the possible values of $k$. \marks{3} \\
-  \item For each value of $k$ found in part (a), describe the configuration of the planes. \\
-  Fully justify your answer, stating in each case whether the corresponding system is consistent or inconsistent. \marks{5} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Let the coefficient matrix be
-\[
-A=\begin{pmatrix}
-1 & -1 & 2\\
-k+1 & k & 2-k\\
-5-2k & 2-2k & k+2
-\end{pmatrix}
-\]
-
-The planes fail to intersect in exactly one point when the system does \emph{not} have a unique solution, so we require
-\[
-\det A=0
-\]
-
-Expanding along the first row,
-\begin{align*}
-\det A
-&=1\begin{vmatrix}k&2-k\\2-2k&k+2\end{vmatrix}
--(-1)\begin{vmatrix}k+1&2-k\\5-2k&k+2\end{vmatrix}
-+2\begin{vmatrix}k+1&k\\5-2k&2-2k\end{vmatrix}\\
-&=k(k+2)-(2-k)(2-2k)\\
-&\quad +(k+1)(k+2)-(2-k)(5-2k)\\
-&\quad +2\bigl((k+1)(2-2k)-k(5-2k)\bigr)\\
-&=\bigl(k^2+2k-(4-6k+2k^2)\bigr)\\
-&\quad +\bigl(k^2+3k+2-(10-9k+2k^2)\bigr)\\
-&\quad +2\bigl((2-2k^2)-(5k-2k^2)\bigr)\\
-&=(-k^2+8k-4)+(-k^2+12k-8)+(4-10k)\\
-&=-2k^2+10k-8\\
-&=-2(k^2-5k+4)\\
-&=-2(k-1)(k-4)
-\end{align*}
-
-So
-\[
--2(k-1)(k-4)=0
-\]
-
-Hence the possible values are
-\[
-k=1 \quad \text{or} \quad k=4
-\]
-
-\item We consider each value of \(k\) separately.
-
-\medskip
-
-For \(k=1\), the planes are
-\[
-\begin{aligned}
-x-y+2z&=4\\
-2x+y+z&=3\\
-3x+3z&=7
-\end{aligned}
-\]
-
-Adding the first two equations gives
-\[
-(x-y+2z)+(2x+y+z)=4+3
-\]
-so
-\[
-3x+3z=7
-\]
-which is exactly the third equation.
-
-Therefore any point that lies on the first two planes automatically lies on the third plane as well.
-
-Now the normals of the first two planes are
-\[
-\mathbf n_1=\begin{pmatrix}1\\-1\\2\end{pmatrix}, \qquad \mathbf n_2=\begin{pmatrix}2\\1\\1\end{pmatrix}
-\]
-These are not scalar multiples, so the first two planes are not parallel. Hence they intersect in a line, and the third plane contains this same line.
-
-Therefore the system is consistent, and the three planes form a \textbf{sheaf}: they share a common line, so there are infinitely many solutions.
-
-To find the line, add the first two equations:
-\[
-3x+3z=7 \quad \Rightarrow \quad x+z=\frac73
-\]
-Then substitute into \(2x+y+z=3\):
-\[
-2x+y+\left(\frac73-x\right)=3
-\]
-so
-\[
-x+y=\frac23
-\]
-
-Hence the common line is
-\[
-x+y=\frac23,\qquad x+z=\frac73
-\]
-
-\medskip
-
-For \(k=4\), the planes are
-\[
-\begin{aligned}
-x-y+2z&=4\\
-5x+4y-2z&=0\\
--3x-6y+6z&=4
-\end{aligned}
-\]
-
-Suppose a point lies on the first two planes. Then
-\[
-2(x-y+2z)-(5x+4y-2z)=2\cdot 4-0
-\]
-so
-\[
--3x-6y+6z=8
-\]
-
-But the third plane is
-\[
--3x-6y+6z=4
-\]
-
-This is impossible, so there is no point common to all three planes. Therefore the system is inconsistent.
-
-Now check how the planes are arranged. Their normals are
-\[
-\mathbf n_1=\begin{pmatrix}1\\-1\\2\end{pmatrix},\qquad
-\mathbf n_2=\begin{pmatrix}5\\4\\-2\end{pmatrix},\qquad
-\mathbf n_3=\begin{pmatrix}-3\\-6\\6\end{pmatrix}
-\]
-No two of these are scalar multiples, so no two planes are parallel. Hence each pair of planes meets in a line.
-
-Let \(\mathbf d_{ij}\) be a direction vector for the line of intersection of planes \(i\) and \(j\). Then
-\[
-\mathbf d_{ij}=\mathbf n_i\times \mathbf n_j
-\]
-Also,
-\[
-\mathbf n_3=2\mathbf n_1-\mathbf n_2
-\]
-
-So
-\[
-\mathbf d_{13}
-=\mathbf n_1\times \mathbf n_3
-=\mathbf n_1\times(2\mathbf n_1-\mathbf n_2)
-=-(\mathbf n_1\times \mathbf n_2)
-=-\mathbf d_{12}
-\]
-and
-\[
-\mathbf d_{23}
-=\mathbf n_2\times \mathbf n_3
-=\mathbf n_2\times(2\mathbf n_1-\mathbf n_2)
-=-2(\mathbf n_1\times \mathbf n_2)
-=-2\mathbf d_{12}
-\]
-
-Hence all three pairwise intersection lines are parallel.
-
-They cannot all be the same line, because that would give a common line to all three planes, contradicting the fact that the system is inconsistent.
-
-Therefore, when \(k=4\), the three planes form a \textbf{prism}: each pair of planes meets in a line, but the three lines are parallel and distinct, so there is no common point.
-\end{enumerate} 
-\end{djsSolution} 
-
-\newpage
-
-% ---- Question 5 ----
-\questionitem
-% [Source: _QBT___Solns__Plane_Intersections, Q5]
-
-Three planes have equations
-\[
-\begin{aligned}
-x+ay&=-1\\
-2x+y+z&=3\\
-3x+by+2z&=c
-\end{aligned}
-\] \\
-where $a$, $b$ and $c$ are constants. \\
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item In the case where the planes \textbf{do not} intersect at a unique point,
-  \begin{enumerate}[label=(\roman*)]
-    \item find $b$ in terms of $a$. \marks{4}
-    \item find the value of $c$ for which the planes form a sheaf. \marks{3} \\
-  \end{enumerate}
-  \item In the case where $b=1-a$ and $c=5$, find the coordinates of the point of intersection of the planes in terms of $a$. \marks{6} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Let the planes be
-  \[
-  P_1:\ x+ay=-1,\qquad
-  P_2:\ 2x+y+z=3,\qquad
-  P_3:\ 3x+by+2z=c
-  \]
-
-  \begin{enumerate}[label=(\roman*)]
-    \item For the three planes to intersect at a unique point, the coefficient matrix must have non-zero determinant:
-    \[
-    A=
-    \begin{pmatrix}
-    1 & a & 0\\
-    2 & 1 & 1\\
-    3 & b & 2
-    \end{pmatrix}
-    \]
-
-    So
-    \begin{align*}
-    \det(A)
-    &=
-    \begin{vmatrix}
-    1 & a & 0\\
-    2 & 1 & 1\\
-    3 & b & 2
-    \end{vmatrix} \\
-    &=1
-    \begin{vmatrix}
-    1 & 1\\
-    b & 2
-    \end{vmatrix}
-    -a
-    \begin{vmatrix}
-    2 & 1\\
-    3 & 2
-    \end{vmatrix}
-    +0
-    \begin{vmatrix}
-    2 & 1\\
-    3 & b
-    \end{vmatrix} \\
-    &=1(2-b)-a(4-3) \\
-    &=2-b-a
-    \end{align*}
-
-    In the case where the planes do \textbf{not} intersect at a unique point,
-    \[
-    \det(A)=0
-    \]
-    so
-    \begin{align*}
-    2-b-a&=0\\
-    b&=2-a
-    \end{align*}
-
-    \item A sheaf of planes means that all three planes contain a common line.
-
-    First find the line of intersection of \(P_1\) and \(P_2\).
-
-    From \(P_1\),
-    \[
-    x=-1-ay
-    \]
-
-    Substitute into \(P_2\):
-    \begin{align*}
-    2x+y+z&=3\\
-    2(-1-ay)+y+z&=3\\
-    -2-2ay+y+z&=3\\
-    z&=5+(2a-1)y
-    \end{align*}
-
-    So the line \(P_1\cap P_2\) has coordinates
-    \[
-    x=-1-ay,\qquad z=5+(2a-1)y
-    \]
-
-    For \(P_3\) to contain this whole line, substitute these expressions into \(P_3\), using \(b=2-a\):
-    \begin{align*}
-    3x+(2-a)y+2z
-    &=3(-1-ay)+(2-a)y+2\bigl(5+(2a-1)y\bigr)\\
-    &=-3-3ay+(2-a)y+10+(4a-2)y\\
-    &=7+\bigl(-3a+2-a+4a-2\bigr)y\\
-    &=7
-    \end{align*}
-
-    This is satisfied for every point on the line precisely when
-    \[
-    c=7
-    \]
-  \end{enumerate}
-
-  \item Now take \(b=1-a\) and \(c=5\).
-
-  From the first plane,
-  \[
-  x=-1-ay
-  \]
-
-  Substitute into the second plane:
-  \begin{align*}
-  2x+y+z&=3\\
-  2(-1-ay)+y+z&=3\\
-  -2-2ay+y+z&=3\\
-  z&=5+(2a-1)y
-  \end{align*}
-
-  Now substitute \(x=-1-ay\) and \(z=5+(2a-1)y\) into the third plane
-  \[
-  3x+(1-a)y+2z=5
-  \]
-
-  Then
-  \begin{align*}
-  3(-1-ay)+(1-a)y+2\bigl(5+(2a-1)y\bigr)&=5\\
-  -3-3ay+(1-a)y+10+(4a-2)y&=5\\
-  7+\bigl(-3a+1-a+4a-2\bigr)y&=5\\
-  7-y&=5\\
-  y&=2
-  \end{align*}
-
-  Now find \(x\) and \(z\):
-  \begin{align*}
-  x&=-1-a(2)=-1-2a\\
-  z&=5+(2a-1)(2)=5+4a-2=4a+3
-  \end{align*}
-
-  Therefore the point of intersection is
-  \[
-  (-1-2a,\ 2,\ 4a+3)
-  \]
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 6 ----
-\questionitem
-% [Source: _QBT___Solns__Plane_Intersections, Q6]
 
 \[
 \mathbf{M}=\begin{pmatrix}
@@ -974,6 +622,358 @@ where $k$ is a constant. \\
 
     Geometrically, the three planes intersect in a common line, so form a \textbf{sheaf}.
   \end{enumerate}
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT___Solns__Plane_Intersections, Q5]
+
+The equations
+\[
+\begin{aligned}
+x-y+2z&=4\\
+(k+1)x+ky+(2-k)z&=4-k\\
+(5-2k)x+(2-2k)y+(k+2)z&=8-k
+\end{aligned}
+\] \\
+represent three planes, where $k$ is a real constant. \\
+The planes do not intersect in exactly one point. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the possible values of $k$. \marks{3} \\
+  \item For each value of $k$ found in part (a), describe the configuration of the planes. \\
+  Fully justify your answer, stating in each case whether the corresponding system is consistent or inconsistent. \marks{5} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let the coefficient matrix be
+\[
+A=\begin{pmatrix}
+1 & -1 & 2\\
+k+1 & k & 2-k\\
+5-2k & 2-2k & k+2
+\end{pmatrix}
+\]
+
+The planes fail to intersect in exactly one point when the system does \emph{not} have a unique solution, so we require
+\[
+\det A=0
+\]
+
+Expanding along the first row,
+\begin{align*}
+\det A
+&=1\begin{vmatrix}k&2-k\\2-2k&k+2\end{vmatrix}
+-(-1)\begin{vmatrix}k+1&2-k\\5-2k&k+2\end{vmatrix}
++2\begin{vmatrix}k+1&k\\5-2k&2-2k\end{vmatrix}\\
+&=k(k+2)-(2-k)(2-2k)\\
+&\quad +(k+1)(k+2)-(2-k)(5-2k)\\
+&\quad +2\bigl((k+1)(2-2k)-k(5-2k)\bigr)\\
+&=\bigl(k^2+2k-(4-6k+2k^2)\bigr)\\
+&\quad +\bigl(k^2+3k+2-(10-9k+2k^2)\bigr)\\
+&\quad +2\bigl((2-2k^2)-(5k-2k^2)\bigr)\\
+&=(-k^2+8k-4)+(-k^2+12k-8)+(4-10k)\\
+&=-2k^2+10k-8\\
+&=-2(k^2-5k+4)\\
+&=-2(k-1)(k-4)
+\end{align*}
+
+So
+\[
+-2(k-1)(k-4)=0
+\]
+
+Hence the possible values are
+\[
+k=1 \quad \text{or} \quad k=4
+\]
+
+\item We consider each value of \(k\) separately.
+
+\medskip
+
+For \(k=1\), the planes are
+\[
+\begin{aligned}
+x-y+2z&=4\\
+2x+y+z&=3\\
+3x+3z&=7
+\end{aligned}
+\]
+
+Adding the first two equations gives
+\[
+(x-y+2z)+(2x+y+z)=4+3
+\]
+so
+\[
+3x+3z=7
+\]
+which is exactly the third equation.
+
+Therefore any point that lies on the first two planes automatically lies on the third plane as well.
+
+Now the normals of the first two planes are
+\[
+\mathbf n_1=\begin{pmatrix}1\\-1\\2\end{pmatrix}, \qquad \mathbf n_2=\begin{pmatrix}2\\1\\1\end{pmatrix}
+\]
+These are not scalar multiples, so the first two planes are not parallel. Hence they intersect in a line, and the third plane contains this same line.
+
+Therefore the system is consistent, and the three planes form a \textbf{sheaf}: they share a common line, so there are infinitely many solutions.
+
+To find the line, add the first two equations:
+\[
+3x+3z=7 \quad \Rightarrow \quad x+z=\frac73
+\]
+Then substitute into \(2x+y+z=3\):
+\[
+2x+y+\left(\frac73-x\right)=3
+\]
+so
+\[
+x+y=\frac23
+\]
+
+Hence the common line is
+\[
+x+y=\frac23,\qquad x+z=\frac73
+\]
+
+\medskip
+
+For \(k=4\), the planes are
+\[
+\begin{aligned}
+x-y+2z&=4\\
+5x+4y-2z&=0\\
+-3x-6y+6z&=4
+\end{aligned}
+\]
+
+Suppose a point lies on the first two planes. Then
+\[
+2(x-y+2z)-(5x+4y-2z)=2\cdot 4-0
+\]
+so
+\[
+-3x-6y+6z=8
+\]
+
+But the third plane is
+\[
+-3x-6y+6z=4
+\]
+
+This is impossible, so there is no point common to all three planes. Therefore the system is inconsistent.
+
+Now check how the planes are arranged. Their normals are
+\[
+\mathbf n_1=\begin{pmatrix}1\\-1\\2\end{pmatrix},\qquad
+\mathbf n_2=\begin{pmatrix}5\\4\\-2\end{pmatrix},\qquad
+\mathbf n_3=\begin{pmatrix}-3\\-6\\6\end{pmatrix}
+\]
+No two of these are scalar multiples, so no two planes are parallel. Hence each pair of planes meets in a line.
+
+Let \(\mathbf d_{ij}\) be a direction vector for the line of intersection of planes \(i\) and \(j\). Then
+\[
+\mathbf d_{ij}=\mathbf n_i\times \mathbf n_j
+\]
+Also,
+\[
+\mathbf n_3=2\mathbf n_1-\mathbf n_2
+\]
+
+So
+\[
+\mathbf d_{13}
+=\mathbf n_1\times \mathbf n_3
+=\mathbf n_1\times(2\mathbf n_1-\mathbf n_2)
+=-(\mathbf n_1\times \mathbf n_2)
+=-\mathbf d_{12}
+\]
+and
+\[
+\mathbf d_{23}
+=\mathbf n_2\times \mathbf n_3
+=\mathbf n_2\times(2\mathbf n_1-\mathbf n_2)
+=-2(\mathbf n_1\times \mathbf n_2)
+=-2\mathbf d_{12}
+\]
+
+Hence all three pairwise intersection lines are parallel.
+
+They cannot all be the same line, because that would give a common line to all three planes, contradicting the fact that the system is inconsistent.
+
+Therefore, when \(k=4\), the three planes form a \textbf{prism}: each pair of planes meets in a line, but the three lines are parallel and distinct, so there is no common point.
+\end{enumerate} 
+\end{djsSolution} 
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+% [Source: _QBT___Solns__Plane_Intersections, Q6]
+
+Three planes have equations
+\[
+\begin{aligned}
+x+ay&=-1\\
+2x+y+z&=3\\
+3x+by+2z&=c
+\end{aligned}
+\] \\
+where $a$, $b$ and $c$ are constants. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item In the case where the planes \textbf{do not} intersect at a unique point,
+  \begin{enumerate}[label=(\roman*)]
+    \item find $b$ in terms of $a$. \marks{4}
+    \item find the value of $c$ for which the planes form a sheaf. \marks{3} \\
+  \end{enumerate}
+  \item In the case where $b=1-a$ and $c=5$, find the coordinates of the point of intersection of the planes in terms of $a$. \marks{6} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let the planes be
+  \[
+  P_1:\ x+ay=-1,\qquad
+  P_2:\ 2x+y+z=3,\qquad
+  P_3:\ 3x+by+2z=c
+  \]
+
+  \begin{enumerate}[label=(\roman*)]
+    \item For the three planes to intersect at a unique point, the coefficient matrix must have non-zero determinant:
+    \[
+    A=
+    \begin{pmatrix}
+    1 & a & 0\\
+    2 & 1 & 1\\
+    3 & b & 2
+    \end{pmatrix}
+    \]
+
+    So
+    \begin{align*}
+    \det(A)
+    &=
+    \begin{vmatrix}
+    1 & a & 0\\
+    2 & 1 & 1\\
+    3 & b & 2
+    \end{vmatrix} \\
+    &=1
+    \begin{vmatrix}
+    1 & 1\\
+    b & 2
+    \end{vmatrix}
+    -a
+    \begin{vmatrix}
+    2 & 1\\
+    3 & 2
+    \end{vmatrix}
+    +0
+    \begin{vmatrix}
+    2 & 1\\
+    3 & b
+    \end{vmatrix} \\
+    &=1(2-b)-a(4-3) \\
+    &=2-b-a
+    \end{align*}
+
+    In the case where the planes do \textbf{not} intersect at a unique point,
+    \[
+    \det(A)=0
+    \]
+    so
+    \begin{align*}
+    2-b-a&=0\\
+    b&=2-a
+    \end{align*}
+
+    \item A sheaf of planes means that all three planes contain a common line.
+
+    First find the line of intersection of \(P_1\) and \(P_2\).
+
+    From \(P_1\),
+    \[
+    x=-1-ay
+    \]
+
+    Substitute into \(P_2\):
+    \begin{align*}
+    2x+y+z&=3\\
+    2(-1-ay)+y+z&=3\\
+    -2-2ay+y+z&=3\\
+    z&=5+(2a-1)y
+    \end{align*}
+
+    So the line \(P_1\cap P_2\) has coordinates
+    \[
+    x=-1-ay,\qquad z=5+(2a-1)y
+    \]
+
+    For \(P_3\) to contain this whole line, substitute these expressions into \(P_3\), using \(b=2-a\):
+    \begin{align*}
+    3x+(2-a)y+2z
+    &=3(-1-ay)+(2-a)y+2\bigl(5+(2a-1)y\bigr)\\
+    &=-3-3ay+(2-a)y+10+(4a-2)y\\
+    &=7+\bigl(-3a+2-a+4a-2\bigr)y\\
+    &=7
+    \end{align*}
+
+    This is satisfied for every point on the line precisely when
+    \[
+    c=7
+    \]
+  \end{enumerate}
+
+  \item Now take \(b=1-a\) and \(c=5\).
+
+  From the first plane,
+  \[
+  x=-1-ay
+  \]
+
+  Substitute into the second plane:
+  \begin{align*}
+  2x+y+z&=3\\
+  2(-1-ay)+y+z&=3\\
+  -2-2ay+y+z&=3\\
+  z&=5+(2a-1)y
+  \end{align*}
+
+  Now substitute \(x=-1-ay\) and \(z=5+(2a-1)y\) into the third plane
+  \[
+  3x+(1-a)y+2z=5
+  \]
+
+  Then
+  \begin{align*}
+  3(-1-ay)+(1-a)y+2\bigl(5+(2a-1)y\bigr)&=5\\
+  -3-3ay+(1-a)y+10+(4a-2)y&=5\\
+  7+\bigl(-3a+1-a+4a-2\bigr)y&=5\\
+  7-y&=5\\
+  y&=2
+  \end{align*}
+
+  Now find \(x\) and \(z\):
+  \begin{align*}
+  x&=-1-a(2)=-1-2a\\
+  z&=5+(2a-1)(2)=5+4a-2=4a+3
+  \end{align*}
+
+  Therefore the point of intersection is
+  \[
+  (-1-2a,\ 2,\ 4a+3)
+  \]
 \end{enumerate}
 \end{djsSolution}
 
