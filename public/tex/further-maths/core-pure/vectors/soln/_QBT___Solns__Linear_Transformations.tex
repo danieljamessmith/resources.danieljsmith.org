@@ -4,7 +4,7 @@
 \djsSolnHeader{Linear Transformations}
 \djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}
 
-\djsLastUpdated{10 October 2026}
+\djsLastUpdated{11 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -18,6 +18,228 @@
 % ---- Question 1 ----
 \questionitem
 % [Source: _QBT___Solns__Linear_Transformations, Q1]
+
+The transformation $U$, represented by the $2\times 2$ matrix $P$, is a reflection in the $x$-axis. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Write down the matrix $P$. \marks{1} \\
+\end{enumerate}
+
+The transformation $V$, represented by the $2\times 2$ matrix $Q$, is a reflection in the line $y=x$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Write down the matrix $Q$. \marks{1} \\
+\end{enumerate}
+
+Given that $U$ followed by $V$ is transformation $T$, which is represented by the matrix $R$ \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item express $R$ in terms of $P$ and $Q$, \marks{1}
+  \item find the matrix $R$, \marks{2}
+  \item give a full geometrical description of $T$ as a single transformation. \marks{2} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item A reflection in the $x$-axis maps $(x,y)$ to $(x,-y)$, so
+  \[
+  P=\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+  \]
+
+  \item A reflection in the line $y=x$ swaps the coordinates, so
+  \[
+  Q=\begin{pmatrix}0&1\\1&0\end{pmatrix}
+  \]
+
+  \item If a point is first transformed by $U$ and then by $V$, then with column vectors
+  \[
+  \mathbf{x}\mapsto P\mathbf{x}\mapsto Q(P\mathbf{x})=(QP)\mathbf{x}
+  \]
+  Hence
+  \[
+  R=QP
+  \]
+
+  \item Using part (c),
+  \[
+  R=QP=\begin{pmatrix}0&1\\1&0\end{pmatrix}\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+  \]
+  Multiplying,
+  \[
+  R=\begin{pmatrix}
+  0\cdot 1+1\cdot 0 & 0\cdot 0+1\cdot (-1)\\
+  1\cdot 1+0\cdot 0 & 1\cdot 0+0\cdot (-1)
+  \end{pmatrix}
+  =\begin{pmatrix}0&-1\\1&0\end{pmatrix}
+  \]
+
+  \item Apply $R$ to a general point:
+  \[
+  \begin{pmatrix}x'\\y'\end{pmatrix}
+  =
+  \begin{pmatrix}0&-1\\1&0\end{pmatrix}
+  \begin{pmatrix}x\\y\end{pmatrix}
+  =
+  \begin{pmatrix}-y\\x\end{pmatrix}
+  \]
+  So $(x,y)\mapsto (-y,x)$.
+
+  This is a rotation through $90^\circ$ anticlockwise about the origin.
+
+  Therefore $T$ is a rotation of $90^\circ$ anticlockwise about the origin.
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT___Solns__Linear_Transformations, Q2]
+
+A right-angled triangle $T$ has vertices $A(-2,1)$, $B(1,1)$ and $C(1,5)$. When $T$ is transformed by the matrix
+\[
+P = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}
+\]
+the image is $T'$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the coordinates of the vertices of $T'$. \marks{2} \\
+  \item Describe fully the transformation represented by $P$. \marks{2} \\
+\end{enumerate}
+
+The matrices
+\[
+Q = \begin{pmatrix} 2 & -1 \\ 0 & 3 \end{pmatrix}
+\]
+and
+\[
+R = \begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix}
+\]
+represent two transformations. When $T$ is transformed by the matrix $QR$, the image is $T''$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find $QR$. \marks{2} \\
+  \item Find the determinant of $QR$. \marks{2} \\
+  \item Using your answer to part (d), find the area of $T''$. \marks{3} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item A point \((x,y)\) is represented by the column vector \(\begin{pmatrix}x\\y\end{pmatrix}\).
+
+  Applying
+  \[
+  P=\begin{pmatrix}0&-1\\1&0\end{pmatrix}
+  \]
+  gives
+  \[
+  P\begin{pmatrix}x\\y\end{pmatrix}
+  =
+  \begin{pmatrix}0&-1\\1&0\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}
+  =
+  \begin{pmatrix}-y\\x\end{pmatrix}
+  \]
+
+  So each point \((x,y)\) maps to \((-y,x)\).
+
+  For \(A(-2,1)\),
+  \[
+  A' = (-1,-2)
+  \]
+
+  For \(B(1,1)\),
+  \[
+  B' = (-1,1)
+  \]
+
+  For \(C(1,5)\),
+  \[
+  C' = (-5,1)
+  \]
+
+  Hence the vertices of \(T'\) are \(A'(-1,-2)\), \(B'(-1,1)\), \(C'(-5,1)\).
+
+  \item To identify the transformation, look at what \(P\) does to the unit basis vectors.
+
+  \[
+  P\begin{pmatrix}1\\0\end{pmatrix}
+  =
+  \begin{pmatrix}0\\1\end{pmatrix}
+  \]
+  so the positive \(x\)-axis maps to the positive \(y\)-axis.
+
+  Also,
+  \[
+  P\begin{pmatrix}0\\1\end{pmatrix}
+  =
+  \begin{pmatrix}-1\\0\end{pmatrix}
+  \]
+  so the positive \(y\)-axis maps to the negative \(x\)-axis.
+
+  This is a rotation of \(90^\circ\) anticlockwise about the origin.
+
+  \item
+  \[
+  QR=
+  \begin{pmatrix}2&-1\\0&3\end{pmatrix}
+  \begin{pmatrix}1&2\\1&0\end{pmatrix}
+  \]
+
+  Multiplying row by column:
+  \[
+  QR=
+  \begin{pmatrix}
+  2(1)+(-1)(1) & 2(2)+(-1)(0)\\
+  0(1)+3(1) & 0(2)+3(0)
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+  1&4\\
+  3&0
+  \end{pmatrix}
+  \]
+
+  \item Using
+  \[
+  QR=\begin{pmatrix}1&4\\3&0\end{pmatrix}
+  \]
+  its determinant is
+  \[
+  \det(QR)=1\cdot 0-4\cdot 3=-12
+  \]
+
+  \item The original triangle \(T\) is right-angled with side lengths
+  \[
+  AB=3,\qquad BC=4
+  \]
+  so its area is
+  \[
+  \text{Area of }T=\frac12\times 3\times 4=6
+  \]
+
+  The magnitude of the determinant gives the area scale factor, so
+  \[
+  \text{area scale factor}=|\det(QR)|=|-12|=12
+  \]
+
+  Therefore,
+  \[
+  \text{Area of }T''=12\times 6=72
+  \]
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT___Solns__Linear_Transformations, Q3]
 
 \begin{enumerate}[label=\textbf{(\roman*)}]
   \item In each of the following cases, find a $2\times 2$ matrix that represents
@@ -190,9 +412,9 @@
 
 \newpage
 
-% ---- Question 2 ----
+% ---- Question 4 ----
 \questionitem
-% [Source: _QBT___Solns__Linear_Transformations, Q2]
+% [Source: _QBT___Solns__Linear_Transformations, Q4]
 
 \[
 \mathbf{P}=\begin{pmatrix} p+1 & 2 \\ 2 & p+1 \end{pmatrix}
@@ -350,189 +572,9 @@ Therefore
 
 \newpage
 
-% ---- Question 3 ----
+% ---- Question 5 ----
 \questionitem
-% [Source: _QBT___Solns__Linear_Transformations, Q3]
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Specify fully the transformation $\mathbf{T}$ of the plane associated with the matrix $\mathbf{M}$, where
-  \[
-  \mathbf{M} = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}
-  \]
-  and $0<\theta<2\pi$. \marks{2} \\
-  \item
-  \begin{enumerate}[label=(\roman*)]
-    \item Find $\det \mathbf{M}$. \marks{1}
-    \item Deduce \textbf{two properties} of the transformation $\mathbf{T}$ from the value of $\det \mathbf{M}$. \marks{2} \\
-  \end{enumerate}
-  \item Prove that
-  \[
-  \mathbf{M}^n = \begin{pmatrix} \cos n\theta & -\sin n\theta \\ \sin n\theta & \cos n\theta \end{pmatrix}
-  \]
-  where $n$ is a positive integer. \marks{4} \\
-  
-  \item Hence specify fully a \textbf{single} transformation which is equivalent to $n$ applications of the transformation $\mathbf{T}$. \marks{1} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item For a point with position vector $\begin{pmatrix}x\\y\end{pmatrix}$, the transformation gives
-  \[
-  \begin{pmatrix}x'\\y'\end{pmatrix}
-  =
-  \begin{pmatrix}
-  \cos\theta & -\sin\theta\\
-  \sin\theta & \cos\theta
-  \end{pmatrix}
-  \begin{pmatrix}x\\y\end{pmatrix}
-  \]
-
-  This is the standard matrix for a rotation in the plane.
-
-  So $\mathbf{T}$ is a rotation through angle $\theta$ anticlockwise about the origin.
-
-  \item
-  \begin{enumerate}[label=(\roman*)]
-    \item
-    \[
-    \det \mathbf{M}
-    =
-    \begin{vmatrix}
-    \cos\theta & -\sin\theta\\
-    \sin\theta & \cos\theta
-    \end{vmatrix}
-    =
-    \cos\theta\cos\theta-(-\sin\theta)(\sin\theta)
-    \]
-    \[
-    =\cos^2\theta+\sin^2\theta=1
-    \]
-
-    \item Since $|\det \mathbf{M}|=1$, the area scale factor is $1$.
-
-    So areas are preserved.
-
-    Also, $\det \mathbf{M}>0$, so orientation is preserved.
-
-    Therefore there is no reflection.
-
-    The two properties are: area is preserved, and orientation is preserved.
-  \end{enumerate}
-
-  \item We prove the result by induction on $n$.
-
-  First, when $n=1$,
-  \[
-  \mathbf{M}^1=\mathbf{M}=
-  \begin{pmatrix}
-  \cos\theta & -\sin\theta\\
-  \sin\theta & \cos\theta
-  \end{pmatrix}
-  =
-  \begin{pmatrix}
-  \cos(1\theta) & -\sin(1\theta)\\
-  \sin(1\theta) & \cos(1\theta)
-  \end{pmatrix}
-  \]
-
-  So the statement is true for $n=1$.
-
-  Now assume that for some positive integer $k$,
-  \[
-  \mathbf{M}^k=
-  \begin{pmatrix}
-  \cos(k\theta) & -\sin(k\theta)\\
-  \sin(k\theta) & \cos(k\theta)
-  \end{pmatrix}
-  \]
-
-  Then
-  \[
-  \mathbf{M}^{k+1}=\mathbf{M}^k\mathbf{M}
-  \]
-
-  Substituting the induction hypothesis,
-  \[
-  \mathbf{M}^{k+1}
-  =
-  \begin{pmatrix}
-  \cos(k\theta) & -\sin(k\theta)\\
-  \sin(k\theta) & \cos(k\theta)
-  \end{pmatrix}
-  \begin{pmatrix}
-  \cos\theta & -\sin\theta\\
-  \sin\theta & \cos\theta
-  \end{pmatrix}
-  \]
-
-  Multiplying the matrices,
-  \[
-  \mathbf{M}^{k+1}
-  =
-  \begin{pmatrix}
-  \cos(k\theta)\cos\theta-\sin(k\theta)\sin\theta
-  &
-  -\cos(k\theta)\sin\theta-\sin(k\theta)\cos\theta
-  \\[4pt]
-  \sin(k\theta)\cos\theta+\cos(k\theta)\sin\theta
-  &
-  -\sin(k\theta)\sin\theta+\cos(k\theta)\cos\theta
-  \end{pmatrix}
-  \]
-
-  Using the angle addition formulae,
-  \[
-  \cos(A+B)=\cos A\cos B-\sin A\sin B
-  \]
-  \[
-  \sin(A+B)=\sin A\cos B+\cos A\sin B
-  \]
-
-  we get
-  \[
-  \mathbf{M}^{k+1}
-  =
-  \begin{pmatrix}
-  \cos((k+1)\theta) & -\sin((k+1)\theta)\\
-  \sin((k+1)\theta) & \cos((k+1)\theta)
-  \end{pmatrix}
-  \]
-
-  So the statement is true for $n=k+1$.
-
-  If the statement is true for $n=k$, then it is true for $n=k+1$. Since it is true for $n=1$, by the principle of mathematical induction
-  \[
-  \mathbf{M}^n=
-  \begin{pmatrix}
-  \cos(n\theta) & -\sin(n\theta)\\
-  \sin(n\theta) & \cos(n\theta)
-  \end{pmatrix}
-  \]
-  for all positive integers $n$.
-
-  \item From part (c), $n$ applications of $\mathbf{T}$ have matrix
-  \[
-  \mathbf{M}^n=
-  \begin{pmatrix}
-  \cos(n\theta) & -\sin(n\theta)\\
-  \sin(n\theta) & \cos(n\theta)
-  \end{pmatrix}
-  \]
-
-  This is the matrix of a rotation through angle $n\theta$ anticlockwise about the origin.
-
-  So the single equivalent transformation is a rotation about the origin through angle $n\theta$ anticlockwise.
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 4 ----
-\questionitem
-% [Source: _QBT___Solns__Linear_Transformations, Q4]
+% [Source: _QBT___Solns__Linear_Transformations, Q5]
 
 Consider the matrix
 \[
@@ -782,86 +824,6 @@ y=-\sqrt3 x
 
 \newpage
 
-% ---- Question 5 ----
-\questionitem
-% [Source: _QBT___Solns__Linear_Transformations, Q5]
-
-The transformation $U$, represented by the $2\times 2$ matrix $P$, is a reflection in the $x$-axis. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Write down the matrix $P$. \marks{1} \\
-\end{enumerate}
-
-The transformation $V$, represented by the $2\times 2$ matrix $Q$, is a reflection in the line $y=x$. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Write down the matrix $Q$. \marks{1} \\
-\end{enumerate}
-
-Given that $U$ followed by $V$ is transformation $T$, which is represented by the matrix $R$ \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item express $R$ in terms of $P$ and $Q$, \marks{1}
-  \item find the matrix $R$, \marks{2}
-  \item give a full geometrical description of $T$ as a single transformation. \marks{2} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item A reflection in the $x$-axis maps $(x,y)$ to $(x,-y)$, so
-  \[
-  P=\begin{pmatrix}1&0\\0&-1\end{pmatrix}
-  \]
-
-  \item A reflection in the line $y=x$ swaps the coordinates, so
-  \[
-  Q=\begin{pmatrix}0&1\\1&0\end{pmatrix}
-  \]
-
-  \item If a point is first transformed by $U$ and then by $V$, then with column vectors
-  \[
-  \mathbf{x}\mapsto P\mathbf{x}\mapsto Q(P\mathbf{x})=(QP)\mathbf{x}
-  \]
-  Hence
-  \[
-  R=QP
-  \]
-
-  \item Using part (c),
-  \[
-  R=QP=\begin{pmatrix}0&1\\1&0\end{pmatrix}\begin{pmatrix}1&0\\0&-1\end{pmatrix}
-  \]
-  Multiplying,
-  \[
-  R=\begin{pmatrix}
-  0\cdot 1+1\cdot 0 & 0\cdot 0+1\cdot (-1)\\
-  1\cdot 1+0\cdot 0 & 1\cdot 0+0\cdot (-1)
-  \end{pmatrix}
-  =\begin{pmatrix}0&-1\\1&0\end{pmatrix}
-  \]
-
-  \item Apply $R$ to a general point:
-  \[
-  \begin{pmatrix}x'\\y'\end{pmatrix}
-  =
-  \begin{pmatrix}0&-1\\1&0\end{pmatrix}
-  \begin{pmatrix}x\\y\end{pmatrix}
-  =
-  \begin{pmatrix}-y\\x\end{pmatrix}
-  \]
-  So $(x,y)\mapsto (-y,x)$.
-
-  This is a rotation through $90^\circ$ anticlockwise about the origin.
-
-  Therefore $T$ is a rotation of $90^\circ$ anticlockwise about the origin.
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
 % ---- Question 6 ----
 \questionitem
 % [Source: _QBT___Solns__Linear_Transformations, Q6]
@@ -1068,6 +1030,74 @@ The unit square in the $x$-$y$ plane is transformed by $\mathbf{M}$ onto rectang
 \questionitem
 % [Source: _QBT___Solns__Linear_Transformations, Q7]
 
+Bilal has been asked to describe the transformation given by the matrix
+\[
+\begin{pmatrix}
+\frac{\sqrt{3}}{2} & 0 & -\frac{1}{2} \\
+0 & 1 & 0 \\
+\frac{1}{2} & 0 & \frac{\sqrt{3}}{2}
+\end{pmatrix}
+\]
+
+He writes his answer as follows: \\
+
+
+\fbox{%
+\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+The transformation is a rotation about the $y$-axis through an angle of $\theta$, where
+\[
+\cos \theta = \frac{\sqrt{3}}{2} \quad \text{and} \quad \sin \theta = \frac{1}{2}
+\]
+\[
+\theta = 30^\circ
+\]
+}%
+} \\[10pt]
+
+Identify and correct the error in Bilal's work. \marks{2}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+The standard matrix for a rotation about the $y$-axis is
+\[
+R_y(\theta)=
+\begin{pmatrix}
+\cos\theta & 0 & \sin\theta\\
+0 & 1 & 0\\
+-\sin\theta & 0 & \cos\theta
+\end{pmatrix}
+\]
+
+Comparing this with
+\[
+\begin{pmatrix}
+\frac{\sqrt3}{2} & 0 & -\frac12\\
+0 & 1 & 0\\
+\frac12 & 0 & \frac{\sqrt3}{2}
+\end{pmatrix}
+\]
+gives
+\[
+\cos\theta=\frac{\sqrt3}{2},\qquad \sin\theta=-\frac12
+\]
+
+So the angle is not $30^\circ$, but
+\[
+\theta=-30^\circ
+\]
+equivalently $330^\circ$.
+
+Bilal's error is that he ignored the negative sign on the sine term. The transformation is a rotation about the $y$-axis through $30^\circ$ clockwise when viewed from the positive $y$-axis.
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+% [Source: _QBT___Solns__Linear_Transformations, Q8]
+
 You are given the matrix $\mathbf{A} = \begin{pmatrix}0 & 1 & 0\\0 & 0 & 1\\1 & 0 & 0\end{pmatrix}$. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
@@ -1223,148 +1253,6 @@ Therefore
 \]
 
 So the coordinates of \(Q'\) are \((-1,4,2)\).
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 8 ----
-\questionitem
-% [Source: _QBT___Solns__Linear_Transformations, Q8]
-
-A right-angled triangle $T$ has vertices $A(-2,1)$, $B(1,1)$ and $C(1,5)$. When $T$ is transformed by the matrix
-\[
-P = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}
-\]
-the image is $T'$. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find the coordinates of the vertices of $T'$. \marks{2} \\
-  \item Describe fully the transformation represented by $P$. \marks{2} \\
-\end{enumerate}
-
-The matrices
-\[
-Q = \begin{pmatrix} 2 & -1 \\ 0 & 3 \end{pmatrix}
-\]
-and
-\[
-R = \begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix}
-\]
-represent two transformations. When $T$ is transformed by the matrix $QR$, the image is $T''$. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Find $QR$. \marks{2} \\
-  \item Find the determinant of $QR$. \marks{2} \\
-  \item Using your answer to part (d), find the area of $T''$. \marks{3} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item A point \((x,y)\) is represented by the column vector \(\begin{pmatrix}x\\y\end{pmatrix}\).
-
-  Applying
-  \[
-  P=\begin{pmatrix}0&-1\\1&0\end{pmatrix}
-  \]
-  gives
-  \[
-  P\begin{pmatrix}x\\y\end{pmatrix}
-  =
-  \begin{pmatrix}0&-1\\1&0\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}
-  =
-  \begin{pmatrix}-y\\x\end{pmatrix}
-  \]
-
-  So each point \((x,y)\) maps to \((-y,x)\).
-
-  For \(A(-2,1)\),
-  \[
-  A' = (-1,-2)
-  \]
-
-  For \(B(1,1)\),
-  \[
-  B' = (-1,1)
-  \]
-
-  For \(C(1,5)\),
-  \[
-  C' = (-5,1)
-  \]
-
-  Hence the vertices of \(T'\) are \(A'(-1,-2)\), \(B'(-1,1)\), \(C'(-5,1)\).
-
-  \item To identify the transformation, look at what \(P\) does to the unit basis vectors.
-
-  \[
-  P\begin{pmatrix}1\\0\end{pmatrix}
-  =
-  \begin{pmatrix}0\\1\end{pmatrix}
-  \]
-  so the positive \(x\)-axis maps to the positive \(y\)-axis.
-
-  Also,
-  \[
-  P\begin{pmatrix}0\\1\end{pmatrix}
-  =
-  \begin{pmatrix}-1\\0\end{pmatrix}
-  \]
-  so the positive \(y\)-axis maps to the negative \(x\)-axis.
-
-  This is a rotation of \(90^\circ\) anticlockwise about the origin.
-
-  \item
-  \[
-  QR=
-  \begin{pmatrix}2&-1\\0&3\end{pmatrix}
-  \begin{pmatrix}1&2\\1&0\end{pmatrix}
-  \]
-
-  Multiplying row by column:
-  \[
-  QR=
-  \begin{pmatrix}
-  2(1)+(-1)(1) & 2(2)+(-1)(0)\\
-  0(1)+3(1) & 0(2)+3(0)
-  \end{pmatrix}
-  =
-  \begin{pmatrix}
-  1&4\\
-  3&0
-  \end{pmatrix}
-  \]
-
-  \item Using
-  \[
-  QR=\begin{pmatrix}1&4\\3&0\end{pmatrix}
-  \]
-  its determinant is
-  \[
-  \det(QR)=1\cdot 0-4\cdot 3=-12
-  \]
-
-  \item The original triangle \(T\) is right-angled with side lengths
-  \[
-  AB=3,\qquad BC=4
-  \]
-  so its area is
-  \[
-  \text{Area of }T=\frac12\times 3\times 4=6
-  \]
-
-  The magnitude of the determinant gives the area scale factor, so
-  \[
-  \text{area scale factor}=|\det(QR)|=|-12|=12
-  \]
-
-  Therefore,
-  \[
-  \text{Area of }T''=12\times 6=72
-  \]
 \end{enumerate}
 \end{djsSolution}
 
@@ -1600,74 +1488,6 @@ So the area of triangle \(AOB\) is \(6.88\) square units to \(3\) significant fi
 \questionitem
 % [Source: _QBT___Solns__Linear_Transformations, Q10]
 
-Bilal has been asked to describe the transformation given by the matrix
-\[
-\begin{pmatrix}
-\frac{\sqrt{3}}{2} & 0 & -\frac{1}{2} \\
-0 & 1 & 0 \\
-\frac{1}{2} & 0 & \frac{\sqrt{3}}{2}
-\end{pmatrix}
-\]
-
-He writes his answer as follows: \\
-
-
-\fbox{%
-\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
-The transformation is a rotation about the $y$-axis through an angle of $\theta$, where
-\[
-\cos \theta = \frac{\sqrt{3}}{2} \quad \text{and} \quad \sin \theta = \frac{1}{2}
-\]
-\[
-\theta = 30^\circ
-\]
-}%
-} \\[10pt]
-
-Identify and correct the error in Bilal's work. \marks{2}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-The standard matrix for a rotation about the $y$-axis is
-\[
-R_y(\theta)=
-\begin{pmatrix}
-\cos\theta & 0 & \sin\theta\\
-0 & 1 & 0\\
--\sin\theta & 0 & \cos\theta
-\end{pmatrix}
-\]
-
-Comparing this with
-\[
-\begin{pmatrix}
-\frac{\sqrt3}{2} & 0 & -\frac12\\
-0 & 1 & 0\\
-\frac12 & 0 & \frac{\sqrt3}{2}
-\end{pmatrix}
-\]
-gives
-\[
-\cos\theta=\frac{\sqrt3}{2},\qquad \sin\theta=-\frac12
-\]
-
-So the angle is not $30^\circ$, but
-\[
-\theta=-30^\circ
-\]
-equivalently $330^\circ$.
-
-Bilal's error is that he ignored the negative sign on the sine term. The transformation is a rotation about the $y$-axis through $30^\circ$ clockwise when viewed from the positive $y$-axis.
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 11 ----
-\questionitem
-% [Source: _QBT___Solns__Linear_Transformations, Q11]
-
 Three non-singular $3 \times 3$ matrices, $\mathbf{A}$, $\mathbf{B}$ and $\mathbf{R}$, are such that
 \[
 \mathbf{R}\mathbf{A}=\mathbf{B}
@@ -1766,6 +1586,186 @@ Hence
 so it leaves $x$ unchanged and swaps $y$ and $z$.
 
 Therefore, $\mathbf{A}$ represents a reflection in the plane $y=z$.
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+% [Source: _QBT___Solns__Linear_Transformations, Q11]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Specify fully the transformation $\mathbf{T}$ of the plane associated with the matrix $\mathbf{M}$, where
+  \[
+  \mathbf{M} = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}
+  \]
+  and $0<\theta<2\pi$. \marks{2} \\
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Find $\det \mathbf{M}$. \marks{1}
+    \item Deduce \textbf{two properties} of the transformation $\mathbf{T}$ from the value of $\det \mathbf{M}$. \marks{2} \\
+  \end{enumerate}
+  \item Prove that
+  \[
+  \mathbf{M}^n = \begin{pmatrix} \cos n\theta & -\sin n\theta \\ \sin n\theta & \cos n\theta \end{pmatrix}
+  \]
+  where $n$ is a positive integer. \marks{4} \\
+  
+  \item Hence specify fully a \textbf{single} transformation which is equivalent to $n$ applications of the transformation $\mathbf{T}$. \marks{1} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item For a point with position vector $\begin{pmatrix}x\\y\end{pmatrix}$, the transformation gives
+  \[
+  \begin{pmatrix}x'\\y'\end{pmatrix}
+  =
+  \begin{pmatrix}
+  \cos\theta & -\sin\theta\\
+  \sin\theta & \cos\theta
+  \end{pmatrix}
+  \begin{pmatrix}x\\y\end{pmatrix}
+  \]
+
+  This is the standard matrix for a rotation in the plane.
+
+  So $\mathbf{T}$ is a rotation through angle $\theta$ anticlockwise about the origin.
+
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item
+    \[
+    \det \mathbf{M}
+    =
+    \begin{vmatrix}
+    \cos\theta & -\sin\theta\\
+    \sin\theta & \cos\theta
+    \end{vmatrix}
+    =
+    \cos\theta\cos\theta-(-\sin\theta)(\sin\theta)
+    \]
+    \[
+    =\cos^2\theta+\sin^2\theta=1
+    \]
+
+    \item Since $|\det \mathbf{M}|=1$, the area scale factor is $1$.
+
+    So areas are preserved.
+
+    Also, $\det \mathbf{M}>0$, so orientation is preserved.
+
+    Therefore there is no reflection.
+
+    The two properties are: area is preserved, and orientation is preserved.
+  \end{enumerate}
+
+  \item We prove the result by induction on $n$.
+
+  First, when $n=1$,
+  \[
+  \mathbf{M}^1=\mathbf{M}=
+  \begin{pmatrix}
+  \cos\theta & -\sin\theta\\
+  \sin\theta & \cos\theta
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+  \cos(1\theta) & -\sin(1\theta)\\
+  \sin(1\theta) & \cos(1\theta)
+  \end{pmatrix}
+  \]
+
+  So the statement is true for $n=1$.
+
+  Now assume that for some positive integer $k$,
+  \[
+  \mathbf{M}^k=
+  \begin{pmatrix}
+  \cos(k\theta) & -\sin(k\theta)\\
+  \sin(k\theta) & \cos(k\theta)
+  \end{pmatrix}
+  \]
+
+  Then
+  \[
+  \mathbf{M}^{k+1}=\mathbf{M}^k\mathbf{M}
+  \]
+
+  Substituting the induction hypothesis,
+  \[
+  \mathbf{M}^{k+1}
+  =
+  \begin{pmatrix}
+  \cos(k\theta) & -\sin(k\theta)\\
+  \sin(k\theta) & \cos(k\theta)
+  \end{pmatrix}
+  \begin{pmatrix}
+  \cos\theta & -\sin\theta\\
+  \sin\theta & \cos\theta
+  \end{pmatrix}
+  \]
+
+  Multiplying the matrices,
+  \[
+  \mathbf{M}^{k+1}
+  =
+  \begin{pmatrix}
+  \cos(k\theta)\cos\theta-\sin(k\theta)\sin\theta
+  &
+  -\cos(k\theta)\sin\theta-\sin(k\theta)\cos\theta
+  \\[4pt]
+  \sin(k\theta)\cos\theta+\cos(k\theta)\sin\theta
+  &
+  -\sin(k\theta)\sin\theta+\cos(k\theta)\cos\theta
+  \end{pmatrix}
+  \]
+
+  Using the angle addition formulae,
+  \[
+  \cos(A+B)=\cos A\cos B-\sin A\sin B
+  \]
+  \[
+  \sin(A+B)=\sin A\cos B+\cos A\sin B
+  \]
+
+  we get
+  \[
+  \mathbf{M}^{k+1}
+  =
+  \begin{pmatrix}
+  \cos((k+1)\theta) & -\sin((k+1)\theta)\\
+  \sin((k+1)\theta) & \cos((k+1)\theta)
+  \end{pmatrix}
+  \]
+
+  So the statement is true for $n=k+1$.
+
+  If the statement is true for $n=k$, then it is true for $n=k+1$. Since it is true for $n=1$, by the principle of mathematical induction
+  \[
+  \mathbf{M}^n=
+  \begin{pmatrix}
+  \cos(n\theta) & -\sin(n\theta)\\
+  \sin(n\theta) & \cos(n\theta)
+  \end{pmatrix}
+  \]
+  for all positive integers $n$.
+
+  \item From part (c), $n$ applications of $\mathbf{T}$ have matrix
+  \[
+  \mathbf{M}^n=
+  \begin{pmatrix}
+  \cos(n\theta) & -\sin(n\theta)\\
+  \sin(n\theta) & \cos(n\theta)
+  \end{pmatrix}
+  \]
+
+  This is the matrix of a rotation through angle $n\theta$ anticlockwise about the origin.
+
+  So the single equivalent transformation is a rotation about the origin through angle $n\theta$ anticlockwise.
 \end{enumerate}
 \end{djsSolution}
 
