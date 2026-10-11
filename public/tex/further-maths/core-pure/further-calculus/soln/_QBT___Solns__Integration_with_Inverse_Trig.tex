@@ -4,7 +4,7 @@
 \djsSolnHeader{Integration with Inverse Trig}
 \djsSitePath{Core Pure}{Further Calculus}
 
-\djsLastUpdated{10 October 2026}
+\djsLastUpdated{11 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -168,558 +168,6 @@ as required.
 \questionitem
 % [Source: _QBT___Solns__Integration_with_Inverse_Trig, Q3]
 
-\begin{enumerate}[label=(\roman*)]
-  \item Prove, from definitions involving exponentials, that
-  \[
-  1-\tanh^2u=\operatorname{sech}^2u
-  \]
-  \marks[-20pt]{3}
-  \item Prove that, for $|y|<1$,
-  \[
-  \operatorname{artanh}y=\frac{1}{2}\ln\left(\frac{1+y}{1-y}\right)
-  \]
-  \marks[-20pt]{4}
-  \item Use the substitution $x=4\tanh u$ to show that, for $|x|<4$,
-  \[
-  \int \frac{1}{16-x^2}\,\mathrm{d}x=\frac{1}{4}\operatorname{artanh}\frac{x}{4}+c
-  \]
-  Hence deduce that
-  \[
-  \int \frac{1}{16-x^2}\,\mathrm{d}x=\frac{1}{8}\ln\left(\frac{4+x}{4-x}\right)+c
-  \]
-  where $c$ is an arbitrary constant. \marks{6} \\
-  \item By first expressing $-t^2+6t+7$ in completed square form, show that
-  \[
-  \int_{1}^{5} \frac{1}{-t^2+6t+7}\,\mathrm{d}t=\frac{1}{4}\ln 3
-  \]
-  \marks[-20pt]{5}
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\roman*)}]
-\item Using the exponential definitions,
-\[
-\tanh u=\frac{e^u-e^{-u}}{e^u+e^{-u}}
-\qquad\text{and}\qquad
-\operatorname{sech}u=\frac{2}{e^u+e^{-u}}
-\]
-
-Then
-\[
-\begin{aligned}
-1-\tanh^2u
-&=1-\left(\frac{e^u-e^{-u}}{e^u+e^{-u}}\right)^2 \\
-&=\frac{(e^u+e^{-u})^2-(e^u-e^{-u})^2}{(e^u+e^{-u})^2} \\
-&=\frac{(e^{2u}+2+e^{-2u})-(e^{2u}-2+e^{-2u})}{(e^u+e^{-u})^2} \\
-&=\frac{4}{(e^u+e^{-u})^2} \\
-&=\left(\frac{2}{e^u+e^{-u}}\right)^2 \\
-&=\operatorname{sech}^2u
-\end{aligned}
-\]
-
-Hence
-\[
-1-\tanh^2u=\operatorname{sech}^2u
-\]
-
-\item Let
-\[
-u=\operatorname{artanh}y
-\]
-so that
-\[
-y=\tanh u
-\]
-
-Using the exponential form of $\tanh u$,
-\[
-y=\frac{e^u-e^{-u}}{e^u+e^{-u}}
-\]
-
-Multiply top and bottom by $e^u$:
-\[
-y=\frac{e^{2u}-1}{e^{2u}+1}
-\]
-
-Now solve for $u$:
-\[
-\begin{aligned}
-y(e^{2u}+1)&=e^{2u}-1 \\
-ye^{2u}+y&=e^{2u}-1 \\
-e^{2u}-ye^{2u}&=1+y \\
-e^{2u}(1-y)&=1+y \\
-e^{2u}&=\frac{1+y}{1-y}
-\end{aligned}
-\]
-
-Since $|y|<1$, both $1+y$ and $1-y$ are positive, so taking logarithms is valid:
-\[
-2u=\ln\left(\frac{1+y}{1-y}\right)
-\]
-
-Therefore
-\[
-u=\frac12\ln\left(\frac{1+y}{1-y}\right)
-\]
-
-But $u=\operatorname{artanh}y$, so
-\[
-\operatorname{artanh}y=\frac12\ln\left(\frac{1+y}{1-y}\right)
-\]
-
-\item Let
-\[
-x=4\tanh u
-\]
-
-Then
-\[
-\frac{\mathrm{d}x}{\mathrm{d}u}=4\operatorname{sech}^2u
-\qquad\Rightarrow\qquad
-\mathrm{d}x=4\operatorname{sech}^2u\,\mathrm{d}u
-\]
-
-Also,
-\[
-\begin{aligned}
-16-x^2
-&=16-16\tanh^2u \\
-&=16(1-\tanh^2u) \\
-&=16\operatorname{sech}^2u
-\end{aligned}
-\]
-using part (i).
-
-So
-\[
-\begin{aligned}
-\int \frac{1}{16-x^2}\,\mathrm{d}x
-&=\int \frac{1}{16\operatorname{sech}^2u}\left(4\operatorname{sech}^2u\,\mathrm{d}u\right) \\
-&=\frac14\int 1\,\mathrm{d}u \\
-&=\frac{u}{4}+c
-\end{aligned}
-\]
-
-Now $x=4\tanh u$ gives
-\[
-\tanh u=\frac{x}{4}
-\]
-so
-\[
-u=\operatorname{artanh}\frac{x}{4}
-\]
-
-Hence
-\[
-\int \frac{1}{16-x^2}\,\mathrm{d}x=\frac14\operatorname{artanh}\frac{x}{4}+c
-\]
-for $|x|<4$.
-
-Now use part (ii) with $y=\dfrac{x}{4}$. Since $|x|<4$, we have $\left|\dfrac{x}{4}\right|<1$, so
-\[
-\operatorname{artanh}\frac{x}{4}
-=\frac12\ln\left(\frac{1+\frac{x}{4}}{1-\frac{x}{4}}\right)
-=\frac12\ln\left(\frac{4+x}{4-x}\right)
-\]
-
-Therefore
-\[
-\int \frac{1}{16-x^2}\,\mathrm{d}x
-=\frac14\cdot \frac12\ln\left(\frac{4+x}{4-x}\right)+c
-=\frac18\ln\left(\frac{4+x}{4-x}\right)+c
-\]
-
-So
-\[
-\int \frac{1}{16-x^2}\,\mathrm{d}x=\frac18\ln\left(\frac{4+x}{4-x}\right)+c
-\]
-
-\item First complete the square:
-\[
-\begin{aligned}
--t^2+6t+7
-&=-(t^2-6t+9)+16 \\
-&=16-(t-3)^2
-\end{aligned}
-\]
-
-So
-\[
-\int_1^5 \frac{1}{-t^2+6t+7}\,\mathrm{d}t
-=
-\int_1^5 \frac{1}{16-(t-3)^2}\,\mathrm{d}t
-\]
-
-Using part (iii), with $x$ replaced by $t-3$,
-\[
-\int \frac{1}{16-(t-3)^2}\,\mathrm{d}t
-=
-\frac18\ln\left(\frac{4+(t-3)}{4-(t-3)}\right)+c
-\]
-
-Therefore
-\[
-\begin{aligned}
-\int_1^5 \frac{1}{-t^2+6t+7}\,\mathrm{d}t
-&=
-\left[\frac18\ln\left(\frac{t+1}{7-t}\right)\right]_{1}^{5} \\
-&=\frac18\ln\left(\frac{6}{2}\right)-\frac18\ln\left(\frac{2}{6}\right) \\
-&=\frac18\ln 3-\frac18\ln\left(\frac13\right) \\
-&=\frac18\ln 3+\frac18\ln 3 \\
-&=\frac14\ln 3
-\end{aligned}
-\]
-
-Hence
-\[
-\int_{1}^{5} \frac{1}{-t^2 + 6t + 7}\,\mathrm{d}t = \frac{1}{4}\ln 3
-\]
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 4 ----
-\questionitem
-% [Source: _QBT___Solns__Integration_with_Inverse_Trig, Q4]
-
-\begin{enumerate}[label=(\roman*), start=1]
-  \item For $x>5$, find
-  \[
-  \int \frac{1}{\sqrt{x^2-6x+5}}\,\mathrm{d}x
-  \] \\
-  expressing your answer first in terms of $\operatorname{arcosh}$ and hence in logarithmic form. \marks{3} \\
-  \item Use integration by substitution with $x-3=2\cosh u$ to show that, for $x>5$,
-  \[
-  \int \sqrt{x^2-6x+5}\,\mathrm{d}x=2\left(\frac{x-3}{2}\sqrt{\frac{(x-3)^2}{4}-1}-\ln\left|\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right|\right)+c
-  \]
-  where $c$ is an arbitrary constant. \marks{7} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\roman*)}, start=1]
-  \item First complete the square:
-  \[
-  x^2-6x+5=(x-3)^2-4
-  \]
-
-  Since $x>5$, we have $\dfrac{x-3}{2}>1$, so we may let
-  \[
-  x-3=2\cosh u \qquad (u>0)
-  \]
-  Then
-  \[
-  \frac{\mathrm{d}x}{\mathrm{d}u}=2\sinh u
-  \qquad\Rightarrow\qquad
-  \mathrm{d}x=2\sinh u\,\mathrm{d}u
-  \]
-  and
-  \begin{align*}
-  \sqrt{x^2-6x+5}
-  &=\sqrt{(x-3)^2-4} \\
-  &=\sqrt{4\cosh^2u-4} \\
-  &=2\sqrt{\cosh^2u-1} \\
-  &=2\sinh u
-  \end{align*}
-  since $u>0$.
-
-  So
-  \begin{align*}
-  \int \frac{1}{\sqrt{x^2-6x+5}}\,\mathrm{d}x
-  &=\int \frac{1}{2\sinh u}\,(2\sinh u\,\mathrm{d}u) \\
-  &=\int 1\,\mathrm{d}u \\
-  &=u+c
-  \end{align*}
-
-  Now
-  \[
-  \cosh u=\frac{x-3}{2}
-  \]
-  so
-  \[
-  u=\operatorname{arcosh}\left(\frac{x-3}{2}\right)
-  \]
-
-  Hence
-  \[
-  \int \frac{1}{\sqrt{x^2-6x+5}}\,\mathrm{d}x
-  =\operatorname{arcosh}\left(\frac{x-3}{2}\right)+c
-  \]
-
-  Using the standard result
-  \[
-  \operatorname{arcosh} z=\ln\left(z+\sqrt{z^2-1}\right)
-  \]
-  we get
-  \[
-  \int \frac{1}{\sqrt{x^2-6x+5}}\,\mathrm{d}x
-  =\ln\left(\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right)+c
-  \]
-
-  So the answer is
-  \[
-  \operatorname{arcosh}\left(\frac{x-3}{2}\right)+c
-  \]
-  and hence
-  \[
-  \ln\left(\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right)+c
-  \]
-
-  \item Let
-  \[
-  I=\int \sqrt{x^2-6x+5}\,\mathrm{d}x
-  \]
-  and use the substitution
-  \[
-  x-3=2\cosh u \qquad (x>5)
-  \]
-
-  Then, as above,
-  \[
-  \sqrt{x^2-6x+5}=2\sinh u
-  \qquad\text{and}\qquad
-  \mathrm{d}x=2\sinh u\,\mathrm{d}u
-  \]
-
-  So
-  \begin{align*}
-  I
-  &=\int (2\sinh u)(2\sinh u)\,\mathrm{d}u \\
-  &=4\int \sinh^2u\,\mathrm{d}u
-  \end{align*}
-
-  Use the identity
-  \[
-  \cosh 2u=2\sinh^2u+1
-  \]
-  so that
-  \[
-  2\sinh^2u=\cosh 2u-1
-  \]
-
-  Therefore
-  \begin{align*}
-  I
-  &=2\int (\cosh 2u-1)\,\mathrm{d}u \\
-  &=2\left(\frac{1}{2}\sinh 2u-u\right)+c \\
-  &=\sinh 2u-2u+c
-  \end{align*}
-
-  Now express this in terms of $x$.
-
-  Since
-  \[
-  \cosh u=\frac{x-3}{2}
-  \]
-  we have
-  \[
-  \sinh u=\sqrt{\cosh^2u-1}
-  =\sqrt{\frac{(x-3)^2}{4}-1}
-  \]
-  because $u>0$.
-
-  Also
-  \begin{align*}
-  \sinh 2u
-  &=2\sinh u\cosh u \\
-  &=2\left(\sqrt{\frac{(x-3)^2}{4}-1}\right)\left(\frac{x-3}{2}\right) \\
-  &=(x-3)\sqrt{\frac{(x-3)^2}{4}-1}
-  \end{align*}
-
-  Hence
-  \begin{align*}
-  I
-  &=(x-3)\sqrt{\frac{(x-3)^2}{4}-1}-2u+c \\
-  &=2\left(\frac{x-3}{2}\sqrt{\frac{(x-3)^2}{4}-1}-u\right)+c
-  \end{align*}
-
-  From part (i),
-  \[
-  u=\operatorname{arcosh}\left(\frac{x-3}{2}\right)
-  =\ln\left|\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right|
-  \]
-
-  Therefore
-  \[
-  \int \sqrt{x^2-6x+5}\,\mathrm{d}x
-  =2\left(\frac{x-3}{2}\sqrt{\frac{(x-3)^2}{4}-1}-\ln\left|\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right|\right)+c
-  \]
-
-  This is the required result.
-\end{enumerate}
-\end{djsSolution}
-
-\newpage
-% ---- Question 5 ----
-\questionitem
-% [Source: _QBT___Solns__Integration_with_Inverse_Trig, Q5]
-
-\[
-g(x)=\frac{2x^2-3x+31}{x^3-3x^2+9x+13}
-\]
-\\
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Express $g(x)$ in the form \[\frac{P}{x+1}+\frac{Q}{x^2-4x+13}\] where $P$ and $Q$ are constants to be found. \marks{3} \\
-  \item Find $\int g(x)\,\mathrm{d}x$, giving your answer in the form \[A\ln|x+1|+B\arctan\left(\frac{x-2}{3}\right)+c\] where $A$ and $B$ are constants to be found. \marks{4} \\
-  \item Hence show that $\int_0^\infty g(x)\,\mathrm{d}x$ diverges. \marks{2} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item First factorise the denominator:
-\[
-x^3-3x^2+9x+13=(x+1)(x^2-4x+13)
-\]
-
-So
-\[
-g(x)=\frac{2x^2-3x+31}{(x+1)(x^2-4x+13)}
-\]
-and we write
-\[
-\frac{2x^2-3x+31}{(x+1)(x^2-4x+13)}
-=\frac{P}{x+1}+\frac{Q}{x^2-4x+13}
-\]
-
-Multiplying through by $(x+1)(x^2-4x+13)$ gives
-\[
-2x^2-3x+31=P(x^2-4x+13)+Q(x+1)
-\]
-
-Expand the right-hand side:
-\[
-2x^2-3x+31=Px^2-4Px+13P+Qx+Q
-\]
-\[
-=Px^2+(-4P+Q)x+(13P+Q)
-\]
-
-Now compare coefficients with
-\[
-2x^2-3x+31
-\]
-
-So
-\[
-P=2
-\]
-and
-\[
--4P+Q=-3
-\]
-
-Substituting $P=2$:
-\[
--8+Q=-3
-\]
-\[
-Q=5
-\]
-
-Checking the constant term:
-\[
-13P+Q=13(2)+5=31
-\]
-which is correct.
-
-Hence
-\[
-P=2,\qquad Q=5
-\]
-
-  \item From part (a),
-\[
-g(x)=\frac{2}{x+1}+\frac{5}{x^2-4x+13}
-\]
-
-Complete the square in the quadratic:
-\[
-x^2-4x+13=(x-2)^2+9
-\]
-
-So
-\[
-g(x)=\frac{2}{x+1}+\frac{5}{(x-2)^2+9}
-\]
-
-Therefore
-\[
-\int g(x)\,\mathrm{d}x=\int \frac{2}{x+1}\,\mathrm{d}x+\int \frac{5}{(x-2)^2+9}\,\mathrm{d}x
-\]
-
-For the first integral,
-\[
-\int \frac{2}{x+1}\,\mathrm{d}x=2\ln|x+1|
-\]
-
-For the second integral, use the standard result
-\[
-\int \frac{1}{x^2+a^2}\,\mathrm{d}x=\frac{1}{a}\arctan\!\left(\frac{x}{a}\right)+c
-\]
-
-With $a=3$ and $x$ replaced by $x-2$,
-\[
-\int \frac{5}{(x-2)^2+9}\,\mathrm{d}x
-=5\int \frac{1}{(x-2)^2+3^2}\,\mathrm{d}x
-=\frac{5}{3}\arctan\!\left(\frac{x-2}{3}\right)
-\]
-
-Hence
-\[
-\int g(x)\,\mathrm{d}x
-=2\ln|x+1|+\frac{5}{3}\arctan\!\left(\frac{x-2}{3}\right)+c
-\]
-
-So
-\[
-A=2,\qquad B=\frac{5}{3}
-\]
-
-  \item To consider the improper integral, write
-\[
-\int_0^\infty g(x)\,\mathrm{d}x=\lim_{t\to\infty}\int_0^t g(x)\,\mathrm{d}x
-\]
-
-Using the antiderivative from part (b),
-\begin{align*}
-\int_0^t g(x)\,\mathrm{d}x
-&=\left[2\ln|x+1|+\frac{5}{3}\arctan\!\left(\frac{x-2}{3}\right)\right]_0^t \\
-&=2\ln(t+1)+\frac{5}{3}\arctan\!\left(\frac{t-2}{3}\right)
--\left(2\ln 1+\frac{5}{3}\arctan\!\left(-\frac23\right)\right) \\
-&=2\ln(t+1)+\frac{5}{3}\arctan\!\left(\frac{t-2}{3}\right)+\frac{5}{3}\arctan\!\left(\frac23\right)
-\end{align*}
-
-Now as $t\to\infty$,
-\[
-\arctan\!\left(\frac{t-2}{3}\right)\to \frac{\pi}{2}
-\]
-so that term stays finite, but
-\[
-2\ln(t+1)\to\infty
-\]
-
-Therefore
-\[
-\int_0^\infty g(x)\,\mathrm{d}x
-\]
-diverges, in fact it diverges to $+\infty$.
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 6 ----
-\questionitem
-% [Source: _QBT___Solns__Integration_with_Inverse_Trig, Q6]
-
 Show that
 \[
 \int_{1}^{4} \frac{1}{\sqrt{10 + 8x - 2x^2}}\,\mathrm{d}x = \frac{1}{\sqrt{2}}\left(\arcsin \left(\frac{2}{3}\right) + \arcsin \left(\frac{1}{3}\right)\right)
@@ -774,9 +222,9 @@ Hence
 
 \newpage
 
-% ---- Question 7 ----
+% ---- Question 4 ----
 \questionitem
-% [Source: _QBT___Solns__Integration_with_Inverse_Trig, Q7]
+% [Source: _QBT___Solns__Integration_with_Inverse_Trig, Q4]
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Explain why
@@ -871,12 +319,10 @@ Hence
 \end{enumerate}
 \end{djsSolution}
 
-
 \newpage
-
-% ---- Question 8 ----
+% ---- Question 5 ----
 \questionitem
-% [Source: _QBT___Solns__Integration_with_Inverse_Trig, Q8]
+% [Source: _QBT___Solns__Integration_with_Inverse_Trig, Q5]
 
 Evaluate
 \[
@@ -937,6 +383,249 @@ Hence
 \]
 
 So the exact value, as a multiple of $\pi$, is $\frac{\pi}{4}$.
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+% [Source: _QBT___Solns__Integration_with_Inverse_Trig, Q6]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.3]
+\def\xmin{-2.2}
+\def\xmax{5.2}
+\def\ymin{-0.3}
+\def\ymax{2.8}
+\def\num{9}
+\def\peak{1}
+\def\den{4}
+\def\xL{-1}
+\def\xR{4}
+\pgfmathsetmacro{\yL}{\num/((\xL-\peak)*(\xL-\peak)+\den)}
+\pgfmathsetmacro{\yR}{\num/((\xR-\peak)*(\xR-\peak)+\den)}
+\coordinate (O) at (0,0);
+\coordinate (L) at (\xL,0);
+\coordinate (R) at (\xR,0);
+\coordinate (LT) at (\xL,\yL);
+\coordinate (RT) at (\xR,\yR);
+\draw[thick,-{Stealth[length=3mm]}] (\xmin,0) -- (\xmax,0) node[right] {$x$};
+\draw[thick,-{Stealth[length=3mm]}] (0,\ymin) -- (0,\ymax) node[above] {$y$};
+\draw[thick] plot[domain=\xL:\xR,samples=200] (\x,{\num/((\x-\peak)*(\x-\peak)+\den)});
+\draw[thick] (L) -- (LT);
+\draw[thick] (R) -- (RT);
+\node[below] at (L) {$-1$};
+\node[below] at (R) {$4$};
+\node[below left] at (O) {$O$};
+\end{tikzpicture}
+\end{figure}
+
+
+The diagram shows the cross-section of a solid wooden beam. \\
+Each unit on the axes represents $6$ cm. The curved upper boundary of the beam is modelled by the equation
+\[
+y=\frac{9}{(x-1)^2+4}
+\] \\
+The cross-section is bounded by the curve, the $x$-axis and the lines $x=-1$ and $x=4$. \\
+Assuming that the beam is a prism of length $240$ cm, find, correct to $3$ significant figures, the volume of the beam. \marks{6} \\
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+The cross-sectional area is the area under the curve
+\[
+y=\frac{9}{(x-1)^2+4}
+\]
+from $x=-1$ to $x=4$.
+
+First find this area in graph units:
+\[
+A_{\text{units}}=\int_{-1}^{4}\frac{9}{(x-1)^2+4}\,\mathrm{d}x
+\]
+
+Using the standard result
+\[
+\int \frac{1}{a^2+x^2}\,\mathrm{d}x=\frac{1}{a}\arctan\!\left(\frac{x}{a}\right)+c
+\]
+with $a=2$ and $x$ replaced by $x-1$,
+\begin{align*}
+A_{\text{units}}
+&=9\left[\frac{1}{2}\arctan\!\left(\frac{x-1}{2}\right)\right]_{-1}^{4} \\
+&=\frac{9}{2}\left[\arctan\!\left(\frac{x-1}{2}\right)\right]_{-1}^{4} \\
+&=\frac{9}{2}\left(\arctan\!\left(\frac{3}{2}\right)-\arctan(-1)\right) \\
+&=\frac{9}{2}\left(\arctan\!\left(\frac{3}{2}\right)+\frac{\pi}{4}\right)
+\end{align*}
+
+Now convert to $\text{cm}^2$.
+
+Each unit on each axis represents $6$ cm, so
+\[
+1\text{ square unit}=6\times 6=36\text{ cm}^2
+\]
+Hence the cross-sectional area is
+\begin{align*}
+A
+&=36A_{\text{units}} \\
+&=36\cdot \frac{9}{2}\left(\arctan\!\left(\frac{3}{2}\right)+\frac{\pi}{4}\right) \\
+&=162\left(\arctan\!\left(\frac{3}{2}\right)+\frac{\pi}{4}\right) \\
+&\approx 286.447\text{ cm}^2
+\end{align*}
+
+The beam is a prism of length $240$ cm, so
+\begin{align*}
+V&=240A \\
+&=240\times 286.447 \\
+&\approx 68747.3\text{ cm}^3
+\end{align*}
+
+Therefore, correct to $3$ significant figures, the volume of the beam is
+\[
+6.87\times 10^4\text{ cm}^3
+\]
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+% [Source: _QBT___Solns__Integration_with_Inverse_Trig, Q7]
+
+Find
+\[
+\int_1^{e} \frac{1}{x\sqrt{4-(\ln x)^2}} \, \mathrm{d}x
+\]
+expressing your answer in terms of $\pi$. \marks{8}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+Using the standard result
+\[
+\int \frac{1}{\sqrt{a^2-x^2}} \,\mathrm{d}x
+=
+\arcsin\!\left(\frac{x}{a}\right)+c
+\]
+with \(a=2\) and \(x\) replaced by \(\ln x\), noting that \(\dfrac{\mathrm{d}}{\mathrm{d}x}(\ln x)=\dfrac{1}{x}\),
+\[
+\int_1^{e} \frac{1}{x\sqrt{4-(\ln x)^2}} \,\mathrm{d}x
+=
+\left[\arcsin\!\left(\frac{\ln x}{2}\right)\right]_1^e
+\]
+
+Therefore
+\[
+\left[\arcsin\!\left(\frac{\ln x}{2}\right)\right]_1^e
+=
+\arcsin\!\left(\frac12\right)-\arcsin(0)
+=
+\frac{\pi}{6}-0
+=
+\frac{\pi}{6}
+\]
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+% [Source: _QBT___Solns__Integration_with_Inverse_Trig, Q8]
+
+Determine each of the following integrals. \\
+\begin{enumerate}[label=(\roman*)]
+  \item
+  \[
+  \int \frac{1}{9x^2+12x+20}\,\mathrm{d}x
+  \]
+  \marks[-20pt]{4}
+  \item
+  \[
+  \int \frac{1}{\sqrt{45+12x-9x^2}}\,\mathrm{d}x
+  \]
+  \marks[-20pt]{4}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\item Complete the square in the denominator:
+\begin{align*}
+9x^2+12x+20
+&=9\left(x^2+\frac{4}{3}x\right)+20 \\
+&=9\left[\left(x+\frac23\right)^2-\frac49\right]+20 \\
+&=9\left(x+\frac23\right)^2-4+20 \\
+&=9\left(x+\frac23\right)^2+16 \\
+&=9\left[\left(x+\frac23\right)^2+\left(\frac43\right)^2\right]
+\end{align*}
+
+So
+\begin{align*}
+\int \frac{1}{9x^2+12x+20}\,\mathrm{d}x
+&=\frac19\int \frac{1}{\left(x+\frac23\right)^2+\left(\frac43\right)^2}\,\mathrm{d}x
+\end{align*}
+
+Using the standard result
+\[
+\int \frac{1}{x^2+a^2}\,\mathrm{d}x
+=
+\frac{1}{a}\arctan\!\left(\frac{x}{a}\right)+c
+\]
+with $a=\frac43$ and $x$ replaced by $x+\frac23$,
+\begin{align*}
+\int \frac{1}{9x^2+12x+20}\,\mathrm{d}x
+&=\frac19\cdot \frac{1}{4/3}
+\arctan\!\left(\frac{x+\frac23}{4/3}\right)+c \\
+&=\frac{1}{12}\arctan\!\left(\frac{3x+2}{4}\right)+c
+\end{align*}
+
+Hence,
+\[
+\int \frac{1}{9x^2 + 12x + 20}\,\mathrm{d}x
+=
+\frac{1}{12}\arctan\!\left(\frac{3x+2}{4}\right)+c
+\]
+
+\item Rewrite the expression under the root in completed-square form:
+\begin{align*}
+45+12x-9x^2
+&=-9\left(x^2-\frac43x-5\right) \\
+&=-9\left[\left(x-\frac23\right)^2-\frac49-5\right] \\
+&=-9\left[\left(x-\frac23\right)^2-\frac{49}{9}\right] \\
+&=9\left[\frac{49}{9}-\left(x-\frac23\right)^2\right] \\
+&=9\left[\left(\frac73\right)^2-\left(x-\frac23\right)^2\right]
+\end{align*}
+
+So
+\begin{align*}
+\int \frac{1}{\sqrt{45+12x-9x^2}}\,\mathrm{d}x
+&=\int \frac{1}{\sqrt{9\left[\left(\frac73\right)^2-\left(x-\frac23\right)^2\right]}}\,\mathrm{d}x \\
+&=\frac13\int \frac{1}{\sqrt{\left(\frac73\right)^2-\left(x-\frac23\right)^2}}\,\mathrm{d}x
+\end{align*}
+
+Using the standard result
+\[
+\int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d}x
+=
+\arcsin\!\left(\frac{x}{a}\right)+c
+\]
+with $a=\frac73$ and $x$ replaced by $x-\frac23$,
+\begin{align*}
+\int \frac{1}{\sqrt{45+12x-9x^2}}\,\mathrm{d}x
+&=\frac13\arcsin\!\left(\frac{x-\frac23}{7/3}\right)+c \\
+&=\frac13\arcsin\!\left(\frac{3x-2}{7}\right)+c
+\end{align*}
+
+Hence,
+\[
+\int \frac{1}{\sqrt{45 + 12x - 9x^2}}\,\mathrm{d}x
+=
+\frac13\arcsin\!\left(\frac{3x-2}{7}\right)+c
+\]
+\end{enumerate}
 \end{djsSolution}
 
 
@@ -1158,6 +847,167 @@ B=2
 \questionitem
 % [Source: _QBT___Solns__Integration_with_Inverse_Trig, Q11]
 
+\[
+g(x)=\frac{2x^2-3x+31}{x^3-3x^2+9x+13}
+\]
+\\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Express $g(x)$ in the form \[\frac{P}{x+1}+\frac{Q}{x^2-4x+13}\] where $P$ and $Q$ are constants to be found. \marks{3} \\
+  \item Find $\int g(x)\,\mathrm{d}x$, giving your answer in the form \[A\ln|x+1|+B\arctan\left(\frac{x-2}{3}\right)+c\] where $A$ and $B$ are constants to be found. \marks{4} \\
+  \item Hence show that $\int_0^\infty g(x)\,\mathrm{d}x$ diverges. \marks{2} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item First factorise the denominator:
+\[
+x^3-3x^2+9x+13=(x+1)(x^2-4x+13)
+\]
+
+So
+\[
+g(x)=\frac{2x^2-3x+31}{(x+1)(x^2-4x+13)}
+\]
+and we write
+\[
+\frac{2x^2-3x+31}{(x+1)(x^2-4x+13)}
+=\frac{P}{x+1}+\frac{Q}{x^2-4x+13}
+\]
+
+Multiplying through by $(x+1)(x^2-4x+13)$ gives
+\[
+2x^2-3x+31=P(x^2-4x+13)+Q(x+1)
+\]
+
+Expand the right-hand side:
+\[
+2x^2-3x+31=Px^2-4Px+13P+Qx+Q
+\]
+\[
+=Px^2+(-4P+Q)x+(13P+Q)
+\]
+
+Now compare coefficients with
+\[
+2x^2-3x+31
+\]
+
+So
+\[
+P=2
+\]
+and
+\[
+-4P+Q=-3
+\]
+
+Substituting $P=2$:
+\[
+-8+Q=-3
+\]
+\[
+Q=5
+\]
+
+Checking the constant term:
+\[
+13P+Q=13(2)+5=31
+\]
+which is correct.
+
+Hence
+\[
+P=2,\qquad Q=5
+\]
+
+  \item From part (a),
+\[
+g(x)=\frac{2}{x+1}+\frac{5}{x^2-4x+13}
+\]
+
+Complete the square in the quadratic:
+\[
+x^2-4x+13=(x-2)^2+9
+\]
+
+So
+\[
+g(x)=\frac{2}{x+1}+\frac{5}{(x-2)^2+9}
+\]
+
+Therefore
+\[
+\int g(x)\,\mathrm{d}x=\int \frac{2}{x+1}\,\mathrm{d}x+\int \frac{5}{(x-2)^2+9}\,\mathrm{d}x
+\]
+
+For the first integral,
+\[
+\int \frac{2}{x+1}\,\mathrm{d}x=2\ln|x+1|
+\]
+
+For the second integral, use the standard result
+\[
+\int \frac{1}{x^2+a^2}\,\mathrm{d}x=\frac{1}{a}\arctan\!\left(\frac{x}{a}\right)+c
+\]
+
+With $a=3$ and $x$ replaced by $x-2$,
+\[
+\int \frac{5}{(x-2)^2+9}\,\mathrm{d}x
+=5\int \frac{1}{(x-2)^2+3^2}\,\mathrm{d}x
+=\frac{5}{3}\arctan\!\left(\frac{x-2}{3}\right)
+\]
+
+Hence
+\[
+\int g(x)\,\mathrm{d}x
+=2\ln|x+1|+\frac{5}{3}\arctan\!\left(\frac{x-2}{3}\right)+c
+\]
+
+So
+\[
+A=2,\qquad B=\frac{5}{3}
+\]
+
+  \item To consider the improper integral, write
+\[
+\int_0^\infty g(x)\,\mathrm{d}x=\lim_{t\to\infty}\int_0^t g(x)\,\mathrm{d}x
+\]
+
+Using the antiderivative from part (b),
+\begin{align*}
+\int_0^t g(x)\,\mathrm{d}x
+&=\left[2\ln|x+1|+\frac{5}{3}\arctan\!\left(\frac{x-2}{3}\right)\right]_0^t \\
+&=2\ln(t+1)+\frac{5}{3}\arctan\!\left(\frac{t-2}{3}\right)
+-\left(2\ln 1+\frac{5}{3}\arctan\!\left(-\frac23\right)\right) \\
+&=2\ln(t+1)+\frac{5}{3}\arctan\!\left(\frac{t-2}{3}\right)+\frac{5}{3}\arctan\!\left(\frac23\right)
+\end{align*}
+
+Now as $t\to\infty$,
+\[
+\arctan\!\left(\frac{t-2}{3}\right)\to \frac{\pi}{2}
+\]
+so that term stays finite, but
+\[
+2\ln(t+1)\to\infty
+\]
+
+Therefore
+\[
+\int_0^\infty g(x)\,\mathrm{d}x
+\]
+diverges, in fact it diverges to $+\infty$.
+\end{enumerate}
+\end{djsSolution}
+
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+% [Source: _QBT___Solns__Integration_with_Inverse_Trig, Q12]
+
 You are given that $y=\operatorname{arcosh}x$, where $x\ge 1$. \\
 
 \begin{enumerate}[label=(\roman*), start=1]
@@ -1314,107 +1164,6 @@ Therefore
 So the logarithmic form is
 \[
 \frac12\ln\left(\frac32\right)
-\]
-\end{enumerate}
-\end{djsSolution}
-
-
-\newpage
-
-% ---- Question 12 ----
-\questionitem
-% [Source: _QBT___Solns__Integration_with_Inverse_Trig, Q12]
-
-Determine each of the following integrals. \\
-\begin{enumerate}[label=(\roman*)]
-  \item
-  \[
-  \int \frac{1}{9x^2+12x+20}\,\mathrm{d}x
-  \]
-  \marks[-20pt]{4}
-  \item
-  \[
-  \int \frac{1}{\sqrt{45+12x-9x^2}}\,\mathrm{d}x
-  \]
-  \marks[-20pt]{4}
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\roman*)}]
-\item Complete the square in the denominator:
-\begin{align*}
-9x^2+12x+20
-&=9\left(x^2+\frac{4}{3}x\right)+20 \\
-&=9\left[\left(x+\frac23\right)^2-\frac49\right]+20 \\
-&=9\left(x+\frac23\right)^2-4+20 \\
-&=9\left(x+\frac23\right)^2+16 \\
-&=9\left[\left(x+\frac23\right)^2+\left(\frac43\right)^2\right]
-\end{align*}
-
-So
-\begin{align*}
-\int \frac{1}{9x^2+12x+20}\,\mathrm{d}x
-&=\frac19\int \frac{1}{\left(x+\frac23\right)^2+\left(\frac43\right)^2}\,\mathrm{d}x
-\end{align*}
-
-Using the standard result
-\[
-\int \frac{1}{x^2+a^2}\,\mathrm{d}x
-=
-\frac{1}{a}\arctan\!\left(\frac{x}{a}\right)+c
-\]
-with $a=\frac43$ and $x$ replaced by $x+\frac23$,
-\begin{align*}
-\int \frac{1}{9x^2+12x+20}\,\mathrm{d}x
-&=\frac19\cdot \frac{1}{4/3}
-\arctan\!\left(\frac{x+\frac23}{4/3}\right)+c \\
-&=\frac{1}{12}\arctan\!\left(\frac{3x+2}{4}\right)+c
-\end{align*}
-
-Hence,
-\[
-\int \frac{1}{9x^2 + 12x + 20}\,\mathrm{d}x
-=
-\frac{1}{12}\arctan\!\left(\frac{3x+2}{4}\right)+c
-\]
-
-\item Rewrite the expression under the root in completed-square form:
-\begin{align*}
-45+12x-9x^2
-&=-9\left(x^2-\frac43x-5\right) \\
-&=-9\left[\left(x-\frac23\right)^2-\frac49-5\right] \\
-&=-9\left[\left(x-\frac23\right)^2-\frac{49}{9}\right] \\
-&=9\left[\frac{49}{9}-\left(x-\frac23\right)^2\right] \\
-&=9\left[\left(\frac73\right)^2-\left(x-\frac23\right)^2\right]
-\end{align*}
-
-So
-\begin{align*}
-\int \frac{1}{\sqrt{45+12x-9x^2}}\,\mathrm{d}x
-&=\int \frac{1}{\sqrt{9\left[\left(\frac73\right)^2-\left(x-\frac23\right)^2\right]}}\,\mathrm{d}x \\
-&=\frac13\int \frac{1}{\sqrt{\left(\frac73\right)^2-\left(x-\frac23\right)^2}}\,\mathrm{d}x
-\end{align*}
-
-Using the standard result
-\[
-\int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d}x
-=
-\arcsin\!\left(\frac{x}{a}\right)+c
-\]
-with $a=\frac73$ and $x$ replaced by $x-\frac23$,
-\begin{align*}
-\int \frac{1}{\sqrt{45+12x-9x^2}}\,\mathrm{d}x
-&=\frac13\arcsin\!\left(\frac{x-\frac23}{7/3}\right)+c \\
-&=\frac13\arcsin\!\left(\frac{3x-2}{7}\right)+c
-\end{align*}
-
-Hence,
-\[
-\int \frac{1}{\sqrt{45 + 12x - 9x^2}}\,\mathrm{d}x
-=
-\frac13\arcsin\!\left(\frac{3x-2}{7}\right)+c
 \]
 \end{enumerate}
 \end{djsSolution}
@@ -1756,98 +1505,215 @@ A=2,\qquad B=-\frac12,\qquad D=\frac73
 \questionitem
 % [Source: _QBT___Solns__Integration_with_Inverse_Trig, Q16]
 
-\begin{figure}[H]
-    \centering
-\begin{tikzpicture}[scale=1.3]
-\def\xmin{-2.2}
-\def\xmax{5.2}
-\def\ymin{-0.3}
-\def\ymax{2.8}
-\def\num{9}
-\def\peak{1}
-\def\den{4}
-\def\xL{-1}
-\def\xR{4}
-\pgfmathsetmacro{\yL}{\num/((\xL-\peak)*(\xL-\peak)+\den)}
-\pgfmathsetmacro{\yR}{\num/((\xR-\peak)*(\xR-\peak)+\den)}
-\coordinate (O) at (0,0);
-\coordinate (L) at (\xL,0);
-\coordinate (R) at (\xR,0);
-\coordinate (LT) at (\xL,\yL);
-\coordinate (RT) at (\xR,\yR);
-\draw[thick,-{Stealth[length=3mm]}] (\xmin,0) -- (\xmax,0) node[right] {$x$};
-\draw[thick,-{Stealth[length=3mm]}] (0,\ymin) -- (0,\ymax) node[above] {$y$};
-\draw[thick] plot[domain=\xL:\xR,samples=200] (\x,{\num/((\x-\peak)*(\x-\peak)+\den)});
-\draw[thick] (L) -- (LT);
-\draw[thick] (R) -- (RT);
-\node[below] at (L) {$-1$};
-\node[below] at (R) {$4$};
-\node[below left] at (O) {$O$};
-\end{tikzpicture}
-\end{figure}
-
-
-The diagram shows the cross-section of a solid wooden beam. \\
-Each unit on the axes represents $6$ cm. The curved upper boundary of the beam is modelled by the equation
-\[
-y=\frac{9}{(x-1)^2+4}
-\] \\
-The cross-section is bounded by the curve, the $x$-axis and the lines $x=-1$ and $x=4$. \\
-Assuming that the beam is a prism of length $240$ cm, find, correct to $3$ significant figures, the volume of the beam. \marks{6} \\
+\begin{enumerate}[label=(\roman*)]
+  \item Prove, from definitions involving exponentials, that
+  \[
+  1-\tanh^2u=\operatorname{sech}^2u
+  \]
+  \marks[-20pt]{3}
+  \item Prove that, for $|y|<1$,
+  \[
+  \operatorname{artanh}y=\frac{1}{2}\ln\left(\frac{1+y}{1-y}\right)
+  \]
+  \marks[-20pt]{4}
+  \item Use the substitution $x=4\tanh u$ to show that, for $|x|<4$,
+  \[
+  \int \frac{1}{16-x^2}\,\mathrm{d}x=\frac{1}{4}\operatorname{artanh}\frac{x}{4}+c
+  \]
+  Hence deduce that
+  \[
+  \int \frac{1}{16-x^2}\,\mathrm{d}x=\frac{1}{8}\ln\left(\frac{4+x}{4-x}\right)+c
+  \]
+  where $c$ is an arbitrary constant. \marks{6} \\
+  \item By first expressing $-t^2+6t+7$ in completed square form, show that
+  \[
+  \int_{1}^{5} \frac{1}{-t^2+6t+7}\,\mathrm{d}t=\frac{1}{4}\ln 3
+  \]
+  \marks[-20pt]{5}
+\end{enumerate}
 
 \vspace*{10pt}
 
 \begin{djsSolution}
-The cross-sectional area is the area under the curve
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\item Using the exponential definitions,
 \[
-y=\frac{9}{(x-1)^2+4}
-\]
-from $x=-1$ to $x=4$.
-
-First find this area in graph units:
-\[
-A_{\text{units}}=\int_{-1}^{4}\frac{9}{(x-1)^2+4}\,\mathrm{d}x
+\tanh u=\frac{e^u-e^{-u}}{e^u+e^{-u}}
+\qquad\text{and}\qquad
+\operatorname{sech}u=\frac{2}{e^u+e^{-u}}
 \]
 
-Using the standard result
+Then
 \[
-\int \frac{1}{a^2+x^2}\,\mathrm{d}x=\frac{1}{a}\arctan\!\left(\frac{x}{a}\right)+c
+\begin{aligned}
+1-\tanh^2u
+&=1-\left(\frac{e^u-e^{-u}}{e^u+e^{-u}}\right)^2 \\
+&=\frac{(e^u+e^{-u})^2-(e^u-e^{-u})^2}{(e^u+e^{-u})^2} \\
+&=\frac{(e^{2u}+2+e^{-2u})-(e^{2u}-2+e^{-2u})}{(e^u+e^{-u})^2} \\
+&=\frac{4}{(e^u+e^{-u})^2} \\
+&=\left(\frac{2}{e^u+e^{-u}}\right)^2 \\
+&=\operatorname{sech}^2u
+\end{aligned}
 \]
-with $a=2$ and $x$ replaced by $x-1$,
-\begin{align*}
-A_{\text{units}}
-&=9\left[\frac{1}{2}\arctan\!\left(\frac{x-1}{2}\right)\right]_{-1}^{4} \\
-&=\frac{9}{2}\left[\arctan\!\left(\frac{x-1}{2}\right)\right]_{-1}^{4} \\
-&=\frac{9}{2}\left(\arctan\!\left(\frac{3}{2}\right)-\arctan(-1)\right) \\
-&=\frac{9}{2}\left(\arctan\!\left(\frac{3}{2}\right)+\frac{\pi}{4}\right)
-\end{align*}
 
-Now convert to $\text{cm}^2$.
-
-Each unit on each axis represents $6$ cm, so
+Hence
 \[
-1\text{ square unit}=6\times 6=36\text{ cm}^2
+1-\tanh^2u=\operatorname{sech}^2u
 \]
-Hence the cross-sectional area is
-\begin{align*}
-A
-&=36A_{\text{units}} \\
-&=36\cdot \frac{9}{2}\left(\arctan\!\left(\frac{3}{2}\right)+\frac{\pi}{4}\right) \\
-&=162\left(\arctan\!\left(\frac{3}{2}\right)+\frac{\pi}{4}\right) \\
-&\approx 286.447\text{ cm}^2
-\end{align*}
 
-The beam is a prism of length $240$ cm, so
-\begin{align*}
-V&=240A \\
-&=240\times 286.447 \\
-&\approx 68747.3\text{ cm}^3
-\end{align*}
-
-Therefore, correct to $3$ significant figures, the volume of the beam is
+\item Let
 \[
-6.87\times 10^4\text{ cm}^3
+u=\operatorname{artanh}y
 \]
+so that
+\[
+y=\tanh u
+\]
+
+Using the exponential form of $\tanh u$,
+\[
+y=\frac{e^u-e^{-u}}{e^u+e^{-u}}
+\]
+
+Multiply top and bottom by $e^u$:
+\[
+y=\frac{e^{2u}-1}{e^{2u}+1}
+\]
+
+Now solve for $u$:
+\[
+\begin{aligned}
+y(e^{2u}+1)&=e^{2u}-1 \\
+ye^{2u}+y&=e^{2u}-1 \\
+e^{2u}-ye^{2u}&=1+y \\
+e^{2u}(1-y)&=1+y \\
+e^{2u}&=\frac{1+y}{1-y}
+\end{aligned}
+\]
+
+Since $|y|<1$, both $1+y$ and $1-y$ are positive, so taking logarithms is valid:
+\[
+2u=\ln\left(\frac{1+y}{1-y}\right)
+\]
+
+Therefore
+\[
+u=\frac12\ln\left(\frac{1+y}{1-y}\right)
+\]
+
+But $u=\operatorname{artanh}y$, so
+\[
+\operatorname{artanh}y=\frac12\ln\left(\frac{1+y}{1-y}\right)
+\]
+
+\item Let
+\[
+x=4\tanh u
+\]
+
+Then
+\[
+\frac{\mathrm{d}x}{\mathrm{d}u}=4\operatorname{sech}^2u
+\qquad\Rightarrow\qquad
+\mathrm{d}x=4\operatorname{sech}^2u\,\mathrm{d}u
+\]
+
+Also,
+\[
+\begin{aligned}
+16-x^2
+&=16-16\tanh^2u \\
+&=16(1-\tanh^2u) \\
+&=16\operatorname{sech}^2u
+\end{aligned}
+\]
+using part (i).
+
+So
+\[
+\begin{aligned}
+\int \frac{1}{16-x^2}\,\mathrm{d}x
+&=\int \frac{1}{16\operatorname{sech}^2u}\left(4\operatorname{sech}^2u\,\mathrm{d}u\right) \\
+&=\frac14\int 1\,\mathrm{d}u \\
+&=\frac{u}{4}+c
+\end{aligned}
+\]
+
+Now $x=4\tanh u$ gives
+\[
+\tanh u=\frac{x}{4}
+\]
+so
+\[
+u=\operatorname{artanh}\frac{x}{4}
+\]
+
+Hence
+\[
+\int \frac{1}{16-x^2}\,\mathrm{d}x=\frac14\operatorname{artanh}\frac{x}{4}+c
+\]
+for $|x|<4$.
+
+Now use part (ii) with $y=\dfrac{x}{4}$. Since $|x|<4$, we have $\left|\dfrac{x}{4}\right|<1$, so
+\[
+\operatorname{artanh}\frac{x}{4}
+=\frac12\ln\left(\frac{1+\frac{x}{4}}{1-\frac{x}{4}}\right)
+=\frac12\ln\left(\frac{4+x}{4-x}\right)
+\]
+
+Therefore
+\[
+\int \frac{1}{16-x^2}\,\mathrm{d}x
+=\frac14\cdot \frac12\ln\left(\frac{4+x}{4-x}\right)+c
+=\frac18\ln\left(\frac{4+x}{4-x}\right)+c
+\]
+
+So
+\[
+\int \frac{1}{16-x^2}\,\mathrm{d}x=\frac18\ln\left(\frac{4+x}{4-x}\right)+c
+\]
+
+\item First complete the square:
+\[
+\begin{aligned}
+-t^2+6t+7
+&=-(t^2-6t+9)+16 \\
+&=16-(t-3)^2
+\end{aligned}
+\]
+
+So
+\[
+\int_1^5 \frac{1}{-t^2+6t+7}\,\mathrm{d}t
+=
+\int_1^5 \frac{1}{16-(t-3)^2}\,\mathrm{d}t
+\]
+
+Using part (iii), with $x$ replaced by $t-3$,
+\[
+\int \frac{1}{16-(t-3)^2}\,\mathrm{d}t
+=
+\frac18\ln\left(\frac{4+(t-3)}{4-(t-3)}\right)+c
+\]
+
+Therefore
+\[
+\begin{aligned}
+\int_1^5 \frac{1}{-t^2+6t+7}\,\mathrm{d}t
+&=
+\left[\frac18\ln\left(\frac{t+1}{7-t}\right)\right]_{1}^{5} \\
+&=\frac18\ln\left(\frac{6}{2}\right)-\frac18\ln\left(\frac{2}{6}\right) \\
+&=\frac18\ln 3-\frac18\ln\left(\frac13\right) \\
+&=\frac18\ln 3+\frac18\ln 3 \\
+&=\frac14\ln 3
+\end{aligned}
+\]
+
+Hence
+\[
+\int_{1}^{5} \frac{1}{-t^2 + 6t + 7}\,\mathrm{d}t = \frac{1}{4}\ln 3
+\]
+\end{enumerate}
 \end{djsSolution}
 
 
@@ -1857,38 +1723,172 @@ Therefore, correct to $3$ significant figures, the volume of the beam is
 \questionitem
 % [Source: _QBT___Solns__Integration_with_Inverse_Trig, Q17]
 
-Find
-\[
-\int_1^{e} \frac{1}{x\sqrt{4-(\ln x)^2}} \, \mathrm{d}x
-\]
-expressing your answer in terms of $\pi$. \marks{8}
+\begin{enumerate}[label=(\roman*), start=1]
+  \item For $x>5$, find
+  \[
+  \int \frac{1}{\sqrt{x^2-6x+5}}\,\mathrm{d}x
+  \] \\
+  expressing your answer first in terms of $\operatorname{arcosh}$ and hence in logarithmic form. \marks{3} \\
+  \item Use integration by substitution with $x-3=2\cosh u$ to show that, for $x>5$,
+  \[
+  \int \sqrt{x^2-6x+5}\,\mathrm{d}x=2\left(\frac{x-3}{2}\sqrt{\frac{(x-3)^2}{4}-1}-\ln\left|\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right|\right)+c
+  \]
+  where $c$ is an arbitrary constant. \marks{7} \\
+\end{enumerate}
 
 \vspace*{10pt}
 
 \begin{djsSolution}
-Using the standard result
-\[
-\int \frac{1}{\sqrt{a^2-x^2}} \,\mathrm{d}x
-=
-\arcsin\!\left(\frac{x}{a}\right)+c
-\]
-with \(a=2\) and \(x\) replaced by \(\ln x\), noting that \(\dfrac{\mathrm{d}}{\mathrm{d}x}(\ln x)=\dfrac{1}{x}\),
-\[
-\int_1^{e} \frac{1}{x\sqrt{4-(\ln x)^2}} \,\mathrm{d}x
-=
-\left[\arcsin\!\left(\frac{\ln x}{2}\right)\right]_1^e
-\]
+\begin{enumerate}[label=\textbf{(\roman*)}, start=1]
+  \item First complete the square:
+  \[
+  x^2-6x+5=(x-3)^2-4
+  \]
 
-Therefore
-\[
-\left[\arcsin\!\left(\frac{\ln x}{2}\right)\right]_1^e
-=
-\arcsin\!\left(\frac12\right)-\arcsin(0)
-=
-\frac{\pi}{6}-0
-=
-\frac{\pi}{6}
-\]
+  Since $x>5$, we have $\dfrac{x-3}{2}>1$, so we may let
+  \[
+  x-3=2\cosh u \qquad (u>0)
+  \]
+  Then
+  \[
+  \frac{\mathrm{d}x}{\mathrm{d}u}=2\sinh u
+  \qquad\Rightarrow\qquad
+  \mathrm{d}x=2\sinh u\,\mathrm{d}u
+  \]
+  and
+  \begin{align*}
+  \sqrt{x^2-6x+5}
+  &=\sqrt{(x-3)^2-4} \\
+  &=\sqrt{4\cosh^2u-4} \\
+  &=2\sqrt{\cosh^2u-1} \\
+  &=2\sinh u
+  \end{align*}
+  since $u>0$.
+
+  So
+  \begin{align*}
+  \int \frac{1}{\sqrt{x^2-6x+5}}\,\mathrm{d}x
+  &=\int \frac{1}{2\sinh u}\,(2\sinh u\,\mathrm{d}u) \\
+  &=\int 1\,\mathrm{d}u \\
+  &=u+c
+  \end{align*}
+
+  Now
+  \[
+  \cosh u=\frac{x-3}{2}
+  \]
+  so
+  \[
+  u=\operatorname{arcosh}\left(\frac{x-3}{2}\right)
+  \]
+
+  Hence
+  \[
+  \int \frac{1}{\sqrt{x^2-6x+5}}\,\mathrm{d}x
+  =\operatorname{arcosh}\left(\frac{x-3}{2}\right)+c
+  \]
+
+  Using the standard result
+  \[
+  \operatorname{arcosh} z=\ln\left(z+\sqrt{z^2-1}\right)
+  \]
+  we get
+  \[
+  \int \frac{1}{\sqrt{x^2-6x+5}}\,\mathrm{d}x
+  =\ln\left(\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right)+c
+  \]
+
+  So the answer is
+  \[
+  \operatorname{arcosh}\left(\frac{x-3}{2}\right)+c
+  \]
+  and hence
+  \[
+  \ln\left(\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right)+c
+  \]
+
+  \item Let
+  \[
+  I=\int \sqrt{x^2-6x+5}\,\mathrm{d}x
+  \]
+  and use the substitution
+  \[
+  x-3=2\cosh u \qquad (x>5)
+  \]
+
+  Then, as above,
+  \[
+  \sqrt{x^2-6x+5}=2\sinh u
+  \qquad\text{and}\qquad
+  \mathrm{d}x=2\sinh u\,\mathrm{d}u
+  \]
+
+  So
+  \begin{align*}
+  I
+  &=\int (2\sinh u)(2\sinh u)\,\mathrm{d}u \\
+  &=4\int \sinh^2u\,\mathrm{d}u
+  \end{align*}
+
+  Use the identity
+  \[
+  \cosh 2u=2\sinh^2u+1
+  \]
+  so that
+  \[
+  2\sinh^2u=\cosh 2u-1
+  \]
+
+  Therefore
+  \begin{align*}
+  I
+  &=2\int (\cosh 2u-1)\,\mathrm{d}u \\
+  &=2\left(\frac{1}{2}\sinh 2u-u\right)+c \\
+  &=\sinh 2u-2u+c
+  \end{align*}
+
+  Now express this in terms of $x$.
+
+  Since
+  \[
+  \cosh u=\frac{x-3}{2}
+  \]
+  we have
+  \[
+  \sinh u=\sqrt{\cosh^2u-1}
+  =\sqrt{\frac{(x-3)^2}{4}-1}
+  \]
+  because $u>0$.
+
+  Also
+  \begin{align*}
+  \sinh 2u
+  &=2\sinh u\cosh u \\
+  &=2\left(\sqrt{\frac{(x-3)^2}{4}-1}\right)\left(\frac{x-3}{2}\right) \\
+  &=(x-3)\sqrt{\frac{(x-3)^2}{4}-1}
+  \end{align*}
+
+  Hence
+  \begin{align*}
+  I
+  &=(x-3)\sqrt{\frac{(x-3)^2}{4}-1}-2u+c \\
+  &=2\left(\frac{x-3}{2}\sqrt{\frac{(x-3)^2}{4}-1}-u\right)+c
+  \end{align*}
+
+  From part (i),
+  \[
+  u=\operatorname{arcosh}\left(\frac{x-3}{2}\right)
+  =\ln\left|\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right|
+  \]
+
+  Therefore
+  \[
+  \int \sqrt{x^2-6x+5}\,\mathrm{d}x
+  =2\left(\frac{x-3}{2}\sqrt{\frac{(x-3)^2}{4}-1}-\ln\left|\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right|\right)+c
+  \]
+
+  This is the required result.
+\end{enumerate}
 \end{djsSolution}
 
 
