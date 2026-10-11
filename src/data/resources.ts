@@ -1023,6 +1023,29 @@ const rawResources: Resource[] = [
     topic: 'Work, Energy and Power',
   },
 
+  // --- A-level Further Maths: Further Mechanics — Kinematics & Dynamics ---
+  {
+    id: 'further-maths-further-mechanics-kinematics-dynamics-motion-under-a-variable-force',
+    title: 'Motion Under a Variable Force',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/kinematics-dynamics/qbt/_QBT__Motion_Under_a_Variable_Force.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'further-maths-further-mechanics-kinematics-dynamics-motion-under-a-variable-force-solns',
+    topic: 'Kinematics & Dynamics',
+    boards: ['edexcel-fm2', 'ocr-a', 'ocr-mei-mechanics-major', 'cie-9231'],
+  },
+  {
+    id: 'further-maths-further-mechanics-kinematics-dynamics-motion-under-a-variable-force-solns',
+    title: 'Motion Under a Variable Force',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/kinematics-dynamics/soln/_QBT___Solns__Motion_Under_a_Variable_Force.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'further-maths-further-mechanics-kinematics-dynamics-motion-under-a-variable-force',
+    topic: 'Kinematics & Dynamics',
+  },
+
   // --- A-level Further Maths: Further Mechanics - Miscellaneous Mechanics ---
   {
     id: 'further-maths-further-mechanics-miscellaneous-mechanics-dimensional-analysis',

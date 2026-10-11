@@ -56,6 +56,7 @@ export const STRANDS: Strand[] = [
       { id: 'miscellaneous-mechanics', topic: 'Miscellaneous Mechanics', title: 'Miscellaneous Mechanics', navLabel: 'Misc Mechanics' },
       { id: 'momentum-restitution-collisions', topic: 'Momentum & Collisions', title: 'Momentum & Collisions', navLabel: 'Momentum & Collisions' },
       { id: 'work-energy-power', topic: 'Work, Energy and Power', title: 'Work, Energy and Power', navLabel: 'Work, Energy and Power' },
+      { id: 'kinematics-dynamics', topic: 'Kinematics & Dynamics', title: 'Kinematics & Dynamics', navLabel: 'Kinematics & Dynamics' },
       { id: 'centre-of-mass', topic: 'Centre of Mass', title: 'Centre of Mass', navLabel: 'Centre of Mass' },
     ],
   },

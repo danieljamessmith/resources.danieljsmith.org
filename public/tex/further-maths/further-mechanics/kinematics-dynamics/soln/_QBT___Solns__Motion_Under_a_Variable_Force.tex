@@ -1,0 +1,1220 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/pack_preamble.tex}
+
+\djsSolnHeader{Motion Under a Variable Force}
+\djsSitePath{Further Mechanics}{Kinematics \& Dynamics}
+\djsMechanicsPack
+
+\djsLastUpdated{11 October 2026}
+\begin{document}
+\djsFrontMatter
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+% [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q1]
+
+A particle $P$ of mass $4\,\mathrm{kg}$ moves along a straight horizontal line. At time $t\,\mathrm{s}$, its displacement in the positive direction from a fixed point $O$ is $x\,\mathrm{m}$ and its velocity is $v\,\mathrm{m\,s^{-1}}$. \\
+
+The only horizontal force acting on $P$ has magnitude
+\[
+\dfrac{36}{(x+2)^3}\,\mathrm{N}
+\] \\
+and acts in the direction of decreasing $x$. Initially, $P$ is at $O$ and is moving in the positive direction with speed $\dfrac{3}{2}\,\mathrm{m\,s^{-1}}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find an expression for $v$ in terms of $x$. \marks{3} \\
+  \item Hence find an expression for $x$ in terms of $t$. \marks{2} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item Take the direction of increasing \(x\) as positive. Newton's second law gives
+\[
+4a=-\frac{36}{(x+2)^3}
+\]
+Using \(a=v\dfrac{\mathrm{d}v}{\mathrm{d}x}\), then separating variables and integrating:
+\begin{align*}
+4v\frac{\mathrm{d}v}{\mathrm{d}x}&=-\frac{36}{(x+2)^3}\\
+\int 4v\,\mathrm{d}v&=-36\int (x+2)^{-3}\,\mathrm{d}x\\
+2v^2&=\frac{18}{(x+2)^2}+c
+\end{align*}
+Initially, \(x=0\) and \(v=\dfrac32\), so
+\[
+2\left(\frac32\right)^2=\frac{18}{2^2}+c
+\quad\Longrightarrow\quad c=0
+\]
+Thus \(v^2=\dfrac{9}{(x+2)^2}\). The velocity is initially positive and cannot become zero at any finite \(x\geq 0\), so we take the positive root:
+\[
+v=\frac{3}{x+2}
+\]
+
+\item Using part (a) and \(v=\dfrac{\mathrm{d}x}{\mathrm{d}t}\), separate variables and integrate:
+\begin{align*}
+\frac{\mathrm{d}x}{\mathrm{d}t}&=\frac{3}{x+2}\\
+\int (x+2)\,\mathrm{d}x&=\int 3\,\mathrm{d}t\\
+\frac{x^2}{2}+2x&=3t+d
+\end{align*}
+Since \(x=0\) when \(t=0\), \(d=0\). Completing the square gives
+\begin{align*}
+x^2+4x&=6t\\
+(x+2)^2&=6t+4
+\end{align*}
+Taking the positive root since \(x+2>0\):
+\[
+x=\sqrt{6t+4}-2,\qquad t\geq 0
+\]
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q2]
+
+A lorry of mass $2000\,\mathrm{kg}$ travels along a straight horizontal road. Its engine delivers constant power of $80\,\mathrm{kW}$. When the lorry is moving at speed $v\,\mathrm{m\,s^{-1}}$, the resistance to its motion has magnitude $200v\,\mathrm{N}$. \\
+
+At time $t$ seconds, the speed of the lorry is $v\,\mathrm{m\,s^{-1}}$. At $t=0$, the speed of the lorry is $8\,\mathrm{m\,s^{-1}}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[
+  10v\dfrac{\mathrm{d}v}{\mathrm{d}t}=400-v^2
+  \]
+  \marks[-30pt]{3}
+  \item Verify that, while $8\leq v<20$,
+  \[
+  t=5\ln\left(\dfrac{336}{400-v^2}\right)
+  \]
+  \marks[-30pt]{5}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item Take the direction of motion as positive. The driving force is
+  \[
+  \frac{P}{v}=\frac{80\,000}{v}\,\mathrm{N}
+  \]
+  Using acceleration \(\dfrac{\mathrm{d}v}{\mathrm{d}t}\), Newton's second law gives
+  \[
+  2000\frac{\mathrm{d}v}{\mathrm{d}t}=\frac{80\,000}{v}-200v
+  \]
+  Multiplying by \(\dfrac{v}{200}\):
+  \[
+  10v\frac{\mathrm{d}v}{\mathrm{d}t}=400-v^2
+  \]
+
+  \item Separating the variables in the equation from part (a):
+  \[
+  \frac{10v}{400-v^2}\,\mathrm{d}v=\mathrm{d}t
+  \]
+  Since the derivative of \(400-v^2\) is \(-2v\), integrating gives
+  \begin{align*}
+  \int 1\,\mathrm{d}t&=-5\int\frac{-2v}{400-v^2}\,\mathrm{d}v\\
+  t&=-5\ln|400-v^2|+c
+  \end{align*}
+  For \(8\leq v<20\), \(400-v^2>0\), so the modulus can be dropped. Using \(v=8\) when \(t=0\):
+  \begin{align*}
+  0&=-5\ln(400-8^2)+c\\
+  c&=5\ln336
+  \end{align*}
+  Substituting and combining the logarithms:
+  \begin{align*}
+  t&=5\ln336-5\ln(400-v^2)\\
+  &=5\ln\left(\frac{336}{400-v^2}\right)
+  \end{align*}
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q3]
+
+A particle $P$ of mass $0.5\,\mathrm{kg}$ moves along the positive $x$-axis under the action of a single force. At time $t$ seconds, the particle is $x$ metres from the origin $O$, where $x>0$, and has speed $v\,\mathrm{m\,s^{-1}}$. The force acts in the direction of increasing $x$ and has magnitude
+\[
+\frac{k}{x^3}\text{ newtons}
+\] \\
+where $k$ is a positive constant. \\
+
+When $x=2$, the speed of $P$ is $1\,\mathrm{m\,s^{-1}}$, and when $x=4$, its speed is $2\,\mathrm{m\,s^{-1}}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[
+  v^2=5-\frac{16}{x^2}
+  \]
+  \marks[-20pt]{6}
+\end{enumerate}
+The time taken for the speed of $P$ to increase from $1\,\mathrm{m\,s^{-1}}$ to $2\,\mathrm{m\,s^{-1}}$ is $T$ seconds. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Use algebraic integration to show that
+  \[
+  T=\frac{6}{5}
+  \]
+  \marks[-20pt]{4}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item Take the direction of increasing \(x\) as positive. Newton's second law gives
+\[
+\frac12 a=+\frac{k}{x^3}
+\]
+Using \(a=v\dfrac{\mathrm{d}v}{\mathrm{d}x}\), and separating the variables:
+\begin{align*}
+\frac12 v\frac{\mathrm{d}v}{\mathrm{d}x}&=\frac{k}{x^3}\\
+2v\,\mathrm{d}v&=4kx^{-3}\,\mathrm{d}x\\
+\int 2v\,\mathrm{d}v&=\int 4kx^{-3}\,\mathrm{d}x\\
+v^2&=-\frac{2k}{x^2}+c
+\end{align*}
+Substituting the two given conditions:
+\begin{align*}
+1&=-\frac{k}{2}+c\\
+4&=-\frac{k}{8}+c
+\end{align*}
+Subtracting the first equation from the second:
+\begin{align*}
+3&=\frac{3k}{8}\\
+k&=8\\
+c&=1+\frac{8}{2}=5
+\end{align*}
+Hence
+\[
+v^2=5-\frac{16}{x^2}
+\]
+
+\item Since the particle moves in the direction of increasing \(x\), use the positive square root from part (a). As \(x>0\),
+\[
+\frac{\mathrm{d}x}{\mathrm{d}t}=v=\sqrt{5-\frac{16}{x^2}}=\frac{\sqrt{5x^2-16}}{x}
+\]
+Separating the variables and integrating:
+\begin{align*}
+\mathrm{d}t&=\frac{x}{\sqrt{5x^2-16}}\,\mathrm{d}x\\
+\int\mathrm{d}t&=\frac{1}{10}\int 10x(5x^2-16)^{-1/2}\,\mathrm{d}x\\
+t&=\frac15\sqrt{5x^2-16}+d
+\end{align*}
+Let \(t_1\) and \(t_2\) be the times when \(x=2\) and \(x=4\), respectively. Substituting these values:
+\begin{align*}
+t_1&=\frac15\sqrt{20-16}+d=\frac25+d\\
+t_2&=\frac15\sqrt{80-16}+d=\frac85+d\\
+T&=t_2-t_1=\frac85-\frac25=\frac65\,\mathrm{s}
+\end{align*}
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q4]
+
+A particle $P$ of mass $3\,\mathrm{kg}$ moves along the positive $x$-axis. At time $t=0$, it passes through the origin with speed $4\,\mathrm{m\,s^{-1}}$. \\
+
+While $P$ is moving, the only force acting on it is a resistive force of magnitude
+\[
+\frac{6}{v}\,\mathrm{N}
+\] \\
+where $v\,\mathrm{m\,s^{-1}}$ is its speed. The force acts in the negative $x$-direction. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find an expression for $v$ in terms of the displacement $x$ of $P$ from the origin. \marks{5} \\
+  \item Find the distance travelled by $P$ while its speed decreases from $4\,\mathrm{m\,s^{-1}}$ to $2\,\mathrm{m\,s^{-1}}$. \marks{2} \\
+\end{enumerate}
+A particle $Q$, also of mass $3\,\mathrm{kg}$, starts from the origin with speed $4\,\mathrm{m\,s^{-1}}$. The only force acting on $Q$ is a constant resistive force of magnitude $\dfrac{3}{2}\,\mathrm{N}$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item By comparing the resistive forces acting on $P$ and $Q$, explain why $P$ must come to rest at a time $t<8\,\mathrm{s}$ and at a displacement $x<16\,\mathrm{m}$. \marks{3} \\
+  \item Sketch the velocity--time graph for $P$ from $t=0$ until it first comes to rest. Your sketch should indicate the concavity of the graph, but no numerical values are required. \marks{1} \\
+  \item Determine the maximum displacement of $P$ from the origin. \marks{2} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item Take the positive direction to be along the positive \(x\)-axis. Newton's second law gives
+\[
+3a=-\frac{6}{v}
+\]
+Using \(a=v\dfrac{\mathrm{d}v}{\mathrm{d}x}\):
+\begin{align*}
+3v\frac{\mathrm{d}v}{\mathrm{d}x}&=-\frac{6}{v}\\
+v^2\frac{\mathrm{d}v}{\mathrm{d}x}&=-2
+\end{align*}
+Separating the variables and integrating:
+\begin{align*}
+\int v^2\,\mathrm{d}v&=-2\int\mathrm{d}x\\
+\frac{v^3}{3}&=-2x+c
+\end{align*}
+When \(x=0\), \(v=4\), so \(c=\dfrac{64}{3}\). Hence
+\begin{align*}
+v^3&=64-6x\\
+v&=\sqrt[3]{64-6x}
+\end{align*}
+
+\item Substituting \(v=2\) into the result of part (a):
+\[
+8=64-6x
+\quad\Longrightarrow\quad
+x=\frac{28}{3}\,\mathrm{m}
+\]
+Since \(P\) moves in the positive direction throughout, the distance travelled is \(\dfrac{28}{3}\,\mathrm{m}\).
+
+\item For \(Q\), Newton's second law in the same positive direction gives
+\[
+3a_Q=-\frac32
+\quad\Longrightarrow\quad
+a_Q=-\frac12\,\mathrm{m\,s^{-2}}
+\]
+Using constant-acceleration formulae, its stopping time and displacement are
+\begin{align*}
+0&=4-\frac12t
+\quad\Longrightarrow\quad t=8\,\mathrm{s}\\
+x_Q&=4(8)+\frac12\left(-\frac12\right)(8)^2=16\,\mathrm{m}
+\end{align*}
+The initial resistive forces are equal. As \(P\) slows down, however,
+\[
+0<v<4
+\quad\Longrightarrow\quad
+\frac6v>\frac32
+\]
+Thus, at every speed below \(4\,\mathrm{m\,s^{-1}}\), \(P\) has a greater deceleration than \(Q\). Each further decrease in speed therefore takes less time and covers less distance for \(P\), so it comes to rest with
+\[
+t<8\,\mathrm{s},\qquad x<16\,\mathrm{m}
+\]
+
+\item The sketch should look like:
+
+\begin{tikzpicture}[x=0.12\linewidth,y=2cm]
+\draw[->] (0,0) -- (6,0) node[right] {\(t\)};
+\draw[->] (0,0) -- (0,4.1) node[above] {\(v\)};
+\draw[thick] (0,3.6) .. controls (3.333,2.4) and (5,1.2) .. (5,0);
+\end{tikzpicture}
+
+As the speed falls, the resistive force increases, making the acceleration more negative. The graph is therefore decreasing and concave down.
+
+\item The displacement increases while \(P\) is moving, so its maximum occurs as \(P\) comes to rest. Taking \(v\to0\) in part (a):
+\[
+0=64-6x_{\max}
+\quad\Longrightarrow\quad
+x_{\max}=\frac{32}{3}\,\mathrm{m}
+\]
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q5]
+
+A particle $B$ of mass $2\,\mathrm{kg}$ moves along the positive $x$-axis. When $B$ passes through the origin, its speed is $u\,\mathrm{m\,s^{-1}}$. \\
+
+The only horizontal force acting on $B$ is a resistance whose magnitude is directly proportional to the cube of the speed of $B$. When the speed of $B$ is $3\,\mathrm{m\,s^{-1}}$, the magnitude of the resistance is $54\,\mathrm{N}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that, while $B$ is moving in the positive $x$-direction, its motion satisfies
+  \[
+  \frac{1}{v^2}\frac{\mathrm{d}v}{\mathrm{d}x}=-1
+  \]
+  \marks[-30pt]{3}
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Solve the differential equation in part (a) to obtain $v$ in terms of $x$ and $u$. \marks{4} \\
+    \item By considering the behaviour of $v$ as $x\to\infty$, state one respect in which this model of the motion is unrealistic. \marks{1} \\
+  \end{enumerate}
+\end{enumerate}
+The particle subsequently reaches a point $A$ with coordinate $X$, where its speed is $V\,\mathrm{m\,s^{-1}}$. The work done by the resistance as $B$ moves from the origin to $A$ is $W\,\mathrm{J}$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Using $W=\int F\,\mathrm{d}x$, where $F$ is the signed force in the $x$-direction, find an expression for $W$ in terms of $X$ and $u$. \marks{3} \\
+    \item Explain the physical significance of the sign of $W$. \marks{1} \\
+    \item Rewrite your answer to part (c)(i) in terms of $V$ and $u$, and hence show how $W$ is related to the change in the kinetic energy of $B$. \marks{2} \\
+  \end{enumerate}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item Take the positive direction to be the positive \(x\)-direction. Let the magnitude of the resistance be \(kv^3\). The given force and speed give
+  \[
+  54=k(3^3)\quad\Rightarrow\quad k=2
+  \]
+  Newton's second law in the positive \(x\)-direction is
+  \[
+  2a=-kv^3=-2v^3
+  \]
+  Using \(a=v\dfrac{\mathrm{d}v}{\mathrm{d}x}\):
+  \[
+  2v\frac{\mathrm{d}v}{\mathrm{d}x}=-2v^3
+  \]
+  While the particle is moving in the positive direction, \(v>0\), so dividing by \(2v^3\) gives
+  \[
+  \frac{1}{v^2}\frac{\mathrm{d}v}{\mathrm{d}x}=-1
+  \]
+
+  \item
+  \begin{enumerate}[label=(\roman*), start=1]
+    \item Separating the variables and integrating:
+    \begin{align*}
+    \int v^{-2}\,\mathrm{d}v&=-\int 1\,\mathrm{d}x\\
+    -\frac{1}{v}&=-x+c
+    \end{align*}
+    At the origin, \(x=0\) and \(v=u\), so \(c=-\dfrac{1}{u}\). Hence
+    \begin{align*}
+    -\frac{1}{v}&=-x-\frac{1}{u}\\
+    \frac{1}{v}&=x+\frac{1}{u}=\frac{1+ux}{u}\\
+    v&=\frac{u}{1+ux}
+    \end{align*}
+
+    \item As \(x\to\infty\), \(v\to0\), but \(v>0\) for every finite \(x\). Thus the model unrealistically predicts that the particle travels an unlimited distance without coming to rest.
+  \end{enumerate}
+
+  \item
+  \begin{enumerate}[label=(\roman*), start=1]
+    \item The signed force is \(F=-2v^3\). Using the speed from part (b)(i):
+    \begin{align*}
+    W&=\int_0^X F\,\mathrm{d}x\\
+    &=-2u^3\int_0^X(1+ux)^{-3}\,\mathrm{d}x\\
+    &=-2u^3\left[\frac{(1+ux)^{-2}}{-2u}\right]_0^X\\
+    &=u^2\left[(1+uX)^{-2}-1\right]
+    \end{align*}
+
+    \item \(W<0\): the resistance acts opposite to the displacement, so it does negative work and reduces the particle's kinetic energy.
+
+    \item From part (b)(i), \(V=\dfrac{u}{1+uX}\), so the expression in part (c)(i) becomes
+    \[
+    W=\frac{u^2}{(1+uX)^2}-u^2=V^2-u^2
+    \]
+    Since the mass is \(2\,\mathrm{kg}\), the change in kinetic energy is
+    \[
+    \Delta\mathrm{KE}=\frac12(2)V^2-\frac12(2)u^2=V^2-u^2=W
+    \]
+  \end{enumerate}
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+% [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q6]
+
+A small sphere $P$ of mass $5\,\mathrm{kg}$ is released into a liquid and moves vertically downwards. Take the downward direction as positive. In a model of the motion, the forces acting on $P$ are: \\
+
+\begin{itemize}
+  \item its weight;
+  \item a constant upthrust of magnitude $14\,\mathrm{N}$;
+  \item a resistance to motion whose magnitude is proportional to the speed of $P$.
+\end{itemize}
+
+When the speed of $P$ is $4\,\mathrm{m\,s^{-1}}$, the resistance has magnitude $10\,\mathrm{N}$. At time $t=0$, the sphere is at a point $O$ and is moving downwards with speed $u\,\mathrm{m\,s^{-1}}$, where $u>0$. At time $t$ seconds, its downward velocity is $v\,\mathrm{m\,s^{-1}}$. Take $g=9.8\,\mathrm{m\,s^{-2}}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that, according to the model,
+  \[
+  \dfrac{\mathrm{d}v}{\mathrm{d}t}=7-\dfrac{1}{2}v
+  \]
+  \marks[-30pt]{2}
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Solve the differential equation in part (a) to show that
+    \[
+    v=14+(u-14)e^{-t/2}
+    \]
+    \marks[-20pt]{5}
+    \item Describe briefly how the speed of $P$ varies over time in each of the following cases:
+    \begin{itemize}
+      \item $0<u<14$;
+      \item $u=14$;
+      \item $u>14$.
+    \end{itemize}
+    In each case, state the limiting speed of $P$ as $t\to\infty$. \marks{3} \\
+  \end{enumerate}
+  \item Given that $u=9$, find the exact downward displacement of $P$ from $O$ when $t=6$. \marks{4} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item Write the resistance as \(kv\). Since \(4k=10\), \(k=\dfrac52\).
+
+Taking downwards as positive, Newton's second law gives:
+\begin{align*}
+5\dfrac{\mathrm{d}v}{\mathrm{d}t}&=5(9.8)-14-\dfrac52v\\
+\dfrac{\mathrm{d}v}{\mathrm{d}t}&=7-\dfrac12v
+\end{align*}
+
+\item
+\begin{enumerate}[label=(\roman*), start=1]
+\item For \(u\ne14\), separate the variables in the equation from part (a):
+\begin{align*}
+\dfrac{\mathrm{d}v}{\mathrm{d}t}&=-\dfrac12(v-14)\\
+\int\dfrac{1}{v-14}\,\mathrm{d}v&=-\dfrac12\int1\,\mathrm{d}t\\
+\ln|v-14|&=-\dfrac t2+c
+\end{align*}
+Using \(v=u\) when \(t=0\) gives \(c=\ln|u-14|\). Hence:
+\begin{align*}
+\ln|v-14|-\ln|u-14|&=-\dfrac t2\\
+|v-14|&=|u-14|e^{-t/2}
+\end{align*}
+The right-hand side is non-zero for finite \(t\), so \(v-14\) cannot change sign. It therefore has the same sign as its initial value \(u-14\), giving:
+\[
+v-14=(u-14)e^{-t/2}
+\]
+If \(u=14\), the differential equation gives the constant solution \(v=14\). Thus, for every \(u>0\),
+\[
+v=14+(u-14)e^{-t/2}
+\]
+
+\item Since \(e^{-t/2}\) decreases from \(1\) towards \(0\):
+\begin{itemize}
+\item If \(0<u<14\), the speed increases from \(u\) towards \(14\,\mathrm{m\,s^{-1}}\).
+\item If \(u=14\), the speed remains constant at \(14\,\mathrm{m\,s^{-1}}\).
+\item If \(u>14\), the speed decreases from \(u\) towards \(14\,\mathrm{m\,s^{-1}}\).
+\end{itemize}
+In all three cases, the limiting speed is \(14\,\mathrm{m\,s^{-1}}\).
+\end{enumerate}
+
+\item Let \(x\) be the downward displacement from \(O\), so \(x=0\) when \(t=0\). Using \(u=9\) in part (b)(i):
+\[
+\dfrac{\mathrm{d}x}{\mathrm{d}t}=v=14-5e^{-t/2}
+\]
+Integrating with respect to \(t\):
+\begin{align*}
+x&=14t+10e^{-t/2}+A\\
+0&=10+A\\
+A&=-10
+\end{align*}
+Therefore, at \(t=6\), the downward displacement is:
+\[
+x=14(6)+10e^{-3}-10=\left(74+10e^{-3}\right)\,\mathrm{m}
+\]
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+% [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q7]
+
+A vehicle of mass $900\,\mathrm{kg}$ moves along a straight horizontal road. Its engine provides a constant driving force of $576\,\mathrm{N}$. When the vehicle has speed $v\,\mathrm{m\,s^{-1}}$, the resistance to its motion has magnitude $(v^2+14v)\,\mathrm{N}$. \\
+
+The time taken for the speed of the vehicle to increase from $3\,\mathrm{m\,s^{-1}}$ to $13\,\mathrm{m\,s^{-1}}$ is $T$ seconds. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[
+  T=18\ln\left(\frac{27}{7}\right)
+  \]
+  \marks[-30pt]{7}
+\end{enumerate}
+When $t=0$, the speed of the vehicle is $8\,\mathrm{m\,s^{-1}}$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Show that
+  \[
+  \frac{v+32}{18-v}=pe^{qt}
+  \]
+  where the rational numbers $p$ and $q$ are to be found. \marks{2} \\
+  \item Hence explain why $v<18$ for all $t\geq 0$. \marks{1} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item Take the direction of motion as positive. Using \(a=\dfrac{\mathrm{d}v}{\mathrm{d}t}\), Newton's second law gives
+\begin{align*}
+900\frac{\mathrm{d}v}{\mathrm{d}t}
+&=576-(v^2+14v)\\
+&=(18-v)(v+32)
+\end{align*}
+Separating the variables:
+\[
+\frac{900}{(18-v)(v+32)}\,\mathrm{d}v=\mathrm{d}t
+\]
+For the partial fractions, write
+\[
+\frac{1}{(18-v)(v+32)}=\frac{A}{18-v}+\frac{B}{v+32}
+\]
+Multiplying by \((18-v)(v+32)\) and comparing coefficients gives
+\begin{align*}
+1&=A(v+32)+B(18-v)\\
+&=(A-B)v+32A+18B\\
+A-B&=0,\qquad 32A+18B=1\\
+A&=B=\frac{1}{50}
+\end{align*}
+Hence, integrating both sides:
+\begin{align*}
+18\int\left(\frac{1}{18-v}+\frac{1}{v+32}\right)\,\mathrm{d}v
+&=\int 1\,\mathrm{d}t\\
+18\left(-\ln|18-v|+\ln|v+32|\right)&=t+c
+\end{align*}
+For \(3\leq v\leq13\), both \(18-v\) and \(v+32\) are positive, so
+\[
+18\ln\left(\frac{v+32}{18-v}\right)=t+c
+\]
+Let \(t_3\) and \(t_{13}\) be the times at which the speeds are \(3\) and \(13\,\mathrm{m\,s^{-1}}\), respectively. Substituting these speeds:
+\begin{align*}
+t_3+c&=18\ln\left(\frac{35}{15}\right)=18\ln\left(\frac73\right)\\
+t_{13}+c&=18\ln\left(\frac{45}{5}\right)=18\ln9
+\end{align*}
+Subtracting eliminates \(c\):
+\begin{align*}
+T=t_{13}-t_3
+&=18\left(\ln9-\ln\frac73\right)\\
+&=18\ln\left(\frac{27}{7}\right)
+\end{align*}
+
+\item Using the integrated relation from part (a), the condition \(v=8\) when \(t=0\) gives
+\[
+c=18\ln\left(\frac{8+32}{18-8}\right)=18\ln4
+\]
+Thus, rearranging and exponentiating:
+\begin{align*}
+\ln\left(\frac{v+32}{18-v}\right)&=\frac{t}{18}+\ln4\\
+\frac{v+32}{18-v}&=4e^{t/18}
+\end{align*}
+This is the required form \(pe^{qt}\), with
+\[
+p=4,\qquad q=\frac{1}{18}
+\]
+
+\item From part (b), \(v+32=4e^{t/18}(18-v)\). Since \(v+32=50-(18-v)\),
+\[
+18-v=\frac{50}{1+4e^{t/18}}>0
+\]
+The denominator is positive for every \(t\geq0\), so \(v<18\) for all \(t\geq0\).
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+% [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q8]
+
+A particle $P$ of mass $2\,\mathrm{kg}$ moves along the positive $x$-axis in the direction of increasing $x$. At time $t$ seconds, its displacement from the origin is $x$ metres and its speed is $v\,\mathrm{m\,s^{-1}}$. \\
+
+While $P$ is moving, the resultant force acting on it is directed towards the origin and has magnitude $kv(v+2)\,\mathrm{N}$, where $k$ is a positive constant and $v$ denotes the numerical value of the speed in metres per second. \\
+
+When $x=1$, the speed of $P$ is $7\,\mathrm{m\,s^{-1}}$, and when $x=3$, its speed is $1\,\mathrm{m\,s^{-1}}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find $k$ and show that
+  \[
+  v=9\cdot 3^{(1-x)/2}-2
+  \]
+  \marks[-20pt]{6}
+\end{enumerate}
+The time taken for the speed of $P$ to decrease from $7\,\mathrm{m\,s^{-1}}$ to $1\,\mathrm{m\,s^{-1}}$ is $T$ seconds. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Show that
+  \[
+  T=\frac{\ln(7/3)}{\ln 3}
+  \]
+  \marks[-30pt]{4}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item Take the positive direction to be away from the origin, in the direction of increasing \(x\). The resultant force acts in the negative direction, so Newton's second law gives
+\[
+2a=-kv(v+2)
+\]
+Using \(a=v\dfrac{\mathrm{d}v}{\mathrm{d}x}\):
+\[
+2v\frac{\mathrm{d}v}{\mathrm{d}x}=-kv(v+2)
+\]
+Since \(v>0\) while the particle is moving, divide by \(v\) and separate the variables:
+\begin{align*}
+\frac{1}{v+2}\,\mathrm{d}v&=-\frac{k}{2}\,\mathrm{d}x\\
+\int\frac{1}{v+2}\,\mathrm{d}v&=-\frac{k}{2}\int\mathrm{d}x\\
+\ln|v+2|&=-\frac{kx}{2}+c
+\end{align*}
+Here \(v+2>0\), so the modulus can be dropped. Substituting the two given conditions:
+\begin{align*}
+\ln 9&=-\frac{k}{2}+c\\
+\ln 3&=-\frac{3k}{2}+c
+\end{align*}
+Subtracting the first equation from the second:
+\begin{align*}
+\ln 3-\ln 9&=-k\\
+k&=\ln 3
+\end{align*}
+Subtracting the relation at \(x=1\), \(v=7\) from the general relation now gives
+\begin{align*}
+\ln(v+2)-\ln 9&=-\frac{k}{2}(x-1)\\
+\ln\left(\frac{v+2}{9}\right)&=\frac{1-x}{2}\ln 3\\
+\frac{v+2}{9}&=3^{(1-x)/2}\\
+v&=9\cdot 3^{(1-x)/2}-2
+\end{align*}
+
+\item Using \(a=\dfrac{\mathrm{d}v}{\mathrm{d}t}\), Newton's second law in the same positive direction gives
+\[
+2\frac{\mathrm{d}v}{\mathrm{d}t}=-kv(v+2)
+\]
+Separating the variables, and using partial fractions:
+\begin{align*}
+\frac{2}{v(v+2)}\,\mathrm{d}v&=-k\,\mathrm{d}t\\
+\frac{2}{v(v+2)}&=\frac{1}{v}-\frac{1}{v+2}\\
+\int\left(\frac{1}{v}-\frac{1}{v+2}\right)\,\mathrm{d}v&=-k\int\mathrm{d}t\\
+\ln|v|-\ln|v+2|&=-kt+d
+\end{align*}
+Both \(v\) and \(v+2\) are positive, so this becomes
+\[
+\ln\left(\frac{v}{v+2}\right)=-kt+d
+\]
+Let \(t_0\) be the time when \(v=7\). Then \(v=1\) at time \(t_0+T\), giving
+\begin{align*}
+\ln\frac{7}{9}&=-kt_0+d\\
+\ln\frac{1}{3}&=-k(t_0+T)+d
+\end{align*}
+Subtracting eliminates \(d\) and \(t_0\). Using \(k=\ln 3\) from part (a):
+\begin{align*}
+\ln\frac{1}{3}-\ln\frac{7}{9}&=-kT\\
+\ln\frac{3}{7}&=-T\ln 3\\
+T&=\frac{\ln(7/3)}{\ln 3}
+\end{align*}
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+% [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q9]
+
+A particle $P$ of mass $4\,\mathrm{kg}$ is released from rest and moves vertically downwards through a fluid. While $P$ is moving with speed $v\,\mathrm{m\,s^{-1}}$, it experiences a resistance of magnitude $6v\,\mathrm{N}$ acting vertically upwards. After $P$ has descended a distance $x\,\mathrm{m}$, its speed is $v\,\mathrm{m\,s^{-1}}$. Take $g=9.8\,\mathrm{m\,s^{-2}}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[
+  \left(\frac{10v}{98-15v}\right)\frac{\mathrm{d}v}{\mathrm{d}x}=1
+  \]
+  \marks[-30pt]{2}
+  \item Verify that $x$ and $v$ satisfy
+  \[
+  45x=196\ln\left(\frac{98}{98-15v}\right)-30v
+  \]
+  \marks[-30pt]{4}
+  \item Determine the work done against the resistance from the instant $P$ is released until its acceleration has magnitude $2.45\,\mathrm{m\,s^{-2}}$. Give your answer to $3$ significant figures. \marks{5} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item Take vertically downwards as positive. Newton's second law gives
+\[
+4a=4(9.8)-6v
+\]
+Using \(a=v\dfrac{\mathrm{d}v}{\mathrm{d}x}\):
+\begin{align*}
+4v\frac{\mathrm{d}v}{\mathrm{d}x}&=39.2-6v\\
+10v\frac{\mathrm{d}v}{\mathrm{d}x}&=98-15v\\
+\left(\frac{10v}{98-15v}\right)\frac{\mathrm{d}v}{\mathrm{d}x}&=1
+\end{align*}
+
+\item Separating variables in the equation from part (a):
+\[
+\int\frac{10v}{98-15v}\,\mathrm{d}v=\int 1\,\mathrm{d}x
+\]
+To integrate, write
+\[
+\frac{10v}{98-15v}=-\frac23+\frac{196}{3(98-15v)}
+\]
+Hence
+\[
+x=-\frac{2v}{3}-\frac{196}{45}\ln|98-15v|+c
+\]
+Initially, \(x=0\) and \(v=0\), so
+\[
+0=-\frac{196}{45}\ln98+c
+\quad\Longrightarrow\quad
+c=\frac{196}{45}\ln98
+\]
+The terminal speed is \(\dfrac{98}{15}\,\mathrm{m\,s^{-1}}\). Since the particle accelerates towards this speed from rest, \(98-15v>0\), so the modulus may be removed. Substituting for \(c\) and combining the logarithms:
+\begin{align*}
+45x&=-30v-196\ln(98-15v)+196\ln98\\
+&=196\ln\left(\frac{98}{98-15v}\right)-30v
+\end{align*}
+
+\item The acceleration is downwards throughout the motion. From Newton's second law,
+\[
+a=9.8-1.5v
+\]
+When its magnitude is \(2.45\,\mathrm{m\,s^{-2}}\),
+\[
+2.45=9.8-1.5v
+\quad\Longrightarrow\quad
+v=4.9\,\mathrm{m\,s^{-1}}
+\]
+Using part (b), the distance descended is
+\begin{align*}
+45x&=196\ln\left(\frac{98}{98-15(4.9)}\right)-30(4.9)\\
+x&=\frac{196\ln4-147}{45}\,\mathrm{m}
+\end{align*}
+Let \(W\) be the positive work done against resistance. The work done by resistance is \(-W\). The work--energy principle is
+\[
+KE_0+GPE_0+\sum W_{\text{other}}
+=KE_1+GPE_1
+\]
+Taking gravitational potential energy to be zero at the final position:
+\begin{align*}
+0+4gx-W&=\frac12(4)v^2+0\\
+W&=39.2x-2v^2\\
+&=39.2\left(\frac{196\ln4-147}{45}\right)-2(4.9)^2\\
+&\approx60.6\,\mathrm{J}\qquad\text{(3 significant figures)}
+\end{align*}
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+% [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q10]
+
+A particle $P$, of mass $m$, moves on a rough straight track inclined at an angle $\alpha$ to the horizontal. A fixed point $O$ lies on the track, and $x$ denotes the distance of $P$ from $O$, measured up the track. \\
+
+In addition to its weight, $P$ is acted on by a force directed down the track and having magnitude
+\[
+\frac{kmg}{x+a}
+\] \\
+where $a$ and $k$ are positive constants with dimensions of length. The coefficient of friction between $P$ and the track is $\mu$. \\
+
+The particle is projected up the track and first comes to rest at the point where $x=2a$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that, while $P$ is moving up the track with speed $v$,
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}(v^2)+\frac{2gk}{x+a}+2g(\sin\alpha+\mu\cos\alpha)=0
+  \]
+  \marks[-30pt]{3}
+  \item Verify that
+  \[
+  v^2=2gk\ln\left(\frac{3a}{x+a}\right)+2g(\sin\alpha+\mu\cos\alpha)(2a-x)
+  \]
+  \marks[-30pt]{3}
+  \item Find, in terms of $a$, $k$ and $\alpha$, the range of values of $\mu$ for which $P$ remains at rest when $x=2a$. \marks{2} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item Take up the track as the positive direction, and let the normal reaction be \(R\). Resolving perpendicular to the track gives
+\[
+R=mg\cos\alpha
+\]
+While \(P\) moves up the track, friction acts down the track with magnitude \(\mu R\). Using \(v\dfrac{\mathrm{d}v}{\mathrm{d}x}\) for the acceleration, Newton's second law along the track gives
+\begin{align*}
+mv\frac{\mathrm{d}v}{\mathrm{d}x}
+&=-mg\sin\alpha-\mu R-\frac{kmg}{x+a}\\
+2v\frac{\mathrm{d}v}{\mathrm{d}x}
+&=-2g(\sin\alpha+\mu\cos\alpha)-\frac{2gk}{x+a}
+\end{align*}
+Since \(\dfrac{\mathrm{d}}{\mathrm{d}x}(v^2)=2v\dfrac{\mathrm{d}v}{\mathrm{d}x}\), this becomes
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}(v^2)+\frac{2gk}{x+a}+2g(\sin\alpha+\mu\cos\alpha)=0
+\]
+
+\item Integrating the equation in part (a) with respect to \(x\):
+\[
+v^2=-2gk\ln|x+a|-2g(\sin\alpha+\mu\cos\alpha)x+c
+\]
+Since \(x\) is a distance and \(a>0\), \(x+a>0\), so the modulus can be dropped. Substituting \(v=0\) when \(x=2a\) gives
+\begin{align*}
+0&=-2gk\ln(3a)-4ga(\sin\alpha+\mu\cos\alpha)+c\\
+c&=2gk\ln(3a)+4ga(\sin\alpha+\mu\cos\alpha)
+\end{align*}
+Hence
+\begin{align*}
+v^2&=2gk\bigl(\ln(3a)-\ln(x+a)\bigr)
++2g(\sin\alpha+\mu\cos\alpha)(2a-x)\\
+&=2gk\ln\left(\frac{3a}{x+a}\right)
++2g(\sin\alpha+\mu\cos\alpha)(2a-x)
+\end{align*}
+
+\item At \(x=2a\), let the frictional force acting up the track be \(F\). For equilibrium, Newton's second law gives
+\[
+F-mg\sin\alpha-\frac{kmg}{3a}=0
+\]
+The required friction must not exceed its limiting value \(\mu R=\mu mg\cos\alpha\), so
+\begin{align*}
+mg\sin\alpha+\frac{kmg}{3a}&\leq\mu mg\cos\alpha\\
+\mu&\geq\tan\alpha+\frac{k}{3a\cos\alpha}
+\end{align*}
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+% [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q11]
+
+A package of mass $m\,\mathrm{kg}$ is released from rest and falls vertically. When its downward speed is $v\,\mathrm{m\,s^{-1}}$, it experiences a resistive force of magnitude $mkv^2\,\mathrm{N}$, where $k$ is a positive constant. Take the downward direction as positive. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that, at time $t\,\mathrm{s}$ after release,
+  \[
+  v=\sqrt{\frac{g}{k}}\left(\frac{e^{2\sqrt{gk}\,t}-1}{e^{2\sqrt{gk}\,t}+1}\right)
+  \]
+  \marks[-40pt]{4}
+\end{enumerate}
+It is given that $k=0.0125\,\mathrm{m^{-1}}$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Find the distance fallen by the package during the first $2$ seconds after its release. \marks{4} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item Taking vertically downwards as positive, Newton's second law gives
+\begin{align*}
+m\frac{\mathrm{d}v}{\mathrm{d}t}&=mg-mkv^2\\
+\frac{\mathrm{d}v}{\mathrm{d}t}&=g-kv^2
+\end{align*}
+Let \(V=\sqrt{g/k}\) be the terminal speed. The package accelerates from rest towards this speed, so \(0\leq v<V\).
+
+Separating variables and using partial fractions:
+\begin{align*}
+\int\frac{1}{V^2-v^2}\,\mathrm{d}v&=\int k\,\mathrm{d}t\\
+\frac{1}{2V}\int\left(\frac{1}{V+v}+\frac{1}{V-v}\right)\,\mathrm{d}v&=\int k\,\mathrm{d}t\\
+\frac{1}{2V}\ln\left|\frac{V+v}{V-v}\right|&=kt+c
+\end{align*}
+Since \(V+v>0\) and \(V-v>0\), the modulus can be removed. At release, \(t=0\) and \(v=0\), giving \(c=0\). Hence
+\begin{align*}
+\ln\left(\frac{V+v}{V-v}\right)&=2kVt\\
+V+v&=e^{2kVt}(V-v)\\
+v\left(1+e^{2kVt}\right)&=V\left(e^{2kVt}-1\right)\\
+v&=\sqrt{\frac{g}{k}}\left(\frac{e^{2\sqrt{gk}\,t}-1}{e^{2\sqrt{gk}\,t}+1}\right)
+\end{align*}
+
+\item Let \(s\) be the distance fallen after \(t\) seconds. Using \(g=9.8\) and \(k=0.0125\) in part (a):
+\begin{align*}
+\frac{\mathrm{d}s}{\mathrm{d}t}=v
+&=28\left(\frac{e^{0.7t}-1}{e^{0.7t}+1}\right)\\
+&=\frac{56e^{0.7t}}{e^{0.7t}+1}-28
+\end{align*}
+Integrating by recognising the derivative of the denominator:
+\begin{align*}
+s&=\int\left(\frac{56e^{0.7t}}{e^{0.7t}+1}-28\right)\,\mathrm{d}t\\
+&=80\ln\left|e^{0.7t}+1\right|-28t+d
+\end{align*}
+Since \(e^{0.7t}+1>0\), the modulus can be removed. Using \(s=0\) when \(t=0\) gives \(d=-80\ln 2\), so
+\[
+s=80\ln\left(\frac{e^{0.7t}+1}{2}\right)-28t
+\]
+The distance fallen in the first \(2\) seconds is therefore
+\[
+s(2)=\left(80\ln\left(\frac{e^{1.4}+1}{2}\right)-56\right)\,\mathrm{m}
+\approx18.2\,\mathrm{m}
+\]
+\end{enumerate}
+\par\medskip\noindent\textbf{Final answers with \(g = 10\):} (b) \(\left(80\ln\left(\dfrac{e^{\sqrt{2}}+1}{2}\right)-40\sqrt{2}\right)\,\mathrm{m}\approx18.5\,\mathrm{m}\)
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+% [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q12]
+
+A particle $P$ of mass $16\,\mathrm{kg}$ moves in a straight line on a smooth horizontal plane. \\ 
+
+At time $t=0$, the particle passes through a fixed point $O$ with velocity $\dfrac{5\sqrt{3}}{4}\,\mathrm{m\,s^{-1}}$. \\
+
+From this instant, a horizontal force opposing the motion acts on $P$. The magnitude of the force is proportional to $\sqrt{25-4v^2}$, where $v\,\mathrm{m\,s^{-1}}$ is the velocity of $P$.  \\
+
+When $v=2$, the magnitude of the force is $6\,\mathrm{N}$. The force ceases to act when the velocity has decreased to $\dfrac{5}{4}\,\mathrm{m\,s^{-1}}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that, while the force is acting, the motion of $P$ is modelled by the differential equation
+  \[
+  \frac{1}{\sqrt{25-4v^2}}\frac{\mathrm{d}v}{\mathrm{d}t}=-\frac{1}{8}
+  \]
+  \marks[-30pt]{3}
+  \item Hence find $v$ in terms of $t$, showing that your expression is valid for
+  \[
+  0\leq t\leq \frac{2\pi}{3}
+  \]
+  \marks[-20pt]{5}
+  \item Determine the total distance travelled by $P$ during the interval $0\leq t\leq 8$. Give your answer in an exact form. \marks{4} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item Take the initial direction of motion as positive. Let the magnitude of the opposing force be \(F=k\sqrt{25-4v^2}\), where \(k>0\).
+
+  Using the given force when \(v=2\):
+  \begin{align*}
+  6&=k\sqrt{25-4(2)^2}\\
+  6&=3k\\
+  k&=2
+  \end{align*}
+  Using \(a=\dfrac{\mathrm{d}v}{\mathrm{d}t}\), Newton's second law in the positive direction gives
+  \begin{align*}
+  16\frac{\mathrm{d}v}{\mathrm{d}t}&=-2\sqrt{25-4v^2}\\
+  \frac{1}{\sqrt{25-4v^2}}\frac{\mathrm{d}v}{\mathrm{d}t}&=-\frac18
+  \end{align*}
+
+  \item Separating the variables and factoring out the numerical scale before integrating:
+  \begin{align*}
+  \frac{\mathrm{d}v}{\sqrt{25-4v^2}}&=-\frac18\,\mathrm{d}t\\
+  \frac12\int\frac{1}{\sqrt{\left(\frac52\right)^2-v^2}}\,\mathrm{d}v
+  &=-\frac18\int\mathrm{d}t\\
+  \frac12\arcsin\left(\frac{2v}{5}\right)&=-\frac{t}{8}+c
+  \end{align*}
+  Substituting \(t=0\) and \(v=\dfrac{5\sqrt3}{4}\):
+  \[
+  c=\frac12\arcsin\left(\frac{\sqrt3}{2}\right)=\frac{\pi}{6}
+  \]
+  Hence
+  \[
+  \arcsin\left(\frac{2v}{5}\right)=\frac{\pi}{3}-\frac{t}{4}
+  \]
+  The force ceases when \(v=\dfrac54\), so
+  \begin{align*}
+  \arcsin\left(\frac12\right)&=\frac{\pi}{3}-\frac{t}{4}\\
+  \frac{\pi}{6}&=\frac{\pi}{3}-\frac{t}{4}\\
+  t&=\frac{2\pi}{3}
+  \end{align*}
+  Taking sine gives the required velocity while the force acts:
+  \[
+  v=\frac52\sin\left(\frac{\pi}{3}-\frac{t}{4}\right),
+  \qquad 0\leq t\leq\frac{2\pi}{3}
+  \]
+
+  \item Let \(x\) be the displacement from \(O\) in the positive direction. Using \(v=\dfrac{\mathrm{d}x}{\mathrm{d}t}\) and integrating while the force acts:
+  \begin{align*}
+  \frac{\mathrm{d}x}{\mathrm{d}t}&=\frac52\sin\left(\frac{\pi}{3}-\frac{t}{4}\right)\\
+  x&=10\cos\left(\frac{\pi}{3}-\frac{t}{4}\right)+d
+  \end{align*}
+  Since \(x=0\) at \(t=0\),
+  \[
+  0=10\cos\frac{\pi}{3}+d
+  \quad\Longrightarrow\quad d=-5
+  \]
+  The velocity remains positive, so the distance travelled while the force acts is
+  \[
+  x\left(\frac{2\pi}{3}\right)=10\cos\frac{\pi}{6}-5=5\sqrt3-5
+  \]
+  After the force ceases, there is no horizontal force, so the particle continues at the constant velocity \(\dfrac54\,\mathrm{m\,s^{-1}}\). Therefore,
+  \begin{align*}
+  \text{Total distance}&=(5\sqrt3-5)+\frac54\left(8-\frac{2\pi}{3}\right)\\
+  &=\left(5\sqrt3+5-\frac{5\pi}{6}\right)\,\mathrm{m}
+  \end{align*}
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 13 ----
+\questionitem
+% [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q13]
+
+A small instrument package of mass $m\,\mathrm{kg}$ enters a deep liquid moving vertically downwards at $7\,\mathrm{m\,s^{-1}}$. While the package is moving downwards, it experiences a resistive force of magnitude $\dfrac{m}{20}v^2\,\mathrm{N}$, where $v\,\mathrm{m\,s^{-1}}$ is its speed. \\
+
+At time $t\,\mathrm{s}$ after entering the liquid, the package has descended a distance $x\,\mathrm{m}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find an expression for $v$ in terms of $t$. \marks{6} \\
+  \item Find an expression for $x$ in terms of $t$. \marks{3} \\
+  \item Find the exact distance descended by the package when its speed first reaches $\dfrac{21}{2}\,\mathrm{m\,s^{-1}}$. \marks{2} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item Take vertically downwards as positive. Newton's second law gives
+\begin{align*}
+m\frac{\mathrm{d}v}{\mathrm{d}t} &= mg-\frac{m}{20}v^2 \\
+20\frac{\mathrm{d}v}{\mathrm{d}t} &= 196-v^2
+\end{align*}
+The terminal speed is \(14\,\mathrm{m\,s^{-1}}\). Since the initial speed is \(7\,\mathrm{m\,s^{-1}}\), the speed increases towards \(14\,\mathrm{m\,s^{-1}}\) and remains below it.
+
+Separating variables and using partial fractions:
+\begin{align*}
+\int\frac{1}{196-v^2}\,\mathrm{d}v &= \frac{1}{20}\int 1\,\mathrm{d}t \\
+\frac{1}{28}\int\left(\frac{1}{14-v}+\frac{1}{14+v}\right)\mathrm{d}v &= \frac{t}{20}+c \\
+\frac{1}{28}\left(\ln|14+v|-\ln|14-v|\right) &= \frac{t}{20}+c
+\end{align*}
+Both \(14+v\) and \(14-v\) are positive, so the modulus signs can be dropped. Using \(v=7\) when \(t=0\):
+\[
+c=\frac{1}{28}\ln\frac{21}{7}=\frac{\ln 3}{28}
+\]
+Hence
+\begin{align*}
+\ln\frac{14+v}{14-v} &= \frac{7t}{5}+\ln 3 \\
+\frac{14+v}{14-v} &= 3e^{7t/5} \\
+14+v &= 42e^{7t/5}-3ve^{7t/5} \\
+v\left(1+3e^{7t/5}\right) &= 14\left(3e^{7t/5}-1\right) \\
+v &= \frac{14\left(3e^{7t/5}-1\right)}{3e^{7t/5}+1}
+\end{align*}
+
+\item Using \(v=\dfrac{\mathrm{d}x}{\mathrm{d}t}\), rewrite the result from part (a) to recognise a logarithmic integral:
+\begin{align*}
+\frac{\mathrm{d}x}{\mathrm{d}t}
+&= -14+\frac{84e^{7t/5}}{3e^{7t/5}+1} \\
+&= -14+20\frac{\frac{21}{5}e^{7t/5}}{3e^{7t/5}+1} \\
+x &= -14t+20\ln\left(3e^{7t/5}+1\right)+d
+\end{align*}
+Since \(x=0\) when \(t=0\), \(d=-20\ln 4\). Therefore
+\[
+x=20\ln\left(\frac{3e^{7t/5}+1}{4}\right)-14t
+\]
+
+\item Using \(a=v\dfrac{\mathrm{d}v}{\mathrm{d}x}\), the equation of motion becomes
+\[
+v\frac{\mathrm{d}v}{\mathrm{d}x}=\frac{196-v^2}{20}
+\]
+Separating variables and integrating, with \(196-v^2>0\):
+\begin{align*}
+\int 1\,\mathrm{d}x &= \int\frac{20v}{196-v^2}\,\mathrm{d}v \\
+x &= -10\ln|196-v^2|+h
+\end{align*}
+At entry, \(x=0\) and \(v=7\), so \(h=10\ln147\). Thus, when \(v=\dfrac{21}{2}\),
+\[
+x=10\ln\left(\frac{147}{196-\left(\frac{21}{2}\right)^2}\right)=10\ln\left(\frac{12}{7}\right)\,\mathrm{m}
+\]
+\end{enumerate}
+{\raggedright\par\medskip\noindent\textbf{Final answers with \(g = 10\):} (a) \(v=10\sqrt{2}\,\dfrac{(10\sqrt{2}+7)e^{\sqrt{2}t}-(10\sqrt{2}-7)}{(10\sqrt{2}+7)e^{\sqrt{2}t}+(10\sqrt{2}-7)}\);\quad (b)~\(x=20\ln\left(\dfrac{(10\sqrt{2}+7)e^{\sqrt{2}t}+10\sqrt{2}-7}{20\sqrt{2}}\right)-10\sqrt{2}\,t\);\quad (c) \(10\ln\left(\dfrac{604}{359}\right)\,\mathrm{m}\)\par}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 14 ----
+\questionitem
+% [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q14]
+
+A vehicle of mass $m\,\mathrm{kg}$ moves along a horizontal straight road. Its engine works at a constant rate of $2kmg\,\mathrm{W}$, where $k$ is a positive constant with units of speed. When the vehicle has speed $v\,\mathrm{m\,s^{-1}}$, it experiences a resistance of magnitude $\dfrac{mgv}{k}\,\mathrm{N}$. \\
+
+Initially, the vehicle is at rest at $x=0$, where $x\,\mathrm{m}$ is the distance travelled. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[
+  v^2\dfrac{\mathrm{d}v}{\mathrm{d}x}=\dfrac{g}{k}\left(2k^2-v^2\right)
+  \]
+  \marks[-30pt]{3}
+  \item Verify that
+  \[
+  gx=-kv+\dfrac{k^2}{\sqrt{2}}\ln\left(\dfrac{\sqrt{2}k+v}{\sqrt{2}k-v}\right)
+  \]
+  \marks[-40pt]{5}
+  \item By using the work--energy principle, show that the time taken for the vehicle to accelerate from rest to a speed $V$, where $0<V<\sqrt{2}k$, is
+  \[
+  \dfrac{k}{2g}\ln\left(\dfrac{2k^2}{2k^2-V^2}\right)
+  \]
+  \marks[-40pt]{4}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item Take the direction of motion as positive. The driving force is power divided by speed:
+\[
+F=\frac{P}{v}=\frac{2kmg}{v}
+\]
+Newton's second law in this direction gives
+\begin{align*}
+ma&=\frac{2kmg}{v}-\frac{mgv}{k}\\
+a&=\frac{g}{kv}\left(2k^2-v^2\right)
+\end{align*}
+Using \(a=v\dfrac{\mathrm{d}v}{\mathrm{d}x}\):
+\begin{align*}
+v\frac{\mathrm{d}v}{\mathrm{d}x}&=\frac{g}{kv}\left(2k^2-v^2\right)\\
+v^2\frac{\mathrm{d}v}{\mathrm{d}x}&=\frac{g}{k}\left(2k^2-v^2\right)
+\end{align*}
+
+\item Separating the variables in part (a):
+\[
+g\,\mathrm{d}x=k\frac{v^2}{2k^2-v^2}\,\mathrm{d}v
+\]
+Use algebraic division followed by partial fractions:
+\begin{align*}
+\frac{v^2}{2k^2-v^2}
+&=-1+\frac{2k^2}{2k^2-v^2}\\
+&=-1+\frac{k}{\sqrt{2}}\left(\frac{1}{\sqrt{2}k-v}+\frac{1}{\sqrt{2}k+v}\right)
+\end{align*}
+Integrating gives
+\begin{align*}
+gx
+&=k\int\left[-1+\frac{k}{\sqrt{2}}\left(\frac{1}{\sqrt{2}k-v}+\frac{1}{\sqrt{2}k+v}\right)\right]\,\mathrm{d}v\\
+&=-kv+\frac{k^2}{\sqrt{2}}\left(\ln|\sqrt{2}k+v|-\ln|\sqrt{2}k-v|\right)+c
+\end{align*}
+The resultant force is zero at the terminal speed \(\sqrt{2}k\). During acceleration from rest, \(0\leq v<\sqrt{2}k\), so both logarithm arguments are positive and the moduli can be removed.
+
+When \(x=0\), \(v=0\), giving
+\[
+0=\frac{k^2}{\sqrt{2}}\left(\ln(\sqrt{2}k)-\ln(\sqrt{2}k)\right)+c
+\quad\Longrightarrow\quad c=0
+\]
+Combining the logarithms:
+\[
+gx=-kv+\frac{k^2}{\sqrt{2}}\ln\left(\frac{\sqrt{2}k+v}{\sqrt{2}k-v}\right)
+\]
+
+\item Let \(W(v)\) be the work done by resistance from rest until the speed is \(v\). This work is negative because resistance opposes the motion. From part (a),
+\[
+\mathrm{d}x=\frac{kv^2}{g(2k^2-v^2)}\,\mathrm{d}v
+\]
+Hence
+\begin{align*}
+\mathrm{d}W&=-\frac{mgv}{k}\,\mathrm{d}x\\
+\frac{\mathrm{d}W}{\mathrm{d}v}
+&=-\frac{mv^3}{2k^2-v^2}
+=mv-\frac{2mk^2v}{2k^2-v^2}
+\end{align*}
+Integrating by recognising the derivative of \(2k^2-v^2\):
+\[
+W(v)=\frac12mv^2+mk^2\ln|2k^2-v^2|+d
+\]
+Using \(W(0)=0\) gives \(d=-mk^2\ln(2k^2)\). Since \(0<V<\sqrt{2}k\), we have \(2k^2-V^2>0\), so
+\[
+W(V)=\frac12mV^2-mk^2\ln\left(\frac{2k^2}{2k^2-V^2}\right)
+\]
+The work--energy principle, with work positive when a force acts in the direction of motion, is
+\[
+KE_0+GPE_0+\sum W_{\text{other}}=KE_1+GPE_1
+\]
+Let the required time be \(t\). The engine does work \(Pt=2kmg\,t\), and the gravitational potential energy is unchanged. Taking it to be zero:
+\begin{align*}
+0+0+2kmg\,t+W(V)&=\frac12mV^2+0\\
+2kmg\,t+\frac12mV^2-mk^2\ln\left(\frac{2k^2}{2k^2-V^2}\right)&=\frac12mV^2\\
+2kmg\,t&=mk^2\ln\left(\frac{2k^2}{2k^2-V^2}\right)\\
+t&=\frac{k}{2g}\ln\left(\frac{2k^2}{2k^2-V^2}\right)
+\end{align*}
+\end{enumerate}
+\end{djsSolution}
+
+\end{enumerate}
+\end{document}
