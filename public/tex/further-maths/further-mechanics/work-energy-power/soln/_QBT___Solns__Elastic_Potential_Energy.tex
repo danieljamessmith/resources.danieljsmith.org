@@ -5,7 +5,7 @@
 \djsSitePath{Further Mechanics}{Work, Energy and Power}
 \djsMechanicsPack
 
-\djsLastUpdated{10 October 2026}
+\djsLastUpdated{11 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -808,155 +808,149 @@ By modelling $P$ as a particle, \\
 
 \begin{figure}[H]
     \centering
-\begin{tikzpicture}[scale=0.12]
-\def\depth{52}
-\def\halfwidth{24}
-\def\outer{42}
-\def\starth{7}
+\begin{tikzpicture}[scale=1.1]
+\def\surfL{-0.5}
+\def\surfR{10.2}
+\def\wallx{9.2}
+\def\wallw{0.18}
+\def\wallh{1.6}
+\def\anchory{0.26}
+\def\blockx{3.1}
+\def\bw{1.2}
+\def\bh{0.42}
+\def\forceang{-20}
+\def\forcelen{2.4}
+\def\reflen{2.4}
 
-\coordinate (Ltop) at (-\halfwidth,\depth);
-\coordinate (Rtop) at (\halfwidth,\depth);
-\coordinate (Lbase) at (-\halfwidth,0);
-\coordinate (Rbase) at (\halfwidth,0);
-\coordinate (H) at (0,\starth);
+\coordinate (S0) at (\surfL,0);
+\coordinate (S1) at (\surfR,0);
+\coordinate (A0) at (0,0);
+\coordinate (O) at (0,\anchory);
+\coordinate (BL) at (\blockx,0);
+\coordinate (BR) at ($(BL)+(\bw,0)$);
+\coordinate (TL) at ($(BL)+(0,\bh)$);
+\coordinate (TR) at ($(BR)+(0,\bh)$);
+\coordinate (Attach) at ($(BL)+(0,\anchory)$);
+\coordinate (P) at ($(TL)!0.75!(TR)$);
+\coordinate (H) at ($(P)+(\reflen,0)$);
+\coordinate (F) at ($(P)+(\forceang:\forcelen)$);
+\coordinate (WBL) at (\wallx,0);
+\coordinate (WBR) at ($(WBL)+(\wallw,0)$);
+\coordinate (WTL) at ($(WBL)+(0,\wallh)$);
+\coordinate (WTR) at ($(WBR)+(0,\wallh)$);
 
-\fill[gray!30] (-\outer,0) rectangle (-\halfwidth,\depth);
-\fill[gray!30] (\halfwidth,0) rectangle (\outer,\depth);
+\draw[thick] (S0) -- (S1);
+\draw[thick] (A0) -- (O);
+\draw[thick] (O) -- (Attach);
+\draw[thick, fill=gray!30] (BL) rectangle (TR);
 
-\draw[thick] (-\outer,\depth) -- (-\halfwidth,\depth);
-\draw[thick] (\halfwidth,\depth) -- (\outer,\depth);
-\draw[thick] (-\outer,0) -- (-\halfwidth,0);
-\draw[thick] (\halfwidth,0) -- (\outer,0);
-\draw[thick] (Ltop) -- (Lbase);
-\draw[thick] (Rtop) -- (Rbase);
-\draw[thick] (Lbase) -- (Rbase);
+\fill[pattern=north east lines] (WBL) rectangle (WTR);
+\draw[thick] (WBL) -- (WTL) -- (WTR) -- (WBR);
 
-\draw[dashed, thick] (Ltop) -- (H);
-\draw[dashed, thick] (Rtop) -- (H);
-\fill[black] (H) circle (20pt);
+\draw[dashed] (P) -- (H);
+\draw[-{Stealth[length=3mm]}, thick] (P) -- (F) node[below] {$80\,\mathrm{N}$};
+\pic["$20^\circ$" {yshift=1.5pt}, draw, angle radius=10mm, angle eccentricity=1.4]
+  {angle=F--P--H};
+
+\node[left] at (O) {$O$};
+\node[above] at ($(WTL)!0.5!(WTR)$) {Wall};
 \end{tikzpicture}
 \end{figure}
 
 
-A stunt performer is attached to two identical light elastic cords. One end of each cord is fixed to opposite sides of the rim of a vertical shaft, as shown in the diagram above. \\
+A block of mass $6\,\mathrm{kg}$ rests on a rough horizontal surface and is attached to a fixed point $O$ by a light elastic string. Initially the block is at rest $2.4\,\mathrm{m}$ from $O$. \\
 
-The performer has mass $80\,\mathrm{kg}$ and is modelled as a particle. Initially the performer is held at rest at the centre of the shaft, $7$ metres above the floor. The shaft is $52$ metres deep and $48$ metres wide. Each elastic cord has natural length $30$ metres and modulus of elasticity $3150\,\mathrm{N}$. \\
+The elastic string has natural length $2\,\mathrm{m}$ and modulus of elasticity $80\,\mathrm{N}$. \\
 
-The performer is released from rest. \\
+The coefficient of friction between the block and the surface is $0.25$. \\
+A force of magnitude $80\,\mathrm{N}$ is applied to the block towards a vertical wall. The force acts at an angle of $20^\circ$ below the horizontal, as shown in the diagram. \\
 
+The block moves in a straight line perpendicular to the wall, and the wall is sufficiently far away that the block does not reach it during the motion considered. \\
+In this question, take $g = 9.8\,\mathrm{m\,s^{-2}}$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Show that the speed of the performer when the cords first become slack is $25\,\mathrm{m\,s^{-1}}$ correct to two significant figures. \marks{6} \\
-  \item Determine whether the performer is moving up or down when the cords become taut again. \marks{5} \\
+  \item Show that the block has moved $0.94\,\mathrm{m}$, correct to 2 significant figures, when the forces acting on it are in equilibrium. \marks{4} \\
+  \item State one limitation of the model. \marks{1} \\
+  \item Find the maximum speed of the block. \marks{4} \\
 \end{enumerate}
 
 \vspace*{10pt}
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-  \item The performer is initially at the centre of the shaft, so the horizontal distance to each fixing point is
-\[
-\frac{48}{2}=24\,\mathrm{m}
-\]
-and the vertical distance below the rim is
-\[
-52-7=45\,\mathrm{m}
-\]
-Hence the initial length of each cord is
-\[
-\sqrt{24^2+45^2}=\sqrt{2601}=51\,\mathrm{m}
-\]
-So the initial extension of each cord is
-\[
-51-30=21\,\mathrm{m}
-\]
+  \item Let the block move a distance \(x\,\mathrm{m}\) towards the wall.
 
-When the cords first become slack, each cord has its natural length, $30\,\mathrm{m}$.
-If the performer is then $h\,\mathrm{m}$ above the floor, the vertical distance below the rim is $52-h$, so
-\[
-24^2+(52-h)^2=30^2
-\]
-\[
-(52-h)^2=324
-\]
-Since the performer is still below the rim at this instant,
-\[
-52-h=18
-\]
-so
-\[
-h=34
-\]
-Therefore the performer has risen
-\[
-34-7=27\,\mathrm{m}
-\]
+  The string length is then \(2.4+x\), so its extension is
+  \[
+  (2.4+x)-2=0.4+x
+  \]
 
-Using
-\[
-KE_0+GPE_0+EPE_0=KE_1+GPE_1+EPE_1
-\]
-and taking the floor as the zero level for GPE,
+  Hence the tension is
+  \[
+  T=\frac{\lambda}{l}e=\frac{80}{2}(0.4+x)=16+40x
+  \]
 
-\begin{align*}
-0+80(9.8)(7)+2\left(\frac{3150\times 21^2}{2\times 30}\right)
-&=\frac12(80)v^2+80(9.8)(34)+0 \\
-5488+46\,305&=40v^2+26\,656 \\
-25\,137&=40v^2 \\
-v^2&=628.425
-\end{align*}
+  Since the block moves horizontally, it is in vertical equilibrium, so
+  \[
+  R=6g+80\sin 20^\circ=58.8+80\sin 20^\circ
+  \]
 
-So
-\[
-v=\sqrt{628.425}\approx25.1
-\]
+  Therefore the friction is
+  \[
+  F=\mu R=0.25(58.8+80\sin 20^\circ)=21.54\,\mathrm{N}
+  \]
 
-Hence the speed when the cords first become slack is $25\,\mathrm{m\,s^{-1}}$ correct to $2$ significant figures.
+  When the forces are in equilibrium, the horizontal forces balance:
+  \begin{align*}
+  80\cos 20^\circ &= T+F\\
+  80\cos 20^\circ &= (16+40x)+21.54
+  \end{align*}
 
-  \item From part (a), when the cords first become slack the performer is $34\,\mathrm{m}$ above the floor and has
-\[
-v^2=628.425
-\]
+  So
+  \begin{align*}
+  40x &= 80\cos 20^\circ-37.54\\
+  x &\approx 0.9409
+  \end{align*}
 
-While the cords are slack, there is no elastic potential energy, so mechanical energy is exchanged only between KE and GPE.
-At the highest point the speed is $0$, so
+  Hence the block has moved \(0.94\,\mathrm{m}\), correct to 2 significant figures.
 
-\begin{align*}
-\frac12(80)v^2+80(9.8)(34)&=0+80(9.8)H \\
-40v^2+26\,656&=784H
-\end{align*}
+  \item One limitation is that the coefficient of friction is assumed to remain constant throughout the motion.
 
-Using $v^2=628.425$,
-\[
-H=34+\frac{628.425}{19.6}\approx 66.1
-\]
+  \item From part (a), the equilibrium position is at \(x=0.9409\,\mathrm{m}\).
 
-So the greatest height reached is $66.1\,\mathrm{m}$ above the floor, which is
-\[
-66.1-52=14.1\,\mathrm{m}
-\]
-above the rim.
+  At a general position \(x\), the horizontal resultant force is
+  \[
+  80\cos 20^\circ-21.54-(16+40x)=37.64-40x
+  \]
 
-Now suppose the performer is $x\,\mathrm{m}$ above the rim. Then the length of each cord is
-\[
-\sqrt{24^2+x^2}
-\]
-For the cords to become taut again, this length must be $30\,\mathrm{m}$, so
-\[
-24^2+x^2=30^2
-\]
-\[
-x^2=324
-\]
-\[
-x=18
-\]
+  This decreases as \(x\) increases. It is positive initially, and it becomes zero when \(x=0.9409\). So the speed increases up to this point and then decreases afterwards. Hence the maximum speed occurs when \(x=0.9409\,\mathrm{m}\).
 
-So the performer would need to be $18\,\mathrm{m}$ above the rim for the cords to become taut on the upward journey.
-But the maximum height above the rim is only $14.1\,\mathrm{m}$, so this does not happen.
+  Initially the extension is \(0.4\,\mathrm{m}\), so
+  \[
+  EPE_0=\frac{\lambda e^2}{2l}=\frac{80(0.4)^2}{2\times 2}=3.2\,\mathrm{J}
+  \]
 
-Therefore the cords become taut again only after the performer has turned and started descending.
+  At the position of maximum speed, the extension is
+  \[
+  e_1=0.4+0.9409=1.3409
+  \]
 
-So the performer is moving down when the cords become taut again.
+  Using
+  \[
+  KE_0+GPE_0+EPE_0+\sum W_{\text{other}}=KE_1+GPE_1+EPE_1
+  \]
+
+  There is no change in GPE, the applied force does work \(80\cos 20^\circ\times 0.9409\), and friction does work \(-21.54\times 0.9409\).
+
+  Therefore
+  \begin{align*}
+  0+3.2+80\cos 20^\circ(0.9409)-21.54(0.9409)
+  &=\frac12(6)v^2+\frac{80(1.3409)^2}{2\times 2}\\
+  53.66&=3v^2+35.96\\
+  3v^2&=17.70\\
+  v&=2.43\,\mathrm{m\,s^{-1}}
+  \end{align*}
+
+  So the maximum speed is \(2.43\,\mathrm{m\,s^{-1}}\).
 \end{enumerate}
 \end{djsSolution}
 
@@ -1303,149 +1297,155 @@ By modelling the package as a particle, \\
 
 \begin{figure}[H]
     \centering
-\begin{tikzpicture}[scale=1.1]
-\def\surfL{-0.5}
-\def\surfR{10.2}
-\def\wallx{9.2}
-\def\wallw{0.18}
-\def\wallh{1.6}
-\def\anchory{0.26}
-\def\blockx{3.1}
-\def\bw{1.2}
-\def\bh{0.42}
-\def\forceang{-20}
-\def\forcelen{2.4}
-\def\reflen{2.4}
+\begin{tikzpicture}[scale=0.12]
+\def\depth{52}
+\def\halfwidth{24}
+\def\outer{42}
+\def\starth{7}
 
-\coordinate (S0) at (\surfL,0);
-\coordinate (S1) at (\surfR,0);
-\coordinate (A0) at (0,0);
-\coordinate (O) at (0,\anchory);
-\coordinate (BL) at (\blockx,0);
-\coordinate (BR) at ($(BL)+(\bw,0)$);
-\coordinate (TL) at ($(BL)+(0,\bh)$);
-\coordinate (TR) at ($(BR)+(0,\bh)$);
-\coordinate (Attach) at ($(BL)+(0,\anchory)$);
-\coordinate (P) at ($(TL)!0.75!(TR)$);
-\coordinate (H) at ($(P)+(\reflen,0)$);
-\coordinate (F) at ($(P)+(\forceang:\forcelen)$);
-\coordinate (WBL) at (\wallx,0);
-\coordinate (WBR) at ($(WBL)+(\wallw,0)$);
-\coordinate (WTL) at ($(WBL)+(0,\wallh)$);
-\coordinate (WTR) at ($(WBR)+(0,\wallh)$);
+\coordinate (Ltop) at (-\halfwidth,\depth);
+\coordinate (Rtop) at (\halfwidth,\depth);
+\coordinate (Lbase) at (-\halfwidth,0);
+\coordinate (Rbase) at (\halfwidth,0);
+\coordinate (H) at (0,\starth);
 
-\draw[thick] (S0) -- (S1);
-\draw[thick] (A0) -- (O);
-\draw[thick] (O) -- (Attach);
-\draw[thick, fill=gray!30] (BL) rectangle (TR);
+\fill[gray!30] (-\outer,0) rectangle (-\halfwidth,\depth);
+\fill[gray!30] (\halfwidth,0) rectangle (\outer,\depth);
 
-\fill[pattern=north east lines] (WBL) rectangle (WTR);
-\draw[thick] (WBL) -- (WTL) -- (WTR) -- (WBR);
+\draw[thick] (-\outer,\depth) -- (-\halfwidth,\depth);
+\draw[thick] (\halfwidth,\depth) -- (\outer,\depth);
+\draw[thick] (-\outer,0) -- (-\halfwidth,0);
+\draw[thick] (\halfwidth,0) -- (\outer,0);
+\draw[thick] (Ltop) -- (Lbase);
+\draw[thick] (Rtop) -- (Rbase);
+\draw[thick] (Lbase) -- (Rbase);
 
-\draw[dashed] (P) -- (H);
-\draw[-{Stealth[length=3mm]}, thick] (P) -- (F) node[below] {$80\,\mathrm{N}$};
-\pic["$20^\circ$" {yshift=1.5pt}, draw, angle radius=10mm, angle eccentricity=1.4]
-  {angle=F--P--H};
-
-\node[left] at (O) {$O$};
-\node[above] at ($(WTL)!0.5!(WTR)$) {Wall};
+\draw[dashed, thick] (Ltop) -- (H);
+\draw[dashed, thick] (Rtop) -- (H);
+\fill[black] (H) circle (20pt);
 \end{tikzpicture}
 \end{figure}
 
 
-A block of mass $6\,\mathrm{kg}$ rests on a rough horizontal surface and is attached to a fixed point $O$ by a light elastic string. Initially the block is at rest $2.4\,\mathrm{m}$ from $O$. \\
+A stunt performer is attached to two identical light elastic cords. One end of each cord is fixed to opposite sides of the rim of a vertical shaft, as shown in the diagram above. \\
 
-The elastic string has natural length $2\,\mathrm{m}$ and modulus of elasticity $80\,\mathrm{N}$. \\
+The performer has mass $80\,\mathrm{kg}$ and is modelled as a particle. Initially the performer is held at rest at the centre of the shaft, $7$ metres above the floor. The shaft is $52$ metres deep and $48$ metres wide. Each elastic cord has natural length $30$ metres and modulus of elasticity $3150\,\mathrm{N}$. \\
 
-The coefficient of friction between the block and the surface is $0.25$. \\
-A force of magnitude $80\,\mathrm{N}$ is applied to the block towards a vertical wall. The force acts at an angle of $20^\circ$ below the horizontal, as shown in the diagram. \\
+The performer is released from rest. \\
 
-The block moves in a straight line perpendicular to the wall, and the wall is sufficiently far away that the block does not reach it during the motion considered. \\
-In this question, take $g = 9.8\,\mathrm{m\,s^{-2}}$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Show that the block has moved $0.94\,\mathrm{m}$, correct to 2 significant figures, when the forces acting on it are in equilibrium. \marks{4} \\
-  \item State one limitation of the model. \marks{1} \\
-  \item Find the maximum speed of the block. \marks{4} \\
+  \item Show that the speed of the performer when the cords first become slack is $25\,\mathrm{m\,s^{-1}}$ correct to two significant figures. \marks{6} \\
+  \item Determine whether the performer is moving up or down when the cords become taut again. \marks{5} \\
 \end{enumerate}
 
 \vspace*{10pt}
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-  \item Let the block move a distance \(x\,\mathrm{m}\) towards the wall.
+  \item The performer is initially at the centre of the shaft, so the horizontal distance to each fixing point is
+\[
+\frac{48}{2}=24\,\mathrm{m}
+\]
+and the vertical distance below the rim is
+\[
+52-7=45\,\mathrm{m}
+\]
+Hence the initial length of each cord is
+\[
+\sqrt{24^2+45^2}=\sqrt{2601}=51\,\mathrm{m}
+\]
+So the initial extension of each cord is
+\[
+51-30=21\,\mathrm{m}
+\]
 
-  The string length is then \(2.4+x\), so its extension is
-  \[
-  (2.4+x)-2=0.4+x
-  \]
+When the cords first become slack, each cord has its natural length, $30\,\mathrm{m}$.
+If the performer is then $h\,\mathrm{m}$ above the floor, the vertical distance below the rim is $52-h$, so
+\[
+24^2+(52-h)^2=30^2
+\]
+\[
+(52-h)^2=324
+\]
+Since the performer is still below the rim at this instant,
+\[
+52-h=18
+\]
+so
+\[
+h=34
+\]
+Therefore the performer has risen
+\[
+34-7=27\,\mathrm{m}
+\]
 
-  Hence the tension is
-  \[
-  T=\frac{\lambda}{l}e=\frac{80}{2}(0.4+x)=16+40x
-  \]
+Using
+\[
+KE_0+GPE_0+EPE_0=KE_1+GPE_1+EPE_1
+\]
+and taking the floor as the zero level for GPE,
 
-  Since the block moves horizontally, it is in vertical equilibrium, so
-  \[
-  R=6g+80\sin 20^\circ=58.8+80\sin 20^\circ
-  \]
+\begin{align*}
+0+80(9.8)(7)+2\left(\frac{3150\times 21^2}{2\times 30}\right)
+&=\frac12(80)v^2+80(9.8)(34)+0 \\
+5488+46\,305&=40v^2+26\,656 \\
+25\,137&=40v^2 \\
+v^2&=628.425
+\end{align*}
 
-  Therefore the friction is
-  \[
-  F=\mu R=0.25(58.8+80\sin 20^\circ)=21.54\,\mathrm{N}
-  \]
+So
+\[
+v=\sqrt{628.425}\approx25.1
+\]
 
-  When the forces are in equilibrium, the horizontal forces balance:
-  \begin{align*}
-  80\cos 20^\circ &= T+F\\
-  80\cos 20^\circ &= (16+40x)+21.54
-  \end{align*}
+Hence the speed when the cords first become slack is $25\,\mathrm{m\,s^{-1}}$ correct to $2$ significant figures.
 
-  So
-  \begin{align*}
-  40x &= 80\cos 20^\circ-37.54\\
-  x &\approx 0.9409
-  \end{align*}
+  \item From part (a), when the cords first become slack the performer is $34\,\mathrm{m}$ above the floor and has
+\[
+v^2=628.425
+\]
 
-  Hence the block has moved \(0.94\,\mathrm{m}\), correct to 2 significant figures.
+While the cords are slack, there is no elastic potential energy, so mechanical energy is exchanged only between KE and GPE.
+At the highest point the speed is $0$, so
 
-  \item One limitation is that the coefficient of friction is assumed to remain constant throughout the motion.
+\begin{align*}
+\frac12(80)v^2+80(9.8)(34)&=0+80(9.8)H \\
+40v^2+26\,656&=784H
+\end{align*}
 
-  \item From part (a), the equilibrium position is at \(x=0.9409\,\mathrm{m}\).
+Using $v^2=628.425$,
+\[
+H=34+\frac{628.425}{19.6}\approx 66.1
+\]
 
-  At a general position \(x\), the horizontal resultant force is
-  \[
-  80\cos 20^\circ-21.54-(16+40x)=37.64-40x
-  \]
+So the greatest height reached is $66.1\,\mathrm{m}$ above the floor, which is
+\[
+66.1-52=14.1\,\mathrm{m}
+\]
+above the rim.
 
-  This decreases as \(x\) increases. It is positive initially, and it becomes zero when \(x=0.9409\). So the speed increases up to this point and then decreases afterwards. Hence the maximum speed occurs when \(x=0.9409\,\mathrm{m}\).
+Now suppose the performer is $x\,\mathrm{m}$ above the rim. Then the length of each cord is
+\[
+\sqrt{24^2+x^2}
+\]
+For the cords to become taut again, this length must be $30\,\mathrm{m}$, so
+\[
+24^2+x^2=30^2
+\]
+\[
+x^2=324
+\]
+\[
+x=18
+\]
 
-  Initially the extension is \(0.4\,\mathrm{m}\), so
-  \[
-  EPE_0=\frac{\lambda e^2}{2l}=\frac{80(0.4)^2}{2\times 2}=3.2\,\mathrm{J}
-  \]
+So the performer would need to be $18\,\mathrm{m}$ above the rim for the cords to become taut on the upward journey.
+But the maximum height above the rim is only $14.1\,\mathrm{m}$, so this does not happen.
 
-  At the position of maximum speed, the extension is
-  \[
-  e_1=0.4+0.9409=1.3409
-  \]
+Therefore the cords become taut again only after the performer has turned and started descending.
 
-  Using
-  \[
-  KE_0+GPE_0+EPE_0+\sum W_{\text{other}}=KE_1+GPE_1+EPE_1
-  \]
-
-  There is no change in GPE, the applied force does work \(80\cos 20^\circ\times 0.9409\), and friction does work \(-21.54\times 0.9409\).
-
-  Therefore
-  \begin{align*}
-  0+3.2+80\cos 20^\circ(0.9409)-21.54(0.9409)
-  &=\frac12(6)v^2+\frac{80(1.3409)^2}{2\times 2}\\
-  53.66&=3v^2+35.96\\
-  3v^2&=17.70\\
-  v&=2.43\,\mathrm{m\,s^{-1}}
-  \end{align*}
-
-  So the maximum speed is \(2.43\,\mathrm{m\,s^{-1}}\).
+So the performer is moving down when the cords become taut again.
 \end{enumerate}
 \end{djsSolution}
 
