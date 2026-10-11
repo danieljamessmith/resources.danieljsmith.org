@@ -875,6 +875,81 @@ mg\sin\alpha+\frac{kmg}{3a}&\leq\mu mg\cos\alpha\\
 \questionitem
 % [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q11]
 
+A small instrument package of mass $m\,\mathrm{kg}$ enters a deep liquid moving vertically downwards at $7\,\mathrm{m\,s^{-1}}$. While the package is moving downwards, it experiences a resistive force of magnitude $\dfrac{m}{20}v^2\,\mathrm{N}$, where $v\,\mathrm{m\,s^{-1}}$ is its speed. \\
+
+At time $t\,\mathrm{s}$ after entering the liquid, the package has descended a distance $x\,\mathrm{m}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find an expression for $v$ in terms of $t$. \marks{6} \\
+  \item Find an expression for $x$ in terms of $t$. \marks{3} \\
+  \item Find the exact distance descended by the package when its speed first reaches $\dfrac{21}{2}\,\mathrm{m\,s^{-1}}$. \marks{2} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item Take vertically downwards as positive. Newton's second law gives
+\begin{align*}
+m\frac{\mathrm{d}v}{\mathrm{d}t} &= mg-\frac{m}{20}v^2 \\
+20\frac{\mathrm{d}v}{\mathrm{d}t} &= 196-v^2
+\end{align*}
+The terminal speed is \(14\,\mathrm{m\,s^{-1}}\). Since the initial speed is \(7\,\mathrm{m\,s^{-1}}\), the speed increases towards \(14\,\mathrm{m\,s^{-1}}\) and remains below it.
+
+Separating variables and using partial fractions:
+\begin{align*}
+\int\frac{1}{196-v^2}\,\mathrm{d}v &= \frac{1}{20}\int 1\,\mathrm{d}t \\
+\frac{1}{28}\int\left(\frac{1}{14-v}+\frac{1}{14+v}\right)\mathrm{d}v &= \frac{t}{20}+c \\
+\frac{1}{28}\left(\ln|14+v|-\ln|14-v|\right) &= \frac{t}{20}+c
+\end{align*}
+Both \(14+v\) and \(14-v\) are positive, so the modulus signs can be dropped. Using \(v=7\) when \(t=0\):
+\[
+c=\frac{1}{28}\ln\frac{21}{7}=\frac{\ln 3}{28}
+\]
+Hence
+\begin{align*}
+\ln\frac{14+v}{14-v} &= \frac{7t}{5}+\ln 3 \\
+\frac{14+v}{14-v} &= 3e^{7t/5} \\
+14+v &= 42e^{7t/5}-3ve^{7t/5} \\
+v\left(1+3e^{7t/5}\right) &= 14\left(3e^{7t/5}-1\right) \\
+v &= \frac{14\left(3e^{7t/5}-1\right)}{3e^{7t/5}+1}
+\end{align*}
+
+\item Using \(v=\dfrac{\mathrm{d}x}{\mathrm{d}t}\), rewrite the result from part (a) to recognise a logarithmic integral:
+\begin{align*}
+\frac{\mathrm{d}x}{\mathrm{d}t}
+&= -14+\frac{84e^{7t/5}}{3e^{7t/5}+1} \\
+&= -14+20\frac{\frac{21}{5}e^{7t/5}}{3e^{7t/5}+1} \\
+x &= -14t+20\ln\left(3e^{7t/5}+1\right)+d
+\end{align*}
+Since \(x=0\) when \(t=0\), \(d=-20\ln 4\). Therefore
+\[
+x=20\ln\left(\frac{3e^{7t/5}+1}{4}\right)-14t
+\]
+
+\item Using \(a=v\dfrac{\mathrm{d}v}{\mathrm{d}x}\), the equation of motion becomes
+\[
+v\frac{\mathrm{d}v}{\mathrm{d}x}=\frac{196-v^2}{20}
+\]
+Separating variables and integrating, with \(196-v^2>0\):
+\begin{align*}
+\int 1\,\mathrm{d}x &= \int\frac{20v}{196-v^2}\,\mathrm{d}v \\
+x &= -10\ln|196-v^2|+h
+\end{align*}
+At entry, \(x=0\) and \(v=7\), so \(h=10\ln147\). Thus, when \(v=\dfrac{21}{2}\),
+\[
+x=10\ln\left(\frac{147}{196-\left(\frac{21}{2}\right)^2}\right)=10\ln\left(\frac{12}{7}\right)\,\mathrm{m}
+\]
+\end{enumerate}
+{\raggedright\par\medskip\noindent\textbf{Final answers with \(g = 10\):} (a) \(v=10\sqrt{2}\,\dfrac{(10\sqrt{2}+7)e^{\sqrt{2}t}-(10\sqrt{2}-7)}{(10\sqrt{2}+7)e^{\sqrt{2}t}+(10\sqrt{2}-7)}\);\quad (b)~\(x=20\ln\left(\dfrac{(10\sqrt{2}+7)e^{\sqrt{2}t}+10\sqrt{2}-7}{20\sqrt{2}}\right)-10\sqrt{2}\,t\);\quad (c) \(10\ln\left(\dfrac{604}{359}\right)\,\mathrm{m}\)\par}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+% [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q12]
+
 A package of mass $m\,\mathrm{kg}$ is released from rest and falls vertically. When its downward speed is $v\,\mathrm{m\,s^{-1}}$, it experiences a resistive force of magnitude $mkv^2\,\mathrm{N}$, where $k$ is a positive constant. Take the downward direction as positive. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
@@ -940,9 +1015,9 @@ s(2)=\left(80\ln\left(\frac{e^{1.4}+1}{2}\right)-56\right)\,\mathrm{m}
 
 \newpage
 
-% ---- Question 12 ----
+% ---- Question 13 ----
 \questionitem
-% [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q12]
+% [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q13]
 
 A particle $P$ of mass $16\,\mathrm{kg}$ moves in a straight line on a smooth horizontal plane. \\ 
 
@@ -1031,81 +1106,6 @@ When $v=2$, the magnitude of the force is $6\,\mathrm{N}$. The force ceases to a
   &=\left(5\sqrt3+5-\frac{5\pi}{6}\right)\,\mathrm{m}
   \end{align*}
 \end{enumerate}
-\end{djsSolution}
-
-\newpage
-
-% ---- Question 13 ----
-\questionitem
-% [Source: _QBT___Solns__Motion_Under_a_Variable_Force, Q13]
-
-A small instrument package of mass $m\,\mathrm{kg}$ enters a deep liquid moving vertically downwards at $7\,\mathrm{m\,s^{-1}}$. While the package is moving downwards, it experiences a resistive force of magnitude $\dfrac{m}{20}v^2\,\mathrm{N}$, where $v\,\mathrm{m\,s^{-1}}$ is its speed. \\
-
-At time $t\,\mathrm{s}$ after entering the liquid, the package has descended a distance $x\,\mathrm{m}$. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find an expression for $v$ in terms of $t$. \marks{6} \\
-  \item Find an expression for $x$ in terms of $t$. \marks{3} \\
-  \item Find the exact distance descended by the package when its speed first reaches $\dfrac{21}{2}\,\mathrm{m\,s^{-1}}$. \marks{2} \\
-\end{enumerate}
-
-\vspace*{10pt}
-
-\begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-\item Take vertically downwards as positive. Newton's second law gives
-\begin{align*}
-m\frac{\mathrm{d}v}{\mathrm{d}t} &= mg-\frac{m}{20}v^2 \\
-20\frac{\mathrm{d}v}{\mathrm{d}t} &= 196-v^2
-\end{align*}
-The terminal speed is \(14\,\mathrm{m\,s^{-1}}\). Since the initial speed is \(7\,\mathrm{m\,s^{-1}}\), the speed increases towards \(14\,\mathrm{m\,s^{-1}}\) and remains below it.
-
-Separating variables and using partial fractions:
-\begin{align*}
-\int\frac{1}{196-v^2}\,\mathrm{d}v &= \frac{1}{20}\int 1\,\mathrm{d}t \\
-\frac{1}{28}\int\left(\frac{1}{14-v}+\frac{1}{14+v}\right)\mathrm{d}v &= \frac{t}{20}+c \\
-\frac{1}{28}\left(\ln|14+v|-\ln|14-v|\right) &= \frac{t}{20}+c
-\end{align*}
-Both \(14+v\) and \(14-v\) are positive, so the modulus signs can be dropped. Using \(v=7\) when \(t=0\):
-\[
-c=\frac{1}{28}\ln\frac{21}{7}=\frac{\ln 3}{28}
-\]
-Hence
-\begin{align*}
-\ln\frac{14+v}{14-v} &= \frac{7t}{5}+\ln 3 \\
-\frac{14+v}{14-v} &= 3e^{7t/5} \\
-14+v &= 42e^{7t/5}-3ve^{7t/5} \\
-v\left(1+3e^{7t/5}\right) &= 14\left(3e^{7t/5}-1\right) \\
-v &= \frac{14\left(3e^{7t/5}-1\right)}{3e^{7t/5}+1}
-\end{align*}
-
-\item Using \(v=\dfrac{\mathrm{d}x}{\mathrm{d}t}\), rewrite the result from part (a) to recognise a logarithmic integral:
-\begin{align*}
-\frac{\mathrm{d}x}{\mathrm{d}t}
-&= -14+\frac{84e^{7t/5}}{3e^{7t/5}+1} \\
-&= -14+20\frac{\frac{21}{5}e^{7t/5}}{3e^{7t/5}+1} \\
-x &= -14t+20\ln\left(3e^{7t/5}+1\right)+d
-\end{align*}
-Since \(x=0\) when \(t=0\), \(d=-20\ln 4\). Therefore
-\[
-x=20\ln\left(\frac{3e^{7t/5}+1}{4}\right)-14t
-\]
-
-\item Using \(a=v\dfrac{\mathrm{d}v}{\mathrm{d}x}\), the equation of motion becomes
-\[
-v\frac{\mathrm{d}v}{\mathrm{d}x}=\frac{196-v^2}{20}
-\]
-Separating variables and integrating, with \(196-v^2>0\):
-\begin{align*}
-\int 1\,\mathrm{d}x &= \int\frac{20v}{196-v^2}\,\mathrm{d}v \\
-x &= -10\ln|196-v^2|+h
-\end{align*}
-At entry, \(x=0\) and \(v=7\), so \(h=10\ln147\). Thus, when \(v=\dfrac{21}{2}\),
-\[
-x=10\ln\left(\frac{147}{196-\left(\frac{21}{2}\right)^2}\right)=10\ln\left(\frac{12}{7}\right)\,\mathrm{m}
-\]
-\end{enumerate}
-{\raggedright\par\medskip\noindent\textbf{Final answers with \(g = 10\):} (a) \(v=10\sqrt{2}\,\dfrac{(10\sqrt{2}+7)e^{\sqrt{2}t}-(10\sqrt{2}-7)}{(10\sqrt{2}+7)e^{\sqrt{2}t}+(10\sqrt{2}-7)}\);\quad (b)~\(x=20\ln\left(\dfrac{(10\sqrt{2}+7)e^{\sqrt{2}t}+10\sqrt{2}-7}{20\sqrt{2}}\right)-10\sqrt{2}\,t\);\quad (c) \(10\ln\left(\dfrac{604}{359}\right)\,\mathrm{m}\)\par}
 \end{djsSolution}
 
 \newpage
