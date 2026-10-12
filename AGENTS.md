@@ -124,9 +124,19 @@ the optional `djsSolutionFigure` environment, and the legacy colored-cancel
 - **`djsSolution`** is the worked-solution box, adapted from the TMUA
   worked-solutions box. It has a bold scarlet "Solution" label,
   a left scarlet rule and a short foot rule on its last part. Unlike TMUA it
-  takes no answer argument and keeps `\parskip` at 0. It grows 10mm to the
-  right and not to the left. `djsSolutionFigure` scales a figure inside a
-  solution; it is not applied to existing figures.
+  takes no answer argument. It grows 10mm to the right and not to the left.
+  Inside the box:
+  - paragraphs are 6pt apart;
+  - every display has 6pt above and 10pt below;
+  - `align` rows are spread by an 8pt `\jot`;
+  - parts are 14pt apart and sub-parts 8pt;
+  - `\left`/`\right` space like ordinary brackets (`mleftright`);
+  - no single line is stranded at a page break.
+
+  None of these skips can shrink, so full pages are not squeezed. Because
+  paragraph spacing makes source blank lines visible, solutions follow the
+  *Solution source layout* below. `djsSolutionFigure` scales a figure inside
+  a solution; it is not applied to existing figures.
 - **Solutions-pack headers:** `\djsSolnHeader` sets the default page style to
   `empty` and points the `\djsQuestionPageStyle` hook (run by
   `\djsFrontMatter` and `\questionitem`) at `\thispagestyle{fancy}`. The
@@ -312,6 +322,20 @@ Any other full-line `% ...` line in the body is a violation. Inline comments aft
 
 If `check-tex` flags a file, the usual fix is `npm run clean-tex`, which strips the offending comments, collapses runs of more than two blank lines down to two, and re-numbers the question delimiters.
 
+### Solution source layout
+
+The `djsSolution` box's spacing relies on this source layout inside every solution:
+
+- The lead-in text sits on the line directly above `\[` or `\begin{align*}`, with no blank line between them. A blank line there prints as an empty line.
+- One blank line follows every display before the next text, even when that text continues the sentence. Without it the gap is 10pt instead of 16pt.
+- No blank line separates two consecutive displays, or an `\item` lead-in from its display.
+- Inside a sentence, fractions use `\frac`; `\dfrac` is for displays.
+- Symbol units are written in maths as `\,\mathrm{...}` (`14.7\,\mathrm{J}`, `6.86\,\mathrm{m\,s}^{-1}`), never `\text{ J}`. Word units such as hours stay as words.
+- No `\!` between a function name (or `^{-1}`) and `\left`.
+- No manual `\\[4pt]`-style gaps between `align` rows. Small gaps between the rows of a `pmatrix` are fine. This rule is not checked.
+
+`scripts/check-solution-layout.mjs` (read-only, pre-commit) checks the first six rules inside every `djsSolution` box of the Further Maths soln packs and reports `file:line: [rule] message`. Fix violations by hand.
+
 ---
 
 ## Workflows
@@ -391,7 +415,7 @@ The `*.generated.ts` files **must not be hand-edited** — they're regenerated o
 | Test runner | Vitest (`npm run test` → `vitest run`) — colocated `*.test.mjs` next to each script |
 | LaTeX build | `latexmk` — args mirrored between `.vscode/settings.json` and `scripts/compile-tex.mjs` |
 | LaTeX lint (editor) | ChkTeX via LaTeX Workshop on edit (in-editor only; no CI) |
-| Pre-commit | Husky → `npx vitest run`, then `check-tex`, `check-pack-preamble`, `check-questions`, `check-resources`, `check-pairs`, `check-generated`, `check-private-terms`. The `commit-msg` hook runs `check-private-terms` on the message |
+| Pre-commit | Husky → `npx vitest run`, then `check-tex`, `check-solution-layout`, `check-pack-preamble`, `check-questions`, `check-resources`, `check-pairs`, `check-generated`, `check-private-terms`. The `commit-msg` hook runs `check-private-terms` on the message |
 | Pre-`dev`/`build`/`check` | `count-questions` + `hash-assets` + `check-pack-preamble` + `check-questions` (`check-resources`/`check-pairs`/`check-generated` are pre-commit-only to keep the inner loop fast) |
 
 ### npm scripts
@@ -400,6 +424,7 @@ The `*.generated.ts` files **must not be hand-edited** — they're regenerated o
 |--------|--------------|
 | `npm run test` | Vitest run over all `*.test.mjs` |
 | `npm run check-tex` | Read-only hygiene check on QBT/soln `.tex` bodies (no full-line comments outside `% ---- Question N ----` delimiters) |
+| `npm run check-solution-layout` | Read-only check that worked solutions follow the *Solution source layout* (blank lines around displays, `\frac` in sentences, `\mathrm` units, no `\!` before `\left`) |
 | `npm run check-pack-preamble` | Read-only convention check for Further Maths QBT/Soln shared `pack_preamble.tex` wrappers |
 | `npm run clean-tex` | Strips full-line comments from QBT/soln bodies, collapses blank-line runs, re-numbers question delimiters |
 | `npm run check-questions [scope]` | Read-only drift detector: reports any QBT/soln pair where the SOLN statement region differs from the QBT statement, plus structurally broken pairs (numbering mismatches, duplicate delimiters, missing/extra `\questionitem`, delimiter numbering gaps). Same scope arg as `compile-tex`. Non-zero exit on drift |
@@ -438,6 +463,7 @@ When adding a new pure helper to a tested module, add a colocated test case. Kee
 | `scripts/deploy-from-overleaf.mjs` | Interactive Overleaf clone or local pack folder read, compile, placement, cleanup, and staging append |
 | `scripts/compile-tex.mjs` | Bulk `latexmk` over `further-maths` or `all` (never TMUA); `--deploy` promotes built PDFs beside source |
 | `scripts/check-tex.mjs` | Read-only body-comment hygiene check |
+| `scripts/check-solution-layout.mjs` | Read-only *Solution source layout* check over Further Maths soln packs |
 | `scripts/check-pack-preamble.mjs` | Read-only Further Maths shared-preamble wrapper convention check |
 | `scripts/clean-tex.mjs` | Strips full-line body comments, collapses long blank runs, re-inserts numbered question delimiters |
 | `scripts/migrate-fm-pack-preamble.mjs` | Mechanical codemod for migrating Further Maths QBT/Soln files to the shared pack preamble |
@@ -459,6 +485,7 @@ When adding a new pure helper to a tested module, add a colocated test case. Kee
 | `scripts/lib/tex-utils.mjs` | Shared path, `.tex` discovery, document boundary, and QBT/soln pair helpers |
 | `scripts/lib/question-blocks.mjs` | Pure parser/synchronizer for `check-questions` and `sync-questions`; preserves CRLF/LF. `questionOrderChange` recognises a file whose questions were only reordered |
 | `scripts/lib/solution-boxes.mjs` | Pure legacy-Solution-box → `djsSolution` rewrite used by `migrate-solution-boxes` |
+| `scripts/lib/solution-layout.mjs` | Pure display/paragraph tokenizer and layout rules behind `check-solution-layout` |
 | `scripts/lib/site-tree.mjs` | Interactive site-path picker for Overleaf deploys |
 | `scripts/lib/resources-derive.mjs` | Regex-based introspection of `src/data/resources.ts` (and the strand/topic labels in `src/data/topics.ts`, `parseStrands`/`sitePathLabels`) for staging and validation |
 | `scripts/lib/resources-check.mjs` | Pure resource catalogue invariant checker |
@@ -500,6 +527,7 @@ When durable project conventions change, update `AGENTS.md` and the directly rel
 - **`scripts/lib/` modules grow or change responsibilities:** update the script module map above.
 - **The Overleaf deploy flow changes** (project layout, env vars, staging schema): update `data/README.md` and the Deploying a new topic / Deploy workflow contract sections above.
 - **`check-tex` / `clean-tex` rules change** (allowed comment shapes, scoped directories): update the `check-tex` body-comment hygiene section.
+- **The `djsSolution` spacing or the solution layout rules change:** update the `djsSolution` bullet, the Solution source layout section and `scripts/lib/solution-layout.mjs` together.
 - **`check-questions` / `sync-questions` boundary detection changes** (Solution box openers/closers, prelude shape): update the QBT ⇄ SOLN statement contract section.
 - **The LaTeX directory layout or file-naming patterns change:** update the structure tables and naming-pattern guidance above.
 - **The shared pack preamble convention changes:** update the LaTeX directory layout section, deploy workflow, and `scripts/lib/pack-preamble.mjs`.
