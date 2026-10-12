@@ -1,7 +1,7 @@
 /**
  * Derive ids / categories / sibling anchors by scanning `src/data/resources.ts` with regex
- * (no full TypeScript parse), and the Further Maths strand and topic labels from
- * `src/data/topics.ts` the same way.
+ * (no full TypeScript parse), and the Further Maths strands, topic sections and
+ * board lists from `src/data/topics.ts` and `src/data/resources.ts` the same way.
  */
 
 import { readFileSync } from 'node:fs';
@@ -42,10 +42,11 @@ export function deriveTopicId(idPrefix, topicName) {
 }
 
 /**
+ * A row's `category` as written (`FM_CP`, `'TMUA'`) to its label.
  * @param {string} raw
  * @returns {string}
  */
-function normalizeCategoryToken(raw) {
+export function normalizeCategoryToken(raw) {
   const t = raw.trim();
   if (t === 'FM_CP') return 'FM - Core Pure';
   if (t === 'FM_MECH') return 'FM - Further Mechanics';
@@ -64,68 +65,114 @@ export function fileToSitePath(filePath) {
 }
 
 /**
- * Find the index of the `]` that matches the `[` at `openIdx`, ignoring brackets
- * inside string literals and `/* … *\/` comments. Sufficient for the hand-written
- * `rawResources` array in `src/data/resources.ts` (no template strings, no regex
- * literals at top level).
+ * `src` with the contents of string literals and comments replaced by spaces,
+ * so code-level searches can't match inside them. Quotes and line breaks are
+ * kept, so indices and line numbers still match `src`. Sufficient for the
+ * hand-written data files in `src/data/` (no template-string interpolation,
+ * no regex literals).
  *
  * @param {string} src
- * @param {number} openIdx - index of the opening `[`
- * @returns {number} index of the matching `]`, or -1 if unbalanced
+ * @returns {string}
  */
-function findMatchingBracket(src, openIdx) {
-  let depth = 0;
-  let i = openIdx;
+export function maskStringsAndComments(src) {
+  const out = src.split('');
   let inString = null;
   let inLineComment = false;
   let inBlockComment = false;
+  const blank = (i) => {
+    if (out[i] !== '\n' && out[i] !== '\r') out[i] = ' ';
+  };
 
-  for (; i < src.length; i++) {
+  for (let i = 0; i < src.length; i++) {
     const ch = src[i];
     const next = src[i + 1];
 
     if (inLineComment) {
       if (ch === '\n') inLineComment = false;
+      else blank(i);
       continue;
     }
     if (inBlockComment) {
       if (ch === '*' && next === '/') {
         inBlockComment = false;
+        blank(i);
+        blank(i + 1);
         i++;
+      } else {
+        blank(i);
       }
       continue;
     }
     if (inString) {
       if (ch === '\\') {
+        blank(i);
+        blank(i + 1);
         i++;
         continue;
       }
       if (ch === inString) inString = null;
+      else blank(i);
       continue;
     }
 
     if (ch === '/' && next === '/') {
       inLineComment = true;
+      blank(i);
+      blank(i + 1);
       i++;
       continue;
     }
     if (ch === '/' && next === '*') {
       inBlockComment = true;
+      blank(i);
+      blank(i + 1);
       i++;
       continue;
     }
-    if (ch === "'" || ch === '"' || ch === '`') {
-      inString = ch;
-      continue;
-    }
+    if (ch === "'" || ch === '"' || ch === '`') inString = ch;
+  }
+  return out.join('');
+}
 
-    if (ch === '[') depth++;
-    else if (ch === ']') {
+/**
+ * Find the index of the bracket that closes the one at `openIdx` (`[`, `{` or
+ * `(`), ignoring brackets inside string literals and comments.
+ *
+ * @param {string} src
+ * @param {number} openIdx - index of the opening bracket
+ * @returns {number} index of the matching close, or -1 if unbalanced
+ */
+export function findMatchingClose(src, openIdx) {
+  const open = src[openIdx];
+  const close = { '[': ']', '{': '}', '(': ')' }[open];
+  if (!close) return -1;
+  const code = maskStringsAndComments(src);
+  let depth = 0;
+  for (let i = openIdx; i < code.length; i++) {
+    if (code[i] === open) depth++;
+    else if (code[i] === close) {
       depth--;
       if (depth === 0) return i;
     }
   }
   return -1;
+}
+
+const RAW_RESOURCES_START = /const\s+rawResources\s*(?::\s*Resource\[\])?\s*=\s*\[/;
+
+/**
+ * The `rawResources` array literal in `src/data/resources.ts`: the indices of
+ * its `[` and matching `]`, or null when it can't be found.
+ *
+ * @param {string} resourcesTsContent
+ * @returns {{ open: number; close: number } | null}
+ */
+export function findRawResources(resourcesTsContent) {
+  const m = resourcesTsContent.match(RAW_RESOURCES_START);
+  if (!m || m.index === undefined) return null;
+  const open = m.index + m[0].length - 1;
+  const close = findMatchingClose(resourcesTsContent, open);
+  return close === -1 ? null : { open, close };
 }
 
 /**
@@ -153,6 +200,7 @@ function tsStringValue(m, group) {
  * @property {'questions'|'solutions'|'answers'|'notes'} [type]
  * @property {string} [pairId]    - id of the partner entry in a {Q, S} pair
  * @property {string} [paperId]   - on an `answers` entry: the id of its paper
+ * @property {string[]} [boards]  - exam board ids; absent means all boards
  */
 
 /**
@@ -160,15 +208,10 @@ function tsStringValue(m, group) {
  * @returns {ResourceEntry[]}
  */
 export function parseResourcesEntries(resourcesTsContent) {
-  const startRe = /const\s+rawResources\s*(?::\s*Resource\[\])?\s*=\s*\[/;
-  const startM = resourcesTsContent.match(startRe);
-  if (!startM || startM.index === undefined) return [];
+  const range = findRawResources(resourcesTsContent);
+  if (!range) return [];
 
-  const openIdx = startM.index + startM[0].length - 1;
-  const closeIdx = findMatchingBracket(resourcesTsContent, openIdx);
-  if (closeIdx === -1) return [];
-
-  const inner = resourcesTsContent.slice(openIdx + 1, closeIdx);
+  const inner = resourcesTsContent.slice(range.open + 1, range.close);
   const entries = [];
   const blockRe =
     /\{\s*id:\s*'([^']+)'[\s\S]{0,12000}?file:\s*'(\/tex\/[^']+)'[\s\S]{0,12000}?\n\s*\},?/g;
@@ -183,6 +226,7 @@ export function parseResourcesEntries(resourcesTsContent) {
     const typeM = block.match(/type:\s*'([^']+)'/);
     const pairM = block.match(/pairId:\s*'([^']+)'/);
     const paperM = block.match(/paperId:\s*'([^']+)'/);
+    const boardsM = block.match(/boards:\s*\[([^\]]*)\]/);
     const category = catRaw ? normalizeCategoryToken(catRaw[1]) : 'unknown';
     entries.push({
       id,
@@ -193,9 +237,58 @@ export function parseResourcesEntries(resourcesTsContent) {
       type: typeM ? typeM[1] : undefined,
       pairId: pairM ? pairM[1] : undefined,
       paperId: paperM ? paperM[1] : undefined,
+      boards: boardsM ? [...boardsM[1].matchAll(/'([^']*)'/g)].map((b) => b[1]) : undefined,
     });
   }
   return entries;
+}
+
+/**
+ * Every `id:` key in the `rawResources` array, as written: its value (read
+ * from either quote style, or the raw text when it isn't a string literal)
+ * and its 1-based line. `parseResourcesEntries` silently skips a row it can't
+ * read, so comparing the two finds rows the site would lose.
+ *
+ * @param {string} resourcesTsContent
+ * @returns {{ id: string; line: number }[]}
+ */
+export function catalogueIdKeys(resourcesTsContent) {
+  const range = findRawResources(resourcesTsContent);
+  if (!range) return [];
+  const code = maskStringsAndComments(resourcesTsContent);
+  const keyRe = /(?<![\w$.])id\s*:/g;
+  keyRe.lastIndex = range.open;
+  const keys = [];
+  let m;
+  while ((m = keyRe.exec(code)) !== null && m.index < range.close) {
+    const rest = resourcesTsContent.slice(m.index + m[0].length);
+    const value = rest.match(new RegExp(String.raw`^\s*${TS_STRING}`));
+    const raw = value ? tsStringValue(value, 1) : rest.match(/^\s*([^,\n}]*)/)[1].trim();
+    const line = resourcesTsContent.slice(0, m.index).split('\n').length;
+    keys.push({ id: raw, line });
+  }
+  return keys;
+}
+
+/**
+ * The exam board lists exported from `src/data/resources.ts`
+ * (`export const EXAM_BOARDS: … = [{ id: 'edexcel', … }, …]`), by constant name.
+ *
+ * @param {string} resourcesTsContent
+ * @returns {Map<string, string[]>}
+ */
+export function parseBoardLists(resourcesTsContent) {
+  const lists = new Map();
+  const headRe = /export\s+const\s+([A-Z_]+)\s*:\s*\{\s*id:\s*ExamBoard\b[^=]*=\s*\[/g;
+  let m;
+  while ((m = headRe.exec(resourcesTsContent)) !== null) {
+    const open = m.index + m[0].length - 1;
+    const close = findMatchingClose(resourcesTsContent, open);
+    if (close === -1) continue;
+    const body = resourcesTsContent.slice(open + 1, close);
+    lists.set(m[1], [...body.matchAll(/\bid:\s*'([^']+)'/g)].map((b) => b[1]));
+  }
+  return lists;
 }
 
 /**
@@ -210,17 +303,23 @@ export function loadResourcesEntries(resourcesPath = join(repoRoot, 'src', 'data
  * @typedef {Object} Strand
  * @property {string} category  - Normalised label (e.g. `'FM - Core Pure'`)
  * @property {string} title     - Strand title (e.g. `'Core Pure'`)
+ * @property {string} [folder]  - Its folder under `public/tex/further-maths/`
+ *                                (the last segment of its `href`)
+ * @property {string} [boardsConst] - Name of its board list (e.g. `EXAM_BOARDS`)
+ * @property {string[]} [boards] - Its board ids, when the list was resolved
  * @property {{ id: string; topic: string; title: string }[]} topics
  *   - `topic` is the `Resource.topic` value; `title` is the section heading
  */
 
 /**
- * Parses the `STRANDS` array in `src/data/topics.ts`.
+ * Parses the `STRANDS` array in `src/data/topics.ts`. With `boardLists` (from
+ * `parseBoardLists`), each strand's `boards` constant is resolved to its ids.
  *
  * @param {string} topicsTsContent
+ * @param {Map<string, string[]>} [boardLists]
  * @returns {Strand[]}
  */
-export function parseStrands(topicsTsContent) {
+export function parseStrands(topicsTsContent, boardLists) {
   const start = topicsTsContent.search(/export\s+const\s+STRANDS\b/);
   if (start < 0) return [];
   const body = topicsTsContent.slice(start);
@@ -236,7 +335,9 @@ export function parseStrands(topicsTsContent) {
   return heads.map((head, i) => {
     const end = i + 1 < heads.length ? heads[i + 1].index : body.length;
     const segment = body.slice(head.index, end);
-    return {
+    const href = segment.match(/href:\s*'([^']*)'/)?.[1];
+    const boardsConst = segment.match(/boards:\s*([A-Z_]+)\s*,/)?.[1];
+    const strand = {
       category: normalizeCategoryToken(head[1]),
       title: tsStringValue(head, 2),
       topics: [...segment.matchAll(topicRe)].map((t) => ({
@@ -245,14 +346,43 @@ export function parseStrands(topicsTsContent) {
         title: tsStringValue(t, 4),
       })),
     };
+    if (href) strand.folder = href.split('/').filter(Boolean).pop();
+    if (boardsConst) {
+      strand.boardsConst = boardsConst;
+      const ids = boardLists?.get(boardsConst);
+      if (ids) strand.boards = ids;
+    }
+    return strand;
   });
 }
 
 /**
+ * Parses `src/data/topics.ts`, with each strand's board ids resolved from
+ * `src/data/resources.ts`.
+ *
  * @param {string} [topicsPath]
+ * @param {string} [resourcesPath]
  */
-export function loadStrands(topicsPath = join(repoRoot, 'src', 'data', 'topics.ts')) {
-  return parseStrands(readFileSync(topicsPath, 'utf8'));
+export function loadStrands(
+  topicsPath = join(repoRoot, 'src', 'data', 'topics.ts'),
+  resourcesPath = join(repoRoot, 'src', 'data', 'resources.ts'),
+) {
+  return parseStrands(
+    readFileSync(topicsPath, 'utf8'),
+    parseBoardLists(readFileSync(resourcesPath, 'utf8')),
+  );
+}
+
+/**
+ * A topic section of `strand` named by its `Resource.topic` value or its
+ * section heading, or undefined.
+ *
+ * @param {Strand} strand
+ * @param {string} name
+ */
+export function findStrandTopic(strand, name) {
+  const want = name.trim();
+  return strand.topics.find((t) => t.topic === want) ?? strand.topics.find((t) => t.title === want);
 }
 
 /**
@@ -350,11 +480,21 @@ function categoryFromSitePathPrefix(sitePath) {
 }
 
 /**
- * @param {string} sitePath
+ * What the catalogue says about a section folder's packs: their category and
+ * topic (the site section), the default id prefix for a new pack, and the last
+ * pack row, after which a new pack's rows go.
+ *
+ * Only `questions` and `solutions` rows filed under the folder count. Folder
+ * names need not match section names, so a folder with no packs has no
+ * `topic`. The id prefix comes from the questions rows alone: with a pack's
+ * `-solns` row in the pool, a one-pack folder's prefix would run on into that
+ * pack's own slug.
+ *
+ * @param {string} sitePath - e.g. `further-maths/core-pure/vectors`
  * @param {ReturnType<typeof parseResourcesEntries>} allEntries
  * @returns {{
  *   category: string;
- *   topic: string;
+ *   topic: string | undefined;
  *   idPrefix: string;
  *   siblingId: string | null;
  *   fromSiblings: boolean;
@@ -364,69 +504,32 @@ export function derivePathContext(sitePath, allEntries) {
   const norm = sitePath.replace(/\\/g, '/').replace(/^\/+/, '').replace(/\/+$/, '');
   const prefix = `/tex/${norm}/`;
 
-  const siblings = allEntries.filter((e) => e.file.startsWith(prefix));
-  const pairLike = siblings.filter(
-    (e) => e.file.includes('/qbt/') || e.file.includes('/soln/'),
+  const packs = allEntries.filter(
+    (e) => e.file.startsWith(prefix) && (e.type === 'questions' || e.type === 'solutions'),
   );
-
-  if (pairLike.length > 0) {
-    const qOrS = pairLike.filter((e) => e.type === 'questions' || e.type === 'solutions');
-    const anchorPool = qOrS.length > 0 ? qOrS : pairLike;
-    const anchorLast = anchorPool[anchorPool.length - 1];
-    const category = anchorPool[0].category;
-    const topic =
-      anchorPool[0].topic ?? deriveTopicSlugTitle(norm.split('/').pop() ?? 'topic');
-    const ids = anchorPool.map((e) => e.id);
-    const idPrefix =
-      deriveIdPrefixFromSiblingIds(ids, topic) || fallbackIdPrefix(category, topic, norm);
-    return {
-      category,
-      topic,
-      idPrefix,
-      siblingId: anchorLast.id,
-      fromSiblings: true,
-    };
-  }
-
-  if (siblings.length > 0) {
-    const category = siblings[0].category;
-    const topic = siblings[0].topic ?? deriveTopicSlugTitle(norm.split('/').pop() ?? 'topic');
-    const ids = siblings.map((e) => e.id);
-    const idPrefix =
-      deriveIdPrefixFromSiblingIds(ids, topic) || fallbackIdPrefix(category, topic, norm);
-    const siblingId = siblings[siblings.length - 1].id;
-    return {
-      category,
-      topic,
-      idPrefix,
-      siblingId,
-      fromSiblings: true,
-    };
-  }
-
-  const leaf = norm.split('/').pop() ?? 'topic';
-  const guessedCat = categoryFromSitePathPrefix(norm);
-  const category = guessedCat ?? 'unknown';
-  const topic = deriveTopicSlugTitle(slugify(leaf));
-  const idPrefix = fallbackIdPrefix(category, topic, norm);
+  const questionIds = packs.filter((e) => e.type === 'questions').map((e) => e.id);
+  const category = packs[0]?.category ?? categoryFromSitePathPrefix(norm) ?? 'unknown';
+  const topic = packs[0]?.topic;
+  const idPrefix =
+    deriveIdPrefixFromSiblingIds(questionIds, topic) || fallbackIdPrefix(category, topic, norm);
 
   return {
     category,
     topic,
     idPrefix,
-    siblingId: null,
-    fromSiblings: false,
+    siblingId: packs.length > 0 ? packs[packs.length - 1].id : null,
+    fromSiblings: packs.length > 0,
   };
 }
 
 /**
  * @param {string} category
- * @param {string} topicTitle
+ * @param {string | undefined} topicTitle
  * @param {string} sitePathNorm
  */
 function fallbackIdPrefix(category, topicTitle, sitePathNorm) {
   if (category === 'TMUA') return 'tmua-';
   const slug = slugify(sitePathNorm.replace(/\//g, '-'));
   if (slug) return `${slug}-`;
-  return `${slugify(topicTitle)}-`;
+  return `${slugify(topicTitle ?? '')}-`;
 }

@@ -351,3 +351,84 @@ describe('checkResources: Further Maths pack title and site path', () => {
     expect(violations).toEqual([]);
   });
 });
+
+describe('checkResources: every catalogue row parses', () => {
+  it('flags an id key with no parsed row, once per lost row', () => {
+    const { violations } = run({
+      entries: [entry({ id: 'a', file: '/tex/a.pdf' })],
+      diskFiles: new Set(['/tex/a.pdf']),
+      idKeys: [
+        { id: 'a', line: 3 },
+        { id: 'b', line: 12 },
+      ],
+    });
+    expect(violations.map((v) => [v.kind, v.id])).toEqual([['unparsed-row', 'b']]);
+    expect(violations[0].message).toMatch(/line 12/);
+  });
+
+  it('counts a duplicated id key against its parsed rows', () => {
+    const { violations } = run({
+      entries: [entry({ id: 'a', file: '/tex/a.pdf' })],
+      diskFiles: new Set(['/tex/a.pdf']),
+      idKeys: [
+        { id: 'a', line: 3 },
+        { id: 'a', line: 12 },
+      ],
+    });
+    expect(violations.map((v) => v.kind)).toEqual(['unparsed-row']);
+  });
+});
+
+describe('checkResources: Further Maths sections and boards', () => {
+  const strands = [
+    {
+      category: 'FM - Core Pure',
+      title: 'Core Pure',
+      boardsConst: 'EXAM_BOARDS',
+      boards: ['edexcel', 'aqa'],
+      topics: [{ id: 'vectors', topic: 'Vectors', title: 'Vectors, Matrices & Linear Transformations' }],
+    },
+    {
+      category: 'FM - Further Mechanics',
+      title: 'Further Mechanics',
+      boardsConst: 'FM_MECH_EXAM_BOARDS',
+      boards: ['edexcel-fm1', 'aqa'],
+      topics: [{ id: 'centre-of-mass', topic: 'Centre of Mass', title: 'Centre of Mass' }],
+    },
+  ];
+  /** @param {Partial<import('./resources-derive.mjs').ResourceEntry>[]} rows */
+  const kinds = (rows) =>
+    run({
+      entries: rows.map((r) => entry(r)),
+      diskFiles: new Set(rows.map((r) => r.file)),
+      strands,
+    }).violations.map((v) => [v.kind, v.id]);
+
+  it("passes rows filed under their strand's sections with their strand's boards", () => {
+    expect(
+      kinds([
+        { id: 'a', file: '/tex/a.pdf', topic: 'Vectors', boards: ['edexcel', 'aqa'] },
+        { id: 'b', file: '/tex/b.pdf', category: 'FM - Further Mechanics', topic: 'Centre of Mass', boards: ['edexcel-fm1'] },
+        { id: 't', file: '/tex/t.pdf', category: 'TMUA' },
+      ]),
+    ).toEqual([]);
+  });
+
+  it("flags a topic that is not a section of the row's strand, or no topic", () => {
+    expect(
+      kinds([
+        { id: 'a', file: '/tex/a.pdf', topic: 'Centre of Mass' },
+        { id: 'b', file: '/tex/b.pdf' },
+      ]),
+    ).toEqual([
+      ['unknown-section', 'a'],
+      ['unknown-section', 'b'],
+    ]);
+  });
+
+  it("flags a board from another strand's list", () => {
+    expect(
+      kinds([{ id: 'b', file: '/tex/b.pdf', category: 'FM - Further Mechanics', topic: 'Centre of Mass', boards: ['edexcel', 'aqa'] }]),
+    ).toEqual([['board-not-in-strand', 'b']]);
+  });
+});

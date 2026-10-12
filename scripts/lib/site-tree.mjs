@@ -1,16 +1,13 @@
 /**
- * Shallow tree banner + drill-down picker helpers for `public/tex/` site paths.
+ * Shallow tree banner + drill-down picker for a Further Maths section folder
+ * (`<strand folder>/<section folder>` under `public/tex/further-maths/`).
  */
 
-import { mkdirSync, readdirSync } from 'node:fs';
+import { readdirSync } from 'node:fs';
 import { join, relative } from 'node:path';
 
-const KEBAB = /^[a-z0-9-]+$/;
-
-/** @param {string} name */
-export function isKebabCaseDir(name) {
-  return KEBAB.test(name);
-}
+/** Depth of a section folder below the picker's root: strand, then section. */
+export const SECTION_DEPTH = 2;
 
 /**
  * ASCII tree of directories under `root` up to `maxDepth` levels (root counts as depth 0).
@@ -51,43 +48,42 @@ export function listTreeShallow(root, maxDepth = 3) {
 
 /**
  * Pure mapping from (child directory names, user input) to a picker decision.
- * `..` is handled by the caller (pickSitePath), not here.
+ * `..` is handled by the caller (pickSitePath), not here. `use` confirms only
+ * a section folder, and no folder is created: a new section is a separate
+ * site change.
  *
  * @param {string[]} entries - sorted directory names under the current folder
  * @param {string} rawInput
- * @param {{ atRoot: boolean }} opts
- * @returns {{ kind: 'descend', name: string } | { kind: 'use' } | { kind: 'new', name: string } | { kind: 'invalid', message: string }}
+ * @param {{ atRoot: boolean, atSection?: boolean }} opts
+ *   - `atSection`: the current folder is a section folder
+ * @returns {{ kind: 'descend', name: string } | { kind: 'use' } | { kind: 'invalid', message: string }}
  */
 export function pickerStep(entries, rawInput, opts) {
   const input = rawInput.trim();
   if (!input) {
-    return { kind: 'invalid', message: 'Enter a number, folder name, "use" to confirm this folder, or "new <name>" for a new folder.' };
+    return { kind: 'invalid', message: 'Enter a number, a folder name, or "use" to confirm this section folder.' };
   }
 
   const lower = input.toLowerCase();
   if (lower === 'use' || input === '.') {
     if (opts.atRoot) {
-      return { kind: 'invalid', message: 'Pick a subfolder first — you cannot deploy to the tex root.' };
+      return { kind: 'invalid', message: 'Pick a subfolder first — you cannot import to the root.' };
+    }
+    if (!opts.atSection) {
+      return { kind: 'invalid', message: 'Pick a section folder: a strand folder, then one of its sections.' };
     }
     return { kind: 'use' };
   }
 
-  const newMatch = input.match(/^new\s+(.+)$/i);
-  if (newMatch) {
-    const name = newMatch[1].trim();
-    if (!name) {
-      return { kind: 'invalid', message: 'Usage: new <folder-name> (lowercase kebab-case, e.g. new vector-methods).' };
-    }
-    if (!isKebabCaseDir(name)) {
-      return {
-        kind: 'invalid',
-        message: 'New folder names must be lowercase kebab-case (letters, digits, hyphens only).',
-      };
-    }
-    if (entries.includes(name)) {
-      return { kind: 'invalid', message: `A folder named "${name}" already exists here — pick a different name or descend into it.` };
-    }
-    return { kind: 'new', name };
+  if (/^new\s/i.test(input)) {
+    return {
+      kind: 'invalid',
+      message: 'Import only into an existing section folder. Adding a section is a separate site change.',
+    };
+  }
+
+  if (opts.atSection) {
+    return { kind: 'invalid', message: 'This is a section folder: "use" to confirm it, or .. to go up.' };
   }
 
   if (/^\d+$/.test(input)) {
@@ -104,83 +100,72 @@ export function pickerStep(entries, rawInput, opts) {
 
   return {
     kind: 'invalid',
-    message: `Unknown folder "${input}". Try a listed name, its number, "use", or "new <kebab-name>".`,
+    message: `Unknown folder "${input}". Try a listed name, its number, or "use".`,
   };
 }
 
 /**
- * Interactive drill-down until the user confirms a leaf site path (repo-relative: `further-maths/...`).
+ * Interactive drill-down until the user confirms a section folder.
  * @param {import('node:readline/promises').Interface} rl
- * @param {string} texRoot - absolute path to `public/tex`
- * @returns {Promise<string>} site path using `/` separators, no leading slash
+ * @param {string} root - absolute path to `public/tex/further-maths`
+ * @returns {Promise<string>} `<strand folder>/<section folder>`
  */
-export async function pickSitePath(rl, texRoot) {
-  let current = texRoot;
+export async function pickSitePath(rl, root) {
+  let current = root;
   const parts = [];
 
   for (;;) {
-    let childNames;
-    try {
-      childNames = readdirSync(current, { withFileTypes: true })
-        .filter((e) => e.isDirectory())
-        .map((e) => e.name)
-        .sort((a, b) => a.localeCompare(b));
-    } catch {
-      console.error(`Cannot read directory: ${current}`);
-      throw new Error('site path picker: directory read failed');
+    const atRoot = parts.length === 0;
+    const atSection = parts.length === SECTION_DEPTH;
+    let childNames = [];
+    if (!atSection) {
+      try {
+        childNames = readdirSync(current, { withFileTypes: true })
+          .filter((e) => e.isDirectory())
+          .map((e) => e.name)
+          .sort((a, b) => a.localeCompare(b));
+      } catch {
+        console.error(`Cannot read directory: ${current}`);
+        throw new Error('site path picker: directory read failed');
+      }
     }
 
-    const atRoot = current === texRoot;
-    const rel = relative(texRoot, current).replace(/\\/g, '/') || '(tex root)';
-
+    const rel = parts.join('/') || '(further-maths)';
     console.log(`\nCurrent: ${rel}`);
-    if (childNames.length === 0) {
-      console.log('  (no subfolders — type "use" to confirm this path)');
+    if (atSection) {
+      console.log('  (a section folder — type "use" to confirm it)');
+    } else if (childNames.length === 0) {
+      console.log('  (no subfolders)');
     } else {
       childNames.forEach((name, i) => {
         console.log(`  ${i + 1}. ${name}/`);
       });
     }
-    console.log('  Commands: <n> or <folder> to go down, .. to go up, "use" or . to confirm, new <kebab-name> to create a folder');
-    if (atRoot) {
-      console.log('  (you must pick a subfolder — cannot "use" at the tex root)');
-    }
+    console.log('  Commands: <n> or <folder> to go down, .. to go up, "use" or . to confirm a section folder');
 
     const line = await rl.question('> ');
     const trimmed = line.trim();
     if (trimmed === '..') {
       if (atRoot) {
-        console.log('  Already at tex root.');
+        console.log('  Already at the top.');
         continue;
       }
       parts.pop();
-      current = parts.length === 0 ? texRoot : join(texRoot, ...parts);
+      current = parts.length === 0 ? root : join(root, ...parts);
       continue;
     }
 
-    const step = pickerStep(childNames, trimmed, { atRoot });
+    const step = pickerStep(childNames, trimmed, { atRoot, atSection });
     switch (step.kind) {
       case 'invalid':
         console.error(`  ${step.message}`);
         break;
       case 'use':
-        if (parts.length === 0) {
-          console.error('  Cannot use tex root.');
-          break;
-        }
         return parts.join('/');
-      case 'new': {
-        const created = join(current, step.name);
-        mkdirSync(created, { recursive: true });
-        parts.push(step.name);
-        current = created;
-        break;
-      }
-      case 'descend': {
+      case 'descend':
         parts.push(step.name);
         current = join(current, step.name);
         break;
-      }
       default:
         break;
     }

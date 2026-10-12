@@ -6,10 +6,11 @@
  * Each finding is either a `violation` (caller exits non-zero) or a
  * `warning` (caller logs and continues). The split is by severity:
  *
- *   violation: a structural inconsistency that will break the site or the
- *              splicer agent (missing file, duplicate id, broken pair or
- *              answer-key link), or a Further Maths pack whose title or site
- *              path disagrees with what the site shows.
+ *   violation: a structural inconsistency that will break the site (a row
+ *              the parser can't read, missing file, duplicate id, broken pair
+ *              or answer-key link), a Further Maths row whose section or
+ *              boards its strand doesn't have, or a Further Maths pack whose
+ *              title or site path disagrees with what the site shows.
  *   warning:   surface for triage but does not block (orphan PDFs).
  *
  * `orphan-pdf` is intentionally a warning — the live corpus is expected
@@ -56,19 +57,48 @@ import { sitePathLabels } from './resources-derive.mjs';
  *                                                   text, keyed by the entry's
  *                                                   `/tex/...` PDF path
  * @param {import('./resources-derive.mjs').Strand[]} [input.strands]
- *                                                 - parsed `topics.ts`. With
- *                                                   `packSources`, enables the
- *                                                   pack title and site-path
- *                                                   checks
+ *                                                 - parsed `topics.ts`, with
+ *                                                   board ids resolved. Enables
+ *                                                   the section and board
+ *                                                   checks, and with
+ *                                                   `packSources` the pack title
+ *                                                   and site-path checks
+ * @param {{ id: string; line: number }[]} [input.idKeys]
+ *                                                 - every `id:` key in the
+ *                                                   catalogue
+ *                                                   (`catalogueIdKeys`). Enables
+ *                                                   the unparsed-row check
  * @returns {CheckResult}
  */
 export function checkResources({
-  entries, diskFiles, deployedPdfs, questionCountKeys, packSources, strands,
+  entries, diskFiles, deployedPdfs, questionCountKeys, packSources, strands, idKeys,
 }) {
   /** @type {Finding[]} */
   const violations = [];
   /** @type {Finding[]} */
   const warnings = [];
+
+  // ---- Pass 0: every `id:` key in the catalogue parsed as a row. The parser
+  // reads rows by regex and skips one it can't read (a double-quoted id, say)
+  // without a word, which drops the row from the site.
+  if (idKeys) {
+    const parsed = new Map();
+    for (const e of entries) parsed.set(e.id, (parsed.get(e.id) ?? 0) + 1);
+    for (const key of idKeys) {
+      const left = parsed.get(key.id) ?? 0;
+      if (left > 0) {
+        parsed.set(key.id, left - 1);
+        continue;
+      }
+      violations.push({
+        kind: 'unparsed-row',
+        id: key.id,
+        message:
+          `the row with id ${quote(key.id)} (resources.ts line ${key.line}) does not parse: ` +
+          `write its id, file, type, pairId and topic in single quotes`,
+      });
+    }
+  }
 
   const byId = new Map();
 
@@ -215,7 +245,37 @@ export function checkResources({
     }
   }
 
-  // ---- Pass 4: Further Maths packs agree with the catalogue: the header's
+  // ---- Pass 4: a Further Maths row is filed under a topic section its strand
+  // has in topics.ts (otherwise no strand page lists it), and its boards are
+  // boards of that strand.
+  if (strands) {
+    for (const e of entries) {
+      const strand = strands.find((s) => s.category === e.category);
+      if (!strand) continue;
+      if (!strand.topics.some((t) => t.topic === e.topic)) {
+        violations.push({
+          kind: 'unknown-section',
+          id: e.id,
+          message:
+            `'${e.id}' topic ${quote(e.topic)} is not a ${strand.title} section in topics.ts ` +
+            `(sections: ${strand.topics.map((t) => `'${t.topic}'`).join(', ')})`,
+        });
+      }
+      if (!e.boards || !strand.boards) continue;
+      for (const board of e.boards) {
+        if (strand.boards.includes(board)) continue;
+        violations.push({
+          kind: 'board-not-in-strand',
+          id: e.id,
+          message:
+            `'${e.id}' board '${board}' is not a ${strand.title} board ` +
+            `(${strand.boardsConst ?? 'its list'}: ${strand.boards.join(', ')})`,
+        });
+      }
+    }
+  }
+
+  // ---- Pass 5: Further Maths packs agree with the catalogue: the header's
   // topic (also the contents-page title) is the entry's title, and the site
   // path names the entry's strand and topic section as the site shows them.
   if (packSources && strands) {
@@ -254,7 +314,7 @@ export function checkResources({
     }
   }
 
-  // ---- Pass 5: orphan PDFs (disk PDFs not referenced by any entry)
+  // ---- Pass 6: orphan PDFs (disk PDFs not referenced by any entry)
   const referencedFiles = new Set(entries.map((e) => e.file));
   for (const pdf of deployedPdfs) {
     if (!referencedFiles.has(pdf)) {

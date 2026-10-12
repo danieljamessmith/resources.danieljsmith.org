@@ -4,56 +4,46 @@ import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import {
-  parseProjectId,
   parseBoardSelection,
+  parseBoardsFlag,
+  parseSitePathArg,
+  resolveSection,
+  resourceIdProblem,
+  usesIncludeGraphics,
+  mechanicsPackProblem,
+  compileFailureSummary,
+  prepareImportedTex,
+  parseImportArgs,
+  missingForYes,
   sanitizeTopic,
   findPackTex,
   tryFindPackTex,
   resolveTexPairFromClone,
-  formatPairPreview,
   copyNormalizedPackTex,
   parseSource,
   readPackManifest,
   resolveTexPairFromDir,
   promptTopic,
-  stagingProjectIds,
   importedPackIdentity,
   PACK_MANIFEST,
-} from './deploy-from-overleaf.mjs';
-import { PACK_PREAMBLE_SITE_INPUT } from './lib/pack-preamble.mjs';
+} from './import-pack.mjs';
+import { PACK_PREAMBLE_SITE_INPUT, readPackIdentity } from './lib/pack-preamble.mjs';
+import { isUnexpectedFullLineComment } from './check-tex.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(__dirname, '..');
 
-// ---------------------------------------------------------------------------
-// parseProjectId
-// ---------------------------------------------------------------------------
-
-describe('parseProjectId', () => {
-  it('accepts a bare hex ID', () => {
-    expect(parseProjectId('abc123def456')).toBe('abc123def456');
-  });
-
-  it('extracts the ID from a full Overleaf URL', () => {
-    expect(parseProjectId('https://www.overleaf.com/project/abc123def456')).toBe('abc123def456');
-  });
-
-  it('trims whitespace before parsing', () => {
-    expect(parseProjectId('  abc123def456  ')).toBe('abc123def456');
-  });
-
-  it('returns null for an invalid input', () => {
-    expect(parseProjectId('not-a-valid-id')).toBeNull();
-  });
-
-  it('returns null for an empty string', () => {
-    expect(parseProjectId('')).toBeNull();
-  });
-
-  it('is case-insensitive for hex characters', () => {
-    expect(parseProjectId('ABC123DEF456')).toBe('ABC123DEF456');
-  });
-});
+/** The two strands' board lists, as `EXAM_BOARDS` and `FM_MECH_EXAM_BOARDS` give them. */
+const CP_BOARDS = ['edexcel', 'aqa', 'ocr-a', 'ocr-mei', 'cie-9231'];
+const MECH_BOARDS = [
+  'edexcel-fm1',
+  'edexcel-fm2',
+  'aqa',
+  'ocr-a',
+  'ocr-mei-mechanics-minor',
+  'ocr-mei-mechanics-major',
+  'cie-9231',
+];
 
 // ---------------------------------------------------------------------------
 // parseBoardSelection
@@ -61,52 +51,236 @@ describe('parseProjectId', () => {
 
 describe('parseBoardSelection', () => {
   it('returns null boardIds for empty input (all boards)', () => {
-    expect(parseBoardSelection('')).toEqual({ ok: true, boardIds: null });
-    expect(parseBoardSelection('   ')).toEqual({ ok: true, boardIds: null });
+    expect(parseBoardSelection('', CP_BOARDS)).toEqual({ ok: true, boardIds: null });
+    expect(parseBoardSelection('   ', MECH_BOARDS)).toEqual({ ok: true, boardIds: null });
   });
 
   it('returns null boardIds when option 1 is selected alone', () => {
-    expect(parseBoardSelection('1')).toEqual({ ok: true, boardIds: null });
+    expect(parseBoardSelection('1', CP_BOARDS)).toEqual({ ok: true, boardIds: null });
   });
 
-  it('returns the correct board ID for a single selection', () => {
-    expect(parseBoardSelection('2')).toEqual({ ok: true, boardIds: ['edexcel'] });
-    expect(parseBoardSelection('3')).toEqual({ ok: true, boardIds: ['aqa'] });
-    expect(parseBoardSelection('4')).toEqual({ ok: true, boardIds: ['ocr-a'] });
-    expect(parseBoardSelection('5')).toEqual({ ok: true, boardIds: ['ocr-mei'] });
-    expect(parseBoardSelection('6')).toEqual({ ok: true, boardIds: ['cie-9231'] });
+  it("numbers the strand's own boards from 2, in its order", () => {
+    expect(parseBoardSelection('2', CP_BOARDS)).toEqual({ ok: true, boardIds: ['edexcel'] });
+    expect(parseBoardSelection('3', CP_BOARDS)).toEqual({ ok: true, boardIds: ['aqa'] });
+    expect(parseBoardSelection('4', CP_BOARDS)).toEqual({ ok: true, boardIds: ['ocr-a'] });
+    expect(parseBoardSelection('5', CP_BOARDS)).toEqual({ ok: true, boardIds: ['ocr-mei'] });
+    expect(parseBoardSelection('6', CP_BOARDS)).toEqual({ ok: true, boardIds: ['cie-9231'] });
+    expect(parseBoardSelection('2', MECH_BOARDS)).toEqual({ ok: true, boardIds: ['edexcel-fm1'] });
+    expect(parseBoardSelection('8', MECH_BOARDS)).toEqual({ ok: true, boardIds: ['cie-9231'] });
   });
 
   it('returns multiple board IDs for a comma-separated selection', () => {
-    const result = parseBoardSelection('2,3');
+    const result = parseBoardSelection('2,3', CP_BOARDS);
     expect(result).toEqual({ ok: true, boardIds: ['edexcel', 'aqa'] });
   });
 
   it('deduplicates repeated selections', () => {
-    const result = parseBoardSelection('2,2,3');
+    const result = parseBoardSelection('2,2,3', CP_BOARDS);
     expect(result).toEqual({ ok: true, boardIds: ['edexcel', 'aqa'] });
   });
 
   it('accepts space-separated input', () => {
-    const result = parseBoardSelection('2 4');
-    expect(result).toEqual({ ok: true, boardIds: ['edexcel', 'ocr-a'] });
+    const result = parseBoardSelection('3 6', MECH_BOARDS);
+    expect(result).toEqual({ ok: true, boardIds: ['edexcel-fm2', 'ocr-mei-mechanics-minor'] });
   });
 
   it('returns an error when option 1 is combined with others', () => {
-    const result = parseBoardSelection('1,2');
+    const result = parseBoardSelection('1,2', CP_BOARDS);
     expect(result.ok).toBe(false);
     expect(result.message).toMatch(/cannot be combined/i);
   });
 
-  it('returns an error for an out-of-range number', () => {
-    const result = parseBoardSelection('7');
-    expect(result.ok).toBe(false);
-    expect(result.message).toMatch(/between 1 and 6/i);
+  it("returns an error for a number past the strand's list", () => {
+    expect(parseBoardSelection('7', CP_BOARDS).message).toMatch(/between 1 and 6/i);
+    expect(parseBoardSelection('9', MECH_BOARDS).message).toMatch(/between 1 and 8/i);
   });
 
   it('returns an error for non-numeric input', () => {
-    const result = parseBoardSelection('abc');
+    const result = parseBoardSelection('abc', CP_BOARDS);
     expect(result.ok).toBe(false);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Flags
+// ---------------------------------------------------------------------------
+
+describe('parseBoardsFlag', () => {
+  it('takes all for every board', () => {
+    expect(parseBoardsFlag('all', MECH_BOARDS)).toEqual({ ok: true, boardIds: null });
+    expect(parseBoardsFlag(' ALL ', CP_BOARDS)).toEqual({ ok: true, boardIds: null });
+  });
+
+  it("returns the strand's boards in the strand's order, once each", () => {
+    expect(parseBoardsFlag('cie-9231,edexcel-fm2 aqa,aqa', MECH_BOARDS)).toEqual({
+      ok: true,
+      boardIds: ['edexcel-fm2', 'aqa', 'cie-9231'],
+    });
+  });
+
+  it("refuses a board from another strand's list, naming this strand's boards", () => {
+    const result = parseBoardsFlag('edexcel,ocr-mei', MECH_BOARDS);
+    expect(result.ok).toBe(false);
+    expect(result.message).toMatch(/edexcel, ocr-mei/);
+    expect(result.message).toMatch(/edexcel-fm1/);
+    expect(parseBoardsFlag('edexcel-fm1', CP_BOARDS).ok).toBe(false);
+  });
+
+  it('refuses an empty value', () => {
+    expect(parseBoardsFlag(' , ', CP_BOARDS).ok).toBe(false);
+  });
+});
+
+describe('parseSitePathArg', () => {
+  it('reads a strand folder and a section folder', () => {
+    expect(parseSitePathArg('core-pure/induction')).toEqual({
+      ok: true,
+      strandFolder: 'core-pure',
+      sectionFolder: 'induction',
+    });
+    expect(parseSitePathArg('further-maths\\further-mechanics\\centre-of-mass\\')).toEqual({
+      ok: true,
+      strandFolder: 'further-mechanics',
+      sectionFolder: 'centre-of-mass',
+    });
+  });
+
+  it('refuses anything but two folder names', () => {
+    for (const value of ['core-pure', 'core-pure/induction/qbt', 'core-pure/..', '', '/']) {
+      expect(parseSitePathArg(value).ok).toBe(false);
+    }
+  });
+});
+
+describe('parseImportArgs and missingForYes', () => {
+  it('reads every flag', () => {
+    const opts = parseImportArgs([
+      '--folder', 'p', '--site-path', 'core-pure/induction', '--section', 'S',
+      '--title', 'T', '--boards', 'all', '--id', 'fm-x', '--yes',
+    ]);
+    expect(opts).toMatchObject({
+      folder: 'p', 'site-path': 'core-pure/induction', section: 'S',
+      title: 'T', boards: 'all', id: 'fm-x', yes: true,
+    });
+    expect(missingForYes(opts)).toEqual([]);
+  });
+
+  it('lists what --yes still needs; --section is checked against the folder later', () => {
+    expect(missingForYes(parseImportArgs(['--yes', '--title', ' ', '--boards', 'all']))).toEqual([
+      'folder', 'site-path', 'title', 'id',
+    ]);
+  });
+
+  it('refuses an unknown flag', () => {
+    expect(() => parseImportArgs(['--topic', 'T'])).toThrow(/topic/);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Section, id and document checks
+// ---------------------------------------------------------------------------
+
+describe('resolveSection', () => {
+  const strand = {
+    category: 'FM - Core Pure',
+    title: 'Core Pure',
+    topics: [
+      { id: 'proof-by-induction', topic: 'Proof by Induction', title: 'Proof by Induction' },
+      { id: 'vectors', topic: 'Vectors', title: 'Vectors, Matrices & Linear Transformations' },
+    ],
+  };
+  const folder = 'core-pure/induction';
+
+  it("takes the section the folder's packs are filed under, whatever the folder is called", () => {
+    const packRows = [{ topic: 'Proof by Induction' }, { topic: 'Proof by Induction' }];
+    expect(resolveSection({ strand, folder, packRows })).toEqual({ ok: true, topic: 'Proof by Induction' });
+    expect(resolveSection({ strand, folder, packRows, sectionArg: 'Proof by Induction' }).ok).toBe(true);
+  });
+
+  it("refuses a --section that disagrees with the folder's packs", () => {
+    const result = resolveSection({ strand, folder, packRows: [{ topic: 'Proof by Induction' }], sectionArg: 'Vectors' });
+    expect(result.ok).toBe(false);
+    expect(result.message).toMatch(/filed under "Proof by Induction"/);
+  });
+
+  it('needs --section for a folder with no pack yet, by topic or heading', () => {
+    const missing = resolveSection({ strand, folder, packRows: [] });
+    expect(missing).toMatchObject({ ok: false, needsSection: true });
+    expect(missing.message).toMatch(/--section/);
+    expect(resolveSection({ strand, folder, packRows: [], sectionArg: 'Vectors' })).toEqual({ ok: true, topic: 'Vectors' });
+    expect(
+      resolveSection({ strand, folder, packRows: [], sectionArg: 'Vectors, Matrices & Linear Transformations' }),
+    ).toEqual({ ok: true, topic: 'Vectors' });
+  });
+
+  it('refuses a section topics.ts does not have', () => {
+    const result = resolveSection({ strand, folder, packRows: [], sectionArg: 'Polar Coordinates' });
+    expect(result.ok).toBe(false);
+    expect(result.needsSection).toBeUndefined();
+    expect(result.message).toMatch(/not a Core Pure section/);
+  });
+
+  it('refuses a folder whose packs are filed under two sections, or an unlisted one', () => {
+    expect(resolveSection({ strand, folder, packRows: [{ topic: 'Vectors' }, { topic: 'Proof by Induction' }] }).ok).toBe(false);
+    expect(resolveSection({ strand, folder, packRows: [{ topic: 'Induction' }] }).ok).toBe(false);
+  });
+});
+
+describe('resourceIdProblem', () => {
+  it('accepts lowercase kebab ids', () => {
+    expect(resourceIdProblem('fm-induction-series')).toBeNull();
+  });
+
+  it('refuses other shapes and a solutions id', () => {
+    for (const id of ['FM-x', 'fm x', 'fm--x', '-fm', "fm-de-moivre's"]) {
+      expect(resourceIdProblem(id)).toMatch(/lowercase/);
+    }
+    expect(resourceIdProblem('fm-x-solns')).toMatch(/-solns/);
+  });
+});
+
+describe('usesIncludeGraphics', () => {
+  it('finds an image include in code, not in a comment', () => {
+    expect(usesIncludeGraphics('a\n\\includegraphics[width=3cm]{fig.png}\n')).toBe(true);
+    expect(usesIncludeGraphics('a\n% \\includegraphics{fig.png}\n')).toBe(false);
+    expect(usesIncludeGraphics('50\\% \\includegraphics{fig.png}')).toBe(true);
+  });
+});
+
+describe('compileFailureSummary', () => {
+  it("leads with the log's file:line errors and the source line after each", () => {
+    const log = [
+      '(./_QBT__X.tex',
+      './_QBT__X.tex:12: Undefined control sequence.',
+      'l.12 \\undefinedmacro',
+      '',
+      'The control sequence at the end of the top line',
+    ].join('\r\n');
+    expect(compileFailureSummary(log, 'Latexmk: Errors')).toBe(
+      './_QBT__X.tex:12: Undefined control sequence.\nl.12 \\undefinedmacro',
+    );
+  });
+
+  it("falls back to the tail of latexmk's output", () => {
+    const output = Array.from({ length: 40 }, (_, i) => `line ${i}`).join('\n');
+    expect(compileFailureSummary('', output).split('\n')).toHaveLength(30);
+    expect(compileFailureSummary('no errors here', output)).toMatch(/line 39$/);
+  });
+});
+
+describe('mechanicsPackProblem', () => {
+  const preamble = (extra) => `\\documentclass{article}\n${extra}\n\\begin{document}\n\\end{document}\n`;
+  const withIt = { name: 'Q.tex', text: preamble('\\djsMechanicsPack') };
+  const without = { name: 'S.tex', text: preamble('% \\djsMechanicsPack') };
+
+  it('needs \\djsMechanicsPack in both documents of a Further Mechanics pack', () => {
+    expect(mechanicsPackProblem([withIt, { ...withIt, name: 'S.tex' }], true)).toBeNull();
+    expect(mechanicsPackProblem([withIt, without], true)).toMatch(/S\.tex does not/);
+  });
+
+  it('refuses it anywhere else', () => {
+    expect(mechanicsPackProblem([without, { ...without, name: 'Q.tex' }], false)).toBeNull();
+    expect(mechanicsPackProblem([withIt, without], false)).toMatch(/remove it from Q\.tex/);
   });
 });
 
@@ -223,22 +397,6 @@ describe('resolveTexPairFromClone', () => {
 });
 
 // ---------------------------------------------------------------------------
-// formatPairPreview
-// ---------------------------------------------------------------------------
-
-describe('formatPairPreview', () => {
-  it('includes ids and sibling hint', () => {
-    const out = formatPairPreview({
-      id: 'fm-vectors-test',
-      topicName: "De Moivre's Theorem",
-      siblingId: 'fm-vectors-prev-solns',
-    });
-    expect(out).toContain("fm-vectors-test");
-    expect(out).toContain('fm-vectors-prev-solns');
-  });
-});
-
-// ---------------------------------------------------------------------------
 // copyNormalizedPackTex
 // ---------------------------------------------------------------------------
 
@@ -284,38 +442,65 @@ describe('copyNormalizedPackTex', () => {
 });
 
 // ---------------------------------------------------------------------------
-// Legacy second-URL prompt (orchestration smoke)
+// prepareImportedTex: no full-line comment survives import
 // ---------------------------------------------------------------------------
 
-describe('legacy second clone prompt', () => {
-  it('requests a second URL when only one kind exists in the first clone', async () => {
-    const questions = [
-      'https://overleaf.com/project/aaaaaaaaaaaaaaaaaaaaaaaa',
-      '', // second URL — user aborts
-    ];
-    let i = 0;
-    const rl = {
-      question: vi.fn(async () => questions[i++] ?? ''),
-      close: vi.fn(),
-    };
+describe('prepareImportedTex', () => {
+  const REL = 'public/tex/further-maths/core-pure/vectors/qbt/_QBT__Plane_Intersections.tex';
+  const source = [
+    '% Pack questions',
+    String.raw`\documentclass[leqno]{article}`,
+    String.raw`\input{preamble.tex}`,
+    '   % a note in the preamble',
+    '',
+    String.raw`\djsQbtHeader{Planes}`,
+    String.raw`\djsLastUpdated{1 October 2026}`,
+    '',
+    String.raw`\begin{document}`,
+    String.raw`\djsFrontMatter`,
+    String.raw`\begin{enumerate}`,
+    '% ========== Question 1 ==========',
+    '% id: q1',
+    String.raw`\questionitem`,
+    '% Solution: x = 2',
+    String.raw`Find the line of intersection. % keep this note`,
+    '%',
+    '% A diagram goes here.',
+    '\\end{enumerate}',
+    '\\end{document}',
+    '',
+  ].join('\r\n');
+  const identity = {
+    title: 'Plane Intersections',
+    strand: 'Core Pure',
+    section: 'Vectors, Matrices & Linear Transformations',
+  };
 
-    const dir = tempDir();
-    try {
-      writeFileSync(
-        join(dir, '(QBT) Topic.tex'),
-        '\\begin{document}\n\\end{document}\n',
-      );
-      const r = resolveTexPairFromClone(dir, 'Topic');
-      expect(r.qbtPath).not.toBeNull();
-      expect(r.solnPath).toBeNull();
+  it('leaves no full-line comment but the question delimiters and source hints, preamble included', () => {
+    const out = prepareImportedTex(source, REL, identity, '5 October 2026');
+    const comments = out.split('\n').filter((line) => /^\s*%/.test(line));
+    expect(comments).toEqual([
+      '% ---- Question 1 ----',
+      '% [Source: _QBT__Plane_Intersections, Q1]',
+    ]);
+    expect(out.split('\n').filter(isUnexpectedFullLineComment)).toEqual([]);
+    expect(out).toContain('Find the line of intersection. % keep this note');
+  });
 
-      const line = await rl.question(
-        '\nOnly found questions in the first project (or one .tex could not be classified). Paste second Overleaf URL or ID (Enter to abort): ',
-      );
-      expect(line).toContain('aaaaaaaa');
-    } finally {
-      rmSync(dir, { recursive: true, force: true });
-    }
+  it('puts the pack in the site wrapper with its title, site path and date', () => {
+    const out = prepareImportedTex(source, REL, identity, '5 October 2026');
+    expect(out).toContain(PACK_PREAMBLE_SITE_INPUT);
+    expect(out).toContain(String.raw`\djsLastUpdated{1 October 2026}`);
+    expect(out).not.toMatch(/\r/);
+    expect(readPackIdentity(out)).toEqual({
+      title: 'Plane Intersections',
+      sitePath: { strand: 'Core Pure', section: 'Vectors, Matrices & Linear Transformations' },
+    });
+  });
+
+  it('keeps \\djsMechanicsPack', () => {
+    const mech = source.replace('\\djsLastUpdated', '\\djsMechanicsPack\r\n\\djsLastUpdated');
+    expect(prepareImportedTex(mech, REL, identity)).toMatch(/^\\djsMechanicsPack$/m);
   });
 });
 
@@ -350,14 +535,6 @@ describe('parseSource', () => {
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }
-  });
-
-  it('still accepts Overleaf URLs and ids', () => {
-    expect(parseSource('https://www.overleaf.com/project/abc123')).toEqual({
-      kind: 'overleaf',
-      projectId: 'abc123',
-    });
-    expect(parseSource('abc123')).toEqual({ kind: 'overleaf', projectId: 'abc123' });
   });
 
   it('rejects a missing folder or anything else', () => {
@@ -495,23 +672,6 @@ describe('promptTopic', () => {
     const rl = rlAnswering('Vectors');
     expect(await promptTopic(rl, null)).toBe('Vectors');
     expect(rl.question.mock.calls[0][0]).toContain('e.g. "Matrix Determinants & Inverses"');
-  });
-});
-
-describe('stagingProjectIds', () => {
-  it('records no Overleaf ids for a local folder', () => {
-    expect(stagingProjectIds({ local: true })).toEqual({ qbt: null, soln: null });
-  });
-
-  it('keeps the unified and two-project shapes for Overleaf sources', () => {
-    expect(stagingProjectIds({ local: false, qbtProjectId: 'a', solnProjectId: 'a' })).toEqual({
-      qbt: 'a',
-      soln: null,
-    });
-    expect(stagingProjectIds({ local: false, qbtProjectId: 'a', solnProjectId: 'b' })).toEqual({
-      qbt: 'a',
-      soln: 'b',
-    });
   });
 });
 

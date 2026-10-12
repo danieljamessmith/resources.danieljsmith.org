@@ -1,5 +1,7 @@
 /**
- * Read-only lint for the Further Maths shared pack preamble convention.
+ * Read-only lint for the Further Maths shared pack preamble convention,
+ * including `\djsMechanicsPack` in exactly the Further Mechanics packs and no
+ * full-line comments before `\begin{document}`.
  */
 
 import { readFileSync } from 'node:fs';
@@ -8,6 +10,7 @@ import { fileURLToPath } from 'node:url';
 
 import { normalizePath, walkTexFiles } from './lib/tex-utils.mjs';
 import {
+  checkPackPreambleComments,
   checkPackPreambleConvention,
   isFurtherMathsPackTexFile,
 } from './lib/pack-preamble.mjs';
@@ -23,7 +26,7 @@ function main() {
   for (const absPath of files) {
     const rel = normalizePath(relative(repoRoot, absPath));
     const text = readFileSync(absPath, 'utf8');
-    violations.push(...checkPackPreambleConvention(text, rel));
+    violations.push(...checkPackPreambleConvention(text, rel), ...checkPackPreambleComments(text, rel));
   }
 
   if (violations.length > 0) {

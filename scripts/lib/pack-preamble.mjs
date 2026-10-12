@@ -11,6 +11,7 @@ const MONTHS = [
 ];
 const DATE_COMMAND = String.raw`\djsLastUpdated`;
 const SITE_PATH_COMMAND = String.raw`\djsSitePath`;
+export const MECHANICS_PACK_COMMAND = String.raw`\djsMechanicsPack`;
 
 export function formatPackDate(day = new Date()) {
   return `${day.getDate()} ${MONTHS[day.getMonth()]} ${day.getFullYear()}`;
@@ -55,6 +56,43 @@ function packSitePathCalls(text) {
       inPreamble: begin >= 0 && match.index < begin,
     };
   });
+}
+
+/** True when the preamble calls `\djsMechanicsPack` in code (not in a comment). */
+export function hasMechanicsPack(text) {
+  const code = text.replace(/(?<!\\)%[^\r\n]*/g, '');
+  const begin = code.indexOf(String.raw`\begin{document}`);
+  const preamble = begin >= 0 ? code.slice(0, begin) : code;
+  return /\\djsMechanicsPack(?![A-Za-z@])/.test(preamble);
+}
+
+/** True for a Further Mechanics pack path (`…/further-maths/further-mechanics/…`). */
+export function isFurtherMechanicsPackPath(relFromRepo) {
+  return normalizePath(relFromRepo).split('/').slice(0, 4).join('/') ===
+    'public/tex/further-maths/further-mechanics';
+}
+
+/** 1-based line numbers of the full-line comments before `\begin{document}`. */
+export function preambleCommentLines(text) {
+  const lines = splitLines(text);
+  const beginIdx = findBeginDocumentIndex(lines);
+  const preDoc = beginIdx >= 0 ? lines.slice(0, beginIdx) : lines;
+  return preDoc.flatMap((line, i) => (/^\s*%/.test(line) ? [i + 1] : []));
+}
+
+/**
+ * Remove every full-line comment before `\begin{document}`, as clean-tex
+ * removes the body's. A comment after code on the same line is kept.
+ */
+export function stripPreambleComments(text) {
+  const eol = detectEol(text);
+  const lines = splitLines(text);
+  const beginIdx = findBeginDocumentIndex(lines);
+  if (beginIdx < 0) throw new Error('missing \\begin{document}');
+  return [
+    ...lines.slice(0, beginIdx).filter((line) => !/^\s*%/.test(line)),
+    ...lines.slice(beginIdx),
+  ].join(eol);
 }
 
 /**
@@ -292,6 +330,7 @@ export function migratePackPreamble(text, relFromRepo, initialDate = formatPackD
     PACK_PREAMBLE_SITE_INPUT,
     '',
     header,
+    ...(hasMechanicsPack(text) ? [MECHANICS_PACK_COMMAND] : []),
     `${DATE_COMMAND}{${lastUpdated}}`,
     '',
     String.raw`\begin{document}`,
@@ -407,6 +446,33 @@ export function checkPackPreambleConvention(text, relFromRepo) {
       message: `${rel}: inline package/macro preamble remains before \\begin{document}`,
     });
   }
+  const mechanics = isFurtherMechanicsPackPath(rel);
+  if (hasMechanicsPack(text) !== mechanics) {
+    violations.push({
+      kind: mechanics ? 'missing-mechanics-pack' : 'stray-mechanics-pack',
+      message: mechanics
+        ? `${rel}: Further Mechanics packs call ${MECHANICS_PACK_COMMAND} before \\begin{document}`
+        : `${rel}: only Further Mechanics packs call ${MECHANICS_PACK_COMMAND}`,
+    });
+  }
 
   return violations;
+}
+
+/**
+ * A pack's preamble holds no full-line comments: import strips them, as
+ * clean-tex strips the body's. Separate from `checkPackPreambleConvention`,
+ * which ignores comments when it reads the preamble's commands.
+ */
+export function checkPackPreambleComments(text, relFromRepo) {
+  const rel = normalizePath(relFromRepo);
+  if (!isFurtherMathsPackTexFile(rel)) return [];
+  const commentLines = preambleCommentLines(text);
+  if (commentLines.length === 0) return [];
+  return [
+    {
+      kind: 'preamble-comment',
+      message: `${rel}: full-line comment before \\begin{document} (line ${commentLines.join(', ')})`,
+    },
+  ];
 }

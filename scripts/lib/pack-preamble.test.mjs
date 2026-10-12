@@ -14,6 +14,11 @@ import {
   readPackIdentity,
   texEscapeText,
   texUnescapeText,
+  hasMechanicsPack,
+  isFurtherMechanicsPackPath,
+  checkPackPreambleComments,
+  stripPreambleComments,
+  preambleCommentLines,
 } from './pack-preamble.mjs';
 
 const QBT_REL =
@@ -247,5 +252,56 @@ describe('pack identity: header title and site path', () => {
   it('refuses a pack without a header', () => {
     const headerless = dated().replace(/\\djsQbtHeader\{[^}]*\}\n/, '');
     expect(() => applyPackIdentity(headerless, { title: 'T' })).toThrow(/missing \\djsQbtHeader/);
+  });
+});
+
+describe('\\djsMechanicsPack', () => {
+  const MECH_REL = HYPHEN_REL;
+  const mech = (rel) => migratePackPreamble(oldInline('qbt', 'Work-Energy Principle'), rel, '1 October 2026');
+  const withCall = (text) => text.replace('\\djsLastUpdated', '\\djsMechanicsPack\n\\djsLastUpdated');
+
+  it('is found in preamble code only', () => {
+    expect(hasMechanicsPack(withCall(mech(MECH_REL)))).toBe(true);
+    expect(hasMechanicsPack(mech(MECH_REL))).toBe(false);
+    expect(hasMechanicsPack(mech(MECH_REL).replace('\\begin{document}', '% \\djsMechanicsPack\n\\begin{document}'))).toBe(false);
+    expect(hasMechanicsPack(mech(MECH_REL).replace('\\djsFrontMatter', '\\djsFrontMatter\n\\djsMechanicsPack'))).toBe(false);
+    expect(hasMechanicsPack('\\djsMechanicsPackage\n\\begin{document}')).toBe(false);
+  });
+
+  it('survives migrating a legacy preamble', () => {
+    const legacy = oldInline('qbt', 'Work-Energy Principle').replace('\\begin{document}', '\\djsMechanicsPack\n\\begin{document}');
+    expect(hasMechanicsPack(migratePackPreamble(legacy, MECH_REL))).toBe(true);
+    expect(hasMechanicsPack(migratePackPreamble(oldInline(), QBT_REL))).toBe(false);
+  });
+
+  it('is required in Further Mechanics packs and refused elsewhere', () => {
+    const kinds = (text, rel) => checkPackPreambleConvention(text, rel).map((v) => v.kind);
+    expect(isFurtherMechanicsPackPath(MECH_REL)).toBe(true);
+    expect(isFurtherMechanicsPackPath(QBT_REL)).toBe(false);
+    expect(kinds(withCall(mech(MECH_REL)), MECH_REL)).toEqual([]);
+    expect(kinds(mech(MECH_REL), MECH_REL)).toEqual(['missing-mechanics-pack']);
+    const pure = migratePackPreamble(oldInline(), QBT_REL, '1 October 2026');
+    expect(kinds(withCall(pure), QBT_REL)).toEqual(['stray-mechanics-pack']);
+  });
+});
+
+describe('preamble comments', () => {
+  const dated = () => migratePackPreamble(oldInline(), QBT_REL, '1 October 2026');
+
+  it('are refused by their own check, with their line numbers', () => {
+    expect(checkPackPreambleComments(dated(), QBT_REL)).toEqual([]);
+    const commented = `% top\n${dated().replace('\\begin{document}', '  % note\n\\begin{document}')}`;
+    expect(checkPackPreambleComments(commented, QBT_REL)).toEqual([
+      { kind: 'preamble-comment', message: `${QBT_REL}: full-line comment before \\begin{document} (line 1, 8)` },
+    ]);
+    expect(checkPackPreambleComments(commented, 'public/tex/tmua/TMUA_SetA_Paper1.tex')).toEqual([]);
+  });
+
+  it('are stripped, keeping body comments, trailing comments and line endings', () => {
+    const source = `% top\r\n\\documentclass{article} % keep\r\n  % note\r\n\\begin{document}\r\n% body\r\n\\end{document}\r\n`;
+    expect(stripPreambleComments(source)).toBe(
+      `\\documentclass{article} % keep\r\n\\begin{document}\r\n% body\r\n\\end{document}\r\n`,
+    );
+    expect(preambleCommentLines(source)).toEqual([1, 3]);
   });
 });

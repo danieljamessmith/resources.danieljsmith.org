@@ -3,7 +3,7 @@
  * tcolorbox to the shared preamble's `djsSolution` environment.
  *
  * Idempotent: only canonical legacy boxes are rewritten, so it is safe to
- * re-run after an Overleaf import brings in old-style boxes.
+ * re-run after an import brings in old-style boxes.
  *
  * Usage:
  *   node scripts/migrate-solution-boxes.mjs [--dry-run] [path-filter...]

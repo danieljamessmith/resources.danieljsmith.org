@@ -24,15 +24,22 @@ describe('pickerStep', () => {
     expect(r.message).toMatch(/root/i);
   });
 
-  it('allows use below root', () => {
-    expect(pickerStep(entries, 'use', { atRoot: false })).toEqual({ kind: 'use' });
+  it('allows use only at a section folder', () => {
+    expect(pickerStep([], 'use', { atRoot: false, atSection: true })).toEqual({ kind: 'use' });
+    const r = pickerStep(entries, 'use', { atRoot: false, atSection: false });
+    expect(r.kind).toBe('invalid');
+    expect(r.message).toMatch(/section folder/i);
   });
 
-  it('creates new kebab folder', () => {
-    expect(pickerStep(entries, 'new my-topic', { atRoot: true })).toEqual({
-      kind: 'new',
-      name: 'my-topic',
-    });
+  it('never creates a folder', () => {
+    const r = pickerStep(entries, 'new my-topic', { atRoot: true });
+    expect(r.kind).toBe('invalid');
+    expect(r.message).toMatch(/existing section folder/i);
+    expect(pickerStep([], 'new my-topic', { atRoot: false, atSection: true }).kind).toBe('invalid');
+  });
+
+  it('goes no deeper than a section folder', () => {
+    expect(pickerStep(['qbt', 'soln'], 'qbt', { atRoot: false, atSection: true }).kind).toBe('invalid');
   });
 
   it('rejects invalid new folder names', () => {

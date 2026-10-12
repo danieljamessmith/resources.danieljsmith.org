@@ -7,6 +7,11 @@ import {
   deriveTopicSlugTitle,
   parseStrands,
   sitePathLabels,
+  catalogueIdKeys,
+  parseBoardLists,
+  findStrandTopic,
+  maskStringsAndComments,
+  findMatchingClose,
 } from './resources-derive.mjs';
 
 const FIXTURE = `
@@ -90,22 +95,131 @@ const rawResources: Resource[] = [
   });
 });
 
+/** A questions row and its solutions row, as `parseResourcesEntries` returns them. */
+function packPair(id, folder, topic, category = 'FM - Core Pure') {
+  return [
+    { id, file: `/tex/further-maths/${folder}/qbt/_QBT__X.pdf`, category, topic, type: 'questions' },
+    { id: `${id}-solns`, file: `/tex/further-maths/${folder}/soln/_QBT___Solns__X.pdf`, category, topic, type: 'solutions' },
+  ];
+}
+
 describe('derivePathContext', () => {
-  it('derives category, topic, id prefix, and sibling from siblings', () => {
-    const entries = parseResourcesEntries(FIXTURE);
+  it("derives category, topic, id prefix and sibling from the folder's packs", () => {
+    const entries = [
+      { id: 'fm-vectors-formulae-notes', file: '/tex/further-maths/core-pure/vectors/notes/N.pdf', category: 'FM - Core Pure', topic: 'Vectors', type: 'notes' },
+      ...packPair('fm-vectors-matrix-determinants', 'core-pure/vectors', 'Vectors'),
+      ...packPair('fm-vectors-vector-product', 'core-pure/vectors', 'Vectors'),
+    ];
     const ctx = derivePathContext('further-maths/core-pure/vectors', entries);
     expect(ctx.category).toBe('FM - Core Pure');
     expect(ctx.topic).toBe('Vectors');
-    expect(ctx.idPrefix).toContain('fm-vectors');
+    expect(ctx.idPrefix).toBe('fm-vectors-');
     expect(ctx.siblingId).toBe('fm-vectors-vector-product-solns');
     expect(ctx.fromSiblings).toBe(true);
   });
 
-  it('falls back when there are no siblings', () => {
+  it("stops a one-pack folder's id prefix at the section, not inside the pack's slug", () => {
+    const entries = packPair(
+      'further-maths-further-mechanics-kinematics-dynamics-motion-under-a-variable-force',
+      'further-mechanics/kinematics-dynamics',
+      'Kinematics & Dynamics',
+      'FM - Further Mechanics',
+    );
+    const ctx = derivePathContext('further-maths/further-mechanics/kinematics-dynamics', entries);
+    expect(ctx.idPrefix).toBe('further-maths-further-mechanics-kinematics-dynamics-');
+  });
+
+  it('falls back when there are no siblings, with no section to name', () => {
     const ctx = derivePathContext('further-maths/core-pure/new-topic', []);
     expect(ctx.fromSiblings).toBe(false);
     expect(ctx.category).toBe('FM - Core Pure');
+    expect(ctx.topic).toBeUndefined();
     expect(ctx.siblingId).toBeNull();
+  });
+});
+
+describe('parseResourcesEntries boards', () => {
+  it("reads a row's boards, undefined when it has none", () => {
+    const fixture = `
+const rawResources: Resource[] = [
+  {
+    id: 'fm-a',
+    title: 'A',
+    file: '/tex/further-maths/further-mechanics/m/qbt/_QBT__A.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    boards: ['edexcel-fm2', 'aqa'],
+  },
+  {
+    id: 'fm-a-solns',
+    title: 'A',
+    file: '/tex/further-maths/further-mechanics/m/soln/_QBT___Solns__A.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+  },
+];
+`;
+    expect(parseResourcesEntries(fixture).map((e) => e.boards)).toEqual([['edexcel-fm2', 'aqa'], undefined]);
+  });
+});
+
+describe('catalogueIdKeys', () => {
+  it('finds every row id, in either quote style, but not ids in comments or strings', () => {
+    const fixture = `
+const rawResources: Resource[] = [
+  // id: 'commented-out'
+  {
+    id: 'fm-a',
+    title: 'Grid id: not a key',
+    file: '/tex/a.pdf',
+    category: FM_CP,
+    pairId: 'fm-b',
+  },
+  {
+    id: "fm-b",
+    title: 'B',
+    file: '/tex/b.pdf',
+    category: FM_CP,
+  },
+];
+const other = [{ id: 'not-a-row' }];
+`;
+    expect(catalogueIdKeys(fixture)).toEqual([
+      { id: 'fm-a', line: 5 },
+      { id: 'fm-b', line: 12 },
+    ]);
+    // The regex parser drops the double-quoted row, which is what the check catches.
+    expect(parseResourcesEntries(fixture).map((e) => e.id)).toEqual(['fm-a']);
+  });
+});
+
+describe('parseBoardLists', () => {
+  it('reads each exported board list by name', () => {
+    const fixture = `
+export const EXAM_BOARDS: { id: ExamBoard; label: string }[] = [
+  { id: 'edexcel', label: 'Edexcel' },
+  { id: 'aqa', label: 'AQA' },
+];
+
+export const FM_MECH_EXAM_BOARDS: { id: ExamBoard; label: string }[] = [
+  { id: 'edexcel-fm1', label: 'Edexcel FM1' },
+];
+`;
+    expect([...parseBoardLists(fixture)]).toEqual([
+      ['EXAM_BOARDS', ['edexcel', 'aqa']],
+      ['FM_MECH_EXAM_BOARDS', ['edexcel-fm1']],
+    ]);
+  });
+});
+
+describe('maskStringsAndComments / findMatchingClose', () => {
+  it('blanks strings and comments but keeps their positions', () => {
+    const src = "a = ['x]', /* ] */ 1] // ]\nb";
+    const masked = maskStringsAndComments(src);
+    expect(masked).toHaveLength(src.length);
+    expect(masked.split('\n')).toHaveLength(2);
+    expect(masked).not.toMatch(/x|\*/);
+    expect(findMatchingClose(src, src.indexOf('['))).toBe(src.indexOf('1]') + 1);
   });
 });
 
@@ -195,6 +309,28 @@ describe('parseStrands', () => {
 
   it('returns nothing without a STRANDS array', () => {
     expect(parseStrands('export const OTHER = [];')).toEqual([]);
+  });
+
+  it("reads each strand's folder and resolves its board list", () => {
+    const fixture = TOPICS_FIXTURE.replace(
+      "href: '/further-maths/core-pure/',",
+      "href: '/further-maths/core-pure/',\n    boards: EXAM_BOARDS,",
+    );
+    const strands = parseStrands(fixture, new Map([['EXAM_BOARDS', ['edexcel', 'aqa']]]));
+    expect(strands.map((s) => [s.folder, s.boardsConst, s.boards])).toEqual([
+      ['core-pure', 'EXAM_BOARDS', ['edexcel', 'aqa']],
+      ['further-mechanics', undefined, undefined],
+    ]);
+  });
+});
+
+describe('findStrandTopic', () => {
+  const [corePure] = parseStrands(TOPICS_FIXTURE);
+
+  it('finds a section by its topic or its heading', () => {
+    expect(findStrandTopic(corePure, 'Vectors')?.id).toBe('vectors');
+    expect(findStrandTopic(corePure, ' Vectors, Matrices & Linear Transformations ')?.id).toBe('vectors');
+    expect(findStrandTopic(corePure, 'vectors')).toBeUndefined();
   });
 });
 

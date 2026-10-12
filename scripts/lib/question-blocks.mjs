@@ -17,8 +17,8 @@
  *   \end{djsSolution}
  *
  * The legacy opener `\begin{tcolorbox}[...title={\textbf{Solution}}...]`
- * (closed by `\end{tcolorbox}`) is accepted too; freshly imported Overleaf
- * packs still use it until `migrate-solution-boxes` has run.
+ * (closed by `\end{tcolorbox}`) is accepted too; an older pack may arrive
+ * with it until `migrate-solution-boxes` has run.
  *
  * The QBT file is the source of truth for the statement; the soln file owns
  * the prelude + Solution box + any trailing whitespace/`\newpage`.

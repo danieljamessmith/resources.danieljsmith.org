@@ -23,7 +23,7 @@ Dual-purpose repository:
 - **Astro static site** (`src/`) — a resource-listing website built with Astro, Tailwind CSS, and TypeScript, deployed as a static site.
 - **LaTeX question bank** (`public/tex/`) — A-level Further Maths question-by-topic (QBT) packs and solutions, plus TMUA papers.
 
-The `.tex` sources under `public/tex/` are the **day-to-day editing surface** for question content. Brand-new topics are typically authored in Overleaf and brought into the repo for the first time via `npm run deploy-overleaf`, but after that initial import the in-repo `.tex` files are edited directly here: typo fixes, statement rewrites, mark adjustments, etc. The QBT pack (`qbt/_QBT__<Topic>.tex`) is the **single source of truth** for question statements; the matching solutions pack (`soln/_QBT___Solns__<Topic>.tex`) owns only the per-question Solution box (`djsSolution`). Drift between the two is detected by `check-questions` and rewritten by `sync-questions` (see the QBT ⇄ SOLN contract below). PDFs are rebuilt locally with `latexmk` (via `npm run compile-tex -- <scope> --deploy`) and committed alongside the `.tex` they were built from — CI does not run `latexmk`.
+The `.tex` sources under `public/tex/` are the **day-to-day editing surface** for question content. A new pack is brought in once with `npm run import-pack` (see Importing a pack); after that the in-repo `.tex` files are edited directly here: typo fixes, statement rewrites, mark adjustments, etc. The QBT pack (`qbt/_QBT__<Topic>.tex`) is the **single source of truth** for question statements; the matching solutions pack (`soln/_QBT___Solns__<Topic>.tex`) owns only the per-question Solution box (`djsSolution`). Drift between the two is detected by `check-questions` and rewritten by `sync-questions` (see the QBT ⇄ SOLN contract below). PDFs are rebuilt locally with `latexmk` (via `npm run compile-tex -- <scope> --deploy`) and committed alongside the `.tex` they were built from — CI does not run `latexmk`.
 
 ---
 
@@ -44,22 +44,15 @@ The `.tex` sources under `public/tex/` are the **day-to-day editing surface** fo
 | `src/scripts/` | Client-side modules imported by pages (e.g. `board-filter.ts`) |
 | `public/tex/` | LaTeX source files and deployed PDFs, co-located by topic |
 | `public/tex/_shared/pack_preamble.tex` | Shared Further Maths QBT/Soln pack preamble |
-| `public/tex/**/build/` | latexmk output (PDF + `.synctex.gz`) — gitignored staging |
+| `public/tex/**/build/` | latexmk output (PDF + `.synctex.gz`) — gitignored |
 | `public/tex/**/build/aux/` | latexmk auxiliary files — gitignored |
-| `scripts/` | Node tooling: deploy, compile, hygiene, generators (see below) |
-| `scripts/lib/` | Shared modules (`tex-utils`, `staging`, `site-tree`, `resources-derive`) with colocated `*.test.mjs` |
+| `scripts/` | Node tooling: import, compile, hygiene, generators. `scripts/README.md` has the npm scripts, the module map and the conventions |
+| `scripts/lib/` | Shared modules with colocated `*.test.mjs` |
 | `og-images/` | Source for link-preview images: TikZ diagram plus `build_tmua.py`, which writes `public/og/tmua.png` (Python + Pillow, run by hand; not part of the build) |
-| `data/` | Tracked agent hand-off files. Currently `resources-pending.json` (deploy → splicer); see `data/README.md` |
 | `.husky/pre-commit`, `.husky/commit-msg` | Pre-commit runs `npx vitest run` and the read-only checks (see Tooling); commit-msg runs `check-private-terms` on the message |
-| `.vscode/settings.json` | LaTeX Workshop config (latexmk recipe, ChkTeX) — kept in sync with `compile-tex.mjs` |
+| `.vscode/settings.json` | LaTeX Workshop config (latexmk recipe; ChkTeX and bad-box messages off) — kept in sync with `compile-tex.mjs` |
 
-The home page contains the Further Maths strand picker at `/#further-maths`, linking directly to `/further-maths/core-pure` and `/further-maths/further-mechanics`. The legacy `/further-maths` route redirects to `/#further-maths` (a generated HTML redirect on the static host). The shared header links directly to all three resource listings; from 1024px up it is a single sticky row whose height is the `--header-h` token, and the strand sidebar (sticky, independently scrollable) and anchor offsets (`--anchor-offset` → `scroll-padding-top`) derive from it. Below 1024px the header scrolls away and strand pages pin the board/topic pickers instead. All pages share one `.page-container` width. Internal links open in the same tab; only the viewer's raw "Open PDF" and external profile links open new tabs. The board filter dims non-matching booklets (they stay in place and clickable) and updates per-topic counts. Site-wide presentation lives in `src/styles/global.css` with palette and font tokens in `tailwind.config.mjs`: warm white, dark ink, burgundy accents, serif headings and ruled resource lists. Light mode is the default. `ThemeToggle.astro` switches the shared CSS colour variables, with the explicit choice persisted in `localStorage` under `resources-theme`; `Layout.astro` restores it before paint. The document and source headers also expose the toggle. In `src/data/resources.ts`, strand categories are named **`FM - Core Pure`** and **`FM - Further Mechanics`** (constants `FM_CP`, `FM_MECH`); helpers that aggregate across strands match the prefix `FM - ` (`FM_PREFIX`).
-
-### Mobile site behaviour
-
-Below 1024px, Further Maths pages use labelled native exam-board and topic selects; the desktop sidebar controls remain synchronised. Board selection dims non-matching booklets, preserves the topic fragment, and persists per strand. Topic selection updates the fragment and focuses the destination heading.
-
-Below 768px, resource links marked `data-mobile-same-tab` use the current tab; `Layout.astro` updates their targets on load and viewport changes. Resource-row clicks in `src/scripts/board-filter.ts` follow the same breakpoint. Desktop links retain the new-tab workflow. The mobile PDF page includes a LaTeX source link where available. Mobile header tuition navigation is available in the footer; the theme toggle uses its accessible label with a compact icon.
+Pages, layouts, styles, mobile behaviour and search metadata (including the rule that internal links end in `/`) are described in `src/README.md`: read it before changing anything under `src/` outside `src/data/`. In `src/data/resources.ts`, strand categories are named **`FM - Core Pure`** and **`FM - Further Mechanics`** (constants `FM_CP`, `FM_MECH`); helpers that aggregate across strands match the prefix `FM - ` (`FM_PREFIX`).
 
 ### LaTeX directory layout
 
@@ -73,7 +66,7 @@ public/tex/
         qbt/
           _QBT__<Topic>.tex           ← question pack (source, tracked)
           _QBT__<Topic>.pdf           ← deployed PDF (tracked)
-          build/                      ← gitignored staging area
+          build/                      ← gitignored build output
             _QBT__<Topic>.pdf
             aux/
         soln/
@@ -167,13 +160,14 @@ the shared `\input` path stable. `scripts/check-pack-preamble.mjs` enforces
 this convention. The shared preamble does not include TMUA topic lines or
 answer labels, nor tutoring worksheet timing/student header machinery.
 
-**Legacy Solution boxes on import:** packs imported from Overleaf may still use
-the old Solution `tcolorbox`. After importing one, run
+**Legacy Solution boxes on import:** an older pack may still use the old
+Solution `tcolorbox`. After importing one, run
 `node scripts/migrate-solution-boxes.mjs` to convert its boxes (the importer
 already points packs at the site shared preamble).
 
-**Value of g:** Further Mechanics packs call `\djsMechanicsPack` in their
-preamble, so the front page says to take g = 9.8 m s⁻² unless a question states
+**Value of g:** Further Mechanics packs, and only they, call `\djsMechanicsPack`
+in their preamble (`check-pack-preamble` enforces both), so the front page says
+to take g = 9.8 m s⁻² unless a question states
 otherwise, and that solutions also give final answers for g = 10 m s⁻² where
 these differ. A stem states g only when the question needs that value: a
 show-that or printed value that fails with g = 10, an exact or prescribed form
@@ -224,7 +218,7 @@ dates are separate records; a completed audit refreshes both.
 
 PDFs inside `public/tex/**/build/` are build outputs — never read or edit them. PDFs directly in `qbt/` or `soln/` are the deployed production files.
 
-At first import, filenames are produced by `sanitizeTopic` in `scripts/deploy-from-overleaf.mjs`, which replaces every non-alphanumeric character in the Overleaf topic name with an underscore. Do not rename pack files by hand after import; the filenames are referenced from `src/data/resources.ts`.
+At import, filenames are produced by `sanitizeTopic` in `scripts/import-pack.mjs`, which replaces every non-alphanumeric character in the pack title with an underscore. Do not rename pack files by hand after import; the filenames are referenced from `src/data/resources.ts`.
 
 ### TMUA papers and solutions (managed files)
 
@@ -302,7 +296,7 @@ For every topic, `_QBT__<Topic>.tex` (under `qbt/`) and `_QBT___Solns__<Topic>.t
 The boundary is the first line matching either Solution opener (`SOLUTION_OPEN_RE` in `scripts/lib/question-blocks.mjs`):
 
 - `\begin{djsSolution}`, closed by `\end{djsSolution}`. All in-repo packs use this.
-- The legacy `\begin{tcolorbox}[...title={\textbf{Solution}}...]`, closed by its matching `\end{tcolorbox}`. It is still accepted because freshly imported Overleaf packs may emit it until `scripts/migrate-solution-boxes.mjs` converts them.
+- The legacy `\begin{tcolorbox}[...title={\textbf{Solution}}...]`, closed by its matching `\end{tcolorbox}`. It is still accepted because an older pack may arrive with it until `scripts/migrate-solution-boxes.mjs` converts it.
 
 `splitSolnBlock` records the opener and matching closer (`findSolutionClose`). QBT statements may themselves contain other tcolorboxes (e.g. info/working boxes); only a Solution opener marks the statement/solution split.
 
@@ -312,13 +306,15 @@ If the boundary detection or block shape changes (Solution box openers/closers, 
 
 ### `check-tex` body-comment hygiene
 
-`scripts/check-tex.mjs` lints the document body of every QBT/soln `.tex` file between `\begin{document}` and `\end{document}`. It rejects any full-line comment except the canonical question delimiter inserted by `clean-tex`:
+`scripts/check-tex.mjs` lints the document body of every QBT/soln `.tex` file between `\begin{document}` and `\end{document}`. It rejects any full-line comment except the canonical question delimiter and source hint that `clean-tex` inserts around each `\questionitem`:
 
 ```latex
 % ---- Question 1 ----
+\questionitem
+% [Source: _QBT__<Topic>, Q1]
 ```
 
-Any other full-line `% ...` line in the body is a violation. Inline comments after content are fine.
+Any other full-line `% ...` line in the body is a violation. Inline comments after content are fine. Pack preambles hold no full-line comments either (`check-pack-preamble`).
 
 If `check-tex` flags a file, the usual fix is `npm run clean-tex`, which strips the offending comments, collapses runs of more than two blank lines down to two, and re-numbers the question delimiters.
 
@@ -342,7 +338,7 @@ The `djsSolution` box's spacing relies on this source layout inside every soluti
 
 ### Editing question content in-repo — primary workflow
 
-Once a topic exists under `public/tex/`, day-to-day fixes happen here in the repo, not back in Overleaf. Typical loop:
+Once a pack exists under `public/tex/`, day-to-day fixes happen here in the repo, never in the folder it was imported from. Typical loop:
 
 1. Edit the **QBT** `.tex` (`qbt/_QBT__<Topic>.tex`) — the source of truth for question statements. For solution-only edits, edit the SOLN `.tex` directly inside its `djsSolution` box.
 2. `npm run check-questions` — read-only drift detector. If a QBT statement was edited, its SOLN twin will now show as drifted; if delimiters or `\questionitem` counts no longer line up, the pair is reported as **structurally broken** (must be fixed by hand before sync can proceed).
@@ -356,36 +352,18 @@ Once a topic exists under `public/tex/`, day-to-day fixes happen here in the rep
 
 CI never runs `latexmk`, so whatever `.pdf` is committed is what ships to GitHub Pages — the recompile step is yours.
 
-### Deploying a new topic from Overleaf — initial-import workflow
+### Importing a pack
 
-For a topic that doesn't yet exist under `public/tex/`, the import path is:
-
-```pwsh
-npm run deploy-overleaf   # → node scripts/deploy-from-overleaf.mjs
-```
-
-The script is interactive. It clones an Overleaf project over HTTPS using `OVERLEAF_GIT_TOKEN` (in `.env` at the repo root), or reads a local pack folder (below), normalizes QBT/Soln `.tex` files into the shared pack-preamble wrapper, compiles both PDFs locally with the same `latexmk` flags as LaTeX Workshop, copies the `.tex` + `.pdf` for both QBT and solutions into `public/tex/<sitePath>/{qbt,soln}/`, runs `clean-tex` over them, and stages a `data/resources-pending.json` entry for the splicer. Re-running the script for a topic that already exists is supported (it'll prompt to overwrite) but the more common follow-up flow is to just edit the in-repo `.tex` files directly.
-
-Overleaf projects may use a flat `\input{preamble.tex}` with that preamble
-bundled into the project. `deploy-from-overleaf.mjs` rewrites this to
-`\input{../../../../_shared/pack_preamble.tex}` when importing into the site.
-If the flat Overleaf import is present but the bundled `preamble.tex` is
-missing, deploy warns and uses the site shared preamble.
-
-For a Further Maths pack, deploy also sets both files' header topic to the
-topic name typed at the prompt (which becomes the staged site title) and
-writes `\djsSitePath` from the strand and topic section the chosen folder
-belongs to (`importedPackIdentity`), so the pack satisfies `check-resources`
-once it is spliced into `resources.ts`.
-
-- **Local pack folder**: the source prompt also accepts a path to an existing local folder (quotes are stripped) in place of an Overleaf URL. The folder is read in place: no token, no clone, no temporary directory. When it holds a `pack.json` (`format: 1`, with `topic`, `questions` and `solutions` file names), those two files are used directly, filename discovery is skipped, and the topic prompt offers `topic` as its default. Without `pack.json`, the same discovery as for a clone runs on the folder. Everything after that (placement, preamble rewrite, compile, `clean-tex`, staging) is shared with the Overleaf path; the staging entry records no Overleaf project ids.
-- **One project per topic** is the modern convention: a single Overleaf project containing both `(QBT) <Topic>.tex` and `(QBT) [Solns] <Topic>.tex`. The script auto-detects both files via `findPackTex` in `scripts/deploy-from-overleaf.mjs`.
-- **Legacy fallback**: if only one of the two files is found in the first clone, the script prompts for a second Overleaf URL and pulls the missing kind from there. Single-`.tex` projects whose name predates the `(QBT) ` convention are also handled — discovery falls back to the only `.tex` with `\begin{document}` when the basename is unambiguous (`[Solns]` ⇒ soln, `(QBT) ` ⇒ qbt).
-- **Site-path picker** (`scripts/lib/site-tree.mjs`): instead of typing a freehand path, the script prints a shallow tree of `public/tex/` and drills down interactively. At each level you may pick a numbered subfolder, type `..` to go up, `use` to confirm the current folder, or `new <kebab-name>` to create one. The tex root itself can never be the deploy target.
-- **Staging file** (`data/resources-pending.json`, schema v1): after the PDFs land and `clean-tex` succeeds, the script appends one entry per deployed pair via `addPendingEntry` (`scripts/lib/staging.mjs`). Each entry carries `id`, `category`, `topic`, `boards`, `siblingId` (the splicer's insertion anchor — id of the last existing entry in the same topic group, derived by `scripts/lib/resources-derive.mjs`), Overleaf project ids, and the two `/tex/...` paths. Re-deploying the same topic id prompts to overwrite the pending entry.
-- **Splicer hand-off (out of scope here)**: a downstream agent consumes `data/resources-pending.json`, splices the new rows into `src/data/resources.ts` after each `siblingId`, and clears or archives the consumed entries. The deploy script never edits `resources.ts` itself.
-
-See [`data/README.md`](data/README.md) for the staging file's full schema and lifecycle.
+`npm run import-pack` adds a pack to the site from a local folder holding its
+questions and solutions documents (named by `pack.json` when there is one).
+It places them under `public/tex/further-maths/<strand>/<section>/`, sets the
+header title and `\djsSitePath`, strips comments, compiles both PDFs, writes
+the pack's two rows into `src/data/resources.ts` after the section's last
+pack, and regenerates the generated data files. With `--yes` it asks
+nothing, and `--folder`, `--site-path`, `--title`, `--boards` and `--id` must
+all be given, with `--section` for a section folder that holds no pack yet.
+The section must already exist in `src/data/topics.ts`. Packs are
+TikZ-only.
 
 ### Astro dev / build / check
 
@@ -414,30 +392,15 @@ The `*.generated.ts` files **must not be hand-edited** — they're regenerated o
 | Package manager | npm (Node ≥ 20) |
 | Test runner | Vitest (`npm run test` → `vitest run`) — colocated `*.test.mjs` next to each script |
 | LaTeX build | `latexmk` — args mirrored between `.vscode/settings.json` and `scripts/compile-tex.mjs` |
-| LaTeX lint (editor) | ChkTeX via LaTeX Workshop on edit (in-editor only; no CI) |
+| LaTeX lint (editor) | None: ChkTeX and bad-box messages are off in the LaTeX Workshop settings, and CI runs no LaTeX lint |
 | Pre-commit | Husky → `npx vitest run`, then `check-tex`, `check-solution-layout`, `check-pack-preamble`, `check-questions`, `check-resources`, `check-pairs`, `check-generated`, `check-private-terms`. The `commit-msg` hook runs `check-private-terms` on the message |
 | Pre-`dev`/`build`/`check` | `count-questions` + `hash-assets` + `check-pack-preamble` + `check-questions` (`check-resources`/`check-pairs`/`check-generated` are pre-commit-only to keep the inner loop fast) |
 
-### npm scripts
-
-| Script | What it does |
-|--------|--------------|
-| `npm run test` | Vitest run over all `*.test.mjs` |
-| `npm run check-tex` | Read-only hygiene check on QBT/soln `.tex` bodies (no full-line comments outside `% ---- Question N ----` delimiters) |
-| `npm run check-solution-layout` | Read-only check that worked solutions follow the *Solution source layout* (blank lines around displays, `\frac` in sentences, `\mathrm` units, no `\!` before `\left`) |
-| `npm run check-pack-preamble` | Read-only convention check for Further Maths QBT/Soln shared `pack_preamble.tex` wrappers |
-| `npm run clean-tex` | Strips full-line comments from QBT/soln bodies, collapses blank-line runs, re-numbers question delimiters |
-| `npm run check-questions [scope]` | Read-only drift detector: reports any QBT/soln pair where the SOLN statement region differs from the QBT statement, plus structurally broken pairs (numbering mismatches, duplicate delimiters, missing/extra `\questionitem`, delimiter numbering gaps). Same scope arg as `compile-tex`. Non-zero exit on drift |
-| `npm run sync-questions [scope]` | Rewrites SOLN statement regions in place to match QBT. Solution box content is never touched. Skips structurally broken pairs (run `check-questions` first to triage) |
-| `npm run check-resources` | Read-only validator for `src/data/resources.ts`: missing files on disk, duplicate ids, broken `pairId` links (unresolved / asymmetric / type or topic mismatch), missing entries in `questionCounts.generated.ts`, Further Maths pack headers that differ from their title or site paths that differ from `topics.ts`, orphan PDFs (warning). Non-zero exit on any violation |
-| `npm run check-generated` | Read-only verifier that the `*.generated.ts` files in `src/data/` match what `count-questions` and `hash-assets` would produce now (catches stale generated state from `--no-verify` commits or hand-edits). Non-zero exit on staleness |
-| `npm run check-pairs` | Read-only check that every topic with any pack asset has all four of QBT/soln `.tex`/`.pdf`, and that no tracked file under `public/tex` is missing |
-| `npm run check-private-terms` | Read-only check that no private term appears in tracked/new text files (or, with `--message FILE`, a commit message). The list comes from `PRIVATE_TERMS` (CI secret), `PRIVATE_TERMS_FILE`, or `~/.config/private-terms.txt`; skipped if none. Hits are reported by term number only |
-| `npm run mark-checked <solutions-id> [--date YYYY-MM-DD]` | Records in `src/data/reviews.json` that a pack's worked solutions were checked: the date (default today) and the current hash of the pack's `.tex` pair. Run it after the pack's last `.tex` edit |
-| `npm run mark-checked <solutions-id> --reordered` | After an edit that only put a pack's questions in a new order, keeps its existing check date and stores the new hash. Refuses unless the committed pack matched its record and both working-tree files are the committed ones with their questions reordered the same way (delimiters, source hints and `\djsLastUpdated` may differ) |
-| `npm run review-status [scope \| solutions-id]` | Read-only report of packs never checked, checked and unchanged, or changed since their check. Scope as for `check-questions` (default `further-maths`); a solutions id reports one pack |
-| `npm run compile-tex [scope] [--deploy]` | Bulk latexmk over `further-maths` (default) or `all`; `--deploy` copies built PDFs up beside the source on success. TMUA files are never compiled here (the `tmua` scope is refused) |
-| `npm run deploy-overleaf` | Interactive Overleaf clone (or local pack folder) + compile + place + stage (see workflow above) |
+`scripts/README.md` holds the npm scripts table, the importer's flags, the
+script module map, the script conventions and what each catalogue check
+enforces. Read it before changing anything under `scripts/`. Through npm,
+flags need `--` before them: `npm run mark-checked -- <solutions-id> --date <YYYY-MM-DD>`,
+or npm swallows `--date` and records today's date.
 
 ### latexmk args (from `.vscode/settings.json`)
 
@@ -450,73 +413,11 @@ The `*.generated.ts` files **must not be hand-edited** — they're regenerated o
 
 ### Tests
 
-`*.test.mjs` files live next to the module they cover: every `scripts/lib/` module, plus the pure helpers exported by `check-tex`, `clean-tex`, `compile-tex`, `count-questions`, `hash-assets` and `deploy-from-overleaf`. Read the test file for what is covered.
+`*.test.mjs` files live next to the module they cover: every `scripts/lib/` module, plus the pure helpers exported by `check-tex`, `clean-tex`, `compile-tex`, `count-questions`, `hash-assets` and `import-pack`. Read the test file for what is covered.
 
 **After editing any `scripts/**/*.mjs` file, run `npx vitest run`.** Pre-commit will also run it. Do not modify existing test assertions without explicit user approval.
 
 When adding a new pure helper to a tested module, add a colocated test case. Keep I/O at the script entry point (`main()`); branchy logic should be importable and testable.
-
-### Script module map
-
-| Path | Purpose |
-|------|---------|
-| `scripts/deploy-from-overleaf.mjs` | Interactive Overleaf clone or local pack folder read, compile, placement, cleanup, and staging append |
-| `scripts/compile-tex.mjs` | Bulk `latexmk` over `further-maths` or `all` (never TMUA); `--deploy` promotes built PDFs beside source |
-| `scripts/check-tex.mjs` | Read-only body-comment hygiene check |
-| `scripts/check-solution-layout.mjs` | Read-only *Solution source layout* check over Further Maths soln packs |
-| `scripts/check-pack-preamble.mjs` | Read-only Further Maths shared-preamble wrapper convention check |
-| `scripts/clean-tex.mjs` | Strips full-line body comments, collapses long blank runs, re-inserts numbered question delimiters |
-| `scripts/migrate-fm-pack-preamble.mjs` | Mechanical codemod for migrating Further Maths QBT/Soln files to the shared pack preamble |
-| `scripts/migrate-solution-boxes.mjs` | Idempotent codemod converting legacy Solution tcolorboxes in Further Maths SOLN packs to `djsSolution`; `--dry-run`, optional path-substring filters, non-zero exit if a box is skipped. Re-run after importing old-style packs; not wired into `deploy-from-overleaf` |
-| `scripts/check-questions.mjs` | Read-only QBT ⇄ SOLN drift and structural integrity detector |
-| `scripts/sync-questions.mjs` | Rewrites SOLN statement regions from QBT while preserving solution boxes and prelude |
-| `scripts/check-resources.mjs` | Read-only validator for `src/data/resources.ts` and generated count coverage |
-| `scripts/check-generated.mjs` | Read-only byte-match verifier for generated TS files |
-| `scripts/check-pairs.mjs` | Read-only QBT/soln `.tex`/`.pdf` quartet and tracked-missing check |
-| `scripts/check-private-terms.mjs` | Read-only private-term scan of the tree or a commit message (list kept outside the repo) |
-| `scripts/count-questions.mjs` | npm pre-hook generator for `src/data/questionCounts.generated.ts` |
-| `scripts/hash-assets.mjs` | npm pre-hook generator for `src/data/fileHashes.generated.ts` |
-| `scripts/mark-checked.mjs` | Writes a pack's check date and `.tex` hash to `src/data/reviews.json`; `--reordered` carries an existing check across a pure reorder |
-| `scripts/review-status.mjs` | Read-only report of each pack's check status from `src/data/reviews.json` |
-| `scripts/lib/reviews.mjs` | `reviews.json` parse/render/atomic-write, `.tex` pair hashing (CRLF-insensitive) and status classification behind `mark-checked` and `review-status` |
-| `scripts/lib/pack-preamble.mjs` | Further Maths pack path/depth helpers, shared-preamble migration, Overleaf import normalization, initial dates, date validation, pack title and site-path read/write (`readPackIdentity`, `applyPackIdentity`) and convention checks |
-| `scripts/lib/pair-presence.mjs` | Pure quartet / tracked-missing checker behind `check-pairs` |
-| `scripts/lib/private-terms.mjs` | Pure term-list parsing and whole-token matching behind `check-private-terms` |
-| `scripts/lib/tex-utils.mjs` | Shared path, `.tex` discovery, document boundary, and QBT/soln pair helpers |
-| `scripts/lib/question-blocks.mjs` | Pure parser/synchronizer for `check-questions` and `sync-questions`; preserves CRLF/LF. `questionOrderChange` recognises a file whose questions were only reordered |
-| `scripts/lib/solution-boxes.mjs` | Pure legacy-Solution-box → `djsSolution` rewrite used by `migrate-solution-boxes` |
-| `scripts/lib/solution-layout.mjs` | Pure display/paragraph tokenizer and layout rules behind `check-solution-layout` |
-| `scripts/lib/site-tree.mjs` | Interactive site-path picker for Overleaf deploys |
-| `scripts/lib/resources-derive.mjs` | Regex-based introspection of `src/data/resources.ts` (and the strand/topic labels in `src/data/topics.ts`, `parseStrands`/`sitePathLabels`) for staging and validation |
-| `scripts/lib/resources-check.mjs` | Pure resource catalogue invariant checker |
-| `scripts/lib/staging.mjs` | `data/resources-pending.json` read/merge/atomic-write helpers |
-
-### Script conventions
-
-- Pure helpers go in `scripts/lib/` with colocated `*.test.mjs` coverage.
-- Use atomic writes for files consumed by agents or scripts: write to `<file>.<rand>.tmp`, then `renameSync`. `staging.writePendingAtomic` is the reference pattern.
-- Avoid new dependencies without good reason. The deploy script intentionally inlines a small `.env` parser instead of adding `dotenv`.
-- `SKIP_TEX_FILES` in `deploy-from-overleaf.mjs` lists Overleaf scratch files (`draft.tex`, `original.tex`) that should never be selected as packs. Extend the set rather than adding ad hoc filtering.
-
-### Database health invariants
-
-The pre-commit checks split responsibility cleanly:
-
-- **`resources.ts` ↔ filesystem / generated counts:** `check-resources` and `scripts/lib/resources-check.mjs`. Every entry's `file` exists on disk; ids are unique; `pairId` resolves and is symmetric; partner types are `{questions, solutions}`; partner `topic` and `category` match; each `type: 'answers'` entry has a `paperId` naming a `type: 'questions'` entry in its category, at most one per paper, and no other entry carries `paperId`; `type: 'questions'` `/qbt/` entries are keyed in `questionCounts.generated.ts`; each Further Maths QBT/soln entry's `.tex` header topic equals its `title` and its `\djsSitePath` names its strand and `topics.ts` section. `orphan-pdf` is currently a warning while the corpus has a known backlog.
-- **Generated TS freshness:** `check-generated`. Generated files must byte-match what `count-questions` and `hash-assets` would produce now. It stays pre-commit-only because `pre*` hooks already run the generators first.
-- **In-file QBT/SOLN structural integrity:** `validateBlocks` in `scripts/lib/question-blocks.mjs`, surfaced via `check-questions`. Each question block has exactly one `\questionitem`; delimiter numbers are exactly `1..K`.
-- **Pair-level QBT ⇄ SOLN parity:** `syncPair` in `scripts/lib/question-blocks.mjs`. Question-number sets are equal; SOLN statement regions match QBT byte-for-byte.
-- **Further Maths shared preamble convention:** `check-pack-preamble` ensures QBT/Soln `.tex` files under `public/tex/further-maths/` stay at the fixed depth and import `../../../../_shared/pack_preamble.tex` with the correct `\djsQbtHeader{}` / `\djsSolnHeader{}` macro, exactly one valid `\djsLastUpdated{D Month YYYY}` in the preamble, and at most one complete `\djsSitePath{}{}` there (its presence and values are checked by `check-resources`).
-
-### Deploy workflow contract
-
-`deploy-from-overleaf.mjs` mutates many parts of the repo at once. Preserve these invariants when editing it:
-
-1. One project per topic is the modern convention; the legacy two-project fallback must keep working.
-2. The site-path picker is the only way to choose a deploy directory. Do not add a freehand path flag without good reason. The tex root itself can never be the deploy target.
-3. Staging entries in `data/resources-pending.json` are append-or-replace by `id`. Re-deploys must prompt for overwrite confirmation. If the schema changes, update `data/README.md` and bump `schemaVersion` in lockstep.
-4. The deploy script must not edit `src/data/resources.ts`; the staging file is the only hand-off to the splicer agent.
-5. `OVERLEAF_GIT_TOKEN` is read from `.env` at the repo root via the inline loader. Never log it.
 
 ---
 
@@ -524,15 +425,12 @@ The pre-commit checks split responsibility cleanly:
 
 When durable project conventions change, update `AGENTS.md` and the directly related source/reference files:
 
-- **`scripts/lib/` modules grow or change responsibilities:** update the script module map above.
-- **The Overleaf deploy flow changes** (project layout, env vars, staging schema): update `data/README.md` and the Deploying a new topic / Deploy workflow contract sections above.
+- **Anything under `scripts/` changes** (a script, an npm script, a `scripts/lib/` module, a check, a convention): update `scripts/README.md`.
+- **The import flow changes** (flags, what it writes or refuses): update `scripts/README.md` and the Importing a pack section.
 - **`check-tex` / `clean-tex` rules change** (allowed comment shapes, scoped directories): update the `check-tex` body-comment hygiene section.
 - **The `djsSolution` spacing or the solution layout rules change:** update the `djsSolution` bullet, the Solution source layout section and `scripts/lib/solution-layout.mjs` together.
 - **`check-questions` / `sync-questions` boundary detection changes** (Solution box openers/closers, prelude shape): update the QBT ⇄ SOLN statement contract section.
 - **The LaTeX directory layout or file-naming patterns change:** update the structure tables and naming-pattern guidance above.
-- **The shared pack preamble convention changes:** update the LaTeX directory layout section, deploy workflow, and `scripts/lib/pack-preamble.mjs`.
-- **npm scripts or pre-commit hooks change:** update the Tooling and npm scripts sections.
-
-### Search metadata
-
-`Layout.astro` supplies absolute, trailing-slash canonical URLs and Open Graph/Twitter metadata. Pages share the square logo by default; a page can pass a wide `shareImage` (which also switches the Twitter card to `summary_large_image`). TMUA pages pass `TMUA_SHARE_IMAGE` from `resources.ts`, built from `og-images/`; it deliberately states no counts so it cannot go stale. The TMUA listing's description is built from `getTmuaStats()` (sets, papers, questions, questions with worked solutions), so its counts update with the catalogue. Internal page links must also end in `/` (e.g. `/tmua/`, `/view/<id>/`) so they match the canonical and avoid the host's 301; `trailingSlash: 'always'` in `astro.config.mjs` makes the dev server 404 on a missing slash. Document titles distinguish questions, answer keys and worked solutions. Source viewers are generated only for existing LaTeX files and marked `noindex, follow`; the sitemap excludes source viewers, the 404 page and the legacy Further Maths redirect. `public/robots.txt` points crawlers at the sitemap index and disallows raw `.tex` files, which are linked only from the noindexed source viewers.
+- **The shared pack preamble convention changes:** update the LaTeX directory layout section, `scripts/lib/pack-preamble.mjs` and the importer notes in `scripts/README.md`.
+- **npm scripts or pre-commit hooks change:** update the Tooling section and `scripts/README.md`.
+- **Site presentation, mobile behaviour or search metadata change:** update `src/README.md`.

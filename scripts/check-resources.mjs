@@ -1,7 +1,8 @@
 /**
  * Read-only verifier for `src/data/resources.ts`. Catches broken catalogue
  * state that would otherwise only surface at runtime (404s in the viewer,
- * splicer agent crashes, cache-busting misses).
+ * rows the scripts silently skip, packs no strand page lists, cache-busting
+ * misses).
  *
  * Validations live in `scripts/lib/resources-check.mjs` and are pure; this
  * file only collects the inputs (parse resources.ts, walk the filesystem,
@@ -20,7 +21,12 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join, relative, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parseResourcesEntries, parseStrands } from './lib/resources-derive.mjs';
+import {
+  catalogueIdKeys,
+  parseBoardLists,
+  parseResourcesEntries,
+  parseStrands,
+} from './lib/resources-derive.mjs';
 import { checkResources } from './lib/resources-check.mjs';
 import { findPdfFiles } from './hash-assets.mjs';
 
@@ -108,15 +114,24 @@ function loadPackSources(entries) {
 
 function main() {
   const resourcesPath = join(repoRoot, 'src', 'data', 'resources.ts');
-  const entries = parseResourcesEntries(readFileSync(resourcesPath, 'utf-8'));
+  const resourcesTs = readFileSync(resourcesPath, 'utf-8');
+  const entries = parseResourcesEntries(resourcesTs);
   if (entries.length === 0) {
     console.error(`check-resources: parsed 0 entries from ${relative(repoRoot, resourcesPath)} — parser may have lost sync.`);
     process.exit(1);
   }
   const topicsPath = join(repoRoot, 'src', 'data', 'topics.ts');
-  const strands = parseStrands(readFileSync(topicsPath, 'utf-8'));
+  const strands = parseStrands(readFileSync(topicsPath, 'utf-8'), parseBoardLists(resourcesTs));
   if (strands.length === 0) {
     console.error(`check-resources: parsed 0 strands from ${relative(repoRoot, topicsPath)} — parser may have lost sync.`);
+    process.exit(1);
+  }
+  const unresolved = strands.filter((s) => !s.boards);
+  if (unresolved.length > 0) {
+    console.error(
+      `check-resources: could not resolve the board list of ${unresolved.map((s) => s.title).join(', ')} ` +
+        `from ${relative(repoRoot, topicsPath)} and ${relative(repoRoot, resourcesPath)} — parser may have lost sync.`,
+    );
     process.exit(1);
   }
 
@@ -131,6 +146,7 @@ function main() {
     questionCountKeys,
     packSources: loadPackSources(entries),
     strands,
+    idKeys: catalogueIdKeys(resourcesTs),
   });
 
   // Group by id for a more scannable report; ungrouped findings (orphan-pdf)
