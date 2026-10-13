@@ -6,7 +6,9 @@
  * sets the header title and `\djsSitePath`, strips comments, compiles both
  * PDFs, writes the pack's two rows into `src/data/resources.ts` after the
  * section's last pack, and regenerates the generated data files. If any of
- * that fails, everything it wrote is put back.
+ * that fails, or the run is interrupted, everything it wrote is put back. A
+ * run that is killed outright leaves a journal of what it wrote, and the next
+ * run puts that back before it starts.
  *
  * Usage:
  *   npm run import-pack -- [--folder DIR] [--site-path STRAND/SECTION]
@@ -29,7 +31,7 @@ import {
   statSync,
   writeFileSync,
 } from 'node:fs';
-import { randomBytes } from 'node:crypto';
+import { createHash, randomBytes } from 'node:crypto';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync, spawnSync } from 'node:child_process';
@@ -38,6 +40,7 @@ import { parseArgs } from 'node:util';
 import { stdin, stdout } from 'node:process';
 
 import { processContent } from './clean-tex.mjs';
+import { syncPair } from './lib/question-blocks.mjs';
 import { listTreeShallow, pickSitePath } from './lib/site-tree.mjs';
 import {
   formatPackDate,
@@ -61,8 +64,23 @@ import { insertPackRows, solutionsId, verifyPackRows } from './lib/resources-wri
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(__dirname, '..');
-const fmRoot = join(repoRoot, 'public', 'tex', 'further-maths');
-const resourcesPath = join(repoRoot, 'src', 'data', 'resources.ts');
+
+/** The generated data files, under `src/data/`, that the import regenerates. */
+export const GENERATED_FILES = ['questionCounts.generated.ts', 'fileHashes.generated.ts'];
+
+/**
+ * The paths the import reads and writes in a site checkout.
+ * @param {string} root
+ */
+export function sitePaths(root) {
+  return {
+    root,
+    fmRoot: join(root, 'public', 'tex', 'further-maths'),
+    resources: join(root, 'src', 'data', 'resources.ts'),
+    topics: join(root, 'src', 'data', 'topics.ts'),
+    generated: GENERATED_FILES.map((name) => join(root, 'src', 'data', name)),
+  };
+}
 
 /** Scratch files a pack folder may hold that are never a pack document. */
 export const SKIP_TEX_FILES = new Set(['draft.tex', 'original.tex']);
@@ -315,7 +333,7 @@ export function resolveTexPairFromDir(dir, topicName, manifest) {
   const solnPath = join(dir, manifest.solutions);
   for (const path of [qbtPath, solnPath]) {
     if (!existsSync(path)) {
-      throw new Error(`${basename(path)} is listed in ${PACK_MANIFEST} but missing from ${dir}`);
+      throw new Error(`${basename(path)} is listed in ${PACK_MANIFEST} but missing from the pack folder ${basename(dir)}`);
     }
   }
   return { qbtPath, solnPath };
@@ -368,7 +386,7 @@ export function findPackTex(dir, kind, topicName) {
   }
 
   if (withDoc.length === 0) {
-    throw new Error(`No .tex with \\\\begin{document} in ${dir}`);
+    throw new Error(`No .tex with \\\\begin{document} in ${basename(dir)}`);
   }
 
   if (withDoc.length === 1) {
@@ -458,11 +476,14 @@ export function compileFailureSummary(log, output) {
 
 /**
  * Compile a placed `.tex` into its `build/` folder with the latexmk arguments
- * the editor uses. Returns the PDF's path, or what went wrong.
+ * the editor uses, plus `-f` as `compile-tex` passes it: without it, a run
+ * that was killed or failed for a reason outside the `.tex` leaves latexmk
+ * refusing every retry without showing an error. Returns the PDF's path, or
+ * what went wrong.
  * @param {string} texFilePath
  * @returns {{ ok: true, pdf: string } | { ok: false, log: string }}
  */
-function compileTex(texFilePath) {
+export function compileTex(texFilePath) {
   const texDir = dirname(texFilePath);
   const texName = basename(texFilePath);
   const outDir = join(texDir, 'build');
@@ -471,6 +492,7 @@ function compileTex(texFilePath) {
     [
       '-pdf',
       '-cd',
+      '-f',
       '-interaction=nonstopmode',
       '-synctex=1',
       '-file-line-error',
@@ -488,23 +510,50 @@ function compileTex(texFilePath) {
   return { ok: false, log: compileFailureSummary(log, output) };
 }
 
-function repoRel(path) {
-  return path.slice(repoRoot.length + 1).replace(/\\/g, '/');
+/** Regenerate the generated data files, as the `pre*` npm hooks do. */
+function runGenerators(root) {
+  for (const script of ['count-questions.mjs', 'hash-assets.mjs']) {
+    execFileSync(process.execPath, [join(__dirname, script)], { cwd: root, stdio: 'pipe' });
+  }
+}
+
+/** `path` relative to `root`, with forward slashes. */
+function relTo(root, path) {
+  return path.slice(root.length + 1).replace(/\\/g, '/');
 }
 
 /** Write through a temporary file, so a reader never sees half a file. */
 function writeAtomic(path, text) {
   const tmp = `${path}.${randomBytes(8).toString('hex')}.tmp`;
-  writeFileSync(tmp, text, 'utf8');
-  renameSync(tmp, path);
+  try {
+    writeFileSync(tmp, text, 'utf8');
+    renameSync(tmp, path);
+  } catch (e) {
+    try {
+      rmSync(tmp, { force: true });
+    } catch {
+      // Reported through the original error.
+    }
+    throw e;
+  }
+}
+
+function sha256(text) {
+  return createHash('sha256').update(text).digest('hex');
+}
+
+/** What to print for an error: the message of an expected one, else its stack. */
+function describeError(e) {
+  return e instanceof ImportError ? e.message : (e?.stack ?? String(e));
 }
 
 /**
  * A pack document as it is placed on the site: in the shared-preamble
  * wrapper, with its header title and site path set (`identity`), dated if it
  * was undated, and with no full-line comment left except the question
- * delimiters and source hints. Preamble comments go here; the body is
- * cleaned as clean-tex cleans it.
+ * delimiters and source hints, before `\begin{document}` or after
+ * `\end{document}` included. Preamble comments go here; the rest is cleaned
+ * as clean-tex cleans it.
  *
  * @param {string} raw
  * @param {string} relFromRepo - where it is placed, e.g. `public/tex/further-maths/…/qbt/_QBT__X.tex`
@@ -517,6 +566,53 @@ export function prepareImportedTex(raw, relFromRepo, identity, initialDate = for
 }
 
 /**
+ * Both documents as they are placed on the site (`prepareImportedTex`), with
+ * the solutions document's statements then taken from the questions
+ * document, as `sync-questions` does. Stripping comments can leave the two
+ * documents' blank lines around a statement differing (a statement followed
+ * by a commented diagram description does), which `check-questions` would
+ * report as drift. Throws when the documents' questions don't line up.
+ *
+ * @param {{ qbt: string; soln: string }} raw
+ * @param {{
+ *   qbtRel: string;
+ *   solnRel: string;
+ *   identity?: { title?: string; strand?: string; section?: string };
+ *   initialDate?: string;
+ * }} where - `qbtRel` and `solnRel` as for `prepareImportedTex`
+ * @returns {{ qbt: string; soln: string; synced: number[] }} `synced` numbers
+ *   the questions whose solutions-document statement was rewritten
+ */
+export function preparePackPair(raw, { qbtRel, solnRel, identity, initialDate = formatPackDate() }) {
+  const prepare = (text, rel) => {
+    try {
+      return prepareImportedTex(text, rel, identity, initialDate);
+    } catch (e) {
+      throw new Error(`${basename(rel)}: ${e.message}`);
+    }
+  };
+  const qbt = prepare(raw.qbt, qbtRel);
+  const soln = prepare(raw.soln, solnRel);
+  const sync = syncPair(qbt, soln);
+  if (sync.fatal) {
+    const issues = sync.issues.map(
+      (i) => `${i.kind}${i.n != null ? ` Q${i.n}` : ''}${i.detail ? ` (${i.detail})` : ''}`,
+    );
+    throw new Error(`the questions and solutions documents don't hold the same questions: ${issues.join('; ')}`);
+  }
+  return { qbt, soln: sync.newSolnText, synced: sync.changes.map((c) => c.n) };
+}
+
+/** Warn when a document inputs a bundled `preamble.tex` that isn't beside it. */
+function warnMissingBundledPreamble(srcPath, raw) {
+  if (usesOverleafPackInput(raw) && !existsSync(join(dirname(srcPath), 'preamble.tex'))) {
+    console.warn(
+      `Warning: ${basename(srcPath)} imports preamble.tex, but no bundled preamble.tex was found beside it; using the site shared pack preamble.`,
+    );
+  }
+}
+
+/**
  * Read a pack document, prepare it for the site (`prepareImportedTex`) and
  * write it to `destPath`.
  * @param {string} srcPath
@@ -526,12 +622,8 @@ export function prepareImportedTex(raw, relFromRepo, identity, initialDate = for
  */
 function copyNormalizedPackTex(srcPath, destPath, identity) {
   const raw = readFileSync(srcPath, 'utf8');
-  if (usesOverleafPackInput(raw) && !existsSync(join(dirname(srcPath), 'preamble.tex'))) {
-    console.warn(
-      `Warning: ${basename(srcPath)} imports preamble.tex, but no bundled preamble.tex was found beside it; using the site shared pack preamble.`,
-    );
-  }
-  writeFileSync(destPath, prepareImportedTex(raw, repoRel(destPath), identity), 'utf8');
+  warnMissingBundledPreamble(srcPath, raw);
+  writeFileSync(destPath, prepareImportedTex(raw, relTo(repoRoot, destPath), identity), 'utf8');
 }
 
 /**
@@ -550,8 +642,198 @@ export function importedPackIdentity(sitePath, topicName, ctx, strands) {
   return labels ? { title: topicName, ...labels } : { title: topicName };
 }
 
+/**
+ * Why `<strand folder>/<section folder>` is not a section folder under
+ * `fmRoot`, spelled exactly as on disk, or null. Windows finds a folder
+ * whatever its case, but the live site's paths are case-sensitive.
+ *
+ * @param {string} fmRoot - `public/tex/further-maths`
+ * @param {string} strandFolder
+ * @param {string} sectionFolder
+ * @returns {string | null}
+ */
+export function sectionFolderProblem(fmRoot, strandFolder, sectionFolder) {
+  const folders = (dir) => {
+    try {
+      return readdirSync(dir, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name);
+    } catch {
+      return [];
+    }
+  };
+  const sameName = (names, name) =>
+    names.find((n) => n === name) ?? names.find((n) => n.toLowerCase() === name.toLowerCase());
+  const strand = sameName(folders(fmRoot), strandFolder);
+  const section = strand ? sameName(folders(join(fmRoot, strand)), sectionFolder) : undefined;
+  if (strand === strandFolder && section === sectionFolder) return null;
+  if (section) {
+    return (
+      `there is no section folder ${strandFolder}/${sectionFolder}, but there is ${strand}/${section}: ` +
+      "give it as it is spelt, since the site's paths are case-sensitive"
+    );
+  }
+  return (
+    `there is no section folder ${strandFolder}/${sectionFolder}: import only into an existing section folder. ` +
+    '(Adding a section is a separate site change. Git keeps no empty folder, so the folder for a section ' +
+    `with no pack yet is made by hand: public/tex/further-maths/${strandFolder}/<section folder>/.)`
+  );
+}
+
 // Re-export for tests / tooling
 export { derivePathContext, deriveTopicId, slugify, copyNormalizedPackTex };
+
+// ---------------------------------------------------------------------------
+// The journal: what an import has written, so a killed run can be put back
+// ---------------------------------------------------------------------------
+
+/**
+ * What an import has written, as paths relative to the checkout. Each path is
+ * recorded before it is written.
+ *
+ * @typedef {Object} ImportJournal
+ * @property {string[]} files - files it created (the documents and PDFs)
+ * @property {string[]} dirs - folders it created
+ * @property {string[]} builds - the documents whose `build/` outputs to remove
+ * @property {{ path: string; before: string; wrote: string | null }} resources
+ *   - `resources.ts`, its text before the import, and the hash of the text the
+ *     import wrote (null until it writes it)
+ * @property {boolean} regenerating - whether the generators have started
+ */
+
+/**
+ * Where an import keeps its journal: in the checkout's git folder, so it is
+ * never committed. Null outside a git checkout, where there is none.
+ * @param {string} root
+ */
+function defaultJournalPath(root) {
+  try {
+    const rel = execFileSync('git', ['rev-parse', '--git-path', 'import-pack-journal.json'], {
+      cwd: root,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim();
+    return rel ? resolve(root, rel) : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Remove a document's outputs from its `build/` and `build/aux/` folders. */
+function removeBuildOutputs(texPath) {
+  const stem = basename(texPath, '.tex');
+  const buildDir = join(dirname(texPath), 'build');
+  for (const dir of [buildDir, join(buildDir, 'aux')]) {
+    if (!existsSync(dir)) continue;
+    for (const name of readdirSync(dir)) {
+      if (name.startsWith(`${stem}.`)) rmSync(join(dir, name), { force: true });
+    }
+  }
+}
+
+/**
+ * Put back what an import wrote, as its journal records it. Each step runs on
+ * its own, so one failure doesn't stop the rest; returns what could not be
+ * put back.
+ *
+ * @param {ImportJournal} journal
+ * @param {{
+ *   root: string;
+ *   generatedBefore?: Map<string, Buffer | null>;
+ *   regenerate: (root: string) => void;
+ * }} how - with `generatedBefore` (the generated files' bytes before this
+ *   run), `resources.ts` and the generated files get their earlier bytes
+ *   back. Without it (an earlier run's journal), `resources.ts` is put back
+ *   only if it still holds what that run wrote, and the generated files are
+ *   regenerated.
+ * @returns {string[]}
+ */
+function undoImport(journal, { root, generatedBefore, regenerate }) {
+  const failures = [];
+  const step = (what, undo) => {
+    try {
+      undo();
+    } catch (e) {
+      failures.push(`${what}: ${e.message ?? e}`);
+    }
+  };
+  const abs = (rel) => join(root, ...rel.split('/'));
+
+  for (const rel of journal.files) step(rel, () => rmSync(abs(rel), { force: true }));
+  for (const rel of journal.builds) step(`${rel}'s build output`, () => removeBuildOutputs(abs(rel)));
+  for (const rel of journal.dirs) step(rel, () => rmSync(abs(rel), { recursive: true, force: true }));
+
+  const resources = journal.resources;
+  if (resources.wrote) {
+    step(resources.path, () => {
+      const path = abs(resources.path);
+      if (!generatedBefore) {
+        const now = sha256(readFileSync(path, 'utf8'));
+        if (now === sha256(resources.before)) return;
+        if (now !== resources.wrote) throw new Error('it has changed since the import wrote it, so it was left alone');
+      }
+      writeAtomic(path, resources.before);
+    });
+  }
+  if (journal.regenerating) {
+    if (generatedBefore) {
+      for (const [path, bytes] of generatedBefore) {
+        step(relTo(root, path), () => (bytes === null ? rmSync(path, { force: true }) : writeAtomic(path, bytes)));
+      }
+    } else {
+      step('the generated data files', () => regenerate(root));
+    }
+  }
+  return failures;
+}
+
+/**
+ * The paths among `rels` that git tracks in `root`, or none outside a git
+ * checkout.
+ * @param {string} root
+ * @param {string[]} rels
+ */
+function trackedPaths(root, rels) {
+  if (rels.length === 0) return [];
+  try {
+    return execFileSync('git', ['ls-files', '--', ...rels], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] })
+      .split(/\r?\n/)
+      .filter(Boolean);
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * If an earlier import was killed part-way, put back what it wrote, as its
+ * journal records, and remove the journal. Returns whether there was one.
+ *
+ * @param {{ root: string; journalPath: string | null; regenerate: (root: string) => void }} p
+ * @returns {boolean}
+ */
+export function recoverInterruptedImport({ root, journalPath, regenerate }) {
+  if (!journalPath || !existsSync(journalPath)) return false;
+  const shown = journalPath.startsWith(root) ? relTo(root, journalPath) : basename(journalPath);
+  /** @type {ImportJournal} */
+  let journal;
+  try {
+    journal = JSON.parse(readFileSync(journalPath, 'utf8'));
+  } catch (e) {
+    throw new ImportError(`can't read ${shown}, which an earlier import left (${e.message}): delete it once that import's files are gone`);
+  }
+  const tracked = trackedPaths(root, [...journal.files, ...journal.dirs]);
+  if (tracked.length > 0) {
+    throw new ImportError(
+      `${shown} records an earlier import that never finished, but git now tracks what it wrote ` +
+        `(${tracked.join(', ')}). If that import was finished by hand, delete ${shown}.`,
+    );
+  }
+  console.log('An earlier import stopped part-way. Putting back what it wrote.');
+  const failures = undoImport(journal, { root, regenerate });
+  if (failures.length > 0) {
+    throw new ImportError(`could not put back all of the earlier import:\n  ${failures.join('\n  ')}`);
+  }
+  rmSync(journalPath, { force: true });
+  return true;
+}
 
 // ---------------------------------------------------------------------------
 // Main
@@ -615,8 +897,29 @@ function makeAsker(yes) {
   };
 }
 
-async function main() {
-  const opts = parseImportArgs(process.argv.slice(2));
+/**
+ * Run an import with the command line `argv`. The defaults are the real
+ * checkout, compile, generators and journal; tests pass a scratch checkout and
+ * stand-ins.
+ *
+ * @param {string[]} argv
+ * @param {{
+ *   root?: string;
+ *   compile?: (texPath: string) => { ok: true, pdf: string } | { ok: false, log: string };
+ *   regenerate?: (root: string) => void;
+ *   journalPath?: string | null;
+ *   signals?: import('node:events').EventEmitter;
+ * }} [deps]
+ */
+export async function runImport(argv, deps = {}) {
+  const root = deps.root ?? repoRoot;
+  const paths = sitePaths(root);
+  const compile = deps.compile ?? compileTex;
+  const regenerate = deps.regenerate ?? runGenerators;
+  const journalPath = deps.journalPath !== undefined ? deps.journalPath : defaultJournalPath(root);
+  const signals = deps.signals ?? process;
+
+  const opts = parseImportArgs(argv);
   const yes = opts.yes;
   if (yes) {
     const missing = missingForYes(opts);
@@ -624,17 +927,18 @@ async function main() {
       throw new ImportError(`with --yes, give ${missing.map((k) => `--${k}`).join(', ')}`);
     }
   }
+  recoverInterruptedImport({ root, journalPath, regenerate });
   const { rl, ask } = makeAsker(yes);
   const asking = { question: ask };
 
   try {
     // --- The pack folder, its documents and title -------------------------
     let folder = opts.folder !== undefined ? parseSource(opts.folder) : null;
-    if (opts.folder !== undefined && !folder) throw new ImportError(`not a folder: ${opts.folder}`);
+    if (opts.folder !== undefined && !folder) throw new ImportError(`not a folder: ${basename(opts.folder)}`);
     while (!folder) {
       const answer = await ask('\nPack folder (the folder holding its two .tex files): ');
       folder = parseSource(answer);
-      if (!folder) console.error(`  Not an existing folder: ${answer}`);
+      if (!folder) console.error('  Not an existing folder.');
     }
     const dir = folder.dir;
 
@@ -646,8 +950,8 @@ async function main() {
     }
     console.log(
       manifest
-        ? `Using ${PACK_MANIFEST} in ${dir}`
-        : `No ${PACK_MANIFEST} in ${dir}; finding the two .tex files by name.`,
+        ? `Using ${PACK_MANIFEST} in ${basename(dir)}`
+        : `No ${PACK_MANIFEST} in ${basename(dir)}; finding the two .tex files by name.`,
     );
 
     const title = (opts.title ?? (await promptTopic(asking, manifest?.topic))).trim();
@@ -660,20 +964,20 @@ async function main() {
       throw new ImportError(e.message);
     }
     if (!pair.qbtPath || !pair.solnPath) {
-      throw new ImportError(`could not find both questions and solutions .tex files in ${dir}`);
+      throw new ImportError(`could not find both questions and solutions .tex files in ${basename(dir)}`);
     }
 
     // --- Where it goes ---------------------------------------------------
-    const strands = loadStrands();
-    const entries = loadResourcesEntries();
+    const strands = loadStrands(paths.topics, paths.resources);
+    const entries = loadResourcesEntries(paths.resources);
     let sitePath;
     if (opts['site-path'] !== undefined) {
       const parsed = parseSitePathArg(opts['site-path']);
       if (!parsed.ok) throw new ImportError(parsed.message);
       sitePath = `${parsed.strandFolder}/${parsed.sectionFolder}`;
     } else {
-      console.log(`\n${listTreeShallow(fmRoot, 2)}`);
-      sitePath = await pickSitePath(asking, fmRoot);
+      console.log(`\n${listTreeShallow(paths.fmRoot, 2)}`);
+      sitePath = await pickSitePath(asking, paths.fmRoot);
     }
     const [strandFolder, sectionFolder] = sitePath.split('/');
     const strand = strands.find((s) => s.folder === strandFolder);
@@ -682,13 +986,9 @@ async function main() {
         `"${strandFolder}" is not a strand folder (strands: ${strands.map((s) => s.folder).join(', ')})`,
       );
     }
-    const sectionDir = join(fmRoot, strandFolder, sectionFolder);
-    if (!existsSync(sectionDir) || !statSync(sectionDir).isDirectory()) {
-      throw new ImportError(
-        `there is no section folder ${strandFolder}/${sectionFolder}: import only into an existing section ` +
-          'folder (adding a section is a separate site change)',
-      );
-    }
+    const folderProblem = sectionFolderProblem(paths.fmRoot, strandFolder, sectionFolder);
+    if (folderProblem) throw new ImportError(folderProblem);
+    const sectionDir = join(paths.fmRoot, strandFolder, sectionFolder);
 
     const fullSitePath = `further-maths/${sitePath}`;
     const ctx = derivePathContext(fullSitePath, entries);
@@ -739,13 +1039,11 @@ async function main() {
 
     // --- The documents ----------------------------------------------------
     const sanitized = sanitizeTopic(title);
-    const qbtDir = join(sectionDir, 'qbt');
-    const solnDir = join(sectionDir, 'soln');
-    const qbtTexDest = join(qbtDir, `_QBT__${sanitized}.tex`);
-    const solnTexDest = join(solnDir, `_QBT___Solns__${sanitized}.tex`);
+    const qbtTexDest = join(sectionDir, 'qbt', `_QBT__${sanitized}.tex`);
+    const solnTexDest = join(sectionDir, 'soln', `_QBT___Solns__${sanitized}.tex`);
     for (const dest of [qbtTexDest, solnTexDest]) {
       if (existsSync(dest)) {
-        throw new ImportError(`${repoRel(dest)} already exists: this pack is on the site, so edit it there`);
+        throw new ImportError(`${relTo(root, dest)} already exists: this pack is on the site, so edit it there`);
       }
     }
 
@@ -759,17 +1057,21 @@ async function main() {
     if (withImages.length > 0) {
       throw new ImportError(`${withImages.join(' and ')} use \\includegraphics: packs are TikZ-only`);
     }
-    const mechanicsProblem = mechanicsPackProblem(docs, isFurtherMechanicsPackPath(repoRel(qbtTexDest)));
+    const mechanicsProblem = mechanicsPackProblem(docs, isFurtherMechanicsPackPath(relTo(root, qbtTexDest)));
     if (mechanicsProblem) throw new ImportError(mechanicsProblem);
 
     const identity = importedPackIdentity(fullSitePath, title, { category: strand.category, topic }, strands);
-    for (const [raw, dest] of [[qbtRaw, qbtTexDest], [solnRaw, solnTexDest]]) {
-      try {
-        prepareImportedTex(raw, repoRel(dest), identity);
-      } catch (e) {
-        throw new ImportError(`${basename(dest)}: ${e.message}`);
-      }
+    let prepared;
+    try {
+      prepared = preparePackPair(
+        { qbt: qbtRaw, soln: solnRaw },
+        { qbtRel: relTo(root, qbtTexDest), solnRel: relTo(root, solnTexDest), identity },
+      );
+    } catch (e) {
+      throw new ImportError(e.message);
     }
+    warnMissingBundledPreamble(pair.qbtPath, qbtRaw);
+    warnMissingBundledPreamble(pair.solnPath, solnRaw);
 
     const qbtFile = `/tex/${fullSitePath}/qbt/_QBT__${sanitized}.pdf`;
     const solnFile = `/tex/${fullSitePath}/soln/_QBT___Solns__${sanitized}.pdf`;
@@ -780,9 +1082,14 @@ async function main() {
     console.log(`  section:  ${strand.title} / ${sectionTitle} (${sitePath})`);
     console.log(`  boards:   ${boards ? boards.join(', ') : 'all'}`);
     console.log(`  ids:      ${id}, ${solutionsId(id)}`);
-    console.log(`  files:    ${repoRel(qbtTexDest)}`);
-    console.log(`            ${repoRel(solnTexDest)}`);
+    console.log(`  files:    ${relTo(root, qbtTexDest)}`);
+    console.log(`            ${relTo(root, solnTexDest)}`);
     console.log(`  rows go:  ${ctx.siblingId ? `after ${ctx.siblingId}` : `at the end of the ${strand.title} rows, as the section's first pack`}`);
+    if (prepared.synced.length > 0) {
+      console.log(
+        `  synced:   the solutions document takes Q${prepared.synced.join(', Q')}'s statement from the questions document`,
+      );
+    }
     if (!yes) {
       const confirm = await ask('OK? (Y/n): ');
       if (confirm.trim().toLowerCase() === 'n') {
@@ -792,16 +1099,20 @@ async function main() {
     }
 
     await place({
+      paths,
       ask,
       yes,
-      pair,
-      identity,
+      prepared,
       qbtTexDest,
       solnTexDest,
       pack,
       insertion: ctx.siblingId
         ? { afterId: ctx.siblingId }
         : { sectionComment: `A-level Further Maths: ${strand.title} - ${sectionTitle}` },
+      compile,
+      regenerate,
+      journalPath,
+      signals,
     });
   } finally {
     rl?.close();
@@ -809,87 +1120,156 @@ async function main() {
 }
 
 /**
- * Write the documents, PDFs, rows and generated files. On any failure, put
- * back everything written.
+ * Write the documents, PDFs, rows and generated files. On any failure, or a
+ * SIGINT or SIGTERM, put back everything written. A journal records each
+ * write before it happens, so a run killed outright is put back by the next.
  */
-async function place({ ask, yes, pair, identity, qbtTexDest, solnTexDest, pack, insertion }) {
-  const createdDirs = [];
-  const createdFiles = [];
-  const resourcesBefore = readFileSync(resourcesPath, 'utf8');
-  let resourcesWritten = false;
-  const generators = ['count-questions.mjs', 'hash-assets.mjs'];
-  const regenerate = () => {
-    for (const script of generators) {
-      execFileSync(process.execPath, [join(__dirname, script)], { cwd: repoRoot, stdio: 'pipe' });
-    }
+async function place({
+  paths,
+  ask,
+  yes,
+  prepared,
+  qbtTexDest,
+  solnTexDest,
+  pack,
+  insertion,
+  compile,
+  regenerate,
+  journalPath,
+  signals,
+}) {
+  const { root } = paths;
+  const rel = (path) => relTo(root, path);
+  const resourcesBefore = readFileSync(paths.resources, 'utf8');
+  const generatedBefore = new Map(paths.generated.map((p) => [p, existsSync(p) ? readFileSync(p) : null]));
+  /** @type {ImportJournal} */
+  const journal = {
+    files: [],
+    dirs: [],
+    builds: [rel(qbtTexDest), rel(solnTexDest)],
+    resources: { path: rel(paths.resources), before: resourcesBefore, wrote: null },
+    regenerating: false,
+  };
+  const record = () => {
+    if (journalPath) writeAtomic(journalPath, `${JSON.stringify(journal)}\n`);
+  };
+
+  // The compile and the generators block the event loop, so a signal's
+  // handler runs only once a step returns: check after each one.
+  let stopped = null;
+  const onInt = () => {
+    stopped ??= 'SIGINT';
+  };
+  const onTerm = () => {
+    stopped ??= 'SIGTERM';
+  };
+  signals.on('SIGINT', onInt);
+  signals.on('SIGTERM', onTerm);
+  const checkStopped = async () => {
+    await new Promise((done) => setImmediate(done));
+    if (stopped) throw new ImportError(`stopped by ${stopped}`);
   };
 
   try {
-    for (const d of [dirname(qbtTexDest), dirname(solnTexDest)]) {
-      if (!existsSync(d)) {
-        mkdirSync(d, { recursive: true });
-        createdDirs.push(d);
+    try {
+      record();
+      for (const d of [dirname(qbtTexDest), dirname(solnTexDest)]) {
+        if (!existsSync(d)) {
+          journal.dirs.push(rel(d));
+          record();
+          mkdirSync(d, { recursive: true });
+        }
       }
-    }
-    for (const [src, dest] of [[pair.qbtPath, qbtTexDest], [pair.solnPath, solnTexDest]]) {
-      createdFiles.push(dest);
-      copyNormalizedPackTex(src, dest, identity);
-    }
-
-    for (const tex of [qbtTexDest, solnTexDest]) {
-      process.stdout.write(`Compiling ${basename(tex, '.tex')}... `);
-      const result = compileTex(tex);
-      if (result.ok) {
-        const pdfDest = tex.replace(/\.tex$/, '.pdf');
-        createdFiles.push(pdfDest);
-        copyFileSync(result.pdf, pdfDest);
-        console.log('done');
-        continue;
+      for (const [text, dest] of [[prepared.qbt, qbtTexDest], [prepared.soln, solnTexDest]]) {
+        journal.files.push(rel(dest));
+        record();
+        writeFileSync(dest, text, 'utf8');
       }
-      console.log('FAILED');
-      console.error(result.log);
-      if (yes) throw new ImportError(`${basename(tex)} did not compile`);
-      const cont = await ask('  Compilation failed. Continue without this PDF? (y/N): ');
-      if (cont.trim().toLowerCase() !== 'y') throw new ImportError(`${basename(tex)} did not compile`);
-    }
+      await checkStopped();
 
-    const updated = insertPackRows(resourcesBefore, pack, insertion);
-    const problems = verifyPackRows(updated, pack);
-    if (problems.length > 0) {
-      throw new ImportError(`the new rows did not read back from resources.ts:\n  ${problems.join('\n  ')}`);
-    }
-    writeAtomic(resourcesPath, updated);
-    resourcesWritten = true;
-
-    process.stdout.write('Regenerating question counts and file hashes... ');
-    regenerate();
-    console.log('done');
-  } catch (e) {
-    console.error('\nPutting back what the import wrote.');
-    if (resourcesWritten) writeAtomic(resourcesPath, resourcesBefore);
-    for (const f of createdFiles) rmSync(f, { force: true });
-    for (const d of createdDirs) rmSync(d, { recursive: true, force: true });
-    if (resourcesWritten) {
-      try {
-        regenerate();
-      } catch {
-        console.error('Could not regenerate the generated files: run `npm run build`.');
+      for (const tex of [qbtTexDest, solnTexDest]) {
+        process.stdout.write(`Compiling ${basename(tex, '.tex')}... `);
+        const result = compile(tex);
+        await checkStopped();
+        if (result.ok) {
+          const pdfDest = tex.replace(/\.tex$/, '.pdf');
+          journal.files.push(rel(pdfDest));
+          record();
+          copyFileSync(result.pdf, pdfDest);
+          console.log('done');
+          continue;
+        }
+        console.log('FAILED');
+        console.error(result.log);
+        if (yes) throw new ImportError(`${basename(tex)} did not compile`);
+        const cont = await ask('  Compilation failed. Continue without this PDF? (y/N): ');
+        await checkStopped();
+        if (cont.trim().toLowerCase() !== 'y') throw new ImportError(`${basename(tex)} did not compile`);
       }
+
+      const updated = insertPackRows(resourcesBefore, pack, insertion);
+      const problems = verifyPackRows(updated, pack, resourcesBefore);
+      if (problems.length > 0) {
+        throw new ImportError(`the new rows did not read back from resources.ts:\n  ${problems.join('\n  ')}`);
+      }
+      journal.resources.wrote = sha256(updated);
+      record();
+      writeAtomic(paths.resources, updated);
+      await checkStopped();
+
+      process.stdout.write('Regenerating question counts and file hashes... ');
+      journal.regenerating = true;
+      record();
+      regenerate(root);
+      await checkStopped();
+      console.log('done');
+    } catch (e) {
+      console.error(`\nimport-pack: ${describeError(e)}`);
+      console.error('Putting back what the import wrote.');
+      const failures = undoImport(journal, { root, generatedBefore, regenerate });
+      if (failures.length > 0) {
+        for (const failure of failures) console.error(`  could not put back ${failure}`);
+        throw new ImportError(
+          'the import failed, and what is listed above is still as the import left it' +
+            (journalPath ? '; the next run puts it back once it can' : ''),
+        );
+      }
+      if (journalPath) {
+        try {
+          rmSync(journalPath, { force: true });
+        } catch {
+          // The next run finds nothing of this one's left to put back.
+        }
+      }
+      throw new ImportError('nothing was imported: everything the import wrote was put back');
     }
-    throw e;
+  } finally {
+    signals.off('SIGINT', onInt);
+    signals.off('SIGTERM', onTerm);
+  }
+
+  if (journalPath) {
+    try {
+      rmSync(journalPath, { force: true });
+    } catch (e) {
+      console.error(
+        `Warning: could not remove ${rel(journalPath)} (${e.message}). Delete it before the next import, ` +
+          'or that import will take this one out again.',
+      );
+    }
   }
 
   console.log('\nImported:');
   for (const f of [qbtTexDest, qbtTexDest.replace(/\.tex$/, '.pdf'), solnTexDest, solnTexDest.replace(/\.tex$/, '.pdf')]) {
-    if (existsSync(f)) console.log(`  ${repoRel(f)}`);
+    if (existsSync(f)) console.log(`  ${rel(f)}`);
   }
   console.log(`  src/data/resources.ts: ${pack.id}, ${solutionsId(pack.id)}`);
   console.log('  src/data/*.generated.ts regenerated');
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  main().catch((e) => {
-    console.error(`import-pack: ${e instanceof ImportError ? e.message : e.stack ?? e}`);
+  runImport(process.argv.slice(2)).catch((e) => {
+    console.error(`import-pack: ${describeError(e)}`);
     process.exit(1);
   });
 }

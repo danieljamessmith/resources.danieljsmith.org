@@ -77,11 +77,35 @@ What it does, in order:
    single-quoted; `category` as the constant; `title` double-quoted when it
    holds an apostrophe; `boards` on the questions row only. The file is parsed
    again, and the import fails unless both rows read back with those fields.
-5. Runs `count-questions` and `hash-assets`, so every check passes straight
-   after an import.
+5. Runs `count-questions` and `hash-assets`, so the generated files are
+   current. The other checks are not run, and can still fail on what was
+   imported (an extra `\usepackage`, a solution layout slip): run them, or
+   `npm run build`, before committing.
 
-If any step fails, everything written is put back. It never creates a section
-or a section folder: adding a section to `topics.ts` is a separate site change.
+Step 2 also takes the solutions document's statements from the questions
+document, as `sync-questions` does, and says which questions that changed:
+stripping comments can leave the blank lines around a statement differing
+between the two (a statement followed by a commented diagram description
+does). A pair whose questions don't line up is refused.
+
+The section folder must match exactly, case included, since the site's paths
+are case-sensitive. The importer never creates a section or a section folder:
+adding a section to `topics.ts` is a separate site change. Git keeps no empty
+folder, so a section with no pack yet has no folder in a fresh clone; make
+`public/tex/further-maths/<strand>/<section folder>/` by hand before its
+first import, and give `--section`.
+
+If any step after the first write fails, or the run gets SIGINT or SIGTERM
+(Ctrl+C), everything written is put back: the documents, the PDFs and their
+`build/` output, and the bytes `resources.ts` and the generated files had
+before. Each rollback step runs on its own, and the failure that stopped the
+import is reported first. Before each write the importer records it in a
+journal in the checkout's git folder (`.git/import-pack-journal.json`), so a
+run killed outright is put back by the next run before it starts. That puts
+`resources.ts` back only if it still holds what the killed run wrote, and
+regenerates the generated files. The compile passes latexmk `-f`, as
+`compile-tex` does, so an earlier failed or killed compile can't stop a
+retry.
 
 ## Script module map
 

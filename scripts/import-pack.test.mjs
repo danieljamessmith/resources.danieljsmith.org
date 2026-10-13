@@ -1,6 +1,8 @@
-import { describe, it, expect, vi } from 'vitest';
-import { mkdtempSync, writeFileSync, rmSync, readFileSync, mkdirSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { createHash } from 'node:crypto';
+import { EventEmitter } from 'node:events';
+import { existsSync, mkdtempSync, writeFileSync, rmSync, readFileSync, readdirSync, mkdirSync } from 'node:fs';
+import { basename, dirname, join, relative } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import {
@@ -26,9 +28,14 @@ import {
   promptTopic,
   importedPackIdentity,
   PACK_MANIFEST,
+  GENERATED_FILES,
+  preparePackPair,
+  runImport,
 } from './import-pack.mjs';
 import { PACK_PREAMBLE_SITE_INPUT, readPackIdentity } from './lib/pack-preamble.mjs';
-import { isUnexpectedFullLineComment } from './check-tex.mjs';
+import { bodyCommentViolations, isUnexpectedFullLineComment } from './check-tex.mjs';
+import { syncPair } from './lib/question-blocks.mjs';
+import { parseResourcesEntries } from './lib/resources-derive.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(__dirname, '..');
@@ -702,5 +709,367 @@ describe('importedPackIdentity', () => {
       importedPackIdentity('further-maths/other/x', 'T', { category: 'unknown', topic: 'X' }, strands),
     ).toEqual({ title: 'T' });
     expect(importedPackIdentity('tmua', 'T', { category: 'TMUA', topic: 'T' }, strands)).toBeUndefined();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// preparePackPair: the solutions document's statements follow the questions'
+// ---------------------------------------------------------------------------
+
+/** A pack whose first statement ends with a figure and then a commented description of it. */
+function describedDiagramPack({ title = 'Test Pack', mechanics = false, solnQuestions = 2, extra = '' } = {}) {
+  const preamble = (header) => [
+    String.raw`\documentclass[leqno]{article}`,
+    String.raw`\input{preamble.tex}`,
+    `\\${header}{${title}}`,
+    ...(mechanics ? [String.raw`\djsMechanicsPack`] : []),
+    String.raw`\djsLastUpdated{1 October 2026}`,
+    String.raw`\begin{document}`,
+    String.raw`\djsFrontMatter`,
+    String.raw`\begin{enumerate}`,
+    '',
+  ];
+  const q1 = [
+    '% ========== Question 1 ==========',
+    '% id: Q01_area',
+    String.raw`\questionitem`,
+    '',
+    String.raw`Find the area of the triangle shown.\marks{4}${extra}`,
+    '',
+    String.raw`\begin{figure}[H]`,
+    String.raw`    \centering`,
+    String.raw`    \begin{tikzpicture}\draw (0,0) -- (2,0) -- (0,1) -- cycle;\end{tikzpicture}`,
+    String.raw`\end{figure}`,
+    '',
+    '%%%',
+    '% DIAGRAM DESCRIPTION (for checking)',
+    '%',
+    '% A right-angled triangle.',
+    '%%%',
+  ];
+  const q2 = [
+    '% ========== Question 2 ==========',
+    '% id: Q02_root',
+    String.raw`\questionitem`,
+    '',
+    String.raw`Show that \(x = 2\) is a root of \(x^2 - 4 = 0\).\marks{2}`,
+  ];
+  const box = (text) => ['', String.raw`\vspace*{10pt}`, '', String.raw`\begin{djsSolution}`, text, String.raw`\end{djsSolution}`];
+  const end = ['', String.raw`\end{enumerate}`, String.raw`\end{document}`, ''];
+  const qbt = [...preamble('djsQbtHeader'), ...q1, '', String.raw`\newpage`, '', ...q2, ...end].join('\n');
+  const soln = [
+    ...preamble('djsSolnHeader'),
+    ...q1,
+    ...box('The area is \\(1\\).'),
+    ...(solnQuestions > 1 ? ['', String.raw`\newpage`, '', ...q2, ...box('Substitute.')] : []),
+    ...end,
+  ].join('\n');
+  return { qbt, soln };
+}
+
+describe('preparePackPair', () => {
+  const where = {
+    qbtRel: 'public/tex/further-maths/core-pure/polar-coordinates/qbt/_QBT__Test_Pack.tex',
+    solnRel: 'public/tex/further-maths/core-pure/polar-coordinates/soln/_QBT___Solns__Test_Pack.tex',
+    identity: { title: 'Test Pack', strand: 'Core Pure', section: 'Polar Coordinates' },
+    initialDate: '5 October 2026',
+  };
+
+  it('leaves a pair in sync when a statement ends in a commented diagram description', () => {
+    const raw = describedDiagramPack();
+    const qbt = prepareImportedTex(raw.qbt, where.qbtRel, where.identity, where.initialDate);
+    const soln = prepareImportedTex(raw.soln, where.solnRel, where.identity, where.initialDate);
+    expect(syncPair(qbt, soln).changed).toBe(true);
+
+    const pair = preparePackPair(raw, where);
+    expect(pair.qbt).toBe(qbt);
+    expect(pair.synced).toEqual([1]);
+    expect(syncPair(pair.qbt, pair.soln)).toMatchObject({ changed: false, fatal: false });
+    expect(pair.soln).toContain('The area is \\(1\\).');
+  });
+
+  it("refuses documents whose questions don't line up", () => {
+    expect(() => preparePackPair(describedDiagramPack({ solnQuestions: 1 }), where)).toThrow(
+      /don't hold the same questions/,
+    );
+  });
+});
+
+// ---------------------------------------------------------------------------
+// runImport: a whole import against a scratch checkout
+// ---------------------------------------------------------------------------
+
+/** Every file under `root`, by its path relative to `root`, with its text. */
+function treeState(root) {
+  const out = {};
+  const walk = (dir) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const path = join(dir, entry.name);
+      if (entry.isDirectory()) walk(path);
+      else out[relative(root, path).replace(/\\/g, '/')] = readFileSync(path, 'utf8');
+    }
+  };
+  walk(root);
+  return out;
+}
+
+const SITE_DIRS = ['core-pure/polar-coordinates/qbt/build', 'core-pure/no-packs-yet', 'further-mechanics/centre-of-mass'];
+
+/** A scratch checkout: the real catalogue and sections, and empty section folders. */
+function scratchSite() {
+  const root = mkdtempSync(join(tmpdir(), 'import-run-'));
+  mkdirSync(join(root, 'src', 'data'), { recursive: true });
+  for (const name of ['resources.ts', 'topics.ts']) {
+    writeFileSync(join(root, 'src', 'data', name), readFileSync(join(repoRoot, 'src', 'data', name)));
+  }
+  for (const name of GENERATED_FILES) writeFileSync(join(root, 'src', 'data', name), `// ${name} before\n`);
+  for (const dir of SITE_DIRS) mkdirSync(join(root, 'public', 'tex', 'further-maths', dir), { recursive: true });
+  // Another pack's build output, which nothing may touch.
+  writeFileSync(join(root, 'public', 'tex', 'further-maths', SITE_DIRS[0], '_QBT__Other.pdf'), 'other');
+  return root;
+}
+
+function packDir(raw = describedDiagramPack()) {
+  const dir = mkdtempSync(join(tmpdir(), 'import-pack-'));
+  writeFileSync(
+    join(dir, PACK_MANIFEST),
+    JSON.stringify({ format: 1, topic: 'Test Pack', questions: 'Questions.tex', solutions: 'Solutions.tex' }),
+  );
+  writeFileSync(join(dir, 'Questions.tex'), raw.qbt);
+  writeFileSync(join(dir, 'Solutions.tex'), raw.soln);
+  writeFileSync(join(dir, 'preamble.tex'), '% the bundled preamble\n');
+  return dir;
+}
+
+/** Stand-ins for the compile and the generators, counting their calls. */
+function standIns({ failCompile = false, failRegenerate = null, onCompile } = {}) {
+  const calls = { compile: 0, regenerate: 0 };
+  return {
+    calls,
+    compile(tex) {
+      calls.compile++;
+      onCompile?.(tex);
+      const build = join(dirname(tex), 'build');
+      const stem = basename(tex, '.tex');
+      mkdirSync(join(build, 'aux'), { recursive: true });
+      writeFileSync(join(build, 'aux', `${stem}.log`), 'log');
+      if (failCompile) return { ok: false, log: `${stem}.tex:3: Undefined control sequence.` };
+      writeFileSync(join(build, `${stem}.pdf`), `pdf of ${stem}`);
+      return { ok: true, pdf: join(build, `${stem}.pdf`) };
+    },
+    regenerate(root) {
+      calls.regenerate++;
+      for (const name of GENERATED_FILES) writeFileSync(join(root, 'src', 'data', name), `// ${name} regenerated\n`);
+      failRegenerate?.(root);
+    },
+  };
+}
+
+describe('runImport', () => {
+  const ID = 'fm-polar-test-pack';
+  const args = (folder, overrides = {}) => {
+    const flags = {
+      folder,
+      'site-path': 'core-pure/polar-coordinates',
+      title: 'Test Pack',
+      boards: 'all',
+      id: ID,
+      ...overrides,
+    };
+    return [...Object.entries(flags).flatMap(([k, v]) => [`--${k}`, v]), '--yes'];
+  };
+  const placed = (root, kind) =>
+    join(
+      root,
+      'public/tex/further-maths/core-pure/polar-coordinates',
+      kind,
+      kind === 'qbt' ? '_QBT__Test_Pack.tex' : '_QBT___Solns__Test_Pack.tex',
+    );
+
+  let root;
+  let folder;
+  let journalDir;
+  let journalPath;
+  let errors;
+  beforeEach(() => {
+    root = scratchSite();
+    folder = packDir();
+    journalDir = mkdtempSync(join(tmpdir(), 'import-journal-'));
+    journalPath = join(journalDir, 'journal.json');
+    errors = [];
+    vi.spyOn(console, 'log').mockImplementation(() => {});
+    vi.spyOn(console, 'warn').mockImplementation(() => {});
+    vi.spyOn(console, 'error').mockImplementation((...a) => errors.push(a.join(' ')));
+    vi.spyOn(process.stdout, 'write').mockImplementation(() => true);
+  });
+  afterEach(() => {
+    vi.restoreAllMocks();
+    for (const dir of [root, folder, journalDir]) rmSync(dir, { recursive: true, force: true });
+  });
+
+  it('places a pack whose statement ends in a diagram description, with the pair in sync', async () => {
+    const stand = standIns();
+    await runImport(args(folder), { root, journalPath, ...stand });
+
+    const qbt = readFileSync(placed(root, 'qbt'), 'utf8');
+    const soln = readFileSync(placed(root, 'soln'), 'utf8');
+    expect(syncPair(qbt, soln)).toMatchObject({ changed: false, fatal: false });
+    expect(bodyCommentViolations(qbt)).toEqual([]);
+    expect(bodyCommentViolations(soln)).toEqual([]);
+    expect(existsSync(placed(root, 'qbt').replace(/\.tex$/, '.pdf'))).toBe(true);
+    expect(existsSync(placed(root, 'soln').replace(/\.tex$/, '.pdf'))).toBe(true);
+
+    const ids = parseResourcesEntries(readFileSync(join(root, 'src/data/resources.ts'), 'utf8')).map((e) => e.id);
+    expect(ids.indexOf(`${ID}-solns`)).toBe(ids.indexOf(ID) + 1);
+    expect(ids.indexOf(ID)).toBe(ids.indexOf('fm-polar-tangents-polar-curves-solns') + 1);
+    expect(stand.calls).toEqual({ compile: 2, regenerate: 1 });
+    expect(existsSync(journalPath)).toBe(false);
+  });
+
+  describe('refuses before writing anything', () => {
+    const cases = [
+      ['an id already taken', { id: 'fm-polar-tangents-polar-curves' }, /already in resources\.ts/],
+      ['a site path in the wrong case', { 'site-path': 'core-pure/Polar-Coordinates' }, /but there is core-pure\/polar-coordinates/],
+      ['a section folder that does not exist', { 'site-path': 'core-pure/nowhere' }, /made by hand/],
+      ['a Further Mechanics pack without \\djsMechanicsPack', { 'site-path': 'further-mechanics/centre-of-mass' }, /Further Mechanics pack calls/],
+    ];
+    for (const [name, overrides, message] of cases) {
+      it(name, async () => {
+        const stand = standIns();
+        const before = treeState(root);
+        await expect(runImport(args(folder, overrides), { root, journalPath, ...stand })).rejects.toThrow(message);
+        expect(treeState(root)).toEqual(before);
+        expect(stand.calls).toEqual({ compile: 0, regenerate: 0 });
+        expect(existsSync(journalPath)).toBe(false);
+      });
+    }
+
+    it('a document with \\includegraphics, or documents whose questions differ', async () => {
+      const before = treeState(root);
+      for (const [raw, message] of [
+        [describedDiagramPack({ extra: String.raw` \includegraphics{photo}` }), /TikZ-only/],
+        [describedDiagramPack({ solnQuestions: 1 }), /don't hold the same questions/],
+      ]) {
+        const other = packDir(raw);
+        try {
+          await expect(runImport(args(other), { root, journalPath, ...standIns() })).rejects.toThrow(message);
+        } finally {
+          rmSync(other, { recursive: true, force: true });
+        }
+      }
+      expect(treeState(root)).toEqual(before);
+    });
+
+    it('a pack already on the site', async () => {
+      mkdirSync(dirname(placed(root, 'soln')), { recursive: true });
+      writeFileSync(placed(root, 'soln'), 'already here');
+      const before = treeState(root);
+      await expect(runImport(args(folder), { root, journalPath, ...standIns() })).rejects.toThrow(/already exists/);
+      expect(treeState(root)).toEqual(before);
+    });
+  });
+
+  it('puts everything back when a compile fails, keeping other packs\' build output', async () => {
+    const before = treeState(root);
+    await expect(runImport(args(folder), { root, journalPath, ...standIns({ failCompile: true }) })).rejects.toThrow(
+      /nothing was imported/,
+    );
+    expect(treeState(root)).toEqual(before);
+    expect(errors.find((e) => e.startsWith('\nimport-pack:'))).toMatch(/did not compile/);
+    expect(existsSync(journalPath)).toBe(false);
+  });
+
+  it('restores resources.ts and the generated files when a generator fails, reporting its error first', async () => {
+    const before = treeState(root);
+    const stand = standIns({
+      failRegenerate: () => {
+        throw new Error('the counts could not be read');
+      },
+    });
+    await expect(runImport(args(folder), { root, journalPath, ...stand })).rejects.toThrow(/nothing was imported/);
+    expect(treeState(root)).toEqual(before);
+    expect(errors.findIndex((e) => e.includes('the counts could not be read'))).toBe(0);
+  });
+
+  it('puts everything back when stopped by a signal', async () => {
+    const signals = new EventEmitter();
+    const stand = standIns({ onCompile: () => signals.emit('SIGINT') });
+    const before = treeState(root);
+    await expect(runImport(args(folder), { root, journalPath, signals, ...stand })).rejects.toThrow(
+      /nothing was imported/,
+    );
+    expect(errors[0]).toMatch(/stopped by SIGINT/);
+    expect(stand.calls.compile).toBe(1);
+    expect(treeState(root)).toEqual(before);
+    expect(signals.listenerCount('SIGINT')).toBe(0);
+  });
+
+  it('keeps the original error when part of the rollback fails, and leaves no temporary file', async () => {
+    const resources = join(root, 'src/data/resources.ts');
+    const stand = standIns({
+      failRegenerate: () => {
+        // Something holds resources.ts so it can't be put back.
+        rmSync(resources);
+        mkdirSync(resources);
+        throw new Error('the counts could not be read');
+      },
+    });
+    await expect(runImport(args(folder), { root, journalPath, ...stand })).rejects.toThrow(/still as the import left it/);
+    expect(errors[0]).toMatch(/the counts could not be read/);
+    expect(errors.some((e) => /could not put back src\/data\/resources\.ts/.test(e))).toBe(true);
+    expect(readdirSync(join(root, 'src/data')).filter((n) => n.endsWith('.tmp'))).toEqual([]);
+    expect(existsSync(placed(root, 'qbt'))).toBe(false);
+    expect(existsSync(journalPath)).toBe(true);
+  });
+
+  describe('a run killed part-way', () => {
+    /** The journal a run killed after starting the generators would have left. */
+    function killedRun(before) {
+      const rel = (path) => relative(root, path).replace(/\\/g, '/');
+      const now = readFileSync(join(root, 'src/data/resources.ts'), 'utf8');
+      writeFileSync(
+        journalPath,
+        JSON.stringify({
+          files: [placed(root, 'qbt'), placed(root, 'soln')].flatMap((tex) => [tex, tex.replace(/\.tex$/, '.pdf')]).map(rel),
+          dirs: [rel(dirname(placed(root, 'soln')))],
+          builds: [rel(placed(root, 'qbt')), rel(placed(root, 'soln'))],
+          resources: {
+            path: 'src/data/resources.ts',
+            before: before['src/data/resources.ts'],
+            wrote: createHash('sha256').update(now).digest('hex'),
+          },
+          regenerating: true,
+        }),
+      );
+    }
+
+    it('is put back by the next run, which then imports', async () => {
+      const before = treeState(root);
+      await runImport(args(folder), { root, journalPath, ...standIns() });
+      const after = treeState(root);
+      killedRun(before);
+
+      const stand = standIns();
+      await runImport(args(folder), { root, journalPath, ...stand });
+      expect(console.log).toHaveBeenCalledWith(expect.stringMatching(/An earlier import stopped part-way/));
+      expect(stand.calls).toEqual({ compile: 2, regenerate: 2 });
+      expect(treeState(root)).toEqual(after);
+      expect(existsSync(journalPath)).toBe(false);
+    });
+
+    it("leaves resources.ts alone if it changed since, and keeps the journal", async () => {
+      const before = treeState(root);
+      await runImport(args(folder), { root, journalPath, ...standIns() });
+      killedRun(before);
+      const resources = join(root, 'src/data/resources.ts');
+      writeFileSync(resources, `${readFileSync(resources, 'utf8')}// edited since\n`);
+
+      await expect(runImport(args(folder), { root, journalPath, ...standIns() })).rejects.toThrow(
+        /changed since the import wrote it/,
+      );
+      expect(readFileSync(resources, 'utf8')).toMatch(/edited since/);
+      expect(existsSync(placed(root, 'qbt'))).toBe(false);
+      expect(existsSync(journalPath)).toBe(true);
+    });
   });
 });
