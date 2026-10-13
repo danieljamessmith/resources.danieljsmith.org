@@ -15,13 +15,16 @@
  * questions reordered the same way (the `\djsLastUpdated` dates may differ).
  *
  * Exits non-zero if the id is not a solutions entry with a readable `.tex`
- * pair, or if `--reordered` can't show that only the order changed.
+ * pair, or if `--reordered` can't show that only the order changed. The
+ * command line is read strictly: an unknown flag, a second argument or a date
+ * after today is refused rather than read as today's check.
  */
 
 import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { parseArgs } from 'node:util';
 import { loadResourcesEntries } from './lib/resources-derive.mjs';
 import {
   hashPackOnDisk,
@@ -83,24 +86,63 @@ function keepCheck(id) {
   );
 }
 
-function main() {
-  const args = process.argv.slice(2);
-  const dateIdx = args.indexOf('--date');
-  const reordered = args.includes('--reordered');
-  const date = dateIdx >= 0 ? args[dateIdx + 1] : isoDate(new Date());
-  const id = args.find((a, i) => !a.startsWith('-') && (dateIdx < 0 || i !== dateIdx + 1));
+/**
+ * The command line: one solutions id, and `--date YYYY-MM-DD` (default
+ * today, never after it) or `--reordered`. Unknown flags and extra arguments
+ * are refused, so a date that didn't arrive as written can't silently become
+ * today's. `npm run` without `--` takes `--date` for itself, passes the date
+ * on as a second argument and sets `npm_config_date`, which gets its own
+ * message.
+ *
+ * @param {string[]} argv
+ * @param {{ today?: string; env?: Record<string, string | undefined> }} [context]
+ * @returns {{ ok: true; id: string; date: string; reordered: boolean } | { ok: false; message: string }}
+ */
+export function parseMarkCheckedArgs(argv, { today = isoDate(new Date()), env = process.env } = {}) {
+  let parsed;
+  try {
+    parsed = parseArgs({
+      args: argv,
+      options: { date: { type: 'string' }, reordered: { type: 'boolean' } },
+      allowPositionals: true,
+      strict: true,
+    });
+  } catch (e) {
+    return { ok: false, message: e.message };
+  }
+  const { values, positionals } = parsed;
+  if (values.date === undefined && env.npm_config_date !== undefined) {
+    return {
+      ok: false,
+      message: 'npm took --date for itself: put -- before the arguments (npm run mark-checked -- <solutions-id> --date YYYY-MM-DD)',
+    };
+  }
+  if (positionals.length !== 1) {
+    return {
+      ok: false,
+      message: positionals.length === 0 ? 'give a solutions id' : `give one solutions id, not ${positionals.join(' ')}`,
+    };
+  }
+  if (values.reordered && values.date !== undefined) {
+    return { ok: false, message: 'give --date or --reordered, not both' };
+  }
+  const date = values.date ?? today;
+  if (!isValidIsoDate(date)) return { ok: false, message: `'${date}' is not a date in YYYY-MM-DD form` };
+  if (date > today) return { ok: false, message: `${date} is after today (${today})` };
+  return { ok: true, id: positionals[0], date, reordered: values.reordered === true };
+}
 
-  if (!id || (reordered && dateIdx >= 0)) {
+function main() {
+  const args = parseMarkCheckedArgs(process.argv.slice(2));
+  if (!args.ok) {
+    console.error(`mark-checked: ${args.message}`);
     console.error(USAGE);
     process.exit(1);
   }
+  const { id, date, reordered } = args;
   if (reordered) {
     keepCheck(id);
     return;
-  }
-  if (!date || !isValidIsoDate(date)) {
-    console.error(`mark-checked: '${date}' is not a date in YYYY-MM-DD form`);
-    process.exit(1);
   }
 
   const result = hashPackOnDisk(loadResourcesEntries(), id);

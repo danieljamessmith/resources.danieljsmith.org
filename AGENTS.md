@@ -416,7 +416,7 @@ or npm swallows `--date` and records today's date.
 
 ### Tests
 
-`*.test.mjs` files live next to the module they cover: every `scripts/lib/` module, plus the pure helpers exported by `check-tex`, `clean-tex`, `compile-tex`, `count-questions`, `hash-assets` and `import-pack`. `import-pack`'s tests also run whole imports against a scratch checkout, with stand-ins for the compile and the generators. Read the test file for what is covered.
+`*.test.mjs` files live next to the module they cover: every `scripts/lib/` module, plus the pure helpers exported by `check-tex`, `clean-tex`, `compile-tex`, `count-questions`, `hash-assets`, `import-pack` and `mark-checked`. `import-pack`'s tests also run whole imports against a scratch checkout, with stand-ins for the compile and the generators. Read the test file for what is covered.
 
 **After editing any `scripts/**/*.mjs` file, run `npx vitest run`.** Pre-commit will also run it. Do not modify existing test assertions without explicit user approval.
 
