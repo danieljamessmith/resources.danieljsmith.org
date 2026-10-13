@@ -284,4 +284,23 @@ describe('verifyPackRows', () => {
     expect(wrong).toContain('row \'fm-polar-b\' reads back boards unset, expected ["aqa"]');
     expect(solutionsId('fm-x')).toBe('fm-x-solns');
   });
+
+  it('given the text before, passes a clean insertion', () => {
+    const p = pack();
+    const out = insertPackRows(CATALOGUE, p, { afterId: 'fm-polar-a-solns' });
+    expect(verifyPackRows(out, p, CATALOGUE)).toEqual([]);
+  });
+
+  it('given the text before, reports a neighbouring row the insertion swallowed', () => {
+    // The anchor row closes on the line where the next row opens, so the new
+    // rows land inside that line and the next row no longer parses.
+    const before = CATALOGUE.replace("topic: 'Polar Coordinates',\n  },\n\n  // --- A-level Further Maths: Proof by Induction ---\n  {", "topic: 'Polar Coordinates',\n  }, {");
+    expect(parseResourcesEntries(before).map((e) => e.id)).toContain('fm-induction-a');
+    const p = pack();
+    const out = insertPackRows(before, p, { afterId: 'fm-polar-a-solns' });
+    expect(verifyPackRows(out, p)).toEqual([]);
+    expect(verifyPackRows(out, p, before)).toEqual([
+      "row 'fm-induction-a' no longer reads back as it was (row 4 is now 'fm-induction-a-solns')",
+    ]);
+  });
 });

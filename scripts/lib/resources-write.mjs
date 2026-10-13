@@ -185,20 +185,23 @@ export function insertPackRows(source, pack, { afterId, sectionComment }) {
 /**
  * What is wrong with the pack's rows in `source`, read back with the parser
  * the other scripts use: an empty list when both rows are there with the
- * expected fields.
+ * expected fields. Given `before`, the text the rows were added to, every
+ * other row must also read back as it did, so an insertion can't swallow a
+ * neighbouring row.
  *
  * @param {string} source
  * @param {PackRows} pack
+ * @param {string} [before]
  * @returns {string[]}
  */
-export function verifyPackRows(source, pack) {
+export function verifyPackRows(source, pack, before) {
   const entries = parseResourcesEntries(source);
   const solns = solutionsId(pack.id);
+  const problems = before === undefined ? [] : otherRowProblems(before, entries, [pack.id, solns]);
   const expected = [
     { id: pack.id, file: pack.qbtFile, type: 'questions', pairId: solns, boards: pack.boards ?? undefined },
     { id: solns, file: pack.solnFile, type: 'solutions', pairId: pack.id, boards: undefined },
   ];
-  const problems = [];
   for (const want of expected) {
     const found = entries.filter((e) => e.id === want.id);
     if (found.length !== 1) {
@@ -220,6 +223,33 @@ export function verifyPackRows(source, pack) {
         problems.push(`row '${want.id}' reads back ${name} ${have ?? 'unset'}, expected ${wanted ?? 'unset'}`);
       }
     }
+  }
+  return problems;
+}
+
+/**
+ * Rows of `before` that no longer read back, in order and unchanged, from
+ * `afterEntries` once the new rows (`newIds`) are set aside.
+ *
+ * @param {string} before
+ * @param {ReturnType<typeof parseResourcesEntries>} afterEntries
+ * @param {string[]} newIds
+ * @returns {string[]}
+ */
+function otherRowProblems(before, afterEntries, newIds) {
+  const was = parseResourcesEntries(before);
+  const now = afterEntries.filter((e) => !newIds.includes(e.id));
+  const problems = [];
+  for (let i = 0; i < Math.max(was.length, now.length); i++) {
+    const a = was[i];
+    const b = now[i];
+    if (JSON.stringify(a) === JSON.stringify(b)) continue;
+    problems.push(
+      a
+        ? `row '${a.id}' no longer reads back as it was${b ? ` (row ${i + 1} is now '${b.id}')` : ''}`
+        : `row '${b.id}' reads back, but was not there before`,
+    );
+    break;
   }
   return problems;
 }
