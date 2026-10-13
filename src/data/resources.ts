@@ -234,6 +234,26 @@ const rawResources: Resource[] = [
 
   // --- A-level Further Maths: Complex Numbers (QBT sheets) ---
   {
+    id: 'fm-complex-basics',
+    title: 'Complex Number Basics',
+    description: '',
+    file: '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Number_Basics.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-complex-basics-solns',
+    topic: 'Complex Numbers',
+  },
+  {
+    id: 'fm-complex-basics-solns',
+    title: 'Complex Number Basics',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Number_Basics.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-complex-basics',
+    topic: 'Complex Numbers',
+  },
+  {
     id: 'fm-complex-de-moivres-theorem',
     title: "De Moivre's Theorem",
     description: '',
