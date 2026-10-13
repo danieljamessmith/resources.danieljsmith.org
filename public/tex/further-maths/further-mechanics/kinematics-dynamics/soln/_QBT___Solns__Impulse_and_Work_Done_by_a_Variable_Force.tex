@@ -1,0 +1,1039 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/pack_preamble.tex}
+
+\djsSolnHeader{Impulse and Work Done by a Variable Force}
+\djsSitePath{Further Mechanics}{Kinematics \& Dynamics}
+\djsMechanicsPack
+\djsLastUpdated{13 October 2026}
+
+\begin{document}
+\djsFrontMatter
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+% [Source: _QBT___Solns__Impulse_and_Work_Done_by_a_Variable_Force, Q1]
+
+A puck of mass $0.40\,\mathrm{kg}$ moves on a smooth horizontal surface. \\
+The horizontal unit vectors $\mathbf{i}$ and $\mathbf{j}$ are perpendicular. \\
+
+A hockey stick strikes the puck. \\
+Immediately before contact, the puck has velocity $9\mathbf{i}\,\mathrm{m\,s^{-1}}$. \\
+Immediately after contact, its velocity is $12\mathbf{j}\,\mathrm{m\,s^{-1}}$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the impulse exerted by the stick on the puck, giving your answer as a vector, and calculate its magnitude. \marks{3} \\
+\item During contact, the force exerted by the stick acts in a constant horizontal direction. \\
+Its magnitude, $F$ newtons, is modelled by
+\[
+F=k\sin(25\pi t),\qquad 0\leq t\leq 0.040
+\] \\
+where $k$ is a positive constant and $t$ is the time in seconds measured from the start of contact. \\
+The stick loses contact with the puck at $t=0.040$. \\
+Using your answer to part (a), find the exact value of $k$. \marks{3} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item The impulse--momentum principle is
+\[
+\mathbf{I}=m\mathbf{v}-m\mathbf{u}
+\]
+
+Substituting the velocities gives the impulse exerted by the stick:
+\begin{align*}
+\mathbf{I}&=0.40(12\mathbf{j})-0.40(9\mathbf{i})\\
+&=(-3.6\mathbf{i}+4.8\mathbf{j})\,\mathrm{N\,s}
+\end{align*}
+
+Since \(\mathbf{i}\) and \(\mathbf{j}\) are perpendicular, its magnitude is
+\[
+|\mathbf{I}|=\sqrt{(-3.6)^2+4.8^2}=6\,\mathrm{N\,s}
+\]
+
+\item The impulse of a variable force is
+\[
+I=\int_{t_0}^{t_1}F\,\mathrm{d}t
+\]
+
+The force acts in a constant direction and \(F\) is its magnitude, so this integral over the contact interval is the magnitude of the impulse. Using the magnitude from part (a):
+\begin{align*}
+6&=\int_0^{0.040}k\sin(25\pi t)\,\mathrm{d}t\\
+&=\left[-\dfrac{k}{25\pi}\cos(25\pi t)\right]_0^{0.040}\\
+&=\dfrac{k}{25\pi}\bigl(\cos 0-\cos\pi\bigr)\\
+&=\dfrac{2k}{25\pi}
+\end{align*}
+
+Rearranging gives
+\[
+k=75\pi
+\]
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT___Solns__Impulse_and_Work_Done_by_a_Variable_Force, Q2]
+
+A trolley of mass $6\,\mathrm{kg}$ moves along a smooth horizontal track at $4\,\mathrm{m\,s^{-1}}$ and strikes a buffer. \\
+The buffer brings the trolley to rest without causing it to rebound. \\
+Air resistance is negligible. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the magnitude of the impulse exerted by the buffer on the trolley. \marks{2} \\
+\item The trolley first touches the buffer at time $t=0$ and comes to rest at time $t=T$ seconds. \\
+During this interval, the buffer exerts a horizontal force opposite to the trolley's motion. \\
+The magnitude of this force is
+\[
+F(t)=18\,000t(T-t)\,\mathrm{N},\qquad 0\leq t\leq T
+\] \\
+Using your answer to part (a), find the stopping time $T$ and the maximum magnitude of the force exerted by the buffer. \marks{5} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item Take the trolley's initial direction of motion as positive. The impulse--momentum principle is
+\[
+I=mv-mu
+\]
+
+Substituting the mass and velocities:
+\[
+I=6(0)-6(4)=-24\,\mathrm{N\,s}
+\]
+
+The magnitude of the impulse is \(24\,\mathrm{N\,s}\).
+
+\item The impulse of a variable force is
+\[
+I=\int_{t_0}^{t_1}F\,\mathrm{d}t
+\]
+
+The buffer force acts in a constant direction and \(F(t)\) is its magnitude, so this integral from \(t=0\) to \(t=T\) is the magnitude of the impulse. Using part (a):
+\begin{align*}
+24&=\int_0^T 18\,000t(T-t)\,\mathrm{d}t\\
+&=18\,000\int_0^T (Tt-t^2)\,\mathrm{d}t\\
+&=18\,000\left[\frac{Tt^2}{2}-\frac{t^3}{3}\right]_0^T\\
+&=18\,000\left(\frac{T^3}{2}-\frac{T^3}{3}\right)\\
+&=3000T^3
+\end{align*}
+
+Therefore the stopping time is
+\[
+T=\sqrt[3]{\frac{24}{3000}}=0.2\,\mathrm{s}
+\]
+
+To find the maximum force, differentiate with respect to \(t\):
+\begin{align*}
+\frac{\mathrm{d}F}{\mathrm{d}t}&=18\,000(T-2t)\\
+\frac{\mathrm{d}F}{\mathrm{d}t}=0&\quad\Longrightarrow\quad t=\frac{T}{2}=0.1\,\mathrm{s}
+\end{align*}
+
+Since \(\frac{\mathrm{d}^2F}{\mathrm{d}t^2}=-36\,000<0\), this gives the maximum force:
+\[
+F_{\max}=18\,000(0.1)(0.2-0.1)=180\,\mathrm{N}
+\]
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT___Solns__Impulse_and_Work_Done_by_a_Variable_Force, Q3]
+
+A sled of mass $20\,\mathrm{kg}$ slides down a smooth straight slope inclined at $30^\circ$ to the horizontal. \\
+It reaches a hydraulic buffer with speed $3\,\mathrm{m\,s^{-1}}$. \\
+
+The buffer exerts a force on the sled directed up the slope. \\
+When the buffer has been compressed by $x$ metres, the magnitude of this force is $F$ newtons, where
+\[
+F=\frac{A}{1+2x}+200x
+\] \\
+and $A$ is a positive constant. \\
+The sled comes to rest after compressing the buffer by $0.5\,\mathrm{m}$. \\
+Throughout the compression, the sled moves along the slope. \\
+Model the sled as a particle. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find, in terms of $A$, the work done against the buffer during this compression. \marks{2} \\
+  \item Using work and energy, find the exact value of $A$, taking account of the work done by gravity. \marks{3} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item The work done by a variable force is
+\[
+W=\int_{x_0}^{x_1}F\,\mathrm{d}x
+\]
+
+The buffer force opposes the motion, so the work done against it is this integral of its magnitude \(F\). Substituting the buffer force and compression limits:
+\begin{align*}
+W&=\int_0^{0.5}\left(\frac{A}{1+2x}+200x\right)\,\mathrm{d}x\\
+&=\left[\frac{A}{2}\ln(1+2x)+100x^2\right]_0^{0.5}\\
+&=\left(\frac{A}{2}\ln 2+25\right)\,\mathrm{J}
+\end{align*}
+
+\item Take \(g=9.8\,\mathrm{m\,s^{-2}}\) and the final position as the zero level for gravitational potential energy. The work--energy principle is
+\[
+KE_0+GPE_0+\sum W_{\text{other}}=KE_1+GPE_1
+\]
+
+The sled falls through a vertical height of \(0.5\sin30^\circ\) metres. The buffer opposes the motion, so its work is the negative of the answer to part (a). The normal reaction does no work. Hence
+\begin{align*}
+\frac12(20)(3)^2+(20)(9.8)(0.5\sin30^\circ)-\left(\frac{A}{2}\ln2+25\right)&=0\\
+90+49-\frac{A}{2}\ln2-25&=0\\
+\frac{A}{2}\ln2&=114\\
+A&=\frac{228}{\ln2}
+\end{align*}
+
+\end{enumerate}
+\par\medskip\noindent\textbf{Final answers with \(g = 10\):} (b) \(A=\frac{230}{\ln2}\)
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT___Solns__Impulse_and_Work_Done_by_a_Variable_Force, Q4]
+
+A trolley of mass $80\,\mathrm{kg}$ travels along a straight horizontal track. \\
+A powered launcher exerts a variable driving force on the trolley in the direction of motion for $2\,\mathrm{s}$. \\
+Throughout this interval, a constant resistance of $40\,\mathrm{N}$ acts against the motion. \\
+
+At time $t=0$, when the launcher begins to act, the trolley has speed $3\,\mathrm{m\,s^{-1}}$. \\
+At time $t=2\,\mathrm{s}$, its speed is $7\,\mathrm{m\,s^{-1}}$. \\
+The trolley does not change its direction of motion. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the magnitude of the impulse exerted on the trolley by the launcher during this interval. \marks{3} \\
+\item The driving force exerted by the launcher is modelled by
+\[
+F=kt^2(2-t),\qquad 0\leq t\leq 2
+\] \\
+where $F$ is measured in newtons, $t$ is measured in seconds and $k$ is a positive constant. \\
+\begin{enumerate}[label=(\roman*)]
+\item Find the value of $k$. \marks{3} \\
+\item Determine the maximum driving force predicted by this model. \marks{2} \\
+\end{enumerate}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item Take the direction of motion as positive. The impulse--momentum principle is
+\[
+I_{\text{net}}=mv-mu
+\]
+
+The impulse of a variable force is
+\[
+I=\int_{t_0}^{t_1}F\,\mathrm{d}t
+\]
+
+Let \(I_L\) be the impulse exerted by the launcher. The resistance acts in the negative direction, so
+\begin{align*}
+I_L+\int_0^2(-40)\,\mathrm{d}t&=80(7-3)\\
+I_L-80&=320\\
+I_L&=400\,\mathrm{N\,s}
+\end{align*}
+
+\item
+\begin{enumerate}[label=(\roman*), start=1]
+\item The launcher's impulse is given by
+\[
+I_L=\int_0^2 F\,\mathrm{d}t
+\]
+
+Using part (a) and substituting the force model:
+\begin{align*}
+400&=\int_0^2 kt^2(2-t)\,\mathrm{d}t\\
+&=k\int_0^2(2t^2-t^3)\,\mathrm{d}t\\
+&=k\left[\dfrac{2t^3}{3}-\dfrac{t^4}{4}\right]_0^2\\
+&=k\left(\dfrac{16}{3}-4\right)\\
+&=\dfrac{4k}{3}\\
+k&=300
+\end{align*}
+
+\item Differentiate the driving force:
+\[
+\dfrac{\mathrm{d}F}{\mathrm{d}t}
+=300(4t-3t^2)
+=300t(4-3t)
+\]
+
+The derivative is positive for \(0<t<\frac43\) and negative for \(\frac43<t<2\). Since \(F(0)=F(2)=0\), the maximum occurs at \(t=\frac43\,\mathrm{s}\):
+\[
+F_{\max}
+=300\left(\dfrac43\right)^2\left(2-\dfrac43\right)
+=\dfrac{3200}{9}\,\mathrm{N}
+\approx356\,\mathrm{N}
+\]
+
+\end{enumerate}
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT___Solns__Impulse_and_Work_Done_by_a_Variable_Force, Q5]
+
+A particle $P$ of mass $2\,\mathrm{kg}$ moves along a straight horizontal line. \\
+Take the positive direction along the line to be the direction of its initial motion. \\
+
+At time $t=0$, the velocity of $P$ is $3\,\mathrm{m\,s^{-1}}$. \\
+For $0\leq t\leq 2$, the only horizontal force acting on $P$ has signed component
+\[
+F(t)=(3t^2-12t+9)\,\mathrm{N}
+\] \\
+in the positive direction. \\
+The particle continues to move in the positive direction throughout this interval. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the impulse of the force over the interval $0\leq t\leq 2$. \marks{2} \\
+\item Find the speed of $P$ at $t=2$. \marks{2} \\
+\item Find the work done by the force during the portion of the interval $0\leq t\leq 2$ for which the force opposes the motion of $P$. \marks{3} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item The impulse of a variable force is
+\[
+I=\int_{t_0}^{t_1}F\,\mathrm{d}t
+\]
+
+Substituting the force and time limits:
+\begin{align*}
+I&=\int_0^2(3t^2-12t+9)\,\mathrm{d}t\\
+&=\left[t^3-6t^2+9t\right]_0^2\\
+&=2\,\mathrm{N\,s}
+\end{align*}
+
+\item The impulse--momentum principle is
+\[
+I=mv-mu
+\]
+
+Using the impulse from part (a), and writing \(v_2\) for the velocity at \(t=2\):
+\begin{align*}
+2&=2v_2-2(3)\\
+v_2&=4\,\mathrm{m\,s^{-1}}
+\end{align*}
+
+Since the motion is in the positive direction, the speed is \(4\,\mathrm{m\,s^{-1}}\).
+
+\item Since the particle moves in the positive direction, the force opposes its motion when \(F(t)<0\). The zeros of the force satisfy
+\[
+3t^2-12t+9=0
+\quad\Longrightarrow\quad t=1\text{ or }t=3
+\]
+
+The quadratic is negative between these roots, so the required portion is \(1<t\leq2\). To find the velocity \(v_1\) at \(t=1\), use the impulse formula:
+\begin{align*}
+I_{01}&=\int_0^1 F(t)\,\mathrm{d}t\\
+&=\int_0^1(3t^2-12t+9)\,\mathrm{d}t\\
+&=\left[t^3-6t^2+9t\right]_0^1
+=4\,\mathrm{N\,s}
+\end{align*}
+
+Using \(I=mv-mu\):
+\begin{align*}
+4&=2v_1-2(3)\\
+v_1&=5\,\mathrm{m\,s^{-1}}
+\end{align*}
+
+The work--energy principle is
+\[
+KE_0+GPE_0+\sum W_{\text{other}}=KE_1+GPE_1
+\]
+
+There is no change in gravitational potential energy. Let \(W\) be the work done by the horizontal force from \(t=1\) to \(t=2\); it is negative because the force opposes the motion. Using the speed from part (b):
+\begin{align*}
+\frac12(2)(5^2)+W&=\frac12(2)(4^2)\\
+W&=16-25\\
+&=-9\,\mathrm{J}
+\end{align*}
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+% [Source: _QBT___Solns__Impulse_and_Work_Done_by_a_Variable_Force, Q6]
+
+A particle $P$ of mass $4\,\mathrm{kg}$ moves along a straight line on a smooth horizontal surface. \\
+At time $t=0$, its velocity is $4\,\mathrm{m\,s^{-1}}$ in the positive direction. \\
+The only horizontal force acting on $P$ has component
+\[
+F(t)=(3t^2-12t)\,\mathrm{N}
+\] \\
+in the positive direction, where $t$ is the time in seconds and $t\geq 0$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the magnitude of the impulse exerted by the force between $t=0$ and $t=2$. \marks{3} \\
+\item Find the speed of $P$ at $t=3$, and state whether it is moving in the positive or negative direction. \marks{3} \\
+\item Find the exact time at which $P$ next comes to rest after $t=2$. \marks{4} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item The impulse of a variable force is
+\[
+I=\int_{t_0}^{t_1}F\,\mathrm{d}t
+\]
+
+Substituting the force and time limits:
+\begin{align*}
+I&=\int_0^2(3t^2-12t)\,\mathrm{d}t\\
+&=\left[t^3-6t^2\right]_0^2\\
+&=-16\,\mathrm{N\,s}
+\end{align*}
+
+The magnitude of the impulse is \(16\,\mathrm{N\,s}\).
+
+\item The impulse--momentum principle is
+\[
+I=mv-mu
+\]
+
+Over the interval from \(0\) to \(t\), the impulse is \(\int_0^t F(\tau)\,\mathrm{d}\tau\), writing \(\tau\) for the variable of integration. Substituting \(m=4\) and \(u=4\):
+\begin{align*}
+4v-16&=\int_0^t(3\tau^2-12\tau)\,\mathrm{d}\tau\\
+&=\left[\tau^3-6\tau^2\right]_0^t\\
+&=t^3-6t^2\\
+4v&=16+t^3-6t^2
+\end{align*}
+
+At \(t=3\):
+\[
+v=\dfrac{16+3^3-6(3^2)}{4}=-\dfrac{11}{4}\,\mathrm{m\,s^{-1}}
+\]
+
+The speed is \(\frac{11}{4}\,\mathrm{m\,s^{-1}}\), and \(P\) is moving in the negative direction.
+
+\item Using the velocity relation from part (b), \(P\) is at rest when \(v=0\):
+\begin{align*}
+t^3-6t^2+16&=0\\
+(t-2)(t^2-4t-8)&=0
+\end{align*}
+
+Hence either \(t=2\), or
+\begin{align*}
+t^2-4t-8&=0\\
+(t-2)^2&=12\\
+t&=2\pm2\sqrt{3}
+\end{align*}
+
+The only root greater than \(2\) gives the next time at rest:
+\[
+t=\left(2+2\sqrt{3}\right)\,\mathrm{s}
+\]
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+% [Source: _QBT___Solns__Impulse_and_Work_Done_by_a_Variable_Force, Q7]
+
+A particle of mass $4\,\mathrm{kg}$ moves along a straight horizontal line. \\
+A fixed positive direction is chosen along the line. \\
+At time $t$ seconds, where $t\geq 0$, the component of the resultant force in this direction is
+\[
+F(t)=6(t-1)(t-3)\,\mathrm{N}
+\] \\
+At time $t=0$, the velocity of the particle is $-1\,\mathrm{m\,s^{-1}}$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the magnitude of the impulse exerted on the particle between $t=0$ and $t=1$. \marks{3} \\
+\item Find the velocity of the particle at $t=1$. \marks{2} \\
+\item Hence find all times $t>0$ at which the speed of the particle is $1\,\mathrm{m\,s^{-1}}$. \marks{6} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item The impulse of a variable force is
+\[
+I=\int_{t_0}^{t_1}F\,\mathrm{d}t
+\]
+
+Substituting the force and time limits:
+\begin{align*}
+I&=\int_0^1 6(t-1)(t-3)\,\mathrm{d}t\\
+&=\int_0^1(6t^2-24t+18)\,\mathrm{d}t\\
+&=\left[2t^3-12t^2+18t\right]_0^1\\
+&=8\,\mathrm{N\,s}
+\end{align*}
+
+The magnitude of the impulse is \(8\,\mathrm{N\,s}\).
+
+\item The impulse--momentum principle is
+\[
+I=mv-mu
+\]
+
+The impulse in part (a) is positive, so
+\begin{align*}
+8&=4v-4(-1)\\
+v&=1\,\mathrm{m\,s^{-1}}
+\end{align*}
+
+\item Using Newton's second law, with acceleration \(a=\frac{\mathrm{d}v}{\mathrm{d}t}\):
+\begin{align*}
+4\frac{\mathrm{d}v}{\mathrm{d}t}&=6(t-1)(t-3)\\
+\frac{\mathrm{d}v}{\mathrm{d}t}&=\frac32t^2-6t+\frac92
+\end{align*}
+
+Integrating with respect to time:
+\begin{align*}
+v&=\int\left(\frac32t^2-6t+\frac92\right)\,\mathrm{d}t\\
+&=\frac12t^3-3t^2+\frac92t+c
+\end{align*}
+
+Using \(v=1\) when \(t=1\), from part (b):
+\begin{align*}
+1&=\frac12-3+\frac92+c\\
+c&=-1
+\end{align*}
+
+Thus the velocity is
+\[
+v=\frac12t^3-3t^2+\frac92t-1
+\]
+
+A speed of \(1\,\mathrm{m\,s^{-1}}\) means that either \(v=1\) or \(v=-1\).
+
+For \(v=1\):
+\begin{align*}
+\frac12t^3-3t^2+\frac92t-1&=1\\
+t^3-6t^2+9t-4&=0\\
+(t-1)(t^2-5t+4)&=0\\
+(t-1)^2(t-4)&=0\\
+t&=1\text{ or }t=4
+\end{align*}
+
+For \(v=-1\):
+\begin{align*}
+\frac12t^3-3t^2+\frac92t-1&=-1\\
+t^3-6t^2+9t&=0\\
+t(t-3)^2&=0\\
+t&=0\text{ or }t=3
+\end{align*}
+
+Excluding \(t=0\), the required times are
+\[
+t=1\,\mathrm{s},\quad 3\,\mathrm{s},\quad 4\,\mathrm{s}
+\]
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+% [Source: _QBT___Solns__Impulse_and_Work_Done_by_a_Variable_Force, Q8]
+
+In this question use $g=9.8\,\mathrm{m\,s^{-2}}$. \\
+
+A compact load of mass $60\,\mathrm{kg}$ is raised vertically by a cable. \\
+When the load is $x$ metres above its initial position, the tension in the cable is $P$ newtons, where
+\[
+P=498+\frac{k}{(x+2)^2}
+\] \\
+The constant $k$ satisfies $k>360$. \\
+The load starts from rest at $x=0$, and the cable remains taut throughout the motion considered. \\
+Air resistance is ignored. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find, in terms of $k$ and $h$, the work done by the tension as the load rises from $x=0$ to $x=h$. Also find, in terms of $k$, the height at which the tension equals the weight of the load. \marks{5} \\
+\item The load has speed $3\,\mathrm{m\,s^{-1}}$ when $x=6$. Determine $k$ and find the speed of the load when $x=8$, giving the speed to three significant figures. \marks{5} \\
+\item Find the height at which the load first comes instantaneously to rest after leaving its initial position. \marks{2} \\
+\item Give one physical reason why neglecting air resistance is reasonable for this load during its ascent. \marks{1} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item The work done by a variable force is
+\[
+W=\int_{x_0}^{x_1}F\,\mathrm{d}x
+\]
+
+The tension acts in the direction of motion, so the work done by the tension is
+\begin{align*}
+W&=\int_0^h\left(498+\dfrac{k}{(x+2)^2}\right)\,\mathrm{d}x\\
+&=\left[498x-\dfrac{k}{x+2}\right]_0^h\\
+&=\left(498h+k\left(\dfrac12-\dfrac{1}{h+2}\right)\right)\,\mathrm{J}
+\end{align*}
+
+The weight is \(60(9.8)=588\,\mathrm{N}\). At the required height, \(x\geq 0\), so \(x+2>0\). Equating the tension to the weight gives
+\begin{align*}
+498+\dfrac{k}{(x+2)^2}&=588\\
+\dfrac{k}{(x+2)^2}&=90\\
+(x+2)^2&=\dfrac{k}{90}\\
+x&=\left(\sqrt{\dfrac{k}{90}}-2\right)\,\mathrm{m}
+\end{align*}
+
+\item The work--energy principle is
+\[
+KE_0+GPE_0+\sum W_{\text{other}}
+=KE_1+GPE_1
+\]
+
+Take the initial position as the zero level for gravitational potential energy. During the ascent, the work done by the tension is positive; gravity is accounted for by the increase in gravitational potential energy. If the speed at height \(x\) is \(v\), part (a) gives
+\begin{align*}
+0+0+\left[498x+k\left(\dfrac12-\dfrac{1}{x+2}\right)\right]
+&=\dfrac12(60)v^2+588x\\
+30v^2&=-90x+k\left(\dfrac12-\dfrac{1}{x+2}\right)
+\end{align*}
+
+Substituting \(x=6\) and \(v=3\):
+\begin{align*}
+30(3)^2&=-90(6)+k\left(\dfrac12-\dfrac18\right)\\
+270&=-540+\dfrac{3k}{8}\\
+\dfrac{3k}{8}&=810\\
+k&=2160
+\end{align*}
+
+At \(x=8\), taking the positive square root for the speed:
+\begin{align*}
+30v^2&=-90(8)+2160\left(\dfrac12-\dfrac{1}{10}\right)\\
+&=144\\
+v&=\sqrt{\dfrac{24}{5}}\approx 2.19\,\mathrm{m\,s^{-1}}\qquad\text{(3 s.f.)}
+\end{align*}
+
+\item Using the energy relation in part (b), the speed is zero at height \(h\) when
+\begin{align*}
+0&=-90h+2160\left(\dfrac12-\dfrac{1}{h+2}\right)\\
+&=h\left(-90+\dfrac{1080}{h+2}\right)
+\end{align*}
+
+The initial position \(h=0\) is excluded, so
+\begin{align*}
+\dfrac{1080}{h+2}&=90\\
+h+2&=12\\
+h&=10\,\mathrm{m}
+\end{align*}
+
+\item Its compact shape gives a small frontal area relative to its mass, so air resistance is small compared with its weight.
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+% [Source: _QBT___Solns__Impulse_and_Work_Done_by_a_Variable_Force, Q9]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.2]
+\def\ang{60}
+\def\raylen{3.1}
+\def\wallup{2.7}
+\def\walldown{2.0}
+\def\ballrad{0.1}
+\def\arcRad{0.75}
+\coordinate (P) at (0,0);
+\coordinate (W) at ($(P)+(0,\wallup)$);
+\coordinate (L) at ($(P)+(0,-\walldown)$);
+\coordinate (B) at ($(P)+({90-\ang}:\raylen)$);
+\coordinate (Ustart) at ($(P)!0.8!(B)$);
+\coordinate (Uend) at ($(P)!0.5!(B)$);
+\draw[thick, black] (L) -- (W);
+\draw[thick, black] (P) -- (B);
+\draw[-{Stealth[length=3mm]}, thick, black] (Ustart) -- (Uend) node[midway, below right] {$5\,\mathrm{m\,s^{-1}}$};
+\draw[thick, black, fill=gray!30] (B) circle (\ballrad);
+\pic["$60^\circ$", draw, angle radius=\arcRad cm, angle eccentricity=1.3] {angle=B--P--W};
+\end{tikzpicture}
+\end{figure}
+
+
+A ball of mass $0.4\,\mathrm{kg}$ moves on a smooth horizontal surface and collides with a smooth fixed vertical wall. \\
+Immediately before impact, its speed is $5\,\mathrm{m\,s^{-1}}$ and its direction makes an angle of $60^\circ$ with the wall, as shown in the diagram above. \\
+
+The ball first touches the wall at time $t=0$ and loses contact at time $t=0.2\,\mathrm{s}$. \\
+During contact, the magnitude of the force exerted by the wall on the ball is modelled by
+\[
+F=\begin{cases}
+kt(0.2-t), & 0\leq t\leq 0.1\\
+k(0.2-t)^2, & 0.1<t\leq 0.2
+\end{cases}
+\] \\
+where $F$ is measured in newtons and $k$ is a positive constant. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Show, by integration, that the magnitude of the impulse exerted by the wall during the collision is
+\[
+\frac{k}{1000}\,\mathrm{N\,s}
+\] \marks[-30pt]{5}
+\item The coefficient of restitution between the ball and the wall is known to lie between $\frac{1}{4}$ and $\frac{3}{4}$, inclusive. \\
+Determine the corresponding range of values of $k$, giving exact bounds and fully justifying your answer. \marks{5} \\
+\item Given that $k=1500\sqrt{3}$, find the speed of the ball immediately after the collision in exact form, and the angle its direction of motion makes with the wall, to the nearest $0.1^\circ$. \marks{5} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item The impulse of a variable force is
+\[
+I=\int_{t_0}^{t_1}F\,\mathrm{d}t
+\]
+
+The wall's force acts in a constant direction and \(F\) is its magnitude, so this integral from \(t=0\) to \(t=0.2\) is the magnitude of the impulse. Splitting the integral at \(t=0.1\) and expanding the integrands:
+\begin{align*}
+I&=k\int_{0}^{0.1}(0.2t-t^2)\,\mathrm{d}t
++k\int_{0.1}^{0.2}(0.04-0.4t+t^2)\,\mathrm{d}t\\
+&=k\left[0.1t^2-\dfrac{t^3}{3}\right]_{0}^{0.1}
++k\left[0.04t-0.2t^2+\dfrac{t^3}{3}\right]_{0.1}^{0.2}\\
+&=\dfrac{k}{1500}+\dfrac{k}{3000}\\
+&=\dfrac{k}{1000}\,\mathrm{N\,s}
+\end{align*}
+
+\item
+Take the direction away from the wall as positive. Let \(u\) and \(v\) be the signed velocity components perpendicular to the wall before and after impact, respectively. Then
+\[
+u=-5\sin60^\circ=-\dfrac{5\sqrt3}{2}\,\mathrm{m\,s^{-1}}
+\]
+
+Writing the coefficient of restitution as \(e\), Newton's law of restitution gives
+\begin{align*}
+e&=\dfrac{\text{speed of separation}}{\text{speed of approach}}=\dfrac{v}{-u}\\
+v&=-eu=\dfrac{5\sqrt3}{2}e
+\end{align*}
+
+The impulse--momentum principle, applied perpendicular to the wall, is
+\[
+I=mv-mu
+\]
+
+Using part (a):
+\begin{align*}
+\dfrac{k}{1000}
+&=0.4\left(\dfrac{5\sqrt3}{2}e\right)-0.4\left(-\dfrac{5\sqrt3}{2}\right)\\
+&=\sqrt3(e+1)\\
+k&=1000\sqrt3(e+1)
+\end{align*}
+
+Since \(1000\sqrt3>0\), \(k\) increases as \(e\) increases. Thus the inclusive bounds \(\frac14\leq e\leq\frac34\) give
+\begin{align*}
+1000\sqrt3\left(1+\dfrac14\right)
+&\leq k\leq1000\sqrt3\left(1+\dfrac34\right)\\
+1250\sqrt3&\leq k\leq1750\sqrt3
+\end{align*}
+
+\item Substituting \(k=1500\sqrt3\) into the relation from part (b):
+\begin{align*}
+1500\sqrt3&=1000\sqrt3(e+1)\\
+e+1&=\dfrac32\\
+e&=\dfrac12
+\end{align*}
+
+The wall is smooth, so there is no impulse parallel to it and the parallel velocity component is unchanged. The rebound components are therefore
+\begin{align*}
+v&=\dfrac{5\sqrt3}{2}\times\dfrac12=\dfrac{5\sqrt3}{4}\,\mathrm{m\,s^{-1}}\\
+v_{\parallel}&=5\cos60^\circ=\dfrac52\,\mathrm{m\,s^{-1}}
+\end{align*}
+
+Let \(V\) be the rebound speed and \(\theta\) the angle its direction makes with the wall. Using Pythagoras and the ratio of the perpendicular and parallel components:
+\begin{align*}
+V^2&=\left(\dfrac{5\sqrt3}{4}\right)^2+\left(\dfrac52\right)^2
+=\dfrac{75}{16}+\dfrac{100}{16}=\dfrac{175}{16}\\
+\tan\theta&=\dfrac{v}{v_{\parallel}}
+=\dfrac{5\sqrt3/4}{5/2}=\dfrac{\sqrt3}{2}
+\end{align*}
+
+Hence the speed and angle, with the angle rounded to the nearest \(0.1^\circ\), are
+\[
+V=\dfrac{5\sqrt7}{4}\,\mathrm{m\,s^{-1}},
+\qquad \theta=\arctan\left(\dfrac{\sqrt3}{2}\right)\approx40.9^\circ
+\]
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+% [Source: _QBT___Solns__Impulse_and_Work_Done_by_a_Variable_Force, Q10]
+
+A car of mass $800\,\mathrm{kg}$ moves along a straight horizontal road. \\
+At time $t=0$, it passes a marker with speed $20\,\mathrm{m\,s^{-1}}$. \\
+After travelling a distance $x\,\mathrm{m}$ beyond the marker, its speed is $v\,\mathrm{m\,s^{-1}}$. \\
+
+The driving force varies with distance and has magnitude
+\[
+\left(1800+1200e^{-x/200}\right)\,\mathrm{N}
+\] \\
+The resistance to motion has magnitude $2v^2\,\mathrm{N}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Form a differential equation relating $v$ and $x$. \\
+  By making the substitution $u=v^2$, solve this equation to show that
+  \[
+  v^2=900+(3x-500)e^{-x/200}
+  \] \marks[-20pt]{8}
+  \item Using the work--energy principle and your result from part (a), find the exact work done against resistance during the first $200\,\mathrm{m}$ beyond the marker. \\
+  Hence find the average magnitude of the resistance over this distance. \marks{6} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item Take the direction of motion as positive. Using Newton's second law, with acceleration \(a=v\frac{\mathrm{d}v}{\mathrm{d}x}\):
+  \[
+  800v\dfrac{\mathrm{d}v}{\mathrm{d}x}=1800+1200e^{-x/200}-2v^2
+  \]
+
+  With the substitution \(u=v^2\):
+  \[
+  \dfrac{\mathrm{d}u}{\mathrm{d}x}=2v\dfrac{\mathrm{d}v}{\mathrm{d}x}
+  \]
+
+  Hence the differential equation becomes
+  \begin{align*}
+  400\dfrac{\mathrm{d}u}{\mathrm{d}x}&=1800+1200e^{-x/200}-2u\\
+  \dfrac{\mathrm{d}u}{\mathrm{d}x}+\dfrac{u}{200}&=\dfrac92+3e^{-x/200}
+  \end{align*}
+
+  The integrating factor is
+  \[
+  e^{\int \frac{1}{200}\,\mathrm{d}x}=e^{x/200}
+  \]
+
+  Multiplying the equation by this factor gives
+  \begin{align*}
+  e^{x/200}\dfrac{\mathrm{d}u}{\mathrm{d}x}+\dfrac{1}{200}e^{x/200}u
+  &=\dfrac92e^{x/200}+3\\
+  \dfrac{\mathrm{d}}{\mathrm{d}x}\left(ue^{x/200}\right)
+  &=\dfrac92e^{x/200}+3
+  \end{align*}
+
+  Integrating with respect to \(x\):
+  \begin{align*}
+  ue^{x/200}&=900e^{x/200}+3x+c\\
+  u&=900+(3x+c)e^{-x/200}
+  \end{align*}
+
+  At the marker, \(x=0\) and \(u=20^2=400\), so
+  \begin{align*}
+  400&=900+c\\
+  c&=-500
+  \end{align*}
+
+  Replacing \(u\) by \(v^2\):
+  \[
+  v^2=900+(3x-500)e^{-x/200}
+  \]
+
+  \item The work done by a variable force is
+  \[
+  W=\int_{x_0}^{x_1}F\,\mathrm{d}x
+  \]
+
+  The driving force acts in the direction of motion, so the work done by the driving force over the first \(200\,\mathrm{m}\) is
+  \begin{align*}
+  W_D&=\int_0^{200}\left(1800+1200e^{-x/200}\right)\,\mathrm{d}x\\
+  &=\left[1800x-240\,000e^{-x/200}\right]_0^{200}\\
+  &=\left(600\,000-\dfrac{240\,000}{e}\right)\,\mathrm{J}
+  \end{align*}
+
+  From part (a), the speed at \(x=200\) satisfies
+  \[
+  v^2=900+(600-500)e^{-1}=900+\dfrac{100}{e}
+  \]
+
+  The work--energy principle is
+  \[
+  KE_0+GPE_0+\sum W_{\text{other}}=KE_1+GPE_1
+  \]
+
+  Let \(W_R\) be the positive work done against resistance. The work done by resistance is \(-W_R\), and there is no change in gravitational potential energy on the horizontal road. Thus
+  \begin{align*}
+  \dfrac12(800)(20^2)+W_D-W_R
+  &=\dfrac12(800)\left(900+\dfrac{100}{e}\right)\\
+  W_R&=W_D-400\left(500+\dfrac{100}{e}\right)\\
+  &=600\,000-\dfrac{240\,000}{e}-200\,000-\dfrac{40\,000}{e}\\
+  &=\left(400\,000-\dfrac{280\,000}{e}\right)\,\mathrm{J}
+  \end{align*}
+
+  The average force over a displacement is
+  \[
+  F_{\mathrm{av}}=\dfrac{W}{x_1-x_0}
+  \]
+
+  Hence the average resistance over the first \(200\,\mathrm{m}\) is
+  \begin{align*}
+  R_{\mathrm{av}}&=\dfrac{400\,000-\frac{280\,000}{e}}{200}\\
+  &=\left(2000-\dfrac{1400}{e}\right)\,\mathrm{N}
+  \end{align*}
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+% [Source: _QBT___Solns__Impulse_and_Work_Done_by_a_Variable_Force, Q11]
+
+A particle of mass $2\,\mathrm{kg}$ moves along a horizontal straight line. \\
+At time $t=0$, it passes through a point $O$ with velocity $1\,\mathrm{m\,s^{-1}}$. \\
+The resultant force acts in the direction of motion and has magnitude $F\,\mathrm{N}$, where
+\[
+F=\frac{27}{v}-3v
+\] \\
+and $v\,\mathrm{m\,s^{-1}}$ is the velocity of the particle. \\
+Its displacement from $O$ at time $t$ seconds is $x\,\mathrm{m}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Formulate and solve a differential equation relating $v$ and $x$ to show that
+  \[
+  x=\ln\left(\frac{3+v}{2(3-v)}\right)-\frac{2}{3}(v-1),\qquad 1\leq v<3
+  \] \marks[-40pt]{7}
+  \item Find the exact displacement of the particle when its velocity first reaches $2\,\mathrm{m\,s^{-1}}$. \\
+  By changing the variable of integration from $x$ to $v$, calculate the work done by the force up to this instant. \\
+  Hence find the average force over this displacement, giving your answer to three significant figures. \marks{7} \\
+  \item Formulate and solve a differential equation relating $v$ and $t$ to obtain an expression for $v$ in terms of $t$. \marks{5} \\
+  \item Calculate the velocities at $t=1$ and $t=2$, giving your answers to four significant figures. \\
+  Find the impulse of the force over the interval $1\leq t\leq2$, giving your answer to three significant figures. \marks{4} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item Using Newton's second law, with acceleration \(a=v\frac{\mathrm{d}v}{\mathrm{d}x}\):
+\begin{align*}
+2v\frac{\mathrm{d}v}{\mathrm{d}x}&=\frac{27}{v}-3v \\
+\frac{\mathrm{d}x}{\mathrm{d}v}&=\frac{2v^2}{3(9-v^2)}
+\end{align*}
+
+To integrate, rearrange and use partial fractions:
+\begin{align*}
+\frac{2v^2}{3(9-v^2)}
+&=-\frac23+\frac{6}{9-v^2} \\
+&=-\frac23+\frac{1}{3-v}+\frac{1}{3+v}
+\end{align*}
+
+Separating variables and integrating:
+\begin{align*}
+\int \mathrm{d}x
+&=\int\left(-\frac23+\frac{1}{3-v}+\frac{1}{3+v}\right)\,\mathrm{d}v \\
+x&=-\frac23v-\ln|3-v|+\ln|3+v|+c
+\end{align*}
+
+At \(O\), \(x=0\) and \(v=1\), so
+\begin{align*}
+0&=-\frac23-\ln2+\ln4+c \\
+c&=\frac23-\ln2
+\end{align*}
+
+The force is positive for \(1\leq v<3\), so the velocity increases towards \(3\). The logarithmic term tends to infinity as \(v\to3^{-}\), so \(v=3\) is not reached at any finite displacement. Substituting the constant and combining the logarithms gives
+\[
+x=\ln\left(\frac{3+v}{2(3-v)}\right)-\frac23(v-1),\qquad 1\leq v<3
+\]
+
+\item Let \(s\) be the displacement when \(v=2\). From part (a):
+\[
+s=\left(\ln\left(\frac{5}{2}\right)-\frac23\right)\,\mathrm{m}
+\]
+
+The work done by a variable force is
+\[
+W=\int_{x_0}^{x_1}F\,\mathrm{d}x
+\]
+
+The force acts in the direction of motion, so the work it does is this integral of its magnitude \(F\). Using \(\frac{\mathrm{d}x}{\mathrm{d}v}\) from part (a) to change the variable of integration:
+\begin{align*}
+W&=\int_0^s\left(\frac{27}{v}-3v\right)\,\mathrm{d}x \\
+&=\int_1^2\left(\frac{27}{v}-3v\right)\frac{2v^2}{3(9-v^2)}\,\mathrm{d}v \\
+&=\int_1^2\frac{3(9-v^2)}{v}\frac{2v^2}{3(9-v^2)}\,\mathrm{d}v \\
+&=\int_1^2 2v\,\mathrm{d}v \\
+&=\left[v^2\right]_1^2=3\,\mathrm{J}
+\end{align*}
+
+The average force over a displacement is
+\[
+F_{\mathrm{av}}=\dfrac{W}{x_1-x_0}
+\]
+
+Hence
+\[
+F_{\mathrm{av}}=\frac{3}{\ln\left(\frac52\right)-\frac23}\approx12.0\,\mathrm{N}\qquad\text{(3 s.f.)}
+\]
+
+\item Using Newton's second law, with acceleration \(a=\frac{\mathrm{d}v}{\mathrm{d}t}\):
+\begin{align*}
+2\frac{\mathrm{d}v}{\mathrm{d}t}&=\frac{27}{v}-3v \\
+2v\frac{\mathrm{d}v}{\mathrm{d}t}&=27-3v^2
+\end{align*}
+
+Separating variables and integrating, with \(1\leq v<3\):
+\begin{align*}
+\int\frac{2v}{9-v^2}\,\mathrm{d}v&=\int3\,\mathrm{d}t \\
+-\ln(9-v^2)&=3t+k
+\end{align*}
+
+Using \(v=1\) when \(t=0\) gives \(k=-\ln8\). Therefore
+\begin{align*}
+-\ln(9-v^2)&=3t-\ln8 \\
+\ln\left(\frac{9-v^2}{8}\right)&=-3t \\
+9-v^2&=8e^{-3t} \\
+v^2&=9-8e^{-3t}
+\end{align*}
+
+Taking the positive square root, since the particle moves in the positive direction:
+\[
+v=\sqrt{9-8e^{-3t}},\qquad t\geq0
+\]
+
+\item Substituting into the expression from part (c):
+\begin{align*}
+v(1)&=\sqrt{9-8e^{-3}}\approx2.933\,\mathrm{m\,s^{-1}}\qquad\text{(4 s.f.)} \\
+v(2)&=\sqrt{9-8e^{-6}}\approx2.997\,\mathrm{m\,s^{-1}}\qquad\text{(4 s.f.)}
+\end{align*}
+
+The impulse--momentum principle is
+\[
+I=mv-mu
+\]
+
+For this interval, the initial and final velocities are \(v(1)\) and \(v(2)\). Using their unrounded values:
+\begin{align*}
+I&=2\bigl[v(2)-v(1)\bigr] \\
+&=2\left(\sqrt{9-8e^{-6}}-\sqrt{9-8e^{-3}}\right) \\
+&\approx0.128\,\mathrm{N\,s}\qquad\text{(3 s.f.)}
+\end{align*}
+
+\end{enumerate}
+\end{djsSolution}
+
+\end{enumerate}
+\end{document}

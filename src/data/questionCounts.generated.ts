@@ -36,6 +36,7 @@ export const questionCounts: Record<string, number> = {
   '/tex/further-maths/core-pure/vectors/qbt/_QBT__Vectors___Shortest_Distances.pdf': 8,
   '/tex/further-maths/further-mechanics/centre-of-mass/qbt/_QBT__Centre_of_Mass_of_Polygonal_Laminae.pdf': 10,
   '/tex/further-maths/further-mechanics/centre-of-mass/qbt/_QBT__Centre_of_Mass_of_Systems_of_Particles.pdf': 9,
+  '/tex/further-maths/further-mechanics/kinematics-dynamics/qbt/_QBT__Impulse_and_Work_Done_by_a_Variable_Force.pdf': 11,
   '/tex/further-maths/further-mechanics/kinematics-dynamics/qbt/_QBT__Motion_Under_a_Variable_Force.pdf': 14,
   '/tex/further-maths/further-mechanics/miscellaneous-mechanics/qbt/_QBT__Dimensional_Analysis.pdf': 10,
   '/tex/further-maths/further-mechanics/momentum-restitution-collisions/qbt/_QBT__Collisions_in_1_Dimension.pdf': 12,
