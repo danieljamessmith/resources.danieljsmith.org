@@ -4,7 +4,7 @@
 \djsQbtHeader{Systems of Differential Equations}
 \djsSitePath{Core Pure}{Differential Equations}
 
-\djsLastUpdated{11 October 2026}
+\djsLastUpdated{13 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -283,36 +283,25 @@ After examining data, the engineer chooses $k=1$ and $\gamma=4$. \\
 \questionitem
 % [Source: _QBT__Systems_of_Differential_Equations, Q11]
 
-A pharmacologist is studying the movement of a drug between a patient's bloodstream and muscle tissue. The amount of drug in the bloodstream after $t$ hours is $x$ mg. The amount of drug in the muscle tissue after $t$ hours is $y$ mg. Initially, when $t=0$, there is no drug in either the bloodstream or the muscle tissue. \\
+A gardener releases ladybirds into a large greenhouse to control the aphids living there. At time $t$ weeks after the ladybirds are released, there are $x$ thousand aphids and $y$ hundred ladybirds in the greenhouse. \\
 
-At first it is assumed that no drug is removed from the body. The pharmacologist further assumes that the drug is infused into the bloodstream at a constant rate of $q$ mg per hour, where $q>6$. The patient is at risk of toxic side effects if the amount of drug in the bloodstream exceeds $100$ mg. \\
+Aphids fly into the greenhouse at a constant rate. Aphids die from natural causes at a rate proportional to the number of aphids, and they are eaten at a rate proportional to the number of ladybirds. The number of ladybirds increases at a rate proportional to the number of aphids and decreases at a rate proportional to the number of ladybirds. \\
 
-For $t\ge 0$, this situation is modelled by the following pair of first-order linear differential equations. 
-
-\begin{align*}
-\frac{\mathrm{d}x}{\mathrm{d}t}&=-5x+30y+q \\[5pt]
-\frac{\mathrm{d}y}{\mathrm{d}t}&=5x-30y
-\end{align*} \\
-
-
+For $t \ge 0$, the two populations are modelled by the differential equations
+\[
+\begin{aligned}
+\frac{\mathrm{d}x}{\mathrm{d}t} &= 40 - 6x - 4y \\
+\frac{\mathrm{d}y}{\mathrm{d}t} &= x - y
+\end{aligned}
+\] \\
+At time $t = 0$, there are $1000$ aphids and $100$ ladybirds in the greenhouse. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item \begin{enumerate}[label=(\roman*)]
-    \item Show that
-    \[\frac{\mathrm{d}^2 x}{\mathrm{d}t^2}+35\frac{\mathrm{d}x}{\mathrm{d}t}=30q\]
-    \marks[-20pt]{2}
-    \item Hence determine $x$ in terms of $q$ and $t$ \marks{7} \\
-    \item The patient's bloodstream is tested $20$ hours after the infusion begins. Explain why, according to this model, the patient will be at risk of toxic side effects when the test is carried out \marks{1} \\[10pt]
-  \end{enumerate}
-\end{enumerate}
-Further observations suggest that some of the drug is metabolised in the muscle tissue and so is removed from the body. The model is refined in light of this. One resulting expression for $x$ is \\
-
-\[x=q\left(10-e^{-17t}\left(10\cosh\!\left(\sqrt{241}\,t\right)+\frac{169}{\sqrt{241}}\sinh\!\left(\sqrt{241}\,t\right)\right)\right)\] \\
-
-In the refined model, it is still assumed that the drug is infused at a constant rate. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Given now that $q<9$, determine whether the patient will be at risk of toxic side effects in the long run according to this refined model \marks{2} \\
-  \item Suggest a reason why it might be more realistic to model the infusion rate as not being constant \marks{1} \\
+  \item Show that
+  \[\frac{\mathrm{d}^2x}{\mathrm{d}t^2} + 7\frac{\mathrm{d}x}{\mathrm{d}t} + 10x = 40\] \marks[-30pt]{3}
+  \item Find $x$ in terms of $t$. \marks{6} \\
+  \item Find the exact value of $t$ at which the number of aphids in the greenhouse is greatest. \marks{2} \\
+  \item Hence find the number of ladybirds in the greenhouse at this time. \marks{2} \\
+  \item With reference to the first differential equation, explain why the model is unrealistic when there are very few aphids in the greenhouse. \marks{1} \\
 \end{enumerate}
 
 \newpage

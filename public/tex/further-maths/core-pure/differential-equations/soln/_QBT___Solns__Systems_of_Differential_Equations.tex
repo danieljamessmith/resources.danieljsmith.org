@@ -4,7 +4,7 @@
 \djsSolnHeader{Systems of Differential Equations}
 \djsSitePath{Core Pure}{Differential Equations}
 
-\djsLastUpdated{11 October 2026}
+\djsLastUpdated{13 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -2074,258 +2074,115 @@ After examining data, the engineer chooses $k=1$ and $\gamma=4$. \\
 \questionitem
 % [Source: _QBT___Solns__Systems_of_Differential_Equations, Q11]
 
-A pharmacologist is studying the movement of a drug between a patient's bloodstream and muscle tissue. The amount of drug in the bloodstream after $t$ hours is $x$ mg. The amount of drug in the muscle tissue after $t$ hours is $y$ mg. Initially, when $t=0$, there is no drug in either the bloodstream or the muscle tissue. \\
+A gardener releases ladybirds into a large greenhouse to control the aphids living there. At time $t$ weeks after the ladybirds are released, there are $x$ thousand aphids and $y$ hundred ladybirds in the greenhouse. \\
 
-At first it is assumed that no drug is removed from the body. The pharmacologist further assumes that the drug is infused into the bloodstream at a constant rate of $q$ mg per hour, where $q>6$. The patient is at risk of toxic side effects if the amount of drug in the bloodstream exceeds $100$ mg. \\
+Aphids fly into the greenhouse at a constant rate. Aphids die from natural causes at a rate proportional to the number of aphids, and they are eaten at a rate proportional to the number of ladybirds. The number of ladybirds increases at a rate proportional to the number of aphids and decreases at a rate proportional to the number of ladybirds. \\
 
-For $t\ge 0$, this situation is modelled by the following pair of first-order linear differential equations. 
-
-\begin{align*}
-\frac{\mathrm{d}x}{\mathrm{d}t}&=-5x+30y+q \\[5pt]
-\frac{\mathrm{d}y}{\mathrm{d}t}&=5x-30y
-\end{align*} \\
-
-
+For $t \ge 0$, the two populations are modelled by the differential equations
+\[
+\begin{aligned}
+\frac{\mathrm{d}x}{\mathrm{d}t} &= 40 - 6x - 4y \\
+\frac{\mathrm{d}y}{\mathrm{d}t} &= x - y
+\end{aligned}
+\] \\
+At time $t = 0$, there are $1000$ aphids and $100$ ladybirds in the greenhouse. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item \begin{enumerate}[label=(\roman*)]
-    \item Show that
-    \[\frac{\mathrm{d}^2 x}{\mathrm{d}t^2}+35\frac{\mathrm{d}x}{\mathrm{d}t}=30q\]
-    \marks[-20pt]{2}
-    \item Hence determine $x$ in terms of $q$ and $t$ \marks{7} \\
-    \item The patient's bloodstream is tested $20$ hours after the infusion begins. Explain why, according to this model, the patient will be at risk of toxic side effects when the test is carried out \marks{1} \\[10pt]
-  \end{enumerate}
-\end{enumerate}
-Further observations suggest that some of the drug is metabolised in the muscle tissue and so is removed from the body. The model is refined in light of this. One resulting expression for $x$ is \\
-
-\[x=q\left(10-e^{-17t}\left(10\cosh\!\left(\sqrt{241}\,t\right)+\frac{169}{\sqrt{241}}\sinh\!\left(\sqrt{241}\,t\right)\right)\right)\] \\
-
-In the refined model, it is still assumed that the drug is infused at a constant rate. \\
-
-\begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Given now that $q<9$, determine whether the patient will be at risk of toxic side effects in the long run according to this refined model \marks{2} \\
-  \item Suggest a reason why it might be more realistic to model the infusion rate as not being constant \marks{1} \\
+  \item Show that
+  \[\frac{\mathrm{d}^2x}{\mathrm{d}t^2} + 7\frac{\mathrm{d}x}{\mathrm{d}t} + 10x = 40\] \marks[-30pt]{3}
+  \item Find $x$ in terms of $t$. \marks{6} \\
+  \item Find the exact value of $t$ at which the number of aphids in the greenhouse is greatest. \marks{2} \\
+  \item Hence find the number of ladybirds in the greenhouse at this time. \marks{2} \\
+  \item With reference to the first differential equation, explain why the model is unrealistic when there are very few aphids in the greenhouse. \marks{1} \\
 \end{enumerate}
 
 \vspace*{10pt}
 
 \begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-  \item
-  \begin{enumerate}[label=(\roman*)]
-    \item Differentiate the first equation with respect to \(t\):
-    \[
-    \frac{\mathrm{d}^2x}{\mathrm{d}t^2}=-5\frac{\mathrm{d}x}{\mathrm{d}t}+30\frac{\mathrm{d}y}{\mathrm{d}t}
-    \]
-
-    From
-    \[
-    \frac{\mathrm{d}x}{\mathrm{d}t}=-5x+30y+q
-    \]
-
-    we rearrange to get
-    \[
-    5x-30y=q-\frac{\mathrm{d}x}{\mathrm{d}t}
-    \]
-
-    Using the second equation,
-    \[
-    \frac{\mathrm{d}y}{\mathrm{d}t}=5x-30y=q-\frac{\mathrm{d}x}{\mathrm{d}t}
-    \]
-
-    Substitute this into the differentiated equation:
-    \begin{align*}
-    \frac{\mathrm{d}^2x}{\mathrm{d}t^2}
-    &=-5\frac{\mathrm{d}x}{\mathrm{d}t}+30\left(q-\frac{\mathrm{d}x}{\mathrm{d}t}\right)\\
-    &=30q-35\frac{\mathrm{d}x}{\mathrm{d}t}
-    \end{align*}
-
-    Hence
-    \[
-    \frac{\mathrm{d}^2x}{\mathrm{d}t^2}+35\frac{\mathrm{d}x}{\mathrm{d}t}=30q
-    \]
-
-    This is the required result.
-
-    \item Initially, \(x=0\) and \(y=0\) when \(t=0\). So from the first differential equation,
-    \[
-    \frac{\mathrm{d}x}{\mathrm{d}t}(0)=-5(0)+30(0)+q=q
-    \]
-
-    Let
-    \[
-    u=\frac{\mathrm{d}x}{\mathrm{d}t}
-    \]
-
-    Then the equation from part (i) becomes
-    \[
-    \frac{\mathrm{d}u}{\mathrm{d}t}+35u=30q
-    \]
-
-    with
-    \[
-    u(0)=q
-    \]
-
-    Use the integrating factor \(e^{35t}\):
-    \begin{align*}
-    e^{35t}\frac{\mathrm{d}u}{\mathrm{d}t}+35e^{35t}u&=30qe^{35t}\\
-    \frac{\mathrm{d}}{\mathrm{d}t}\left(ue^{35t}\right)&=30qe^{35t}
-    \end{align*}
-
-    Integrating,
-    \begin{align*}
-    ue^{35t}&=\int 30qe^{35t}\,\mathrm{d}t\\
-    &=\frac{30q}{35}e^{35t}+c\\
-    &=\frac{6q}{7}e^{35t}+c
-    \end{align*}
-
-    Therefore
-    \[
-    u=\frac{6q}{7}+ce^{-35t}
-    \]
-
-    Use \(u(0)=q\):
-    \begin{align*}
-    q&=\frac{6q}{7}+c\\
-    c&=\frac{q}{7}
-    \end{align*}
-
-    So
-    \[
-    \frac{\mathrm{d}x}{\mathrm{d}t}=\frac{6q}{7}+\frac{q}{7}e^{-35t}
-    \]
-
-    Now integrate to find \(x\):
-    \begin{align*}
-    x&=\int \left(\frac{6q}{7}+\frac{q}{7}e^{-35t}\right)\,\mathrm{d}t\\
-    &=\frac{6q}{7}t-\frac{q}{245}e^{-35t}+K
-    \end{align*}
-
-    Use \(x(0)=0\):
-    \begin{align*}
-    0&=0-\frac{q}{245}+K\\
-    K&=\frac{q}{245}
-    \end{align*}
-
-    Hence
-    \begin{align*}
-    x&=\frac{6q}{7}t-\frac{q}{245}e^{-35t}+\frac{q}{245}\\
-    &=q\left(\frac{6t}{7}+\frac{1-e^{-35t}}{245}\right)
-    \end{align*}
-
-    \medskip
-
-    \textit{Alternative Solution:}
-
-    The auxiliary equation is
-    \[
-    \lambda^2+35\lambda=0
-    \]
-
-    so \(\lambda(\lambda+35)=0\), giving \(\lambda=0\) and \(\lambda=-35\). Hence
-    \[
-    x_c=A+Be^{-35t}
-    \]
-
-    Since a constant is already part of \(x_c\), try a particular integral \(x_p=kt\). Then
-    \[
-    \frac{\mathrm{d}x_p}{\mathrm{d}t}=k,
-    \qquad
-    \frac{\mathrm{d}^2x_p}{\mathrm{d}t^2}=0
-    \]
-
-    Substituting into \(\frac{\mathrm{d}^2x}{\mathrm{d}t^2}+35\frac{\mathrm{d}x}{\mathrm{d}t}=30q\):
-    \[
-    35k=30q
-    \]
-
-    so
-    \[
-    k=\frac{6q}{7}
-    \]
-
-    Therefore
-    \[
-    x=A+Be^{-35t}+\frac{6q}{7}t
-    \]
-
-    and
-    \[
-    \frac{\mathrm{d}x}{\mathrm{d}t}=-35Be^{-35t}+\frac{6q}{7}
-    \]
-
-    Using \(x(0)=0\) and \(\left.\frac{\mathrm{d}x}{\mathrm{d}t}\right|_{t=0}=q\):
-    \begin{align*}
-    A+B&=0\\
-    -35B+\frac{6q}{7}&=q
-    \end{align*}
-
-    so
-    \[
-    B=-\frac{q}{245},\qquad A=\frac{q}{245}
-    \]
-
-    Hence
-    \[
-    x=q\left(\frac{6t}{7}+\frac{1-e^{-35t}}{245}\right)
-    \]
-
-    \item At \(t=20\),
-    \[
-    x(20)=q\left(\frac{120}{7}+\frac{1-e^{-700}}{245}\right)
-    \]
-
-    Since \(q>6\) and \(\frac{1-e^{-700}}{245}>0\),
-    \[
-    x(20)>6\cdot \frac{120}{7}\approx 102.86>100
-    \]
-
-    So according to this model, the patient will be at risk of toxic side effects when the test is carried out.
-  \end{enumerate}
-
-  \item In the long run, we consider \(t\to\infty\).
-
-  Using
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item Differentiate the first equation with respect to \(t\):
   \[
-  \cosh z=\frac{e^z+e^{-z}}{2}
-  \qquad
-  \sinh z=\frac{e^z-e^{-z}}{2}
+  \frac{\mathrm{d}^2x}{\mathrm{d}t^2} = -6\frac{\mathrm{d}x}{\mathrm{d}t} - 4\frac{\mathrm{d}y}{\mathrm{d}t}
   \]
 
-  we have
+  Substitute \(\frac{\mathrm{d}y}{\mathrm{d}t} = x - y\):
+  \[
+  \frac{\mathrm{d}^2x}{\mathrm{d}t^2} = -6\frac{\mathrm{d}x}{\mathrm{d}t} - 4x + 4y
+  \]
+
+  From the first equation, \(4y = 40 - 6x - \frac{\mathrm{d}x}{\mathrm{d}t}\), so
   \begin{align*}
-  e^{-17t}\cosh(\sqrt{241}\,t)
-  &=\frac12\left(e^{-(17-\sqrt{241})t}+e^{-(17+\sqrt{241})t}\right)\\
-  &\to 0
+  \frac{\mathrm{d}^2x}{\mathrm{d}t^2} &= -6\frac{\mathrm{d}x}{\mathrm{d}t} - 4x + 40 - 6x - \frac{\mathrm{d}x}{\mathrm{d}t} \\
+  &= -7\frac{\mathrm{d}x}{\mathrm{d}t} - 10x + 40
   \end{align*}
 
-  and
+  Rearranging:
+  \[
+  \frac{\mathrm{d}^2x}{\mathrm{d}t^2} + 7\frac{\mathrm{d}x}{\mathrm{d}t} + 10x = 40
+  \]
+
+  as required.
+
+  \item The auxiliary equation is:
+  \[
+  \lambda^2 + 7\lambda + 10 = 0 \quad\Rightarrow\quad (\lambda+2)(\lambda+5) = 0 \quad\Rightarrow\quad \lambda = -2,\ -5
+  \]
+
+  so the complementary function is:
+  \[
+  x_c = Ae^{-2t} + Be^{-5t}
+  \]
+
+  For the particular integral, try \(x_p = k\), a constant. Then \(10k = 40\), so \(k = 4\). The general solution is:
+  \[
+  x = Ae^{-2t} + Be^{-5t} + 4
+  \]
+
+  At \(t = 0\), \(x = 1\) and \(y = 1\), so from the first equation:
+  \[
+  \frac{\mathrm{d}x}{\mathrm{d}t} = 40 - 6(1) - 4(1) = 30
+  \]
+
+  Differentiating the general solution:
+  \[
+  \frac{\mathrm{d}x}{\mathrm{d}t} = -2Ae^{-2t} - 5Be^{-5t}
+  \]
+
+  Using the initial conditions:
   \begin{align*}
-  e^{-17t}\sinh(\sqrt{241}\,t)
-  &=\frac12\left(e^{-(17-\sqrt{241})t}-e^{-(17+\sqrt{241})t}\right)\\
-  &\to 0
+  A + B + 4 &= 1 \\
+  -2A - 5B &= 30
   \end{align*}
 
-  because \(17>\sqrt{241}\).
-
-  Therefore, from
+  Solving gives \(A = 5\) and \(B = -8\), so
   \[
-  x=q\left(10-e^{-17t}\left(10\cosh\left(\sqrt{241}\,t\right)+\frac{169}{\sqrt{241}}\sinh\left(\sqrt{241}\,t\right)\right)\right)
+  x = 5e^{-2t} - 8e^{-5t} + 4
   \]
 
-  it follows that
+  \item At a stationary point, \(\frac{\mathrm{d}x}{\mathrm{d}t} = 0\):
+  \begin{align*}
+  -10e^{-2t} + 40e^{-5t} &= 0 \\
+  e^{3t} &= 4 \\
+  t &= \tfrac{1}{3}\ln 4
+  \end{align*}
+
+  Here \(\frac{\mathrm{d}^2x}{\mathrm{d}t^2} = 20e^{-2t} - 200e^{-5t} = 20e^{-2t} - 50e^{-2t} = -30e^{-2t} < 0\), since \(e^{-5t} = \frac{1}{4}e^{-2t}\) at this point, so the number of aphids is greatest when \(t = \frac{1}{3}\ln 4\).
+
+  \item At this time, \(e^{-2t} = 4^{-\frac{2}{3}}\) and \(e^{-5t} = 4^{-\frac{5}{3}} = \frac{1}{4}\cdot 4^{-\frac{2}{3}}\), so
   \[
-  x\to 10q \qquad \text{as } t\to\infty
+  x = 5\cdot 4^{-\frac{2}{3}} - 2\cdot 4^{-\frac{2}{3}} + 4 = 3\cdot 4^{-\frac{2}{3}} + 4
   \]
 
-  Given \(q<9\),
-  \[
-  10q<90<100
-  \]
+  Since \(\frac{\mathrm{d}x}{\mathrm{d}t} = 0\) at this time, the first equation gives \(40 - 6x - 4y = 0\):
+  \begin{align*}
+  y &= 10 - \tfrac{3}{2}x \\
+  &= 10 - \tfrac{9}{2}\cdot 4^{-\frac{2}{3}} - 6 \\
+  &= 4 - \tfrac{9}{2}\cdot 4^{-\frac{2}{3}} \\
+  &\approx 2.214
+  \end{align*}
 
-  So according to the refined model, the patient will not be at risk of toxic side effects in the long run.
+  so there are about \(221\) ladybirds in the greenhouse.
 
-  \item A constant infusion rate may be unrealistic because, in practice, the rate may be adjusted over time according to the patient's condition or to keep the drug level within a safe range.
+  \item When \(x\) is very small, \(\frac{\mathrm{d}x}{\mathrm{d}t} \approx 40 - 4y\). The rate at which aphids are eaten, \(4y\), does not depend on \(x\), so if \(y > 10\) the model predicts the aphid population still decreasing when there are no aphids left to eat, making \(x\) negative.
 \end{enumerate}
 \end{djsSolution}
 
