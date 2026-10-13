@@ -25,6 +25,7 @@ export const questionCounts: Record<string, number> = {
   '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Roots_of_Polynomials.pdf': 15,
   '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Series___Method_of_Differences.pdf': 12,
   '/tex/further-maths/core-pure/polar-coordinates/qbt/_QBT__Integration_of_Polar_Curves.pdf': 12,
+  '/tex/further-maths/core-pure/polar-coordinates/qbt/_QBT__Polar_Coordinates_Basics.pdf': 10,
   '/tex/further-maths/core-pure/polar-coordinates/qbt/_QBT__Tangents_to_Polar_Curves.pdf': 8,
   '/tex/further-maths/core-pure/vectors/qbt/_QBT__Invariant_Points_and_Lines.pdf': 9,
   '/tex/further-maths/core-pure/vectors/qbt/_QBT__Linear_Transformations.pdf': 11,

@@ -1,0 +1,333 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/pack_preamble.tex}
+
+\djsQbtHeader{Polar Coordinates Basics}
+\djsSitePath{Core Pure}{Polar Coordinates}
+\djsLastUpdated{13 October 2026}
+
+\begin{document}
+\djsFrontMatter
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+% [Source: _QBT__Polar_Coordinates_Basics, Q1]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.5]
+\def\displayunit{0.35}
+\def\rstart{1}
+\def\growth{2}
+\def\outerradius{8}
+\pgfmathsetmacro{\tmax}{pi}
+\pgfmathsetmacro{\endpoint}{\displayunit*(\rstart+\growth*\tmax)}
+\pgfmathsetmacro{\axisend}{1.2*\displayunit*\outerradius}
+\pgfmathsetmacro{\workspace}{1.15*\displayunit*\outerradius}
+\coordinate (O) at (0,0);
+\coordinate (A) at (180:\endpoint);
+\coordinate (L) at (\axisend,0);
+\path[use as bounding box] (-\workspace,-\workspace) rectangle (\axisend,\workspace);
+\draw[thick, black, samples=200, domain=0:\tmax, variable=\t]
+  plot ({\displayunit*(\rstart+\growth*\t)*cos(deg(\t))},{\displayunit*(\rstart+\growth*\t)*sin(deg(\t))});
+\draw[-{Stealth[length=3mm]}, thick, black] (O) -- (L);
+\fill[black] (O) circle (1.5pt);
+\node[below left=2pt] at (O) {$O$};
+\node[left=2pt] at (A) {$A$};
+\node[below] at (L) {Initial line};
+\end{tikzpicture}
+\end{figure}
+
+
+The polar curves $C_1$ and $C_2$ are defined by
+\[
+C_1: r=1+2\theta,\qquad 0\leqslant\theta\leqslant\pi
+\] \\
+and
+\[
+C_2: r=8-\theta,\qquad 0\leqslant\theta\leqslant2\pi
+\] \\
+The diagram above shows $C_1$. Its endpoint $A$ lies on the ray opposite the initial line. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item State the polar coordinates of $A$ and find its Cartesian coordinates, taking the pole as the origin and the initial line as the positive $x$-axis. \marks{3} \\
+\item Find the polar coordinates of the point where $C_1$ and $C_2$ intersect. \marks{2} \\
+\item On a copy of the diagram above, sketch $C_2$, indicating the radii of its two endpoints. \marks{1} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT__Polar_Coordinates_Basics, Q2]
+
+The curve $C$ has the polar equation
+\[
+r=\frac{6}{2-\sin\theta},\qquad -\pi<\theta\leq\pi
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Verify that the point with polar coordinates $\left(4,\dfrac{\pi}{6}\right)$ lies on $C$. \marks{1} \\
+\item Find the exact polar coordinates of the point on $C$ which is furthest from the pole, $O$. \marks{3} \\
+\item The Cartesian line $y=x$ intersects $C$ at two points. Find the exact Cartesian coordinates of both points. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT__Polar_Coordinates_Basics, Q3]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.5, x=0.65cm, y=0.65cm]
+\def\base{4}
+\def\amp{3}
+\def\axislen{2.5}
+\def\leftspace{7.5}
+\def\rightspace{3.5}
+\def\verticalspace{5.3}
+\coordinate (O) at (0,0);
+\coordinate (InitialEnd) at (\axislen,0);
+\path[use as bounding box] (-\leftspace,-\verticalspace) rectangle (\rightspace,\verticalspace);
+\draw[thick, black, domain=0:180, samples=200, variable=\t]
+  plot ({(\base-\amp*cos(\t))*cos(\t)},{(\base-\amp*cos(\t))*sin(\t)});
+\draw[-{Stealth[length=3mm]}, thick, black] (O) -- (InitialEnd)
+  node[right] {$\theta=0$};
+\node[left] at (O) {$O$};
+\end{tikzpicture}
+\end{figure}
+
+
+The curve $C$ has polar equation
+\[
+r=4-3\cos\theta,\qquad -\pi<\theta\leq\pi
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item The diagram above shows the portion of $C$ for which $0\leq\theta\leq\pi$. Complete the sketch of $C$. \marks{1} \\
+\end{enumerate}
+The straight line $\ell$ has polar equation
+\[
+r\cos\theta=1
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+\item Add $\ell$ to your completed sketch and find all the points of intersection of $C$ and $\ell$. Give their polar coordinates, with radii exact and any non-zero angles in radians to $3$ significant figures. \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT__Polar_Coordinates_Basics, Q4]
+
+The curve $C_1$ has polar equation
+\[
+r^2+4r\cos\theta-6r\sin\theta=12
+\] \\
+where $r>0$ and $-\pi<\theta\leq\pi$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find a Cartesian equation for $C_1$ and show that it represents a circle. State its radius and the Cartesian coordinates of its centre. \marks{4} \\
+\item Sketch $C_1$, marking its centre and the pole. Find the exact greatest and least distances of a point on $C_1$ from the pole. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT__Polar_Coordinates_Basics, Q5]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item The curve $C_1$ has Cartesian equation
+\[
+x^2+y^2=\sqrt{3}\,y
+\] \\
+Find the centre and radius of $C_1$, and show that its non-pole points have polar equation $r=\sqrt{3}\sin\theta$. \marks{4} \\
+\end{enumerate}
+The curve $C_2$ has polar equation
+\[
+r=1+\cos\theta
+\] \\
+Consider both curves for $0<\theta<\pi$, together with their limiting endpoints. \\
+In this interval, $r>0$ for both curves. The pole is a limiting endpoint of each curve. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+\item Show that $C_1$ and $C_2$ have exactly one intersection other than the pole, and find the exact polar coordinates of this intersection, $P$. \marks{4} \\
+\item Sketch both curves on a single diagram, clearly labelling each curve. Mark $P$ and indicate the Cartesian coordinates of every point where either curve meets the initial line. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+% [Source: _QBT__Polar_Coordinates_Basics, Q6]
+
+A curve has Cartesian equation
+\[
+(x^2+y^2)^2=5x^2+4xy+2y^2
+\] \\
+where $x$ and $y$ are not both zero. Use the convention $r>0$. \\
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\item Show that the polar equation of the curve is
+\[
+r^2=\frac{7+3\cos 2\theta+4\sin 2\theta}{2}
+\] \marks[-30pt]{4}
+\item Hence find the least and greatest distances of points on the curve from the origin, giving your answers in exact form. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+% [Source: _QBT__Polar_Coordinates_Basics, Q7]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.5]
+\def\raylen{6}
+\coordinate (O) at (0,0);
+\coordinate (E) at ($(O)+(\raylen,0)$);
+\draw[thick, black, -{Stealth[length=3mm]}] (O) -- (E);
+\node[below left] at (O) {$O$};
+\node[below left, yshift=-3pt] at (E) {Initial line};
+\end{tikzpicture}
+\end{figure}
+
+
+The graph $G_1$ has polar equation
+\[
+r=6\sec\left(\theta+\frac{\pi}{6}\right),\qquad -\frac{2\pi}{3}<\theta<\frac{\pi}{3}
+\] \\
+The graph $G_2$ is the ray with polar equation
+\[
+\theta=-\alpha,\qquad r>0
+\] \\
+where $0<\alpha<\dfrac{\pi}{2}$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Show that $G_1$ is a straight line by finding its Cartesian equation in the form $y=mx+c$. \marks{3} \\
+\item On a copy of the diagram above, sketch $G_1$ and $G_2$. Label the angle $\alpha$ and give the polar coordinates of the intersection of $G_1$ with the initial line. \marks{3} \\
+\item Find, in terms of $\alpha$, the polar coordinates of the intersection of $G_1$ and $G_2$. \marks{2} \\
+\item The region bounded by the initial line, $G_1$ and $G_2$ has area $12\sqrt{3}$ square units. Determine the exact value of $\alpha$. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+% [Source: _QBT__Polar_Coordinates_Basics, Q8]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.5]
+\def\radScale{2}
+\def\frequency{3}
+\pgfmathsetmacro{\alphaDraw}{180/\frequency}
+\pgfmathsetmacro{\rayLength}{\radScale}
+\pgfmathsetmacro{\axisLength}{2.3*\radScale}
+\coordinate (O) at (0,0);
+\coordinate (T) at (\alphaDraw:\rayLength);
+\coordinate (H) at (\axisLength,0);
+\draw[thick, black, domain=0:\alphaDraw, samples=180, variable=\t]
+  plot ({\radScale*(1+cos(\frequency*\t))*cos(\t)},{\radScale*(1+cos(\frequency*\t))*sin(\t)});
+\draw[thick, black, -{Stealth[length=3mm]}] (O) -- (H);
+\draw[dashed, black] (O) -- (T);
+\node[below left] at (O) {$O$};
+\node[right] at (H) {$\theta=0$};
+\node[above right] at (T) {$\theta=\alpha$};
+\end{tikzpicture}
+\end{figure}
+
+
+A curve has polar equation
+\[
+r=2(1+\cos 3\theta),\qquad 0\leq\theta<2\pi
+\] \\
+with only points for which $r>0$ represented by polar coordinates. The pole $O$ is included as a limiting point of the curve. \\
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\item The diagram above shows the arc traced from $\theta=0$ until the curve first reaches $O$. The tangent there has equation $\theta=\alpha$, where $0<\alpha<\pi$. Find $\alpha$ in terms of $\pi$. \marks{2} \\
+\item
+\begin{enumerate}[label=(\alph*)]
+\item Let $f(\theta)=2(1+\cos 3\theta)$. Show that, for every integer $k$,
+\[
+f\left(\frac{2k\pi}{3}-\theta\right)=f(\theta)
+\] \\
+and also show that
+\[
+f\left(\theta+\frac{2\pi}{3}\right)=f(\theta)
+\] \marks[-30pt]{4}
+\item Hence state the equations of all the distinct lines of symmetry of the curve, using angles in $0\leq\theta<\pi$. State also the smallest positive angle through which the curve can be rotated about $O$ and remain unchanged. \marks{3} \\
+\end{enumerate}
+\item Sketch the complete curve. State its maximum radius and all the corresponding values of $\theta$ in $0\leq\theta<2\pi$. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+% [Source: _QBT__Polar_Coordinates_Basics, Q9]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item The line $L$ has polar equation
+\[
+r=3\sec\left(\theta-\frac{\pi}{4}\right),\qquad -\frac{\pi}{4}<\theta<\frac{3\pi}{4}
+\] \\
+Show that its Cartesian equation is $x+y=3\sqrt{2}$. \marks{2} \\
+\item The curve $C$ has polar equation
+\[
+r=5-2\sin 2\theta,\qquad -\pi<\theta\leq\pi
+\] \\
+Find the exact polar coordinates of all the points of intersection of $L$ and $C$. \\
+Fully justify that you have found every point of intersection. \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+% [Source: _QBT__Polar_Coordinates_Basics, Q10]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item The curve $C$ is the right-hand branch of the hyperbola
+\[
+x^2-y^2=6x,\qquad x\geq6
+\] \\
+Using $x=r\cos\theta$ and $y=r\sin\theta$, show that its polar equation is
+\[
+r=6\cos\theta\sec 2\theta,\qquad -\frac{\pi}{4}<\theta<\frac{\pi}{4}
+\] \\
+where $r>0$. \marks{3} \\
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=0.4]
+\def\xmax{17}
+\def\ymax{12}
+\def\ymin{-12}
+\def\coef{6}
+\pgfmathsetmacro{\halfcoef}{\coef/2}
+\coordinate (O) at (0,0);
+\coordinate (E) at (\xmax,0);
+\begin{scope}
+  \clip (0,\ymin) rectangle (\xmax,\ymax);
+  \draw[thick, black, samples=200, domain=\ymin:\ymax, variable=\u]
+    plot ({\halfcoef+sqrt(\halfcoef*\halfcoef+\u*\u)},{\u});
+\end{scope}
+\draw[-{Stealth[length=3mm]}, thick, black] (O) -- (E);
+\node[below left] at (O) {$O$};
+\node[below] at ($(O)!0.75!(E)$) {Initial line};
+\end{tikzpicture}
+\end{figure}
+
+
+\item The diagram above shows the curve $C$. \\
+\begin{enumerate}[label=(\roman*)]
+\item Find the polar coordinates of the point $N$ on $C$ nearest to the pole $O$. Justify that your point gives the minimum value of $r$. \marks{3} \\
+\item The circle $r=6\sqrt{3}$ meets $C$ at $P$ and $Q$, where $P$ lies above the initial line and $Q$ lies below it. Find their exact polar coordinates, using angles in the interval $-\dfrac{\pi}{4}<\theta<\dfrac{\pi}{4}$. \marks{5} \\
+\item Find the exact value, in radians, of the angle $PNQ$. \marks{4} \\
+\end{enumerate}
+\end{enumerate}
+
+\end{enumerate}
+\end{document}

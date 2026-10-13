@@ -604,6 +604,26 @@ const rawResources: Resource[] = [
 
   // --- A-level Further Maths: Polar Coordinates ---
   {
+    id: 'fm-polar-basics',
+    title: 'Polar Coordinates Basics',
+    description: '',
+    file: '/tex/further-maths/core-pure/polar-coordinates/qbt/_QBT__Polar_Coordinates_Basics.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-polar-basics-solns',
+    topic: 'Polar Coordinates',
+  },
+  {
+    id: 'fm-polar-basics-solns',
+    title: 'Polar Coordinates Basics',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/polar-coordinates/soln/_QBT___Solns__Polar_Coordinates_Basics.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-polar-basics',
+    topic: 'Polar Coordinates',
+  },
+  {
     id: 'fm-polar-integration-polar-curves',
     title: 'Integration of Polar Curves',
     description: '',
