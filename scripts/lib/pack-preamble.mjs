@@ -95,17 +95,27 @@ export function stripPreambleComments(text) {
   ].join(eol);
 }
 
+const TEXT_SYMBOLS = new Map([
+  ['\\', String.raw`\textbackslash{}`],
+  ['~', String.raw`\textasciitilde{}`],
+  ['^', String.raw`\textasciicircum{}`],
+]);
+
 /**
  * Escape plain text (a site title or label) for a header or site-path
- * argument. Covers the characters titles use; not a general escaper.
+ * argument: every character LaTeX treats specially in text. Not for
+ * maths or anything already written in LaTeX.
  */
 export function texEscapeText(text) {
-  return text.replace(/([&%$#_{}])/g, '\\$1');
+  return text.replace(/[\\~^&%$#_{}]/g, (ch) => TEXT_SYMBOLS.get(ch) ?? `\\${ch}`);
 }
 
 /** Undo `texEscapeText`. */
 export function texUnescapeText(text) {
-  return text.replace(/\\([&%$#_{}])/g, '$1');
+  return text.replace(
+    /\\(textbackslash|textasciitilde|textasciicircum)\{\}|\\([&%$#_{}])/g,
+    (_, word, ch) => ch ?? [...TEXT_SYMBOLS].find(([, escaped]) => escaped === `\\${word}{}`)[0],
+  );
 }
 
 /**

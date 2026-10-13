@@ -190,6 +190,20 @@ describe('pack identity: header title and site path', () => {
     expect(texUnescapeText(texEscapeText('a & b_c {d} $e'))).toBe('a & b_c {d} $e');
   });
 
+  it('escapes a backslash, tilde and caret as text symbols', () => {
+    expect(texEscapeText(String.raw`Back\slash ~ Caret ^`)).toBe(
+      String.raw`Back\textbackslash{}slash \textasciitilde{} Caret \textasciicircum{}`,
+    );
+    const title = String.raw`a\b ~c^ {\} 100% \&`;
+    expect(texUnescapeText(texEscapeText(title))).toBe(title);
+  });
+
+  it('round-trips such a title through the header', () => {
+    const title = String.raw`Tilde ~ Caret ^ Back\slash`;
+    const out = applyPackIdentity(dated(), { title, strand: 'Core Pure', section: 'Vectors' });
+    expect(readPackIdentity(out).title).toBe(title);
+  });
+
   it('renames the header and adds the site path on the line after it', () => {
     const out = applyPackIdentity(dated(), {
       title: 'Matrix Determinants & Inverses',
