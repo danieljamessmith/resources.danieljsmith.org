@@ -235,7 +235,7 @@ const rawResources: Resource[] = [
   // --- A-level Further Maths: Complex Numbers (QBT sheets) ---
   {
     id: 'fm-complex-basics',
-    title: 'Complex Number Basics',
+    title: 'Complex Numbers Basics',
     description: '',
     file: '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Number_Basics.pdf',
     category: FM_CP,
@@ -245,7 +245,7 @@ const rawResources: Resource[] = [
   },
   {
     id: 'fm-complex-basics-solns',
-    title: 'Complex Number Basics',
+    title: 'Complex Numbers Basics',
     description: 'Full worked solutions',
     file: '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Number_Basics.pdf',
     category: FM_CP,
