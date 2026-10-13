@@ -98,7 +98,8 @@
 % display). Every display gets 6pt above and 10pt below, whatever the length
 % of its lead-in line; align rows are spread by an 8pt \jot; solution parts
 % are 14pt apart and sub-parts 8pt; \left and \right space like ordinary
-% brackets (mleftright); and no single line is stranded at a page break. No
+% brackets (mleftright); no single line is stranded at a page break; and
+% neither the Solution label nor the line before a list ends a page. No
 % skip can shrink, so full pages are not squeezed.
 \newtcolorbox{djsSolution}{%
   enhanced, breakable, frame hidden, sharp corners, colback=white,
@@ -111,14 +112,14 @@
   overlay unbroken and last={%
     \fill[scarlet] (frame.south west)
       rectangle ([xshift=3.5cm, yshift=2.2pt]frame.south west);},
-  before upper={{\color{scarlet}\bfseries Solution}\par\vspace{4pt}%
+  before upper={{\color{scarlet}\bfseries Solution}\par\nobreak\vspace{4pt}%
     \setlength{\parskip}{6pt plus 2pt}%
     \setlength{\abovedisplayskip}{6pt plus 2pt}%
     \setlength{\abovedisplayshortskip}{6pt plus 2pt}%
     \setlength{\belowdisplayskip}{10pt plus 2pt}%
     \setlength{\belowdisplayshortskip}{10pt plus 2pt}%
     \setlength{\jot}{8pt}%
-    \setlist{parsep=6pt plus 2pt, topsep=6pt plus 2pt}%
+    \setlist{parsep=6pt plus 2pt, topsep=6pt plus 2pt, beginpenalty=10000}%
     \setlist[enumerate,1]{itemsep=14pt plus 2pt}%
     \setlist[enumerate,2]{itemsep=8pt plus 2pt}%
     \mleftright

@@ -124,7 +124,9 @@ the optional `djsSolutionFigure` environment, and the legacy colored-cancel
   - `align` rows are spread by an 8pt `\jot`;
   - parts are 14pt apart and sub-parts 8pt;
   - `\left`/`\right` space like ordinary brackets (`mleftright`);
-  - no single line is stranded at a page break.
+  - no single line is stranded at a page break;
+  - neither the "Solution" label nor the line before a list ends a page, so
+    a solution whose opening doesn't fit starts on the next page.
 
   None of these skips can shrink, so full pages are not squeezed. Because
   paragraph spacing makes source blank lines visible, solutions follow the

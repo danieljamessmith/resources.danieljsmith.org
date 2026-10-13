@@ -10,7 +10,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Roots_and_Geometry_Problems.pdf': '4567f031',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Series.pdf': 'ab07fd97',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__De_Moivres_Theorem.pdf': '47c21e05',
-  '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Loci_and_Regions_in_the_Argand_Diagram.pdf': 'ce640742',
+  '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Loci_and_Regions_in_the_Argand_Diagram.pdf': '1ece2f52',
   '/tex/further-maths/core-pure/differential-equations/qbt/_QBT__2nd_Order_Differential_Equations.pdf': '86497028',
   '/tex/further-maths/core-pure/differential-equations/qbt/_QBT__Integrating_Factor_Method.pdf': '1f7fc3eb',
   '/tex/further-maths/core-pure/differential-equations/qbt/_QBT__Modelling_with_1st_Order_Differential_Equations.pdf': '45343b9e',
