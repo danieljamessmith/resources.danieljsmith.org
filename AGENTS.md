@@ -331,6 +331,7 @@ The `djsSolution` box's spacing relies on this source layout inside every soluti
 - Symbol units are written in maths as `\,\mathrm{...}` (`14.7\,\mathrm{J}`, `6.86\,\mathrm{m\,s}^{-1}`), never `\text{ J}`. Word units such as hours stay as words.
 - No `\!` between a function name (or `^{-1}`) and `\left`.
 - No manual `\\[4pt]`-style gaps between `align` rows. Small gaps between the rows of a `pmatrix` are fine. This rule is not checked.
+- A line that leads in to a `tikzpicture` or `figure` ends with `\par\nopagebreak`, followed by a blank line, so a page never ends on the lead-in with its figure overleaf. A `center` block inside a part needs nothing: the box already keeps the start of a list with the line before it. This rule is not checked.
 
 `scripts/check-solution-layout.mjs` (read-only, pre-commit) checks the first six rules inside every `djsSolution` box of the Further Maths soln packs and reports `file:line: [rule] message`. Fix violations by hand.
 
