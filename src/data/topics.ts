@@ -38,12 +38,12 @@ export const STRANDS: Strand[] = [
     boardStorageKey: 'fm-cp-board-filter',
     topics: [
       { id: 'miscellaneous-pure', topic: 'Miscellaneous Pure', title: 'Miscellaneous Pure', navLabel: 'Misc Pure' },
-      { id: 'further-calculus', topic: 'Further Calculus', title: 'Further Calculus', navLabel: 'Further Calculus' },
-      { id: 'polar-coordinates', topic: 'Polar Coordinates', title: 'Polar Coordinates', navLabel: 'Polar Coordinates' },
-      { id: 'differential-equations', topic: 'Differential Equations', title: 'Differential Equations', navLabel: 'Differential Equations' },
       { id: 'complex-numbers', topic: 'Complex Numbers', title: 'Complex Numbers', navLabel: 'Complex Numbers' },
-      { id: 'proof-by-induction', topic: 'Proof by Induction', title: 'Proof by Induction', navLabel: 'Proof by Induction' },
       { id: 'vectors', topic: 'Vectors', title: 'Vectors, Matrices & Linear Transformations', navLabel: 'Vectors & Matrices' },
+      { id: 'further-calculus', topic: 'Further Calculus', title: 'Further Calculus', navLabel: 'Further Calculus' },
+      { id: 'differential-equations', topic: 'Differential Equations', title: 'Differential Equations', navLabel: 'Differential Equations' },
+      { id: 'polar-coordinates', topic: 'Polar Coordinates', title: 'Polar Coordinates', navLabel: 'Polar Coordinates' },
+      { id: 'proof-by-induction', topic: 'Proof by Induction', title: 'Proof by Induction', navLabel: 'Proof by Induction' },
     ],
   },
   {
