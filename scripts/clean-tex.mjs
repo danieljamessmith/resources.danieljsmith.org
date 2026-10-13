@@ -1,6 +1,7 @@
 /**
- * Strips full-line comments from the document body of QBT/soln .tex files,
- * collapses long blank runs, and re-inserts numbered question delimiters.
+ * Strips full-line comments from the document body of QBT/soln .tex files
+ * and from after `\end{document}`, collapses long blank runs, and re-inserts
+ * numbered question delimiters.
  */
 
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -70,8 +71,9 @@ export function insertQuestionDelimitersAndHints(bodyLines, fileStem) {
 }
 
 /**
- * Processes the full text of a .tex file: strips body comments, collapses
- * blank runs, and inserts question delimiters + source hints.
+ * Processes the full text of a .tex file: strips body comments and those
+ * after `\end{document}`, collapses blank runs, and inserts question
+ * delimiters + source hints.
  * @param {string} text
  * @param {string} fileStem  basename of the .tex file without extension
  * @returns {string}
@@ -85,7 +87,7 @@ export function processContent(text, fileStem) {
 
   const preamble = lines.slice(0, beginIdx + 1);
   const bodyRaw = lines.slice(beginIdx + 1, endIdx);
-  const closing = lines.slice(endIdx);
+  const closing = [lines[endIdx], ...stripBodyLines(lines.slice(endIdx + 1))];
 
   const stripped = stripBodyLines(bodyRaw);
   const collapsed = collapseBlankRuns(stripped);
@@ -117,7 +119,7 @@ function main() {
       console.error(`clean-tex: ${rel}: missing \\begin{document} or \\end{document}`);
       process.exit(1);
     }
-    const bodyRaw = lines.slice(beginIdx + 1, endIdx);
+    const bodyRaw = [...lines.slice(beginIdx + 1, endIdx), ...lines.slice(endIdx + 1)];
     let removed = 0;
     for (const line of bodyRaw) {
       if (isFullLineComment(line)) removed++;

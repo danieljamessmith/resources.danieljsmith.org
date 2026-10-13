@@ -170,4 +170,19 @@ describe('processContent', () => {
     // Should not contain four consecutive newlines in the body
     expect(result).not.toMatch(/\n{5,}/);
   });
+
+  it('strips full-line comments after \\end{document}', () => {
+    const input = `${wrap('\\item foo')}\n% a note after the end\n  % another\n`;
+    const result = processContent(input, STEM);
+    expect(result).not.toContain('a note after the end');
+    expect(result).not.toContain('another');
+    expect(result).toMatch(/\\end\{document\}\n$/);
+  });
+
+  it('ends the body at the real \\end{document}, not at a comment naming it', () => {
+    const input = wrap('% a note on \\end{document}\n% Solution: 2\n\\item foo');
+    const result = processContent(input, STEM);
+    expect(result).not.toContain('Solution: 2');
+    expect(result).toContain('\\item foo');
+  });
 });

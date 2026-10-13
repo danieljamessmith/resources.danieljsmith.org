@@ -127,8 +127,17 @@ export function findPackPairs(searchRoot, repoRoot) {
 }
 
 /**
+ * A line without its comment: everything from the first unescaped `%`.
+ * @param {string} line
+ */
+export function codePart(line) {
+  return line.replace(/(?<!\\)%.*$/, '');
+}
+
+/**
  * Returns the 0-based indices of the lines containing \begin{document} and
- * \end{document}.  Returns -1 for either if not found.
+ * \end{document} in code, not in a comment: TeX stops reading at the first
+ * `\end{document}`. Returns -1 for either if not found.
  * @param {string[]} lines
  * @returns {{ beginIdx: number; endIdx: number }}
  */
@@ -136,8 +145,9 @@ export function findDocBoundaries(lines) {
   let beginIdx = -1;
   let endIdx = -1;
   for (let i = 0; i < lines.length; i++) {
-    if (beginIdx < 0 && lines[i].includes('\\begin{document}')) beginIdx = i;
-    if (lines[i].includes('\\end{document}')) {
+    const code = codePart(lines[i]);
+    if (beginIdx < 0 && code.includes('\\begin{document}')) beginIdx = i;
+    if (code.includes('\\end{document}')) {
       endIdx = i;
       break;
     }

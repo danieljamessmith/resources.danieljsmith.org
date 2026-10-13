@@ -1,5 +1,5 @@
 import { basename } from 'node:path';
-import { normalizePath, shouldProcessTexFile } from './tex-utils.mjs';
+import { codePart, normalizePath, shouldProcessTexFile } from './tex-utils.mjs';
 
 export const PACK_PREAMBLE_SITE_INPUT = String.raw`\input{../../../../_shared/pack_preamble.tex}`;
 export const PACK_PREAMBLE_OVERLEAF_INPUT = String.raw`\input{preamble.tex}`;
@@ -238,7 +238,7 @@ function splitLines(text) {
 }
 
 function findBeginDocumentIndex(lines) {
-  return lines.findIndex((line) => line.includes(String.raw`\begin{document}`));
+  return lines.findIndex((line) => codePart(line).includes(String.raw`\begin{document}`));
 }
 
 function findFirstEnumerateIndex(lines, startIdx) {

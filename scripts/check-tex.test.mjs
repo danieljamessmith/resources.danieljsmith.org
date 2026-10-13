@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isUnexpectedFullLineComment } from './check-tex.mjs';
+import { bodyCommentViolations, isUnexpectedFullLineComment } from './check-tex.mjs';
 
 describe('isUnexpectedFullLineComment', () => {
   it('returns false for a regular code line', () => {
@@ -43,5 +43,37 @@ describe('isUnexpectedFullLineComment', () => {
 
   it('returns false for a line with an inline comment after content', () => {
     expect(isUnexpectedFullLineComment('\\item foo % inline comment')).toBe(false);
+  });
+});
+
+describe('bodyCommentViolations', () => {
+  const doc = (body, tail = []) =>
+    ['\\documentclass{article}', '% a preamble comment', '\\begin{document}', ...body, '\\end{document}', ...tail].join('\n');
+
+  it('passes delimiters, source hints and inline comments', () => {
+    const body = ['% ---- Question 1 ----', '\\questionitem', '% [Source: _QBT__Foo, Q1]', 'x % note'];
+    expect(bodyCommentViolations(doc(body))).toEqual([]);
+  });
+
+  it('reports other full-line comments with their line numbers', () => {
+    expect(bodyCommentViolations(doc(['\\questionitem', '% id: q1']))).toEqual([{ line: 5, text: '% id: q1' }]);
+  });
+
+  it('looks past \\end{document}, where no full-line comment is allowed', () => {
+    expect(bodyCommentViolations(doc(['x'], ['% a note after the end', '% ---- Question 2 ----']))).toEqual([
+      { line: 6, text: '% a note after the end' },
+      { line: 7, text: '% ---- Question 2 ----' },
+    ]);
+  });
+
+  it('does not end the body at a comment that mentions \\end{document}', () => {
+    expect(bodyCommentViolations(doc(['% about \\end{document}', '% id: q1']))).toEqual([
+      { line: 4, text: '% about \\end{document}' },
+      { line: 5, text: '% id: q1' },
+    ]);
+  });
+
+  it('throws when a boundary is missing', () => {
+    expect(() => bodyCommentViolations('\\begin{document}\nx')).toThrow(/missing/);
   });
 });

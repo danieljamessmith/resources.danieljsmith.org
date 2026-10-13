@@ -10,10 +10,10 @@ the root `AGENTS.md`.
 | Script | What it does |
 |--------|--------------|
 | `npm run test` | Vitest run over all `*.test.mjs` |
-| `npm run check-tex` | Read-only hygiene check on QBT/soln `.tex` bodies: no full-line comments except the `% ---- Question N ----` delimiters and `% [Source: <file>, QN]` hints |
+| `npm run check-tex` | Read-only hygiene check on QBT/soln `.tex` bodies: no full-line comments except the `% ---- Question N ----` delimiters and `% [Source: <file>, QN]` hints, and none at all after `\end{document}` |
 | `npm run check-solution-layout` | Read-only check that worked solutions follow the *Solution source layout* (blank lines around displays, `\frac` in sentences, `\mathrm` units, no `\!` before `\left`) |
 | `npm run check-pack-preamble` | Read-only convention check for Further Maths QBT/Soln shared `pack_preamble.tex` wrappers, `\djsMechanicsPack` and preamble comments |
-| `npm run clean-tex` | Strips full-line comments from QBT/soln bodies, collapses blank-line runs, re-numbers question delimiters |
+| `npm run clean-tex` | Strips full-line comments from QBT/soln bodies and from after `\end{document}`, collapses blank-line runs, re-numbers question delimiters |
 | `npm run check-questions [scope]` | Read-only drift detector: reports any QBT/soln pair where the SOLN statement region differs from the QBT statement, plus structurally broken pairs (numbering mismatches, duplicate delimiters, missing/extra `\questionitem`, delimiter numbering gaps). Same scope arg as `compile-tex`. Non-zero exit on drift |
 | `npm run sync-questions [scope]` | Rewrites SOLN statement regions in place to match QBT. Solution box content is never touched. Skips structurally broken pairs (run `check-questions` first to triage) |
 | `npm run check-resources` | Read-only validator for `src/data/resources.ts` (see Catalogue and database checks). Non-zero exit on any violation |

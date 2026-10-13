@@ -1,6 +1,7 @@
 /**
  * Read-only lint: body of QBT/soln .tex files must not contain full-line
- * comments except clean question delimiters inserted by clean-tex.mjs.
+ * comments except clean question delimiters inserted by clean-tex.mjs, and
+ * nothing after `\end{document}` may be a full-line comment.
  */
 
 import { readFileSync } from 'node:fs';
@@ -28,6 +29,29 @@ export function isUnexpectedFullLineComment(line) {
   return !ALLOWED_FULL_LINE_COMMENTS.some((re) => re.test(line));
 }
 
+/**
+ * The unexpected full-line comments in a document's body and after its
+ * `\end{document}`, with 1-based line numbers. Throws when the document
+ * boundaries are missing.
+ * @param {string} text
+ * @returns {{ line: number; text: string }[]}
+ */
+export function bodyCommentViolations(text) {
+  const lines = text.split(/\r?\n/);
+  const { beginIdx, endIdx } = findDocBoundaries(lines);
+  if (beginIdx < 0 || endIdx < 0) {
+    throw new Error('missing \\begin{document} or \\end{document}');
+  }
+  const violations = [];
+  for (let i = beginIdx + 1; i < lines.length; i++) {
+    if (i === endIdx) continue;
+    if (i > endIdx ? /^\s*%/.test(lines[i]) : isUnexpectedFullLineComment(lines[i])) {
+      violations.push({ line: i + 1, text: lines[i] });
+    }
+  }
+  return violations;
+}
+
 function main() {
   const files = walkTexFiles(texRoot, repoRoot, shouldProcessTexFile);
   files.sort();
@@ -45,21 +69,14 @@ function main() {
       process.exit(1);
     }
 
-    const lines = text.split(/\r?\n/);
-    const { beginIdx, endIdx } = findDocBoundaries(lines);
-    if (beginIdx < 0 || endIdx < 0) {
-      console.error(`check-tex: ${rel}: missing \\begin{document} or \\end{document}`);
+    let found;
+    try {
+      found = bodyCommentViolations(text);
+    } catch (e) {
+      console.error(`check-tex: ${rel}: ${e.message}`);
       process.exit(1);
     }
-
-    const bodyLines = lines.slice(beginIdx + 1, endIdx);
-    for (let i = 0; i < bodyLines.length; i++) {
-      const line = bodyLines[i];
-      if (isUnexpectedFullLineComment(line)) {
-        const lineNo = beginIdx + 2 + i;
-        violations.push({ file: rel, line: lineNo, text: line });
-      }
-    }
+    for (const v of found) violations.push({ file: rel, ...v });
   }
 
   if (violations.length > 0) {

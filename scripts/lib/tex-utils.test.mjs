@@ -99,6 +99,17 @@ describe('findDocBoundaries', () => {
     ];
     expect(findDocBoundaries(lines)).toEqual({ beginIdx: 0, endIdx: 3 });
   });
+
+  it('ignores \\begin{document} and \\end{document} in comments', () => {
+    const lines = [
+      '% \\begin{document} is below',
+      '\\begin{document}',
+      '% this note mentions \\end{document}',
+      'text % and so does this one: \\end{document}',
+      '\\end{document} % the real one',
+    ];
+    expect(findDocBoundaries(lines)).toEqual({ beginIdx: 1, endIdx: 4 });
+  });
 });
 
 // ---------------------------------------------------------------------------
