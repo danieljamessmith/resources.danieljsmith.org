@@ -40,7 +40,7 @@ function main() {
     }
   }
 
-  console.log(`migrate-fm-pack-preamble: ${changed}/${files.length} file(s) changed`);
+  console.log(`migrate-pack-preamble: ${changed}/${files.length} file(s) changed`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

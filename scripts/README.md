@@ -19,7 +19,7 @@ the root `AGENTS.md`.
 | `npm run check-resources` | Read-only validator for `src/data/resources.ts` (see Catalogue and database checks). Non-zero exit on any violation |
 | `npm run check-generated` | Read-only verifier that the `*.generated.ts` files in `src/data/` match what `count-questions` and `hash-assets` would produce now (catches stale generated state from `--no-verify` commits or hand-edits). Non-zero exit on staleness |
 | `npm run check-pairs` | Read-only check that every topic with any pack asset has all four of QBT/soln `.tex`/`.pdf`, and that no tracked file under `public/tex` is missing |
-| `npm run check-private-terms` | Read-only check that no private term appears in tracked/new text files (or, with `--message FILE`, a commit message). The list comes from `PRIVATE_TERMS` (CI secret), `PRIVATE_TERMS_FILE`, or `~/.config/private-terms.txt`; skipped if none. Hits are reported by term number only |
+| `npm run check-private-terms` | Read-only check that no private term appears in tracked/new files (or, with `--message FILE`, a commit message): text files as they are, PDFs by the text their pages show and the strings they carry. The list comes from `PRIVATE_TERMS` (CI secret), `PRIVATE_TERMS_FILE`, or `~/.config/private-terms.txt`; with none, or an empty one, the check fails. Hits are reported by term number only |
 | `npm run mark-checked -- <solutions-id> [--date YYYY-MM-DD]` | Records in `src/data/reviews.json` that a pack's worked solutions were checked: the date (default today, never after it) and the current hash of the pack's `.tex` pair. Run it after the pack's last `.tex` edit. An unknown flag or a second argument is refused, so without the `--` (npm takes `--date` for itself) it stops rather than recording today |
 | `npm run mark-checked -- <solutions-id> --reordered` | After an edit that only put a pack's questions in a new order, keeps its existing check date and stores the new hash. Refuses unless the committed pack matched its record and both working-tree files are the committed ones with their questions reordered the same way (delimiters, source hints and `\djsLastUpdated` may differ) |
 | `npm run review-status [scope \| solutions-id]` | Read-only report of packs never checked, checked and unchanged, or changed since their check. Scope as for `check-questions` (default `further-maths`); a solutions id reports one pack |
@@ -117,7 +117,7 @@ retry.
 | `scripts/check-solution-layout.mjs` | Read-only *Solution source layout* check over Further Maths soln packs |
 | `scripts/check-pack-preamble.mjs` | Read-only Further Maths shared-preamble wrapper convention check |
 | `scripts/clean-tex.mjs` | Strips full-line body comments, collapses long blank runs, re-inserts numbered question delimiters |
-| `scripts/migrate-fm-pack-preamble.mjs` | Mechanical codemod for migrating Further Maths QBT/Soln files to the shared pack preamble |
+| `scripts/migrate-pack-preamble.mjs` | Mechanical codemod for migrating Further Maths QBT/Soln files to the shared pack preamble |
 | `scripts/migrate-solution-boxes.mjs` | Idempotent codemod converting legacy Solution tcolorboxes in Further Maths SOLN packs to `djsSolution`; `--dry-run`, optional path-substring filters, non-zero exit if a box is skipped. Run it after importing an old-style pack; `import-pack` does not |
 | `scripts/check-questions.mjs` | Read-only QBT ⇄ SOLN drift and structural integrity detector |
 | `scripts/sync-questions.mjs` | Rewrites SOLN statement regions from QBT while preserving solution boxes and prelude |
@@ -133,6 +133,7 @@ retry.
 | `scripts/lib/pack-preamble.mjs` | Further Maths pack path/depth helpers, shared-preamble migration, import normalization, initial dates, date validation, pack title and site-path read/write (`readPackIdentity`, `applyPackIdentity`), `\djsMechanicsPack` and preamble comments, and convention checks |
 | `scripts/lib/pair-presence.mjs` | Pure quartet / tracked-missing checker behind `check-pairs` |
 | `scripts/lib/private-terms.mjs` | Pure term-list parsing and whole-token matching behind `check-private-terms` |
+| `scripts/lib/pdf-text.mjs` | Pure readable-text extraction from a PDF (page text, document info, bookmarks, metadata) for `check-private-terms` |
 | `scripts/lib/tex-utils.mjs` | Shared path, `.tex` discovery, document boundary, and QBT/soln pair helpers |
 | `scripts/lib/question-blocks.mjs` | Pure parser/synchronizer for `check-questions` and `sync-questions`; preserves CRLF/LF. `questionOrderChange` recognises a file whose questions were only reordered |
 | `scripts/lib/solution-boxes.mjs` | Pure legacy-Solution-box → `djsSolution` rewrite used by `migrate-solution-boxes` |

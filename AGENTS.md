@@ -12,7 +12,7 @@ Durable project instructions belong here first. Do not recreate editor-specific 
 
 ## Public repository
 
-This repository is public. Never name or path-reference other local repositories, private tooling or upstream content sources in files, comments, tests or commit messages; describe them generically (e.g. "an external tool") or leave them out. `check-private-terms` enforces this against a term list kept outside the repo.
+This repository is public. Never name or path-reference other local repositories, private tooling or upstream content sources in files, comments, tests or commit messages; describe them generically (e.g. "an external tool") or leave them out. `check-private-terms` enforces this, in text files and PDFs, against a term list kept outside the repo, and fails where there is no list.
 
 ---
 
