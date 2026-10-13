@@ -1,0 +1,1369 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/pack_preamble.tex}
+
+\djsSolnHeader{Oblique Collisions of Smooth Spheres}
+\djsSitePath{Further Mechanics}{Momentum \& Collisions}
+\djsMechanicsPack
+\djsLastUpdated{13 October 2026}
+
+\begin{document}
+\djsFrontMatter
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+% [Source: _QBT___Solns__Oblique_Collisions_of_Smooth_Spheres, Q1]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.1]
+\def\rad{1.2}
+\def\raylen{3.2}
+\def\axisextra{1.3}
+\pgfmathsetmacro{\angA}{180-atan(1/2)}
+\pgfmathsetmacro{\angB}{atan(3)}
+\coordinate (A) at (0,0);
+\coordinate (B) at ($(A)+(2*\rad,0)$);
+\coordinate (Left) at ($(A)+({-\rad-\axisextra},0)$);
+\coordinate (Right) at ($(B)+({\rad+\axisextra},0)$);
+\coordinate (StartA) at ($(A)+(\angA:\raylen)$);
+\coordinate (StartB) at ($(B)+(\angB:\raylen)$);
+\draw[dashed,black] (Left) -- (Right);
+\foreach \p/\mass in {A/2m,B/3m} {
+  \draw[thick,black] (\p) circle (\rad);
+  \node at ($(\p)+(0,0.62*\rad)$) {$\p$};
+  \node at ($(\p)+(0,-0.60*\rad)$) {$\mass$};
+}
+\draw[thick,black,postaction={decorate},decoration={markings,mark=at position 0.35 with {\arrow{Stealth[length=3mm]}}}] (StartA) -- (A) node[pos=0.30,above right] {$u(4\mathbf{i}-2\mathbf{j})$};
+\draw[thick,black,postaction={decorate},decoration={markings,mark=at position 0.35 with {\arrow{Stealth[length=3mm]}}}] (StartB) -- (B) node[pos=0.30,above right,xshift=3pt] {$u(-\mathbf{i}-3\mathbf{j})$};
+\end{tikzpicture}
+\end{figure}
+
+
+Two uniform smooth spheres $A$ and $B$, of equal radius and masses $2m$ and $3m$ respectively, collide on a smooth horizontal surface. The unit vector $\mathbf{i}$ points along the line of centres from $A$ towards $B$ at impact, and $\mathbf{j}$ is perpendicular to $\mathbf{i}$ in the plane of the surface, as indicated by the velocity directions in the diagram above. \\
+
+Immediately before the collision, their velocities are
+\[
+\mathbf{u}_A=u(4\mathbf{i}-2\mathbf{j}),\qquad \mathbf{u}_B=u(-\mathbf{i}-3\mathbf{j})
+\] \\
+where $u>0$. Immediately after the collision, the direction of motion of $A$ is perpendicular to its direction of motion immediately before the collision. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the velocity of $A$ immediately after the collision, in terms of $u$. \marks{3} \\
+\item Find the coefficient of restitution between the spheres and the percentage loss in their total kinetic energy. Give the percentage to three significant figures. \marks{4} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item The line of centres is along \(\mathbf{i}\), so the \(\mathbf{i}\)- and \(\mathbf{j}\)-components of each velocity are its components parallel and perpendicular to the line of centres:
+\begin{alignat*}{2}
+A&:\quad\text{parallel}\ 4u,&\qquad&\text{perpendicular}\ {-2u}\\
+B&:\quad\text{parallel}\ {-u},&&\text{perpendicular}\ {-3u}
+\end{alignat*}
+
+The components before and after the collision, with the line of centres horizontal and the directions after the collision predicted:\par\nopagebreak
+
+\begin{tikzpicture}
+\def\R{0.8}       % sphere radius
+\def\gap{0.12}    % gap between a sphere and its arrows
+\def\L{1.1}       % arrow length
+\def\ext{0.3}     % overhang of the line of centres beyond the arrows
+\def\panel{7}     % offset of the After panel
+\foreach \k/\title in {0/Before, 1/After} {
+  \coordinate (A\k) at (\k*\panel,0);
+  \coordinate (B\k) at ($(A\k)+(2*\R,0)$);
+  \draw[dashed] ($(A\k)+(-\R-\gap-\L-\ext,0)$) -- ($(B\k)+(\R+\gap+\L+\ext,0)$);
+  \foreach \C/\name/\mass in {A/A/2m, B/B/3m} {
+    \draw[thick] (\C\k) circle (\R);
+    \node at ($(\C\k)+(0,0.3*\R)$) {$\name$};
+    \node at ($(\C\k)+(0,-0.35*\R)$) {$\mass$};
+  }
+  \node[above] at ($(A\k)!0.5!(B\k)+(0,\R+\gap+\L+0.15)$) {\textit{\title}};
+}
+\foreach \C/\dx/\dy/\lab/\side in {A0/1/0/4u/above, A0/0/-1/2u/right, B0/-1/0/u/above, B0/0/-1/3u/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{-(\R+\gap+\L)}*(\dx,\dy)$) -- ($(\C)+{-(\R+\gap)}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\foreach \C/\dx/\dy/\lab/\side in {A1/-1/0/v_A/above, A1/0/-1/2u/right, B1/1/0/v_B/above, B1/0/-1/3u/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{\R+\gap}*(\dx,\dy)$) -- ($(\C)+{\R+\gap+\L}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\end{tikzpicture}
+
+\textbf{Perpendicular to the line of centres.} The spheres are smooth, so there is no impulse perpendicular to the line of centres. The momentum of each sphere in this direction is conserved, so its perpendicular component is unchanged: \(2u\) for \(A\) and \(3u\) for \(B\), in the directions shown.
+
+\textbf{Deflection of \(A\).} After the collision, let \(A\) move to the left along the line of centres with speed \(v_A\), as in the diagram. The direction of motion of \(A\) turns through \(90^\circ\), so its velocities before and after the collision are perpendicular. In (parallel, perpendicular) components:
+\begin{align*}
+\begin{pmatrix}4u\\-2u\end{pmatrix}\cdot\begin{pmatrix}-v_A\\-2u\end{pmatrix}&=0\\
+-4uv_A+4u^2&=0\\
+v_A&=u
+\end{align*}
+
+So after the collision \(A\) moves with speed \(u\) along the line of centres, in the direction of \(-\mathbf{i}\), and \(2u\) perpendicular to it, in the direction of \(-\mathbf{j}\):
+\[
+\mathbf{v}_A=u(-\mathbf{i}-2\mathbf{j})
+\]
+
+\item \textbf{Parallel to the line of centres.} From part (a), \(A\) moves to the left with speed \(v_A=u\). Let \(B\) move to the right with speed \(v_B\), as in the diagram. Conservation of momentum, taking left to right as positive:
+\begin{align*}
+2m(4u)+3m(-u)&=2m(-u)+3mv_B\\
+5mu&=-2mu+3mv_B\\
+v_B&=\frac{7u}{3}
+\end{align*}
+
+Both speeds are positive, so the directions in the diagram are correct.
+
+Newton's law of restitution:
+\[
+e=\frac{\text{speed of separation}}{\text{speed of approach}}=\frac{v_A+v_B}{4u+u}=\frac{u+\frac{7u}{3}}{5u}=\frac23
+\]
+
+\textbf{Kinetic energy.} The square of each speed is the sum of the squares of its parallel and perpendicular components, so the total kinetic energies before and after the collision are
+\begin{align*}
+KE_{\text{before}}&=\frac12(2m)\bigl((4u)^2+(2u)^2\bigr)+\frac12(3m)\bigl(u^2+(3u)^2\bigr)\\
+&=35mu^2\\
+KE_{\text{after}}&=\frac12(2m)\bigl(u^2+(2u)^2\bigr)+\frac12(3m)\left(\left(\frac{7u}{3}\right)^2+(3u)^2\right)\\
+&=\frac{80}{3}mu^2
+\end{align*}
+
+Hence the percentage loss is
+\[
+\frac{35mu^2-\frac{80}{3}mu^2}{35mu^2}\times100\%=\frac{500}{21}\%\approx23.8\%\qquad\text{(3 significant figures)}
+\]
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT___Solns__Oblique_Collisions_of_Smooth_Spheres, Q2]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.1]
+\def\rad{1.2}
+\def\raylen{3.3}
+\def\arrowstop{1.45}
+\def\extension{3.4}
+\pgfmathsetmacro{\alphaang}{atan(3/4)}
+\pgfmathsetmacro{\adir}{180+\alphaang}
+\def\bdir{315}
+\coordinate (A) at (0,0);
+\coordinate (B) at ($(A)+(2*\rad,0)$);
+\coordinate (Left) at ($(A)+(-\extension,0)$);
+\coordinate (Right) at ($(B)+(\extension,0)$);
+\coordinate (Aleft) at ($(A)+(180:\rad)$);
+\coordinate (Bright) at ($(B)+(0:\rad)$);
+\coordinate (Astart) at ($(A)+(\adir:\raylen)$);
+\coordinate (Aend) at ($(A)+(\adir:\arrowstop)$);
+\coordinate (Bstart) at ($(B)+(\bdir:\raylen)$);
+\coordinate (Bend) at ($(B)+(\bdir:\arrowstop)$);
+\draw[thick, black, dashed] (Left) -- (Right);
+\draw[thick, black] (A) circle (\rad);
+\draw[thick, black] (B) circle (\rad);
+\foreach \s in {A,B} {
+  \draw[thick, black, dashed] (\s start) -- (\s);
+}
+\draw[-{Stealth[length=3mm]}, thick, black] (Astart) -- (Aend) node[midway, above left] {$5\,\mathrm{m\,s^{-1}}$};
+\draw[-{Stealth[length=3mm]}, thick, black] (Bstart) -- (Bend) node[midway, above right] {$2\sqrt{2}\,\mathrm{m\,s^{-1}}$};
+\pic["$\alpha$", draw, angle radius=7mm, angle eccentricity=1.4] {angle=Aleft--A--Astart};
+\pic["$45^\circ$", draw, angle radius=7mm, angle eccentricity=1.4] {angle=Bstart--B--Bright};
+\node[above left] at ($(A)+(135:\rad)$) {$A$};
+\node[above right] at ($(B)+(45:\rad)$) {$B$};
+\node at ($(A)+(0,0.45*\rad)$) {$2\,\mathrm{kg}$};
+\node at ($(B)+(0,0.45*\rad)$) {$4\,\mathrm{kg}$};
+\end{tikzpicture}
+\end{figure}
+
+
+Two smooth uniform spheres $A$ and $B$, of equal radius and masses $2\,\mathrm{kg}$ and $4\,\mathrm{kg}$ respectively, collide on a smooth horizontal surface. The diagram above shows a plan view at the instant of contact. \\
+
+Immediately before the collision, sphere $A$ has speed $5\,\mathrm{m\,s^{-1}}$ and its velocity makes an acute angle $\alpha$ with the line of centres, where $\tan\alpha=\dfrac{3}{4}$. Sphere $B$ has speed $2\sqrt{2}\,\mathrm{m\,s^{-1}}$ and its velocity makes an angle of $45^\circ$ with the line of centres. Their velocity components along the line of centres are directed towards each other, and their perpendicular components are directed towards the same side of this line, as shown in the diagram above. \\
+
+Immediately after the collision, the velocities of the two spheres are perpendicular. \\
+
+Determine the coefficient of restitution between the spheres and the magnitude of the impulse exerted on $A$ during the collision. Give both answers in exact form. \marks{8} \\
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+Since \(\alpha\) is acute and \(\tan\alpha=\frac34\), \(\cos\alpha=\frac45\) and \(\sin\alpha=\frac35\). Resolving each velocity parallel and perpendicular to the line of centres, in \(\mathrm{m\,s^{-1}}\):
+\begin{alignat*}{2}
+A&:\quad\text{parallel}\ 5\cos\alpha=4,&\qquad&\text{perpendicular}\ 5\sin\alpha=3\\
+B&:\quad\text{parallel}\ 2\sqrt2\cos45^\circ=2,&&\text{perpendicular}\ 2\sqrt2\sin45^\circ=2
+\end{alignat*}
+
+The components before and after the collision, with the line of centres horizontal and the directions after the collision predicted:\par\nopagebreak
+
+\begin{tikzpicture}
+\def\R{0.8}       % sphere radius
+\def\gap{0.12}    % gap between a sphere and its arrows
+\def\L{1.1}       % arrow length
+\def\ext{0.3}     % overhang of the line of centres beyond the arrows
+\def\panel{7}     % offset of the After panel
+\foreach \k/\title in {0/Before, 1/After} {
+  \coordinate (A\k) at (\k*\panel,0);
+  \coordinate (B\k) at ($(A\k)+(2*\R,0)$);
+  \draw[dashed] ($(A\k)+(-\R-\gap-\L-\ext,0)$) -- ($(B\k)+(\R+\gap+\L+\ext,0)$);
+  \foreach \C/\name/\mass in {A/A/2\,\mathrm{kg}, B/B/4\,\mathrm{kg}} {
+    \draw[thick] (\C\k) circle (\R);
+    \node at ($(\C\k)+(0,0.3*\R)$) {$\name$};
+    \node at ($(\C\k)+(0,-0.35*\R)$) {$\mass$};
+  }
+  \node[above] at ($(A\k)!0.5!(B\k)+(0,\R+\gap+\L+0.15)$) {\textit{\title}};
+}
+\foreach \C/\dx/\dy/\lab/\side in {A0/1/0/4/above, A0/0/1/3/right, B0/-1/0/2/above, B0/0/1/2/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{-(\R+\gap+\L)}*(\dx,\dy)$) -- ($(\C)+{-(\R+\gap)}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\foreach \C/\dx/\dy/\lab/\side in {A1/-1/0/v_A/above, A1/0/1/3/right, B1/1/0/v_B/above, B1/0/1/2/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{\R+\gap}*(\dx,\dy)$) -- ($(\C)+{\R+\gap+\L}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\end{tikzpicture}
+
+\textbf{Perpendicular to the line of centres.} The spheres are smooth, so there is no impulse perpendicular to the line of centres. The momentum of each sphere in this direction is conserved, so its perpendicular component is unchanged: \(3\,\mathrm{m\,s^{-1}}\) for \(A\) and \(2\,\mathrm{m\,s^{-1}}\) for \(B\).
+
+\textbf{Parallel to the line of centres.} After the collision, let \(A\) move to the left with speed \(v_A\) and \(B\) move to the right with speed \(v_B\), as in the diagram. Conservation of momentum, taking left to right as positive:
+\begin{align*}
+2(4)+4(-2)&=2(-v_A)+4v_B\\
+v_A&=2v_B
+\end{align*}
+
+Newton's law of restitution:
+\[
+e=\frac{\text{speed of separation}}{\text{speed of approach}}=\frac{v_A+v_B}{4+2}
+\]
+
+so \(v_A+v_B=6e\). Solving with \(v_A=2v_B\) gives \(v_B=2e\) and \(v_A=4e\).
+
+\textbf{Velocities perpendicular.} Writing each velocity after the collision as (parallel, perpendicular) components, their scalar product is zero:
+\begin{align*}
+\begin{pmatrix}-4e\\3\end{pmatrix}\cdot\begin{pmatrix}2e\\2\end{pmatrix}&=0\\
+-8e^2+6&=0\\
+e^2&=\frac34
+\end{align*}
+
+Since \(e\geq0\),
+\[
+e=\frac{\sqrt3}{2}
+\]
+
+Then \(v_A=2\sqrt3\) and \(v_B=\sqrt3\). Both are positive, so the directions in the diagram are correct.
+
+\textbf{Impulse on \(A\).} The impulse acts along the line of centres, so it equals \(A\)'s change of momentum in that direction. Taking right to left as positive, the direction in which \(A\) is pushed:
+\begin{align*}
+I&=2\bigl(v_A-(-4)\bigr)\\
+&=2\bigl(2\sqrt3+4\bigr)\\
+&=\bigl(8+4\sqrt3\bigr)\,\mathrm{N\,s}
+\end{align*}
+
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT___Solns__Oblique_Collisions_of_Smooth_Spheres, Q3]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.2]
+\def\rad{1.15}
+\def\incomingLen{2.8}
+\def\axisExtension{2.4}
+\pgfmathsetmacro{\aRayAngle}{180+atan2(3,4)}
+\pgfmathsetmacro{\bRayAngle}{atan2(2,3)}
+\coordinate (A) at (0,0);
+\coordinate (B) at ($(A)+(2*\rad,0)$);
+\coordinate (Left) at ($(A)+(-\axisExtension,0)$);
+\coordinate (Right) at ($(B)+(\axisExtension,0)$);
+\coordinate (Astart) at ($(A)+(\aRayAngle:\incomingLen)$);
+\coordinate (Bstart) at ($(B)+(\bRayAngle:\incomingLen)$);
+\draw[dashed,thick,black] (Left) -- (Right);
+\foreach \p/\mass in {A/3,B/1} {
+  \draw[thick,black] (\p) circle (\rad);
+  \node[above] at ($(\p)+(0,\rad)$) {$\p$};
+  \node at ($(\p)+(0,0.55*\rad)$) {$\mass\,\mathrm{kg}$};
+}
+\draw[thick,black,postaction={decorate},decoration={markings,mark=at position 0.35 with {\arrow{Stealth[length=3mm]}}}] (Astart) -- (A) node[pos=0,left] {$(4\mathbf{i}+3\mathbf{j})\,\mathrm{m\,s^{-1}}$};
+\draw[thick,black,postaction={decorate},decoration={markings,mark=at position 0.35 with {\arrow{Stealth[length=3mm]}}}] (Bstart) -- (B) node[pos=0,right] {$(-3\mathbf{i}-2\mathbf{j})\,\mathrm{m\,s^{-1}}$};
+\end{tikzpicture}
+\end{figure}
+
+
+Two smooth uniform spheres $A$ and $B$, of equal radius and masses $3\,\mathrm{kg}$ and $1\,\mathrm{kg}$ respectively, collide obliquely on a smooth horizontal surface. \\
+
+At the instant of impact, the unit vector $\mathbf{i}$ points from the centre of $A$ towards the centre of $B$, and $\mathbf{j}$ is perpendicular to $\mathbf{i}$ in the horizontal surface, as indicated by the velocity directions in the diagram above. Immediately before impact, their velocities are
+\[
+\mathbf{u}_A=(4\mathbf{i}+3\mathbf{j})\,\mathrm{m\,s^{-1}},\qquad \mathbf{u}_B=(-3\mathbf{i}-2\mathbf{j})\,\mathrm{m\,s^{-1}}
+\] \\
+Immediately after impact, the velocities of the two spheres are perpendicular to each other. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the two possible values of the coefficient of restitution between the spheres. \marks{8} \\
+\item For each value found in part (a), calculate the total loss of kinetic energy in the collision, clearly identifying which loss corresponds to which coefficient of restitution. \marks{6} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item
+The line of centres is along \(\mathbf{i}\), so the \(\mathbf{i}\)- and \(\mathbf{j}\)-components of each velocity are its components parallel and perpendicular to the line of centres, in \(\mathrm{m\,s^{-1}}\):
+\begin{alignat*}{2}
+A&:\quad\text{parallel}\ 4,&\qquad&\text{perpendicular}\ 3\\
+B&:\quad\text{parallel}\ {-3},&&\text{perpendicular}\ {-2}
+\end{alignat*}
+
+The components before and after the collision, with the line of centres horizontal and the directions after the collision predicted:\par\nopagebreak
+
+\begin{tikzpicture}
+\def\R{0.8}       % sphere radius
+\def\gap{0.12}    % gap between a sphere and its arrows
+\def\L{1.1}       % arrow length
+\def\ext{0.3}     % overhang of the line of centres beyond the arrows
+\def\panel{7}     % offset of the After panel
+\foreach \k/\title in {0/Before, 1/After} {
+  \coordinate (A\k) at (\k*\panel,0);
+  \coordinate (B\k) at ($(A\k)+({2*\R+\k*(2*\gap+\L)},0)$);
+  \draw[dashed] ($(A\k)+(-\R-\gap-\L-\ext,0)$) -- ($(B\k)+(\R+\gap+\L+\ext,0)$);
+  \foreach \C/\name/\mass in {A/A/3\,\mathrm{kg}, B/B/1\,\mathrm{kg}} {
+    \draw[thick] (\C\k) circle (\R);
+    \node at ($(\C\k)+(0,0.3*\R)$) {$\name$};
+    \node at ($(\C\k)+(0,-0.35*\R)$) {$\mass$};
+  }
+  \node[above] at ($(A\k)!0.5!(B\k)+(0,\R+\gap+\L+0.15)$) {\textit{\title}};
+}
+\foreach \C/\dx/\dy/\lab/\side in {A0/1/0/4/above, A0/0/1/3/right, B0/-1/0/3/above, B0/0/-1/2/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{-(\R+\gap+\L)}*(\dx,\dy)$) -- ($(\C)+{-(\R+\gap)}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\foreach \C/\dx/\dy/\lab/\side in {A1/1/0/v_A/above, A1/0/1/3/right, B1/1/0/v_B/above, B1/0/-1/2/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{\R+\gap}*(\dx,\dy)$) -- ($(\C)+{\R+\gap+\L}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\end{tikzpicture}
+
+\textbf{Perpendicular to the line of centres.} The spheres are smooth, so there is no impulse perpendicular to the line of centres. The momentum of each sphere in this direction is conserved, so its perpendicular component is unchanged: \(3\,\mathrm{m\,s^{-1}}\) for \(A\) and \(2\,\mathrm{m\,s^{-1}}\) for \(B\), in the directions shown.
+
+\textbf{Parallel to the line of centres.} After the collision, let \(A\) move to the right with speed \(v_A\) and \(B\) move to the right with speed \(v_B\), as in the diagram. Conservation of momentum, taking left to right as positive:
+\begin{align*}
+3(4)+1(-3)&=3v_A+v_B\\
+9&=3v_A+v_B
+\end{align*}
+
+Newton's law of restitution:
+\[
+e=\frac{\text{speed of separation}}{\text{speed of approach}}=\frac{v_B-v_A}{4+3}
+\]
+
+so \(v_B-v_A=7e\). Subtracting this from the momentum equation gives \(4v_A=9-7e\), so
+\[
+v_A=\frac{9-7e}{4},\qquad v_B=v_A+7e=\frac{9+21e}{4}
+\]
+
+\textbf{Velocities perpendicular.} Writing each velocity after the collision as (parallel, perpendicular) components, their scalar product is zero:
+\begin{align*}
+\begin{pmatrix}v_A\\3\end{pmatrix}\cdot\begin{pmatrix}v_B\\-2\end{pmatrix}&=0\\
+v_Av_B-6&=0\\
+\frac{(9-7e)(9+21e)}{16}&=6\\
+81+126e-147e^2&=96\\
+49e^2-42e+5&=0
+\end{align*}
+
+so
+\[
+e=\frac17\qquad\text{or}\qquad e=\frac57
+\]
+
+Both values lie between \(0\) and \(1\). When \(e=\frac17\), \(v_A=2\) and \(v_B=3\); when \(e=\frac57\), \(v_A=1\) and \(v_B=6\). In each case both are positive, so the directions in the diagram are correct.
+
+\item The square of each sphere's speed is the sum of the squares of its parallel and perpendicular components. Before the collision:
+\[
+\text{kinetic energy}=\frac12(3)(4^2+3^2)+\frac12(1)(3^2+2^2)=44\,\mathrm{J}
+\]
+
+For \(e=\frac17\), part (a) gives \(v_A=2\) and \(v_B=3\), and the perpendicular components are unchanged, so after the collision:
+\begin{align*}
+\text{kinetic energy}&=\frac12(3)(2^2+3^2)+\frac12(1)(3^2+2^2)=26\,\mathrm{J}\\
+\text{loss of kinetic energy}&=44-26=18\,\mathrm{J}
+\end{align*}
+
+For \(e=\frac57\), part (a) gives \(v_A=1\) and \(v_B=6\), so after the collision:
+\begin{align*}
+\text{kinetic energy}&=\frac12(3)(1^2+3^2)+\frac12(1)(6^2+2^2)=35\,\mathrm{J}\\
+\text{loss of kinetic energy}&=44-35=9\,\mathrm{J}
+\end{align*}
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT___Solns__Oblique_Collisions_of_Smooth_Spheres, Q4]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.2]
+\def\rad{1.15}
+\def\raylen{2.8}
+\def\lineext{1.8}
+\def\arrowfrac{0.38}
+\def\basislen{0.75}
+\pgfmathsetmacro{\adir}{atan2(2,4)}
+\pgfmathsetmacro{\bdir}{atan2(-2,-2)}
+\coordinate (A) at (0,0);
+\coordinate (B) at ($(A)+(2*\rad,0)$);
+\coordinate (L) at ($(A)+(-\rad-\lineext,0)$);
+\coordinate (R) at ($(B)+(\rad+\lineext,0)$);
+\coordinate (Ain) at ($(A)+({\adir+180}:\raylen)$);
+\coordinate (Bin) at ($(B)+({\bdir+180}:\raylen)$);
+\coordinate (Basis) at ($(L)+(0,1.5*\rad)$);
+\draw[dashed,black] (L)--(R);
+\foreach \p in {A,B} {\draw[thick,black] (\p) circle (\rad);}
+\draw[thick,black] (Ain)--(A);
+\draw[thick,black] (Bin)--(B);
+\draw[-{Stealth[length=3mm]},thick,black] (Ain)--($(Ain)!\arrowfrac!(A)$) node[pos=0,left] {$u(4\mathbf{i}+2\mathbf{j})$};
+\draw[-{Stealth[length=3mm]},thick,black] (Bin)--($(Bin)!\arrowfrac!(B)$) node[pos=0,right] {$u(-2\mathbf{i}-2\mathbf{j})$};
+\draw[-{Stealth[length=3mm]},thick,black] (Basis)--++(\basislen,0) node[right] {$\mathbf{i}$};
+\draw[-{Stealth[length=3mm]},thick,black] (Basis)--++(0,\basislen) node[above] {$\mathbf{j}$};
+\node at ($(A)+(0,0.72*\rad)$) {$A$};
+\node at ($(B)+(0,0.72*\rad)$) {$B$};
+\node at ($(A)+(0,-0.72*\rad)$) {$2m$};
+\node at ($(B)+(0,-0.72*\rad)$) {$m$};
+\end{tikzpicture}
+\end{figure}
+
+
+Two smooth uniform spheres $A$ and $B$ of equal radius have masses $2m$ and $m$ respectively. They collide obliquely on a smooth horizontal surface. The unit vector $\mathbf{i}$ is directed along the line of centres from $A$ towards $B$ at impact, and $\mathbf{j}$ is perpendicular to $\mathbf{i}$ in the horizontal surface. \\
+
+Immediately before the collision, the velocities of $A$ and $B$ are $u(4\mathbf{i}+2\mathbf{j})$ and $u(-2\mathbf{i}-2\mathbf{j})$ respectively, where $u>0$. The coefficient of restitution between the spheres is $e$, where $0\leq e\leq1$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the velocity of each sphere immediately after the collision in terms of $u$ and $e$. \marks{5} \\
+\item The velocities of the spheres immediately after the collision are perpendicular. Find the two possible values of $e$ and, for each value, calculate the total kinetic energy lost in the collision in terms of $m$ and $u$. \marks{6} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item The line of centres is along \(\mathbf{i}\), so the \(\mathbf{i}\)- and \(\mathbf{j}\)-components of each velocity are its components parallel and perpendicular to the line of centres:
+\begin{alignat*}{2}
+A&:\quad\text{parallel}\ 4u,&\qquad&\text{perpendicular}\ 2u\\
+B&:\quad\text{parallel}\ {-2u},&&\text{perpendicular}\ {-2u}
+\end{alignat*}
+
+The components before and after the collision, with the line of centres horizontal and the directions after the collision predicted:\par\nopagebreak
+
+\begin{tikzpicture}
+\def\R{0.8}       % sphere radius
+\def\gap{0.12}    % gap between a sphere and its arrows
+\def\L{1.1}       % arrow length
+\def\ext{0.3}     % overhang of the line of centres beyond the arrows
+\def\panel{7}     % offset of the After panel
+\foreach \k/\title in {0/Before, 1/After} {
+  \coordinate (A\k) at (\k*\panel,0);
+  \coordinate (B\k) at ($(A\k)+({2*\R+\k*(2*\gap+\L)},0)$);
+  \draw[dashed] ($(A\k)+(-\R-\gap-\L-\ext,0)$) -- ($(B\k)+(\R+\gap+\L+\ext,0)$);
+  \foreach \C/\name/\mass in {A/A/2m, B/B/m} {
+    \draw[thick] (\C\k) circle (\R);
+    \node at ($(\C\k)+(0,0.3*\R)$) {$\name$};
+    \node at ($(\C\k)+(0,-0.35*\R)$) {$\mass$};
+  }
+  \node[above] at ($(A\k)!0.5!(B\k)+(0,\R+\gap+\L+0.15)$) {\textit{\title}};
+}
+\foreach \C/\dx/\dy/\lab/\side in {A0/1/0/4u/above, A0/0/1/2u/right, B0/-1/0/2u/above, B0/0/-1/2u/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{-(\R+\gap+\L)}*(\dx,\dy)$) -- ($(\C)+{-(\R+\gap)}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\foreach \C/\dx/\dy/\lab/\side in {A1/1/0/v_A/above, A1/0/1/2u/right, B1/1/0/v_B/above, B1/0/-1/2u/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{\R+\gap}*(\dx,\dy)$) -- ($(\C)+{\R+\gap+\L}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\end{tikzpicture}
+
+\textbf{Perpendicular to the line of centres.} The spheres are smooth, so there is no impulse perpendicular to the line of centres. The momentum of each sphere in this direction is conserved, so its perpendicular component is unchanged: \(2u\) for \(A\) and \(2u\) for \(B\), in the directions shown.
+
+\textbf{Parallel to the line of centres.} After the collision, let \(A\) move to the right with speed \(v_A\) and \(B\) move to the right with speed \(v_B\), as in the diagram. Conservation of momentum, taking left to right (the direction of \(\mathbf{i}\)) as positive:
+\begin{align*}
+2m(4u)+m(-2u)&=2mv_A+mv_B\\
+2v_A+v_B&=6u
+\end{align*}
+
+Newton's law of restitution:
+\[
+e=\frac{\text{speed of separation}}{\text{speed of approach}}=\frac{v_B-v_A}{4u+2u}
+\]
+
+so \(v_B-v_A=6eu\). Subtracting this from the momentum equation gives \(3v_A=6u(1-e)\). Hence \(v_A=2u(1-e)\) and \(v_B=v_A+6eu=2u(1+2e)\).
+
+With \(A\)'s perpendicular component in the direction of \(\mathbf{j}\) and \(B\)'s in the direction of \(-\mathbf{j}\), the velocities after the collision are:
+\begin{align*}
+\mathbf{v}_A&=v_A\mathbf{i}+2u\mathbf{j}=2u(1-e)\mathbf{i}+2u\mathbf{j}\\
+\mathbf{v}_B&=v_B\mathbf{i}-2u\mathbf{j}=2u(1+2e)\mathbf{i}-2u\mathbf{j}
+\end{align*}
+
+\item \textbf{Velocities perpendicular.} Writing each velocity after the collision from part (a) as (parallel, perpendicular) components, their scalar product is zero:
+\begin{align*}
+\begin{pmatrix}2u(1-e)\\2u\end{pmatrix}\cdot\begin{pmatrix}2u(1+2e)\\-2u\end{pmatrix}&=0\\
+4u^2(1-e)(1+2e)-4u^2&=0\\
+(1-e)(1+2e)&=1\\
+1+e-2e^2&=1\\
+e(1-2e)&=0\\
+e&=0\quad\text{or}\quad e=\frac12
+\end{align*}
+
+When \(e=0\), \(v_A=v_B=2u\), and when \(e=\frac12\), \(v_A=u\) and \(v_B=4u\). In each case both are positive, so the directions in the diagram are correct.
+
+\textbf{Kinetic energy.} The square of each sphere's speed is the sum of the squares of its parallel and perpendicular components. Before the collision:
+\begin{align*}
+K_{\text{before}}&=\frac12(2m)\bigl((4u)^2+(2u)^2\bigr)+\frac12m\bigl((2u)^2+(2u)^2\bigr)\\
+&=24mu^2
+\end{align*}
+
+When \(e=0\):
+\begin{align*}
+K_{\text{after}}&=\frac12(2m)\bigl((2u)^2+(2u)^2\bigr)+\frac12m\bigl((2u)^2+(2u)^2\bigr)\\
+&=12mu^2\\
+\text{Kinetic energy lost}&=24mu^2-12mu^2=12mu^2
+\end{align*}
+
+When \(e=\frac12\):
+\begin{align*}
+K_{\text{after}}&=\frac12(2m)\bigl(u^2+(2u)^2\bigr)+\frac12m\bigl((4u)^2+(2u)^2\bigr)\\
+&=15mu^2\\
+\text{Kinetic energy lost}&=24mu^2-15mu^2=9mu^2
+\end{align*}
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT___Solns__Oblique_Collisions_of_Smooth_Spheres, Q5]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.2]
+\def\rad{1.3}
+\def\raylen{2.9}
+\def\extend{1.7}
+\def\massheight{0.55}
+\pgfmathsetmacro{\alphaang}{atan(3/4)}
+\coordinate (A) at (0,0);
+\coordinate (B) at ($(A)+(2*\rad,0)$);
+\coordinate (AL) at ($(A)+(180:\rad)$);
+\coordinate (BR) at ($(B)+(0:\rad)$);
+\coordinate (AS) at ($(A)+({180-\alphaang}:\raylen)$);
+\coordinate (BS) at ($(B)+(-45:\raylen)$);
+\draw[thick,black,dashed] ($(AL)+(-\extend,0)$) -- ($(BR)+(\extend,0)$);
+\foreach \P in {A,B} {
+  \draw[thick,black] (\P) circle (\rad);
+  \node[above] at ($(\P)+(0,\rad)$) {$\P$};
+}
+\node at ($(A)+(0,\massheight*\rad)$) {$m_A\,\mathrm{kg}$};
+\node at ($(B)+(0,\massheight*\rad)$) {$m_B\,\mathrm{kg}$};
+\tikzset{incoming/.style={thick,black,postaction={decorate},decoration={markings,mark=at position 0.23 with {\arrow{Stealth[length=3mm]}}}}}
+\draw[incoming] (AS) -- (A) node[pos=0,left] {$10\,\mathrm{m\,s^{-1}}$};
+\draw[incoming] (BS) -- (B) node[pos=0,right] {$6\sqrt{2}\,\mathrm{m\,s^{-1}}$};
+\pic["$\alpha$",draw,angle radius=4mm,angle eccentricity=1.5] {angle=AS--A--AL};
+\pic["$\frac{\pi}{4}$",draw,angle radius=4mm,angle eccentricity=2.2] {angle=BS--B--BR};
+\end{tikzpicture}
+\end{figure}
+
+
+Two smooth uniform spheres $A$ and $B$, of equal radius and masses $m_A\,\mathrm{kg}$ and $m_B\,\mathrm{kg}$ respectively, collide on a smooth horizontal surface. The diagram above shows their velocities immediately before impact, viewed from above. \\
+
+Immediately before the collision, $A$ has speed $10\,\mathrm{m\,s^{-1}}$ and moves downwards and to the right at an acute angle $\alpha$ to the line of centres, where $\tan\alpha=\dfrac{3}{4}$. Sphere $B$ has speed $6\sqrt{2}\,\mathrm{m\,s^{-1}}$ and moves upwards and to the left at an angle $\dfrac{\pi}{4}$ to the line of centres. \\
+
+Immediately after the collision, $B$ moves upwards and to the right at an acute angle $\beta$ to the rightward line of centres, where $\tan\beta=2$. The coefficient of restitution between the spheres is $e$, where $0\leq e\leq1$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the complete interval of possible values of $\dfrac{m_B}{m_A}$. State which endpoint corresponds to a perfectly elastic collision. \marks{7} \\
+\item Given that $m_A=3$ and $m_B=4$, find the total loss of kinetic energy in the collision. \marks{4} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item
+Since \(\alpha\) is acute and \(\tan\alpha=\frac34\), \(\cos\alpha=\frac45\) and \(\sin\alpha=\frac35\). Resolving each velocity parallel and perpendicular to the line of centres, in \(\mathrm{m\,s^{-1}}\):
+\begin{alignat*}{2}
+A&:\quad\text{parallel}\ 10\cos\alpha=8,&\qquad&\text{perpendicular}\ 10\sin\alpha=6\\
+B&:\quad\text{parallel}\ 6\sqrt2\cos\frac{\pi}{4}=6,&&\text{perpendicular}\ 6\sqrt2\sin\frac{\pi}{4}=6
+\end{alignat*}
+
+The components before and after the collision, with the line of centres horizontal and the directions after the collision predicted:\par\nopagebreak
+
+\begin{tikzpicture}
+\def\R{0.8}       % sphere radius
+\def\gap{0.12}    % gap between a sphere and its arrows
+\def\L{1.1}       % arrow length
+\def\ext{0.3}     % overhang of the line of centres beyond the arrows
+\def\panel{7}     % offset of the After panel
+\foreach \k/\title in {0/Before, 1/After} {
+  \coordinate (A\k) at (\k*\panel,0);
+  \coordinate (B\k) at ($(A\k)+(2*\R,0)$);
+  \draw[dashed] ($(A\k)+(-\R-\gap-\L-\ext,0)$) -- ($(B\k)+(\R+\gap+\L+\ext,0)$);
+  \foreach \C/\name/\mass in {A/A/m_A\,\mathrm{kg}, B/B/m_B\,\mathrm{kg}} {
+    \draw[thick] (\C\k) circle (\R);
+    \node at ($(\C\k)+(0,0.3*\R)$) {$\name$};
+    \node at ($(\C\k)+(0,-0.35*\R)$) {$\mass$};
+  }
+  \node[above] at ($(A\k)!0.5!(B\k)+(0,\R+\gap+\L+0.15)$) {\textit{\title}};
+}
+\foreach \C/\dx/\dy/\lab/\side in {A0/1/0/8/above, A0/0/-1/6/right, B0/-1/0/6/above, B0/0/1/6/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{-(\R+\gap+\L)}*(\dx,\dy)$) -- ($(\C)+{-(\R+\gap)}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\foreach \C/\dx/\dy/\lab/\side in {A1/-1/0/v_A/above, A1/0/-1/6/right, B1/1/0/v_B/above, B1/0/1/6/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{\R+\gap}*(\dx,\dy)$) -- ($(\C)+{\R+\gap+\L}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\end{tikzpicture}
+
+\textbf{Perpendicular to the line of centres.} The spheres are smooth, so there is no impulse perpendicular to the line of centres. The momentum of each sphere in this direction is conserved, so its perpendicular component is unchanged: \(6\,\mathrm{m\,s^{-1}}\) for \(A\) and \(6\,\mathrm{m\,s^{-1}}\) for \(B\), in the directions shown.
+
+\textbf{Parallel to the line of centres.} After the collision, let \(A\) move to the left with speed \(v_A\) and \(B\) move to the right with speed \(v_B\), as in the diagram. Conservation of momentum, taking left to right as positive:
+\[
+8m_A-6m_B=-m_Av_A+m_Bv_B
+\]
+
+Newton's law of restitution:
+\[
+e=\frac{\text{speed of separation}}{\text{speed of approach}}=\frac{v_A+v_B}{8+6}
+\]
+
+\textbf{Motion of \(B\) after the collision.} The perpendicular component of \(B\) is still \(6\,\mathrm{m\,s^{-1}}\) upwards, and \(B\) moves at an angle \(\beta\) to the rightward line of centres, so
+\begin{align*}
+\tan\beta&=\frac{6}{v_B}=2\\
+v_B&=3
+\end{align*}
+
+Newton's law of restitution then gives \(v_A+3=14e\), so \(v_A=14e-3\). This is negative when \(e<\frac{3}{14}\): \(A\) then in fact moves to the right, with speed \(3-14e\), and the equations above still hold with \(v_A\) negative. Substituting into the momentum equation:
+\begin{align*}
+8m_A-6m_B&=-m_A(14e-3)+3m_B\\
+(5+14e)m_A&=9m_B\\
+\frac{m_B}{m_A}&=\frac{5+14e}{9}
+\end{align*}
+
+\textbf{Range of \(\frac{m_B}{m_A}\).} Since \(0\leq e\leq1\), and \(\frac{5+14e}{9}\) increases continuously with \(e\), from \(\frac59\) at \(e=0\) to \(\frac{19}{9}\) at \(e=1\), the complete interval is
+\[
+\frac{m_B}{m_A}\in\left[\frac59,\frac{19}{9}\right]
+\]
+
+The upper endpoint \(\frac{19}{9}\) corresponds to \(e=1\), a perfectly elastic collision.
+
+\item Substituting \(m_A=3\) and \(m_B=4\) into the relation from part (a):
+\begin{align*}
+\frac43&=\frac{5+14e}{9}\\
+12&=5+14e\\
+e&=\frac12
+\end{align*}
+
+Then \(v_A=14\left(\frac12\right)-3=4\) and \(v_B=3\). Both are positive, so the directions in the diagram are correct.
+
+\textbf{Kinetic energy.} The perpendicular components are unchanged, so only the parallel components contribute to the loss of kinetic energy:
+\begin{align*}
+\text{Loss of kinetic energy}&=\frac12(3)\left(8^2-4^2\right)+\frac12(4)\left(6^2-3^2\right)\\
+&=72+54\\
+&=126\,\mathrm{J}
+\end{align*}
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+% [Source: _QBT___Solns__Oblique_Collisions_of_Smooth_Spheres, Q6]
+
+In this question, $\mathbf{i}$ and $\mathbf{j}$ are perpendicular unit vectors in a horizontal plane. \\
+
+Two smooth uniform spheres $P$ and $Q$, of equal radius, have masses $0.4\,\mathrm{kg}$ and $0.5\,\mathrm{kg}$ respectively. They move on a smooth horizontal surface and collide obliquely. \\
+
+Immediately before the collision, their velocities are
+\[
+\mathbf{u}_P=(0.8\mathbf{i}+4.4\mathbf{j})\,\mathrm{m\,s^{-1}},\qquad \mathbf{u}_Q=(1.2\mathbf{i}-3.4\mathbf{j})\,\mathrm{m\,s^{-1}}
+\] \\
+At the instant of collision, the vector from the centre of $P$ to the centre of $Q$ is parallel to $3\mathbf{i}+4\mathbf{j}$. \\
+
+The coefficient of restitution between the spheres is $e$. The collision deflects the direction of motion of $P$ through $90^\circ$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find $e$. \marks{8} \\
+\item Find the velocity of $Q$ immediately after the collision. Hence find the angle through which its direction of motion is deflected, giving your answer to the nearest $0.1^\circ$. \marks{6} \\
+\item State how you have used the fact that the spheres have equal radii. \marks{1} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item The line of centres is parallel to \(3\mathbf{i}+4\mathbf{j}\), so \(\frac15(3\mathbf{i}+4\mathbf{j})\) is a unit vector along it, from \(P\) towards \(Q\), and \(\frac15(-4\mathbf{i}+3\mathbf{j})\) is a unit vector perpendicular to it. Taking the scalar product of each velocity with these gives its components parallel and perpendicular to the line of centres, in \(\mathrm{m\,s^{-1}}\):
+\begin{alignat*}{2}
+P&:\quad\text{parallel}\ \frac{0.8(3)+4.4(4)}{5}=4,&\qquad&\text{perpendicular}\ \frac{0.8(-4)+4.4(3)}{5}=2\\
+Q&:\quad\text{parallel}\ \frac{1.2(3)-3.4(4)}{5}=-2,&&\text{perpendicular}\ \frac{1.2(-4)-3.4(3)}{5}=-3
+\end{alignat*}
+
+The components before and after the collision, with the line of centres horizontal (\(3\mathbf{i}+4\mathbf{j}\) to the right, \(-4\mathbf{i}+3\mathbf{j}\) up) and the directions after the collision predicted:\par\nopagebreak
+
+\begin{tikzpicture}
+\def\R{0.8}       % sphere radius
+\def\gap{0.12}    % gap between a sphere and its arrows
+\def\L{1.1}       % arrow length
+\def\ext{0.3}     % overhang of the line of centres beyond the arrows
+\def\panel{7}     % offset of the After panel
+\foreach \k/\title in {0/Before, 1/After} {
+  \coordinate (A\k) at (\k*\panel,0);
+  \coordinate (B\k) at ($(A\k)+(2*\R,0)$);
+  \draw[dashed] ($(A\k)+(-\R-\gap-\L-\ext,0)$) -- ($(B\k)+(\R+\gap+\L+\ext,0)$);
+  \foreach \C/\name/\mass in {A/P/0.4\,\mathrm{kg}, B/Q/0.5\,\mathrm{kg}} {
+    \draw[thick] (\C\k) circle (\R);
+    \node at ($(\C\k)+(0,0.3*\R)$) {$\name$};
+    \node at ($(\C\k)+(0,-0.35*\R)$) {$\mass$};
+  }
+  \node[above] at ($(A\k)!0.5!(B\k)+(0,\R+\gap+\L+0.15)$) {\textit{\title}};
+}
+\foreach \C/\dx/\dy/\lab/\side in {A0/1/0/4/above, A0/0/1/2/right, B0/-1/0/2/above, B0/0/-1/3/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{-(\R+\gap+\L)}*(\dx,\dy)$) -- ($(\C)+{-(\R+\gap)}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\foreach \C/\dx/\dy/\lab/\side in {A1/-1/0/v_P/above, A1/0/1/2/right, B1/1/0/v_Q/above, B1/0/-1/3/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{\R+\gap}*(\dx,\dy)$) -- ($(\C)+{\R+\gap+\L}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\end{tikzpicture}
+
+\textbf{Perpendicular to the line of centres.} The spheres are smooth, so there is no impulse perpendicular to the line of centres. The momentum of each sphere in this direction is conserved, so its perpendicular component is unchanged: \(2\,\mathrm{m\,s^{-1}}\) for \(P\) and \(3\,\mathrm{m\,s^{-1}}\) for \(Q\), in the directions shown.
+
+\textbf{Parallel to the line of centres.} After the collision, let \(P\) move to the left with speed \(v_P\) and \(Q\) move to the right with speed \(v_Q\), as in the diagram. Conservation of momentum, taking left to right (the direction of \(3\mathbf{i}+4\mathbf{j}\)) as positive:
+\begin{align*}
+0.4(4)+0.5(-2)&=0.4(-v_P)+0.5v_Q\\
+0.6&=-0.4v_P+0.5v_Q
+\end{align*}
+
+Newton's law of restitution:
+\[
+e=\frac{\text{speed of separation}}{\text{speed of approach}}=\frac{v_P+v_Q}{4+2}
+\]
+
+\textbf{Deflection of \(P\).} The direction of motion of \(P\) turns through \(90^\circ\), so its velocities before and after the collision are perpendicular. In (parallel, perpendicular) components:
+\begin{align*}
+\begin{pmatrix}4\\2\end{pmatrix}\cdot\begin{pmatrix}-v_P\\2\end{pmatrix}&=0\\
+-4v_P+4&=0\\
+v_P&=1
+\end{align*}
+
+Substituting into the momentum equation, \(0.6=-0.4+0.5v_Q\), so \(v_Q=2\). Both speeds are positive, so the directions in the diagram are correct. Hence
+\[
+e=\frac{1+2}{6}=\frac12
+\]
+
+\item From part (a), after the collision \(Q\) moves with speed \(2\,\mathrm{m\,s^{-1}}\) along the line of centres, in the direction of \(3\mathbf{i}+4\mathbf{j}\), and \(3\,\mathrm{m\,s^{-1}}\) perpendicular to it, in the direction of \(4\mathbf{i}-3\mathbf{j}\). Using unit vectors in these directions:
+\begin{align*}
+\mathbf{v}_Q&=\frac25(3\mathbf{i}+4\mathbf{j})+\frac35(4\mathbf{i}-3\mathbf{j})\\
+&=(3.6\mathbf{i}-0.2\mathbf{j})\,\mathrm{m\,s^{-1}}
+\end{align*}
+
+The angle \(\theta\) through which \(Q\) is deflected is the angle between \(\mathbf{u}_Q\) and \(\mathbf{v}_Q\). Both have magnitude \(\sqrt{13}\), so
+\begin{align*}
+\cos\theta&=\frac{\mathbf{u}_Q\cdot\mathbf{v}_Q}{|\mathbf{u}_Q|\,|\mathbf{v}_Q|}=\frac{1.2(3.6)+(-3.4)(-0.2)}{13}=\frac{5}{13}\\
+\theta&\approx67.4^\circ
+\end{align*}
+
+\item Equal radii mean that the centres are at the same height above the surface. Thus the line of centres, and hence the collision impulse, is horizontal.
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+% [Source: _QBT___Solns__Oblique_Collisions_of_Smooth_Spheres, Q7]
+
+Two smooth uniform spheres $P$ and $Q$ have equal radii and masses $0.4\,\mathrm{kg}$ and $0.6\,\mathrm{kg}$ respectively. They move on a smooth horizontal surface and collide obliquely. \\
+
+Immediately before the collision, their velocities are
+\[
+\mathbf{u}_P=(6\mathbf{i}+2\mathbf{j})\,\mathrm{m\,s^{-1}},\qquad \mathbf{u}_Q=(-2\mathbf{i}+2\mathbf{j})\,\mathrm{m\,s^{-1}}
+\] \\
+where $\mathbf{i}$ and $\mathbf{j}$ are perpendicular horizontal unit vectors. \\
+
+At the instant of impact, the vector from the centre of $P$ to the centre of $Q$ is a positive multiple of $\mathbf{i}+\mathbf{j}$. The total kinetic energy of the two spheres decreases by $2.88\,\mathrm{J}$ during the collision. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find
+\begin{enumerate}[label=(\roman*)]
+\item the velocity of $P$ immediately after the collision,
+\item the velocity of $Q$ immediately after the collision,
+\item the coefficient of restitution between the spheres.
+\end{enumerate}
+Justify your answers, explaining which velocity components are unchanged by the collision. \marks{12} \\
+\item Find the angle through which the direction of motion of $P$ is deflected by the collision. Give your answer in degrees to one decimal place. \marks{3} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item
+\begin{enumerate}[label=(\roman*), start=1]
+\item The line of centres is parallel to \(\mathbf{i}+\mathbf{j}\), so \(\frac{1}{\sqrt2}(\mathbf{i}+\mathbf{j})\) is a unit vector along it, from \(P\) towards \(Q\), and \(\frac{1}{\sqrt2}(-\mathbf{i}+\mathbf{j})\) is a unit vector perpendicular to it. Taking the scalar product of each velocity with these gives its components parallel and perpendicular to the line of centres, in \(\mathrm{m\,s^{-1}}\):
+\begin{alignat*}{2}
+P&:\quad\text{parallel}\ \frac{6+2}{\sqrt2}=4\sqrt2,&\qquad&\text{perpendicular}\ \frac{-6+2}{\sqrt2}=-2\sqrt2\\
+Q&:\quad\text{parallel}\ \frac{-2+2}{\sqrt2}=0,&&\text{perpendicular}\ \frac{2+2}{\sqrt2}=2\sqrt2
+\end{alignat*}
+
+The components before and after the collision, with the line of centres horizontal (\(\mathbf{i}+\mathbf{j}\) to the right, \(-\mathbf{i}+\mathbf{j}\) up) and the directions after the collision predicted:\par\nopagebreak
+
+\begin{tikzpicture}
+\def\R{0.8}       % sphere radius
+\def\gap{0.12}    % gap between a sphere and its arrows
+\def\L{1.1}       % arrow length
+\def\ext{0.3}     % overhang of the line of centres beyond the arrows
+\def\panel{7}     % offset of the After panel
+\foreach \k/\title in {0/Before, 1/After} {
+  \coordinate (A\k) at (\k*\panel,0);
+  \coordinate (B\k) at ($(A\k)+({2*\R+\k*(2*\gap+\L)},0)$);
+  \draw[dashed] ($(A\k)+(-\R-\gap-\L-\ext,0)$) -- ($(B\k)+(\R+\gap+\L+\ext,0)$);
+  \foreach \C/\name/\mass in {A/P/0.4\,\mathrm{kg}, B/Q/0.6\,\mathrm{kg}} {
+    \draw[thick] (\C\k) circle (\R);
+    \node at ($(\C\k)+(0,0.3*\R)$) {$\name$};
+    \node at ($(\C\k)+(0,-0.35*\R)$) {$\mass$};
+  }
+  \node[above] at ($(A\k)!0.5!(B\k)+(0,\R+\gap+\L+0.15)$) {\textit{\title}};
+}
+\foreach \C/\dx/\dy/\lab/\side in {A0/1/0/4\sqrt2/above, A0/0/-1/2\sqrt2/right, B0/0/1/2\sqrt2/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{-(\R+\gap+\L)}*(\dx,\dy)$) -- ($(\C)+{-(\R+\gap)}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\foreach \C/\dx/\dy/\lab/\side in {A1/1/0/v_P/above, A1/0/-1/2\sqrt2/right, B1/1/0/v_Q/above, B1/0/1/2\sqrt2/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{\R+\gap}*(\dx,\dy)$) -- ($(\C)+{\R+\gap+\L}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\end{tikzpicture}
+
+\textbf{Perpendicular to the line of centres.} The spheres are smooth, so there is no impulse perpendicular to the line of centres. The momentum of each sphere in this direction is conserved, so its perpendicular component is unchanged: \(2\sqrt2\,\mathrm{m\,s^{-1}}\) for each of \(P\) and \(Q\), in the directions shown.
+
+\textbf{Parallel to the line of centres.} After the collision, let \(P\) move to the right with speed \(v_P\) and \(Q\) move to the right with speed \(v_Q\), as in the diagram. Conservation of momentum, taking left to right (the direction of \(\mathbf{i}+\mathbf{j}\)) as positive:
+\begin{align*}
+0.4\bigl(4\sqrt2\bigr)+0.6(0)&=0.4v_P+0.6v_Q\\
+8\sqrt2&=2v_P+3v_Q
+\end{align*}
+
+Newton's law of restitution:
+\[
+e=\frac{\text{speed of separation}}{\text{speed of approach}}=\frac{v_Q-v_P}{4\sqrt2}
+\]
+
+so \(v_Q=v_P+4\sqrt2\,e\). Substituting into the momentum equation:
+\begin{align*}
+8\sqrt2&=2v_P+3\bigl(v_P+4\sqrt2\,e\bigr)\\
+5v_P&=8\sqrt2-12\sqrt2\,e\\
+v_P&=\frac{4\sqrt2}{5}(2-3e)
+\end{align*}
+
+and then \(v_Q=v_P+4\sqrt2\,e=\frac{8\sqrt2}{5}(1+e)\).
+
+\textbf{Kinetic energy.} The perpendicular components are unchanged, so the kinetic energy lost, \(2.88\,\mathrm{J}\), comes from the parallel components alone:
+\begin{align*}
+\frac12(0.4)\bigl(4\sqrt2\bigr)^2-\frac12(0.4)v_P^2-\frac12(0.6)v_Q^2&=2.88\\
+6.4-0.2v_P^2-0.3v_Q^2&=2.88\\
+2v_P^2+3v_Q^2&=35.2\\
+\frac{64}{25}(2-3e)^2+\frac{384}{25}(1+e)^2&=35.2\\
+(2-3e)^2+6(1+e)^2&=\frac{55}{4}\\
+15e^2+10&=\frac{55}{4}\\
+e^2&=\frac14
+\end{align*}
+
+Since \(e\geq0\), \(e=\frac12\), so \(v_P=\frac{2\sqrt2}{5}\) and \(v_Q=\frac{12\sqrt2}{5}\). Both are positive, so the directions in the diagram are correct.
+
+After the collision, \(P\) moves with speed \(\frac{2\sqrt2}{5}\,\mathrm{m\,s^{-1}}\) along the line of centres, in the direction of \(\mathbf{i}+\mathbf{j}\), and \(2\sqrt2\,\mathrm{m\,s^{-1}}\) perpendicular to it, in the direction of \(\mathbf{i}-\mathbf{j}\). Using unit vectors in these directions:
+\begin{align*}
+\mathbf{v}_P&=\frac{2\sqrt2}{5}\cdot\frac{1}{\sqrt2}(\mathbf{i}+\mathbf{j})+2\sqrt2\cdot\frac{1}{\sqrt2}(\mathbf{i}-\mathbf{j})\\
+&=\frac25(\mathbf{i}+\mathbf{j})+2(\mathbf{i}-\mathbf{j})\\
+&=(2.4\mathbf{i}-1.6\mathbf{j})\,\mathrm{m\,s^{-1}}
+\end{align*}
+
+\item From part (a)(i), after the collision \(Q\) moves with speed \(\frac{12\sqrt2}{5}\,\mathrm{m\,s^{-1}}\) along the line of centres, in the direction of \(\mathbf{i}+\mathbf{j}\), and \(2\sqrt2\,\mathrm{m\,s^{-1}}\) perpendicular to it, in the direction of \(-\mathbf{i}+\mathbf{j}\). Using unit vectors in these directions:
+\begin{align*}
+\mathbf{v}_Q&=\frac{12\sqrt2}{5}\cdot\frac{1}{\sqrt2}(\mathbf{i}+\mathbf{j})+2\sqrt2\cdot\frac{1}{\sqrt2}(-\mathbf{i}+\mathbf{j})\\
+&=\frac{12}{5}(\mathbf{i}+\mathbf{j})+2(-\mathbf{i}+\mathbf{j})\\
+&=(0.4\mathbf{i}+4.4\mathbf{j})\,\mathrm{m\,s^{-1}}
+\end{align*}
+
+\item From the loss of kinetic energy in part (a)(i):
+\[
+e=\frac12
+\]
+
+\end{enumerate}
+\item The angle \(\theta\) through which \(P\) is deflected is the angle between \(\mathbf{u}_P\) and \(\mathbf{v}_P\):
+\begin{align*}
+\cos\theta&=\frac{\mathbf{u}_P\cdot\mathbf{v}_P}{|\mathbf{u}_P|\,|\mathbf{v}_P|}\\
+&=\frac{6(2.4)+2(-1.6)}{\sqrt{6^2+2^2}\sqrt{2.4^2+(-1.6)^2}}\\
+&=\frac{7}{\sqrt{130}}\\
+\theta&\approx52.1^\circ
+\end{align*}
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+% [Source: _QBT___Solns__Oblique_Collisions_of_Smooth_Spheres, Q8]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=0.85]
+\def\rad{0.8}
+\def\heightA{4}
+\def\heightB{5}
+\def\dimLevel{7}
+\def\heightOffset{3}
+\def\groundLeft{-3.5}
+\def\groundRight{6}
+\def\arrowOffset{2}
+\def\arrowHalfLength{0.7}
+\pgfmathsetmacro{\sep}{sqrt(3)*\rad}
+\coordinate (A) at (0,\heightA*\rad);
+\coordinate (B) at (\sep,\heightB*\rad);
+\coordinate (Adim) at (0,\dimLevel*\rad);
+\coordinate (Bdim) at (\sep,\dimLevel*\rad);
+\coordinate (Htop) at ($(B)+(\heightOffset*\rad,0)$);
+\coordinate (Hbase) at (Htop |- 0,0);
+\coordinate (VA) at ($(A)+(-\arrowOffset*\rad,0)$);
+\coordinate (VB) at ($(B)+(\arrowOffset*\rad,0)$);
+\draw[thick, black] (\groundLeft*\rad,0) -- (\groundRight*\rad,0);
+\draw[thick, black] (A) circle (\rad);
+\draw[thick, black] (B) circle (\rad);
+\draw[-{Stealth[length=3mm]}, thick, black] ($(VA)+(-\arrowHalfLength*\rad,0)$) -- ($(VA)+(\arrowHalfLength*\rad,0)$) node[midway, above] {$\sqrt{3}U$};
+\draw[-{Stealth[length=3mm]}, thick, black] ($(VB)+(0,\arrowHalfLength*\rad)$) -- ($(VB)+(0,-\arrowHalfLength*\rad)$) node[pos=0.2, right] {$U$};
+\draw[dashed] ($(A)+(0,\rad)$) -- (Adim);
+\draw[dashed] ($(B)+(0,\rad)$) -- (Bdim);
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}] (Adim) -- (Bdim) node[midway, above] {$\sqrt{3}r$};
+\draw[dashed] ($(B)+(\rad,0)$) -- (Htop);
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}] (Hbase) -- (Htop) node[midway, right] {$5r$};
+\node[below left] at ($(A)+(235:\rad)$) {$A$};
+\node[right] at ($(B)+(20:\rad)$) {$B$};
+\end{tikzpicture}
+\end{figure}
+
+
+Two uniform smooth spheres, $A$ and $B$, have equal radius $r$ and masses $2m$ and $3m$ respectively. They collide while moving freely above a horizontal plane. The diagram above shows the spheres at the instant of impact, with their centres and velocities in the same vertical plane. \\
+
+At impact, the centres of $A$ and $B$ are at heights $4r$ and $5r$ respectively above the horizontal plane, and their horizontal separation is $\sqrt{3}r$. Immediately before impact, $A$ has velocity $\sqrt{3}U$ horizontally to the right and $B$ has velocity $U$ vertically downwards, where $U>0$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Show that the line of centres makes an angle of $30^\circ$ with the horizontal, and that the speed of approach along this line is $2U$. \marks{2} \\
+\end{enumerate}
+The coefficient of restitution between the spheres is $\dfrac{2}{3}$. After the collision, $B$ moves freely under gravity and does not collide with $A$ again. Air resistance is negligible and the acceleration due to gravity is $g$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+\item Find, in terms of $U$, $r$ and $g$, the exact time from the collision until $B$ first touches the horizontal plane. \marks{7} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item
+The centres are \(5r-4r=r\) apart vertically and \(\sqrt3r\) apart horizontally, so the angle \(\theta\) between the line of centres and the horizontal satisfies
+\[
+\tan\theta=\frac{r}{\sqrt3r}=\frac{1}{\sqrt3}\quad\Rightarrow\quad\theta=30^\circ
+\]
+
+Resolving each velocity parallel and perpendicular to the line of centres:
+\begin{alignat*}{2}
+A&:\quad\text{parallel}\ \sqrt3U\cos30^\circ=\frac{3U}{2},&\qquad&\text{perpendicular}\ \sqrt3U\sin30^\circ=\frac{\sqrt3U}{2}\\
+B&:\quad\text{parallel}\ U\sin30^\circ=\frac{U}{2},&&\text{perpendicular}\ U\cos30^\circ=\frac{\sqrt3U}{2}
+\end{alignat*}
+
+Along the line of centres, \(A\) moves towards \(B\) and \(B\) moves towards \(A\), so the speed of approach is
+\[
+\frac{3U}{2}+\frac{U}{2}=2U
+\]
+
+\item
+The components before and after the collision, with the line of centres horizontal (the direction from \(A\) to \(B\) is drawn to the right, and the perpendicular direction that points upwards and to the left is drawn up) and the directions after the collision predicted:\par\nopagebreak
+
+\begin{tikzpicture}
+\def\R{0.8}       % sphere radius
+\def\gap{0.12}    % gap between a sphere and its arrows
+\def\L{1.1}       % arrow length
+\def\ext{0.3}     % overhang of the line of centres beyond the arrows
+\def\panel{7}     % offset of the After panel
+\foreach \k/\title in {0/Before, 1/After} {
+  \coordinate (A\k) at (\k*\panel,0);
+  \coordinate (B\k) at ($(A\k)+(2*\R,0)$);
+  \draw[dashed] ($(A\k)+(-\R-\gap-\L-\ext,0)$) -- ($(B\k)+(\R+\gap+\L+\ext,0)$);
+  \foreach \C/\name/\mass in {A/A/2m, B/B/3m} {
+    \draw[thick] (\C\k) circle (\R);
+    \node at ($(\C\k)+(0,0.3*\R)$) {$\name$};
+    \node at ($(\C\k)+(0,-0.35*\R)$) {$\mass$};
+  }
+  \node[above] at ($(A\k)!0.5!(B\k)+(0,\R+\gap+\L+0.15)$) {\textit{\title}};
+}
+\foreach \C/\dx/\dy/\lab/\side in {A0/1/0/\dfrac{3U}{2}/above, A0/0/-1/\dfrac{\sqrt3U}{2}/right, B0/-1/0/\dfrac{U}{2}/above, B0/0/-1/\dfrac{\sqrt3U}{2}/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{-(\R+\gap+\L)}*(\dx,\dy)$) -- ($(\C)+{-(\R+\gap)}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\foreach \C/\dx/\dy/\lab/\side in {A1/-1/0/v_A/above, A1/0/-1/\dfrac{\sqrt3U}{2}/right, B1/1/0/v_B/above, B1/0/-1/\dfrac{\sqrt3U}{2}/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{\R+\gap}*(\dx,\dy)$) -- ($(\C)+{\R+\gap+\L}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\end{tikzpicture}
+
+\textbf{Perpendicular to the line of centres.} The spheres are smooth, so there is no impulse perpendicular to the line of centres. The momentum of each sphere in this direction is conserved, so its perpendicular component is unchanged: \(\frac{\sqrt3U}{2}\) for both \(A\) and \(B\), in the directions shown.
+
+\textbf{Parallel to the line of centres.} After the collision, let \(A\) move to the left with speed \(v_A\) and \(B\) move to the right with speed \(v_B\), as in the diagram. Conservation of momentum, taking left to right (from \(A\) towards \(B\)) as positive:
+\begin{align*}
+2m\left(\frac{3U}{2}\right)+3m\left(-\frac{U}{2}\right)&=2m(-v_A)+3mv_B\\
+\frac{3U}{2}&=-2v_A+3v_B
+\end{align*}
+
+Newton's law of restitution, with the speed of approach \(2U\) from part (a):
+\[
+e=\frac{\text{speed of separation}}{\text{speed of approach}}=\frac{v_A+v_B}{2U}
+\]
+
+so \(v_A+v_B=\frac23(2U)=\frac{4U}{3}\). Solving with the momentum equation gives \(v_B=\frac{5U}{6}\) and \(v_A=\frac{U}{2}\). Both are positive, so the directions in the diagram are correct.
+
+Hence, immediately after the collision, \(B\) has speed \(\frac{5U}{6}\) along the line of centres, at \(30^\circ\) above the horizontal, and \(\frac{\sqrt3U}{2}\) perpendicular to it, at \(60^\circ\) below the horizontal, both towards the right. Taking right and up as positive, its horizontal and vertical components are:
+\begin{align*}
+\text{horizontal:}\quad&\frac{5U}{6}\cos30^\circ+\frac{\sqrt3U}{2}\cos60^\circ=\frac{2\sqrt3U}{3}\\
+\text{vertical:}\quad&\frac{5U}{6}\sin30^\circ-\frac{\sqrt3U}{2}\sin60^\circ=-\frac{U}{3}
+\end{align*}
+
+\textbf{Motion of \(B\) after the collision.} \(B\) moves freely under gravity, starting with its centre at height \(5r\) and moving downwards with vertical speed \(\frac{U}{3}\). It first touches the plane when its centre is at height \(r\), having fallen \(4r\). Let \(t\) be the time from the collision until then. Taking downwards as positive, \(s=ut+\frac12at^2\) vertically gives:
+\begin{align*}
+4r&=\frac{U}{3}t+\frac12gt^2\\
+3gt^2+2Ut-24r&=0\\
+t&=\frac{-2U\pm\sqrt{4U^2+288gr}}{6g}\\
+&=\frac{-U\pm\sqrt{U^2+72gr}}{3g}
+\end{align*}
+
+Only the positive root gives a time after the collision, so
+\[
+t=\frac{\sqrt{U^2+72gr}-U}{3g}
+\]
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+% [Source: _QBT___Solns__Oblique_Collisions_of_Smooth_Spheres, Q9]
+
+In this question, $\mathbf{i}$ and $\mathbf{j}$ are unit vectors due east and due north respectively. \\
+
+Two smooth uniform spheres $P$ and $Q$, each of radius $2.5\,\mathrm{m}$, move on a smooth horizontal surface. Their masses are $3\,\mathrm{kg}$ and $2\,\mathrm{kg}$ respectively. At time $t=0$, the centre of $Q$ is $7\,\mathrm{m}$ east and $26\,\mathrm{m}$ north of the centre of $P$. Their velocities are
+\[
+\mathbf{u}_P=(2\mathbf{i}+6\mathbf{j})\,\mathrm{m\,s^{-1}},\qquad \mathbf{u}_Q=-5\mathbf{j}\,\mathrm{m\,s^{-1}}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Show that the spheres will collide and determine the time at which they first make contact. \marks{5} \\
+\end{enumerate}
+Immediately after the collision, the speed of $Q$ is $3\sqrt{5}\,\mathrm{m\,s^{-1}}$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+\item Determine the coefficient of restitution between the spheres and hence find the velocity of $P$ immediately after the collision. \marks{9} \\
+\item Find, in vector form, the impulse required to bring $P$ to rest after the collision. Calculate the angle this impulse makes with the eastward direction, stating whether it acts north or south of east. \marks{4} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item Before any collision, at time \(t\), the displacement from the centre of \(P\) to the centre of \(Q\) is
+\begin{align*}
+\overrightarrow{PQ}
+&=7\mathbf{i}+26\mathbf{j}+t(\mathbf{u}_Q-\mathbf{u}_P)\\
+&=(7-2t)\mathbf{i}+(26-11t)\mathbf{j}
+\end{align*}
+
+The spheres make contact when their centres are \(2.5+2.5=5\,\mathrm{m}\) apart. Hence
+\begin{align*}
+(7-2t)^2+(26-11t)^2&=25\\
+49-28t+4t^2+676-572t+121t^2&=25\\
+125t^2-600t+700&=0\\
+5t^2-24t+28&=0\\
+(t-2)(5t-14)&=0\\
+t&=2\quad\text{or}\quad t=\frac{14}{5}
+\end{align*}
+
+The equation has real solutions, so the spheres collide. Initially the centres are \(\sqrt{725}\,\mathrm{m}\) apart, more than \(5\,\mathrm{m}\), so the smaller solution gives the first contact, at
+\[
+t=2\,\mathrm{s}
+\]
+
+\item At contact, when \(t=2\), the displacement from the centre of \(P\) to the centre of \(Q\) is
+\[
+\overrightarrow{PQ}=(7-4)\mathbf{i}+(26-22)\mathbf{j}=3\mathbf{i}+4\mathbf{j}
+\]
+
+The line of centres is therefore parallel to \(3\mathbf{i}+4\mathbf{j}\), so \(\frac15(3\mathbf{i}+4\mathbf{j})\) is a unit vector along it, from \(P\) towards \(Q\), and \(\frac15(-4\mathbf{i}+3\mathbf{j})\) is a unit vector perpendicular to it. Taking the scalar product of each velocity with these gives its components parallel and perpendicular to the line of centres, in \(\mathrm{m\,s^{-1}}\):
+\begin{alignat*}{2}
+P&:\quad\text{parallel}\ \frac{2(3)+6(4)}{5}=6,&\qquad&\text{perpendicular}\ \frac{2(-4)+6(3)}{5}=2\\
+Q&:\quad\text{parallel}\ \frac{0(3)-5(4)}{5}=-4,&&\text{perpendicular}\ \frac{0(-4)-5(3)}{5}=-3
+\end{alignat*}
+
+The components before and after the collision, with the line of centres horizontal (\(3\mathbf{i}+4\mathbf{j}\) to the right, \(-4\mathbf{i}+3\mathbf{j}\) up) and the directions after the collision predicted:\par\nopagebreak
+
+\begin{tikzpicture}
+\def\R{0.8}       % sphere radius
+\def\gap{0.12}    % gap between a sphere and its arrows
+\def\L{1.1}       % arrow length
+\def\ext{0.3}     % overhang of the line of centres beyond the arrows
+\def\panel{7}     % offset of the After panel
+\foreach \k/\title in {0/Before, 1/After} {
+  \coordinate (A\k) at (\k*\panel,0);
+  \coordinate (B\k) at ($(A\k)+({2*\R+\k*(2*\gap+\L)},0)$);
+  \draw[dashed] ($(A\k)+(-\R-\gap-\L-\ext,0)$) -- ($(B\k)+(\R+\gap+\L+\ext,0)$);
+  \foreach \C/\name/\mass in {A/P/3\,\mathrm{kg}, B/Q/2\,\mathrm{kg}} {
+    \draw[thick] (\C\k) circle (\R);
+    \node at ($(\C\k)+(0,0.3*\R)$) {$\name$};
+    \node at ($(\C\k)+(0,-0.35*\R)$) {$\mass$};
+  }
+  \node[above] at ($(A\k)!0.5!(B\k)+(0,\R+\gap+\L+0.15)$) {\textit{\title}};
+}
+\foreach \C/\dx/\dy/\lab/\side in {A0/1/0/6/above, A0/0/1/2/right, B0/-1/0/4/above, B0/0/-1/3/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{-(\R+\gap+\L)}*(\dx,\dy)$) -- ($(\C)+{-(\R+\gap)}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\foreach \C/\dx/\dy/\lab/\side in {A1/1/0/v_P/above, A1/0/1/2/right, B1/1/0/v_Q/above, B1/0/-1/3/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{\R+\gap}*(\dx,\dy)$) -- ($(\C)+{\R+\gap+\L}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\end{tikzpicture}
+
+\textbf{Perpendicular to the line of centres.} The spheres are smooth, so there is no impulse perpendicular to the line of centres. The momentum of each sphere in this direction is conserved, so its perpendicular component is unchanged: \(2\,\mathrm{m\,s^{-1}}\) for \(P\) and \(3\,\mathrm{m\,s^{-1}}\) for \(Q\), in the directions shown.
+
+\textbf{Parallel to the line of centres.} After the collision, let \(P\) move to the right with speed \(v_P\) and \(Q\) move to the right with speed \(v_Q\), as in the diagram. Conservation of momentum, taking left to right (the direction of \(3\mathbf{i}+4\mathbf{j}\)) as positive:
+\begin{align*}
+3(6)+2(-4)&=3v_P+2v_Q\\
+10&=3v_P+2v_Q
+\end{align*}
+
+Newton's law of restitution:
+\[
+e=\frac{\text{speed of separation}}{\text{speed of approach}}=\frac{v_Q-v_P}{6+4}
+\]
+
+so \(v_P=v_Q-10e\). Substituting into the momentum equation:
+\begin{align*}
+10&=3(v_Q-10e)+2v_Q\\
+5v_Q&=10+30e\\
+v_Q&=2+6e
+\end{align*}
+
+\textbf{Speed of \(Q\).} Since \(e\geq0\), \(v_Q=2+6e\) is positive, so \(Q\) does move to the right. Immediately after the collision, \(Q\) has speed \(3\sqrt5\,\mathrm{m\,s^{-1}}\) and perpendicular component \(3\,\mathrm{m\,s^{-1}}\), so
+\begin{align*}
+v_Q^2+3^2&=\bigl(3\sqrt5\bigr)^2\\
+v_Q^2&=36\\
+v_Q&=6
+\end{align*}
+
+Then \(2+6e=6\), so
+\[
+e=\frac23
+\]
+
+Hence, from the restitution equation, \(v_P=6-10\left(\frac23\right)=-\frac23\). \(v_P<0\), so \(P\) in fact moves to the left, with speed \(\frac23\,\mathrm{m\,s^{-1}}\).
+
+\textbf{Velocity of \(P\).} After the collision, \(P\) moves with speed \(\frac23\,\mathrm{m\,s^{-1}}\) along the line of centres, in the direction of \(-3\mathbf{i}-4\mathbf{j}\), and \(2\,\mathrm{m\,s^{-1}}\) perpendicular to it, in the direction of \(-4\mathbf{i}+3\mathbf{j}\). Using unit vectors in these directions:
+\begin{align*}
+\mathbf{v}_P&=\frac{2}{15}(-3\mathbf{i}-4\mathbf{j})+\frac25(-4\mathbf{i}+3\mathbf{j})\\
+&=\left(-\frac25-\frac85\right)\mathbf{i}+\left(-\frac{8}{15}+\frac65\right)\mathbf{j}\\
+&=\left(-2\mathbf{i}+\frac{2}{3}\mathbf{j}\right)\,\mathrm{m\,s^{-1}}
+\end{align*}
+
+\item The required impulse is the change in momentum of \(P\):
+\begin{align*}
+\mathbf{J}&=3(\mathbf{0}-\mathbf{v}_P)\\
+&=3\left(2\mathbf{i}-\frac{2}{3}\mathbf{j}\right)\\
+&=(6\mathbf{i}-2\mathbf{j})\,\mathrm{N\,s}
+\end{align*}
+
+The impulse has a positive eastward component and a negative northward component. If \(\theta\) is its acute angle with the eastward direction, then
+\begin{align*}
+\tan\theta&=\frac{2}{6}=\frac{1}{3}\\
+\theta&=\arctan\left(\frac{1}{3}\right)\approx18.4^\circ\text{ south of east}
+\end{align*}
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+% [Source: _QBT___Solns__Oblique_Collisions_of_Smooth_Spheres, Q10]
+
+Two small uniform smooth spheres $A$ and $B$ have equal radii and masses $m$ and $\lambda m$ respectively, where $\lambda>0$. They move on a smooth horizontal surface. The unit vectors $\mathbf{i}$ and $\mathbf{j}$ are perpendicular and lie in the surface. \\
+
+Immediately before an oblique collision, the velocities of $A$ and $B$ are $u(4\mathbf{i}+\mathbf{j})$ and $u(-\mathbf{i}+2\mathbf{j})$ respectively, where $u>0$. At impact, the line of centres is parallel to $\mathbf{i}+\mathbf{j}$, with $B$ lying in the direction $\mathbf{i}+\mathbf{j}$ from $A$. \\
+
+The coefficient of restitution between the spheres is $e$, where $0\leq e\leq1$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item
+\begin{enumerate}[label=(\roman*)]
+\item Explain why the impulse exerted by $A$ on $B$ is parallel to $\mathbf{i}+\mathbf{j}$. \marks{1} \\
+\item Determine the velocity of each sphere immediately after the collision in terms of $u$, $\lambda$ and $e$, giving your answers in terms of $\mathbf{i}$ and $\mathbf{j}$. \marks{7} \\
+\end{enumerate}
+\end{enumerate}
+The loss of kinetic energy in the collision is $mu^2$. Immediately after the collision, the component of the velocity of $A$ in the direction $\mathbf{i}+\mathbf{j}$ is negative. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+\item Determine the range of possible values of $\lambda$ consistent with both of these conditions. \marks{7} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item
+\begin{enumerate}[label=(\roman*), start=1]
+\item The spheres are smooth, so there is no impulse perpendicular to the line of centres. The impulse therefore acts along the line of centres, which is parallel to \(\mathbf{i}+\mathbf{j}\).
+
+\item The line of centres is parallel to \(\mathbf{i}+\mathbf{j}\), so \(\frac{1}{\sqrt2}(\mathbf{i}+\mathbf{j})\) is a unit vector along it, from \(A\) towards \(B\), and \(\frac{1}{\sqrt2}(-\mathbf{i}+\mathbf{j})\) is a unit vector perpendicular to it. Taking the scalar product of each velocity with these gives its components parallel and perpendicular to the line of centres:
+\begin{alignat*}{2}
+A&:\quad\text{parallel}\ \frac{4u+u}{\sqrt2}=\frac{5u}{\sqrt2},&\qquad&\text{perpendicular}\ \frac{-4u+u}{\sqrt2}=-\frac{3u}{\sqrt2}\\
+B&:\quad\text{parallel}\ \frac{-u+2u}{\sqrt2}=\frac{u}{\sqrt2},&&\text{perpendicular}\ \frac{u+2u}{\sqrt2}=\frac{3u}{\sqrt2}
+\end{alignat*}
+
+The components before and after the collision, with the line of centres horizontal (\(\mathbf{i}+\mathbf{j}\) to the right, \(-\mathbf{i}+\mathbf{j}\) up) and the directions after the collision predicted:\par\nopagebreak
+
+\begin{tikzpicture}[scale=0.85]
+\def\R{0.8}       % sphere radius
+\def\gap{0.12}    % gap between a sphere and its arrows
+\def\L{1.1}       % arrow length
+\def\ext{0.3}     % overhang of the line of centres beyond the arrows
+\def\panel{8}     % offset of the After panel
+\foreach \k/\title in {0/Before, 1/After} {
+  \coordinate (A\k) at (\k*\panel,0);
+  \coordinate (B\k) at ($(A\k)+({2*\R+2*\gap+\L},0)$);
+  \draw[dashed] ($(A\k)+(-\R-\gap-\L-\ext,0)$) -- ($(B\k)+(\R+\gap+\L+\ext,0)$);
+  \foreach \C/\name/\mass in {A/A/m, B/B/\lambda m} {
+    \draw[thick] (\C\k) circle (\R);
+    \node at ($(\C\k)+(0,0.3*\R)$) {$\name$};
+    \node at ($(\C\k)+(0,-0.35*\R)$) {$\mass$};
+  }
+  \node[above] at ($(A\k)!0.5!(B\k)+(0,\R+\gap+\L+0.15)$) {\textit{\title}};
+}
+\foreach \C/\dx/\dy/\lab/\side in {A0/1/0/\dfrac{5u}{\sqrt2}/above, A0/0/-1/\dfrac{3u}{\sqrt2}/right, B0/1/0/\dfrac{u}{\sqrt2}/above, B0/0/1/\dfrac{3u}{\sqrt2}/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{-(\R+\gap+\L)}*(\dx,\dy)$) -- ($(\C)+{-(\R+\gap)}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\foreach \C/\dx/\dy/\lab/\side in {A1/-1/0/v_A/above, A1/0/-1/\dfrac{3u}{\sqrt2}/right, B1/1/0/v_B/above, B1/0/1/\dfrac{3u}{\sqrt2}/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{\R+\gap}*(\dx,\dy)$) -- ($(\C)+{\R+\gap+\L}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\end{tikzpicture}
+
+\textbf{Perpendicular to the line of centres.} The spheres are smooth, so there is no impulse perpendicular to the line of centres. The momentum of each sphere in this direction is conserved, so its perpendicular component is unchanged: \(\frac{3u}{\sqrt2}\) for both \(A\) and \(B\), in the directions shown.
+
+\textbf{Parallel to the line of centres.} After the collision, let \(A\) move to the left (the direction of \(-(\mathbf{i}+\mathbf{j})\)) with speed \(v_A\) and \(B\) move to the right with speed \(v_B\), as in the diagram. Conservation of momentum, taking left to right (the direction of \(\mathbf{i}+\mathbf{j}\)) as positive:
+\begin{align*}
+m\left(\frac{5u}{\sqrt2}\right)+\lambda m\left(\frac{u}{\sqrt2}\right)&=m(-v_A)+\lambda mv_B\\
+-v_A+\lambda v_B&=\frac{(5+\lambda)u}{\sqrt2}
+\end{align*}
+
+Newton's law of restitution, with speed of approach \(\frac{5u}{\sqrt2}-\frac{u}{\sqrt2}=2\sqrt2\,u\):
+\[
+e=\frac{\text{speed of separation}}{\text{speed of approach}}=\frac{v_A+v_B}{2\sqrt2\,u}
+\]
+
+so \(v_B=2\sqrt2\,eu-v_A\). Substituting into the momentum equation:
+\begin{align*}
+-v_A+\lambda\bigl(2\sqrt2\,eu-v_A\bigr)&=\frac{(5+\lambda)u}{\sqrt2}\\
+(1+\lambda)v_A&=2\sqrt2\,\lambda eu-\frac{(5+\lambda)u}{\sqrt2}\\
+&=\frac{u(4\lambda e-\lambda-5)}{\sqrt2}\\
+v_A&=\frac{u(4\lambda e-\lambda-5)}{\sqrt2(1+\lambda)}
+\end{align*}
+
+and then
+\begin{align*}
+v_B&=\frac{4eu(1+\lambda)-u(4\lambda e-\lambda-5)}{\sqrt2(1+\lambda)}\\
+&=\frac{u(5+\lambda+4e)}{\sqrt2(1+\lambda)}
+\end{align*}
+
+Since \(5+\lambda+4e>0\), \(v_B\) is positive, so \(B\) moves to the right, as in the diagram. The sign of \(v_A\) depends on \(\lambda\) and \(e\), and the vector form below holds either way.
+
+After the collision, \(A\)'s velocity has component \(v_A\) in the direction of \(-(\mathbf{i}+\mathbf{j})\) and \(\frac{3u}{\sqrt2}\) in the direction of \(\mathbf{i}-\mathbf{j}\), and \(B\)'s has \(v_B\) in the direction of \(\mathbf{i}+\mathbf{j}\) and \(\frac{3u}{\sqrt2}\) in the direction of \(-\mathbf{i}+\mathbf{j}\). Using unit vectors in these directions:
+\begin{align*}
+\mathbf{v}_A&=-\frac{v_A}{\sqrt2}(\mathbf{i}+\mathbf{j})+\frac{3u}{2}(\mathbf{i}-\mathbf{j})\\
+&=\frac{u}{2(1+\lambda)}\bigl[-(4\lambda e-\lambda-5)(\mathbf{i}+\mathbf{j})+3(1+\lambda)(\mathbf{i}-\mathbf{j})\bigr]\\
+&=\frac{u}{1+\lambda}\bigl[(4+2\lambda-2\lambda e)\mathbf{i}+(1-\lambda-2\lambda e)\mathbf{j}\bigr]\\
+\mathbf{v}_B&=\frac{v_B}{\sqrt2}(\mathbf{i}+\mathbf{j})+\frac{3u}{2}(-\mathbf{i}+\mathbf{j})\\
+&=\frac{u}{2(1+\lambda)}\bigl[(5+\lambda+4e)(\mathbf{i}+\mathbf{j})+3(1+\lambda)(-\mathbf{i}+\mathbf{j})\bigr]\\
+&=\frac{u}{1+\lambda}\bigl[(1-\lambda+2e)\mathbf{i}+(4+2\lambda+2e)\mathbf{j}\bigr]
+\end{align*}
+
+\end{enumerate}
+\item \textbf{Kinetic energy.} The perpendicular components are unchanged, so the loss of kinetic energy comes from the parallel components only:
+\begin{align*}
+\text{loss of KE}&=\frac12m\left(\frac{5u}{\sqrt2}\right)^2+\frac12\lambda m\left(\frac{u}{\sqrt2}\right)^2-\frac12mv_A^2-\frac12\lambda mv_B^2\\
+&=\frac{mu^2}{4}(25+\lambda)-\frac{m}{2}\bigl(v_A^2+\lambda v_B^2\bigr)
+\end{align*}
+
+Using \(v_A\) and \(v_B\) from part (a)(ii) and expanding the squares, the terms in \(8\lambda e(5+\lambda)\) cancel:
+\begin{align*}
+v_A^2+\lambda v_B^2&=\frac{u^2}{2(1+\lambda)^2}\bigl[(4\lambda e-\lambda-5)^2+\lambda(5+\lambda+4e)^2\bigr]\\
+&=\frac{u^2}{2(1+\lambda)^2}\bigl[(1+\lambda)(5+\lambda)^2+16\lambda(1+\lambda)e^2\bigr]\\
+&=\frac{u^2}{2(1+\lambda)}\bigl[(5+\lambda)^2+16\lambda e^2\bigr]
+\end{align*}
+
+Hence
+\begin{align*}
+\text{loss of KE}&=\frac{mu^2}{4}(25+\lambda)-\frac{mu^2}{4(1+\lambda)}\bigl[(5+\lambda)^2+16\lambda e^2\bigr]\\
+&=\frac{mu^2}{4(1+\lambda)}\bigl[(25+\lambda)(1+\lambda)-(5+\lambda)^2-16\lambda e^2\bigr]\\
+&=\frac{mu^2}{4(1+\lambda)}\bigl(16\lambda-16\lambda e^2\bigr)\\
+&=\frac{4\lambda mu^2(1-e^2)}{1+\lambda}
+\end{align*}
+
+Setting this equal to \(mu^2\):
+\begin{align*}
+4\lambda(1-e^2)&=1+\lambda\\
+e^2&=\frac{3\lambda-1}{4\lambda}
+\end{align*}
+
+Since \(\lambda>0\), \(e^2\geq0\) requires \(\lambda\geq\frac13\), and \(e^2<1\) always holds, as \(3\lambda-1<4\lambda\).
+
+\textbf{Motion of \(A\) after the collision.} The component of \(A\)'s velocity in the direction \(\mathbf{i}+\mathbf{j}\) is \(-v_A\), so \(v_A>0\): \(A\) moves to the left, as in the diagram. Since \(u>0\) and \(1+\lambda>0\), this gives
+\begin{align*}
+4\lambda e-\lambda-5&>0\\
+e&>\frac{\lambda+5}{4\lambda}
+\end{align*}
+
+Both sides are positive, so squaring and substituting for \(e^2\) from the kinetic energy condition:
+\begin{align*}
+\frac{3\lambda-1}{4\lambda}&>\frac{(\lambda+5)^2}{16\lambda^2}\\
+4\lambda(3\lambda-1)&>(\lambda+5)^2\\
+11\lambda^2-14\lambda-25&>0\\
+(\lambda+1)(11\lambda-25)&>0
+\end{align*}
+
+Since \(\lambda+1>0\) and \(\frac{25}{11}>\frac13\), the range consistent with both conditions is
+\[
+\lambda>\frac{25}{11}
+\]
+
+\end{enumerate}
+\end{djsSolution}
+
+\end{enumerate}
+\end{document}

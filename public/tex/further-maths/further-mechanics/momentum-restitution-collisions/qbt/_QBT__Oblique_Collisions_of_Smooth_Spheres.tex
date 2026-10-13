@@ -1,0 +1,398 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/pack_preamble.tex}
+
+\djsQbtHeader{Oblique Collisions of Smooth Spheres}
+\djsSitePath{Further Mechanics}{Momentum \& Collisions}
+\djsMechanicsPack
+\djsLastUpdated{13 October 2026}
+
+\begin{document}
+\djsFrontMatter
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+% [Source: _QBT__Oblique_Collisions_of_Smooth_Spheres, Q1]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.1]
+\def\rad{1.2}
+\def\raylen{3.2}
+\def\axisextra{1.3}
+\pgfmathsetmacro{\angA}{180-atan(1/2)}
+\pgfmathsetmacro{\angB}{atan(3)}
+\coordinate (A) at (0,0);
+\coordinate (B) at ($(A)+(2*\rad,0)$);
+\coordinate (Left) at ($(A)+({-\rad-\axisextra},0)$);
+\coordinate (Right) at ($(B)+({\rad+\axisextra},0)$);
+\coordinate (StartA) at ($(A)+(\angA:\raylen)$);
+\coordinate (StartB) at ($(B)+(\angB:\raylen)$);
+\draw[dashed,black] (Left) -- (Right);
+\foreach \p/\mass in {A/2m,B/3m} {
+  \draw[thick,black] (\p) circle (\rad);
+  \node at ($(\p)+(0,0.62*\rad)$) {$\p$};
+  \node at ($(\p)+(0,-0.60*\rad)$) {$\mass$};
+}
+\draw[thick,black,postaction={decorate},decoration={markings,mark=at position 0.35 with {\arrow{Stealth[length=3mm]}}}] (StartA) -- (A) node[pos=0.30,above right] {$u(4\mathbf{i}-2\mathbf{j})$};
+\draw[thick,black,postaction={decorate},decoration={markings,mark=at position 0.35 with {\arrow{Stealth[length=3mm]}}}] (StartB) -- (B) node[pos=0.30,above right,xshift=3pt] {$u(-\mathbf{i}-3\mathbf{j})$};
+\end{tikzpicture}
+\end{figure}
+
+
+Two uniform smooth spheres $A$ and $B$, of equal radius and masses $2m$ and $3m$ respectively, collide on a smooth horizontal surface. The unit vector $\mathbf{i}$ points along the line of centres from $A$ towards $B$ at impact, and $\mathbf{j}$ is perpendicular to $\mathbf{i}$ in the plane of the surface, as indicated by the velocity directions in the diagram above. \\
+
+Immediately before the collision, their velocities are
+\[
+\mathbf{u}_A=u(4\mathbf{i}-2\mathbf{j}),\qquad \mathbf{u}_B=u(-\mathbf{i}-3\mathbf{j})
+\] \\
+where $u>0$. Immediately after the collision, the direction of motion of $A$ is perpendicular to its direction of motion immediately before the collision. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the velocity of $A$ immediately after the collision, in terms of $u$. \marks{3} \\
+\item Find the coefficient of restitution between the spheres and the percentage loss in their total kinetic energy. Give the percentage to three significant figures. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT__Oblique_Collisions_of_Smooth_Spheres, Q2]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.1]
+\def\rad{1.2}
+\def\raylen{3.3}
+\def\arrowstop{1.45}
+\def\extension{3.4}
+\pgfmathsetmacro{\alphaang}{atan(3/4)}
+\pgfmathsetmacro{\adir}{180+\alphaang}
+\def\bdir{315}
+\coordinate (A) at (0,0);
+\coordinate (B) at ($(A)+(2*\rad,0)$);
+\coordinate (Left) at ($(A)+(-\extension,0)$);
+\coordinate (Right) at ($(B)+(\extension,0)$);
+\coordinate (Aleft) at ($(A)+(180:\rad)$);
+\coordinate (Bright) at ($(B)+(0:\rad)$);
+\coordinate (Astart) at ($(A)+(\adir:\raylen)$);
+\coordinate (Aend) at ($(A)+(\adir:\arrowstop)$);
+\coordinate (Bstart) at ($(B)+(\bdir:\raylen)$);
+\coordinate (Bend) at ($(B)+(\bdir:\arrowstop)$);
+\draw[thick, black, dashed] (Left) -- (Right);
+\draw[thick, black] (A) circle (\rad);
+\draw[thick, black] (B) circle (\rad);
+\foreach \s in {A,B} {
+  \draw[thick, black, dashed] (\s start) -- (\s);
+}
+\draw[-{Stealth[length=3mm]}, thick, black] (Astart) -- (Aend) node[midway, above left] {$5\,\mathrm{m\,s^{-1}}$};
+\draw[-{Stealth[length=3mm]}, thick, black] (Bstart) -- (Bend) node[midway, above right] {$2\sqrt{2}\,\mathrm{m\,s^{-1}}$};
+\pic["$\alpha$", draw, angle radius=7mm, angle eccentricity=1.4] {angle=Aleft--A--Astart};
+\pic["$45^\circ$", draw, angle radius=7mm, angle eccentricity=1.4] {angle=Bstart--B--Bright};
+\node[above left] at ($(A)+(135:\rad)$) {$A$};
+\node[above right] at ($(B)+(45:\rad)$) {$B$};
+\node at ($(A)+(0,0.45*\rad)$) {$2\,\mathrm{kg}$};
+\node at ($(B)+(0,0.45*\rad)$) {$4\,\mathrm{kg}$};
+\end{tikzpicture}
+\end{figure}
+
+
+Two smooth uniform spheres $A$ and $B$, of equal radius and masses $2\,\mathrm{kg}$ and $4\,\mathrm{kg}$ respectively, collide on a smooth horizontal surface. The diagram above shows a plan view at the instant of contact. \\
+
+Immediately before the collision, sphere $A$ has speed $5\,\mathrm{m\,s^{-1}}$ and its velocity makes an acute angle $\alpha$ with the line of centres, where $\tan\alpha=\dfrac{3}{4}$. Sphere $B$ has speed $2\sqrt{2}\,\mathrm{m\,s^{-1}}$ and its velocity makes an angle of $45^\circ$ with the line of centres. Their velocity components along the line of centres are directed towards each other, and their perpendicular components are directed towards the same side of this line, as shown in the diagram above. \\
+
+Immediately after the collision, the velocities of the two spheres are perpendicular. \\
+
+Determine the coefficient of restitution between the spheres and the magnitude of the impulse exerted on $A$ during the collision. Give both answers in exact form. \marks{8} \\
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT__Oblique_Collisions_of_Smooth_Spheres, Q3]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.2]
+\def\rad{1.15}
+\def\incomingLen{2.8}
+\def\axisExtension{2.4}
+\pgfmathsetmacro{\aRayAngle}{180+atan2(3,4)}
+\pgfmathsetmacro{\bRayAngle}{atan2(2,3)}
+\coordinate (A) at (0,0);
+\coordinate (B) at ($(A)+(2*\rad,0)$);
+\coordinate (Left) at ($(A)+(-\axisExtension,0)$);
+\coordinate (Right) at ($(B)+(\axisExtension,0)$);
+\coordinate (Astart) at ($(A)+(\aRayAngle:\incomingLen)$);
+\coordinate (Bstart) at ($(B)+(\bRayAngle:\incomingLen)$);
+\draw[dashed,thick,black] (Left) -- (Right);
+\foreach \p/\mass in {A/3,B/1} {
+  \draw[thick,black] (\p) circle (\rad);
+  \node[above] at ($(\p)+(0,\rad)$) {$\p$};
+  \node at ($(\p)+(0,0.55*\rad)$) {$\mass\,\mathrm{kg}$};
+}
+\draw[thick,black,postaction={decorate},decoration={markings,mark=at position 0.35 with {\arrow{Stealth[length=3mm]}}}] (Astart) -- (A) node[pos=0,left] {$(4\mathbf{i}+3\mathbf{j})\,\mathrm{m\,s^{-1}}$};
+\draw[thick,black,postaction={decorate},decoration={markings,mark=at position 0.35 with {\arrow{Stealth[length=3mm]}}}] (Bstart) -- (B) node[pos=0,right] {$(-3\mathbf{i}-2\mathbf{j})\,\mathrm{m\,s^{-1}}$};
+\end{tikzpicture}
+\end{figure}
+
+
+Two smooth uniform spheres $A$ and $B$, of equal radius and masses $3\,\mathrm{kg}$ and $1\,\mathrm{kg}$ respectively, collide obliquely on a smooth horizontal surface. \\
+
+At the instant of impact, the unit vector $\mathbf{i}$ points from the centre of $A$ towards the centre of $B$, and $\mathbf{j}$ is perpendicular to $\mathbf{i}$ in the horizontal surface, as indicated by the velocity directions in the diagram above. Immediately before impact, their velocities are
+\[
+\mathbf{u}_A=(4\mathbf{i}+3\mathbf{j})\,\mathrm{m\,s^{-1}},\qquad \mathbf{u}_B=(-3\mathbf{i}-2\mathbf{j})\,\mathrm{m\,s^{-1}}
+\] \\
+Immediately after impact, the velocities of the two spheres are perpendicular to each other. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the two possible values of the coefficient of restitution between the spheres. \marks{8} \\
+\item For each value found in part (a), calculate the total loss of kinetic energy in the collision, clearly identifying which loss corresponds to which coefficient of restitution. \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT__Oblique_Collisions_of_Smooth_Spheres, Q4]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.2]
+\def\rad{1.15}
+\def\raylen{2.8}
+\def\lineext{1.8}
+\def\arrowfrac{0.38}
+\def\basislen{0.75}
+\pgfmathsetmacro{\adir}{atan2(2,4)}
+\pgfmathsetmacro{\bdir}{atan2(-2,-2)}
+\coordinate (A) at (0,0);
+\coordinate (B) at ($(A)+(2*\rad,0)$);
+\coordinate (L) at ($(A)+(-\rad-\lineext,0)$);
+\coordinate (R) at ($(B)+(\rad+\lineext,0)$);
+\coordinate (Ain) at ($(A)+({\adir+180}:\raylen)$);
+\coordinate (Bin) at ($(B)+({\bdir+180}:\raylen)$);
+\coordinate (Basis) at ($(L)+(0,1.5*\rad)$);
+\draw[dashed,black] (L)--(R);
+\foreach \p in {A,B} {\draw[thick,black] (\p) circle (\rad);}
+\draw[thick,black] (Ain)--(A);
+\draw[thick,black] (Bin)--(B);
+\draw[-{Stealth[length=3mm]},thick,black] (Ain)--($(Ain)!\arrowfrac!(A)$) node[pos=0,left] {$u(4\mathbf{i}+2\mathbf{j})$};
+\draw[-{Stealth[length=3mm]},thick,black] (Bin)--($(Bin)!\arrowfrac!(B)$) node[pos=0,right] {$u(-2\mathbf{i}-2\mathbf{j})$};
+\draw[-{Stealth[length=3mm]},thick,black] (Basis)--++(\basislen,0) node[right] {$\mathbf{i}$};
+\draw[-{Stealth[length=3mm]},thick,black] (Basis)--++(0,\basislen) node[above] {$\mathbf{j}$};
+\node at ($(A)+(0,0.72*\rad)$) {$A$};
+\node at ($(B)+(0,0.72*\rad)$) {$B$};
+\node at ($(A)+(0,-0.72*\rad)$) {$2m$};
+\node at ($(B)+(0,-0.72*\rad)$) {$m$};
+\end{tikzpicture}
+\end{figure}
+
+
+Two smooth uniform spheres $A$ and $B$ of equal radius have masses $2m$ and $m$ respectively. They collide obliquely on a smooth horizontal surface. The unit vector $\mathbf{i}$ is directed along the line of centres from $A$ towards $B$ at impact, and $\mathbf{j}$ is perpendicular to $\mathbf{i}$ in the horizontal surface. \\
+
+Immediately before the collision, the velocities of $A$ and $B$ are $u(4\mathbf{i}+2\mathbf{j})$ and $u(-2\mathbf{i}-2\mathbf{j})$ respectively, where $u>0$. The coefficient of restitution between the spheres is $e$, where $0\leq e\leq1$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the velocity of each sphere immediately after the collision in terms of $u$ and $e$. \marks{5} \\
+\item The velocities of the spheres immediately after the collision are perpendicular. Find the two possible values of $e$ and, for each value, calculate the total kinetic energy lost in the collision in terms of $m$ and $u$. \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT__Oblique_Collisions_of_Smooth_Spheres, Q5]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.2]
+\def\rad{1.3}
+\def\raylen{2.9}
+\def\extend{1.7}
+\def\massheight{0.55}
+\pgfmathsetmacro{\alphaang}{atan(3/4)}
+\coordinate (A) at (0,0);
+\coordinate (B) at ($(A)+(2*\rad,0)$);
+\coordinate (AL) at ($(A)+(180:\rad)$);
+\coordinate (BR) at ($(B)+(0:\rad)$);
+\coordinate (AS) at ($(A)+({180-\alphaang}:\raylen)$);
+\coordinate (BS) at ($(B)+(-45:\raylen)$);
+\draw[thick,black,dashed] ($(AL)+(-\extend,0)$) -- ($(BR)+(\extend,0)$);
+\foreach \P in {A,B} {
+  \draw[thick,black] (\P) circle (\rad);
+  \node[above] at ($(\P)+(0,\rad)$) {$\P$};
+}
+\node at ($(A)+(0,\massheight*\rad)$) {$m_A\,\mathrm{kg}$};
+\node at ($(B)+(0,\massheight*\rad)$) {$m_B\,\mathrm{kg}$};
+\tikzset{incoming/.style={thick,black,postaction={decorate},decoration={markings,mark=at position 0.23 with {\arrow{Stealth[length=3mm]}}}}}
+\draw[incoming] (AS) -- (A) node[pos=0,left] {$10\,\mathrm{m\,s^{-1}}$};
+\draw[incoming] (BS) -- (B) node[pos=0,right] {$6\sqrt{2}\,\mathrm{m\,s^{-1}}$};
+\pic["$\alpha$",draw,angle radius=4mm,angle eccentricity=1.5] {angle=AS--A--AL};
+\pic["$\frac{\pi}{4}$",draw,angle radius=4mm,angle eccentricity=2.2] {angle=BS--B--BR};
+\end{tikzpicture}
+\end{figure}
+
+
+Two smooth uniform spheres $A$ and $B$, of equal radius and masses $m_A\,\mathrm{kg}$ and $m_B\,\mathrm{kg}$ respectively, collide on a smooth horizontal surface. The diagram above shows their velocities immediately before impact, viewed from above. \\
+
+Immediately before the collision, $A$ has speed $10\,\mathrm{m\,s^{-1}}$ and moves downwards and to the right at an acute angle $\alpha$ to the line of centres, where $\tan\alpha=\dfrac{3}{4}$. Sphere $B$ has speed $6\sqrt{2}\,\mathrm{m\,s^{-1}}$ and moves upwards and to the left at an angle $\dfrac{\pi}{4}$ to the line of centres. \\
+
+Immediately after the collision, $B$ moves upwards and to the right at an acute angle $\beta$ to the rightward line of centres, where $\tan\beta=2$. The coefficient of restitution between the spheres is $e$, where $0\leq e\leq1$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the complete interval of possible values of $\dfrac{m_B}{m_A}$. State which endpoint corresponds to a perfectly elastic collision. \marks{7} \\
+\item Given that $m_A=3$ and $m_B=4$, find the total loss of kinetic energy in the collision. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+% [Source: _QBT__Oblique_Collisions_of_Smooth_Spheres, Q6]
+
+In this question, $\mathbf{i}$ and $\mathbf{j}$ are perpendicular unit vectors in a horizontal plane. \\
+
+Two smooth uniform spheres $P$ and $Q$, of equal radius, have masses $0.4\,\mathrm{kg}$ and $0.5\,\mathrm{kg}$ respectively. They move on a smooth horizontal surface and collide obliquely. \\
+
+Immediately before the collision, their velocities are
+\[
+\mathbf{u}_P=(0.8\mathbf{i}+4.4\mathbf{j})\,\mathrm{m\,s^{-1}},\qquad \mathbf{u}_Q=(1.2\mathbf{i}-3.4\mathbf{j})\,\mathrm{m\,s^{-1}}
+\] \\
+At the instant of collision, the vector from the centre of $P$ to the centre of $Q$ is parallel to $3\mathbf{i}+4\mathbf{j}$. \\
+
+The coefficient of restitution between the spheres is $e$. The collision deflects the direction of motion of $P$ through $90^\circ$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find $e$. \marks{8} \\
+\item Find the velocity of $Q$ immediately after the collision. Hence find the angle through which its direction of motion is deflected, giving your answer to the nearest $0.1^\circ$. \marks{6} \\
+\item State how you have used the fact that the spheres have equal radii. \marks{1} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+% [Source: _QBT__Oblique_Collisions_of_Smooth_Spheres, Q7]
+
+Two smooth uniform spheres $P$ and $Q$ have equal radii and masses $0.4\,\mathrm{kg}$ and $0.6\,\mathrm{kg}$ respectively. They move on a smooth horizontal surface and collide obliquely. \\
+
+Immediately before the collision, their velocities are
+\[
+\mathbf{u}_P=(6\mathbf{i}+2\mathbf{j})\,\mathrm{m\,s^{-1}},\qquad \mathbf{u}_Q=(-2\mathbf{i}+2\mathbf{j})\,\mathrm{m\,s^{-1}}
+\] \\
+where $\mathbf{i}$ and $\mathbf{j}$ are perpendicular horizontal unit vectors. \\
+
+At the instant of impact, the vector from the centre of $P$ to the centre of $Q$ is a positive multiple of $\mathbf{i}+\mathbf{j}$. The total kinetic energy of the two spheres decreases by $2.88\,\mathrm{J}$ during the collision. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find
+\begin{enumerate}[label=(\roman*)]
+\item the velocity of $P$ immediately after the collision,
+\item the velocity of $Q$ immediately after the collision,
+\item the coefficient of restitution between the spheres.
+\end{enumerate}
+Justify your answers, explaining which velocity components are unchanged by the collision. \marks{12} \\
+\item Find the angle through which the direction of motion of $P$ is deflected by the collision. Give your answer in degrees to one decimal place. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+% [Source: _QBT__Oblique_Collisions_of_Smooth_Spheres, Q8]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=0.85]
+\def\rad{0.8}
+\def\heightA{4}
+\def\heightB{5}
+\def\dimLevel{7}
+\def\heightOffset{3}
+\def\groundLeft{-3.5}
+\def\groundRight{6}
+\def\arrowOffset{2}
+\def\arrowHalfLength{0.7}
+\pgfmathsetmacro{\sep}{sqrt(3)*\rad}
+\coordinate (A) at (0,\heightA*\rad);
+\coordinate (B) at (\sep,\heightB*\rad);
+\coordinate (Adim) at (0,\dimLevel*\rad);
+\coordinate (Bdim) at (\sep,\dimLevel*\rad);
+\coordinate (Htop) at ($(B)+(\heightOffset*\rad,0)$);
+\coordinate (Hbase) at (Htop |- 0,0);
+\coordinate (VA) at ($(A)+(-\arrowOffset*\rad,0)$);
+\coordinate (VB) at ($(B)+(\arrowOffset*\rad,0)$);
+\draw[thick, black] (\groundLeft*\rad,0) -- (\groundRight*\rad,0);
+\draw[thick, black] (A) circle (\rad);
+\draw[thick, black] (B) circle (\rad);
+\draw[-{Stealth[length=3mm]}, thick, black] ($(VA)+(-\arrowHalfLength*\rad,0)$) -- ($(VA)+(\arrowHalfLength*\rad,0)$) node[midway, above] {$\sqrt{3}U$};
+\draw[-{Stealth[length=3mm]}, thick, black] ($(VB)+(0,\arrowHalfLength*\rad)$) -- ($(VB)+(0,-\arrowHalfLength*\rad)$) node[pos=0.2, right] {$U$};
+\draw[dashed] ($(A)+(0,\rad)$) -- (Adim);
+\draw[dashed] ($(B)+(0,\rad)$) -- (Bdim);
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}] (Adim) -- (Bdim) node[midway, above] {$\sqrt{3}r$};
+\draw[dashed] ($(B)+(\rad,0)$) -- (Htop);
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}] (Hbase) -- (Htop) node[midway, right] {$5r$};
+\node[below left] at ($(A)+(235:\rad)$) {$A$};
+\node[right] at ($(B)+(20:\rad)$) {$B$};
+\end{tikzpicture}
+\end{figure}
+
+
+Two uniform smooth spheres, $A$ and $B$, have equal radius $r$ and masses $2m$ and $3m$ respectively. They collide while moving freely above a horizontal plane. The diagram above shows the spheres at the instant of impact, with their centres and velocities in the same vertical plane. \\
+
+At impact, the centres of $A$ and $B$ are at heights $4r$ and $5r$ respectively above the horizontal plane, and their horizontal separation is $\sqrt{3}r$. Immediately before impact, $A$ has velocity $\sqrt{3}U$ horizontally to the right and $B$ has velocity $U$ vertically downwards, where $U>0$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Show that the line of centres makes an angle of $30^\circ$ with the horizontal, and that the speed of approach along this line is $2U$. \marks{2} \\
+\end{enumerate}
+The coefficient of restitution between the spheres is $\dfrac{2}{3}$. After the collision, $B$ moves freely under gravity and does not collide with $A$ again. Air resistance is negligible and the acceleration due to gravity is $g$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+\item Find, in terms of $U$, $r$ and $g$, the exact time from the collision until $B$ first touches the horizontal plane. \marks{7} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+% [Source: _QBT__Oblique_Collisions_of_Smooth_Spheres, Q9]
+
+In this question, $\mathbf{i}$ and $\mathbf{j}$ are unit vectors due east and due north respectively. \\
+
+Two smooth uniform spheres $P$ and $Q$, each of radius $2.5\,\mathrm{m}$, move on a smooth horizontal surface. Their masses are $3\,\mathrm{kg}$ and $2\,\mathrm{kg}$ respectively. At time $t=0$, the centre of $Q$ is $7\,\mathrm{m}$ east and $26\,\mathrm{m}$ north of the centre of $P$. Their velocities are
+\[
+\mathbf{u}_P=(2\mathbf{i}+6\mathbf{j})\,\mathrm{m\,s^{-1}},\qquad \mathbf{u}_Q=-5\mathbf{j}\,\mathrm{m\,s^{-1}}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Show that the spheres will collide and determine the time at which they first make contact. \marks{5} \\
+\end{enumerate}
+Immediately after the collision, the speed of $Q$ is $3\sqrt{5}\,\mathrm{m\,s^{-1}}$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+\item Determine the coefficient of restitution between the spheres and hence find the velocity of $P$ immediately after the collision. \marks{9} \\
+\item Find, in vector form, the impulse required to bring $P$ to rest after the collision. Calculate the angle this impulse makes with the eastward direction, stating whether it acts north or south of east. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+% [Source: _QBT__Oblique_Collisions_of_Smooth_Spheres, Q10]
+
+Two small uniform smooth spheres $A$ and $B$ have equal radii and masses $m$ and $\lambda m$ respectively, where $\lambda>0$. They move on a smooth horizontal surface. The unit vectors $\mathbf{i}$ and $\mathbf{j}$ are perpendicular and lie in the surface. \\
+
+Immediately before an oblique collision, the velocities of $A$ and $B$ are $u(4\mathbf{i}+\mathbf{j})$ and $u(-\mathbf{i}+2\mathbf{j})$ respectively, where $u>0$. At impact, the line of centres is parallel to $\mathbf{i}+\mathbf{j}$, with $B$ lying in the direction $\mathbf{i}+\mathbf{j}$ from $A$. \\
+
+The coefficient of restitution between the spheres is $e$, where $0\leq e\leq1$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item
+\begin{enumerate}[label=(\roman*)]
+\item Explain why the impulse exerted by $A$ on $B$ is parallel to $\mathbf{i}+\mathbf{j}$. \marks{1} \\
+\item Determine the velocity of each sphere immediately after the collision in terms of $u$, $\lambda$ and $e$, giving your answers in terms of $\mathbf{i}$ and $\mathbf{j}$. \marks{7} \\
+\end{enumerate}
+\end{enumerate}
+The loss of kinetic energy in the collision is $mu^2$. Immediately after the collision, the component of the velocity of $A$ in the direction $\mathbf{i}+\mathbf{j}$ is negative. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+\item Determine the range of possible values of $\lambda$ consistent with both of these conditions. \marks{7} \\
+\end{enumerate}
+
+\end{enumerate}
+\end{document}

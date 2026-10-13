@@ -996,6 +996,27 @@ const rawResources: Resource[] = [
     pairId: 'fm-mech-collisions-in-2-dimensions',
     topic: 'Momentum & Collisions',
   },
+  {
+    id: 'fm-mech-oblique-collisions-spheres',
+    title: 'Oblique Collisions of Smooth Spheres',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/momentum-restitution-collisions/qbt/_QBT__Oblique_Collisions_of_Smooth_Spheres.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'fm-mech-oblique-collisions-spheres-solns',
+    topic: 'Momentum & Collisions',
+    boards: ['edexcel-fm1', 'ocr-a', 'ocr-mei-mechanics-major', 'cie-9231'],
+  },
+  {
+    id: 'fm-mech-oblique-collisions-spheres-solns',
+    title: 'Oblique Collisions of Smooth Spheres',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/momentum-restitution-collisions/soln/_QBT___Solns__Oblique_Collisions_of_Smooth_Spheres.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'fm-mech-oblique-collisions-spheres',
+    topic: 'Momentum & Collisions',
+  },
 
   // --- A-level Further Maths: Further Mechanics — Work, Energy and Power ---
   {
