@@ -430,21 +430,45 @@ function trimToBoundary(p) {
 }
 
 /**
+ * Cut `prefix` back to just after the first of `slugs` it holds as whole
+ * `-`-segments, when it runs on past it: the packs in a folder can share
+ * opening words after the section's own slug
+ * (`…-centre-of-mass-centre-of-mass-of-`).
+ *
+ * @param {string} prefix - ends with `-`
+ * @param {string[]} slugs - the section's slugs, in order of preference
+ */
+function cutAfterSectionSlug(prefix, slugs) {
+  const segs = prefix.split('-').slice(0, -1);
+  for (const slug of slugs) {
+    const want = slug.split('-').filter(Boolean);
+    if (want.length === 0) continue;
+    for (let i = 0; i + want.length < segs.length; i++) {
+      if (want.every((w, j) => segs[i + j] === w)) return `${segs.slice(0, i + want.length).join('-')}-`;
+    }
+  }
+  return prefix;
+}
+
+/**
  * Derive an id prefix shared by sibling entries.
- * - Multiple siblings: longest common prefix, trimmed to the last `-` boundary.
+ * - Multiple siblings: longest common prefix, trimmed to the last `-` boundary,
+ *   then cut back to the section's slug (its folder's name or its topic's slug)
+ *   if it runs on past it.
  * - Single sibling: try to find the topic-slug as a contiguous run of `-`-segments
  *   inside the id, and slice through it. Falls back to dropping the trailing
  *   `-solns` and the last segment.
  *
  * @param {string[]} ids
  * @param {string} [topic] - human topic title for the sibling group
+ * @param {string} [folder] - the section folder's name
  * @returns {string}
  */
-function deriveIdPrefixFromSiblingIds(ids, topic) {
+function deriveIdPrefixFromSiblingIds(ids, topic, folder) {
   if (ids.length === 0) return '';
   if (ids.length > 1) {
-    const lcp = longestCommonPrefix(ids);
-    return trimToBoundary(lcp);
+    const lcp = trimToBoundary(longestCommonPrefix(ids));
+    return cutAfterSectionSlug(lcp, [folder, topic].filter(Boolean).map(slugify));
   }
 
   const id = ids[0];
@@ -511,7 +535,8 @@ export function derivePathContext(sitePath, allEntries) {
   const category = packs[0]?.category ?? categoryFromSitePathPrefix(norm) ?? 'unknown';
   const topic = packs[0]?.topic;
   const idPrefix =
-    deriveIdPrefixFromSiblingIds(questionIds, topic) || fallbackIdPrefix(category, topic, norm);
+    deriveIdPrefixFromSiblingIds(questionIds, topic, norm.split('/').pop()) ||
+    fallbackIdPrefix(category, topic, norm);
 
   return {
     category,

@@ -129,6 +129,32 @@ describe('derivePathContext', () => {
     expect(ctx.idPrefix).toBe('further-maths-further-mechanics-kinematics-dynamics-');
   });
 
+  it('cuts the prefix back to the section when its packs share opening words', () => {
+    const folder = 'further-mechanics/centre-of-mass';
+    const base = 'further-maths-further-mechanics-centre-of-mass-';
+    const entries = [
+      ...packPair(`${base}centre-of-mass-of-systems-of-particles`, folder, 'Centre of Mass', 'FM - Further Mechanics'),
+      ...packPair(`${base}centre-of-mass-of-polygonal-laminae`, folder, 'Centre of Mass', 'FM - Further Mechanics'),
+    ];
+    expect(derivePathContext(`further-maths/${folder}`, entries).idPrefix).toBe(base);
+
+    const wep = 'further-mechanics/work-energy-power';
+    const wepBase = 'further-maths-further-mechanics-work-energy-power-';
+    const wepEntries = [
+      ...packPair(`${wepBase}work-energy-principle`, wep, 'Work, Energy and Power', 'FM - Further Mechanics'),
+      ...packPair(`${wepBase}work-energy-elastic-potential-energy`, wep, 'Work, Energy and Power', 'FM - Further Mechanics'),
+    ];
+    expect(derivePathContext(`further-maths/${wep}`, wepEntries).idPrefix).toBe(wepBase);
+  });
+
+  it("keeps a shared prefix that doesn't name the section", () => {
+    const entries = [
+      ...packPair('fm-further-integration-by-parts', 'core-pure/further-calculus', 'Further Calculus'),
+      ...packPair('fm-further-maclaurin-series', 'core-pure/further-calculus', 'Further Calculus'),
+    ];
+    expect(derivePathContext('further-maths/core-pure/further-calculus', entries).idPrefix).toBe('fm-further-');
+  });
+
   it('falls back when there are no siblings, with no section to name', () => {
     const ctx = derivePathContext('further-maths/core-pure/new-topic', []);
     expect(ctx.fromSiblings).toBe(false);
