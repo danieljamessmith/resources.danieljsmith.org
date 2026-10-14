@@ -1,0 +1,486 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/pack_preamble.tex}
+
+\djsQbtHeader{Centre of Mass of Circular Laminae}
+\djsSitePath{Further Mechanics}{Centre of Mass}
+\djsMechanicsPack
+\djsLastUpdated{14 October 2026}
+
+\begin{document}
+\djsFrontMatter
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Circular_Laminae, Q1]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=0.36]
+\def\rad{12}
+\def\holeRad{3}
+\def\offsetX{4}
+\def\offsetY{4}
+\def\markSize{0.5}
+\def\dimDrop{1.5}
+\def\dimShift{4}
+\coordinate (O) at (0,0);
+\coordinate (A) at (-\rad,0);
+\coordinate (B) at (\rad,0);
+\coordinate (D) at (\offsetX,0);
+\coordinate (C) at ($(D)+(0,\offsetY)$);
+\coordinate (P) at (120:\rad);
+\coordinate (Q) at ($(C)+(45:\holeRad)$);
+\coordinate (Od) at ($(O)+(0,-\dimDrop)$);
+\coordinate (Dd) at ($(D)+(0,-\dimDrop)$);
+\coordinate (Dv) at ($(D)+(\dimShift,0)$);
+\coordinate (Cv) at ($(C)+(\dimShift,0)$);
+\path[fill=gray!30,even odd rule] (A) arc[start angle=180,end angle=0,radius=\rad] -- cycle (C) circle (\holeRad);
+\draw[thick,black] (A) arc[start angle=180,end angle=0,radius=\rad] -- cycle;
+\draw[thick,black] (C) circle (\holeRad);
+\draw[dashed,black] (D) -- (C);
+\draw[thin,black] (O)--(Od) (D)--(Dd) (D)--(Dv) (C)--(Cv);
+\draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]},black] (Od)--(Dd) node[midway,below=3pt] {$4\,\mathrm{cm}$};
+\draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]},black] (Dv)--(Cv) node[midway,right=3pt] {$4\,\mathrm{cm}$};
+\draw[black] ($(D)+(-\markSize,0)$) -- ($(D)+(-\markSize,\markSize)$) -- ($(D)+(0,\markSize)$);
+\draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]},black] (O) -- (P) node[midway,left] {$12\,\mathrm{cm}$};
+\draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]},black] (C) -- (Q) node[pos=0.65,above left=2pt] {$3\,\mathrm{cm}$};
+\foreach \p in {O,C} {\fill[black] (\p) circle (4pt);}
+\node[below left] at (A) {$A$};
+\node[below right] at (B) {$B$};
+\node[below left] at (O) {$O$};
+\node[below right] at (D) {$D$};
+\node[left=3pt] at (C) {$C$};
+\end{tikzpicture}
+\end{figure}
+
+
+A uniform semicircular lamina has radius $12\,\mathrm{cm}$ and diameter $AB$, with midpoint $O$. \\
+A circular hole of radius $3\,\mathrm{cm}$ is cut from the lamina. \\
+Its centre $C$ is $4\,\mathrm{cm}$ above a point $D$ on $OB$, where $OD=4\,\mathrm{cm}$ and $CD$ is perpendicular to $AB$, as shown in the diagram above. \\
+
+The remaining lamina is freely suspended from $B$ and hangs in equilibrium. \\
+
+Determine the acute angle that $AB$ makes with the vertical, giving your answer to the nearest $0.1^\circ$. \\
+
+You may use the result that the centre of mass of a uniform semicircular lamina of radius $R$ is on its axis of symmetry at a distance $\frac{4R}{3\pi}$ from its diameter. \marks{6} \\
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Circular_Laminae, Q2]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.1]
+\def\a{1}
+\def\dimoff{0.45}
+\coordinate (D) at (0,0);
+\coordinate (A) at ($(D)+(0,4*\a)$);
+\coordinate (B) at ($(A)+(6*\a,0)$);
+\coordinate (C) at ($(D)+(6*\a,0)$);
+\coordinate (E) at ($(A)+(4*\a,0)$);
+\coordinate (F) at ($(E)+(0,-\a)$);
+\coordinate (L) at ($(E)+(-\a,0)$);
+\coordinate (R) at ($(E)+(\a,0)$);
+\fill[gray!30] (A) -- (L) arc[start angle=180,end angle=360,radius=\a] -- (B) -- (C) -- (D) -- cycle;
+\draw[thick,black] (A) -- (L) arc[start angle=180,end angle=360,radius=\a] -- (B) -- (C) -- (D) -- cycle;
+\draw[dashed,black] (L) -- (R);
+\draw[dashed,black] (E) -- (F) node[midway,right] {$a$};
+\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}] ($(D)+(0,-\dimoff)$) -- ($(C)+(0,-\dimoff)$) node[midway,fill=white,inner sep=2pt] {$6a$};
+\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}] ($(D)+(-\dimoff,0)$) -- ($(A)+(-\dimoff,0)$) node[midway,fill=white,inner sep=2pt] {$4a$};
+\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}] ($(A)+(0,\dimoff)$) -- ($(E)+(0,\dimoff)$) node[midway,fill=white,inner sep=2pt] {$4a$};
+\node[above left] at (A) {$A$};
+\node[above right] at (B) {$B$};
+\node[below right] at (C) {$C$};
+\node[below left] at (D) {$D$};
+\node[above right] at (E) {$E$};
+\node[below] at (F) {$F$};
+\end{tikzpicture}
+\end{figure}
+
+
+A uniform rectangular lamina $ABCD$ has $AB=6a$ and $AD=4a$, where $a>0$. \\
+A semicircular notch of radius $a$ is cut from the edge $AB$. \\
+The centre $E$ of the semicircle lies on $AB$, with $AE=4a$, and the semicircle lies inside the rectangle, as shown in the diagram above. \\
+
+You may use the result that the centre of mass of a uniform semicircular lamina of radius $r$ is a distance $\frac{4r}{3\pi}$ from its diameter. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item
+\begin{enumerate}[label=(\roman*)]
+\item Show that the perpendicular distance of the centre of mass of the remaining lamina from $AD$ is
+\[
+\dfrac{4(36-\pi)}{48-\pi}a
+\]
+\item The remaining lamina is freely suspended from $A$ and hangs in equilibrium. Calculate the acute angle that $AB$ makes with the downward vertical, giving your answer to the nearest $0.1^\circ$.
+\end{enumerate}
+\end{enumerate}
+\marks[-10pt]{11}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Circular_Laminae, Q3]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.25]
+\def\a{1}
+\def\width{4*\a}
+\def\height{3*\a}
+\def\semirad{2*\a}
+\def\holerad{0.5*\a}
+\def\dimoff{0.4*\a}
+\coordinate (O) at (0,0);
+\coordinate (A) at (\width,0);
+\coordinate (D) at (\width,\height);
+\coordinate (E) at (0,\height);
+\coordinate (H) at (\a,\a);
+\coordinate (R) at ($(H)+(0:\holerad)$);
+\path[fill=gray!30,even odd rule] (O) -- (A) -- (D) arc[start angle=0,end angle=180,radius=\semirad] -- cycle (H) circle (\holerad);
+\draw[thick,black] (O) -- (A) -- (D) arc[start angle=0,end angle=180,radius=\semirad] -- cycle;
+\draw[thick,black] (E) -- (D);
+\draw[thick,black] (H) circle (\holerad);
+\draw[-{Stealth[length=2mm]},black] (H) -- (R) node[midway,above] {$\frac{a}{2}$};
+\fill[black] (H) circle (1pt);
+\node[below left] at (H) {$H$};
+\node[below left] at (O) {$O$};
+\node[below right] at (A) {$A$};
+\node[above right] at (D) {$D$};
+\node[above left] at (E) {$E$};
+\draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]},thick] ($(O)+(0,-\dimoff)$) -- node[midway,below] {$4a$} ($(A)+(0,-\dimoff)$);
+\draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]},thick] ($(O)+(-\dimoff,0)$) -- node[midway,left] {$3a$} ($(E)+(-\dimoff,0)$);
+\end{tikzpicture}
+\end{figure}
+
+
+A uniform lamina is made by joining a rectangle $OADE$ to a semicircle along its diameter $ED$, and then removing a circular disc from the rectangular portion, as shown in the diagram above. \\
+
+The rectangle has $OA=4a$ and $OE=3a$, where $a>0$. \\
+The removed disc has radius $\frac{a}{2}$ and centre $H$, which is a distance $a$ from each of the sides $OE$ and $OA$. \\
+
+You may use the result that the centre of mass of a uniform semicircular lamina of radius $r$ is a distance $\frac{4r}{3\pi}$ from its diameter. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find, in terms of $a$ and $\pi$, the distance of the centre of mass of the remaining lamina from
+\begin{enumerate}[label=(\roman*)]
+\item $OE$,
+\item $OA$.
+\end{enumerate}
+\marks[-10pt]{7}
+\end{enumerate}
+The remaining lamina is freely suspended from $A$ and hangs in equilibrium. \\
+The angle between $AO$ and the downward vertical is $\alpha$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+\item Find the exact value of $\tan\alpha$. \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Circular_Laminae, Q4]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=0.85]
+\def\s{6}
+\def\leg{3}
+\def\drop{2}
+\def\rad{2}
+\def\dimoff{1}
+\def\radiusang{55}
+\coordinate (D) at (0,0);
+\coordinate (A) at (0,\s);
+\coordinate (B) at (\s,\s);
+\coordinate (C) at (\s,0);
+\coordinate (E) at ({\s-\leg},\s);
+\coordinate (F) at (\s,{\s-\drop});
+\coordinate (H) at ({\s/2},0);
+\coordinate (G) at ($(H)+(-\rad,0)$);
+\coordinate (J) at ($(H)+(\rad,0)$);
+\coordinate (R) at ($(H)+(\radiusang:\rad)$);
+\fill[gray!30] (A)--(E)--(F)--(C)--(D)--cycle;
+\fill[white] (G) arc[start angle=180,end angle=0,radius=\rad] -- cycle;
+\draw[thick,black] (G)--(D)--(A)--(E)--(F)--(C)--(J);
+\draw[thick,black] (G) arc[start angle=180,end angle=0,radius=\rad];
+\draw[dashed,black] (E)--(B)--(F);
+\draw[dashed,black] (G)--(J);
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}] ($(A)+(0,\dimoff)$)--($(B)+(0,\dimoff)$) node[midway,above] {$6a$};
+\path (A)--(D) node[midway,left] {$6a$};
+\path (E)--(B) node[midway,below] {$3a$};
+\path (B)--(F) node[midway,right] {$2a$};
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}] (H)--(R) node[midway,above left] {$2a$};
+\fill[black] (H) circle (1.5pt);
+\foreach \p/\pos in {A/above left,B/above right,C/below right,D/below left,E/above,F/right,G/below,H/below,J/below} {
+  \node[\pos] at (\p) {$\p$};
+}
+\end{tikzpicture}
+\end{figure}
+
+
+A uniform square lamina $ABCD$ has side $6a$. \\
+A template $T$, shown shaded in the diagram above, is made by removing two portions of the lamina. \\
+
+The first portion is the right-angled triangle $EBF$, where $E$ lies on $AB$, $F$ lies on $BC$, $EB=3a$ and $BF=2a$. \\
+
+The second portion is a semicircle of radius $2a$. \\
+Its centre $H$ is the midpoint of $DC$, its diameter lies on $DC$, and the semicircle lies inside the square. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the distances of the centre of mass of $T$ from $AD$ and from $DC$, giving both answers exactly in terms of $a$ and $\pi$. \marks{6} \\
+\end{enumerate}
+The template is now suspended freely from $A$ and hangs in equilibrium in a vertical plane. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+\item Find the acute angle between $AD$ and the vertical, giving your answer in degrees to one decimal place. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Circular_Laminae, Q5]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=0.65]
+\def\a{1}
+\def\rad{6*\a}
+\def\holerad{\a}
+\def\offset{2*\a}
+\def\dimdrop{0.7*\a}
+\def\dimshift{1.5*\a}
+\def\marksize{0.25*\a}
+\coordinate (O) at (0,0);
+\coordinate (P) at (180:\rad);
+\coordinate (Q) at (90:\rad);
+\coordinate (R) at (0:\rad);
+\coordinate (H) at (\offset,0);
+\coordinate (A) at ($(H)+(0,\offset)$);
+\coordinate (Ar) at ($(A)+(\holerad,0)$);
+\coordinate (Od) at ($(O)+(0,-\dimdrop)$);
+\coordinate (Hd) at ($(H)+(0,-\dimdrop)$);
+\coordinate (Hv) at ($(H)+(\dimshift,0)$);
+\coordinate (Av) at ($(A)+(\dimshift,0)$);
+\fill[gray!30] (P) arc[start angle=180,end angle=0,radius=\rad] -- cycle;
+\fill[white] (A) circle (\holerad);
+\draw[thick,black] (P) arc[start angle=180,end angle=0,radius=\rad] -- cycle;
+\draw[thick,black] (A) circle (\holerad);
+\draw[dashed,black] (H) -- (A);
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]},thick,black] (O) -- (Q) node[midway,left] {$6a$};
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]},thick,black] (A) -- (Ar) node[midway,above] {$a$};
+\foreach \point/\end in {O/Od,H/Hd,H/Hv,A/Av} {
+  \draw[dashed,black] (\point) -- (\end);
+}
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]},black] (Od) -- (Hd) node[midway,below] {$2a$};
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]},black] (Hv) -- (Av) node[midway,right] {$2a$};
+\draw[black] ($(H)+(-\marksize,0)$) -- ($(H)+(-\marksize,\marksize)$) -- ($(H)+(0,\marksize)$);
+\node[left] at (P) {$P$};
+\node[above] at (Q) {$Q$};
+\node[right] at (R) {$R$};
+\node[below left] at (O) {$O$};
+\node[below right] at (H) {$H$};
+\node[below left] at (A) {$A$};
+\end{tikzpicture}
+\end{figure}
+
+
+A uniform semicircular lamina has centre $O$, radius $6a$ and diameter $PR$. \\
+A circular disc of radius $a$ is removed to form the lamina $L$ shown shaded in the diagram above. \\
+The centre of the removed disc is $A$. \\
+The point $H$ lies on $OR$, with $OH=2a$, $HA=2a$ and $HA$ perpendicular to $PR$. \\
+
+Take $O$ as the origin, with the positive $x$-axis directed towards $R$ and the positive $y$-axis directed towards $Q$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the exact coordinates of the centre of mass of $L$. \marks{5} \\
+\end{enumerate}
+The mass of $L$ is $M$. \\
+A particle of mass $kM$ is attached at $P$. \\
+The system is suspended from $R$ and hangs freely in equilibrium, with $P$ below $R$ and the diameter $PR$ making an acute angle of $\arctan\left(\frac{1}{6}\right)$ with the downward vertical through $R$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+\item Find the exact value of $k$ and the magnitude of the supporting force at $R$ in terms of $M$ and $g$. \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Circular_Laminae, Q6]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=0.9]
+\def\rad{4}
+\def\hole{1}
+\def\cx{1}
+\def\cy{2}
+\def\dimdrop{0.65}
+\coordinate (O) at (0,0);
+\coordinate (A) at (-\rad,0);
+\coordinate (B) at (\rad,0);
+\coordinate (C) at (\cx,\cy);
+\coordinate (E) at ($(C)+(\hole,0)$);
+\draw[thick,black] (B) arc[start angle=0,end angle=180,radius=\rad] -- cycle;
+\draw[thick,black] (C) circle (\hole);
+\draw[thick,black] (C)--(E) node[midway,above] {$a$};
+\foreach \p in {O,C} {\fill[black] (\p) circle (1.5pt);}
+\node[below left] at (A) {$A$};
+\node[below right] at (B) {$B$};
+\node[below left] at (O) {$O$};
+\node[left] at (C) {$C$};
+\coordinate (Om) at ($(O)+(0,-\dimdrop)$);
+\coordinate (Bm) at ($(B)+(0,-\dimdrop)$);
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}] (Om)--(Bm) node[midway,below] {$4a$};
+\end{tikzpicture}
+\end{figure}
+
+
+A uniform semicircular lamina has radius $4a$ and diameter $AB$, whose midpoint is $O$. \\
+A circular hole of radius $a$ is cut from the lamina. \\
+In the orientation shown above, take $O$ as the origin, the positive $x$-direction along $OB$ and the positive $y$-direction perpendicular to $AB$ towards the semicircular arc. \\
+The centre $C$ of the hole has coordinates $(a,2a)$. \\
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\item Show that the centre of mass $G$ of the remaining lamina has coordinates
+\[
+\left(-\dfrac{a}{7},\ \dfrac{(128-6\pi)a}{21\pi}\right)
+\] \marks[-30pt]{6}
+\end{enumerate}
+The remaining lamina has mass $7\,\mathrm{kg}$. \\
+It is freely pivoted at $A$ and turned so that $AB$ is vertical, with $A$ above $B$ and the semicircular arc to the right of $AB$, as shown in the diagram below. \\
+A light string attached to $B$ holds the lamina in equilibrium. \\
+The string lies in the plane of the lamina and makes an angle of $30^\circ$ below the horizontal. \\
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=0.9]
+\def\rad{4}
+\def\hole{1}
+\def\cx{1}
+\def\cy{2}
+\def\stringlen{3}
+\def\horizlen{2.8}
+\def\ang{30}
+\coordinate (O) at (0,0);
+\coordinate (A) at (0,\rad);
+\coordinate (B) at (0,-\rad);
+\coordinate (C) at (\cy,-\cx);
+\coordinate (H) at ($(B)+(\horizlen,0)$);
+\coordinate (S) at ($(B)+(-\ang:\stringlen)$);
+\draw[thick,black] (B) arc[start angle=-90,end angle=90,radius=\rad] -- cycle;
+\draw[thick,black] (C) circle (\hole);
+\draw[dashed,black] (B)--(H);
+\draw[-{Stealth[length=3mm]},thick,black] (B)--(S);
+\pic["$30^\circ$",draw,angle radius=8mm,angle eccentricity=1.35] {angle=S--B--H};
+\foreach \p in {O,C} {\fill[black] (\p) circle (1.5pt);}
+\draw[thick,fill=white] (A) circle (2pt);
+\foreach \p in {A,B,O} {\node[left] at (\p) {$\p$};}
+\node[above left] at (C) {$C$};
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{enumerate}[label=\textbf{(\roman*)}, resume]
+\item Calculate the tension in the string. \marks{3} \\
+\item Find the magnitude of the force exerted on the lamina by the pivot at $A$ and the angle this force makes with the upward vertical, stating on which side of the vertical it acts. \marks{5} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Circular_Laminae, Q7]
+
+A uniform lamina consists of a rectangle $ABCD$ together with a semicircular tab $EFG$ attached externally along its diameter $EG$, as shown in the diagram below.
+The two components have the same mass per unit area.
+The points $E$ and $G$ lie on $BC$, and $O$ is the midpoint of $EG$.
+
+The dimensions are $AB=6\,\mathrm{cm}$, $BC=18\,\mathrm{cm}$ and $BE=3\,\mathrm{cm}$.
+The semicircular tab has radius $3\,\mathrm{cm}$.
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=0.4]
+\def\W{18}\def\H{6}\def\ox{6}\def\rad{3}\def\dimdrop{1.2}
+\coordinate (A) at (0,0);
+\coordinate (B) at (0,\H);
+\coordinate (C) at (\W,\H);
+\coordinate (D) at (\W,0);
+\coordinate (O) at (\ox,\H);
+\coordinate (E) at ($(O)+(-\rad,0)$);
+\coordinate (F) at ($(O)+(0,\rad)$);
+\coordinate (G) at ($(O)+(\rad,0)$);
+\draw[thick,black] (A)--(B)--(E) arc[start angle=180,end angle=0,radius=\rad] --(C)--(D)--cycle;
+\draw[dashed] (E)--(G);
+\foreach \p/\pos in {A/below left,B/above left,C/above right,D/below right,E/below left,F/above,G/below right} {\node[\pos] at (\p) {$\p$};}
+\fill (O) circle (1.5pt);
+\node[below] at (O) {$O$};
+\path (A)--(B) node[midway,left] {$6\,\mathrm{cm}$};
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}] ($(A)+(0,-\dimdrop)$)--($(D)+(0,-\dimdrop)$) node[midway,fill=white,inner sep=2pt] {$18\,\mathrm{cm}$};
+\path (B)--(E) node[midway,above] {$3\,\mathrm{cm}$};
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}] (O)--(F) node[midway,right,fill=white,inner sep=1pt] {$3\,\mathrm{cm}$};
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\item Consider the semicircular tab $EFG$ on its own. Using the standard centre-of-mass result for a uniform semicircular lamina, show that its centre of mass is $1.27\,\mathrm{cm}$ from the diameter $EG$, correct to $3$ significant figures. State the exact distance. \marks{2}
+
+\item For the complete lamina, find
+\begin{enumerate}[label=(\alph*)]
+\item the distance from $AB$ to its centre of mass, giving your answer exactly, \marks{5}
+\item the distance from $AD$ to its centre of mass, giving your answer exactly. \marks{4}
+\end{enumerate}
+
+\item The complete lamina has weight $24\,\mathrm{N}$ and is smoothly pivoted at $A$.
+A wire attached at $C$ supports it in equilibrium.
+The wire pulls upwards and to the left at $30^\circ$ above the horizontal, and its tension is $10\,\mathrm{N}$.
+
+The side $AD$ makes an angle $\theta$ above the horizontal, where $0^\circ<\theta<45^\circ$, as shown in the diagram below.
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=0.4]
+\def\W{18}\def\H{6}\def\ox{6}\def\rad{3}\def\wirelen{7}\def\reflen{6}\def\wireang{150}
+\pgfmathsetmacro{\area}{\W*\H+pi*\rad^2/2}
+\pgfmathsetmacro{\xbar}{(\W*\H*\W/2+(pi*\rad^2/2)*\ox)/\area}
+\pgfmathsetmacro{\ybar}{(\W*\H*\H/2+(pi*\rad^2/2)*(\H+4*\rad/(3*pi)))/\area}
+\pgfmathsetmacro{\ang}{atan((24*\xbar-10*(\W/2+sqrt(3)*\H/2))/(10*(sqrt(3)*\W/2-\H/2)+24*\ybar))}
+\coordinate (A) at (0,0);
+\coordinate (X) at (\reflen,0);
+\begin{scope}[rotate=\ang]
+\coordinate (B) at (0,\H);
+\coordinate (C) at (\W,\H);
+\coordinate (D) at (\W,0);
+\coordinate (O) at (\ox,\H);
+\coordinate (E) at ($(O)+(-\rad,0)$);
+\coordinate (G) at ($(O)+(\rad,0)$);
+\draw[thick,black] (A)--(B)--(E) arc[start angle=180,end angle=0,radius=\rad] --(C)--(D)--cycle;
+\draw[dashed] (E)--(G);
+\end{scope}
+\coordinate (L) at ($(C)+(-\reflen,0)$);
+\coordinate (S) at ($(C)+(\wireang:\wirelen)$);
+\draw[dashed] (A)--(X);
+\draw[dashed] (C)--(L);
+\draw[-{Stealth[length=3mm]},thick,black] (C)--(S) node[pos=0.75,above right] {$10\,\mathrm{N}$};
+\pic["$\theta$",draw,angle radius=10mm,angle eccentricity=1.3] {angle=X--A--D};
+\pic["$30^\circ$",draw,angle radius=10mm,angle eccentricity=1.4] {angle=S--C--L};
+\draw[thick,fill=white] (A) circle (1.8pt);
+\node[below left] at (A) {$A$};
+\node[left] at (B) {$B$};
+\node[above right] at (C) {$C$};
+\node[right] at (D) {$D$};
+\end{tikzpicture}
+\end{figure}
+
+
+Calculate $\theta$, giving your answer to $3$ significant figures. \marks{6}
+\end{enumerate}
+
+\end{enumerate}
+\end{document}
