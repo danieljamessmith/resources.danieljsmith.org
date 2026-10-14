@@ -1,0 +1,306 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/pack_preamble.tex}
+
+\djsQbtHeader{Projectile Motion}
+\djsSitePath{Further Mechanics}{Kinematics \& Dynamics}
+\djsMechanicsPack
+\djsLastUpdated{14 October 2026}
+
+\begin{document}
+\djsFrontMatter
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+% [Source: _QBT__Projectile_Motion, Q1]
+
+A particle $P$ is projected from a point $O$ at the edge of a cliff, $40\,\mathrm{m}$ above horizontal ground. \\
+Its initial speed is $u\,\mathrm{m\,s^{-1}}$ and its angle of projection is $30^\circ$ above the horizontal, directed away from the cliff. \\
+The particle moves freely under gravity until it strikes the ground. \\
+
+Immediately before impact, the direction of motion of $P$ is perpendicular to its initial direction of motion. \\
+
+Find the initial speed $u$ and the time taken to reach the ground, giving both answers in exact form. \marks{8} \\
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT__Projectile_Motion, Q2]
+
+A particle $P$ is projected from a point $O$, which is $30\,\mathrm{m}$ above horizontal ground, with speed $u\,\mathrm{m\,s^{-1}}$ at an angle $\theta$ above the horizontal, where $0<\theta<90^\circ$. \\
+The particle moves freely under gravity and lands on the ground at a horizontal distance of $40\,\mathrm{m}$ from $O$. \\
+
+The velocity of $P$ immediately before it lands is perpendicular to its initial velocity. \\
+
+Find $u$ and $\theta$, giving the angle to one decimal place. \marks{6} \\
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT__Projectile_Motion, Q3]
+
+A particle $P$ is projected from a point $O$ at time $t=0$ with speed $u\,\mathrm{m\,s^{-1}}$ at an angle $\theta$ above the horizontal, where $0<\theta<90^\circ$. \\
+The particle moves freely under gravity, with $g=10\,\mathrm{m\,s^{-2}}$. \\
+After $6$ seconds, its speed is $\sqrt{5}u\,\mathrm{m\,s^{-1}}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Show that
+\[
+u^2+30u\sin\theta-900=0
+\] \marks[-20pt]{3}
+\item At time $t=6\,\mathrm{s}$, the particle is at a point $A$ below the horizontal level of $O$. \\
+The displacement vector $\overrightarrow{OA}$ is perpendicular to the initial velocity of $P$. \\
+Find the exact value of $u$, the value of $\theta$, and the exact distance $OA$. \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT__Projectile_Motion, Q4]
+
+At time $t=0$, a particle $P$ is projected from a point $O$ on horizontal ground with speed $26\,\mathrm{m\,s^{-1}}$ at an angle $\alpha$ above the horizontal, where $\sin\alpha=\frac{12}{13}$. \\
+A point $A$ on the ground lies $40\,\mathrm{m}$ from $O$ in the direction of the horizontal motion of $P$. \\
+
+At time $t=T\,\mathrm{s}$, where $T>0$, a second particle $Q$ is projected vertically upwards from $A$ with speed $22\,\mathrm{m\,s^{-1}}$. \\
+The particles collide while $Q$ is travelling upwards. \\
+Before the collision, both particles move freely under gravity. \\
+Neglect air resistance throughout. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the time at which the particles collide and their height above the ground at that instant. \marks{2} \\
+\item Find the exact value of $T$. \marks{3} \\
+\item Immediately after the collision, the speed of $P$ is $v\,\mathrm{m\,s^{-1}}$ and its direction of motion is above the horizontal. \\
+Its horizontal velocity component is unchanged by the collision, and it subsequently moves freely under gravity. \\
+Find its greatest height above the ground in terms of $v$. Hence find the least possible value of $v$ for $P$ to reach a height of $40\,\mathrm{m}$ above the ground. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT__Projectile_Motion, Q5]
+
+A particle $P$ is projected from a point $A$ which is vertically above a fixed point $O$ on horizontal ground, with $OA=h$. \\
+Its initial velocity is $u(4\mathbf{i}+3\mathbf{j})$, where $u>0$ and $h>0$. \\
+The unit vectors $\mathbf{i}$ and $\mathbf{j}$ are horizontal and vertically upwards respectively. \\
+The particle moves freely under gravity, with constant acceleration $-g\mathbf{j}$. \\
+
+At time $t=0$, the particle leaves $A$. \\
+Its position vector relative to $O$ at time $t$ is $\mathbf{r}=x\mathbf{i}+y\mathbf{j}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Starting from an expression for $\ddot{\mathbf{r}}$, use integration to obtain $\mathbf{r}$ in terms of $t$, $u$, $h$ and $g$. \marks{4} \\
+\item Eliminate $t$ to obtain the Cartesian equation of the path of $P$. \marks{3} \\
+\item Hence find the maximum height of $P$ above the ground, in terms of $u$, $h$ and $g$. \marks{3} \\
+\item When $P$ first strikes the ground, its velocity is perpendicular to its initial velocity. Determine $h$ in terms of $u$ and $g$. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+% [Source: _QBT__Projectile_Motion, Q6]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[x=0.12cm,y=0.12cm]
+\def\grav{10}
+\def\launchSpeed{25}
+\def\tanAlpha{1/3}
+\def\tanTheta{3/4}
+\def\restitution{0.5}
+\def\arrowLength{14}
+\def\extension{1.15}
+\pgfmathsetmacro{\alph}{atan(\tanAlpha)}
+\pgfmathsetmacro{\thet}{atan(\tanTheta)}
+\pgfmathsetmacro{\gs}{\grav*sin(\alph)}
+\pgfmathsetmacro{\gn}{\grav*cos(\alph)}
+\pgfmathsetmacro{\us}{\launchSpeed*cos(\thet)}
+\pgfmathsetmacro{\un}{\launchSpeed*sin(\thet)}
+\pgfmathsetmacro{\firstTime}{2*\un/\gn}
+\pgfmathsetmacro{\sA}{\us*\firstTime-\gs*\firstTime^2/2}
+\pgfmathsetmacro{\vs}{\us-\gs*\firstTime}
+\pgfmathsetmacro{\vn}{\restitution*\un}
+\pgfmathsetmacro{\secondTime}{2*\vn/\gn}
+\pgfmathsetmacro{\sB}{\sA+\vs*\secondTime-\gs*\secondTime^2/2}
+\coordinate (O) at (0,0);
+\coordinate (H) at ({\extension*\sB},0);
+\draw[thick,black] (O) -- (H);
+\begin{scope}[rotate=\alph]
+  \coordinate (A) at (\sA,0);
+  \coordinate (B) at (\sB,0);
+  \coordinate (S) at ({\extension*\sB},0);
+  \coordinate (V) at (\thet:\arrowLength);
+  \draw[thick,black] (O) -- (S);
+  \draw[thick,black,domain=0:\firstTime,samples=120,variable=\t]
+    plot ({\us*\t-\gs*\t^2/2},{\un*\t-\gn*\t^2/2});
+  \draw[thick,black,domain=0:\secondTime,samples=100,variable=\t]
+    plot ({\sA+\vs*\t-\gs*\t^2/2},{\vn*\t-\gn*\t^2/2});
+  \draw[-{Stealth[length=3mm]},thick,black] (O) -- (V)
+    node[above left] {$u\,\mathrm{m\,s^{-1}}$};
+\end{scope}
+\pic["$\alpha$",draw,angle radius=12mm,angle eccentricity=1.2] {angle=H--O--S};
+\pic["$\theta$",draw,angle radius=7mm,angle eccentricity=1.4] {angle=S--O--V};
+\node[below left] at (O) {$O$};
+\node[below right] at (A) {$A$};
+\node[below right] at (B) {$B$};
+\end{tikzpicture}
+\end{figure}
+
+
+A small ball $P$ is projected from a point $O$ at the foot of a smooth plane inclined at an angle $\alpha$ to the horizontal, where $\tan\alpha=\frac{1}{3}$. \\
+Its initial speed is $u\,\mathrm{m\,s^{-1}}$, and its initial velocity makes an angle $\theta$ above the plane, where $\tan\theta=\frac{3}{4}$. \\
+
+The ball first strikes the plane at $A$, where $OA=15\sqrt{10}\,\mathrm{m}$. \\
+Its motion takes place in the vertical plane containing a line of greatest slope of the inclined plane, and air resistance is negligible. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find $u$ and the components of the ball's velocity parallel and perpendicular to the plane immediately before impact at $A$. State the direction of each component. \marks{8} \\
+\end{enumerate}
+The ball rebounds from the plane at $A$ and next strikes it at $B$, further up the plane, where
+\[
+AB=\frac{15\sqrt{10}}{4}\,\mathrm{m}
+\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+\item Find the coefficient of restitution between the ball and the plane, explaining why any other algebraic solution must be rejected. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+% [Source: _QBT__Projectile_Motion, Q7]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[x=0.10cm,y=0.10cm]
+\def\speed{20}
+\def\grav{10}
+\def\height{15}
+\def\targetX{20}
+\def\targetY{5}
+\def\groundLeft{-15}
+\def\groundRight{62}
+\def\axisRight{60}
+\def\axisTop{27}
+\def\arrowAngle{78}
+\def\arrowLength{21}
+\def\dimOffset{5}
+\pgfmathsetmacro{\lowAngle}{atan(2-sqrt(2))}
+\pgfmathsetmacro{\highAngle}{atan(2+sqrt(2))}
+\coordinate (O) at (0,0);
+\coordinate (G) at (0,-\height);
+\coordinate (T) at (\targetX,\targetY);
+\coordinate (Dtop) at ($(O)+(-\dimOffset,0)$);
+\coordinate (Dbottom) at ($(G)+(-\dimOffset,0)$);
+\draw[thick,black] (\groundLeft,-\height) -- (\groundRight,-\height);
+\foreach \ang in {\highAngle,\lowAngle} {
+  \pgfmathsetmacro{\flight}{(\speed*sin(\ang)+sqrt((\speed*sin(\ang))^2+2*\grav*\height))/\grav}
+  \draw[thick,black,domain=0:\flight,samples=120,variable=\t] plot ({\speed*cos(\ang)*\t},{\speed*sin(\ang)*\t-\grav*\t^2/2});
+}
+\draw[-{Stealth[length=3mm]},thick,black] (O) -- (\axisRight,0) node[right] {$x$};
+\draw[-{Stealth[length=3mm]},thick,black] (O) -- (0,\axisTop) node[above left] {$y$};
+\draw[-{Stealth[length=3mm]},thick,black] (O) -- ++(\arrowAngle:\arrowLength) node[above right] {$20\,\mathrm{m\,s^{-1}}$};
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}] (Dbottom) -- (Dtop) node[midway,fill=white,inner sep=2pt] {$15\,\mathrm{m}$};
+\fill[black] (T) circle (1.5pt);
+\node[above right] at (T) {$T(20,5)$};
+\node[below right] at (O) {$O$};
+\end{tikzpicture}
+\end{figure}
+
+
+A launcher projects balls at speed $20\,\mathrm{m\,s^{-1}}$ from a point $O$, which is $15\,\mathrm{m}$ above horizontal ground. \\
+Horizontal and vertically upwards displacements from $O$ are denoted by $x\,\mathrm{m}$ and $y\,\mathrm{m}$ respectively. \\
+A small target $T$ has coordinates $(20,5)$, as shown in the diagram above. \\
+
+At time $t=0$, a ball $B$ is projected at an angle $\theta$ above the positive horizontal direction, where $0\leq\theta<90^\circ$. \\
+Model the ball as a particle moving freely under gravity until it first reaches the ground. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item By first writing $x$ and $y$ in terms of $t$, find the two possible values of $\theta$ for which the ball passes through $T$. Give the angles to the nearest $0.1^\circ$. \marks{5} \\
+\item For a fixed horizontal displacement $x>0$, use a quadratic in $\tan\theta$ to determine the greatest height $y$ that the ball can reach. Hence state the equation of the upper boundary of the reachable region to the right of the $y$-axis. \marks{3} \\
+\item Hence find the greatest possible horizontal distance from $O$ to the point where the ball first reaches the ground, giving your answer exactly. Find also the launch angle that achieves this distance, to the nearest $0.1^\circ$. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+% [Source: _QBT__Projectile_Motion, Q8]
+
+A plane is inclined at an unknown angle $\alpha$ above the horizontal, where $0<\alpha<90^\circ$. \\
+Points $O$ and $A$ lie on a line of greatest slope of the plane, with $A$ uphill from $O$ and $OA=18\,\mathrm{m}$. \\
+
+A particle is projected from $O$ with speed $u\,\mathrm{m\,s^{-1}}$ at an angle $\theta$ above the horizontal, where $\tan\theta=3$ and $0<\theta<90^\circ$. \\
+Its initial horizontal velocity is directed towards $A$. \\
+The particle moves freely under gravity in the vertical plane containing $O$ and $A$. \\
+
+The particle strikes the inclined plane at $A$, and its velocity immediately before impact is perpendicular to the inclined plane. \\
+
+Find all possible pairs of values of $\alpha$ and $u$, giving each value to 3 significant figures. \marks{7} \\
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+% [Source: _QBT__Projectile_Motion, Q9]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=0.32]
+\def\incline{30}
+\def\launchAngle{60}
+\def\speed{10}
+\def\grav{10}
+\def\planeExtension{1.18}
+\def\horizontalExtension{1.12}
+\def\velocityLength{5}
+\pgfmathsetmacro{\elevation}{\launchAngle-\incline}
+\pgfmathsetmacro{\flightTime}{2*\speed*sin(\launchAngle)/(\grav*cos(\incline))}
+\pgfmathsetmacro{\xR}{\speed*cos(\elevation)*\flightTime}
+\pgfmathsetmacro{\yR}{-\xR*tan(\incline)}
+\pgfmathsetmacro{\quadCoeff}{\grav/(2*\speed^2*cos(\elevation)^2)}
+\coordinate (O) at (0,0);
+\coordinate (R) at (\xR,\yR);
+\coordinate (H) at ({\horizontalExtension*\xR},0);
+\coordinate (S) at ({\planeExtension*\xR},{\planeExtension*\yR});
+\coordinate (V) at (\elevation:\velocityLength);
+\draw[thick,black] (O) -- (H);
+\draw[thick,black] (O) -- (S);
+\draw[thick,black,domain=0:\xR,samples=150] plot (\x,{tan(\elevation)*\x-\quadCoeff*\x^2});
+\draw[-{Stealth[length=3mm]},thick,black] (O) -- (V) node[above left] {$u\,\mathrm{m\,s^{-1}}$};
+\pic["$\alpha$",draw,angle radius=11mm,angle eccentricity=1.3] {angle=R--O--H};
+\pic["$\theta$",draw,angle radius=6mm,angle eccentricity=1.5,pic text options={fill=white,inner sep=0.5pt}] {angle=R--O--V};
+\node[below left] at (O) {$O$};
+\node[above right] at (R) {$R$};
+\end{tikzpicture}
+\end{figure}
+
+
+A small ball $P$ is projected from a point $O$ on a plane which slopes downwards at an angle $\alpha$ to the horizontal, where $0<\alpha<\frac{\pi}{2}$. \\
+Its initial speed is $u\,\mathrm{m\,s^{-1}}$, and its initial velocity makes an angle $\theta$ above the downhill direction of the plane. \\
+The ball moves in a vertical plane containing a line of greatest slope and next meets the plane at $R$, where $OR=d\,\mathrm{m}$. \\
+
+Assume that air resistance is negligible and that $0<\theta<\frac{\pi}{2}+\alpha$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Derive an expression for the time of flight in terms of $u$, $\theta$, $\alpha$ and $g$. \\
+Hence show that the speed required to reach $R$ satisfies
+\[
+u^2=\frac{gd\cos^2\alpha}{2\sin\theta\cos(\theta-\alpha)}
+\] \marks[-30pt]{8}
+\item The point $R$ is fixed. Using a trigonometric identity, determine the minimum possible value of $u$, and the value of $\theta$ for which this minimum occurs. Give your answers in terms of $d$, $g$ and $\alpha$. \marks{4} \\
+\item Now take $\alpha=30^\circ$, $d=20$ and $g=10\,\mathrm{m\,s^{-2}}$. The ball is projected with speed $5\sqrt{6}\,\mathrm{m\,s^{-1}}$. Find the two possible values of $\theta$ and the corresponding times of flight, giving the times exactly. \marks{5} \\
+\end{enumerate}
+
+\end{enumerate}
+\end{document}

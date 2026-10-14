@@ -1127,6 +1127,27 @@ const rawResources: Resource[] = [
     pairId: 'fm-mech-impulse-work-variable-force',
     topic: 'Kinematics & Dynamics',
   },
+  {
+    id: 'fm-mech-projectile-motion',
+    title: 'Projectile Motion',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/kinematics-dynamics/qbt/_QBT__Projectile_Motion.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'fm-mech-projectile-motion-solns',
+    topic: 'Kinematics & Dynamics',
+    boards: ['ocr-mei-mechanics-major', 'cie-9231'],
+  },
+  {
+    id: 'fm-mech-projectile-motion-solns',
+    title: 'Projectile Motion',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/kinematics-dynamics/soln/_QBT___Solns__Projectile_Motion.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'fm-mech-projectile-motion',
+    topic: 'Kinematics & Dynamics',
+  },
 
   // --- A-level Further Maths: Further Mechanics - Miscellaneous Mechanics ---
   {
