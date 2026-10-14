@@ -44,7 +44,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Rational_Functions.pdf': 'b78ea90a',
   '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Roots_of_Polynomials.pdf': '46107a65',
   '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Series___Method_of_Differences.pdf': '2fe860a3',
-  '/tex/further-maths/core-pure/misc-pure/soln/_QBT___Solns__Hyperbolic_Functions.pdf': '933f1194',
+  '/tex/further-maths/core-pure/misc-pure/soln/_QBT___Solns__Hyperbolic_Functions.pdf': '3c5f87c1',
   '/tex/further-maths/core-pure/misc-pure/soln/_QBT___Solns__Rational_Functions.pdf': '28775f43',
   '/tex/further-maths/core-pure/misc-pure/soln/_QBT___Solns__Roots_of_Polynomials.pdf': 'b9567d36',
   '/tex/further-maths/core-pure/misc-pure/soln/_QBT___Solns__Series___Method_of_Differences.pdf': 'e1bb3d4a',
