@@ -1257,6 +1257,27 @@ const rawResources: Resource[] = [
     pairId: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-composite-solids',
     topic: 'Centre of Mass',
   },
+  {
+    id: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-laminae-by-integration',
+    title: 'Centre of Mass of Laminae by Integration',
+    description: '',
+    file: '/tex/further-maths/further-mechanics/centre-of-mass/qbt/_QBT__Centre_of_Mass_of_Laminae_by_Integration.pdf',
+    category: FM_MECH,
+    type: 'questions',
+    pairId: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-laminae-by-integration-solns',
+    topic: 'Centre of Mass',
+    boards: ['edexcel-fm2', 'aqa', 'ocr-a', 'ocr-mei-mechanics-major'],
+  },
+  {
+    id: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-laminae-by-integration-solns',
+    title: 'Centre of Mass of Laminae by Integration',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/further-mechanics/centre-of-mass/soln/_QBT___Solns__Centre_of_Mass_of_Laminae_by_Integration.pdf',
+    category: FM_MECH,
+    type: 'solutions',
+    pairId: 'further-maths-further-mechanics-centre-of-mass-centre-of-mass-of-laminae-by-integration',
+    topic: 'Centre of Mass',
+  },
 ];
 
 function buildDownloadName(title: string, type?: string): string {
