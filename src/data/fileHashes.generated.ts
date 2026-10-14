@@ -2,12 +2,12 @@
 // Regenerated on every `npm run build`, `npm run dev`, and `npm run check`.
 export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Number_Basics.pdf': '97fb7be7',
-  '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Roots_and_Geometry_Problems.pdf': '6ed71c63',
+  '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Roots_and_Geometry_Problems.pdf': '9455546f',
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Series.pdf': '79b3b815',
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__De_Moivres_Theorem.pdf': '5f46a41e',
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Loci_and_Regions_in_the_Argand_Diagram.pdf': '1bbd9fa6',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Number_Basics.pdf': 'b94ec580',
-  '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Roots_and_Geometry_Problems.pdf': '4567f031',
+  '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Roots_and_Geometry_Problems.pdf': 'f23f267d',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Series.pdf': 'ab07fd97',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__De_Moivres_Theorem.pdf': '47c21e05',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Loci_and_Regions_in_the_Argand_Diagram.pdf': 'f8061deb',
