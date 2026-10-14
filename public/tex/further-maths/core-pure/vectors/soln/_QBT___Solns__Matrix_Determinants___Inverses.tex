@@ -4,7 +4,7 @@
 \djsSolnHeader{Matrix Determinants \& Inverses}
 \djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}
 
-\djsLastUpdated{11 October 2026}
+\djsLastUpdated{14 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -25,7 +25,7 @@ B = \begin{pmatrix} 1 & a \\ 1 & 3 \end{pmatrix}
 where $a$ is a real constant and $a \neq 3$. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find $B^{-1}$ in terms of $a$. \marks{3} \\
+  \item Find $B^{-1}$ in terms of $a$. \marks{2} \\
 \end{enumerate}
 
 Given that
@@ -139,7 +139,7 @@ where $k$ is a constant, \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item determine the matrix $BA$. \marks{2} \\
-  \item hence find the values of $k$ for which $BA$ is singular. \marks{3} \\
+  \item hence find the values of $k$ for which $BA$ is singular. \marks{4} \\
 \end{enumerate}
 
 \vspace*{10pt}
@@ -232,7 +232,7 @@ In 2024, the total number of bicycles manufactured increased by $3.8\%$. \\
   \item
   \begin{enumerate}[label=(\roman*)]
     \item Define, for each model, a variable for the number of bicycles manufactured in 2023. \marks{2}
-    \item Using your variables from part (a)(i), write down three equations that model this situation. \marks{2}
+    \item Using your variables from part (a)(i), write down three equations that model this situation. \marks{4}
   \end{enumerate}
   \item By forming and solving a matrix equation, determine how many bicycles of each model were manufactured in 2023. \marks{4} \\
 \end{enumerate}
@@ -298,57 +298,7 @@ In 2024, the total number of bicycles manufactured increased by $3.8\%$. \\
   A\mathbf{x}=\mathbf{b}
   \]
 
-  that is,
-  \begin{align*}
-  C+E+F&=1000\\
-  -C-E+F&=-200\\
-  1.10C+0.95E+1.05F&=1038
-  \end{align*}
-
-  Add the first two equations:
-  \[
-  2F=800
-  \]
-
-  so
-  \[
-  F=400
-  \]
-
-  Substitute into \(C+E+F=1000\):
-  \[
-  C+E+400=1000
-  \]
-  \[
-  C+E=600
-  \]
-
-  Substitute \(F=400\) into the third equation:
-  \begin{align*}
-  1.10C+0.95E+1.05(400)&=1038\\
-  1.10C+0.95E+420&=1038\\
-  1.10C+0.95E&=618
-  \end{align*}
-
-  Now use \(E=600-C\):
-  \begin{align*}
-  1.10C+0.95(600-C)&=618\\
-  1.10C+570-0.95C&=618\\
-  0.15C&=48\\
-  C&=320
-  \end{align*}
-
-  Then
-  \[
-  E=600-320=280
-  \]
-
-  Therefore, in 2023:
-  \[
-  \text{Commuter }=320,\qquad \text{Electric }=280,\qquad \text{Folding }=400
-  \]
-
-Alternatively compute (using your calculator)
+Using a calculator, the inverse is
 \[
 A^{-1}
 =
@@ -408,6 +358,58 @@ So
 \[
 \text{Commuter }=320,\qquad \text{Electric }=280,\qquad \text{Folding }=400
 \]
+
+\textit{Alternative Solution (elimination):}
+
+The equivalent system is
+  \begin{align*}
+  C+E+F&=1000\\
+  -C-E+F&=-200\\
+  1.10C+0.95E+1.05F&=1038
+  \end{align*}
+
+  Add the first two equations:
+  \[
+  2F=800
+  \]
+
+  so
+  \[
+  F=400
+  \]
+
+  Substitute into \(C+E+F=1000\):
+  \[
+  C+E+400=1000
+  \]
+  \[
+  C+E=600
+  \]
+
+  Substitute \(F=400\) into the third equation:
+  \begin{align*}
+  1.10C+0.95E+1.05(400)&=1038\\
+  1.10C+0.95E+420&=1038\\
+  1.10C+0.95E&=618
+  \end{align*}
+
+  Now use \(E=600-C\):
+  \begin{align*}
+  1.10C+0.95(600-C)&=618\\
+  1.10C+570-0.95C&=618\\
+  0.15C&=48\\
+  C&=320
+  \end{align*}
+
+  Then
+  \[
+  E=600-320=280
+  \]
+
+  Therefore, in 2023:
+  \[
+  \text{Commuter }=320,\qquad \text{Electric }=280,\qquad \text{Folding }=400
+  \]
 \end{enumerate}
 \end{djsSolution}
 
@@ -479,52 +481,7 @@ P
 \end{pmatrix}
 \]
 
-Now solve the equivalent system of equations.
-
-Adding the first two equations:
-\begin{align*}
-(A+D+P)+(A-D-P)&=580+20\\
-2A&=600\\
-A&=300
-\end{align*}
-
-Substitute into \(A+D+P=580\):
-\begin{align*}
-300+D+P&=580\\
-D+P&=280
-\end{align*}
-
-Now substitute \(A=300\) into \(19A+22D+23P=12000\):
-\begin{align*}
-19(300)+22D+23P&=12000\\
-5700+22D+23P&=12000\\
-22D+23P&=6300
-\end{align*}
-
-Using \(D+P=280\), multiply by \(22\):
-\[
-22D+22P=6160
-\]
-
-Subtract this from \(22D+23P=6300\):
-\begin{align*}
-(22D+23P)-(22D+22P)&=6300-6160\\
-P&=140
-\end{align*}
-
-Then
-\begin{align*}
-D+P&=280\\
-D+140&=280\\
-D&=140
-\end{align*}
-
-Hence the initial enrolments were:
-\[
-\text{Art }=300,\qquad \text{Dance }=140,\qquad \text{Pottery }=140
-\] \\
-
-Alternatively compute (using your calculator)
+Using a calculator, the inverse is
 \[
 \begin{pmatrix}
 1&1&1\\
@@ -570,9 +527,54 @@ To obtain
 So
 \[
 \text{Art }=300,\qquad \text{Dance }=140,\qquad \text{Pottery }=140
-\] 
+\]
 
+\textit{Alternative Solution (elimination):}
 
+Now solve the equivalent system of equations.
+
+Adding the first two equations:
+\begin{align*}
+(A+D+P)+(A-D-P)&=580+20\\
+2A&=600\\
+A&=300
+\end{align*}
+
+Substitute into \(A+D+P=580\):
+\begin{align*}
+300+D+P&=580\\
+D+P&=280
+\end{align*}
+
+Now substitute \(A=300\) into \(19A+22D+23P=12000\):
+\begin{align*}
+19(300)+22D+23P&=12000\\
+5700+22D+23P&=12000\\
+22D+23P&=6300
+\end{align*}
+
+Using \(D+P=280\), multiply by \(22\):
+\[
+22D+22P=6160
+\]
+
+Subtract this from \(22D+23P=6300\):
+\begin{align*}
+(22D+23P)-(22D+22P)&=6300-6160\\
+P&=140
+\end{align*}
+
+Then
+\begin{align*}
+D+P&=280\\
+D+140&=280\\
+D&=140
+\end{align*}
+
+Hence the initial enrolments were:
+\[
+\text{Art }=300,\qquad \text{Dance }=140,\qquad \text{Pottery }=140
+\]
 \end{djsSolution}
 
 
@@ -1142,7 +1144,7 @@ A\begin{pmatrix}x \\ y \\ z\end{pmatrix}=\begin{pmatrix}-6 \\ 7 \\ a-1\end{pmatr
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item
   \begin{enumerate}[label=(\roman*)]
-    \item In the case where $A$ is not singular, solve the given system by using $A^{-1}$. \marks{5}
+    \item In the case where $A$ is not singular, solve the given system by using $A^{-1}$. \marks{6}
     \item In the case where $A$ is singular, describe the configuration of the planes whose equations are the three equations of the system. \marks{3} \\
   \end{enumerate}
 \end{enumerate}
@@ -1343,7 +1345,7 @@ where $k$ is a constant. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Show that the planes have a unique point of intersection except for one value of $k$, which should be found. \marks{4} \\
-  \item Show that, whenever the planes have a unique point of intersection, this point is independent of $k$. Find the point. \marks{6} \\
+  \item Show that, whenever the planes have a unique point of intersection, this point is independent of $k$. Find the point. \marks{5} \\
 \end{enumerate}
 
 \vspace*{10pt}
