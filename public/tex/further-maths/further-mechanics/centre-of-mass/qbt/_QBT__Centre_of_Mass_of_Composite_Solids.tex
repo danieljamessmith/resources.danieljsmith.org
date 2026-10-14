@@ -1,0 +1,347 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/pack_preamble.tex}
+
+\djsQbtHeader{Centre of Mass of Composite Solids}
+\djsSitePath{Further Mechanics}{Centre of Mass}
+\djsMechanicsPack
+\djsLastUpdated{14 October 2026}
+
+\begin{document}
+\djsFrontMatter
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Composite_Solids, Q1]
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.05,
+  dimension/.style={{Stealth[length=1.7mm]}-{Stealth[length=1.7mm]}}]
+\def\rad{1.1}
+\pgfmathsetmacro{\cylLength}{2*\rad}
+\pgfmathsetmacro{\coneLength}{2*\rad}
+\pgfmathsetmacro{\stringLength}{1.2*\rad}
+\pgfmathsetmacro{\dimGap}{0.48*\rad}
+\coordinate (O) at (0,0);
+\coordinate (A) at (\cylLength,0);
+\coordinate (V) at ({\cylLength+\coneLength},0);
+\coordinate (T) at ($(O)+(0,\rad)$);
+\coordinate (B) at ($(O)+(0,-\rad)$);
+\coordinate (U) at ($(A)+(0,\rad)$);
+\coordinate (D) at ($(A)+(0,-\rad)$);
+\coordinate (DimO) at ($(B)+(0,-\dimGap)$);
+\coordinate (DimA) at ($(D)+(0,-\dimGap)$);
+\coordinate (DimV) at (V |- DimA);
+\coordinate (RadO) at ($(O)+(-\dimGap,0)$);
+\coordinate (RadT) at ($(T)+(-\dimGap,0)$);
+\fill[gray!30] (T)--(U)--(V)--(D)--(B)--cycle;
+\fill[white] (T) arc[start angle=90,end angle=-90,radius=\rad]--cycle;
+\draw[thick] (T)--(U)--(V)--(D)--(B);
+\draw[thick] (T) arc[start angle=90,end angle=-90,radius=\rad];
+\draw[thick] (U)--(D);
+\draw[dashed] (O)--(V);
+\draw[thick] (T)--++(0,\stringLength);
+\draw[thick] (U)--++(0,\stringLength);
+\foreach \P in {O,A} {\fill (\P) circle (1.2pt);}
+\node[below left=2pt] at (O) {$O$};
+\node[below right=2pt] at (A) {$A$};
+\node[right=3pt] at (V) {$V$};
+\draw[dashed] (B)--($(DimO)+(0,-0.1*\rad)$);
+\draw[dashed] (D)--($(DimA)+(0,-0.1*\rad)$);
+\draw[dashed] (V)--($(DimV)+(0,-0.1*\rad)$);
+\draw[dimension] (DimO)--node[midway,below=2pt] {$0.48\,\mathrm{m}$}(DimA);
+\draw[dimension] (DimA)--node[midway,below=2pt] {$0.48\,\mathrm{m}$}(DimV);
+\draw[dashed] (O)--(RadO);
+\draw[dashed] (T)--(RadT);
+\draw[dimension] (RadO)--node[midway,left=3pt] {$0.24\,\mathrm{m}$}(RadT);
+\node[font=\small] at ($(DimA)+(0,-0.65*\rad)$) {Axial section of the suspended solid};
+\end{tikzpicture}
+\end{figure}
+
+
+A solid cylinder has radius $0.24\,\mathrm{m}$ and length $0.48\,\mathrm{m}$. A hemispherical cavity of radius $0.24\,\mathrm{m}$ is cut into one end of the cylinder, with its circular opening coinciding with that end face. A solid cone of base radius $0.24\,\mathrm{m}$ and height $0.48\,\mathrm{m}$ is joined to the opposite end of the cylinder so that their circular faces coincide. \\
+
+The resulting solid $S$ has uniform density throughout. Let $O$ be the centre of the opening of the cavity, $A$ the centre of the cylinder-cone joint and $V$ the vertex of the cone. The points $O$, $A$ and $V$ lie on the common axis, in that order. The centre of mass of $S$ is $G$. \\
+You may use the following results for uniform solids:
+\begin{itemize}[nosep]
+\item A hemisphere of radius $r$ has volume $\frac{2}{3}\pi r^3$ and its centre of mass is $\frac{3r}{8}$ from its plane face towards its curved surface.
+\item A cone of base radius $r$ and height $h$ has volume $\frac{1}{3}\pi r^2h$ and its centre of mass is $\frac{h}{4}$ from its base towards its vertex.
+\end{itemize}
+
+\begin{enumerate}[label=(\roman*)]
+\item Explain why $G$ lies on the line $OV$. \marks{1} \\
+\item Find the distance $OG$. \marks{6} \\
+\end{enumerate}
+The solid is suspended by two light vertical strings. One is attached to the uppermost point of the circular rim centred at $O$, and the other to the uppermost point of the circular joint centred at $A$. The solid hangs in equilibrium with $OV$ horizontal, as shown in the diagram above. \\
+\begin{enumerate}[label=(\roman*), resume]
+\item Given that the weight of $S$ is $W$, find the tension in each string in terms of $W$. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Composite_Solids, Q2]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.2]
+\def\rad{1.1}
+\def\depthratio{0.22}
+\def\dimoffset{0.45}
+\pgfmathsetmacro{\height}{\rad}
+\pgfmathsetmacro{\hemrad}{2*\rad}
+\pgfmathsetmacro{\basedepth}{\depthratio*\rad}
+\pgfmathsetmacro{\hemdepth}{\depthratio*\hemrad}
+\coordinate (O) at (0,0);
+\coordinate (BL) at (-\rad,0);
+\coordinate (BR) at (\rad,0);
+\coordinate (TL) at (-\rad,\height);
+\coordinate (TR) at (\rad,\height);
+\coordinate (H) at (0,\height);
+\coordinate (HL) at (-\hemrad,\height);
+\coordinate (HR) at (\hemrad,\height);
+\coordinate (D0) at ($(BR)+(\dimoffset,0)$);
+\coordinate (D1) at ($(TR)+(\dimoffset,0)$);
+\draw[thick,dashed] (BR) arc[start angle=0,end angle=180,x radius=\rad,y radius=\basedepth];
+\draw[thick,black] (BL) arc[start angle=180,end angle=360,x radius=\rad,y radius=\basedepth];
+\draw[thick,black] (BL)--(TL);
+\draw[thick,black] (BR)--(TR);
+\draw[thick,dashed] (H) ellipse[x radius=\rad,y radius=\basedepth];
+\draw[thick,dashed] (HR) arc[start angle=0,end angle=180,x radius=\hemrad,y radius=\hemdepth];
+\draw[thick,black] (HL) arc[start angle=180,end angle=360,x radius=\hemrad,y radius=\hemdepth];
+\draw[thick,black] (HR) arc[start angle=0,end angle=180,radius=\hemrad];
+\draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]},thick] (O)--(BR) node[midway,below] {$r$};
+\draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]},thick] (H)--(HR) node[midway,above,fill=white,inner sep=1pt] {$2r$};
+\draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]},thick] (D0)--(D1) node[midway,right,fill=white,inner sep=2pt] {$r$};
+\node[left] at (O) {$O$};
+\end{tikzpicture}
+\end{figure}
+
+
+A composite solid $S$ consists of a uniform solid cylinder of radius $r$ and height $r$, and a uniform solid hemisphere of radius $2r$. Both components have the same density. The upper circular face of the cylinder is joined centrally to the plane face of the hemisphere, with their axes coincident and the curved surface of the hemisphere uppermost, as shown in the diagram above. The point $O$ is the centre of the lower circular face of the cylinder. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the distance from $O$ to the centre of mass of $S$, giving your answer as an exact multiple of $r$. \marks{4} \\
+\end{enumerate}
+The lower circular face of $S$ rests on a rough plane. The coefficient of friction between $S$ and the plane is $\mu$. Initially the plane is horizontal. Its inclination $\theta$ to the horizontal is then increased slowly, with $S$ remaining at rest until it either slides or begins to topple. No external force other than gravity and the contact force acts on $S$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+\item Find the angle at which $S$ would begin to topple if sliding were prevented, giving your answer to the nearest $0.1^\circ$. Hence find the range of values of $\mu$ for which $S$ slides before it begins to topple. \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Composite_Solids, Q3]
+
+A solid ornament consists of a cylinder of radius $a$ and height $a$, surmounted by a cone of base radius $a$ and height $h$. Their circular faces coincide, and both parts are made from the same material of uniform density. The point $O$ is the centre of the lower circular face of the cylinder. \\
+
+The centre of mass of the ornament is on its axis of symmetry, at a distance $\frac{9a}{10}$ above $O$. \\
+\begin{enumerate}[label=(\roman*)]
+\item Show that $h=2a$. \marks{4} \\
+\end{enumerate}
+A hemispherical cavity of radius $\frac{a}{2}$ is then cut into the ornament through the lower face of the cylinder. The centre of the circular opening is $O$, and the cavity extends upwards into the cylinder. \\
+\begin{enumerate}[label=(\roman*), resume]
+\item Find the distance of the centre of mass of the remaining ornament from $O$. \marks{4} \\
+\end{enumerate}
+The remaining ornament is placed with its flat annular base on a rough plane. The inclination of the plane to the horizontal is slowly increased. The friction is sufficient to prevent sliding. \\
+\begin{enumerate}[label=(\roman*), resume]
+\item Find the angle of inclination at which the ornament is on the point of toppling, giving your answer to the nearest degree. \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Composite_Solids, Q4]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.2, yscale=0.75]
+\def\rad{1.7}
+\def\ellipseRatio{0.32}
+\def\cylFactor{1}
+\def\coneFactor{2}
+\def\dimOffset{0.65}
+\pgfmathsetmacro{\cylHeight}{\cylFactor*\rad}
+\pgfmathsetmacro{\totalHeight}{(\cylFactor+\coneFactor)*\rad}
+\coordinate (O) at (0,0);
+\coordinate (B) at (-\rad,0);
+\coordinate (R) at (\rad,0);
+\coordinate (Ltop) at (-\rad,\cylHeight);
+\coordinate (Rtop) at (\rad,\cylHeight);
+\coordinate (A) at (0,\totalHeight);
+\coordinate (Dbase) at ($(R)+(\dimOffset,0)$);
+\coordinate (Djoin) at (Dbase |- Rtop);
+\coordinate (Dtop) at (Dbase |- A);
+\draw[thick, black] (B) -- (Ltop) -- (A) -- (Rtop) -- (R);
+\foreach \height in {0,\cylHeight} {
+  \draw[dashed, thick, black] plot[domain=0:180, samples=80] ({\rad*cos(\x)},{\height+\ellipseRatio*\rad*sin(\x)});
+  \draw[thick, black] plot[domain=180:360, samples=80] ({\rad*cos(\x)},{\height+\ellipseRatio*\rad*sin(\x)});
+}
+\draw[thick, black] (B) arc[start angle=180, end angle=360, radius=\rad];
+\draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]}, thick, black] (B) -- (O) node[midway, below] {$r$};
+\draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]}, thick, black] (Dbase) -- (Djoin) node[midway, right] {$r$};
+\draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]}, thick, black] (Djoin) -- (Dtop) node[midway, right] {$2r$};
+\fill[black] (O) circle (1.5pt);
+\node[above left] at (A) {$A$};
+\node[left] at (B) {$B$};
+\node[right] at (O) {$O$};
+\end{tikzpicture}
+\end{figure}
+
+
+A composite solid is made from a solid hemisphere, a solid cylinder and a solid right circular cone, all made from the same material of uniform density. Each component has radius $r$. The cylinder has height $r$ and the cone has height $2r$. \\
+
+The plane face of the hemisphere is joined to one circular face of the cylinder, and the base of the cone is joined to the other circular face of the cylinder. Their axes coincide, as shown in the diagram above. The centre of the common face of the hemisphere and cylinder is $O$, and $B$ lies on its circumference, with $OB=r$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the distance of the centre of mass of the composite solid from $O$, stating on which side of $O$ it lies. \marks{5} \\
+\end{enumerate}
+The cone is now removed and replaced by a solid right circular cone of base radius $r$ and height $hr$, where $h>0$, made from the same material. The hemisphere and cylinder are unchanged. This new composite solid is suspended by a light string attached to $B$ and hangs freely in equilibrium. The acute angle between $OB$ and the vertical is $45^\circ$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+\item Find the exact value of $h$. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Composite_Solids, Q5]
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.15,
+  outline/.style={thick,black},
+  dimension/.style={{Stealth[length=1.7mm]}-{Stealth[length=1.7mm]},black},
+  every node/.style={font=\normalsize}]
+\def\a{1}
+\def\heightRatio{2.4}
+\def\radiusAngle{140}
+\pgfmathsetmacro{\hemrad}{2*\a}
+\pgfmathsetmacro{\height}{\heightRatio*\a}
+\pgfmathsetmacro{\offset}{\a/2}
+\pgfmathsetmacro{\gap}{0.42*\a}
+\coordinate (O) at (0,0);
+\coordinate (C) at (\offset,0);
+\coordinate (HL) at (-\hemrad,0);
+\coordinate (HR) at (\hemrad,0);
+\coordinate (HT) at (0,\hemrad);
+\coordinate (CL) at ($(C)+(-\a,0)$);
+\coordinate (CR) at ($(C)+(\a,0)$);
+\coordinate (B) at ($(C)+(0,-\height)$);
+\coordinate (BL) at ($(B)+(-\a,0)$);
+\coordinate (BR) at ($(B)+(\a,0)$);
+\coordinate (P) at (\radiusAngle:\hemrad);
+\coordinate (X) at ($(HR)+(2*\gap,0)$);
+\coordinate (Y) at ($(HT)+(0,\gap)$);
+\coordinate (Dtop) at ($(CR)+(\gap,0)$);
+\coordinate (Dbottom) at ($(BR)+(\gap,0)$);
+\coordinate (Rstart) at ($(B)+(0,-\gap)$);
+\coordinate (Rend) at ($(BR)+(0,-\gap)$);
+\coordinate (Title) at ($(O)+(0,-\height-2.2*\gap)$);
+\fill[gray!30] (HR) arc[start angle=0,end angle=180,radius=\hemrad] -- cycle;
+\fill[gray!30] (CL) -- (BL) -- (BR) -- (CR) -- cycle;
+\draw[outline] (HR) arc[start angle=0,end angle=180,radius=\hemrad];
+\draw[outline] (HL) -- (HR);
+\draw[outline] (CL) -- (BL) -- (BR) -- (CR);
+\draw[black,-{Stealth[length=2.4mm]}] (O) -- (X) node[right] {$x$};
+\draw[black,-{Stealth[length=2.4mm]}] (O) -- (Y) node[above] {$y$};
+\draw[black,dashed] (C) -- (B);
+\draw[dimension] (O) -- node[midway,above right=3pt] {$2a$} (P);
+\draw[black,dashed] (CR) -- ($(Dtop)+(0.15*\a,0)$);
+\draw[black,dashed] (BR) -- ($(Dbottom)+(0.15*\a,0)$);
+\draw[dimension] (Dtop) -- node[midway,right=3pt] {$d$} (Dbottom);
+\draw[black,dashed] (B) -- ($(Rstart)+(0,-0.15*\a)$);
+\draw[black,dashed] (BR) -- ($(Rend)+(0,-0.15*\a)$);
+\draw[dimension] (Rstart) -- node[midway,below=2pt] {$a$} (Rend);
+\fill[black] (O) circle (1.1pt);
+\fill[black] (C) circle (1.1pt);
+\node[below left=3pt] at (O) {$O$};
+\node[above right=3pt,fill=white,inner sep=1.5pt] at (C) {$C\,(\tfrac a2,0)$};
+\node[font=\small] at (Title) {Section through the two axes};
+\end{tikzpicture}
+\end{figure}
+
+
+A composite solid consists of a solid hemisphere of radius $2a$ and a solid cylinder of radius $a$ and height $d$, where $a>0$ and $d>0$. Both components have the same uniform density. \\
+
+The cylinder is attached below the plane face of the hemisphere, as shown in the diagram above. The centre of this plane face is $O$. The axis of the cylinder meets the plane face at $C$, where $OC=\frac{a}{2}$. The $x$-axis is directed from $O$ towards $C$, and the $y$-axis is directed into the hemisphere, perpendicular to its plane face. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find the coordinates $(\bar{x},\bar{y})$ of the centre of mass of the composite solid in terms of $a$ and $d$. \marks{5} \\
+\end{enumerate}
+The solid is now placed with the lower circular face of the cylinder on a rough plane inclined at an angle $\theta$ to the horizontal, where $\tan\theta=\frac{1}{2}$. The positive $x$-direction points directly down the line of greatest slope, and the positive $y$-direction is perpendicular to the plane and away from it. The plane is sufficiently rough to prevent sliding. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+\item Find the greatest value of $d$ for which the solid can rest without toppling. Give your answer as an exact multiple of $a$. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+% [Source: _QBT__Centre_of_Mass_of_Composite_Solids, Q6]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.2]
+\def\rad{1.5}
+\def\coneHeight{2.1}
+\def\ellipseDepth{0.22}
+\def\groundExtent{3.4}
+\def\groundDepth{0.3}
+\def\dimOffset{0.45}
+\pgfmathsetmacro{\cylHeight}{\rad/2}
+\coordinate (C) at (0,0);
+\coordinate (T) at (0,\cylHeight);
+\coordinate (V) at ($(T)+(0,\coneHeight)$);
+\coordinate (O) at (0,-\rad);
+\coordinate (L) at (-\rad,0);
+\coordinate (R) at (\rad,0);
+\coordinate (TL) at ($(T)+(-\rad,0)$);
+\coordinate (TR) at ($(T)+(\rad,0)$);
+\coordinate (D0) at ($(R)+(\dimOffset,0)$);
+\coordinate (D1) at ($(TR)+(\dimOffset,0)$);
+\coordinate (D2) at (D1 |- V);
+\fill[pattern=north east lines] (-\groundExtent,{-\rad-\groundDepth}) rectangle (\groundExtent,-\rad);
+\draw[thick,black] (-\groundExtent,-\rad) -- (\groundExtent,-\rad);
+\draw[thick,black] (L) arc[start angle=180,end angle=360,radius=\rad];
+\draw[thick,black] (L) -- (TL) -- (V) -- (TR) -- (R);
+\foreach \P in {C,T} {
+  \draw[thick,black,dashed] ($(\P)+(\rad,0)$) arc[start angle=0,end angle=180,x radius=\rad,y radius=\ellipseDepth];
+  \draw[thick,black] ($(\P)+(-\rad,0)$) arc[start angle=180,end angle=360,x radius=\rad,y radius=\ellipseDepth];
+}
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}] (C) -- node[midway,fill=white,inner sep=1pt] {$r$} (R);
+\draw[dashed] (R) -- (D0);
+\draw[dashed] (TR) -- (D1);
+\draw[dashed] (V) -- (D2);
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}] (D0) -- node[midway,right] {$\dfrac r2$} (D1);
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}] (D1) -- node[midway,right] {$h$} (D2);
+\node[above] at (O) {$O$};
+\end{tikzpicture}
+\end{figure}
+
+
+A self-righting ornament is formed by joining a solid hemisphere, a solid cylinder and a solid cone, as shown in the diagram above. All three components are made from the same material of uniform density and have a common axis of symmetry. \\
+
+The hemisphere has radius $r$. The cylinder has radius $r$ and height $\frac{r}{2}$, and its lower face coincides with the plane face of the hemisphere. The cone has base radius $r$ and height $h$, and its base coincides with the upper face of the cylinder. \\
+
+The ornament rests on a horizontal plane at the lowest point $O$ of the hemisphere, with its axis vertical and the cone uppermost. \\
+
+You may use the following results for uniform solids:
+\begin{itemize}[nosep]
+\item The centre of mass of a hemisphere of radius $r$ is $\frac{3r}{8}$ from its plane face towards its curved surface.
+\item The centre of mass of a cone of height $h$ is $\frac{h}{4}$ from its base towards its vertex.
+\end{itemize}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find, in terms of $r$ and $h$, the distance $d$ of the centre of mass of the ornament from $O$. Simplify your answer. \marks{8} \\
+\item Find the exact range of values of $\frac{h}{r}$ for which the ornament is in stable equilibrium in this position, so that it tends to return towards the vertical after a small tilt. \marks{4} \\
+\end{enumerate}
+
+\end{enumerate}
+\end{document}
