@@ -155,6 +155,14 @@ the optional `djsSolutionFigure` environment, and the legacy colored-cancel
   against the question number, so the totals (and the title's counts) appear
   from the second LaTeX pass (latexmk reruns as needed). PDF bookmarks stay
   "Question N".
+- **Footers:** page one ends with the colophon (see Further Maths
+  last-updated dates), which draws the contents-page title's accent rule
+  from the same `\djs@accentrule`. Every later page carries its number over
+  the page count ("7 / 27") at the bottom right, under the header's link. The
+  count is the kernel's `\PreviousTotalPages`, which every run already writes
+  to the `.aux` file, so it adds no LaTeX pass. Both footers are drawn over the
+  page inside the bottom margin, so no page style or page break depends on
+  them. The TMUA preambles carry the same footers.
 
 All Further Maths QBT/Soln files are expected to stay at the fixed depth
 `public/tex/further-maths/<strand>/<topic>/{qbt,soln}/<file>.tex`, which makes

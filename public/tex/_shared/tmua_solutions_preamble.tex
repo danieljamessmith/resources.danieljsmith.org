@@ -91,6 +91,12 @@
   \renewcommand{\djs@details}{%
     #4~question\ifnum#4=1 \else s\fi
     \ifblank{#5}{}{\djs@dot#5~minutes}}}
+% The accent rule: a hairline of the given width, led by a short scarlet rule
+% (the solution box's foot rule). The title block and the colophon
+% both draw it, so their weights are always the same.
+\newcommand{\djs@accentrule}[1]{%
+  \makebox[0pt][l]{\color{djsHairline}\rule[0.9pt]{#1}{0.6pt}}%
+  {\color{scarlet}\rule{3.5cm}{2.2pt}}}
 \newcommand{\djsContentsTitle}{%
   {\raggedright\color{djsBurgundy}\footnotesize\bfseries
     \djs@caps{TMUA}{\color{djsSlash}\hspace{0.55em}/\hspace{0.55em}}%
@@ -98,8 +104,7 @@
   \vspace{7pt}%
   {\raggedright\fontsize{24.88}{28}\selectfont\djs@title\par}%
   \vspace{9pt}%
-  \noindent\makebox[0pt][l]{\color{djsHairline}\rule[0.9pt]{\linewidth}{0.6pt}}%
-  {\color{scarlet}\rule{3.5cm}{2.2pt}}\par
+  \noindent\djs@accentrule{\linewidth}\par
   \vspace{5pt}%
   {\small\color{djsMuted}\djs@papername\hfill\djs@details\par}%
   \vspace{8pt}}
@@ -117,25 +122,34 @@
 \pagestyle{empty}
 
 % \djsLastUpdated{<date>}, called once after the setup line, sets the
-% colophon at the foot of the first page only: the title block's hairline led
-% by a short scarlet rule, then the date on the left and a link to the site on
-% the right, all inside the bottom margin. Its sizes are fixed, so it matches
-% the Further Maths packs' colophon. It is drawn over the page rather than set
-% as a footer, so no page style changes.
+% colophon at the foot of the first page only: the title block's accent rule
+% (the same \djs@accentrule, so the two always match), then the date on the
+% left and a link to the site on the right, all inside the bottom margin.
+% Every later page carries its number over the page count at the bottom right,
+% under the header's link. The count is the kernel's \PreviousTotalPages, which
+% every run already records in the .aux file. Sizes are fixed, so these
+% footers match the Further Maths packs'. Both are drawn over the page rather
+% than set as footers, so no page style changes.
 \makeatletter
 \newcommand{\djsLastUpdated}[1]{%
   \AtBeginDocument{\AddToHookNext{shipout/foreground}{\djs@colophon{#1}}}}
+\newcommand{\djs@footR}[1]{%
+  \put(\dimexpr\paperwidth-1in\relax,-\dimexpr\paperheight-0.32in\relax){%
+    \makebox[0pt][r]{#1}}}
 \newcommand{\djs@colophon}[1]{%
   \put(0.8in,-\dimexpr\paperheight-0.47in\relax){%
-    \makebox[0pt][l]{\color{djsHairline}%
-      \rule[0.9pt]{\dimexpr\paperwidth-1.8in\relax}{0.6pt}}%
-    \makebox[0pt][l]{\color{scarlet}\rule{3.5cm}{2.2pt}}}%
+    \makebox[0pt][l]{\djs@accentrule{\textwidth}}}%
   \put(0.8in,-\dimexpr\paperheight-0.32in\relax){\makebox[0pt][l]{%
     \fontsize{9}{11}\selectfont Last updated #1}}%
-  \put(\dimexpr\paperwidth-1in\relax,-\dimexpr\paperheight-0.32in\relax){%
-    \makebox[0pt][r]{\fontsize{7}{8.5}\selectfont\color{djsMuted}%
-      Latest version at \href{https://resources.danieljsmith.org/}%
-        {\color{black}resources.danieljsmith.org}}}}
+  \djs@footR{\fontsize{7}{8.5}\selectfont\color{djsMuted}%
+    Latest version at \href{https://resources.danieljsmith.org/}%
+      {\color{black}resources.danieljsmith.org}}}
+\AddToHook{shipout/foreground}{%
+  \ifnum\value{page}>1
+    \djs@footR{{\fontsize{9}{11}\selectfont\thepage}%
+      {\fontsize{7}{8.5}\selectfont\color{djsMuted}%
+        \hspace{0.3em}/\hspace{0.3em}\PreviousTotalPages}}%
+  \fi}
 \makeatother
 
 \newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
