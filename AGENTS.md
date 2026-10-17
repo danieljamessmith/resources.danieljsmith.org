@@ -408,6 +408,7 @@ The `*.generated.ts` files **must not be hand-edited** — they're regenerated o
 | Package manager | npm (Node ≥ 20) |
 | Test runner | Vitest (`npm run test` → `vitest run`) — colocated `*.test.mjs` next to each script |
 | LaTeX build | `latexmk` — args mirrored between `.vscode/settings.json` and `scripts/compile-tex.mjs` |
+| TeX Live | Pinned in `texlive/`: `repository.txt` names one dated snapshot of the TeX Live 2026 package repository, and `packages.txt` the packages installed on top of the basic scheme. `texlive/install.sh` installs exactly that on Linux (cloud sessions, as root); `texlive/use-snapshot.ps1` points a Windows TeX Live 2026 at it. Move the snapshot date deliberately, then rebuild every deployed PDF and review the diff |
 | LaTeX lint (editor) | None: ChkTeX and bad-box messages are off in the LaTeX Workshop settings, and CI runs no LaTeX lint |
 | Pre-commit | Husky → `npx vitest run`, then `check-tex`, `check-solution-layout`, `check-pack-preamble`, `check-questions`, `check-resources`, `check-pairs`, `check-generated`, `check-private-terms`. The `commit-msg` hook runs `check-private-terms` on the message |
 | Pre-`dev`/`build`/`check` | `count-questions` + `hash-assets` + `check-pack-preamble` + `check-questions` (`check-resources`/`check-pairs`/`check-generated` are pre-commit-only to keep the inner loop fast) |
