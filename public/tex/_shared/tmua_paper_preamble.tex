@@ -109,14 +109,27 @@
 }
 \pagestyle{djspaper}
 
-% \djsLastUpdated{<date>}, called once after the setup line: one line
-% at the foot of the first page only, left-aligned under the left header at
-% the 0.8in left margin. It is drawn over the page rather than set as a
-% footer, so no page style changes.
+% \djsLastUpdated{<date>}, called once after the setup line, sets the
+% colophon at the foot of the first page only: the title block's hairline led
+% by a short scarlet rule, then the date on the left and a link to the site on
+% the right, all inside the bottom margin. Its sizes are fixed, so it matches
+% the Further Maths packs' colophon. It is drawn over the page rather than set
+% as a footer, so no page style changes.
+\makeatletter
 \newcommand{\djsLastUpdated}[1]{%
-  \AtBeginDocument{\AddToHookNext{shipout/foreground}{%
-    \put(0.8in,-\dimexpr\paperheight-0.32in\relax){\makebox[0pt][l]{%
-      \footnotesize Last updated #1}}}}}
+  \AtBeginDocument{\AddToHookNext{shipout/foreground}{\djs@colophon{#1}}}}
+\newcommand{\djs@colophon}[1]{%
+  \put(0.8in,-\dimexpr\paperheight-0.47in\relax){%
+    \makebox[0pt][l]{\color{djsHairline}%
+      \rule[0.9pt]{\dimexpr\paperwidth-1.8in\relax}{0.6pt}}%
+    \makebox[0pt][l]{\color{scarlet}\rule{3.5cm}{2.2pt}}}%
+  \put(0.8in,-\dimexpr\paperheight-0.32in\relax){\makebox[0pt][l]{%
+    \fontsize{9}{11}\selectfont Last updated #1}}%
+  \put(\dimexpr\paperwidth-1in\relax,-\dimexpr\paperheight-0.32in\relax){%
+    \makebox[0pt][r]{\fontsize{7}{8.5}\selectfont\color{djsMuted}%
+      Latest version at \href{https://resources.danieljsmith.org/}%
+        {\color{black}resources.danieljsmith.org}}}}
+\makeatother
 
 \newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
 

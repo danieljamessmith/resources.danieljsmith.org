@@ -193,8 +193,10 @@ exactly if that needs 3 s.f. or fewer. A question whose stem states g has no
 list.
 
 **Further Maths last-updated dates:** every QBT/Soln document has exactly one
-`\djsLastUpdated{D Month YYYY}` before `\begin{document}`. It prints a small
-line in the normal text colour at the foot of page one only. After changing student-visible
+`\djsLastUpdated{D Month YYYY}` before `\begin{document}`. It prints in the
+colophon at the foot of page one only: the contents-page title's scarlet-led
+hairline, then the date on the left and a link to the site on the right. TMUA
+papers, solutions and answer keys end page one with the same colophon. After changing student-visible
 question or solution content (including typos, marks or diagrams), manually
 set each affected document's date to today and rebuild its deployed PDF.
 A question edit updates both dates after statement sync; a solution-only
