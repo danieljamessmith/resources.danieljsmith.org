@@ -1,11 +1,15 @@
 /**
  * Helpers for `src/data/reviews.json`, the record of when each pack's worked
- * solutions were last checked. Used by `mark-checked` and `review-status`.
+ * solutions, and each mark scheme, were last checked. Used by `mark-checked`
+ * and `review-status`.
  *
- * Each record is keyed by the solutions entry's id in `resources.ts` and holds
- * the check date plus a short hash of the pack's QBT and soln `.tex` source at
- * that time, so any later edit to either file shows the pack as changed since
- * its check.
+ * A pack's record is keyed by the solutions entry's id in `resources.ts` and
+ * holds the check date plus a short hash of the pack's QBT and soln `.tex`
+ * source at that time, so any later edit to either file shows the pack as
+ * changed since its check. A mark scheme's record is keyed by the scheme
+ * entry's id, and its hash covers the scheme's YAML as well as the pack's two
+ * `.tex` files, so an edit to the scheme or to its pack shows the scheme as
+ * changed.
  */
 
 import { createHash, randomBytes } from 'node:crypto';
@@ -51,6 +55,26 @@ export function texPairHash(qbtText, solnText) {
     .update(norm(qbtText))
     .update('\0')
     .update(norm(solnText))
+    .digest('hex')
+    .slice(0, 8);
+}
+
+/**
+ * Short md5 hash (first 8 hex chars) of a mark scheme's YAML and its pack's
+ * QBT/soln `.tex` pair. As in `texPairHash`, line endings are normalised and
+ * the last-updated lines (`last_updated:` in the YAML) are excluded.
+ *
+ * @param {string} yamlText
+ * @param {string} qbtText
+ * @param {string} solnText
+ * @returns {string}
+ */
+export function schemeHash(yamlText, qbtText, solnText) {
+  const yaml = yamlText.replace(/\r\n/g, '\n').replace(/^last_updated:[^\n]*(?:\n|$)/gm, '');
+  return createHash('md5')
+    .update(yaml)
+    .update('\0')
+    .update(texPairHash(qbtText, solnText))
     .digest('hex')
     .slice(0, 8);
 }
@@ -107,22 +131,51 @@ export function resolvePackTex(entries, id) {
 }
 
 /**
- * Classifies every solutions entry whose file starts with `scopePrefix`.
- * `currentHash(id)` returns the pack's hash now, or null when its `.tex` pair
- * can't be read; those packs are left out.
+ * Finds the sources a review record's hash covers: for a solutions id, the
+ * pack's `.tex` pair; for a mark scheme id, the scheme's YAML (beside its PDF)
+ * and its pack's `.tex` pair.
+ *
+ * @param {import('./resources-derive.mjs').ResourceEntry[]} entries
+ * @param {string} id
+ * @returns {{ ok: true, kind: 'solutions' | 'markscheme', qbtTex: string, solnTex: string, yaml?: string }
+ *   | { ok: false, reason: string }}
+ *   Paths are `/tex/...` URL paths; `yaml` is set for a mark scheme.
+ */
+export function resolveRecordSources(entries, id) {
+  const e = entries.find((x) => x.id === id);
+  if (!e) return { ok: false, reason: `no resource with id '${id}'` };
+  if (e.type === 'solutions') {
+    const r = resolvePackTex(entries, id);
+    return r.ok ? { ...r, kind: 'solutions' } : r;
+  }
+  if (e.type !== 'markscheme') {
+    return { ok: false, reason: `'${id}' is not a solutions or mark scheme entry` };
+  }
+  const questions = e.paperId ? entries.find((x) => x.id === e.paperId) : undefined;
+  if (!questions?.pairId) return { ok: false, reason: `'${id}' names no pack with solutions` };
+  const pack = resolvePackTex(entries, questions.pairId);
+  if (!pack.ok) return pack;
+  if (!e.file.endsWith('.pdf')) return { ok: false, reason: `'${id}' does not point at a PDF` };
+  return { ...pack, kind: 'markscheme', yaml: e.file.replace(/\.pdf$/, '.yaml') };
+}
+
+/**
+ * Classifies every solutions and mark scheme entry whose file starts with
+ * `scopePrefix`. `currentHash(id)` returns the record's hash now, or null when
+ * its sources can't be read; those are left out.
  *
  * @param {import('./resources-derive.mjs').ResourceEntry[]} entries
  * @param {Reviews} reviews
  * @param {(id: string) => string | null} currentHash
  * @param {string} scopePrefix - e.g. `/tex/further-maths/`, or `/tex/` for all
  * @returns {{ packs: PackStatus[], unknownIds: string[] }}
- *   `unknownIds` are record keys that match no solutions entry.
+ *   `unknownIds` are record keys that match no solutions or mark scheme entry.
  */
 export function reviewStatuses(entries, reviews, currentHash, scopePrefix) {
   /** @type {PackStatus[]} */
   const packs = [];
   for (const e of entries) {
-    if (e.type !== 'solutions' || !e.file.startsWith(scopePrefix)) continue;
+    if (!isRecordType(e.type) || !e.file.startsWith(scopePrefix)) continue;
     const hash = currentHash(e.id);
     if (hash === null) continue;
     const rec = reviews[e.id];
@@ -136,11 +189,16 @@ export function reviewStatuses(entries, reviews, currentHash, scopePrefix) {
       });
     }
   }
-  const solutionIds = new Set(entries.filter((e) => e.type === 'solutions').map((e) => e.id));
+  const recordIds = new Set(entries.filter((e) => isRecordType(e.type)).map((e) => e.id));
   const unknownIds = Object.keys(reviews)
-    .filter((id) => !solutionIds.has(id))
+    .filter((id) => !recordIds.has(id))
     .sort();
   return { packs, unknownIds };
+}
+
+/** Solutions and mark schemes have review records. @param {string | undefined} type */
+function isRecordType(type) {
+  return type === 'solutions' || type === 'markscheme';
 }
 
 /**
@@ -217,26 +275,26 @@ export function writeReviewsAtomic(reviews, path = REVIEWS_PATH) {
 }
 
 /**
- * Reads the pack's `.tex` pair from disk and hashes it.
+ * Reads a record's sources from disk and hashes them: a pack's `.tex` pair for
+ * a solutions id, and the scheme's YAML with the pair for a mark scheme id.
  *
  * @param {import('./resources-derive.mjs').ResourceEntry[]} entries
- * @param {string} id - id of a solutions entry
+ * @param {string} id - id of a solutions or mark scheme entry
  * @param {string} [publicDirArg]
  * @returns {{ ok: true, hash: string } | { ok: false, reason: string }}
  */
 export function hashPackOnDisk(entries, id, publicDirArg = publicDir) {
-  const r = resolvePackTex(entries, id);
+  const r = resolveRecordSources(entries, id);
   if (!r.ok) return r;
-  const qbtAbs = join(publicDirArg, r.qbtTex);
-  const solnAbs = join(publicDirArg, r.solnTex);
-  for (const [abs, url] of [
-    [qbtAbs, r.qbtTex],
-    [solnAbs, r.solnTex],
-  ]) {
+  const urls = r.yaml ? [r.yaml, r.qbtTex, r.solnTex] : [r.qbtTex, r.solnTex];
+  const texts = [];
+  for (const url of urls) {
+    const abs = join(publicDirArg, url);
     if (!existsSync(abs)) return { ok: false, reason: `missing public${url}` };
+    texts.push(readFileSync(abs, 'utf8'));
   }
   return {
     ok: true,
-    hash: texPairHash(readFileSync(qbtAbs, 'utf8'), readFileSync(solnAbs, 'utf8')),
+    hash: r.yaml ? schemeHash(texts[0], texts[1], texts[2]) : texPairHash(texts[0], texts[1]),
   };
 }

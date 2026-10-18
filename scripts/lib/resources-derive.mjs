@@ -194,12 +194,14 @@ function tsStringValue(m, group) {
  * @typedef {Object} ResourceEntry
  * @property {string} id
  * @property {string} [title]
+ * @property {string} [description]
  * @property {string} file        - `/tex/...` URL path
  * @property {string} category    - Normalised label (e.g. `'FM - Core Pure'`)
  * @property {string} [topic]
- * @property {'questions'|'solutions'|'answers'|'notes'} [type]
+ * @property {'questions'|'solutions'|'answers'|'markscheme'|'notes'} [type]
  * @property {string} [pairId]    - id of the partner entry in a {Q, S} pair
- * @property {string} [paperId]   - on an `answers` entry: the id of its paper
+ * @property {string} [paperId]   - on an `answers` or `markscheme` entry: the id
+ *                                  of its questions entry
  * @property {string[]} [boards]  - exam board ids; absent means all boards
  */
 
@@ -222,6 +224,7 @@ export function parseResourcesEntries(resourcesTsContent) {
     const file = m[2];
     const catRaw = block.match(/category:\s*([^,\n]+?)\s*,/);
     const titleM = block.match(new RegExp(String.raw`title:\s*${TS_STRING}`));
+    const descriptionM = block.match(new RegExp(String.raw`description:\s*${TS_STRING}`));
     const topicM = block.match(/topic:\s*'([^']*)'/);
     const typeM = block.match(/type:\s*'([^']+)'/);
     const pairM = block.match(/pairId:\s*'([^']+)'/);
@@ -231,6 +234,7 @@ export function parseResourcesEntries(resourcesTsContent) {
     entries.push({
       id,
       title: titleM ? tsStringValue(titleM, 1) : undefined,
+      description: descriptionM ? tsStringValue(descriptionM, 1) : undefined,
       file,
       category,
       topic: topicM ? topicM[1] : undefined,
@@ -508,11 +512,13 @@ function categoryFromSitePathPrefix(sitePath) {
  * topic (the site section), the default id prefix for a new pack, and the last
  * pack row, after which a new pack's rows go.
  *
- * Only `questions` and `solutions` rows filed under the folder count. Folder
- * names need not match section names, so a folder with no packs has no
- * `topic`. The id prefix comes from the questions rows alone: with a pack's
- * `-solns` row in the pool, a one-pack folder's prefix would run on into that
- * pack's own slug.
+ * Only `questions`, `solutions` and `markscheme` rows filed under the folder
+ * count. Folder names need not match section names, so a folder with no packs
+ * has no `topic`. The id prefix comes from the questions rows alone: with a
+ * pack's `-solns` row in the pool, a one-pack folder's prefix would run on into
+ * that pack's own slug. The last pack row may be a mark scheme, which follows
+ * its pack's solutions row, so a new pack goes after it rather than between
+ * the two.
  *
  * @param {string} sitePath - e.g. `further-maths/core-pure/vectors`
  * @param {ReturnType<typeof parseResourcesEntries>} allEntries
@@ -529,7 +535,9 @@ export function derivePathContext(sitePath, allEntries) {
   const prefix = `/tex/${norm}/`;
 
   const packs = allEntries.filter(
-    (e) => e.file.startsWith(prefix) && (e.type === 'questions' || e.type === 'solutions'),
+    (e) =>
+      e.file.startsWith(prefix) &&
+      (e.type === 'questions' || e.type === 'solutions' || e.type === 'markscheme'),
   );
   const questionIds = packs.filter((e) => e.type === 'questions').map((e) => e.id);
   const category = packs[0]?.category ?? categoryFromSitePathPrefix(norm) ?? 'unknown';
@@ -557,4 +565,29 @@ function fallbackIdPrefix(category, topicTitle, sitePathNorm) {
   const slug = slugify(sitePathNorm.replace(/\//g, '-'));
   if (slug) return `${slug}-`;
   return `${slugify(topicTitle ?? '')}-`;
+}
+
+/**
+ * A pack's mark scheme id: its solutions id with `-ms` for `-solns`
+ * (`fm-polar-integration-polar-curves-solns` gives
+ * `fm-polar-integration-polar-curves-ms`). Null for an id without `-solns`.
+ *
+ * @param {string} solutionsId
+ * @returns {string | null}
+ */
+export function markSchemeId(solutionsId) {
+  return /-solns$/.test(solutionsId) ? solutionsId.replace(/-solns$/, '-ms') : null;
+}
+
+/**
+ * Where a pack's mark scheme PDF lives, from its questions PDF: the `ms/`
+ * folder beside `qbt/`, named `_QBT___MS__<stem>.pdf` for the questions file
+ * `_QBT__<stem>.pdf`. Null for a path that isn't a Further Maths questions PDF.
+ *
+ * @param {string} questionsFile - `/tex/...` URL path
+ * @returns {string | null}
+ */
+export function markSchemeFile(questionsFile) {
+  const m = questionsFile.match(/^(\/tex\/further-maths\/[^/]+\/[^/]+)\/qbt\/_QBT__(?!_)([^/]+\.pdf)$/);
+  return m ? `${m[1]}/ms/_QBT___MS__${m[2]}` : null;
 }

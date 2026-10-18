@@ -1,14 +1,15 @@
 /**
- * Read-only report of when each pack's worked solutions were last checked,
- * from src/data/reviews.json. A pack whose `.tex` pair has changed since its
- * check is listed as changed.
+ * Read-only report of when each pack's worked solutions, and each mark
+ * scheme, were last checked, from src/data/reviews.json. A pack whose `.tex`
+ * pair has changed since its check is listed as changed, and so is a mark
+ * scheme whose YAML or pack has.
  *
  * Usage:
- *   node scripts/review-status.mjs [scope | solutions-id]
+ *   node scripts/review-status.mjs [scope | solutions-id | markscheme-id]
  *
  *   scope    further-maths (default) | tmua | all
  *
- * Given a solutions id instead of a scope, reports that one pack.
+ * Given a solutions or mark scheme id instead of a scope, reports that one.
  */
 
 import { fileURLToPath } from 'node:url';
@@ -24,7 +25,11 @@ const GROUPS = /** @type {const} */ ([
 function main() {
   const arg = process.argv.slice(2).find((a) => !a.startsWith('-')) ?? 'further-maths';
   const entries = loadResourcesEntries();
-  const singleId = entries.some((e) => e.id === arg && e.type === 'solutions') ? arg : null;
+  const singleId = entries.some(
+    (e) => e.id === arg && (e.type === 'solutions' || e.type === 'markscheme'),
+  )
+    ? arg
+    : null;
   const prefix = singleId || arg === 'all' ? '/tex/' : `/tex/${arg}/`;
 
   const currentHash = (/** @type {string} */ id) => {
@@ -49,7 +54,7 @@ function main() {
     console.log('');
   }
   for (const id of unknownIds) {
-    console.warn(`  (warn) reviews.json records '${id}', which is not a solutions entry`);
+    console.warn(`  (warn) reviews.json records '${id}', which is not a solutions or mark scheme entry`);
   }
 
   const count = (/** @type {string} */ s) => packs.filter((p) => p.status === s).length;

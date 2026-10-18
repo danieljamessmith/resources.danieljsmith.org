@@ -37,9 +37,12 @@ export interface Resource {
   description: string;
   file: string;
   category: string;
-  type?: 'questions' | 'solutions' | 'answers' | 'notes';
+  type?: 'questions' | 'solutions' | 'answers' | 'markscheme' | 'notes';
   pairId?: string;
-  /** Set on `answers` rows only: the id of the `questions` paper the key belongs to. */
+  /**
+   * Set on `answers` and `markscheme` rows only: the id of the `questions` paper
+   * the answer key or mark scheme belongs to.
+   */
   paperId?: string;
   topic?: string;
   /** Set on A-level Further Maths `questions` packs; drives list/view copy. */
@@ -1281,8 +1284,8 @@ const rawResources: Resource[] = [
 ];
 
 function buildDownloadName(title: string, type?: string): string {
-  const suffix = type ? ` - ${type.charAt(0).toUpperCase() + type.slice(1)}` : '';
-  return `${title}${suffix}.pdf`;
+  const label = type === 'markscheme' ? 'Mark Scheme' : type && type.charAt(0).toUpperCase() + type.slice(1);
+  return `${title}${label ? ` - ${label}` : ''}.pdf`;
 }
 
 /** Populate questionCount, downloadName, and cache-busted file URL. */
@@ -1316,7 +1319,9 @@ export function getResourceMetaDescription(resource: Resource): string {
   if (resource.category.startsWith(FM_PREFIX)) {
     const questions = resource.type === 'solutions' && resource.pairId
       ? getResourceById(resource.pairId)
-      : resource;
+      : resource.type === 'markscheme' && resource.paperId
+        ? getResourceById(resource.paperId)
+        : resource;
     const count = questions?.questionCount;
     const subject = `A-level Further Maths questions on ${resource.title}`;
     if (resource.type === 'questions') {
@@ -1326,6 +1331,9 @@ export function getResourceMetaDescription(resource: Resource): string {
     }
     if (resource.type === 'solutions') {
       return `Full worked solutions to ${count != null ? `${count} ` : ''}${subject}. Free to view and download.`;
+    }
+    if (resource.type === 'markscheme') {
+      return `Mark scheme for ${count != null ? `${count} ` : ''}${subject}. Free to view and download.`;
     }
   }
   return getResourceDisplayDescription(resource) || `${resource.title}: free maths resource with worked solutions.`;
@@ -1401,21 +1409,27 @@ export function getAnswerKey(paperId: string): Resource | undefined {
   return resources.find((r) => r.type === 'answers' && r.paperId === paperId);
 }
 
+/** The mark scheme whose `paperId` names this Further Maths pack, if it has one. */
+export function getMarkScheme(paperId: string): Resource | undefined {
+  return resources.find((r) => r.type === 'markscheme' && r.paperId === paperId);
+}
+
 export interface PaperFamily {
   questions?: Resource;
   answers?: Resource;
+  markscheme?: Resource;
   solutions?: Resource;
 }
 
 /**
- * A paper with its answer key and worked solutions, found from any one of the three.
- * Resources outside a family (notes) return an empty object.
+ * A paper with its answer key or mark scheme and its worked solutions, found from
+ * any one of them. Resources outside a family (notes) return an empty object.
  */
 export function getPaperFamily(r: Resource): PaperFamily {
   const questions =
     r.type === 'questions'
       ? r
-      : r.type === 'answers' && r.paperId
+      : (r.type === 'answers' || r.type === 'markscheme') && r.paperId
         ? getResourceById(r.paperId)
         : r.type === 'solutions' && r.pairId
           ? getResourceById(r.pairId)
@@ -1424,18 +1438,29 @@ export function getPaperFamily(r: Resource): PaperFamily {
   return {
     questions,
     answers: getAnswerKey(questions.id),
+    markscheme: getMarkScheme(questions.id),
     solutions: questions.pairId ? getResourceById(questions.pairId) : undefined,
   };
 }
 
+/** A family's documents in listing order: questions, answer key or mark scheme, solutions. */
+export function familyInOrder(family: PaperFamily): Resource[] {
+  return [family.questions, family.answers, family.markscheme, family.solutions].filter(
+    (r): r is Resource => r !== undefined,
+  );
+}
+
 /**
  * Boards a resource applies to. `undefined` means all boards.
- * For `solutions`, inherits from the paired `questions` resource when not set on the row itself.
+ * `solutions` and `markscheme` rows inherit from their `questions` resource when not set
+ * on the row itself.
  */
 export function getResourceBoards(r: Resource): ExamBoard[] | undefined {
   if (r.boards && r.boards.length > 0) return r.boards;
-  if (r.type === 'solutions' && r.pairId) {
-    const q = getResourceById(r.pairId);
+  const questionsId =
+    r.type === 'solutions' ? r.pairId : r.type === 'markscheme' ? r.paperId : undefined;
+  if (questionsId) {
+    const q = getResourceById(questionsId);
     if (q?.boards && q.boards.length > 0) return q.boards;
   }
   return undefined;
@@ -1479,6 +1504,7 @@ export function getResourcePairs(category: string, topic?: string) {
   );
   return questions.map((q) => ({
     questions: q,
+    markscheme: getMarkScheme(q.id),
     solutions: resources.find((r) => r.id === q.pairId),
   }));
 }

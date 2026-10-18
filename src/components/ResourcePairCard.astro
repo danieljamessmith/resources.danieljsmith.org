@@ -7,7 +7,8 @@ import {
 } from '~/data/resources';
 
 interface Props {
-  pair: { questions: Resource; solutions: Resource };
+  /** A pack's documents; a pack without a mark scheme lists Questions | Solutions. */
+  pair: { questions: Resource; markscheme?: Resource | undefined; solutions: Resource };
 }
 
 const { pair } = Astro.props;
@@ -33,6 +34,14 @@ const title = pair.questions.title;
       </svg>
       <span>Questions<span class="sr-only">: {title}</span></span>
     </a>
+    {pair.markscheme && (
+      <a class="resource-action" href={`/view/${pair.markscheme.id}/`}>
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+        </svg>
+        <span>Mark scheme<span class="sr-only">: {title}</span></span>
+      </a>
+    )}
     <a class="resource-action" href={`/view/${pair.solutions.id}/`}>
       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />

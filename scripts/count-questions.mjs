@@ -18,7 +18,7 @@ const repoRoot = resolve(__dirname, '..');
 const publicDir = join(repoRoot, 'public');
 
 /**
- * Recursively finds all _QBT__*.tex files (excluding solutions) under `dir`.
+ * Recursively finds all _QBT__*.tex files (excluding solutions and mark schemes) under `dir`.
  * Exported so tests can drive it against a temp fixture tree.
  *
  * @param {string} dir
@@ -39,6 +39,7 @@ export function findQbtTexFiles(dir) {
     } else if (
       entry.name.startsWith('_QBT__') &&
       !entry.name.startsWith('_QBT___Solns') &&
+      !entry.name.startsWith('_QBT___MS__') &&
       entry.name.endsWith('.tex')
     ) {
       results.push(full);

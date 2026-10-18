@@ -62,6 +62,10 @@ describe('computeQuestionCounts (temp fixture)', () => {
       join(baseQbtB, '_QBT__Topic_B.tex'),
       ['\\questionitem', 'only-one'].join('\n'),
     );
+    // A mark scheme's rendered .tex should be SKIPPED too.
+    const baseMs = join(workdir, 'tex', 'further-maths', 'core-pure', 'topic-a', 'ms');
+    mkdirSync(baseMs, { recursive: true });
+    writeFileSync(join(baseMs, '_QBT___MS__Topic_A.tex'), '\\questionitem\n');
   });
 
   afterEach(() => {
@@ -73,6 +77,7 @@ describe('computeQuestionCounts (temp fixture)', () => {
     expect(files).toHaveLength(2);
     expect(files.every((f) => /_QBT__[^/\\]+\.tex$/.test(f))).toBe(true);
     expect(files.some((f) => f.includes('_QBT___Solns'))).toBe(false);
+    expect(files.some((f) => f.includes('_QBT___MS__'))).toBe(false);
   });
 
   it('returns sorted [/tex/...pdf, count] entries', () => {

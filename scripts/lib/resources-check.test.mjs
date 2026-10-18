@@ -263,6 +263,109 @@ describe('checkResources: answer keys', () => {
   });
 });
 
+describe('checkResources: mark schemes', () => {
+  const dir = '/tex/further-maths/core-pure/polar-coordinates';
+  const files = {
+    q: `${dir}/qbt/_QBT__Polar_Curves.pdf`,
+    s: `${dir}/soln/_QBT___Solns__Polar_Curves.pdf`,
+    ms: `${dir}/ms/_QBT___MS__Polar_Curves.pdf`,
+  };
+
+  /** A pack's three rows, all on disk. */
+  function packWithScheme() {
+    const common = { title: 'Polar Curves', category: 'FM - Core Pure', topic: 'Polar Coordinates' };
+    return {
+      entries: [
+        entry({ ...common, id: 'fm-polar-curves', file: files.q, type: 'questions', pairId: 'fm-polar-curves-solns', boards: ['aqa'] }),
+        entry({ ...common, id: 'fm-polar-curves-solns', file: files.s, type: 'solutions', pairId: 'fm-polar-curves' }),
+        entry({ ...common, id: 'fm-polar-curves-ms', description: 'Mark scheme', file: files.ms, type: 'markscheme', paperId: 'fm-polar-curves' }),
+      ],
+      diskFiles: new Set(Object.values(files)),
+      questionCountKeys: new Set([files.q]),
+    };
+  }
+
+  /** @param {ReturnType<typeof packWithScheme>} input */
+  function kinds(input) {
+    return run(input).violations.map((v) => v.kind);
+  }
+
+  it('passes for a pack and its mark scheme', () => {
+    expect(kinds(packWithScheme())).toEqual([]);
+  });
+
+  it('flags a mark scheme with no paperId', () => {
+    const p = packWithScheme();
+    p.entries[2].paperId = undefined;
+    expect(kinds(p)).toEqual(['markscheme-paper-missing']);
+  });
+
+  it('flags a paperId that names the solutions', () => {
+    const p = packWithScheme();
+    p.entries[2].paperId = 'fm-polar-curves-solns';
+    expect(kinds(p)).toEqual(['markscheme-paper-mismatch']);
+  });
+
+  it('flags an id that is not the solutions id with -ms', () => {
+    const p = packWithScheme();
+    p.entries[2].id = 'fm-polar-curves-markscheme';
+    expect(kinds(p)).toEqual(['markscheme-id-mismatch']);
+  });
+
+  it("flags a title that is not the pack's", () => {
+    const p = packWithScheme();
+    p.entries[2].title = '(MS) Polar Curves';
+    expect(kinds(p)).toEqual(['markscheme-title-mismatch']);
+  });
+
+  it('flags a description other than "Mark scheme"', () => {
+    const p = packWithScheme();
+    p.entries[2].description = 'Full mark scheme';
+    expect(kinds(p)).toEqual(['markscheme-description']);
+  });
+
+  it("flags a file outside the pack's ms folder", () => {
+    const p = packWithScheme();
+    p.entries[2].file = `${dir}/soln/_QBT___MS__Polar_Curves.pdf`;
+    p.diskFiles.add(p.entries[2].file);
+    expect(kinds(p)).toEqual(['markscheme-file-mismatch']);
+  });
+
+  it('flags a missing scheme file', () => {
+    const p = packWithScheme();
+    p.diskFiles.delete(files.ms);
+    expect(kinds(p)).toEqual(['missing-file']);
+  });
+
+  it('flags boards or a pairId on the scheme row', () => {
+    const p = packWithScheme();
+    p.entries[2].boards = ['aqa'];
+    expect(kinds(p)).toEqual(['markscheme-boards']);
+    p.entries[2].boards = undefined;
+    p.entries[2].pairId = 'fm-polar-curves';
+    expect(kinds(p)).toContain('markscheme-pair-id');
+  });
+
+  it('flags a second mark scheme for the same pack', () => {
+    const p = packWithScheme();
+    p.entries.push({ ...p.entries[2], id: 'fm-polar-curves-ms2' });
+    expect(kinds(p)).toEqual(['markscheme-id-mismatch', 'markscheme-duplicate']);
+  });
+
+  it('flags a pack with no solutions', () => {
+    const p = packWithScheme();
+    p.entries[0].pairId = undefined;
+    p.entries.splice(1, 1);
+    expect(kinds(p)).toEqual(['markscheme-no-solutions']);
+  });
+
+  it('still flags paperId on a questions row', () => {
+    const p = packWithScheme();
+    p.entries[0].paperId = 'fm-polar-curves';
+    expect(kinds(p)).toEqual(['paper-id-misplaced']);
+  });
+});
+
 describe('checkResources: orphan PDFs', () => {
   it('emits a warning (not violation) for unreferenced PDFs', () => {
     const { violations, warnings } = run({

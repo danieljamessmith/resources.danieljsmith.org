@@ -10,6 +10,8 @@ import {
   catalogueIdKeys,
   parseBoardLists,
   findStrandTopic,
+  markSchemeId,
+  markSchemeFile,
   maskStringsAndComments,
   findMatchingClose,
 } from './resources-derive.mjs';
@@ -95,6 +97,44 @@ const rawResources: Resource[] = [
   });
 });
 
+describe('parseResourcesEntries mark schemes', () => {
+  it("reads a mark scheme row's type, paperId and description", () => {
+    const fixture = `
+const rawResources: Resource[] = [
+  {
+    id: 'fm-polar-curves-ms',
+    title: 'Polar Curves',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/polar/ms/_QBT___MS__Polar_Curves.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-polar-curves',
+    topic: 'Polar Coordinates',
+  },
+];
+`;
+    const [e] = parseResourcesEntries(fixture);
+    expect(e.type).toBe('markscheme');
+    expect(e.paperId).toBe('fm-polar-curves');
+    expect(e.description).toBe('Mark scheme');
+  });
+});
+
+describe('markSchemeId and markSchemeFile', () => {
+  it('swaps -solns for -ms', () => {
+    expect(markSchemeId('fm-polar-integration-polar-curves-solns')).toBe('fm-polar-integration-polar-curves-ms');
+    expect(markSchemeId('fm-polar-curves')).toBeNull();
+  });
+
+  it("puts the scheme in the ms folder beside the pack's qbt folder", () => {
+    expect(markSchemeFile('/tex/further-maths/core-pure/polar/qbt/_QBT__Polar_Curves.pdf')).toBe(
+      '/tex/further-maths/core-pure/polar/ms/_QBT___MS__Polar_Curves.pdf',
+    );
+    expect(markSchemeFile('/tex/further-maths/core-pure/polar/soln/_QBT___Solns__Polar_Curves.pdf')).toBeNull();
+    expect(markSchemeFile('/tex/tmua/TMUA_SetA_Paper1.pdf')).toBeNull();
+  });
+});
+
 /** A questions row and its solutions row, as `parseResourcesEntries` returns them. */
 function packPair(id, folder, topic, category = 'FM - Core Pure') {
   return [
@@ -116,6 +156,17 @@ describe('derivePathContext', () => {
     expect(ctx.idPrefix).toBe('fm-vectors-');
     expect(ctx.siblingId).toBe('fm-vectors-vector-product-solns');
     expect(ctx.fromSiblings).toBe(true);
+  });
+
+  it("puts a new pack after the last pack's mark scheme, not between it and its solutions", () => {
+    const entries = [
+      ...packPair('fm-vectors-matrix-determinants', 'core-pure/vectors', 'Vectors'),
+      ...packPair('fm-vectors-vector-product', 'core-pure/vectors', 'Vectors'),
+      { id: 'fm-vectors-vector-product-ms', file: '/tex/further-maths/core-pure/vectors/ms/_QBT___MS__X.pdf', category: 'FM - Core Pure', topic: 'Vectors', type: 'markscheme', paperId: 'fm-vectors-vector-product' },
+    ];
+    const ctx = derivePathContext('further-maths/core-pure/vectors', entries);
+    expect(ctx.siblingId).toBe('fm-vectors-vector-product-ms');
+    expect(ctx.idPrefix).toBe('fm-vectors-');
   });
 
   it("stops a one-pack folder's id prefix at the section, not inside the pack's slug", () => {

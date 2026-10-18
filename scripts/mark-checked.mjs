@@ -2,10 +2,12 @@
  * Records that a pack's worked solutions have been checked: writes the date
  * and the pack's current `.tex` hash to src/data/reviews.json under the
  * solutions entry's id. Run it after the pack's last `.tex` edit and commit
- * the record together with those edits.
+ * the record together with those edits. Given a mark scheme's id instead, it
+ * records that the scheme was checked, with a hash of the scheme's YAML and
+ * the pack's two `.tex` files.
  *
  * Usage:
- *   node scripts/mark-checked.mjs <solutions-id> [--date YYYY-MM-DD]
+ *   node scripts/mark-checked.mjs <solutions-id | markscheme-id> [--date YYYY-MM-DD]
  *   node scripts/mark-checked.mjs <solutions-id> --reordered
  *
  * The date defaults to today. With `--reordered`, the pack's questions have
@@ -13,9 +15,11 @@
  * is kept and only the hash is updated. That needs the committed pack to match
  * its record, and both `.tex` files to be the committed ones with their
  * questions reordered the same way (the `\djsLastUpdated` dates may differ).
+ * It takes a solutions id only.
  *
  * Exits non-zero if the id is not a solutions entry with a readable `.tex`
- * pair, or if `--reordered` can't show that only the order changed. The
+ * pair or a mark scheme entry with a readable YAML and pack, or if
+ * `--reordered` can't show that only the order changed. The
  * command line is read strictly: an unknown flag, a second argument or a date
  * after today is refused rather than read as today's check.
  */
@@ -38,7 +42,7 @@ import {
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
 const USAGE =
-  'Usage: node scripts/mark-checked.mjs <solutions-id> [--date YYYY-MM-DD | --reordered]';
+  'Usage: node scripts/mark-checked.mjs <solutions-id | markscheme-id> [--date YYYY-MM-DD | --reordered]';
 
 /**
  * The committed (HEAD) text of a `/tex/...` path under public/.
@@ -56,7 +60,12 @@ function committedText(urlPath) {
 
 /** @param {string} id */
 function keepCheck(id) {
-  const tex = resolvePackTex(loadResourcesEntries(), id);
+  const entries = loadResourcesEntries();
+  if (entries.some((e) => e.id === id && e.type === 'markscheme')) {
+    console.error(`mark-checked: --reordered takes a solutions id; check the mark scheme ${id} again after its questions are renumbered`);
+    process.exit(1);
+  }
+  const tex = resolvePackTex(entries, id);
   if (!tex.ok) {
     console.error(`mark-checked: ${tex.reason}`);
     process.exit(1);
@@ -145,6 +154,8 @@ function main() {
     return;
   }
 
+  // A solutions id hashes the pack's .tex pair; a mark scheme id hashes the
+  // scheme's YAML with that pair.
   const result = hashPackOnDisk(loadResourcesEntries(), id);
   if (!result.ok) {
     console.error(`mark-checked: ${result.reason}`);

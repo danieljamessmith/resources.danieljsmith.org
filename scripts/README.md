@@ -18,11 +18,12 @@ the root `AGENTS.md`.
 | `npm run sync-questions [scope]` | Rewrites SOLN statement regions in place to match QBT. Solution box content is never touched. Skips structurally broken pairs (run `check-questions` first to triage) |
 | `npm run check-resources` | Read-only validator for `src/data/resources.ts` (see Catalogue and database checks). Non-zero exit on any violation |
 | `npm run check-generated` | Read-only verifier that the `*.generated.ts` files in `src/data/` match what `count-questions` and `hash-assets` would produce now (catches stale generated state from `--no-verify` commits or hand-edits). Non-zero exit on staleness |
-| `npm run check-pairs` | Read-only check that every topic with any pack asset has all four of QBT/soln `.tex`/`.pdf`, and that no tracked file under `public/tex` is missing |
+| `npm run check-pairs` | Read-only check that every topic with any pack asset has all four of QBT/soln `.tex`/`.pdf`; that a mark scheme in a section's `ms/` folder has its pack beside it and, once it has a `.tex` or PDF, all three of its `.yaml`, `.tex` and `.pdf`; and that no tracked file under `public/tex` is missing |
 | `npm run check-private-terms` | Read-only check that no private term appears in tracked/new files (or, with `--message FILE`, a commit message): text files as they are, PDFs by the text their pages show and the strings they carry. The list comes from `PRIVATE_TERMS` (CI secret), `PRIVATE_TERMS_FILE`, or `~/.config/private-terms.txt`; with none, or an empty one, the check fails. Hits are reported by term number only |
 | `npm run mark-checked -- <solutions-id> [--date YYYY-MM-DD]` | Records in `src/data/reviews.json` that a pack's worked solutions were checked: the date (default today, never after it) and the current hash of the pack's `.tex` pair. Run it after the pack's last `.tex` edit. An unknown flag or a second argument is refused, so without the `--` (npm takes `--date` for itself) it stops rather than recording today |
+| `npm run mark-checked -- <markscheme-id> [--date YYYY-MM-DD]` | The same for a mark scheme, under its own id: the hash covers the scheme's YAML and the pack's two `.tex` files, so an edit to either shows the scheme as changed. Run it after the scheme's last edit. `--reordered` takes a solutions id only |
 | `npm run mark-checked -- <solutions-id> --reordered` | After an edit that only put a pack's questions in a new order, keeps its existing check date and stores the new hash. Refuses unless the committed pack matched its record and both working-tree files are the committed ones with their questions reordered the same way (delimiters, source hints and `\djsLastUpdated` may differ) |
-| `npm run review-status [scope \| solutions-id]` | Read-only report of packs never checked, checked and unchanged, or changed since their check. Scope as for `check-questions` (default `further-maths`); a solutions id reports one pack |
+| `npm run review-status [scope \| solutions-id \| markscheme-id]` | Read-only report of packs and mark schemes never checked, checked and unchanged, or changed since their check. Scope as for `check-questions` (default `further-maths`); a solutions or mark scheme id reports that one |
 | `npm run compile-tex -- [scope] [--deploy]` | Bulk latexmk over `further-maths` (default) or `all`; `--deploy` copies built PDFs up beside the source on success. TMUA files are never compiled here (the `tmua` scope is refused) |
 | `npm run import-pack -- [flags]` | Adds a pack from a local folder (see Importing a pack) |
 
@@ -70,7 +71,9 @@ What it does, in order:
    latexmk arguments into its `build/` folder and copies the PDF up. A failed
    compile prints the LaTeX errors from the log.
 4. Writes the two rows into `src/data/resources.ts`
-   (`scripts/lib/resources-write.mjs`) after the section's last pack, or, for a
+   (`scripts/lib/resources-write.mjs`) after the section's last pack (after
+   that pack's mark scheme row when it has one, so a pack's rows stay
+   together), or, for a
    section's first pack, after its strand's last row under a
    `// --- A-level Further Maths: <strand> - <section> ---` line. The rows take
    the existing shape: `id` first; `id`, `file`, `type`, `pairId` and `topic`
@@ -127,11 +130,11 @@ retry.
 | `scripts/check-private-terms.mjs` | Read-only private-term scan of the tree or a commit message (list kept outside the repo) |
 | `scripts/count-questions.mjs` | npm pre-hook generator for `src/data/questionCounts.generated.ts` |
 | `scripts/hash-assets.mjs` | npm pre-hook generator for `src/data/fileHashes.generated.ts` |
-| `scripts/mark-checked.mjs` | Writes a pack's check date and `.tex` hash to `src/data/reviews.json`; `--reordered` carries an existing check across a pure reorder |
-| `scripts/review-status.mjs` | Read-only report of each pack's check status from `src/data/reviews.json` |
-| `scripts/lib/reviews.mjs` | `reviews.json` parse/render/atomic-write, `.tex` pair hashing (CRLF-insensitive) and status classification behind `mark-checked` and `review-status` |
+| `scripts/mark-checked.mjs` | Writes a pack's or a mark scheme's check date and hash to `src/data/reviews.json`; `--reordered` carries a pack's existing check across a pure reorder |
+| `scripts/review-status.mjs` | Read-only report of each pack's and mark scheme's check status from `src/data/reviews.json` |
+| `scripts/lib/reviews.mjs` | `reviews.json` parse/render/atomic-write, `.tex` pair and mark scheme hashing (CRLF-insensitive, last-updated lines left out) and status classification behind `mark-checked` and `review-status` |
 | `scripts/lib/pack-preamble.mjs` | Further Maths pack path/depth helpers, shared-preamble migration, import normalization, initial dates, date validation, pack title and site-path read/write (`readPackIdentity`, `applyPackIdentity`), `\djsMechanicsPack` and preamble comments, and convention checks |
-| `scripts/lib/pair-presence.mjs` | Pure quartet / tracked-missing checker behind `check-pairs` |
+| `scripts/lib/pair-presence.mjs` | Pure quartet, mark scheme and tracked-missing checker behind `check-pairs` |
 | `scripts/lib/private-terms.mjs` | Pure term-list parsing and whole-token matching behind `check-private-terms` |
 | `scripts/lib/pdf-text.mjs` | Pure readable-text extraction from a PDF (page text, document info, bookmarks, metadata) for `check-private-terms` |
 | `scripts/lib/tex-utils.mjs` | Shared path, `.tex` discovery, document boundary, and QBT/soln pair helpers |
@@ -139,7 +142,7 @@ retry.
 | `scripts/lib/solution-boxes.mjs` | Pure legacy-Solution-box → `djsSolution` rewrite used by `migrate-solution-boxes` |
 | `scripts/lib/solution-layout.mjs` | Pure display/paragraph tokenizer and layout rules behind `check-solution-layout` |
 | `scripts/lib/site-tree.mjs` | Interactive section-folder picker for `import-pack` |
-| `scripts/lib/resources-derive.mjs` | Regex-based introspection of `src/data/resources.ts` (rows, every `id:` key, board lists) and `src/data/topics.ts` (strands, their folders, sections and boards) for the importer and validation |
+| `scripts/lib/resources-derive.mjs` | Regex-based introspection of `src/data/resources.ts` (rows, every `id:` key, board lists) and `src/data/topics.ts` (strands, their folders, sections and boards) for the importer and validation; a pack's mark scheme id and file (`markSchemeId`, `markSchemeFile`) |
 | `scripts/lib/resources-write.mjs` | Renders a pack's two rows, splices them into `resources.ts` as text and reads them back |
 | `scripts/lib/resources-check.mjs` | Pure resource catalogue invariant checker |
 
@@ -164,9 +167,14 @@ The pre-commit checks split responsibility cleanly:
   as a row (the regex parser would otherwise drop it silently); every entry's
   `file` exists on disk; ids are unique; `pairId` resolves and is symmetric;
   partner types are `{questions, solutions}`; partner `topic` and `category`
-  match; each `type: 'answers'` entry has a `paperId` naming a
-  `type: 'questions'` entry in its category, at most one per paper, and no
-  other entry carries `paperId`; `type: 'questions'` `/qbt/` entries are keyed
+  match; each `type: 'answers'` or `type: 'markscheme'` entry has a
+  `paperId` naming a `type: 'questions'` entry in its category, at most one
+  of each per paper, and no other entry carries `paperId`; a mark scheme's id
+  is its pack's solutions id with `-ms` for `-solns`, its title and topic are
+  the pack's, its description is `Mark scheme`, its file is
+  `<section>/ms/_QBT___MS__<stem>.pdf` beside the pack's
+  `qbt/_QBT__<stem>.pdf`, and it carries no `pairId` or `boards` (it takes
+  the questions row's); `type: 'questions'` `/qbt/` entries are keyed
   in `questionCounts.generated.ts`; a Further Maths row's `topic` is a section
   of its strand in `topics.ts`, and its `boards` belong to its strand's list;
   each Further Maths QBT/soln entry's `.tex` header topic equals its `title`

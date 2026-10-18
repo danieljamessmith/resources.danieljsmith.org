@@ -1,7 +1,9 @@
 /**
  * Read-only integrity check: every topic that has any QBT/soln pack asset
- * must have all four of { qbt.tex, qbt.pdf, soln.tex, soln.pdf }. Also flags
- * tracked files under public/tex that are missing from the working tree.
+ * must have all four of { qbt.tex, qbt.pdf, soln.tex, soln.pdf }. A mark
+ * scheme in the `ms/` folder needs its pack beside it, and once rendered its
+ * .yaml, .tex and .pdf together. Also flags tracked files under public/tex
+ * that are missing from the working tree.
  *
  * Usage: node scripts/check-pairs.mjs
  */
@@ -18,18 +20,23 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(__dirname, '..');
 const texRoot = join(repoRoot, 'public', 'tex');
 
-const QBT_PACK = /^_QBT__(?!_Solns__).+\.(tex|pdf)$/;
+const QBT_PACK = /^_QBT__(?!_Solns__)(?!_MS__).+\.(tex|pdf)$/;
 const SOLN_PACK = /^_QBT___Solns__.+\.(tex|pdf)$/;
+const MS_PACK = /^_QBT___MS__.+\.(yaml|tex|pdf)$/;
 
 /**
  * @param {string} base
- * @param {'qbt' | 'soln'} kind
+ * @param {'qbt' | 'soln' | 'ms'} kind
  * @returns {string | null}
  */
 function topicNameFromBasename(base, kind) {
   if (kind === 'qbt') {
     if (!QBT_PACK.test(base)) return null;
-    return base.replace(/^_QBT__(?!_Solns__)/, '').replace(/\.(tex|pdf)$/, '');
+    return base.replace(/^_QBT__/, '').replace(/\.(tex|pdf)$/, '');
+  }
+  if (kind === 'ms') {
+    if (!MS_PACK.test(base)) return null;
+    return base.replace(/^_QBT___MS__/, '').replace(/\.(yaml|tex|pdf)$/, '');
   }
   if (!SOLN_PACK.test(base)) return null;
   return base.replace(/^_QBT___Solns__/, '').replace(/\.(tex|pdf)$/, '');
@@ -48,11 +55,11 @@ function ingestPackFile(absFile, repoRoot) {
   if (norm.includes('/notes/')) return;
 
   const segs = norm.split('/');
-  const kindIdx =
-    segs.lastIndexOf('qbt') >= 0 ? segs.lastIndexOf('qbt') : segs.lastIndexOf('soln');
-  if (kindIdx < 1) return;
+  // The pack's own folder is the file's parent.
+  const kindIdx = segs.length - 2;
+  if (kindIdx < 1 || !['qbt', 'soln', 'ms'].includes(segs[kindIdx])) return;
 
-  const folderKind = segs[kindIdx] === 'qbt' ? 'qbt' : 'soln';
+  const folderKind = /** @type {'qbt' | 'soln' | 'ms'} */ (segs[kindIdx]);
   const topicDirAbs = segs.slice(0, kindIdx).join('/');
   const relTopicDir = normalizePath(relative(repoRoot, topicDirAbs));
   const base = segs[segs.length - 1];
@@ -75,8 +82,12 @@ function ingestPackFile(absFile, repoRoot) {
     byTopic.set(key, slot);
   }
 
-  const ext = base.endsWith('.tex') ? 'tex' : 'pdf';
-  if (folderKind === 'qbt') {
+  const ext = base.endsWith('.tex') ? 'tex' : base.endsWith('.yaml') ? 'yaml' : 'pdf';
+  if (folderKind === 'ms') {
+    if (ext === 'yaml') slot.msYaml = true;
+    else if (ext === 'tex') slot.msTex = true;
+    else slot.msPdf = true;
+  } else if (folderKind === 'qbt') {
     if (ext === 'tex') slot.qbtTex = true;
     else slot.qbtPdf = true;
   } else {
@@ -103,8 +114,8 @@ function walk(dir) {
     } else {
       const rel = normalizePath(relative(repoRoot, full));
       if (!rel.startsWith('public/tex/')) continue;
-      if (!rel.includes('/qbt/') && !rel.includes('/soln/')) continue;
-      if (!/\.(tex|pdf)$/.test(entry.name)) continue;
+      if (!rel.includes('/qbt/') && !rel.includes('/soln/') && !rel.includes('/ms/')) continue;
+      if (!/\.(tex|pdf|yaml)$/.test(entry.name)) continue;
       ingestPackFile(full, repoRoot);
     }
   }

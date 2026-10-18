@@ -7,8 +7,9 @@
  * `warning` (caller logs and continues). The split is by severity:
  *
  *   violation: a structural inconsistency that will break the site (a row
- *              the parser can't read, missing file, duplicate id, broken pair
- *              or answer-key link), a Further Maths row whose section or
+ *              the parser can't read, missing file, duplicate id, broken pair,
+ *              answer-key or mark-scheme link), a mark scheme row that isn't
+ *              its pack's, a Further Maths row whose section or
  *              boards its strand doesn't have, or a Further Maths pack whose
  *              title or site path disagrees with what the site shows.
  *   warning:   surface for triage but does not block (orphan PDFs).
@@ -20,7 +21,7 @@
  */
 
 import { readPackIdentity } from './pack-preamble.mjs';
-import { sitePathLabels } from './resources-derive.mjs';
+import { markSchemeFile, markSchemeId, sitePathLabels } from './resources-derive.mjs';
 
 /**
  * @typedef {import('./resources-derive.mjs').ResourceEntry} ResourceEntry
@@ -193,32 +194,36 @@ export function checkResources({
     }
   }
 
-  // ---- Pass 3: answer keys (each names one questions entry by paperId)
-  /** @type {Map<string, string>} paper id -> id of its answer key */
-  const answerKeyOf = new Map();
+  // ---- Pass 3: answer keys and mark schemes (each names one questions entry
+  // by paperId). A mark scheme also belongs to a Further Maths pack: its id is
+  // the solutions id with -ms for -solns, its title the pack's, its file in the
+  // pack's ms/ folder, and its boards are the questions row's.
+  /** @type {Map<string, string>} `${type} ${paper id}` -> id of its answer key or scheme */
+  const keyOf = new Map();
   for (const e of entries) {
-    if (e.type !== 'answers') {
+    if (e.type !== 'answers' && e.type !== 'markscheme') {
       if (e.paperId) {
         violations.push({
           kind: 'paper-id-misplaced',
           id: e.id,
-          message: `'${e.id}' has paperId but only type:'answers' entries name a paper`,
+          message: `'${e.id}' has paperId but only type:'answers' and type:'markscheme' entries name a paper`,
         });
       }
       continue;
     }
+    const kind = e.type;
     if (!e.paperId) {
       violations.push({
-        kind: 'answers-paper-missing',
+        kind: `${kind}-paper-missing`,
         id: e.id,
-        message: `'${e.id}' is type:'answers' but has no paperId`,
+        message: `'${e.id}' is type:'${kind}' but has no paperId`,
       });
       continue;
     }
     const paper = byId.get(e.paperId);
     if (!paper) {
       violations.push({
-        kind: 'answers-paper-unresolved',
+        kind: `${kind}-paper-unresolved`,
         id: e.id,
         message: `'${e.id}' paperId '${e.paperId}' does not match any entry`,
       });
@@ -226,22 +231,26 @@ export function checkResources({
     }
     if (paper.type !== 'questions' || paper.category !== e.category) {
       violations.push({
-        kind: 'answers-paper-mismatch',
+        kind: `${kind}-paper-mismatch`,
         id: e.id,
         message:
           `'${e.id}' paperId '${paper.id}' must name a type:'questions' entry in ` +
           `category '${e.category}' (found ${paper.type ?? 'untyped'} in '${paper.category}')`,
       });
+    } else if (kind === 'markscheme') {
+      violations.push(...markSchemeFindings(e, paper, byId));
     }
-    const earlier = answerKeyOf.get(paper.id);
+    const earlier = keyOf.get(`${kind} ${paper.id}`);
     if (earlier) {
       violations.push({
-        kind: 'answers-duplicate',
+        kind: `${kind}-duplicate`,
         id: e.id,
-        message: `'${paper.id}' has two answer keys: '${earlier}' and '${e.id}'`,
+        message:
+          `'${paper.id}' has two ${kind === 'answers' ? 'answer keys' : 'mark schemes'}: ` +
+          `'${earlier}' and '${e.id}'`,
       });
     } else {
-      answerKeyOf.set(paper.id, e.id);
+      keyOf.set(`${kind} ${paper.id}`, e.id);
     }
   }
 
@@ -327,6 +336,59 @@ export function checkResources({
   }
 
   return { violations, warnings };
+}
+
+/**
+ * What is wrong with a mark scheme row whose `paperId` names a questions entry
+ * of its category.
+ *
+ * @param {ResourceEntry} e
+ * @param {ResourceEntry} paper
+ * @param {Map<string, ResourceEntry>} byId
+ * @returns {Finding[]}
+ */
+function markSchemeFindings(e, paper, byId) {
+  /** @type {Finding[]} */
+  const out = [];
+  const add = (/** @type {string} */ kind, /** @type {string} */ message) =>
+    out.push({ kind, id: e.id, message });
+  const solutions = paper.pairId ? byId.get(paper.pairId) : undefined;
+  if (!solutions || solutions.type !== 'solutions') {
+    add('markscheme-no-solutions', `'${e.id}' names '${paper.id}', which has no solutions entry`);
+  } else {
+    const expected = markSchemeId(solutions.id);
+    if (e.id !== expected) {
+      add(
+        'markscheme-id-mismatch',
+        `'${e.id}' should be ${quote(expected ?? undefined)}: the solutions id '${solutions.id}' with -ms for -solns`,
+      );
+    }
+  }
+  if (e.title !== paper.title) {
+    add('markscheme-title-mismatch', `'${e.id}' title is ${quote(e.title)} but its pack's is ${quote(paper.title)}`);
+  }
+  if (e.description !== 'Mark scheme') {
+    add('markscheme-description', `'${e.id}' description is ${quote(e.description)}, not 'Mark scheme'`);
+  }
+  if (e.topic !== paper.topic) {
+    add('markscheme-topic-mismatch', `'${e.id}' topic is ${quote(e.topic)} but its pack's is ${quote(paper.topic)}`);
+  }
+  const file = markSchemeFile(paper.file);
+  if (file !== e.file) {
+    add(
+      'markscheme-file-mismatch',
+      file
+        ? `'${e.id}' file is ${e.file} but its pack's scheme is ${file}`
+        : `'${e.id}' names '${paper.id}', which is not a Further Maths questions pack`,
+    );
+  }
+  if (e.pairId) {
+    add('markscheme-pair-id', `'${e.id}' has pairId: a mark scheme names its pack by paperId only`);
+  }
+  if (e.boards) {
+    add('markscheme-boards', `'${e.id}' has boards: a mark scheme takes its pack's from '${paper.id}'`);
+  }
+  return out;
 }
 
 /**

@@ -110,3 +110,24 @@ describe('checkPairPresence', () => {
     expect(kinds).toEqual(['incomplete-quartet', 'tracked-but-missing']);
   });
 });
+
+describe('checkPairPresence: mark schemes', () => {
+  it('passes a pack with a published scheme, or with only its YAML', () => {
+    expect(checkPairPresence([slot({ msYaml: true, msTex: true, msPdf: true })], []).violations).toEqual([]);
+    expect(checkPairPresence([slot({ msYaml: true })], []).violations).toEqual([]);
+  });
+
+  it('flags a scheme PDF without its YAML or .tex', () => {
+    const { violations } = checkPairPresence([slot({ msPdf: true })], []);
+    expect(violations.map((v) => v.kind)).toEqual(['incomplete-scheme']);
+    expect(violations[0].message).toContain('.yaml, .tex');
+  });
+
+  it('flags a scheme with no pack beside it', () => {
+    const { violations } = checkPairPresence(
+      [slot({ qbtTex: false, qbtPdf: false, solnTex: false, solnPdf: false, msYaml: true })],
+      [],
+    );
+    expect(violations.map((v) => v.kind)).toEqual(['scheme-without-pack']);
+  });
+});

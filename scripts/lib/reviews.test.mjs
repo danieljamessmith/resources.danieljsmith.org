@@ -5,10 +5,16 @@ import {
   keepCheckAcrossReorder,
   parseReviews,
   renderReviews,
+  hashPackOnDisk,
   resolvePackTex,
+  resolveRecordSources,
   reviewStatuses,
+  schemeHash,
   texPairHash,
 } from './reviews.mjs';
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 
 /** @returns {import('./resources-derive.mjs').ResourceEntry[]} */
 function entries() {
@@ -138,6 +144,91 @@ describe('reviewStatuses', () => {
     };
     const { unknownIds } = reviewStatuses(entries(), reviews, currentHash, '/tex/');
     expect(unknownIds).toEqual(['fm-a', 'gone']);
+  });
+});
+
+/** `entries()` with a mark scheme for pack A. */
+function entriesWithScheme() {
+  return [
+    ...entries(),
+    {
+      id: 'fm-a-ms',
+      file: '/tex/further-maths/core-pure/t/ms/_QBT___MS__A.pdf',
+      category: 'FM - Core Pure',
+      type: 'markscheme',
+      paperId: 'fm-a',
+    },
+  ];
+}
+
+describe('mark scheme records', () => {
+  it('hash the YAML with the pack, ignoring CRLF and last_updated', () => {
+    const yaml = 'format: 1\npack: A\nlast_updated: 1 October 2026\nquestions: []\n';
+    const base = schemeHash(yaml, 'q', 's');
+    expect(base).toMatch(/^[0-9a-f]{8}$/);
+    expect(base).not.toBe(texPairHash('q', 's'));
+    expect(schemeHash(yaml.replace(/\n/g, '\r\n'), 'q', 's')).toBe(base);
+    expect(schemeHash(yaml.replace('1 October', '5 October'), 'q', 's')).toBe(base);
+    expect(schemeHash(yaml.replace('[]', '[1]'), 'q', 's')).not.toBe(base);
+    expect(schemeHash(yaml, 'q2', 's')).not.toBe(base);
+    expect(schemeHash(yaml, 'q', 's2')).not.toBe(base);
+  });
+
+  it("resolve a scheme id to its YAML and its pack's .tex pair", () => {
+    expect(resolveRecordSources(entriesWithScheme(), 'fm-a-ms')).toEqual({
+      ok: true,
+      kind: 'markscheme',
+      yaml: '/tex/further-maths/core-pure/t/ms/_QBT___MS__A.yaml',
+      qbtTex: '/tex/further-maths/core-pure/t/qbt/_QBT__A.tex',
+      solnTex: '/tex/further-maths/core-pure/t/soln/_QBT___Solns__A.tex',
+    });
+    expect(resolveRecordSources(entriesWithScheme(), 'fm-a-solns')).toMatchObject({ ok: true, kind: 'solutions' });
+    expect(resolveRecordSources(entriesWithScheme(), 'fm-a').ok).toBe(false);
+    const es = entriesWithScheme();
+    es[es.length - 1].paperId = 'nope';
+    expect(resolveRecordSources(es, 'fm-a-ms').ok).toBe(false);
+  });
+
+  it('are listed by reviewStatuses, and not reported as unknown', () => {
+    const hashes = { 'fm-a-solns': 'aaaaaaaa', 'fm-a-ms': 'mmmmmmmm' };
+    const { packs, unknownIds } = reviewStatuses(
+      entriesWithScheme(),
+      { 'fm-a-ms': { checked: '2026-10-18', texHash: 'mmmmmmmm' } },
+      (id) => hashes[id] ?? null,
+      '/tex/further-maths/',
+    );
+    expect(packs).toEqual([
+      { id: 'fm-a-solns', status: 'never' },
+      { id: 'fm-a-ms', status: 'current', checked: '2026-10-18' },
+    ]);
+    expect(unknownIds).toEqual([]);
+  });
+
+  it('change when the YAML or either .tex file on disk changes', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'reviews-ms-'));
+    try {
+      const base = join(dir, 'tex', 'further-maths', 'core-pure', 't');
+      for (const sub of ['qbt', 'soln', 'ms']) mkdirSync(join(base, sub), { recursive: true });
+      const write = (rel, text) => writeFileSync(join(base, rel), text);
+      write('qbt/_QBT__A.tex', 'q');
+      write('soln/_QBT___Solns__A.tex', 's');
+      const es = entriesWithScheme();
+      expect(hashPackOnDisk(es, 'fm-a-ms', dir)).toEqual({
+        ok: false,
+        reason: 'missing public/tex/further-maths/core-pure/t/ms/_QBT___MS__A.yaml',
+      });
+      write('ms/_QBT___MS__A.yaml', 'format: 1\n');
+      const first = hashPackOnDisk(es, 'fm-a-ms', dir);
+      expect(first).toEqual({ ok: true, hash: schemeHash('format: 1\n', 'q', 's') });
+      expect(hashPackOnDisk(es, 'fm-a-solns', dir)).toEqual({ ok: true, hash: texPairHash('q', 's') });
+      write('ms/_QBT___MS__A.yaml', 'format: 2\n');
+      const second = hashPackOnDisk(es, 'fm-a-ms', dir);
+      expect(second).not.toEqual(first);
+      write('soln/_QBT___Solns__A.tex', 's2');
+      expect(hashPackOnDisk(es, 'fm-a-ms', dir)).not.toEqual(second);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 });
 

@@ -5,10 +5,10 @@ import {
   resources,
   getResourceById,
   getPaperFamily,
+  familyInOrder,
   getResourceDisplayDescription,
   getResourceMetaDescription,
   TMUA_SHARE_IMAGE,
-  type Resource,
 } from '~/data/resources';
 import { resourceContents } from '~/data/resourceContents';
 import { getStrandHrefForResource } from '~/data/topics';
@@ -73,7 +73,9 @@ const resourceKind =
       ? 'Questions'
       : resource.type === 'answers'
         ? 'Answer key'
-        : 'Notes';
+        : resource.type === 'markscheme'
+          ? 'Mark scheme'
+          : 'Notes';
 const pageTitle = resource.category.startsWith('FM - ')
   ? `${resource.title}: ${resourceKind} | A-level Further Maths`
   : resource.type === 'solutions' || resource.type === 'answers'
@@ -87,12 +89,14 @@ const paneLabel = (type: string | undefined): string =>
       ? 'Solutions'
       : type === 'answers'
         ? 'Answer key'
-        : 'Document';
+        : type === 'markscheme'
+          ? 'Mark scheme'
+          : 'Document';
 
-// Side by side shows questions with their solutions, and an answer key with its paper.
+// Side by side shows questions with their solutions, and an answer key or mark scheme with its paper.
 const family = getPaperFamily(resource);
 const partnerResource =
-  resource.type === 'answers'
+  resource.type === 'answers' || resource.type === 'markscheme'
     ? (family.questions ?? null)
     : resource.pairId && (resource.type === 'questions' || resource.type === 'solutions')
       ? (getResourceById(resource.pairId) ?? null)
@@ -105,10 +109,10 @@ const paired = partnerResource
     }
   : null;
 
-// The rest of the resource's family, always in the order questions, answer key, solutions.
-// The side-by-side partner is the primary link.
-const familyLinks = [family.questions, family.answers, family.solutions]
-  .filter((r): r is Resource => r !== undefined && r.id !== resource.id)
+// The rest of the resource's family, always in the order questions, answer key or mark scheme,
+// solutions. The side-by-side partner is the primary link.
+const familyLinks = familyInOrder(family)
+  .filter((r) => r.id !== resource.id)
   .map((r) => ({
     href: `/view/${r.id}/`,
     label: paneLabel(r.type),

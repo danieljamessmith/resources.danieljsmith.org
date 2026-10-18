@@ -20,7 +20,7 @@ interface Props {
 
 const { strand, title, description, notice } = Astro.props;
 
-type Pair = { questions: Resource; solutions: Resource };
+type Pair = { questions: Resource; markscheme: Resource | undefined; solutions: Resource };
 const sections = strand.topics.map((topic) => {
   const notes = getResourcesByTopic(strand.category, topic.topic).filter((r) => r.type === 'notes');
   const pairs = getResourcePairs(strand.category, topic.topic).filter(
