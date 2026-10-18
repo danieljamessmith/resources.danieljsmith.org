@@ -12,7 +12,7 @@ the root `AGENTS.md`.
 | `npm run test` | Vitest run over all `*.test.mjs` |
 | `npm run check-tex` | Read-only hygiene check on QBT/soln `.tex` bodies: no full-line comments except the `% ---- Question N ----` delimiters and `% [Source: <file>, QN]` hints, and none at all after `\end{document}` |
 | `npm run check-solution-layout` | Read-only check that worked solutions follow the *Solution source layout* (blank lines around displays, `\frac` in sentences, `\mathrm` units, no `\!` before `\left`) |
-| `npm run check-pack-preamble` | Read-only convention check for Further Maths QBT/Soln shared `pack_preamble.tex` wrappers, `\djsMechanicsPack` and preamble comments |
+| `npm run check-pack-preamble` | Read-only convention check for Further Maths QBT/Soln shared `pack_preamble.tex` wrappers, `\djsMechanicsPack` and preamble comments, and for the mark schemes' rendered `.tex` wrappers |
 | `npm run clean-tex` | Strips full-line comments from QBT/soln bodies and from after `\end{document}`, collapses blank-line runs, re-numbers question delimiters |
 | `npm run check-questions [scope]` | Read-only drift detector: reports any QBT/soln pair where the SOLN statement region differs from the QBT statement, plus structurally broken pairs (numbering mismatches, duplicate delimiters, missing/extra `\questionitem`, delimiter numbering gaps). Same scope arg as `compile-tex`. Non-zero exit on drift |
 | `npm run sync-questions [scope]` | Rewrites SOLN statement regions in place to match QBT. Solution box content is never touched. Skips structurally broken pairs (run `check-questions` first to triage) |
@@ -24,9 +24,9 @@ the root `AGENTS.md`.
 | `npm run mark-checked -- <markscheme-id> [--date YYYY-MM-DD]` | The same for a mark scheme, under its own id: the hash covers the scheme's YAML and the pack's two `.tex` files, so an edit to either shows the scheme as changed. Run it after the scheme's last edit. `--reordered` takes a solutions id only |
 | `npm run mark-checked -- <solutions-id> --reordered` | After an edit that only put a pack's questions in a new order, keeps its existing check date and stores the new hash. Refuses unless the committed pack matched its record and both working-tree files are the committed ones with their questions reordered the same way (delimiters, source hints and `\djsLastUpdated` may differ) |
 | `npm run review-status [scope \| solutions-id \| markscheme-id]` | Read-only report of packs and mark schemes never checked, checked and unchanged, or changed since their check. Scope as for `check-questions` (default `further-maths`); a solutions or mark scheme id reports that one |
-| `npm run compile-tex -- [scope] [--deploy]` | Bulk latexmk over `further-maths` (default) or `all`; `--deploy` copies built PDFs up beside the source on success. TMUA files are never compiled here (the `tmua` scope is refused) |
+| `npm run compile-tex -- [scope] [--deploy]` | Bulk latexmk over `further-maths` (default) or `all`, packs and mark schemes' rendered `.tex` alike (it compiles a scheme; `markscheme render` writes it); `--deploy` copies built PDFs up beside the source on success. TMUA files are never compiled here (the `tmua` scope is refused) |
 | `npm run import-pack -- [flags]` | Adds a pack from a local folder (see Importing a pack) |
-| `npm run markscheme -- <command>` | Mark scheme data: read a pack, check, parse, write, format, stamp and renumber a scheme, report each scheme's state (see Mark schemes) |
+| `npm run markscheme -- <command>` | Mark scheme data: read a pack, check, parse, write, format, stamp and renumber a scheme, report each scheme's state, render its pages (see Mark schemes) |
 
 Through npm, flags need `--` before them (`npm run import-pack -- --yes …`);
 `node scripts/<name>.mjs …` takes them directly.
@@ -169,6 +169,7 @@ stdin; exit 0, 1 on errors or a refusal, 2 on a usage error):
 | `stamp <yaml> --only "3, 5"` | Sets those questions' `stamp` to their statement and solution now |
 | `renumber <yaml>` | After the pack's questions are reordered: matches each question to the pack's by stamp, puts them in the pack's order and sets each `q`. Refuses, naming the question, when a stamp matches none or more than one of the pack's (a question edited in the same change: revise its scheme first) |
 | `status [<scope> \| <id>]` | Per scheme, the questions broken (an error of rules 1-24) or stale (stamp no longer matches), and how many packs have no scheme. An id is the pack's questions, solutions or mark scheme id |
+| `render [<yaml> ... \| <scope>] [--draft]` | Writes each scheme's `.tex` beside its YAML (see The pages). A scheme with an error of rules 1-24 is named and not rendered; with `--draft` it is checked as a draft (`check --draft`) and its queries and flags are shown. Exit 1 if any scheme was not rendered |
 
 A **codes file** (`--codes`) gives each part's codes in order:
 `{ "parts": [{ "q": 3, "part": "a", "codes": ["M1", "A1"], "alt": [...] }] }`,
@@ -203,6 +204,55 @@ halves of 6 and 16) are reported.
 23. A flag has a known kind and a one-line `why`, and no `rows` or `alt`; `check --question` refuses `not_drafted`. A query's code is on the list and differs from its mark's, with a one-line `why`.
 24. A committed scheme holds no flag and no query (`check` without `--draft`).
 
+**The pages.** `render` writes the `.tex` from the YAML and the pack alone,
+so the same data always renders the same bytes (in the file's own line
+endings); `compile-tex` builds it. The document, on
+`_shared/markscheme_preamble.tex` (the pack preamble, then the scheme's
+layer):
+
+- **The front page:** `\djsContentsTitle` with `Mark scheme` and the counts,
+  which the renderer sets with `\djsSetQuestionCount` and `\djsAddMarks`
+  (a scheme has no `\questionitem` or `\marks`), then the contents table:
+  Question, Marks by part (`(a) 4  (b) 6`, empty for one unlabelled part),
+  Marks, Page and a total row. A question's name and page number link to
+  its first page, which carries the target and a `Question N` bookmark
+  (`\msQuestion`). The colophon comes from `\djsLastUpdated{<last_updated>}`.
+- **The conventions,** `\input{../../../../_shared/markscheme_conventions.tex}`:
+  pages 2 and 3, so the questions start on page 4.
+- **A page per question:** one `msscheme` table (Question 16mm, Scheme the
+  rest, Marks 16mm, Notes 44mm). Each line of a `scheme` block is a line of
+  its cell, 4pt apart. A row's codes share one line (`A1 AG` tied, so only a
+  pair too wide stacks); a lone mark's note stands alone, two marks' notes
+  each start with their code (`\msNote`). A part's label (`18(a)`,
+  `18(b)(ii)`, `18`) sits in its first row, with no rule across the
+  Question column inside the part; its total row `[n]` follows (none for a
+  question that is one unlabelled part), then `Total for Question N`.
+- **Page breaks:** a part may break between any two rows. Only its total
+  row, the question's total row and an alternative's first row (kept with
+  its title) are held to the row above (`\nopagebreak`). A continuation
+  page opens `Question N continued` above the repeated head row.
+- **An alternative:** a row `\msAlternative{<title>}` across Scheme, Marks
+  and Notes, then its rows, all tinted `msTint` in those columns; the
+  part's one total row after both.
+- **A figure:** the solution box's Nth counted picture (`solutionPictures`
+  in the lib: from `\begin{tikzpicture}` to its `\end`, comments and blank
+  lines removed), alone on a row across Scheme, Marks and Notes in
+  `\msFigure`, which scales it uniformly and only down, to the row's width
+  and at most 0.6 of the text height; then one row per feature mark, the
+  feature in italics.
+- **`--draft`:** a queried mark's code as `\msQueried{B1}{E1}` (B1 → E1?),
+  the query's why under its note (`\msQuery`), and a flagged part as one
+  row `\msFlag{<kind>}{<why>}` before its total.
+
+The output holds no comments. `scripts/lib/fixtures/markscheme/` holds the
+golden files: a four-question pack (a sketch with its figure, an
+alternative on a question of one unlabelled part, and a part longer than a
+page), its scheme, and its rendered `.tex`, plain and draft. After a
+deliberate change to the renderer, `UPDATE_GOLDEN=1 npx vitest run
+scripts/lib/markscheme-render.test.mjs` rewrites them; compile the fixture
+(`latexmk` in its `ms/`, as `compile-tex` runs it) and look at the PDF
+before committing.
+
 ## Script module map
 
 | Path | Purpose |
@@ -226,13 +276,14 @@ halves of 6 and 16) are reported.
 | `scripts/mark-checked.mjs` | Writes a pack's or a mark scheme's check date and hash to `src/data/reviews.json`; `--reordered` carries a pack's existing check across a pure reorder |
 | `scripts/review-status.mjs` | Read-only report of each pack's and mark scheme's check status from `src/data/reviews.json` |
 | `scripts/markscheme.mjs` | The mark scheme commands (see Mark schemes): argument parsing, file reads and atomic writes around `scripts/lib/markscheme.mjs` |
-| `scripts/lib/markscheme.mjs` | Mark scheme data: the pack reader (`\marks` labels, stamps, counted figures, `pack --json`), the YAML reader and canonical writer, the checker's rules 1-24 (`checkScheme`, `checkQuestion`), and the splice, stamp and renumber edits |
+| `scripts/lib/markscheme.mjs` | Mark scheme data: the pack reader (`\marks` labels, stamps, counted figures, `pack --json`), the YAML reader and canonical writer, the checker's rules 1-24 (`checkScheme`, `checkQuestion`), the splice, stamp and renumber edits, and a solution's pictures for its figures (`solutionPictures`) |
+| `scripts/lib/markscheme-render.mjs` | The scheme's pages: `renderScheme` writes the `.tex` (front page, conventions input, a table per question; `--draft`'s queries and flags) from a checked scheme and its pack. Golden files in `scripts/lib/fixtures/markscheme/` |
 | `scripts/lib/reviews.mjs` | `reviews.json` parse/render/atomic-write, `.tex` pair and mark scheme hashing (CRLF-insensitive, last-updated lines left out) and status classification behind `mark-checked` and `review-status` |
-| `scripts/lib/pack-preamble.mjs` | Further Maths pack path/depth helpers, shared-preamble migration, import normalization, initial dates, date validation, pack title and site-path read/write (`readPackIdentity`, `applyPackIdentity`), `\djsMechanicsPack` and preamble comments, and convention checks |
+| `scripts/lib/pack-preamble.mjs` | Further Maths pack path/depth helpers, shared-preamble migration, import normalization, initial dates, date validation, pack title and site-path read/write (`readPackIdentity`, `applyPackIdentity`), `\djsMechanicsPack` and preamble comments, and convention checks, the mark scheme wrapper's included (`checkSchemePreambleConvention`) |
 | `scripts/lib/pair-presence.mjs` | Pure quartet, mark scheme and tracked-missing checker behind `check-pairs` |
 | `scripts/lib/private-terms.mjs` | Pure term-list parsing and whole-token matching behind `check-private-terms` |
 | `scripts/lib/pdf-text.mjs` | Pure readable-text extraction from a PDF (page text, document info, bookmarks, metadata) for `check-private-terms` |
-| `scripts/lib/tex-utils.mjs` | Shared path, `.tex` discovery, document boundary, and QBT/soln pair helpers |
+| `scripts/lib/tex-utils.mjs` | Shared path, `.tex` discovery, document boundary, and QBT/soln pair helpers; `isSchemeTexFile` for a scheme's rendered `.tex`, apart from `shouldProcessTexFile` |
 | `scripts/lib/question-blocks.mjs` | Pure parser/synchronizer for `check-questions` and `sync-questions`; preserves CRLF/LF. `questionOrderChange` recognises a file whose questions were only reordered |
 | `scripts/lib/solution-boxes.mjs` | Pure legacy-Solution-box → `djsSolution` rewrite used by `migrate-solution-boxes` |
 | `scripts/lib/solution-layout.mjs` | Pure display/paragraph tokenizer and layout rules behind `check-solution-layout` |
@@ -274,7 +325,9 @@ The pre-commit checks split responsibility cleanly:
   in `questionCounts.generated.ts`; a Further Maths row's `topic` is a section
   of its strand in `topics.ts`, and its `boards` belong to its strand's list;
   each Further Maths QBT/soln entry's `.tex` header topic equals its `title`
-  and its `\djsSitePath` names its strand and `topics.ts` section.
+  and its `\djsSitePath` names its strand and `topics.ts` section, and so
+  do a mark scheme entry's rendered `.tex` (`\djsSchemeHeader`) once it has
+  one.
   `orphan-pdf` is currently a warning while the corpus has a known backlog.
 - **Generated TS freshness:** `check-generated`. Generated files must
   byte-match what `count-questions` and `hash-assets` would produce now. It
@@ -294,4 +347,9 @@ The pre-commit checks split responsibility cleanly:
   `\djsSitePath{}{}` there (its presence and values are checked by
   `check-resources`), `\djsMechanicsPack` in the preamble of every Further
   Mechanics pack and of no other, and no full-line comment before
-  `\begin{document}`.
+  `\begin{document}`. A mark scheme's rendered `.tex`
+  (`<topic>/ms/_QBT___MS__<stem>.tex`, at the same depth) imports
+  `../../../../_shared/markscheme_preamble.tex` and not the pack preamble,
+  has one `\djsSchemeHeader{}` and no pack header, the same date, site
+  path and comment rules, and no `\djsMechanicsPack` (its conventions
+  pages give g).

@@ -1,8 +1,9 @@
 import { basename } from 'node:path';
-import { codePart, normalizePath, shouldProcessTexFile } from './tex-utils.mjs';
+import { codePart, isSchemeTexFile, normalizePath, shouldProcessTexFile } from './tex-utils.mjs';
 
 export const PACK_PREAMBLE_SITE_INPUT = String.raw`\input{../../../../_shared/pack_preamble.tex}`;
 export const PACK_PREAMBLE_OVERLEAF_INPUT = String.raw`\input{preamble.tex}`;
+export const SCHEME_PREAMBLE_SITE_INPUT = String.raw`\input{../../../../_shared/markscheme_preamble.tex}`;
 
 const DOCUMENTCLASS_LINE = String.raw`\documentclass[leqno]{article}`;
 const MONTHS = [
@@ -119,7 +120,8 @@ export function texUnescapeText(text) {
 }
 
 /**
- * A pack's title (its header's topic) and site path, as plain text.
+ * A pack's title (its header's topic) and site path, as plain text. A mark
+ * scheme's `.tex` gives its pack's, from `\djsSchemeHeader`.
  *
  * @param {string} text
  * @returns {{ title: string | null; sitePath: { strand: string; section: string } | null }}
@@ -132,7 +134,9 @@ export function readPackIdentity(text) {
   for (const line of preDoc) {
     if (/^\s*%/.test(line)) continue;
     const arg =
-      extractBraceArgument(line, 'djsQbtHeader') ?? extractBraceArgument(line, 'djsSolnHeader');
+      extractBraceArgument(line, 'djsQbtHeader') ??
+      extractBraceArgument(line, 'djsSolnHeader') ??
+      extractBraceArgument(line, 'djsSchemeHeader');
     if (arg != null) {
       title = texUnescapeText(arg.trim());
       break;
@@ -476,7 +480,7 @@ export function checkPackPreambleConvention(text, relFromRepo) {
  */
 export function checkPackPreambleComments(text, relFromRepo) {
   const rel = normalizePath(relFromRepo);
-  if (!isFurtherMathsPackTexFile(rel)) return [];
+  if (!isFurtherMathsPackTexFile(rel) && !isFurtherMathsSchemeTexFile(rel)) return [];
   const commentLines = preambleCommentLines(text);
   if (commentLines.length === 0) return [];
   return [
@@ -485,4 +489,85 @@ export function checkPackPreambleComments(text, relFromRepo) {
       message: `${rel}: full-line comment before \\begin{document} (line ${commentLines.join(', ')})`,
     },
   ];
+}
+
+/** True for a Further Maths mark scheme's rendered `.tex` (`…/<section>/ms/_QBT___MS__<stem>.tex`). */
+export function isFurtherMathsSchemeTexFile(relFromRepo) {
+  const p = normalizePath(relFromRepo);
+  return p.startsWith('public/tex/further-maths/') && isSchemeTexFile(p);
+}
+
+/**
+ * A mark scheme's `.tex` keeps the scheme's wrapper, as the renderer writes
+ * it: at the packs' depth, in `ms/`; one `\input` of the shared scheme
+ * preamble (which inputs the pack preamble), not of the pack preamble
+ * itself; one `\djsSchemeHeader{}` and no pack header; one valid
+ * `\djsLastUpdated`, at most one `\djsSitePath`, no inline preamble and no
+ * `\djsMechanicsPack`.
+ */
+export function checkSchemePreambleConvention(text, relFromRepo) {
+  const rel = normalizePath(relFromRepo);
+  /** @type {{ kind: string; message: string }[]} */
+  const violations = [];
+  if (!isFurtherMathsSchemeTexFile(rel)) return violations;
+
+  const parts = rel.split('/');
+  if (parts.length !== 7 || parts[5] !== 'ms') {
+    violations.push({
+      kind: 'bad-depth',
+      message: `${rel}: expected public/tex/further-maths/<strand>/<topic>/ms/<file>.tex`,
+    });
+  }
+  const code = text.replace(/(?<!\\)%[^\r\n]*/g, '');
+  if (countMatches(code, /\\input\{\.\.\/\.\.\/\.\.\/\.\.\/_shared\/markscheme_preamble\.tex\}/g) !== 1) {
+    violations.push({
+      kind: 'missing-scheme-input',
+      message: `${rel}: expected exactly one ${SCHEME_PREAMBLE_SITE_INPUT}`,
+    });
+  }
+  if (/\\input\{[^}]*pack_preamble\.tex\}/.test(code) || usesOverleafPackInput(code)) {
+    violations.push({
+      kind: 'pack-input-in-scheme',
+      message: `${rel}: a scheme inputs the scheme preamble only, which inputs the pack preamble`,
+    });
+  }
+  const schemeHeaders = countMatches(code, /\\djsSchemeHeader\{/g);
+  const packHeaders = countMatches(code, /\\djs(?:Qbt|Soln)Header\{/g);
+  if (schemeHeaders !== 1 || packHeaders !== 0) {
+    violations.push({
+      kind: 'bad-header',
+      message: `${rel}: expected exactly one \\djsSchemeHeader{} and no \\djsQbtHeader{} or \\djsSolnHeader{}`,
+    });
+  }
+
+  const lines = splitLines(text);
+  const beginIdx = findBeginDocumentIndex(lines);
+  const preDoc = beginIdx >= 0 ? lines.slice(0, beginIdx).join('\n') : text;
+  const dateCalls = packDateCalls(text);
+  if (dateCalls.length !== 1 || !dateCalls[0].inPreamble || !isValidPackDate(dateCalls[0].value)) {
+    violations.push({
+      kind: 'bad-last-updated',
+      message: `${rel}: expected one valid \\djsLastUpdated{D Month YYYY} before \\begin{document}`,
+    });
+  }
+  const sitePathCalls = packSitePathCalls(text);
+  if (sitePathCalls.length > 1 || sitePathCalls.some((c) => !c.inPreamble || !c.strand || !c.section)) {
+    violations.push({
+      kind: 'bad-site-path',
+      message: `${rel}: expected at most one \\djsSitePath{<strand>}{<topic>} before \\begin{document}`,
+    });
+  }
+  if (DUPLICATED_PREAMBLE_RE.test(preDoc)) {
+    violations.push({
+      kind: 'duplicated-preamble',
+      message: `${rel}: inline package/macro preamble remains before \\begin{document}`,
+    });
+  }
+  if (hasMechanicsPack(text)) {
+    violations.push({
+      kind: 'stray-mechanics-pack',
+      message: `${rel}: a mark scheme never calls ${MECHANICS_PACK_COMMAND} (its conventions pages give g)`,
+    });
+  }
+  return violations;
 }

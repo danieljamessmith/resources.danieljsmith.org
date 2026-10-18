@@ -84,3 +84,32 @@ describe('collectCompileFiles', () => {
     }
   });
 });
+
+describe('mark schemes', () => {
+  it('collects a scheme\'s rendered .tex under the scope, but not its build output or other ms/ files', () => {
+    const repoRoot = mkdtempSync(join(tmpdir(), 'compile-tex-'));
+    try {
+      const texRoot = join(repoRoot, 'public', 'tex');
+      for (const rel of [
+        'further-maths/core-pure/topic/qbt/_QBT__A.tex',
+        'further-maths/core-pure/topic/ms/_QBT___MS__A.tex',
+        'further-maths/core-pure/topic/ms/_QBT___MS__A.yaml',
+        'further-maths/core-pure/topic/ms/build/_QBT___MS__A.tex',
+        'further-maths/core-pure/topic/ms/notes.tex',
+      ]) {
+        const abs = join(texRoot, rel);
+        mkdirSync(join(abs, '..'), { recursive: true });
+        writeFileSync(abs, '');
+      }
+      const found = collectCompileFiles(join(texRoot, 'further-maths'), repoRoot)
+        .map((p) => p.slice(repoRoot.length + 1).replace(/\\/g, '/'))
+        .sort();
+      expect(found).toEqual([
+        'public/tex/further-maths/core-pure/topic/ms/_QBT___MS__A.tex',
+        'public/tex/further-maths/core-pure/topic/qbt/_QBT__A.tex',
+      ]);
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
+});

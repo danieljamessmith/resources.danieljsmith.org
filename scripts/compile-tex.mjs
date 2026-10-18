@@ -1,5 +1,7 @@
 /**
- * Compiles QBT/soln .tex files under a given scope using latexmk.
+ * Compiles QBT/soln .tex files, and mark schemes' rendered .tex files, under
+ * a given scope using latexmk. A scheme's .tex is written by `markscheme
+ * render`; this only compiles it.
  *
  * Usage:
  *   node scripts/compile-tex.mjs [scope] [--deploy]
@@ -19,7 +21,7 @@ import { copyFileSync, mkdirSync } from 'node:fs';
 import { join, dirname, basename, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
-import { shouldProcessTexFile, walkTexFiles } from './lib/tex-utils.mjs';
+import { isSchemeTexFile, shouldProcessTexFile, walkTexFiles } from './lib/tex-utils.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, '..');
@@ -93,7 +95,7 @@ export function collectCompileFiles(searchRootArg, repoRootArg = repoRoot) {
   return walkTexFiles(
     searchRootArg,
     repoRootArg,
-    (rel) => shouldProcessTexFile(rel) && !isManagedTexPath(rel),
+    (rel) => (shouldProcessTexFile(rel) || isSchemeTexFile(rel)) && !isManagedTexPath(rel),
   ).sort();
 }
 

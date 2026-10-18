@@ -12,6 +12,7 @@
  *   npm run markscheme -- stamp <yaml> --only "3, 5"
  *   npm run markscheme -- renumber <yaml>
  *   npm run markscheme -- status [<scope> | <id>]
+ *   npm run markscheme -- render [<yaml> ... | <scope>] [--draft]
  *
  *   scope    further-maths (default) | all | a folder under public/tex
  *
@@ -40,6 +41,7 @@ import {
   stampQuestions,
   writableProblems,
 } from './lib/markscheme.mjs';
+import { renderScheme } from './lib/markscheme-render.mjs';
 import { loadResourcesEntries } from './lib/resources-derive.mjs';
 import { findPackPairs, normalizePath } from './lib/tex-utils.mjs';
 
@@ -47,6 +49,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, '..');
 const texRoot = join(repoRoot, 'public', 'tex');
 export const CONVENTIONS_FILE = 'public/tex/_shared/markscheme_conventions.tex';
+const sharedDir = join(texRoot, '_shared');
 
 const VALUE_FLAGS = {
   pack: [],
@@ -57,6 +60,7 @@ const VALUE_FLAGS = {
   stamp: ['--only'],
   renumber: [],
   status: [],
+  render: [],
 };
 const BOOLEAN_FLAGS = {
   pack: ['--json'],
@@ -67,6 +71,7 @@ const BOOLEAN_FLAGS = {
   stamp: [],
   renumber: [],
   status: [],
+  render: ['--draft'],
 };
 
 class UsageError extends Error {}
@@ -177,6 +182,15 @@ function isFileArg(a) {
   return a.endsWith('.yaml') || (existsSync(a) && statSync(a).isFile());
 }
 
+/** Scheme files named, or every scheme under a scope (`further-maths` by default). */
+function schemeFiles(args, usage) {
+  if (args.length && args.every(isFileArg)) return { files: args.map((a) => resolve(a)), scope: null };
+  if (args.length > 1) throw new UsageError(usage);
+  const scope = args[0] ?? 'further-maths';
+  if (!existsSync(resolveScope(scope))) throw new UsageError(`${scope} is neither a scheme file nor a scope under public/tex`);
+  return { files: findSchemes(resolveScope(scope)), scope };
+}
+
 // ---- Commands -----------------------------------------------------------------
 
 function cmdPack({ args, flags }) {
@@ -233,17 +247,7 @@ function cmdCheck(parsed) {
   if (flags['--pack'] || flags['--codes'] || flags['--json']) {
     throw new UsageError('--pack, --codes and --json go with check --question');
   }
-  let files;
-  let scope = null;
-  if (args.length && args.every(isFileArg)) {
-    files = args.map((a) => resolve(a));
-  } else if (args.length <= 1) {
-    scope = args[0] ?? 'further-maths';
-    if (!existsSync(resolveScope(scope))) throw new UsageError(`${scope} is neither a scheme file nor a scope under public/tex`);
-    files = findSchemes(resolveScope(scope));
-  } else {
-    throw new UsageError('check [<yaml> ... | <scope>]');
-  }
+  const { files, scope } = schemeFiles(args, 'check [<yaml> ... | <scope>]');
   let errors = 0;
   let warnings = 0;
   for (const file of files) {
@@ -454,6 +458,45 @@ function cmdStatus({ args }) {
   return 0;
 }
 
+/**
+ * Writes each scheme's `.tex` beside its YAML. A scheme with a checker
+ * error is not rendered; `--draft` checks it as a draft and shows its
+ * queries and flags.
+ */
+function cmdRender({ args, flags }) {
+  const { files, scope } = schemeFiles(args, 'render [<yaml> ... | <scope>] [--draft]');
+  const draft = Boolean(flags['--draft']);
+  let failed = 0;
+  for (const file of files) {
+    const name = rel(file);
+    const tex = file.replace(/\.yaml$/, '.tex');
+    try {
+      const { pack } = readPack(qbtPathForScheme(file));
+      const result = checkScheme(readFileSync(file, 'utf8'), pack, { draft });
+      if (result.errors.length) {
+        for (const p of result.errors) console.error(formatProblem(name, p));
+        console.error(`${name}: not rendered (run check${draft ? ' --draft' : ''})`);
+        failed++;
+        continue;
+      }
+      const shared = normalizePath(relative(dirname(tex), sharedDir));
+      writeAtomic(tex, renderScheme(result.scheme, pack, { draft, shared }));
+      console.log(`  ${rel(tex)}${draft ? ' (draft)' : ''}`);
+    } catch (e) {
+      console.error(`${name}: ${e.message}`);
+      failed++;
+    }
+  }
+  const summary =
+    `markscheme render: ${files.length - failed} of ${files.length} scheme(s) rendered` + (scope ? ` | scope=${scope}` : '');
+  if (failed) {
+    console.error(summary);
+    return 1;
+  }
+  console.log(summary);
+  return 0;
+}
+
 const COMMANDS = {
   pack: cmdPack,
   check: cmdCheck,
@@ -463,6 +506,7 @@ const COMMANDS = {
   stamp: cmdStamp,
   renumber: cmdRenumber,
   status: cmdStatus,
+  render: cmdRender,
 };
 
 export function main(argv = process.argv.slice(2)) {

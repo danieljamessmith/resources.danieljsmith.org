@@ -103,7 +103,7 @@ describe('parseArgs', () => {
   });
 
   it('refuses an unknown command or flag', () => {
-    expect(() => parseArgs(['render', 'x'])).toThrow(/expected a command/);
+    expect(() => parseArgs(['draw', 'x'])).toThrow(/expected a command/);
     expect(() => parseArgs(['format', 'x', '--only', '3'])).toThrow(/unknown flag/);
     expect(main(['stamp', 'x.yaml', '--force'])).toBe(2);
   });
@@ -220,5 +220,26 @@ describe('the commands', () => {
     setPack([1, 0], (s) => s.replace('Find \\(x\\).', 'Find \\(x\\) exactly.'));
     expect(main(['renumber', yamlPath()])).toBe(1);
     expect(err.join('\n')).toMatch(/Q1 \(stamp [0-9a-f]{8}\) matches no question/);
+  });
+
+  it('render writes the .tex beside the scheme, and refuses a scheme the checker refuses', () => {
+    writeFileSync(yamlPath(), emitScheme(scheme()));
+    const tex = yamlPath().replace(/\.yaml$/, '.tex');
+    expect(main(['render', yamlPath()])).toBe(0);
+    const text = readFileSync(tex, 'utf8');
+    expect(text).toMatch(/^\\documentclass\[leqno\]\{article\}\n\\input\{.*_shared\/markscheme_preamble\.tex\}\n/);
+    expect(text).toContain('\\djsSchemeHeader{Scratch Pack}');
+    expect(text).toContain('\\msQuestion{2}');
+    expect(out.join('\n')).toMatch(/1 of 1 scheme\(s\) rendered/);
+    expect(main(['render', 'no-such-scope'])).toBe(2);
+
+    const flagged = scheme();
+    flagged.questions[1].parts[1] = { part: 'b', flag: { kind: 'solution_error', why: 'The value of z is wrong.' } };
+    writeFileSync(yamlPath(), emitScheme(flagged));
+    expect(main(['render', yamlPath()])).toBe(1);
+    expect(err.join('\n')).toMatch(/\[rule 24\][\s\S]*not rendered \(run check\)/);
+    expect(readFileSync(tex, 'utf8')).toBe(text);
+    expect(main(['render', yamlPath(), '--draft'])).toBe(0);
+    expect(readFileSync(tex, 'utf8')).toContain('\\msFlag{Solution error}{The value of z is wrong.}');
   });
 });

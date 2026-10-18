@@ -105,7 +105,7 @@ function loadPackSources(entries) {
   /** @type {Map<string, string>} */
   const out = new Map();
   for (const e of entries) {
-    if (!/^\/tex\/further-maths\/.+\/(?:qbt|soln)\/[^/]+\.pdf$/.test(e.file)) continue;
+    if (!/^\/tex\/further-maths\/.+\/(?:qbt|soln|ms)\/[^/]+\.pdf$/.test(e.file)) continue;
     const tex = join(publicDir, e.file.replace(/\.pdf$/, '.tex'));
     if (existsSync(tex)) out.set(e.file, readFileSync(tex, 'utf-8'));
   }

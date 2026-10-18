@@ -284,9 +284,10 @@ export function checkResources({
     }
   }
 
-  // ---- Pass 5: Further Maths packs agree with the catalogue: the header's
-  // topic (also the contents-page title) is the entry's title, and the site
-  // path names the entry's strand and topic section as the site shows them.
+  // ---- Pass 5: Further Maths packs, and their mark schemes' rendered .tex,
+  // agree with the catalogue: the header's topic (also the contents-page
+  // title) is the entry's title, and the site path names the entry's strand
+  // and topic section as the site shows them.
   if (packSources && strands) {
     for (const e of entries) {
       const text = packSources.get(e.file);

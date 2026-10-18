@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { mkdtempSync, rmSync, mkdirSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { normalizePath, shouldProcessTexFile, findDocBoundaries, findPackPairs } from './tex-utils.mjs';
+import { isSchemeTexFile, normalizePath, shouldProcessTexFile, findDocBoundaries, findPackPairs } from './tex-utils.mjs';
 
 // ---------------------------------------------------------------------------
 // normalizePath
@@ -211,5 +211,16 @@ describe('findPackPairs', () => {
     const { pairs, unpaired } = findPackPairs(join(tmpRoot, 'public/tex/fm'), tmpRoot);
     expect(pairs).toEqual([]);
     expect(unpaired).toHaveLength(2);
+  });
+});
+
+describe('isSchemeTexFile', () => {
+  it('is true only for a scheme\'s rendered .tex in ms/', () => {
+    expect(isSchemeTexFile('public/tex/further-maths/core-pure/polar/ms/_QBT___MS__Topic.tex')).toBe(true);
+    expect(isSchemeTexFile('public\\tex\\further-maths\\core-pure\\polar\\ms\\_QBT___MS__Topic.tex')).toBe(true);
+    expect(isSchemeTexFile('public/tex/further-maths/core-pure/polar/ms/build/_QBT___MS__Topic.tex')).toBe(false);
+    expect(isSchemeTexFile('public/tex/further-maths/core-pure/polar/ms/_QBT___MS__Topic.yaml')).toBe(false);
+    expect(isSchemeTexFile('public/tex/further-maths/core-pure/polar/qbt/_QBT__Topic.tex')).toBe(false);
+    expect(isSchemeTexFile('public/tex/further-maths/core-pure/polar/ms/notes.tex')).toBe(false);
   });
 });

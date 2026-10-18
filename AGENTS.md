@@ -44,6 +44,7 @@ The `.tex` sources under `public/tex/` are the **day-to-day editing surface** fo
 | `src/scripts/` | Client-side modules imported by pages (e.g. `board-filter.ts`) |
 | `public/tex/` | LaTeX source files and deployed PDFs, co-located by topic |
 | `public/tex/_shared/pack_preamble.tex` | Shared Further Maths QBT/Soln pack preamble |
+| `public/tex/_shared/markscheme_preamble.tex`, `markscheme_conventions.tex` | The mark schemes' preamble (the pack preamble, then the scheme's own layer) and their shared conventions pages (pages 2 and 3 of every scheme) |
 | `public/tex/**/build/` | latexmk output (PDF + `.synctex.gz`) — gitignored |
 | `public/tex/**/build/aux/` | latexmk auxiliary files — gitignored |
 | `scripts/` | Node tooling: import, compile, hygiene, generators. `scripts/README.md` has the npm scripts, the module map and the conventions |
@@ -60,6 +61,8 @@ Pages, layouts, styles, mobile behaviour and search metadata (including the rule
 public/tex/
   _shared/
     pack_preamble.tex                 ← shared Further Maths QBT/Soln preamble
+    markscheme_preamble.tex           ← mark scheme preamble (inputs pack_preamble.tex)
+    markscheme_conventions.tex        ← the conventions pages every scheme inputs
   further-maths/
     core-pure/
       <topic-slug>/
@@ -145,6 +148,30 @@ the optional `djsSolutionFigure` environment, and the legacy colored-cancel
   reorder, `renumber` puts the scheme in the pack's new order.
   `scripts/README.md` (Mark schemes) has the fields, the commands and the
   checker's rules.
+
+- **Mark scheme pages:** `npm run markscheme -- render <yaml>` writes the
+  scheme's `.tex` beside its YAML, and `compile-tex` builds it as it builds
+  packs. The `.tex` is generated: it holds no comments, depends only on the
+  YAML and the pack, and is never edited by hand. It starts
+  `\input{../../../../_shared/markscheme_preamble.tex}` and
+  `\djsSchemeHeader{<Pack title>}` (`check-pack-preamble` enforces the
+  wrapper). The scheme preamble inputs the pack preamble unchanged, then
+  adds only the scheme's own: equal 0.8in side margins (the footers follow
+  the text's right edge), `tabularray` and `adjustbox`, the colours `msGrid`
+  and `msTint`, the header `Mark scheme - <Pack title>` on every page, the
+  booklet label `Mark scheme`, and the table. The pages: the front page (the
+  packs' contents-page heading, its counts set by the renderer, then a
+  contents table linking each question to its first page); the conventions
+  pages, `\input` from `_shared/markscheme_conventions.tex`, so the
+  questions start on page 4 (a wording change there reaches every scheme at
+  its next build, dates unchanged); then a page per question, one table of
+  Question | Scheme | Marks | Notes. A part may break between rows: its
+  label sits in its first row, its total row stays with its last, and a
+  continuation page opens `Question N continued`. An alternative is tinted;
+  a figure is the worked solution's own `tikzpicture`, copied alone onto a
+  full row and scaled only down, followed by a row per feature mark.
+  `render --draft` also shows queries and flags, for review only; a
+  committed `.tex` is never a draft.
 
 - **`djsSolution`** is the worked-solution box, adapted from the TMUA
   worked-solutions box. It has a bold scarlet "Solution" label,
@@ -259,9 +286,9 @@ dates are separate records; a completed audit refreshes both.
 | `_Notes__<Title>.tex` (under `notes/`) | Standalone notes |
 | `_QBT___MS__<Topic>.yaml` (under `ms/`) | Mark scheme data for a topic's pack; its `.tex` and `.pdf` are rendered from it |
 
-`scripts/lib/tex-utils.mjs` (`shouldProcessTexFile`) treats anything under `qbt/` or `soln/` (but not `notes/`) as a tracked QBT/soln pack — that's the set of files `check-tex.mjs` and `clean-tex.mjs` operate on. `ms/` is outside it: `check-tex`, `clean-tex` and `check-solution-layout` leave schemes alone.
+`scripts/lib/tex-utils.mjs` (`shouldProcessTexFile`) treats anything under `qbt/` or `soln/` (but not `notes/`) as a tracked QBT/soln pack — that's the set of files `check-tex.mjs` and `clean-tex.mjs` operate on. `ms/` is outside it: `check-tex`, `clean-tex` and `check-solution-layout` leave schemes alone. `compile-tex` and `check-pack-preamble` add a scheme's rendered `.tex` through `isSchemeTexFile`, beside it rather than inside it.
 
-PDFs inside `public/tex/**/build/` are build outputs — never read or edit them. PDFs directly in `qbt/` or `soln/` are the deployed production files.
+PDFs inside `public/tex/**/build/` are build outputs — never read or edit them. PDFs directly in `qbt/`, `soln/` or `ms/` are the deployed production files.
 
 At import, filenames are produced by `sanitizeTopic` in `scripts/import-pack.mjs`, which replaces every non-alphanumeric character in the pack title with an underscore. Do not rename pack files by hand after import; the filenames are referenced from `src/data/resources.ts`.
 
@@ -392,7 +419,7 @@ Once a pack exists under `public/tex/`, day-to-day fixes happen here in the repo
 4. `npm run check-questions` again to confirm `0 drifted, 0 broken`.
 5. Update `\djsLastUpdated` in each document whose student-visible content changed, then recompile any PDFs whose `.tex` changed in a way that affects rendering:
    - **Single file**: invoke `latexmk` with the args in the `latexmk args` section below, then copy `build/<name>.pdf` up beside the source.
-   - **Bulk**: `npm run compile-tex -- <scope> --deploy` rebuilds every QBT/soln `.tex` under the scope and copies the resulting PDFs up on success. Use `git status` to see which PDFs actually changed bytes.
+   - **Bulk**: `npm run compile-tex -- <scope> --deploy` rebuilds every QBT/soln `.tex`, and every mark scheme's rendered `.tex`, under the scope and copies the resulting PDFs up on success. Use `git status` to see which PDFs actually changed bytes.
    - **Skip recompile** for whitespace-only drift fixes that don't affect rendering — `git status` will show the PDF as unchanged anyway.
 6. Commit `.tex` + regenerated `.pdf`s together. Pre-commit re-runs the tests and every read-only check; CI on `main` re-runs the tests, `check-tex`, `check-private-terms` and the Astro check/build.
 
@@ -426,7 +453,7 @@ Each of these has an npm `pre*` hook that runs:
 
 1. `node scripts/count-questions.mjs` — counts `\questionitem` occurrences in every `_QBT__*.tex` file and every TMUA paper (`tmua/TMUA_Set<X>_Paper<N>.tex`) and writes `src/data/questionCounts.generated.ts`, keyed by the `/tex/...` PDF path used in `resources.ts`.
 2. `node scripts/hash-assets.mjs` — hashes every deployed PDF under `public/tex/` and writes `src/data/fileHashes.generated.ts` for cache-busting.
-3. `node scripts/check-pack-preamble.mjs` — verifies Further Maths QBT/Soln files use the shared wrapper convention.
+3. `node scripts/check-pack-preamble.mjs` — verifies Further Maths QBT/Soln files use the shared wrapper convention, and mark schemes the scheme wrapper.
 4. `node scripts/check-questions.mjs` — verifies QBT/Soln statement parity.
 
 The `*.generated.ts` files **must not be hand-edited** — they're regenerated on every dev/build/check.
@@ -483,5 +510,6 @@ When durable project conventions change, update `AGENTS.md` and the directly rel
 - **The LaTeX directory layout or file-naming patterns change:** update the structure tables and naming-pattern guidance above.
 - **The mark scheme data, its canonical form or the checker's rules change:** update `scripts/README.md` (Mark schemes), the Mark scheme data bullet above and `scripts/lib/markscheme.mjs` with its tests together.
 - **The shared pack preamble convention changes:** update the LaTeX directory layout section, `scripts/lib/pack-preamble.mjs` and the importer notes in `scripts/README.md`.
+- **The mark scheme pages change** (the scheme preamble, the conventions file, the renderer): update the Mark scheme pages bullet above, `scripts/README.md` (Mark schemes) and `scripts/lib/markscheme-render.mjs` with its golden files together.
 - **npm scripts or pre-commit hooks change:** update the Tooling section and `scripts/README.md`.
 - **Site presentation, mobile behaviour or search metadata change:** update `src/README.md`.

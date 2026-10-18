@@ -23,6 +23,16 @@ export function shouldProcessTexFile(relFromRepo) {
 }
 
 /**
+ * Returns true if a repo-relative path is a mark scheme's rendered .tex,
+ * `<section>/ms/_QBT___MS__<stem>.tex` (not a build artefact). Kept apart
+ * from `shouldProcessTexFile`, whose callers leave schemes alone.
+ * @param {string} relFromRepo
+ */
+export function isSchemeTexFile(relFromRepo) {
+  return /(?:^|\/)ms\/_QBT___MS__[^/]+\.tex$/.test(normalizePath(relFromRepo));
+}
+
+/**
  * Recursively collects .tex files under `dir`, optionally filtered by a
  * predicate that receives the repo-relative path.
  * @param {string} dir - Absolute path to start from.

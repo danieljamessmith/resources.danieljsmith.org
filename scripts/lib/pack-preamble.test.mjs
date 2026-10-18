@@ -2,7 +2,10 @@ import { describe, expect, it } from 'vitest';
 import {
   PACK_PREAMBLE_OVERLEAF_INPUT,
   PACK_PREAMBLE_SITE_INPUT,
+  SCHEME_PREAMBLE_SITE_INPUT,
   checkPackPreambleConvention,
+  checkSchemePreambleConvention,
+  isFurtherMathsSchemeTexFile,
   formatPackDate,
   hasExpectedFurtherMathsPackDepth,
   isFurtherMathsPackTexFile,
@@ -317,5 +320,59 @@ describe('preamble comments', () => {
       `\\documentclass{article} % keep\r\n\\begin{document}\r\n% body\r\n\\end{document}\r\n`,
     );
     expect(preambleCommentLines(source)).toEqual([1, 3]);
+  });
+});
+
+describe('the mark scheme wrapper', () => {
+  const MS_REL = 'public/tex/further-maths/core-pure/polar-coordinates/ms/_QBT___MS__Integration_of_Polar_Curves.tex';
+  const scheme = [
+    String.raw`\documentclass[leqno]{article}`,
+    SCHEME_PREAMBLE_SITE_INPUT,
+    '',
+    String.raw`\djsSchemeHeader{Integration of Polar Curves}`,
+    String.raw`\djsSitePath{Core Pure}{Polar Coordinates}`,
+    '',
+    String.raw`\djsLastUpdated{18 October 2026}`,
+    String.raw`\begin{document}`,
+    String.raw`\msQuestion{1}`,
+    String.raw`\end{document}`,
+    '',
+  ].join('\n');
+  const kinds = (text, rel = MS_REL) => [
+    ...checkSchemePreambleConvention(text, rel),
+    ...checkPackPreambleComments(text, rel),
+  ].map((v) => v.kind);
+
+  it('recognises a scheme\'s rendered .tex, and only that, as a scheme', () => {
+    expect(isFurtherMathsSchemeTexFile(MS_REL)).toBe(true);
+    expect(isFurtherMathsSchemeTexFile(QBT_REL)).toBe(false);
+    expect(isFurtherMathsSchemeTexFile(MS_REL.replace('/ms/', '/ms/build/'))).toBe(false);
+    expect(isFurtherMathsPackTexFile(MS_REL)).toBe(false);
+    expect(checkPackPreambleConvention(scheme, MS_REL)).toEqual([]);
+    expect(checkSchemePreambleConvention(scheme, QBT_REL)).toEqual([]);
+  });
+
+  it('accepts the wrapper the renderer writes', () => {
+    expect(kinds(scheme)).toEqual([]);
+    expect(readPackIdentity(scheme)).toEqual({
+      title: 'Integration of Polar Curves',
+      sitePath: { strand: 'Core Pure', section: 'Polar Coordinates' },
+    });
+  });
+
+  it('refuses a scheme at the wrong depth, on the wrong preamble, or with a pack header', () => {
+    expect(kinds(scheme, 'public/tex/further-maths/core-pure/ms/_QBT___MS__X.tex')).toContain('bad-depth');
+    expect(kinds(scheme.replace('markscheme_preamble', 'pack_preamble'))).toEqual(
+      expect.arrayContaining(['missing-scheme-input', 'pack-input-in-scheme']),
+    );
+    expect(kinds(scheme.replace('djsSchemeHeader', 'djsQbtHeader'))).toContain('bad-header');
+    expect(kinds(scheme.replace(String.raw`\djsLastUpdated{18 October 2026}`, ''))).toContain('bad-last-updated');
+    expect(kinds(scheme.replace('\n\n\\djsLastUpdated', '\n\\djsMechanicsPack\n\\djsLastUpdated'))).toContain(
+      'stray-mechanics-pack',
+    );
+    expect(kinds(scheme.replace('\n\n\\djsLastUpdated', '\n\\usepackage{xcolor}\n\\djsLastUpdated'))).toContain(
+      'duplicated-preamble',
+    );
+    expect(kinds(`% rendered\n${scheme}`)).toContain('preamble-comment');
   });
 });

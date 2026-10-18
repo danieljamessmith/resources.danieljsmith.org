@@ -1,0 +1,137 @@
+\documentclass[leqno]{article}
+\input{../../../../../public/tex/_shared/markscheme_preamble.tex}
+
+\djsSchemeHeader{Mark Scheme Fixture}
+\djsSitePath{Core Pure}{Polar Coordinates}
+
+\djsLastUpdated{18 October 2026}
+\begin{document}
+\djsSetQuestionCount{4}
+\djsAddMarks{1}{7}
+\djsAddMarks{2}{6}
+\djsAddMarks{3}{8}
+\djsAddMarks{4}{18}
+\vspace*{6pt}
+\djsContentsTitle
+\vspace{30pt}
+\msContentsHeading
+\begin{mscontents}{}
+Question & Marks by part & Marks & Page \\
+\msContentsQuestion{1} & (a)\,3\msSep (b)\,4 & 7 & \msContentsPage{1} \\
+\msContentsQuestion{2} & (a)\,4\msSep (b)\,2 & 6 & \msContentsPage{2} \\
+\msContentsQuestion{3} & & 8 & \msContentsPage{3} \\
+\msContentsQuestion{4} & (a)\,16\msSep (b)\,2 & 18 & \msContentsPage{4} \\
+\SetCell[c=2]{r} Total & & 39 & \\
+\end{mscontents}
+\newpage
+\input{../../../../../public/tex/_shared/markscheme_conventions.tex}
+
+\msQuestion{1}
+\begin{msscheme}{
+  hline{3-6,8-11} = {2-Z}{0.4pt, msGrid},
+  hline{7,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+1(a) & \SetCell[c=3]{c} \msFigure{\begin{tikzpicture}[scale=1.5]
+\def\ang{120}
+\coordinate (O) at (0,0);
+\coordinate (P) at (\ang:1);
+\coordinate (Q) at (4,0);
+\draw[->] (-1.2,0) -- (4.7,0) node[right] {$x$};
+\draw[->] (0,-2.6) -- (0,2.6) node[above] {$y$};
+\draw[thick,domain=0:360,samples=300,smooth,variable=\t]
+plot ({2*(1+cos(\t))*cos(\t)},{2*(1+cos(\t))*sin(\t)});
+\draw[thick,->] (O) -- ++(\ang:3) node[above left] {$C_2:\ \theta=\frac{2\pi}{3}$};
+\node[below right] at (O) {$O$};
+\fill (Q) circle (1.2pt);
+\node[below right] at (Q) {$(4,0)$};
+\fill (P) circle (1.2pt);
+\node[below left] at (P) {$\left(1,\frac{2\pi}{3}\right)$};
+\node[above] at (2.0,1.65) {$C_1$};
+\end{tikzpicture}} & & \\
+& \msFeature{Shape} & B1 & {A cardioid, symmetric about the initial line, with its cusp at the pole.} \\
+& \msFeature{Labelled point} & B1 & {\((4, 0)\) marked, or \(r = 4\) on the initial line.} \\
+& \msFeature{Half-line} & B1 & {From the pole at angle \(\frac{2\pi}{3}\), meeting \(C_1\) once more.} \\
+\nopagebreak & & [3] & \\
+1(b) & {\(A = \frac12\int_{2\pi/3}^{\pi} 4(1 + \cos\theta)^2\,\mathrm{d}\theta\)} & M1 & {Uses \(\frac12\int r^2\,\mathrm{d}\theta\) with \(r = 2(1 + \cos\theta)\). Limits may come later.} \\
+& {\(\phantom{A} = \int_{2\pi/3}^{\pi} (3 + 4\cos\theta + \cos 2\theta)\,\mathrm{d}\theta\)} & M1 & {Uses \(\cos^2\theta = \frac12(1 + \cos 2\theta)\) to reach an integrable form.} \\
+& {\(\phantom{A} = \left[3\theta + 4\sin\theta + \frac12\sin 2\theta\right]_{2\pi/3}^{\pi}\)} & A1 & \\
+& {\(\phantom{A} = \pi - \frac{7\sqrt3}{4}\) [\(\approx 0.111\)]} & A1 & {cso, from the limits \(\frac{2\pi}{3}\) and \(\pi\).} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 1 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{2}
+\begin{msscheme}{
+  hline{3-5,7-8} = {2-Z}{0.4pt, msGrid},
+  hline{6,9} = {0.4pt, msGrid},
+  row{9} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+2(a) & {\(\text{EPE}_0 = \frac{2mg(2a)^2}{2(2a)} = 2mga\); the string is slack at \(\frac32 a\) above \(O\)} & B1 & {The initial elastic energy, and none once \(P\) is \(\frac32 a\) above \(O\).} \\
+& {\(4mga + 2mga = \frac12 mv^2 + \frac32 mga\)} & M1 A1 & {\msNote{M1}{Forms an energy equation with kinetic, gravitational and elastic terms, each of the right form.}} \\
+& {\(v = 3\sqrt{ag}\)} & A1 & \\
+\nopagebreak & & [4] & \\
+2(b) & {\(T = \frac{2mg(2a)}{2a} = 2mg\)\\[4pt] \(m\alpha = 2mg + mg\)} & M1 & {Uses Hooke's law for the tension and applies Newton's second law with the tension and the weight.} \\
+& {\(\alpha = 3g\), downwards} & A1 & \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 2 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{3}
+\begin{msscheme}{
+  hline{3-15} = {2-Z}{0.4pt, msGrid},
+  hline{16} = {0.4pt, msGrid},
+  cell{9-15}{2-4} = {bg=msTint},
+  row{16} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+3 & {\(\overrightarrow{CD} = 2\mathbf i + \mathbf j - \mathbf k\), \(\overrightarrow{CE} = \mathbf i + 3\mathbf j\)} & M1 & {Finds two direction vectors in the plane by subtracting position vectors of the three points.} \\
+& {\(\mathbf n = \overrightarrow{CD}\times\overrightarrow{CE} = 3\mathbf i - \mathbf j + 5\mathbf k\)} & M1 A1 & {\msNote{M1}{Finds the vector product of their two direction vectors, or solves for a normal by scalar products.}} \\
+& {\(\mathbf r\cdot(3\mathbf i - \mathbf j + 5\mathbf k) = 14\), or \(3x - y + 5z = 14\)} & A1 & \\
+& {\(\mathbf p' = \mathbf p - 2\,\dfrac{\mathbf p\cdot\mathbf n - d}{\mathbf n\cdot\mathbf n}\,\mathbf n\)} & M1 & {Uses the reflection formula with their plane, or another full method for the image of \(A\).} \\
+& {\(\mathbf p\cdot\mathbf n - d = 35\), \(\mathbf n\cdot\mathbf n = 35\)} & A1 & \\
+& {\(\overrightarrow{OB} = (4\mathbf i - 2\mathbf j + 7\mathbf k) - 2(3\mathbf i - \mathbf j + 5\mathbf k)\)} & dM1 & {Substitutes their values into the formula, with the factor of 2 and the sign right.} \\
+& {\(B = (-2, 0, -3)\)} & A1 & \\
+& \SetCell[c=3]{l} \msAlternative{the line through \(A\) along the normal} & & \\
+\nopagebreak & {\(\mathbf n = \overrightarrow{CD}\times\overrightarrow{CE} = 3\mathbf i - \mathbf j + 5\mathbf k\)} & M1 M1 & {\msNote{M1}{Finds two direction vectors in the plane from the three points.}\\ \msNote{M1}{Finds their vector product, or solves for a normal by scalar products.}} \\
+& {\(\mathbf n = 3\mathbf i - \mathbf j + 5\mathbf k\); \(3x - y + 5z = 14\)} & A1 A1 & \\
+& {\(\mathbf r = (4\mathbf i - 2\mathbf j + 7\mathbf k) + \lambda(3\mathbf i - \mathbf j + 5\mathbf k)\)\\[4pt] \(3(4 + 3\lambda) - (-2 - \lambda) + 5(7 + 5\lambda) = 14\)} & M1 & {Forms the line through \(A\) along their normal and substitutes it into their plane.} \\
+& {\(\lambda = -1\): the line meets the plane at \(C(1, -1, 2)\)} & A1 & \\
+& {\(\overrightarrow{OB} = \overrightarrow{OA} + 2\overrightarrow{AC}\)} & dM1 & {Finds \(B\) by doubling the step from \(A\) to the plane, or uses \(C\) as the midpoint of \(AB\).} \\
+& {\(B = (-2, 0, -3)\)} & A1 & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 3 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{4}
+\begin{msscheme}{
+  hline{3-18,20-21} = {2-Z}{0.4pt, msGrid},
+  hline{19,22} = {0.4pt, msGrid},
+  row{22} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+4(a) & {Along the line of centres, \(\frac{1}{\sqrt2}(\mathbf i + \mathbf j)\):\\[4pt] \(P\): \(\frac{6 + 2}{\sqrt2}\), \(Q\): \(\frac{-2 + 2}{\sqrt2}\)} & M1 & {Resolves both velocities along the line of centres, using a unit vector parallel to \(\mathbf i + \mathbf j\).} \\
+& {\(P\): \(4\sqrt2\), \(Q\): \(0\)} & A1 & {Both parallel components, in \(\mathrm{m\,s^{-1}}\).} \\
+& {Perpendicular to it, \(\frac{1}{\sqrt2}(-\mathbf i + \mathbf j)\):\\[4pt] \(P\): \(\frac{-6 + 2}{\sqrt2}\), \(Q\): \(\frac{2 + 2}{\sqrt2}\)} & M1 & {Resolves both velocities perpendicular to the line of centres.} \\
+& {\(P\): \(-2\sqrt2\), \(Q\): \(2\sqrt2\)} & A1 & {Both perpendicular components, with signs consistent with their unit vector.} \\
+& {The spheres are smooth, so the impulse is along the line of centres: each perpendicular component is unchanged} & E1 & {Explains that smooth spheres give no impulse perpendicular to the line of centres, so those components are unchanged.} \\
+& {\(0.4(4\sqrt2) + 0.6(0) = 0.4v_P + 0.6v_Q\)} & M1 & {Uses conservation of momentum along the line of centres, with their parallel components. Condone a sign slip.} \\
+& {\(8\sqrt2 = 2v_P + 3v_Q\)} & A1 & \\
+& {\(v_Q - v_P = 4\sqrt2\,e\)} & M1 & {Uses Newton's law of restitution along the line of centres, separation speed over approach speed.} \\
+& {\(\frac12(0.4)(4\sqrt2)^2 - \frac12(0.4)v_P^2 - \frac12(0.6)v_Q^2 = 2.88\)} & M1 & {Forms an energy equation in the parallel components, or in the full speeds, with the loss of \(2.88\,\mathrm{J}\).} \\
+& {\(v_P = \frac{4\sqrt2}{5}(2 - 3e)\), \(v_Q = \frac{8\sqrt2}{5}(1 + e)\)} & dM1 & {Solves the momentum and restitution equations and substitutes into the energy equation, reaching an equation in \(e\) alone.} \\
+& {\(2v_P^2 + 3v_Q^2 = 35.2\)\\[4pt] \((2 - 3e)^2 + 6(1 + e)^2 = \frac{55}{4}\)} & A1 & {A correct quadratic in \(e\), in any form.} \\
+& {\(e = \frac12\), as \(e \geq 0\)} & A1 & \\
+& {\(v_P = \frac{2\sqrt2}{5}\), \(v_Q = \frac{12\sqrt2}{5}\)} & A1ft & {ft their \(e\), in their expressions for \(v_P\) and \(v_Q\), with \(0 \leq e \leq 1\).} \\
+& {\(\mathbf v_P = \frac{2\sqrt2}{5}\cdot\frac{1}{\sqrt2}(\mathbf i + \mathbf j) + 2\sqrt2\cdot\frac{1}{\sqrt2}(\mathbf i - \mathbf j)\)} & M1 & {Combines the parallel and perpendicular components of the velocity of \(P\) in terms of \(\mathbf i\) and \(\mathbf j\).} \\
+& {\(\mathbf v_P = (2.4\mathbf i - 1.6\mathbf j)\,\mathrm{m\,s^{-1}}\)} & A1 & \\
+& {\(\mathbf v_Q = (0.4\mathbf i + 4.4\mathbf j)\,\mathrm{m\,s^{-1}}\)} & A1ft & {ft their \(v_Q\), combined with the unchanged perpendicular component as for \(P\).} \\
+\nopagebreak & & [16] & \\
+4(b) & {\(\cos\theta = \dfrac{\mathbf u_P\cdot\mathbf v_P}{|\mathbf u_P|\,|\mathbf v_P|} = \dfrac{7}{\sqrt{130}}\)} & M1 & {Uses the scalar product of \(\mathbf u_P\) and their \(\mathbf v_P\) to find the angle between them.} \\
+& {\(\theta = 52.1^\circ\)} & A1 & {awrt \(52.1^\circ\).} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 4 & & 18 & \\
+\end{msscheme}
+
+\end{document}

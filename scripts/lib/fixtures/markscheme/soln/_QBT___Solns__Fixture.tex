@@ -1,0 +1,473 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/pack_preamble.tex}
+
+\djsSolnHeader{Mark Scheme Fixture}
+\djsSitePath{Core Pure}{Polar Coordinates}
+
+\djsLastUpdated{18 October 2026}
+\begin{document}
+\djsFrontMatter
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+% [Source: _QBT___Solns__Fixture, Q1]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item On the same diagram, sketch the curve $C_1$ with polar equation
+  \[
+  r=2(1+\cos\theta),\quad 0\leq\theta\leq2\pi
+  \]
+  and the curve $C_2$ with polar equation $\theta=\frac{2\pi}{3}$. \marks{3} \\
+  \item Find the area of the smaller region bounded by $C_1$ and $C_2$. \marks{4} \\
+\end{enumerate}
+
+	\vspace*{10pt}
+	
+	\begin{djsSolution}
+	\begin{enumerate}[label=\textbf{(\alph*)}]
+	  \item The sketch should look like:\par\nopagebreak
+
+	\begin{tikzpicture}[scale=1.5]
+	\def\ang{120}
+	\coordinate (O) at (0,0);
+	\coordinate (P) at (\ang:1);
+	\coordinate (Q) at (4,0);
+
+	\draw[->] (-1.2,0) -- (4.7,0) node[right] {$x$};
+	\draw[->] (0,-2.6) -- (0,2.6) node[above] {$y$};
+
+	\draw[thick,domain=0:360,samples=300,smooth,variable=\t]
+	plot ({2*(1+cos(\t))*cos(\t)},{2*(1+cos(\t))*sin(\t)});
+
+	\draw[thick,->] (O) -- ++(\ang:3) node[above left] {$C_2:\ \theta=\frac{2\pi}{3}$};
+
+	\node[below right] at (O) {$O$};
+
+	\fill (Q) circle (1.2pt);
+	\node[below right] at (Q) {$(4,0)$};
+	\fill (P) circle (1.2pt);
+	\node[below left] at (P) {$\left(1,\frac{2\pi}{3}\right)$};
+
+	\node[above] at (2.0,1.65) {$C_1$};
+	\end{tikzpicture}
+
+	\(C_1\) is a cardioid, symmetric about the initial line, with \(r=4\) at \(\theta=0\) and a cusp at the pole at \(\theta=\pi\). \(C_2\) is the half-line from the pole at angle \(\frac{2\pi}{3}\) to the initial line. Substituting \(\theta=\frac{2\pi}{3}\) into \(C_1\):
+	\[
+	r=2\left(1+\cos\frac{2\pi}{3}\right)=2\left(1-\frac12\right)=1
+	\]
+
+	So the curves meet at the pole and at \(\left(1,\frac{2\pi}{3}\right)\).
+
+	  \item The smaller region is the part inside the cardioid between
+	\[
+	\theta=\frac{2\pi}{3}\quad \text{and}\quad \theta=\pi
+	\]
+	
+	Using the polar area formula
+	\[
+	A=\frac12\int_{\alpha}^{\beta} r^2\,\mathrm{d}\theta
+	\]
+
+	we get
+	\[
+	A=\frac12\int_{2\pi/3}^{\pi}\left[2(1+\cos\theta)\right]^2\,\mathrm{d}\theta
+	\]
+	
+	Now simplify the integrand:
+	\begin{align*}
+	A&=2\int_{2\pi/3}^{\pi}(1+2\cos\theta+\cos^2\theta)\,\mathrm{d}\theta \\
+	&=2\int_{2\pi/3}^{\pi}\left(1+2\cos\theta+\frac{1+\cos2\theta}{2}\right)\,\mathrm{d}\theta \\
+	&=\int_{2\pi/3}^{\pi}(3+4\cos\theta+\cos2\theta)\,\mathrm{d}\theta
+	\end{align*}
+	
+	Integrating,
+	\begin{align*}
+	A&=\left[3\theta+4\sin\theta+\frac12\sin2\theta\right]_{2\pi/3}^{\pi} \\
+	&=\left(3\pi+4\sin\pi+\frac12\sin2\pi\right)
+	-\left(3\cdot\frac{2\pi}{3}+4\sin\frac{2\pi}{3}+\frac12\sin\frac{4\pi}{3}\right) \\
+	&=3\pi-\left(2\pi+4\cdot\frac{\sqrt3}{2}+\frac12\cdot\left(-\frac{\sqrt3}{2}\right)\right) \\
+	&=\pi-2\sqrt3+\frac{\sqrt3}{4} \\
+	&=\pi-\frac{7\sqrt3}{4}
+	\end{align*}
+	
+	So the area of the smaller region is
+	\[
+	\pi-\frac{7\sqrt3}{4}\approx 0.111
+	\]
+	  \end{enumerate}
+	\end{djsSolution}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT___Solns__Fixture, Q2]
+
+One end of a light elastic string, of natural length $2a$ and modulus of elasticity $2mg$, is attached to a fixed point $O$. The other end of the string is attached to a particle $P$ of mass $m$. The string is vertical with $P$ directly above $O$. The particle $P$ is pulled vertically upwards until the extension of the string is $2a$. The particle $P$ is then released from rest. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the speed of $P$ when it is at a distance $\dfrac{3}{2}a$ above $O$. \marks{4} \\
+  \item Find the initial acceleration of $P$ when it is released from rest. \marks{2} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item The natural length of the string is $2a$.
+
+Initially the extension is $2a$, so the initial length is
+\[
+2a+2a=4a
+\]
+
+Hence initially $P$ is $4a$ above $O$.
+
+When $P$ is $\frac{3}{2}a$ above $O$, the length of the string is $\frac{3}{2}a<2a$, so the string is slack. Therefore at this point the elastic potential energy is $0$.
+
+Use conservation of mechanical energy:
+\[
+KE_0+GPE_0+EPE_0=KE_1+GPE_1+EPE_1
+\]
+
+Initially, $P$ is released from rest, so $KE_0=0$.
+
+Initial elastic potential energy:
+\[
+EPE_0=\frac{\lambda x^2}{2l}
+=\frac{(2mg)(2a)^2}{2(2a)}
+=2mga
+\]
+
+where $\lambda=2mg$, $x=2a$, and $l=2a$.
+
+Taking gravitational potential energy relative to $O$,
+\[
+GPE_0=mg(4a),\qquad GPE_1=mg\left(\frac{3a}{2}\right)
+\]
+
+Also,
+\[
+KE_1=\frac12 mv^2,\qquad EPE_1=0
+\]
+
+So
+\begin{align*}
+0+4mga+2mga&=\frac12 mv^2+\frac32 mga+0 \\
+6mga&=\frac12 mv^2+\frac32 mga \\
+\frac12 mv^2&=\frac92 mga
+\end{align*}
+
+Hence
+\[
+v^2=9ag
+\]
+
+so
+\[
+v=3\sqrt{ag}
+\]
+
+
+  \item Initially, the extension is $2a$, so the tension is
+\[
+T=\frac{\lambda x}{l}
+=\frac{(2mg)(2a)}{2a}
+=2mg
+\]
+
+This tension acts downward, towards $O$. The weight $mg$ also acts downward.
+
+So the resultant force on $P$ initially is
+\[
+2mg+mg=3mg
+\]
+
+downward.
+
+Taking downward as positive and denoting the acceleration by $\alpha$, Newton's second law gives
+\[
+m\alpha=3mg
+\]
+
+so
+\[
+\alpha=3g
+\]
+
+Therefore the initial acceleration is $3g$ downward.
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT___Solns__Fixture, Q3]
+
+A plane passes through the points $C(1,-1,2)$, $D(3,0,1)$ and $E(2,2,2)$. \\
+
+The point $A$ has coordinates $(4,-2,7)$ and the point $B$ is the reflection of $A$ in the plane. \\
+
+Find the coordinates of the point $B$. \marks{8}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+Let the plane be \(\Pi\).
+
+Two direction vectors in the plane are
+\[
+\overrightarrow{CD}=\begin{pmatrix}3-1\\0-(-1)\\1-2\end{pmatrix}=\begin{pmatrix}2\\1\\-1\end{pmatrix}
+\]
+
+and
+\[
+\overrightarrow{CE}=\begin{pmatrix}2-1\\2-(-1)\\2-2\end{pmatrix}=\begin{pmatrix}1\\3\\0\end{pmatrix}
+\]
+
+So a normal vector to the plane is
+\begin{align*}
+\mathbf n
+&=\overrightarrow{CD}\times\overrightarrow{CE}\\
+&=
+\begin{vmatrix}
+\mathbf i & \mathbf j & \mathbf k\\
+2 & 1 & -1\\
+1 & 3 & 0
+\end{vmatrix}\\
+&=\mathbf i(1\cdot 0-(-1)\cdot 3)-\mathbf j(2\cdot 0-(-1)\cdot 1)+\mathbf k(2\cdot 3-1\cdot 1)\\
+&=3\mathbf i-\mathbf j+5\mathbf k\\
+&=\begin{pmatrix}3\\-1\\5\end{pmatrix}
+\end{align*}
+
+Using the form \(\mathbf r\cdot\mathbf n=d\), we find \(d\) from point \(C(1,-1,2)\):
+\begin{align*}
+d&=\begin{pmatrix}1\\-1\\2\end{pmatrix}\cdot\begin{pmatrix}3\\-1\\5\end{pmatrix}\\
+&=1\cdot 3+(-1)\cdot(-1)+2\cdot 5\\
+&=3+1+10\\
+&=14
+\end{align*}
+
+Hence the plane is
+\[
+\mathbf r\cdot\begin{pmatrix}3\\-1\\5\end{pmatrix}=14
+\]
+
+so in Cartesian form,
+\[
+3x-y+5z-14=0
+\]
+
+Now use the reflection formula for a point in a plane:
+\[
+\mathbf p'
+=\mathbf p
+-2\,\frac{\mathbf p\cdot\mathbf n-d}{\mathbf n\cdot\mathbf n}\,\mathbf n
+\]
+
+Here
+\[
+\mathbf p=\begin{pmatrix}4\\-2\\7\end{pmatrix},\qquad \mathbf n=\begin{pmatrix}3\\-1\\5\end{pmatrix},\qquad d=14
+\]
+
+First calculate \(\mathbf p\cdot\mathbf n-d\):
+\begin{align*}
+\mathbf p\cdot\mathbf n-d
+&=\begin{pmatrix}4\\-2\\7\end{pmatrix}\cdot\begin{pmatrix}3\\-1\\5\end{pmatrix}-14\\
+&=4\cdot 3+(-2)\cdot(-1)+7\cdot 5-14\\
+&=12+2+35-14\\
+&=35
+\end{align*}
+
+Also,
+\[
+\mathbf n\cdot\mathbf n=3^2+(-1)^2+5^2=9+1+25=35
+\]
+
+Substituting into the reflection formula:
+\begin{align*}
+\mathbf p'
+&=\begin{pmatrix}4\\-2\\7\end{pmatrix}-2\left(\frac{35}{35}\right)\begin{pmatrix}3\\-1\\5\end{pmatrix}\\
+&=\begin{pmatrix}4\\-2\\7\end{pmatrix}-2\begin{pmatrix}3\\-1\\5\end{pmatrix}\\
+&=\begin{pmatrix}4\\-2\\7\end{pmatrix}-\begin{pmatrix}6\\-2\\10\end{pmatrix}\\
+&=\begin{pmatrix}-2\\0\\-3\end{pmatrix}
+\end{align*}
+
+Therefore the coordinates of \(B\) are
+\[
+B=(-2,0,-3)
+\]
+
+{\setlength{\parskip}{8pt}%
+\textit{Alternative Solution:}
+
+We find \(B\) by going from \(A\) along the normal to the plane and doubling the distance.
+
+The line through \(A\) perpendicular to \(\Pi\) is
+\[
+\mathbf r=\begin{pmatrix}4\\-2\\7\end{pmatrix}+\lambda\begin{pmatrix}3\\-1\\5\end{pmatrix}
+\]
+
+Substituting \((x,y,z)=(4+3\lambda,\,-2-\lambda,\,7+5\lambda)\) into \(3x-y+5z=14\):
+\begin{align*}
+3(4+3\lambda)-(-2-\lambda)+5(7+5\lambda)&=14\\
+49+35\lambda&=14\\
+\lambda&=-1
+\end{align*}
+
+So this line meets \(\Pi\) at \((1,-1,2)\), which is the point \(C\).
+
+Since \(C\) is the midpoint of \(AB\), \(\overrightarrow{AB}=2\overrightarrow{AC}\):
+\begin{align*}
+\overrightarrow{OB}
+&=\begin{pmatrix}4\\-2\\7\end{pmatrix}+2\begin{pmatrix}1-4\\-1-(-2)\\2-7\end{pmatrix}\\
+&=\begin{pmatrix}4\\-2\\7\end{pmatrix}+2\begin{pmatrix}-3\\1\\-5\end{pmatrix}\\
+&=\begin{pmatrix}-2\\0\\-3\end{pmatrix}
+\end{align*}
+
+So \(B=(-2,0,-3)\), as before.
+\par}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT___Solns__Fixture, Q4]
+
+Two smooth uniform spheres $P$ and $Q$ have equal radii and masses $0.4\,\mathrm{kg}$ and $0.6\,\mathrm{kg}$ respectively. They move on a smooth horizontal surface and collide obliquely. \\
+
+Immediately before the collision, their velocities are
+\[
+\mathbf{u}_P=(6\mathbf{i}+2\mathbf{j})\,\mathrm{m\,s^{-1}},\qquad \mathbf{u}_Q=(-2\mathbf{i}+2\mathbf{j})\,\mathrm{m\,s^{-1}}
+\] \\
+where $\mathbf{i}$ and $\mathbf{j}$ are perpendicular horizontal unit vectors. \\
+
+At the instant of impact, the vector from the centre of $P$ to the centre of $Q$ is a positive multiple of $\mathbf{i}+\mathbf{j}$. The total kinetic energy of the two spheres decreases by $2.88\,\mathrm{J}$ during the collision. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item Find
+\begin{enumerate}[label=(\roman*)]
+\item the velocity of $P$ immediately after the collision,
+\item the velocity of $Q$ immediately after the collision,
+\item the coefficient of restitution between the spheres.
+\end{enumerate}
+Justify your answers, explaining which velocity components are unchanged by the collision. \marks{16} \\
+\item Find the angle through which the direction of motion of $P$ is deflected by the collision. Give your answer in degrees to one decimal place. \marks{2} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item
+\begin{enumerate}[label=(\roman*), start=1]
+\item The line of centres is parallel to \(\mathbf{i}+\mathbf{j}\), so \(\frac{1}{\sqrt2}(\mathbf{i}+\mathbf{j})\) is a unit vector along it, from \(P\) towards \(Q\), and \(\frac{1}{\sqrt2}(-\mathbf{i}+\mathbf{j})\) is a unit vector perpendicular to it. Taking the scalar product of each velocity with these gives its components parallel and perpendicular to the line of centres, in \(\mathrm{m\,s^{-1}}\):
+\begin{alignat*}{2}
+P&:\quad\text{parallel}\ \frac{6+2}{\sqrt2}=4\sqrt2,&\qquad&\text{perpendicular}\ \frac{-6+2}{\sqrt2}=-2\sqrt2\\
+Q&:\quad\text{parallel}\ \frac{-2+2}{\sqrt2}=0,&&\text{perpendicular}\ \frac{2+2}{\sqrt2}=2\sqrt2
+\end{alignat*}
+
+The components before and after the collision, with the line of centres horizontal (\(\mathbf{i}+\mathbf{j}\) to the right, \(-\mathbf{i}+\mathbf{j}\) up) and the directions after the collision predicted:\par\nopagebreak
+
+\begin{tikzpicture}
+\def\R{0.8}       % sphere radius
+\def\gap{0.12}    % gap between a sphere and its arrows
+\def\L{1.1}       % arrow length
+\def\ext{0.3}     % overhang of the line of centres beyond the arrows
+\def\panel{7}     % offset of the After panel
+\foreach \k/\title in {0/Before, 1/After} {
+  \coordinate (A\k) at (\k*\panel,0);
+  \coordinate (B\k) at ($(A\k)+({2*\R+\k*(2*\gap+\L)},0)$);
+  \draw[dashed] ($(A\k)+(-\R-\gap-\L-\ext,0)$) -- ($(B\k)+(\R+\gap+\L+\ext,0)$);
+  \foreach \C/\name/\mass in {A/P/0.4\,\mathrm{kg}, B/Q/0.6\,\mathrm{kg}} {
+    \draw[thick] (\C\k) circle (\R);
+    \node at ($(\C\k)+(0,0.3*\R)$) {$\name$};
+    \node at ($(\C\k)+(0,-0.35*\R)$) {$\mass$};
+  }
+  \node[above] at ($(A\k)!0.5!(B\k)+(0,\R+\gap+\L+0.15)$) {\textit{\title}};
+}
+\foreach \C/\dx/\dy/\lab/\side in {A0/1/0/4\sqrt2/above, A0/0/-1/2\sqrt2/right, B0/0/1/2\sqrt2/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{-(\R+\gap+\L)}*(\dx,\dy)$) -- ($(\C)+{-(\R+\gap)}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\foreach \C/\dx/\dy/\lab/\side in {A1/1/0/v_P/above, A1/0/-1/2\sqrt2/right, B1/1/0/v_Q/above, B1/0/1/2\sqrt2/right}
+  \draw[-{Stealth[length=3mm]}, thick]
+    ($(\C)+{\R+\gap}*(\dx,\dy)$) -- ($(\C)+{\R+\gap+\L}*(\dx,\dy)$)
+    node[midway, \side] {$\lab$};
+\end{tikzpicture}
+
+\textbf{Perpendicular to the line of centres.} The spheres are smooth, so there is no impulse perpendicular to the line of centres. The momentum of each sphere in this direction is conserved, so its perpendicular component is unchanged: \(2\sqrt2\,\mathrm{m\,s^{-1}}\) for each of \(P\) and \(Q\), in the directions shown.
+
+\textbf{Parallel to the line of centres.} After the collision, let \(P\) move to the right with speed \(v_P\) and \(Q\) move to the right with speed \(v_Q\), as in the diagram. Conservation of momentum, taking left to right (the direction of \(\mathbf{i}+\mathbf{j}\)) as positive:
+\begin{align*}
+0.4\bigl(4\sqrt2\bigr)+0.6(0)&=0.4v_P+0.6v_Q\\
+8\sqrt2&=2v_P+3v_Q
+\end{align*}
+
+Newton's law of restitution:
+\[
+e=\frac{\text{speed of separation}}{\text{speed of approach}}=\frac{v_Q-v_P}{4\sqrt2}
+\]
+
+so \(v_Q=v_P+4\sqrt2\,e\). Substituting into the momentum equation:
+\begin{align*}
+8\sqrt2&=2v_P+3\bigl(v_P+4\sqrt2\,e\bigr)\\
+5v_P&=8\sqrt2-12\sqrt2\,e\\
+v_P&=\frac{4\sqrt2}{5}(2-3e)
+\end{align*}
+
+and then \(v_Q=v_P+4\sqrt2\,e=\frac{8\sqrt2}{5}(1+e)\).
+
+\textbf{Kinetic energy.} The perpendicular components are unchanged, so the kinetic energy lost, \(2.88\,\mathrm{J}\), comes from the parallel components alone:
+\begin{align*}
+\frac12(0.4)\bigl(4\sqrt2\bigr)^2-\frac12(0.4)v_P^2-\frac12(0.6)v_Q^2&=2.88\\
+6.4-0.2v_P^2-0.3v_Q^2&=2.88\\
+2v_P^2+3v_Q^2&=35.2\\
+\frac{64}{25}(2-3e)^2+\frac{384}{25}(1+e)^2&=35.2\\
+(2-3e)^2+6(1+e)^2&=\frac{55}{4}\\
+15e^2+10&=\frac{55}{4}\\
+e^2&=\frac14
+\end{align*}
+
+Since \(e\geq0\), \(e=\frac12\), so \(v_P=\frac{2\sqrt2}{5}\) and \(v_Q=\frac{12\sqrt2}{5}\). Both are positive, so the directions in the diagram are correct.
+
+After the collision, \(P\) moves with speed \(\frac{2\sqrt2}{5}\,\mathrm{m\,s^{-1}}\) along the line of centres, in the direction of \(\mathbf{i}+\mathbf{j}\), and \(2\sqrt2\,\mathrm{m\,s^{-1}}\) perpendicular to it, in the direction of \(\mathbf{i}-\mathbf{j}\). Using unit vectors in these directions:
+\begin{align*}
+\mathbf{v}_P&=\frac{2\sqrt2}{5}\cdot\frac{1}{\sqrt2}(\mathbf{i}+\mathbf{j})+2\sqrt2\cdot\frac{1}{\sqrt2}(\mathbf{i}-\mathbf{j})\\
+&=\frac25(\mathbf{i}+\mathbf{j})+2(\mathbf{i}-\mathbf{j})\\
+&=(2.4\mathbf{i}-1.6\mathbf{j})\,\mathrm{m\,s^{-1}}
+\end{align*}
+
+\item From part (a)(i), after the collision \(Q\) moves with speed \(\frac{12\sqrt2}{5}\,\mathrm{m\,s^{-1}}\) along the line of centres, in the direction of \(\mathbf{i}+\mathbf{j}\), and \(2\sqrt2\,\mathrm{m\,s^{-1}}\) perpendicular to it, in the direction of \(-\mathbf{i}+\mathbf{j}\). Using unit vectors in these directions:
+\begin{align*}
+\mathbf{v}_Q&=\frac{12\sqrt2}{5}\cdot\frac{1}{\sqrt2}(\mathbf{i}+\mathbf{j})+2\sqrt2\cdot\frac{1}{\sqrt2}(-\mathbf{i}+\mathbf{j})\\
+&=\frac{12}{5}(\mathbf{i}+\mathbf{j})+2(-\mathbf{i}+\mathbf{j})\\
+&=(0.4\mathbf{i}+4.4\mathbf{j})\,\mathrm{m\,s^{-1}}
+\end{align*}
+
+\item From the loss of kinetic energy in part (a)(i):
+\[
+e=\frac12
+\]
+
+\end{enumerate}
+\item The angle \(\theta\) through which \(P\) is deflected is the angle between \(\mathbf{u}_P\) and \(\mathbf{v}_P\):
+\begin{align*}
+\cos\theta&=\frac{\mathbf{u}_P\cdot\mathbf{v}_P}{|\mathbf{u}_P|\,|\mathbf{v}_P|}\\
+&=\frac{6(2.4)+2(-1.6)}{\sqrt{6^2+2^2}\sqrt{2.4^2+(-1.6)^2}}\\
+&=\frac{7}{\sqrt{130}}\\
+\theta&\approx52.1^\circ
+\end{align*}
+
+\end{enumerate}
+\end{djsSolution}
+
+\end{enumerate}
+\end{document}

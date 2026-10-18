@@ -424,6 +424,51 @@ export function solutionFigures(lines) {
   return { starts, definesOutside: DEFINITION_RE.test(outside) };
 }
 
+/**
+ * The source of each picture `solutionFigures` counts, in order: from its
+ * `\begin{tikzpicture}` to the matching `\end`, with comments and blank
+ * lines removed and the common indent taken off. A comment straight after
+ * code leaves its `%`, which keeps the line's end out of the output as the
+ * comment did.
+ *
+ * @param {string[]} lines
+ * @returns {string[]}
+ */
+export function solutionPictures(lines) {
+  const pictures = [];
+  let depth = 0;
+  let current = null;
+  for (const line of lines) {
+    const code = codePart(line);
+    const joined = code !== line && code !== '' && !/\s$/.test(code) ? `${code}%` : code;
+    let from = 0;
+    PICTURE_TOKEN_RE.lastIndex = 0;
+    for (const m of code.matchAll(PICTURE_TOKEN_RE)) {
+      if (m[1] === 'begin') {
+        if (depth === 0) {
+          current = [];
+          from = m.index;
+        }
+        depth++;
+      } else if (depth > 0) {
+        depth--;
+        if (depth === 0) {
+          current.push(code.slice(from, m.index + m[0].length));
+          pictures.push(current);
+          current = null;
+        }
+      }
+    }
+    if (current && depth > 0) current.push(joined.slice(from));
+  }
+  return pictures.map((pic) => {
+    const kept = pic.map((l) => l.replace(/\s+$/, '')).filter((l) => l.trim() !== '');
+    const indents = kept.slice(1).map((l) => /^[ \t]*/.exec(l)[0].length);
+    const cut = indents.length ? Math.min(...indents) : 0;
+    return kept.map((l, i) => (i === 0 ? l.trimStart() : l.slice(cut))).join('\n');
+  });
+}
+
 /** Whitespace collapsed, for the stamp. */
 function collapse(text) {
   return text.replace(/\s+/g, ' ').trim();

@@ -1,0 +1,115 @@
+% Shared mark scheme preamble for resources.danieljsmith.org: the pack
+% preamble, unchanged, then the scheme's own layer. A scheme's .tex is
+% rendered from its YAML (scripts/README.md, Mark schemes), never edited.
+\input{\CurrentFilePath/pack_preamble.tex}
+
+% The page: equal side margins, so the table runs the full width of the
+% header rule. The footers' right edge follows the text's.
+\geometry{left=0.8in, right=0.8in}
+\makeatletter
+\renewcommand{\djs@footR}[1]{%
+  \put(\dimexpr1in+\hoffset+\oddsidemargin+\textwidth\relax,
+    -\dimexpr\paperheight-0.32in\relax){\makebox[0pt][r]{#1}}}
+\makeatother
+
+\usepackage[export]{adjustbox}
+\usepackage{tabularray}
+\definecolor{msGrid}{RGB}{176, 172, 164}
+\definecolor{msTint}{RGB}{245, 243, 239}
+
+% The header on every page, the front page included, and the booklet label
+% under the contents-page title. \djsQuestionPageStyle stays empty.
+\newcommand{\djsSchemeHeader}[1]{%
+  \djsPackHeader[markscheme]{\textit{Mark scheme} - #1}%
+  \renewcommand{\djsPackTitle}{#1}%
+  \renewcommand{\djsBookletLabel}{Mark scheme}%
+}
+
+% The front page: the contents heading, spaced as tocloft spaces the packs'
+% "Questions", then the contents table. A question's name and page number
+% both link to its first page.
+\newcommand{\msContentsHeading}{%
+  \vskip\cftbeforetoctitleskip
+  {\noindent\cfttoctitlefont\contentsname\par}%
+  \vskip\cftaftertoctitleskip}
+\NewTblrEnviron{mscontents}
+\SetTblrInner[mscontents]{
+  colspec = {Q[wd=26mm, l] X[l] Q[wd=16mm, c] Q[wd=14mm, r]},
+  width = \linewidth,
+  rowsep = 4pt, colsep = 6pt,
+  hlines = {0.4pt, msGrid}, vlines = {0.4pt, msGrid},
+  hline{2} = {2.2pt, scarlet},
+  row{1} = {font=\small\bfseries},
+  row{Z} = {font=\bfseries},
+  column{2} = {font=\small},
+}
+\newcommand{\msContentsQuestion}[1]{\hyperref[q:#1]{Question #1}}
+\newcommand{\msContentsPage}[1]{\hyperref[q:#1]{\pageref*{q:#1}}}
+\newcommand{\msSep}{\hspace{0.9em}}
+
+% The conventions pages' layout: headings in the documents' own bold, tables
+% ruled and padded as the scheme's, roomy lists.
+\newcommand{\msHead}[1]{%
+  \par\vspace{18pt}%
+  {\noindent\bfseries #1\par}%
+  \vspace{6pt}}
+\NewTblrEnviron{mstblr}
+\SetTblrInner[mstblr]{rowsep = 6pt, colsep = 6pt,
+  hlines = {0.4pt, msGrid}, vlines = {0.4pt, msGrid}}
+\newenvironment{msList}
+  {\begin{itemize}[leftmargin=1.2em, itemsep=5pt, topsep=3pt, parsep=0pt]}
+  {\end{itemize}}
+
+% A question's first page: the link target and the PDF bookmark, as
+% \questionitem gives the packs.
+\newcommand{\msQnum}{}
+\newcommand{\msQuestion}[1]{%
+  \clearpage
+  \renewcommand{\msQnum}{#1}%
+  \phantomsection\label{q:#1}%
+  \addcontentsline{toc}{subsection}{\protect\djsTocEntry{#1}}}
+
+% The scheme's table: Question 16mm, Scheme the rest, Marks 16mm, Notes
+% 44mm; every cell ruled in msGrid; the scarlet rule under the head row. A
+% long table has no caption or "continued" foot; a continuation page opens
+% with a muted line above the repeated head row. The rules across a part's
+% rows, the alternative's tint and the total row are the rendered table's.
+\NewTblrTheme{ms}{%
+  \DefTblrTemplate{firsthead}{default}{}%
+  \DefTblrTemplate{middlehead,lasthead}{default}{%
+    {\small\itshape\color{djsMuted}Question \msQnum\ continued\par}%
+    \vspace{6pt}}%
+  \DefTblrTemplate{firstfoot,middlefoot,lastfoot}{default}{}%
+}
+\NewTblrEnviron{msscheme}
+\SetTblrOuter[msscheme]{long, theme=ms, entry=none, label=none}
+\SetTblrInner[msscheme]{
+  colspec = {Q[wd=16mm, l] X[l] Q[wd=16mm, c] Q[wd=44mm, l]},
+  width = \linewidth,
+  rowsep = 6pt, colsep = 6pt,
+  rowhead = 1,
+  vlines = {0.4pt, msGrid},
+  hline{1} = {0.4pt, msGrid}, hline{2} = {2.2pt, scarlet},
+  hline{Z} = {0.4pt, msGrid},
+  column{1} = {font=\bfseries}, column{3} = {font=\bfseries},
+  column{4} = {font=\small},
+  row{1} = {rowsep=4pt, font=\small\bfseries},
+}
+
+% Two marks on a row: each note starts with its code.
+\newcommand{\msNote}[2]{\textbf{#1}\enspace #2}
+% A full-row figure: the worked solution's own picture, scaled uniformly and
+% only down, to the table less the Question column.
+\newlength{\msSpanW}
+\AtBeginDocument{\setlength{\msSpanW}{\dimexpr\textwidth-16mm-28pt\relax}}
+\newcommand{\msFigure}[1]{%
+  \adjustbox{max width=\msSpanW, max totalheight=0.6\textheight, valign=t}{#1}}
+% A figure mark's feature, in the Scheme column.
+\newcommand{\msFeature}[1]{\textit{#1}}
+% An alternative's title row.
+\newcommand{\msAlternative}[1]{\textit{Alternative:} #1}
+% Drafts only: a queried mark's code, the query's why under its note, and a
+% flag in its part's place.
+\newcommand{\msQueried}[2]{#1~\(\to\) #2?}
+\newcommand{\msQuery}[1]{{\itshape\color{djsMuted}Query: #1}}
+\newcommand{\msFlag}[2]{\textbf{#1:}\enspace #2}
