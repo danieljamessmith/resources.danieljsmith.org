@@ -26,6 +26,7 @@ the root `AGENTS.md`.
 | `npm run review-status [scope \| solutions-id \| markscheme-id]` | Read-only report of packs and mark schemes never checked, checked and unchanged, or changed since their check. Scope as for `check-questions` (default `further-maths`); a solutions or mark scheme id reports that one |
 | `npm run compile-tex -- [scope] [--deploy]` | Bulk latexmk over `further-maths` (default) or `all`; `--deploy` copies built PDFs up beside the source on success. TMUA files are never compiled here (the `tmua` scope is refused) |
 | `npm run import-pack -- [flags]` | Adds a pack from a local folder (see Importing a pack) |
+| `npm run markscheme -- <command>` | Mark scheme data: read a pack, check, parse, write, format, stamp and renumber a scheme, report each scheme's state (see Mark schemes) |
 
 Through npm, flags need `--` before them (`npm run import-pack -- --yes …`);
 `node scripts/<name>.mjs …` takes them directly.
@@ -110,6 +111,98 @@ regenerates the generated files. The compile passes latexmk `-f`, as
 `compile-tex` does, so an earlier failed or killed compile can't stop a
 retry.
 
+## Mark schemes
+
+A pack's mark scheme is `<section>/ms/_QBT___MS__<stem>.yaml`, beside its
+`qbt/` and `soln/` (`<stem>` is the questions file's name without `_QBT__`
+and `.tex`). The `.tex` and PDF beside it are rendered from it. One YAML
+file per pack:
+
+| Level | Field | Rule |
+|---|---|---|
+| File | `format` | `1` |
+| | `pack` | The questions file's header title, exactly as `\djsQbtHeader` writes it (`\&` included) |
+| | `last_updated` | `D Month YYYY`, not after today |
+| | `questions` | One per `\questionitem`, in order |
+| Question | `q`, `stamp` | Its number; its stamp when last drafted, revised or confirmed |
+| | `parts` | One per `\marks`, in order |
+| Part | `part` | Its label: `""` for a mark on the whole question, `a`, `b.ii`, or `#2` (its place among the question's marks) where the `enumerate` nesting can't be read or two marks would share a label |
+| | `rows` | The main method, unless `flag` |
+| | `alt` | Optional: `title` (a few words) and `rows`. Only where the worked solution gives a whole-part alternative |
+| | `flag` | Draft only: `kind` (`solution_error`, `figure_missing`, `not_drafted`) and a one-line `why`; replaces `rows` and `alt` |
+| Row | `scheme` | A literal block (`\|`): each line is a line of the cell, so no `\\` |
+| | `figure` | `N`: the Nth counted picture of the question's solution box |
+| | `marks` | Up to two on a Scheme row; any number on a figure row, one per feature |
+| Mark | `code` | `M1`, `dM1`, `A1`, `A1ft`, `A1 AG`, `B1`, `B1ft`, `E1` |
+| | `note` | Required on `M1`, `dM1`, `E1`, `A1ft`, `B1ft` and with `depends_on` |
+| | `feature` | Figure marks only: `shape`, `intercepts`, `asymptotes`, `turning points`, `end behaviour`, `symmetry`, `shading`, `labelled point`, `centre and radius`, `half-line` |
+| | `depends_on` | `dM1` only, where it doesn't depend on the method mark before it: `"2"` (the second mark of this method) or `"a:2"` (of part `a`'s main method) |
+| | `query` | Draft only: `code` (the code it should be) and a one-line `why` |
+
+`part_notes`, `width`, `place` and a `validation` flag are refused. A
+question's **stamp** is the first 8 hex characters of an md5 of its statement
+(after `\questionitem`, the source hint left out) and its solution box's
+body, whitespace collapsed, so a reorder keeps it and any edit changes it.
+A **counted picture** is a `tikzpicture` of the solution box not nested in
+another (one inside `djsSolutionFigure` counts).
+
+**Canonical form.** `write` and `format` write two-space indents, the fields
+in the table's order, every `scheme` a literal block ending in one newline,
+and every other string plain where YAML reads it back unchanged,
+single-quoted otherwise (`''`, `'#2'`, `'2'`), a literal block if it spans
+lines. CRLF reads as LF, and a write keeps the file's line endings. The
+checker refuses any other form, so a splice (`write --only`), `stamp` or
+`renumber` leaves the rest of the file byte for byte; each refuses a file
+not in canonical form.
+
+**The commands** (`npm run markscheme -- <command>`; a `<json>` of `-` is
+stdin; exit 0, 1 on errors or a refusal, 2 on a usage error):
+
+| Command | Does |
+|---|---|
+| `pack <qbt.tex> [--json]` | The pack as a scheme sees it. Without `--json`, one line per `\marks` (label and count) and the totals. With it (`format: 1`): `title` (as the header writes it), `strand` and `section` (as `\djsSitePath` writes them), `files` (`questions`, `solutions`, `scheme`, `conventions`, relative to the site root) and per question `q`, `stamp`, `statement`, `solution` (with a `% figure N` line before each counted picture) and `parts` (`part`, `marks`) |
+| `check [<yaml> ... \| <scope>] [--warnings] [--draft]` | Rules 1-24 on scheme files, or on every `ms/*.yaml` under a scope (`further-maths`, the default; `all`; or a folder under `public/tex`). Warnings are counted, and listed with `--warnings`. `--draft` leaves out rule 24, for a draft that still holds flags and queries |
+| `check --question <json> --pack <qbt.tex> [--codes <json>] --json` | One question (the data of one `questions` item; `stamp` may be absent), for an external drafting tool's accept: rule 1's fields and types and rules 4-23, with rule 14 when codes are given. Prints `{ ok, errors, warnings }`, each problem `{ rule, where, q, message }` |
+| `parse <yaml> [--question N]` | YAML to JSON on stdout, with no rules applied (any YAML file); `--question` picks one question of a scheme |
+| `write <json> --to <yaml> [--only "3, 5"]` | JSON to canonical YAML: a whole scheme, or (with `--only`) the named questions, from a scheme, a list of questions or one question, spliced into the existing file. Refuses data with unknown fields or wrong types |
+| `format <yaml>` | Rewrites a scheme in canonical form |
+| `stamp <yaml> --only "3, 5"` | Sets those questions' `stamp` to their statement and solution now |
+| `renumber <yaml>` | After the pack's questions are reordered: matches each question to the pack's by stamp, puts them in the pack's order and sets each `q`. Refuses, naming the question, when a stamp matches none or more than one of the pack's (a question edited in the same change: revise its scheme first) |
+| `status [<scope> \| <id>]` | Per scheme, the questions broken (an error of rules 1-24) or stale (stamp no longer matches), and how many packs have no scheme. An id is the pack's questions, solutions or mark scheme id |
+
+A **codes file** (`--codes`) gives each part's codes in order:
+`{ "parts": [{ "q": 3, "part": "a", "codes": ["M1", "A1"], "alt": [...] }] }`,
+a bare list of those, or `{ "questions": [{ "q": 3, "parts": [...] }] }`; a
+code is a string or an object with a `code`.
+
+**The checker's rules.** Errors fail; warnings (18, 19, 21 and the noted
+halves of 6 and 16) are reported.
+
+1. The file parses, holds only the fields above with their types, and is canonical.
+2. `pack` is the questions file's header title.
+3. `last_updated` is a valid date, not after today.
+4. One question per question of the pack, numbered 1, 2, ... in order; one part per `\marks`, in order, with its label.
+5. A row has `scheme` or `figure`, not both; a Scheme row has at most two marks.
+6. No string holds a tab, form feed, backspace or carriage return (a `\theta`, `\frac`, `\beta` or `\right` written into JSON with one backslash). A line break followed by the rest of a macro starting `\n` (`\neq`, `\nabla`) warns.
+7. No empty Scheme line or note; no placeholder (`TODO`, `TBC`, or `...` or `?` alone); no `\\` ending a Scheme line.
+8. An unflagged part's marks number its `\marks` (an offset `\marks[...]{n}` included).
+9. Its `alt`'s marks number the same.
+10. Every code is on the list; `A1*`, a lone `AG`, `B2`, `M2`, `R1`, `DM1` and `A0` are refused with the house spelling.
+11. In each method (the main rows, and the `alt`'s): every `A` has an `M1` or `dM1` before it; a `dM1` has one before it, or a `depends_on`; `A1 AG` comes at most once, as the method's last `A`.
+12. `depends_on` only on a `dM1`, naming an `M1` or `dM1` before it (in its method, or an earlier part's main method), not just the default, and the mark has a note.
+13. Every mark of a figure row is a `B1` or `B1ft` with a `feature` from the list; no other mark has one.
+14. With `--codes` only: a part's main codes, in order, are those given, and so are its `alt`'s.
+15. The required notes are there.
+16. Outside maths, no `bod`, `www`, `rot`, `PI`, `BC`, `DR`, `dep`, `indep`, `ACF`, `AWFW`, `NMS` or `CWO`, in any case. Any other word of two to five capitals but `AG`, `SC`, `LHS` and `RHS` warns.
+17. No `SC` or "special case" anywhere.
+18. An `M1`, `dM1` or `E1` note opens with a verb from `NOTE_VERBS` (warning).
+19. A note of more than 35 words, maths counting as one, warns.
+20. `figure: N` names a counted picture of the question's solution box.
+21. A solution box that defines something outside its pictures (`\pgfmathsetmacro`, `\def`, `\newcommand`) warns on each of its figure rows: a picture copied alone may not compile.
+22. (Figure scales: not built yet.)
+23. A flag has a known kind and a one-line `why`, and no `rows` or `alt`; `check --question` refuses `not_drafted`. A query's code is on the list and differs from its mark's, with a one-line `why`.
+24. A committed scheme holds no flag and no query (`check` without `--draft`).
+
 ## Script module map
 
 | Path | Purpose |
@@ -132,6 +225,8 @@ retry.
 | `scripts/hash-assets.mjs` | npm pre-hook generator for `src/data/fileHashes.generated.ts` |
 | `scripts/mark-checked.mjs` | Writes a pack's or a mark scheme's check date and hash to `src/data/reviews.json`; `--reordered` carries a pack's existing check across a pure reorder |
 | `scripts/review-status.mjs` | Read-only report of each pack's and mark scheme's check status from `src/data/reviews.json` |
+| `scripts/markscheme.mjs` | The mark scheme commands (see Mark schemes): argument parsing, file reads and atomic writes around `scripts/lib/markscheme.mjs` |
+| `scripts/lib/markscheme.mjs` | Mark scheme data: the pack reader (`\marks` labels, stamps, counted figures, `pack --json`), the YAML reader and canonical writer, the checker's rules 1-24 (`checkScheme`, `checkQuestion`), and the splice, stamp and renumber edits |
 | `scripts/lib/reviews.mjs` | `reviews.json` parse/render/atomic-write, `.tex` pair and mark scheme hashing (CRLF-insensitive, last-updated lines left out) and status classification behind `mark-checked` and `review-status` |
 | `scripts/lib/pack-preamble.mjs` | Further Maths pack path/depth helpers, shared-preamble migration, import normalization, initial dates, date validation, pack title and site-path read/write (`readPackIdentity`, `applyPackIdentity`), `\djsMechanicsPack` and preamble comments, and convention checks |
 | `scripts/lib/pair-presence.mjs` | Pure quartet, mark scheme and tracked-missing checker behind `check-pairs` |
@@ -153,7 +248,8 @@ retry.
 - Use atomic writes for files consumed by agents or scripts: write to
   `<file>.<rand>.tmp`, then `renameSync`. `reviews.writeReviewsAtomic` is the
   reference pattern.
-- Avoid new dependencies without good reason.
+- Avoid new dependencies without good reason. `yaml`, a devDependency, is the
+  mark schemes' parser: YAML 1.2, so `no` and `on` stay strings.
 - `resources.ts` is read with regexes, not a TypeScript parser. Write rows in
   the existing shape (see Importing a pack, step 4); `check-resources` fails on
   any `id:` key that doesn't parse as a row.

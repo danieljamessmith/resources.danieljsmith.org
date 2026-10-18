@@ -73,6 +73,11 @@ public/tex/
           _QBT___Solns__<Topic>.tex   ← solutions (source, tracked)
           _QBT___Solns__<Topic>.pdf   ← deployed PDF (tracked)
           build/
+        ms/                           ← the pack's mark scheme, once it has one
+          _QBT___MS__<Topic>.yaml     ← scheme data (source, tracked)
+          _QBT___MS__<Topic>.tex      ← rendered from the YAML (generated, tracked, never edited)
+          _QBT___MS__<Topic>.pdf      ← deployed PDF (tracked)
+          build/
         notes/                        ← optional, for notes PDFs
     further-mechanics/
       <topic-slug>/
@@ -126,6 +131,20 @@ the optional `djsSolutionFigure` environment, and the legacy colored-cancel
   scheme with its questions, and the download is named `<Title> - Mark
   Scheme.pdf`. `check-resources` and `check-pairs` enforce the row and its
   files; `npm run mark-checked -- <markscheme-id>` records its check.
+
+- **Mark scheme data:** a scheme's source is its YAML,
+  `<section>/ms/_QBT___MS__<stem>.yaml` (`<stem>` is the questions file's
+  name without `_QBT__` and `.tex`): per question its number and stamp, per
+  part (one per `\marks`, by the label the PDF prints) its rows and their
+  marks. No totals are stored: a part's total is its `\marks`. The file is
+  kept in one canonical form, which `npm run markscheme -- format` writes
+  and the checker requires, so edit the YAML (never the generated `.tex`),
+  then run `format` and `check`. A question's stamp records the statement
+  and solution it was last drafted, revised or confirmed against; after an
+  edit to either, look at its scheme, then `stamp` it or revise it. After a
+  reorder, `renumber` puts the scheme in the pack's new order.
+  `scripts/README.md` (Mark schemes) has the fields, the commands and the
+  checker's rules.
 
 - **`djsSolution`** is the worked-solution box, adapted from the TMUA
   worked-solutions box. It has a bold scarlet "Solution" label,
@@ -238,8 +257,9 @@ dates are separate records; a completed audit refreshes both.
 | `_QBT__<Topic>.tex` | Question pack for a topic |
 | `_QBT___Solns__<Topic>.tex` | Solutions pack for a topic |
 | `_Notes__<Title>.tex` (under `notes/`) | Standalone notes |
+| `_QBT___MS__<Topic>.yaml` (under `ms/`) | Mark scheme data for a topic's pack; its `.tex` and `.pdf` are rendered from it |
 
-`scripts/lib/tex-utils.mjs` (`shouldProcessTexFile`) treats anything under `qbt/` or `soln/` (but not `notes/`) as a tracked QBT/soln pack — that's the set of files `check-tex.mjs` and `clean-tex.mjs` operate on.
+`scripts/lib/tex-utils.mjs` (`shouldProcessTexFile`) treats anything under `qbt/` or `soln/` (but not `notes/`) as a tracked QBT/soln pack — that's the set of files `check-tex.mjs` and `clean-tex.mjs` operate on. `ms/` is outside it: `check-tex`, `clean-tex` and `check-solution-layout` leave schemes alone.
 
 PDFs inside `public/tex/**/build/` are build outputs — never read or edit them. PDFs directly in `qbt/` or `soln/` are the deployed production files.
 
@@ -461,6 +481,7 @@ When durable project conventions change, update `AGENTS.md` and the directly rel
 - **The `djsSolution` spacing or the solution layout rules change:** update the `djsSolution` bullet, the Solution source layout section and `scripts/lib/solution-layout.mjs` together.
 - **`check-questions` / `sync-questions` boundary detection changes** (Solution box openers/closers, prelude shape): update the QBT ⇄ SOLN statement contract section.
 - **The LaTeX directory layout or file-naming patterns change:** update the structure tables and naming-pattern guidance above.
+- **The mark scheme data, its canonical form or the checker's rules change:** update `scripts/README.md` (Mark schemes), the Mark scheme data bullet above and `scripts/lib/markscheme.mjs` with its tests together.
 - **The shared pack preamble convention changes:** update the LaTeX directory layout section, `scripts/lib/pack-preamble.mjs` and the importer notes in `scripts/README.md`.
 - **npm scripts or pre-commit hooks change:** update the Tooling section and `scripts/README.md`.
 - **Site presentation, mobile behaviour or search metadata change:** update `src/README.md`.
