@@ -151,8 +151,10 @@ the optional `djsSolutionFigure` environment, and the legacy colored-cancel
 
 - **The mark schemes' guard:** the pre-commit's `check-markschemes` reads
   the git index, so it checks the schemes and packs as they are about to be
-  committed, and an unstaged draft never blocks a commit. Every committed
-  scheme passes the checker (so holds no flag or query), its `.tex` is what
+  committed, and an unstaged draft never blocks a commit. `check-pairs`
+  also reads scheme presence from the index, ignoring unstaged deletions
+  and nested draft files. Every committed scheme passes the checker (so
+  holds no flag or query), its `.tex` is what
   `render` writes now, its YAML, `.tex` and PDF sit beside their pack, and
   each question's stamp matches its statement and solution. Stale stamps
   are at the backfill stage: `STALE_STAMPS` in

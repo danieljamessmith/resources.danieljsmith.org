@@ -71,6 +71,22 @@ afterEach(() => {
 });
 
 describe('check-markschemes', () => {
+  it('passes an empty index without reading any blobs', () => {
+    git('read-tree', '--empty');
+    expect(guard()).toMatchObject({ ok: true, schemes: 0, errors: [], stale: [] });
+  });
+
+  it('blocks an unmerged path in the index', () => {
+    const blob = git('rev-parse', `:${TEX}`).trim();
+    execFileSync('git', ['update-index', '--index-info'], {
+      cwd: root, env,
+      input: `0 ${'0'.repeat(40)}\t${TEX}\n100644 ${blob} 1\t${TEX}\n100644 ${blob} 2\t${TEX}\n100644 ${blob} 3\t${TEX}\n`,
+    });
+    const result = guard();
+    expect(result.ok).toBe(false);
+    expect(result.errors).toContainEqual(expect.objectContaining({ file: TEX, rule: 26, message: 'unmerged: resolve the conflict first' }));
+  });
+
   it('passes a committed scheme in step with its pack', () => {
     const result = guard();
     expect(result.errors).toEqual([]);

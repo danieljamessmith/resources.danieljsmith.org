@@ -3,7 +3,7 @@
  * must have all four of { qbt.tex, qbt.pdf, soln.tex, soln.pdf }. A mark
  * scheme in the `ms/` folder needs its pack beside it, and once rendered its
  * .yaml, .tex and .pdf together. Also flags tracked files under public/tex
- * that are missing from the working tree.
+ * that are missing from the working tree, except index-only `ms/` files.
  *
  * Packs are read from the working tree, schemes from the git index, so an
  * unstaged draft scheme (a YAML and its draft .tex, no PDF) never blocks a
@@ -113,7 +113,7 @@ function walk(dir) {
   for (const entry of entries) {
     const full = join(dir, entry.name);
     if (entry.isDirectory()) {
-      if (entry.name === 'build' || entry.name === 'aux') continue;
+      if (entry.name === 'build' || entry.name === 'aux' || entry.name === 'ms') continue;
       walk(full);
     } else {
       const rel = normalizePath(relative(repoRoot, full));
@@ -156,7 +156,8 @@ function getTrackedMissing() {
       .toString('utf8')
       .split('\0')
       .filter(Boolean)
-      .map((p) => normalizePath(p));
+      .map((p) => normalizePath(p))
+      .filter((p) => !p.includes('/ms/'));
   } catch (e) {
     console.error('check-pairs: git ls-files failed:', e.message || e);
     process.exit(1);
