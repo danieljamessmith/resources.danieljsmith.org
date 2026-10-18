@@ -4,6 +4,7 @@ import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { checkScheme, emitScheme, readPack, solutionFigures, solutionPictures } from './markscheme.mjs';
 import {
+  latex,
   markCodes,
   markNotes,
   renderFrontPage,
@@ -244,6 +245,23 @@ describe('cells', () => {
   it('sets each line of a Scheme entry as a line of its cell, 4pt apart', () => {
     expect(schemeCell('\\(a = 1\\)\n')).toBe('{\\(a = 1\\)}');
     expect(schemeCell('\\(a = 1\\)\n  \\(b = 2\\)\n')).toBe(String.raw`{\(a = 1\)\\[4pt] \(b = 2\)}`);
+  });
+
+  it('sets a `%` left unescaped as a percent sign, never a comment that swallows the row', () => {
+    expect(latex('Loses 25% of its energy; 25\\% stays.')).toBe(String.raw`Loses 25\% of its energy; 25\% stays.`);
+    expect(latex('%%')).toBe(String.raw`\%\%`);
+    expect(latex(String.raw`\(a\)\\% b`)).toBe(String.raw`\(a\)\\\% b`);
+    expect(schemeCell('\\(75%\\)\n')).toBe(String.raw`{\(75\%\)}`);
+    expect(markNotes([{ code: 'M1', note: '5% off.', query: { code: 'B1', why: 'Only 5%.' } }], { draft: true })).toBe(
+      String.raw`{5\% off.\\ \msQuery{Only 5\%.}}`,
+    );
+    const s = clone();
+    s.questions[2].parts[0].alt.title = '100% by the normal';
+    s.questions[3].parts[1] = { part: 'b', flag: { kind: 'solution_error', why: 'Off by 10%.' } };
+    const text = renderScheme(s, pack, { draft: true });
+    expect(text).toContain(String.raw`\msAlternative{100\% by the normal}`);
+    expect(text).toContain(String.raw`\msFlag{Solution error}{Off by 10\%.}`);
+    expect(text).not.toMatch(/(?<!\\)%./);
   });
 
   it('keeps a row\'s codes on one line, `A1 AG` whole, so only a pair too wide stacks', () => {

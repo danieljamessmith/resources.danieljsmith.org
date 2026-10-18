@@ -44,9 +44,17 @@ export function schemeLabel(q, part) {
   return `${q}${partSuffix(part)}`;
 }
 
+/**
+ * A scheme's LaTeX, set on one line of the output: a `%` left unescaped is a
+ * percent sign, since as a comment it would swallow the rest of the row.
+ */
+export function latex(text) {
+  return text.replace(/(?<=(?:^|[^\\])(?:\\\\)*)%/g, String.raw`\%`);
+}
+
 /** A Scheme entry: each line of the block a line of the cell, 4pt apart. */
 export function schemeCell(scheme) {
-  const lines = scheme.replace(/\n+$/, '').split('\n').map((l) => l.trim());
+  const lines = scheme.replace(/\n+$/, '').split('\n').map((l) => latex(l.trim()));
   return `{${lines.join(String.raw`\\[4pt] `)}}`;
 }
 
@@ -64,8 +72,8 @@ export function markNotes(marks, { draft = false } = {}) {
   const blocks = marks
     .map((m) => {
       const lines = [];
-      if (m.note) lines.push(m.note);
-      if (draft && m.query) lines.push(String.raw`\msQuery{${m.query.why}}`);
+      if (m.note) lines.push(latex(m.note));
+      if (draft && m.query) lines.push(String.raw`\msQuery{${latex(m.query.why)}}`);
       return { m, lines };
     })
     .filter((b) => b.lines.length);
@@ -147,11 +155,11 @@ export function renderQuestion(question, packQ, { draft = false } = {}) {
     if (part.flag !== undefined) {
       if (!draft) throw new Error(`Q${q}: a flagged part renders only in a draft`);
       const title = FLAG_TITLES[part.flag.kind] ?? part.flag.kind;
-      rows.push({ cells: ['', String.raw`\SetCell[c=3]{l} \msFlag{${title}}{${part.flag.why}}`, '', ''] });
+      rows.push({ cells: ['', String.raw`\SetCell[c=3]{l} \msFlag{${title}}{${latex(part.flag.why)}}`, '', ''] });
     } else {
       method(part.rows ?? [], false);
       if (part.alt) {
-        rows.push({ cells: ['', String.raw`\SetCell[c=3]{l} \msAlternative{${part.alt.title ?? ''}}`, '', ''], tint: true });
+        rows.push({ cells: ['', String.raw`\SetCell[c=3]{l} \msAlternative{${latex(part.alt.title ?? '')}}`, '', ''], tint: true });
         const titleRow = rows.length;
         method(part.alt.rows ?? [], true);
         if (rows[titleRow]) rows[titleRow].nobreak = true;

@@ -244,7 +244,10 @@ layer):
   the query's why under its note (`\msQuery`), and a flagged part as one
   row `\msFlag{<kind>}{<why>}` before its total.
 
-The output holds no comments. `scripts/lib/fixtures/markscheme/` holds the
+The output holds no comments: the YAML's LaTeX is copied as written, except
+that a `%` left unescaped in a Scheme line, note, why or title is set as
+`\%`, since each lands on one line of the output, where a comment would
+swallow the rest of the row. `scripts/lib/fixtures/markscheme/` holds the
 golden files: a four-question pack (a sketch with its figure, an
 alternative on a question of one unlabelled part, and a part longer than a
 page), its scheme, and its rendered `.tex`, plain and draft. After a
