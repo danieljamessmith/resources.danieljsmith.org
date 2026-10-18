@@ -324,6 +324,12 @@ describe('checkResources: mark schemes', () => {
     expect(kinds(p)).toEqual(['markscheme-description']);
   });
 
+  it("flags a topic that is not the pack's", () => {
+    const p = packWithScheme();
+    p.entries[2].topic = 'Polar Curves';
+    expect(kinds(p)).toEqual(['markscheme-topic-mismatch']);
+  });
+
   it("flags a file outside the pack's ms folder", () => {
     const p = packWithScheme();
     p.entries[2].file = `${dir}/soln/_QBT___MS__Polar_Curves.pdf`;
@@ -359,9 +365,12 @@ describe('checkResources: mark schemes', () => {
     expect(kinds(p)).toEqual(['markscheme-no-solutions']);
   });
 
-  it('still flags paperId on a questions row', () => {
+  it('still flags paperId on a questions or solutions row', () => {
     const p = packWithScheme();
     p.entries[0].paperId = 'fm-polar-curves';
+    expect(kinds(p)).toEqual(['paper-id-misplaced']);
+    p.entries[0].paperId = undefined;
+    p.entries[1].paperId = 'fm-polar-curves';
     expect(kinds(p)).toEqual(['paper-id-misplaced']);
   });
 });

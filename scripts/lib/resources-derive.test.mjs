@@ -133,6 +133,12 @@ describe('markSchemeId and markSchemeFile', () => {
     expect(markSchemeFile('/tex/further-maths/core-pure/polar/soln/_QBT___Solns__Polar_Curves.pdf')).toBeNull();
     expect(markSchemeFile('/tex/tmua/TMUA_SetA_Paper1.pdf')).toBeNull();
   });
+
+  it('keeps a stem that starts with an underscore', () => {
+    expect(
+      markSchemeFile('/tex/further-maths/further-mechanics/work-energy-power/qbt/_QBT___Power_and_Driving_Force_.pdf'),
+    ).toBe('/tex/further-maths/further-mechanics/work-energy-power/ms/_QBT___MS___Power_and_Driving_Force_.pdf');
+  });
 });
 
 /** A questions row and its solutions row, as `parseResourcesEntries` returns them. */

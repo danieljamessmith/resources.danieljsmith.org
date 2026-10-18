@@ -588,6 +588,10 @@ export function markSchemeId(solutionsId) {
  * @returns {string | null}
  */
 export function markSchemeFile(questionsFile) {
-  const m = questionsFile.match(/^(\/tex\/further-maths\/[^/]+\/[^/]+)\/qbt\/_QBT__(?!_)([^/]+\.pdf)$/);
+  // A stem may itself start with `_` (a title in brackets), so only the
+  // solutions and scheme prefixes are ruled out.
+  const m = questionsFile.match(
+    /^(\/tex\/further-maths\/[^/]+\/[^/]+)\/qbt\/_QBT__(?!_Solns__|_MS__)([^/]+\.pdf)$/,
+  );
   return m ? `${m[1]}/ms/_QBT___MS__${m[2]}` : null;
 }
