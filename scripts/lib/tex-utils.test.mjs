@@ -35,6 +35,10 @@ describe('shouldProcessTexFile', () => {
     expect(shouldProcessTexFile('public/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Topic.tex')).toBe(true);
   });
 
+  it('returns false for a mark scheme .tex file under ms/', () => {
+    expect(shouldProcessTexFile('public/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__Topic.tex')).toBe(false);
+  });
+
   it('returns false for a notes .tex file', () => {
     expect(shouldProcessTexFile('public/tex/further-maths/core-pure/complex-numbers/notes/notes.tex')).toBe(false);
   });

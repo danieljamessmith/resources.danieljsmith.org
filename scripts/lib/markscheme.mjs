@@ -59,21 +59,21 @@ export const FEATURES = [
   'half-line',
 ];
 
-/** Flag kinds. `not_drafted` is written by the drafting tool when every attempt failed, never in an answer. */
+/** Flag kinds. `not_drafted` is written by an external drafting tool when every attempt failed, never in an answer. */
 export const FLAG_KINDS = ['solution_error', 'figure_missing', 'not_drafted'];
 const MODEL_FLAG_KINDS = new Set(['solution_error', 'figure_missing']);
 
 /** The verbs an M1, dM1 or E1 note may open with (rule 18). */
 export const NOTE_VERBS = new Set(
-  `Adds Applies Argues Assumes Attempts Calculates Checks Chooses Combines
-  Compares Completes Concludes Considers Constructs Converts Deduces Defines
-  Differentiates Divides Draws Eliminates Equates Evaluates Expands Explains
-  Expresses Factorises Finds Forms Gives Identifies Integrates Interprets
-  Justifies Lists Makes Marks Multiplies Notes Obtains Proves Puts
-  Rationalises Reaches Rearranges Recognises Relates Replaces Resolves
-  Rewrites Separates Sets Shows Simplifies Sketches Solves Splits Squares
-  States Subtracts Substitutes Sums Takes Tests Translates Uses Verifies
-  Writes`.split(/\s+/),
+  `Adds Applies Argues Assumes Attempts Calculates Carries Checks Chooses
+  Clears Collects Combines Compares Completes Concludes Considers Constructs
+  Converts Deduces Defines Differentiates Divides Draws Eliminates Equates
+  Evaluates Expands Explains Expresses Factorises Finds Forms Gives
+  Identifies Integrates Interprets Justifies Lists Makes Marks Multiplies
+  Notes Obtains Pairs Proves Puts Rationalises Reaches Rearranges Recognises
+  Relates Replaces Resolves Rewrites Separates Sets Shows Simplifies Sketches
+  Solves Splits Squares States Subtracts Substitutes Sums Takes Tests
+  Translates Uses Verifies Writes`.split(/\s+/),
 );
 
 /** Board abbreviations the notes never use (rule 16), matched as words. */
@@ -503,8 +503,9 @@ export function packModel(qbtText, solnText) {
     const { starts, definesOutside } = solutionFigures(body);
     const marked = [];
     body.forEach((line, i) => {
-      const n = starts.indexOf(i);
-      if (n >= 0) marked.push(`${/^\s*/.exec(line)[0]}% figure ${n + 1}`);
+      starts.forEach((start, n) => {
+        if (start === i) marked.push(`${/^\s*/.exec(line)[0]}% figure ${n + 1}`);
+      });
       marked.push(line);
     });
     const solution = body.join('\n');
@@ -575,17 +576,19 @@ const YAML_OPTIONS = { version: '1.2', schema: 'core', uniqueKeys: true, prettyE
  * @returns {{ value: unknown, errors: { line: number | null, message: string }[] }}
  */
 export function parseYaml(text) {
-  const doc = YAML.parseDocument(text.replace(/\r\n/g, '\n'), YAML_OPTIONS);
+  const lf = text.replace(/\r\n/g, '\n');
+  const doc = YAML.parseDocument(lf, YAML_OPTIONS);
   if (doc.errors.length) {
+    const lineAt = (offset) => (Number.isInteger(offset) ? lf.slice(0, offset).split('\n').length : null);
     return {
       value: undefined,
       errors: doc.errors.map((e) => ({
-        line: e.linePos?.[0]?.line ?? null,
+        line: lineAt(e.pos?.[0]),
         message: e.message.split('\n')[0],
       })),
     };
   }
-  return { value: doc.toJS({ maxAliasCount: -1 }), errors: [] };
+  return { value: doc.toJS(), errors: [] };
 }
 
 const plainCache = new Map();
@@ -934,7 +937,7 @@ function checkQuestionBody(question, packQ, report, { modelAnswer = false, codes
           } else if (!FLAG_KINDS.includes(flag.kind)) {
             report.error(23, where, q, `unknown flag kind \`${flag.kind}\` (use ${FLAG_KINDS.join(', ')})`);
           } else if (modelAnswer && !MODEL_FLAG_KINDS.has(flag.kind)) {
-            report.error(23, where, q, '`not_drafted` is written by the drafting tool, never in an answer');
+            report.error(23, where, q, '`not_drafted` is written by an external drafting tool, never in an answer');
           }
         }
         if (flag.why !== undefined && !oneLine(flag.why)) report.error(23, where, q, "a flag's `why` is one line");
@@ -1474,15 +1477,15 @@ export function spliceQuestions(target, sourceQuestions, only) {
  * @param {number[]} only
  */
 export function stampQuestions(scheme, pack, only) {
+  for (const n of only) {
+    if (!scheme.questions.some((q) => q.q === n)) throw new Error(`the scheme has no question ${n}`);
+    if (!pack.questions.some((p) => p.q === n)) throw new Error(`the pack has no question ${n}`);
+  }
   const questions = scheme.questions.map((question) => {
     if (!only.includes(question.q)) return question;
     const packQ = pack.questions.find((p) => p.q === question.q);
     return { ...question, stamp: packQ.stamp };
   });
-  for (const n of only) {
-    if (!scheme.questions.some((q) => q.q === n)) throw new Error(`the scheme has no question ${n}`);
-    if (!pack.questions.some((p) => p.q === n)) throw new Error(`the pack has no question ${n}`);
-  }
   return { ...scheme, questions };
 }
 

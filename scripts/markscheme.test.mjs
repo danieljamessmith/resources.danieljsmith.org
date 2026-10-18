@@ -170,6 +170,15 @@ describe('the commands', () => {
     expect(main(['check', yamlPath()])).toBe(1);
     expect(err.join('\n')).toMatch(/\[rule 24\]/);
     expect(main(['check', yamlPath(), '--draft'])).toBe(0);
+    expect(main(['check', 'no-such-scope'])).toBe(2);
+  });
+
+  it('parse gives the line of a YAML error on stderr and exits 1', () => {
+    const bad = join(dir, 'bad.yaml');
+    writeFileSync(bad, 'q: 1\nparts: [\n');
+    expect(main(['parse', bad])).toBe(1);
+    expect(out).toEqual([]);
+    expect(err.join('\n')).toMatch(/bad\.yaml:3: /);
   });
 
   it('check --question --json is the accept', () => {

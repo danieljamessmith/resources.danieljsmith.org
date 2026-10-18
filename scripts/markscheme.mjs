@@ -20,7 +20,7 @@
 
 import { randomBytes } from 'node:crypto';
 import { existsSync, readdirSync, readFileSync, renameSync, statSync, writeFileSync } from 'node:fs';
-import { dirname, join, relative, resolve } from 'node:path';
+import { basename, dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   checkQuestion,
@@ -166,7 +166,7 @@ function findSchemes(dir, acc = []) {
     const full = join(dir, entry.name);
     if (entry.isDirectory()) {
       if (entry.name !== 'build') findSchemes(full, acc);
-    } else if (/^_QBT___MS__.+\.yaml$/.test(entry.name) && dirname(full).endsWith('ms')) {
+    } else if (/^_QBT___MS__.+\.yaml$/.test(entry.name) && basename(dir) === 'ms') {
       acc.push(full);
     }
   }
@@ -239,6 +239,7 @@ function cmdCheck(parsed) {
     files = args.map((a) => resolve(a));
   } else if (args.length <= 1) {
     scope = args[0] ?? 'further-maths';
+    if (!existsSync(resolveScope(scope))) throw new UsageError(`${scope} is neither a scheme file nor a scope under public/tex`);
     files = findSchemes(resolveScope(scope));
   } else {
     throw new UsageError('check [<yaml> ... | <scope>]');

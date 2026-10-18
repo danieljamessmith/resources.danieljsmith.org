@@ -275,6 +275,13 @@ describe('packModel', () => {
     expect(marked[0]).toBe('% figure 1');
     expect(PACK.questions[0].solution).not.toMatch(/% figure/);
     expect(solutionFigures(['% \\begin{tikzpicture}', 'text']).starts).toEqual([]);
+    const sideBySide = {
+      ...SOLUTIONS,
+      2: String.raw`\begin{tikzpicture}\end{tikzpicture}\quad\begin{tikzpicture}\end{tikzpicture}`,
+    };
+    const pair = packModel(qbtText(), solnText([1, 2, 3], STATEMENTS, sideBySide)).questions[1];
+    expect(pair.figures).toBe(2);
+    expect(pair.solutionMarked.split('\n').slice(0, 2)).toEqual(['% figure 1', '% figure 2']);
   });
 
   it('stamps the statement and solution with whitespace collapsed', () => {
@@ -372,6 +379,11 @@ describe('canonical form', () => {
 
   it('reads YAML 1.2: no and on stay strings', () => {
     expect(parseYaml('a: no\nb: on\nc: yes\n').value).toEqual({ a: 'no', b: 'on', c: 'yes' });
+  });
+
+  it('gives the line of a YAML error', () => {
+    expect(parseYaml('a: 1\r\nb: 2\r\nb: 3\r\n').errors).toEqual([{ line: 3, message: 'Map keys must be unique' }]);
+    expect(checkScheme('format: 1\nquestions: [\n', PACK, { today: TODAY }).errors[0].where).toBe('line 3');
   });
 });
 
@@ -473,6 +485,12 @@ describe('rules 5-7: rows and strings', () => {
     expect(tab.errors[0].message).toMatch(/theta/);
     const ff = run((s) => (part(s, 1, 'b').rows[0].scheme = '\\(\frac12\\)\n'));
     expect(rules(ff.errors)).toContain(6);
+    const bs = run((s) => (part(s, 1, 'b').rows[0].marks[0].note = 'Uses \\(\beta\\).'));
+    expect(rules(bs.errors)).toContain(6);
+    expect(bs.errors.find((e) => e.rule === 6).message).toMatch(/beta/);
+    const cr = run((s) => (part(s, 1, 'b').rows[0].marks[0].note = 'Uses \\(\rho\\).'));
+    expect(rules(cr.errors)).toEqual([6]);
+    expect(cr.errors[0].message).toMatch(/right/);
     const neq = run((s) => (part(s, 1, 'b').rows[0].marks[0].note = 'Uses \\(a \neq b\\).'));
     expect(neq.errors).toEqual([]);
     expect(rules(neq.warnings)).toEqual([6]);
@@ -616,10 +634,13 @@ describe('rules 15-19: notes', () => {
   it('rule 15: M1, dM1, E1, A1ft and B1ft have notes', () => {
     expect(rules(run((s) => delete note(s).note).errors)).toEqual([15]);
     expect(rules(run((s) => delete part(s, 3, 'a.ii').rows[0].marks[1].note).errors)).toEqual([15]);
+    expect(rules(run((s) => delete part(s, 2, '').rows[1].marks[1].note).errors)).toEqual([15]);
+    expect(rules(run((s) => (part(s, 2, '').rows[0].marks[0] = { code: 'E1' })).errors)).toEqual([15]);
+    expect(rules(run((s) => (part(s, 1, 'b').rows[1].marks[1] = { code: 'A1ft' })).errors)).toEqual([15]);
   });
 
   it("rule 16: no board abbreviation outside maths; other capitals warn; LHS, RHS and AG don't", () => {
-    for (const word of ['cwo', 'CWO', 'bod', 'www', 'NMS', 'dep']) {
+    for (const word of ['bod', 'www', 'rot', 'PI', 'BC', 'DR', 'dep', 'indep', 'ACF', 'AWFW', 'NMS', 'CWO', 'cwo']) {
       expect(rules(run((s) => (note(s).note = `Uses it, ${word}.`)).errors)).toEqual([16]);
     }
     expect(run((s) => (note(s).note = 'Uses \\(\\mathrm{DR}\\) only in maths.')).errors).toEqual([]);
@@ -640,6 +661,10 @@ describe('rules 15-19: notes', () => {
     expect(r.errors).toEqual([]);
     expect(rules(r.warnings)).toEqual([18]);
     expect(run((s) => (part(s, 1, 'b').rows[1].marks[0].note = 'Correct.')).warnings).toEqual([]);
+    for (const verb of ['Uses', 'Forms', 'Obtains', 'States', 'Finds', 'Attempts', 'Solves', 'Substitutes', 'Collects']) {
+      expect(run((s) => (note(s).note = `${verb} the integral.`)).warnings, verb).toEqual([]);
+    }
+    expect(rules(run((s) => (note(s).note = 'Dependent on the previous method mark.')).warnings)).toEqual([18]);
   });
 
   it('rule 19: a note of more than about 35 words (a warning)', () => {
@@ -684,6 +709,7 @@ describe('rules 23-24: flags and queries', () => {
     expect(rules(run(flagged({ kind: 'breakdown', why: 'x' }), { draft: true }).errors)).toEqual([23]);
     expect(rules(run(flagged({ kind: 'validation', why: 'x' }), { draft: true }).errors)).toEqual([23]);
     expect(rules(run(flagged({ kind: 'figure_missing', why: 'a\nb' }), { draft: true }).errors)).toEqual([23]);
+    expect(rules(run(flagged({ kind: 'too_hard', why: 'x' }), { draft: true }).errors)).toEqual([23]);
     const withRows = run((s) => (part(s, 1, 'b').flag = { kind: 'solution_error', why: 'x' }), { draft: true });
     expect(rules(withRows.errors)).toEqual([23]);
   });
@@ -697,6 +723,8 @@ describe('rules 23-24: flags and queries', () => {
     expect(rules(same.errors)).toEqual([23]);
     const bad = run((s) => (part(s, 2, '').rows[1].marks[0].query = { code: 'M2', why: 'x' }), { draft: true });
     expect(rules(bad.errors)).toEqual([23]);
+    const twoLines = run((s) => (part(s, 2, '').rows[1].marks[0].query = { code: 'B1', why: 'a\nb' }), { draft: true });
+    expect(rules(twoLines.errors)).toEqual([23]);
   });
 
   it('rule 24: a committed scheme holds no flag and no query', () => {
@@ -756,6 +784,8 @@ describe('edits', () => {
     const out = stampQuestions(s, PACK, [1]);
     expect(out.questions.map((q) => q.stamp)).toEqual([stampOf(1), '00000000', stampOf(3)]);
     expect(() => stampQuestions(s, PACK, [7])).toThrow(/no question 7/);
+    const extra = { ...s, questions: [...s.questions, { ...s.questions[0], q: 4 }] };
+    expect(() => stampQuestions(extra, PACK, [4])).toThrow(/the pack has no question 4/);
   });
 
   it("renumbers a scheme into a reordered pack's order by stamp, the rest byte for byte", () => {
