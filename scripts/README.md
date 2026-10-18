@@ -18,7 +18,8 @@ the root `AGENTS.md`.
 | `npm run sync-questions [scope]` | Rewrites SOLN statement regions in place to match QBT. Solution box content is never touched. Skips structurally broken pairs (run `check-questions` first to triage) |
 | `npm run check-resources` | Read-only validator for `src/data/resources.ts` (see Catalogue and database checks). Non-zero exit on any violation |
 | `npm run check-generated` | Read-only verifier that the `*.generated.ts` files in `src/data/` match what `count-questions` and `hash-assets` would produce now (catches stale generated state from `--no-verify` commits or hand-edits). Non-zero exit on staleness |
-| `npm run check-pairs` | Read-only check that every topic with any pack asset has all four of QBT/soln `.tex`/`.pdf`; that a mark scheme in a section's `ms/` folder has its pack beside it and, once it has a `.tex` or PDF, all three of its `.yaml`, `.tex` and `.pdf`; and that no tracked file under `public/tex` is missing |
+| `npm run check-pairs` | Read-only check that every topic with any pack asset has all four of QBT/soln `.tex`/`.pdf`; that a mark scheme in a section's `ms/` folder has its pack beside it and, once it has a `.tex` or PDF, all three of its `.yaml`, `.tex` and `.pdf`; and that no tracked file under `public/tex` is missing. Schemes are read from the git index, so an unstaged draft doesn't count |
+| `npm run check-markschemes [-- --warnings]` | The mark schemes' guard: read-only, on the schemes and packs as staged (the git index). Rules 1-24 on every committed scheme, then rules 25-27 (see Mark schemes, The guard). Non-zero exit on an error, and on a stale stamp once `STALE_STAMPS` is `'block'` |
 | `npm run check-private-terms` | Read-only check that no private term appears in tracked/new files (or, with `--message FILE`, a commit message): text files as they are, PDFs by the text their pages show and the strings they carry. The list comes from `PRIVATE_TERMS` (CI secret), `PRIVATE_TERMS_FILE`, or `~/.config/private-terms.txt`; with none, or an empty one, the check fails. Hits are reported by term number only |
 | `npm run mark-checked -- <solutions-id> [--date YYYY-MM-DD]` | Records in `src/data/reviews.json` that a pack's worked solutions were checked: the date (default today, never after it) and the current hash of the pack's `.tex` pair. Run it after the pack's last `.tex` edit. An unknown flag or a second argument is refused, so without the `--` (npm takes `--date` for itself) it stops rather than recording today |
 | `npm run mark-checked -- <markscheme-id> [--date YYYY-MM-DD]` | The same for a mark scheme, under its own id: the hash covers the scheme's YAML and the pack's two `.tex` files, so an edit to either shows the scheme as changed. Run it after the scheme's last edit. `--reordered` takes a solutions id only |
@@ -27,6 +28,7 @@ the root `AGENTS.md`.
 | `npm run compile-tex -- [scope] [--deploy]` | Bulk latexmk over `further-maths` (default) or `all`, packs and mark schemes' rendered `.tex` alike (it compiles a scheme; `markscheme render` writes it); `--deploy` copies built PDFs up beside the source on success. TMUA files are never compiled here (the `tmua` scope is refused) |
 | `npm run import-pack -- [flags]` | Adds a pack from a local folder (see Importing a pack) |
 | `npm run markscheme -- <command>` | Mark scheme data: read a pack, check, parse, write, format, stamp and renumber a scheme, report each scheme's state, render its pages (see Mark schemes) |
+| `npm run markscheme-status [-- <scope> \| <id>]` | `markscheme status`: per scheme in the working tree, the questions broken or stale, and how many packs have no scheme |
 
 Through npm, flags need `--` before them (`npm run import-pack -- --yes …`);
 `node scripts/<name>.mjs …` takes them directly.
@@ -204,6 +206,8 @@ halves of 6 and 16) are reported.
 23. A flag has a known kind and a one-line `why`, and no `rows` or `alt`; `check --question` refuses `not_drafted`. A query's code is on the list and differs from its mark's, with a one-line `why`.
 24. A committed scheme holds no flag and no query (`check` without `--draft`).
 
+Rules 25-27 are the guard's (below).
+
 **The pages.** `render` writes the `.tex` from the YAML and the pack alone,
 so the same data always renders the same bytes (in the file's own line
 endings); `compile-tex` builds it. The document, on
@@ -256,6 +260,40 @@ scripts/lib/markscheme-render.test.mjs` rewrites them; compile the fixture
 (`latexmk` in its `ms/`, as `compile-tex` runs it) and look at the PDF
 before committing.
 
+**The guard.** `check-markschemes` runs in the pre-commit after
+`check-generated`. It reads the git index, not the working tree: the
+schemes and the pack files as they are about to be committed (with
+`git commit -a` or `git commit <paths>`, the index git builds for that
+commit), so an unstaged draft or revision never blocks another commit. On
+every scheme in the index it runs rules 1-24, so a committed scheme holds no
+flag or query, and then (`scripts/lib/markscheme-guard.mjs`):
+
+25. The committed `.tex` is byte for byte, its line endings read as LF, what `render` writes now.
+26. Every `ms/` YAML has its `.tex` and PDF, and every `ms/` file belongs to a pack in its section: `ms/` holds only `_QBT___MS__<stem>.yaml`, `.tex` and `.pdf`, beside `qbt/_QBT__<stem>.tex` and `soln/_QBT___Solns__<stem>.tex`.
+27. Every question's stamp matches its statement and solution now.
+
+An error of rules 1-26 blocks the commit. A stale stamp (rule 27) blocks
+only when `STALE_STAMPS`, at the top of `scripts/check-markschemes.mjs`, is
+`'block'`. It is `'report'` while the schemes are being backfilled: a stale
+stamp is listed and the commit goes through. The summary line names the
+setting (`stale stamps: report, 3 stale`). Once every pack's scheme is
+committed it becomes `'block'`. `--warnings` lists the checker's warnings.
+The guard compiles nothing: a scheme's PDF is rebuilt with `compile-tex`
+before it is committed, as a pack's is. `npm run markscheme-status` reports
+rules 1-24 and stale stamps on the working tree.
+
+**When the guard refuses, or a stamp goes stale:**
+
+| What changed | The remedy |
+|---|---|
+| A scheme's `.tex`, by hand (rule 25) | Make the edit in the YAML, then `render`; never edit the `.tex` |
+| A `\marks` in the pack (rules 4, 8, 9) | Revise the part's scheme in the same commit, then `stamp`, `render` and recompile |
+| A question's statement or solution (rule 27) | Look at its scheme, then `stamp <yaml> --only "N"` if it still holds, or revise it |
+| A figure a scheme reuses (rules 25, 27) | Re-render and recompile the scheme, look at the figure, then `stamp` |
+| The pack's title (rule 2) | Edit `pack` in the YAML to the new header title, then `render` and recompile |
+| The renderer (rule 25 on every scheme) | Re-render every scheme (`render further-maths`) in the same commit, `last_updated` unchanged, and recompile them |
+| The scheme preamble or the conventions file | Recompile every scheme's PDF (`npm run compile-tex -- further-maths --deploy`), dates unchanged |
+
 ## Script module map
 
 | Path | Purpose |
@@ -272,14 +310,16 @@ before committing.
 | `scripts/sync-questions.mjs` | Rewrites SOLN statement regions from QBT while preserving solution boxes and prelude |
 | `scripts/check-resources.mjs` | Read-only validator for `src/data/resources.ts` and generated count coverage |
 | `scripts/check-generated.mjs` | Read-only byte-match verifier for generated TS files |
-| `scripts/check-pairs.mjs` | Read-only QBT/soln `.tex`/`.pdf` quartet and tracked-missing check |
+| `scripts/check-pairs.mjs` | Read-only QBT/soln `.tex`/`.pdf` quartet and tracked-missing check; mark scheme files from the git index |
+| `scripts/check-markschemes.mjs` | The mark schemes' guard (pre-commit): reads the git index (`git ls-files -s`, `git cat-file --batch`) and runs rules 1-27 through `scripts/lib/markscheme-guard.mjs`; `STALE_STAMPS` |
 | `scripts/check-private-terms.mjs` | Read-only private-term scan of the tree or a commit message (list kept outside the repo) |
 | `scripts/count-questions.mjs` | npm pre-hook generator for `src/data/questionCounts.generated.ts` |
 | `scripts/hash-assets.mjs` | npm pre-hook generator for `src/data/fileHashes.generated.ts` |
 | `scripts/mark-checked.mjs` | Writes a pack's or a mark scheme's check date and hash to `src/data/reviews.json`; `--reordered` carries a pack's existing check across a pure reorder |
 | `scripts/review-status.mjs` | Read-only report of each pack's and mark scheme's check status from `src/data/reviews.json` |
 | `scripts/markscheme.mjs` | The mark scheme commands (see Mark schemes): argument parsing, file reads and atomic writes around `scripts/lib/markscheme.mjs` |
-| `scripts/lib/markscheme.mjs` | Mark scheme data: the pack reader (`\marks` labels, stamps, counted figures, `pack --json`), the YAML reader and canonical writer, the checker's rules 1-24 (`checkScheme`, `checkQuestion`), the splice, stamp and renumber edits, and a solution's pictures for its figures (`solutionPictures`) |
+| `scripts/lib/markscheme.mjs` | Mark scheme data: the pack reader (`\marks` labels, stamps, counted figures, `pack --json`), the YAML reader and canonical writer, the checker's rules 1-24 (`checkScheme`, `checkQuestion`), the splice, stamp and renumber edits, stale stamps (`staleQuestions`), and a solution's pictures for its figures (`solutionPictures`) |
+| `scripts/lib/markscheme-guard.mjs` | The guard's rules on paths and text: 26 on the index's file list (`indexSchemes`), and 1-25 and 27 on one scheme with its pack (`guardScheme`) |
 | `scripts/lib/markscheme-render.mjs` | The scheme's pages: `renderScheme` writes the `.tex` (front page, conventions input, a table per question; `--draft`'s queries and flags) from a checked scheme and its pack. Golden files in `scripts/lib/fixtures/markscheme/` |
 | `scripts/lib/reviews.mjs` | `reviews.json` parse/render/atomic-write, `.tex` pair and mark scheme hashing (CRLF-insensitive, last-updated lines left out) and status classification behind `mark-checked` and `review-status` |
 | `scripts/lib/pack-preamble.mjs` | Further Maths pack path/depth helpers, shared-preamble migration, import normalization, initial dates, date validation, pack title and site-path read/write (`readPackIdentity`, `applyPackIdentity`), `\djsMechanicsPack` and preamble comments, and convention checks, the mark scheme wrapper's included (`checkSchemePreambleConvention`) |
@@ -335,6 +375,10 @@ The pre-commit checks split responsibility cleanly:
 - **Generated TS freshness:** `check-generated`. Generated files must
   byte-match what `count-questions` and `hash-assets` would produce now. It
   stays pre-commit-only because `pre*` hooks already run the generators first.
+- **Mark schemes:** `check-markschemes`, on the index (see Mark schemes, The
+  guard): every committed scheme passes the checker, its `.tex` is what
+  `render` writes, its three files sit beside their pack, and its stamps are
+  current (reported, or blocking once `STALE_STAMPS` is `'block'`).
 - **In-file QBT/SOLN structural integrity:** `validateBlocks` in
   `scripts/lib/question-blocks.mjs`, surfaced via `check-questions`. Each
   question block has exactly one `\questionitem`; delimiter numbers are

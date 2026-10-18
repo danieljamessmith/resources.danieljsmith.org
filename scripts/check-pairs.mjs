@@ -5,6 +5,10 @@
  * .yaml, .tex and .pdf together. Also flags tracked files under public/tex
  * that are missing from the working tree.
  *
+ * Packs are read from the working tree, schemes from the git index, so an
+ * unstaged draft scheme (a YAML and its draft .tex, no PDF) never blocks a
+ * commit. `check-markschemes` checks the committed schemes in full.
+ *
  * Usage: node scripts/check-pairs.mjs
  */
 
@@ -114,10 +118,29 @@ function walk(dir) {
     } else {
       const rel = normalizePath(relative(repoRoot, full));
       if (!rel.startsWith('public/tex/')) continue;
-      if (!rel.includes('/qbt/') && !rel.includes('/soln/') && !rel.includes('/ms/')) continue;
+      if (!rel.includes('/qbt/') && !rel.includes('/soln/')) continue;
       if (!/\.(tex|pdf|yaml)$/.test(entry.name)) continue;
       ingestPackFile(full, repoRoot);
     }
+  }
+}
+
+/** Mark scheme files as they are about to be committed. */
+function ingestIndexedSchemes() {
+  let buf;
+  try {
+    buf = execSync('git -c core.quotepath=false ls-files -z --cached -- public/tex/', {
+      cwd: repoRoot,
+      encoding: 'buffer',
+      maxBuffer: 64 * 1024 * 1024,
+    });
+  } catch (e) {
+    console.error('check-pairs: git ls-files failed:', e.message || e);
+    process.exit(1);
+  }
+  for (const rel of buf.toString('utf8').split('\0')) {
+    if (!rel || !rel.includes('/ms/') || !/\.(tex|pdf|yaml)$/.test(rel)) continue;
+    ingestPackFile(join(repoRoot, rel), repoRoot);
   }
 }
 
@@ -142,6 +165,7 @@ function getTrackedMissing() {
 
 function main() {
   walk(texRoot);
+  ingestIndexedSchemes();
 
   const slots = Array.from(byTopic.values()).sort((a, b) => a.topicKey.localeCompare(b.topicKey));
   const trackedMissing = getTrackedMissing();

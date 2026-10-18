@@ -1579,12 +1579,25 @@ export function schemeStatus(text, pack, opts = {}) {
   const result = checkScheme(text, pack, opts);
   const fileErrors = result.errors.filter((e) => e.q === null);
   const broken = [...new Set(result.errors.filter((e) => e.q !== null).map((e) => e.q))].sort((a, b) => a - b);
+  const stale = staleQuestions(result.scheme, pack).map((s) => s.q);
+  return { fileErrors, broken, stale, errors: result.errors };
+}
+
+/**
+ * The questions whose stamp no longer matches their statement and solution
+ * (rule 27), each with the stamp it has and the one the pack gives now.
+ *
+ * @param {unknown} scheme - A parsed scheme, as `checkScheme` returns it
+ * @param {Pack} pack
+ * @returns {{ q: number, stamp: unknown, now: string }[]}
+ */
+export function staleQuestions(scheme, pack) {
+  const questions = isPlainObject(scheme) && Array.isArray(scheme.questions) ? scheme.questions : [];
   const stale = [];
-  const questions = isPlainObject(result.scheme) && Array.isArray(result.scheme.questions) ? result.scheme.questions : [];
   for (const question of questions) {
     if (!isPlainObject(question) || !isInt(question.q)) continue;
     const packQ = pack.questions.find((p) => p.q === question.q);
-    if (packQ && question.stamp !== packQ.stamp) stale.push(question.q);
+    if (packQ && question.stamp !== packQ.stamp) stale.push({ q: question.q, stamp: question.stamp, now: packQ.stamp });
   }
-  return { fileErrors, broken, stale, errors: result.errors };
+  return stale;
 }

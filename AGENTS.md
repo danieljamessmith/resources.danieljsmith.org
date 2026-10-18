@@ -149,6 +149,19 @@ the optional `djsSolutionFigure` environment, and the legacy colored-cancel
   `scripts/README.md` (Mark schemes) has the fields, the commands and the
   checker's rules.
 
+- **The mark schemes' guard:** the pre-commit's `check-markschemes` reads
+  the git index, so it checks the schemes and packs as they are about to be
+  committed, and an unstaged draft never blocks a commit. Every committed
+  scheme passes the checker (so holds no flag or query), its `.tex` is what
+  `render` writes now, its YAML, `.tex` and PDF sit beside their pack, and
+  each question's stamp matches its statement and solution. Stale stamps
+  are at the backfill stage: `STALE_STAMPS` in
+  `scripts/check-markschemes.mjs` is `'report'` while the packs' schemes are
+  being drafted and committed, so a stale stamp is listed and the commit
+  goes through; once every pack has its committed scheme it becomes
+  `'block'`, and a stale stamp blocks the commit. `scripts/README.md` (Mark
+  schemes, The guard) lists the remedies.
+
 - **Mark scheme pages:** `npm run markscheme -- render <yaml>` writes the
   scheme's `.tex` beside its YAML, and `compile-tex` builds it as it builds
   packs. The `.tex` is generated: it holds no comments, depends only on the
@@ -470,8 +483,8 @@ The `*.generated.ts` files **must not be hand-edited** — they're regenerated o
 | LaTeX build | `latexmk` — args mirrored between `.vscode/settings.json` and `scripts/compile-tex.mjs` |
 | TeX Live | Pinned in `texlive/`: `repository.txt` names one dated snapshot of the TeX Live 2026 package repository, and `packages.txt` the packages installed on top of the basic scheme. `texlive/install.sh` installs exactly that on Linux (cloud sessions, as root); `texlive/use-snapshot.ps1` points a Windows TeX Live 2026 at it. Move the snapshot date deliberately, then rebuild every deployed PDF and review the diff |
 | LaTeX lint (editor) | None: ChkTeX and bad-box messages are off in the LaTeX Workshop settings, and CI runs no LaTeX lint |
-| Pre-commit | Husky → `npx vitest run`, then `check-tex`, `check-solution-layout`, `check-pack-preamble`, `check-questions`, `check-resources`, `check-pairs`, `check-generated`, `check-private-terms`. The `commit-msg` hook runs `check-private-terms` on the message |
-| Pre-`dev`/`build`/`check` | `count-questions` + `hash-assets` + `check-pack-preamble` + `check-questions` (`check-resources`/`check-pairs`/`check-generated` are pre-commit-only to keep the inner loop fast) |
+| Pre-commit | Husky → `npx vitest run`, then `check-tex`, `check-solution-layout`, `check-pack-preamble`, `check-questions`, `check-resources`, `check-pairs`, `check-generated`, `check-markschemes`, `check-private-terms`. The `commit-msg` hook runs `check-private-terms` on the message |
+| Pre-`dev`/`build`/`check` | `count-questions` + `hash-assets` + `check-pack-preamble` + `check-questions` (`check-resources`/`check-pairs`/`check-generated`/`check-markschemes` are pre-commit-only to keep the inner loop fast) |
 
 `scripts/README.md` holds the npm scripts table, the importer's flags, the
 script module map, the script conventions and what each catalogue check
@@ -508,7 +521,7 @@ When durable project conventions change, update `AGENTS.md` and the directly rel
 - **The `djsSolution` spacing or the solution layout rules change:** update the `djsSolution` bullet, the Solution source layout section and `scripts/lib/solution-layout.mjs` together.
 - **`check-questions` / `sync-questions` boundary detection changes** (Solution box openers/closers, prelude shape): update the QBT ⇄ SOLN statement contract section.
 - **The LaTeX directory layout or file-naming patterns change:** update the structure tables and naming-pattern guidance above.
-- **The mark scheme data, its canonical form or the checker's rules change:** update `scripts/README.md` (Mark schemes), the Mark scheme data bullet above and `scripts/lib/markscheme.mjs` with its tests together.
+- **The mark scheme data, its canonical form or the checker's rules change:** update `scripts/README.md` (Mark schemes), the Mark scheme data bullet above and `scripts/lib/markscheme.mjs` with its tests together. For the guard (rules 25-27, `STALE_STAMPS`), also the guard bullet above, `scripts/check-markschemes.mjs` and `scripts/lib/markscheme-guard.mjs`.
 - **The shared pack preamble convention changes:** update the LaTeX directory layout section, `scripts/lib/pack-preamble.mjs` and the importer notes in `scripts/README.md`.
 - **The mark scheme pages change** (the scheme preamble, the conventions file, the renderer): update the Mark scheme pages bullet above, `scripts/README.md` (Mark schemes) and `scripts/lib/markscheme-render.mjs` with its golden files together.
 - **npm scripts or pre-commit hooks change:** update the Tooling section and `scripts/README.md`.
