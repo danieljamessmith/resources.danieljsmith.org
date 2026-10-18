@@ -631,6 +631,14 @@ describe('rule 14: the codes given', () => {
 describe('rules 15-19: notes', () => {
   const note = (s) => part(s, 1, 'b').rows[0].marks[0];
 
+  it('rule 16: energy abbreviations are allowed in notes', () => {
+    for (const word of ['KE', 'GPE', 'EPE']) {
+      const result = run((s) => (note(s).note = `Uses ${word} on the LHS and RHS.`));
+      expect(result.errors).toEqual([]);
+      expect(result.warnings).toEqual([]);
+    }
+  });
+
   it('rule 15: M1, dM1, E1, A1ft and B1ft have notes', () => {
     expect(rules(run((s) => delete note(s).note).errors)).toEqual([15]);
     expect(rules(run((s) => delete part(s, 3, 'a.ii').rows[0].marks[1].note).errors)).toEqual([15]);

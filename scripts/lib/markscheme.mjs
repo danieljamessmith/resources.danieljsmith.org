@@ -80,7 +80,7 @@ export const NOTE_VERBS = new Set(
 const BANNED_ABBREVIATIONS = [
   'bod', 'www', 'rot', 'PI', 'BC', 'DR', 'dep', 'indep', 'ACF', 'AWFW', 'NMS', 'CWO',
 ];
-const ALLOWED_CAPITALS = new Set(['AG', 'SC', 'LHS', 'RHS']);
+const ALLOWED_CAPITALS = new Set(['AG', 'SC', 'LHS', 'RHS', 'KE', 'GPE', 'EPE']);
 const NOTE_WORD_LIMIT = 35;
 
 /** Fields that wait until after the first version, with what to do instead. */

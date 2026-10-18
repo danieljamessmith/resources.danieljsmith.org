@@ -147,7 +147,8 @@ the optional `djsSolutionFigure` environment, and the legacy colored-cancel
   edit to either, look at its scheme, then `stamp` it or revise it. After a
   reorder, `renumber` puts the scheme in the pack's new order.
   `scripts/README.md` (Mark schemes) has the fields, the commands and the
-  checker's rules.
+  checker's rules. Notes may use LHS, RHS, KE, GPE and EPE without an
+  abbreviation warning.
 
 - **The mark schemes' guard:** the pre-commit's `check-markschemes` reads
   the git index, so it checks the schemes and packs as they are about to be

@@ -196,7 +196,7 @@ halves of 6 and 16) are reported.
 13. Every mark of a figure row is a `B1` or `B1ft` with a `feature` from the list; no other mark has one.
 14. With `--codes` only: a part's main codes, in order, are those given, and so are its `alt`'s.
 15. The required notes are there.
-16. Outside maths, no `bod`, `www`, `rot`, `PI`, `BC`, `DR`, `dep`, `indep`, `ACF`, `AWFW`, `NMS` or `CWO`, in any case. Any other word of two to five capitals but `AG`, `SC`, `LHS` and `RHS` warns.
+16. Outside maths, no `bod`, `www`, `rot`, `PI`, `BC`, `DR`, `dep`, `indep`, `ACF`, `AWFW`, `NMS` or `CWO`, in any case. Any other word of two to five capitals but `AG`, `SC`, `LHS`, `RHS`, `KE`, `GPE` and `EPE` warns.
 17. No `SC` or "special case" anywhere.
 18. An `M1`, `dM1` or `E1` note opens with a verb from `NOTE_VERBS` (warning).
 19. A note of more than 35 words, maths counting as one, warns.
