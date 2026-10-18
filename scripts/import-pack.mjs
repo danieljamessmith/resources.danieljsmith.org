@@ -700,6 +700,20 @@ export { derivePathContext, deriveTopicId, slugify, copyNormalizedPackTex };
  */
 
 /**
+ * The environment for a git command about the checkout at `cwd`: without the
+ * variables that point git at another repository. Git sets them for a hook
+ * (`GIT_DIR` is absolute in a linked worktree), so without this a run from a
+ * hook would read the hook's repository instead of `cwd`'s.
+ */
+function gitEnv() {
+  const env = { ...process.env };
+  for (const name of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_INDEX_FILE', 'GIT_COMMON_DIR', 'GIT_PREFIX']) {
+    delete env[name];
+  }
+  return env;
+}
+
+/**
  * Where an import keeps its journal: in the checkout's git folder, so it is
  * never committed. Null outside a git checkout, where there is none.
  * @param {string} root
@@ -708,6 +722,7 @@ function defaultJournalPath(root) {
   try {
     const rel = execFileSync('git', ['rev-parse', '--git-path', 'import-pack-journal.json'], {
       cwd: root,
+      env: gitEnv(),
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'ignore'],
     }).trim();
@@ -794,7 +809,7 @@ function undoImport(journal, { root, generatedBefore, regenerate }) {
 function trackedPaths(root, rels) {
   if (rels.length === 0) return [];
   try {
-    return execFileSync('git', ['ls-files', '--', ...rels], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] })
+    return execFileSync('git', ['ls-files', '--', ...rels], { cwd: root, env: gitEnv(), encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] })
       .split(/\r?\n/)
       .filter(Boolean);
   } catch {
