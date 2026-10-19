@@ -371,6 +371,7 @@ export function partLabel(q, part) {
 
 const SOURCE_HINT_RE = /^\s*% \[Source: [^\]]*\]\s*$/;
 const PICTURE_TOKEN_RE = /\\(begin|end)\{tikzpicture\}/g;
+const FIGURE_TOKEN_RE = /\\(begin|end)\{(tikzpicture|enumerate|itemize|description)\}/g;
 const DEFINITION_RE = /\\(?:pgfmathsetmacro|def|newcommand)(?![A-Za-z])/;
 
 function trimBlankLines(lines) {
@@ -397,22 +398,32 @@ function statementLines(block) {
  * The pictures of a solution box that `figure: N` can name: each top-level
  * `tikzpicture` (one inside `djsSolutionFigure` included, one nested in
  * another not), by the line it starts on. Also whether the box defines
- * anything outside its pictures, which a picture copied alone would lose.
+ * anything outside its pictures, which a picture copied alone would lose,
+ * and each picture's list depth: the lists open around it in the box, as
+ * its line width there depends on them.
  *
  * @param {string[]} lines
  */
 export function solutionFigures(lines) {
   const starts = [];
+  const depths = [];
   let depth = 0;
+  let lists = 0;
   let outside = '';
   lines.forEach((line, i) => {
     const code = codePart(line);
     let last = 0;
-    PICTURE_TOKEN_RE.lastIndex = 0;
-    for (const m of code.matchAll(PICTURE_TOKEN_RE)) {
+    for (const m of code.matchAll(FIGURE_TOKEN_RE)) {
+      if (m[2] !== 'tikzpicture') {
+        if (depth === 0) lists = Math.max(0, lists + (m[1] === 'begin' ? 1 : -1));
+        continue;
+      }
       if (depth === 0) outside += code.slice(last, m.index);
       if (m[1] === 'begin') {
-        if (depth === 0) starts.push(i);
+        if (depth === 0) {
+          starts.push(i);
+          depths.push(lists);
+        }
         depth++;
       } else if (depth > 0) {
         depth--;
@@ -421,7 +432,7 @@ export function solutionFigures(lines) {
     }
     if (depth === 0) outside += `${code.slice(last)}\n`;
   });
-  return { starts, definesOutside: DEFINITION_RE.test(outside) };
+  return { starts, depths, definesOutside: DEFINITION_RE.test(outside) };
 }
 
 /**

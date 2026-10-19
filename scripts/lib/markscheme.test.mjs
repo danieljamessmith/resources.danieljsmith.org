@@ -284,6 +284,22 @@ describe('packModel', () => {
     expect(pair.solutionMarked.split('\n').slice(0, 2)).toEqual(['% figure 1', '% figure 2']);
   });
 
+  it("gives each counted picture's list depth in the box, a list in a picture not counted", () => {
+    const lines = [
+      String.raw`\begin{tikzpicture}\node {\begin{itemize}\item x};\end{tikzpicture}`,
+      String.raw`\begin{enumerate}[label=\textbf{(\alph*)}]`,
+      String.raw`  \item Sketch:\par\nopagebreak % \begin{itemize}`,
+      String.raw`  \begin{tikzpicture}\draw (0,0) -- (1,1);\end{tikzpicture}`,
+      String.raw`  \item \begin{enumerate}\item \begin{tikzpicture}\end{tikzpicture}\end{enumerate}`,
+      String.raw`  \begin{djsSolutionFigure}\begin{tikzpicture}\end{tikzpicture}\end{djsSolutionFigure}`,
+      String.raw`\end{enumerate}`,
+      String.raw`\begin{tikzpicture}\end{tikzpicture}`,
+    ];
+    const { starts, depths } = solutionFigures(lines);
+    expect(starts).toEqual([0, 3, 4, 5, 7]);
+    expect(depths).toEqual([0, 1, 2, 1, 0]);
+  });
+
   it('stamps the statement and solution with whitespace collapsed', () => {
     expect(questionStamp('a  b\n c', 'd')).toBe(questionStamp('a b c', ' d '));
     expect(questionStamp('a b', 'c')).not.toBe(questionStamp('a b', 'd'));

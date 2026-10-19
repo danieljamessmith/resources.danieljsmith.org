@@ -99,11 +99,35 @@
 % Two marks on a row: each note starts with its code.
 \newcommand{\msNote}[2]{\textbf{#1}\enspace #2}
 % A full-row figure: the worked solution's own picture, scaled uniformly and
-% only down, to the table less the Question column.
+% only down, to the table less the Question column. The picture is drawn
+% with the line width it has in the solutions document, at its list depth
+% there (the optional argument, 1 by default: a part's working), so one
+% sized by \linewidth keeps its size; tabularray sets the cell's \linewidth
+% to the cell's measured width, which would shrink it at every pass. The
+% widths are measured once, in a solution box at the packs' text width
+% (pack_preamble.tex's margins, 0.8in and 1in).
 \newlength{\msSpanW}
-\AtBeginDocument{\setlength{\msSpanW}{\dimexpr\textwidth-16mm-28pt\relax}}
-\newcommand{\msFigure}[1]{%
-  \adjustbox{max width=\msSpanW, max totalheight=0.6\textheight, valign=t}{#1}}
+\makeatletter
+\newcommand{\ms@keepLW}[1]{%
+  \expandafter\xdef\csname ms@solnLW@#1\endcsname{\the\linewidth}}
+\AtBeginDocument{%
+  \setlength{\msSpanW}{\dimexpr\textwidth-16mm-28pt\relax}%
+  \setbox\z@\vbox{%
+    \begin{minipage}{\dimexpr\paperwidth-1.8in\relax}
+      \begin{djsSolution}
+        \ms@keepLW{0}%
+        \begin{enumerate}\item \ms@keepLW{1}%
+        \begin{enumerate}\item \ms@keepLW{2}%
+        \begin{enumerate}\item \ms@keepLW{3}%
+        \end{enumerate}\end{enumerate}\end{enumerate}
+      \end{djsSolution}
+    \end{minipage}}}
+\newcommand{\msFigure}[2][1]{%
+  \adjustbox{max width=\msSpanW, max totalheight=0.6\textheight, valign=t}{%
+    \hsize=\csname ms@solnLW@#1\endcsname
+    \linewidth=\hsize
+    #2}}
+\makeatother
 % A figure mark's feature, in the Scheme column.
 \newcommand{\msFeature}[1]{\textit{#1}}
 % An alternative's title row.

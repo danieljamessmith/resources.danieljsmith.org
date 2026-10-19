@@ -21,7 +21,7 @@
  * place. The committed `.tex` is never a draft.
  */
 
-import { solutionPictures } from './markscheme.mjs';
+import { solutionFigures, solutionPictures } from './markscheme.mjs';
 
 /** The shared folder, from a scheme's `.tex` at `<strand>/<section>/ms/`. */
 export const SHARED_DIR = '../../../../_shared';
@@ -92,6 +92,16 @@ function partMarks(q) {
   return q.parts.map((p) => `${partSuffix(p.part) || q.q}\\,${p.marks}`).join(String.raw`\msSep `);
 }
 
+/**
+ * A figure's `\msFigure`, drawn at its line width in the solution box: a
+ * part's (one list deep) by default, the depth written otherwise. The
+ * preamble measures depths 0 to 3.
+ */
+export function figureCall(depth) {
+  const d = Math.min(depth, 3);
+  return d === 1 ? String.raw`\msFigure` : String.raw`\msFigure[${d}]`;
+}
+
 const capitalise = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
 /** A table row's line: its cells, with `\nopagebreak` to keep it with the row above. */
@@ -121,7 +131,9 @@ function rowList(numbers) {
  */
 export function renderQuestion(question, packQ, { draft = false } = {}) {
   const q = question.q;
-  const pictures = solutionPictures(packQ.solution.split('\n'));
+  const solution = packQ.solution.split('\n');
+  const pictures = solutionPictures(solution);
+  const { depths } = solutionFigures(solution);
   /** @type {{ cells: string[], start?: boolean, nobreak?: boolean, tint?: boolean, total?: boolean }[]} */
   const rows = [];
   const single = question.parts.length === 1 && question.parts[0].part === '';
@@ -136,7 +148,7 @@ export function renderQuestion(question, packQ, { draft = false } = {}) {
       }
       const picture = pictures[r.figure - 1];
       if (picture === undefined) throw new Error(`Q${q}: no figure ${r.figure} in the solution`);
-      rows.push({ cells: ['', String.raw`\SetCell[c=3]{c} \msFigure{${picture}}`, '', ''], tint });
+      rows.push({ cells: ['', String.raw`\SetCell[c=3]{c} ${figureCall(depths[r.figure - 1])}{${picture}}`, '', ''], tint });
       for (const m of marks) {
         rows.push({
           cells: ['', String.raw`\msFeature{${capitalise(m.feature)}}`, markCodes([m], { draft }), markNotes([m], { draft })],

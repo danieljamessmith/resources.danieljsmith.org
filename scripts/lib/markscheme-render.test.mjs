@@ -1,9 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { checkScheme, emitScheme, readPack, solutionFigures, solutionPictures } from './markscheme.mjs';
 import {
+  figureCall,
   latex,
   markCodes,
   markNotes,
@@ -312,4 +315,75 @@ describe('solutionPictures', () => {
   it('ignores a picture in a comment', () => {
     expect(solutionPictures(['% \\begin{tikzpicture}', '% \\end{tikzpicture}'])).toEqual([]);
   });
+});
+
+describe('figureCall', () => {
+  it("leaves a part's picture to the default and writes any other depth, at most 3", () => {
+    expect(figureCall(1)).toBe(String.raw`\msFigure`);
+    expect(figureCall(0)).toBe(String.raw`\msFigure[0]`);
+    expect(figureCall(2)).toBe(String.raw`\msFigure[2]`);
+    expect(figureCall(5)).toBe(String.raw`\msFigure[3]`);
+  });
+});
+
+// A compile, where pdflatex is installed (CI has none). tabularray typesets a
+// cell more than once and sets its \linewidth to the width it measured, so a
+// picture sized by \linewidth would shrink at each pass; \msFigure draws it at
+// the line width it has in the solution box, at its list depth there.
+const hasLatex = spawnSync('pdflatex', ['--version'], { encoding: 'utf8' }).status === 0;
+
+describe.skipIf(!hasLatex)('a figure, compiled', () => {
+  const sharedAbs = resolve(HERE, '..', '..', 'public', 'tex', '_shared').replace(/\\/g, '/');
+  const picture = (d) =>
+    String.raw`\begin{tikzpicture}\typeout{FIG ${d} \the\linewidth}\draw (0,0) rectangle (0.75\linewidth,1);\end{tikzpicture}`;
+
+  /** The `<tag> <depth> <width>` lines of a compiled document's log. */
+  function widths(name, body, preamble, tag) {
+    const dir = mkdtempSync(join(tmpdir(), 'ms-figure-'));
+    try {
+      const doc = [String.raw`\documentclass[leqno]{article}`, String.raw`\input{${sharedAbs}/${preamble}}`, String.raw`\begin{document}`, body, String.raw`\end{document}`, ''];
+      writeFileSync(join(dir, `${name}.tex`), doc.join('\n'));
+      const run = spawnSync('pdflatex', ['-interaction=nonstopmode', '-halt-on-error', `${name}.tex`], { cwd: dir, encoding: 'utf8' });
+      expect(run.status, run.stdout.slice(-2000)).toBe(0);
+      const log = readFileSync(join(dir, `${name}.log`), 'utf8');
+      return [...log.matchAll(new RegExp(`^${tag} (\\d) ([\\d.]+pt)$`, 'gm'))].map((m) => [Number(m[1]), m[2]]);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  }
+
+  it("draws a picture sized by \\linewidth at its solution line width, on every pass of the table", () => {
+    const solution = widths(
+      'soln',
+      [
+        String.raw`\begin{djsSolution}\typeout{SOL 0 \the\linewidth}`,
+        String.raw`\begin{enumerate}[label=\textbf{(\alph*)}]\item x\typeout{SOL 1 \the\linewidth}\end{enumerate}`,
+        String.raw`\end{djsSolution}`,
+      ].join('\n'),
+      'pack_preamble.tex',
+      'SOL',
+    );
+    const expected = new Map(solution);
+    expect([...expected.keys()]).toEqual([0, 1]);
+
+    const scheme = widths(
+      'scheme',
+      [
+        String.raw`\begin{msscheme}{}`,
+        String.raw`Question & Scheme & Marks & Notes \\`,
+        String.raw`1(a) & \SetCell[c=3]{c} \msFigure{${picture(1)}} & & \\`,
+        String.raw`2 & \SetCell[c=3]{c} \msFigure[0]{${picture(0)}} & & \\`,
+        String.raw`\end{msscheme}`,
+      ].join('\n'),
+      'markscheme_preamble.tex',
+      'FIG',
+    );
+    for (const d of [1, 0]) {
+      const passes = scheme.filter(([depth]) => depth === d).map(([, w]) => w);
+      expect(passes.length).toBeGreaterThan(1);
+      expect(new Set(passes).size).toBe(1);
+      // To within rounding: the box is measured at a width the scheme sets.
+      expect(parseFloat(passes[0])).toBeCloseTo(parseFloat(expected.get(d)), 2);
+    }
+  }, 120_000);
 });

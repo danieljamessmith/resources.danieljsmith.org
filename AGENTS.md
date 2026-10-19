@@ -185,7 +185,9 @@ the optional `djsSolutionFigure` environment, and the legacy colored-cancel
   label sits in its first row, its total row stays with its last, and a
   continuation page opens `Question N continued`. An alternative is tinted;
   a figure is the worked solution's own `tikzpicture`, copied alone onto a
-  full row and scaled only down, followed by a row per feature mark.
+  full row, drawn with the line width it has in the solutions document
+  (so a picture sized by `\linewidth` keeps its size) and scaled only
+  down, followed by a row per feature mark.
   `render --draft` also shows queries and flags, for review only; a
   committed `.tex` is never a draft.
 

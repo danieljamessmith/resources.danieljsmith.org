@@ -243,7 +243,13 @@ layer):
   lines removed), alone on a row across Scheme, Marks and Notes in
   `\msFigure`, which scales it uniformly and only down, to the row's width
   and at most 0.6 of the text height; then one row per feature mark, the
-  feature in italics.
+  feature in italics. The picture is drawn with the line width it has in
+  the solutions document, so one sized by `\linewidth` keeps its size:
+  the preamble measures a solution box's line width at list depths 0 to 3
+  (at the packs' text width), and the renderer passes the picture's depth
+  (`solutionFigures`' `depths`), as `\msFigure[<depth>]` unless it is a
+  part's, one list deep. Without this, tabularray's passes would set the
+  cell's `\linewidth` to its measured width and shrink the picture.
 - **`--draft`:** a queried mark's code as `\msQueried{B1}{E1}` (B1 → E1?),
   the query's why under its note (`\msQuery`), and a flagged part as one
   row `\msFlag{<kind>}{<why>}` before its total.
@@ -258,7 +264,9 @@ page), its scheme, and its rendered `.tex`, plain and draft. After a
 deliberate change to the renderer, `UPDATE_GOLDEN=1 npx vitest run
 scripts/lib/markscheme-render.test.mjs` rewrites them; compile the fixture
 (`latexmk` in its `ms/`, as `compile-tex` runs it) and look at the PDF
-before committing.
+before committing. Where `pdflatex` is installed (not in CI), a test
+compiles a scheme table and a solution box and checks that a picture's
+`\linewidth` is its solution line width on every pass.
 
 **The guard.** `check-markschemes` runs in the pre-commit after
 `check-generated`. It reads the git index, not the working tree: the
@@ -318,7 +326,7 @@ rules 1-24 and stale stamps on the working tree.
 | `scripts/mark-checked.mjs` | Writes a pack's or a mark scheme's check date and hash to `src/data/reviews.json`; `--reordered` carries a pack's existing check across a pure reorder |
 | `scripts/review-status.mjs` | Read-only report of each pack's and mark scheme's check status from `src/data/reviews.json` |
 | `scripts/markscheme.mjs` | The mark scheme commands (see Mark schemes): argument parsing, file reads and atomic writes around `scripts/lib/markscheme.mjs` |
-| `scripts/lib/markscheme.mjs` | Mark scheme data: the pack reader (`\marks` labels, stamps, counted figures, `pack --json`), the YAML reader and canonical writer, the checker's rules 1-24 (`checkScheme`, `checkQuestion`), the splice, stamp and renumber edits, stale stamps (`staleQuestions`), and a solution's pictures for its figures (`solutionPictures`) |
+| `scripts/lib/markscheme.mjs` | Mark scheme data: the pack reader (`\marks` labels, stamps, counted figures and their list depths, `pack --json`), the YAML reader and canonical writer, the checker's rules 1-24 (`checkScheme`, `checkQuestion`), the splice, stamp and renumber edits, stale stamps (`staleQuestions`), and a solution's pictures for its figures (`solutionPictures`) |
 | `scripts/lib/markscheme-guard.mjs` | The guard's rules on paths and text: 26 on the index's file list (`indexSchemes`), and 1-25 and 27 on one scheme with its pack (`guardScheme`) |
 | `scripts/lib/markscheme-render.mjs` | The scheme's pages: `renderScheme` writes the `.tex` (front page, conventions input, a table per question; `--draft`'s queries and flags) from a checked scheme and its pack. Golden files in `scripts/lib/fixtures/markscheme/` |
 | `scripts/lib/reviews.mjs` | `reviews.json` parse/render/atomic-write, `.tex` pair and mark scheme hashing (CRLF-insensitive, last-updated lines left out) and status classification behind `mark-checked` and `review-status` |
