@@ -51,7 +51,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/polar-coordinates/qbt/_QBT__Integration_of_Polar_Curves.pdf': 'adae56c4',
   '/tex/further-maths/core-pure/polar-coordinates/qbt/_QBT__Polar_Coordinates_Basics.pdf': '7a81bc1a',
   '/tex/further-maths/core-pure/polar-coordinates/qbt/_QBT__Tangents_to_Polar_Curves.pdf': '8a3f849f',
-  '/tex/further-maths/core-pure/polar-coordinates/soln/_QBT___Solns__Integration_of_Polar_Curves.pdf': '1b658add',
+  '/tex/further-maths/core-pure/polar-coordinates/soln/_QBT___Solns__Integration_of_Polar_Curves.pdf': 'c22edde3',
   '/tex/further-maths/core-pure/polar-coordinates/soln/_QBT___Solns__Polar_Coordinates_Basics.pdf': 'e39e8d61',
   '/tex/further-maths/core-pure/polar-coordinates/soln/_QBT___Solns__Tangents_to_Polar_Curves.pdf': '5943be7d',
   '/tex/further-maths/core-pure/vectors/notes/_Notes__Vectors_Formulae.pdf': '862e19db',
