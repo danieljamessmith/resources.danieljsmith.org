@@ -3,7 +3,7 @@
 
 \djsSolnHeader{Complex Numbers Basics}
 \djsSitePath{Core Pure}{Complex Numbers}
-\djsLastUpdated{14 October 2026}
+\djsLastUpdated{19 October 2026}
 
 \begin{document}
 \djsFrontMatter
@@ -41,7 +41,7 @@
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
 \item
 \begin{enumerate}[label=(\roman*), start=1]
-\item The complex conjugate is:
+\item The complex conjugate is
 \[
 z^*=x-iy
 \]
@@ -65,8 +65,10 @@ zz^*&=(x+iy)(x-iy)\\
 Multiplying the first equation by \(2\) and the second by \(5\), then adding, eliminates \(w^*\):
 \begin{align*}
 -21w&=-84-42i\\
-w&=4+2i\qquad (a=4,\ b=2)
+w&=4+2i
 \end{align*}
+
+This is in the form \(a+bi\) with \(a=4\), \(b=2\).
 
 \item Since \(w^*=4-2i\):
 \begin{align*}
@@ -116,7 +118,7 @@ b&=-\dfrac{24}{11}\\
 a=-\dfrac{2}{3}\left(-\dfrac{24}{11}\right)&=\dfrac{16}{11}
 \end{align*}
 
-Thus, in the required form \(a+bi\),
+So the answer in the form \(a+bi\) is
 \[
 z=\dfrac{16}{11}-\dfrac{24}{11}i
 \]
@@ -160,9 +162,14 @@ Let $w=z_1z_2$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
 \item
 \begin{enumerate}[label=(\roman*), start=1]
-\item The modulus of a product is the product of the moduli:
+\item For a product, the modulus is the product of the moduli and the argument is the sum of the arguments, adjusted by a multiple of \(2\pi\) to lie in the principal range:
 \[
-|z_1z_2|=|z_1||z_2|=\sqrt{3}\times2=2\sqrt{3}
+|z_1z_2|=|z_1||z_2|,\qquad \arg(z_1z_2)=\arg(z_1)+\arg(z_2)
+\]
+
+Here \(|z_1|=\sqrt{3}\) and \(|z_2|=2\), so
+\[
+|z_1z_2|=\sqrt{3}\times2=2\sqrt{3}
 \]
 
 \item The minus sign before \(i\sin\left(\frac{5\pi}{6}\right)\) means that \(z_2\) has argument \(-\frac{5\pi}{6}\). Adding the arguments gives a value in the required principal range:
@@ -173,12 +180,17 @@ Let $w=z_1z_2$. \\
 \end{enumerate}
 \item
 \begin{enumerate}[label=(\roman*), start=1]
-\item By de Moivre's theorem, raising \(w\) to the power \(n\) multiplies its argument by \(n\). For \(w^n\) to be positive real, this angle must be a whole multiple of \(2\pi\), so:
+\item De Moivre's theorem is
+\[
+\left[r(\cos\theta+i\sin\theta)\right]^n=r^n(\cos n\theta+i\sin n\theta)
+\]
+
+so raising \(w\) to the power \(n\) multiplies its argument by \(n\). For \(w^n\) to be positive real, this angle must be a whole multiple of \(2\pi\), so
 \[
 \frac{n\left(-\frac{2\pi}{3}\right)}{2\pi}=-\frac{n}{3}\in\mathbb{Z}
 \]
 
-Thus \(n\) must be divisible by \(3\), and the smallest positive value is:
+Thus \(n\) must be divisible by \(3\), and the smallest positive value is
 \[
 n=3
 \]
@@ -198,7 +210,7 @@ n=3
 \questionitem
 % [Source: _QBT___Solns__Complex_Number_Basics, Q4]
 
-In this question the principal argument of a complex number lies in the interval $[0,2\pi)$. \\
+In this question the argument of a complex number is taken in the range $0\leq\arg z<2\pi$. \\
 Complex numbers $z_1$ and $z_2$ are defined by $z_1=4+3i$ and $z_2=-12+5i$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
 \item Determine $z_1z_2$, giving your answer in the form $a+bi$. \marks{2} \\
@@ -214,39 +226,46 @@ Complex numbers $z_1$ and $z_2$ are defined by $z_1=4+3i$ and $z_2=-12+5i$. \\
 \begin{align*}
 z_1z_2&=(4+3i)(-12+5i)\\
 &=-48+20i-36i+15i^2\\
-&=-63-16i\qquad (a=-63,\ b=-16)
+&=-63-16i
 \end{align*}
 
-\item The modulus is:
+This is in the form \(a+bi\) with \(a=-63\), \(b=-16\).
+
+\item The modulus is
 \[
 |z_2|=\sqrt{(-12)^2+5^2}=13
 \]
 
-The point \((-12,5)\) lies in the second quadrant, so the principal argument is:
+\(z_2\) lies in the second quadrant, so its argument is
 \[
 \theta=\pi-\arctan\left(\dfrac{5}{12}\right)
 \]
 
-Thus the modulus-argument form is:
+Thus the modulus-argument form is
 \[
-z_2=13\left(\cos\theta+i\sin\theta\right),\qquad \theta=\pi-\arctan\left(\dfrac{5}{12}\right)
+z_2=13\left[\cos\left(\pi-\arctan\left(\dfrac{5}{12}\right)\right)+i\sin\left(\pi-\arctan\left(\dfrac{5}{12}\right)\right)\right]
 \]
 
-\item Let \(\alpha=\arctan(\frac34)\) and \(\beta=\arctan(\frac5{12})\). Using the quadrants of the three complex numbers:
+\item Let \(\alpha=\arctan(\frac34)\) and \(\beta=\arctan(\frac5{12})\). \(z_1\) lies in the first quadrant, \(z_2\) in the second and \(z_1z_2=-63-16i\) in the third, so
 \begin{align*}
 \arg(z_1)&=\alpha\\
 \arg(z_2)&=\pi-\beta\\
 \arg(z_1z_2)&=\pi+\arctan\left(\dfrac{16}{63}\right)
 \end{align*}
 
-The tangent subtraction formula gives:
+The compound angle formula is
+\[
+\tan(A\pm B)=\dfrac{\tan A\pm\tan B}{1\mp\tan A\tan B}\qquad\left(A\pm B\neq\left(k+\tfrac12\right)\pi\right)
+\]
+
+With \(\tan\alpha=\frac34\) and \(\tan\beta=\frac5{12}\), this gives
 \[
 \tan(\alpha-\beta)
-=\dfrac{\frac34-\frac5{12}}{1+\frac34\cdot\frac5{12}}
+=\dfrac{\frac34-\frac5{12}}{1+\frac34\times\frac5{12}}
 =\dfrac{16}{63}
 \]
 
-Since \(0<\alpha-\beta<\frac{\pi}{2}\), we have \(\alpha-\beta=\arctan(\frac{16}{63})\). Therefore:
+Since \(0<\alpha-\beta<\frac{\pi}{2}\), we have \(\alpha-\beta=\arctan(\frac{16}{63})\). Therefore
 \begin{align*}
 \arg(z_1)+\arg(z_2)
 &=\alpha+\pi-\beta\\
@@ -274,14 +293,14 @@ z_1 &= -3+2i \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
 \item Express $z_1$ in the form $r(\cos\theta+i\sin\theta)$, where $r>0$ and $-\pi<\theta\leq\pi$. \\
 Give $r$ exactly and $\theta$ in radians to 4 significant figures. \marks{2} \\
-\item Determine $z_2$, giving your answer in the form $a+ib$, where $a$ and $b$ are integers. \marks{6} \\
+\item Determine $z_2$, giving your answer in the form $a+bi$, where $a$ and $b$ are integers. \marks{6} \\
 \end{enumerate}
 
 \vspace*{10pt}
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-\item The real part is negative and the imaginary part is positive, so the argument lies in the second quadrant. Hence
+\item \(z_1\) lies in the second quadrant, as its real part is negative and its imaginary part is positive, so
 \begin{align*}
 r&=|z_1|=\sqrt{(-3)^2+2^2}=\sqrt{13}\\
 \theta&=\pi-\arctan\left(\dfrac{2}{3}\right)
@@ -289,14 +308,14 @@ r&=|z_1|=\sqrt{(-3)^2+2^2}=\sqrt{13}\\
 
 The required form is
 \[
-z_1=\sqrt{13}(\cos\theta+i\sin\theta),\qquad r=\sqrt{13},\quad \theta\approx2.554\text{ radians (4 s.f.)}
+z_1=\sqrt{13}\left(\cos 2.554+i\sin 2.554\right)\qquad\text{(4 s.f.)}
 \]
 
-\item Write \(z_2=a+ib\), where \(a,b\) are real. Multiplying gives
+\item Write \(z_2=a+bi\), where \(a,b\) are real. Multiplying gives
 \begin{align*}
-z_1z_2&=(-3+2i)(a+ib)\\
-&=-3a-3ib+2ia+2i^2b\\
-&=(-3a-2b)+i(2a-3b)
+z_1z_2&=(-3+2i)(a+bi)\\
+&=-3a-3bi+2ai+2bi^2\\
+&=(-3a-2b)+(2a-3b)i
 \end{align*}
 
 Since the argument is \(-\frac{\pi}{4}\), the real part is positive and the imaginary part is the negative of the real part. Thus
@@ -311,7 +330,7 @@ Substituting into the product gives
 z_1z_2=13b-13bi
 \]
 
-Its real part is positive, so \(b>0\). Using the given modulus,
+Its real part is positive, so \(b>0\). Using the given modulus:
 \begin{align*}
 \sqrt{(13b)^2+(-13b)^2}&=26\sqrt{2}\\
 13\sqrt{2}\,b&=26\sqrt{2}\\
@@ -319,9 +338,9 @@ b&=2\\
 a&=-5(2)=-10
 \end{align*}
 
-Therefore, in the required form,
+So the answer in the form \(a+bi\) is
 \[
-z_2=-10+2i,\qquad a=-10,\quad b=2
+z_2=-10+2i
 \]
 
 \end{enumerate}
@@ -368,24 +387,19 @@ where $a$ is a positive real constant and $-\pi<\theta\leq\pi$. \\
 |w|=6\sqrt{(\sqrt{3})^2+1^2}=12
 \]
 
-\item Let \(\phi\) be the principal argument of \(w\). Since \(|w|=12\),
-\[
-\cos\phi=\frac{-6\sqrt{3}}{12}=-\frac{\sqrt{3}}{2},
-\qquad
-\sin\phi=\frac{-6}{12}=-\frac12
-\]
-
-The angle satisfying both conditions in \(-\pi<\phi\leq\pi\) is
-\[
-\arg(w)=-\frac{5\pi}{6}
-\]
+\item \(w\) lies in the third quadrant, as its real and imaginary parts are both negative, so
+\begin{align*}
+\arg(w)&=-\pi+\arctan\left(\dfrac{6}{6\sqrt{3}}\right)\\
+&=-\pi+\dfrac{\pi}{6}\\
+&=-\dfrac{5\pi}{6}
+\end{align*}
 
 \end{enumerate}
 \item
 \begin{enumerate}[label=(\roman*), start=1]
 \item Expanding the product gives
 \[
-z_1z_2=2\bigl[(a\cos\theta+3\sin\theta)+i(a\sin\theta-3\cos\theta)\bigr]
+z_1z_2=2\bigl[(a\cos\theta+3\sin\theta)+(a\sin\theta-3\cos\theta)i\bigr]
 \]
 
 Equating real and imaginary parts with \(w\), then dividing by \(2\):
@@ -403,7 +417,7 @@ a^2+9&=36\\
 a^2&=27
 \end{align*}
 
-Since \(a\) is positive,
+Since \(a\) is positive, taking the positive root gives
 \[
 a=3\sqrt{3}
 \]
@@ -415,17 +429,12 @@ z_2&=\frac{w}{z_1}=\frac{-6\sqrt{3}-6i}{3\sqrt{3}-3i}\\
 &=-1-\sqrt{3}\,i
 \end{align*}
 
-Comparing with \(z_2=2(\cos\theta+i\sin\theta)\) gives
-\[
-\cos\theta=-\frac12,
-\qquad
-\sin\theta=-\frac{\sqrt{3}}{2}
-\]
-
-The angle satisfying both conditions in \(-\pi<\theta\leq\pi\) is
-\[
-\theta=-\frac{2\pi}{3}
-\]
+Since \(z_2=2(\cos\theta+i\sin\theta)\), \(\theta\) is the argument of \(z_2\). \(z_2\) lies in the third quadrant, so
+\begin{align*}
+\theta&=-\pi+\arctan(\sqrt{3})\\
+&=-\pi+\dfrac{\pi}{3}\\
+&=-\dfrac{2\pi}{3}
+\end{align*}
 
 \end{enumerate}
 \end{enumerate}
@@ -449,7 +458,7 @@ The complex numbers $z$ and $w$ are given by $z=3+i$ and $w=2+4i$. \\
 \[
 \frac{1}{v}=\frac{1}{w}-\frac{1}{z}
 \] \\
-Find $v$ in the form $a+ib$, where $a$ and $b$ are real. \marks{5} \\
+Find $v$ in the form $a+bi$, where $a$ and $b$ are real. \marks{5} \\
 \item The complex conjugate of $v$ is denoted by $v^*$. \\
 Show that $vv^*=k$, where $k$ is a real number whose value is to be determined. \marks{2} \\
 \end{enumerate}
@@ -467,12 +476,12 @@ zw&=(3+i)(2+4i)\\
 &=2+14i
 \end{align*}
 
-Hence the modulus is:
+Hence the modulus is
 \[
 |zw|=\sqrt{2^2+14^2}=\sqrt{200}=10\sqrt{2}
 \]
 
-Both the real and imaginary parts are positive, so \(zw\) lies in the first quadrant. Its principal argument is therefore:
+\(zw\) lies in the first quadrant, as its real and imaginary parts are both positive, so its principal argument is
 \[
 \arg(zw)=\arctan\left(\dfrac{14}{2}\right)=\arctan 7\approx 1.43\text{ radians}
 \]
@@ -500,8 +509,8 @@ v&=\dfrac{2+14i}{1-3i}\\
 &=-4+2i
 \end{align*}
 
-This is of the form \(a+ib\), with \(a=-4\) and \(b=2\).
-\item The conjugate is \(v^*=-4-2i\), so:
+This is in the form \(a+bi\) with \(a=-4\), \(b=2\).
+\item The conjugate is \(v^*=-4-2i\), so
 \begin{align*}
 vv^*&=(-4+2i)(-4-2i)\\
 &=16-(2i)^2\\
@@ -580,9 +589,9 @@ This gives five distinct roots, \(1\), \(3-i\), \(3+i\), \(2-3i\) and \(2+3i\), 
 &=\frac{5+5i}{10}=\frac12+\frac12i
 \end{align*}
 
-The real and imaginary parts are equal and positive, so the point lies in the first quadrant at angle \(\frac{\pi}{4}\):
+\(\frac12+\frac12i\) lies in the first quadrant, so
 \[
-\arg\left(\frac{z_2-z_1}{z_3-z_1}\right)=\frac{\pi}{4}
+\arg\left(\frac{z_2-z_1}{z_3-z_1}\right)=\arctan(1)=\frac{\pi}{4}
 \]
 
 \item Both \(z_2-z_1=2-i\) and \(z_3-z_1=1-3i\) lie in the fourth quadrant, so
@@ -591,14 +600,21 @@ The real and imaginary parts are equal and positive, so the point lies in the fi
 \arg(z_3-z_1)=-\arctan(3)
 \]
 
-Dividing complex numbers subtracts their arguments. Hence, using part (b):
+For a quotient, the modulus is the quotient of the moduli and the argument is the difference of the arguments, adjusted by a multiple of \(2\pi\) to lie in the principal range:
+\[
+\left|\dfrac{w_1}{w_2}\right|=\dfrac{|w_1|}{|w_2|},\qquad \arg\left(\dfrac{w_1}{w_2}\right)=\arg(w_1)-\arg(w_2)
+\]
+
+Hence, using part (b):
 \begin{align*}
 \frac{\pi}{4}
+&=\arg\left(\dfrac{z_2-z_1}{z_3-z_1}\right)\\
 &=\arg(z_2-z_1)-\arg(z_3-z_1)\\
 &=\arctan(3)-\arctan\left(\frac12\right)
 \end{align*}
 
-\item The shaded diagram should look like:\par\nopagebreak\medskip\noindent
+\item The shaded diagram should look like:\par\nopagebreak
+
 \begin{tikzpicture}[scale=1.35]
 \def\xmin{-1}
 \def\xmax{5}
