@@ -4,7 +4,7 @@
 \djsSolnHeader{Method of Differences}
 \djsSitePath{Core Pure}{Miscellaneous Pure}
 
-\djsLastUpdated{14 October 2026}
+\djsLastUpdated{19 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -36,13 +36,13 @@
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Since \(r>0\), all logarithms are defined. Also,
+  \item First simplify the term inside the logarithm:
 \[
 1+\frac{2}{r(r+3)}
 =\frac{r(r+3)+2}{r(r+3)}
 =\frac{r^2+3r+2}{r(r+3)}
 =\frac{(r+1)(r+2)}{r(r+3)}
-=\frac{r+1}{r}\cdot\frac{r+2}{r+3}
+=\frac{r+1}{r}\times\frac{r+2}{r+3}
 \]
 
 So
@@ -52,14 +52,14 @@ So
 &=\ln\left(\frac{r+1}{r}\right)-\ln\left(\frac{r+3}{r+2}\right)
 \end{align*}
 
-which is the required result.
+as required.
 
   \item Let
 \[
 S_n=\sum_{r=1}^{n}\ln\left(1+\frac{2}{r(r+3)}\right)
 \]
 
-Using part (a),
+Using part (a):
 \begin{align*}
 S_n
 &=\sum_{r=1}^{n}\left[\ln\left(\frac{r+1}{r}\right)-\ln\left(\frac{r+3}{r+2}\right)\right] \\
@@ -77,11 +77,11 @@ All the coloured middle terms cancel, so
 \begin{align*}
 S_n
 &=\ln2+\ln\frac32-\ln\frac{n+2}{n+1}-\ln\frac{n+3}{n+2} \\
-&=\ln\left(2\cdot\frac32\cdot\frac{n+1}{n+2}\cdot\frac{n+2}{n+3}\right) \\
+&=\ln\left(2\times\frac32\times\frac{n+1}{n+2}\times\frac{n+2}{n+3}\right) \\
 &=\ln\left(\frac{3(n+1)}{n+3}\right)
 \end{align*}
 
-Therefore,
+Therefore
 \[
 \sum_{r=1}^{n}\ln\left(1+\frac{2}{r(r+3)}\right)=\ln\left(\frac{3(n+1)}{n+3}\right)
 \]
@@ -142,7 +142,7 @@ Therefore,
   \frac{1}{r(r+2)}=\frac12\left(\frac1r-\frac1{r+2}\right)
   \]
 
-  Substituting into the sum,
+  Substituting into the sum:
   \begin{align*}
   S_n
   &=\frac12\sum_{r=1}^{n}\left(\frac1r-\frac1{r+2}\right)\\
@@ -165,12 +165,12 @@ Therefore,
   \sum_{r=1}^{n}\frac{1}{r(r+2)}=\frac34-\frac1{2(n+1)}-\frac1{2(n+2)}
   \]
 
-  \item From part (a),
+  \item From part (a):
   \[
   \sum_{r=1}^{n}\frac{1}{r(r+2)}=\frac34-\frac1{2(n+1)}-\frac1{2(n+2)}
   \]
 
-  Letting $n\to\infty$,
+  As \(n\to\infty\)
   \[
   \frac1{2(n+1)}\to 0,\qquad \frac1{2(n+2)}\to 0
   \]
@@ -200,7 +200,7 @@ where $a$, $b$ and $c$ are constants to be found. \marks{5} \\
 \begin{djsSolution}
 Let
 \[
-S=\frac{1}{1\times 4}+\frac{1}{2\times 5}+\frac{1}{3\times 6}+\cdots+\frac{1}{n(n+3)}
+S_n=\frac{1}{1\times 4}+\frac{1}{2\times 5}+\frac{1}{3\times 6}+\cdots+\frac{1}{n(n+3)}
 =\sum_{r=1}^n \frac{1}{r(r+3)}
 \]
 
@@ -231,12 +231,12 @@ Therefore
 
 So
 \[
-S=\frac13\sum_{r=1}^n\left(\frac1r-\frac1{r+3}\right)
+S_n=\frac13\sum_{r=1}^n\left(\frac1r-\frac1{r+3}\right)
 \]
 
 Now write out the terms to use the method of differences:
 \begin{align*}
-S
+S_n
 &=\frac13\Biggl[
 1+\frac12+\frac13+\cxl{blue}{\frac14}+\cxl{red}{\frac15}+\cdots+\cxl{teal}{\frac1n}\\
 &\qquad\qquad\qquad
@@ -246,7 +246,7 @@ S
 
 Everything from $\frac14$ to $\frac1n$ cancels, leaving
 \[
-S=\frac13\left(1+\frac12+\frac13-\frac1{n+1}-\frac1{n+2}-\frac1{n+3}\right)
+S_n=\frac13\left(1+\frac12+\frac13-\frac1{n+1}-\frac1{n+2}-\frac1{n+3}\right)
 \]
 
 Now
@@ -256,7 +256,7 @@ Now
 
 Hence
 \[
-S=\frac{11}{18}-\frac13\left(\frac1{n+1}+\frac1{n+2}+\frac1{n+3}\right)
+S_n=\frac{11}{18}-\frac13\left(\frac1{n+1}+\frac1{n+2}+\frac1{n+3}\right)
 \]
 
 Combine the three fractions:
@@ -279,7 +279,7 @@ So
 
 Therefore
 \[
-S=\frac{11}{18}-\frac{3n^2+12n+11}{3(n+1)(n+2)(n+3)}
+S_n=\frac{11}{18}-\frac{3n^2+12n+11}{3(n+1)(n+2)(n+3)}
 \]
 
 Comparing with
@@ -326,21 +326,11 @@ Write the general term in partial fractions:
 =\frac{A}{2r-1}+\frac{B}{2r+1}+\frac{C}{2r+3}
 \]
 
-Using the cover-up rule:
+Using the cover-up rule, with \(r=\frac12\), \(r=-\frac12\) and \(r=-\frac32\) in turn:
 \[
-A=\left.\frac{12}{(2r+1)(2r+3)}\right|_{\,2r-1=0}
-=\frac{12}{2\cdot4}
-=\frac32
-\]
-\[
-B=\left.\frac{12}{(2r-1)(2r+3)}\right|_{\,2r+1=0}
-=\frac{12}{(-2)(2)}
-=-3
-\]
-\[
-C=\left.\frac{12}{(2r-1)(2r+1)}\right|_{\,2r+3=0}
-=\frac{12}{(-4)(-2)}
-=\frac32
+A=\frac{12}{2\times4}=\frac32,\qquad
+B=\frac{12}{(-2)(2)}=-3,\qquad
+C=\frac{12}{(-4)(-2)}=\frac32
 \]
 
 So
@@ -364,7 +354,7 @@ S_n
 -\frac32\sum_{r=1}^{n}\left(\frac{1}{2r+1}-\frac{1}{2r+3}\right)
 \end{align*}
 
-Expanding both telescoping sums:
+Expanding both sums:
 \begin{align*}
 S_n
 &=\frac32\Bigg[
@@ -455,7 +445,7 @@ So
   \item Hence find the exact value of
   \[
   \sum_{r=25}^{74} \ln\left(\left(1+\frac{2}{r(r+3)}\right)^{28}\right)
-  \] \\
+  \]
   Give your answer in the form $a\ln\left(\dfrac{b}{c}\right)$ where $a$, $b$ and $c$ are integers to be determined. \marks{3} \\
 \end{enumerate}
 
@@ -474,25 +464,24 @@ First simplify the term inside the logarithm:
 &=\frac{r(r+3)+2}{r(r+3)}\\
 &=\frac{r^2+3r+2}{r(r+3)}\\
 &=\frac{(r+1)(r+2)}{r(r+3)}\\
-&=\frac{r+1}{r}\cdot\frac{r+2}{r+3}
+&=\frac{r+1}{r}\times\frac{r+2}{r+3}
 \end{align*}
 
 So
 \begin{align*}
 \ln\left(1+\frac{2}{r(r+3)}\right)
-&=\ln\left(\frac{r+1}{r}\cdot\frac{r+2}{r+3}\right)\\
+&=\ln\left(\frac{r+1}{r}\times\frac{r+2}{r+3}\right)\\
 &=\ln(r+1)-\ln r+\ln(r+2)-\ln(r+3)
 \end{align*}
 
 Hence
-\begin{align*}
-S_n
-&=\sum_{r=1}^{n}\bigl(\ln(r+1)-\ln r\bigr)+\sum_{r=1}^{n}\bigl(\ln(r+2)-\ln(r+3)\bigr)
-\end{align*}
+\[
+S_n=\sum_{r=1}^{n}\bigl(\ln(r+1)-\ln r\bigr)+\sum_{r=1}^{n}\bigl(\ln(r+2)-\ln(r+3)\bigr)
+\]
 
 Now expand each sum using the method of differences.
 
-For the first sum,
+For the first sum:
 \begin{align*}
 \sum_{r=1}^{n}\bigl(\ln(r+1)-\ln r\bigr)
 &=\bigl(\cxl{blue}{\ln2}+\cxl{red}{\ln3}+\cxl{teal}{\ln4}+\cdots+\cxl{violet}{\ln n}+\ln(n+1)\bigr)\\
@@ -500,7 +489,7 @@ For the first sum,
 &=\ln(n+1)-\ln1
 \end{align*}
 
-For the second sum,
+For the second sum:
 \begin{align*}
 \sum_{r=1}^{n}\bigl(\ln(r+2)-\ln(r+3)\bigr)
 &=\bigl(\ln3+\cxl{blue}{\ln4}+\cxl{red}{\ln5}+\cdots+\cxl{violet}{\ln(n+2)}\bigr)\\
@@ -515,22 +504,20 @@ S_n
 &=\ln(n+1)+\ln3-\ln(n+3)
 \end{align*}
 
-Since $\ln1=0$,
-\begin{align*}
-S_n
-&=\ln\left(\frac{3(n+1)}{n+3}\right)
-\end{align*}
+Combining the logarithms:
+\[
+S_n=\ln\left(\frac{3(n+1)}{n+3}\right)
+\]
 
 So
 \[
 \sum_{r=1}^{n}\ln\left(1+\frac{2}{r(r+3)}\right)=\ln\left(\frac{3(n+1)}{n+3}\right)
 \]
 
-  \item Using $\ln(a^{28})=28\ln a$,
-\begin{align*}
-\sum_{r=25}^{74}\ln\left(\left(1+\frac{2}{r(r+3)}\right)^{28}\right)
-&=28\sum_{r=25}^{74}\ln\left(1+\frac{2}{r(r+3)}\right)
-\end{align*}
+  \item Using \(\ln\left(x^{28}\right)=28\ln x\):
+\[
+\sum_{r=25}^{74}\ln\left(\left(1+\frac{2}{r(r+3)}\right)^{28}\right)=28\sum_{r=25}^{74}\ln\left(1+\frac{2}{r(r+3)}\right)
+\]
 
 From part (a), if
 \[
@@ -548,15 +535,14 @@ So
 &=S_{74}-S_{24}\\
 &=\ln\left(\frac{3(75)}{77}\right)-\ln\left(\frac{3(25)}{27}\right)\\
 &=\ln\left(\frac{225}{77}\right)-\ln\left(\frac{75}{27}\right)\\
-&=\ln\left(\frac{225}{77}\cdot\frac{27}{75}\right)\\
+&=\ln\left(\frac{225}{77}\times\frac{27}{75}\right)\\
 &=\ln\left(\frac{81}{77}\right)
 \end{align*}
 
 Hence
-\begin{align*}
-\sum_{r=25}^{74}\ln\left(\left(1+\frac{2}{r(r+3)}\right)^{28}\right)
-&=28\ln\left(\frac{81}{77}\right)
-\end{align*}
+\[
+\sum_{r=25}^{74}\ln\left(\left(1+\frac{2}{r(r+3)}\right)^{28}\right)=28\ln\left(\frac{81}{77}\right)
+\]
 
 which is in the form \(a\ln\left(\frac{b}{c}\right)\) with \(a=28\), \(b=81\) and \(c=77\).
 \end{enumerate}
@@ -588,7 +574,7 @@ Using partial fractions, write
 \frac{6}{r(r+1)(r+2)}=\frac{A}{r(r+1)}+\frac{B}{(r+1)(r+2)}
 \]
 
-Multiplying through by \(r(r+1)(r+2)\),
+Multiplying through by \(r(r+1)(r+2)\):
 \[
 6=A(r+2)+Br
 \]
@@ -621,9 +607,9 @@ S_n=\sum_{r=1}^{n}\left(\frac{3}{r(r+1)}-\frac{3}{(r+1)(r+2)}\right)
 Now use the method of differences by writing out the first few and last few terms:
 \begin{align*}
 S_n
-&=\left(\frac{3}{1\cdot2}-\cxl{blue}{\frac{3}{2\cdot3}}\right)
-+\left(\cxl{blue}{\frac{3}{2\cdot3}}-\cxl{red}{\frac{3}{3\cdot4}}\right)
-+\left(\cxl{red}{\frac{3}{3\cdot4}}-\cxl{teal}{\frac{3}{4\cdot5}}\right)
+&=\left(\frac{3}{1\times2}-\cxl{blue}{\frac{3}{2\times3}}\right)
++\left(\cxl{blue}{\frac{3}{2\times3}}-\cxl{red}{\frac{3}{3\times4}}\right)
++\left(\cxl{red}{\frac{3}{3\times4}}-\cxl{teal}{\frac{3}{4\times5}}\right)
 +\cdots \\
 &\qquad
 +\left(\cxl{violet}{\frac{3}{(n-1)n}}-\cxl{orange}{\frac{3}{n(n+1)}}\right)
@@ -632,7 +618,7 @@ S_n
 
 All the coloured pairs cancel, leaving
 \[
-S_n=\frac{3}{1\cdot2}-\frac{3}{(n+1)(n+2)}
+S_n=\frac{3}{1\times2}-\frac{3}{(n+1)(n+2)}
 \]
 
 So
@@ -759,7 +745,7 @@ Now sum from $r=1$ to $n$:
 \sum_{r=1}^n \left((r+1)^4-(r-1)^4\right)=8\sum_{r=1}^n r^3+8\sum_{r=1}^n r
 \]
 
-Using the method of differences on the left-hand side,
+Using the method of differences on the left-hand side:
 \begin{align*}
 \sum_{r=1}^n \left((r+1)^4-(r-1)^4\right)
 &=\left(\cxl{blue}{2^4}+\cxl{red}{3^4}+\cxl{teal}{4^4}+\cdots+\cxl{violet}{(n-1)^4}+n^4+(n+1)^4\right)\\
@@ -774,13 +760,13 @@ Therefore
 
 Using
 \[
-\sum_{r=1}^n r=\frac{n(n+1)}{2}
+\sum_{r=1}^n r=\frac12 n(n+1)
 \]
 
 we get
 \begin{align*}
 8\sum_{r=1}^n r^3
-&=(n+1)^4+n^4-1-8\left(\frac{n(n+1)}{2}\right)\\
+&=(n+1)^4+n^4-1-8\left(\frac12 n(n+1)\right)\\
 &=(n+1)^4+n^4-1-4n(n+1)\\
 &=\left(n^4+4n^3+6n^2+4n+1\right)+n^4-1-4n^2-4n\\
 &=2n^4+4n^3+2n^2\\
@@ -821,7 +807,7 @@ T_n=\frac14 n^2(an^2+bn+c)
 a=15,\ b=14,\ c=3
 \]
 
-  \item From part (b),
+  \item From part (b):
 \[
 \frac{T_n}{n^4}
 =\frac14\left(15+\frac{14}{n}+\frac{3}{n^2}\right)
@@ -866,7 +852,7 @@ As $n\to\infty$, $\frac{14}{n}\to 0$ and $\frac{3}{n^2}\to 0$, so
   \item Rationalise the denominator:
   \begin{align*}
   \frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}
-  &=\frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}\cdot
+  &=\frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}\times
   \frac{\sqrt{r(r+2)}-\sqrt{r(r-2)}}{\sqrt{r(r+2)}-\sqrt{r(r-2)}}\\
   &=\frac{4r\left(\sqrt{r(r+2)}-\sqrt{r(r-2)}\right)}{r(r+2)-r(r-2)}\\
   &=\frac{4r\left(\sqrt{r(r+2)}-\sqrt{r(r-2)}\right)}{4r}\\
@@ -880,7 +866,7 @@ As $n\to\infty$, $\frac{14}{n}\to 0$ and $\frac{3}{n^2}\to 0$, so
   u_r=\sqrt{r(r+2)}
   \]
 
-  Then from part (a),
+  Then from part (a):
   \[
   \frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}=u_r-u_{r-2}
   \]
@@ -891,28 +877,20 @@ As $n\to\infty$, $\frac{14}{n}\to 0$ and $\frac{3}{n^2}\to 0$, so
   \]
 
   then
-  \begin{align*}
-  S_n&=\sum_{r=2}^{n}(u_r-u_{r-2})\\
-  &=\sum_{r=2}^{n}u_r-\sum_{r=2}^{n}u_{r-2}\\
-  &=\sum_{r=2}^{n}u_r-\sum_{r=0}^{n-2}u_r
-  \end{align*}
-
-  using a change of index in the second sum.
+  \[
+  S_n=\sum_{r=2}^{n}(u_r-u_{r-2})
+  \]
 
   Writing out the terms shows the method of differences clearly:
-
-  {
   \begin{align*}
   S_n&=(\cxl{blue}{u_2}+\cxl{red}{u_3}+\cxl{green!50!black}{u_4}+\cxl{orange}{u_5}+\cdots+\cxl{purple}{u_{n-2}}+u_{n-1}+u_n)\\
   &\qquad -(u_0+u_1+\cxl{blue}{u_2}+\cxl{red}{u_3}+\cxl{green!50!black}{u_4}+\cxl{orange}{u_5}+\cdots+\cxl{purple}{u_{n-2}})\\
   &=u_{n-1}+u_n-u_0-u_1
   \end{align*}
 
-  }
-
   Now
   \[
-  u_{n-1}=\sqrt{(n-1)(n+1)},\quad u_n=\sqrt{n(n+2)},\quad u_0=\sqrt{0\cdot 2}=0,\quad u_1=\sqrt{1\cdot 3}=\sqrt3
+  u_{n-1}=\sqrt{(n-1)(n+1)},\quad u_n=\sqrt{n(n+2)},\quad u_0=\sqrt{0\times 2}=0,\quad u_1=\sqrt{1\times 3}=\sqrt3
   \]
 
   Hence
@@ -921,12 +899,10 @@ As $n\to\infty$, $\frac{14}{n}\to 0$ and $\frac{3}{n^2}\to 0$, so
   =\sqrt{(n-1)(n+1)}+\sqrt{n(n+2)}-\sqrt3
   \]
 
-  This is the required sum.
-
-  \item Using part (b) with $n=7$,
+  \item Using part (b) with \(n=7\):
   \begin{align*}
   \sum_{r=2}^{7}\frac{4r}{\sqrt{r(r+2)}+\sqrt{r(r-2)}}
-  &=\sqrt{6\cdot 8}+\sqrt{7\cdot 9}-\sqrt3\\
+  &=\sqrt{6\times 8}+\sqrt{7\times 9}-\sqrt3\\
   &=\sqrt{48}+\sqrt{63}-\sqrt3\\
   &=4\sqrt3+3\sqrt7-\sqrt3\\
   &=3\sqrt3+3\sqrt7
@@ -934,7 +910,7 @@ As $n\to\infty$, $\frac{14}{n}\to 0$ and $\frac{3}{n^2}\to 0$, so
 
   The $r=2$ term is
   \[
-  \frac{4(2)}{\sqrt{2(2+2)}+\sqrt{2(2-2)}}=\sqrt{2\cdot 4}-\sqrt{2\cdot 0}=\sqrt8=2\sqrt2
+  \frac{4(2)}{\sqrt{2(2+2)}+\sqrt{2(2-2)}}=\sqrt{2\times 4}-\sqrt{2\times 0}=\sqrt8=2\sqrt2
   \]
 
   from part (a).
@@ -988,7 +964,7 @@ Let $a$ be a positive constant. \\
 S_n=\sum_{r=1}^{n}\frac{1}{(r+a)(r+a+1)(r+a+2)}
 \]
 
-To use the method of differences, first note that for any \(x\),
+To use the method of differences, first note that for any \(x\)
 \begin{align*}
 \frac{1}{x(x+1)}-\frac{1}{(x+1)(x+2)}
 &=\frac{x+2-x}{x(x+1)(x+2)}\\
@@ -1002,12 +978,11 @@ So
 \]
 
 Now put \(x=r+a\). Then
-\begin{align*}
-S_n
-&=\frac12\sum_{r=1}^{n}\left(\frac{1}{(r+a)(r+a+1)}-\frac{1}{(r+a+1)(r+a+2)}\right)
-\end{align*}
+\[
+S_n=\frac12\sum_{r=1}^{n}\left(\frac{1}{(r+a)(r+a+1)}-\frac{1}{(r+a+1)(r+a+2)}\right)
+\]
 
-Expanding the sum,
+Expanding the sum:
 \begin{align*}
 S_n
 &=\frac12\Bigg[
@@ -1037,13 +1012,13 @@ Hence
 =\frac12\left(\frac{1}{(a+1)(a+2)}-\frac{1}{(n+a+1)(n+a+2)}\right)
 \]
 
-  \item From part (a),
+  \item From part (a):
 \[
 \sum_{r=1}^{n}\frac{1}{(r+a)(r+a+1)(r+a+2)}
 =\frac12\left(\frac{1}{(a+1)(a+2)}-\frac{1}{(n+a+1)(n+a+2)}\right)
 \]
 
-As \(n\to\infty\),
+As \(n\to\infty\)
 \[
 \frac{1}{(n+a+1)(n+a+2)}\to 0
 \]
@@ -1054,7 +1029,7 @@ So
 =\frac{1}{2(a+1)(a+2)}
 \]
 
-Given that this equals \(\frac{1}{24}\),
+Given that this equals \(\frac{1}{24}\):
 \begin{align*}
 \frac{1}{2(a+1)(a+2)}&=\frac{1}{24}\\
 2(a+1)(a+2)&=24\\
@@ -1064,10 +1039,7 @@ a^2+3a-10&=0\\
 (a-2)(a+5)&=0
 \end{align*}
 
-So \(a=2\) or \(a=-5\). Since \(a\) is positive,
-\[
-a=2
-\]
+So \(a=2\) or \(a=-5\). Since \(a\) is positive, \(a=2\).
 
 \end{enumerate}
 \end{djsSolution}
@@ -1116,17 +1088,17 @@ So
 \sum_{r=1}^{N} r(2r-1)(2r+1)=4\sum_{r=1}^{N} r^3-\sum_{r=1}^{N} r
 \]
 
-From the formula book,
+From the formula booklet:
 \[
-\sum_{r=1}^{N} r=\frac{N(N+1)}{2},
+\sum_{r=1}^{N} r=\frac12 N(N+1),
 \qquad
-\sum_{r=1}^{N} r^3=\left(\frac{N(N+1)}{2}\right)^2
+\sum_{r=1}^{N} r^3=\frac14 N^2(N+1)^2
 \]
 
 Hence
 \begin{align*}
 \sum_{r=1}^{N} r(2r-1)(2r+1)
-&=4\left(\frac{N(N+1)}{2}\right)^2-\frac{N(N+1)}{2} \\
+&=4\left(\frac14 N^2(N+1)^2\right)-\frac12 N(N+1) \\
 &=N^2(N+1)^2-\frac12 N(N+1) \\
 &=\frac12 N(N+1)\bigl(2N(N+1)-1\bigr) \\
 &=\frac12 N(N+1)(2N^2+2N-1)
@@ -1147,7 +1119,7 @@ so
 6r+13=(2A+2B)r+(3A-B)
 \]
 
-Comparing coefficients,
+Comparing coefficients:
 \[
 2A+2B=6,\qquad 3A-B=13
 \]
@@ -1192,7 +1164,7 @@ so
 S_N=4\sum_{r=1}^{N}(u_r-u_{r+2})
 \]
 
-Using the method of differences,
+Using the method of differences:
 \begin{align*}
 S_N
 &=4\Bigl[(u_1+u_2+\cxl{blue}{u_3}+\cxl{red}{u_4}+\cdots+\cxl{teal}{u_N})\\
@@ -1202,9 +1174,9 @@ S_N
 
 Now
 \[
-u_1=\frac{1}{1\cdot 2^2}=\frac14,
+u_1=\frac{1}{1\times 2^2}=\frac14,
 \qquad
-u_2=\frac{1}{3\cdot 2^3}=\frac{1}{24}
+u_2=\frac{1}{3\times 2^3}=\frac{1}{24}
 \]
 
 and
@@ -1221,7 +1193,7 @@ S_N
 &=\frac76-\frac{1}{(2N+1)2^N}-\frac{1}{(2N+3)2^{N+1}}
 \end{align*}
 
-Combining the two final fractions,
+Combining the two final fractions:
 \begin{align*}
 \frac{1}{(2N+1)2^N}+\frac{1}{(2N+3)2^{N+1}}
 &=\frac{2}{(2N+1)2^{N+1}}+\frac{1}{(2N+3)2^{N+1}} \\
@@ -1241,7 +1213,7 @@ or equivalently
 =\frac76-\frac{6N+7}{(2N+1)(2N+3)2^{N+1}}
 \]
 
-  \item From part (b),
+  \item From part (b):
 \[
 S_N=\frac76-\frac{6N+7}{(2N+1)(2N+3)2^{N+1}}
 \]
@@ -1294,19 +1266,19 @@ so
 &=10m^4+20m^2+2
 \end{align*}
 
-Substituting back \(m=2n-1\),
+Substituting back \(m=2n-1\):
 \[
 (2n)^5-(2n-2)^5=10(2n-1)^4+20(2n-1)^2+2
 \]
 
-So the identity is shown.
+as required.
 
   \item Let
 \[
-S=\sum_{r=1}^{n}(2r-1)^4
+S_n=\sum_{r=1}^{n}(2r-1)^4
 \]
 
-Using the result from part (a) with \(n\) replaced by \(r\),
+Using the result from part (a) with \(n\) replaced by \(r\):
 \[
 (2r)^5-(2r-2)^5=10(2r-1)^4+20(2r-1)^2+2
 \]
@@ -1318,9 +1290,9 @@ Now sum from \(r=1\) to \(n\):
 10\sum_{r=1}^{n}(2r-1)^4+20\sum_{r=1}^{n}(2r-1)^2+2n
 \]
 
-That is,
+That is
 \[
-\sum_{r=1}^{n}\left((2r)^5-(2r-2)^5\right)=10S+20\sum_{r=1}^{n}(2r-1)^2+2n
+\sum_{r=1}^{n}\left((2r)^5-(2r-2)^5\right)=10S_n+20\sum_{r=1}^{n}(2r-1)^2+2n
 \]
 
 For the left-hand side, use the method of differences:
@@ -1334,7 +1306,12 @@ For the left-hand side, use the method of differences:
 
 So
 \[
-32n^5=10S+20\sum_{r=1}^{n}(2r-1)^2+2n
+32n^5=10S_n+20\sum_{r=1}^{n}(2r-1)^2+2n
+\]
+
+The standard results are
+\[
+\sum_{r=1}^{n} r=\frac12 n(n+1),\qquad \sum_{r=1}^{n} r^2=\frac16 n(n+1)(2n+1)
 \]
 
 Now find \(\sum_{r=1}^{n}(2r-1)^2\):
@@ -1342,7 +1319,7 @@ Now find \(\sum_{r=1}^{n}(2r-1)^2\):
 \sum_{r=1}^{n}(2r-1)^2
 &=\sum_{r=1}^{n}(4r^2-4r+1)\\
 &=4\sum_{r=1}^{n}r^2-4\sum_{r=1}^{n}r+\sum_{r=1}^{n}1\\
-&=4\cdot \frac{n(n+1)(2n+1)}{6}-4\cdot \frac{n(n+1)}{2}+n\\
+&=4\times\frac16 n(n+1)(2n+1)-4\times\frac12 n(n+1)+n\\
 &=\frac{2n(n+1)(2n+1)}{3}-2n(n+1)+n\\
 &=\frac{2n(n+1)(2n+1)-6n(n+1)+3n}{3}\\
 &=\frac{n\left(2(n+1)(2n+1)-6(n+1)+3\right)}{3}\\
@@ -1350,15 +1327,14 @@ Now find \(\sum_{r=1}^{n}(2r-1)^2\):
 &=\frac{n(2n-1)(2n+1)}{3}
 \end{align*}
 
-Substitute this into the equation for \(S\):
-\begin{align*}
-32n^5
-&=10S+20\left(\frac{n(2n-1)(2n+1)}{3}\right)+2n
-\end{align*}
+Substitute this into the equation for \(S_n\):
+\[
+32n^5=10S_n+20\left(\frac{n(2n-1)(2n+1)}{3}\right)+2n
+\]
 
 Hence
 \begin{align*}
-10S
+10S_n
 &=32n^5-\frac{20n(2n-1)(2n+1)}{3}-2n\\
 &=32n^5-\frac{20n(4n^2-1)}{3}-2n\\
 &=32n^5-\frac{80}{3}n^3+\frac{20}{3}n-2n\\
@@ -1367,7 +1343,7 @@ Hence
 
 So
 \begin{align*}
-S
+S_n
 &=\frac{1}{10}\left(32n^5-\frac{80}{3}n^3+\frac{14}{3}n\right)\\
 &=\frac{48n^5-40n^3+7n}{15}
 \end{align*}
@@ -1416,7 +1392,7 @@ where $n \geq 1$. \\
   S_n = \frac{n(15n+17)}{8(3n+1)(3n+4)}
   \]
   \marks[-30pt]{5}
-  \item Show that, for any number $k$ greater than $\dfrac{24}{5}$, if the difference between $\dfrac{5}{24}$ and $S_n$ is less than $\dfrac{1}{k}$, then \\[5pt]
+  \item Show that, for any number $k$ greater than $\dfrac{24}{5}$, if the difference between $\dfrac{5}{24}$ and $S_n$ is less than $\dfrac{1}{k}$, then
   \[
   n > \frac{k - 15 + \sqrt{k^2 + 81}}{18}
   \]
@@ -1444,12 +1420,12 @@ Comparing coefficients of \(r\) and constants gives
 
 So
 \[
-A+B=0 \implies B=-A
+A+B=0\quad\Longrightarrow\quad B=-A
 \]
 
 and hence
 \[
-4A-2(-A)=1 \implies 6A=1 \implies A=\frac16,\quad B=-\frac16
+4A-2(-A)=1\quad\Longrightarrow\quad 6A=1\quad\Longrightarrow\quad A=\frac16,\quad B=-\frac16
 \]
 
 Therefore
@@ -1463,22 +1439,18 @@ S_n=\frac16\sum_{r=1}^{n}\left(\frac1{3r-2}-\frac1{3r+4}\right)
 \]
 
 Now expand the sum:
-\[
-\begin{aligned}
+\begin{align*}
 S_n
 &=\frac16\Bigg[\left(1-\frac17\right)+\left(\frac14-\frac1{10}\right)+\left(\frac17-\frac1{13}\right)+\left(\frac1{10}-\frac1{16}\right)+\cdots \\
 &\hspace{3cm}+\left(\frac1{3n-5}-\frac1{3n+1}\right)+\left(\frac1{3n-2}-\frac1{3n+4}\right)\Bigg]
-\end{aligned}
-\]
+\end{align*}
 
-Rearranging to show the cancellation pattern,
-\[
-\begin{aligned}
+Rearranging to show the cancellation pattern:
+\begin{align*}
 S_n
 &=\frac16\Bigg(1+\frac14+\cxl{blue}{\frac17}+\cxl{red}{\frac1{10}}+\cdots+\cxl{teal}{\frac1{3n-2}} \\
 &\hspace{2.3cm}-\cxl{blue}{\frac17}-\cxl{red}{\frac1{10}}-\cdots-\cxl{teal}{\frac1{3n-2}}-\frac1{3n+1}-\frac1{3n+4}\Bigg)
-\end{aligned}
-\]
+\end{align*}
 
 The coloured middle terms cancel, leaving
 \[
@@ -1493,24 +1465,22 @@ S_n=\frac16\left(\frac54-\frac{(3n+4)+(3n+1)}{(3n+1)(3n+4)}\right)
 S_n=\frac16\left(\frac54-\frac{6n+5}{(3n+1)(3n+4)}\right)
 \]
 
-Putting the terms inside the bracket over a common denominator,
-\[
-\begin{aligned}
+Putting the terms inside the bracket over a common denominator:
+\begin{align*}
 S_n
 &=\frac16\left(\frac{5(3n+1)(3n+4)-4(6n+5)}{4(3n+1)(3n+4)}\right) \\
 &=\frac16\left(\frac{5(9n^2+15n+4)-24n-20}{4(3n+1)(3n+4)}\right) \\
 &=\frac16\left(\frac{45n^2+75n+20-24n-20}{4(3n+1)(3n+4)}\right) \\
 &=\frac16\left(\frac{45n^2+51n}{4(3n+1)(3n+4)}\right) \\
 &=\frac16\left(\frac{3n(15n+17)}{4(3n+1)(3n+4)}\right)
-\end{aligned}
-\]
+\end{align*}
 
 Hence
 \[
 S_n=\frac{n(15n+17)}{8(3n+1)(3n+4)}
 \]
 
-  \item From part (a),
+  \item From part (a):
 \[
 S_n=\frac16\left(\frac54-\frac{6n+5}{(3n+1)(3n+4)}\right)
 =\frac5{24}-\frac{6n+5}{6(3n+1)(3n+4)}
@@ -1546,30 +1516,26 @@ Now solve the corresponding quadratic equation
 54n^2+(90-6k)n+(24-5k)=0
 \]
 
-Using the quadratic formula,
+Using the quadratic formula:
 \[
 n=\frac{-(90-6k)\pm\sqrt{(90-6k)^2-4(54)(24-5k)}}{108}
 \]
 
 Simplify the discriminant:
-\[
-\begin{aligned}
+\begin{align*}
 (90-6k)^2-4(54)(24-5k)
 &=36(15-k)^2-216(24-5k) \\
 &=36\left((15-k)^2-6(24-5k)\right) \\
 &=36\left(k^2-30k+225-144+30k\right) \\
 &=36(k^2+81)
-\end{aligned}
-\]
+\end{align*}
 
 Therefore
-\[
-\begin{aligned}
+\begin{align*}
 n
 &=\frac{6k-90\pm 6\sqrt{k^2+81}}{108} \\
 &=\frac{k-15\pm\sqrt{k^2+81}}{18}
-\end{aligned}
-\]
+\end{align*}
 
 Since the coefficient of \(n^2\) is positive, the inequality
 \[
@@ -1578,7 +1544,7 @@ Since the coefficient of \(n^2\) is positive, the inequality
 
 holds for values of \(n\) outside the two roots.
 
-Also,
+Also
 \[
 k-15-\sqrt{k^2+81}<k-15-k=-15<0
 \]
@@ -1588,7 +1554,7 @@ So the smaller root is negative. As \(n\geq 1\), it follows that
 n>\frac{k-15+\sqrt{k^2+81}}{18}
 \]
 
-This is the required result.
+as required.
 \end{enumerate}
 \end{djsSolution}
 
