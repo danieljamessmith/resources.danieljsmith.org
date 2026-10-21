@@ -1086,6 +1086,16 @@ const rawResources: Resource[] = [
     pairId: 'further-maths-further-mechanics-work-energy-power-work-energy-elastic-potential-energy',
     topic: 'Work, Energy and Power',
   },
+  {
+    id: 'further-maths-further-mechanics-work-energy-power-work-energy-elastic-potential-energy-ms',
+    title: 'Elastic Potential Energy',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/further-mechanics/work-energy-power/ms/_QBT___MS__Elastic_Potential_Energy.pdf',
+    category: FM_MECH,
+    type: 'markscheme',
+    paperId: 'further-maths-further-mechanics-work-energy-power-work-energy-elastic-potential-energy',
+    topic: 'Work, Energy and Power',
+  },
 
   // --- A-level Further Maths: Further Mechanics — Kinematics & Dynamics ---
   {

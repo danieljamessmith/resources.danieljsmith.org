@@ -95,6 +95,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/further-mechanics/momentum-restitution-collisions/soln/_QBT___Solns__Collisions_in_2_Dimensions.pdf': 'af42cd00',
   '/tex/further-maths/further-mechanics/momentum-restitution-collisions/soln/_QBT___Solns__Oblique_Collisions_of_Smooth_Spheres.pdf': 'ac8d6c20',
   '/tex/further-maths/further-mechanics/momentum-restitution-collisions/soln/_QBT___Solns__Vector_Momentum_and_Impulse.pdf': 'e1806d43',
+  '/tex/further-maths/further-mechanics/work-energy-power/ms/_QBT___MS__Elastic_Potential_Energy.pdf': '8295d13c',
   '/tex/further-maths/further-mechanics/work-energy-power/qbt/_QBT___Power_and_Driving_Force_.pdf': '1a7a7365',
   '/tex/further-maths/further-mechanics/work-energy-power/qbt/_QBT__Elastic_Potential_Energy.pdf': '2b2f2179',
   '/tex/further-maths/further-mechanics/work-energy-power/qbt/_QBT__Work_Energy_Principle.pdf': '4fc18776',
