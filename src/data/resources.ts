@@ -647,6 +647,16 @@ const rawResources: Resource[] = [
     topic: 'Polar Coordinates',
   },
   {
+    id: 'fm-polar-integration-polar-curves-ms',
+    title: 'Integration of Polar Curves',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/polar-coordinates/ms/_QBT___MS__Integration_of_Polar_Curves.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-polar-integration-polar-curves',
+    topic: 'Polar Coordinates',
+  },
+  {
     id: 'fm-polar-tangents-polar-curves',
     title: 'Tangents to Polar Curves',
     description: '',

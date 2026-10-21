@@ -1,0 +1,670 @@
+format: 1
+pack: Integration of Polar Curves
+last_updated: 21 October 2026
+questions:
+  - q: 1
+    stamp: bd0791de
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\sin 2\theta = -1 \Rightarrow \theta = \frac{3\pi}{4},\ \frac{7\pi}{4}\)
+            marks:
+              - code: B1
+                note: Both values, or awrt 2.36 and 5.50, with no others in \(0 \leq \theta \leq 2\pi\).
+      - part: b
+        rows:
+          - scheme: |
+              \(\sin 2\theta = 1 \Rightarrow 2\theta = \frac{\pi}{2},\ \frac{5\pi}{2}\)
+              \(\phantom{\sin 2\theta = 1} \Rightarrow \theta = \ldots\)
+            marks:
+              - code: M1
+                note: Sets \(\sin 2\theta = 1\), or \(\frac{\mathrm{d}r}{\mathrm{d}\theta} = 0\), and solves for at least one value of \(\theta\).
+          - scheme: |
+              \(\left(2, \tfrac{\pi}{4}\right)\) and \(\left(2, \tfrac{5\pi}{4}\right)\)
+            marks:
+              - code: A1
+                note: Both points with \(r=2\); angles exact or awrt 0.785 and 3.93, with no others in the range.
+      - part: c
+        rows:
+          - scheme: |
+              \(A = \frac12\int_0^{2\pi}(1 + \sin 2\theta)^2\,\mathrm{d}\theta\)
+            marks:
+              - code: B1
+                note: Correct integral with limits, oe, such as \(\int_0^{\pi}(1+\sin2\theta)^2\,\mathrm{d}\theta\). Needs the polar-area factor \(\frac12\), allowing a compensating symmetry factor.
+          - scheme: |
+              \(\frac12\int_0^{2\pi}\left(\frac32 + 2\sin 2\theta - \frac12\cos 4\theta\right)\mathrm{d}\theta\)
+              \(\phantom{A} = \frac12\left[\frac32\theta - \cos 2\theta - \frac18\sin 4\theta\right]_0^{2\pi}\)
+            marks:
+              - code: M1
+                note: Expands, replaces \(\sin^2 2\theta\) by \(\pm\frac12 \pm \frac12\cos 4\theta\) and integrates, with at least one trigonometric term integrated correctly. Condone coefficient slips.
+          - scheme: |
+              \(\phantom{A} = \frac12\left(\text{"}3\pi - 1\text{"} - \text{"}(-1)\text{"}\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits into their integrated expression and subtracts.
+          - scheme: |
+              \(\phantom{A} = \frac{3\pi}{2}\)
+            marks:
+              - code: A1
+                note: cso. Withhold for an uncorrected wrong identity or integral, or a fortuitous answer; condone an explicitly corrected preliminary error.
+      - part: d
+        rows:
+          - scheme: |
+              \(r = 1 + 2\sin\theta\cos\theta \Rightarrow r = 1 + \frac{2xy}{r^2}\)
+              \(\phantom{r} \Rightarrow r^3 = r^2 + 2xy\)
+            marks:
+              - code: M1
+                note: Uses \(\sin 2\theta = 2\sin\theta\cos\theta\) with \(x = r\cos\theta\), \(y = r\sin\theta\) to reach an equation in \(r\), \(x\) and \(y\) with no \(\theta\).
+          - scheme: |
+              \((x^2 + y^2)^{3/2} = (x + y)^2\)
+            marks:
+              - code: A1
+                note: Oe in \(x\) and \(y\) only, such as \((x^2 + y^2)^3 = (x + y)^4\). A0 if \(r\) remains.
+  - q: 2
+    stamp: '15251e78'
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\cos2\theta = \cos^2\theta - \sin^2\theta\)
+              \(\phantom{\cos2\theta} = \left(\frac{x}{r}\right)^2 - \left(\frac{y}{r}\right)^2\)
+            marks:
+              - code: M1
+                note: Writes \(\cos2\theta\), or \(r^2\cos2\theta\), in terms of \(x\), \(y\) and \(r\) using a double-angle identity with \(x = r\cos\theta\), \(y = r\sin\theta\). Condone sign slips.
+          - scheme: |
+              \(\cos2\theta = \frac{x^2 - y^2}{r^2}\)
+            marks:
+              - code: A1
+                note: oe, such as \(r^2\cos2\theta = x^2 - y^2\).
+          - scheme: |
+              \(r^2 = \frac{8(x^2 - y^2)}{r^2}\)
+              \(\Rightarrow x^2 + y^2 = \frac{8(x^2 - y^2)}{x^2 + y^2}\)
+            marks:
+              - code: dM1
+                note: Substitutes their \(\cos2\theta\) in \(x\), \(y\) and \(r\) into \(r^2 = 8\cos2\theta\) and replaces \(r^2\) by \(x^2 + y^2\).
+          - scheme: |
+              \((x^2 + y^2)^2 = 8(x^2 - y^2)\)
+            marks:
+              - code: A1 AG
+                note: Correct substituted equation with \(r^2=x^2+y^2\), leading without error to the printed result; combined steps accepted.
+      - part: b
+        rows:
+          - scheme: |
+              \(\left(x^2 + (-y)^2\right)^2 = 8\left(x^2 - (-y)^2\right)\)
+              \(\left((-x)^2 + y^2\right)^2 = 8\left((-x)^2 - y^2\right)\)
+            marks:
+              - code: M1
+                note: Replaces one variable by its negative, or applies a general polar reflection test, and shows invariance for at least one axis.
+          - scheme: |
+              Both give \((x^2 + y^2)^2 = 8(x^2 - y^2)\), unchanged
+              \(\Rightarrow\) symmetric about both axes
+            marks:
+              - code: A1 AG
+                note: Each result shown to be the original equation, with a conclusion that both axes are lines of symmetry.
+      - part: c
+        rows:
+          - scheme: |
+              \(A = \frac12\int_{-\pi/4}^{\pi/4} 8\cos2\theta\,\mathrm{d}\theta\)
+            marks:
+              - code: B1
+                note: oe, such as \(2\times\frac12\int_0^{\pi/4}8\cos2\theta\,\mathrm{d}\theta\) or limits \(\frac{3\pi}{4},\frac{5\pi}{4}\). Needs the polar-area factor \(\frac12\).
+          - scheme: |
+              \(\phantom{A} = 4\left[\tfrac12\sin2\theta\right]_{-\pi/4}^{\pi/4}\)
+            marks:
+              - code: M1
+                note: Integrates \(\cos2\theta\) to \(k\sin2\theta\), any \(k \neq 0\).
+          - scheme: |
+              \(\phantom{A} = 2\left(\sin\frac{\pi}{2} - \sin\left(-\frac{\pi}{2}\right)\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes their limits for one loop into their \(k\sin2\theta\) and subtracts. May be implied by a correct answer.
+          - scheme: |
+              \(\phantom{A} = 4\)
+            marks:
+              - code: A1
+                note: cso.
+  - q: 3
+    stamp: c2edd36e
+    parts:
+      - part: a
+        rows:
+          - figure: 1
+            marks:
+              - code: B1
+                note: Cardioid symmetric about the initial line, with a cusp, not a loop or dimple, at the pole.
+                feature: shape
+              - code: B1
+                note: The intercept with the initial line marked as \((4, 0)\), or \(4\) at that point.
+                feature: labelled point
+              - code: B1
+                note: Half-line from the pole into the second quadrant, at about \(120^\circ\), crossing the cardioid. Not a full line through the pole.
+                feature: half-line
+      - part: b
+        rows:
+          - scheme: |
+              \(A = \frac12\int_{2\pi/3}^{\pi} 4(1+\cos\theta)^2\,\mathrm{d}\theta\)
+            marks:
+              - code: B1
+                note: Needs the \(\frac12\), a correct \(r^2\) and limits \(\frac{2\pi}{3}\) and \(\pi\), seen or used later.
+          - scheme: |
+              \(A = \int_{2\pi/3}^{\pi}(3 + 4\cos\theta + \cos 2\theta)\,\mathrm{d}\theta\)
+              \(\phantom{A} = \left[3\theta + 4\sin\theta + \tfrac12\sin 2\theta\right]_{2\pi/3}^{\pi}\)
+            marks:
+              - code: M1
+                note: Expands to three terms, uses \(\cos^2\theta = \frac12(1 \pm \cos 2\theta)\) and integrates to the form \(a\theta + b\sin\theta + c\sin 2\theta\). Condone coefficient slips.
+          - scheme: |
+              \(A = 3\pi - \left(2\pi + 2\sqrt3 - \tfrac{\sqrt3}{4}\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes \(\pi\) and \(\frac{2\pi}{3}\) into their integral of that form and subtracts.
+          - scheme: |
+              \(A = \pi - \frac{7\sqrt3}{4}\)
+            marks:
+              - code: A1
+                note: Any exact equivalent, or awrt 0.111. cso.
+  - q: 4
+    stamp: c1e4257d
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(2 + \sin 2\theta = \frac52 \Rightarrow \sin 2\theta = \frac12\)
+              \(\phantom{2 + \sin 2\theta} \Rightarrow \theta = \ldots\)
+            marks:
+              - code: M1
+                note: Equates the two expressions for \(r\) and solves for at least one value of \(\theta\).
+          - scheme: |
+              \(\theta = \frac{\pi}{12},\ \frac{5\pi}{12}\)
+            marks:
+              - code: A1
+                note: Both values, exact or awrt 0.262 and 1.31.
+          - scheme: |
+              \(\frac12\displaystyle\int_{\pi/12}^{5\pi/12}\left[(2 + \sin 2\theta)^2 - \left(\tfrac52\right)^2\right]\mathrm{d}\theta\)
+            marks:
+              - code: B1
+                note: Correct integral with correct limits, oe such as a separate circular sector subtracted. Needs the polar-area factor \(\frac12\).
+          - scheme: |
+              \(\sin^2 2\theta = \frac12(1 - \cos 4\theta)\)
+              \(\Rightarrow \left[-\frac{7\theta}{8} - \cos 2\theta - \frac1{16}\sin 4\theta\right]\)
+            marks:
+              - code: M1
+                note: Expands \((2 + \sin 2\theta)^2\), replaces \(\sin^2 2\theta\) by \(\pm\frac12 \pm \frac12\cos 4\theta\) and integrates, at least one trigonometric term correctly. Condone coefficient slips.
+          - scheme: |
+              \(\left(-\frac{35\pi}{96} + \frac{\sqrt3}{2} + \frac{\sqrt3}{32}\right)\)
+              \(\phantom{A} - \left(-\frac{7\pi}{96} - \frac{\sqrt3}{2} - \frac{\sqrt3}{32}\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes their limits from the intersection into their integrated expression and subtracts.
+          - scheme: |
+              \(\text{Area} = 0.924\)
+            marks:
+              - code: A1
+                note: awrt 0.924, cso. The exact value \(\frac{17\sqrt3}{16} - \frac{7\pi}{24}\) alone scores A0.
+  - q: 5
+    stamp: 0433cd5b
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(A = \left(3a, \frac{\pi}{4}\right)\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(B = (2a, 0)\)
+            marks:
+              - code: B1
+      - part: b
+        rows:
+          - scheme: |
+              \(r = a(2 + 2\sin\theta\cos\theta) = 2a + \frac{2axy}{r^2}\)
+              \(\Rightarrow (x^2+y^2)^{3/2} = 2a(x^2+y^2) + 2axy\)
+            marks:
+              - code: M1
+                note: Uses \(\sin 2\theta = 2\sin\theta\cos\theta\), \(x = r\cos\theta\), \(y = r\sin\theta\) to reach an equation in \(x\) and \(y\) only. Condone slips in the powers of \(x^2+y^2\).
+          - scheme: |
+              Unchanged on swapping \(x\) and \(y\)
+              \(\theta = \frac{\pi}{4}\) is \(y = x\), so \(C\) is symmetrical about it
+            marks:
+              - code: E1
+                note: States that their correct Cartesian equation is unchanged on swapping \(x\) and \(y\), identifies \(\theta = \frac{\pi}{4}\) as \(y = x\) and concludes.
+        alt:
+          title: Replacing \(\theta\) by \(\frac{\pi}{2} - \theta\)
+          rows:
+            - scheme: |
+                \(r = a\left(2 + \sin 2\left(\frac{\pi}{2} - \theta\right)\right)\)
+                \(\phantom{r} = a\left(2 + \sin(\pi - 2\theta)\right)\)
+              marks:
+                - code: M1
+                  note: Replaces \(\theta\) by \(\frac{\pi}{2} - \theta\), or compares \(r\) at \(\frac{\pi}{4} \pm \alpha\) for general \(\alpha\). Not for particular angles or the diagram alone.
+            - scheme: |
+                \(\sin(\pi - 2\theta) = \sin 2\theta \Rightarrow r = a(2 + \sin 2\theta)\)
+                Unchanged, so symmetrical about \(\theta = \frac{\pi}{4}\)
+              marks:
+                - code: E1
+                  note: Shows \(\sin(\pi - 2\theta) = \sin 2\theta\), by identity or expansion, and concludes the equation is unchanged so \(C\) is symmetrical.
+      - part: c
+        rows:
+          - scheme: |
+              \(\sin 2\theta \ge 0 \Rightarrow 0 \le \theta \le \frac{\pi}{2}\)
+              \(\tfrac12\int_0^{\pi/2}\left(a^2(2 + \sin 2\theta)^2 - 4a^2\right)\mathrm{d}\theta\)
+            marks:
+              - code: B1
+                note: oe, such as \(\tfrac12\int a^2(2+\sin 2\theta)^2\,\mathrm{d}\theta - \pi a^2\). Limits \(0, \frac{\pi}{2}\) or \(-\pi, -\frac{\pi}{2}\), or both intervals. The \(\frac12\) must be present.
+          - scheme: |
+              \(\frac{a^2}{2}\int_0^{\pi/2}\left(4\sin 2\theta + \tfrac12 - \tfrac12\cos 4\theta\right)\mathrm{d}\theta\)
+              \(\phantom{A} = \frac{a^2}{2}\left[-2\cos 2\theta + \tfrac{\theta}{2} - \tfrac18\sin 4\theta\right]_0^{\pi/2}\)
+            marks:
+              - code: M1
+                note: Expands \((2 + \sin 2\theta)^2\), uses \(\sin^2 2\theta = \frac12(1 \pm \cos 4\theta)\) and integrates, at least one term correct. Condone sign slips.
+          - scheme: |
+              \(2 \times \frac{a^2}{2}\left(\left(2 + \frac{\pi}{4}\right) - (-2)\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes their limits into their integrated expression and doubles, or adds the results for both intervals.
+          - scheme: |
+              \(\frac{a^2(16 + \pi)}{4}\)
+            marks:
+              - code: A1
+                note: Any exact equivalent, such as \(a^2\left(4 + \frac{\pi}{4}\right)\); cso.
+  - q: 6
+    stamp: 80df0610
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(4a\cos\theta = 2a\sec\theta \Rightarrow \cos^2\theta = \ldots\)
+            marks:
+              - code: M1
+                note: Sets the two expressions for \(r\) equal and rearranges to \(\cos^2\theta = \ldots\), \(\cos\theta = \ldots\) or \(\cos 2\theta = \ldots\). Condone slips.
+          - scheme: |
+              \(\theta = \frac{\pi}{4}\)
+            marks:
+              - code: A1
+                note: Or awrt 0.785. A0 if other values are given and not rejected.
+          - scheme: |
+              \(r = 4a\cos\text{"}\tfrac{\pi}{4}\text{"} = \ldots\)
+            marks:
+              - code: dM1
+                note: Substitutes their \(\theta\) into either equation to find \(r\).
+          - scheme: |
+              \(P\left(2\sqrt2\,a,\ \tfrac{\pi}{4}\right)\)
+            marks:
+              - code: A1
+                note: \(r = 2\sqrt2\,a\) oe or awrt \(2.83a\), with \(\theta = \frac{\pi}{4}\) or awrt 0.785; need not be written as a pair.
+      - part: b
+        rows:
+          - scheme: |
+              \(r^2 = 4ar\cos\theta \Rightarrow x^2 + y^2 = 4ax\)
+            marks:
+              - code: M1
+                note: Multiplies by \(r\) (or otherwise) and uses \(r^2 = x^2 + y^2\), \(r\cos\theta = x\) to reach a Cartesian equation. Condone slips.
+          - scheme: |
+              \((x - 2a)^2 + y^2 = 4a^2\)
+              Centre \((2a, 0)\), radius \(2a\)
+            marks:
+              - code: A1
+                note: Correct centre and radius, stated or seen in the circle's equation.
+          - scheme: |
+              Line \(x = 2a\) through the centre, \(P = (2a, 2a)\):
+              quarter circle, \(A = \tfrac14\pi(\text{"}2a\text{"})^2\)
+            marks:
+              - code: M1
+                note: Identifies \(r = 2a\sec\theta\) as \(x = 2a\) through their centre and takes the region as a quarter of their circle's area.
+          - scheme: |
+              \(A = \pi a^2\)
+            marks:
+              - code: A1
+                note: \(\pi a^2\) only; a decimal multiple of \(a^2\) scores A0.
+        alt:
+          title: Integration between the curves
+          rows:
+            - scheme: |
+                \(A = \tfrac12\int_0^{\pi/4}(4a\cos\theta)^2\,\mathrm{d}\theta\)
+                \(\phantom{A =} - \tfrac12\int_0^{\pi/4}(2a\sec\theta)^2\,\mathrm{d}\theta\)
+              marks:
+                - code: B1
+                  note: Needs \(\tfrac12\), both squares and limits \(0, \frac{\pi}{4}\). Or the first integral minus \(2a^2\), the area of triangle \(O\), \((2a,0)\), \(P\).
+            - scheme: |
+                \(8a^2\left[\tfrac{\theta}{2} + \tfrac{\sin 2\theta}{4}\right]_0^{\pi/4}\)
+                \(\phantom{8a^2} - 2a^2\left[\tan\theta\right]_0^{\pi/4}\)
+              marks:
+                - code: M1
+                  note: Uses \(\cos^2\theta = \frac12(1 \pm \cos 2\theta)\) and integrates to \(p\theta + q\sin 2\theta\), and \(\sec^2\theta\) to \(\tan\theta\) where used. Condone coefficient and sign slips.
+            - scheme: |
+                \(= 8a^2\left(\tfrac{\pi}{8} + \tfrac14\right) - 2a^2(1)\)
+              marks:
+                - code: dM1
+                  note: Substitutes \(\frac{\pi}{4}\) and \(0\) into their integrated expression and subtracts.
+            - scheme: |
+                \(= \pi a^2\)
+              marks:
+                - code: A1
+                  note: cso. \(\pi a^2\) only; a decimal multiple of \(a^2\) scores A0.
+  - q: 7
+    stamp: a19b1e39
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(a(1 + \cos\theta) = a \Rightarrow \cos\theta = 0\)
+              \(\phantom{a(1 + \cos\theta) = a} \Rightarrow \theta = \ldots\)
+            marks:
+              - code: M1
+                note: Sets the two expressions for \(r\) equal and solves for \(\theta\). Condone slips in rearranging.
+          - scheme: |
+              \(\theta = \pm\tfrac{\pi}{2}\)
+            marks:
+              - code: A1
+                note: Both values, or \(\tfrac{\pi}{2}\) with symmetry used later; may be implied by the limits.
+          - scheme: |
+              \(\tfrac12\int_{-\pi/2}^{\pi/2}\left([a(1 + \cos\theta)]^2 - a^2\right)\mathrm{d}\theta\)
+            marks:
+              - code: B1
+                note: Or \(2\times\tfrac12\int_0^{\pi/2}\), or the cardioid sector minus the semicircle. Needs the polar-area factor \(\tfrac12\) and matching limits.
+          - scheme: |
+              \(= \tfrac{a^2}{2}\int\left(2\cos\theta + \tfrac12 + \tfrac12\cos 2\theta\right)\mathrm{d}\theta\)
+              \(\phantom{=} = \tfrac{a^2}{2}\left[2\sin\theta + \tfrac{\theta}{2} + \tfrac14\sin 2\theta\right]\)
+            marks:
+              - code: M1
+                note: Expands \((1 + \cos\theta)^2\), uses \(\cos^2\theta = \tfrac12(1 \pm \cos 2\theta)\) and integrates, at least one term correct. Condone a sign or coefficient slip.
+          - scheme: |
+              \(\tfrac{a^2}{2}\left[\ldots\right]_{-\pi/2}^{\pi/2} = \tfrac{a^2}{2}\left(4 + \tfrac{\pi}{2}\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes their limits into their integrated expression and subtracts.
+          - scheme: |
+              \(= 2a^2 + \tfrac{\pi a^2}{4}\)
+            marks:
+              - code: A1
+                note: Oe, such as \(\tfrac{a^2}{4}(8 + \pi)\).
+          - scheme: |
+              \(\text{"}2a^2 + \tfrac{\pi a^2}{4}\text{"} = 18 + \tfrac{9\pi}{4} \Rightarrow a^2 = \ldots\)
+            marks:
+              - code: M1
+                note: Equates their area, of the form \(ka^2\) with \(k\) a non-zero constant, to the given value and makes \(a^2\) the subject.
+          - scheme: |
+              \(a = 3\)
+            marks:
+              - code: A1
+                note: A0 if \(a = -3\) is also given and not rejected.
+  - q: 8
+    stamp: 73bb0afb
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(a\sin 2\theta = a\cos\theta\)
+              \(\Rightarrow \cos\theta(2\sin\theta - 1) = 0 \Rightarrow \theta = \ldots\)
+            marks:
+              - code: M1
+                note: Equates the curves, uses \(\sin 2\theta = 2\sin\theta\cos\theta\) and solves to \(\sin\theta = \ldots\) or \(\theta = \ldots\). Condone dividing by \(\cos\theta\).
+          - scheme: |
+              \(\theta = \frac{\pi}{6}\)
+            marks:
+              - code: A1
+                note: \(\theta = \frac{\pi}{2}\) need not be seen.
+          - scheme: |
+              \(\text{Area} = \frac12\int_0^{\pi/6} a^2\sin^2 2\theta\,\mathrm{d}\theta\)
+              \(\phantom{\text{Area}} + \frac12\int_{\pi/6}^{\pi/2} a^2\cos^2\theta\,\mathrm{d}\theta\)
+            marks:
+              - code: B1
+                note: Each integral needs its \(\frac12\), \(a^2\), integrand and limits; the factor \(\frac12a^2\) may be taken outside both.
+          - scheme: |
+              Uses \(\sin^2 2\theta = \frac12(1 - \cos 4\theta)\), \(\cos^2\theta = \frac12(1 + \cos 2\theta)\)
+              and integrates
+            marks:
+              - code: M1
+                note: Uses double-angle identities for both squares and integrates to the form \(p\theta+q\sin k\theta\). Condone sign and coefficient slips.
+          - scheme: |
+              \(\left[\frac{\theta}{2} - \frac{\sin 4\theta}{8}\right]_0^{\pi/6}\), \(\left[\frac{\theta}{2} + \frac{\sin 2\theta}{4}\right]_{\pi/6}^{\pi/2}\)
+            marks:
+              - code: A1
+                note: Both correct, oe; constant factors may be inside or outside.
+          - scheme: |
+              \(\frac12a^2\left(\text{"}\frac{\pi}{12} - \frac{\sqrt3}{16}\text{"} + \text{"}\frac{\pi}{6} - \frac{\sqrt3}{8}\text{"}\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes the limits into both their integrated expressions, of the form \(p\theta + q\sin k\theta\), and adds.
+          - scheme: |
+              \(\frac{a^2(4\pi - 3\sqrt3)}{32}\)
+            marks:
+              - code: A1
+                note: Any exact equivalent; cso.
+  - q: 9
+    stamp: d1d87cda
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(2a(1 - \cos\theta) = a \Rightarrow \cos\theta = \ldots\)
+            marks:
+              - code: M1
+                note: Sets the two expressions for \(r\) equal and rearranges to \(\cos\theta = k\). Condone sign slips.
+          - scheme: |
+              \(\cos\theta = \tfrac12 \Rightarrow \theta = \tfrac{\pi}{3},\ \tfrac{5\pi}{3}\)
+            marks:
+              - code: A1
+                note: Both values, exact or awrt 1.05 and 5.24. A0 for \(-\tfrac{\pi}{3}\) in place of \(\tfrac{5\pi}{3}\).
+          - scheme: |
+              \(\left(a, \tfrac{\pi}{3}\right)\), \(\left(a, \tfrac{5\pi}{3}\right)\)
+            marks:
+              - code: A1
+                note: Both points as polar coordinates with \(r = a\); \(\theta\) as in the previous mark.
+      - part: b
+        rows:
+          - scheme: |
+              \(2 \times \tfrac12\int_0^{\pi/3} 4a^2(1 - \cos\theta)^2\,\mathrm{d}\theta\)
+            marks:
+              - code: B1
+                note: 'Correct integral for both cardioid sections: limits \(0\) to \(\tfrac{\pi}{3}\) doubled, \(-\tfrac{\pi}{3}\) to \(\tfrac{\pi}{3}\), or separate integrals over \(0\) to \(\tfrac{\pi}{3}\) and \(\tfrac{5\pi}{3}\) to \(2\pi\).'
+          - scheme: |
+              \(\tfrac12 a^2\left(\tfrac{5\pi}{3} - \tfrac{\pi}{3}\right) = \tfrac{2\pi a^2}{3}\)
+            marks:
+              - code: B1
+                note: By integration or as a fraction of the circle's area.
+          - scheme: |
+              \(4a^2\int\left(1 - 2\cos\theta + \tfrac12(1 + \cos 2\theta)\right)\mathrm{d}\theta\)
+              \(\phantom{A} = 4a^2\left[\tfrac32\theta - 2\sin\theta + \tfrac14\sin 2\theta\right]\)
+            marks:
+              - code: M1
+                note: Expands \((1 - \cos\theta)^2\), uses \(\cos^2\theta = \tfrac12(1 \pm \cos 2\theta)\) and integrates, with at least one term correct. Condone slips in the constant factor.
+          - scheme: |
+              \(4a^2\left(\tfrac{\pi}{2} - \sqrt3 + \tfrac{\sqrt3}{8}\right) + \text{"}\tfrac{2\pi a^2}{3}\text{"}\)
+            marks:
+              - code: dM1
+                note: Substitutes limits \(0\) and \(\tfrac{\pi}{3}\), or equivalent, into their integrated cardioid term and adds their sector area.
+          - scheme: |
+              \(\tfrac16 a^2\left(16\pi - 21\sqrt3\right)\)
+              \(p = 16,\ q = -21\)
+            marks:
+              - code: A1
+                note: cso. \(p = 16\), \(q = -21\), or the area in the given form. Not for \(\tfrac{8\pi a^2}{3} - \tfrac{7\sqrt3}{2}a^2\) alone.
+  - q: 10
+    stamp: b072e581
+    parts:
+      - part: a
+        rows:
+          - figure: 1
+            marks:
+              - code: B1
+                note: Six closed petals of equal size, each meeting the pole, with no part of the curve elsewhere.
+                feature: shape
+              - code: B1
+                note: Petals centred on \(\theta = \frac{\pi}{6} + \frac{k\pi}{3}\), one along each direction of the \(y\)-axis, with \(r = a\) marked at a tip.
+                feature: labelled point
+      - part: b
+        rows:
+          - scheme: |
+              \(\tfrac12\int_0^{\pi/3} a^2\sin^4 3\theta\,\mathrm{d}\theta\)
+            marks:
+              - code: B1
+                note: Limits for one petal, or \(0\) to \(2\pi\), or other limits with the matching multiple; needs \(\frac12\) and \(a^2\).
+          - scheme: |
+              \(\sin^4 3\theta = \left(\frac{1 - \cos 6\theta}{2}\right)^2\)
+              \(\phantom{\sin^4 3\theta} = \frac14\left(1 - 2\cos 6\theta + \frac{1 + \cos 12\theta}{2}\right)\)
+            marks:
+              - code: M1
+                note: Uses a double angle identity twice, or any valid method, to reach a constant and terms in \(\cos 6\theta\) and \(\cos 12\theta\); condone coefficient slips.
+          - scheme: |
+              \(\sin^4 3\theta = \frac18\left(3 - 4\cos 6\theta + \cos 12\theta\right)\)
+            marks:
+              - code: A1
+                note: oe, including within the integrand.
+          - scheme: |
+              \(\frac{a^2}{16}\left[3\theta - \frac23\sin 6\theta + \frac1{12}\sin 12\theta\right]\)
+            marks:
+              - code: M1
+                note: Integrates their \(p + q\cos 6\theta + s\cos 12\theta\) to the form \(\alpha\theta + \beta\sin 6\theta + \gamma\sin 12\theta\).
+          - scheme: |
+              \(6 \times \frac{a^2}{16}\left[3 \cdot \frac{\pi}{3} - 0 + 0\right]\)
+            marks:
+              - code: dM1
+                note: Substitutes their limits and multiplies by the number of copies those limits need (6 for one petal, 1 for \(0\) to \(2\pi\)).
+          - scheme: |
+              \(\frac{3\pi a^2}{8}\)
+            marks:
+              - code: A1
+                note: cso, oe.
+  - q: 11
+    stamp: f65b860e
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \((1 + 2\sin\theta)\sin\theta = 1\)
+              \(\Rightarrow 2\sin^2\theta + \sin\theta - 1 = 0\)
+              \(\Rightarrow \sin\theta = \ldots\)
+            marks:
+              - code: M1
+                note: Sets \(r\sin\theta = 1\) with \(r = 1 + 2\sin\theta\), forms a three-term quadratic in \(\sin\theta\) and solves it by any means, calculator allowed.
+          - scheme: |
+              \(\theta = \frac{\pi}{6}\)
+            marks:
+              - code: A1
+                note: Condone \(\sin\theta = -1\) not explicitly rejected.
+          - scheme: |
+              \(\tfrac12\int_{\pi/6}^{\pi/2}(1 + 2\sin\theta)^2\,\mathrm{d}\theta\)
+            marks:
+              - code: B1
+                note: Limits may first be seen when substituted.
+          - scheme: |
+              \(= \tfrac12\int(3 + 4\sin\theta - 2\cos 2\theta)\,\mathrm{d}\theta\)
+              \(\phantom{=} = \tfrac12\left[3\theta - 4\cos\theta - \sin 2\theta\right]\)
+            marks:
+              - code: M1
+                note: Expands \((1 + 2\sin\theta)^2\) to three terms, uses \(\sin^2\theta = \frac12(1 \pm \cos 2\theta)\) and integrates, at least one trigonometric term correct. Condone coefficient slips.
+          - scheme: |
+              \(\tfrac12\left[\tfrac{3\pi}{2} - \left(\tfrac{\pi}{2} - 2\sqrt3 - \tfrac{\sqrt3}{2}\right)\right]\)
+              \([= \tfrac{\pi}{2} + \tfrac{5\sqrt3}{4}]\)
+            marks:
+              - code: dM1
+                note: Substitutes \(\frac{\pi}{2}\) and their \(\theta\) at \(A\) into their integrated expression and subtracts, upper minus lower.
+          - scheme: |
+              Triangle \(ONA = \tfrac12 \times 1 \times \sqrt3 = \tfrac{\sqrt3}{2}\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(\text{Area} = \tfrac{\pi}{2} + \tfrac{5\sqrt3}{4} - \tfrac{\sqrt3}{2}\)
+              \(\phantom{\text{Area}} = \tfrac{\pi}{2} + \tfrac{3\sqrt3}{4}\)
+            marks:
+              - code: A1
+                note: cso. Any exact equivalent, such as \(\frac{2\pi + 3\sqrt3}{4}\).
+        alt:
+          title: Area between the curve and \(r = \operatorname{cosec}\theta\)
+          rows:
+            - scheme: |
+                \((1 + 2\sin\theta)\sin\theta = 1\)
+                \(\Rightarrow 2\sin^2\theta + \sin\theta - 1 = 0\)
+                \(\Rightarrow \sin\theta = \ldots\)
+              marks:
+                - code: M1
+                  note: Sets \(r\sin\theta = 1\) with \(r = 1 + 2\sin\theta\), forms a three-term quadratic in \(\sin\theta\) and solves it by any means, calculator allowed.
+            - scheme: |
+                \(\theta = \frac{\pi}{6}\)
+              marks:
+                - code: A1
+                  note: Condone \(\sin\theta = -1\) not explicitly rejected.
+            - scheme: |
+                \(r\sin\theta = 1 \Rightarrow r = \operatorname{cosec}\theta\)
+              marks:
+                - code: B1
+                  note: Or \(r = \frac{1}{\sin\theta}\).
+            - scheme: |
+                \(\tfrac12\int_{\pi/6}^{\pi/2}\left[(1 + 2\sin\theta)^2 - \operatorname{cosec}^2\theta\right]\mathrm{d}\theta\)
+                \(= \tfrac12\int(3 + 4\sin\theta - 2\cos 2\theta - \operatorname{cosec}^2\theta)\,\mathrm{d}\theta\)
+              marks:
+                - code: M1
+                  note: Uses \(\frac12\int\) of \((1 + 2\sin\theta)^2\) minus the square of their \(r\) for \(AN\), expands, uses \(\sin^2\theta = \frac12(1 \pm \cos 2\theta)\) and integrates at least one trigonometric term correctly.
+            - scheme: |
+                \(= \tfrac12\left[3\theta - 4\cos\theta - \sin 2\theta + \cot\theta\right]\)
+              marks:
+                - code: A1
+                  note: All four terms correct; the \(\frac12\) may be applied later.
+            - scheme: |
+                \(\tfrac12\left[\tfrac{3\pi}{2} - \left(\tfrac{\pi}{2} - \tfrac{5\sqrt3}{2} + \sqrt3\right)\right]\)
+              marks:
+                - code: dM1
+                  note: Substitutes \(\frac{\pi}{2}\) and their \(\theta\) at \(A\) into their integrated expression and subtracts, upper minus lower.
+            - scheme: |
+                \(= \tfrac{\pi}{2} + \tfrac{3\sqrt3}{4}\)
+              marks:
+                - code: A1
+                  note: cso. Any exact equivalent, such as \(\frac{2\pi + 3\sqrt3}{4}\).
+  - q: 12
+    stamp: fce5e54c
+    parts:
+      - part: a
+        rows:
+          - figure: 1
+            marks:
+              - code: B1
+                note: One closed loop through the pole, lying mainly on the \(\theta = \pi\) side of it, symmetric about the initial line.
+                feature: shape
+              - code: B1
+                note: Both ends of the curve at the pole. Condone the tangent there not along the initial line.
+                feature: intercepts
+          - scheme: |
+              \(\theta = \pi\): \(r^2 = \frac{\pi^2 - 0}{1 + 0} \Rightarrow r = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(\theta = \pi\) into the equation to find \(r\). No justification that this is the furthest point is needed.
+          - scheme: |
+              \((\pi, \pi)\)
+            marks:
+              - code: A1
+                note: Or \(r = \pi\) and \(\theta = \pi\) stated.
+      - part: b
+        rows:
+          - scheme: |
+              \(A = \frac12\int_0^{2\pi}\frac{\pi^2 - (\theta - \pi)^2}{1 + (\theta - \pi)^2}\,\mathrm{d}\theta\)
+            marks:
+              - code: B1
+                note: \(\frac12\), \(r^2\) substituted and limits \(0\), \(2\pi\); or \(\int_0^{\pi}\) of \(r^2\) by symmetry.
+          - scheme: |
+              \(u = \theta - \pi\):
+              \(\frac{\pi^2 - u^2}{1 + u^2} = -1 + \frac{\ldots}{1 + u^2}\)
+            marks:
+              - code: M1
+                note: Replaces \(\theta - \pi\) by \(u\) and writes the integrand as \(a + \frac{b}{1 + u^2}\), by division or otherwise. Condone wrong \(a\) and \(b\).
+          - scheme: |
+              \(A = \frac12\int_{-\pi}^{\pi}\left(-1 + \frac{\pi^2 + 1}{1 + u^2}\right)\mathrm{d}u\)
+            marks:
+              - code: A1
+                note: Correct integrand with limits \(\pm\pi\), oe, such as \(\int_0^{\pi}\) without the \(\frac12\). Limits \(0\), \(2\pi\) with a \(u\) integrand is A0.
+          - scheme: |
+              \(\phantom{A} = \frac12\left[-u + (\pi^2 + 1)\arctan u\right]_{-\pi}^{\pi}\)
+            marks:
+              - code: M1
+                note: Integrates their \(a + \frac{b}{1 + u^2}\) to \(au + b\arctan u\). Condone wrong \(a\) and \(b\).
+          - scheme: |
+              \(\frac12\left[\left(-\pi + (\pi^2 + 1)\arctan\pi\right)\right.\)
+              \(\phantom{\frac12[}\left.{}- \left(\pi - (\pi^2 + 1)\arctan\pi\right)\right]\)
+            marks:
+              - code: dM1
+                note: Substitutes the limits of their correctly transformed full or half interval into their antiderivative, subtracts and applies any required symmetry factor.
+          - scheme: |
+              \(A = (\pi^2 + 1)\arctan\pi - \pi\)
+            marks:
+              - code: A1
+                note: oe, such as \((\pi^2 + 1)\tan^{-1}\pi - \pi\). cso.
