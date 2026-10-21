@@ -4,7 +4,7 @@
 \djsSolnHeader{Integration of Polar Curves}
 \djsSitePath{Core Pure}{Polar Coordinates}
 
-\djsLastUpdated{19 October 2026}
+\djsLastUpdated{21 October 2026}
 \begin{document}
 \djsFrontMatter
 	\begin{enumerate}[
@@ -315,7 +315,7 @@ The diagram above shows the curve $C$ with polar equation $r^2=8\cos 2\theta$. \
   \[
   r=2(1+\cos\theta),\quad 0\leq\theta\leq2\pi
   \]
-  and the curve $C_2$ with polar equation $\theta=\frac{2\pi}{3}$. \marks{3} \\
+  and the curve $C_2$ with polar equation $\theta=\frac{2\pi}{3}$, indicating the coordinates of the point, other than the pole, where $C_1$ meets the initial line. \marks{3} \\
   \item Find the area of the smaller region bounded by $C_1$ and $C_2$. \marks{4} \\
 \end{enumerate}
 
@@ -613,7 +613,25 @@ The diagram above shows the curve $C$ with polar equation $r=a(2+\sin 2\theta)$ 
 	  B=(2a,0)
 	  \]
 	
-	  \item A curve is symmetrical about the line $\theta=\frac{\pi}{4}$ if replacing $\theta$ by
+	  \item The line $\theta=\frac{\pi}{4}$ is the line $y=x$, and reflection in $y=x$ swaps $x$ and $y$. So $C$ is symmetrical about $\theta=\frac{\pi}{4}$ if its Cartesian equation is unchanged when $x$ and $y$ are swapped.
+
+	  Using $\sin 2\theta=2\sin\theta\cos\theta$ with $x=r\cos\theta$ and $y=r\sin\theta$,
+	  \[
+	  r=a(2+2\sin\theta\cos\theta)=2a+\frac{2axy}{r^2}
+	  \]
+
+	  Multiplying by $r^2$ and using $r^2=x^2+y^2$,
+	  \[
+	  \left(x^2+y^2\right)^{3/2}=2a\left(x^2+y^2\right)+2axy
+	  \]
+
+	  Swapping $x$ and $y$ gives $\left(y^2+x^2\right)^{3/2}=2a\left(y^2+x^2\right)+2ayx$, which is the same equation. So $C$ is symmetrical about the line $y=x$, which is the line $\theta=\frac{\pi}{4}$.
+
+	  \medskip
+
+	  \textit{Alternative Solution:}
+
+	  A curve is symmetrical about the line $\theta=\frac{\pi}{4}$ if replacing $\theta$ by
 	  \[
 	  \frac{\pi}{2}-\theta
 	  \]
@@ -817,8 +835,29 @@ r=4a\cos\theta \text{ and } r=2a\sec\theta,\quad a>0
 	\left(2\sqrt2\,a,\frac{\pi}{4}\right)
 	\]
 	
-	  \item The required shaded area is between the curves from $\theta=0$ to the intersection at $\theta=\frac{\pi}{4}$.
-	
+	  \item In Cartesian form, $r=4a\cos\theta$ gives $r^2=4ar\cos\theta$, so
+	\[
+	x^2+y^2=4ax \implies (x-2a)^2+y^2=4a^2
+	\]
+
+	which is the circle with centre $(2a,0)$ and radius $2a$. The curve $r=2a\sec\theta$ is $r\cos\theta=2a$, the line
+	\[
+	x=2a
+	\]
+
+	which passes through the centre of the circle. In Cartesian coordinates $P$ is $\left(2\sqrt2\,a\cos\frac{\pi}{4},\,2\sqrt2\,a\sin\frac{\pi}{4}\right)=(2a,2a)$, the top of the circle.
+
+	So the shaded region, bounded by the line $x=2a$, the circle and the initial line, is a quarter of the circle:
+	\[
+	A=\frac14\pi(2a)^2=\pi a^2
+	\]
+
+	\medskip
+
+	\textit{Alternative Solution:}
+
+	The required shaded area is between the curves from $\theta=0$ to the intersection at $\theta=\frac{\pi}{4}$.
+
 	For $0\le \theta \le \frac{\pi}{4}$, the outer curve is
 	\[
 	r=4a\cos\theta
@@ -1287,7 +1326,7 @@ The common region enclosed by $C_1$ and $C_2$ is shaded in the diagram above. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item Find the area of the shaded region $R$, giving your answer in the form
   \[
-  \frac{1}{12}a^2\left(p\pi+q\sqrt{3}\right)
+  \frac{1}{6}a^2\left(p\pi+q\sqrt{3}\right)
   \]
   where $p$ and $q$ are integers to be found. \marks{5} \\
 \end{enumerate}
@@ -1404,19 +1443,14 @@ The common region enclosed by $C_1$ and $C_2$ is shaded in the diagram above. \\
 	&=\frac{8\pi a^2}{3}-\frac{7\sqrt3\,a^2}{2}
 	\end{align*}
 	
-	Putting this over a denominator of $12$,
+	Putting this over a denominator of $6$,
 	\[
-	A=\frac{1}{12}a^2(32\pi-42\sqrt3)
-	\]
-	
-	Hence the shaded area is
-	\[
-	\frac{1}{12}a^2(32\pi-42\sqrt3)
+	A=\frac{1}{6}a^2(16\pi-21\sqrt3)
 	\]
 
 	so
 	\[
-	p=32,\qquad q=-42
+	p=16,\qquad q=-21
 	\]
 	\end{enumerate}
 	\end{djsSolution}
@@ -1643,8 +1677,43 @@ Find the exact area of the shaded region $R$. \marks{7} \\
 	\[
 	y=1
 	\]
-	
-	Now consider the shaded region $R$. For angles
+
+	The region bounded by the curve, the line $OA$ and the line $\theta=\frac{\pi}{2}$ is made up of $R$ and the triangle $ONA$. So $R$ is that region with the triangle $ONA$ removed.
+
+	Using the polar area formula, the region bounded by the curve and the lines $\theta=\frac{\pi}{6}$ and $\theta=\frac{\pi}{2}$ has area
+	\[
+	\frac12\int_{\pi/6}^{\pi/2}\bigl(1+2\sin\theta\bigr)^2\,\mathrm{d}\theta
+	\]
+
+	Expanding the bracket and using
+	\[
+	\sin^2\theta=\frac{1-\cos 2\theta}{2}
+	\]
+
+	we get
+	\begin{align*}
+	\frac12\int_{\pi/6}^{\pi/2}\left(1+4\sin\theta+4\sin^2\theta\right)\mathrm{d}\theta
+	&=\frac12\int_{\pi/6}^{\pi/2}\left(3+4\sin\theta-2\cos2\theta\right)\mathrm{d}\theta\\
+	&=\frac12\left[3\theta-4\cos\theta-\sin2\theta\right]_{\pi/6}^{\pi/2}\\
+	&=\frac12\left(\frac{3\pi}{2}-\left(\frac{\pi}{2}-2\sqrt3-\frac{\sqrt3}{2}\right)\right)\\
+	&=\frac{\pi}{2}+\frac{5\sqrt3}{4}
+	\end{align*}
+
+	The triangle $ONA$ has a right angle at $N$, with $ON=1$ and $NA=\sqrt3$, so its area is
+	\[
+	\frac12\times1\times\sqrt3=\frac{\sqrt3}{2}
+	\]
+
+	Therefore
+	\[
+	\text{Area}(R)=\frac{\pi}{2}+\frac{5\sqrt3}{4}-\frac{\sqrt3}{2}=\frac{\pi}{2}+\frac{3\sqrt3}{4}
+	\]
+
+	\medskip
+
+	\textit{Alternative Solution:}
+
+	With $A$ and the line $AN$ found as above, consider the shaded region $R$. For angles
 	\[
 	\frac{\pi}{6}\leq \theta \leq \frac{\pi}{2}
 	\]
