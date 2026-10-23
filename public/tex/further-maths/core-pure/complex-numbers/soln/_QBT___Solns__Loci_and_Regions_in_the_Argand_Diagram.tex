@@ -4,7 +4,7 @@
 \djsSolnHeader{Loci and Regions in the Argand Diagram}
 \djsSitePath{Core Pure}{Complex Numbers}
 
-\djsLastUpdated{14 October 2026}
+\djsLastUpdated{23 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -81,44 +81,9 @@ So the locus is the set of complex numbers whose distance from \(-2+i\) is \(4\)
 \{z\in\mathbb{C}\mid |z+2-i|=4\}
 \]
 
-  \item Let \(z=x+iy\), where \(x,y\in\mathbb{R}\).
+  \item Since \(|z+1-3i|=|z-(-1+3i)|\), \(L\) is the set of points equidistant from \(2+i\) and \(-1+3i\), so it is the perpendicular bisector of the line segment joining those two points.
 
-Then
-\[
-|z-(2+i)|=|z+1-3i|
-\]
-
-gives
-\[
-|(x-2)+i(y-1)|=|(x+1)+i(y-3)|
-\]
-
-Squaring both sides:
-\[
-(x-2)^2+(y-1)^2=(x+1)^2+(y-3)^2
-\]
-
-Now expand:
-\begin{align*}
-x^2-4x+4+y^2-2y+1&=x^2+2x+1+y^2-6y+9\\
--4x-2y+5&=2x-6y+10\\
--6x+4y-5&=0\\
-6x-4y+5&=0
-\end{align*}
-
-So
-\[
-L:\ 6x-4y+5=0
-\]
-
-or equivalently
-\[
-y=\frac{3}{2}x+\frac{5}{4}
-\]
-
-This is a straight line. Since it is the set of points equidistant from \(2+i\) and \(-1+3i\), it is the perpendicular bisector of the line segment joining those two points.
-
-It passes through the midpoint of that segment,
+It passes through the midpoint of that segment:
 \[
 \left(\frac{2+(-1)}{2},\frac{1+3}{2}\right)=\left(\frac12,2\right)
 \]
@@ -186,7 +151,7 @@ So \((x+1)+3i\) lies in the second quadrant, with \(x+1<0\). Therefore
 \tan\frac{2\pi}{3}=\frac{3}{x+1}
 \]
 
-Using \(\tan\frac{2\pi}{3}=-\sqrt{3}\),
+Using \(\tan\frac{2\pi}{3}=-\sqrt{3}\):
 \[
 \frac{3}{x+1}=-\sqrt{3}
 \]
@@ -347,7 +312,7 @@ z=-1-\sqrt{3}+5i
 
   means that $w$ lies inside or on the circle from part (a).
 
-  Also,
+  Also, the condition
   \[
   0\leq \arg(w-1)\leq \frac{\pi}{4}
   \]
@@ -417,14 +382,10 @@ z=-1-\sqrt{3}+5i
 
   so the intersection points are $P(2,1)$ and $Q(5,4)$, as marked on the diagram.
 
-  Now $|w|$ is the distance from $O$ to the point representing $w$. Every point of the region lies in the disc, so $x\leq 2+3=5$. It also lies on or below the line, so $y\leq x-1\leq 4$. Both $x$ and $y$ are positive in the region, since $y\geq 1$ and $x\geq y+1$. Hence
+  Now $|w|$ is the distance from $O$ to the point representing $w$. From the diagram, the point of the region furthest from $O$ is $Q$, so the maximum value of $|w|$ is
   \[
-  |w|^2=x^2+y^2\leq 5^2+4^2=41
+  |5+4i|=\sqrt{5^2+4^2}=\sqrt{41}
   \]
-
-  Equality holds at $Q$, which is in the region.
-
-  Hence the maximum value of $|w|$ is $\sqrt{41}$, attained when $w=5+4i$.
 
 \end{enumerate}
 \end{djsSolution}
@@ -531,10 +492,10 @@ A=
 
   Since
   \[
-  z-3-6i=(x-3)+i(y-6)
+  z-3-6i=(x-3)+(y-6)i
   \]
 
-  the boundary arguments \(-\pi/4\) and \(3\pi/4\) are opposite directions, so they form a straight line through \((3,6)\) with gradient \(-1\).
+  the boundary arguments \(-\frac{\pi}{4}\) and \(\frac{3\pi}{4}\) are opposite directions, so they form a straight line through \((3,6)\) with gradient \(-1\).
 
   Hence the boundary line is
   \[
@@ -612,16 +573,14 @@ A=
   \text{Area}(A)
   &= \text{area of sector }PCQ-\text{area of }\triangle PCQ \\
   &= \frac12 r^2\theta-\frac12 r^2\sin\theta \\
-  &= \frac12 \cdot 8^2 \cdot \frac{\pi}{2}-\frac12 \cdot 8^2 \cdot \sin\frac{\pi}{2} \\
+  &= \frac12 \times 8^2 \times \frac{\pi}{2}-\frac12 \times 8^2 \times \sin\frac{\pi}{2} \\
   &= 16\pi-32
   \end{align*}
 
   So the area is
   \[
-  16\pi-32 \approx 18.3
+  16\pi-32 \approx 18.3\qquad\text{(3 s.f.)}
   \]
-
-  to 3 significant figures.
 \end{enumerate}
 \end{djsSolution}
 
@@ -698,9 +657,9 @@ A=
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item \begin{enumerate}[label=(\roman*)]
-    \item For a circle with centre $z_0$ and radius $r$, the locus is
+    \item For a circle with centre $a$ and radius $r$, the locus is
     \[
-    |z-z_0|=r
+    |z-a|=r
     \]
 
     Circle $A$ has centre $-2+4i$ and radius $3$, so
@@ -746,9 +705,9 @@ A=
     -\frac{\pi}{6}<\arg(z+2-i)<\frac{\pi}{4}
     \]
 
-    is therefore the open sector with vertex at $-2+i$ between the rays making angles $-\frac{\pi}{6}$ and $\frac{\pi}{4}$ with the positive real axis.
+    is therefore the sector with vertex at $-2+i$ between the half-lines making angles $-\frac{\pi}{6}$ and $\frac{\pi}{4}$ with the positive real axis.
 
-    Since the inequalities are strict, both boundary rays are excluded. The vertex $-2+i$ is excluded too, as $\arg 0$ is undefined.\par\nopagebreak
+    Since the inequalities are strict, both boundary half-lines are excluded. The vertex $-2+i$ is excluded too, as $\arg 0$ is undefined.\par\nopagebreak
 
     \begin{tikzpicture}[scale=0.9]
       \def\cx{-2}
@@ -764,14 +723,14 @@ A=
       \node[below left] at (\cx,\cy) {$-2+i$};
     \end{tikzpicture}
 
-    \item For the point $z=1+5i$,
+    \item For the point $z=1+5i$:
     \[
     z+2-i=(1+5i)+2-i=3+4i
     \]
 
-    So
+    \(3+4i\) lies in the first quadrant, so
     \[
-    \arg(z+2-i)=\arg(3+4i)=\tan^{-1}\left(\frac{4}{3}\right)\approx 0.927
+    \arg(z+2-i)=\arg(3+4i)=\arctan\left(\frac{4}{3}\right)\approx 0.927
     \]
 
     But
@@ -880,14 +839,9 @@ A=
     =4
     \]
 
-    Also,
+    \(C\) lies in the fourth quadrant, so
     \[
-    \arg C=-\frac{\pi}{3}
-    \]
-
-    because \(C\) is in the fourth quadrant and
-    \[
-    \tan |\arg C|=\frac{2\sqrt{3}}{2}=\sqrt{3}
+    \arg C=-\arctan\frac{2\sqrt{3}}{2}=-\arctan\sqrt{3}=-\frac{\pi}{3}
     \]
 
     The greatest possible value of \(\arg w\) occurs when the line from the origin to the circle is a tangent, touching the circle at \(w\).\par\nopagebreak
@@ -944,22 +898,20 @@ A=
     \alpha=\frac{\pi}{6}
     \]
 
-    Since this tangent is above the line \(OC\),
+    This tangent is above the line \(OC\), so
     \[
     \arg w=\arg C+\alpha=-\frac{\pi}{3}+\frac{\pi}{6}=-\frac{\pi}{6}
     \]
-
-    Therefore the greatest possible value of \(\arg w\) is \(-\frac{\pi}{6}\).
   \end{enumerate}
 
-  \item From part (a),
+  \item From part (a):
   \[
   \lvert 2+2\sqrt{3}i\rvert=4
   \]
 
-  and since \(2+2\sqrt{3}i\) lies in the first quadrant,
+  and \(2+2\sqrt{3}i\) lies in the first quadrant, so
   \[
-  \arg(2+2\sqrt{3}i)=\frac{\pi}{3}
+  \arg(2+2\sqrt{3}i)=\arctan\frac{2\sqrt{3}}{2}=\arctan\sqrt{3}=\frac{\pi}{3}
   \]
 
   So
@@ -988,7 +940,7 @@ A=
   r^4=4
   \]
 
-  so, with \(r>0\),
+  and \(r>0\), so
   \[
   r=4^{1/4}=\sqrt{2}
   \]
@@ -1008,7 +960,7 @@ A=
   \theta=\frac{\pi}{12},\quad \frac{7\pi}{12},\quad \frac{13\pi}{12},\quad \frac{19\pi}{12}
   \]
 
-  Writing these in the range \(-\pi<\theta\leq\pi\),
+  Writing these in the range \(-\pi<\theta\leq\pi\):
   \[
   \theta=\frac{\pi}{12},\quad \frac{7\pi}{12},\quad -\frac{11\pi}{12},\quad -\frac{5\pi}{12}
   \]
@@ -1077,7 +1029,7 @@ The point $Q$ represents a complex number $z$ on an Argand diagram such that
   \sqrt{(x-1)^2+(y-1)^2}=\frac12\sqrt{(x-4)^2+(y-1)^2}
   \]
 
-  Squaring both sides,
+  Squaring both sides:
   \[
   4\bigl((x-1)^2+(y-1)^2\bigr)=(x-4)^2+(y-1)^2
   \]
@@ -1121,7 +1073,7 @@ The point $Q$ represents a complex number $z$ on an Argand diagram such that
   \sqrt{(x-2)^2+(y-3)^2}=\sqrt{(x+2)^2+(y-1)^2}
   \]
 
-  Squaring both sides,
+  Squaring both sides:
   \[
   (x-2)^2+(y-3)^2=(x+2)^2+(y-1)^2
   \]
@@ -1165,7 +1117,7 @@ The point $Q$ represents a complex number $z$ on an Argand diagram such that
   \end{tikzpicture}
   \end{center}
 
-  \item From part (a),
+  \item As in part (a), the inequality
   \[
   \lvert z-(1+i)\rvert\le \frac12\lvert z-(4+i)\rvert
   \]
@@ -1177,7 +1129,7 @@ The point $Q$ represents a complex number $z$ on an Argand diagram such that
 
   so the point lies inside or on the circle.
 
-  From part (b),
+  As in part (b), the inequality
   \[
   \lvert z-(2+3i)\rvert\ge \lvert z+2-i\rvert
   \]
@@ -1247,12 +1199,12 @@ Find the exact coordinates of the points common to these two loci. \marks{7}
 \begin{djsSolution}
 Let a point common to both loci represent the complex number
 \[
-u=x+yi
+u=x+iy
 \]
 
 so its coordinates are \((x,y)\). (A new letter is used because the question uses \(z\) and \(w\) for the two loci.)
 
-For the locus of \(P\),
+For the locus of \(P\):
 \[
 |u-(2-i)|=3
 \]
@@ -1264,15 +1216,15 @@ u-(2-i)=(x-2)+(y+1)i
 
 so
 \[
-|(x-2)+(y+1)i|=3
+\sqrt{(x-2)^2+(y+1)^2}=3
 \]
 
-Using \(|a+bi|=\sqrt{a^2+b^2}\),
+Squaring both sides:
 \[
 (x-2)^2+(y+1)^2=9
 \]
 
-For the locus of \(Q\),
+For the locus of \(Q\):
 \[
 |u+1-11i|=3|u+1-3i|
 \]
@@ -1285,10 +1237,10 @@ u+1-3i=(x+1)+(y-3)i
 
 So
 \[
-|(x+1)+(y-11)i|=3|(x+1)+(y-3)i|
+\sqrt{(x+1)^2+(y-11)^2}=3\sqrt{(x+1)^2+(y-3)^2}
 \]
 
-Squaring both sides gives
+Squaring both sides:
 \[
 (x+1)^2+(y-11)^2=9\bigl((x+1)^2+(y-3)^2\bigr)
 \]
@@ -1338,7 +1290,7 @@ So
 x=2 \quad \text{or} \quad x=-1
 \]
 
-and since \(y=x\),
+and \(y=x\), so
 \[
 y=2 \quad \text{or} \quad y=-1
 \]
@@ -1385,7 +1337,7 @@ Therefore the exact coordinates of the common points are
   where $\alpha$ is a constant such that $0<\alpha<\pi$.
   \begin{enumerate}[label=(\roman*)]
     \item Find the value of $\alpha$. \marks{2}
-    \item Find $w$ and express it in the form $r(\cos\theta+i\sin\theta)$. Give each of $r$ and $\theta$ to two significant figures. \marks{4} \\
+    \item Find $w$ and express it in the form $r(\cos\theta+i\sin\theta)$. Give each of $r$ and $\theta$ to 2 significant figures. \marks{4} \\
   \end{enumerate}
 \end{enumerate}
 
@@ -1438,7 +1390,7 @@ Therefore the exact coordinates of the common points are
 
     For there to be a unique point \(w\) satisfying both conditions, the half-line must touch the circle at exactly one point, so it must be a tangent.
 
-    The circle has equation \((x-3)^2+(y-1)^2=1\). Substituting \(y=mx\),
+    The circle has equation \((x-3)^2+(y-1)^2=1\). Substituting \(y=mx\):
     \begin{align*}
     (x-3)^2+(mx-1)^2 &= 1 \\
     x^2-6x+9+m^2x^2-2mx+1 &= 1 \\
@@ -1467,7 +1419,7 @@ Therefore the exact coordinates of the common points are
 
     so
     \[
-    \alpha=\arctan\left(\frac34\right)\approx 0.644 \,\mathrm{rad}
+    \alpha=\arctan\left(\frac34\right)\approx 0.644
     \]
 
     \item Using the value of \(m\), the tangent line is
@@ -1480,19 +1432,19 @@ Therefore the exact coordinates of the common points are
     (x-3)^2+(y-1)^2=1
     \]
 
-    Substituting \(y=\frac34x\),
+    Substituting \(y=\frac34x\):
     \begin{align*}
     (x-3)^2+\left(\frac34x-1\right)^2 &= 1 \\
     x^2-6x+9+\frac{9}{16}x^2-\frac32x+1 &= 1 \\
     \frac{25}{16}x^2-\frac{15}{2}x+9 &= 0
     \end{align*}
 
-    Multiplying by \(16\),
+    Multiplying by \(16\):
     \[
     25x^2-120x+144=0
     \]
 
-    Factorising,
+    Factorising:
     \[
     (5x-12)^2=0
     \]
@@ -1504,7 +1456,7 @@ Therefore the exact coordinates of the common points are
 
     Then
     \[
-    y=\frac34\cdot\frac{12}{5}=\frac{9}{5}
+    y=\frac34\times\frac{12}{5}=\frac{9}{5}
     \]
 
     Hence
@@ -1525,9 +1477,9 @@ Therefore the exact coordinates of the common points are
     \theta=\arg(w)=\alpha=\arctan\left(\frac34\right)\approx 0.64
     \]
 
-    So, with \(r=3.0\) and \(\theta=0.64\) to two significant figures,
+    So
     \[
-    w=\frac{12}{5}+\frac{9}{5}i=3.0(\cos 0.64+i\sin 0.64)
+    w=\frac{12}{5}+\frac{9}{5}i=3.0(\cos 0.64+i\sin 0.64)\qquad\text{(2 s.f.)}
     \]
   \end{enumerate}
 \end{enumerate}
@@ -1598,7 +1550,7 @@ The point $P$ also lies on the locus defined by $\Bigl\{ z\in\mathbb{C}\;\Bigm|\
   w=2+4\sqrt{3}+3i
   \]
 
-  \item From part (a),
+  \item From part (a):
   \[
   P \text{ represents } w=2+4\sqrt{3}+3i
   \]
@@ -1610,7 +1562,7 @@ The point $P$ also lies on the locus defined by $\Bigl\{ z\in\mathbb{C}\;\Bigm|\
 
   which is a circle with centre $2+11i$.
 
-  Using the point $P$ to find $k$,
+  Using the point $P$ to find $k$:
   \begin{align*}
   k&=\left|w-(2+11i)\right| \\
    &=\left|(2+4\sqrt{3}+3i)-(2+11i)\right| \\
@@ -1631,7 +1583,7 @@ The point $P$ also lies on the locus defined by $\Bigl\{ z\in\mathbb{C}\;\Bigm|\
 
   Now let a general point of intersection be
   \[
-  z=x+yi
+  z=x+iy
   \]
 
   Since
@@ -1649,7 +1601,7 @@ The point $P$ also lies on the locus defined by $\Bigl\{ z\in\mathbb{C}\;\Bigm|\
   y+1=\frac{x-2}{\sqrt{3}}
   \]
 
-  that is,
+  that is
   \[
   y=\frac{x-2}{\sqrt{3}}-1
   \]
@@ -1674,7 +1626,7 @@ The point $P$ also lies on the locus defined by $\Bigl\{ z\in\mathbb{C}\;\Bigm|\
   u^2+\left(\frac{u}{\sqrt{3}}-12\right)^2=112
   \]
 
-  Expanding,
+  Expanding:
   \begin{align*}
   u^2+\left(\frac{u^2}{3}-8\sqrt{3}\,u+144\right)&=112 \\
   \frac{4u^2}{3}-8\sqrt{3}\,u+144&=112 \\
@@ -1691,7 +1643,7 @@ The point $P$ also lies on the locus defined by $\Bigl\{ z\in\mathbb{C}\;\Bigm|\
   u^2-6\sqrt{3}\,u+24=0
   \]
 
-  Factorising,
+  Factorising:
   \[
   (u-4\sqrt{3})(u-2\sqrt{3})=0
   \]
@@ -1768,8 +1720,9 @@ is an arc of a circle $C$. \\
 
   so, if \(Z\) is the point representing \(z\), the angle \(AZB\) is \(\frac{\pi}{4}\).
 
-  Angles in the same segment are equal, so the locus is an arc of a circle through \(A\) and \(B\). Since \(\frac{\pi}{4}<\frac{\pi}{2}\), it is the major arc. It lies on the side below/right of the line segment \(AB\), as checked in part (d). Also, \(A\) and \(B\) are excluded because the expression is undefined there.
-  \[
+  Angles in the same segment are equal, so the locus is an arc of a circle through \(A\) and \(B\). Since \(\frac{\pi}{4}<\frac{\pi}{2}\), it is the major arc. It lies below and to the right of the line segment \(AB\), as checked in part (d). Also, \(A\) and \(B\) are excluded because the expression is undefined there.
+
+  \begin{center}
   \begin{tikzpicture}[scale=0.75]
     \draw[->] (-0.5,0) -- (11,0) node[right] {Re};
     \draw[->] (0,-3.5) -- (0,6.5) node[above] {Im};
@@ -1785,7 +1738,7 @@ is an arc of a circle $C$. \\
     \node[below left] at (2,1) {$A(2,1)$};
     \node[above right] at (6,5) {$B(6,5)$};
   \end{tikzpicture}
-  \]
+  \end{center}
 
   \item Since \(A\) and \(B\) lie on circle \(C\), the centre of \(C\) is equidistant from \(A\) and \(B\). Therefore it lies on the perpendicular bisector of \(AB\).
 
@@ -1820,10 +1773,10 @@ is an arc of a circle $C$. \\
 
   So triangle \(APB\) is right-angled at \(P\), with \(PA=PB=r\). Also
   \[
-  |AB|^2=(6-2)^2+(5-1)^2=32
+  AB^2=(6-2)^2+(5-1)^2=32
   \]
 
-  By Pythagoras,
+  By Pythagoras:
   \[
   r^2+r^2=32
   \]
@@ -1860,7 +1813,7 @@ is an arc of a circle $C$. \\
   \text{distance from }(10,1)\text{ to }(2,5)=\sqrt{(8)^2+(-4)^2}=\sqrt{80}\ne 4
   \]
 
-  so it does not lie on the circle centred at \((2,5)\). This also confirms that the arc lies below/right of \(AB\).
+  so it does not lie on the circle centred at \((2,5)\). This also confirms that the arc lies below and to the right of \(AB\).
 
   Therefore the centre of \(C\) is \((6,1)\).
 \end{enumerate}
