@@ -257,6 +257,16 @@ const rawResources: Resource[] = [
     topic: 'Complex Numbers',
   },
   {
+    id: 'fm-complex-basics-ms',
+    title: 'Complex Numbers Basics',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__Complex_Number_Basics.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-complex-basics',
+    topic: 'Complex Numbers',
+  },
+  {
     id: 'fm-complex-de-moivres-theorem',
     title: "De Moivre's Theorem",
     description: '',
