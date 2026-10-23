@@ -307,6 +307,16 @@ const rawResources: Resource[] = [
     topic: 'Complex Numbers',
   },
   {
+    id: 'fm-complex-loci-argand-ms',
+    title: 'Loci and Regions in the Argand Diagram',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__Loci_and_Regions_in_the_Argand_Diagram.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-complex-loci-argand',
+    topic: 'Complex Numbers',
+  },
+  {
     id: 'fm-complex-roots-geometry',
     title: 'Complex Roots and Geometry Problems',
     description: '',

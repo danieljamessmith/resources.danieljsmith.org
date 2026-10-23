@@ -2,6 +2,7 @@
 // Regenerated on every `npm run build`, `npm run dev`, and `npm run check`.
 export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__Complex_Number_Basics.pdf': '76fe107e',
+  '/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__Loci_and_Regions_in_the_Argand_Diagram.pdf': '2448e817',
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Number_Basics.pdf': '3d3ce2d9',
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Roots_and_Geometry_Problems.pdf': '4e3f494b',
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Series.pdf': '5954d53d',
