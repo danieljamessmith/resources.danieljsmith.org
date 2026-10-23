@@ -1,0 +1,282 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/markscheme_preamble.tex}
+
+\djsSchemeHeader{Method of Differences}
+\djsSitePath{Core Pure}{Miscellaneous Pure}
+
+\djsLastUpdated{23 October 2026}
+\begin{document}
+\djsSetQuestionCount{12}
+\djsAddMarks{1}{6}
+\djsAddMarks{2}{7}
+\djsAddMarks{3}{5}
+\djsAddMarks{4}{6}
+\djsAddMarks{5}{8}
+\djsAddMarks{6}{6}
+\djsAddMarks{7}{9}
+\djsAddMarks{8}{7}
+\djsAddMarks{9}{7}
+\djsAddMarks{10}{9}
+\djsAddMarks{11}{9}
+\djsAddMarks{12}{11}
+\vspace*{6pt}
+\djsContentsTitle
+\vspace{30pt}
+\msContentsHeading
+\begin{mscontents}{}
+Question & Marks by part & Marks & Page \\
+\msContentsQuestion{1} & (a)\,2\msSep (b)\,4 & 6 & \msContentsPage{1} \\
+\msContentsQuestion{2} & (a)\,5\msSep (b)\,2 & 7 & \msContentsPage{2} \\
+\msContentsQuestion{3} & & 5 & \msContentsPage{3} \\
+\msContentsQuestion{4} & & 6 & \msContentsPage{4} \\
+\msContentsQuestion{5} & (a)\,5\msSep (b)\,3 & 8 & \msContentsPage{5} \\
+\msContentsQuestion{6} & & 6 & \msContentsPage{6} \\
+\msContentsQuestion{7} & (a)\,5\msSep (b)\,3\msSep (c)\,1 & 9 & \msContentsPage{7} \\
+\msContentsQuestion{8} & (a)\,2\msSep (b)\,3\msSep (c)\,2 & 7 & \msContentsPage{8} \\
+\msContentsQuestion{9} & (a)\,4\msSep (b)\,3 & 7 & \msContentsPage{9} \\
+\msContentsQuestion{10} & (a)\,3\msSep (b)\,4\msSep (c)\,2 & 9 & \msContentsPage{10} \\
+\msContentsQuestion{11} & (a)\,2\msSep (b)\,7 & 9 & \msContentsPage{11} \\
+\msContentsQuestion{12} & (a)\,5\msSep (b)\,6 & 11 & \msContentsPage{12} \\
+\SetCell[c=2]{r} Total & & 90 & \\
+\end{mscontents}
+\newpage
+\input{../../../../_shared/markscheme_conventions.tex}
+
+\msQuestion{1}
+\begin{msscheme}{
+  hline{3-4,6-9} = {2-Z}{0.4pt, msGrid},
+  hline{5,10} = {0.4pt, msGrid},
+  row{10} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+1(a) & {\(1 + \frac{2}{r(r+3)} = \frac{r^2 + 3r + 2}{r(r+3)}\)\\[4pt] \(\phantom{1 + \frac{2}{r(r+3)}} = \frac{(r+1)(r+2)}{r(r+3)}\)} & M1 & {Forms a single fraction and factorises its numerator, or expands the product of the two RHS fractions. Condone one slip.} \\
+& {\(\ln\left(\frac{r+1}{r}\right) + \ln\left(\frac{r+2}{r+3}\right)\)\\[4pt] \(\phantom{A} = \ln\left(\frac{r+1}{r}\right) - \ln\left(\frac{r+3}{r+2}\right)\)} & A1~AG & {Correct fraction split into two logarithms and reaching the printed difference without error, via the reciprocal or \(\ln a - \ln b\).} \\
+\nopagebreak & & [2] & \\
+1(b) & {\(\left(\ln 2 - \ln\frac43\right) + \left(\ln\frac32 - \ln\frac54\right) + \left(\ln\frac43 - \ln\frac65\right)\)\\[4pt] \(\phantom{A} + \cdots + \left(\ln\frac{n}{n-1} - \ln\frac{n+2}{n+1}\right)\)\\[4pt] \(\phantom{A} + \left(\ln\frac{n+1}{n} - \ln\frac{n+3}{n+2}\right)\)} & M1 & {Uses part (a) with \(r = 1\), \(r = 2\), \(r = 3\), \(r = n-1\) and \(r = n\) at least, enough to show terms cancelling. Condone slips in individual terms.} \\
+& {\(\ln 2 + \ln\frac32 - \ln\frac{n+2}{n+1} - \ln\frac{n+3}{n+2}\)} & A1 & {All four surviving terms correct and no others, oe such as \(\ln 3\) for the first two.} \\
+& {\(\ln\left(2 \times \frac32 \times \frac{n+1}{n+2} \times \frac{n+2}{n+3}\right)\)} & M1 & {Uses log laws to combine their surviving terms into a single logarithm. Condone sign slips.} \\
+& {\(= \ln\left(\frac{3(n+1)}{n+3}\right)\)} & A1~AG & {Correct single logarithm simplified to the printed result without error.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 1 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{2}
+\begin{msscheme}{
+  hline{3-6,8-9} = {2-Z}{0.4pt, msGrid},
+  hline{7,10} = {0.4pt, msGrid},
+  row{10} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+2(a) & {\(\frac{1}{r(r+2)} = \frac{A}{r} + \frac{B}{r+2} \Rightarrow 1 = A(r+2) + Br\)\\[4pt] \(\phantom{\frac{1}{r(r+2)}} \Rightarrow \frac{1}{r(r+2)} = \frac{1}{2r} - \frac{1}{2(r+2)}\)} & M1 A1 & {\msNote{M1}{Uses the form \(\frac{A}{r} + \frac{B}{r+2}\) and finds \(A\) and \(B\) by any method. Condone slips in their values.}\\ \msNote{A1}{\(\frac{1}{2r} - \frac{1}{2(r+2)}\), oe, such as \(A = \frac12\), \(B = -\frac12\) stated.}} \\
+& {\(\tfrac12\bigl[(1 - \tfrac13) + (\tfrac12 - \tfrac14) + (\tfrac13 - \tfrac15) + \cdots\)\\[4pt] \(\phantom{\tfrac12\bigl[} + (\tfrac{1}{n-1} - \tfrac{1}{n+1}) + (\tfrac1n - \tfrac{1}{n+2})\bigr]\)} & dM1 & {Writes their differences for at least \(r = 1, 2, 3\) and \(r = n-1, n\), showing terms cancelling. The factor \(\frac12\) need not be seen.} \\
+& {\(\tfrac12\left(1 + \tfrac12 - \tfrac{1}{n+1} - \tfrac{1}{n+2}\right)\)} & A1 & {The four correct surviving terms, with the factor \(\frac12\).} \\
+& {\(\tfrac12\left(\tfrac32 - \tfrac{1}{n+1} - \tfrac{1}{n+2}\right)\)\\[4pt] \(\phantom{\tfrac12} = \frac34 - \frac{1}{2(n+1)} - \frac{1}{2(n+2)}\)} & A1~AG & {Printed result reached without error from correct partial fractions and surviving terms.} \\
+\nopagebreak & & [5] & \\
+2(b) & {\(n \to \infty \Rightarrow \frac{1}{2(n+1)} \to 0,\ \frac{1}{2(n+2)} \to 0\)} & M1 & {Takes the limit as \(n \to \infty\) in the result of (a), with both terms in \(n\) tending to 0.} \\
+& {\(\sum_{r=1}^{\infty} \frac{1}{r(r+2)} = \frac34\)} & A1 & \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 2 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{3}
+\begin{msscheme}{
+  hline{3-6} = {2-Z}{0.4pt, msGrid},
+  hline{7} = {0.4pt, msGrid},
+  row{7} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+3 & {\(\frac{1}{r(r+3)} = \frac13\left(\frac1r - \frac1{r+3}\right)\)} & M1 & {Splits the general term into the form \(\frac{A}{r} + \frac{B}{r+3}\) and finds \(A\) and \(B\) by any method. Condone slips in their values.} \\
+& {\(\frac13\left[\left(1 - \frac14\right) + \left(\frac12 - \frac15\right) + \left(\frac13 - \frac16\right) + \cdots\right.\)\\[4pt] \(\phantom{\frac13} + \left(\frac1{n-2} - \frac1{n+1}\right) + \left(\frac1{n-1} - \frac1{n+2}\right)\)\\[4pt] \(\phantom{\frac13} \left. + \left(\frac1n - \frac1{n+3}\right)\right]\)} & dM1 & {Lists their differences for at least \(r = 1, 2, 3\) and \(r = n-2, n-1, n\), showing or implying the cancellation. Condone a missing \(\frac13\).} \\
+& {\(\frac13\left(1 + \frac12 + \frac13 - \frac1{n+1} - \frac1{n+2} - \frac1{n+3}\right)\)} & A1 & {Correct surviving terms with the factor \(\frac13\), oe.} \\
+& {\(\frac1{n+1} + \frac1{n+2} + \frac1{n+3}\)\\[4pt] \(\phantom{A} = \frac{(n+2)(n+3) + (n+1)(n+3) + (n+1)(n+2)}{(n+1)(n+2)(n+3)}\)} & M1 & {Combines their fractions in \(n\) over any common denominator, with each numerator multiplied by the missing factors. Condone expansion slips.} \\
+& {\(\frac{11}{18} - \frac{3n^2+12n+11}{3(n+1)(n+2)(n+3)}\)\\[4pt] \(a = 3,\ b = 12,\ c = 11\)} & A1 & {cso. Values stated, or seen in the completed expression.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 3 & & 5 & \\
+\end{msscheme}
+
+\msQuestion{4}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+4 & {\(\frac{12}{(2r-1)(2r+1)(2r+3)}\)\\[4pt] \(\phantom{A} \equiv \frac{A}{2r-1}+\frac{B}{2r+1}+\frac{C}{2r+3}\)\\[4pt] \(\phantom{A} \Rightarrow A = \ldots,\ B = \ldots,\ C = \ldots\)} & M1 & {Writes the term as three fractions over \(2r-1\), \(2r+1\), \(2r+3\) and finds a constant by substitution, cover-up or comparing coefficients.} \\
+& {\(\frac{3}{2(2r-1)} - \frac{3}{2r+1} + \frac{3}{2(2r+3)}\)} & A1 & {oe, such as \(A = \frac32\), \(B = -3\), \(C = \frac32\) stated.} \\
+& {\(\tfrac32\big[\left(1 - \tfrac23 + \tfrac15\right) + \left(\tfrac13 - \tfrac25 + \tfrac17\right)\)\\[4pt] \(\phantom{\tfrac32\big[} + \left(\tfrac15 - \tfrac27 + \tfrac19\right) + \cdots\)\\[4pt] \(\phantom{\tfrac32\big[} + \left(\tfrac{1}{2n-3} - \tfrac{2}{2n-1} + \tfrac{1}{2n+1}\right)\)\\[4pt] \(\phantom{\tfrac32\big[} + \left(\tfrac{1}{2n-1} - \tfrac{2}{2n+1} + \tfrac{1}{2n+3}\right)\big]\)} & dM1 & {Lists their terms for at least three values of \(r\) at the start and two at the end, or two and two after splitting into two differences, showing cancellation.} \\
+& {\(\tfrac32\left(1 - \tfrac13 - \tfrac{1}{2n+1} + \tfrac{1}{2n+3}\right)\)} & A1 & {Correct surviving terms oe; need not be collected.} \\
+& {\(1 - \frac{3}{2(2n+1)} + \frac{3}{2(2n+3)}\)\\[4pt] \(\phantom{1} = \frac{2(2n+1)(2n+3) - 3(2n+3) + 3(2n+1)}{2(2n+1)(2n+3)}\)} & M1 & {Combines their surviving terms, including at least two with denominators in \(n\), over a common denominator containing \((2n+1)(2n+3)\). Condone slips in the numerator.} \\
+& {\(= \frac{n(4n+8)}{(2n+1)(2n+3)}\), \(a = 4\), \(b = 8\)} & A1 & {cso. Needs \(a = 4\) and \(b = 8\), or the sum written as \(\frac{n(4n+8)}{(2n+1)(2n+3)}\); \(\frac{4n(n+2)}{(2n+1)(2n+3)}\) alone scores A0.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 4 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{5}
+\begin{msscheme}{
+  hline{3-6,8-10} = {2-Z}{0.4pt, msGrid},
+  hline{7,11} = {0.4pt, msGrid},
+  row{11} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+5(a) & {\(1+\frac{2}{r(r+3)} = \frac{(r+1)(r+2)}{r(r+3)}\)\\[4pt] \(\Rightarrow \ln(r+1) - \ln r + \ln(r+2) - \ln(r+3)\)} & M1 & {Forms a single fraction, factorises its numerator and splits the logarithm into logarithms of linear factors, or of two ratios. Condone sign slips.} \\
+& {\(r=1{:}\ \ln 2 - \ln 1 + \ln 3 - \ln 4\)\\[4pt] \(r=2{:}\ \ln 3 - \ln 2 + \ln 4 - \ln 5\)\\[4pt] \(\ldots\)\\[4pt] \(r=n-1{:}\ \ln n - \ln(n-1) + \ln(n+1) - \ln(n+2)\)\\[4pt] \(r=n{:}\ \ln(n+1) - \ln n + \ln(n+2) - \ln(n+3)\)} & dM1 & {Lists their terms for at least \(r = 1\), \(r = 2\), \(r = n-1\) and \(r = n\), showing cancellation.} \\
+& {\(\ln(n+1) - \ln 1 + \ln 3 - \ln(n+3)\)} & A1 & {Correct surviving terms only; \(\ln 1\) may be omitted.} \\
+& {\(\ln 3 + \ln(n+1) - \ln(n+3) = \ln\left(\frac{3(n+1)}{n+3}\right)\)} & M1 A1~AG & {\msNote{M1}{Uses log laws to combine their surviving terms into a single logarithm.}\\ \msNote{A1~AG}{Printed result reached without error from correct surviving terms; nothing for working back from the result.}} \\
+\nopagebreak & & [5] & \\
+5(b) & {\(28\sum_{r=25}^{74}\ln\left(1+\frac{2}{r(r+3)}\right)\)} & B1 & \\
+& {\(\ln\left(\frac{3(75)}{77}\right) - \ln\left(\frac{3(25)}{27}\right)\)} & M1 & {Subtracts the result of (a) at \(n = 24\) from that at \(n = 74\).} \\
+& {\(28\ln\left(\frac{81}{77}\right)\)} & A1 & {Or another form \(a\ln\left(\frac{b}{c}\right)\) with integers \(a\), \(b\), \(c\). Not for a decimal or an uncombined difference of logarithms.} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 5 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{6}
+\begin{msscheme}{
+  hline{3-14} = {2-Z}{0.4pt, msGrid},
+  hline{15} = {0.4pt, msGrid},
+  cell{8-14}{2-4} = {bg=msTint},
+  row{15} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+6 & {\(\frac{6}{r(r+1)(r+2)} = \frac{A}{r(r+1)} + \frac{B}{(r+1)(r+2)}\)\\[4pt] \(\Rightarrow 6 = A(r+2) + Br \Rightarrow A = \ldots,\ B = \ldots\)} & M1 & {Writes the term as \(\frac{A}{r(r+1)} + \frac{B}{(r+1)(r+2)}\) and finds both constants by any method. Condone a slip in one constant.} \\
+& {\(\frac{6}{r(r+1)(r+2)} = \frac{3}{r(r+1)} - \frac{3}{(r+1)(r+2)}\)} & A1 & \\
+& {\(\left(\frac{3}{1\times2} - \frac{3}{2\times3}\right) + \left(\frac{3}{2\times3} - \frac{3}{3\times4}\right)\)\\[4pt] \(\phantom{=} + \cdots + \left(\frac{3}{n(n+1)} - \frac{3}{(n+1)(n+2)}\right)\)} & dM1 & {Writes out their partial fractions for at least \(r = 1\), \(r = 2\) and \(r = n\), showing terms cancelling.} \\
+& {\(\frac{3}{2} - \frac{3}{(n+1)(n+2)}\)} & A1 & {Correct surviving terms, oe.} \\
+& {\(\frac{3(n+1)(n+2) - 6}{2(n+1)(n+2)} = \frac{n(\ldots)}{2(n+1)(n+2)}\)} & M1 & {Combines their \(p - \frac{q}{(n+1)(n+2)}\) over a common denominator and simplifies the numerator. Condone slips in expanding.} \\
+& {\(\frac{3n^2 + 9n}{2(n+1)(n+2)} = \frac{n(3n+9)}{2(n+1)(n+2)}\)\\[4pt] \(a = 3,\ b = 9\)} & A1 & {cso. Both values, stated or seen in the printed form.} \\
+& \SetCell[c=3]{l} \msAlternative{Three linear partial fractions} & & \\
+\nopagebreak & {\(\frac{6}{r(r+1)(r+2)} = \frac{A}{r} + \frac{B}{r+1} + \frac{C}{r+2}\)\\[4pt] \(\Rightarrow A = \ldots,\ B = \ldots,\ C = \ldots\)} & M1 & {Writes the term with denominators \(r\), \(r+1\), \(r+2\) and finds all three constants by any method, cover-up included. Condone a slip in one constant.} \\
+& {\(\frac{6}{r(r+1)(r+2)} = \frac{3}{r} - \frac{6}{r+1} + \frac{3}{r+2}\)} & A1 & \\
+& {\(r = 1:\ \frac31 - \frac62 + \frac33\)\\[4pt] \(r = 2:\ \frac32 - \frac63 + \frac34\)\\[4pt] \(r = 3:\ \frac33 - \frac64 + \frac35\)\\[4pt] \(\ \vdots\)\\[4pt] \(r = n-1:\ \frac{3}{n-1} - \frac6n + \frac{3}{n+1}\)\\[4pt] \(r = n:\ \frac3n - \frac{6}{n+1} + \frac{3}{n+2}\)} & dM1 & {Writes out their partial fractions for at least \(r = 1, 2, 3\) and \(r = n-1, n\), showing a set of three terms cancelling.} \\
+& {\(\frac31 - \frac62 + \frac32 + \frac{3}{n+1} - \frac{6}{n+1} + \frac{3}{n+2}\)\\[4pt] \(\phantom{=} \left[= \frac32 - \frac{3}{n+1} + \frac{3}{n+2}\right]\)} & A1 & {Correct surviving terms, oe, simplified or not.} \\
+& {\(\frac{3(n+1)(n+2) - 6(n+2) + 6(n+1)}{2(n+1)(n+2)}\)\\[4pt] \(\phantom{=} = \frac{n(\ldots)}{2(n+1)(n+2)}\)} & M1 & {Combines their \(p + \frac{q}{n+1} + \frac{s}{n+2}\) over a common denominator and simplifies the numerator. Condone slips in expanding.} \\
+& {\(\frac{3n^2 + 9n}{2(n+1)(n+2)} = \frac{n(3n+9)}{2(n+1)(n+2)}\)\\[4pt] \(a = 3,\ b = 9\)} & A1 & {cso. Both values, stated or seen in the printed form.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 6 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{7}
+\begin{msscheme}{
+  hline{3-7,9-11,13} = {2-Z}{0.4pt, msGrid},
+  hline{8,12,14} = {0.4pt, msGrid},
+  row{14} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+7(a) & {\((r^4+4r^3+6r^2+4r+1)-(r^4-4r^3+6r^2-4r+1)\)\\[4pt] \(\phantom{A} = 8r^3+8r\)} & M1 & {Expands both brackets and subtracts, reaching the form \(pr^3+qr\). Condone coefficient slips.} \\
+& {\(\sum_{r=1}^{n}\left((r+1)^4-(r-1)^4\right) = 8\sum r^3+8\sum r\)\\[4pt] \(\phantom{A} = (2^4-0^4)+(3^4-1^4)+(4^4-2^4)+\cdots\)\\[4pt] \(\phantom{A=} +\left(n^4-(n-2)^4\right)\)\\[4pt] \(\phantom{A=} +\left((n+1)^4-(n-1)^4\right)\)} & M1 & {Sums both sides and writes the left side's terms for at least \(r=1\), \(2\), \(n-1\), \(n\), showing or implying cancellation.} \\
+& {\(\phantom{A} = (n+1)^4+n^4-1\)} & A1 & {Correct surviving terms, oe such as \((n+1)^4+n^4-0^4-1^4\).} \\
+& {\(8\sum r^3 = (n+1)^4+n^4-1-8\cdot\tfrac12 n(n+1)\)\\[4pt] \(\Rightarrow \sum r^3 = \ldots\)} & M1 & {Substitutes \(\sum r = \frac12 n(n+1)\) into their equation linking \(\sum r^3\), \(\sum r\) and \(n\), and makes \(\sum r^3\) the subject. Condone sign slips.} \\
+& {\(8\sum r^3 = 2n^4+4n^3+2n^2 = 2n^2(n+1)^2\)\\[4pt] \(\Rightarrow \sum_{r=1}^{n} r^3 = \frac14 n^2(n+1)^2\)} & A1~AG & {Correct equation for \(8\sum r^3\) simplified to the printed result without error; combined steps accepted.} \\
+\nopagebreak & & [5] & \\
+7(b) & {\(T_n = \sum_{r=1}^{2n} r^3-\sum_{r=1}^{n} r^3\)\\[4pt] \(\phantom{T_n} = \frac14(2n)^2(2n+1)^2-\frac14 n^2(n+1)^2\)} & M1 & {Writes \(T_n\) as the sum to \(2n\) minus the sum to \(n\), or otherwise in standard sums, and substitutes using (a).} \\
+& {\(\phantom{T_n} = \frac14\left(16n^4+16n^3+4n^2-n^4-2n^3-n^2\right)\)\\[4pt] \(\Rightarrow T_n = \frac14 n^2(\ldots)\)} & dM1 & {Expands both terms and collects like powers, reaching the form \(\frac14 n^2(an^2+bn+c)\). Condone arithmetic slips.} \\
+& {\(T_n = \frac14 n^2(15n^2+14n+3)\)} & A1 & {Or \(a=15\), \(b=14\), \(c=3\) stated.} \\
+\nopagebreak & & [3] & \\
+7(c) & {\(\frac{15}{4}\)} & B1ft & {ft \(\frac{a}{4}\) for their \(a\) from (b); oe such as 3.75.} \\
+\nopagebreak & & [1] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 7 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{8}
+\begin{msscheme}{
+  hline{3-4,6-8,10-11} = {2-Z}{0.4pt, msGrid},
+  hline{5,9,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+8(a) & {\(\frac{4r\left(\sqrt{r(r+2)}-\sqrt{r(r-2)}\right)}{r(r+2)-r(r-2)}\)} & M1 & {Multiplies numerator and denominator by the conjugate, or the RHS by the denominator, and expands as a difference of squares. Condone slips.} \\
+& {\(= \frac{4r\left(\sqrt{r(r+2)}-\sqrt{r(r-2)}\right)}{4r}\)\\[4pt] \(= \sqrt{r(r+2)}-\sqrt{r(r-2)}\)} & A1~AG & {Difference of squares correctly simplified to \(4r\), leading without error to the printed result.} \\
+\nopagebreak & & [2] & \\
+8(b) & {\(r=2:\ \sqrt{8}-\sqrt{0}\)\\[4pt] \(r=3:\ \sqrt{15}-\sqrt{3}\)\\[4pt] \(r=4:\ \sqrt{24}-\sqrt{8}\)\\[4pt] \(\ldots\)\\[4pt] \(r=n-1:\ \sqrt{(n-1)(n+1)}-\sqrt{(n-1)(n-3)}\)\\[4pt] \(r=n:\ \sqrt{n(n+2)}-\sqrt{n(n-2)}\)} & M1 & {Uses (a) and lists terms for at least \(r=2\), \(r=3\), \(r=n-1\) and \(r=n\), with cancellation shown. Condone slips.} \\
+& {\(\sqrt{(n-1)(n+1)}+\sqrt{n(n+2)}-\sqrt{0}-\sqrt{3}\)} & A1 & {The four surviving terms, in any order; \(\sqrt{0}\) may be omitted.} \\
+& {\(= \sqrt{n^2-1}+\sqrt{n^2+2n}-\sqrt{3}\)} & A1 & {oe, such as \(\sqrt{(n-1)(n+1)}+\sqrt{n(n+2)}-\sqrt{3}\), with no zero term remaining.} \\
+\nopagebreak & & [3] & \\
+8(c) & {\(\text{"}\sqrt{6\times 8}+\sqrt{7\times 9}-\sqrt{3}\text{"}-\sqrt{8}\)} & M1 & {Substitutes \(n=7\) in their (b) and subtracts their \(r=2\) term, from (a) or their (b) at \(n=2\).} \\
+& {\(= -2\sqrt{2}+3\sqrt{3}+3\sqrt{7}\)\\[4pt] \(\Rightarrow A=-2,\ B=3,\ C=3\)} & A1 & \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 8 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{9}
+\begin{msscheme}{
+  hline{3-6,8-10} = {2-Z}{0.4pt, msGrid},
+  hline{7,11} = {0.4pt, msGrid},
+  row{11} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+9(a) & {\(\frac{1}{(r+a)(r+a+1)(r+a+2)}\)\\[4pt] \(\phantom{A} = k\left(\frac{1}{(r+a)(r+a+1)} - \frac{1}{(r+a+1)(r+a+2)}\right)\)} & M1 & {Expresses the general term as a multiple of the difference of consecutive terms \(\frac{1}{(r+a)(r+a+1)}\), or in partial fractions. Condone a wrong multiple.} \\
+& {\(k = \frac12\)} & A1 & {Correct identity, or correct partial fractions \(\frac{1}{2(r+a)} - \frac{1}{r+a+1} + \frac{1}{2(r+a+2)}\).} \\
+& {\(\frac12\left[\frac{1}{(a+1)(a+2)} - \frac{1}{(a+2)(a+3)}\right.\)\\[4pt] \(\phantom{A} + \frac{1}{(a+2)(a+3)} - \frac{1}{(a+3)(a+4)}\)\\[4pt] \(\phantom{A} + \cdots\)\\[4pt] \(\phantom{A} \left. + \frac{1}{(n+a)(n+a+1)} - \frac{1}{(n+a+1)(n+a+2)}\right]\)} & dM1 & {Writes their difference for at least \(r = 1\), \(r = 2\) and \(r = n\), showing terms cancelling; with partial fractions, at least \(r = 1, 2, 3\) and \(r = n-1, n\), showing a set of three cancelling.} \\
+& {\(\frac12\left(\frac{1}{(a+1)(a+2)} - \frac{1}{(n+a+1)(n+a+2)}\right)\)} & A1 & {oe, such as \(\frac{n(n+2a+3)}{2(a+1)(a+2)(n+a+1)(n+a+2)}\).} \\
+\nopagebreak & & [4] & \\
+9(b) & {\(n \to \infty\): \(\frac{1}{2(a+1)(a+2)} = \frac{1}{24}\)} & M1 & {Takes the limit as \(n \to \infty\) in their (a), with the terms in \(n\) tending to 0, and sets the limit equal to \(\frac{1}{24}\).} \\
+& {\(a^2 + 3a - 10 = 0 \Rightarrow a = \ldots\)} & dM1 & {Rearranges to a three-term quadratic in \(a\) and solves it by any means.} \\
+& {\(a = 2\) (\(a = -5\) rejected)} & A1 & {A0 if \(a = -5\) is also given as an answer.} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 9 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{10}
+\begin{msscheme}{
+  hline{3-5,7-10,12-13} = {2-Z}{0.4pt, msGrid},
+  hline{6,11,14} = {0.4pt, msGrid},
+  row{14} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+10(a) & {\(\sum (4r^3 - r) = 4 \cdot \tfrac14 N^2(N+1)^2 - \tfrac12 N(N+1)\)} & M1 & {Expands to a polynomial in \(r\) and substitutes the standard result for each sum. Condone slips in the expansion.} \\
+& {\(= N^2(N+1)^2 - \tfrac12 N(N+1)\)} & A1 & {Correct expression in \(N\), oe.} \\
+& {\(= \tfrac12 N(N+1)\left(2N(N+1) - 1\right)\)\\[4pt] \(\phantom{=} = \tfrac12 N(N+1)(2N^2 + 2N - 1)\)} & A1~AG & {Correct expression in \(N\) leading without error to the printed result; expanding both to the same quartic is accepted.} \\
+\nopagebreak & & [3] & \\
+10(b) & {\(6r + 13 \equiv A(2r+3) + B(2r-1) \Rightarrow A = \ldots,\ B = \ldots\)} & M1 & {Forms an identity of this form and finds \(A\) or \(B\), by substitution or comparing coefficients.} \\
+& {\(\frac{4}{2r-1} - \frac{1}{2r+3}\)} & A1 & \\
+& {\(\frac{4}{(2r-1)2^{r+1}} - \frac{4}{(2r+3)2^{r+3}}\)\\[4pt] \(4\left[\left(\frac{1}{1 \cdot 2^2} - \frac{1}{5 \cdot 2^4}\right) + \left(\frac{1}{3 \cdot 2^3} - \frac{1}{7 \cdot 2^5}\right)\right.\)\\[4pt] \(\phantom{4} + \left(\frac{1}{5 \cdot 2^4} - \frac{1}{9 \cdot 2^6}\right) + \cdots\)\\[4pt] \(\phantom{4} + \left(\frac{1}{(2N-3)2^{N}} - \frac{1}{(2N+1)2^{N+2}}\right)\)\\[4pt] \(\left.\phantom{4} + \left(\frac{1}{(2N-1)2^{N+1}} - \frac{1}{(2N+3)2^{N+3}}\right)\right]\)} & dM1 & {Uses their partial fractions with the factor \(\left(\frac12\right)^{r+1}\), showing terms cancel two apart, from at least \(r = 1, 2, 3\) and \(r = N-1, N\).} \\
+& {\(\frac76 - \frac{1}{(2N+1)2^N} - \frac{1}{(2N+3)2^{N+1}}\)} & A1 & {Correct sum oe, such as \(\frac76 - \frac{6N+7}{(2N+1)(2N+3)2^{N+1}}\). Need not be combined.} \\
+\nopagebreak & & [4] & \\
+10(c) & {\(N \to \infty\): \(\frac{1}{(2N+1)2^N},\ \frac{1}{(2N+3)2^{N+1}} \to 0\)} & M1 & {Takes the limit as \(N \to \infty\) in their sum of the form constant plus terms with a factor \(2^{-N}\), with those terms tending to 0.} \\
+& {\(\frac76\)} & A1 & {\(\frac76\), or awrt 1.17.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 10 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{11}
+\begin{msscheme}{
+  hline{3-4,6-12} = {2-Z}{0.4pt, msGrid},
+  hline{5,13} = {0.4pt, msGrid},
+  row{13} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+11(a) & {\((m+1)^5-(m-1)^5\), \(m = 2n-1\)\\[4pt] \(\phantom{A} = (m^5+5m^4+10m^3+10m^2+5m+1)\)\\[4pt] \(\phantom{A = } - (m^5-5m^4+10m^3-10m^2+5m-1)\)} & M1 & {Expands both fifth powers by the binomial theorem, in \(n\) or after a substitution such as \(m = 2n-1\), or expands both sides. Condone sign slips.} \\
+& {\(\phantom{A} = 10m^4+20m^2+2\)\\[4pt] \(\phantom{A} = 10(2n-1)^4+20(2n-1)^2+2\)} & A1~AG & {Correct expansions leading without error to the printed identity. If both sides are expanded, both correct and LHS = RHS stated.} \\
+\nopagebreak & & [2] & \\
+11(b) & {\(\sum_{r=1}^{n}\left((2r)^5-(2r-2)^5\right)\)\\[4pt] \(\phantom{A} = 10\sum_{r=1}^{n}(2r-1)^4+20\sum_{r=1}^{n}(2r-1)^2+2n\)} & M1 & {Replaces \(n\) by \(r\) in the identity and sums both sides over \(r = 1\) to \(n\). Condone \(\sum 2\) written as 2.} \\
+& {LHS \(= (2^5+4^5+\cdots+(2n)^5)\)\\[4pt] \(\phantom{\text{LHS} = } - (0^5+2^5+\cdots+(2n-2)^5)\)} & dM1 & {Writes out the LHS terms for at least \(r = 1\), \(r = 2\) and \(r = n\), with the cancellation evident.} \\
+& {\(\phantom{\text{LHS}} = (2n)^5 = 32n^5\)} & A1 & {\((2n)^5\) oe.} \\
+& {\(\sum_{r=1}^{n}(2r-1)^2 = \sum_{r=1}^{n}(4r^2-4r+1)\)\\[4pt] \(\phantom{A} = \tfrac46 n(n+1)(2n+1) - \tfrac42 n(n+1) + n\)} & M1 & {Expands \((2r-1)^2\) and substitutes the standard results for \(\sum r^2\) and \(\sum r\), with \(\sum 1 = n\); or any valid use of standard results, such as \(\sum_{r=1}^{2n} r^2 - 4\sum_{r=1}^{n} r^2\).} \\
+& {\(\phantom{A} = \tfrac13 n(2n-1)(2n+1)\)} & A1 & {Correct expression, oe; need not be factorised.} \\
+& {\(10\sum_{r=1}^{n}(2r-1)^4 = 32n^5 - \tfrac{20}{3}n(4n^2-1) - 2n\)\\[4pt] \(\Rightarrow \sum_{r=1}^{n}(2r-1)^4 = \tfrac1{15}n(48n^4-40n^2+7)\)\\[4pt] \(\phantom{\Rightarrow A} = \tfrac1{15}n(4n^2-1)(\ldots)\)} & dM1 & {Substitutes their \(32n^5\) and their cubic for \(\sum(2r-1)^2\) into the summed identity, makes \(\sum(2r-1)^4\) the subject, and takes out \(n(4n^2-1)\) or compares coefficients with the printed form.} \\
+& {\(\phantom{\Rightarrow A} = \tfrac1{15}n(2n-1)(2n+1)(12n^2-7)\)\\[4pt] \(a = 12\), \(b = 0\), \(c = -7\)} & A1 & {cso. All three values, stated or seen in the factorised form.} \\
+\nopagebreak & & [7] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 11 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{12}
+\begin{msscheme}{
+  hline{3-7,9-14} = {2-Z}{0.4pt, msGrid},
+  hline{8,15} = {0.4pt, msGrid},
+  row{15} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+12(a) & {\(\frac{1}{(3r-2)(3r+4)} = \frac{A}{3r-2} + \frac{B}{3r+4}\)\\[4pt] \(\phantom{A} \Rightarrow A = \ldots,\ B = \ldots\ [= \tfrac16, -\tfrac16]\)} & M1 & {Uses partial fractions of the form \(\frac{A}{3r-2} + \frac{B}{3r+4}\) and finds values for \(A\) and \(B\) by any method.} \\
+& {\(S_n = \tfrac16\big[(1 - \tfrac17) + (\tfrac14 - \tfrac1{10}) + (\tfrac17 - \tfrac1{13})\)\\[4pt] \(\phantom{S_n =} + \cdots + (\tfrac1{3n-5} - \tfrac1{3n+1})\)\\[4pt] \(\phantom{S_n =} + (\tfrac1{3n-2} - \tfrac1{3n+4})\big]\)} & dM1 & {Writes their terms for at least \(r = 1, 2, 3\) and \(r = n-1, n\), enough to show the cancellation pattern.} \\
+& {\(S_n = \tfrac16\left(1 + \tfrac14 - \frac1{3n+1} - \frac1{3n+4}\right)\)} & A1 & \\
+& {\(S_n = \frac{5(3n+1)(3n+4) - 4(6n+5)}{24(3n+1)(3n+4)}\)} & M1 & {Combines their surviving terms, including both in \(n\), over a common denominator. Need not be simplified.} \\
+& {\(\phantom{S_n} = \frac{3n(15n+17)}{24(3n+1)(3n+4)} = \frac{n(15n+17)}{8(3n+1)(3n+4)}\)} & A1~AG & {Correct combined fraction from correct surviving terms, reaching the printed result without error.} \\
+\nopagebreak & & [5] & \\
+12(b) & {\(\frac5{24} - S_n = \frac5{24} - \tfrac16\left(\tfrac54 - \frac{6n+5}{(3n+1)(3n+4)}\right)\)} & M1 & {Subtracts either form of \(S_n\) from (a) from \(\frac5{24}\) and attempts a single simplified expression.} \\
+& {\(\phantom{\frac5{24} - S_n} = \frac{6n+5}{6(3n+1)(3n+4)}\)} & A1 & {oe, such as \(\frac{6n+5}{54n^2+90n+24}\).} \\
+& {\(\frac{6n+5}{6(3n+1)(3n+4)} < \frac1k\)\\[4pt] \(\phantom{A} \Rightarrow k(6n+5) < 54n^2 + 90n + 24\)} & M1 & {Sets their difference less than \(\frac1k\), clears the fractions and collects to a quadratic inequality in \(n\). Condone slips.} \\
+& {\(54n^2 + (90-6k)n + 24 - 5k > 0\)} & A1 & {oe, any multiple, with like terms collected.} \\
+& {\(n = \frac{6k - 90 \pm \sqrt{(90-6k)^2 - 216(24-5k)}}{108}\)} & dM1 & {Uses the correct quadratic formula with their coefficients in \(k\), or completes the square, leading to \(n = \ldots\).} \\
+& {\((90-6k)^2 - 216(24-5k) = 36(k^2+81)\)\\[4pt] \(\phantom{A} \Rightarrow n = \frac{k - 15 \pm \sqrt{k^2+81}}{18}\)\\[4pt] \(k - 15 - \sqrt{k^2+81} < 0\), so as \(n \geq 1\)\\[4pt] \(\phantom{A} n > \frac{k - 15 + \sqrt{k^2+81}}{18}\)} & A1~AG & {Correct discriminant reaching both roots without error, the region outside the roots, and the lower root rejected with a reason, such as being negative.} \\
+\nopagebreak & & [6] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 12 & & 11 & \\
+\end{msscheme}
+
+\end{document}

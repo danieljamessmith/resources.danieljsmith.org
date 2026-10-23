@@ -1,0 +1,632 @@
+format: 1
+pack: Method of Differences
+last_updated: 23 October 2026
+questions:
+  - q: 1
+    stamp: '1345e603'
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(1 + \frac{2}{r(r+3)} = \frac{r^2 + 3r + 2}{r(r+3)}\)
+              \(\phantom{1 + \frac{2}{r(r+3)}} = \frac{(r+1)(r+2)}{r(r+3)}\)
+            marks:
+              - code: M1
+                note: Forms a single fraction and factorises its numerator, or expands the product of the two RHS fractions. Condone one slip.
+          - scheme: |
+              \(\ln\left(\frac{r+1}{r}\right) + \ln\left(\frac{r+2}{r+3}\right)\)
+              \(\phantom{A} = \ln\left(\frac{r+1}{r}\right) - \ln\left(\frac{r+3}{r+2}\right)\)
+            marks:
+              - code: A1 AG
+                note: Correct fraction split into two logarithms and reaching the printed difference without error, via the reciprocal or \(\ln a - \ln b\).
+      - part: b
+        rows:
+          - scheme: |
+              \(\left(\ln 2 - \ln\frac43\right) + \left(\ln\frac32 - \ln\frac54\right) + \left(\ln\frac43 - \ln\frac65\right)\)
+              \(\phantom{A} + \cdots + \left(\ln\frac{n}{n-1} - \ln\frac{n+2}{n+1}\right)\)
+              \(\phantom{A} + \left(\ln\frac{n+1}{n} - \ln\frac{n+3}{n+2}\right)\)
+            marks:
+              - code: M1
+                note: Uses part (a) with \(r = 1\), \(r = 2\), \(r = 3\), \(r = n-1\) and \(r = n\) at least, enough to show terms cancelling. Condone slips in individual terms.
+          - scheme: |
+              \(\ln 2 + \ln\frac32 - \ln\frac{n+2}{n+1} - \ln\frac{n+3}{n+2}\)
+            marks:
+              - code: A1
+                note: All four surviving terms correct and no others, oe such as \(\ln 3\) for the first two.
+          - scheme: |
+              \(\ln\left(2 \times \frac32 \times \frac{n+1}{n+2} \times \frac{n+2}{n+3}\right)\)
+            marks:
+              - code: M1
+                note: Uses log laws to combine their surviving terms into a single logarithm. Condone sign slips.
+          - scheme: |
+              \(= \ln\left(\frac{3(n+1)}{n+3}\right)\)
+            marks:
+              - code: A1 AG
+                note: Correct single logarithm simplified to the printed result without error.
+  - q: 2
+    stamp: 203a16eb
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\frac{1}{r(r+2)} = \frac{A}{r} + \frac{B}{r+2} \Rightarrow 1 = A(r+2) + Br\)
+              \(\phantom{\frac{1}{r(r+2)}} \Rightarrow \frac{1}{r(r+2)} = \frac{1}{2r} - \frac{1}{2(r+2)}\)
+            marks:
+              - code: M1
+                note: Uses the form \(\frac{A}{r} + \frac{B}{r+2}\) and finds \(A\) and \(B\) by any method. Condone slips in their values.
+              - code: A1
+                note: \(\frac{1}{2r} - \frac{1}{2(r+2)}\), oe, such as \(A = \frac12\), \(B = -\frac12\) stated.
+          - scheme: |
+              \(\tfrac12\bigl[(1 - \tfrac13) + (\tfrac12 - \tfrac14) + (\tfrac13 - \tfrac15) + \cdots\)
+              \(\phantom{\tfrac12\bigl[} + (\tfrac{1}{n-1} - \tfrac{1}{n+1}) + (\tfrac1n - \tfrac{1}{n+2})\bigr]\)
+            marks:
+              - code: dM1
+                note: Writes their differences for at least \(r = 1, 2, 3\) and \(r = n-1, n\), showing terms cancelling. The factor \(\frac12\) need not be seen.
+          - scheme: |
+              \(\tfrac12\left(1 + \tfrac12 - \tfrac{1}{n+1} - \tfrac{1}{n+2}\right)\)
+            marks:
+              - code: A1
+                note: The four correct surviving terms, with the factor \(\frac12\).
+          - scheme: |
+              \(\tfrac12\left(\tfrac32 - \tfrac{1}{n+1} - \tfrac{1}{n+2}\right)\)
+              \(\phantom{\tfrac12} = \frac34 - \frac{1}{2(n+1)} - \frac{1}{2(n+2)}\)
+            marks:
+              - code: A1 AG
+                note: Printed result reached without error from correct partial fractions and surviving terms.
+      - part: b
+        rows:
+          - scheme: |
+              \(n \to \infty \Rightarrow \frac{1}{2(n+1)} \to 0,\ \frac{1}{2(n+2)} \to 0\)
+            marks:
+              - code: M1
+                note: Takes the limit as \(n \to \infty\) in the result of (a), with both terms in \(n\) tending to 0.
+          - scheme: |
+              \(\sum_{r=1}^{\infty} \frac{1}{r(r+2)} = \frac34\)
+            marks:
+              - code: A1
+  - q: 3
+    stamp: 1e2d302b
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\frac{1}{r(r+3)} = \frac13\left(\frac1r - \frac1{r+3}\right)\)
+            marks:
+              - code: M1
+                note: Splits the general term into the form \(\frac{A}{r} + \frac{B}{r+3}\) and finds \(A\) and \(B\) by any method. Condone slips in their values.
+          - scheme: |
+              \(\frac13\left[\left(1 - \frac14\right) + \left(\frac12 - \frac15\right) + \left(\frac13 - \frac16\right) + \cdots\right.\)
+              \(\phantom{\frac13} + \left(\frac1{n-2} - \frac1{n+1}\right) + \left(\frac1{n-1} - \frac1{n+2}\right)\)
+              \(\phantom{\frac13} \left. + \left(\frac1n - \frac1{n+3}\right)\right]\)
+            marks:
+              - code: dM1
+                note: Lists their differences for at least \(r = 1, 2, 3\) and \(r = n-2, n-1, n\), showing or implying the cancellation. Condone a missing \(\frac13\).
+          - scheme: |
+              \(\frac13\left(1 + \frac12 + \frac13 - \frac1{n+1} - \frac1{n+2} - \frac1{n+3}\right)\)
+            marks:
+              - code: A1
+                note: Correct surviving terms with the factor \(\frac13\), oe.
+          - scheme: |
+              \(\frac1{n+1} + \frac1{n+2} + \frac1{n+3}\)
+              \(\phantom{A} = \frac{(n+2)(n+3) + (n+1)(n+3) + (n+1)(n+2)}{(n+1)(n+2)(n+3)}\)
+            marks:
+              - code: M1
+                note: Combines their fractions in \(n\) over any common denominator, with each numerator multiplied by the missing factors. Condone expansion slips.
+          - scheme: |
+              \(\frac{11}{18} - \frac{3n^2+12n+11}{3(n+1)(n+2)(n+3)}\)
+              \(a = 3,\ b = 12,\ c = 11\)
+            marks:
+              - code: A1
+                note: cso. Values stated, or seen in the completed expression.
+  - q: 4
+    stamp: 19defe6b
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\frac{12}{(2r-1)(2r+1)(2r+3)}\)
+              \(\phantom{A} \equiv \frac{A}{2r-1}+\frac{B}{2r+1}+\frac{C}{2r+3}\)
+              \(\phantom{A} \Rightarrow A = \ldots,\ B = \ldots,\ C = \ldots\)
+            marks:
+              - code: M1
+                note: Writes the term as three fractions over \(2r-1\), \(2r+1\), \(2r+3\) and finds a constant by substitution, cover-up or comparing coefficients.
+          - scheme: |
+              \(\frac{3}{2(2r-1)} - \frac{3}{2r+1} + \frac{3}{2(2r+3)}\)
+            marks:
+              - code: A1
+                note: oe, such as \(A = \frac32\), \(B = -3\), \(C = \frac32\) stated.
+          - scheme: |
+              \(\tfrac32\big[\left(1 - \tfrac23 + \tfrac15\right) + \left(\tfrac13 - \tfrac25 + \tfrac17\right)\)
+              \(\phantom{\tfrac32\big[} + \left(\tfrac15 - \tfrac27 + \tfrac19\right) + \cdots\)
+              \(\phantom{\tfrac32\big[} + \left(\tfrac{1}{2n-3} - \tfrac{2}{2n-1} + \tfrac{1}{2n+1}\right)\)
+              \(\phantom{\tfrac32\big[} + \left(\tfrac{1}{2n-1} - \tfrac{2}{2n+1} + \tfrac{1}{2n+3}\right)\big]\)
+            marks:
+              - code: dM1
+                note: Lists their terms for at least three values of \(r\) at the start and two at the end, or two and two after splitting into two differences, showing cancellation.
+          - scheme: |
+              \(\tfrac32\left(1 - \tfrac13 - \tfrac{1}{2n+1} + \tfrac{1}{2n+3}\right)\)
+            marks:
+              - code: A1
+                note: Correct surviving terms oe; need not be collected.
+          - scheme: |
+              \(1 - \frac{3}{2(2n+1)} + \frac{3}{2(2n+3)}\)
+              \(\phantom{1} = \frac{2(2n+1)(2n+3) - 3(2n+3) + 3(2n+1)}{2(2n+1)(2n+3)}\)
+            marks:
+              - code: M1
+                note: Combines their surviving terms, including at least two with denominators in \(n\), over a common denominator containing \((2n+1)(2n+3)\). Condone slips in the numerator.
+          - scheme: |
+              \(= \frac{n(4n+8)}{(2n+1)(2n+3)}\), \(a = 4\), \(b = 8\)
+            marks:
+              - code: A1
+                note: cso. Needs \(a = 4\) and \(b = 8\), or the sum written as \(\frac{n(4n+8)}{(2n+1)(2n+3)}\); \(\frac{4n(n+2)}{(2n+1)(2n+3)}\) alone scores A0.
+  - q: 5
+    stamp: 13156b53
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(1+\frac{2}{r(r+3)} = \frac{(r+1)(r+2)}{r(r+3)}\)
+              \(\Rightarrow \ln(r+1) - \ln r + \ln(r+2) - \ln(r+3)\)
+            marks:
+              - code: M1
+                note: Forms a single fraction, factorises its numerator and splits the logarithm into logarithms of linear factors, or of two ratios. Condone sign slips.
+          - scheme: |
+              \(r=1{:}\ \ln 2 - \ln 1 + \ln 3 - \ln 4\)
+              \(r=2{:}\ \ln 3 - \ln 2 + \ln 4 - \ln 5\)
+              \(\ldots\)
+              \(r=n-1{:}\ \ln n - \ln(n-1) + \ln(n+1) - \ln(n+2)\)
+              \(r=n{:}\ \ln(n+1) - \ln n + \ln(n+2) - \ln(n+3)\)
+            marks:
+              - code: dM1
+                note: Lists their terms for at least \(r = 1\), \(r = 2\), \(r = n-1\) and \(r = n\), showing cancellation.
+          - scheme: |
+              \(\ln(n+1) - \ln 1 + \ln 3 - \ln(n+3)\)
+            marks:
+              - code: A1
+                note: Correct surviving terms only; \(\ln 1\) may be omitted.
+          - scheme: |
+              \(\ln 3 + \ln(n+1) - \ln(n+3) = \ln\left(\frac{3(n+1)}{n+3}\right)\)
+            marks:
+              - code: M1
+                note: Uses log laws to combine their surviving terms into a single logarithm.
+              - code: A1 AG
+                note: Printed result reached without error from correct surviving terms; nothing for working back from the result.
+      - part: b
+        rows:
+          - scheme: |
+              \(28\sum_{r=25}^{74}\ln\left(1+\frac{2}{r(r+3)}\right)\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(\ln\left(\frac{3(75)}{77}\right) - \ln\left(\frac{3(25)}{27}\right)\)
+            marks:
+              - code: M1
+                note: Subtracts the result of (a) at \(n = 24\) from that at \(n = 74\).
+          - scheme: |
+              \(28\ln\left(\frac{81}{77}\right)\)
+            marks:
+              - code: A1
+                note: Or another form \(a\ln\left(\frac{b}{c}\right)\) with integers \(a\), \(b\), \(c\). Not for a decimal or an uncombined difference of logarithms.
+  - q: 6
+    stamp: bd04ca4e
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\frac{6}{r(r+1)(r+2)} = \frac{A}{r(r+1)} + \frac{B}{(r+1)(r+2)}\)
+              \(\Rightarrow 6 = A(r+2) + Br \Rightarrow A = \ldots,\ B = \ldots\)
+            marks:
+              - code: M1
+                note: Writes the term as \(\frac{A}{r(r+1)} + \frac{B}{(r+1)(r+2)}\) and finds both constants by any method. Condone a slip in one constant.
+          - scheme: |
+              \(\frac{6}{r(r+1)(r+2)} = \frac{3}{r(r+1)} - \frac{3}{(r+1)(r+2)}\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\left(\frac{3}{1\times2} - \frac{3}{2\times3}\right) + \left(\frac{3}{2\times3} - \frac{3}{3\times4}\right)\)
+              \(\phantom{=} + \cdots + \left(\frac{3}{n(n+1)} - \frac{3}{(n+1)(n+2)}\right)\)
+            marks:
+              - code: dM1
+                note: Writes out their partial fractions for at least \(r = 1\), \(r = 2\) and \(r = n\), showing terms cancelling.
+          - scheme: |
+              \(\frac{3}{2} - \frac{3}{(n+1)(n+2)}\)
+            marks:
+              - code: A1
+                note: Correct surviving terms, oe.
+          - scheme: |
+              \(\frac{3(n+1)(n+2) - 6}{2(n+1)(n+2)} = \frac{n(\ldots)}{2(n+1)(n+2)}\)
+            marks:
+              - code: M1
+                note: Combines their \(p - \frac{q}{(n+1)(n+2)}\) over a common denominator and simplifies the numerator. Condone slips in expanding.
+          - scheme: |
+              \(\frac{3n^2 + 9n}{2(n+1)(n+2)} = \frac{n(3n+9)}{2(n+1)(n+2)}\)
+              \(a = 3,\ b = 9\)
+            marks:
+              - code: A1
+                note: cso. Both values, stated or seen in the printed form.
+        alt:
+          title: Three linear partial fractions
+          rows:
+            - scheme: |
+                \(\frac{6}{r(r+1)(r+2)} = \frac{A}{r} + \frac{B}{r+1} + \frac{C}{r+2}\)
+                \(\Rightarrow A = \ldots,\ B = \ldots,\ C = \ldots\)
+              marks:
+                - code: M1
+                  note: Writes the term with denominators \(r\), \(r+1\), \(r+2\) and finds all three constants by any method, cover-up included. Condone a slip in one constant.
+            - scheme: |
+                \(\frac{6}{r(r+1)(r+2)} = \frac{3}{r} - \frac{6}{r+1} + \frac{3}{r+2}\)
+              marks:
+                - code: A1
+            - scheme: |
+                \(r = 1:\ \frac31 - \frac62 + \frac33\)
+                \(r = 2:\ \frac32 - \frac63 + \frac34\)
+                \(r = 3:\ \frac33 - \frac64 + \frac35\)
+                \(\ \vdots\)
+                \(r = n-1:\ \frac{3}{n-1} - \frac6n + \frac{3}{n+1}\)
+                \(r = n:\ \frac3n - \frac{6}{n+1} + \frac{3}{n+2}\)
+              marks:
+                - code: dM1
+                  note: Writes out their partial fractions for at least \(r = 1, 2, 3\) and \(r = n-1, n\), showing a set of three terms cancelling.
+            - scheme: |
+                \(\frac31 - \frac62 + \frac32 + \frac{3}{n+1} - \frac{6}{n+1} + \frac{3}{n+2}\)
+                \(\phantom{=} \left[= \frac32 - \frac{3}{n+1} + \frac{3}{n+2}\right]\)
+              marks:
+                - code: A1
+                  note: Correct surviving terms, oe, simplified or not.
+            - scheme: |
+                \(\frac{3(n+1)(n+2) - 6(n+2) + 6(n+1)}{2(n+1)(n+2)}\)
+                \(\phantom{=} = \frac{n(\ldots)}{2(n+1)(n+2)}\)
+              marks:
+                - code: M1
+                  note: Combines their \(p + \frac{q}{n+1} + \frac{s}{n+2}\) over a common denominator and simplifies the numerator. Condone slips in expanding.
+            - scheme: |
+                \(\frac{3n^2 + 9n}{2(n+1)(n+2)} = \frac{n(3n+9)}{2(n+1)(n+2)}\)
+                \(a = 3,\ b = 9\)
+              marks:
+                - code: A1
+                  note: cso. Both values, stated or seen in the printed form.
+  - q: 7
+    stamp: 103145fd
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \((r^4+4r^3+6r^2+4r+1)-(r^4-4r^3+6r^2-4r+1)\)
+              \(\phantom{A} = 8r^3+8r\)
+            marks:
+              - code: M1
+                note: Expands both brackets and subtracts, reaching the form \(pr^3+qr\). Condone coefficient slips.
+          - scheme: |
+              \(\sum_{r=1}^{n}\left((r+1)^4-(r-1)^4\right) = 8\sum r^3+8\sum r\)
+              \(\phantom{A} = (2^4-0^4)+(3^4-1^4)+(4^4-2^4)+\cdots\)
+              \(\phantom{A=} +\left(n^4-(n-2)^4\right)\)
+              \(\phantom{A=} +\left((n+1)^4-(n-1)^4\right)\)
+            marks:
+              - code: M1
+                note: Sums both sides and writes the left side's terms for at least \(r=1\), \(2\), \(n-1\), \(n\), showing or implying cancellation.
+          - scheme: |
+              \(\phantom{A} = (n+1)^4+n^4-1\)
+            marks:
+              - code: A1
+                note: Correct surviving terms, oe such as \((n+1)^4+n^4-0^4-1^4\).
+          - scheme: |
+              \(8\sum r^3 = (n+1)^4+n^4-1-8\cdot\tfrac12 n(n+1)\)
+              \(\Rightarrow \sum r^3 = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(\sum r = \frac12 n(n+1)\) into their equation linking \(\sum r^3\), \(\sum r\) and \(n\), and makes \(\sum r^3\) the subject. Condone sign slips.
+          - scheme: |
+              \(8\sum r^3 = 2n^4+4n^3+2n^2 = 2n^2(n+1)^2\)
+              \(\Rightarrow \sum_{r=1}^{n} r^3 = \frac14 n^2(n+1)^2\)
+            marks:
+              - code: A1 AG
+                note: Correct equation for \(8\sum r^3\) simplified to the printed result without error; combined steps accepted.
+      - part: b
+        rows:
+          - scheme: |
+              \(T_n = \sum_{r=1}^{2n} r^3-\sum_{r=1}^{n} r^3\)
+              \(\phantom{T_n} = \frac14(2n)^2(2n+1)^2-\frac14 n^2(n+1)^2\)
+            marks:
+              - code: M1
+                note: Writes \(T_n\) as the sum to \(2n\) minus the sum to \(n\), or otherwise in standard sums, and substitutes using (a).
+          - scheme: |
+              \(\phantom{T_n} = \frac14\left(16n^4+16n^3+4n^2-n^4-2n^3-n^2\right)\)
+              \(\Rightarrow T_n = \frac14 n^2(\ldots)\)
+            marks:
+              - code: dM1
+                note: Expands both terms and collects like powers, reaching the form \(\frac14 n^2(an^2+bn+c)\). Condone arithmetic slips.
+          - scheme: |
+              \(T_n = \frac14 n^2(15n^2+14n+3)\)
+            marks:
+              - code: A1
+                note: Or \(a=15\), \(b=14\), \(c=3\) stated.
+      - part: c
+        rows:
+          - scheme: |
+              \(\frac{15}{4}\)
+            marks:
+              - code: B1ft
+                note: ft \(\frac{a}{4}\) for their \(a\) from (b); oe such as 3.75.
+  - q: 8
+    stamp: 79878ad6
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\frac{4r\left(\sqrt{r(r+2)}-\sqrt{r(r-2)}\right)}{r(r+2)-r(r-2)}\)
+            marks:
+              - code: M1
+                note: Multiplies numerator and denominator by the conjugate, or the RHS by the denominator, and expands as a difference of squares. Condone slips.
+          - scheme: |
+              \(= \frac{4r\left(\sqrt{r(r+2)}-\sqrt{r(r-2)}\right)}{4r}\)
+              \(= \sqrt{r(r+2)}-\sqrt{r(r-2)}\)
+            marks:
+              - code: A1 AG
+                note: Difference of squares correctly simplified to \(4r\), leading without error to the printed result.
+      - part: b
+        rows:
+          - scheme: |
+              \(r=2:\ \sqrt{8}-\sqrt{0}\)
+              \(r=3:\ \sqrt{15}-\sqrt{3}\)
+              \(r=4:\ \sqrt{24}-\sqrt{8}\)
+              \(\ldots\)
+              \(r=n-1:\ \sqrt{(n-1)(n+1)}-\sqrt{(n-1)(n-3)}\)
+              \(r=n:\ \sqrt{n(n+2)}-\sqrt{n(n-2)}\)
+            marks:
+              - code: M1
+                note: Uses (a) and lists terms for at least \(r=2\), \(r=3\), \(r=n-1\) and \(r=n\), with cancellation shown. Condone slips.
+          - scheme: |
+              \(\sqrt{(n-1)(n+1)}+\sqrt{n(n+2)}-\sqrt{0}-\sqrt{3}\)
+            marks:
+              - code: A1
+                note: The four surviving terms, in any order; \(\sqrt{0}\) may be omitted.
+          - scheme: |
+              \(= \sqrt{n^2-1}+\sqrt{n^2+2n}-\sqrt{3}\)
+            marks:
+              - code: A1
+                note: oe, such as \(\sqrt{(n-1)(n+1)}+\sqrt{n(n+2)}-\sqrt{3}\), with no zero term remaining.
+      - part: c
+        rows:
+          - scheme: |
+              \(\text{"}\sqrt{6\times 8}+\sqrt{7\times 9}-\sqrt{3}\text{"}-\sqrt{8}\)
+            marks:
+              - code: M1
+                note: Substitutes \(n=7\) in their (b) and subtracts their \(r=2\) term, from (a) or their (b) at \(n=2\).
+          - scheme: |
+              \(= -2\sqrt{2}+3\sqrt{3}+3\sqrt{7}\)
+              \(\Rightarrow A=-2,\ B=3,\ C=3\)
+            marks:
+              - code: A1
+  - q: 9
+    stamp: 0c4971ca
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\frac{1}{(r+a)(r+a+1)(r+a+2)}\)
+              \(\phantom{A} = k\left(\frac{1}{(r+a)(r+a+1)} - \frac{1}{(r+a+1)(r+a+2)}\right)\)
+            marks:
+              - code: M1
+                note: Expresses the general term as a multiple of the difference of consecutive terms \(\frac{1}{(r+a)(r+a+1)}\), or in partial fractions. Condone a wrong multiple.
+          - scheme: |
+              \(k = \frac12\)
+            marks:
+              - code: A1
+                note: Correct identity, or correct partial fractions \(\frac{1}{2(r+a)} - \frac{1}{r+a+1} + \frac{1}{2(r+a+2)}\).
+          - scheme: |
+              \(\frac12\left[\frac{1}{(a+1)(a+2)} - \frac{1}{(a+2)(a+3)}\right.\)
+              \(\phantom{A} + \frac{1}{(a+2)(a+3)} - \frac{1}{(a+3)(a+4)}\)
+              \(\phantom{A} + \cdots\)
+              \(\phantom{A} \left. + \frac{1}{(n+a)(n+a+1)} - \frac{1}{(n+a+1)(n+a+2)}\right]\)
+            marks:
+              - code: dM1
+                note: Writes their difference for at least \(r = 1\), \(r = 2\) and \(r = n\), showing terms cancelling; with partial fractions, at least \(r = 1, 2, 3\) and \(r = n-1, n\), showing a set of three cancelling.
+          - scheme: |
+              \(\frac12\left(\frac{1}{(a+1)(a+2)} - \frac{1}{(n+a+1)(n+a+2)}\right)\)
+            marks:
+              - code: A1
+                note: oe, such as \(\frac{n(n+2a+3)}{2(a+1)(a+2)(n+a+1)(n+a+2)}\).
+      - part: b
+        rows:
+          - scheme: |
+              \(n \to \infty\): \(\frac{1}{2(a+1)(a+2)} = \frac{1}{24}\)
+            marks:
+              - code: M1
+                note: Takes the limit as \(n \to \infty\) in their (a), with the terms in \(n\) tending to 0, and sets the limit equal to \(\frac{1}{24}\).
+          - scheme: |
+              \(a^2 + 3a - 10 = 0 \Rightarrow a = \ldots\)
+            marks:
+              - code: dM1
+                note: Rearranges to a three-term quadratic in \(a\) and solves it by any means.
+          - scheme: |
+              \(a = 2\) (\(a = -5\) rejected)
+            marks:
+              - code: A1
+                note: A0 if \(a = -5\) is also given as an answer.
+  - q: 10
+    stamp: 78346f1e
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\sum (4r^3 - r) = 4 \cdot \tfrac14 N^2(N+1)^2 - \tfrac12 N(N+1)\)
+            marks:
+              - code: M1
+                note: Expands to a polynomial in \(r\) and substitutes the standard result for each sum. Condone slips in the expansion.
+          - scheme: |
+              \(= N^2(N+1)^2 - \tfrac12 N(N+1)\)
+            marks:
+              - code: A1
+                note: Correct expression in \(N\), oe.
+          - scheme: |
+              \(= \tfrac12 N(N+1)\left(2N(N+1) - 1\right)\)
+              \(\phantom{=} = \tfrac12 N(N+1)(2N^2 + 2N - 1)\)
+            marks:
+              - code: A1 AG
+                note: Correct expression in \(N\) leading without error to the printed result; expanding both to the same quartic is accepted.
+      - part: b
+        rows:
+          - scheme: |
+              \(6r + 13 \equiv A(2r+3) + B(2r-1) \Rightarrow A = \ldots,\ B = \ldots\)
+            marks:
+              - code: M1
+                note: Forms an identity of this form and finds \(A\) or \(B\), by substitution or comparing coefficients.
+          - scheme: |
+              \(\frac{4}{2r-1} - \frac{1}{2r+3}\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\frac{4}{(2r-1)2^{r+1}} - \frac{4}{(2r+3)2^{r+3}}\)
+              \(4\left[\left(\frac{1}{1 \cdot 2^2} - \frac{1}{5 \cdot 2^4}\right) + \left(\frac{1}{3 \cdot 2^3} - \frac{1}{7 \cdot 2^5}\right)\right.\)
+              \(\phantom{4} + \left(\frac{1}{5 \cdot 2^4} - \frac{1}{9 \cdot 2^6}\right) + \cdots\)
+              \(\phantom{4} + \left(\frac{1}{(2N-3)2^{N}} - \frac{1}{(2N+1)2^{N+2}}\right)\)
+              \(\left.\phantom{4} + \left(\frac{1}{(2N-1)2^{N+1}} - \frac{1}{(2N+3)2^{N+3}}\right)\right]\)
+            marks:
+              - code: dM1
+                note: Uses their partial fractions with the factor \(\left(\frac12\right)^{r+1}\), showing terms cancel two apart, from at least \(r = 1, 2, 3\) and \(r = N-1, N\).
+          - scheme: |
+              \(\frac76 - \frac{1}{(2N+1)2^N} - \frac{1}{(2N+3)2^{N+1}}\)
+            marks:
+              - code: A1
+                note: Correct sum oe, such as \(\frac76 - \frac{6N+7}{(2N+1)(2N+3)2^{N+1}}\). Need not be combined.
+      - part: c
+        rows:
+          - scheme: |
+              \(N \to \infty\): \(\frac{1}{(2N+1)2^N},\ \frac{1}{(2N+3)2^{N+1}} \to 0\)
+            marks:
+              - code: M1
+                note: Takes the limit as \(N \to \infty\) in their sum of the form constant plus terms with a factor \(2^{-N}\), with those terms tending to 0.
+          - scheme: |
+              \(\frac76\)
+            marks:
+              - code: A1
+                note: \(\frac76\), or awrt 1.17.
+  - q: 11
+    stamp: 8b0c809d
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \((m+1)^5-(m-1)^5\), \(m = 2n-1\)
+              \(\phantom{A} = (m^5+5m^4+10m^3+10m^2+5m+1)\)
+              \(\phantom{A = } - (m^5-5m^4+10m^3-10m^2+5m-1)\)
+            marks:
+              - code: M1
+                note: Expands both fifth powers by the binomial theorem, in \(n\) or after a substitution such as \(m = 2n-1\), or expands both sides. Condone sign slips.
+          - scheme: |
+              \(\phantom{A} = 10m^4+20m^2+2\)
+              \(\phantom{A} = 10(2n-1)^4+20(2n-1)^2+2\)
+            marks:
+              - code: A1 AG
+                note: Correct expansions leading without error to the printed identity. If both sides are expanded, both correct and LHS = RHS stated.
+      - part: b
+        rows:
+          - scheme: |
+              \(\sum_{r=1}^{n}\left((2r)^5-(2r-2)^5\right)\)
+              \(\phantom{A} = 10\sum_{r=1}^{n}(2r-1)^4+20\sum_{r=1}^{n}(2r-1)^2+2n\)
+            marks:
+              - code: M1
+                note: Replaces \(n\) by \(r\) in the identity and sums both sides over \(r = 1\) to \(n\). Condone \(\sum 2\) written as 2.
+          - scheme: |
+              LHS \(= (2^5+4^5+\cdots+(2n)^5)\)
+              \(\phantom{\text{LHS} = } - (0^5+2^5+\cdots+(2n-2)^5)\)
+            marks:
+              - code: dM1
+                note: Writes out the LHS terms for at least \(r = 1\), \(r = 2\) and \(r = n\), with the cancellation evident.
+          - scheme: |
+              \(\phantom{\text{LHS}} = (2n)^5 = 32n^5\)
+            marks:
+              - code: A1
+                note: \((2n)^5\) oe.
+          - scheme: |
+              \(\sum_{r=1}^{n}(2r-1)^2 = \sum_{r=1}^{n}(4r^2-4r+1)\)
+              \(\phantom{A} = \tfrac46 n(n+1)(2n+1) - \tfrac42 n(n+1) + n\)
+            marks:
+              - code: M1
+                note: Expands \((2r-1)^2\) and substitutes the standard results for \(\sum r^2\) and \(\sum r\), with \(\sum 1 = n\); or any valid use of standard results, such as \(\sum_{r=1}^{2n} r^2 - 4\sum_{r=1}^{n} r^2\).
+          - scheme: |
+              \(\phantom{A} = \tfrac13 n(2n-1)(2n+1)\)
+            marks:
+              - code: A1
+                note: Correct expression, oe; need not be factorised.
+          - scheme: |
+              \(10\sum_{r=1}^{n}(2r-1)^4 = 32n^5 - \tfrac{20}{3}n(4n^2-1) - 2n\)
+              \(\Rightarrow \sum_{r=1}^{n}(2r-1)^4 = \tfrac1{15}n(48n^4-40n^2+7)\)
+              \(\phantom{\Rightarrow A} = \tfrac1{15}n(4n^2-1)(\ldots)\)
+            marks:
+              - code: dM1
+                note: Substitutes their \(32n^5\) and their cubic for \(\sum(2r-1)^2\) into the summed identity, makes \(\sum(2r-1)^4\) the subject, and takes out \(n(4n^2-1)\) or compares coefficients with the printed form.
+          - scheme: |
+              \(\phantom{\Rightarrow A} = \tfrac1{15}n(2n-1)(2n+1)(12n^2-7)\)
+              \(a = 12\), \(b = 0\), \(c = -7\)
+            marks:
+              - code: A1
+                note: cso. All three values, stated or seen in the factorised form.
+  - q: 12
+    stamp: 0a9b8875
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\frac{1}{(3r-2)(3r+4)} = \frac{A}{3r-2} + \frac{B}{3r+4}\)
+              \(\phantom{A} \Rightarrow A = \ldots,\ B = \ldots\ [= \tfrac16, -\tfrac16]\)
+            marks:
+              - code: M1
+                note: Uses partial fractions of the form \(\frac{A}{3r-2} + \frac{B}{3r+4}\) and finds values for \(A\) and \(B\) by any method.
+          - scheme: |
+              \(S_n = \tfrac16\big[(1 - \tfrac17) + (\tfrac14 - \tfrac1{10}) + (\tfrac17 - \tfrac1{13})\)
+              \(\phantom{S_n =} + \cdots + (\tfrac1{3n-5} - \tfrac1{3n+1})\)
+              \(\phantom{S_n =} + (\tfrac1{3n-2} - \tfrac1{3n+4})\big]\)
+            marks:
+              - code: dM1
+                note: Writes their terms for at least \(r = 1, 2, 3\) and \(r = n-1, n\), enough to show the cancellation pattern.
+          - scheme: |
+              \(S_n = \tfrac16\left(1 + \tfrac14 - \frac1{3n+1} - \frac1{3n+4}\right)\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(S_n = \frac{5(3n+1)(3n+4) - 4(6n+5)}{24(3n+1)(3n+4)}\)
+            marks:
+              - code: M1
+                note: Combines their surviving terms, including both in \(n\), over a common denominator. Need not be simplified.
+          - scheme: |
+              \(\phantom{S_n} = \frac{3n(15n+17)}{24(3n+1)(3n+4)} = \frac{n(15n+17)}{8(3n+1)(3n+4)}\)
+            marks:
+              - code: A1 AG
+                note: Correct combined fraction from correct surviving terms, reaching the printed result without error.
+      - part: b
+        rows:
+          - scheme: |
+              \(\frac5{24} - S_n = \frac5{24} - \tfrac16\left(\tfrac54 - \frac{6n+5}{(3n+1)(3n+4)}\right)\)
+            marks:
+              - code: M1
+                note: Subtracts either form of \(S_n\) from (a) from \(\frac5{24}\) and attempts a single simplified expression.
+          - scheme: |
+              \(\phantom{\frac5{24} - S_n} = \frac{6n+5}{6(3n+1)(3n+4)}\)
+            marks:
+              - code: A1
+                note: oe, such as \(\frac{6n+5}{54n^2+90n+24}\).
+          - scheme: |
+              \(\frac{6n+5}{6(3n+1)(3n+4)} < \frac1k\)
+              \(\phantom{A} \Rightarrow k(6n+5) < 54n^2 + 90n + 24\)
+            marks:
+              - code: M1
+                note: Sets their difference less than \(\frac1k\), clears the fractions and collects to a quadratic inequality in \(n\). Condone slips.
+          - scheme: |
+              \(54n^2 + (90-6k)n + 24 - 5k > 0\)
+            marks:
+              - code: A1
+                note: oe, any multiple, with like terms collected.
+          - scheme: |
+              \(n = \frac{6k - 90 \pm \sqrt{(90-6k)^2 - 216(24-5k)}}{108}\)
+            marks:
+              - code: dM1
+                note: Uses the correct quadratic formula with their coefficients in \(k\), or completes the square, leading to \(n = \ldots\).
+          - scheme: |
+              \((90-6k)^2 - 216(24-5k) = 36(k^2+81)\)
+              \(\phantom{A} \Rightarrow n = \frac{k - 15 \pm \sqrt{k^2+81}}{18}\)
+              \(k - 15 - \sqrt{k^2+81} < 0\), so as \(n \geq 1\)
+              \(\phantom{A} n > \frac{k - 15 + \sqrt{k^2+81}}{18}\)
+            marks:
+              - code: A1 AG
+                note: Correct discriminant reaching both roots without error, the region outside the roots, and the lower root rejected with a reason, such as being negative.

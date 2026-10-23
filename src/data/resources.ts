@@ -954,6 +954,16 @@ const rawResources: Resource[] = [
     topic: 'Miscellaneous Pure',
   },
   {
+    id: 'fm-misc-method-of-differences-ms',
+    title: 'Method of Differences',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/misc-pure/ms/_QBT___MS__Series___Method_of_Differences.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-misc-method-of-differences',
+    topic: 'Miscellaneous Pure',
+  },
+  {
     id: 'fm-misc-rational-functions',
     title: 'Rational Functions',
     description: '',
