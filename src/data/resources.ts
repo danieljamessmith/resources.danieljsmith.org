@@ -894,6 +894,16 @@ const rawResources: Resource[] = [
     topic: 'Miscellaneous Pure',
   },
   {
+    id: 'fm-misc-hyperbolic-functions-ms',
+    title: 'Hyperbolic Functions',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/misc-pure/ms/_QBT___MS__Hyperbolic_Functions.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-misc-hyperbolic-functions',
+    topic: 'Miscellaneous Pure',
+  },
+  {
     id: 'fm-misc-roots-of-polynomials',
     title: 'Roots of Polynomials',
     description: '',
