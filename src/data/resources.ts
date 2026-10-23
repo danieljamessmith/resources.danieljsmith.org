@@ -924,6 +924,16 @@ const rawResources: Resource[] = [
     topic: 'Miscellaneous Pure',
   },
   {
+    id: 'fm-misc-roots-of-polynomials-ms',
+    title: 'Roots of Polynomials',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/misc-pure/ms/_QBT___MS__Roots_of_Polynomials.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-misc-roots-of-polynomials',
+    topic: 'Miscellaneous Pure',
+  },
+  {
     id: 'fm-misc-method-of-differences',
     title: 'Method of Differences',
     description: '',
