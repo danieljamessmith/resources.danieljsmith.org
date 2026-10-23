@@ -4,7 +4,7 @@
 \djsSolnHeader{Complex Roots and Geometry Problems}
 \djsSitePath{Core Pure}{Complex Numbers}
 
-\djsLastUpdated{14 October 2026}
+\djsLastUpdated{23 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -25,8 +25,8 @@
 \coordinate (O) at (0, 0);
 \coordinate (A) at (1.6, 1.6);
 
-\draw[thick, -{Stealth[length=3mm]}] (-3.2, 0) -- (3.6, 0) node[right] {$\mathrm{Re}(z)$};
-\draw[thick, -{Stealth[length=3mm]}] (0, -3.2) -- (0, 3.6) node[above] {$\mathrm{Im}(z)$};
+\draw[thick, -{Stealth[length=3mm]}] (-3.2, 0) -- (3.6, 0) node[right] {$\mathrm{Re}$};
+\draw[thick, -{Stealth[length=3mm]}] (0, -3.2) -- (0, 3.6) node[above] {$\mathrm{Im}$};
 
 \draw[thick] ($(A)+(-0.06,0)$) -- ($(A)+(0.06,0)$);
 \draw[thick] ($(A)+(0,-0.06)$) -- ($(A)+(0,0.06)$);
@@ -46,7 +46,7 @@ The complex numbers $z_2$, $z_3$ and $z_4$ are $z_1e^{\frac{1}{2}\pi i}$, $z_1e^
     \item On a copy of the Argand diagram, mark the points $B$, $C$ and $D$ representing the complex numbers $z_2$, $z_3$ and $z_4$. \marks[-10pt]{2}
     \item Show that $z_1+z_2+z_3+z_4=0$. \marks{2} \\
   \end{enumerate}
-  \item Given now that $z_1$, $z_2$, $z_3$ and $z_4$ are roots of the equation $z^4=-16$, find these four roots, giving your answers in the form $a+ib$, where $a$ and $b$ are real and exact. \marks{4} \\
+  \item Given now that $z_1$, $z_2$, $z_3$ and $z_4$ are roots of the equation $z^4=-16$, find these four roots, giving your answers in the form $a+bi$, where $a$ and $b$ are real and exact. \marks{4} \\
 \end{enumerate}
 
 \vspace*{10pt}
@@ -57,7 +57,7 @@ The complex numbers $z_2$, $z_3$ and $z_4$ are $z_1e^{\frac{1}{2}\pi i}$, $z_1e^
   \begin{enumerate}[label=(\roman*)]
     \item Multiplying $z_1$ by $e^{i\theta}$ corresponds to rotating $z_1$ by $\theta$ anticlockwise about the origin.
 
-    So \(B\), \(C\) and \(D\) are the images of \(A\) under such rotations of $90^\circ, 180^\circ$ and $270^\circ$ respectively.
+    So \(B\), \(C\) and \(D\) are the images of \(A\) under such rotations through $\frac{\pi}{2}$, $\pi$ and $\frac{3\pi}{2}$ respectively.
 
     \begin{center}
     \begin{tikzpicture}[scale=1]
@@ -67,8 +67,8 @@ The complex numbers $z_2$, $z_3$ and $z_4$ are $z_1e^{\frac{1}{2}\pi i}$, $z_1e^
       \coordinate (C) at (-1.6,-1.6);
       \coordinate (D) at (1.6,-1.6);
 
-      \draw[thick, -{Stealth[length=3mm]}] (-3.2,0) -- (3.6,0) node[right] {$\mathrm{Re}(z)$};
-      \draw[thick, -{Stealth[length=3mm]}] (0,-3.2) -- (0,3.6) node[above] {$\mathrm{Im}(z)$};
+      \draw[thick, -{Stealth[length=3mm]}] (-3.2,0) -- (3.6,0) node[right] {$\mathrm{Re}$};
+      \draw[thick, -{Stealth[length=3mm]}] (0,-3.2) -- (0,3.6) node[above] {$\mathrm{Im}$};
 
       \fill (O) circle (1.2pt);
       \fill (A) circle (1.2pt);
@@ -92,42 +92,40 @@ The complex numbers $z_2$, $z_3$ and $z_4$ are $z_1e^{\frac{1}{2}\pi i}$, $z_1e^
     &=0
     \end{align*}
 
-    Hence \(z_1+z_2+z_3+z_4=0\).\\
-
-    (Alternatively, use that $1+e^{\frac{1}{2}\pi i}+e^{\pi i}+e^{\frac{3}{2}\pi i}$ is a geometric sum with common ratio $r = e^{\frac{1}{2}\pi i}$) \\
+    \textit{Alternative Solution:} use the fact that $1+e^{\frac{1}{2}\pi i}+e^{\pi i}+e^{\frac{3}{2}\pi i}$ is a geometric series with common ratio $e^{\frac{1}{2}\pi i}$.
   \end{enumerate}
 
   \item Write
   \begin{align*}
-        -16&=16e^{i\pi}\\
-           &= 16e^{i(\pi+2k\pi)}
+        -16&=16e^{\pi i}\\
+           &= 16e^{(\pi+2k\pi)i}
   \end{align*}
 
   so the fourth roots are
   \[
-  z=2e^{i\left(\frac{\pi+2k\pi}{4}\right)}
+  z=16^{1/4}e^{\frac{\pi+2k\pi}{4}i}=2e^{\frac{\pi+2k\pi}{4}i},
   \qquad k=0,1,2,3
   \]
 
   Hence
   \begin{align*}
-  k=0&:\quad z=2e^{i\pi/4}
-  =2\left(\frac{\sqrt2}{2}+i\frac{\sqrt2}{2}\right)
-  =\sqrt2+i\sqrt2 \\
-  k=1&:\quad z=2e^{3i\pi/4}
-  =2\left(-\frac{\sqrt2}{2}+i\frac{\sqrt2}{2}\right)
-  =-\sqrt2+i\sqrt2 \\
-  k=2&:\quad z=2e^{5i\pi/4}
-  =2\left(-\frac{\sqrt2}{2}-i\frac{\sqrt2}{2}\right)
-  =-\sqrt2-i\sqrt2 \\
-  k=3&:\quad z=2e^{7i\pi/4}
-  =2\left(\frac{\sqrt2}{2}-i\frac{\sqrt2}{2}\right)
-  =\sqrt2-i\sqrt2
+  k=0&:\quad z=2e^{\frac{\pi}{4}i}
+  =2\left(\frac{\sqrt2}{2}+\frac{\sqrt2}{2}i\right)
+  =\sqrt2+\sqrt2\,i \\
+  k=1&:\quad z=2e^{\frac{3\pi}{4}i}
+  =2\left(-\frac{\sqrt2}{2}+\frac{\sqrt2}{2}i\right)
+  =-\sqrt2+\sqrt2\,i \\
+  k=2&:\quad z=2e^{\frac{5\pi}{4}i}
+  =2\left(-\frac{\sqrt2}{2}-\frac{\sqrt2}{2}i\right)
+  =-\sqrt2-\sqrt2\,i \\
+  k=3&:\quad z=2e^{\frac{7\pi}{4}i}
+  =2\left(\frac{\sqrt2}{2}-\frac{\sqrt2}{2}i\right)
+  =\sqrt2-\sqrt2\,i
   \end{align*}
 
   Therefore the four roots are
   \[
-  \sqrt2+i\sqrt2,\quad -\sqrt2+i\sqrt2,\quad -\sqrt2-i\sqrt2,\quad \sqrt2-i\sqrt2
+  \sqrt2+\sqrt2\,i,\quad -\sqrt2+\sqrt2\,i,\quad -\sqrt2-\sqrt2\,i,\quad \sqrt2-\sqrt2\,i
   \]
 \end{enumerate}
 \end{djsSolution}
@@ -143,12 +141,12 @@ The five solutions of the equation $z^5=16+16\sqrt{3}\,i$ are represented by poi
 
 These points are the vertices of a regular pentagon $P$ with centre at the origin. \\
 
-\begin{enumerate}
+\begin{enumerate}[label=\textbf{(\alph*)}]
     \item Determine the five complex numbers that represent these vertices, giving your answers in the form $re^{i\theta}$, where $0\leq \theta<2\pi$. \marks{5} \\
 
-    \item Sketch $P$ on an Argand Diagram, taking care to label each vertex. \marks{2}\\
+    \item Sketch $P$ on an Argand diagram, taking care to label each vertex. \marks{2}\\
 
-    \item Show that the area of $P$ can be written $k\sin\frac{2\pi}{5} $ where $k$ is an integer to be determined. \marks{4}
+    \item Show that the area of $P$ can be written as $k\sin\frac{2\pi}{5}$, where $k$ is an integer to be determined. \marks{4}
     
 \end{enumerate}
 
@@ -161,7 +159,7 @@ These points are the vertices of a regular pentagon $P$ with centre at the origi
 w=16+16\sqrt{3}\,i
 \]
 
-First write $w$ in polar form.
+First write $w$ in exponential form.
 
 Its modulus is
 \begin{align*}
@@ -172,50 +170,38 @@ Its modulus is
 &=32
 \end{align*}
 
-Its argument is
+$w$ lies in the first quadrant, so its argument is
 \[
-\arg(w)=\tan^{-1}\left(\frac{16\sqrt{3}}{16}\right)=\tan^{-1}(\sqrt{3})=\frac{\pi}{3}
+\arg(w)=\arctan\left(\frac{16\sqrt{3}}{16}\right)=\arctan\sqrt{3}=\frac{\pi}{3}
 \]
 
-since $w$ lies in the first quadrant.
-
-So
+Hence
 \[
-16+16\sqrt{3}\,i=32e^{i\pi/3}
+16+16\sqrt{3}\,i=32e^{\frac{\pi}{3}i}=32e^{\left(\frac{\pi}{3}+2k\pi\right)i}
 \]
 
-Now solve
+so the fifth roots are
 \[
-z^5=32e^{i\pi/3}
-\]
-
-The fifth roots have modulus
-\[
-32^{1/5}=2
-\]
-
-and arguments
-\[
-\theta=\frac{\frac{\pi}{3}+2\pi k}{5}=\frac{\pi}{15}+\frac{2\pi k}{5}
-\qquad (k=0,1,2,3,4)
+z=32^{1/5}e^{\frac{\frac{\pi}{3}+2k\pi}{5}i}=2e^{\left(\frac{\pi}{15}+\frac{2k\pi}{5}\right)i},
+\qquad k=0,1,2,3,4
 \]
 
 Hence the five roots are
 \begin{align*}
-z&=2e^{i\pi/15} \\
-z&=2e^{i7\pi/15} \\
-z&=2e^{i13\pi/15} \\
-z&=2e^{i19\pi/15} \\
-z&=2e^{i25\pi/15}=2e^{i5\pi/3}
+z&=2e^{\frac{\pi}{15}i} \\
+z&=2e^{\frac{7\pi}{15}i} \\
+z&=2e^{\frac{13\pi}{15}i} \\
+z&=2e^{\frac{19\pi}{15}i} \\
+z&=2e^{\frac{25\pi}{15}i}=2e^{\frac{5\pi}{3}i}
 \end{align*}
 
-  \item Let the vertices in anticlockwise order be
+  \item Let the vertices in anticlockwise order be \(A\), \(B\), \(C\), \(D\) and \(E\), where
 \[
-A=2e^{i\pi/15},\quad
-B=2e^{i7\pi/15},\quad
-C=2e^{i13\pi/15},\quad
-D=2e^{i19\pi/15},\quad
-E=2e^{i5\pi/3}
+z_A=2e^{\frac{\pi}{15}i},\quad
+z_B=2e^{\frac{7\pi}{15}i},\quad
+z_C=2e^{\frac{13\pi}{15}i},\quad
+z_D=2e^{\frac{19\pi}{15}i},\quad
+z_E=2e^{\frac{5\pi}{3}i}
 \]
 
 They all lie on the circle of radius $2$ centred at the origin, with equal angular spacing $\frac{2\pi}{5}$.
@@ -224,8 +210,8 @@ They all lie on the circle of radius $2$ centred at the origin, with equal angul
 \begin{tikzpicture}
 \begin{axis}[
 axis lines=middle,
-xlabel={$\mathrm{Re}(z)$},
-ylabel={$\mathrm{Im}(z)$},
+xlabel={$\mathrm{Re}$},
+ylabel={$\mathrm{Im}$},
 xmin=-3.2, xmax=3.2,
 ymin=-3.2, ymax=3.2,
 xtick={-2,2},
@@ -422,12 +408,12 @@ The circle $D$, with equation $|z-(1+i)|=5$, intersects $C$ at the points repres
 
   Now use $y=2x-6$.
 
-  If $x=1$,
+  If $x=1$, then
   \[
   y=2(1)-6=-4
   \]
 
-  If $x=5$,
+  If $x=5$, then
   \[
   y=2(5)-6=4
   \]
@@ -447,11 +433,11 @@ The circle $D$, with equation $|z-(1+i)|=5$, intersects $C$ at the points repres
 \questionitem
 % [Source: _QBT___Solns__Complex_Roots_and_Geometry_Problems, Q4]
 
-Given that $z_1=7-i$ and $z_2=\dfrac{z_1}{1-i}$, \\
+Given that $z_1=7-i$ and $z_2=\frac{z_1}{1-i}$, \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item find $z_2$ in the form $a+bi$, where $a$ and $b$ are real. \marks{2} \\
   \item Show on an Argand diagram the point $P$ representing $z_1$ and the point $Q$ representing $z_2$. \marks{2} \\
-  \item Given that $O$ is the origin, show that $\angle OQP=\dfrac{\pi}{2}$. \marks{2} \\
+  \item Given that $O$ is the origin, show that $\angle OQP=\frac{\pi}{2}$. \marks{2} \\
 \end{enumerate}
 The circle passing through the points $O$, $P$ and $Q$ has centre $C$. Find \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
@@ -465,7 +451,7 @@ The circle passing through the points $O$, $P$ and $Q$ has centre $C$. Find \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Rationalise the denominator:
   \begin{align*}
-  z_2&=\frac{7-i}{1-i}\cdot\frac{1+i}{1+i}\\
+  z_2&=\frac{7-i}{1-i}\times\frac{1+i}{1+i}\\
      &=\frac{(7-i)(1+i)}{(1-i)(1+i)}\\
      &=\frac{7+7i-i-i^2}{1-i^2}\\
      &=\frac{7+6i+1}{1+1}\\
@@ -473,11 +459,11 @@ The circle passing through the points $O$, $P$ and $Q$ has centre $C$. Find \\
      &=4+3i
   \end{align*}
 
-  \item On an Argand diagram, the complex number $x+yi$ is represented by the point $(x,y)$.
+  \item On an Argand diagram, the complex number $x+iy$ is represented by the point $(x,y)$.
 
-  So
+  So \(z_1=7-i\) and \(z_2=4+3i\) are represented by the points
   \[
-  z_1=7-i\;\Rightarrow\;P(7,-1),\qquad z_2=4+3i\;\Rightarrow\;Q(4,3)
+  P(7,-1),\qquad Q(4,3)
   \]
 
   \begin{center}
@@ -487,8 +473,8 @@ The circle passing through the points $O$, $P$ and $Q$ has centre $C$. Find \\
     xmin=-0.5, xmax=9,
     ymin=-2, ymax=5,
     width=10cm, height=7.5cm,
-    xlabel={$\mathrm{Re}(z)$},
-    ylabel={$\mathrm{Im}(z)$},
+    xlabel={$\mathrm{Re}$},
+    ylabel={$\mathrm{Im}$},
     xtick={4,7},
     ytick={-1,3},
     enlargelimits=false
@@ -500,7 +486,7 @@ The circle passing through the points $O$, $P$ and $Q$ has centre $C$. Find \\
   \end{tikzpicture}
   \end{center}
 
-  \item Using the coordinates from part (b),
+  \item Using the coordinates from part (b):
   \[
   O=(0,0),\quad P=(7,-1),\quad Q=(4,3)
   \]
@@ -569,8 +555,8 @@ The circle passing through the points $O$, $P$ and $Q$ has centre $C$. Find \\
 \coordinate (P) at ({3*\rad},0);
 \coordinate (Q) at ({1.5*\rad},{sqrt(3)*\rad/2});
 \coordinate (R) at ({1.5*\rad},{-sqrt(3)*\rad/2});
-\draw[-{Stealth[length=3mm]}, thick] ({-0.9*\rad},0) -- ({3.35*\rad},0) node[right] {$\mathrm{Re}(z)$};
-\draw[-{Stealth[length=3mm]}, thick] (0,{-1.2*\rad}) -- (0,{1.2*\rad}) node[above] {$\mathrm{Im}(z)$};
+\draw[-{Stealth[length=3mm]}, thick] ({-0.9*\rad},0) -- ({3.35*\rad},0) node[right] {$\mathrm{Re}$};
+\draw[-{Stealth[length=3mm]}, thick] (0,{-1.2*\rad}) -- (0,{1.2*\rad}) node[above] {$\mathrm{Im}$};
 \draw[thick] (A) -- (B) -- (C) -- cycle;
 \draw[thick] (P) -- (Q) -- (R) -- cycle;
 \node[below] at (A) {$A$};
@@ -600,12 +586,12 @@ The points \(A,B,C\) represent the cube roots of unity, so their complex numbers
 z^3=1
 \]
 
-Hence \(A,B,C\) are the roots of
+Hence \(z_A,z_B,z_C\) are the roots of
 \[
 z^3-1=0
 \]
 
-Now \(P,Q,R\) are obtained by adding \(2\) to the complex numbers at \(A,B,C\).
+Now \(z_P,z_Q,z_R\) are obtained by adding \(2\) to \(z_A,z_B,z_C\).
 
 So if \(z\) represents one of \(P,Q,R\), then \(z-2\) is a cube root of unity. Therefore
 \[
@@ -623,12 +609,12 @@ Expanding:
 &=z^3-6z^2+12z-9
 \end{align*}
 
-So \(P,Q,R\) are the roots of
+So \(z_P,z_Q,z_R\) are the roots of
 \[
 z^3-6z^2+12z-9=0
 \]
 
-Therefore a degree \(6\) polynomial with roots \(A,B,C,P,Q,R\) is
+Therefore a degree \(6\) polynomial with roots \(z_A,z_B,z_C,z_P,z_Q,z_R\) is
 \[
 (z^3-1)(z^3-6z^2+12z-9)=0
 \]
@@ -656,7 +642,7 @@ z^6-6z^5+12z^4-10z^3+6z^2-12z+9=0
 
 In an Argand diagram, the points $A$, $B$ and $C$ are the vertices of an equilateral triangle with centre $G$. The point $G$ represents the complex number $1-2i$, and the point $A$ represents the complex number $5+2i$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find the complex numbers represented by the points $B$ and $C$, giving your answers in the form $x+iy$, where $x$ and $y$ are real and exact. \marks{6} \\
+  \item Find the complex numbers represented by the points $B$ and $C$, giving your answers in the form $a+bi$, where $a$ and $b$ are real and exact. \marks{6} \\
 \end{enumerate}
 The points $D$, $E$ and $F$ are the centroids of triangles $GBC$, $GCA$ and $GAB$ respectively. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
@@ -677,52 +663,52 @@ The points $D$, $E$ and $F$ are the centroids of triangles $GBC$, $GCA$ and $GAB
   z_A-z_G=(5+2i)-(1-2i)=4+4i
   \]
 
-  In an equilateral triangle, the vectors from the centre to the three vertices are \(120^\circ\) apart. So the vectors from \(G\) to \(B\) and \(C\) are obtained by rotating \(4+4i\) through \(\pm 120^\circ\).
+  In an equilateral triangle, the vectors from the centre to the three vertices are \(\frac{2\pi}{3}\) apart. So the vectors from \(G\) to \(B\) and \(C\) are obtained by rotating \(4+4i\) through \(\pm\frac{2\pi}{3}\), that is, by multiplying it by \(\cos\frac{2\pi}{3}\pm i\sin\frac{2\pi}{3}=-\frac12\pm\frac{\sqrt3}{2}i\).
 
-  Take \(B\) to be the \(+120^\circ\) rotation. Then
+  Take \(B\) to be the rotation through \(\frac{2\pi}{3}\). Then
   \[
   z_B-z_G=(4+4i)\left(-\frac12+\frac{\sqrt3}{2}i\right)
   \]
 
-  Expanding,
+  Expanding:
   \begin{align*}
   z_B-z_G
   &=4\left(-\frac12\right)+4\left(\frac{\sqrt3}{2}i\right)+4i\left(-\frac12\right)+4i\left(\frac{\sqrt3}{2}i\right) \\
   &=-2+2\sqrt3\,i-2i+2\sqrt3\,i^2 \\
-  &=-2-2\sqrt3+(2\sqrt3-2)i
+  &=(-2-2\sqrt3)+(2\sqrt3-2)i
   \end{align*}
 
   Hence
   \begin{align*}
   z_B&=z_G+(z_B-z_G) \\
-  &=(1-2i)+\bigl[-2-2\sqrt3+(2\sqrt3-2)i\bigr] \\
-  &=-1-2\sqrt3+(2\sqrt3-4)i
+  &=(1-2i)+\bigl[(-2-2\sqrt3)+(2\sqrt3-2)i\bigr] \\
+  &=(-1-2\sqrt3)+(2\sqrt3-4)i
   \end{align*}
 
-  Now take \(C\) to be the \(-120^\circ\) rotation. Then
+  Now take \(C\) to be the rotation through \(-\frac{2\pi}{3}\). Then
   \[
   z_C-z_G=(4+4i)\left(-\frac12-\frac{\sqrt3}{2}i\right)
   \]
 
-  Expanding,
+  Expanding:
   \begin{align*}
   z_C-z_G
   &=4\left(-\frac12\right)+4\left(-\frac{\sqrt3}{2}i\right)+4i\left(-\frac12\right)+4i\left(-\frac{\sqrt3}{2}i\right) \\
   &=-2-2\sqrt3\,i-2i-2\sqrt3\,i^2 \\
-  &=-2+2\sqrt3-(2+2\sqrt3)i
+  &=(-2+2\sqrt3)-(2+2\sqrt3)i
   \end{align*}
 
   Hence
   \begin{align*}
   z_C&=z_G+(z_C-z_G) \\
-  &=(1-2i)+\bigl[-2+2\sqrt3-(2+2\sqrt3)i\bigr] \\
-  &=-1+2\sqrt3-(4+2\sqrt3)i
+  &=(1-2i)+\bigl[(-2+2\sqrt3)-(2+2\sqrt3)i\bigr] \\
+  &=(-1+2\sqrt3)-(4+2\sqrt3)i
   \end{align*}
 
   Therefore
   \[
-  B=-1-2\sqrt3+(2\sqrt3-4)i,\qquad
-  C=-1+2\sqrt3-(4+2\sqrt3)i
+  z_B=(-1-2\sqrt3)+(2\sqrt3-4)i,\qquad
+  z_C=(-1+2\sqrt3)-(4+2\sqrt3)i
   \]
 
   with \(B\) and \(C\) interchangeable.
@@ -744,7 +730,7 @@ The points $D$, $E$ and $F$ are the centroids of triangles $GBC$, $GCA$ and $GAB
   &=\frac{4z_G-z_A}{3}
   \end{align*}
 
-  Similarly,
+  Similarly
   \[
   z_E=\frac{4z_G-z_B}{3},\qquad z_F=\frac{4z_G-z_C}{3}
   \]
@@ -763,17 +749,17 @@ The points $D$, $E$ and $F$ are the centroids of triangles $GBC$, $GCA$ and $GAB
 
   Next, find the area of \(ABC\).
 
-  First,
+  First find \(GA\):
   \[
   GA=|z_A-z_G|=|4+4i|=\sqrt{4^2+4^2}=4\sqrt2
   \]
 
-  Since \(G\) is the centre of the equilateral triangle, the three angles at \(G\) are equal and sum to \(360^\circ\), so
+  Since \(G\) is the centre of the equilateral triangle, the three angles at \(G\) are equal and sum to \(2\pi\), so
   \[
-  \angle AGB=120^\circ
+  \angle AGB=\frac{2\pi}{3}
   \]
 
-  Also,
+  Also
   \[
   GA=GB=GC=4\sqrt2
   \]
@@ -781,9 +767,9 @@ The points $D$, $E$ and $F$ are the centroids of triangles $GBC$, $GCA$ and $GAB
   Hence
   \begin{align*}
   \text{Area of } \triangle AGB
-  &=\frac12(GA)(GB)\sin 120^\circ \\
-  &=\frac12(4\sqrt2)(4\sqrt2)\cdot \frac{\sqrt3}{2} \\
-  &=16\cdot \frac{\sqrt3}{2} \\
+  &=\frac12(GA)(GB)\sin\frac{2\pi}{3} \\
+  &=\frac12(4\sqrt2)(4\sqrt2)\times\frac{\sqrt3}{2} \\
+  &=16\times\frac{\sqrt3}{2} \\
   &=8\sqrt3
   \end{align*}
 
@@ -881,7 +867,7 @@ Now $w$ is a root of unity, so $|w|=1$. Hence
 ww^*=|w|^2=1
 \]
 
-Also,
+Also
 \[
 (1+i)(1-i)=1-i^2=2
 \]
@@ -893,11 +879,6 @@ So
 &=3-(1-i)w-(1+i)w^*
 \end{align*}
 
-Therefore
-\[
-|w-(1+i)|^2 = 3-(1-i)w-(1+i)w^*
-\]
-
   \item Let the complex number representing $A_{2r-1}$ be $w_r$.
 
 Since the decagon is regular and $A_1=(1,0)$, the odd-numbered vertices are at arguments
@@ -907,7 +888,7 @@ Since the decagon is regular and $A_1=(1,0)$, the odd-numbered vertices are at a
 
 so
 \[
-w_r=e^{2\pi i(r-1)/5}\qquad (r=1,2,3,4,5)
+w_r=e^{\frac{2(r-1)\pi}{5}i},\qquad r=1,2,3,4,5
 \]
 
 These are exactly the 5th roots of unity.
@@ -922,7 +903,7 @@ and so
 (PA_{2r-1})^2=|w_r-(1+i)|^2
 \]
 
-Using the result from part (a),
+Using the result from part (a):
 \[
 (PA_{2r-1})^2=3-(1-i)w_r-(1+i)w_r^*
 \]
@@ -934,7 +915,7 @@ Now sum for $r=1$ to $5$:
 &=15-(1-i)\sum_{r=1}^{5} w_r-(1+i)\sum_{r=1}^{5} w_r^*
 \end{align*}
 
-Since $w_1,w_2,w_3,w_4,w_5$ are the 5th roots of unity,
+The numbers $w_1,w_2,w_3,w_4,w_5$ are the 5th roots of unity, so
 \[
 \sum_{r=1}^{5} w_r=0
 \]
@@ -985,10 +966,10 @@ You are given the complex number $\alpha=\cos \frac{3\pi}{5}+i\sin \frac{3\pi}{5
 \alpha=\cos\frac{3\pi}{5}+i\sin\frac{3\pi}{5}
 \]
 
-Using De Moivre's theorem,
+Using de Moivre's theorem:
 \begin{align*}
 \alpha^5
-&=\cos\left(5\cdot\frac{3\pi}{5}\right)+i\sin\left(5\cdot\frac{3\pi}{5}\right) \\
+&=\cos\left(5\times\frac{3\pi}{5}\right)+i\sin\left(5\times\frac{3\pi}{5}\right) \\
 &=\cos 3\pi+i\sin 3\pi \\
 &=-1+0i \\
 &=-1
@@ -996,15 +977,15 @@ Using De Moivre's theorem,
 
 So $\alpha$ satisfies $z^5=-1$, and hence $\alpha$ is a root of the equation.
 
-  \item Since
+  \item Write
 \[
--1=\cos\bigl((2k+1)\pi\bigr)+i\sin\bigl((2k+1)\pi\bigr)
+-1=\cos(\pi+2k\pi)+i\sin(\pi+2k\pi)
 \]
 
-the five roots are
+so the fifth roots are
 \[
-z=\cos\frac{(2k+1)\pi}{5}+i\sin\frac{(2k+1)\pi}{5}
-\qquad (k=0,1,2,3,4)
+z=\cos\frac{\pi+2k\pi}{5}+i\sin\frac{\pi+2k\pi}{5},
+\qquad k=0,1,2,3,4
 \]
 
 Given that $\alpha=\cos\frac{3\pi}{5}+i\sin\frac{3\pi}{5}$, the other four roots are
@@ -1060,7 +1041,7 @@ so
 \alpha^2+\frac{1}{\alpha^2}=t^2-2
 \]
 
-Also,
+Also
 \[
 \alpha+\frac{1}{\alpha}=t
 \]
@@ -1077,7 +1058,7 @@ gives
 t^2-t-1&=0
 \end{align*}
 
-Therefore,
+Therefore
 \[
 \left(\alpha+\frac{1}{\alpha}\right)^2-\left(\alpha+\frac{1}{\alpha}\right)-1=0
 \]
@@ -1092,7 +1073,7 @@ so that
 t^2-t-1=0
 \]
 
-Solving this quadratic,
+Solving this quadratic:
 \[
 t=\frac{1\pm\sqrt{5}}{2}
 \]
@@ -1102,7 +1083,7 @@ Now
 \alpha=\cos\frac{3\pi}{5}+i\sin\frac{3\pi}{5}
 \]
 
-and since $|\alpha|=1$,
+and since $|\alpha|=1$, we have
 \[
 \frac{1}{\alpha}=\cos\frac{3\pi}{5}-i\sin\frac{3\pi}{5}
 \]
@@ -1124,7 +1105,7 @@ Therefore
 \cos\frac{3\pi}{5}=\frac{1\pm\sqrt{5}}{4}
 \]
 
-Since $\frac{3\pi}{5}=108^\circ$ is in quadrant II, $\cos\frac{3\pi}{5}<0$, so we take the negative value:
+Since $\frac{\pi}{2}<\frac{3\pi}{5}<\pi$, $\cos\frac{3\pi}{5}<0$, so we take the negative value:
 \[
 \cos\frac{3\pi}{5}=\frac{1-\sqrt{5}}{4}=\frac14-\frac14\sqrt5
 \]
@@ -1181,8 +1162,6 @@ The vertices of $K$ are given by the roots of the equation
 \alpha=\frac{-2+8i}{2}=-1+4i
 \]
 
-So $\alpha=-1+4i$.
-
   \item First find $z_1-\alpha$:
 \[
 z_1-\alpha=(6+11i)-(-1+4i)
@@ -1192,25 +1171,27 @@ z_1-\alpha=(6+11i)-(-1+4i)
 
 Now multiply by $\beta$:
 \[
-\beta(z_1-\alpha)=\frac{1-i}{14}\cdot 7(1+i)
+\beta(z_1-\alpha)=\frac{1-i}{14}\times 7(1+i)
 =\frac{(1-i)(1+i)}{2}
 \]
 
-Using $(1-i)(1+i)=1-i^2=2$,
+Using $(1-i)(1+i)=1-i^2=2$:
 \[
 \beta(z_1-\alpha)=\frac{2}{2}=1
 \]
 
-Hence $\beta(z_1-\alpha)=1$.
-
   \item 
   \begin{enumerate}[label=(\roman*)]
-    \item The roots of $w^8=1$ are the eighth roots of unity:
+    \item Write
 \[
-w=e^{ik\pi/4},\qquad k=0,1,2,3,4,5,6,7
+1=e^{2k\pi i}
 \]
 
-So in the form $re^{i\theta}$, we have $r=1$ and $\theta=\frac{k\pi}{4}$.
+so the roots of $w^8=1$, the eighth roots of unity, are
+\[
+w=e^{\frac{2k\pi}{8}i}=e^{\frac{k\pi}{4}i},\qquad k=0,1,\ldots,7
+\]
+
 
     \item From
 \[
@@ -1225,7 +1206,7 @@ w=\beta(z-\alpha)
 Then $w^8=1$, so
 \[
 z-\alpha=\frac{w}{\beta}
-\qquad\Rightarrow\qquad
+\quad\Longrightarrow\quad
 z=\alpha+\frac{w}{\beta}
 \]
 
@@ -1242,21 +1223,21 @@ Hence
 z=\alpha+7(1+i)w
 \]
 
-Using $\alpha=-1+4i$,
+Using $\alpha=-1+4i$:
 \[
 z=-1+4i+7(1+i)w
 \]
 
 Now substitute the eight roots of $w^8=1$.
 
-For $w=1$,
+For $w=1$:
 \[
 z=-1+4i+7(1+i)=6+11i
 \]
 
 which is $z_1$.
 
-For $w=-1$,
+For $w=-1$:
 \[
 z=-1+4i-7(1+i)=-8-3i
 \]
@@ -1265,7 +1246,7 @@ which is $z_2$.
 
 So the other six vertices come from the remaining six values of $w$.
 
-For $w=e^{i\pi/4}=\frac{1+i}{\sqrt2}$,
+For $w=e^{\frac{\pi}{4}i}=\frac{1+i}{\sqrt2}$:
 \[
 z=-1+4i+7(1+i)\frac{1+i}{\sqrt2}
 =-1+4i+7\sqrt2\,i
@@ -1276,7 +1257,7 @@ so
 z=-1+(4+7\sqrt2)i
 \]
 
-For $w=e^{i\pi/2}=i$,
+For $w=e^{\frac{\pi}{2}i}=i$:
 \[
 z=-1+4i+7(1+i)i
 =-1+4i+7(-1+i)
@@ -1287,7 +1268,7 @@ so
 z=-8+11i
 \]
 
-For $w=e^{3i\pi/4}=\frac{-1+i}{\sqrt2}$,
+For $w=e^{\frac{3\pi}{4}i}=\frac{-1+i}{\sqrt2}$:
 \[
 z=-1+4i+7(1+i)\frac{-1+i}{\sqrt2}
 =-1+4i-7\sqrt2
@@ -1298,7 +1279,7 @@ so
 z=(-1-7\sqrt2)+4i
 \]
 
-For $w=e^{5i\pi/4}=\frac{-1-i}{\sqrt2}$,
+For $w=e^{\frac{5\pi}{4}i}=\frac{-1-i}{\sqrt2}$:
 \[
 z=-1+4i+7(1+i)\frac{-1-i}{\sqrt2}
 =-1+4i-7\sqrt2\,i
@@ -1309,7 +1290,7 @@ so
 z=-1+(4-7\sqrt2)i
 \]
 
-For $w=e^{3i\pi/2}=-i$,
+For $w=e^{\frac{3\pi}{2}i}=-i$:
 \[
 z=-1+4i+7(1+i)(-i)
 =-1+4i+7(1-i)
@@ -1320,7 +1301,7 @@ so
 z=6-3i
 \]
 
-For $w=e^{7i\pi/4}=\frac{1-i}{\sqrt2}$,
+For $w=e^{\frac{7\pi}{4}i}=\frac{1-i}{\sqrt2}$:
 \[
 z=-1+4i+7(1+i)\frac{1-i}{\sqrt2}
 =-1+4i+7\sqrt2
@@ -1349,7 +1330,7 @@ Therefore the other six vertices are
 \questionitem
 % [Source: _QBT___Solns__Complex_Roots_and_Geometry_Problems, Q10]
 
-\begin{enumerate}[label=(\roman*)]
+\begin{enumerate}[label=\textbf{(\roman*)}]
   \item Find the $8$th roots of $-128+128\sqrt{3}\,i$ in the form $re^{i\theta}$, where $r>0$ and $0\leq \theta<2\pi$. \marks{5} \\
   \item These $8$th roots are represented in the Argand diagram, in order of increasing $\theta$, by the points $A$, $B$, $C$, $D$, $E$, $F$, $G$, $H$. \\
   Draw the Argand diagram, making clear which point is which. \marks{2} \\
@@ -1375,42 +1356,28 @@ Its modulus is
 &=256
 \end{align*}
 
-Also,
+\(z\) lies in the second quadrant, so its argument is
 \[
-\tan \theta=\frac{128\sqrt{3}}{-128}=-\sqrt{3}
+\arg(z)=\pi-\arctan\left(\frac{128\sqrt{3}}{128}\right)=\pi-\arctan\sqrt{3}=\frac{2\pi}{3}
 \]
 
-Since \(z\) lies in the second quadrant, its argument is
+Hence
 \[
-\theta=\frac{2\pi}{3}
+-128+128\sqrt{3}\,i=256e^{\frac{2\pi}{3}i}=256e^{\left(\frac{2\pi}{3}+2k\pi\right)i}
 \]
 
-So
+so the 8th roots are
 \[
--128+128\sqrt{3}\,i=256e^{i2\pi/3}
-\]
-
-If \(z_k\) is an 8th root, then
-\[
-z_k^8=256e^{i2\pi/3}
-\]
-
-Hence the modulus of each root is
-\[
-256^{1/8}=2
-\]
-
-and the arguments are
-\begin{align*}
-\frac{\frac{2\pi}{3}+2k\pi}{8}
-&=\frac{\pi}{12}+\frac{k\pi}{4},
+z_k=256^{1/8}e^{\frac{\frac{2\pi}{3}+2k\pi}{8}i}=2e^{\left(\frac{\pi}{12}+\frac{k\pi}{4}\right)i},
 \qquad k=0,1,\ldots,7
-\end{align*}
+\]
 
-Therefore the 8th roots are
+which are
 \[
-z_k=2e^{i\left(\pi/12+k\pi/4\right)},
-\qquad k=0,1,\ldots,7
+2e^{\frac{\pi}{12}i},\quad 2e^{\frac{\pi}{3}i},\quad 2e^{\frac{7\pi}{12}i},\quad 2e^{\frac{5\pi}{6}i}
+\]
+\[
+2e^{\frac{13\pi}{12}i},\quad 2e^{\frac{4\pi}{3}i},\quad 2e^{\frac{19\pi}{12}i},\quad 2e^{\frac{11\pi}{6}i}
 \]
 
 \item In increasing order of argument, the points are
@@ -1431,8 +1398,8 @@ All eight points lie on the circle \(|z|=2\).
 \begin{tikzpicture}
 \begin{axis}[
 axis lines=middle,
-xlabel={$\mathrm{Re}(z)$},
-ylabel={$\mathrm{Im}(z)$},
+xlabel={$\mathrm{Re}$},
+ylabel={$\mathrm{Im}$},
 xmin=-3.5, xmax=3.5,
 ymin=-3.5, ymax=3.5,
 width=12cm, height=12cm,
@@ -1464,19 +1431,19 @@ clip=false
 
 \item The complex numbers represented by \(B\) and \(D\) are
 \[
-2e^{i\pi/3}
+2e^{\frac{\pi}{3}i}
 \quad\text{and}\quad
-2e^{i5\pi/6}
+2e^{\frac{5\pi}{6}i}
 \]
 
-Since \(P\) is the midpoint of \(BD\), the complex number \(w\) is
+Since \(P\) is the midpoint of \(BD\), and \(e^{i\phi}+e^{-i\phi}=2\cos\phi\), the complex number \(w\) is
 \begin{align*}
 w
-&=\frac{2e^{i\pi/3}+2e^{i5\pi/6}}{2} \\
-&=e^{i\pi/3}+e^{i5\pi/6} \\
-&=e^{i7\pi/12}\left(e^{-i\pi/4}+e^{i\pi/4}\right) \\
-&=e^{i7\pi/12}\left(2\cos\frac{\pi}{4}\right) \\
-&=\sqrt{2}\,e^{i7\pi/12}
+&=\frac{2e^{\frac{\pi}{3}i}+2e^{\frac{5\pi}{6}i}}{2} \\
+&=e^{\frac{\pi}{3}i}+e^{\frac{5\pi}{6}i} \\
+&=e^{\frac{7\pi}{12}i}\left(e^{-\frac{\pi}{4}i}+e^{\frac{\pi}{4}i}\right) \\
+&=e^{\frac{7\pi}{12}i}\left(2\cos\frac{\pi}{4}\right) \\
+&=\sqrt{2}\,e^{\frac{7\pi}{12}i}
 \end{align*}
 
 So the modulus and argument of \(w\) are
@@ -1488,12 +1455,12 @@ So the modulus and argument of \(w\) are
 
 \item Since
 \[
-w=\sqrt{2}\,e^{i7\pi/12}
+w=\sqrt{2}\,e^{\frac{7\pi}{12}i}
 \]
 
 we have
 \[
-w^n=(\sqrt{2})^n e^{i7n\pi/12}
+w^n=(\sqrt{2})^n e^{\frac{7n\pi}{12}i}
 \]
 
 For \(w^n\) to be real, its argument must be a multiple of \(\pi\), so
@@ -1515,7 +1482,7 @@ Then
 \begin{align*}
 a
 &=w^{12} \\
-&=(\sqrt{2})^{12}e^{i7\pi} \\
+&=(\sqrt{2})^{12}e^{7\pi i} \\
 &=2^6(-1) \\
 &=-64
 \end{align*}
@@ -1573,7 +1540,7 @@ It is given that $\alpha=-2+2i$. \\
     \beta=-2-2i
     \]
 
-    \item For the monic cubic
+    \item By the relations between the roots and coefficients of
     \[
     z^3+pz^2+qz+24=0
     \]
@@ -1601,7 +1568,7 @@ It is given that $\alpha=-2+2i$. \\
     \gamma=-3
     \]
 
-    \item Using the relationships between roots and coefficients:
+    \item Using the relations between the roots and coefficients:
     \[
     \alpha+\beta+\gamma=-p
     \]
@@ -1663,38 +1630,38 @@ It is given that $\alpha=-2+2i$. \\
 
     The point $(-2,2)$ lies in the second quadrant, so the principal argument is
     \[
-    \theta=\frac{3\pi}{4}
+    \theta=\pi-\arctan 1=\frac{3\pi}{4}
     \]
 
     Hence
     \[
-    \alpha=2\sqrt{2}\,e^{i3\pi/4}
+    \alpha=2\sqrt{2}\,e^{\frac{3\pi}{4}i}
     \]
 
-    \item From part (i),
+    \item From part (i):
     \[
-    \alpha=2\sqrt{2}\,e^{i3\pi/4}
+    \alpha=2\sqrt{2}\,e^{\frac{3\pi}{4}i}
     \]
 
     so
     \begin{align*}
-    \alpha^n&=\left(2\sqrt{2}\,e^{i3\pi/4}\right)^n\\
-    &=(2\sqrt{2})^n e^{i3n\pi/4}
+    \alpha^n&=\left(2\sqrt{2}\,e^{\frac{3\pi}{4}i}\right)^n\\
+    &=(2\sqrt{2})^n e^{\frac{3n\pi}{4}i}
     \end{align*}
 
-    Using $e^{i\theta}=\cos\theta+i\sin\theta$,
+    Using $e^{i\theta}=\cos\theta+i\sin\theta$:
     \[
     (-2+2i)^n=(2\sqrt{2})^n\left(\cos\frac{3n\pi}{4}+i\sin\frac{3n\pi}{4}\right)
     \]
 
     \item Since
     \[
-    \beta=-2-2i=2\sqrt{2}\,e^{-i3\pi/4}
+    \beta=-2-2i=2\sqrt{2}\,e^{-\frac{3\pi}{4}i}
     \]
 
     we have
     \begin{align*}
-    \beta^n&=\left(2\sqrt{2}\,e^{-i3\pi/4}\right)^n\\
+    \beta^n&=\left(2\sqrt{2}\,e^{-\frac{3\pi}{4}i}\right)^n\\
     &=(2\sqrt{2})^n\left(\cos\left(-\frac{3n\pi}{4}\right)+i\sin\left(-\frac{3n\pi}{4}\right)\right)\\
     &=(2\sqrt{2})^n\left(\cos\frac{3n\pi}{4}-i\sin\frac{3n\pi}{4}\right)
     \end{align*}
@@ -1767,60 +1734,60 @@ In the diagram, the points $A$, $B$, $C$, $D$, $E$ and $F$ represent the complex
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Since
+  \item Write
 \[
--729=729e^{i\pi}=3^6e^{i(\pi+2k\pi)}
+-729=729e^{\pi i}=3^6e^{(\pi+2k\pi)i}
 \]
 
-the sixth roots are
+so the sixth roots are
 \[
-z=3e^{i\left(\frac{\pi+2k\pi}{6}\right)}=3e^{i\left(\frac{\pi}{6}+\frac{k\pi}{3}\right)},\qquad k=0,1,2,3,4,5
+z=729^{1/6}e^{\frac{\pi+2k\pi}{6}i}=3e^{\left(\frac{\pi}{6}+\frac{k\pi}{3}\right)i},\qquad k=0,1,2,3,4,5
 \]
 
 Taking these in order round the Argand diagram gives
 \begin{align*}
-A&=3e^{i\pi/6},&
-B&=3e^{i\pi/2},&
-C&=3e^{i5\pi/6}\\
-D&=3e^{i7\pi/6},&
-E&=3e^{i3\pi/2},&
-F&=3e^{i11\pi/6}
+z_A&=3e^{\frac{\pi}{6}i},&
+z_B&=3e^{\frac{\pi}{2}i},&
+z_C&=3e^{\frac{5\pi}{6}i}\\
+z_D&=3e^{\frac{7\pi}{6}i},&
+z_E&=3e^{\frac{3\pi}{2}i},&
+z_F&=3e^{\frac{11\pi}{6}i}
 \end{align*}
 
-  \item The centroid of triangle \(OAB\) is
+  \item The centroid of triangle \(OAB\) is \(G\), and \(O\) represents \(0\), so
 \[
-G=\frac{O+A+B}{3}=\frac{A+B}{3}
+z_G=\frac{0+z_A+z_B}{3}=\frac{z_A+z_B}{3}
 \]
 
-If multiplication by \(w\) maps \(A\) to \(G\), then
+If multiplication by \(w\) maps \(z_A\) to \(z_G\), then
 \[
-Aw=G=\frac{A+B}{3}
+z_Aw=z_G=\frac{z_A+z_B}{3}
 \]
 
 so
 \[
-w=\frac{A+B}{3A}
+w=\frac{z_A+z_B}{3z_A}
 \]
 
-Now \(B\) is the next sixth root after \(A\), so
+Now \(z_B\) is the next sixth root after \(z_A\), so
 \[
-B=Ae^{i\pi/3}
+z_B=z_Ae^{\frac{\pi}{3}i}
 \]
 
 Hence
 \begin{align*}
-w&=\frac{A+Ae^{i\pi/3}}{3A}\\
-&=\frac{1+e^{i\pi/3}}{3}
+w&=\frac{z_A+z_Ae^{\frac{\pi}{3}i}}{3z_A}\\
+&=\frac{1+e^{\frac{\pi}{3}i}}{3}
 \end{align*}
 
 Now
 \[
-e^{i\pi/3}=\frac12+\frac{\sqrt3}{2}i
+e^{\frac{\pi}{3}i}=\frac12+\frac{\sqrt3}{2}i
 \]
 
 so
 \begin{align*}
-1+e^{i\pi/3}
+1+e^{\frac{\pi}{3}i}
 &=\frac32+\frac{\sqrt3}{2}i
 \end{align*}
 
@@ -1831,34 +1798,22 @@ Its modulus is
 =\sqrt3
 \]
 
-and its argument is
+and, as it lies in the first quadrant, its argument is
 \[
-\tan^{-1}\left(\frac{\sqrt3/2}{3/2}\right)=\tan^{-1}\left(\frac{1}{\sqrt3}\right)=\frac{\pi}{6}
+\arctan\left(\frac{\sqrt3/2}{3/2}\right)=\arctan\frac{1}{\sqrt3}=\frac{\pi}{6}
 \]
 
 So
 \[
-1+e^{i\pi/3}=\sqrt3\,e^{i\pi/6}
+1+e^{\frac{\pi}{3}i}=\sqrt3\,e^{\frac{\pi}{6}i}
 \]
 
 Therefore
 \[
-w=\frac{\sqrt3}{3}e^{i\pi/6}=\frac{1}{\sqrt3}e^{i\pi/6}
+w=\frac{\sqrt3}{3}e^{\frac{\pi}{6}i}=\frac{1}{\sqrt3}e^{\frac{\pi}{6}i}
 \]
 
-Also, for example,
-\[
-H=\frac{B+C}{3}=\frac{B+Be^{i\pi/3}}{3}=Bw
-\]
-
-and similarly for the other consecutive pairs, so this same \(w\) maps \(A,B,C,D,E,F\) to \(G,H,I,J,K,L\).
-
-Hence
-\[
-w=\frac{1}{\sqrt3}e^{i\pi/6}
-\]
-
-  \item Let \(r\) be any sixth root of \(-729\). Then the corresponding point among \(G,H,I,J,K,L\) is
+  \item Let \(r\) be any sixth root of \(-729\). Then the corresponding point among \(G,H,I,J,K,L\) represents
 \[
 z=wr
 \]
@@ -1870,8 +1825,8 @@ z^6=w^6r^6=w^6(-729)
 
 Now
 \begin{align*}
-w^6&=\left(\frac{1}{\sqrt3}e^{i\pi/6}\right)^6\\
-&=\left(\frac{1}{\sqrt3}\right)^6 e^{i\pi}\\
+w^6&=\left(\frac{1}{\sqrt3}e^{\frac{\pi}{6}i}\right)^6\\
+&=\left(\frac{1}{\sqrt3}\right)^6 e^{\pi i}\\
 &=\frac{1}{27}(-1)\\
 &=-\frac{1}{27}
 \end{align*}
@@ -1890,7 +1845,7 @@ p=w^6(-729)=\left(-\frac{1}{27}\right)(-729)=27
 \questionitem
 % [Source: _QBT___Solns__Complex_Roots_and_Geometry_Problems, Q13]
 
-\begin{enumerate}[label=(\roman*)]
+\begin{enumerate}[label=\textbf{(\roman*)}]
   \item Write down, in any form, all the complex roots of the equation
   \[
   w^{11}=-1
@@ -1923,24 +1878,19 @@ p=w^6(-729)=\left(-\frac{1}{27}\right)(-729)=27
 \begin{enumerate}[label=\textbf{(\roman*)}]
 \item Write $-1$ in exponential form as
 \[
--1=e^{i(2k+1)\pi}
-\qquad (k\in\mathbb{Z})
+-1=e^{(2k+1)\pi i},
+\qquad k\in\mathbb{Z}
 \]
 
-So if $w^{11}=-1$, then
+so the eleventh roots of $-1$ are
 \[
-w=e^{i(2k+1)\pi/11}
+w=e^{\frac{(2k+1)\pi}{11}i},
+\qquad k=0,1,\ldots,10
 \]
 
-Taking the 11 distinct values gives
+which are
 \[
-w=e^{i(2k+1)\pi/11},
-\qquad k=0,1,\dots,10
-\]
-
-So all the complex roots are
-\[
-e^{i\pi/11},\ e^{3i\pi/11},\ e^{5i\pi/11},\ \dots,\ e^{21i\pi/11}
+e^{\frac{\pi}{11}i},\ e^{\frac{3\pi}{11}i},\ e^{\frac{5\pi}{11}i},\ \dots,\ e^{\frac{21\pi}{11}i}
 \]
 
 \item First note that $z=1$ is not a root of
@@ -1969,7 +1919,7 @@ From part (i), the 11 possible values of $w$ are
 \[
 w=e^{i\theta},
 \qquad \theta=\frac{(2k+1)\pi}{11},
-\qquad k=0,1,\dots,10
+\qquad k=0,1,\ldots,10
 \]
 
 Now solve for $z$ in terms of $w$:
@@ -1986,7 +1936,7 @@ So
 z=\frac{e^{i\theta}+1}{e^{i\theta}-1}
 \]
 
-Now multiply top and bottom by $e^{-i\theta/2}$:
+Now multiply top and bottom by $e^{-i\theta/2}$, and use $e^{i\phi}+e^{-i\phi}=2\cos\phi$ and $e^{i\phi}-e^{-i\phi}=2i\sin\phi$:
 \begin{align*}
 z&=\frac{e^{i\theta/2}+e^{-i\theta/2}}{e^{i\theta/2}-e^{-i\theta/2}} \\
 &=\frac{2\cos(\theta/2)}{2i\sin(\theta/2)} \\
@@ -1995,8 +1945,8 @@ z&=\frac{e^{i\theta/2}+e^{-i\theta/2}}{e^{i\theta/2}-e^{-i\theta/2}} \\
 
 Since $\theta=\frac{(2k+1)\pi}{11}$, this gives
 \[
-z=-i\cot\left(\frac{(2k+1)\pi}{22}\right)
-\qquad k=0,1,\dots,10
+z=-i\cot\left(\frac{(2k+1)\pi}{22}\right),
+\qquad k=0,1,\ldots,10
 \]
 
 So the 11 roots are obtained from
@@ -2052,7 +2002,7 @@ Therefore the 10 non-real roots may be written as
 Then
 \begin{align*}
 \left(-i\cot\alpha\right)\left(i\cot\alpha\right)
-&=(-i\cdot i)\cot^2\alpha \\
+&=(-i\times i)\cot^2\alpha \\
 &=-i^2\cot^2\alpha \\
 &=\cot^2\alpha
 \end{align*}
@@ -2076,17 +2026,7 @@ for
 m=1,3,5,7,9
 \]
 
-Given that the product of the non-zero roots is $11$,
-\begin{align*}
-11
-&=\prod_{m=1,3,5,7,9}
-\left\{-i\cot\left(\frac{m\pi}{22}\right)\right\}
-\left\{i\cot\left(\frac{m\pi}{22}\right)\right\} \\
-&=\prod_{m=1,3,5,7,9}
-\cot^2\left(\frac{m\pi}{22}\right)
-\end{align*}
-
-Therefore
+The product of the non-zero roots is $11$, and by part (iii) each pair multiplies to $\cot^2\left(\frac{m\pi}{22}\right)$, so
 \[
 \cot^2\left(\frac{\pi}{22}\right)
 \cot^2\left(\frac{3\pi}{22}\right)
@@ -2096,7 +2036,7 @@ Therefore
 =11
 \]
 
-Taking reciprocals,
+Taking reciprocals:
 \[
 \tan^2\left(\frac{\pi}{22}\right)
 \tan^2\left(\frac{3\pi}{22}\right)
