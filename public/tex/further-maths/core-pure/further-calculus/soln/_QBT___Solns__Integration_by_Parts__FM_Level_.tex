@@ -4,7 +4,7 @@
 \djsSolnHeader{Integration by Parts}
 \djsSitePath{Core Pure}{Further Calculus}
 
-\djsLastUpdated{15 October 2026}
+\djsLastUpdated{24 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -23,7 +23,7 @@ Use integration by parts to find
 \[
 \int_1^9 \sqrt{x}\ln\left(\frac{9}{x}\right)\,\mathrm{d}x
 \]
-giving your answer in the form $a + b\ln 3$, where $a$ and $b$ are constants to be found. \marks{5}
+giving your answer in the form $a + b\ln 3$, where $a$ and $b$ are rational constants to be found. \marks{5}
 
 \vspace*{10pt}
 
@@ -38,9 +38,9 @@ Then
 \frac{\mathrm{d}u}{\mathrm{d}x}=-\frac{1}{x}, \qquad v=\int x^{1/2}\,\mathrm{d}x=\frac{2}{3}x^{3/2}
 \]
 
-Using integration by parts,
+Using integration by parts:
 \[
-\int u\,\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x=uv-\int v\,\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
+\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
 \]
 
 So if
@@ -79,7 +79,7 @@ Hence
 I=\frac{104}{9}-\frac{4}{3}\ln 3
 \]
 
-So in the form $a+b\ln 3$,
+So the answer is in the form $a+b\ln 3$ with
 \[
 a=\frac{104}{9}, \qquad b=-\frac{4}{3}
 \]
@@ -98,7 +98,7 @@ y = \arctan\left(\frac{x-2}{x+2}\right)
 \]
 where $x\ne -2$ \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item find $\dfrac{\mathrm{d}y}{\mathrm{d}x}$, giving your answer in its simplest form. \marks{2} \\
+  \item find $\frac{\mathrm{d}y}{\mathrm{d}x}$, giving your answer in its simplest form. \marks{2} \\
   \item Use integration by parts to find
   \[
   \int \arctan\left(\frac{x-2}{x+2}\right)\,\mathrm{d}x
@@ -112,22 +112,22 @@ where $x\ne -2$ \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Let
 \[
-u=\frac{x-2}{x+2}
+w=\frac{x-2}{x+2}
 \]
 
 so that
 \[
-y=\arctan u
+y=\arctan w
 \]
 
-Using the chain rule,
+Using the chain rule:
 \[
-\frac{\mathrm{d}y}{\mathrm{d}x}=\frac{1}{1+u^2}\cdot \frac{\mathrm{d}u}{\mathrm{d}x}
+\frac{\mathrm{d}y}{\mathrm{d}x}=\frac{1}{1+w^2}\cdot \frac{\mathrm{d}w}{\mathrm{d}x}
 \]
 
-Now differentiate $u$:
+Now differentiate $w$:
 \begin{align*}
-\frac{\mathrm{d}u}{\mathrm{d}x}
+\frac{\mathrm{d}w}{\mathrm{d}x}
 &=\frac{(x+2)(1)-(x-2)(1)}{(x+2)^2} \\
 &=\frac{x+2-x+2}{(x+2)^2} \\
 &=\frac{4}{(x+2)^2}
@@ -155,22 +155,19 @@ u=\arctan\left(\frac{x-2}{x+2}\right),
 \frac{\mathrm{d}v}{\mathrm{d}x}=1
 \]
 
-Then
+Then, using part (a) for \(\frac{\mathrm{d}u}{\mathrm{d}x}\):
 \[
+\frac{\mathrm{d}u}{\mathrm{d}x}=\frac{2}{x^2+4},
+\qquad
 v=x
-\qquad\text{and}\qquad
-\frac{\mathrm{d}u}{\mathrm{d}x}=\frac{2}{x^2+4}
 \]
 
-from part (a).
-
-Using
+Using integration by parts:
 \[
-\int u\,\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x
-=uv-\int v\,\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
+\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
 \]
 
-gives
+So
 \begin{align*}
 I
 &=x\arctan\left(\frac{x-2}{x+2}\right)-\int x\cdot \frac{2}{x^2+4}\,\mathrm{d}x \\
@@ -185,7 +182,7 @@ t=x^2+4
 so that
 \[
 \frac{\mathrm{d}t}{\mathrm{d}x}=2x
-\qquad\Rightarrow\qquad
+\quad\Longrightarrow\quad
 \mathrm{d}t=2x\,\mathrm{d}x
 \]
 
@@ -193,8 +190,8 @@ Therefore
 \begin{align*}
 \int \frac{2x}{x^2+4}\,\mathrm{d}x
 &=\int \frac{1}{t}\,\mathrm{d}t \\
-&=\ln t + c \\
-&=\ln(x^2+4)+c
+&=\ln t \\
+&=\ln(x^2+4)
 \end{align*}
 
 So
@@ -202,7 +199,7 @@ So
 I=x\arctan\left(\frac{x-2}{x+2}\right)-\ln(x^2+4)+c
 \]
 
-Hence,
+Hence
 \[
 \int \arctan\left(\frac{x-2}{x+2}\right)\,\mathrm{d}x
 =
@@ -224,7 +221,7 @@ Use integration by parts to find
   \int_0^2 x^2 \ln(1+x)\,\mathrm{d}x
   \]
   
-  giving your answer in the form $a + b\ln 3$, where $a$ and $b$ are constants to be found. \marks{7} \\
+  giving your answer in the form $a + b\ln 3$, where $a$ and $b$ are rational constants to be found. \marks{7} \\
 
 \vspace*{10pt}
 
@@ -242,6 +239,11 @@ u=\ln(1+x), \qquad \frac{\mathrm{d}v}{\mathrm{d}x}=x^2
 so that
 \[
 \frac{\mathrm{d}u}{\mathrm{d}x}=\frac{1}{1+x}, \qquad v=\frac{x^3}{3}
+\]
+
+Using integration by parts:
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
 \]
 
 Then
@@ -269,7 +271,7 @@ So
 &=\frac{8}{3}-\ln 3
 \end{align*}
 
-Also,
+Also
 \[
 \left[\frac{x^3}{3}\ln(1+x)\right]_0^2=\frac{8}{3}\ln 3
 \]
@@ -286,7 +288,7 @@ Therefore
 \int_0^2 x^2\ln(1+x)\,\mathrm{d}x=-\frac89+3\ln 3
 \]
 
-So
+So the answer is in the form \(a+b\ln 3\) with
 \[
 a=-\frac89, \qquad b=3
 \]
@@ -317,7 +319,7 @@ I=\int \operatorname{arsinh}(2x+1)\,\mathrm{d}x
 
 Use the substitution
 \[
-t=2x+1 \qquad \Rightarrow \qquad \mathrm{d}x=\frac{1}{2}\,\mathrm{d}t
+t=2x+1 \quad\Longrightarrow\quad \mathrm{d}x=\frac{1}{2}\,\mathrm{d}t
 \]
 
 Then
@@ -327,24 +329,24 @@ I=\frac{1}{2}\int \operatorname{arsinh}(t)\,\mathrm{d}t
 
 Now integrate by parts. Take
 \[
-U=\operatorname{arsinh}(t), \qquad \frac{\mathrm{d}V}{\mathrm{d}t}=1
+u=\operatorname{arsinh}(t), \qquad \frac{\mathrm{d}v}{\mathrm{d}t}=1
 \]
 
 so that
 \[
-\frac{\mathrm{d}U}{\mathrm{d}t}=\frac{1}{\sqrt{t^2+1}}, \qquad V=t
+\frac{\mathrm{d}u}{\mathrm{d}t}=\frac{1}{\sqrt{t^2+1}}, \qquad v=t
 \]
 
-Using
+Using integration by parts:
 \[
-\int U\,\frac{\mathrm{d}V}{\mathrm{d}t}\,\mathrm{d}t=UV-\int V\,\frac{\mathrm{d}U}{\mathrm{d}t}\,\mathrm{d}t
+\int u\frac{\mathrm{d}v}{\mathrm{d}t}\,\mathrm{d}t = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}t}\,\mathrm{d}t
 \]
 
-gives
-\begin{align*}
+So
+\[
 \int \operatorname{arsinh}(t)\,\mathrm{d}t
-&= t\operatorname{arsinh}(t)-\int \frac{t}{\sqrt{t^2+1}}\,\mathrm{d}t
-\end{align*}
+= t\operatorname{arsinh}(t)-\int \frac{t}{\sqrt{t^2+1}}\,\mathrm{d}t
+\]
 
 Now
 \[
@@ -366,7 +368,7 @@ Therefore
 I=\frac{1}{2}\left(t\operatorname{arsinh}(t)-\sqrt{t^2+1}\right)+c
 \]
 
-Substituting back \(t=2x+1\),
+Substituting back \(t=2x+1\):
 \[
 I=\frac{1}{2}\left((2x+1)\operatorname{arsinh}(2x+1)-\sqrt{(2x+1)^2+1}\right)+c
 \]
@@ -393,9 +395,9 @@ we get
 
 \[
 h(\theta)=(3\sin\theta-\cos\theta)(\sin\theta+2\cos\theta)
-\] \\
+\]
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Show that $h(\theta)=\dfrac{1}{2}-\dfrac{5}{2}\cos 2\theta+\dfrac{5}{2}\sin 2\theta$. \marks{2} \\
+  \item Show that $h(\theta)=\frac{1}{2}-\frac{5}{2}\cos 2\theta+\frac{5}{2}\sin 2\theta$. \marks{2} \\
   \item Hence, using calculus, find the exact value of
   \[
   \int_{0}^{\frac{\pi}{2}} \left(\frac{\pi}{2}-\theta\right) h(\theta)\,\mathrm{d}\theta
@@ -407,7 +409,7 @@ h(\theta)=(3\sin\theta-\cos\theta)(\sin\theta+2\cos\theta)
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-\item Expanding the brackets,
+\item Expanding the brackets:
 \begin{align*}
 h(\theta)
 &=(3\sin\theta-\cos\theta)(\sin\theta+2\cos\theta)\\
@@ -422,7 +424,7 @@ Now use the double-angle identities
 \sin\theta\cos\theta=\frac12\sin2\theta
 \]
 
-Substituting,
+Substituting:
 \begin{align*}
 h(\theta)
 &=3\left(\frac{1-\cos2\theta}{2}\right)+5\left(\frac12\sin2\theta\right)-2\left(\frac{1+\cos2\theta}{2}\right)\\
@@ -430,17 +432,12 @@ h(\theta)
 &=\frac12-\frac52\cos2\theta+\frac52\sin2\theta
 \end{align*}
 
-Hence,
-\[
-h(\theta)=\frac12-\frac52\cos2\theta+\frac52\sin2\theta
-\]
-
 \item Let
 \[
 I=\int_{0}^{\frac{\pi}{2}}\left(\frac{\pi}{2}-\theta\right)h(\theta)\,\mathrm{d}\theta
 \]
 
-Using part (a),
+Using part (a):
 \begin{align*}
 I
 &=\int_{0}^{\frac{\pi}{2}}\left(\frac{\pi}{2}-\theta\right)\left(\frac12-\frac52\cos2\theta+\frac52\sin2\theta\right)\,\mathrm{d}\theta\\
@@ -451,7 +448,7 @@ I
 
 We evaluate the three integrals separately.
 
-First,
+First
 \begin{align*}
 \int_{0}^{\frac{\pi}{2}}\left(\frac{\pi}{2}-\theta\right)\,\mathrm{d}\theta
 &=\left[\frac{\pi\theta}{2}-\frac{\theta^2}{2}\right]_{0}^{\frac{\pi}{2}}\\
@@ -461,27 +458,32 @@ First,
 
 So the first term contributes
 \[
-\frac12\cdot\frac{\pi^2}{8}=\frac{\pi^2}{16}
+\frac12\times\frac{\pi^2}{8}=\frac{\pi^2}{16}
 \]
 
 Now let
 \[
-B=\int_{0}^{\frac{\pi}{2}}\left(\frac{\pi}{2}-\theta\right)\cos2\theta\,\mathrm{d}\theta
+J=\int_{0}^{\frac{\pi}{2}}\left(\frac{\pi}{2}-\theta\right)\cos2\theta\,\mathrm{d}\theta
 \]
 
-Integrating by parts with
+Use integration by parts with
 \[
 u=\frac{\pi}{2}-\theta,\qquad \frac{\mathrm{d}v}{\mathrm{d}\theta}=\cos2\theta
 \]
 
-gives
+so that
 \[
 \frac{\mathrm{d}u}{\mathrm{d}\theta}=-1,\qquad v=\frac12\sin2\theta
 \]
 
-Hence,
+Using integration by parts:
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}\theta}\,\mathrm{d}\theta = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}\theta}\,\mathrm{d}\theta
+\]
+
+Hence
 \begin{align*}
-B
+J
 &=\left[\left(\frac{\pi}{2}-\theta\right)\frac12\sin2\theta\right]_{0}^{\frac{\pi}{2}}
 +\frac12\int_{0}^{\frac{\pi}{2}}\sin2\theta\,\mathrm{d}\theta\\
 &=0+\frac12\left[-\frac12\cos2\theta\right]_{0}^{\frac{\pi}{2}}\\
@@ -492,22 +494,22 @@ B
 
 Next let
 \[
-C=\int_{0}^{\frac{\pi}{2}}\left(\frac{\pi}{2}-\theta\right)\sin2\theta\,\mathrm{d}\theta
+K=\int_{0}^{\frac{\pi}{2}}\left(\frac{\pi}{2}-\theta\right)\sin2\theta\,\mathrm{d}\theta
 \]
 
-Again integrating by parts with
+Again use integration by parts with
 \[
 u=\frac{\pi}{2}-\theta,\qquad \frac{\mathrm{d}v}{\mathrm{d}\theta}=\sin2\theta
 \]
 
-gives
+so that
 \[
 \frac{\mathrm{d}u}{\mathrm{d}\theta}=-1,\qquad v=-\frac12\cos2\theta
 \]
 
-So,
+So
 \begin{align*}
-C
+K
 &=-\left[\left(\frac{\pi}{2}-\theta\right)\frac12\cos2\theta\right]_{0}^{\frac{\pi}{2}}
 -\frac12\int_{0}^{\frac{\pi}{2}}\cos2\theta\,\mathrm{d}\theta\\
 &=-\left[ \left(\frac{\pi}{2}-\theta\right)\frac12\cos2\theta \right]_{0}^{\frac{\pi}{2}}
@@ -516,7 +518,7 @@ C
 &=\frac{\pi}{4}
 \end{align*}
 
-Substituting these into the expression for \(I\),
+Substituting these into the expression for \(I\):
 \begin{align*}
 I
 &=\frac{\pi^2}{16}-\frac52\left(\frac12\right)+\frac52\left(\frac{\pi}{4}\right)\\
@@ -529,8 +531,6 @@ Therefore, the exact value is
 \int_{0}^{\frac{\pi}{2}}\left(\frac{\pi}{2}-\theta\right)h(\theta)\,\mathrm{d}\theta
 =\frac{\pi^2+10\pi-20}{16}
 \]
-
-This is approximately \(1.33\).
 \end{enumerate}
 \end{djsSolution}
 
@@ -573,18 +573,21 @@ so that
 \frac{\mathrm{d}u}{\mathrm{d}x}=\frac{1}{1+x^2},\qquad v=\frac{x^3}{3}
 \]
 
-Then
+Using integration by parts:
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
+\]
+
+So
 \begin{align*}
-I&=uv-\int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x\\
-&=\frac{x^3}{3}\arctan x-\int \frac{x^3}{3(1+x^2)}\,\mathrm{d}x\\
+I&=\frac{x^3}{3}\arctan x-\int \frac{x^3}{3(1+x^2)}\,\mathrm{d}x\\
 &=\frac{x^3}{3}\arctan x-\frac13\int \frac{x^3}{1+x^2}\,\mathrm{d}x
 \end{align*}
 
 Now simplify the fraction:
-\begin{align*}
-\frac{x^3}{1+x^2}
-&=x-\frac{x}{1+x^2}
-\end{align*}
+\[
+\frac{x^3}{1+x^2}=x-\frac{x}{1+x^2}
+\]
 
 since
 \[
@@ -602,7 +605,7 @@ Now
 \int x\,\mathrm{d}x=\frac{x^2}{2}
 \]
 
-and, using the substitution $1+x^2$,
+and, using the substitution $t=1+x^2$:
 \[
 \int \frac{x}{1+x^2}\,\mathrm{d}x=\frac12\ln(1+x^2)
 \]
@@ -613,12 +616,12 @@ I&=\frac{x^3}{3}\arctan x-\frac13\left(\frac{x^2}{2}-\frac12\ln(1+x^2)\right)+c\
 &=\frac{x^3}{3}\arctan x-\frac{x^2}{6}+\frac16\ln(1+x^2)+c
 \end{align*}
 
-Therefore,
+Therefore
 \[
 \int x^2\arctan x\,\mathrm{d}x=\frac{x^3}{3}\arctan x-\frac{x^2}{6}+\frac16\ln(1+x^2)+c
 \]
 
-  \item Using the result from part (a),
+  \item Using the result from part (a):
 \[
 \int_0^1 x^2\arctan x\,\mathrm{d}x
 =
@@ -629,10 +632,10 @@ Substituting the limits:
 \begin{align*}
 \int_0^1 x^2\arctan x\,\mathrm{d}x
 &=\left(\frac13\arctan1-\frac16+\frac16\ln 2\right)-\left(0-0+\frac16\ln 1\right)\\
-&=\frac13\cdot\frac{\pi}{4}-\frac16+\frac16\ln 2
+&=\frac13\times\frac{\pi}{4}-\frac16+\frac16\ln 2
 \end{align*}
 
-Since $\ln 1=0$,
+Simplifying:
 \[
 \int_0^1 x^2\arctan x\,\mathrm{d}x=\frac{\pi}{12}-\frac16+\frac{\ln 2}{6}
 \]
@@ -678,11 +681,14 @@ So the exact value is
   \frac{\mathrm{d}u}{\mathrm{d}x}=\frac{1}{1+x^2}, \qquad v=\frac{x^4}{4}
   \]
 
-  Then
+  Using integration by parts:
+  \[
+  \int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
+  \]
+
+  So
   \begin{align*}
   \int x^3\arctan x\,\mathrm{d}x
-  &= \int u\,\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x \\
-  &= uv-\int v\,\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x \\
   &= \frac{x^4}{4}\arctan x-\int \frac{x^4}{4(1+x^2)}\,\mathrm{d}x \\
   &= \frac{x^4}{4}\arctan x-\frac14\int \frac{x^4}{1+x^2}\,\mathrm{d}x
   \end{align*}
@@ -707,11 +713,6 @@ So the exact value is
   &= \frac{x^4-1}{4}\arctan x-\frac{x^3}{12}+\frac{x}{4}+c
   \end{align*}
 
-  Therefore,
-  \[
-  \int x^3\arctan x\,\mathrm{d}x=\frac{x^4-1}{4}\arctan x-\frac{x^3}{12}+\frac{x}{4}+c
-  \]
-
   \item Using the result from part (a), let
   \[
   F(x)=\frac{x^4-1}{4}\arctan x-\frac{x^3}{12}+\frac{x}{4}
@@ -722,7 +723,7 @@ So the exact value is
   \int_0^{\sqrt3} x^3\arctan x\,\mathrm{d}x=F(\sqrt3)-F(0)
   \]
 
-  First, at \(x=\sqrt3\),
+  First, at \(x=\sqrt3\):
   \[
   \arctan(\sqrt3)=\frac{\pi}{3}, \qquad (\sqrt3)^4=9, \qquad (\sqrt3)^3=3\sqrt3
   \]
@@ -730,12 +731,12 @@ So the exact value is
   so
   \begin{align*}
   F(\sqrt3)
-  &= \frac{9-1}{4}\cdot \frac{\pi}{3}-\frac{3\sqrt3}{12}+\frac{\sqrt3}{4} \\
-  &= \frac{8}{4}\cdot \frac{\pi}{3}-\frac{\sqrt3}{4}+\frac{\sqrt3}{4} \\
+  &= \frac{9-1}{4}\times \frac{\pi}{3}-\frac{3\sqrt3}{12}+\frac{\sqrt3}{4} \\
+  &= \frac{8}{4}\times \frac{\pi}{3}-\frac{\sqrt3}{4}+\frac{\sqrt3}{4} \\
   &= \frac{2\pi}{3}
   \end{align*}
 
-  Also,
+  Also
   \[
   F(0)=\frac{0-1}{4}\arctan 0-0+0=0
   \]
@@ -776,9 +777,9 @@ So the exact value is
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item For \(|x|<1\),
+  \item Using the logarithmic form:
 \[
-\operatorname{artanh} x=\frac12\ln\left(\frac{1+x}{1-x}\right)=\frac12\bigl[\ln(1+x)-\ln(1-x)\bigr]
+\operatorname{artanh} x=\frac12\ln\left(\frac{1+x}{1-x}\right)=\frac12\bigl[\ln(1+x)-\ln(1-x)\bigr]\qquad (|x|<1)
 \]
 
 This is valid for \(|x|<1\) because we need \(1+x>0\) and \(1-x>0\).
@@ -799,14 +800,19 @@ Hence
 \frac{\mathrm{d}}{\mathrm{d}x}\bigl(\operatorname{artanh} x\bigr)=\frac{1}{1-x^2}\qquad (|x|<1)
 \]
 
-  \item Using integration by parts with
+  \item Use integration by parts with
 \[
 u=\operatorname{artanh} x,\qquad \frac{\mathrm{d}v}{\mathrm{d}x}=1
 \]
 
-we have
+so that
 \[
 \frac{\mathrm{d}u}{\mathrm{d}x}=\frac{1}{1-x^2},\qquad v=x
+\]
+
+Using integration by parts:
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
 \]
 
 So
@@ -818,15 +824,15 @@ So
 
 Now let \(t=1-x^2\), so
 \[
-\frac{\mathrm{d}t}{\mathrm{d}x}=-2x \qquad \Rightarrow \qquad \mathrm{d}t=-2x\,\mathrm{d}x
+\frac{\mathrm{d}t}{\mathrm{d}x}=-2x \quad\Longrightarrow\quad \mathrm{d}t=-2x\,\mathrm{d}x
 \]
 
 Then
 \begin{align*}
 \int \frac{x}{1-x^2}\,\mathrm{d}x
 &=-\frac12\int \frac{1}{t}\,\mathrm{d}t \\
-&=-\frac12\ln t + c \\
-&=-\frac12\ln(1-x^2)+c
+&=-\frac12\ln t \\
+&=-\frac12\ln(1-x^2)
 \end{align*}
 
 Therefore
@@ -850,13 +856,13 @@ Now
 So
 \begin{align*}
 \int_0^{1/2}\operatorname{artanh} x\,\mathrm{d}x
-&=\frac12\cdot \frac12\ln 3+\frac12\ln\left(\frac34\right) \\
+&=\frac12\times \frac12\ln 3+\frac12\ln\left(\frac34\right) \\
 &=\frac14\ln 3+\frac12(\ln 3-\ln 4) \\
 &=\frac14\ln 3+\frac12\ln 3-\ln 2 \\
 &=\frac34\ln 3-\ln 2
 \end{align*}
 
-Also,
+Also
 \[
 \frac34\ln 3-\ln 2=\frac14\ln\left(\frac{27}{16}\right)
 \]
@@ -866,7 +872,7 @@ Therefore
 \int_0^{1/2}\operatorname{artanh} x\,\mathrm{d}x=\frac34\ln 3-\ln 2=\frac14\ln\left(\frac{27}{16}\right)
 \]
 
-  \item In the real number system, \(\operatorname{artanh} x\) is defined only for \(|x|<1\). The interval \([0,\tfrac32]\) includes \(x=1\), where \(\operatorname{artanh} x\) is undefined, and values \(x>1\), where it is not real. So the calculator gives a domain error.
+  \item In the real number system, \(\operatorname{artanh} x\) is defined only for \(|x|<1\). The interval of integration, \(0\le x\le\frac32\), includes \(x=1\), where \(\operatorname{artanh} x\) is undefined, and values \(x>1\), where it is not real. So the calculator gives a domain error.
 \end{enumerate}
 \end{djsSolution}
 
@@ -903,13 +909,11 @@ Therefore
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Using the given logarithmic form,
+  \item Using the given logarithmic form:
 \[
 \operatorname{artanh}x=\frac12\ln\left(\frac{1+x}{1-x}\right)
-=\frac12\bigl[\ln(1+x)-\ln(1-x)\bigr]
+=\frac12\bigl[\ln(1+x)-\ln(1-x)\bigr]\qquad (|x|<1)
 \]
-
-for \(|x|<1\).
 
 Differentiate term by term:
 \begin{align*}
@@ -944,9 +948,14 @@ Then
 v=x
 \]
 
-and from part (a), using the chain rule,
+and from part (a), using the chain rule:
 \[
 \frac{\mathrm{d}u}{\mathrm{d}x}=\frac{2}{1-(2x)^2}=\frac{2}{1-4x^2}
+\]
+
+Using integration by parts:
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
 \]
 
 So
@@ -994,7 +1003,7 @@ Now use the logarithmic form again:
 
 So
 \begin{align*}
-I&=\frac13\cdot\frac12\ln 5+\frac14\ln\left(\frac59\right)\\
+I&=\frac13\times\frac12\ln 5+\frac14\ln\left(\frac59\right)\\
 &=\frac16\ln 5+\frac14(\ln 5-\ln 9)\\
 &=\frac16\ln 5+\frac14\ln 5-\frac12\ln 3\\
 &=\frac{5}{12}\ln 5-\frac12\ln 3
@@ -1060,10 +1069,14 @@ and
 &=\frac{1}{2x(1-x)}
 \end{align*}
 
-So, by integration by parts,
+Using integration by parts:
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
+\]
+
+So
 \begin{align*}
 I
-&=uv-\int v\,\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x \\
 &=\frac{x^2}{2}\operatorname{artanh}(2x-1)-\int \frac{x^2}{2}\cdot\frac{1}{2x(1-x)}\,\mathrm{d}x \\
 &=\frac{x^2}{2}\operatorname{artanh}(2x-1)-\frac14\int \frac{x}{1-x}\,\mathrm{d}x
 \end{align*}
@@ -1099,10 +1112,10 @@ I
 
 Now write $\operatorname{artanh}$ in logarithmic form:
 \[
-\operatorname{artanh} t=\frac12\ln\left(\frac{1+t}{1-t}\right)
+\operatorname{artanh} t=\frac12\ln\left(\frac{1+t}{1-t}\right)\qquad (|t|<1)
 \]
 
-With $t=2x-1$,
+With $t=2x-1$:
 \[
 \operatorname{artanh}(2x-1)=\frac12\ln\left(\frac{1+(2x-1)}{1-(2x-1)}\right)
 =\frac12\ln\left(\frac{2x}{2-2x}\right)
@@ -1120,7 +1133,7 @@ I
 &=\frac{x^2}{4}\ln x+\frac{1-x^2}{4}\ln(1-x)+\frac{x}{4}+c
 \end{align*}
 
-So,
+So
 \[
 \int x\,\operatorname{artanh}(2x-1)\,\mathrm{d}x
 =
@@ -1163,11 +1176,11 @@ So,
 \end{figure}
 
 
-The sketch shows part of the curve $C$ given by\\
-
+The sketch shows part of the curve $C$ given by
 \[
 y = x(3-x)^2 e^{-x} \qquad x \geq 0
-\] \\
+\]
+
 The shaded region $R$ is bounded by $C$ and the $x$-axis for $0 \leq x \leq 3$. \\
 
 Find the exact area of $R$, giving your answer in the form
@@ -1179,12 +1192,7 @@ where $A$ and $B$ are rational numbers. \marks{6}
 \vspace*{10pt}
 
 \begin{djsSolution}
-For \(0 \leq x \leq 3\),
-\[
-x \geq 0,\qquad (3-x)^2 \geq 0,\qquad e^{-x}>0
-\]
-
-so the curve lies above the \(x\)-axis, and the required area is
+From the sketch, \(R\) lies above the \(x\)-axis, so the required area is
 \[
 \int_0^3 x(3-x)^2e^{-x}\, \mathrm{d}x
 \]
@@ -1206,7 +1214,7 @@ Now integrate by parts repeatedly, using the tabular method:
 \renewcommand{\arraystretch}{1.3}
 \setlength{\arraycolsep}{10pt}
 \begin{array}{c|l|l}
-\text{Sign} & \text{D} & \text{I} \\ \hline
+\text{Sign} & \text{Differentiate} & \text{Integrate} \\ \hline
 + & x^3-6x^2+9x & e^{-x} \\
 - & 3x^2-12x+9 & -e^{-x} \\
 + & 6x-12 & e^{-x} \\
@@ -1232,12 +1240,7 @@ Therefore
 &= 3-12e^{-3}
 \end{align*}
 
-So the exact area is
-\[
-3-12e^{-3}
-\]
-
-which is of the form \(A+Be^{-3}\) with
+So the answer is in the form \(A+Be^{-3}\) with
 \[
 A=3,\qquad B=-12
 \]
@@ -1250,12 +1253,10 @@ A=3,\qquad B=-12
 \questionitem
 % [Source: _QBT___Solns__Integration_by_Parts__FM_Level_, Q12]
 
-Show that\\
-
+Show that
 \[
 \int_{e^{-1/2}}^1 x(\ln x)^2\,\mathrm{d}x = a + \frac{b}{e}
-\]\\
-
+\]
 where $a$ and $b$ are rational constants to be found. \marks{6}
 
 \vspace*{10pt}
@@ -1268,99 +1269,99 @@ I=\int_{e^{-1/2}}^{1} x(\ln x)^2\,\mathrm{d}x
 
 Use the substitution
 \[
-u=\ln x
+t=\ln x
 \]
 
 Then
 \[
-x=e^u
+x=e^t
 \qquad\text{and}\qquad
-\mathrm{d}x=e^u\,\mathrm{d}u
+\mathrm{d}x=e^t\,\mathrm{d}t
 \]
 
 So the integrand becomes
 \[
-x(\ln x)^2\,\mathrm{d}x=e^u\cdot u^2\cdot e^u\,\mathrm{d}u=u^2e^{2u}\,\mathrm{d}u
+x(\ln x)^2\,\mathrm{d}x=e^t\cdot t^2\cdot e^t\,\mathrm{d}t=t^2e^{2t}\,\mathrm{d}t
 \]
 
 Now change the limits.
 
-When $x=e^{-1/2}$,
+When $x=e^{-1/2}$:
 \[
-u=\ln\left(e^{-1/2}\right)=-\frac12
+t=\ln\left(e^{-1/2}\right)=-\frac12
 \]
 
-When $x=1$,
+When $x=1$:
 \[
-u=\ln 1=0
+t=\ln 1=0
 \]
 
 Hence
 \[
-I=\int_{-1/2}^{0} u^2e^{2u}\,\mathrm{d}u
+I=\int_{-1/2}^{0} t^2e^{2t}\,\mathrm{d}t
 \]
 
 To integrate this, use integration by parts twice.
 
-First,
+First take
 \[
-\int u^2e^{2u}\,\mathrm{d}u
-\]
-
-Take
-\[
-p=u^2,\qquad \frac{\mathrm{d}q}{\mathrm{d}u}=e^{2u}
+u=t^2,\qquad \frac{\mathrm{d}v}{\mathrm{d}t}=e^{2t}
 \]
 
 Then
 \[
-\frac{\mathrm{d}p}{\mathrm{d}u}=2u,
+\frac{\mathrm{d}u}{\mathrm{d}t}=2t,
 \qquad
-q=\frac12 e^{2u}
+v=\frac12 e^{2t}
+\]
+
+Using integration by parts:
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}t}\,\mathrm{d}t = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}t}\,\mathrm{d}t
 \]
 
 So
 \[
-\int u^2e^{2u}\,\mathrm{d}u
+\int t^2e^{2t}\,\mathrm{d}t
 =
-\frac12 u^2e^{2u}-\int u e^{2u}\,\mathrm{d}u
+\frac12 t^2e^{2t}-\int t e^{2t}\,\mathrm{d}t
 \]
 
-Now integrate $\int u e^{2u}\,\mathrm{d}u$ by parts again.
+Now integrate $\int t e^{2t}\,\mathrm{d}t$ by parts again.
 
 Take
 \[
-p=u,\qquad \frac{\mathrm{d}q}{\mathrm{d}u}=e^{2u}
+u=t,\qquad \frac{\mathrm{d}v}{\mathrm{d}t}=e^{2t}
 \]
 
 Then
 \[
-\frac{\mathrm{d}p}{\mathrm{d}u}=1,
+\frac{\mathrm{d}u}{\mathrm{d}t}=1,
 \qquad
-q=\frac12 e^{2u}
+v=\frac12 e^{2t}
 \]
 
 Hence
 \[
-\int u e^{2u}\,\mathrm{d}u
+\int t e^{2t}\,\mathrm{d}t
 =
-\frac12 ue^{2u}-\frac12\int e^{2u}\,\mathrm{d}u
+\frac12 te^{2t}-\frac12\int e^{2t}\,\mathrm{d}t
 =
-\frac12 ue^{2u}-\frac14 e^{2u}
+\frac12 te^{2t}-\frac14 e^{2t}
 \]
 
-Substituting back,
+Substituting back:
 \begin{align*}
-\int u^2e^{2u}\,\mathrm{d}u
+\int t^2e^{2t}\,\mathrm{d}t
 &=
-\frac12 u^2e^{2u}-\left(\frac12 ue^{2u}-\frac14 e^{2u}\right) \\
+\frac12 t^2e^{2t}-\left(\frac12 te^{2t}-\frac14 e^{2t}\right) \\
 &=
-e^{2u}\left(\frac{u^2}{2}-\frac{u}{2}+\frac14\right)
+e^{2t}\left(\frac{t^2}{2}-\frac{t}{2}+\frac14\right)
 \end{align*}
 
 Therefore
 \[
-I=\left[e^{2u}\left(\frac{u^2}{2}-\frac{u}{2}+\frac14\right)\right]_{-1/2}^{0}
+I=\left[e^{2t}\left(\frac{t^2}{2}-\frac{t}{2}+\frac14\right)\right]_{-1/2}^{0}
 \]
 
 Now substitute the limits:
@@ -1383,7 +1384,7 @@ So
 \int_{e^{-1/2}}^{1} x(\ln x)^2\,\mathrm{d}x=\frac14-\frac{5}{8e}
 \]
 
-Hence it is of the form $a+\frac{b}{e}$ with
+So the answer is in the form $a+\frac{b}{e}$ with
 \[
 a=\frac14,
 \qquad
@@ -1401,9 +1402,9 @@ b=-\frac58
 Given that
 \[
 y = \arcsin\left(\frac{x-1}{3}\right)
-\] \\
+\]
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item find $\dfrac{\mathrm{d}y}{\mathrm{d}x}$, giving your answer in its simplest form. \marks{2} \\
+  \item find $\frac{\mathrm{d}y}{\mathrm{d}x}$, giving your answer in its simplest form. \marks{2} \\
   \item Use integration by parts to find
   \[
   \int \arcsin\left(\frac{x-1}{3}\right)\,\mathrm{d}x
@@ -1417,18 +1418,18 @@ y = \arcsin\left(\frac{x-1}{3}\right)
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Let
 \[
-u=\frac{x-1}{3}
+w=\frac{x-1}{3}
 \]
 
 Then
 \[
-y=\arcsin u
+y=\arcsin w
 \]
 
-so by the chain rule,
+so by the chain rule:
 \begin{align*}
 \frac{\mathrm{d}y}{\mathrm{d}x}
-&=\frac{1}{\sqrt{1-u^2}}\cdot \frac{\mathrm{d}u}{\mathrm{d}x} \\
+&=\frac{1}{\sqrt{1-w^2}}\cdot \frac{\mathrm{d}w}{\mathrm{d}x} \\
 &=\frac{1}{\sqrt{1-\left(\frac{x-1}{3}\right)^2}}\cdot \frac13 \\
 &=\frac{1}{3\sqrt{1-\frac{(x-1)^2}{9}}} \\
 &=\frac{1}{\sqrt{9-(x-1)^2}}
@@ -1449,17 +1450,20 @@ Then
 v=x
 \]
 
-and from part (a),
+and from part (a):
 \[
 \frac{\mathrm{d}u}{\mathrm{d}x}=\frac{1}{\sqrt{9-(x-1)^2}}
 \]
 
+Using integration by parts:
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
+\]
+
 So
-\begin{align*}
-I
-&=uv-\int v\,\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x \\
-&=x\arcsin\left(\frac{x-1}{3}\right)-\int \frac{x}{\sqrt{9-(x-1)^2}}\,\mathrm{d}x
-\end{align*}
+\[
+I=x\arcsin\left(\frac{x-1}{3}\right)-\int \frac{x}{\sqrt{9-(x-1)^2}}\,\mathrm{d}x
+\]
 
 Now write
 \[
@@ -1467,10 +1471,10 @@ x=(x-1)+1
 \]
 
 so
-\begin{align*}
+\[
 \int \frac{x}{\sqrt{9-(x-1)^2}}\,\mathrm{d}x
-&=\int \frac{x-1}{\sqrt{9-(x-1)^2}}\,\mathrm{d}x+\int \frac{1}{\sqrt{9-(x-1)^2}}\,\mathrm{d}x
-\end{align*}
+=\int \frac{x-1}{\sqrt{9-(x-1)^2}}\,\mathrm{d}x+\int \frac{1}{\sqrt{9-(x-1)^2}}\,\mathrm{d}x
+\]
 
 For the first integral, let
 \[
@@ -1480,7 +1484,7 @@ t=9-(x-1)^2
 Then
 \[
 \frac{\mathrm{d}t}{\mathrm{d}x}=-2(x-1)
-\qquad \Rightarrow \qquad
+\quad\Longrightarrow\quad
 (x-1)\,\mathrm{d}x=-\frac12\,\mathrm{d}t
 \]
 
@@ -1492,7 +1496,7 @@ Hence
 &=-\sqrt{9-(x-1)^2}
 \end{align*}
 
-For the second integral, using the result from part (a) in reverse,
+For the second integral, using the result from part (a) in reverse:
 \[
 \int \frac{1}{\sqrt{9-(x-1)^2}}\,\mathrm{d}x
 =\arcsin\left(\frac{x-1}{3}\right)
@@ -1523,7 +1527,7 @@ Hence
 
 \[
 g(\theta)=(1+\sin\theta-\cos\theta)^2
-\] \\
+\]
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Show that $g(\theta)=2+2\sin\theta-2\cos\theta-\sin 2\theta$. \marks{2} \\
   \item Hence, using calculus, find the exact value of
@@ -1544,24 +1548,19 @@ g(\theta)
 &=1+\sin^2\theta+\cos^2\theta+2\sin\theta-2\cos\theta-2\sin\theta\cos\theta
 \end{align*}
 
-Using \(\sin^2\theta+\cos^2\theta=1\) and \(\sin 2\theta=2\sin\theta\cos\theta\),
+Using \(\sin^2\theta+\cos^2\theta=1\) and \(\sin 2\theta=2\sin\theta\cos\theta\):
 \begin{align*}
 g(\theta)
 &=1+1+2\sin\theta-2\cos\theta-2\sin\theta\cos\theta \\
 &=2+2\sin\theta-2\cos\theta-\sin 2\theta
 \end{align*}
 
-Hence
-\[
-g(\theta)=2+2\sin\theta-2\cos\theta-\sin 2\theta
-\]
-
   \item Let
 \[
 I=\int_{0}^{\pi/2}\theta g(\theta)\,\mathrm{d}\theta
 \]
 
-Using part (a),
+Using part (a):
 \begin{align*}
 I
 &=\int_{0}^{\pi/2}\theta\left(2+2\sin\theta-2\cos\theta-\sin 2\theta\right)\,\mathrm{d}\theta \\
@@ -1573,7 +1572,7 @@ I
 
 Now evaluate each integral.
 
-First,
+First
 \begin{align*}
 2\int_{0}^{\pi/2}\theta\,\mathrm{d}\theta
 &=2\left[\frac{\theta^2}{2}\right]_{0}^{\pi/2} \\
@@ -1582,9 +1581,16 @@ First,
 \end{align*}
 
 Next, for \(\int_{0}^{\pi/2}\theta\sin\theta\,\mathrm{d}\theta\), use integration by parts with
-\(u=\theta\), \(\frac{\mathrm{d}v}{\mathrm{d}\theta}=\sin\theta\)
+\(u=\theta\), \(\frac{\mathrm{d}v}{\mathrm{d}\theta}=\sin\theta\).
 
-Then \(\frac{\mathrm{d}u}{\mathrm{d}\theta}=1\) and \(v=-\cos\theta\), so
+Then \(\frac{\mathrm{d}u}{\mathrm{d}\theta}=1\) and \(v=-\cos\theta\).
+
+Using integration by parts:
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}\theta}\,\mathrm{d}\theta = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}\theta}\,\mathrm{d}\theta
+\]
+
+So
 \begin{align*}
 \int_{0}^{\pi/2}\theta\sin\theta\,\mathrm{d}\theta
 &=\left[-\theta\cos\theta\right]_{0}^{\pi/2}
@@ -1594,7 +1600,7 @@ Then \(\frac{\mathrm{d}u}{\mathrm{d}\theta}=1\) and \(v=-\cos\theta\), so
 \end{align*}
 
 For \(\int_{0}^{\pi/2}\theta\cos\theta\,\mathrm{d}\theta\), again use integration by parts with
-\(u=\theta\), \(\frac{\mathrm{d}v}{\mathrm{d}\theta}=\cos\theta\)
+\(u=\theta\), \(\frac{\mathrm{d}v}{\mathrm{d}\theta}=\cos\theta\).
 
 Then \(\frac{\mathrm{d}u}{\mathrm{d}\theta}=1\) and \(v=\sin\theta\), so
 \begin{align*}
@@ -1606,7 +1612,7 @@ Then \(\frac{\mathrm{d}u}{\mathrm{d}\theta}=1\) and \(v=\sin\theta\), so
 \end{align*}
 
 For \(\int_{0}^{\pi/2}\theta\sin 2\theta\,\mathrm{d}\theta\), use integration by parts with
-\(u=\theta\), \(\frac{\mathrm{d}v}{\mathrm{d}\theta}=\sin 2\theta\)
+\(u=\theta\), \(\frac{\mathrm{d}v}{\mathrm{d}\theta}=\sin 2\theta\).
 
 Then \(\frac{\mathrm{d}u}{\mathrm{d}\theta}=1\) and \(v=-\frac12\cos 2\theta\), so
 \begin{align*}
@@ -1617,7 +1623,7 @@ Then \(\frac{\mathrm{d}u}{\mathrm{d}\theta}=1\) and \(v=-\frac12\cos 2\theta\), 
 &=\frac{\pi}{4}
 \end{align*}
 
-Substituting these into \(I\),
+Substituting these into \(I\):
 \begin{align*}
 I
 &=\frac{\pi^2}{4}+2(1)-2\left(\frac{\pi}{2}-1\right)-\frac{\pi}{4} \\
@@ -1626,7 +1632,7 @@ I
 &=\frac{\pi^2-5\pi+16}{4}
 \end{align*}
 
-Therefore,
+Therefore
 \[
 \int_{0}^{\pi/2}\theta g(\theta)\,\mathrm{d}\theta=\frac{\pi^2-5\pi+16}{4}
 \]
@@ -1658,13 +1664,12 @@ Therefore,
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\roman*)}]
-  \item The sketch should look like:
+  \item The sketch should look like:\par\nopagebreak
 
-\begin{center}
 \begin{tikzpicture}
 \begin{axis}[
-width=8cm,
-height=5cm,
+width=0.75\linewidth,
+height=8cm,
 axis lines=middle,
 xmin=-5, xmax=5,
 ymin=-2.5, ymax=2.5,
@@ -1681,7 +1686,6 @@ samples=200
 \addplot[dashed] coordinates {(-5,-1.5708) (5,-1.5708)};
 \end{axis}
 \end{tikzpicture}
-\end{center}
 
 The graph of \(y=\arctan x\) is an increasing odd curve passing through \((0,0)\).
 
@@ -1743,6 +1747,11 @@ Then
 v=\frac{x^2}{2}
 \]
 
+Using integration by parts:
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
+\]
+
 Hence
 \begin{align*}
 I
@@ -1758,10 +1767,9 @@ Now
 \]
 
 so
-\begin{align*}
-I
-&=\frac{\pi^2}{32}-\int_0^1 \arctan x\,\mathrm{d}x+\int_0^1 \frac{\arctan x}{1+x^2}\,\mathrm{d}x
-\end{align*}
+\[
+I=\frac{\pi^2}{32}-\int_0^1 \arctan x\,\mathrm{d}x+\int_0^1 \frac{\arctan x}{1+x^2}\,\mathrm{d}x
+\]
 
 We now evaluate these two integrals separately.
 
@@ -1770,14 +1778,14 @@ First, let
 J=\int_0^1 \arctan x\,\mathrm{d}x
 \]
 
-Using integration by parts with
+Use integration by parts with
 \[
 u=\arctan x,
 \qquad
 \frac{\mathrm{d}v}{\mathrm{d}x}=1
 \]
 
-gives
+so that
 \[
 \frac{\mathrm{d}u}{\mathrm{d}x}=\frac{1}{1+x^2},
 \qquad
