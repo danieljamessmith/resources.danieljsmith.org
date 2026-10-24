@@ -1175,7 +1175,7 @@ function checkQuestionBody(question, packQ, report, { modelAnswer = false, codes
     }
   });
 
-  // Rules 6, 7 (titles and whys), 16, 17 over the question's text.
+  // Rules 6, 7 (titles and whys, and upright i and e), 16, 17 over the question's text.
   for (const [text, field] of questionTexts(question)) {
     const where = field.where;
     for (const [ch, hint] of Object.entries(CONTROL_HINTS)) {
@@ -1190,6 +1190,9 @@ function checkQuestionBody(question, packQ, report, { modelAnswer = false, codes
     }
     if ((field.name === 'title' || field.name === 'why') && isPlaceholder(text)) {
       report.error(7, where, q, `a placeholder in the ${field.name}`);
+    }
+    for (const letter of new Set(Array.from(text.matchAll(UPRIGHT_LETTER_RE), (m) => m[1]))) {
+      report.error(7, where, q, `\\mathrm{${letter}} in the ${field.name}: write ${UPRIGHT_LETTERS[letter]} as a plain ${letter}`);
     }
     if (PROSE_FIELDS.has(field.name)) {
       const prose = proseOf(text);
@@ -1214,6 +1217,10 @@ function checkQuestionBody(question, packQ, report, { modelAnswer = false, codes
 }
 
 const PROSE_FIELDS = new Set(['note', 'Scheme column', 'title']);
+
+/** The letters the packs write italic, as plain i and e, which a scheme writes the same way. */
+const UPRIGHT_LETTERS = { i: 'the imaginary unit', e: 'the exponential' };
+const UPRIGHT_LETTER_RE = /\\mathrm\s*\{\s*([ie])\s*\}/g;
 
 function isPlaceholder(text) {
   const t = text.trim();

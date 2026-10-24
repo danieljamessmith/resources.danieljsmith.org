@@ -187,7 +187,7 @@ halves of 6 and 16) are reported.
 4. One question per question of the pack, numbered 1, 2, ... in order; one part per `\marks`, in order, with its label.
 5. A row has `scheme` or `figure`, not both; a Scheme row has at most two marks.
 6. No string holds a tab, form feed, backspace or carriage return (a `\theta`, `\frac`, `\beta` or `\right` written into JSON with one backslash). A line break followed by the rest of a macro starting `\n` (`\neq`, `\nabla`) warns.
-7. No empty Scheme line or note; no placeholder (`TODO`, `TBC`, or `...` or `?` alone); no `\\` ending a Scheme line.
+7. No empty Scheme line or note; no placeholder (`TODO`, `TBC`, or `...` or `?` alone); no `\\` ending a Scheme line; no `\mathrm{i}` or `\mathrm{e}` in any field: the imaginary unit and the exponential are plain `i` and `e`, as in the packs.
 8. An unflagged part's marks number its `\marks` (an offset `\marks[...]{n}` included).
 9. Its `alt`'s marks number the same.
 10. Every code is on the list; `A1*`, a lone `AG`, `B2`, `M2`, `R1`, `DM1` and `A0` are refused with the house spelling.

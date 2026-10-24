@@ -520,6 +520,20 @@ describe('rules 5-7: rows and strings', () => {
     expect(rules(run((s) => (part(s, 1, 'b').rows[1].scheme = '\\(a\\) \\\\\n\\(b\\)\n')).errors)).toEqual([7]);
     expect(rules(run((s) => (part(s, 3, 'a.i').alt.title = '?')).errors)).toEqual([7]);
   });
+
+  it('rule 7: i and e plain, never \\mathrm{i} or \\mathrm{e}; differentials stay upright', () => {
+    const unit = run((s) => (part(s, 1, 'b').rows[1].scheme = '\\(z = 3 + 2\\mathrm{i}\\)\n'));
+    expect(rules(unit.errors)).toEqual([7]);
+    expect(unit.errors[0].message).toMatch(/imaginary unit as a plain i/);
+    const both = run((s) => (part(s, 1, 'b').rows[0].marks[0].note = 'Uses \\(\\mathrm{e}^{\\mathrm{i}\\theta}\\) and \\(\\mathrm{e}^{x}\\).'));
+    expect(both.errors.map((e) => e.message)).toEqual([
+      expect.stringMatching(/^\\mathrm\{e\} in the note: write the exponential/),
+      expect.stringMatching(/^\\mathrm\{i\} in the note/),
+    ]);
+    expect(rules(run((s) => (part(s, 3, 'a.i').alt.title = 'Using \\(\\mathrm {e}^x\\)')).errors)).toEqual([7]);
+    const plain = run((s) => (part(s, 1, 'b').rows[0].marks[0].note = 'Uses \\(e^{i\\theta}\\) and \\(\\int x\\,\\mathrm{d}x\\), \\(\\mathrm{Im}(z)\\).'));
+    expect(plain.errors).toEqual([]);
+  });
 });
 
 describe('rules 8-13: totals and codes', () => {

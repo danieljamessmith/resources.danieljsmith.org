@@ -148,7 +148,8 @@ the optional `djsSolutionFigure` environment, and the legacy colored-cancel
   reorder, `renumber` puts the scheme in the pack's new order.
   `scripts/README.md` (Mark schemes) has the fields, the commands and the
   checker's rules. Notes may use LHS, RHS, KE, GPE and EPE without an
-  abbreviation warning.
+  abbreviation warning. As in the packs, the imaginary unit and the
+  exponential are plain `i` and `e`, never `\mathrm{i}` or `\mathrm{e}`.
 
 - **The mark schemes' guard:** the pre-commit's `check-markschemes` reads
   the git index, so it checks the schemes and packs as they are about to be
