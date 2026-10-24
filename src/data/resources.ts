@@ -366,6 +366,16 @@ const rawResources: Resource[] = [
     pairId: 'fm-complex-series',
     topic: 'Complex Numbers',
   },
+  {
+    id: 'fm-complex-series-ms',
+    title: 'Complex Series',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__Complex_Series.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-complex-series',
+    topic: 'Complex Numbers',
+  },
 
   // --- A-level Further Maths: Vectors (Notes → pairs in teaching order) ---
   {

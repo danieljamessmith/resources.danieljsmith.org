@@ -1,0 +1,173 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/markscheme_preamble.tex}
+
+\djsSchemeHeader{Complex Series}
+\djsSitePath{Core Pure}{Complex Numbers}
+
+\djsLastUpdated{24 October 2026}
+\begin{document}
+\djsSetQuestionCount{7}
+\djsAddMarks{1}{8}
+\djsAddMarks{2}{8}
+\djsAddMarks{3}{8}
+\djsAddMarks{4}{9}
+\djsAddMarks{5}{7}
+\djsAddMarks{6}{12}
+\djsAddMarks{7}{12}
+\vspace*{6pt}
+\djsContentsTitle
+\vspace{30pt}
+\msContentsHeading
+\begin{mscontents}{}
+Question & Marks by part & Marks & Page \\
+\msContentsQuestion{1} & (a)\,4\msSep (b)\,4 & 8 & \msContentsPage{1} \\
+\msContentsQuestion{2} & (a)\,4\msSep (b)\,4 & 8 & \msContentsPage{2} \\
+\msContentsQuestion{3} & & 8 & \msContentsPage{3} \\
+\msContentsQuestion{4} & (i)\,2\msSep (ii)\,7 & 9 & \msContentsPage{4} \\
+\msContentsQuestion{5} & & 7 & \msContentsPage{5} \\
+\msContentsQuestion{6} & (i)\,3\msSep (ii)\,9 & 12 & \msContentsPage{6} \\
+\msContentsQuestion{7} & (i)\,3\msSep (ii)\,9 & 12 & \msContentsPage{7} \\
+\SetCell[c=2]{r} Total & & 64 & \\
+\end{mscontents}
+\newpage
+\input{../../../../_shared/markscheme_conventions.tex}
+
+\msQuestion{1}
+\begin{msscheme}{
+  hline{3-6,8-11} = {2-Z}{0.4pt, msGrid},
+  hline{7,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+1(a) & {\(C + iS = e^{2i\theta} - \frac13 e^{5i\theta} + \frac19 e^{8i\theta} - \cdots\)} & M1 & {Uses \(\cos k\theta + i\sin k\theta = e^{ik\theta}\) to write at least three terms as exponentials.} \\
+& {Geometric, first term \(e^{2i\theta}\), \(r = -\frac13 e^{3i\theta}\)} & A1 & {Correct common ratio, oe, soi by a correct sum.} \\
+& {\(C + iS = \dfrac{e^{2i\theta}}{1 - \left(\text{"}-\frac13 e^{3i\theta}\text{"}\right)}\)} & M1 & {Uses \(\frac{a}{1-r}\) with their first term and their ratio of the form \(ke^{3i\theta}\).} \\
+& {\(\phantom{C + iS} = \dfrac{3e^{2i\theta}}{3 + e^{3i\theta}}\)} & A1~AG & {Printed result from a correct sum without error. No check of \(|r| < 1\) needed.} \\
+\nopagebreak & & [4] & \\
+1(b) & {\(C + iS = \dfrac{3e^{2i\theta}(3 + e^{-3i\theta})}{(3 + e^{3i\theta})(3 + e^{-3i\theta})}\)} & M1 & {Multiplies numerator and denominator by the conjugate of the denominator, in exponential or trigonometric form.} \\
+& {Denominator \(= 9 + 3\left(e^{3i\theta} + e^{-3i\theta}\right) + 1\)\\[4pt] \(\phantom{\text{Denominator}} = 10 + 6\cos 3\theta\)} & A1 & \\
+& {Numerator \(= 9e^{2i\theta} + 3e^{-i\theta}\)\\[4pt] \(S = \dfrac{\mathrm{Im}\left(9e^{2i\theta} + 3e^{-i\theta}\right)}{10 + 6\cos 3\theta} = \ldots\)} & M1 & {Expands the numerator and takes its imaginary part over their real denominator. Condone sign slips.} \\
+& {\(S = \dfrac{9\sin 2\theta - 3\sin\theta}{10 + 6\cos 3\theta}\)} & A1~AG & {Printed result from a correct numerator and denominator without error.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 1 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{2}
+\begin{msscheme}{
+  hline{3-6,8-11} = {2-Z}{0.4pt, msGrid},
+  hline{7,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+2(a) & {\(C + iS = \sum_{n=0}^{\infty}\left(-\tfrac12\right)^n e^{i(4n+1)\theta}\)} & M1 & {Combines the two series term by term, using \(\cos x + i\sin x = e^{ix}\), into one series of exponentials.} \\
+& {Geometric, first term \(e^{i\theta}\), ratio \(-\tfrac12 e^{4i\theta}\)} & A1 & {Common ratio \(-\frac12 e^{4i\theta}\) oe, stated or used.} \\
+& {\(C + iS = \dfrac{e^{i\theta}}{1 + \frac12 e^{4i\theta}}\)} & M1 & {Uses \(\frac{a}{1-r}\) with their first term and ratio, each of the form \(ke^{mi\theta}\).} \\
+& {\(\phantom{C + iS} = \dfrac{2e^{i\theta}}{2 + e^{4i\theta}}\)} & A1~AG & {Correct sum to infinity leading without error to the printed result. \(|r| < 1\) need not be shown.} \\
+\nopagebreak & & [4] & \\
+2(b) & {\(C + iS = \dfrac{2e^{i\theta}(2 + e^{-4i\theta})}{(2 + e^{4i\theta})(2 + e^{-4i\theta})}\)} & M1 & {Multiplies numerator and denominator by \(2 + e^{-4i\theta}\) oe, such as \(2 + \cos 4\theta - i\sin 4\theta\).} \\
+& {\((2 + e^{4i\theta})(2 + e^{-4i\theta}) = 5 + 4\cos 4\theta\)} & A1 & {Correct real denominator from a seen expansion.} \\
+& {\(C = \mathrm{Re}\left(4e^{i\theta} + 2e^{-3i\theta}\right) \div \text{"}5 + 4\cos 4\theta\text{"}\)\\[4pt] \(\phantom{C} = \ldots\)} & M1 & {Expands the numerator to two exponential terms and takes the real part of each over their real denominator.} \\
+& {\(C = \dfrac{4\cos\theta + 2\cos(-3\theta)}{5 + 4\cos 4\theta}\)\\[4pt] \(\phantom{C} = \dfrac{4\cos\theta + 2\cos 3\theta}{5 + 4\cos 4\theta}\)} & A1~AG & {Correct real parts over \(5 + 4\cos 4\theta\) leading without error to the printed result; \(\cos(-3\theta) = \cos 3\theta\) may be implied.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 2 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{3}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+3 & {\(C + iS = \sum_{n=0}^{\infty} r^n e^{i(\alpha + n\beta)}\)\\[4pt] \(\phantom{C + iS} = e^{i\alpha}\sum_{n=0}^{\infty} \left(re^{i\beta}\right)^n\)} & M1 & {Writes the terms as \(r^n e^{i(\alpha + n\beta)}\) and identifies a geometric series with ratio \(re^{i\beta}\), soi by its use.} \\
+& {\(C + iS = \frac{e^{i\alpha}}{1 - re^{i\beta}}\)} & M1 A1 & {\msNote{M1}{Uses \(\frac{a}{1 - q}\) with their first term and a complex ratio of the form \(re^{\pm i\beta}\). Convergence need not be stated.}\\ \msNote{A1}{oe}} \\
+& {\(C + iS = \frac{e^{i\alpha}\left(1 - re^{-i\beta}\right)}{\left(1 - re^{i\beta}\right)\left(1 - re^{-i\beta}\right)}\)} & M1 & {Multiplies numerator and denominator by the conjugate of their denominator, in exponential or trigonometric form.} \\
+& {\(\left(1 - re^{i\beta}\right)\left(1 - re^{-i\beta}\right)\)\\[4pt] \(\phantom{(1)} = 1 - r\left(e^{i\beta} + e^{-i\beta}\right) + r^2\)\\[4pt] \(\phantom{(1)} = 1 + r^2 - 2r\cos\beta\)} & A1 & \\
+& {Equates real and imaginary parts of the numerator:\\[4pt] \(e^{i\alpha} - re^{i(\alpha - \beta)}\)\\[4pt] \(\phantom{e} = \cos\alpha - r\cos(\alpha - \beta)\)\\[4pt] \(\phantom{e = } + i\left(\sin\alpha - r\sin(\alpha - \beta)\right)\)} & dM1 & {Writes their numerator as real part plus \(i\) times imaginary part in terms of \(\alpha\) and \(\beta\), and equates these to \(C\) and \(S\). Condone sign slips.} \\
+& {\(S = \frac{\sin\alpha - r\sin(\alpha - \beta)}{1 + r^2 - 2r\cos\beta}\)\\[4pt] \(C = \frac{\cos\alpha - r\cos(\alpha - \beta)}{1 + r^2 - 2r\cos\beta}\)} & A1 A1~AG & {\msNote{A1}{oe}\\ \msNote{A1~AG}{From the real part of a correct \(C + iS\) over the real denominator; working back from the printed result earns nothing.}} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 3 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{4}
+\begin{msscheme}{
+  hline{3-4,6-10} = {2-Z}{0.4pt, msGrid},
+  hline{5,11} = {0.4pt, msGrid},
+  row{11} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+4(i) & {\(\sec\theta(\cos\theta + i\sin\theta)\)\\[4pt] \(\phantom{A} = \sec\theta\cos\theta + i\sec\theta\sin\theta\)} & M1 & {Expands the bracket, or factorises \(1 + i\tan\theta\), using \(\sec\theta = \frac{1}{\cos\theta}\) in at least one term.} \\
+& {\(\phantom{A} = 1 + i\tan\theta\)} & A1~AG & {Both terms simplified without error to the printed result, from either side.} \\
+\nopagebreak & & [2] & \\
+4(ii) & {\(C + iS = 1 + \binom{n}{1}(i\tan\theta) + \binom{n}{2}(i\tan\theta)^2\)\\[4pt] \(\phantom{C + iS = 1} + \binom{n}{3}(i\tan\theta)^3 + \cdots\)} & M1 & {Combines the series as a binomial expansion in \(i\tan\theta\), showing at least the terms in \(\tan^2\theta\) and \(\tan^3\theta\) with their powers of \(i\).} \\
+& {\(C + iS = (1 + i\tan\theta)^n\)} & A1 & \\
+& {\(C + iS = \left[\sec\theta(\cos\theta + i\sin\theta)\right]^n\)\\[4pt] \(\phantom{C + iS} = \sec^n\theta(\cos\theta + i\sin\theta)^n\)} & M1 & {Substitutes part (i) into their \((1 + i\tan\theta)^n\) and takes the power of each factor.} \\
+& {\(C + iS = \sec^n\theta(\cos n\theta + i\sin n\theta)\)} & dM1 A1 & {\msNote{dM1}{Applies de Moivre's theorem to \((\cos\theta + i\sin\theta)^n\).}} \\
+& {\(S = \sec^n\theta\sin n\theta\)\\[4pt] \(C = \sec^n\theta\cos n\theta\)} & A1 A1~AG & {\msNote{A1}{\(S = \sec^n\theta\sin n\theta\) stated; the equating of imaginary parts may be implied.}\\ \msNote{A1~AG}{Real parts equated from a correct \(C + iS\), with no errors in the part.}} \\
+\nopagebreak & & [7] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 4 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{5}
+\begin{msscheme}{
+  hline{3-8} = {2-Z}{0.4pt, msGrid},
+  hline{9} = {0.4pt, msGrid},
+  row{9} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+5 & {\(\sum_{r=0}^{n-1}\exp\left(2i\theta + \frac{4\pi ir}{n}\right)\)\\[4pt] \(\phantom{\sum} = \exp(2i\theta)\sum_{r=0}^{n-1}\left(\exp\left(\frac{4\pi i}{n}\right)\right)^r\)} & M1 & {Writes the sum as a constant times a sum of powers of one complex exponential. Condone slips in the ratio.} \\
+& {Ratio \(\exp\left(\frac{4\pi i}{n}\right) \neq 1\) since \(0 < \frac{2}{n} < 1\)} & A1 & {Correct ratio, with a reason it is not 1 that uses \(n > 2\).} \\
+& {\(\exp(2i\theta)\,\frac{1 - \left(\exp\left(\frac{4\pi i}{n}\right)\right)^n}{1 - \exp\left(\frac{4\pi i}{n}\right)}\)} & M1 & {Applies the geometric series sum formula with their first term and ratio. Condone a slip in the number of terms.} \\
+& {\(\left(\exp\left(\frac{4\pi i}{n}\right)\right)^n = \exp(4\pi i) = 1 \Rightarrow\) sum \(= 0\)\\[4pt] \(\Rightarrow \sum_{r=0}^{n-1}\cos\left(2\theta + \frac{4\pi r}{n}\right) = 0\)\\[4pt] \(\phantom{\Rightarrow} \sum_{r=0}^{n-1}\sin\left(2\theta + \frac{4\pi r}{n}\right) = 0\)} & A1 & {Shows the ratio to the power \(n\) is 1, so the sum is 0, and that both its real and imaginary parts are 0.} \\
+& {\(C = \sum_{r=0}^{n-1}\frac{1 + \cos\left(2\theta + \frac{4\pi r}{n}\right)}{2}\)\\[4pt] \(S = \frac12\sum_{r=0}^{n-1}\sin\left(2\theta + \frac{4\pi r}{n}\right)\)} & M1 & {Uses a double-angle identity to write \(C\) or \(S\) in terms of the real or imaginary part of the sum. Condone coefficient slips.} \\
+& {\(C = \frac12(n) + \frac12(0) = \frac{n}{2}\)} & A1 & {cso, with \(\sum_{r=0}^{n-1} 1 = n\) seen or clearly used.} \\
+& {\(S = \frac12(0) = 0\)} & A1~AG & {Correct identity applied to the zero imaginary part, reaching \(S = 0\) with no errors seen.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 5 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{6}
+\begin{msscheme}{
+  hline{3-5,7-14} = {2-Z}{0.4pt, msGrid},
+  hline{6,15} = {0.4pt, msGrid},
+  row{15} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+6(i) & {\((1 - 2e^{2i\theta})(1 - 2e^{-2i\theta})\)\\[4pt] \(\phantom{A} = 1 - 2e^{2i\theta} - 2e^{-2i\theta} + 4\)} & M1 & {Multiplies out to four terms, using \(e^{2i\theta}e^{-2i\theta} = 1\). Condone one sign slip.} \\
+& {\(\phantom{A} = 5 - 2(e^{2i\theta} + e^{-2i\theta})\)} & A1 & {oe, such as \(5 - 2e^{2i\theta} - 2e^{-2i\theta}\).} \\
+& {\(\phantom{A} = 5 - 2(2\cos 2\theta) = 5 - 4\cos 2\theta\)} & A1~AG & {Uses \(e^{2i\theta} + e^{-2i\theta} = 2\cos 2\theta\), or the cosine and sine forms, reaching the printed result without error.} \\
+\nopagebreak & & [3] & \\
+6(ii) & {\(C + iS = e^{i\theta} + 2e^{3i\theta} + \cdots + 2^{n-1}e^{(2n-1)i\theta}\)} & M1 & {Forms \(C + iS\) and writes its terms as exponentials; the first two terms and the last are enough.} \\
+& {Geometric: first term \(e^{i\theta}\), ratio \(2e^{2i\theta}\)} & A1 & {Ratio \(2e^{2i\theta}\), soi; first term \(1\) accepted with \(e^{i\theta}\) factored out.} \\
+& {\(C + iS = \frac{e^{i\theta}\left(1 - (2e^{2i\theta})^n\right)}{1 - 2e^{2i\theta}}\)} & M1 A1 & {\msNote{M1}{Uses \(\frac{a(1-r^n)}{1-r}\) or \(\frac{a(r^n-1)}{r-1}\) with their first term and ratio, of the form \(ke^{2i\theta}\), and \(n\) terms.}\\ \msNote{A1}{oe, such as numerator \(e^{i\theta} - 2^n e^{(2n+1)i\theta}\).}} \\
+& {\(\phantom{C + iS} = \frac{e^{i\theta}(1 - 2^n e^{2ni\theta})(1 - 2e^{-2i\theta})}{(1 - 2e^{2i\theta})(1 - 2e^{-2i\theta})}\)} & M1 & {Multiplies numerator and denominator by the complex conjugate of their denominator.} \\
+& {\(\phantom{C + iS} = \frac{e^{i\theta}(1 - 2^n e^{2ni\theta})(1 - 2e^{-2i\theta})}{5 - 4\cos 2\theta}\)} & A1 & {Denominator \(5 - 4\cos 2\theta\), from part (i); the numerator need not be expanded.} \\
+& {Numerator \(= e^{i\theta} - 2e^{-i\theta} - 2^n e^{(2n+1)i\theta}\)\\[4pt] \(\phantom{\text{Numerator} =} + 2^{n+1}e^{(2n-1)i\theta}\)\\[4pt] Equates real and imaginary parts} & dM1 & {Expands their numerator to four terms, writes them in cosine and sine form and takes real and imaginary parts. Condone sign slips.} \\
+& {\(S = \frac{2^{n+1}\sin((2n-1)\theta) - 2^n\sin((2n+1)\theta) + 3\sin\theta}{5 - 4\cos 2\theta}\)} & A1 & {oe.} \\
+& {\(C = \frac{2^{n+1}\cos((2n-1)\theta) - 2^n\cos((2n+1)\theta) - \cos\theta}{5 - 4\cos 2\theta}\)} & A1~AG & {Real part of a correct expanded numerator, reaching the printed result without error.} \\
+\nopagebreak & & [9] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 6 & & 12 & \\
+\end{msscheme}
+
+\msQuestion{7}
+\begin{msscheme}{
+  hline{3-5,7-14} = {2-Z}{0.4pt, msGrid},
+  hline{6,15} = {0.4pt, msGrid},
+  row{15} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+7(i) & {\(1 - e^{2i\theta} = 1 - \cos 2\theta - i\sin 2\theta\)} & M1 & {Writes \(e^{2i\theta}\) in Cartesian form, as \(\cos 2\theta + i\sin 2\theta\) or by expanding \((\cos\theta + i\sin\theta)^2\).} \\
+& {\(\phantom{1 - e^{2i\theta}} = 2\sin^2\theta - 2i\sin\theta\cos\theta\)} & M1 & {Uses \(1 - \cos 2\theta = 2\sin^2\theta\) and \(\sin 2\theta = 2\sin\theta\cos\theta\), or equivalent identities, on both parts. Condone sign slips.} \\
+& {\(\phantom{1 - e^{2i\theta}} = 2\sin\theta(\sin\theta - i\cos\theta)\)} & A1~AG & {Printed result reached without error from correct identities, including the sign of the imaginary part.} \\
+\nopagebreak & & [3] & \\
+7(ii) & {\(C + iS = 1 - \binom{n}{1}e^{2i\theta} + \binom{n}{2}e^{4i\theta} - \cdots\)\\[4pt] \(\phantom{C + iS} = \sum_{r=0}^{n}\binom{n}{r}\left(-e^{2i\theta}\right)^r\)} & M1 & {Combines the series into terms \(\binom{n}{r}(-1)^r e^{2ri\theta}\), at least three seen or in general, and identifies a binomial expansion. Condone sign slips.} \\
+& {\(C + iS = \left(1 - e^{2i\theta}\right)^n\)} & A1 & \\
+& {\(C + iS = \left[2\sin\theta(\sin\theta - i\cos\theta)\right]^n\)\\[4pt] \(\phantom{C + iS} = 2^n\sin^n\theta\,(\sin\theta - i\cos\theta)^n\)} & M1 & {Substitutes the result of (i) into \(\left(1 - e^{2i\theta}\right)^n\) and separates the real factor \(2^n\sin^n\theta\).} \\
+& {\(\sin\theta - i\cos\theta = -i(\cos\theta + i\sin\theta)\)} & M1 & {Writes \(\sin\theta - i\cos\theta\) as a multiple of \(\cos\theta + i\sin\theta\), or in exponential or modulus-argument form.} \\
+& {\(\sin\theta - i\cos\theta = e^{-i\pi/2}(\cos\theta + i\sin\theta)\)} & A1 & {oe, such as \(e^{i(\theta - \pi/2)}\) or \(\cos\left(\theta - \frac{\pi}{2}\right) + i\sin\left(\theta - \frac{\pi}{2}\right)\).} \\
+& {\((\sin\theta - i\cos\theta)^n = e^{-in\pi/2}\,e^{in\theta}\)} & dM1 & {Applies de Moivre's theorem, or the laws of indices, to raise their exponential or modulus-argument form to the power \(n\).} \\
+& {\(C + iS = 2^n\sin^n\theta\, e^{i(n\theta - n\pi/2)}\)\\[4pt] \(\phantom{C + iS} = 2^n\sin^n\theta\bigl(\cos\left(n\theta - \tfrac{n\pi}{2}\right)\)\\[4pt] \(\phantom{C + iS = 2^n\sin^n\theta\bigl(} + i\sin\left(n\theta - \tfrac{n\pi}{2}\right)\bigr)\)} & A1 & {In exponential or modulus-argument form.} \\
+& {\(S = 2^n\sin^n\theta\sin\left(n\theta - \frac{n\pi}{2}\right)\)\\[4pt] \(C = 2^n\sin^n\theta\cos\left(n\theta - \frac{n\pi}{2}\right)\)} & A1 A1~AG & {\msNote{A1}{oe.}\\ \msNote{A1~AG}{Equates real parts of a correct expression for \(C + iS\), reaching the printed form.}} \\
+\nopagebreak & & [9] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 7 & & 12 & \\
+\end{msscheme}
+
+\end{document}

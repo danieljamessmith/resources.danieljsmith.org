@@ -1,0 +1,373 @@
+format: 1
+pack: Complex Series
+last_updated: 24 October 2026
+questions:
+  - q: 1
+    stamp: c16a8606
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(C + iS = e^{2i\theta} - \frac13 e^{5i\theta} + \frac19 e^{8i\theta} - \cdots\)
+            marks:
+              - code: M1
+                note: Uses \(\cos k\theta + i\sin k\theta = e^{ik\theta}\) to write at least three terms as exponentials.
+          - scheme: |
+              Geometric, first term \(e^{2i\theta}\), \(r = -\frac13 e^{3i\theta}\)
+            marks:
+              - code: A1
+                note: Correct common ratio, oe, soi by a correct sum.
+          - scheme: |
+              \(C + iS = \dfrac{e^{2i\theta}}{1 - \left(\text{"}-\frac13 e^{3i\theta}\text{"}\right)}\)
+            marks:
+              - code: M1
+                note: Uses \(\frac{a}{1-r}\) with their first term and their ratio of the form \(ke^{3i\theta}\).
+          - scheme: |
+              \(\phantom{C + iS} = \dfrac{3e^{2i\theta}}{3 + e^{3i\theta}}\)
+            marks:
+              - code: A1 AG
+                note: Printed result from a correct sum without error. No check of \(|r| < 1\) needed.
+      - part: b
+        rows:
+          - scheme: |
+              \(C + iS = \dfrac{3e^{2i\theta}(3 + e^{-3i\theta})}{(3 + e^{3i\theta})(3 + e^{-3i\theta})}\)
+            marks:
+              - code: M1
+                note: Multiplies numerator and denominator by the conjugate of the denominator, in exponential or trigonometric form.
+          - scheme: |
+              Denominator \(= 9 + 3\left(e^{3i\theta} + e^{-3i\theta}\right) + 1\)
+              \(\phantom{\text{Denominator}} = 10 + 6\cos 3\theta\)
+            marks:
+              - code: A1
+          - scheme: |
+              Numerator \(= 9e^{2i\theta} + 3e^{-i\theta}\)
+              \(S = \dfrac{\mathrm{Im}\left(9e^{2i\theta} + 3e^{-i\theta}\right)}{10 + 6\cos 3\theta} = \ldots\)
+            marks:
+              - code: M1
+                note: Expands the numerator and takes its imaginary part over their real denominator. Condone sign slips.
+          - scheme: |
+              \(S = \dfrac{9\sin 2\theta - 3\sin\theta}{10 + 6\cos 3\theta}\)
+            marks:
+              - code: A1 AG
+                note: Printed result from a correct numerator and denominator without error.
+  - q: 2
+    stamp: b710e2c9
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(C + iS = \sum_{n=0}^{\infty}\left(-\tfrac12\right)^n e^{i(4n+1)\theta}\)
+            marks:
+              - code: M1
+                note: Combines the two series term by term, using \(\cos x + i\sin x = e^{ix}\), into one series of exponentials.
+          - scheme: |
+              Geometric, first term \(e^{i\theta}\), ratio \(-\tfrac12 e^{4i\theta}\)
+            marks:
+              - code: A1
+                note: Common ratio \(-\frac12 e^{4i\theta}\) oe, stated or used.
+          - scheme: |
+              \(C + iS = \dfrac{e^{i\theta}}{1 + \frac12 e^{4i\theta}}\)
+            marks:
+              - code: M1
+                note: Uses \(\frac{a}{1-r}\) with their first term and ratio, each of the form \(ke^{mi\theta}\).
+          - scheme: |
+              \(\phantom{C + iS} = \dfrac{2e^{i\theta}}{2 + e^{4i\theta}}\)
+            marks:
+              - code: A1 AG
+                note: Correct sum to infinity leading without error to the printed result. \(|r| < 1\) need not be shown.
+      - part: b
+        rows:
+          - scheme: |
+              \(C + iS = \dfrac{2e^{i\theta}(2 + e^{-4i\theta})}{(2 + e^{4i\theta})(2 + e^{-4i\theta})}\)
+            marks:
+              - code: M1
+                note: Multiplies numerator and denominator by \(2 + e^{-4i\theta}\) oe, such as \(2 + \cos 4\theta - i\sin 4\theta\).
+          - scheme: |
+              \((2 + e^{4i\theta})(2 + e^{-4i\theta}) = 5 + 4\cos 4\theta\)
+            marks:
+              - code: A1
+                note: Correct real denominator from a seen expansion.
+          - scheme: |
+              \(C = \mathrm{Re}\left(4e^{i\theta} + 2e^{-3i\theta}\right) \div \text{"}5 + 4\cos 4\theta\text{"}\)
+              \(\phantom{C} = \ldots\)
+            marks:
+              - code: M1
+                note: Expands the numerator to two exponential terms and takes the real part of each over their real denominator.
+          - scheme: |
+              \(C = \dfrac{4\cos\theta + 2\cos(-3\theta)}{5 + 4\cos 4\theta}\)
+              \(\phantom{C} = \dfrac{4\cos\theta + 2\cos 3\theta}{5 + 4\cos 4\theta}\)
+            marks:
+              - code: A1 AG
+                note: Correct real parts over \(5 + 4\cos 4\theta\) leading without error to the printed result; \(\cos(-3\theta) = \cos 3\theta\) may be implied.
+  - q: 3
+    stamp: bd59c1b9
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(C + iS = \sum_{n=0}^{\infty} r^n e^{i(\alpha + n\beta)}\)
+              \(\phantom{C + iS} = e^{i\alpha}\sum_{n=0}^{\infty} \left(re^{i\beta}\right)^n\)
+            marks:
+              - code: M1
+                note: Writes the terms as \(r^n e^{i(\alpha + n\beta)}\) and identifies a geometric series with ratio \(re^{i\beta}\), soi by its use.
+          - scheme: |
+              \(C + iS = \frac{e^{i\alpha}}{1 - re^{i\beta}}\)
+            marks:
+              - code: M1
+                note: Uses \(\frac{a}{1 - q}\) with their first term and a complex ratio of the form \(re^{\pm i\beta}\). Convergence need not be stated.
+              - code: A1
+                note: oe
+          - scheme: |
+              \(C + iS = \frac{e^{i\alpha}\left(1 - re^{-i\beta}\right)}{\left(1 - re^{i\beta}\right)\left(1 - re^{-i\beta}\right)}\)
+            marks:
+              - code: M1
+                note: Multiplies numerator and denominator by the conjugate of their denominator, in exponential or trigonometric form.
+          - scheme: |
+              \(\left(1 - re^{i\beta}\right)\left(1 - re^{-i\beta}\right)\)
+              \(\phantom{(1)} = 1 - r\left(e^{i\beta} + e^{-i\beta}\right) + r^2\)
+              \(\phantom{(1)} = 1 + r^2 - 2r\cos\beta\)
+            marks:
+              - code: A1
+          - scheme: |
+              Equates real and imaginary parts of the numerator:
+              \(e^{i\alpha} - re^{i(\alpha - \beta)}\)
+              \(\phantom{e} = \cos\alpha - r\cos(\alpha - \beta)\)
+              \(\phantom{e = } + i\left(\sin\alpha - r\sin(\alpha - \beta)\right)\)
+            marks:
+              - code: dM1
+                note: Writes their numerator as real part plus \(i\) times imaginary part in terms of \(\alpha\) and \(\beta\), and equates these to \(C\) and \(S\). Condone sign slips.
+          - scheme: |
+              \(S = \frac{\sin\alpha - r\sin(\alpha - \beta)}{1 + r^2 - 2r\cos\beta}\)
+              \(C = \frac{\cos\alpha - r\cos(\alpha - \beta)}{1 + r^2 - 2r\cos\beta}\)
+            marks:
+              - code: A1
+                note: oe
+              - code: A1 AG
+                note: From the real part of a correct \(C + iS\) over the real denominator; working back from the printed result earns nothing.
+  - q: 4
+    stamp: b1dca34e
+    parts:
+      - part: i
+        rows:
+          - scheme: |
+              \(\sec\theta(\cos\theta + i\sin\theta)\)
+              \(\phantom{A} = \sec\theta\cos\theta + i\sec\theta\sin\theta\)
+            marks:
+              - code: M1
+                note: Expands the bracket, or factorises \(1 + i\tan\theta\), using \(\sec\theta = \frac{1}{\cos\theta}\) in at least one term.
+          - scheme: |
+              \(\phantom{A} = 1 + i\tan\theta\)
+            marks:
+              - code: A1 AG
+                note: Both terms simplified without error to the printed result, from either side.
+      - part: ii
+        rows:
+          - scheme: |
+              \(C + iS = 1 + \binom{n}{1}(i\tan\theta) + \binom{n}{2}(i\tan\theta)^2\)
+              \(\phantom{C + iS = 1} + \binom{n}{3}(i\tan\theta)^3 + \cdots\)
+            marks:
+              - code: M1
+                note: Combines the series as a binomial expansion in \(i\tan\theta\), showing at least the terms in \(\tan^2\theta\) and \(\tan^3\theta\) with their powers of \(i\).
+          - scheme: |
+              \(C + iS = (1 + i\tan\theta)^n\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(C + iS = \left[\sec\theta(\cos\theta + i\sin\theta)\right]^n\)
+              \(\phantom{C + iS} = \sec^n\theta(\cos\theta + i\sin\theta)^n\)
+            marks:
+              - code: M1
+                note: Substitutes part (i) into their \((1 + i\tan\theta)^n\) and takes the power of each factor.
+          - scheme: |
+              \(C + iS = \sec^n\theta(\cos n\theta + i\sin n\theta)\)
+            marks:
+              - code: dM1
+                note: Applies de Moivre's theorem to \((\cos\theta + i\sin\theta)^n\).
+              - code: A1
+          - scheme: |
+              \(S = \sec^n\theta\sin n\theta\)
+              \(C = \sec^n\theta\cos n\theta\)
+            marks:
+              - code: A1
+                note: \(S = \sec^n\theta\sin n\theta\) stated; the equating of imaginary parts may be implied.
+              - code: A1 AG
+                note: Real parts equated from a correct \(C + iS\), with no errors in the part.
+  - q: 5
+    stamp: 9f1b7983
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\sum_{r=0}^{n-1}\exp\left(2i\theta + \frac{4\pi ir}{n}\right)\)
+              \(\phantom{\sum} = \exp(2i\theta)\sum_{r=0}^{n-1}\left(\exp\left(\frac{4\pi i}{n}\right)\right)^r\)
+            marks:
+              - code: M1
+                note: Writes the sum as a constant times a sum of powers of one complex exponential. Condone slips in the ratio.
+          - scheme: |
+              Ratio \(\exp\left(\frac{4\pi i}{n}\right) \neq 1\) since \(0 < \frac{2}{n} < 1\)
+            marks:
+              - code: A1
+                note: Correct ratio, with a reason it is not 1 that uses \(n > 2\).
+          - scheme: |
+              \(\exp(2i\theta)\,\frac{1 - \left(\exp\left(\frac{4\pi i}{n}\right)\right)^n}{1 - \exp\left(\frac{4\pi i}{n}\right)}\)
+            marks:
+              - code: M1
+                note: Applies the geometric series sum formula with their first term and ratio. Condone a slip in the number of terms.
+          - scheme: |
+              \(\left(\exp\left(\frac{4\pi i}{n}\right)\right)^n = \exp(4\pi i) = 1 \Rightarrow\) sum \(= 0\)
+              \(\Rightarrow \sum_{r=0}^{n-1}\cos\left(2\theta + \frac{4\pi r}{n}\right) = 0\)
+              \(\phantom{\Rightarrow} \sum_{r=0}^{n-1}\sin\left(2\theta + \frac{4\pi r}{n}\right) = 0\)
+            marks:
+              - code: A1
+                note: Shows the ratio to the power \(n\) is 1, so the sum is 0, and that both its real and imaginary parts are 0.
+          - scheme: |
+              \(C = \sum_{r=0}^{n-1}\frac{1 + \cos\left(2\theta + \frac{4\pi r}{n}\right)}{2}\)
+              \(S = \frac12\sum_{r=0}^{n-1}\sin\left(2\theta + \frac{4\pi r}{n}\right)\)
+            marks:
+              - code: M1
+                note: Uses a double-angle identity to write \(C\) or \(S\) in terms of the real or imaginary part of the sum. Condone coefficient slips.
+          - scheme: |
+              \(C = \frac12(n) + \frac12(0) = \frac{n}{2}\)
+            marks:
+              - code: A1
+                note: cso, with \(\sum_{r=0}^{n-1} 1 = n\) seen or clearly used.
+          - scheme: |
+              \(S = \frac12(0) = 0\)
+            marks:
+              - code: A1 AG
+                note: Correct identity applied to the zero imaginary part, reaching \(S = 0\) with no errors seen.
+  - q: 6
+    stamp: 05ad5469
+    parts:
+      - part: i
+        rows:
+          - scheme: |
+              \((1 - 2e^{2i\theta})(1 - 2e^{-2i\theta})\)
+              \(\phantom{A} = 1 - 2e^{2i\theta} - 2e^{-2i\theta} + 4\)
+            marks:
+              - code: M1
+                note: Multiplies out to four terms, using \(e^{2i\theta}e^{-2i\theta} = 1\). Condone one sign slip.
+          - scheme: |
+              \(\phantom{A} = 5 - 2(e^{2i\theta} + e^{-2i\theta})\)
+            marks:
+              - code: A1
+                note: oe, such as \(5 - 2e^{2i\theta} - 2e^{-2i\theta}\).
+          - scheme: |
+              \(\phantom{A} = 5 - 2(2\cos 2\theta) = 5 - 4\cos 2\theta\)
+            marks:
+              - code: A1 AG
+                note: Uses \(e^{2i\theta} + e^{-2i\theta} = 2\cos 2\theta\), or the cosine and sine forms, reaching the printed result without error.
+      - part: ii
+        rows:
+          - scheme: |
+              \(C + iS = e^{i\theta} + 2e^{3i\theta} + \cdots + 2^{n-1}e^{(2n-1)i\theta}\)
+            marks:
+              - code: M1
+                note: Forms \(C + iS\) and writes its terms as exponentials; the first two terms and the last are enough.
+          - scheme: |
+              Geometric: first term \(e^{i\theta}\), ratio \(2e^{2i\theta}\)
+            marks:
+              - code: A1
+                note: Ratio \(2e^{2i\theta}\), soi; first term \(1\) accepted with \(e^{i\theta}\) factored out.
+          - scheme: |
+              \(C + iS = \frac{e^{i\theta}\left(1 - (2e^{2i\theta})^n\right)}{1 - 2e^{2i\theta}}\)
+            marks:
+              - code: M1
+                note: Uses \(\frac{a(1-r^n)}{1-r}\) or \(\frac{a(r^n-1)}{r-1}\) with their first term and ratio, of the form \(ke^{2i\theta}\), and \(n\) terms.
+              - code: A1
+                note: oe, such as numerator \(e^{i\theta} - 2^n e^{(2n+1)i\theta}\).
+          - scheme: |
+              \(\phantom{C + iS} = \frac{e^{i\theta}(1 - 2^n e^{2ni\theta})(1 - 2e^{-2i\theta})}{(1 - 2e^{2i\theta})(1 - 2e^{-2i\theta})}\)
+            marks:
+              - code: M1
+                note: Multiplies numerator and denominator by the complex conjugate of their denominator.
+          - scheme: |
+              \(\phantom{C + iS} = \frac{e^{i\theta}(1 - 2^n e^{2ni\theta})(1 - 2e^{-2i\theta})}{5 - 4\cos 2\theta}\)
+            marks:
+              - code: A1
+                note: Denominator \(5 - 4\cos 2\theta\), from part (i); the numerator need not be expanded.
+          - scheme: |
+              Numerator \(= e^{i\theta} - 2e^{-i\theta} - 2^n e^{(2n+1)i\theta}\)
+              \(\phantom{\text{Numerator} =} + 2^{n+1}e^{(2n-1)i\theta}\)
+              Equates real and imaginary parts
+            marks:
+              - code: dM1
+                note: Expands their numerator to four terms, writes them in cosine and sine form and takes real and imaginary parts. Condone sign slips.
+          - scheme: |
+              \(S = \frac{2^{n+1}\sin((2n-1)\theta) - 2^n\sin((2n+1)\theta) + 3\sin\theta}{5 - 4\cos 2\theta}\)
+            marks:
+              - code: A1
+                note: oe.
+          - scheme: |
+              \(C = \frac{2^{n+1}\cos((2n-1)\theta) - 2^n\cos((2n+1)\theta) - \cos\theta}{5 - 4\cos 2\theta}\)
+            marks:
+              - code: A1 AG
+                note: Real part of a correct expanded numerator, reaching the printed result without error.
+  - q: 7
+    stamp: 897ccbd2
+    parts:
+      - part: i
+        rows:
+          - scheme: |
+              \(1 - e^{2i\theta} = 1 - \cos 2\theta - i\sin 2\theta\)
+            marks:
+              - code: M1
+                note: Writes \(e^{2i\theta}\) in Cartesian form, as \(\cos 2\theta + i\sin 2\theta\) or by expanding \((\cos\theta + i\sin\theta)^2\).
+          - scheme: |
+              \(\phantom{1 - e^{2i\theta}} = 2\sin^2\theta - 2i\sin\theta\cos\theta\)
+            marks:
+              - code: M1
+                note: Uses \(1 - \cos 2\theta = 2\sin^2\theta\) and \(\sin 2\theta = 2\sin\theta\cos\theta\), or equivalent identities, on both parts. Condone sign slips.
+          - scheme: |
+              \(\phantom{1 - e^{2i\theta}} = 2\sin\theta(\sin\theta - i\cos\theta)\)
+            marks:
+              - code: A1 AG
+                note: Printed result reached without error from correct identities, including the sign of the imaginary part.
+      - part: ii
+        rows:
+          - scheme: |
+              \(C + iS = 1 - \binom{n}{1}e^{2i\theta} + \binom{n}{2}e^{4i\theta} - \cdots\)
+              \(\phantom{C + iS} = \sum_{r=0}^{n}\binom{n}{r}\left(-e^{2i\theta}\right)^r\)
+            marks:
+              - code: M1
+                note: Combines the series into terms \(\binom{n}{r}(-1)^r e^{2ri\theta}\), at least three seen or in general, and identifies a binomial expansion. Condone sign slips.
+          - scheme: |
+              \(C + iS = \left(1 - e^{2i\theta}\right)^n\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(C + iS = \left[2\sin\theta(\sin\theta - i\cos\theta)\right]^n\)
+              \(\phantom{C + iS} = 2^n\sin^n\theta\,(\sin\theta - i\cos\theta)^n\)
+            marks:
+              - code: M1
+                note: Substitutes the result of (i) into \(\left(1 - e^{2i\theta}\right)^n\) and separates the real factor \(2^n\sin^n\theta\).
+          - scheme: |
+              \(\sin\theta - i\cos\theta = -i(\cos\theta + i\sin\theta)\)
+            marks:
+              - code: M1
+                note: Writes \(\sin\theta - i\cos\theta\) as a multiple of \(\cos\theta + i\sin\theta\), or in exponential or modulus-argument form.
+          - scheme: |
+              \(\sin\theta - i\cos\theta = e^{-i\pi/2}(\cos\theta + i\sin\theta)\)
+            marks:
+              - code: A1
+                note: oe, such as \(e^{i(\theta - \pi/2)}\) or \(\cos\left(\theta - \frac{\pi}{2}\right) + i\sin\left(\theta - \frac{\pi}{2}\right)\).
+          - scheme: |
+              \((\sin\theta - i\cos\theta)^n = e^{-in\pi/2}\,e^{in\theta}\)
+            marks:
+              - code: dM1
+                note: Applies de Moivre's theorem, or the laws of indices, to raise their exponential or modulus-argument form to the power \(n\).
+          - scheme: |
+              \(C + iS = 2^n\sin^n\theta\, e^{i(n\theta - n\pi/2)}\)
+              \(\phantom{C + iS} = 2^n\sin^n\theta\bigl(\cos\left(n\theta - \tfrac{n\pi}{2}\right)\)
+              \(\phantom{C + iS = 2^n\sin^n\theta\bigl(} + i\sin\left(n\theta - \tfrac{n\pi}{2}\right)\bigr)\)
+            marks:
+              - code: A1
+                note: In exponential or modulus-argument form.
+          - scheme: |
+              \(S = 2^n\sin^n\theta\sin\left(n\theta - \frac{n\pi}{2}\right)\)
+              \(C = 2^n\sin^n\theta\cos\left(n\theta - \frac{n\pi}{2}\right)\)
+            marks:
+              - code: A1
+                note: oe.
+              - code: A1 AG
+                note: Equates real parts of a correct expression for \(C + iS\), reaching the printed form.
