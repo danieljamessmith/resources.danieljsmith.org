@@ -4,7 +4,7 @@
 \djsSolnHeader{Integration with Inverse Trig}
 \djsSitePath{Core Pure}{Further Calculus}
 
-\djsLastUpdated{15 October 2026}
+\djsLastUpdated{24 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -35,7 +35,7 @@ I=\int_0^4 \frac{1}{\sqrt{x(4-x)}}\,\mathrm{d}x
 
 This is an improper integral because the denominator is \(0\) at \(x=0\) and \(x=4\). So we write
 \[
-I=\lim_{\substack{a\to 0^+\\ b\to 4^-}}\int_a^b \frac{1}{\sqrt{x(4-x)}}\,\mathrm{d}x
+I=\lim_{\substack{s\to 0^+\\ t\to 4^-}}\int_s^t \frac{1}{\sqrt{x(4-x)}}\,\mathrm{d}x
 \]
 
 Now simplify the expression inside the square root:
@@ -45,40 +45,38 @@ x(4-x)=4x-x^2=4-(x^2-4x+4)=4-(x-2)^2
 
 So
 \[
-I=\lim_{\substack{a\to 0^+\\ b\to 4^-}}\int_a^b \frac{1}{\sqrt{4-(x-2)^2}}\,\mathrm{d}x
+I=\lim_{\substack{s\to 0^+\\ t\to 4^-}}\int_s^t \frac{1}{\sqrt{4-(x-2)^2}}\,\mathrm{d}x
 \]
 
 Using the standard result
 \[
-\int \frac{1}{\sqrt{r^2-x^2}}\,\mathrm{d}x=\arcsin\left(\frac{x}{r}\right)+c
+\int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d}x=\arcsin\left(\frac{x}{a}\right)+c\qquad (|x|<a)
 \]
 
-with \(r=2\) and \(x\) replaced by \(x-2\), we get
+with \(a=2\) and \(x\) replaced by \(x-2\), we get
 \[
-I=\lim_{\substack{a\to 0^+\\ b\to 4^-}}\left[\arcsin\left(\frac{x-2}{2}\right)\right]_{a}^{b}
+I=\lim_{\substack{s\to 0^+\\ t\to 4^-}}\left[\arcsin\left(\frac{x-2}{2}\right)\right]_{s}^{t}
 \]
 
 So
 \[
-I=\lim_{\substack{a\to 0^+\\ b\to 4^-}}\left(\arcsin\left(\frac{b-2}{2}\right)-\arcsin\left(\frac{a-2}{2}\right)\right)
+I=\lim_{\substack{s\to 0^+\\ t\to 4^-}}\left(\arcsin\left(\frac{t-2}{2}\right)-\arcsin\left(\frac{s-2}{2}\right)\right)
 \]
 
 Now
 \[
-\frac{b-2}{2}\to 1 \quad \text{as } b\to 4^-
+\frac{t-2}{2}\to 1 \quad \text{as } t\to 4^-
 \]
 
 and
 \[
-\frac{a-2}{2}\to -1 \quad \text{as } a\to 0^+
+\frac{s-2}{2}\to -1 \quad \text{as } s\to 0^+
 \]
 
 Therefore
 \[
 I=\arcsin (1)-\arcsin (-1)=\frac{\pi}{2}-\left(-\frac{\pi}{2}\right)=\pi
 \]
-
-The exact value of the integral is \(\pi\)
 \end{djsSolution}
 
 
@@ -139,7 +137,7 @@ Then
 \tan\theta
 &=\frac{\tan\left(\frac{\pi}{4}\right)+\tan\left(\arctan\left(\frac12\right)\right)}
 {1-\tan\left(\frac{\pi}{4}\right)\tan\left(\arctan\left(\frac12\right)\right)}\\
-&=\frac{1+\frac12}{1-1\cdot\frac12}\\
+&=\frac{1+\frac12}{1-1\times\frac12}\\
 &=\frac{\frac32}{\frac12}\\
 &=3
 \end{align*}
@@ -200,17 +198,17 @@ I=\int_{1}^{4}\frac{1}{\sqrt{2\bigl(9-(x-2)^2\bigr)}}\,\mathrm{d}x
 
 Using the standard result
 \[
-\int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d}x=\arcsin\left(\frac{x}{a}\right)+c
+\int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d}x=\arcsin\left(\frac{x}{a}\right)+c\qquad (|x|<a)
 \]
 
-with $a=3$ and $x$ replaced by $x-2$,
+with $a=3$ and $x$ replaced by $x-2$, we get
 \begin{align*}
 I
 &=\frac{1}{\sqrt{2}}\left[\arcsin\left(\frac{x-2}{3}\right)\right]_{1}^{4}\\
 &=\frac{1}{\sqrt{2}}\left(\arcsin \left(\frac23\right)-\arcsin \left(-\frac13\right)\right)
 \end{align*}
 
-Since $\arcsin (-a)=-\arcsin (a)$,
+Since $\arcsin\left(-\frac13\right)=-\arcsin\left(\frac13\right)$, this gives
 \[
 I=\frac{1}{\sqrt{2}}\left(\arcsin \left(\frac23\right)+\arcsin \left(\frac13\right)\right)
 \]
@@ -252,7 +250,7 @@ Hence
   \[
   \int_{0}^{\infty} \frac{1}{x^2-6x+18}\,\mathrm{d}x
   =
-  \lim_{b\to\infty}\int_{0}^{b}\frac{1}{x^2-6x+18}\,\mathrm{d}x
+  \lim_{t\to\infty}\int_{0}^{t}\frac{1}{x^2-6x+18}\,\mathrm{d}x
   \]
 
   \item Let
@@ -272,7 +270,7 @@ Hence
 
   Since this is an improper integral, write it as a limit:
   \[
-  I=\lim_{b\to\infty}\int_{0}^{b}\frac{1}{(x-3)^2+3^2}\,\mathrm{d}x
+  I=\lim_{t\to\infty}\int_{0}^{t}\frac{1}{(x-3)^2+3^2}\,\mathrm{d}x
   \]
 
   Using the standard result
@@ -290,14 +288,14 @@ Hence
   Therefore
   \begin{align*}
   I
-  &=\lim_{b\to\infty}\left[\frac{1}{3}\arctan\left(\frac{x-3}{3}\right)\right]_{0}^{b} \\
-  &=\frac{1}{3}\lim_{b\to\infty}\left(\arctan\left(\frac{b-3}{3}\right)-\arctan(-1)\right)
+  &=\lim_{t\to\infty}\left[\frac{1}{3}\arctan\left(\frac{x-3}{3}\right)\right]_{0}^{t} \\
+  &=\frac{1}{3}\lim_{t\to\infty}\left(\arctan\left(\frac{t-3}{3}\right)-\arctan(-1)\right)
   \end{align*}
 
   Now
   \[
-  \arctan\left(\frac{b-3}{3}\right)\to \frac{\pi}{2}
-  \quad\text{as } b\to\infty
+  \arctan\left(\frac{t-3}{3}\right)\to \frac{\pi}{2}
+  \quad\text{as } t\to\infty
   \]
 
   and
@@ -356,9 +354,7 @@ Now use the standard result from the formula booklet:
 \int \frac{1}{x^2+a^2}\,\mathrm{d}x=\frac{1}{a}\arctan\left(\frac{x}{a}\right)+c
 \]
 
-with $a=2$ and $x$ replaced by $x-2$.
-
-Therefore
+Here $a=2$, with $x$ replaced by $x-2$. Therefore
 \[
 \int_0^4 \frac{1}{(x-2)^2+2^2}\,\mathrm{d}x
 =
@@ -375,11 +371,11 @@ Now substitute the limits:
 &=
 \frac{1}{2}\arctan(1)-\frac{1}{2}\arctan(-1) \\
 &=
-\frac{1}{2}\cdot\frac{\pi}{4}-\frac{1}{2}\cdot\left(-\frac{\pi}{4}\right) \\
+\frac{1}{2}\times\frac{\pi}{4}-\frac{1}{2}\times\left(-\frac{\pi}{4}\right) \\
 &=
 \frac{1}{2}\left(\frac{\pi}{4}+\frac{\pi}{4}\right) \\
 &=
-\frac{1}{2}\cdot\frac{\pi}{2} \\
+\frac{1}{2}\times\frac{\pi}{2} \\
 &=
 \frac{\pi}{4}
 \end{align*}
@@ -388,8 +384,6 @@ Hence
 \[
 \int_{0}^{4} \frac{1}{x^2-4x+8}\,\mathrm{d}x=\frac{\pi}{4}
 \]
-
-So the exact value, as a multiple of $\pi$, is $\frac{\pi}{4}$.
 \end{djsSolution}
 
 
@@ -455,10 +449,10 @@ A_{\text{units}}=\int_{-1}^{4}\frac{9}{(x-1)^2+4}\,\mathrm{d}x
 
 Using the standard result
 \[
-\int \frac{1}{a^2+x^2}\,\mathrm{d}x=\frac{1}{a}\arctan\left(\frac{x}{a}\right)+c
+\int \frac{1}{x^2+a^2}\,\mathrm{d}x=\frac{1}{a}\arctan\left(\frac{x}{a}\right)+c
 \]
 
-with $a=2$ and $x$ replaced by $x-1$,
+with $a=2$ and $x$ replaced by $x-1$, we get
 \begin{align*}
 A_{\text{units}}
 &=9\left[\frac{1}{2}\arctan\left(\frac{x-1}{2}\right)\right]_{-1}^{4} \\
@@ -467,9 +461,9 @@ A_{\text{units}}
 &=\frac{9}{2}\left(\arctan\left(\frac{3}{2}\right)+\frac{\pi}{4}\right)
 \end{align*}
 
-Now convert to $\text{cm}^2$.
+Now convert to $\mathrm{cm}^2$.
 
-Each unit on each axis represents $6$ cm, so
+Each unit on each axis represents $6\,\mathrm{cm}$, so
 \[
 1\text{ square unit}=6\times 6=36\,\mathrm{cm}^2
 \]
@@ -478,21 +472,21 @@ Hence the cross-sectional area is
 \begin{align*}
 A
 &=36A_{\text{units}} \\
-&=36\cdot \frac{9}{2}\left(\arctan\left(\frac{3}{2}\right)+\frac{\pi}{4}\right) \\
+&=36\times\frac{9}{2}\left(\arctan\left(\frac{3}{2}\right)+\frac{\pi}{4}\right) \\
 &=162\left(\arctan\left(\frac{3}{2}\right)+\frac{\pi}{4}\right) \\
 &\approx 286.447\,\mathrm{cm}^2
 \end{align*}
 
-The beam is a prism of length $240$ cm, so
+The beam is a prism of length $240\,\mathrm{cm}$, so
 \begin{align*}
 V&=240A \\
 &=240\times 286.447 \\
-&\approx 68747.3\,\mathrm{cm}^3
+&\approx 68\,747.3\,\mathrm{cm}^3
 \end{align*}
 
-Therefore, correct to $3$ significant figures, the volume of the beam is
+Therefore
 \[
-6.87\times 10^4\,\mathrm{cm}^3
+V\approx 6.87\times 10^4\,\mathrm{cm}^3\qquad\text{(3 s.f.)}
 \]
 \end{djsSolution}
 
@@ -525,26 +519,18 @@ u=\ln x
 Then
 \[
 \frac{\mathrm{d}u}{\mathrm{d}x}=\frac{1}{x}
-\qquad\Rightarrow\qquad
+\quad\Longrightarrow\quad
 \mathrm{d}u=\frac{1}{x}\,\mathrm{d}x
 \]
 
-Also, since \(\ln x=u\),
+Also, since \(\ln x=u\), we have
 \[
 \sqrt{4-(\ln x)^2}=\sqrt{4-u^2}
 \]
 
 Now change the limits.
 
-When \(x=1\),
-\[
-u=\ln 1=0
-\]
-
-When \(x=e\),
-\[
-u=\ln e=1
-\]
+When \(x=1\), \(u=\ln 1=0\), and when \(x=e\), \(u=\ln e=1\).
 
 Now write the integral with the factor \(\frac{1}{x}\,\mathrm{d}x\) separated out, so that it can be replaced by \(\mathrm{d}u\):
 \begin{align*}
@@ -556,10 +542,10 @@ I
 
 Using the standard result
 \[
-\int \frac{1}{\sqrt{a^2-u^2}}\,\mathrm{d}u=\arcsin\left(\frac{u}{a}\right)+c
+\int \frac{1}{\sqrt{a^2-u^2}}\,\mathrm{d}u=\arcsin\left(\frac{u}{a}\right)+c\qquad (|u|<a)
 \]
 
-with \(a=2\),
+with \(a=2\), we get
 \begin{align*}
 I
 &=\left[\arcsin\left(\frac{u}{2}\right)\right]_0^1 \\
@@ -617,20 +603,13 @@ Using the standard result
 \frac{1}{a}\arctan\left(\frac{x}{a}\right)+c
 \]
 
-with $a=\frac43$ and $x$ replaced by $x+\frac23$,
+with $a=\frac43$ and $x$ replaced by $x+\frac23$, we get
 \begin{align*}
 \int \frac{1}{9x^2+12x+20}\,\mathrm{d}x
-&=\frac19\cdot \frac{1}{4/3}
+&=\frac19\times\frac{1}{4/3}
 \arctan\left(\frac{x+\frac23}{4/3}\right)+c \\
 &=\frac{1}{12}\arctan\left(\frac{3x+2}{4}\right)+c
 \end{align*}
-
-Hence,
-\[
-\int \frac{1}{9x^2 + 12x + 20}\,\mathrm{d}x
-=
-\frac{1}{12}\arctan\left(\frac{3x+2}{4}\right)+c
-\]
 
 \item Rewrite the expression under the root in completed-square form:
 \begin{align*}
@@ -653,22 +632,15 @@ Using the standard result
 \[
 \int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d}x
 =
-\arcsin\left(\frac{x}{a}\right)+c
+\arcsin\left(\frac{x}{a}\right)+c\qquad (|x|<a)
 \]
 
-with $a=\frac73$ and $x$ replaced by $x-\frac23$,
+with $a=\frac73$ and $x$ replaced by $x-\frac23$, we get
 \begin{align*}
 \int \frac{1}{\sqrt{45+12x-9x^2}}\,\mathrm{d}x
 &=\frac13\arcsin\left(\frac{x-\frac23}{7/3}\right)+c \\
 &=\frac13\arcsin\left(\frac{3x-2}{7}\right)+c
 \end{align*}
-
-Hence,
-\[
-\int \frac{1}{\sqrt{45 + 12x - 9x^2}}\,\mathrm{d}x
-=
-\frac13\arcsin\left(\frac{3x-2}{7}\right)+c
-\]
 \end{enumerate}
 \end{djsSolution}
 
@@ -708,7 +680,7 @@ I
 +7\int \frac{1}{4x^2-8x+13}\,\mathrm{d}x
 \end{align*}
 
-For the first integral,
+For the first integral, use
 \[
 \int \frac{g'(x)}{g(x)}\,\mathrm{d}x=\ln|g(x)|+c
 \]
@@ -731,13 +703,13 @@ For the second integral, complete the square:
 
 Using the standard result
 \[
-\int \frac{1}{a^2+x^2}\,\mathrm{d}x=\frac1a\arctan\left(\frac{x}{a}\right)+c
+\int \frac{1}{x^2+a^2}\,\mathrm{d}x=\frac{1}{a}\arctan\left(\frac{x}{a}\right)+c
 \]
 
-with \(a=3\) and \(x\) replaced by \(2x-2\), noting that \(\frac{\mathrm{d}}{\mathrm{d}x}(2x-2)=2\),
+with \(a=3\) and \(x\) replaced by \(2x-2\), noting that \(\frac{\mathrm{d}}{\mathrm{d}x}(2x-2)=2\), we get
 \begin{align*}
 7\int \frac{1}{(2x-2)^2+9}\,\mathrm{d}x
-&=7\cdot \frac12\cdot \frac13 \arctan\left(\frac{2x-2}{3}\right) \\
+&=7\times\frac12\times\frac13\arctan\left(\frac{2x-2}{3}\right) \\
 &=\frac76 \arctan\left(\frac{2x-2}{3}\right)
 \end{align*}
 
@@ -752,7 +724,7 @@ Therefore
 A=\frac34,\qquad B=\frac76
 \]
 
-  \item From part (a), an antiderivative is
+  \item Using part (a), let
 \[
 F(x)=\frac34\ln(4x^2-8x+13)+\frac76\arctan\left(\frac{2x-2}{3}\right)
 \]
@@ -766,8 +738,8 @@ The mean value of \(f(x)\) over \(\left[1,\frac52\right]\) is
 Now
 \begin{align*}
 F\left(\frac52\right)
-&=\frac34\ln\left(4\cdot\frac{25}{4}-8\cdot\frac52+13\right)
-+\frac76\arctan\left(\frac{2\cdot\frac52-2}{3}\right) \\
+&=\frac34\ln\left(4\times\frac{25}{4}-8\times\frac52+13\right)
++\frac76\arctan\left(\frac{2\times\frac52-2}{3}\right) \\
 &=\frac34\ln(18)+\frac76\arctan(1) \\
 &=\frac34\ln(18)+\frac{7\pi}{24}
 \end{align*}
@@ -787,7 +759,7 @@ So
 &=\frac12\ln 2+\frac{7\pi}{36}
 \end{align*}
 
-  \item Using linearity of the mean value,
+  \item Integrating term by term and dividing by the length of the interval gives
 \[
 \text{mean value of }(3-2f(x))
 =3-2\times \text{mean value of }f(x)
@@ -865,29 +837,23 @@ since \(x^2-4x+8=(x-2)^2+4>0\).
 
 For the second integral, use the standard result
 \[
-\int \frac{1}{a^2+x^2}\,\mathrm{d}x
+\int \frac{1}{x^2+a^2}\,\mathrm{d}x
 =\frac{1}{a}\arctan\left(\frac{x}{a}\right)+c
 \]
 
 with \(a=2\) and \(x\) replaced by \(x-2\). Hence
 \[
 7\int \frac{1}{(x-2)^2+4}\,\mathrm{d}x
-=7\cdot \frac{1}{2}\arctan\left(\frac{x-2}{2}\right)
+=7\times\frac{1}{2}\arctan\left(\frac{x-2}{2}\right)
 \]
 
 Therefore
-\begin{align*}
-\int g(x)\,\mathrm{d}x
-&=2\ln(x^2-4x+8)+\frac{7}{2}\arctan\left(\frac{x-2}{2}\right)+c
-\end{align*}
-
-This is of the form
 \[
 \int g(x)\,\mathrm{d}x
-=A\arctan\left(\frac{x-2}{2}\right)+B\ln(x^2-4x+8)+c
+=\frac{7}{2}\arctan\left(\frac{x-2}{2}\right)+2\ln(x^2-4x+8)+c
 \]
 
-with
+so
 \[
 A=\frac{7}{2},
 \qquad
@@ -908,7 +874,7 @@ g(x)=\frac{2x^2-3x+31}{x^3-3x^2+9x+13}
 \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Express $g(x)$ in the form \[\frac{P}{x+1}+\frac{Q}{x^2-4x+13}\] where $P$ and $Q$ are constants to be found. \marks{3} \\
-  \item Find $\int g(x)\,\mathrm{d}x$, giving your answer in the form \[A\ln|x+1|+B\arctan\left(\frac{x-2}{3}\right)+c\] where $A$ and $B$ are constants to be found. \marks{4} \\
+  \item Find $\int g(x)\,\mathrm{d}x$, giving your answer in the form \[A\ln|x+1|+B\arctan\left(\frac{x-2}{3}\right)+c\] where $c$ is an arbitrary constant and $A$ and $B$ are constants to be found. \marks{4} \\
   \item Hence show that $\int_0^\infty g(x)\,\mathrm{d}x$ diverges. \marks{2} \\
 \end{enumerate}
 
@@ -938,12 +904,10 @@ Multiplying through by $(x+1)(x^2-4x+13)$ gives
 \]
 
 Expand the right-hand side:
-\[
-2x^2-3x+31=Px^2-4Px+13P+Qx+Q
-\]
-\[
-=Px^2+(-4P+Q)x+(13P+Q)
-\]
+\begin{align*}
+2x^2-3x+31&=Px^2-4Px+13P+Qx+Q\\
+&=Px^2+(-4P+Q)x+(13P+Q)
+\end{align*}
 
 Now compare coefficients with
 \[
@@ -970,7 +934,7 @@ Q=5
 
 Checking the constant term:
 \[
-13P+Q=13(2)+5=31
+13P+Q=13\times 2+5=31
 \]
 
 which is correct.
@@ -980,7 +944,7 @@ Hence
 P=2,\qquad Q=5
 \]
 
-  \item From part (a),
+  \item From part (a):
 \[
 g(x)=\frac{2}{x+1}+\frac{5}{x^2-4x+13}
 \]
@@ -1000,7 +964,7 @@ Therefore
 \int g(x)\,\mathrm{d}x=\int \frac{2}{x+1}\,\mathrm{d}x+\int \frac{5}{(x-2)^2+9}\,\mathrm{d}x
 \]
 
-For the first integral,
+The first integral is
 \[
 \int \frac{2}{x+1}\,\mathrm{d}x=2\ln|x+1|
 \]
@@ -1010,7 +974,7 @@ For the second integral, use the standard result
 \int \frac{1}{x^2+a^2}\,\mathrm{d}x=\frac{1}{a}\arctan\left(\frac{x}{a}\right)+c
 \]
 
-With $a=3$ and $x$ replaced by $x-2$,
+with $a=3$ and $x$ replaced by $x-2$, we get
 \[
 \int \frac{5}{(x-2)^2+9}\,\mathrm{d}x
 =5\int \frac{1}{(x-2)^2+3^2}\,\mathrm{d}x
@@ -1033,7 +997,7 @@ A=2,\qquad B=\frac{5}{3}
 \int_0^\infty g(x)\,\mathrm{d}x=\lim_{t\to\infty}\int_0^t g(x)\,\mathrm{d}x
 \]
 
-Using the antiderivative from part (b),
+Using the result of part (b):
 \begin{align*}
 \int_0^t g(x)\,\mathrm{d}x
 &=\left[2\ln|x+1|+\frac{5}{3}\arctan\left(\frac{x-2}{3}\right)\right]_0^t \\
@@ -1042,12 +1006,7 @@ Using the antiderivative from part (b),
 &=2\ln(t+1)+\frac{5}{3}\arctan\left(\frac{t-2}{3}\right)+\frac{5}{3}\arctan\left(\frac23\right)
 \end{align*}
 
-Now as $t\to\infty$,
-\[
-\arctan\left(\frac{t-2}{3}\right)\to \frac{\pi}{2}
-\]
-
-so that term stays finite, but
+Now as $t\to\infty$, $\arctan\left(\frac{t-2}{3}\right)\to \frac{\pi}{2}$, so that term stays finite, but
 \[
 2\ln(t+1)\to\infty
 \]
@@ -1057,7 +1016,7 @@ Therefore
 \int_0^\infty g(x)\,\mathrm{d}x
 \]
 
-diverges, in fact it diverges to $+\infty$.
+diverges; in fact it diverges to $+\infty$.
 \end{enumerate}
 \end{djsSolution}
 
@@ -1129,7 +1088,7 @@ and so
 
 as required.
 
-\item Integrating the result from part (i),
+\item Integrating the result from part (i):
 \[
 y=\int \frac{1}{\sqrt{x^2-1}}\,\mathrm{d}x
 \]
@@ -1169,19 +1128,14 @@ Hence
 I=\ln\left(x+\sqrt{x^2-1}\right)+c
 \]
 
-since \(x\ge 1\) implies \(x+\sqrt{x^2-1}>0\)
+since \(x\ge 1\) implies \(x+\sqrt{x^2-1}>0\).
 
 Therefore
 \[
 y=\ln\left(x+\sqrt{x^2-1}\right)+c
 \]
 
-Now when \(x=1\),
-\[
-y=\operatorname{arcosh}1=0
-\]
-
-so
+Now when \(x=1\), \(y=\operatorname{arcosh}1=0\), so
 \[
 0=\ln\left(1+\sqrt{1^2-1}\right)+c=\ln 1+c=c
 \]
@@ -1189,7 +1143,7 @@ so
 Thus \(c=0\), giving
 \[
 y=\ln\left(x+\sqrt{x^2-1}\right)
-\] \\
+\]
 
 \item Since
 \[
@@ -1219,7 +1173,7 @@ which is the required result.
 
 Now express this in logarithmic form using part (ii):
 \[
-\operatorname{arcosh}t=\ln\left(t+\sqrt{t^2-1}\right)
+\operatorname{arcosh} t=\ln\left(t+\sqrt{t^2-1}\right)\qquad (t\ge 1)
 \]
 
 Hence
@@ -1300,11 +1254,11 @@ Without using a calculator, find \\
   &= \left[\frac{1}{15}\arctan\left(\frac{5x-2}{3}\right)\right]_{-\frac15}^{1} \\
   &= \frac{1}{15}\left(\arctan 1-\arctan(-1)\right) \\
   &= \frac{1}{15}\left(\frac{\pi}{4}-\left(-\frac{\pi}{4}\right)\right) \\
-  &= \frac{1}{15}\cdot \frac{\pi}{2} \\
+  &= \frac{1}{15}\times\frac{\pi}{2} \\
   &= \frac{\pi}{30}
   \end{align*}
 
-  \item As in part (a),
+  \item As in part (a):
   \[
   25x^2-20x+13=(5x-2)^2+9
   \]
@@ -1318,20 +1272,20 @@ Without using a calculator, find \\
   Using the standard result
   \[
   \int \frac{1}{\sqrt{x^2+a^2}}\,\mathrm{d}x
-  = \ln\left|x+\sqrt{x^2+a^2}\right|+c
+  = \ln\left(x+\sqrt{x^2+a^2}\right)+c
   \]
 
   with \(a=3\) and \(x\) replaced by \(5x-2\), noting that \(\frac{\mathrm{d}}{\mathrm{d}x}(5x-2)=5\), we have
   \[
   \int \frac{1}{\sqrt{(5x-2)^2+9}}\,\mathrm{d}x
   =
-  \frac15\ln\left|(5x-2)+\sqrt{(5x-2)^2+9}\right|+c
+  \frac15\ln\left((5x-2)+\sqrt{(5x-2)^2+9}\right)+c
   \]
 
   Hence
   \begin{align*}
   \int_{-\frac15}^{1}\frac{1}{\sqrt{(5x-2)^2+9}}\,\mathrm{d}x
-  &= \left[\frac15\ln\left|(5x-2)+\sqrt{(5x-2)^2+9}\right|\right]_{-\frac15}^{1} \\
+  &= \left[\frac15\ln\left((5x-2)+\sqrt{(5x-2)^2+9}\right)\right]_{-\frac15}^{1} \\
   &= \frac15\left(\ln(3+3\sqrt2)-\ln(-3+3\sqrt2)\right) \\
   &= \frac15\ln\left(\frac{1+\sqrt2}{\sqrt2-1}\right)
   \end{align*}
@@ -1351,7 +1305,7 @@ Without using a calculator, find \\
   \frac15\ln(3+2\sqrt2)
   \]
 
-  Therefore, in the form $p\ln(q+r\sqrt2)$,
+  So the answer is in the form $p\ln(q+r\sqrt2)$ with
   \[
   p=\frac15,\qquad q=3,\qquad r=2
   \]
@@ -1388,7 +1342,7 @@ Without using a calculator, find \\
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\roman*)}]
-\item Starting from the definition of the hyperbolic tangent,
+\item Starting from the definition of the hyperbolic tangent:
 \[
 \tanh y=\frac{e^y-e^{-y}}{e^y+e^{-y}}
 \]
@@ -1429,14 +1383,14 @@ Since $\operatorname{artanh}x$ is the inverse of $\tanh y$, this means
 \operatorname{artanh}x=\frac{1}{2}\ln\left(\frac{1+x}{1-x}\right)
 \]
 
-\item From part (i),
+\item From part (i):
 \[
 \operatorname{artanh}x=\frac12\ln\left(\frac{1+x}{1-x}\right)
 \]
 
 for $|x|<1$.
 
-Differentiating,
+Differentiating:
 \begin{align*}
 \frac{\mathrm{d}}{\mathrm{d}x}\bigl(\operatorname{artanh}x\bigr)
 &=\frac12\frac{\mathrm{d}}{\mathrm{d}x}\left[\ln(1+x)-\ln(1-x)\right] \\
@@ -1466,7 +1420,7 @@ Therefore
 &=\frac16\left[\operatorname{artanh}\left(\frac{3x}{2}\right)\right]_{1/5}^{2/5}
 \end{align*}
 
-Using the result from part (i),
+Using the result from part (i):
 \begin{align*}
 \int_{1/5}^{2/5}\frac{1}{4-9x^2}\,\mathrm{d}x
 &=\frac{1}{6}\left[\frac12\ln\left(\frac{1+\frac{3x}{2}}{1-\frac{3x}{2}}\right)\right]_{1/5}^{2/5} \\
@@ -1493,7 +1447,7 @@ giving your answer in the form
 \[
 A\ln|x-1|+B\ln(x^2+4x+13)+D\arctan\left(\frac{x+2}{3}\right)+c
 \]
-where $A$, $B$ and $D$ are constants to be found. \marks{7} \\
+where $c$ is an arbitrary constant and $A$, $B$ and $D$ are constants to be found. \marks{7} \\
 
 \vspace*{10pt}
 
@@ -1508,7 +1462,7 @@ Then
 x^2+14x+21=P(x^2+4x+13)+(Qx+R)(x-1)
 \]
 
-Expanding the right-hand side,
+Expanding the right-hand side:
 \begin{align*}
 P(x^2+4x+13)+(Qx+R)(x-1)
 &=Px^2+4Px+13P+Qx^2-Qx+Rx-R \\
@@ -1522,12 +1476,12 @@ P+Q&=1 \\
 13P-R&=21
 \end{align*}
 
-From the first equation,
+From the first equation:
 \[
 Q=1-P
 \]
 
-From the third equation,
+From the third equation:
 \[
 R=13P-21
 \]
@@ -1543,7 +1497,7 @@ P&=2
 
 So
 \[
-Q=1-2=-1,\qquad R=13(2)-21=5
+Q=1-2=-1,\qquad R=13\times 2-21=5
 \]
 
 Hence
@@ -1563,7 +1517,7 @@ Now rewrite the second numerator in terms of the derivative of the quadratic:
 -x+5=-\frac12(2x+4)+7
 \]
 
-Also,
+Also, completing the square gives
 \[
 x^2+4x+13=(x+2)^2+9
 \]
@@ -1582,7 +1536,7 @@ Using the standard result
 \int \frac{1}{x^2+a^2}\,\mathrm{d}x=\frac{1}{a}\arctan\left(\frac{x}{a}\right)+c
 \]
 
-with $a=3$ and $x$ replaced by $x+2$,
+with $a=3$ and $x$ replaced by $x+2$, we get
 \[
 \int \frac{1}{(x+2)^2+9}\,\mathrm{d}x
 =\frac13\arctan\left(\frac{x+2}{3}\right)
@@ -1638,7 +1592,7 @@ A=2,\qquad B=-\frac12,\qquad D=\frac73
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\roman*)}]
-\item Using the exponential definitions,
+\item Using the exponential definitions:
 \[
 \tanh u=\frac{e^u-e^{-u}}{e^u+e^{-u}}
 \qquad\text{and}\qquad
@@ -1646,8 +1600,7 @@ A=2,\qquad B=-\frac12,\qquad D=\frac73
 \]
 
 Then
-\[
-\begin{aligned}
+\begin{align*}
 1-\tanh^2u
 &=1-\left(\frac{e^u-e^{-u}}{e^u+e^{-u}}\right)^2 \\
 &=\frac{(e^u+e^{-u})^2-(e^u-e^{-u})^2}{(e^u+e^{-u})^2} \\
@@ -1655,13 +1608,7 @@ Then
 &=\frac{4}{(e^u+e^{-u})^2} \\
 &=\left(\frac{2}{e^u+e^{-u}}\right)^2 \\
 &=\operatorname{sech}^2u
-\end{aligned}
-\]
-
-Hence
-\[
-1-\tanh^2u=\operatorname{sech}^2u
-\]
+\end{align*}
 
 \item Let
 \[
@@ -1673,7 +1620,7 @@ so that
 y=\tanh u
 \]
 
-Using the exponential form of $\tanh u$,
+Using the exponential form of $\tanh u$:
 \[
 y=\frac{e^u-e^{-u}}{e^u+e^{-u}}
 \]
@@ -1684,15 +1631,13 @@ y=\frac{e^{2u}-1}{e^{2u}+1}
 \]
 
 Now solve for $u$:
-\[
-\begin{aligned}
+\begin{align*}
 y(e^{2u}+1)&=e^{2u}-1 \\
 ye^{2u}+y&=e^{2u}-1 \\
 e^{2u}-ye^{2u}&=1+y \\
 e^{2u}(1-y)&=1+y \\
 e^{2u}&=\frac{1+y}{1-y}
-\end{aligned}
-\]
+\end{align*}
 
 Since $|y|<1$, both $1+y$ and $1-y$ are positive, so taking logarithms is valid:
 \[
@@ -1717,31 +1662,27 @@ x=4\tanh u
 Then
 \[
 \frac{\mathrm{d}x}{\mathrm{d}u}=4\operatorname{sech}^2u
-\qquad\Rightarrow\qquad
+\quad\Longrightarrow\quad
 \mathrm{d}x=4\operatorname{sech}^2u\,\mathrm{d}u
 \]
 
-Also,
-\[
-\begin{aligned}
+Also
+\begin{align*}
 16-x^2
 &=16-16\tanh^2u \\
 &=16(1-\tanh^2u) \\
 &=16\operatorname{sech}^2u
-\end{aligned}
-\]
+\end{align*}
 
 using part (i).
 
 So
-\[
-\begin{aligned}
+\begin{align*}
 \int \frac{1}{16-x^2}\,\mathrm{d}x
 &=\int \frac{1}{16\operatorname{sech}^2u}\left(4\operatorname{sech}^2u\,\mathrm{d}u\right) \\
 &=\frac14\int 1\,\mathrm{d}u \\
 &=\frac{u}{4}+c
-\end{aligned}
-\]
+\end{align*}
 
 Now $x=4\tanh u$ gives
 \[
@@ -1770,23 +1711,16 @@ Now use part (ii) with $y=\frac{x}{4}$. Since $|x|<4$, we have $\left|\frac{x}{4
 Therefore
 \[
 \int \frac{1}{16-x^2}\,\mathrm{d}x
-=\frac14\cdot \frac12\ln\left(\frac{4+x}{4-x}\right)+c
+=\frac14\times\frac12\ln\left(\frac{4+x}{4-x}\right)+c
 =\frac18\ln\left(\frac{4+x}{4-x}\right)+c
 \]
 
-So
-\[
-\int \frac{1}{16-x^2}\,\mathrm{d}x=\frac18\ln\left(\frac{4+x}{4-x}\right)+c
-\]
-
 \item First complete the square:
-\[
-\begin{aligned}
+\begin{align*}
 -t^2+6t+7
 &=-(t^2-6t+9)+16 \\
 &=16-(t-3)^2
-\end{aligned}
-\]
+\end{align*}
 
 So
 \[
@@ -1795,7 +1729,7 @@ So
 \int_1^5 \frac{1}{16-(t-3)^2}\,\mathrm{d}t
 \]
 
-Using part (iii), with $x$ replaced by $t-3$,
+Using part (iii), with $x$ replaced by $t-3$:
 \[
 \int \frac{1}{16-(t-3)^2}\,\mathrm{d}t
 =
@@ -1803,8 +1737,7 @@ Using part (iii), with $x$ replaced by $t-3$,
 \]
 
 Therefore
-\[
-\begin{aligned}
+\begin{align*}
 \int_1^5 \frac{1}{-t^2+6t+7}\,\mathrm{d}t
 &=
 \left[\frac18\ln\left(\frac{t+1}{7-t}\right)\right]_{1}^{5} \\
@@ -1812,13 +1745,7 @@ Therefore
 &=\frac18\ln 3-\frac18\ln\left(\frac13\right) \\
 &=\frac18\ln 3+\frac18\ln 3 \\
 &=\frac14\ln 3
-\end{aligned}
-\]
-
-Hence
-\[
-\int_{1}^{5} \frac{1}{-t^2 + 6t + 7}\,\mathrm{d}t = \frac{1}{4}\ln 3
-\]
+\end{align*}
 \end{enumerate}
 \end{djsSolution}
 
@@ -1837,7 +1764,7 @@ Hence
   expressing your answer first in terms of $\operatorname{arcosh}$ and hence in logarithmic form. \marks{3} \\
   \item Use integration by substitution with $x-3=2\cosh u$ to show that, for $x>5$,
   \[
-  \int \sqrt{x^2-6x+5}\,\mathrm{d}x=2\left(\frac{x-3}{2}\sqrt{\frac{(x-3)^2}{4}-1}-\ln\left|\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right|\right)+c
+  \int \sqrt{x^2-6x+5}\,\mathrm{d}x=2\left(\frac{x-3}{2}\sqrt{\frac{(x-3)^2}{4}-1}-\ln\left(\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right)\right)+c
   \]
   where $c$ is an arbitrary constant. \marks{6} \\
 \end{enumerate}
@@ -1859,7 +1786,7 @@ Hence
   Then
   \[
   \frac{\mathrm{d}x}{\mathrm{d}u}=2\sinh u
-  \qquad\Rightarrow\qquad
+  \quad\Longrightarrow\quad
   \mathrm{d}x=2\sinh u\,\mathrm{d}u
   \]
 
@@ -1900,7 +1827,7 @@ Hence
 
   Using the standard result
   \[
-  \operatorname{arcosh} z=\ln\left(z+\sqrt{z^2-1}\right)
+  \operatorname{arcosh} t=\ln\left(t+\sqrt{t^2-1}\right)\qquad (t\ge 1)
   \]
 
   we get
@@ -1929,7 +1856,7 @@ Hence
   x-3=2\cosh u \qquad (x>5)
   \]
 
-  Then, as above,
+  Then, as in part (i), we have
   \[
   \sqrt{x^2-6x+5}=2\sinh u
   \qquad\text{and}\qquad
@@ -1991,16 +1918,16 @@ Hence
   &=2\left(\frac{x-3}{2}\sqrt{\frac{(x-3)^2}{4}-1}-u\right)+c
   \end{align*}
 
-  From part (i),
+  From part (i):
   \[
   u=\operatorname{arcosh}\left(\frac{x-3}{2}\right)
-  =\ln\left|\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right|
+  =\ln\left(\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right)
   \]
 
   Therefore
   \[
   \int \sqrt{x^2-6x+5}\,\mathrm{d}x
-  =2\left(\frac{x-3}{2}\sqrt{\frac{(x-3)^2}{4}-1}-\ln\left|\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right|\right)+c
+  =2\left(\frac{x-3}{2}\sqrt{\frac{(x-3)^2}{4}-1}-\ln\left(\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right)\right)+c
   \]
 
   This is the required result.
