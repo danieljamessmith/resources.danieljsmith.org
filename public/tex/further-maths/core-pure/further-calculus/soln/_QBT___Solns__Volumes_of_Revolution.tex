@@ -4,7 +4,7 @@
 \djsSolnHeader{Volumes of Revolution}
 \djsSitePath{Core Pure}{Further Calculus}
 
-\djsLastUpdated{14 October 2026}
+\djsLastUpdated{24 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -66,26 +66,26 @@ The region is rotated completely about the $x$-axis. \\
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Let $u=\sec x+\tan x$. Differentiating,
+  \item Let $u=\sec x+\tan x$. Differentiating:
   \[
   \frac{\mathrm{d}u}{\mathrm{d}x}=\sec x\tan x+\sec^2 x=\sec x(\tan x+\sec x)=u\sec x
   \]
 
-  Hence, by the chain rule,
+  Hence, by the chain rule:
   \[
   \frac{\mathrm{d}}{\mathrm{d}x}\ln(\sec x+\tan x)=\frac{1}{u}\cdot\frac{\mathrm{d}u}{\mathrm{d}x}=\frac{1}{u}\cdot u\sec x=\sec x
   \]
 
   as required.
 
-  \item Since the region is rotated about the $x$-axis, the volume is
+  \item When the region is rotated about the $x$-axis, the volume is
   \[
   V=\pi\int_a^b y^2\,\mathrm{d}x
   \]
 
   Here the limits are $x=0$ to $x=\frac{\pi}{3}$, and
   \[
-  y=\sqrt{\sec x}\implies y^2=\sec x
+  y=\sqrt{\sec x}\quad\Longrightarrow\quad y^2=\sec x
   \]
 
   So
@@ -93,7 +93,7 @@ The region is rotated completely about the $x$-axis. \\
   V=\pi\int_0^{\pi/3}\sec x\,\mathrm{d}x
   \]
 
-  From part \textbf{(a)},
+  From part (a):
   \[
   \int \sec x\,\mathrm{d}x=\ln|\sec x+\tan x|+c
   \]
@@ -177,7 +177,7 @@ A designer models a hollow glass ornament as the solid formed by rotating $R$ co
   \sinh u=\frac{e^u-e^{-u}}{2}
   \]
 
-  with $u=2\ln 2$,
+  with $u=2\ln 2$:
   \begin{align*}
   \sinh(2\ln 2)
   &=\frac{e^{2\ln 2}-e^{-2\ln 2}}{2} \\
@@ -188,12 +188,7 @@ A designer models a hollow glass ornament as the solid formed by rotating $R$ co
    =\frac{15}{8}
   \end{align*}
 
-  Hence,
-  \[
-  \sinh(2\ln 2)=\frac{15}{8}
-  \]
-
-  \item First find the left-hand limit of the region by solving where the curve meets $y=1$:
+  \item First find the left-hand end of the region by solving where the curve meets $y=1$:
   \begin{align*}
   \sqrt{\cosh x} &= 1 \\
   \cosh x &= 1
@@ -205,16 +200,16 @@ A designer models a hollow glass ornament as the solid formed by rotating $R$ co
 
   When the region is rotated about the $x$-axis, the volume is
   \[
-  V=\pi\int_a^b \left((\text{upper curve})^2-(\text{lower curve})^2\right)\,\mathrm{d}x
+  V=\pi\int_a^b \left(y_1^2-y_2^2\right)\,\mathrm{d}x
   \]
 
-  Here, the upper curve is $y=\sqrt{\cosh x}$ and the lower curve is $y=1$, so
+  Here $y_1=\sqrt{\cosh x}$ is the outer curve and $y_2=1$ the inner, so
   \begin{align*}
   V&=\pi\int_0^{2\ln 2}\left(\left(\sqrt{\cosh x}\right)^2-1^2\right)\,\mathrm{d}x \\
    &=\pi\int_0^{2\ln 2}(\cosh x-1)\,\mathrm{d}x
   \end{align*}
 
-  Integrating,
+  Integrating:
   \begin{align*}
   V&=\pi\left[\sinh x-x\right]_0^{2\ln 2} \\
    &=\pi\left(\sinh(2\ln 2)-2\ln 2-(\sinh 0-0)\right) \\
@@ -246,9 +241,9 @@ Given that the volume of the solid of revolution formed is $1$ unit$^3$, find th
 \vspace*{10pt}
 
 \begin{djsSolution}
-When the region is rotated about the $x$-axis, the volume is given by
+When the region is rotated about the $x$-axis, the volume is
 \[
-V=\pi\int_0^k y^2\,\mathrm{d}x
+V=\pi\int_a^b y^2\,\mathrm{d}x
 \]
 
 Here
@@ -261,7 +256,7 @@ so
 y^2=\frac{k-x}{k+x}
 \]
 
-Given that the volume is $1\text{ unit}^3$,
+Given that the volume is $1\text{ unit}^3$:
 \[
 1=\pi\int_0^k \frac{k-x}{k+x}\,\mathrm{d}x
 \]
@@ -309,7 +304,7 @@ V=\pi\int_0^k y^2\,\mathrm{d}x
 Here
 \[
 y=\frac{x}{\sqrt{k^2+x^2}}
-\qquad\Rightarrow\qquad
+\quad\Longrightarrow\quad
 y^2=\frac{x^2}{k^2+x^2}
 \]
 
@@ -330,12 +325,17 @@ Hence
 V=\pi\int_0^k \left(1-\frac{k^2}{k^2+x^2}\right)\,\mathrm{d}x
 \]
 
-Now integrate:
+Using
+\[
+\int \dfrac{1}{a^2+x^2}\,\mathrm{d}x=\dfrac{1}{a}\arctan\left(\dfrac{x}{a}\right)+c
+\]
+
+with $a=k$:
 \begin{align*}
 \int \left(1-\frac{k^2}{k^2+x^2}\right)\,\mathrm{d}x
 &=x-k^2\int \frac{1}{k^2+x^2}\,\mathrm{d}x \\
-&=x-k^2\left(\frac{1}{k}\arctan\frac{x}{k}\right) \\
-&=x-k\arctan\frac{x}{k}
+&=x-k^2\left(\frac{1}{k}\arctan\frac{x}{k}\right)+c \\
+&=x-k\arctan\frac{x}{k}+c
 \end{align*}
 
 Therefore
@@ -359,8 +359,6 @@ k
 &=\frac{1}{\pi\left(\frac{4-\pi}{4}\right)} \\
 &=\frac{4}{\pi(4-\pi)}
 \end{align*}
-
-Since $k$ is positive, this is valid.
 \end{djsSolution}
 
 
@@ -458,7 +456,7 @@ The finite region $R$ shown in the diagram is bounded by $C$, the lines $y=\dfra
 
   \item When the region is rotated about the $y$-axis, the volume is
   \[
-  V=\pi\int x^2\,\mathrm{d}y
+  V=\pi\int_{1/\sqrt3}^{\sqrt3} x^2\,\mathrm{d}y
   \]
 
   Here
@@ -473,24 +471,28 @@ The finite region $R$ shown in the diagram is bounded by $C$, the lines $y=\dfra
 
   We now find the $\theta$-limits.
 
-  When $y=\sqrt3$,
+  When $y=\sqrt3$:
   \[
-  \cot\theta=\sqrt3\implies\tan\theta=\frac{1}{\sqrt3}
+  \cot\theta=\sqrt3\quad\Longrightarrow\quad\tan\theta=\frac{1}{\sqrt3}
   \]
 
   so $\theta=\frac{\pi}{6}$.
 
-  When $y=\frac{1}{\sqrt3}$,
+  When $y=\frac{1}{\sqrt3}$:
   \[
-  \cot\theta=\frac{1}{\sqrt3}\implies\tan\theta=\sqrt3
+  \cot\theta=\frac{1}{\sqrt3}\quad\Longrightarrow\quad\tan\theta=\sqrt3
   \]
 
   so $\theta=\frac{\pi}{3}$.
 
-  Therefore
+  Using the parameter $\theta$:
+  \[
+  V=\pi\int_{\pi/3}^{\pi/6} x^2\frac{\mathrm{d}y}{\mathrm{d}\theta}\,\mathrm{d}\theta
+  \]
+
+  so
   \begin{align*}
   V
-  &=\pi\int_{1/\sqrt3}^{\sqrt3} x^2\,\mathrm{d}y \\
   &=\pi\int_{\pi/3}^{\pi/6} (6\sin^2\theta)^2\frac{\mathrm{d}y}{\mathrm{d}\theta}\,\mathrm{d}\theta \\
   &=\pi\int_{\pi/3}^{\pi/6} (6\sin^2\theta)^2(-\operatorname{cosec}^2\theta)\,\mathrm{d}\theta \\
   &=36\pi\int_{\pi/3}^{\pi/6} -\sin^2\theta\,\mathrm{d}\theta \\
@@ -507,7 +509,7 @@ The finite region $R$ shown in the diagram is bounded by $C$, the lines $y=\dfra
   k=36\pi,\qquad a=\frac{\pi}{6},\qquad b=\frac{\pi}{3}
   \]
 
-  \item Using parts (a) and (b),
+  \item Using parts (a) and (b):
   \begin{align*}
   V
   &=36\pi\int_{\pi/6}^{\pi/3}\sin^2\theta\,\mathrm{d}\theta \\
@@ -524,16 +526,11 @@ The finite region $R$ shown in the diagram is bounded by $C$, the lines $y=\dfra
   \begin{align*}
   V
   &=36\pi\left(\frac{\pi}{6}-\frac{\pi}{12}\right) \\
-  &=36\pi\cdot\frac{\pi}{12} \\
+  &=36\pi\times\frac{\pi}{12} \\
   &=3\pi^2
   \end{align*}
 
-  Hence the exact volume is
-  \[
-  3\pi^2
-  \]
-
-  so $p=3$.
+  This is in the form $p\pi^2$ with $p=3$.
 \end{enumerate}
 \end{djsSolution}
 
@@ -609,7 +606,7 @@ So
 x=\frac{9}{t^4}=\frac{9}{(t^2)^2}=\frac{9}{(y+3)^2}
 \]
 
-Since \(t\ge \sqrt{3}\), we have \(y\ge 0\), so the region runs from \(y=0\) up to \(y=a\).
+The region runs from \(y=0\) up to \(y=a\).
 
 When the region is rotated about the \(y\)-axis, the volume is
 \[
@@ -623,7 +620,7 @@ V&=\pi\int_0^a \left(\frac{9}{(y+3)^2}\right)^2\,\mathrm{d}y\\
 &=81\pi\int_0^a (y+3)^{-4}\,\mathrm{d}y\\
 &=81\pi\left[\frac{(y+3)^{-3}}{-3}\right]_0^a\\
 &=81\pi\left[-\frac{1}{3(y+3)^3}\right]_0^a\\
-&=81\pi\left(-\frac{1}{3(a+3)^3}+\frac{1}{3\cdot 3^3}\right)\\
+&=81\pi\left(-\frac{1}{3(a+3)^3}+\frac{1}{3\times 3^3}\right)\\
 &=81\pi\left(-\frac{1}{3(a+3)^3}+\frac{1}{81}\right)\\
 &=-\frac{27\pi}{(a+3)^3}+\pi\\
 &=\pi\left(1-\frac{27}{(a+3)^3}\right)
@@ -637,7 +634,7 @@ We are told that the volume is \(\frac{7\pi}{8}\), so
 (a+3)^3&=216
 \end{align*}
 
-Now \(a\ge 0\), so \(a+3>0\), and therefore
+Taking the cube root:
 \[
 a+3=6
 \]
@@ -696,14 +693,17 @@ Find the exact volume of the solid formed when this region is rotated through $3
 \vspace*{10pt}
 
 \begin{djsSolution}
-The region is between the line $y=2$ and the curve
+When the region is rotated about the $x$-axis, the volume is
 \[
-y=\sqrt{\frac{x+4}{x+1}}
+V=\pi\int_a^b \left(y_1^2-y_2^2\right)\,\mathrm{d}x
 \]
 
-from $x=0$ to $x=8$.
+Here $y_1=2$ is the outer curve and the inner is
+\[
+y_2=\sqrt{\frac{x+4}{x+1}}
+\]
 
-When this region is rotated about the $x$-axis, the volume is
+from $x=0$ to $x=8$, so
 \[
 V=\pi\int_0^8 \left(2^2-\left(\sqrt{\frac{x+4}{x+1}}\right)^2\right)\,\mathrm{d}x
 \]
@@ -748,7 +748,7 @@ V&=3\pi\left((8-\ln 9)-(0-\ln 1)\right) \\
 &=3\pi(8-\ln 9)
 \end{align*}
 
-Since $\ln 9=2\ln 3$,
+Using $\ln 9=2\ln 3$:
 \begin{align*}
 V&=24\pi-3\pi\ln 9 \\
 &=24\pi-6\pi\ln 3 \\
@@ -777,12 +777,12 @@ Then
 \sinh a=2
 \]
 
-To find $a$ in logarithmic form,
+To find $a$ in logarithmic form:
 \begin{align*}
 \sinh a=2
-&\implies \frac{e^a-e^{-a}}{2}=2\\
-&\implies e^a-e^{-a}=4\\
-&\implies e^{2a}-1=4e^a
+&\quad\Longrightarrow\quad \frac{e^a-e^{-a}}{2}=2\\
+&\quad\Longrightarrow\quad e^a-e^{-a}=4\\
+&\quad\Longrightarrow\quad e^{2a}-1=4e^a
 \end{align*}
 
 Let $u=e^a$. Then $u>0$ and
@@ -805,8 +805,12 @@ Hence
 a=\ln(2+\sqrt5)
 \]
 
-For $0\le x\le a$, the region lies between $y=\sinh x$ and $y=2$.  
-When it is rotated about the $x$-axis, the volume is
+When the region is rotated about the $x$-axis, the volume is
+\[
+V=\pi\int_0^a \left(y_1^2-y_2^2\right)\,\mathrm{d}x
+\]
+
+Here $y_1=2$ is the outer curve and $y_2=\sinh x$ the inner, so
 \[
 V=\pi\int_0^a \left(2^2-(\sinh x)^2\right)\,\mathrm{d}x
 \]
@@ -829,7 +833,7 @@ V
 &=\pi\left[\frac92x-\frac14\sinh 2x\right]_0^a
 \end{align*}
 
-Now $\sinh a=2$, and since $a>0$,
+Now $\sinh a=2$ and $\cosh a>0$, so
 \[
 \cosh a=\sqrt{1+\sinh^2 a}=\sqrt{1+4}=\sqrt5
 \]
@@ -839,7 +843,7 @@ Therefore
 \sinh 2a=2\sinh a\cosh a=2(2)(\sqrt5)=4\sqrt5
 \]
 
-Substituting into the volume,
+Substituting into the volume:
 \begin{align*}
 V
 &=\pi\left(\frac92a-\frac14\sinh 2a\right)\\
@@ -847,7 +851,7 @@ V
 &=\pi\left(\frac92a-\sqrt5\right)
 \end{align*}
 
-Finally, using $a=\ln(2+\sqrt5)$,
+Finally, using $a=\ln(2+\sqrt5)$:
 \[
 V=\pi\left(\frac92\ln(2+\sqrt5)-\sqrt5\right)
 \]
@@ -892,9 +896,9 @@ Use the model to find the volume of the ornament. \marks{6}
 \vspace*{20pt}
 
 \begin{djsSolution}
-For a solid formed by rotating a region about the $y$-axis, we use
+When the region is rotated about the $y$-axis, the volume is
 \[
-V=\pi\int x^2\,\mathrm{d}y
+V=\pi\int_a^b x^2\,\mathrm{d}y
 \]
 
 Here
@@ -902,12 +906,12 @@ Here
 x=12t(1-t)^2,\qquad y=8t^2,\qquad 0\le t\le 1
 \]
 
-Also,
+Also
 \[
 \frac{\mathrm{d}y}{\mathrm{d}t}=16t
 \]
 
-Since $0\le t\le 1$, we have $\frac{\mathrm{d}y}{\mathrm{d}t}\ge 0$, so $y$ increases through the interval and we can write
+Using the parameter $t$:
 \begin{align*}
 V&=\pi\int_0^1 x^2\frac{\mathrm{d}y}{\mathrm{d}t}\,\mathrm{d}t\\
 &=\pi\int_0^1 \left(12t(1-t)^2\right)^2(16t)\,\mathrm{d}t\\
@@ -932,23 +936,21 @@ V&=2304\pi\int_0^1 \left(t^3-4t^4+6t^5-4t^6+t^7\right)\,\mathrm{d}t\\
 &=2304\pi\left(\frac14-\frac45+1-\frac47+\frac18\right)
 \end{align*}
 
-Using a common denominator of $280$,
+Using a common denominator of $280$:
 \[
 \frac14-\frac45+1-\frac47+\frac18=\frac{70-224+280-160+35}{280}=\frac{1}{280}
 \]
 
 Therefore
 \begin{align*}
-V&=2304\pi\cdot \frac{1}{280}\\
+V&=2304\pi\times\frac{1}{280}\\
 &=\frac{288\pi}{35}
 \end{align*}
 
 So the volume of the ornament is
 \[
-\frac{288\pi}{35}\ \text{units}^3
+\frac{288\pi}{35}\text{ units}^3\approx 25.9\text{ units}^3
 \]
-
-which is approximately $25.9\text{ units}^3$.
 \end{djsSolution}
 \newpage
 
@@ -1024,7 +1026,7 @@ x^2=\frac{8-6y^2-y\sin(2y)}{20}
 
 When this curve is rotated about the $y$-axis, the volume is
 \[
-V=\pi\int_{-1.088}^{1.088}x^2\,\mathrm{d}y
+V=\pi\int_a^b x^2\,\mathrm{d}y
 \]
 
 So
@@ -1047,7 +1049,7 @@ Hence
 \int -y\sin(2y)\,\mathrm{d}y
 &=uv-\int v\,\frac{\mathrm{d}u}{\mathrm{d}y}\,\mathrm{d}y\\
 &=\frac{y}{2}\cos(2y)-\int \frac12\cos(2y)\,\mathrm{d}y\\
-&=\frac{y}{2}\cos(2y)-\frac14\sin(2y)
+&=\frac{y}{2}\cos(2y)-\frac14\sin(2y)+c
 \end{align*}
 
 Therefore
@@ -1122,33 +1124,33 @@ Use parametric integration to find the volume of the resulting solid of revoluti
 \vspace*{10pt}
 
 \begin{djsSolution}
-For the given curve,
+For the given curve:
 \[
 x=\frac{2}{1+t}, \qquad y=t^2+1, \qquad t\ge 0
 \]
 
 First find the values of $t$ corresponding to the horizontal boundaries.
 
-When $y=2$,
+When $y=2$:
 \[
-t^2+1=2 \implies t^2=1 \implies t=1
+t^2+1=2 \quad\Longrightarrow\quad t^2=1 \quad\Longrightarrow\quad t=1
 \]
 
 since $t\ge 0$.
 
-When $y=5$,
+When $y=5$:
 \[
-t^2+1=5 \implies t^2=4 \implies t=2
+t^2+1=5 \quad\Longrightarrow\quad t^2=4 \quad\Longrightarrow\quad t=2
 \]
 
 So the required part of the curve corresponds to $1\le t\le 2$.
 
 When the region is rotated about the $y$-axis, the volume is
 \[
-V=\pi \int x^2\,\mathrm{d}y
+V=\pi\int_a^b x^2\,\mathrm{d}y
 \]
 
-Using the parameter $t$,
+Using the parameter $t$:
 \[
 V=\pi \int_{1}^{2} x^2\frac{\mathrm{d}y}{\mathrm{d}t}\,\mathrm{d}t
 \]
@@ -1177,17 +1179,17 @@ Now simplify the integrand:
 
 So
 \[
-V=8\pi \int_{1}^{2}\left(\frac{1}{1+t}-\frac{1}{(1+t)^2}\right)\mathrm{d}t
+V=8\pi \int_{1}^{2}\left(\frac{1}{1+t}-\frac{1}{(1+t)^2}\right)\,\mathrm{d}t
 \]
 
-Integrating,
+Integrating:
 \[
-\int \frac{1}{1+t}\,\mathrm{d}t=\ln(1+t)
+\int \frac{1}{1+t}\,\mathrm{d}t=\ln(1+t)+c
 \]
 
 and
 \[
-\int -\frac{1}{(1+t)^2}\,\mathrm{d}t=\frac{1}{1+t}
+\int -\frac{1}{(1+t)^2}\,\mathrm{d}t=\frac{1}{1+t}+c
 \]
 
 Therefore
@@ -1195,7 +1197,7 @@ Therefore
 V=8\pi \left[\ln(1+t)+\frac{1}{1+t}\right]_{1}^{2}
 \]
 
-Substituting the limits,
+Substituting the limits:
 \[
 V=8\pi \left(\ln 3+\frac13-\ln 2-\frac12\right)
 \]
@@ -1205,12 +1207,7 @@ So
 V=8\pi \left(\ln\frac32-\frac16\right)
 \]
 \[
-V=8\pi\ln\frac32-\frac{4\pi}{3}
-\]
-
-In decimal form,
-\[
-V\approx 6.00
+V=8\pi\ln\frac32-\frac{4\pi}{3}\approx 6.00
 \]
 \end{djsSolution}
 
@@ -1259,12 +1256,12 @@ Find the volume of the solid of revolution formed when $R$ is rotated completely
 \vspace*{10pt}
 
 \begin{djsSolution}
-First find where the curves meet.
+First find where the curves meet:
 \[
 \sin x=\sin 2x
 \]
 
-Using \(\sin 2x=2\sin x\cos x\),
+Using \(\sin 2x=2\sin x\cos x\):
 \[
 \sin x=2\sin x\cos x
 \]
@@ -1272,26 +1269,21 @@ Using \(\sin 2x=2\sin x\cos x\),
 \sin x(2\cos x-1)=0
 \]
 
-So, for \(0\le x\le \frac{\pi}{2}\),
+So, for \(0\le x\le \frac{\pi}{2}\):
 \[
-\sin x=0 \Rightarrow x=0
+\sin x=0 \quad\Longrightarrow\quad x=0
 \qquad \text{or} \qquad
-2\cos x-1=0 \Rightarrow \cos x=\frac12 \Rightarrow x=\frac{\pi}{3}
+2\cos x-1=0 \quad\Longrightarrow\quad \cos x=\frac12 \quad\Longrightarrow\quad x=\frac{\pi}{3}
 \]
 
 Hence the shaded region is between \(x=0\) and \(x=\frac{\pi}{3}\).
 
-For \(0<x<\frac{\pi}{3}\), we have \(\sin x>0\) and \(\cos x>\frac12\), so \(2\cos x-1>0\). Therefore
+When the region is rotated about the \(x\)-axis, the volume is
 \[
-\sin x(2\cos x-1)>0
+V=\pi\int_a^b \left(y_1^2-y_2^2\right)\,\mathrm{d}x
 \]
 
-which means
-\[
-\sin 2x>\sin x
-\]
-
-So when the region is rotated about the \(x\)-axis, the volume is
+The diagram shows that \(y_1=\sin 2x\) is the outer curve and \(y_2=\sin x\) the inner, so
 \[
 V=\pi\int_0^{\pi/3}\left((\sin 2x)^2-(\sin x)^2\right)\,\mathrm{d}x
 \]
@@ -1366,7 +1358,7 @@ V
 
 The diagram above shows a sketch of part of the curve with equation
 \[
-y = \operatorname{arcosh}(1 + 2x) \qquad x \geq 0
+y = \operatorname{arcosh}(1 + 2x), \qquad x \geq 0
 \] \\
 and the straight line with equation $y = \beta$. \\
 
@@ -1409,6 +1401,11 @@ Given
 \]
 
 and using
+\[
+\operatorname{arcosh}u=\ln\left(u+\sqrt{u^2-1}\right)\qquad (u\ge 1)
+\]
+
+with $u=2$, which gives
 \[
 \operatorname{arcosh}2=\ln(2+\sqrt{2^2-1})=\ln(2+\sqrt3)
 \]
@@ -1455,7 +1452,7 @@ so
 x=\frac{\cosh y-1}{2}
 \]
 
-When $x=0$,
+When $x=0$:
 \[
 y=\operatorname{arcosh}(1)=0
 \]
@@ -1464,7 +1461,7 @@ and the top of the region is $y=\beta$. Hence $0\le y\le \beta$.
 
 When the region is rotated about the $y$-axis, the volume is
 \[
-V=\pi\int_0^\beta x^2\,\mathrm{d}y
+V=\pi\int_a^b x^2\,\mathrm{d}y
 \]
 
 So
@@ -1498,7 +1495,7 @@ V
 &=\frac{\pi}{4}\left[\frac14\sinh 2y-2\sinh y+\frac32 y\right]_0^\beta
 \end{align*}
 
-Now use the result from part (a), or equivalently $\beta=\operatorname{arcosh}2$, so
+From part (a), $\beta=\operatorname{arcosh}2$, so
 \[
 \cosh\beta=2
 \]
@@ -1510,7 +1507,7 @@ Hence
 
 since $\beta>0$.
 
-Also,
+Also
 \[
 \sinh 2\beta=2\sinh\beta\cosh\beta=2(\sqrt3)(2)=4\sqrt3
 \]
@@ -1524,7 +1521,7 @@ V
 &=\frac{\pi}{8}(3\beta-2\sqrt3)
 \end{align*}
 
-Finally, since $\beta=\ln(2+\sqrt3)$,
+Finally, since $\beta=\ln(2+\sqrt3)$:
 \[
 V=\frac{\pi}{8}\left(3\ln(2+\sqrt3)-2\sqrt3\right)
 \]
@@ -1545,12 +1542,12 @@ V=\frac{\pi}{8}\left(3\ln(2+\sqrt3)-2\sqrt3\right)
     ({sin(\t) - (1/3)*sin(3*\t)}, {1 - cos(\t)})
   -- cycle;
 \draw[<->, thick] (\dimx, 0) -- (\dimx, 2)
-  node[midway, left] {$3\ \mathrm{cm}$};
+  node[midway, left] {$3\,\mathrm{cm}$};
 \end{tikzpicture}
 \end{figure}
 
 
-The diagram shows the outline of a glass bead. The bead is modelled by the solid obtained when the region enclosed by a curve $C$ is rotated about the $y$-axis. The actual bead has height $3\ \mathrm{cm}$. The curve $C$ has parametric equations
+The diagram shows the outline of a glass bead. The bead is modelled by the solid obtained when the region enclosed by a curve $C$ is rotated about the $y$-axis. The actual bead has height $3\,\mathrm{cm}$. The curve $C$ has parametric equations
 \[
 x = \sin\theta - \frac{1}{3}\sin 3\theta,\qquad y = 1 - \cos\theta,\qquad 0 \le \theta \le 2\pi
 \] \\
@@ -1634,12 +1631,12 @@ k=\frac32
 
 First find the volume of the model.
 
-When the region is rotated about the $y$-axis,
+When the region is rotated about the $y$-axis, the volume is
 \[
-V_{\text{model}}=\pi\int_0^2 x^2\,\mathrm{d}y
+V=\pi\int_a^b x^2\,\mathrm{d}y
 \]
 
-Using the result from part (a),
+Using the result from part (a):
 \begin{align*}
 V_{\text{model}}&=\pi\int_0^2 \frac{16}{9}y^3(2-y)^3\,\mathrm{d}y\\
 &=\frac{16\pi}{9}\int_0^2 y^3(2-y)^3\,\mathrm{d}y
@@ -1658,12 +1655,12 @@ V_{\text{model}}
 &=\frac{16\pi}{9}\left[2y^4-\frac{12}{5}y^5+y^6-\frac17 y^7\right]_0^2
 \end{align*}
 
-Substituting the limits,
+Substituting the limits:
 \begin{align*}
 V_{\text{model}}
 &=\frac{16\pi}{9}\left(2(2^4)-\frac{12}{5}(2^5)+2^6-\frac17(2^7)\right)\\
 &=\frac{16\pi}{9}\left(32-\frac{384}{5}+64-\frac{128}{7}\right)\\
-&=\frac{16\pi}{9}\cdot \frac{32}{35}\\
+&=\frac{16\pi}{9}\times\frac{32}{35}\\
 &=\frac{512\pi}{315}
 \end{align*}
 
@@ -1677,7 +1674,7 @@ V_{\text{actual}}
 
 Therefore the volume of the bead is
 \[
-\frac{192\pi}{35}\ \mathrm{cm}^3 \approx 17.2\ \mathrm{cm}^3
+\frac{192\pi}{35}\,\mathrm{cm}^3 \approx 17.2\,\mathrm{cm}^3
 \]
 \end{enumerate}
 \end{djsSolution}
@@ -1727,7 +1724,7 @@ The diagram shows the cross-section of a decorative ornament. \\
 
 The ornament can be modelled by rotating the region enclosed by the curve $C$ and the $y$-axis about the $y$-axis. Curve $C$ has parametric equations
 \[
-x = 15\sin 2\theta, \quad y = 24\sin \theta, \quad 0 \leq \theta \leq \frac{\pi}{2}
+x = 15\sin 2\theta, \quad y = 24\sin \theta, \qquad 0 \leq \theta \leq \frac{\pi}{2}
 \]
 where $x$ and $y$ are measured in millimetres. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
@@ -1738,7 +1735,7 @@ where $x$ and $y$ are measured in millimetres. \\
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Using the cosine addition formula,
+  \item Using the cosine addition formula:
 \[
 \cos 5\theta=\cos(4\theta+\theta)=\cos 4\theta\cos\theta-\sin 4\theta\sin\theta
 \]
@@ -1765,10 +1762,10 @@ So the required identity is proved.
 
   \item When the region is rotated about the $y$-axis, the volume is
 \[
-V=\pi\int x^2\,\mathrm{d}y
+V=\pi\int_a^b x^2\,\mathrm{d}y
 \]
 
-Using the parameter $\theta$,
+Using the parameter $\theta$:
 \[
 V=\pi\int_0^{\pi/2}x^2\frac{\mathrm{d}y}{\mathrm{d}\theta}\,\mathrm{d}\theta
 \]
@@ -1783,7 +1780,7 @@ so
 \frac{\mathrm{d}y}{\mathrm{d}\theta}=24\cos\theta
 \]
 
-Substituting,
+Substituting:
 \begin{align*}
 V&=\pi\int_0^{\pi/2}(15\sin 2\theta)^2(24\cos\theta)\,\mathrm{d}\theta\\
 &=5400\pi\int_0^{\pi/2}\sin^2 2\theta\cos\theta\,\mathrm{d}\theta
@@ -1801,7 +1798,7 @@ V&=5400\pi\int_0^{\pi/2}\frac{1-\cos 4\theta}{2}\cos\theta\,\mathrm{d}\theta\\
 &=2700\pi\left(\int_0^{\pi/2}\cos\theta\,\mathrm{d}\theta-\int_0^{\pi/2}\cos 4\theta\cos\theta\,\mathrm{d}\theta\right)
 \end{align*}
 
-From part (a),
+From part (a):
 \[
 \cos 4\theta\cos\theta=\frac12(\cos 5\theta+\cos 3\theta)
 \]
@@ -1827,12 +1824,7 @@ V&=2700\pi\left(1-\frac{1}{10}-\frac{1}{6}(-1)\right)\\
 
 Therefore the volume of the ornament is
 \[
-2880\pi\ \text{mm}^3
-\]
-
-which is approximately
-\[
-9.05\times 10^3\ \text{mm}^3
+2880\pi\,\mathrm{mm}^3\approx 9.05\times 10^3\,\mathrm{mm}^3
 \]
   \end{enumerate}
 \end{djsSolution}
