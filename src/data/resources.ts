@@ -337,6 +337,16 @@ const rawResources: Resource[] = [
     topic: 'Complex Numbers',
   },
   {
+    id: 'fm-complex-roots-geometry-ms',
+    title: 'Complex Roots and Geometry Problems',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__Complex_Roots_and_Geometry_Problems.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-complex-roots-geometry',
+    topic: 'Complex Numbers',
+  },
+  {
     id: 'fm-complex-series',
     title: 'Complex Series',
     description: '',
