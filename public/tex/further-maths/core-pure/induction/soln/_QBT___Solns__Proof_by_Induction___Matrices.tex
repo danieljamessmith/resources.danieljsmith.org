@@ -4,7 +4,7 @@
 \djsSolnHeader{Proof by Induction - Matrices}
 \djsSitePath{Core Pure}{Proof by Induction}
 
-\djsLastUpdated{15 October 2026}
+\djsLastUpdated{25 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -31,48 +31,48 @@ Prove by induction that, for $n \in \mathbb{Z}^+$,
 \begin{djsSolution}
 Let
 \[
-A=\begin{pmatrix}2&1\\0&3\end{pmatrix}
+\mathbf{A}=\begin{pmatrix}2&1\\0&3\end{pmatrix}
 \]
 
-We prove by induction that, for all $n\in\mathbb{Z}^+$,
+We prove by induction that
 \[
-A^n=\begin{pmatrix}2^n&3^n-2^n\\0&3^n\end{pmatrix}
+\mathbf{A}^n=\begin{pmatrix}2^n&3^n-2^n\\0&3^n\end{pmatrix}\quad\text{for all }n\in\mathbb{Z}^+
 \]
 
-\textbf{Base Case:} $n=1$.
+\textbf{Base case:} $n=1$. The left-hand side is
 \[
-A^1=A=\begin{pmatrix}2&1\\0&3\end{pmatrix}
+\mathbf{A}^1=\mathbf{A}=\begin{pmatrix}2&1\\0&3\end{pmatrix}
 \]
 
-Also,
+The right-hand side when $n=1$ is
 \[
 \begin{pmatrix}2^1&3^1-2^1\\0&3^1\end{pmatrix}
 =
 \begin{pmatrix}2&1\\0&3\end{pmatrix}
 \]
 
-So the result is true when $n=1$.
+So the statement is true for $n=1$.
 
-\textbf{Inductive Hypothesis:} Assume that for some $k\in\mathbb{Z}^+$,
+\textbf{Inductive hypothesis:} Assume the statement is true for $n=k$, where $k\in\mathbb{Z}^+$. That is, assume
 \[
-A^k=\begin{pmatrix}2^k&3^k-2^k\\0&3^k\end{pmatrix}
+\mathbf{A}^k=\begin{pmatrix}2^k&3^k-2^k\\0&3^k\end{pmatrix}
 \]
 
-\textbf{Inductive Step:} We must show that this implies
+\textbf{Inductive step:} We must show that this implies
 \[
-A^{k+1}=\begin{pmatrix}2^{k+1}&3^{k+1}-2^{k+1}\\0&3^{k+1}\end{pmatrix}
+\mathbf{A}^{k+1}=\begin{pmatrix}2^{k+1}&3^{k+1}-2^{k+1}\\0&3^{k+1}\end{pmatrix}
 \]
 
-Starting from $A^{k+1}=A^kA$ and using the inductive hypothesis,
+Using $\mathbf{A}^{k+1}=\mathbf{A}^k\mathbf{A}$ and the inductive hypothesis:
 \begin{align*}
-A^{k+1}
+\mathbf{A}^{k+1}
 &=
 \begin{pmatrix}2^k&3^k-2^k\\0&3^k\end{pmatrix}
 \begin{pmatrix}2&1\\0&3\end{pmatrix} \\
 &=
 \begin{pmatrix}
-2^k\cdot2+(3^k-2^k)\cdot0 & 2^k\cdot1+(3^k-2^k)\cdot3 \\
-0\cdot2+3^k\cdot0 & 0\cdot1+3^k\cdot3
+2^k\times2+(3^k-2^k)\times0 & 2^k\times1+(3^k-2^k)\times3 \\
+0\times2+3^k\times0 & 0\times1+3^k\times3
 \end{pmatrix} \\
 &=
 \begin{pmatrix}
@@ -81,33 +81,26 @@ A^{k+1}
 \end{pmatrix}
 \end{align*}
 
-Now simplify the top right entry:
+Now simplify the top-right entry:
 \begin{align*}
 2^k+3(3^k-2^k)
-&=2^k+3^{k+1}-3\cdot2^k \\
-&=3^{k+1}-2\cdot2^k \\
+&=2^k+3^{k+1}-3\times2^k \\
+&=3^{k+1}-2\times2^k \\
 &=3^{k+1}-2^{k+1}
 \end{align*}
 
 So
 \[
-A^{k+1}=
+\mathbf{A}^{k+1}=
 \begin{pmatrix}
 2^{k+1} & 3^{k+1}-2^{k+1} \\
 0 & 3^{k+1}
 \end{pmatrix}
 \]
 
-This is exactly the required form, so the statement is true for $k+1$.
+This is exactly the required form, so the statement is true for $n=k+1$.
 
-Therefore, by mathematical induction,
-\[
-\begin{pmatrix}2&1\\0&3\end{pmatrix}^n
-=
-\begin{pmatrix}2^n&3^n-2^n\\0&3^n\end{pmatrix}
-\quad\text{for all }n\in\mathbb{Z}^+
-\]
-
+\textbf{Conclusion:} If the statement is true for $n=k$, then it is true for $n=k+1$. Since it is true for $n=1$, by the principle of mathematical induction the statement is true for all $n\in\mathbb{Z}^+$.
 \end{djsSolution}
 
 
@@ -135,7 +128,7 @@ n & 2-n
 \begin{djsSolution}
 Let
 \[
-A=\begin{pmatrix}
+\mathbf{A}=\begin{pmatrix}
 3 & -1\\
 1 & 1
 \end{pmatrix}
@@ -143,18 +136,16 @@ A=\begin{pmatrix}
 
 We will prove by mathematical induction that
 \[
-A^n=2^{n-1}\begin{pmatrix}
+\mathbf{A}^n=2^{n-1}\begin{pmatrix}
 n+2 & -n\\
 n & 2-n
 \end{pmatrix}
 \qquad \text{for all } n\in\mathbb{N}
 \]
 
-\textbf{Base Case:} \(n=1\)
-
-When \(n=1\),
+\textbf{Base case:} \(n=1\). The left-hand side is
 \[
-A^1=A=\begin{pmatrix}
+\mathbf{A}^1=\mathbf{A}=\begin{pmatrix}
 3 & -1\\
 1 & 1
 \end{pmatrix}
@@ -180,30 +171,26 @@ Now evaluate the right-hand side when \(n=1\):
 
 So the statement is true for \(n=1\).
 
-\textbf{Induction Hypothesis:}
-
-Assume that for some \(k\in\mathbb{N}\),
+\textbf{Inductive hypothesis:} Assume the statement is true for \(n=k\), where \(k\in\mathbb{N}\). That is, assume
 \[
-A^k=2^{k-1}\begin{pmatrix}
+\mathbf{A}^k=2^{k-1}\begin{pmatrix}
 k+2 & -k\\
 k & 2-k
 \end{pmatrix}
 \]
 
-\textbf{Inductive Step:}
-
-We must show that the result is then true for \(n=k+1\), that is,
+\textbf{Inductive step:} We must show that this implies
 \[
-A^{k+1}=2^k\begin{pmatrix}
+\mathbf{A}^{k+1}=2^k\begin{pmatrix}
 (k+1)+2 & -(k+1)\\
 k+1 & 2-(k+1)
 \end{pmatrix}
 \]
 
-Starting from \(A^{k+1}=A^kA\) and using the induction hypothesis,
+Using \(\mathbf{A}^{k+1}=\mathbf{A}^k\mathbf{A}\) and the inductive hypothesis:
 \begin{align*}
-A^{k+1}
-&=A^kA\\
+\mathbf{A}^{k+1}
+&=\mathbf{A}^k\mathbf{A}\\
 &=\left(2^{k-1}\begin{pmatrix}
 k+2 & -k\\
 k & 2-k
@@ -252,7 +239,7 @@ k & 2-k
 
 So
 \[
-A^{k+1}
+\mathbf{A}^{k+1}
 =
 2^{k-1}
 \begin{pmatrix}
@@ -263,7 +250,7 @@ A^{k+1}
 
 Factor out \(2\) from the matrix:
 \[
-A^{k+1}
+\mathbf{A}^{k+1}
 =
 2^{k}
 \begin{pmatrix}
@@ -274,7 +261,7 @@ k+1 & 1-k
 
 Since \(1-k=2-(k+1)\), this becomes
 \[
-A^{k+1}
+\mathbf{A}^{k+1}
 =
 2^{k}
 \begin{pmatrix}
@@ -283,26 +270,9 @@ k+1 & 2-(k+1)
 \end{pmatrix}
 \]
 
-This is exactly the required form for \(n=k+1\).
+This is exactly the required form, so the statement is true for \(n=k+1\).
 
-Therefore, if the statement is true for \(n=k\), it is true for \(n=k+1\).
-
-Since the statement is true for \(n=1\), and true for \(n=k+1\) whenever it is true for \(n=k\), it follows by mathematical induction that
-\[
-\begin{pmatrix}
-3 & -1\\
-1 & 1
-\end{pmatrix}^n
-=
-2^{n-1}
-\begin{pmatrix}
-n+2 & -n\\
-n & 2-n
-\end{pmatrix}
-\qquad \text{for all } n\in\mathbb{N}
-\]
-
-This completes the proof.
+\textbf{Conclusion:} If the statement is true for \(n=k\), then it is true for \(n=k+1\). Since it is true for \(n=1\), by the principle of mathematical induction the statement is true for all \(n\in\mathbb{N}\).
 \end{djsSolution}
 
 
@@ -312,21 +282,21 @@ This completes the proof.
 \questionitem
 % [Source: _QBT___Solns__Proof_by_Induction___Matrices, Q3]
 
-The matrix $A$ is given by
+The matrix $\mathbf{A}$ is given by
 \[
-A = \begin{pmatrix} 4 & 2 \\ -2 & 0 \end{pmatrix}
-\] \\
+\mathbf{A} = \begin{pmatrix} 4 & 2 \\ -2 & 0 \end{pmatrix}
+\]
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Prove by induction that
   \[
-  A^n = 2^n \begin{pmatrix} n+1 & n \\ -n & 1-n \end{pmatrix}
+  \mathbf{A}^n = 2^n \begin{pmatrix} n+1 & n \\ -n & 1-n \end{pmatrix}
   \]
   for all positive integers $n$. \marks{6} \\
-  \item The matrix $B$ is given by
+  \item The matrix $\mathbf{B}$ is given by
   \[
-  B = (A^n)^{-1}
-  \] \\
-  Hence find $B$ in terms of $n$. \marks{2} \\
+  \mathbf{B} = (\mathbf{A}^n)^{-1}
+  \]
+  Hence find $\mathbf{B}$ in terms of $n$. \marks{2} \\
 \end{enumerate}
 
 \vspace*{10pt}
@@ -335,42 +305,40 @@ A = \begin{pmatrix} 4 & 2 \\ -2 & 0 \end{pmatrix}
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item We prove by induction that
 \[
-A^n=2^n\begin{pmatrix}n+1&n\\-n&1-n\end{pmatrix}
+\mathbf{A}^n=2^n\begin{pmatrix}n+1&n\\-n&1-n\end{pmatrix}
 \]
 
 for all positive integers $n$.
 
-\textbf{Base Case:} $n=1$.
-
-The claimed formula gives
+\textbf{Base case:} $n=1$. The claimed formula gives
 \[
-A^1=2^1\begin{pmatrix}2&1\\-1&0\end{pmatrix}
+\mathbf{A}^1=2^1\begin{pmatrix}2&1\\-1&0\end{pmatrix}
 =\begin{pmatrix}4&2\\-2&0\end{pmatrix}
-=A
+=\mathbf{A}
 \]
 
-So the result is true when $n=1$.
+So the statement is true for $n=1$.
 
-\textbf{Inductive Hypothesis:} Assume that for some positive integer $k$,
+\textbf{Inductive hypothesis:} Assume the statement is true for $n=k$, where $k$ is a positive integer. That is, assume
 \[
-A^k=2^k\begin{pmatrix}k+1&k\\-k&1-k\end{pmatrix}
+\mathbf{A}^k=2^k\begin{pmatrix}k+1&k\\-k&1-k\end{pmatrix}
 \]
 
-\textbf{Inductive Step:} We must show that
+\textbf{Inductive step:} We must show that
 \[
-A^{k+1}=2^{k+1}\begin{pmatrix}k+2&k+1\\-(k+1)&1-(k+1)\end{pmatrix}
+\mathbf{A}^{k+1}=2^{k+1}\begin{pmatrix}k+2&k+1\\-(k+1)&1-(k+1)\end{pmatrix}
 \]
 
-Starting from the left-hand side,
+Using $\mathbf{A}^{k+1}=\mathbf{A}^k\mathbf{A}$ and the inductive hypothesis:
 \begin{align*}
-A^{k+1} &= A^kA \\
+\mathbf{A}^{k+1} &= \mathbf{A}^k\mathbf{A} \\
 &= 2^k\begin{pmatrix}k+1&k\\-k&1-k\end{pmatrix}
 \begin{pmatrix}4&2\\-2&0\end{pmatrix}
 \end{align*}
 
 Now multiply the matrices:
 \begin{align*}
-A^{k+1}
+\mathbf{A}^{k+1}
 &=2^k\begin{pmatrix}
 4(k+1)-2k & 2(k+1)+0 \\
 -4k-2(1-k) & -2k+0
@@ -383,7 +351,7 @@ A^{k+1}
 
 Factor out $2$ from the matrix:
 \begin{align*}
-A^{k+1}
+\mathbf{A}^{k+1}
 &=2^{k+1}\begin{pmatrix}
 k+2 & k+1 \\
 -(k+1) & -k
@@ -397,34 +365,29 @@ Since
 
 this becomes
 \[
-A^{k+1}=2^{k+1}\begin{pmatrix}k+2&k+1\\-(k+1)&1-(k+1)\end{pmatrix}
+\mathbf{A}^{k+1}=2^{k+1}\begin{pmatrix}k+2&k+1\\-(k+1)&1-(k+1)\end{pmatrix}
 \]
 
-This is exactly the required form, so the statement is true for $k+1$.
+This is exactly the required form, so the statement is true for $n=k+1$.
 
-Therefore, by induction,
-\[
-A^n=2^n\begin{pmatrix}n+1&n\\-n&1-n\end{pmatrix}
-\]
-
-for all positive integers $n$.
+\textbf{Conclusion:} If the statement is true for $n=k$, then it is true for $n=k+1$. Since it is true for $n=1$, by the principle of mathematical induction the statement is true for all positive integers $n$.
 
   \item Let
 \[
-M=\begin{pmatrix}n+1&n\\-n&1-n\end{pmatrix}
+\mathbf{M}=\begin{pmatrix}n+1&n\\-n&1-n\end{pmatrix}
 \]
 
-so that from part (a),
+so that part (a) gives
 \[
-A^n=2^nM
+\mathbf{A}^n=2^n\mathbf{M}
 \]
 
 Hence
 \[
-B=(A^n)^{-1}=(2^nM)^{-1}=2^{-n}M^{-1}
+\mathbf{B}=(\mathbf{A}^n)^{-1}=(2^n\mathbf{M})^{-1}=2^{-n}\mathbf{M}^{-1}
 \]
 
-Now find $M^{-1}$. For a $2\times2$ matrix,
+Now find $\mathbf{M}^{-1}$. The inverse of a $2\times2$ matrix is
 \[
 \begin{pmatrix}a&b\\c&d\end{pmatrix}^{-1}
 =\frac{1}{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}
@@ -432,26 +395,21 @@ Now find $M^{-1}$. For a $2\times2$ matrix,
 
 First calculate the determinant:
 \begin{align*}
-\det(M)
+\det(\mathbf{M})
 &=(n+1)(1-n)-n(-n) \\
 &=(n+1)(1-n)+n^2 \\
-&=1-n^2+1\cdot n-n+n^2 \\
+&=1-n^2+n^2 \\
 &=1
 \end{align*}
 
 So
 \[
-M^{-1}=\begin{pmatrix}1-n&-n\\n&n+1\end{pmatrix}
+\mathbf{M}^{-1}=\begin{pmatrix}1-n&-n\\n&n+1\end{pmatrix}
 \]
 
 Therefore
 \[
-B=2^{-n}\begin{pmatrix}1-n&-n\\n&n+1\end{pmatrix}
-\]
-
-Hence
-\[
-B=\frac{1}{2^n}\begin{pmatrix}1-n&-n\\n&n+1\end{pmatrix}
+\mathbf{B}=\frac{1}{2^n}\begin{pmatrix}1-n&-n\\n&n+1\end{pmatrix}
 \]
 
   \end{enumerate}
@@ -464,26 +422,23 @@ B=\frac{1}{2^n}\begin{pmatrix}1-n&-n\\n&n+1\end{pmatrix}
 \questionitem
 % [Source: _QBT___Solns__Proof_by_Induction___Matrices, Q4]
 
-The matrix $A$ is given by
+The matrix $\mathbf{A}$ is given by
 \[
-A = \begin{pmatrix} 2 & 0 & 0 \\ 1 & 2 & 0 \\ 0 & 1 & 2 \end{pmatrix}
-\] \\
+\mathbf{A} = \begin{pmatrix} 2 & 0 & 0 \\ 1 & 2 & 0 \\ 0 & 1 & 2 \end{pmatrix}
+\]
 Prove by induction that, for $n \geq 1$,
 \[
 \renewcommand{\arraystretch}{1.2}
-A^n = \begin{pmatrix} 2^n & 0 & 0 \\ n\,2^{n-1} & 2^n & 0 \\ \frac{n(n-1)}{2}\,2^{n-2} & n\,2^{n-1} & 2^n \end{pmatrix}
+\mathbf{A}^n = \begin{pmatrix} 2^n & 0 & 0 \\ n\,2^{n-1} & 2^n & 0 \\ \frac{n(n-1)}{2}\,2^{n-2} & n\,2^{n-1} & 2^n \end{pmatrix}
 \]
 \marks[-30pt]{6}
 
 \vspace*{10pt}
 
 \begin{djsSolution}
-We prove the result by mathematical induction on \(n\).
-
-Let
+We prove by induction that
 \[
-P(n):\quad
-A^n=
+\mathbf{A}^n=
 \begin{pmatrix}
 2^n & 0 & 0\\
 n\,2^{n-1} & 2^n & 0\\
@@ -491,14 +446,12 @@ n\,2^{n-1} & 2^n & 0\\
 \end{pmatrix}
 \]
 
-\textbf{Base case: \(n=1\)}
-
-When \(n=1\), the right-hand side becomes
+\textbf{Base case:} \(n=1\). The right-hand side is
 \[
 \begin{pmatrix}
 2^1 & 0 & 0\\
-1\cdot 2^0 & 2^1 & 0\\
-\frac{1(1-1)}{2}\,2^{-1} & 1\cdot 2^0 & 2^1
+1\times 2^0 & 2^1 & 0\\
+\frac{1(1-1)}{2}\,2^{-1} & 1\times 2^0 & 2^1
 \end{pmatrix}
 =
 \begin{pmatrix}
@@ -506,16 +459,14 @@ When \(n=1\), the right-hand side becomes
 1 & 2 & 0\\
 0 & 1 & 2
 \end{pmatrix}
-= A
+= \mathbf{A}
 \]
 
-So \(P(1)\) is true.
+So the statement is true for \(n=1\).
 
-\textbf{Inductive hypothesis}
-
-Assume that \(P(k)\) is true for some integer \(k \geq 1\). That is,
+\textbf{Inductive hypothesis:} Assume the statement is true for \(n=k\), where \(k\) is an integer with \(k\geq 1\). That is, assume
 \[
-A^k=
+\mathbf{A}^k=
 \begin{pmatrix}
 2^k & 0 & 0\\
 k\,2^{k-1} & 2^k & 0\\
@@ -523,18 +474,11 @@ k\,2^{k-1} & 2^k & 0\\
 \end{pmatrix}
 \]
 
-\textbf{Inductive step}
+\textbf{Inductive step:} We must show that the statement is true for \(n=k+1\).
 
-We must show that \(P(k+1)\) is true.
-
-Starting from
-\[
-A^{k+1}=A^kA
-\]
-
-Substitute the assumed form for \(A^k\):
+Using \(\mathbf{A}^{k+1}=\mathbf{A}^k\mathbf{A}\) and the inductive hypothesis:
 \begin{align*}
-A^{k+1}
+\mathbf{A}^{k+1}
 &=
 \begin{pmatrix}
 2^k & 0 & 0\\
@@ -548,11 +492,11 @@ k\,2^{k-1} & 2^k & 0\\
 \end{pmatrix} \\
 &=
 \begin{pmatrix}
-2^k\cdot 2 & 0 & 0\\[1ex]
-k\,2^{k-1}\cdot 2 + 2^k\cdot 1 & 2^k\cdot 2 & 0\\[1ex]
-\frac{k(k-1)}{2}\,2^{k-2}\cdot 2 + k\,2^{k-1}\cdot 1 &
-k\,2^{k-1}\cdot 2 + 2^k\cdot 1 &
-2^k\cdot 2
+2^k\times 2 & 0 & 0\\[1ex]
+k\,2^{k-1}\times 2 + 2^k\times 1 & 2^k\times 2 & 0\\[1ex]
+\frac{k(k-1)}{2}\,2^{k-2}\times 2 + k\,2^{k-1}\times 1 &
+k\,2^{k-1}\times 2 + 2^k\times 1 &
+2^k\times 2
 \end{pmatrix} \\
 &=
 \begin{pmatrix}
@@ -581,7 +525,7 @@ Now simplify the bottom-left entry:
 
 So
 \[
-A^{k+1}
+\mathbf{A}^{k+1}
 =
 \begin{pmatrix}
 2^{k+1} & 0 & 0\\
@@ -602,19 +546,9 @@ and
 \frac{(k+1)\bigl((k+1)-1\bigr)}{2}\,2^{(k+1)-2}
 \]
 
-Therefore \(P(k+1)\) is true.
+so the statement is true for \(n=k+1\).
 
-\textbf{Conclusion}
-
-Since \(P(1)\) is true, and \(P(k)\Rightarrow P(k+1)\), the formula is true for all integers \(n\geq 1\):
-\[
-A^n=
-\begin{pmatrix}
-2^n & 0 & 0\\
-n\,2^{n-1} & 2^n & 0\\
-\frac{n(n-1)}{2}\,2^{n-2} & n\,2^{n-1} & 2^n
-\end{pmatrix}
-\]
+\textbf{Conclusion:} If the statement is true for \(n=k\), then it is true for \(n=k+1\). Since it is true for \(n=1\), by the principle of mathematical induction the statement is true for all \(n\geq 1\).
 \end{djsSolution}
 
 
@@ -624,14 +558,14 @@ n\,2^{n-1} & 2^n & 0\\
 \questionitem
 % [Source: _QBT___Solns__Proof_by_Induction___Matrices, Q5]
 
-The matrix $M = \begin{pmatrix}3c & 1 \\ 0 & 3c\end{pmatrix}$, where $c$ is a positive constant. \\
+The matrix $\mathbf{M}$ is given by $\mathbf{M} = \begin{pmatrix}3c & 1 \\ 0 & 3c\end{pmatrix}$, where $c$ is a positive constant. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Prove by induction that for all positive integers $n$,
   \[
-  M^n = \begin{pmatrix}(3c)^n & n(3c)^{n-1} \\ 0 & (3c)^n\end{pmatrix}
+  \mathbf{M}^n = \begin{pmatrix}(3c)^n & n(3c)^{n-1} \\ 0 & (3c)^n\end{pmatrix}
   \]
   \marks[-20pt]{6}
-  \item Given that $\det(M^n) = 144^n$, find the value of $c$. \marks{5} \\
+  \item Given that $\det(\mathbf{M}^n) = 144^n$, find the value of $c$. \marks{5} \\
 \end{enumerate}
 
 \vspace*{10pt}
@@ -640,12 +574,12 @@ The matrix $M = \begin{pmatrix}3c & 1 \\ 0 & 3c\end{pmatrix}$, where $c$ is a po
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item We prove the result by induction on $n$.
 
-  \textbf{Base Case:} $n=1$
+  \textbf{Base case:} $n=1$. The left-hand side is
   \[
-  M^1=M=\begin{pmatrix}3c&1\\0&3c\end{pmatrix}
+  \mathbf{M}^1=\mathbf{M}=\begin{pmatrix}3c&1\\0&3c\end{pmatrix}
   \]
 
-  Also,
+  The right-hand side when $n=1$ is
   \[
   \begin{pmatrix}(3c)^1 & 1(3c)^{1-1}\\0&(3c)^1\end{pmatrix}
   =
@@ -654,32 +588,32 @@ The matrix $M = \begin{pmatrix}3c & 1 \\ 0 & 3c\end{pmatrix}$, where $c$ is a po
   \begin{pmatrix}3c&1\\0&3c\end{pmatrix}
   \]
 
-  So the formula is true when $n=1$.
+  So the statement is true for $n=1$.
 
-  \textbf{Inductive Hypothesis:} Assume that for some positive integer $k$,
+  \textbf{Inductive hypothesis:} Assume the statement is true for $n=k$, where $k$ is a positive integer. That is, assume
   \[
-  M^k=\begin{pmatrix}(3c)^k & k(3c)^{k-1}\\0&(3c)^k\end{pmatrix}
+  \mathbf{M}^k=\begin{pmatrix}(3c)^k & k(3c)^{k-1}\\0&(3c)^k\end{pmatrix}
   \]
 
-  \textbf{Inductive Step:} We must show that this implies
+  \textbf{Inductive step:} We must show that this implies
   \[
-  M^{k+1}=\begin{pmatrix}(3c)^{k+1} & (k+1)(3c)^k\\0&(3c)^{k+1}\end{pmatrix}
+  \mathbf{M}^{k+1}=\begin{pmatrix}(3c)^{k+1} & (k+1)(3c)^k\\0&(3c)^{k+1}\end{pmatrix}
   \]
 
-  Starting from the inductive hypothesis,
+  Using $\mathbf{M}^{k+1}=\mathbf{M}^k\mathbf{M}$ and the inductive hypothesis:
   \begin{align*}
-  M^{k+1}
-  &= M^kM \\
+  \mathbf{M}^{k+1}
+  &= \mathbf{M}^k\mathbf{M} \\
   &= \begin{pmatrix}(3c)^k & k(3c)^{k-1}\\0&(3c)^k\end{pmatrix}
      \begin{pmatrix}3c&1\\0&3c\end{pmatrix} \\
   &= \begin{pmatrix}
-  (3c)^k\cdot 3c + k(3c)^{k-1}\cdot 0
+  (3c)^k\times 3c + k(3c)^{k-1}\times 0
   &
-  (3c)^k\cdot 1 + k(3c)^{k-1}\cdot 3c
+  (3c)^k\times 1 + k(3c)^{k-1}\times 3c
   \\
-  0\cdot 3c + (3c)^k\cdot 0
+  0\times 3c + (3c)^k\times 0
   &
-  0\cdot 1 + (3c)^k\cdot 3c
+  0\times 1 + (3c)^k\times 3c
   \end{pmatrix} \\
   &= \begin{pmatrix}
   (3c)^{k+1}
@@ -692,7 +626,7 @@ The matrix $M = \begin{pmatrix}3c & 1 \\ 0 & 3c\end{pmatrix}$, where $c$ is a po
   \end{pmatrix}
   \end{align*}
 
-  Now simplify the top right entry:
+  Now simplify the top-right entry:
   \begin{align*}
   (3c)^k + 3ck(3c)^{k-1}
   &= (3c)^k + k(3c)^k \\
@@ -701,34 +635,31 @@ The matrix $M = \begin{pmatrix}3c & 1 \\ 0 & 3c\end{pmatrix}$, where $c$ is a po
 
   Hence
   \[
-  M^{k+1}
+  \mathbf{M}^{k+1}
   =
   \begin{pmatrix}(3c)^{k+1} & (k+1)(3c)^k\\0&(3c)^{k+1}\end{pmatrix}
   \]
 
-  So the statement is true for $k+1$.
+  This is exactly the required form, so the statement is true for $n=k+1$.
 
-  Since it is true for $n=1$, and true for $k+1$ whenever it is true for $k$, it follows by mathematical induction that for all positive integers $n$,
+  \textbf{Conclusion:} If the statement is true for $n=k$, then it is true for $n=k+1$. Since it is true for $n=1$, by the principle of mathematical induction the statement is true for all positive integers $n$.
+
+  \item Part (a) gives
   \[
-  M^n=\begin{pmatrix}(3c)^n & n(3c)^{n-1}\\0&(3c)^n\end{pmatrix}
+  \mathbf{M}^n=\begin{pmatrix}(3c)^n & n(3c)^{n-1}\\0&(3c)^n\end{pmatrix}
   \]
 
-  \item From part (a),
-  \[
-  M^n=\begin{pmatrix}(3c)^n & n(3c)^{n-1}\\0&(3c)^n\end{pmatrix}
-  \]
-
-  This is an upper triangular matrix, so its determinant is the product of its diagonal entries:
+  Its determinant is the product of the leading diagonal entries minus the product of the other two, so
   \begin{align*}
-  \det(M^n)
-  &= (3c)^n \cdot (3c)^n \\
+  \det(\mathbf{M}^n)
+  &= (3c)^n\times(3c)^n-n(3c)^{n-1}\times0 \\
   &= (3c)^{2n} \\
   &= (9c^2)^n
   \end{align*}
 
   We are given that
   \[
-  \det(M^n)=144^n
+  \det(\mathbf{M}^n)=144^n
   \]
 
   So
@@ -746,7 +677,7 @@ The matrix $M = \begin{pmatrix}3c & 1 \\ 0 & 3c\end{pmatrix}$, where $c$ is a po
   c^2=16
   \]
 
-  Since $c$ is positive,
+  Since $c$ is positive, taking the positive root gives
   \[
   c=4
   \]
@@ -784,7 +715,7 @@ For $n \in \mathbb{Z}^{+}$, show, using mathematical induction, that
 \begin{djsSolution}
 Let
 \[
-A=
+\mathbf{A}=
 \begin{pmatrix}
 -1 & 1 & 0\\
 0 & -1 & 1\\
@@ -792,22 +723,20 @@ A=
 \end{pmatrix}
 \]
 
-and let \(P(n)\) be the statement
+We prove by induction that
 \[
-A^{n}=
+\mathbf{A}^{n}=
 \begin{pmatrix}
-(-1)^{n} & -n(-1)^{n} & \dfrac{n(n-1)}{2}(-1)^{n}\\
+(-1)^{n} & -n(-1)^{n} & \frac{n(n-1)}{2}(-1)^{n}\\
 0 & (-1)^{n} & -n(-1)^{n}\\
 0 & 0 & (-1)^{n}
 \end{pmatrix}
 \]
 
-\textbf{Base Case:} \(n=1\)
-
-Substituting \(n=1\) into the right-hand side gives
+\textbf{Base case:} \(n=1\). Substituting \(n=1\) into the right-hand side gives
 \[
 \begin{pmatrix}
-(-1)^{1} & -1(-1)^{1} & \dfrac{1(1-1)}{2}(-1)^{1}\\
+(-1)^{1} & -1(-1)^{1} & \frac{1(1-1)}{2}(-1)^{1}\\
 0 & (-1)^{1} & -1(-1)^{1}\\
 0 & 0 & (-1)^{1}
 \end{pmatrix}
@@ -817,35 +746,29 @@ Substituting \(n=1\) into the right-hand side gives
 0 & -1 & 1\\
 0 & 0 & -1
 \end{pmatrix}
-=A
+=\mathbf{A}
 \]
 
-So \(P(1)\) is true.
+So the statement is true for \(n=1\).
 
-\textbf{Induction Hypothesis:} Assume \(P(k)\) is true for some \(k \in \mathbb{Z}^{+}\)
-
-That is,
+\textbf{Inductive hypothesis:} Assume the statement is true for \(n=k\), where \(k\in\mathbb{Z}^+\). That is, assume
 \[
-A^{k}=
+\mathbf{A}^{k}=
 \begin{pmatrix}
-(-1)^{k} & -k(-1)^{k} & \dfrac{k(k-1)}{2}(-1)^{k}\\
+(-1)^{k} & -k(-1)^{k} & \frac{k(k-1)}{2}(-1)^{k}\\
 0 & (-1)^{k} & -k(-1)^{k}\\
 0 & 0 & (-1)^{k}
 \end{pmatrix}
 \]
 
-We must show that \(P(k+1)\) is true.
-
-\textbf{Inductive Step:}
-
-For simplicity, let
+\textbf{Inductive step:} We must show that the statement is true for \(n=k+1\). For simplicity, let
 \[
 a=(-1)^{k}, \qquad b=-k(-1)^{k}, \qquad c=\dfrac{k(k-1)}{2}(-1)^{k}
 \]
 
 Then
 \[
-A^{k}=
+\mathbf{A}^{k}=
 \begin{pmatrix}
 a & b & c\\
 0 & a & b\\
@@ -853,10 +776,10 @@ a & b & c\\
 \end{pmatrix}
 \]
 
-Now multiply by \(A\):
-\[
-A^{k+1}=A^{k}A
-=
+Now multiply by \(\mathbf{A}\):
+\begin{align*}
+\mathbf{A}^{k+1}=\mathbf{A}^{k}\mathbf{A}
+&=
 \begin{pmatrix}
 a & b & c\\
 0 & a & b\\
@@ -866,25 +789,23 @@ a & b & c\\
 -1 & 1 & 0\\
 0 & -1 & 1\\
 0 & 0 & -1
-\end{pmatrix}
-\]
-\[
-=
+\end{pmatrix}\\
+&=
 \begin{pmatrix}
 -a & a-b & b-c\\
 0 & -a & a-b\\
 0 & 0 & -a
 \end{pmatrix}
-\]
+\end{align*}
 
 Now simplify each entry.
 
-First,
+First, the entries on the leading diagonal are
 \[
 -a=-(-1)^{k}=(-1)^{k+1}
 \]
 
-Next,
+Next, the entries just above the leading diagonal are
 \begin{align*}
 a-b
 &= (-1)^{k}-\bigl(-k(-1)^{k}\bigr)\\
@@ -893,7 +814,7 @@ a-b
 &= -(k+1)(-1)^{k+1}
 \end{align*}
 
-Finally,
+Finally, the top-right entry is
 \begin{align*}
 b-c
 &= -k(-1)^{k}-\dfrac{k(k-1)}{2}(-1)^{k}\\
@@ -906,10 +827,10 @@ b-c
 
 So
 \[
-A^{k+1}
+\mathbf{A}^{k+1}
 =
 \begin{pmatrix}
-(-1)^{k+1} & -(k+1)(-1)^{k+1} & \dfrac{k(k+1)}{2}(-1)^{k+1}\\
+(-1)^{k+1} & -(k+1)(-1)^{k+1} & \frac{k(k+1)}{2}(-1)^{k+1}\\
 0 & (-1)^{k+1} & -(k+1)(-1)^{k+1}\\
 0 & 0 & (-1)^{k+1}
 \end{pmatrix}
@@ -920,27 +841,9 @@ Since
 \dfrac{k(k+1)}{2}=\dfrac{(k+1)\bigl((k+1)-1\bigr)}{2}
 \]
 
-this is exactly the required form for \(n=k+1\).
+this is exactly the required form, so the statement is true for \(n=k+1\).
 
-Therefore \(P(k+1)\) is true.
-
-\textbf{Conclusion:}
-
-\(P(1)\) is true, and assuming \(P(k)\) is true leads to \(P(k+1)\) being true. Hence, by mathematical induction,
-\[
-\begin{pmatrix}
--1 & 1 & 0\\
-0 & -1 & 1\\
-0 & 0 & -1
-\end{pmatrix}^{n}
-=
-\begin{pmatrix}
-(-1)^{n} & -n(-1)^{n} & \dfrac{n(n-1)}{2}(-1)^{n}\\
-0 & (-1)^{n} & -n(-1)^{n}\\
-0 & 0 & (-1)^{n}
-\end{pmatrix}
-\quad \text{for all } n \in \mathbb{Z}^{+}
-\]
+\textbf{Conclusion:} If the statement is true for \(n=k\), then it is true for \(n=k+1\). Since it is true for \(n=1\), by the principle of mathematical induction the statement is true for all \(n\in\mathbb{Z}^+\).
 \end{djsSolution}
 
 
@@ -953,32 +856,30 @@ Therefore \(P(k+1)\) is true.
 The Fibonacci sequence $(F_n)$ is defined by $F_0=0$, $F_1=1$ and $F_{n+1}=F_n+F_{n-1}$ for $n\geq 1$. \\
 You are given that
 \[
-M = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}
-\] \\
+\mathbf{M} = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}
+\]
 Prove by induction that
 \[
-M^n = \begin{pmatrix} F_{n+1} & F_n \\ F_n & F_{n-1} \end{pmatrix}
+\mathbf{M}^n = \begin{pmatrix} F_{n+1} & F_n \\ F_n & F_{n-1} \end{pmatrix}
 \]
 for all integers $n \geq 1$. \marks{6} \\
 
 \vspace*{10pt}
 
 \begin{djsSolution}
-Let \(P(n)\) be the statement
+We prove by induction that
 \[
-M^n=\begin{pmatrix}F_{n+1}&F_n\\[2pt]F_n&F_{n-1}\end{pmatrix}
+\mathbf{M}^n=\begin{pmatrix}F_{n+1}&F_n\\[2pt]F_n&F_{n-1}\end{pmatrix}
 \]
 
-for integers \(n\geq 1\).
+for all integers \(n\geq 1\).
 
-\textbf{Base Case: \(n=1\).}
-
-We have
+\textbf{Base case:} \(n=1\). The left-hand side is
 \[
-M^1=M=\begin{pmatrix}1&1\\1&0\end{pmatrix}
+\mathbf{M}^1=\mathbf{M}=\begin{pmatrix}1&1\\1&0\end{pmatrix}
 \]
 
-Also,
+The recurrence gives
 \[
 F_2=F_1+F_0=1+0=1
 \]
@@ -992,31 +893,27 @@ So
 
 Hence
 \[
-M=\begin{pmatrix}F_2&F_1\\F_1&F_0\end{pmatrix}
+\mathbf{M}=\begin{pmatrix}F_2&F_1\\F_1&F_0\end{pmatrix}
 \]
 
-so \(P(1)\) is true.
+So the statement is true for \(n=1\).
 
-\textbf{Inductive Hypothesis.}
-
-Assume that for some integer \(k\geq 1\),
+\textbf{Inductive hypothesis:} Assume the statement is true for \(n=k\), where \(k\) is an integer with \(k\geq 1\). That is, assume
 \[
-M^k=\begin{pmatrix}F_{k+1}&F_k\\F_k&F_{k-1}\end{pmatrix}
+\mathbf{M}^k=\begin{pmatrix}F_{k+1}&F_k\\F_k&F_{k-1}\end{pmatrix}
 \]
 
-\textbf{Inductive Step.}
+\textbf{Inductive step:} We must show that the statement is true for \(n=k+1\).
 
-We must show that \(P(k+1)\) is true.
-
-Starting from \(M^{k+1}=M^kM\),
+Using \(\mathbf{M}^{k+1}=\mathbf{M}^k\mathbf{M}\) and the inductive hypothesis:
 \begin{align*}
-M^{k+1}
-&=M^kM\\
+\mathbf{M}^{k+1}
+&=\mathbf{M}^k\mathbf{M}\\
 &=\begin{pmatrix}F_{k+1}&F_k\\F_k&F_{k-1}\end{pmatrix}
 \begin{pmatrix}1&1\\1&0\end{pmatrix}\\
 &=\begin{pmatrix}
-F_{k+1}\cdot 1+F_k\cdot 1 & F_{k+1}\cdot 1+F_k\cdot 0\\
-F_k\cdot 1+F_{k-1}\cdot 1 & F_k\cdot 1+F_{k-1}\cdot 0
+F_{k+1}\times 1+F_k\times 1 & F_{k+1}\times 1+F_k\times 0\\
+F_k\times 1+F_{k-1}\times 1 & F_k\times 1+F_{k-1}\times 0
 \end{pmatrix}\\
 &=\begin{pmatrix}
 F_{k+1}+F_k & F_{k+1}\\
@@ -1024,7 +921,7 @@ F_k+F_{k-1} & F_k
 \end{pmatrix}
 \end{align*}
 
-Using the Fibonacci recurrence,
+The Fibonacci recurrence gives
 \[
 F_{k+2}=F_{k+1}+F_k
 \qquad\text{and}\qquad
@@ -1033,24 +930,16 @@ F_{k+1}=F_k+F_{k-1}
 
 So
 \[
-M^{k+1}
+\mathbf{M}^{k+1}
 =\begin{pmatrix}
 F_{k+2}&F_{k+1}\\
 F_{k+1}&F_k
 \end{pmatrix}
 \]
 
-This is exactly the required form with \(n=k+1\). Therefore \(P(k+1)\) is true.
+This is exactly the required form, so the statement is true for \(n=k+1\).
 
-\textbf{Conclusion.}
-
-Since \(P(1)\) is true, and \(P(k)\Rightarrow P(k+1)\), the statement holds for all integers \(n\geq 1\) by mathematical induction.
-
-Therefore,
-\[
-M^n=\begin{pmatrix}F_{n+1}&F_n\\[2pt]F_n&F_{n-1}\end{pmatrix}
-\quad\text{for all integers } n\geq 1
-\]
+\textbf{Conclusion:} If the statement is true for \(n=k\), then it is true for \(n=k+1\). Since it is true for \(n=1\), by the principle of mathematical induction the statement is true for all integers \(n\geq 1\).
 \end{djsSolution}
 
 
@@ -1060,19 +949,20 @@ M^n=\begin{pmatrix}F_{n+1}&F_n\\[2pt]F_n&F_{n-1}\end{pmatrix}
 \questionitem
 % [Source: _QBT___Solns__Proof_by_Induction___Matrices, Q8]
 
+The matrix $\mathbf{A}$ is given by
 \[
 \mathbf{A} = \begin{pmatrix}
 1 & 1 & 0 \\
 0 & 2 & 1 \\
 0 & 0 & 2
 \end{pmatrix}
-\] \\
+\]
 Prove by induction that, for all positive integers $n$,
 \[
 \renewcommand{\arraystretch}{1.4}
 \mathbf{A}^n = \begin{pmatrix}
 1 & 2^n - 1 & 1 + (n-2)2^{n-1} \\
-0 & 2^n & n2^{n-1} \\
+0 & 2^n & n\,2^{n-1} \\
 0 & 0 & 2^n
 \end{pmatrix}
 \]
@@ -1083,14 +973,12 @@ Prove by induction that, for all positive integers $n$,
 \begin{djsSolution}
 We prove the result by induction on $n$.
 
-\textbf{Base case:} $n=1$.
-
-The claimed formula gives
+\textbf{Base case:} $n=1$. The claimed formula gives
 \[
 \mathbf{A}^1=
 \begin{pmatrix}
 1 & 2^1-1 & 1+(1-2)2^{1-1} \\
-0 & 2^1 & 1\cdot 2^{1-1} \\
+0 & 2^1 & 1\times 2^{1-1} \\
 0 & 0 & 2^1
 \end{pmatrix}
 =
@@ -1103,27 +991,27 @@ The claimed formula gives
 \mathbf{A}
 \]
 
-So the result is true when $n=1$.
+So the statement is true for $n=1$.
 
-\textbf{Inductive hypothesis:} Assume that for some positive integer $k$,
+\textbf{Inductive hypothesis:} Assume the statement is true for $n=k$, where $k$ is a positive integer. That is, assume
 \[
 \mathbf{A}^k=
 \begin{pmatrix}
 1 & 2^k-1 & 1+(k-2)2^{k-1} \\
-0 & 2^k & k2^{k-1} \\
+0 & 2^k & k\,2^{k-1} \\
 0 & 0 & 2^k
 \end{pmatrix}
 \]
 
-\textbf{Inductive step:} We must show that the formula is then true for $n=k+1$.
+\textbf{Inductive step:} We must show that the statement is true for $n=k+1$.
 
-Using $\mathbf{A}^{k+1}=\mathbf{A}^k\mathbf{A}$,
+Using $\mathbf{A}^{k+1}=\mathbf{A}^k\mathbf{A}$ and the inductive hypothesis:
 \begin{align*}
 \mathbf{A}^{k+1}
 &=
 \begin{pmatrix}
 1 & 2^k-1 & 1+(k-2)2^{k-1} \\
-0 & 2^k & k2^{k-1} \\
+0 & 2^k & k\,2^{k-1} \\
 0 & 0 & 2^k
 \end{pmatrix}
 \begin{pmatrix}
@@ -1143,7 +1031,7 @@ Now multiply row by column:
 (2^k-1)+2\bigl(1+(k-2)2^{k-1}\bigr) \\
 0 &
 2^{k+1} &
-2^k+2k2^{k-1} \\
+2^k+2k\,2^{k-1} \\
 0 &
 0 &
 2^{k+1}
@@ -1156,7 +1044,7 @@ Now simplify each entry:
 (2^k-1)+2\bigl(1+(k-2)2^{k-1}\bigr)
 &= 2^k-1+2+(k-2)2^k \\
 &= 1+(k-1)2^k \\
-2^k+2k2^{k-1} &= 2^k+k2^k=(k+1)2^k
+2^k+2k\,2^{k-1} &= 2^k+k\,2^k=(k+1)2^k
 \end{align*}
 
 So
@@ -1169,7 +1057,7 @@ So
 \end{pmatrix}
 \]
 
-This is exactly the given form with $n=k+1$, since
+This is exactly the required form with $n=k+1$, since
 \[
 1+\bigl((k+1)-2\bigr)2^{(k+1)-1}=1+(k-1)2^k
 \]
@@ -1179,17 +1067,9 @@ and
 (k+1)2^{(k+1)-1}=(k+1)2^k
 \]
 
-Therefore the statement is true for $n=k+1$.
+so the statement is true for $n=k+1$.
 
-Hence, by mathematical induction, for all positive integers $n$,
-\[
-\mathbf{A}^n=
-\begin{pmatrix}
-1 & 2^n-1 & 1+(n-2)2^{n-1} \\
-0 & 2^n & n2^{n-1} \\
-0 & 0 & 2^n
-\end{pmatrix}
-\]
+\textbf{Conclusion:} If the statement is true for $n=k$, then it is true for $n=k+1$. Since it is true for $n=1$, by the principle of mathematical induction the statement is true for all positive integers $n$.
 \end{djsSolution}
 
 

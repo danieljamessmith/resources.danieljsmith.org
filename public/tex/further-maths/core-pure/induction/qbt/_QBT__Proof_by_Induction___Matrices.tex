@@ -4,7 +4,7 @@
 \djsQbtHeader{Proof by Induction - Matrices}
 \djsSitePath{Core Pure}{Proof by Induction}
 
-\djsLastUpdated{15 October 2026}
+\djsLastUpdated{25 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -52,21 +52,21 @@ n & 2-n
 \questionitem
 % [Source: _QBT__Proof_by_Induction___Matrices, Q3]
 
-The matrix $A$ is given by
+The matrix $\mathbf{A}$ is given by
 \[
-A = \begin{pmatrix} 4 & 2 \\ -2 & 0 \end{pmatrix}
-\] \\
+\mathbf{A} = \begin{pmatrix} 4 & 2 \\ -2 & 0 \end{pmatrix}
+\]
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Prove by induction that
   \[
-  A^n = 2^n \begin{pmatrix} n+1 & n \\ -n & 1-n \end{pmatrix}
+  \mathbf{A}^n = 2^n \begin{pmatrix} n+1 & n \\ -n & 1-n \end{pmatrix}
   \]
   for all positive integers $n$. \marks{6} \\
-  \item The matrix $B$ is given by
+  \item The matrix $\mathbf{B}$ is given by
   \[
-  B = (A^n)^{-1}
-  \] \\
-  Hence find $B$ in terms of $n$. \marks{2} \\
+  \mathbf{B} = (\mathbf{A}^n)^{-1}
+  \]
+  Hence find $\mathbf{B}$ in terms of $n$. \marks{2} \\
 \end{enumerate}
 
 \newpage
@@ -75,14 +75,14 @@ A = \begin{pmatrix} 4 & 2 \\ -2 & 0 \end{pmatrix}
 \questionitem
 % [Source: _QBT__Proof_by_Induction___Matrices, Q4]
 
-The matrix $A$ is given by
+The matrix $\mathbf{A}$ is given by
 \[
-A = \begin{pmatrix} 2 & 0 & 0 \\ 1 & 2 & 0 \\ 0 & 1 & 2 \end{pmatrix}
-\] \\
+\mathbf{A} = \begin{pmatrix} 2 & 0 & 0 \\ 1 & 2 & 0 \\ 0 & 1 & 2 \end{pmatrix}
+\]
 Prove by induction that, for $n \geq 1$,
 \[
 \renewcommand{\arraystretch}{1.2}
-A^n = \begin{pmatrix} 2^n & 0 & 0 \\ n\,2^{n-1} & 2^n & 0 \\ \frac{n(n-1)}{2}\,2^{n-2} & n\,2^{n-1} & 2^n \end{pmatrix}
+\mathbf{A}^n = \begin{pmatrix} 2^n & 0 & 0 \\ n\,2^{n-1} & 2^n & 0 \\ \frac{n(n-1)}{2}\,2^{n-2} & n\,2^{n-1} & 2^n \end{pmatrix}
 \]
 \marks[-30pt]{6}
 
@@ -92,14 +92,14 @@ A^n = \begin{pmatrix} 2^n & 0 & 0 \\ n\,2^{n-1} & 2^n & 0 \\ \frac{n(n-1)}{2}\,2
 \questionitem
 % [Source: _QBT__Proof_by_Induction___Matrices, Q5]
 
-The matrix $M = \begin{pmatrix}3c & 1 \\ 0 & 3c\end{pmatrix}$, where $c$ is a positive constant. \\
+The matrix $\mathbf{M}$ is given by $\mathbf{M} = \begin{pmatrix}3c & 1 \\ 0 & 3c\end{pmatrix}$, where $c$ is a positive constant. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Prove by induction that for all positive integers $n$,
   \[
-  M^n = \begin{pmatrix}(3c)^n & n(3c)^{n-1} \\ 0 & (3c)^n\end{pmatrix}
+  \mathbf{M}^n = \begin{pmatrix}(3c)^n & n(3c)^{n-1} \\ 0 & (3c)^n\end{pmatrix}
   \]
   \marks[-20pt]{6}
-  \item Given that $\det(M^n) = 144^n$, find the value of $c$. \marks{5} \\
+  \item Given that $\det(\mathbf{M}^n) = 144^n$, find the value of $c$. \marks{5} \\
 \end{enumerate}
 
 \newpage
@@ -135,11 +135,11 @@ For $n \in \mathbb{Z}^{+}$, show, using mathematical induction, that
 The Fibonacci sequence $(F_n)$ is defined by $F_0=0$, $F_1=1$ and $F_{n+1}=F_n+F_{n-1}$ for $n\geq 1$. \\
 You are given that
 \[
-M = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}
-\] \\
+\mathbf{M} = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}
+\]
 Prove by induction that
 \[
-M^n = \begin{pmatrix} F_{n+1} & F_n \\ F_n & F_{n-1} \end{pmatrix}
+\mathbf{M}^n = \begin{pmatrix} F_{n+1} & F_n \\ F_n & F_{n-1} \end{pmatrix}
 \]
 for all integers $n \geq 1$. \marks{6} \\
 
@@ -149,19 +149,20 @@ for all integers $n \geq 1$. \marks{6} \\
 \questionitem
 % [Source: _QBT__Proof_by_Induction___Matrices, Q8]
 
+The matrix $\mathbf{A}$ is given by
 \[
 \mathbf{A} = \begin{pmatrix}
 1 & 1 & 0 \\
 0 & 2 & 1 \\
 0 & 0 & 2
 \end{pmatrix}
-\] \\
+\]
 Prove by induction that, for all positive integers $n$,
 \[
 \renewcommand{\arraystretch}{1.4}
 \mathbf{A}^n = \begin{pmatrix}
 1 & 2^n - 1 & 1 + (n-2)2^{n-1} \\
-0 & 2^n & n2^{n-1} \\
+0 & 2^n & n\,2^{n-1} \\
 0 & 0 & 2^n
 \end{pmatrix}
 \]
