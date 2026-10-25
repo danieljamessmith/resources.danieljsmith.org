@@ -921,7 +921,7 @@ describe('runImport', () => {
 
     const ids = parseResourcesEntries(readFileSync(join(root, 'src/data/resources.ts'), 'utf8')).map((e) => e.id);
     expect(ids.indexOf(`${ID}-solns`)).toBe(ids.indexOf(ID) + 1);
-    expect(ids.indexOf(ID)).toBe(ids.indexOf('fm-polar-tangents-polar-curves-solns') + 1);
+    expect(ids.indexOf(ID)).toBe(ids.indexOf('fm-polar-tangents-polar-curves-ms') + 1);
     expect(stand.calls).toEqual({ compile: 2, regenerate: 1 });
     expect(existsSync(journalPath)).toBe(false);
   });

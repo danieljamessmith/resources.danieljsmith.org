@@ -777,6 +777,16 @@ const rawResources: Resource[] = [
     pairId: 'fm-polar-tangents-polar-curves',
     topic: 'Polar Coordinates',
   },
+  {
+    id: 'fm-polar-tangents-polar-curves-ms',
+    title: 'Tangents to Polar Curves',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/polar-coordinates/ms/_QBT___MS__Tangents_to_Polar_Curves.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-polar-tangents-polar-curves',
+    topic: 'Polar Coordinates',
+  },
 
   // --- A-level Further Maths: Differential Equations (teaching progression order) ---
   {
