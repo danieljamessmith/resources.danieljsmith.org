@@ -4,7 +4,7 @@
 \djsSolnHeader{Integrating Factor Method}
 \djsSitePath{Core Pure}{Differential Equations}
 
-\djsLastUpdated{14 October 2026}
+\djsLastUpdated{25 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -32,14 +32,12 @@
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item The differential equation is linear:
-  \[
-  \frac{\mathrm{d}y}{\mathrm{d}x}+\frac{2x}{x^2+1}y=6x
-  \]
+  \item This is a linear differential equation of the form \(\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with \(P(x)=\frac{2x}{x^2+1}\).
 
-  Its integrating factor is
+  The integrating factor is
   \begin{align*}
-  \mu(x)&=e^{\int \frac{2x}{x^2+1}\,\mathrm{d}x} \\
+  \mu(x)&=e^{\int P(x)\,\mathrm{d}x} \\
+  &=e^{\int \frac{2x}{x^2+1}\,\mathrm{d}x} \\
   &=e^{\ln(x^2+1)} \\
   &=x^2+1
   \end{align*}
@@ -61,12 +59,7 @@
   &=\frac{3}{2}x^4+3x^2+c
   \end{align*}
 
-  Hence
-  \[
-  y=\frac{\frac{3}{2}x^4+3x^2+c}{x^2+1}
-  \]
-
-  Therefore, the general solution is
+  Hence the general solution is
   \[
   y=\frac{\frac{3}{2}x^4+3x^2+c}{x^2+1}
   \]
@@ -150,12 +143,19 @@
 \frac{\mathrm{d}y}{\mathrm{d}x}-\frac{2}{1+x}y=(1+x)^3
 \]
 
-Since this is a linear equation, the integrating factor is
+This is a linear differential equation of the form \(\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with \(P(x)=-\frac{2}{1+x}\).
+
+The integrating factor is
 \begin{align*}
-\mu(x)&=e^{\int -\frac{2}{1+x}\,\mathrm{d}x} \\
-&=e^{-2\ln(1+x)} \\
-&=(1+x)^{-2}
+\mu(x)&=e^{\int P(x)\,\mathrm{d}x} \\
+&=e^{\int -\frac{2}{1+x}\,\mathrm{d}x} \\
+&=e^{-2\ln(1+x)}
 \end{align*}
+
+Since $x>-1$, we have $1+x>0$, so
+\[
+\mu(x)=(1+x)^{-2}
+\]
 
 Multiplying the differential equation by $(1+x)^{-2}$ gives
 \begin{align*}
@@ -245,19 +245,12 @@ x=\sqrt{3}-1
 \frac{\mathrm{d}y}{\mathrm{d}x}+\frac{1}{1+x}y=\frac{\ln(1+x)}{1+x}
 \]
 
-This is a linear differential equation of the form
-\[
-\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)
-\]
-
-with
-\[
-P(x)=\frac{1}{1+x}
-\]
+This is a linear differential equation of the form \(\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with \(P(x)=\frac{1}{1+x}\).
 
 The integrating factor is
 \begin{align*}
-\mu(x)&=e^{\int \frac{1}{1+x}\, \mathrm{d}x} \\
+\mu(x)&=e^{\int P(x)\,\mathrm{d}x} \\
+&=e^{\int \frac{1}{1+x}\, \mathrm{d}x} \\
 &=e^{\ln(1+x)}
 \end{align*}
 
@@ -271,7 +264,7 @@ Multiplying the differential equation by $1+x$ gives
 (1+x)\frac{\mathrm{d}y}{\mathrm{d}x}+y&=\ln(1+x)
 \end{align*}
 
-The left-hand side is the derivative of $(1+x)y$:
+The left-hand side is the derivative of $(1+x)y$, so
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\bigl((1+x)y\bigr)=\ln(1+x)
 \]
@@ -281,41 +274,61 @@ Integrating both sides with respect to $x$:
 (1+x)y&=\int \ln(1+x)\, \mathrm{d}x + c
 \end{align*}
 
-Now evaluate the integral by letting $u=1+x$, so $\mathrm{d}u=\mathrm{d}x$:
+Integrate by parts with
+\[
+u=\ln(1+x),\qquad \frac{\mathrm{d}v}{\mathrm{d}x}=1
+\]
+
+so that
+\[
+\frac{\mathrm{d}u}{\mathrm{d}x}=\frac{1}{1+x},\qquad v=x
+\]
+
+Using integration by parts:
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
+\]
+
+So
+\[
+\int \ln(1+x)\, \mathrm{d}x=x\ln(1+x)-\int \frac{x}{1+x}\,\mathrm{d}x
+\]
+
+Writing $\frac{x}{1+x}=1-\frac{1}{1+x}$ gives
 \begin{align*}
-\int \ln(1+x)\, \mathrm{d}x&=\int \ln u\, \mathrm{d}u \\
-&=u\ln u-u+c \\
-&=(1+x)\ln(1+x)-(1+x)+c
+\int \ln(1+x)\, \mathrm{d}x&=x\ln(1+x)-\int \left(1-\frac{1}{1+x}\right)\,\mathrm{d}x \\
+&=x\ln(1+x)-x+\ln(1+x) \\
+&=(1+x)\ln(1+x)-x
 \end{align*}
 
 So
 \[
-(1+x)y=(1+x)\ln(1+x)-(1+x)+c
+(1+x)y=(1+x)\ln(1+x)-x+c
 \]
 
 Dividing by $1+x$, which is positive since $x>-1$, gives the general solution
 \[
-y=\ln(1+x)-1+\frac{c}{1+x}
+y=\ln(1+x)+\frac{c-x}{1+x}
 \]
 
   \item Use the condition $y=-1$ when $x=0$.
 
 Substituting into the general solution:
 \begin{align*}
--1&=\ln(1+0)-1+\frac{c}{1+0} \\
--1&=0-1+c \\
--1&=-1+c
+-1&=\ln(1+0)+\frac{c-0}{1+0} \\
+-1&=0+c
 \end{align*}
 
 So
 \[
-c=0
+c=-1
 \]
 
 Hence
-\[
-y=\ln(1+x)-1
-\]
+\begin{align*}
+y&=\ln(1+x)+\frac{-1-x}{1+x} \\
+&=\ln(1+x)-1
+\end{align*}
 
 Now set $y=0$:
 \begin{align*}
@@ -329,7 +342,7 @@ Exponentiating both sides:
 x&=e-1
 \end{align*}
 
-Since the question asks for the positive value,
+So the required value is
 \[
 x=e-1\approx 1.72
 \]
@@ -371,37 +384,37 @@ x=e-1\approx 1.72
   &=\sec x
   \end{align*}
 
-  \item The equation is linear, with
+  \item This is a linear differential equation of the form \(\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with \(P(x)=-2\tan x\).
+
+  Using the standard result
   \[
-  P(x)=-2\tan x
+  \int \tan x\,\mathrm{d}x=\ln|\sec x|+c
   \]
 
-  An integrating factor is
+  the integrating factor is
   \begin{align*}
   \mu(x)
+  &=e^{\int P(x)\,\mathrm{d}x}\\
   &=e^{\int -2\tan x\,\mathrm{d}x}\\
-  &=e^{2\ln(\cos x)}\\
-  &=\cos^2 x
+  &=e^{-2\ln(\sec x)}
   \end{align*}
 
-  since $\cos x>0$ for $-\frac{\pi}{2}<x<\frac{\pi}{2}$.
+  Since $-\frac{\pi}{2}<x<\frac{\pi}{2}$, we have $\sec x>0$, so
+  \[
+  \mu(x)=\cos^2 x
+  \]
 
-  Multiplying through by $\cos^2 x$,
+  Multiplying through by $\cos^2 x$:
   \[
   \cos^2 x\frac{\mathrm{d}y}{\mathrm{d}x}-2y\cos x\sin x=\sec x
   \]
 
-  The left hand side is
-  \[
-  \frac{\mathrm{d}}{\mathrm{d}x}(y\cos^2 x)
-  \]
-
-  so
+  The left-hand side is the derivative of $y\cos^2 x$, so
   \[
   \frac{\mathrm{d}}{\mathrm{d}x}(y\cos^2 x)=\sec x
   \]
 
-  Using part (a),
+  Using part (a):
   \[
   y\cos^2 x=\ln(\sec x+\tan x)+c
   \]
@@ -429,26 +442,22 @@ where $-\tfrac{\pi}{2} < x < \tfrac{\pi}{2}$ \marks{5}
 \vspace*{10pt}
 
 \begin{djsSolution}
-Write the differential equation in linear form:
+This is a linear differential equation of the form \(\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with \(P(x)=-\tan x\).
+
+Using the standard result
 \[
-\frac{\mathrm{d}y}{\mathrm{d}x} + P(x)y = Q(x)
+\int \tan x\,\mathrm{d}x=\ln|\sec x|+c
 \]
 
-with
-\[
-P(x)=-\tan x,
-\qquad
-Q(x)=\frac{1}{\sqrt{1+\sin x}}
-\]
-
-So the integrating factor is
+the integrating factor is
 \begin{align*}
 \mu(x)
+&= e^{\int P(x)\,\mathrm{d}x} \\
 &= e^{\int -\tan x\,\mathrm{d}x} \\
-&= e^{\ln(\cos x)}
+&= e^{-\ln(\sec x)}
 \end{align*}
 
-Since $-\tfrac{\pi}{2}<x<\tfrac{\pi}{2}$, we have $\cos x>0$, so
+Since $-\tfrac{\pi}{2}<x<\tfrac{\pi}{2}$, we have $\sec x>0$, so
 \[
 \mu(x)=\cos x
 \]
@@ -461,12 +470,7 @@ Multiply the differential equation throughout by $\cos x$:
 &= \frac{\cos x}{\sqrt{1+\sin x}}
 \end{align*}
 
-Now
-\[
-\frac{\mathrm{d}}{\mathrm{d}x}(y\cos x)=\cos x\frac{\mathrm{d}y}{\mathrm{d}x}-y\sin x
-\]
-
-So the equation becomes
+The left-hand side is the derivative of $y\cos x$, so
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}(y\cos x)=\frac{\cos x}{\sqrt{1+\sin x}}
 \]
@@ -479,9 +483,9 @@ y\cos x=\int \frac{\cos x}{\sqrt{1+\sin x}}\,\mathrm{d}x + c
 Let
 \[
 u=1+\sin x
-\qquad \Rightarrow \qquad
+\quad\Longrightarrow\quad
 \frac{\mathrm{d}u}{\mathrm{d}x}=\cos x
-\qquad \Rightarrow \qquad
+\quad\Longrightarrow\quad
 \mathrm{d}u=\cos x\,\mathrm{d}x
 \]
 
@@ -498,12 +502,7 @@ Hence
 y\cos x=2\sqrt{1+\sin x}+c
 \]
 
-Therefore
-\[
-y=\frac{2\sqrt{1+\sin x}+c}{\cos x}
-\]
-
-So the general solution is
+Therefore the general solution is
 \[
 y=\frac{2\sqrt{1+\sin x}+c}{\cos x}
 \]
@@ -543,24 +542,12 @@ y=\frac{2}{\sqrt{1-\sin x}}+c\sec x
 \frac{\mathrm{d}y}{\mathrm{d}x}+\frac{1}{x^2}y=\frac{1}{x^2}
 \]
 
-This is of the form
-\[
-\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)
-\]
+This is a linear differential equation of the form \(\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with \(P(x)=\frac{1}{x^2}=x^{-2}\).
 
-with
-\[
-P(x)=\frac{1}{x^2}=x^{-2}
-\]
-
-For a linear differential equation, an integrating factor is
-\[
-\mu(x)=e^{\int P(x)\,\mathrm{d}x}
-\]
-
-So
+The integrating factor is
 \begin{align*}
-\mu(x)&=e^{\int x^{-2}\,\mathrm{d}x} \\
+\mu(x)&=e^{\int P(x)\,\mathrm{d}x} \\
+&=e^{\int x^{-2}\,\mathrm{d}x} \\
 &=e^{-x^{-1}} \\
 &=e^{-1/x}
 \end{align*}
@@ -589,7 +576,7 @@ we get
 &=e^{-1/x}\frac{\mathrm{d}y}{\mathrm{d}x}+\frac{e^{-1/x}}{x^2}y
 \end{align*}
 
-So the differential equation becomes
+The left-hand side is the derivative of $ye^{-1/x}$, so
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(ye^{-1/x}\right)=\frac{e^{-1/x}}{x^2}
 \]
@@ -658,23 +645,25 @@ Since $x>0$, we have $\sinh x>0$, so we may divide through by $\sinh x$ to put t
 \frac{\mathrm{d}y}{\mathrm{d}x} - \coth x\,y &= \cosh x
 \end{align*}
 
-This is a first-order linear equation of the form
+This is a linear differential equation of the form \(\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with \(P(x)=-\coth x\).
+
+Using the standard result
 \[
-\frac{\mathrm{d}y}{\mathrm{d}x} + P(x)y = Q(x)
+\int \coth x\,\mathrm{d}x=\ln|\sinh x|+c
 \]
 
-with
-\[
-P(x) = -\coth x
-\]
-
-So the integrating factor is
+the integrating factor is
 \begin{align*}
-\mu(x) &= e^{\int -\coth x\,\mathrm{d}x} \\
+\mu(x) &= e^{\int P(x)\,\mathrm{d}x} \\
+&= e^{\int -\coth x\,\mathrm{d}x} \\
 &= e^{-\int \coth x\,\mathrm{d}x} \\
-&= e^{-\ln(\sinh x)} \\
-&= \frac{1}{\sinh x}
+&= e^{-\ln(\sinh x)}
 \end{align*}
+
+Since $x>0$, we have $\sinh x>0$, so
+\[
+\mu(x)=\frac{1}{\sinh x}
+\]
 
 Multiplying the differential equation by this integrating factor gives
 \begin{align*}
@@ -701,10 +690,10 @@ Now use the condition $y=2$ when $x=\ln(1+\sqrt{2})$.
 
 We need $\sinh\bigl(\ln(1+\sqrt{2})\bigr)$. Using
 \[
-\sinh u=\frac{e^u-e^{-u}}{2}
+\sinh t=\frac{e^t-e^{-t}}{2}
 \]
 
-with $u=\ln(1+\sqrt{2})$:
+with $t=\ln(1+\sqrt{2})$, we get
 \begin{align*}
 \sinh\bigl(\ln(1+\sqrt{2})\bigr)
 &= \frac{(1+\sqrt{2})-\dfrac{1}{1+\sqrt{2}}}{2}
@@ -763,30 +752,35 @@ Since $x>0$, we have $\sinh x>0$, so in particular $\sinh x \neq 0$. We may ther
 \frac{\mathrm{d}y}{\mathrm{d}x} - 2\coth x\,y &= \sinh x\cosh x
 \end{align*}
 
-This is a first-order linear equation of the form
+This is a linear differential equation of the form \(\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with \(P(x)=-2\coth x\).
+
+Using the standard result
 \[
-\frac{\mathrm{d}y}{\mathrm{d}x} + P(x)y = Q(x)
+\int \coth x\,\mathrm{d}x=\ln|\sinh x|+c
 \]
 
-with
-\[
-P(x)=-2\coth x
-\]
-
-So the integrating factor is
+the integrating factor is
 \begin{align*}
-\mu(x) &= e^{\int -2\coth x\,\mathrm{d}x} \\
+\mu(x) &= e^{\int P(x)\,\mathrm{d}x} \\
+&= e^{\int -2\coth x\,\mathrm{d}x} \\
 &= e^{-2\int \coth x\,\mathrm{d}x} \\
-&= e^{-2\ln(\sinh x)} \\
-&= \frac{1}{\sinh^2 x}
+&= e^{-2\ln(\sinh x)}
 \end{align*}
+
+Since $x>0$, we have $\sinh x>0$, so
+\[
+\mu(x)=\frac{1}{\sinh^2 x}
+\]
 
 Multiplying the differential equation by this integrating factor gives
-\begin{align*}
-\frac{1}{\sinh^2 x}\frac{\mathrm{d}y}{\mathrm{d}x} - \frac{2\coth x}{\sinh^2 x}y
-&= \frac{\sinh x\cosh x}{\sinh^2 x} \\
-\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{y}{\sinh^2 x}\right) &= \coth x
-\end{align*}
+\[
+\frac{1}{\sinh^2 x}\frac{\mathrm{d}y}{\mathrm{d}x} - \frac{2\coth x}{\sinh^2 x}y = \frac{\sinh x\cosh x}{\sinh^2 x}
+\]
+
+The left-hand side is the derivative of $\frac{y}{\sinh^2 x}$, so
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{y}{\sinh^2 x}\right)=\coth x
+\]
 
 Now integrate both sides with respect to $x$:
 \begin{align*}
@@ -854,23 +848,25 @@ Give your answer in exact form.
 \frac{\mathrm{d}y}{\mathrm{d}x}-\frac{\cosh x}{\sinh x}y=\cosh^3 x
 \]
 
-So it is in the form \(\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with
+This is a linear differential equation of the form \(\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with \(P(x)=-\coth x\).
+
+Using the standard result
 \[
-P(x)=-\coth x
+\int \coth x\,\mathrm{d}x=\ln|\sinh x|+c
 \]
 
-The integrating factor is
+the integrating factor is
 \begin{align*}
 \mu(x)
 &=e^{\int P(x)\,\mathrm{d}x} \\
 &=e^{\int -\coth x\,\mathrm{d}x} \\
-&=e^{-\ln(\sinh x)} \\
-&=\frac{1}{\sinh x}
+&=e^{-\ln(\sinh x)}
 \end{align*}
 
-since \(x>0\), so \(\sinh x>0\).
-
-So the integrating factor is \(\frac{1}{\sinh x}\).
+Since \(x>0\), we have \(\sinh x>0\), so
+\[
+\mu(x)=\frac{1}{\sinh x}
+\]
 
   \item Multiply the equation
 \[
@@ -882,13 +878,7 @@ by the integrating factor \(\frac{1}{\sinh x}\):
 \frac{1}{\sinh x}\frac{\mathrm{d}y}{\mathrm{d}x}-\frac{\cosh x}{\sinh^2 x}y=\frac{\cosh^3 x}{\sinh x}
 \]
 
-Now
-\[
-\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{y}{\sinh x}\right)
-=\frac{1}{\sinh x}\frac{\mathrm{d}y}{\mathrm{d}x}-\frac{\cosh x}{\sinh^2 x}y
-\]
-
-so the equation becomes
+The left-hand side is the derivative of \(\frac{y}{\sinh x}\), so
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{y}{\sinh x}\right)=\frac{\cosh^3 x}{\sinh x}
 \]
@@ -908,7 +898,7 @@ Rewrite the integrand using \(\cosh^2 x=1+\sinh^2 x\):
 Let
 \[
 u=\sinh x
-\quad\Rightarrow\quad
+\quad\Longrightarrow\quad
 \mathrm{d}u=\cosh x\,\mathrm{d}x
 \]
 
@@ -917,8 +907,8 @@ Then
 \int \frac{\cosh^3 x}{\sinh x}\,\mathrm{d}x
 &=\int \frac{\cosh x(1+\sinh^2 x)}{\sinh x}\,\mathrm{d}x \\
 &=\int \left(\frac{1}{u}+u\right)\,\mathrm{d}u \\
-&=\ln u+\frac{u^2}{2}+c \\
-&=\ln(\sinh x)+\frac{1}{2}\sinh^2 x+c
+&=\ln u+\frac{u^2}{2} \\
+&=\ln(\sinh x)+\frac{1}{2}\sinh^2 x
 \end{align*}
 
 Hence
@@ -931,7 +921,12 @@ and so
 y=\sinh x\ln(\sinh x)+\frac{1}{2}\sinh^3 x+c\sinh x
 \]
 
-Use the condition \(y=2\) when \(x=\ln(1+\sqrt{2})\). First find \(\sinh\bigl(\ln(1+\sqrt{2})\bigr)\):
+Use the condition \(y=2\) when \(x=\ln(1+\sqrt{2})\). First find \(\sinh\bigl(\ln(1+\sqrt{2})\bigr)\). Using
+\[
+\sinh t=\frac{e^t-e^{-t}}{2}
+\]
+
+with \(t=\ln(1+\sqrt{2})\), we get
 \begin{align*}
 \sinh\bigl(\ln(1+\sqrt{2})\bigr)
 &=\frac{e^{\ln(1+\sqrt{2})}-e^{-\ln(1+\sqrt{2})}}{2} \\
@@ -942,7 +937,7 @@ Use the condition \(y=2\) when \(x=\ln(1+\sqrt{2})\). First find \(\sinh\bigl(\l
 
 So substituting \(\sinh x=1\) and \(y=2\):
 \begin{align*}
-2&=1\cdot \ln 1+\frac{1}{2}(1)^3+c(1) \\
+2&=1\times \ln 1+\frac{1}{2}(1)^3+c(1) \\
 2&=0+\frac{1}{2}+c \\
 c&=\frac{3}{2}
 \end{align*}
@@ -983,28 +978,23 @@ y=\sinh x\ln(\sinh x)+\frac{1}{2}\sinh^3 x+\frac{3}{2}\sinh x
 \frac{\mathrm{d}y}{\mathrm{d}x}+y\tan x=x\sec x
 \]
 
-This is now in the linear form
+This is a linear differential equation of the form \(\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with \(P(x)=\tan x\).
+
+Using the standard result
 \[
-\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)
+\int \tan x\,\mathrm{d}x=\ln|\sec x|+c
 \]
 
-with
-\[
-P(x)=\tan x
-\]
-
-So an integrating factor is
+the integrating factor is
 \begin{align*}
 \mu(x)&=e^{\int P(x)\,\mathrm{d}x} \\
 &=e^{\int \tan x\,\mathrm{d}x} \\
-&=e^{\int \frac{\sin x}{\cos x}\,\mathrm{d}x} \\
-&=e^{-\ln|\cos x|} \\
-&=e^{\ln|\sec x|}
+&=e^{\ln(\sec x)}
 \end{align*}
 
-Since $0<x<\frac{\pi}{2}$, we have $\cos x>0$, so $|\sec x|=\sec x$. Hence
+Since $0<x<\frac{\pi}{2}$, we have $\sec x>0$, so
 \[
-\mu(x)=e^{\ln(\sec x)}=\sec x
+\mu(x)=\sec x
 \]
 
 Therefore an appropriate integrating factor is $\sec x$.
@@ -1039,6 +1029,11 @@ so that
 \frac{\mathrm{d}u}{\mathrm{d}x}=1,\qquad v=\tan x
 \]
 
+Using integration by parts:
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
+\]
+
 Then
 \begin{align*}
 \int x\sec^2 x\,\mathrm{d}x
@@ -1065,7 +1060,7 @@ y\sec x=x\tan x+\ln(\cos x)+c
 
 gives
 \begin{align*}
-1\cdot \sec\frac{\pi}{4}
+1\times \sec\frac{\pi}{4}
 &=\frac{\pi}{4}\tan\frac{\pi}{4}+\ln\left(\cos\frac{\pi}{4}\right)+c \\
 \sqrt{2}
 &=\frac{\pi}{4}+\ln\left(\frac{\sqrt{2}}{2}\right)+c \\
@@ -1094,23 +1089,25 @@ y=x\sin x+\cos x\left[\ln(\cos x)+\sqrt{2}-\frac{\pi}{4}+\frac{1}{2}\ln 2\right]
 
 Find the general solution of the differential equation\\
 \[
-\frac{\mathrm{d}y}{\mathrm{d}x}+\cot x\,y=\frac{\cos x}{\sin^2 x\left(1+\ln^2(\sin x)\right)}
+\frac{\mathrm{d}y}{\mathrm{d}x}+\cot x\,y=\frac{\cos x}{\sin^2 x\left(1+\left[\ln(\sin x)\right]^2\right)}
 \]\\
 where $0<x<\pi$ \marks{5}
 
 \vspace*{10pt}
 
 \begin{djsSolution}
-This is a first-order linear differential equation:
+This is a linear differential equation of the form \(\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with \(P(x)=\cot x\).
+
+Using the standard result
 \[
-\frac{\mathrm{d}y}{\mathrm{d}x}+\cot x\,y=\frac{\cos x}{\sin^2 x\left(1+\ln^2(\sin x)\right)}
+\int \cot x\,\mathrm{d}x=\ln|\sin x|+c
 \]
 
-Its integrating factor is
+the integrating factor is
 \begin{align*}
 \mu(x)
+&=e^{\int P(x)\,\mathrm{d}x} \\
 &=e^{\int \cot x\,\mathrm{d}x} \\
-&=e^{\int \frac{\cos x}{\sin x}\,\mathrm{d}x} \\
 &=e^{\ln(\sin x)}
 \end{align*}
 
@@ -1122,26 +1119,21 @@ Since $0<x<\pi$, we have $\sin x>0$, so
 Multiply the whole differential equation by $\sin x$:
 \begin{align*}
 \sin x\frac{\mathrm{d}y}{\mathrm{d}x}+\sin x\cot x\,y
-&=\sin x\cdot \frac{\cos x}{\sin^2 x\left(1+\ln^2(\sin x)\right)} \\
+&=\sin x\cdot \frac{\cos x}{\sin^2 x\left(1+\left[\ln(\sin x)\right]^2\right)} \\
 \sin x\frac{\mathrm{d}y}{\mathrm{d}x}+\cos x\,y
-&=\frac{\cos x}{\sin x\left(1+\ln^2(\sin x)\right)}
+&=\frac{\cos x}{\sin x\left(1+\left[\ln(\sin x)\right]^2\right)}
 \end{align*}
 
-Now
+The left-hand side is the derivative of $y\sin x$, so
 \[
-\frac{\mathrm{d}}{\mathrm{d}x}(y\sin x)=\sin x\frac{\mathrm{d}y}{\mathrm{d}x}+\cos x\,y
-\]
-
-So the equation becomes
-\[
-\frac{\mathrm{d}}{\mathrm{d}x}(y\sin x)=\frac{\cos x}{\sin x\left(1+\ln^2(\sin x)\right)}
+\frac{\mathrm{d}}{\mathrm{d}x}(y\sin x)=\frac{\cos x}{\sin x\left(1+\left[\ln(\sin x)\right]^2\right)}
 \]
 
 Integrating both sides gives
 \[
 \int \frac{\mathrm{d}}{\mathrm{d}x}(y\sin x)\,\mathrm{d}x
 =
-\int \frac{\cos x}{\sin x\left(1+\ln^2(\sin x)\right)}\,\mathrm{d}x
+\int \frac{\cos x}{\sin x\left(1+\left[\ln(\sin x)\right]^2\right)}\,\mathrm{d}x
 \]
 
 For the right-hand side, let
@@ -1163,7 +1155,7 @@ Hence
 
 So
 \begin{align*}
-\int \frac{\cos x}{\sin x\left(1+\ln^2(\sin x)\right)}\,\mathrm{d}x
+\int \frac{\cos x}{\sin x\left(1+\left[\ln(\sin x)\right]^2\right)}\,\mathrm{d}x
 &=\int \frac{1}{1+u^2}\,\mathrm{d}u \\
 &=\arctan(u)+c \\
 &=\arctan(\ln(\sin x))+c
@@ -1178,8 +1170,6 @@ Finally, divide by $\sin x$:
 \[
 y=\frac{\arctan(\ln(\sin x))+c}{\sin x}
 \]
-
-The general solution is $y=\frac{\arctan(\ln(\sin x))+c}{\sin x}$.
 \end{djsSolution}
 
 
@@ -1194,7 +1184,7 @@ The general solution is $y=\frac{\arctan(\ln(\sin x))+c}{\sin x}$.
   \[
   x(x-1)\,\frac{\mathrm{d}y}{\mathrm{d}x}+(x+1)y=x(x-1)^2
   \]
-  is $\dfrac{(x-1)^2}{x}$ \marks{5} \\
+  is $\frac{(x-1)^2}{x}$ \marks{5} \\
   \item Hence find the solution of the differential equation
   \[
   x(x-1)\,\frac{\mathrm{d}y}{\mathrm{d}x}+(x+1)y=x(x-1)^2
@@ -1211,20 +1201,7 @@ The general solution is $y=\frac{\arctan(\ln(\sin x))+c}{\sin x}$.
 \frac{\mathrm{d}y}{\mathrm{d}x}+\frac{x+1}{x(x-1)}y=x-1
 \]
 
-For a linear equation
-\[
-\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)
-\]
-
-an integrating factor is
-\[
-\mu(x)=e^{\int P(x)\,\mathrm{d}x}
-\]
-
-Here
-\[
-P(x)=\frac{x+1}{x(x-1)}
-\]
+This is a linear differential equation of the form \(\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with \(P(x)=\frac{x+1}{x(x-1)}\).
 
 Decompose into partial fractions:
 \begin{align*}
@@ -1248,19 +1225,19 @@ Hence
 \frac{x+1}{x(x-1)}=-\frac{1}{x}+\frac{2}{x-1}
 \]
 
-Therefore
+The integrating factor is
 \begin{align*}
-\mu(x)&=e^{\int\left(-\frac{1}{x}+\frac{2}{x-1}\right)\,\mathrm{d}x} \\
-&=e^{-\ln x+2\ln(x-1)} \\
-&=\frac{(x-1)^2}{x}
+\mu(x)&=e^{\int P(x)\,\mathrm{d}x} \\
+&=e^{\int\left(-\frac{1}{x}+\frac{2}{x-1}\right)\,\mathrm{d}x} \\
+&=e^{-\ln x+2\ln(x-1)}
 \end{align*}
 
-Thus an appropriate integrating factor is
+Since $x>1$, we have $x>0$ and $x-1>0$, so an appropriate integrating factor is
 \[
 \mu(x)=\frac{(x-1)^2}{x}
 \]
 
-  \item Using the integrating factor from part (a),
+  \item Using the integrating factor from part (a):
 \[
 \mu(x)=\frac{(x-1)^2}{x}
 \]
@@ -1275,12 +1252,7 @@ through by $\mu(x)$:
 \frac{(x-1)^2}{x}\frac{\mathrm{d}y}{\mathrm{d}x}+\frac{(x-1)^2}{x}\cdot\frac{x+1}{x(x-1)}\,y=\frac{(x-1)^2}{x}(x-1)
 \]
 
-Since $\mu$ is an integrating factor, the left-hand side becomes
-\[
-\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{(x-1)^2}{x}y\right)
-\]
-
-So
+The left-hand side is the derivative of $\frac{(x-1)^2}{x}y$, so
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{(x-1)^2}{x}y\right)=\frac{(x-1)^3}{x}
 \]
@@ -1355,14 +1327,14 @@ y=\frac{x}{(x-1)^2}\left(\frac{x^3}{3}-\frac{3x^2}{2}+3x-\ln x+\ln 2-\frac{5}{3}
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Using \(\frac{\mathrm{d}}{\mathrm{d}x}\ln u=\frac{1}{u}\frac{\mathrm{d}u}{\mathrm{d}x}\),
+  \item Using \(\frac{\mathrm{d}}{\mathrm{d}x}\ln u=\frac{1}{u}\frac{\mathrm{d}u}{\mathrm{d}x}\):
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\bigl(\ln(\cosh x+1)\bigr)
 =\frac{1}{\cosh x+1}\cdot \frac{\mathrm{d}}{\mathrm{d}x}(\cosh x+1)
 =\frac{\sinh x}{\cosh x+1}
 \]
 
-Now use the half-angle identities
+Now use the double angle identities with \(x\) replaced by \(\frac{x}{2}\):
 \[
 \sinh x=2\sinh\left(\frac{x}{2}\right)\cosh\left(\frac{x}{2}\right),
 \qquad
@@ -1384,46 +1356,40 @@ Hence
 
 as required.
 
-  \item The differential equation is linear:
-\[
-\frac{\mathrm{d}y}{\mathrm{d}x}+\tanh\left(\frac{x}{2}\right)y=\sinh x
-\]
+  \item This is a linear differential equation of the form \(\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with \(P(x)=\tanh\left(\frac{x}{2}\right)\).
 
-From part (a),
+From part (a):
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\bigl(\ln(\cosh x+1)\bigr)=\tanh\left(\frac{x}{2}\right)
 \]
 
-so an integrating factor is
-\[
-\mu(x)=e^{\int \tanh\left(\frac{x}{2}\right)\,\mathrm{d}x}
-=e^{\ln(\cosh x+1)}
-=\cosh x+1
-\]
+The integrating factor is
+\begin{align*}
+\mu(x)&=e^{\int P(x)\,\mathrm{d}x} \\
+&=e^{\int \tanh\left(\frac{x}{2}\right)\,\mathrm{d}x} \\
+&=e^{\ln(\cosh x+1)} \\
+&=\cosh x+1
+\end{align*}
 
-Multiplying the differential equation throughout by \(\cosh x+1\),
+Multiplying the differential equation throughout by \(\cosh x+1\):
 \[
 (\cosh x+1)\frac{\mathrm{d}y}{\mathrm{d}x}+(\cosh x+1)\tanh\left(\frac{x}{2}\right)y=(\cosh x+1)\sinh x
 \]
 
-The left-hand side is
-\[
-\frac{\mathrm{d}}{\mathrm{d}x}\bigl((\cosh x+1)y\bigr)
-\]
-
-Hence the differential equation can be written
+The left-hand side is the derivative of \((\cosh x+1)y\), so
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\bigl((\cosh x+1)y\bigr)=(\cosh x+1)\sinh x
 \]
 
-We can integrate the right hand side by reversing the chain rule:
-\[\int (\cosh x+1)\sinh x \,\mathrm{d}x
-=\frac{1}{2}(\cosh x+1)^2+c\]
+We can integrate the right-hand side by reversing the chain rule:
+\[
+\int (\cosh x+1)\sinh x \,\mathrm{d}x=\frac{1}{2}(\cosh x+1)^2+c
+\]
 
 So the differential equation becomes
 \begin{align*}
 (\cosh x+1)y
-&=\int (\cosh x+1)\sinh x \,\mathrm{d}x\\[8pt]
+&=\int (\cosh x+1)\sinh x \,\mathrm{d}x\\
 &=\frac{1}{2}(\cosh x+1)^2+c
 \end{align*}
 
@@ -1432,7 +1398,7 @@ Therefore
 y=\frac{1}{2}(\cosh x+1)+\frac{c}{\cosh x+1}
 \]
 
-Use the condition \(y=2\) when \(x=0\). Since \(\cosh 0=1\),
+Use the condition \(y=2\) when \(x=0\). Since \(\cosh 0=1\), this gives
 \begin{align*}
 2&=\frac{1}{2}(1+1)+\frac{c}{1+1} \\
 2&=1+\frac{c}{2}
@@ -1443,14 +1409,19 @@ Hence
 c=2
 \]
 
-Substituting back,
+Substituting back:
 \[
 y=\frac{\cosh x+1}{2}+\frac{2}{\cosh x+1}
 \]
 
-Alternatively, one can integrate using the double angle formula for $\sinh 2x$: \[\int (\cosh x + 1)\sinh x \,\mathrm{d}x = \int (\cosh x\sinh x + \sinh x) \,\mathrm{d}x = \int \left(\frac{1}{2}\sinh 2x + \sinh x\right) \mathrm{d}x \]
+\textit{Alternative Solution:}
 
-to obtain an equivalent form of the final answer:
+The integral can also be found with the double angle formula for \(\sinh 2x\):
+\[
+\int (\cosh x + 1)\sinh x \,\mathrm{d}x = \int (\cosh x\sinh x + \sinh x) \,\mathrm{d}x = \int \left(\frac{1}{2}\sinh 2x + \sinh x\right)\,\mathrm{d}x
+\]
+
+This leads to an equivalent form of the final answer:
 \[
 y = \frac{\frac{1}{4}\cosh 2x + \cosh x + \frac{11}{4}}{\cosh x + 1}
 \]
@@ -1486,7 +1457,7 @@ y = \frac{\frac{1}{4}\cosh 2x + \cosh x + \frac{11}{4}}{\cosh x + 1}
 u=\frac{x}{2}
 \]
 
-Then, by the chain rule,
+Then, by the chain rule:
 \begin{align*}
 \frac{\mathrm{d}}{\mathrm{d}x}\left(\ln\left(\coth \frac{x}{2}\right)\right)
 &= \frac{\mathrm{d}}{\mathrm{d}x}\bigl(\ln(\coth u)\bigr) \\
@@ -1502,7 +1473,7 @@ Now simplify:
 &= -\frac{1}{2\sinh u\cosh u}
 \end{align*}
 
-Using \(\sinh(2u)=2\sinh u\cosh u\),
+Using \(\sinh(2u)=2\sinh u\cosh u\):
 \begin{align*}
 -\frac{1}{2\sinh u\cosh u}
 &= -\frac{1}{\sinh(2u)} \\
@@ -1510,21 +1481,19 @@ Using \(\sinh(2u)=2\sinh u\cosh u\),
 &= -\operatorname{cosech} x
 \end{align*}
 
-Therefore,
+Therefore
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(\ln\left(\coth \frac{x}{2}\right)\right)=-\operatorname{cosech} x
 \]
 
 as required.
 
-  \item The differential equation is
-\[
-\frac{\mathrm{d}y}{\mathrm{d}x}-\operatorname{cosech} x\,y=\tanh \frac{x}{2}
-\]
+  \item This is a linear differential equation of the form \(\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with \(P(x)=-\operatorname{cosech} x\).
 
-This is linear, with integrating factor
+The integrating factor is
 \begin{align*}
 \mu(x)
+&= e^{\int P(x)\,\mathrm{d}x} \\
 &= e^{\int -\operatorname{cosech} x\,\mathrm{d}x} \\
 &= e^{\ln\left(\coth \frac{x}{2}\right)} \\
 &= \coth \frac{x}{2}
@@ -1532,7 +1501,7 @@ This is linear, with integrating factor
 
 using part (a).
 
-Next, from part (a),
+Next, from part (a):
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(\ln\left(\coth \frac{x}{2}\right)\right)=-\operatorname{cosech} x
 \]
@@ -1551,17 +1520,12 @@ Multiply the differential equation by \(\coth \frac{x}{2}\):
 &= \coth \frac{x}{2}\tanh \frac{x}{2}
 \end{align*}
 
-The left-hand side is
-\[
-\frac{\mathrm{d}}{\mathrm{d}x}\left(y\coth \frac{x}{2}\right)
-\]
-
-and the right-hand side is \(1\), since \(\coth \frac{x}{2}\tanh \frac{x}{2}=1\). Hence
+The left-hand side is the derivative of \(y\coth \frac{x}{2}\) and the right-hand side is \(1\), since \(\coth \frac{x}{2}\tanh \frac{x}{2}=1\), so
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(y\coth \frac{x}{2}\right)=1
 \]
 
-Integrating,
+Integrating:
 \[
 y\coth \frac{x}{2}=\int 1\,\mathrm{d}x=x+c
 \]
@@ -1576,18 +1540,23 @@ Now use \(y=1\) when \(x=\ln 3\):
 1=(\ln 3+c)\tanh \frac{\ln 3}{2}
 \]
 
-Evaluate \(\tanh \frac{\ln 3}{2}\):
+Evaluate \(\tanh \frac{\ln 3}{2}\). Using
+\[
+\tanh t=\frac{e^t-e^{-t}}{e^t+e^{-t}}
+\]
+
+with \(t=\frac{\ln 3}{2}\), we get
 \begin{align*}
 \tanh \frac{\ln 3}{2}
-&= \frac{e^{\ln 3/2}-e^{-\ln 3/2}}{e^{\ln 3/2}+e^{-\ln 3/2}} \\
+&= \frac{e^{\frac{1}{2}\ln 3}-e^{-\frac{1}{2}\ln 3}}{e^{\frac{1}{2}\ln 3}+e^{-\frac{1}{2}\ln 3}} \\
 &= \frac{e^{\ln 3}-1}{e^{\ln 3}+1} \\
 &= \frac{3-1}{3+1} \\
 &= \frac{1}{2}
 \end{align*}
 
-Therefore,
+Therefore
 \begin{align*}
-1&=(\ln 3+c)\cdot \frac{1}{2} \\
+1&=(\ln 3+c)\times \frac{1}{2} \\
 2&=\ln 3+c \\
 c&=2-\ln 3
 \end{align*}
@@ -1652,7 +1621,7 @@ So
 &=-\operatorname{cosech}x
 \end{align*}
 
-Hence,
+Hence
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(\ln\left(\frac{\cosh x+1}{\sinh x}\right)\right)=-\operatorname{cosech}x
 \]
@@ -1667,36 +1636,25 @@ Since $x>0$, we have $\sinh x\neq 0$, so divide through by $\sinh x$:
 \frac{\mathrm{d}y}{\mathrm{d}x}-\operatorname{cosech}x\,y=\frac{1-\cosh x}{\sinh x}
 \]
 
-This is a linear differential equation of the form
-\[
-\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)
-\]
+This is a linear differential equation of the form \(\frac{\mathrm{d}y}{\mathrm{d}x}+P(x)y=Q(x)\) with \(P(x)=-\operatorname{cosech}x\).
 
-with
-\[
-P(x)=-\operatorname{cosech}x
-\]
-
-From part (a),
+From part (a):
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(\ln\left(\frac{\cosh x+1}{\sinh x}\right)\right)=-\operatorname{cosech}x
 \]
 
-so an integrating factor is
-\[
-\mu(x)=\exp\left(\int -\operatorname{cosech}x\,\mathrm{d}x\right)=\frac{\cosh x+1}{\sinh x}
-\]
+The integrating factor is
+\begin{align*}
+\mu(x)&=e^{\int P(x)\,\mathrm{d}x} \\
+&=e^{\int -\operatorname{cosech}x\,\mathrm{d}x} \\
+&=e^{\ln\left(\frac{\cosh x+1}{\sinh x}\right)} \\
+&=\frac{\cosh x+1}{\sinh x}
+\end{align*}
 
 Multiply the differential equation throughout by $\mu(x)$:
 \[
 \frac{\cosh x+1}{\sinh x}\frac{\mathrm{d}y}{\mathrm{d}x}-\frac{\cosh x+1}{\sinh^2 x}y
 =\frac{(\cosh x+1)(1-\cosh x)}{\sinh^2 x}
-\]
-
-The left-hand side is
-\[
-\frac{\mathrm{d}}{\mathrm{d}x}\left(\mu y\right)
-=\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{\cosh x+1}{\sinh x}y\right)
 \]
 
 Simplify the right-hand side:
@@ -1707,7 +1665,7 @@ Simplify the right-hand side:
 &=-1
 \end{align*}
 
-So
+The left-hand side is the derivative of $\frac{\cosh x+1}{\sinh x}y$, so
 \[
 \frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{\cosh x+1}{\sinh x}y\right)=-1
 \]
@@ -1724,7 +1682,12 @@ y=\frac{(c-x)\sinh x}{\cosh x+1}
 
 Now use the condition $y=2$ when $x=\ln 3$.
 
-First find $\sinh(\ln 3)$ and $\cosh(\ln 3)$:
+First find $\sinh(\ln 3)$ and $\cosh(\ln 3)$. Using
+\[
+\sinh t=\frac{e^t-e^{-t}}{2},\qquad \cosh t=\frac{e^t+e^{-t}}{2}
+\]
+
+with $t=\ln 3$, we get
 \begin{align*}
 \sinh(\ln 3)&=\frac{e^{\ln 3}-e^{-\ln 3}}{2}=\frac{3-\frac13}{2}=\frac{4}{3} \\
 \cosh(\ln 3)&=\frac{e^{\ln 3}+e^{-\ln 3}}{2}=\frac{3+\frac13}{2}=\frac{5}{3}
@@ -1734,8 +1697,8 @@ Substitute into the solution:
 \begin{align*}
 2
 &=\frac{(c-\ln 3)\sinh(\ln 3)}{\cosh(\ln 3)+1} \\
-&=\frac{(c-\ln 3)\cdot \frac43}{\frac53+1} \\
-&=\frac{(c-\ln 3)\cdot \frac43}{\frac83} \\
+&=\frac{(c-\ln 3)\times \frac43}{\frac53+1} \\
+&=\frac{(c-\ln 3)\times \frac43}{\frac83} \\
 &=\frac{c-\ln 3}{2}
 \end{align*}
 
@@ -1746,7 +1709,7 @@ Therefore
 c&=4+\ln 3
 \end{align*}
 
-Substituting back,
+Substituting back:
 \[
 y=\frac{(4+\ln 3-x)\sinh x}{\cosh x+1}
 \]
