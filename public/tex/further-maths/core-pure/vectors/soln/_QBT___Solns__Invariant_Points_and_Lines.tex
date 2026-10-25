@@ -4,7 +4,7 @@
 \djsSolnHeader{Invariant Points and Lines}
 \djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}
 
-\djsLastUpdated{14 October 2026}
+\djsLastUpdated{25 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -19,9 +19,9 @@
 \questionitem
 % [Source: _QBT___Solns__Invariant_Points_and_Lines, Q1]
 
-The matrix $M$ represents the transformation $T$ and is given by
+The matrix $\mathbf{M}$ represents the transformation $T$ and is given by
 \[
-M = \begin{pmatrix}
+\mathbf{M} = \begin{pmatrix}
 p + 3 & -2 \\[6pt]
  p + 2 & 1 - p
 \end{pmatrix}
@@ -35,9 +35,9 @@ p + 3 & -2 \\[6pt]
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item When $p=-1$,
+  \item When $p=-1$:
 \[
-M=\begin{pmatrix}
+\mathbf{M}=\begin{pmatrix}
 p+3 & -2\\
 p+2 & 1-p
 \end{pmatrix}
@@ -77,9 +77,9 @@ The image of the point $(3,4)$ is found by multiplying by the matrix:
 
 So the image of $(3,4)$ under $T$ is $(-2,11)$, as required.
 
-  \item When $p=2$,
+  \item When $p=2$:
 \[
-M=\begin{pmatrix}
+\mathbf{M}=\begin{pmatrix}
 p+3 & -2\\
 p+2 & 1-p
 \end{pmatrix}
@@ -91,6 +91,11 @@ p+2 & 1-p
 \]
 
 Let an invariant point be $(x,y)$. Then
+\[
+\mathbf{M}\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}x\\y\end{pmatrix}
+\]
+
+So
 \[
 \begin{pmatrix}
 5 & -2\\
@@ -113,7 +118,7 @@ This gives
 4x-y&=y
 \end{align*}
 
-Rearranging,
+Rearranging:
 \begin{align*}
 4x-2y&=0\\
 4x-2y&=0
@@ -195,18 +200,18 @@ For the line to be invariant, the image point must also lie on \(y=mx+c\). So
 (2+3m)x+3c = m\bigl((1+4m)x+4c\bigr)+c
 \]
 
-Expanding,
+Expanding:
 \[
 (2+3m)x+3c=(m+4m^2)x+(4m+1)c
 \]
 
-Comparing coefficients of \(x\) and the constant terms,
+Comparing coefficients of \(x\) and the constant terms:
 \begin{align*}
 2+3m&=m+4m^2\\
 3c&=(4m+1)c
 \end{align*}
 
-From the first equation,
+From the first equation:
 \begin{align*}
 4m^2-2m-2&=0\\
 2m^2-m-1&=0\\
@@ -218,7 +223,7 @@ So
 m=1 \quad \text{or} \quad m=-\frac12
 \]
 
-From the second equation,
+From the second equation:
 \[
 (2-4m)c=0
 \]
@@ -249,17 +254,17 @@ Equivalently, \(x+2y=0\).
 
 The matrix of a linear transformation $T$ is
 \[
-M = \begin{pmatrix} p+2 & -5 \\[6pt] -2 & p-1 \end{pmatrix}
+\mathbf{M} = \begin{pmatrix} p+2 & -5 \\[6pt] -2 & p-1 \end{pmatrix}
 \] \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Find the values of $p$ for which $T$ is not invertible. \marks{4} \\
 \end{enumerate}
 It is now given that $p = 3$, so that
 \[
-M = \begin{pmatrix} 5 & -5 \\ -2 & 2 \end{pmatrix}
+\mathbf{M} = \begin{pmatrix} 5 & -5 \\ -2 & 2 \end{pmatrix}
 \] \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Find the equations of the invariant lines, through the origin, of the transformation represented by $M$. \marks{5} \\
+  \item Find the equations of the invariant lines, through the origin, of the transformation represented by $\mathbf{M}$. \marks{5} \\
 \end{enumerate}
 
 \vspace*{10pt}
@@ -268,7 +273,7 @@ M = \begin{pmatrix} 5 & -5 \\ -2 & 2 \end{pmatrix}
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item A matrix is not invertible when its determinant is \(0\).
   \[
-  \det(M)=
+  \det(\mathbf{M})=
   \begin{vmatrix}
   p+2 & -5\\
   -2 & p-1
@@ -276,10 +281,10 @@ M = \begin{pmatrix} 5 & -5 \\ -2 & 2 \end{pmatrix}
   =(p+2)(p-1)-(-5)(-2)
   \]
   \[
-  \det(M)=(p+2)(p-1)-10=p^2+p-2-10=p^2+p-12
+  \det(\mathbf{M})=(p+2)(p-1)-10=p^2+p-2-10=p^2+p-12
   \]
 
-  Factorising,
+  Factorising:
   \[
   p^2+p-12=(p+4)(p-3)
   \]
@@ -295,7 +300,7 @@ M = \begin{pmatrix} 5 & -5 \\ -2 & 2 \end{pmatrix}
 
   First check the vertical line \(x=0\). A general point on this line is \(\begin{pmatrix}0\\y\end{pmatrix}\), and
   \[
-  M\begin{pmatrix}0\\y\end{pmatrix}
+  \mathbf{M}\begin{pmatrix}0\\y\end{pmatrix}
   =
   \begin{pmatrix}
   5 & -5\\
@@ -312,7 +317,7 @@ M = \begin{pmatrix} 5 & -5 \\ -2 & 2 \end{pmatrix}
 
   A general point on this line is \(\begin{pmatrix}x\\mx\end{pmatrix}\). Its image is
   \[
-  M\begin{pmatrix}x\\mx\end{pmatrix}
+  \mathbf{M}\begin{pmatrix}x\\mx\end{pmatrix}
   =
   \begin{pmatrix}
   5 & -5\\
@@ -336,12 +341,12 @@ M = \begin{pmatrix} 5 & -5 \\ -2 & 2 \end{pmatrix}
   -2+2m = 5m-5m^2
   \]
 
-  Rearranging,
+  Rearranging:
   \[
   5m^2-3m-2=0
   \]
 
-  Factorising,
+  Factorising:
   \[
   5m^2-3m-2=(5m+2)(m-1)
   \]
@@ -354,10 +359,7 @@ M = \begin{pmatrix} 5 & -5 \\ -2 & 2 \end{pmatrix}
   Therefore the invariant lines are
   \[
   y=x
-  \]
-
-  and
-  \[
+  \qquad\text{and}\qquad
   y=-\frac25x
   \]
 
@@ -365,8 +367,6 @@ M = \begin{pmatrix} 5 & -5 \\ -2 & 2 \end{pmatrix}
   \[
   2x+5y=0
   \]
-
-  So the invariant lines are \(y=x\) and \(2x+5y=0\).
 \end{enumerate}
 \end{djsSolution}
 
@@ -377,11 +377,11 @@ M = \begin{pmatrix} 5 & -5 \\ -2 & 2 \end{pmatrix}
 \questionitem
 % [Source: _QBT___Solns__Invariant_Points_and_Lines, Q4]
 
-The matrix $A$ is given by
+The matrix $\mathbf{A}$ is given by
 \[
-A = \frac{1}{5}\begin{pmatrix}-3 & -4 \\ -4 & 3\end{pmatrix}
+\mathbf{A} = \frac{1}{5}\begin{pmatrix}-3 & -4 \\ -4 & 3\end{pmatrix}
 \] \\
-You are given that $A$ represents the transformation $T$, where $T$ is a reflection in a straight line through the origin, $O$. \\
+You are given that $\mathbf{A}$ represents the transformation $T$, where $T$ is a reflection in a straight line through the origin, $O$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Explain why $T$ must have a line of invariant points. State the geometric significance of this line. \marks{2} \\
   \item By considering the line of invariant points for $T$, determine the equation of the mirror line.
@@ -403,7 +403,7 @@ Give your answer in the form $y = mx + c$. \marks{2} \\
 
   \item Let an invariant point be $(x,y)$. Then
   \[
-  A\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}x\\y\end{pmatrix}
+  \mathbf{A}\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}x\\y\end{pmatrix}
   \]
 
   So
@@ -453,7 +453,7 @@ Give your answer in the form $y = mx + c$. \marks{2} \\
 
   \item First find the image of $P=(4,7)$ under $T$:
   \[
-  A\begin{pmatrix}4\\7\end{pmatrix}
+  \mathbf{A}\begin{pmatrix}4\\7\end{pmatrix}
   =
   \frac{1}{5}
   \begin{pmatrix}
@@ -486,7 +486,7 @@ Give your answer in the form $y = mx + c$. \marks{2} \\
   \[
   \left(\frac{4+(-8)}{2},\frac{7+1}{2}\right)
   =
-  \left(\frac{-4}{2},\frac{8}{2}\right)
+  \left(-\frac{4}{2},\frac{8}{2}\right)
   =
   (-2,4)
   \]
@@ -497,16 +497,16 @@ Give your answer in the form $y = mx + c$. \marks{2} \\
 
   The line $2x+by=6$ does not pass through the origin, so it cannot be the mirror line. For it to be invariant under the reflection, it must be perpendicular to the mirror line.
 
-  The slope of $y=-2x$ is $-2$.
+  The gradient of $y=-2x$ is $-2$.
 
   Rewrite $2x+by=6$ as
   \[
   y=-\frac{2}{b}x+\frac{6}{b}
   \]
 
-  so its slope is $-\frac{2}{b}$.
+  so its gradient is $-\frac{2}{b}$.
 
-  Since perpendicular lines have slopes whose product is $-1$,
+  Perpendicular lines have gradients whose product is $-1$, so
   \[
   (-2)\left(-\frac{2}{b}\right)=-1
   \]
@@ -530,15 +530,15 @@ Give your answer in the form $y = mx + c$. \marks{2} \\
 \questionitem
 % [Source: _QBT___Solns__Invariant_Points_and_Lines, Q5]
 
-The matrix $M$ is given by
+The matrix $\mathbf{M}$ is given by
 \[
-M = \begin{pmatrix} 1 & 0 \\[6pt] 0 & 6 \end{pmatrix}\begin{pmatrix} \frac{1}{2} & \frac{\sqrt{3}}{2} \\[6pt] \frac{\sqrt{3}}{2} & -\frac{1}{2} \end{pmatrix}
+\mathbf{M} = \begin{pmatrix} 1 & 0 \\[6pt] 0 & 6 \end{pmatrix}\begin{pmatrix} \frac{1}{2} & \frac{\sqrt{3}}{2} \\[6pt] \frac{\sqrt{3}}{2} & -\frac{1}{2} \end{pmatrix}
 \] \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item The matrix $M$ represents a sequence of two geometrical transformations in the $x$-$y$ plane. \\
+  \item The matrix $\mathbf{M}$ represents a sequence of two geometrical transformations in the $x$-$y$ plane. \\
   Give full details of the two transformations, stating clearly the order in which they are applied. \marks{4} \\
-  \item Write $M^{-1}$ as the product of two matrices, neither of which is $I$. \marks{2} \\
-  \item Find the equations of the invariant lines, through the origin, of the transformation represented by $M$. \marks{7} \\
+  \item Write $\mathbf{M}^{-1}$ as the product of two matrices, neither of which is $\mathbf{I}$. \marks{2} \\
+  \item Find the equations of the invariant lines, through the origin, of the transformation represented by $\mathbf{M}$. \marks{7} \\
 \end{enumerate}
 
 \vspace*{10pt}
@@ -547,17 +547,17 @@ M = \begin{pmatrix} 1 & 0 \\[6pt] 0 & 6 \end{pmatrix}\begin{pmatrix} \frac{1}{2}
 \begin{enumerate}[label=\textbf{(\alph*)}]
 \item Let
 \[
-D=\begin{pmatrix}1&0\\0&6\end{pmatrix},
+\mathbf{D}=\begin{pmatrix}1&0\\0&6\end{pmatrix},
 \qquad
-R=\begin{pmatrix}\frac12&\frac{\sqrt3}{2}\\[4pt]\frac{\sqrt3}{2}&-\frac12\end{pmatrix}
+\mathbf{R}=\begin{pmatrix}\frac12&\frac{\sqrt3}{2}\\[4pt]\frac{\sqrt3}{2}&-\frac12\end{pmatrix}
 \]
 
 so that
 \[
-M=DR
+\mathbf{M}=\mathbf{D}\mathbf{R}
 \]
 
-First consider \(R\).  
+First consider \(\mathbf{R}\).  
 A reflection in the line through the origin making angle \(\theta\) with the \(x\)-axis has matrix
 \[
 \begin{pmatrix}
@@ -566,7 +566,7 @@ A reflection in the line through the origin making angle \(\theta\) with the \(x
 \end{pmatrix}
 \]
 
-Comparing with \(R\),
+Comparing with \(\mathbf{R}\):
 \[
 \cos 2\theta=\frac12,
 \qquad
@@ -576,16 +576,16 @@ Comparing with \(R\),
 so
 \[
 2\theta=60^\circ
-\quad\Rightarrow\quad
+\quad\Longrightarrow\quad
 \theta=30^\circ
 \]
 
-Therefore \(R\) is a reflection in the line through the origin at \(30^\circ\) to the \(x\)-axis, whose equation is
+Therefore \(\mathbf{R}\) is a reflection in the line through the origin at \(30^\circ\) to the \(x\)-axis, whose equation is
 \[
 y=(\tan 30^\circ)x=\frac{x}{\sqrt3}
 \]
 
-Now consider \(D\). It maps
+Now consider \(\mathbf{D}\). It maps
 \[
 \begin{pmatrix}x\\y\end{pmatrix}
 \mapsto
@@ -594,33 +594,33 @@ Now consider \(D\). It maps
 
 so it is a stretch parallel to the \(y\)-axis with scale factor \(6\), with the \(x\)-axis invariant.
 
-Since \(M=DR\), the matrix on the right acts first.
+Since \(\mathbf{M}=\mathbf{D}\mathbf{R}\), the matrix on the right acts first.
 
-So the transformations are:
+So the transformations are
 \[
 \text{first reflect in } y=\frac{x}{\sqrt3},
 \quad
 \text{then stretch parallel to the } y\text{-axis with scale factor }6
 \]
 
-\item Using \(M=DR\),
+\item Using \(\mathbf{M}=\mathbf{D}\mathbf{R}\):
 \[
-M^{-1}=(DR)^{-1}=R^{-1}D^{-1}
+\mathbf{M}^{-1}=(\mathbf{D}\mathbf{R})^{-1}=\mathbf{R}^{-1}\mathbf{D}^{-1}
 \]
 
 A reflection is its own inverse, so
 \[
-R^{-1}=R
+\mathbf{R}^{-1}=\mathbf{R}
 \]
 
 and
 \[
-D^{-1}=\begin{pmatrix}1&0\\0&\frac16\end{pmatrix}
+\mathbf{D}^{-1}=\begin{pmatrix}1&0\\0&\frac16\end{pmatrix}
 \]
 
 Hence
 \[
-M^{-1}
+\mathbf{M}^{-1}
 =
 \begin{pmatrix}
 \frac12&\frac{\sqrt3}{2}\\[4pt]
@@ -632,9 +632,9 @@ M^{-1}
 \end{pmatrix}
 \]
 
-\item First find \(M\):
+\item First find \(\mathbf{M}\):
 \[
-M=
+\mathbf{M}=
 \begin{pmatrix}1&0\\0&6\end{pmatrix}
 \begin{pmatrix}\frac12&\frac{\sqrt3}{2}\\[4pt]\frac{\sqrt3}{2}&-\frac12\end{pmatrix}
 =
@@ -648,7 +648,7 @@ An invariant line through the origin must map to itself.
 
 First check the vertical line \(x=0\). Its direction vector is \(\begin{pmatrix}0\\1\end{pmatrix}\), and
 \[
-M\begin{pmatrix}0\\1\end{pmatrix}
+\mathbf{M}\begin{pmatrix}0\\1\end{pmatrix}
 =
 \begin{pmatrix}\frac{\sqrt3}{2}\\-3\end{pmatrix}
 \]
@@ -664,7 +664,7 @@ with direction vector \(\begin{pmatrix}1\\m\end{pmatrix}\).
 
 Its image is
 \[
-M\begin{pmatrix}1\\m\end{pmatrix}
+\mathbf{M}\begin{pmatrix}1\\m\end{pmatrix}
 =
 \begin{pmatrix}
 \frac12+\frac{\sqrt3}{2}m\\[4pt]
@@ -744,7 +744,7 @@ where $p$ is a constant. \\
   \begin{pmatrix}0\\y\end{pmatrix}
   \]
 
-  Applying the transformation,
+  Applying the transformation:
   \[
   \mathbf{M}\begin{pmatrix}0\\y\end{pmatrix}
   =
@@ -794,7 +794,7 @@ where $p$ is a constant. \\
   p=2m-m^2
   \]
 
-  Rearranging,
+  Rearranging:
   \[
   m^2-2m+p=0
   \]
@@ -808,7 +808,7 @@ where $p$ is a constant. \\
   (-2)^2-4(1)(p)=4-4p
   \]
 
-  For no real roots,
+  For no real roots:
   \[
   4-4p<0
   \]
@@ -828,7 +828,7 @@ where $p$ is a constant. \\
 
   Its determinant is
   \[
-  \det(\mathbf{M})=2\cdot 0-(-1)(p)=p
+  \det(\mathbf{M})=2\times 0-(-1)(p)=p
   \]
 
   The transformation multiplies areas by $3$ and reverses orientation, so
@@ -849,7 +849,7 @@ where $p$ is a constant. \\
   m^2-2m-3=0
   \]
 
-  Factorising,
+  Factorising:
   \[
   (m-3)(m+1)=0
   \]
@@ -877,7 +877,7 @@ where $p$ is a constant. \\
 
 The matrix
 \[
-B = \begin{pmatrix} 1 & -4 \\ 2 & -1 \end{pmatrix}
+\mathbf{B} = \begin{pmatrix} 1 & -4 \\ 2 & -1 \end{pmatrix}
 \]
 represents the linear transformation $T$. \\
 Any invariant line for $T$ must be parallel to an invariant line through the origin. \\
@@ -901,7 +901,7 @@ Any invariant line for $T$ must be parallel to an invariant line through the ori
 
 Under the transformation \(T\) represented by
 \[
-B=\begin{pmatrix}1&-4\\2&-1\end{pmatrix}
+\mathbf{B}=\begin{pmatrix}1&-4\\2&-1\end{pmatrix}
 \]
 
 this point maps to
@@ -930,14 +930,14 @@ Hence the image line has equation
 y=\frac{2-m}{1-4m}x
 \]
 
-Now take the special case \(m=\tfrac14\). A point on \(y=\tfrac14x\) is \(\begin{pmatrix}x\\x/4\end{pmatrix}\), and
+Now take the special case \(m=\tfrac14\). A point on \(y=\tfrac14x\) is \(\begin{pmatrix}x\\\frac{x}{4}\end{pmatrix}\), and
 \[
 \begin{pmatrix}1&-4\\2&-1\end{pmatrix}
-\begin{pmatrix}x\\x/4\end{pmatrix}
+\begin{pmatrix}x\\\frac{x}{4}\end{pmatrix}
 =
-\begin{pmatrix}x-x\\2x-x/4\end{pmatrix}
+\begin{pmatrix}x-x\\2x-\frac{x}{4}\end{pmatrix}
 =
-\begin{pmatrix}0\\7x/4\end{pmatrix}
+\begin{pmatrix}0\\\frac{7x}{4}\end{pmatrix}
 \]
 
 So the image of \(y=\tfrac14x\) is
@@ -963,14 +963,14 @@ Hence the image of \(x=0\) is
 y=\frac14x
 \]
 
-Therefore:
+Therefore
 \[
 y=mx \mapsto y=\frac{2-m}{1-4m}x \quad (m\ne \tfrac14), \qquad
 y=\frac14x \mapsto x=0, \qquad
 x=0 \mapsto y=\frac14x
 \]
 
-  \item For a line through the origin to be invariant, its image must have the same slope.
+  \item For a line through the origin to be invariant, its image must have the same gradient.
 
 So for a non-vertical line \(y=mx\), we require
 \[
@@ -991,7 +991,7 @@ Its discriminant is
 
 So there is no real value of \(m\), and therefore no invariant non-vertical line through the origin.
 
-From part (a),
+From part (a):
 \[
 y=\frac14x \mapsto x=0
 \qquad\text{and}\qquad
@@ -1012,36 +1012,36 @@ Therefore there are no invariant lines through the origin. Since any invariant l
 % [Source: _QBT___Solns__Invariant_Points_and_Lines, Q8]
 
 \[
-A = \begin{pmatrix} b & a - 3 \\[6pt] 2a - 1 & -2 \end{pmatrix}
+\mathbf{A} = \begin{pmatrix} b & a - 3 \\[6pt] 2a - 1 & -2 \end{pmatrix}
 \]
 where $a$ and $b$ are non-zero constants. \\
-Given that the matrix $A$ is self-inverse, \\
+Given that the matrix $\mathbf{A}$ is self-inverse, \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item determine the value of $b$ and the possible values of $a$. \marks{5} \\
 \end{enumerate}
-The matrix $A$ represents a linear transformation $M$ of the plane. \\
+The matrix $\mathbf{A}$ represents a linear transformation $T$ of the plane. \\
 Using the smaller value of $a$ from part (a), \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item show that the invariant points of the linear transformation $M$ form a line, stating the equation of this line. \marks{2} \\
+  \item show that the invariant points of the linear transformation $T$ form a line, stating the equation of this line. \marks{2} \\
 \end{enumerate}
 
 \vspace*{10pt}
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Since \(A\) is self-inverse, \(A^{-1}=A\), so
+  \item Since \(\mathbf{A}\) is self-inverse, \(\mathbf{A}^{-1}=\mathbf{A}\), so
 \[
-A^2=I
+\mathbf{A}^2=\mathbf{I}
 \]
 
 Now
 \[
-A=\begin{pmatrix} b & a-3 \\ 2a-1 & -2 \end{pmatrix}
+\mathbf{A}=\begin{pmatrix} b & a-3 \\ 2a-1 & -2 \end{pmatrix}
 \]
 
 so
 \[
-A^2=
+\mathbf{A}^2=
 \begin{pmatrix} b & a-3 \\ 2a-1 & -2 \end{pmatrix}
 \begin{pmatrix} b & a-3 \\ 2a-1 & -2 \end{pmatrix}
 =
@@ -1077,7 +1077,7 @@ and
 (2a-1)(a-3)+4=1
 \]
 
-Using the last equation,
+Using the last equation:
 \begin{align*}
 (2a-1)(a-3)+4&=1\\
 2a^2-7a+3+4&=1\\
@@ -1115,12 +1115,17 @@ Hence
 b=2,\qquad a=\frac32 \text{ or } 2
 \]
 
-  \item Using the smaller value \(a=\frac32\), and \(b=2\),
+  \item Using the smaller value \(a=\frac32\), and \(b=2\):
 \[
-A=\begin{pmatrix} 2 & -\frac32 \\ 2 & -2 \end{pmatrix}
+\mathbf{A}=\begin{pmatrix} 2 & -\frac32 \\ 2 & -2 \end{pmatrix}
 \]
 
 Let \((x,y)\) be an invariant point. Then it is unchanged by the transformation, so
+\[
+\mathbf{A}\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}x\\y\end{pmatrix}
+\]
+
+So
 \[
 \begin{pmatrix} 2 & -\frac32 \\ 2 & -2 \end{pmatrix}
 \begin{pmatrix} x \\ y \end{pmatrix}
@@ -1158,25 +1163,25 @@ So the invariant points form the line \(2x-3y=0\), equivalently \(y=\frac{2}{3}x
 \questionitem
 % [Source: _QBT___Solns__Invariant_Points_and_Lines, Q9]
 
-The $2 \times 2$ matrix $\mathbf{A}$ represents a transformation $\mathbf{T}$ which has the following properties. \\
+The $2 \times 2$ matrix $\mathbf{A}$ represents a transformation $T$ which has the following properties. \\
 
 \begin{itemize}
 \item The image of the point $(1,-1)$ is the point $(2,0)$.
 \item An object shape whose area is $4$ is transformed to an image shape whose area is $24$.
-\item $\mathbf{T}$ has a line of invariant points. \\
+\item $T$ has a line of invariant points. \\
 \end{itemize}
 
-\begin{enumerate}[label=(\roman*)]
+\begin{enumerate}[label=\textbf{(\roman*)}]
   \item Find a possible matrix for $\mathbf{A}$. \marks{8} \\
 \end{enumerate}
 
-The transformation $\mathbf{S}$ is represented by the matrix $\mathbf{B}$ where
+The transformation $S$ is represented by the matrix $\mathbf{B}$ where
 \[
 \mathbf{B} = \begin{pmatrix}2 & 1 \\ 2 & 3\end{pmatrix}
 \] \\
-\begin{enumerate}[label=(\roman*), resume]
-  \item Find the equation of the line of invariant points of $\mathbf{S}$. \marks{2} \\
-  \item Show that any line of the form $y = 2x + c$ is an invariant line of $\mathbf{S}$. \marks{3} \\
+\begin{enumerate}[label=\textbf{(\roman*)}, resume]
+  \item Find the equation of the line of invariant points of $S$. \marks{2} \\
+  \item Show that any line of the form $y = 2x + c$ is an invariant line of $S$. \marks{3} \\
 \end{enumerate}
 
 \vspace*{10pt}
@@ -1188,7 +1193,7 @@ The transformation $\mathbf{S}$ is represented by the matrix $\mathbf{B}$ where
 \mathbf A=\begin{pmatrix}a&b\\ c&d\end{pmatrix}
 \]
 
-Using the fact that $(1,-1)$ maps to $(2,0)$,
+Using the fact that $(1,-1)$ maps to $(2,0)$:
 \[
 \mathbf A\begin{pmatrix}1\\-1\end{pmatrix}
 =
@@ -1220,14 +1225,14 @@ Next, the area scale factor is
 \frac{24}{4}=6
 \]
 
-For a $2\times2$ matrix, the area scale factor is $|\det \mathbf A|$, so
+For a $2\times2$ matrix, the area scale factor is $|\det(\mathbf A)|$, so
 \[
-|\det \mathbf A|=6
+|\det(\mathbf A)|=6
 \]
 
 Now
 \begin{align*}
-\det \mathbf A&=ad-bc\\
+\det(\mathbf A)&=ad-bc\\
 &=(b+2)d-bd\\
 &=2d
 \end{align*}
@@ -1242,7 +1247,7 @@ So
 d=\pm3
 \]
 
-Now use the fact that $\mathbf T$ has a line of invariant points.
+Now use the fact that $T$ has a line of invariant points.
 
 If a point on this line is $\begin{pmatrix}x\\y\end{pmatrix}$, then
 \[
@@ -1365,7 +1370,7 @@ y=-x
 \begin{pmatrix}x\\2x+c\end{pmatrix}
 \]
 
-Its image under $\mathbf S$ is
+Its image under $S$ is
 \begin{align*}
 \mathbf B\begin{pmatrix}x\\2x+c\end{pmatrix}
 &=
@@ -1406,7 +1411,7 @@ Y=2X+c
 
 Therefore the image point also lies on the line $y=2x+c$.
 
-Hence every line of the form $y=2x+c$ is an invariant line of $\mathbf S$.
+Hence every line of the form $y=2x+c$ is an invariant line of $S$.
 \end{enumerate}
 \end{djsSolution}
 
