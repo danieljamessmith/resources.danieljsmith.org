@@ -1,0 +1,466 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/markscheme_preamble.tex}
+
+\djsSchemeHeader{Modelling with 1st Order Differential Equations}
+\djsSitePath{Core Pure}{Differential Equations}
+
+\djsLastUpdated{25 October 2026}
+\begin{document}
+\djsSetQuestionCount{14}
+\djsAddMarks{1}{10}
+\djsAddMarks{2}{11}
+\djsAddMarks{3}{13}
+\djsAddMarks{4}{11}
+\djsAddMarks{5}{9}
+\djsAddMarks{6}{11}
+\djsAddMarks{7}{11}
+\djsAddMarks{8}{20}
+\djsAddMarks{9}{15}
+\djsAddMarks{10}{25}
+\djsAddMarks{11}{23}
+\djsAddMarks{12}{22}
+\djsAddMarks{13}{22}
+\djsAddMarks{14}{22}
+\vspace*{6pt}
+\djsContentsTitle
+\vspace{30pt}
+\msContentsHeading
+\begin{mscontents}{}
+Question & Marks by part & Marks & Page \\
+\msContentsQuestion{1} & (a)\,2\msSep (b)\,8 & 10 & \msContentsPage{1} \\
+\msContentsQuestion{2} & (a)\,4\msSep (b)\,6\msSep (c)\,1 & 11 & \msContentsPage{2} \\
+\msContentsQuestion{3} & (a)\,4\msSep (b)\,8\msSep (c)\,1 & 13 & \msContentsPage{3} \\
+\msContentsQuestion{4} & (a)\,4\msSep (b)\,5\msSep (c)\,2 & 11 & \msContentsPage{4} \\
+\msContentsQuestion{5} & (a)\,2\msSep (b)\,7 & 9 & \msContentsPage{5} \\
+\msContentsQuestion{6} & (a)\,6\msSep (b)\,2\msSep (c)\,3 & 11 & \msContentsPage{6} \\
+\msContentsQuestion{7} & (a)\,6\msSep (b)\,2\msSep (c)\,3 & 11 & \msContentsPage{7} \\
+\msContentsQuestion{8} & (a)(i)\,1\msSep (a)(ii)\,3\msSep (b)\,2\msSep (c)(i)\,4\msSep (c)(ii)\,2\msSep (d)\,6\msSep (e)\,2 & 20 & \msContentsPage{8} \\
+\msContentsQuestion{9} & (a)\,4\msSep (b)\,9\msSep (c)\,2 & 15 & \msContentsPage{9} \\
+\msContentsQuestion{10} & (a)\,1\msSep (b)\,1\msSep (c)(i)\,5\msSep (c)(ii)\,1\msSep (d)\,1\msSep (e)(i)\,8\msSep (e)(ii)\,2\msSep (f)\,6 & 25 & \msContentsPage{10} \\
+\msContentsQuestion{11} & (a)\,1\msSep (b)\,1\msSep (c)(i)\,5\msSep (c)(ii)\,1\msSep (d)\,1\msSep (e)(i)\,6\msSep (e)(ii)\,2\msSep (f)\,6 & 23 & \msContentsPage{11} \\
+\msContentsQuestion{12} & (a)(i)\,2\msSep (a)(ii)\,2\msSep (b)(i)\,5\msSep (b)(ii)\,2\msSep (c)(i)\,1\msSep (c)(ii)\,10 & 22 & \msContentsPage{12} \\
+\msContentsQuestion{13} & (a)(i)\,2\msSep (a)(ii)\,2\msSep (b)(i)\,5\msSep (b)(ii)\,2\msSep (c)(i)\,1\msSep (c)(ii)\,10 & 22 & \msContentsPage{13} \\
+\msContentsQuestion{14} & (a)(i)\,1\msSep (a)(ii)\,3\msSep (b)\,5\msSep (c)(i)\,4\msSep (c)(ii)\,2\msSep (d)\,5\msSep (e)\,2 & 22 & \msContentsPage{14} \\
+\SetCell[c=2]{r} Total & & 225 & \\
+\end{mscontents}
+\newpage
+\input{../../../../_shared/markscheme_conventions.tex}
+
+\msQuestion{1}
+\begin{msscheme}{
+  hline{3-4,6-13} = {2-Z}{0.4pt, msGrid},
+  hline{5,14} = {0.4pt, msGrid},
+  row{14} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+1(a) & {\(2\frac{\mathrm{d}v}{\mathrm{d}t} = \frac{12t-4v}{1+t}\)\\[4pt] \(\Rightarrow \frac{\mathrm{d}v}{\mathrm{d}t}+\frac{\ldots}{1+t}v = \ldots\)} & M1 & {Uses \(F=ma\) with acceleration \(\frac{\mathrm{d}v}{\mathrm{d}t}\) and collects the \(v\) term on the LHS. Condone a slip dividing by the mass.} \\
+& {\(P(t)=\frac{2}{1+t}\), \(Q(t)=\frac{6t}{1+t}\)} & A1 & {Both correct, oe.} \\
+\nopagebreak & & [2] & \\
+1(b) & {\(e^{\int \frac{2}{1+t}\,\mathrm{d}t}\)} & M1 & {Uses \(e^{\int P\,\mathrm{d}t}\) with their \(P(t)\) of the form \(\frac{k}{1+t}\).} \\
+& {\(= e^{2\ln(1+t)} = (1+t)^2\)} & A1 & \\
+& {\((1+t)^2v = \int 6t(1+t)\,\mathrm{d}t\)} & dM1 & {Writes LHS as their integrating factor times \(v\), and integrates their \(Q(t)\) times it, at least one power increased by 1.} \\
+& {\((1+t)^2v = 3t^2+2t^3+c\)} & A1 & {Constant required; oe.} \\
+& {\(t=0,\ v=-5 \Rightarrow c = \ldots\ [=-5]\)} & M1 & {Substitutes \(t=0\), \(v=-5\) into their general solution containing a constant.} \\
+& {\(v=\frac{2t^3+3t^2-5}{(1+t)^2}\)} & A1 & {oe.} \\
+& {\(2t^3+3t^2-5=0\)\\[4pt] \(\Rightarrow (t-1)(2t^2+5t+5)=0\)} & M1 & {Sets their numerator equal to zero and finds a root by any means, e.g. factor theorem then factorising; a calculator root is accepted.} \\
+& {\(2t^2+5t+5>0\) for \(t\ge 0\) \(\Rightarrow t=1\)} & A1 & {\(t=1\) with the quadratic factor shown non-zero for \(t\ge0\) (negative discriminant or positive terms), or another argument excluding an earlier root.} \\
+\nopagebreak & & [8] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 1 & & 10 & \\
+\end{msscheme}
+
+\msQuestion{2}
+\begin{msscheme}{
+  hline{3-6,8-13,15} = {2-Z}{0.4pt, msGrid},
+  hline{7,14,16} = {0.4pt, msGrid},
+  row{16} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+2(a) & {\(V = 600 + 20t - 30t = 600 - 10t\)} & B1 & {oe, e.g. \(10(60-t)\).} \\
+& {Rate in \(= 20 \times 3 = 60\)} & B1 & \\
+& {Rate out \(= 30 \times \frac{x}{600 - 10t}\)} & M1 & {Uses outflow rate \(\times\) \(x\) over their volume, where the volume depends on \(t\). Not for \(\frac{x}{600}\).} \\
+& {\(\frac{\mathrm{d}x}{\mathrm{d}t} = 60 - \frac{30x}{600 - 10t} = 60 - \frac{3x}{60 - t}\)} & A1~AG & {Rate in minus rate out, both correct, leading without error to the printed equation; combined simplification accepted.} \\
+\nopagebreak & & [4] & \\
+2(b) & {\(\frac{\mathrm{d}x}{\mathrm{d}t} + \frac{3x}{60-t} = 60\)\\[4pt] \(\Rightarrow \mu = e^{\int \frac{3}{60-t}\,\mathrm{d}t}\)} & M1 & {Rearranges to \(\frac{\mathrm{d}x}{\mathrm{d}t} + Px = Q\) and forms \(e^{\int P\,\mathrm{d}t}\) with \(P = \pm\frac{3}{60-t}\). Condone a sign slip.} \\
+& {\(\phantom{\Rightarrow \mu} = (60-t)^{-3}\)} & A1 & {oe, e.g. \(\frac{1}{(60-t)^3}\).} \\
+& {\(\frac{x}{(60-t)^3} = \int 60(60-t)^{-3}\,\mathrm{d}t\)} & dM1 & {Writes LHS as \(x \times\) their integrating factor and integrates RHS, at least one power increased by 1. Condone sign and coefficient slips.} \\
+& {\(\frac{x}{(60-t)^3} = 30(60-t)^{-2} + c\)} & A1 & {Must include the constant; oe, e.g. \(x = 30(60-t) + c(60-t)^3\).} \\
+& {\(t = 0,\ x = 0 \Rightarrow c = \ldots\ [= -\tfrac{1}{120}]\)\\[4pt] \(t = 30 \Rightarrow x = \ldots\)} & M1 & {Uses \(x = 0\) at \(t = 0\) in their general solution with a constant to find it, then substitutes \(t = 30\).} \\
+& {\(x = 675\)} & A1 & \\
+\nopagebreak & & [6] & \\
+2(c) & {Mixing is not instant or uniform; refine by letting the concentration vary through the tank} & E1 & {States a valid limitation, such as non-instant mixing or non-constant flow rates, and a refinement addressing it. Both needed.} \\
+\nopagebreak & & [1] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 2 & & 11 & \\
+\end{msscheme}
+
+\msQuestion{3}
+\begin{msscheme}{
+  hline{3-6,8-15,17} = {2-Z}{0.4pt, msGrid},
+  hline{7,16,18} = {0.4pt, msGrid},
+  row{18} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+3(a) & {\(V = 600 - 3t\)} & B1 & {oe, eg \(3(200-t)\).} \\
+& {Rate in \(= 6 \times 2 = 12\)} & B1 & \\
+& {Rate out \(= 9 \times \dfrac{x}{600-3t}\)} & M1 & {Multiplies 9 by \(x\) divided by their volume, which must be a linear expression in \(t\).} \\
+& {\(\dfrac{\mathrm{d}x}{\mathrm{d}t} = 12 - \dfrac{9x}{600-3t} = 12 - \dfrac{3x}{200-t}\)} & A1~AG & {Rate in minus correct rate out, leading without error to the printed equation; cancelling by 3 may be combined.} \\
+\nopagebreak & & [4] & \\
+3(b) & {\(\dfrac{\mathrm{d}x}{\mathrm{d}t} + \dfrac{3}{200-t}x = 12\)\\[4pt] \(\Rightarrow e^{\int \frac{3}{200-t}\,\mathrm{d}t} = e^{-3\ln(200-t)}\)} & M1 & {Attempts \(e^{\int P\,\mathrm{d}t}\) with \(P = \pm\frac{3}{200-t}\), integrating to the form \(k\ln(200-t)\). Condone sign slips.} \\
+& {\(= (200-t)^{-3}\)} & A1 & {oe, eg \(\frac{1}{(200-t)^3}\).} \\
+& {\(x(200-t)^{-3} = \int 12(200-t)^{-3}\,\mathrm{d}t = \ldots\)} & dM1 & {Multiplies through by their integrating factor, LHS as \(x \times\) their factor, and integrates the RHS with the power of \((200-t)\) increased by 1.} \\
+& {\(x = 6(200-t) + c(200-t)^3\)} & A1 & {oe, including \(x(200-t)^{-3} = 6(200-t)^{-2} + c\). Constant required.} \\
+& {\(t = 0,\ x = 0\)\\[4pt] \(\Rightarrow 0 = 1200 + 200^3 c \Rightarrow c = \ldots\)} & M1 & {Substitutes \(t = 0\), \(x = 0\) into their general solution containing a constant and solves for it.} \\
+& {\(x = 6(200-t) - \frac{3}{20000}(200-t)^3\)} & A1 & {oe.} \\
+& {\(\dfrac{\text{"}x\text{"}}{3(200-t)} = 1.5\)\\[4pt] \(\Rightarrow (200-t)^2 = 10000 \Rightarrow t = \ldots\)} & M1 & {Sets their \(x\) divided by their volume equal to 1.5, or their \(x\) equal to 1.5 times their volume, and solves for \(t\).} \\
+& {\(t = 100\) (minutes)} & A1 & {A0 if \(t = 300\) is also given as an answer.} \\
+\nopagebreak & & [8] & \\
+3(c) & {Allow the concentration to vary within the tank (non-uniform mixing)} & E1 & {States a refinement changing a modelling assumption, eg non-uniform mixing, time to dissolve, variable flow rates. Not for vague accuracy comments.} \\
+\nopagebreak & & [1] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 3 & & 13 & \\
+\end{msscheme}
+
+\msQuestion{4}
+\begin{msscheme}{
+  hline{3-6,8-12,14-15} = {2-Z}{0.4pt, msGrid},
+  hline{7,13,16} = {0.4pt, msGrid},
+  row{16} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+4(a) & {(i) \(V = 15\) litres} & B1 & {Or 15000 ml.} \\
+& {(ii) Rate in \(= 0.2(4+e^{-0.1t})\)\\[4pt] \(\phantom{(ii) Rate in} = 0.8+0.2e^{-0.1t}\)} & B1 & {oe, such as \(\frac{200}{1000}(4+e^{-0.1t})\).} \\
+& {Rate out \(= 0.3 \times \frac{m}{15}\)} & M1 & {Forms rate out as the outflow rate times \(m\) divided by their constant volume from (i), in consistent units.} \\
+& {\(\frac{\mathrm{d}m}{\mathrm{d}t} = 0.8+0.2e^{-0.1t}-\frac{m}{50}\)} & A1~AG & {Rate in minus rate out, both correct, leading without error to the printed equation.} \\
+\nopagebreak & & [4] & \\
+4(b) & {\(e^{\int \frac{1}{50}\,\mathrm{d}t} = e^{t/50}\)} & B1 & {oe, such as \(e^{0.02t}\).} \\
+& {\(me^{t/50} = \int \left(0.8e^{t/50}+0.2e^{-0.08t}\right)\mathrm{d}t\)\\[4pt] \(\phantom{me^{t/50}} = \ldots\)} & M1 & {Writes LHS as \(m\) times their integrating factor of the form \(e^{kt}\), multiplies the RHS by it and integrates at least one term to the form \(pe^{qt}\).} \\
+& {\(me^{t/50} = 40e^{t/50}-2.5e^{-0.08t}+c\)} & A1 & {oe, including \(m = 40-2.5e^{-0.1t}+ce^{-0.02t}\). Constant required.} \\
+& {\(t=0,\ m=6 \Rightarrow 6 = 40-2.5+c \Rightarrow c = \ldots\)} & M1 & {Substitutes \(t=0\), \(m=6\) into their general solution containing a constant and solves for it.} \\
+& {\(m = 40-2.5e^{-0.1t}-31.5e^{-0.02t}\)} & A1 & {oe, with \(m\) as the subject.} \\
+\nopagebreak & & [5] & \\
+4(c) & {\(\frac{m(30)}{15} = \frac{40-2.5e^{-3}-31.5e^{-0.6}}{15} = \ldots\)} & M1 & {Substitutes \(t=30\) into their \(m\) and divides by their volume from (a)(i).} \\
+& {\(= 1.51\), close to \(1.52\), so the model is good} & A1ft & {ft their \(m\): their value (awrt 1.51 if correct) compared with 1.52, concluding the model is good if within 1.44 to 1.60, poor otherwise.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 4 & & 11 & \\
+\end{msscheme}
+
+\msQuestion{5}
+\begin{msscheme}{
+  hline{3-4,6-11} = {2-Z}{0.4pt, msGrid},
+  hline{5,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+5(a) & {\(2\frac{\mathrm{d}v}{\mathrm{d}t}=-2t(v+3)\)\\[4pt] \(\Rightarrow \frac{\mathrm{d}v}{\mathrm{d}t}+tv=-3t\)} & M1 & {Uses \(F=ma\) with mass 2 and acceleration \(\frac{\mathrm{d}v}{\mathrm{d}t}\), and rearranges to the given form. Condone sign slips.} \\
+& {\(P(t)=t,\ Q(t)=-3t\)} & A1 & {Both correct.} \\
+\nopagebreak & & [2] & \\
+5(b) & {\(e^{\int t\,\mathrm{d}t}=e^{t^2/2}\)} & B1 & \\
+& {\(ve^{t^2/2}=\int -3te^{t^2/2}\,\mathrm{d}t\)\\[4pt] \(\phantom{ve^{t^2/2}}=-3e^{t^2/2}+c\)} & M1 A1 & {\msNote{M1}{Multiplies through by their integrating factor of the form \(e^{f(t)}\) and integrates both sides, RHS to the form \(ke^{t^2/2}\). Condone sign and coefficient slips.}\\ \msNote{A1}{Correct, with constant, oe such as \(v=-3+ce^{-t^2/2}\).}} \\
+& {\(5=-3+c\Rightarrow c=\ldots\)} & M1 & {Substitutes \(t=0\), \(v=5\) into their general solution containing a constant to find it.} \\
+& {\(v=-3+8e^{-t^2/2}\)} & A1 & {oe, with \(v\) the subject.} \\
+& {\(8e^{-t^2/2}=3\Rightarrow -\frac{t^2}{2}=\ln\frac38\)\\[4pt] \(\Rightarrow t^2=\ldots\)} & M1 & {Sets their \(v\) of the form \(a+be^{-t^2/2}\) to zero and takes logarithms correctly to reach \(t^2=\ldots\) or \(t=\ldots\).} \\
+& {\(t=\sqrt{2\ln\frac83}\ [\approx 1.40]\)} & A1 & {Exact form or awrt 1.40, positive value only.} \\
+\nopagebreak & & [7] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 5 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{6}
+\begin{msscheme}{
+  hline{3-8,10-11,13-14} = {2-Z}{0.4pt, msGrid},
+  hline{9,12,15} = {0.4pt, msGrid},
+  row{15} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+6(a) & {\(e^{\int(1-\cot t)\,\mathrm{d}t} = e^{t-\ln(\sin t)}\)} & M1 & {Uses \(e^{\int(1-\cot t)\,\mathrm{d}t}\) and integrates at least one term correctly.} \\
+& {\(\phantom{e^{\int}} = \frac{e^t}{\sin t}\)} & A1 & {oe, e.g. \(e^t\operatorname{cosec} t\).} \\
+& {\(\frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{e^t}{\sin t}R\right) = \frac{1}{1+t^2}\)\\[4pt] \(\Rightarrow \frac{e^t}{\sin t}R = \int\frac{1}{1+t^2}\,\mathrm{d}t = \ldots\)} & dM1 & {Multiplies through by their integrating factor, takes LHS as their factor \(\times R\), and integrates RHS to the form \(k\arctan t\). Constant may be absent.} \\
+& {\(\frac{e^t}{\sin t}R = \arctan t + c\)} & A1 & {Must include the constant; \(R\) need not be the subject.} \\
+& {\(\pi e^{-1}\sin 1 = e^{-1}\sin 1\,(\arctan 1 + c)\)\\[4pt] \(\Rightarrow c = \ldots\)} & M1 & {Substitutes \(t = 1\), \(R = \pi e^{-1}\sin 1\) into their general solution containing a constant and solves for it.} \\
+& {\(\pi = \frac{\pi}{4} + c \Rightarrow c = \frac{3\pi}{4}\)\\[4pt] \(R = e^{-t}\sin t\left(\arctan t + \frac{3\pi}{4}\right)\)} & A1~AG & {cso. Correct substituted equation with \(\arctan 1 = \frac{\pi}{4}\), leading without error to the printed \(R\).} \\
+\nopagebreak & & [6] & \\
+6(b) & {\(R = 0\), \(e^{-t} > 0\), \(\arctan t + \frac{3\pi}{4} > 0\)\\[4pt] \(\Rightarrow \sin t = 0\)} & M1 & {Sets \(R = 0\) and reduces to \(\sin t = 0\). No justification that the other factors are nonzero is needed.} \\
+& {\(t = \pi\) seconds} & A1 & {Or awrt 3.14. A0 for \(t = n\pi\) without selecting \(\pi\).} \\
+\nopagebreak & & [2] & \\
+6(c) & {\(\frac{\mathrm{d}R}{\mathrm{d}t} = -e^{-t}\sin t\left(\arctan t + \frac{3\pi}{4}\right)\)\\[4pt] \(\phantom{\frac{\mathrm{d}R}{\mathrm{d}t}} + e^{-t}\cos t\left(\arctan t + \frac{3\pi}{4}\right)\)\\[4pt] \(\phantom{\frac{\mathrm{d}R}{\mathrm{d}t}} + \frac{e^{-t}\sin t}{1+t^2}\)} & M1 A1 & {\msNote{M1}{Uses the product rule, giving a sum of terms each with one factor differentiated. Condone sign and coefficient slips.}\\ \msNote{A1}{oe; need not be simplified.}} \\
+& {\(t = 0 \Rightarrow \frac{\mathrm{d}R}{\mathrm{d}t} = \frac{3\pi}{4}\)} & A1 & \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 6 & & 11 & \\
+\end{msscheme}
+
+\msQuestion{7}
+\begin{msscheme}{
+  hline{3-8,10-11,13-14} = {2-Z}{0.4pt, msGrid},
+  hline{9,12,15} = {0.4pt, msGrid},
+  row{15} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+7(a) & {\(\frac{\mathrm{d}V}{\mathrm{d}t}-\frac{3-2t}{3t-t^2}V=\frac{3t-t^2}{1+(t-1)^2}\)\\[4pt] \(e^{\int -\frac{3-2t}{3t-t^2}\,\mathrm{d}t} = \ldots\)} & M1 & {Divides by \(3t-t^2\) and uses \(e^{\int P\,\mathrm{d}t}\) with their \(P\). Condone a sign slip in \(P\).} \\
+& {\(e^{-\ln(3t-t^2)}=\frac{1}{3t-t^2}\)} & A1 & \\
+& {\(\frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{V}{3t-t^2}\right)=\frac{1}{1+(t-1)^2}\)\\[4pt] \(\Rightarrow \frac{V}{3t-t^2}=\ldots\)} & dM1 & {Multiplies through by their integrating factor, writes the LHS as the derivative of \(V \times\) it, and integrates the RHS to a form \(k\arctan(t-1)\).} \\
+& {\(\frac{V}{3t-t^2}=\arctan(t-1)+c\)} & A1 & \\
+& {\(\frac{4}{3-1}=\arctan 0+c \Rightarrow c=\ldots\)} & M1 & {Substitutes \(t=1\), \(V=4\) into their general solution containing a constant and solves for the constant.} \\
+& {\(c=2\)\\[4pt] \(\Rightarrow V=(3t-t^2)\left(\arctan(t-1)+2\right)\)} & A1~AG & {Correct substituted condition giving \(c=2\), leading without error to the printed result.} \\
+\nopagebreak & & [6] & \\
+7(b) & {\((3t-t^2)\left(\arctan(t-1)+2\right)=0\)\\[4pt] \(\arctan(t-1)+2>2-\frac{\pi}{2}>0\)\\[4pt] \(\Rightarrow 3t-t^2=0 \Rightarrow t=\ldots\)} & M1 & {Sets \(V=0\) and solves \(3t-t^2=0\). No justification that \(\arctan(t-1)+2\neq 0\) is needed.} \\
+& {\(t=3\): the pulse lasts 3 seconds} & A1 & {3 alone selected as the length; A0 if \(t=0\) is also given as an answer.} \\
+\nopagebreak & & [2] & \\
+7(c) & {\(\frac{\mathrm{d}V}{\mathrm{d}t}=(3-2t)\left(\arctan(t-1)+2\right)\)\\[4pt] \(\phantom{\frac{\mathrm{d}V}{\mathrm{d}t}}+\frac{3t-t^2}{1+(t-1)^2}\)} & M1 A1 & {\msNote{M1}{Uses the product rule: a sum of two products, each with one factor differentiated. Condone slips in the derivatives.}} \\
+& {\(t=0\): \(3\left(\arctan(-1)+2\right)=6-\frac{3\pi}{4}\)} & A1 & {oe exact, such as \(3\left(2-\frac{\pi}{4}\right)\).} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 7 & & 11 & \\
+\end{msscheme}
+
+\msQuestion{8}
+\begin{msscheme}{
+  hline{3,5-7,9-10,12-14,16-17,19-23,25-26} = {2-Z}{0.4pt, msGrid},
+  hline{4,8,11,15,18,24,27} = {0.4pt, msGrid},
+  row{27} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+8(a)(i) & {\(\frac{\mathrm{d}C}{\mathrm{d}t} = -kC\)} & B1 & {oe, with the sign showing a decrease; any letter for the constant.} \\
+\nopagebreak & & [1] & \\
+8(a)(ii) & {\(\frac{\mathrm{d}C}{\mathrm{d}t} = -kAe^{-kt}\)} & M1 & {Differentiates to the form \(pAe^{-kt}\) and substitutes into, or compares with, their equation from (a)(i).} \\
+& {\(\phantom{\frac{\mathrm{d}C}{\mathrm{d}t}} = -kC\)} & A1 & {Correct derivative shown equal to \(-kC\), with a statement that the equation is satisfied.} \\
+& {\(C(0) = Ae^{0} = A\)\\[4pt] \(k>0 \Rightarrow e^{-kt} \to 0 \Rightarrow C \to 0\)} & B1 & {Both conditions shown.} \\
+\nopagebreak & & [3] & \\
+8(b) & {\(e^{\int \frac{2t}{1+t^2}\,\mathrm{d}t} = e^{\ln(1+t^2)}\)} & M1 & {Uses \(e^{\int P\,\mathrm{d}t}\) and integrates to the form \(\lambda\ln(1+t^2)\).} \\
+& {\(\phantom{e^{\int}} = 1+t^2\)} & A1~AG & {From \(e^{\ln(1+t^2)}\) without error.} \\
+\nopagebreak & & [2] & \\
+8(c)(i) & {\(\frac{\mathrm{d}}{\mathrm{d}t}\left((1+t^2)C\right) = 0\)\\[4pt] \(\Rightarrow (1+t^2)C = K\)} & M1 A1 & {\msNote{M1}{Multiplies by \(1+t^2\) and integrates, LHS to \((1+t^2)C\); or separates variables and integrates both sides.}\\ \msNote{A1}{oe, with a constant.}} \\
+& {\(t=0,\ C=A \Rightarrow K = \ldots\ [=A]\)} & M1 & {Substitutes \(t=0\), \(C=A\) into their solution with a constant to find it.} \\
+& {\(C = \frac{A}{1+t^2}\)} & A1~AG & {From a correct general solution and \(K=A\), without error.} \\
+\nopagebreak & & [4] & \\
+8(c)(ii) & {\(\frac{A}{1+t^2} = \frac{A}{2} \Rightarrow t = \ldots\)} & M1 & {Sets the given expression equal to \(\frac{A}{2}\) and solves for \(t\).} \\
+& {\(t = 1\) hour \(= 60\) minutes} & A1 & {60 minutes or 1 hour, with no negative value given as the answer.} \\
+\nopagebreak & & [2] & \\
+8(d) & {\((1+t^2)\frac{\mathrm{d}C}{\mathrm{d}t} + 2tC = te^{-t}\)\\[4pt] \(\Rightarrow \frac{\mathrm{d}}{\mathrm{d}t}\left((1+t^2)C\right) = te^{-t}\)} & M1 A1 & {\msNote{M1}{Multiplies through by \(1+t^2\); RHS need not be simplified.}\\ \msNote{A1}{LHS as the derivative of \((1+t^2)C\), or implied by integrating to \((1+t^2)C\).}} \\
+& {\(\int te^{-t}\,\mathrm{d}t = -te^{-t} + \int e^{-t}\,\mathrm{d}t\)} & M1 & {Integrates by parts with \(u=t\), reaching the form \(\pm te^{-t} \pm \int e^{-t}\,\mathrm{d}t\). Condone sign slips.} \\
+& {\((1+t^2)C = -(1+t)e^{-t} + K\)} & A1 & {oe, with a constant.} \\
+& {\(t=0,\ C=A \Rightarrow A = -1 + K\)\\[4pt] \(\Rightarrow K = \ldots\)} & M1 & {Substitutes \(t=0\), \(C=A\) into their solution with a constant to find it.} \\
+& {\(C = \frac{A+1-(1+t)e^{-t}}{1+t^2}\)} & A1~AG & {From a correct general solution and \(K=A+1\), without error.} \\
+\nopagebreak & & [6] & \\
+8(e) & {\(\frac{6-(1+t)e^{-t}}{1+t^2} = 2.5 \Rightarrow t = \ldots\)} & M1 & {Sets model (d) with \(A=5\) equal to 2.5 and solves for \(t\); calculator or numerical method accepted.} \\
+& {\(t = 1.055\ldots\) hours \(\approx 63\) minutes\\[4pt] Closer to 63 than 60, so model (d)} & A1ft & {Awrt 63 minutes or 1.06 hours, compared with 63 and their (c)(ii) time, choosing the closer model. ft their (c)(ii).} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 8 & & 20 & \\
+\end{msscheme}
+
+\msQuestion{9}
+\begin{msscheme}{
+  hline{3-6,8-16,18-19} = {2-Z}{0.4pt, msGrid},
+  hline{7,17,20} = {0.4pt, msGrid},
+  row{20} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+9(a) & {\(300-200=100\) ml min\(^{-1}\) \(=0.1\) L min\(^{-1}\)\\[4pt] \(\Rightarrow V=4+0.1t\)} & B1 & {Net rate of 100 ml or 0.1 litres per minute seen; not for the printed volume alone.} \\
+& {Rate in \(=0.3\times 2e^{-0.1t}=0.6e^{-0.1t}\)} & B1 & \\
+& {Rate out \(=0.2\times\dfrac{m}{4+0.1t}\)} & M1 & {Multiplies the outflow rate by \(\frac{m}{V}\), with their volume. Condone inconsistent units (200 for 0.2).} \\
+& {\(\dfrac{\mathrm{d}m}{\mathrm{d}t}=0.6e^{-0.1t}-\dfrac{0.2m}{4+0.1t}\)\\[4pt] \(\phantom{\dfrac{\mathrm{d}m}{\mathrm{d}t}}=0.6e^{-0.1t}-\dfrac{2m}{40+t}\)} & A1~AG & {Rate in minus rate out in consistent units, simplified without error to the printed equation.} \\
+\nopagebreak & & [4] & \\
+9(b) & {\(\mu=e^{\int \frac{2}{40+t}\,\mathrm{d}t}\)} & M1 & {Forms \(e^{\int P\,\mathrm{d}t}\) with \(P=\frac{2}{40+t}\) from the standard form. Condone a sign slip in \(P\).} \\
+& {\(\phantom{\mu}=(40+t)^2\)} & A1 & \\
+& {\((40+t)^2m=\int 0.6(40+t)^2e^{-0.1t}\,\mathrm{d}t\)\\[4pt] \(\phantom{(40+t)^2m}=\ldots\)} & dM1 & {Multiplies through by their integrating factor \(\mu\) of the form \((40+t)^n\), \(n\geq1\), integrates LHS to \(\mu m\), and applies parts to RHS, differentiating the polynomial factor. Condone coefficient slips.} \\
+& {\(=-6(t^2+80t+1600)e^{-0.1t}\)\\[4pt] \(\phantom{=}+12\int (t+40)e^{-0.1t}\,\mathrm{d}t\)} & A1 & {oe, \((40+t)^2\) expanded or not.} \\
+& {\(\int (t+40)e^{-0.1t}\,\mathrm{d}t\)\\[4pt] \(\phantom{A}=-10(t+40)e^{-0.1t}+\int 10e^{-0.1t}\,\mathrm{d}t\)} & dM1 & {Applies parts to the remaining integral, differentiating the linear factor. Condone coefficient slips.} \\
+& {\(\int 0.6(40+t)^2e^{-0.1t}\,\mathrm{d}t\)\\[4pt] \(\phantom{A}=-6e^{-0.1t}(t^2+100t+2600)\)} & A1 & {oe.} \\
+& {\((40+t)^2m=-6e^{-0.1t}(t^2+100t+2600)+c\)} & A1 & {oe; constant of integration required.} \\
+& {\(40^2\times 4=-6(2600)+c\Rightarrow c=\ldots\ [=22000]\)} & M1 & {Substitutes \(t=0\), \(m=4\) into their solution containing a constant of integration and solves for it.} \\
+& {\(m=\dfrac{22000-6e^{-0.1t}(t^2+100t+2600)}{(40+t)^2}\)} & A1 & {oe, with \(m\) as subject.} \\
+\nopagebreak & & [9] & \\
+9(c) & {\(m(20)=\dfrac{22000-30000e^{-2}}{3600}\), \(V=6\)\\[4pt] \(\dfrac{m(20)}{6}=\ldots\)} & M1 & {Substitutes \(t=20\) into their \(m\) and divides by their volume at \(t=20\).} \\
+& {\(\approx 0.831\), close to \(0.82\), so the model is good} & A1ft & {awrt 0.831, ft their \(m\). Concludes model good if within 5\% of 0.82, otherwise not, with comparison stated.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 9 & & 15 & \\
+\end{msscheme}
+
+\msQuestion{10}
+\begin{msscheme}{
+  hline{3,5,7-11,13,15,17-23,25-26,28-31} = {2-Z}{0.4pt, msGrid},
+  hline{4,6,12,14,16,24,27,32} = {0.4pt, msGrid},
+  row{32} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+10(a) & {Resistance increases with speed, and is zero\\[4pt] when the boat is at rest} & E1 & {States that resistance increases with, or depends on, speed, or is zero at rest. Not for "more realistic" alone.} \\
+\nopagebreak & & [1] & \\
+10(b) & {\(m\frac{\mathrm{d}v}{\mathrm{d}t} = -0.2mv - m\)\\[4pt] \(\Rightarrow \frac{\mathrm{d}v}{\mathrm{d}t} + 0.2v = -1\)} & B1 & {Both resistances opposing the motion in \(F = ma\), then division by \(m\) to the printed result.} \\
+\nopagebreak & & [1] & \\
+10(c)(i) & {\(e^{\int 0.2\,\mathrm{d}t} = e^{t/5}\)} & B1 & \\
+& {\(\frac{\mathrm{d}}{\mathrm{d}t}\left(ve^{t/5}\right) = -e^{t/5}\)\\[4pt] \(\Rightarrow ve^{t/5} = \int -e^{t/5}\,\mathrm{d}t\)} & M1 & {Multiplies through by their integrating factor \(e^{kt}\) and integrates both sides, the RHS to the form \(pe^{kt}\). Separating variables accepted.} \\
+& {\(ve^{t/5} = -5e^{t/5} + c\)\\[4pt] \(\Rightarrow v = -5 + ce^{-t/5}\)} & A1 & {oe, in either form, with the constant.} \\
+& {\(0 = -5 + ce^{-2} \Rightarrow c = \ldots\)} & M1 & {Substitutes \(t = 10\), \(v = 0\) into their general solution containing a constant and solves for it.} \\
+& {\(v = 5\left(e^{2-t/5} - 1\right)\)} & A1 & {oe, eg \(5e^2e^{-t/5} - 5\), or with \(c\) awrt 36.9.} \\
+\nopagebreak & & [5] & \\
+10(c)(ii) & {\(v = 5(e-1)\ [\approx 8.59]\)} & B1ft & {ft their (c)(i) solution at \(t = 5\). Accept \(5(e-1)\) or awrt 8.59.} \\
+\nopagebreak & & [1] & \\
+10(d) & {\(m\frac{\mathrm{d}v}{\mathrm{d}t} = kt^2 - 0.2mv\)\\[4pt] \(\Rightarrow \frac{\mathrm{d}v}{\mathrm{d}t} + 0.2v = \lambda t^2,\ \lambda = \frac{k}{m} > 0\)} & B1 & {Driving force \(kt^2\) and opposing resistance \(0.2mv\) in \(F = ma\), division by \(m\), and \(\lambda\) identified as a positive constant.} \\
+\nopagebreak & & [1] & \\
+10(e)(i) & {\(e^{\int 0.2\,\mathrm{d}t} = e^{t/5}\)} & B1 & \\
+& {\(\frac{\mathrm{d}}{\mathrm{d}t}\left(ve^{t/5}\right) = \lambda t^2e^{t/5}\)\\[4pt] \(\int t^2e^{t/5}\,\mathrm{d}t = 5t^2e^{t/5} - \int 10te^{t/5}\,\mathrm{d}t\)} & M1 A1 & {\msNote{M1}{Multiplies through by their \(e^{kt}\) and applies parts to \(\int t^2e^{kt}\,\mathrm{d}t\), reaching the form \(pt^2e^{kt} - \int qte^{kt}\,\mathrm{d}t\). Condone coefficient slips.}\\ \msNote{A1}{Correct, with or without \(\lambda\).}} \\
+& {\(\int te^{t/5}\,\mathrm{d}t = 5te^{t/5} - \int 5e^{t/5}\,\mathrm{d}t\)} & dM1 & {Applies parts again to their \(\int te^{kt}\,\mathrm{d}t\), reaching the form \(pte^{kt} \pm qe^{kt}\); a tabular method accepted. Condone coefficient slips.} \\
+& {\(\int t^2e^{t/5}\,\mathrm{d}t = 5e^{t/5}\left(t^2 - 10t + 50\right)\)} & A1 & {oe, eg expanded.} \\
+& {\(v = 5\lambda\left(t^2 - 10t + 50\right) + ce^{-t/5}\)} & A1 & {oe, eg as \(ve^{t/5} = \ldots\), with the constant.} \\
+& {\(0 = 250\lambda + c \Rightarrow c = \ldots\)} & M1 & {Substitutes \(t = 0\), \(v = 0\) into their general solution containing a constant and solves for it.} \\
+& {\(c = -250\lambda\)\\[4pt] \(\Rightarrow v = 5\lambda\left(t^2 - 10t + 50 - 50e^{-t/5}\right)\)} & A1~AG & {\(c = -250\lambda\) from a correct substituted equation, leading without error to the printed result. A0 if \(\lambda\) is dropped and reinstated.} \\
+\nopagebreak & & [8] & \\
+10(e)(ii) & {\(5\lambda\left(25 - 50e^{-1}\right) = \text{"}5(e-1)\text{"}\)\\[4pt] \(\Rightarrow \lambda = \ldots\)} & M1 & {Substitutes \(t = 5\) in the printed expression and equates to their (c)(ii) velocity.} \\
+& {\(\lambda = \frac{e(e-1)}{25(e-2)}\ [\approx 0.260]\)} & A1 & {oe, or awrt 0.260.} \\
+\nopagebreak & & [2] & \\
+10(f) & {\(\int_0^5 5\lambda\left(t^2-10t+50-50e^{-t/5}\right)\mathrm{d}t\)\\[4pt] \(\phantom{=} = 5\lambda\left[\frac{t^3}{3} - 5t^2 + 50t + 250e^{-t/5}\right]_0^5\)} & M1 A1 & {\msNote{M1}{Integrates the (e)(i) expression: polynomial powers increased by 1 and \(e^{-t/5} \to ke^{-t/5}\). Condone coefficient slips.}\\ \msNote{A1}{Correct, in \(\lambda\) or its value.}} \\
+& {\(\int_5^{10} 5\left(e^{2-t/5} - 1\right)\mathrm{d}t\)\\[4pt] \(\phantom{=} = 5\left[-5e^{2-t/5} - t\right]_5^{10}\)} & M1 A1 & {\msNote{M1}{Integrates their (c)(i) expression: \(e^{2-t/5} \to ke^{2-t/5}\) and the constant to a multiple of \(t\).}} \\
+& {\(s = 5\lambda\left(\frac{250}{e} - \frac{250}{3}\right) + 25(e-2)\)\\[4pt] \(\phantom{s} = \ldots\ [\approx 11.2 + 18.0]\)} & dM1 & {Applies limits 0 to 5 and 5 to 10 to their integrals, with their \(\lambda\), and adds. Needs both previous M1 marks.} \\
+& {\(29\) m} & A1 & \\
+\nopagebreak & & [6] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 10 & & 25 & \\
+\end{msscheme}
+
+\msQuestion{11}
+\begin{msscheme}{
+  hline{3,5,7-11,13,15,17-22,24-25,27-30} = {2-Z}{0.4pt, msGrid},
+  hline{4,6,12,14,16,23,26,31} = {0.4pt, msGrid},
+  row{31} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+11(a) & {Resistance increases as the speed of the cage increases} & E1 & {States that resistance increases with, or depends on, speed. Not for "more realistic" alone.} \\
+\nopagebreak & & [1] & \\
+11(b) & {\(m\frac{\mathrm{d}v}{\mathrm{d}t} = 0.75mg - mg - 0.25mv\)\\[4pt] \(\Rightarrow \frac{\mathrm{d}v}{\mathrm{d}t} + 0.25v = -\frac14 g\)} & B1 & {Newton's second law with tension, weight and resistance, correct signs, leading without error to the printed equation.} \\
+\nopagebreak & & [1] & \\
+11(c)(i) & {\(e^{\int 0.25\,\mathrm{d}t} = e^{t/4}\)} & B1 & \\
+& {\(\frac{\mathrm{d}}{\mathrm{d}t}\left(ve^{t/4}\right) = -\frac14 ge^{t/4}\)\\[4pt] \(\Rightarrow ve^{t/4} = \ldots\)} & M1 & {Multiplies through by their integrating factor and integrates both sides, LHS to \(v\) times their integrating factor.} \\
+& {\(ve^{t/4} = -ge^{t/4} + c\)} & A1 & {oe; needs the constant.} \\
+& {\(0 = ce^{-2} - g \Rightarrow c = \ldots\)} & M1 & {Substitutes \(t = 8\), \(v = 0\) into their solution containing a constant and solves for it.} \\
+& {\(v = g\left(e^{2-t/4} - 1\right)\)} & A1 & {oe, with \(g\) or \(9.8\).} \\
+\nopagebreak & & [5] & \\
+11(c)(ii) & {\(v = g(e-1)\ [\approx 16.8]\)} & B1ft & {ft their (c)(i) solution at \(t = 4\), exact or to 3 s.f.} \\
+\nopagebreak & & [1] & \\
+11(d) & {\(m\frac{\mathrm{d}v}{\mathrm{d}t} = m(g + \lambda t) - mg - 0.25mv\)\\[4pt] \(\Rightarrow \frac{\mathrm{d}v}{\mathrm{d}t} + 0.25v = \lambda t\)} & B1 & {Newton's second law with tension, weight and resistance, correct signs, leading without error to the printed equation.} \\
+\nopagebreak & & [1] & \\
+11(e)(i) & {\(e^{\int 0.25\,\mathrm{d}t} = e^{t/4}\)} & B1 & \\
+& {\(ve^{t/4} = \lambda\int te^{t/4}\,\mathrm{d}t\)\\[4pt] \(\phantom{ve^{t/4}} = \lambda\left(4te^{t/4} - \int 4e^{t/4}\,\mathrm{d}t\right)\)} & M1 & {Multiplies through by their integrating factor and integrates \(te^{t/4}\) by parts to the form \(pte^{t/4} - \int qe^{t/4}\,\mathrm{d}t\). Condone sign and coefficient slips.} \\
+& {\(\int te^{t/4}\,\mathrm{d}t = 4te^{t/4} - 16e^{t/4}\)} & A1 & \\
+& {\(v = 4\lambda(t-4) + ce^{-t/4}\)} & A1 & {oe, such as \(ve^{t/4} = \lambda\left(4te^{t/4} - 16e^{t/4}\right) + c\); needs the constant.} \\
+& {\(0 = -16\lambda + c \Rightarrow c = \ldots\)} & M1 & {Substitutes \(t = 0\), \(v = 0\) into their solution containing a constant and solves for it.} \\
+& {\(c = 16\lambda\)\\[4pt] \(\Rightarrow v = 4\lambda\left(t - 4 + 4e^{-t/4}\right)\)} & A1~AG & {Correct \(c\) substituted into a correct general solution, leading without error to the printed expression.} \\
+\nopagebreak & & [6] & \\
+11(e)(ii) & {\(4\lambda\left(4 - 4 + 4e^{-1}\right) = \text{"}g(e-1)\text{"}\)\\[4pt] \(\Rightarrow \lambda = \ldots\)} & M1 & {Equates \(v(4)\) from the printed expression to their (c)(ii) velocity and solves for \(\lambda\).} \\
+& {\(\lambda = \frac{ge(e-1)}{16}\ [\approx 2.86]\)} & A1 & {oe, or awrt 2.86.} \\
+\nopagebreak & & [2] & \\
+11(f) & {\(\int 4\lambda\left(t - 4 + 4e^{-t/4}\right)\mathrm{d}t\)\\[4pt] \(\phantom{\int} = 4\lambda\left[\frac{t^2}{2} - 4t - 16e^{-t/4}\right]\)} & M1 A1 & {\msNote{M1}{Integrates the first-stage \(v\): power of \(t\) increased in at least one term, or \(e^{-t/4} \to ke^{-t/4}\).}\\ \msNote{A1}{oe; a correct definite value \(\left(32 - \frac{64}{e}\right)\lambda\) implies it.}} \\
+& {\(\int g\left(e^{2-t/4} - 1\right)\mathrm{d}t\)\\[4pt] \(\phantom{\int} = g\left[-4e^{2-t/4} - t\right]\)} & M1 A1 & {\msNote{M1}{Integrates their second-stage \(v\), of the form \(Ae^{-t/4} + B\), with \(e^{-t/4} \to ke^{-t/4}\) or the constant to a multiple of \(t\).}\\ \msNote{A1}{oe; a correct definite value \(4g(e-2)\) implies it.}} \\
+& {\(\left(32 - \frac{64}{e}\right)\text{"}\lambda\text{"} + 4g(e-2) = \ldots\)} & dM1 & {Applies limits 0, 4 and 4, 8 to their integrals and adds, with their \(\lambda\).} \\
+& {\(52\) (m)} & A1 & \\
+\nopagebreak & & [6] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 11 & & 23 & \\
+\end{msscheme}
+
+\msQuestion{12}
+\begin{msscheme}{
+  hline{3-4,6-7,9-13,15-16,18,20-29} = {2-Z}{0.4pt, msGrid},
+  hline{5,8,14,17,19,30} = {0.4pt, msGrid},
+  row{30} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+12(a)(i) & {Volume \(= 2 + rt - st\)} & M1 & {Forms the volume as initial volume plus inflow minus outflow in time \(t\).} \\
+& {\(\phantom{V} = 2 + (r-s)t\)\\[4pt] \(\Rightarrow\) concentration \(= \frac{m}{2+(r-s)t}\)} & A1~AG & {Mass divided by the correct volume, reaching the printed result.} \\
+\nopagebreak & & [2] & \\
+12(a)(ii) & {\(\frac{\mathrm{d}m}{\mathrm{d}t} = 10r - s\times\frac{m}{2+(r-s)t}\)} & M1 & {Forms \(\frac{\mathrm{d}m}{\mathrm{d}t}\) as rate in \(10r\) minus rate out \(s\) times the concentration from (i). Condone a sign slip.} \\
+& {\(\frac{\mathrm{d}m}{\mathrm{d}t}+\frac{sm}{2+(r-s)t}=10r\)} & A1~AG & {Correct equation rearranged to the printed result without error.} \\
+\nopagebreak & & [2] & \\
+12(b)(i) & {\(\frac{\mathrm{d}m}{\mathrm{d}t}+\frac{r}{2}m=10r\)\\[4pt] \(\mu = e^{rt/2}\)} & B1 & \\
+& {\(\frac{\mathrm{d}}{\mathrm{d}t}\left(me^{rt/2}\right)=10re^{rt/2}\)\\[4pt] \(\Rightarrow me^{rt/2} = \ldots\)} & M1 & {Multiplies through by their integrating factor of the form \(e^{kt}\) and integrates the RHS to the form \(Ae^{kt}\).} \\
+& {\(me^{rt/2} = 20e^{rt/2}+c\)} & A1 & {oe, with the constant.} \\
+& {\(4 = 20 + c \Rightarrow c = \ldots\)} & M1 & {Substitutes \(t=0\), \(m=4\) into their general solution containing a constant and finds it.} \\
+& {\(m = 20 - 16e^{-rt/2}\)} & A1 & {oe, \(m\) in terms of \(r\) and \(t\).} \\
+\nopagebreak & & [5] & \\
+12(b)(ii) & {\(\frac{\text{"}20-16e^{-r}\text{"}}{2} = 8 \Rightarrow e^{-r} = \ldots\)\\[4pt] \(\Rightarrow r = \ldots\)} & M1 & {Sets their \(\frac{m}{2}\) equal to 8 at \(t=2\), with \(m\) of the form \(a+be^{-kt}\), and solves using logarithms. Not for setting \(m=8\).} \\
+& {\(r = \ln 4\)} & A1 & {oe, or awrt 1.39.} \\
+\nopagebreak & & [2] & \\
+12(c)(i) & {Volume \(= 2 - rt = 0\) when \(t = \frac{2}{r}\): tank empty} & E1 & {Uses the volume \(2-rt\) to conclude the tank is empty at \(t=\frac{2}{r}\). A zero denominator alone, without reference to volume, is not enough.} \\
+\nopagebreak & & [1] & \\
+12(c)(ii) & {\(\frac{\mathrm{d}m}{\mathrm{d}t}+\frac{2r}{2-rt}m=10r\)\\[4pt] \(\mu = e^{\int \frac{2r}{2-rt}\,\mathrm{d}t}\)} & M1 & {Substitutes \(s=2r\) and writes the integrating factor as \(e^{\int P\,\mathrm{d}t}\) with their \(P\) of the form \(\frac{k}{2-rt}\).} \\
+& {\(\phantom{\mu} = e^{-2\ln(2-rt)} = (2-rt)^{-2}\)} & A1 & {Simplified from the exponential; accept \(\frac{1}{(2-rt)^2}\).} \\
+& {\(\frac{\mathrm{d}}{\mathrm{d}t}\left(m(2-rt)^{-2}\right)=10r(2-rt)^{-2}\)\\[4pt] \(\Rightarrow m(2-rt)^{-2} = \ldots\)} & dM1 & {Multiplies through by their integrating factor of the form \((2-rt)^n\) and integrates the RHS to the form \(A(2-rt)^{n+1}\).} \\
+& {\(m(2-rt)^{-2} = \frac{10}{2-rt}+c\)} & A1 & {oe, with the constant.} \\
+& {\(4 = 20 + 4c \Rightarrow c = \ldots\)} & M1 & {Substitutes \(t=0\), \(m=4\) into their general solution containing a constant and finds it.} \\
+& {\(m = 10(2-rt) - 4(2-rt)^2\)\\[4pt] \([= 4 + 6rt - 4r^2t^2]\)} & A1 & {oe.} \\
+& {\(\frac{\mathrm{d}m}{\mathrm{d}t} = 6r - 8r^2t = 0 \Rightarrow t = \ldots\)} & M1 & {Differentiates their \(m\), at least one power of \(t\) reduced by 1, sets it to zero and solves for \(t\); completing the square equally valid.} \\
+& {\(t = \frac{3}{4r}\)} & A1 & {No justification of the maximum or of \(t<\frac{2}{r}\) needed.} \\
+& {\(m = 4 + 6r\left(\frac{3}{4r}\right) - 4r^2\left(\frac{3}{4r}\right)^2\)} & dM1 & {Substitutes their \(t\) into their particular solution.} \\
+& {\(m_{\max} = \frac{25}{4}\) (g)} & A1 & {Accept 6.25.} \\
+\nopagebreak & & [10] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 12 & & 22 & \\
+\end{msscheme}
+
+\msQuestion{13}
+\begin{msscheme}{
+  hline{3-4,6-7,9-13,15-16,18,20-29} = {2-Z}{0.4pt, msGrid},
+  hline{5,8,14,17,19,30} = {0.4pt, msGrid},
+  row{30} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+13(a)(i) & {Volume \(= 4 + pt - qt\)} & M1 & {Forms the volume at time \(t\) as initial volume plus inflow minus outflow.} \\
+& {Proportion \(= \dfrac{x}{4+(p-q)t}\)} & A1~AG & {Divides \(x\) by the correct volume and reaches the printed form without error.} \\
+\nopagebreak & & [2] & \\
+13(a)(ii) & {\(\frac{\mathrm{d}x}{\mathrm{d}t} = 0.6p - q\times\frac{x}{4+(p-q)t}\)} & M1 & {Forms \(\frac{\mathrm{d}x}{\mathrm{d}t}\) as rate in minus rate out, with rate out as \(q\) times the proportion from (a)(i). Condone sign slips.} \\
+& {\(\frac{\mathrm{d}x}{\mathrm{d}t}+\frac{qx}{4+(p-q)t}=\frac{3p}{5}\)} & A1~AG & {Correct rate equation, with rate in \(0.6p\) or \(\frac{3p}{5}\), rearranged to the printed result without error.} \\
+\nopagebreak & & [2] & \\
+13(b)(i) & {\(\frac{\mathrm{d}x}{\mathrm{d}t} + \frac{p}{4}x = \frac{3p}{5}\)\\[4pt] \(\mu = e^{pt/4}\)} & B1 & \\
+& {\(xe^{pt/4} = \int \frac{3p}{5}e^{pt/4}\,\mathrm{d}t\)} & M1 & {Multiplies through by their integrating factor \(e^{kt}\) and integrates both sides, RHS to the form \(Ae^{kt}\); or separates the variables and integrates.} \\
+& {\(xe^{pt/4} = \frac{12}{5}e^{pt/4} + c\)} & A1 & {Correct, including the constant; any equivalent form.} \\
+& {\(t = 0,\ x = 0 \Rightarrow c = \ldots\ [= -\frac{12}{5}]\)} & M1 & {Substitutes \(t = 0\), \(x = 0\) into their general solution containing a constant to find it.} \\
+& {\(x = \frac{12}{5}\left(1 - e^{-pt/4}\right)\)} & A1 & {oe, with \(x\) the subject.} \\
+\nopagebreak & & [5] & \\
+13(b)(ii) & {\(0.3\times 4 = \text{"}\frac{12}{5}\left(1 - e^{-p}\right)\text{"}\)\\[4pt] \(\Rightarrow e^{-p} = \ldots \Rightarrow p = \ldots\)} & M1 & {Equates \(0.3\times 4\) to their \(x\), of the form \(A(1 - e^{-kpt})\), at \(t = 4\) and uses logarithms to solve for \(p\).} \\
+& {\(p = \ln 2\)} & A1 & {Or awrt 0.693.} \\
+\nopagebreak & & [2] & \\
+13(c)(i) & {Volume \(= 4 - pt = 0\) at \(t = \frac{4}{p}\): tank empty} & E1 & {Shows the volume \(4 - pt\) is zero at \(t = \frac{4}{p}\) and concludes the tank is empty, or that the denominator is zero or negative for \(t \geq \frac{4}{p}\).} \\
+\nopagebreak & & [1] & \\
+13(c)(ii) & {\(\frac{\mathrm{d}x}{\mathrm{d}t} + \frac{2px}{4-pt} = \frac{3p}{5}\)\\[4pt] \(\mu = e^{\int \frac{2p}{4-pt}\,\mathrm{d}t}\)} & M1 & {Uses \(q = 2p\) and writes the integrating factor as \(e\) to the integral of their coefficient of \(x\), integrated to a logarithm.} \\
+& {\(\phantom{\mu} = e^{-2\ln(4-pt)} = (4-pt)^{-2}\)} & A1 & {oe such as \(\frac{1}{(4-pt)^2}\).} \\
+& {\(x(4-pt)^{-2} = \int \frac{3p}{5}(4-pt)^{-2}\,\mathrm{d}t\)} & dM1 & {Multiplies through by their integrating factor and integrates both sides, RHS to the form \(k(4-pt)^{-1}\).} \\
+& {\(x(4-pt)^{-2} = \frac{3}{5(4-pt)} + c\)} & A1 & {Correct, including the constant; any equivalent form.} \\
+& {\(t = 0,\ x = 0 \Rightarrow c = \ldots\ [= -\frac{3}{20}]\)} & M1 & {Substitutes \(t = 0\), \(x = 0\) into their general solution containing a constant to find it.} \\
+& {\(x = \frac{3}{5}(4-pt) - \frac{3}{20}(4-pt)^2\)\\[4pt] \(\phantom{x} [= \frac{3pt}{5} - \frac{3p^2t^2}{20}]\)} & A1 & {oe, with \(x\) the subject; need not be expanded.} \\
+& {\(\frac{\mathrm{d}x}{\mathrm{d}t} = \frac{3p}{5} - \frac{3p^2t}{10} = 0\)\\[4pt] \(\Rightarrow t = \ldots\)} & M1 & {Differentiates their quadratic \(x\), power of at least one term reduced by 1, and sets it to zero; or completes the square.} \\
+& {\(t = \frac{2}{p}\)} & A1 & \\
+& {\(x = \frac{3p}{5}\times\frac{2}{p} - \frac{3p^2}{20}\times\frac{4}{p^2}\)} & dM1 & {Substitutes their \(t\) into their particular solution.} \\
+& {Maximum \(= \frac{3}{5}\) litres} & A1 & {oe such as 0.6. No justification that it is a maximum is needed.} \\
+\nopagebreak & & [10] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 13 & & 22 & \\
+\end{msscheme}
+
+\msQuestion{14}
+\begin{msscheme}{
+  hline{3,5-7,9-13,15-17,19-20,22-25,27-28} = {2-Z}{0.4pt, msGrid},
+  hline{4,8,14,18,21,26,29} = {0.4pt, msGrid},
+  row{29} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+14(a)(i) & {\(\frac{\mathrm{d}C}{\mathrm{d}t} = k(M - C)\)} & B1 & {Any letter for the constant. A proportionality statement without an equation scores B0.} \\
+\nopagebreak & & [1] & \\
+14(a)(ii) & {\(\frac{\mathrm{d}C}{\mathrm{d}t} = Mke^{-kt}\)\\[4pt] \(k(M - C) = k\left(M - M(1 - e^{-kt})\right)\)} & M1 & {Differentiates \(C\) to the form \(\alpha e^{-kt}\) and substitutes \(C\) into \(k(M-C)\), or into their equation from (a)(i).} \\
+& {\(\phantom{k(M - C)} = kMe^{-kt} = \frac{\mathrm{d}C}{\mathrm{d}t}\)} & A1 & {cso. Both sides shown equal, with a conclusion.} \\
+& {\(C(0) = M(1 - 1) = 0\)\\[4pt] \(e^{-kt} \to 0 \Rightarrow C \to M\) as \(t \to \infty\)} & B1 & {Both conditions, with \(e^{-kt} \to 0\) stated or implied.} \\
+\nopagebreak & & [3] & \\
+14(b) & {\(-\frac{t+2}{t(1+t+t^2)} = \frac{A}{t} + \frac{Bt+D}{1+t+t^2}\)} & M1 & {Uses partial fractions of the form \(\frac{A}{t}+\frac{Bt+D}{1+t+t^2}\); the fraction may be taken with either sign.} \\
+& {\(-(t+2) = A(1+t+t^2) + t(Bt+D)\)\\[4pt] \(\Rightarrow A = \ldots,\ B = \ldots,\ D = \ldots\)} & dM1 & {Multiplies through and compares coefficients or substitutes values to find the constants. Condone slips.} \\
+& {\(-\frac{2}{t} + \frac{2t+1}{1+t+t^2}\)} & A1 & {oe, including the positive fraction with all signs reversed.} \\
+& {\(\int \ldots\,\mathrm{d}t = -2\ln t + \ln(1+t+t^2)\)\\[4pt] \(\Rightarrow e^{-2\ln t + \ln(1+t+t^2)}\)} & M1 & {Integrates their partial fractions to \(\alpha\ln t + \beta\ln(1+t+t^2)\) and forms \(e^{\int P\,\mathrm{d}t}\). Condone a sign slip in \(P\).} \\
+& {\(= \frac{1+t+t^2}{t^2}\)} & A1~AG & {Correct integral and log laws leading without error to the printed form; combined steps accepted.} \\
+\nopagebreak & & [5] & \\
+14(c)(i) & {\(\frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{1+t+t^2}{t^2}C\right) = 0\)\\[4pt] \(\Rightarrow \frac{1+t+t^2}{t^2}C = K\)} & M1 A1 & {\msNote{M1}{Uses the integrating factor from (b), writing the LHS as \(\frac{\mathrm{d}}{\mathrm{d}t}(\mu C)\), or separates variables, and integrates.}\\ \msNote{A1}{Constant of integration required; oe such as \(\ln C\) expression.}} \\
+& {\(C = \frac{Kt^2}{1+t+t^2} \to K\) as \(t \to \infty\)\\[4pt] \(\Rightarrow K = M\)} & M1 & {Rearranges for \(C\) and lets \(t \to \infty\) to equate their constant to \(M\).} \\
+& {\(C = \frac{Mt^2}{1+t+t^2}\)} & A1~AG & {Correct limit with \(K = M\) stated, leading without error to the printed result.} \\
+\nopagebreak & & [4] & \\
+14(c)(ii) & {\(\frac{Mt^2}{1+t+t^2} = \frac{M}{2} \Rightarrow t^2 - t - 1 = 0\)\\[4pt] \(\Rightarrow t = \ldots\ [= 1.618\ldots]\)} & M1 & {Sets \(C = \frac{M}{2}\), forms a three-term quadratic and solves it by any means.} \\
+& {97 minutes} & A1 & {cao, oe such as 1 hour 37 minutes. Negative root rejected.} \\
+\nopagebreak & & [2] & \\
+14(d) & {\(\frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{1+t+t^2}{t^2}C\right) = \frac{1+t+t^2}{t^2} \times \frac{3t^2e^{-t}}{1+t+t^2}\)\\[4pt] \(\phantom{\frac{\mathrm{d}}{\mathrm{d}t}} = 3e^{-t}\)} & M1 A1 & {\msNote{M1}{Multiplies through by the integrating factor, writing the LHS as \(\frac{\mathrm{d}}{\mathrm{d}t}(\mu C)\) and the RHS as \(\mu S(t)\).}} \\
+& {\(\frac{1+t+t^2}{t^2}C = -3e^{-t} + K\)\\[4pt] \(\Rightarrow C = \frac{Kt^2 - 3t^2e^{-t}}{1+t+t^2}\)} & dM1 & {Integrates their RHS to the form \(\alpha e^{-t} + K\) and divides by the integrating factor.} \\
+& {\(t^2e^{-t} \to 0 \Rightarrow C \to K\) as \(t \to \infty\)\\[4pt] \(\Rightarrow K = M\)} & M1 & {Lets \(t \to \infty\), with the exponential term tending to 0, to equate their constant to \(M\).} \\
+& {\(C = \frac{Mt^2 - 3t^2e^{-t}}{1+t+t^2}\)} & A1~AG & {Correct integration and limits, \(t^2e^{-t} \to 0\) stated, leading without error to the printed result.} \\
+\nopagebreak & & [5] & \\
+14(e) & {\(C(1.75) = \frac{10(1.75)^2 - 3(1.75)^2e^{-1.75}}{1 + 1.75 + 1.75^2}\)\\[4pt] \(\phantom{C(1.75)} = \ldots\ [\approx 4.99]\)} & M1 & {Substitutes \(M = 10\) and \(t = 1.75\) hours into the model (d) expression, or solves \(C = 5\) for \(t\) numerically.} \\
+& {\(4.99 \approx 5\); model (c) gives "97" min, not 105\\[4pt] \(\Rightarrow\) model (d) more consistent} & A1ft & {ft their (c)(ii) time. Needs awrt 4.99 (or awrt 105 minutes) and a comparison showing model (d) closer to the data.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 14 & & 22 & \\
+\end{msscheme}
+
+\end{document}

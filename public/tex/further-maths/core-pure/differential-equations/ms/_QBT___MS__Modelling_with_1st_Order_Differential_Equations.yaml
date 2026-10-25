@@ -1,0 +1,1319 @@
+format: 1
+pack: Modelling with 1st Order Differential Equations
+last_updated: 25 October 2026
+questions:
+  - q: 1
+    stamp: 2f508efc
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(2\frac{\mathrm{d}v}{\mathrm{d}t} = \frac{12t-4v}{1+t}\)
+              \(\Rightarrow \frac{\mathrm{d}v}{\mathrm{d}t}+\frac{\ldots}{1+t}v = \ldots\)
+            marks:
+              - code: M1
+                note: Uses \(F=ma\) with acceleration \(\frac{\mathrm{d}v}{\mathrm{d}t}\) and collects the \(v\) term on the LHS. Condone a slip dividing by the mass.
+          - scheme: |
+              \(P(t)=\frac{2}{1+t}\), \(Q(t)=\frac{6t}{1+t}\)
+            marks:
+              - code: A1
+                note: Both correct, oe.
+      - part: b
+        rows:
+          - scheme: |
+              \(e^{\int \frac{2}{1+t}\,\mathrm{d}t}\)
+            marks:
+              - code: M1
+                note: Uses \(e^{\int P\,\mathrm{d}t}\) with their \(P(t)\) of the form \(\frac{k}{1+t}\).
+          - scheme: |
+              \(= e^{2\ln(1+t)} = (1+t)^2\)
+            marks:
+              - code: A1
+          - scheme: |
+              \((1+t)^2v = \int 6t(1+t)\,\mathrm{d}t\)
+            marks:
+              - code: dM1
+                note: Writes LHS as their integrating factor times \(v\), and integrates their \(Q(t)\) times it, at least one power increased by 1.
+          - scheme: |
+              \((1+t)^2v = 3t^2+2t^3+c\)
+            marks:
+              - code: A1
+                note: Constant required; oe.
+          - scheme: |
+              \(t=0,\ v=-5 \Rightarrow c = \ldots\ [=-5]\)
+            marks:
+              - code: M1
+                note: Substitutes \(t=0\), \(v=-5\) into their general solution containing a constant.
+          - scheme: |
+              \(v=\frac{2t^3+3t^2-5}{(1+t)^2}\)
+            marks:
+              - code: A1
+                note: oe.
+          - scheme: |
+              \(2t^3+3t^2-5=0\)
+              \(\Rightarrow (t-1)(2t^2+5t+5)=0\)
+            marks:
+              - code: M1
+                note: Sets their numerator equal to zero and finds a root by any means, e.g. factor theorem then factorising; a calculator root is accepted.
+          - scheme: |
+              \(2t^2+5t+5>0\) for \(t\ge 0\) \(\Rightarrow t=1\)
+            marks:
+              - code: A1
+                note: \(t=1\) with the quadratic factor shown non-zero for \(t\ge0\) (negative discriminant or positive terms), or another argument excluding an earlier root.
+  - q: 2
+    stamp: cdbe1640
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(V = 600 + 20t - 30t = 600 - 10t\)
+            marks:
+              - code: B1
+                note: oe, e.g. \(10(60-t)\).
+          - scheme: |
+              Rate in \(= 20 \times 3 = 60\)
+            marks:
+              - code: B1
+          - scheme: |
+              Rate out \(= 30 \times \frac{x}{600 - 10t}\)
+            marks:
+              - code: M1
+                note: Uses outflow rate \(\times\) \(x\) over their volume, where the volume depends on \(t\). Not for \(\frac{x}{600}\).
+          - scheme: |
+              \(\frac{\mathrm{d}x}{\mathrm{d}t} = 60 - \frac{30x}{600 - 10t} = 60 - \frac{3x}{60 - t}\)
+            marks:
+              - code: A1 AG
+                note: Rate in minus rate out, both correct, leading without error to the printed equation; combined simplification accepted.
+      - part: b
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}x}{\mathrm{d}t} + \frac{3x}{60-t} = 60\)
+              \(\Rightarrow \mu = e^{\int \frac{3}{60-t}\,\mathrm{d}t}\)
+            marks:
+              - code: M1
+                note: Rearranges to \(\frac{\mathrm{d}x}{\mathrm{d}t} + Px = Q\) and forms \(e^{\int P\,\mathrm{d}t}\) with \(P = \pm\frac{3}{60-t}\). Condone a sign slip.
+          - scheme: |
+              \(\phantom{\Rightarrow \mu} = (60-t)^{-3}\)
+            marks:
+              - code: A1
+                note: oe, e.g. \(\frac{1}{(60-t)^3}\).
+          - scheme: |
+              \(\frac{x}{(60-t)^3} = \int 60(60-t)^{-3}\,\mathrm{d}t\)
+            marks:
+              - code: dM1
+                note: Writes LHS as \(x \times\) their integrating factor and integrates RHS, at least one power increased by 1. Condone sign and coefficient slips.
+          - scheme: |
+              \(\frac{x}{(60-t)^3} = 30(60-t)^{-2} + c\)
+            marks:
+              - code: A1
+                note: Must include the constant; oe, e.g. \(x = 30(60-t) + c(60-t)^3\).
+          - scheme: |
+              \(t = 0,\ x = 0 \Rightarrow c = \ldots\ [= -\tfrac{1}{120}]\)
+              \(t = 30 \Rightarrow x = \ldots\)
+            marks:
+              - code: M1
+                note: Uses \(x = 0\) at \(t = 0\) in their general solution with a constant to find it, then substitutes \(t = 30\).
+          - scheme: |
+              \(x = 675\)
+            marks:
+              - code: A1
+      - part: c
+        rows:
+          - scheme: |
+              Mixing is not instant or uniform; refine by letting the concentration vary through the tank
+            marks:
+              - code: E1
+                note: States a valid limitation, such as non-instant mixing or non-constant flow rates, and a refinement addressing it. Both needed.
+  - q: 3
+    stamp: fa88be45
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(V = 600 - 3t\)
+            marks:
+              - code: B1
+                note: oe, eg \(3(200-t)\).
+          - scheme: |
+              Rate in \(= 6 \times 2 = 12\)
+            marks:
+              - code: B1
+          - scheme: |
+              Rate out \(= 9 \times \dfrac{x}{600-3t}\)
+            marks:
+              - code: M1
+                note: Multiplies 9 by \(x\) divided by their volume, which must be a linear expression in \(t\).
+          - scheme: |
+              \(\dfrac{\mathrm{d}x}{\mathrm{d}t} = 12 - \dfrac{9x}{600-3t} = 12 - \dfrac{3x}{200-t}\)
+            marks:
+              - code: A1 AG
+                note: Rate in minus correct rate out, leading without error to the printed equation; cancelling by 3 may be combined.
+      - part: b
+        rows:
+          - scheme: |
+              \(\dfrac{\mathrm{d}x}{\mathrm{d}t} + \dfrac{3}{200-t}x = 12\)
+              \(\Rightarrow e^{\int \frac{3}{200-t}\,\mathrm{d}t} = e^{-3\ln(200-t)}\)
+            marks:
+              - code: M1
+                note: Attempts \(e^{\int P\,\mathrm{d}t}\) with \(P = \pm\frac{3}{200-t}\), integrating to the form \(k\ln(200-t)\). Condone sign slips.
+          - scheme: |
+              \(= (200-t)^{-3}\)
+            marks:
+              - code: A1
+                note: oe, eg \(\frac{1}{(200-t)^3}\).
+          - scheme: |
+              \(x(200-t)^{-3} = \int 12(200-t)^{-3}\,\mathrm{d}t = \ldots\)
+            marks:
+              - code: dM1
+                note: Multiplies through by their integrating factor, LHS as \(x \times\) their factor, and integrates the RHS with the power of \((200-t)\) increased by 1.
+          - scheme: |
+              \(x = 6(200-t) + c(200-t)^3\)
+            marks:
+              - code: A1
+                note: oe, including \(x(200-t)^{-3} = 6(200-t)^{-2} + c\). Constant required.
+          - scheme: |
+              \(t = 0,\ x = 0\)
+              \(\Rightarrow 0 = 1200 + 200^3 c \Rightarrow c = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t = 0\), \(x = 0\) into their general solution containing a constant and solves for it.
+          - scheme: |
+              \(x = 6(200-t) - \frac{3}{20000}(200-t)^3\)
+            marks:
+              - code: A1
+                note: oe.
+          - scheme: |
+              \(\dfrac{\text{"}x\text{"}}{3(200-t)} = 1.5\)
+              \(\Rightarrow (200-t)^2 = 10000 \Rightarrow t = \ldots\)
+            marks:
+              - code: M1
+                note: Sets their \(x\) divided by their volume equal to 1.5, or their \(x\) equal to 1.5 times their volume, and solves for \(t\).
+          - scheme: |
+              \(t = 100\) (minutes)
+            marks:
+              - code: A1
+                note: A0 if \(t = 300\) is also given as an answer.
+      - part: c
+        rows:
+          - scheme: |
+              Allow the concentration to vary within the tank (non-uniform mixing)
+            marks:
+              - code: E1
+                note: States a refinement changing a modelling assumption, eg non-uniform mixing, time to dissolve, variable flow rates. Not for vague accuracy comments.
+  - q: 4
+    stamp: e722a7f3
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              (i) \(V = 15\) litres
+            marks:
+              - code: B1
+                note: Or 15000 ml.
+          - scheme: |
+              (ii) Rate in \(= 0.2(4+e^{-0.1t})\)
+              \(\phantom{(ii) Rate in} = 0.8+0.2e^{-0.1t}\)
+            marks:
+              - code: B1
+                note: oe, such as \(\frac{200}{1000}(4+e^{-0.1t})\).
+          - scheme: |
+              Rate out \(= 0.3 \times \frac{m}{15}\)
+            marks:
+              - code: M1
+                note: Forms rate out as the outflow rate times \(m\) divided by their constant volume from (i), in consistent units.
+          - scheme: |
+              \(\frac{\mathrm{d}m}{\mathrm{d}t} = 0.8+0.2e^{-0.1t}-\frac{m}{50}\)
+            marks:
+              - code: A1 AG
+                note: Rate in minus rate out, both correct, leading without error to the printed equation.
+      - part: b
+        rows:
+          - scheme: |
+              \(e^{\int \frac{1}{50}\,\mathrm{d}t} = e^{t/50}\)
+            marks:
+              - code: B1
+                note: oe, such as \(e^{0.02t}\).
+          - scheme: |
+              \(me^{t/50} = \int \left(0.8e^{t/50}+0.2e^{-0.08t}\right)\mathrm{d}t\)
+              \(\phantom{me^{t/50}} = \ldots\)
+            marks:
+              - code: M1
+                note: Writes LHS as \(m\) times their integrating factor of the form \(e^{kt}\), multiplies the RHS by it and integrates at least one term to the form \(pe^{qt}\).
+          - scheme: |
+              \(me^{t/50} = 40e^{t/50}-2.5e^{-0.08t}+c\)
+            marks:
+              - code: A1
+                note: oe, including \(m = 40-2.5e^{-0.1t}+ce^{-0.02t}\). Constant required.
+          - scheme: |
+              \(t=0,\ m=6 \Rightarrow 6 = 40-2.5+c \Rightarrow c = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t=0\), \(m=6\) into their general solution containing a constant and solves for it.
+          - scheme: |
+              \(m = 40-2.5e^{-0.1t}-31.5e^{-0.02t}\)
+            marks:
+              - code: A1
+                note: oe, with \(m\) as the subject.
+      - part: c
+        rows:
+          - scheme: |
+              \(\frac{m(30)}{15} = \frac{40-2.5e^{-3}-31.5e^{-0.6}}{15} = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t=30\) into their \(m\) and divides by their volume from (a)(i).
+          - scheme: |
+              \(= 1.51\), close to \(1.52\), so the model is good
+            marks:
+              - code: A1ft
+                note: 'ft their \(m\): their value (awrt 1.51 if correct) compared with 1.52, concluding the model is good if within 1.44 to 1.60, poor otherwise.'
+  - q: 5
+    stamp: 91b49b6c
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(2\frac{\mathrm{d}v}{\mathrm{d}t}=-2t(v+3)\)
+              \(\Rightarrow \frac{\mathrm{d}v}{\mathrm{d}t}+tv=-3t\)
+            marks:
+              - code: M1
+                note: Uses \(F=ma\) with mass 2 and acceleration \(\frac{\mathrm{d}v}{\mathrm{d}t}\), and rearranges to the given form. Condone sign slips.
+          - scheme: |
+              \(P(t)=t,\ Q(t)=-3t\)
+            marks:
+              - code: A1
+                note: Both correct.
+      - part: b
+        rows:
+          - scheme: |
+              \(e^{\int t\,\mathrm{d}t}=e^{t^2/2}\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(ve^{t^2/2}=\int -3te^{t^2/2}\,\mathrm{d}t\)
+              \(\phantom{ve^{t^2/2}}=-3e^{t^2/2}+c\)
+            marks:
+              - code: M1
+                note: Multiplies through by their integrating factor of the form \(e^{f(t)}\) and integrates both sides, RHS to the form \(ke^{t^2/2}\). Condone sign and coefficient slips.
+              - code: A1
+                note: Correct, with constant, oe such as \(v=-3+ce^{-t^2/2}\).
+          - scheme: |
+              \(5=-3+c\Rightarrow c=\ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t=0\), \(v=5\) into their general solution containing a constant to find it.
+          - scheme: |
+              \(v=-3+8e^{-t^2/2}\)
+            marks:
+              - code: A1
+                note: oe, with \(v\) the subject.
+          - scheme: |
+              \(8e^{-t^2/2}=3\Rightarrow -\frac{t^2}{2}=\ln\frac38\)
+              \(\Rightarrow t^2=\ldots\)
+            marks:
+              - code: M1
+                note: Sets their \(v\) of the form \(a+be^{-t^2/2}\) to zero and takes logarithms correctly to reach \(t^2=\ldots\) or \(t=\ldots\).
+          - scheme: |
+              \(t=\sqrt{2\ln\frac83}\ [\approx 1.40]\)
+            marks:
+              - code: A1
+                note: Exact form or awrt 1.40, positive value only.
+  - q: 6
+    stamp: 581319d7
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(e^{\int(1-\cot t)\,\mathrm{d}t} = e^{t-\ln(\sin t)}\)
+            marks:
+              - code: M1
+                note: Uses \(e^{\int(1-\cot t)\,\mathrm{d}t}\) and integrates at least one term correctly.
+          - scheme: |
+              \(\phantom{e^{\int}} = \frac{e^t}{\sin t}\)
+            marks:
+              - code: A1
+                note: oe, e.g. \(e^t\operatorname{cosec} t\).
+          - scheme: |
+              \(\frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{e^t}{\sin t}R\right) = \frac{1}{1+t^2}\)
+              \(\Rightarrow \frac{e^t}{\sin t}R = \int\frac{1}{1+t^2}\,\mathrm{d}t = \ldots\)
+            marks:
+              - code: dM1
+                note: Multiplies through by their integrating factor, takes LHS as their factor \(\times R\), and integrates RHS to the form \(k\arctan t\). Constant may be absent.
+          - scheme: |
+              \(\frac{e^t}{\sin t}R = \arctan t + c\)
+            marks:
+              - code: A1
+                note: Must include the constant; \(R\) need not be the subject.
+          - scheme: |
+              \(\pi e^{-1}\sin 1 = e^{-1}\sin 1\,(\arctan 1 + c)\)
+              \(\Rightarrow c = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t = 1\), \(R = \pi e^{-1}\sin 1\) into their general solution containing a constant and solves for it.
+          - scheme: |
+              \(\pi = \frac{\pi}{4} + c \Rightarrow c = \frac{3\pi}{4}\)
+              \(R = e^{-t}\sin t\left(\arctan t + \frac{3\pi}{4}\right)\)
+            marks:
+              - code: A1 AG
+                note: cso. Correct substituted equation with \(\arctan 1 = \frac{\pi}{4}\), leading without error to the printed \(R\).
+      - part: b
+        rows:
+          - scheme: |
+              \(R = 0\), \(e^{-t} > 0\), \(\arctan t + \frac{3\pi}{4} > 0\)
+              \(\Rightarrow \sin t = 0\)
+            marks:
+              - code: M1
+                note: Sets \(R = 0\) and reduces to \(\sin t = 0\). No justification that the other factors are nonzero is needed.
+          - scheme: |
+              \(t = \pi\) seconds
+            marks:
+              - code: A1
+                note: Or awrt 3.14. A0 for \(t = n\pi\) without selecting \(\pi\).
+      - part: c
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}R}{\mathrm{d}t} = -e^{-t}\sin t\left(\arctan t + \frac{3\pi}{4}\right)\)
+              \(\phantom{\frac{\mathrm{d}R}{\mathrm{d}t}} + e^{-t}\cos t\left(\arctan t + \frac{3\pi}{4}\right)\)
+              \(\phantom{\frac{\mathrm{d}R}{\mathrm{d}t}} + \frac{e^{-t}\sin t}{1+t^2}\)
+            marks:
+              - code: M1
+                note: Uses the product rule, giving a sum of terms each with one factor differentiated. Condone sign and coefficient slips.
+              - code: A1
+                note: oe; need not be simplified.
+          - scheme: |
+              \(t = 0 \Rightarrow \frac{\mathrm{d}R}{\mathrm{d}t} = \frac{3\pi}{4}\)
+            marks:
+              - code: A1
+  - q: 7
+    stamp: e2dcef58
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}V}{\mathrm{d}t}-\frac{3-2t}{3t-t^2}V=\frac{3t-t^2}{1+(t-1)^2}\)
+              \(e^{\int -\frac{3-2t}{3t-t^2}\,\mathrm{d}t} = \ldots\)
+            marks:
+              - code: M1
+                note: Divides by \(3t-t^2\) and uses \(e^{\int P\,\mathrm{d}t}\) with their \(P\). Condone a sign slip in \(P\).
+          - scheme: |
+              \(e^{-\ln(3t-t^2)}=\frac{1}{3t-t^2}\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{V}{3t-t^2}\right)=\frac{1}{1+(t-1)^2}\)
+              \(\Rightarrow \frac{V}{3t-t^2}=\ldots\)
+            marks:
+              - code: dM1
+                note: Multiplies through by their integrating factor, writes the LHS as the derivative of \(V \times\) it, and integrates the RHS to a form \(k\arctan(t-1)\).
+          - scheme: |
+              \(\frac{V}{3t-t^2}=\arctan(t-1)+c\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\frac{4}{3-1}=\arctan 0+c \Rightarrow c=\ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t=1\), \(V=4\) into their general solution containing a constant and solves for the constant.
+          - scheme: |
+              \(c=2\)
+              \(\Rightarrow V=(3t-t^2)\left(\arctan(t-1)+2\right)\)
+            marks:
+              - code: A1 AG
+                note: Correct substituted condition giving \(c=2\), leading without error to the printed result.
+      - part: b
+        rows:
+          - scheme: |
+              \((3t-t^2)\left(\arctan(t-1)+2\right)=0\)
+              \(\arctan(t-1)+2>2-\frac{\pi}{2}>0\)
+              \(\Rightarrow 3t-t^2=0 \Rightarrow t=\ldots\)
+            marks:
+              - code: M1
+                note: Sets \(V=0\) and solves \(3t-t^2=0\). No justification that \(\arctan(t-1)+2\neq 0\) is needed.
+          - scheme: |
+              \(t=3\): the pulse lasts 3 seconds
+            marks:
+              - code: A1
+                note: 3 alone selected as the length; A0 if \(t=0\) is also given as an answer.
+      - part: c
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}V}{\mathrm{d}t}=(3-2t)\left(\arctan(t-1)+2\right)\)
+              \(\phantom{\frac{\mathrm{d}V}{\mathrm{d}t}}+\frac{3t-t^2}{1+(t-1)^2}\)
+            marks:
+              - code: M1
+                note: 'Uses the product rule: a sum of two products, each with one factor differentiated. Condone slips in the derivatives.'
+              - code: A1
+          - scheme: |
+              \(t=0\): \(3\left(\arctan(-1)+2\right)=6-\frac{3\pi}{4}\)
+            marks:
+              - code: A1
+                note: oe exact, such as \(3\left(2-\frac{\pi}{4}\right)\).
+  - q: 8
+    stamp: c3dc9d24
+    parts:
+      - part: a.i
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}C}{\mathrm{d}t} = -kC\)
+            marks:
+              - code: B1
+                note: oe, with the sign showing a decrease; any letter for the constant.
+      - part: a.ii
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}C}{\mathrm{d}t} = -kAe^{-kt}\)
+            marks:
+              - code: M1
+                note: Differentiates to the form \(pAe^{-kt}\) and substitutes into, or compares with, their equation from (a)(i).
+          - scheme: |
+              \(\phantom{\frac{\mathrm{d}C}{\mathrm{d}t}} = -kC\)
+            marks:
+              - code: A1
+                note: Correct derivative shown equal to \(-kC\), with a statement that the equation is satisfied.
+          - scheme: |
+              \(C(0) = Ae^{0} = A\)
+              \(k>0 \Rightarrow e^{-kt} \to 0 \Rightarrow C \to 0\)
+            marks:
+              - code: B1
+                note: Both conditions shown.
+      - part: b
+        rows:
+          - scheme: |
+              \(e^{\int \frac{2t}{1+t^2}\,\mathrm{d}t} = e^{\ln(1+t^2)}\)
+            marks:
+              - code: M1
+                note: Uses \(e^{\int P\,\mathrm{d}t}\) and integrates to the form \(\lambda\ln(1+t^2)\).
+          - scheme: |
+              \(\phantom{e^{\int}} = 1+t^2\)
+            marks:
+              - code: A1 AG
+                note: From \(e^{\ln(1+t^2)}\) without error.
+      - part: c.i
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}}{\mathrm{d}t}\left((1+t^2)C\right) = 0\)
+              \(\Rightarrow (1+t^2)C = K\)
+            marks:
+              - code: M1
+                note: Multiplies by \(1+t^2\) and integrates, LHS to \((1+t^2)C\); or separates variables and integrates both sides.
+              - code: A1
+                note: oe, with a constant.
+          - scheme: |
+              \(t=0,\ C=A \Rightarrow K = \ldots\ [=A]\)
+            marks:
+              - code: M1
+                note: Substitutes \(t=0\), \(C=A\) into their solution with a constant to find it.
+          - scheme: |
+              \(C = \frac{A}{1+t^2}\)
+            marks:
+              - code: A1 AG
+                note: From a correct general solution and \(K=A\), without error.
+      - part: c.ii
+        rows:
+          - scheme: |
+              \(\frac{A}{1+t^2} = \frac{A}{2} \Rightarrow t = \ldots\)
+            marks:
+              - code: M1
+                note: Sets the given expression equal to \(\frac{A}{2}\) and solves for \(t\).
+          - scheme: |
+              \(t = 1\) hour \(= 60\) minutes
+            marks:
+              - code: A1
+                note: 60 minutes or 1 hour, with no negative value given as the answer.
+      - part: d
+        rows:
+          - scheme: |
+              \((1+t^2)\frac{\mathrm{d}C}{\mathrm{d}t} + 2tC = te^{-t}\)
+              \(\Rightarrow \frac{\mathrm{d}}{\mathrm{d}t}\left((1+t^2)C\right) = te^{-t}\)
+            marks:
+              - code: M1
+                note: Multiplies through by \(1+t^2\); RHS need not be simplified.
+              - code: A1
+                note: LHS as the derivative of \((1+t^2)C\), or implied by integrating to \((1+t^2)C\).
+          - scheme: |
+              \(\int te^{-t}\,\mathrm{d}t = -te^{-t} + \int e^{-t}\,\mathrm{d}t\)
+            marks:
+              - code: M1
+                note: Integrates by parts with \(u=t\), reaching the form \(\pm te^{-t} \pm \int e^{-t}\,\mathrm{d}t\). Condone sign slips.
+          - scheme: |
+              \((1+t^2)C = -(1+t)e^{-t} + K\)
+            marks:
+              - code: A1
+                note: oe, with a constant.
+          - scheme: |
+              \(t=0,\ C=A \Rightarrow A = -1 + K\)
+              \(\Rightarrow K = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t=0\), \(C=A\) into their solution with a constant to find it.
+          - scheme: |
+              \(C = \frac{A+1-(1+t)e^{-t}}{1+t^2}\)
+            marks:
+              - code: A1 AG
+                note: From a correct general solution and \(K=A+1\), without error.
+      - part: e
+        rows:
+          - scheme: |
+              \(\frac{6-(1+t)e^{-t}}{1+t^2} = 2.5 \Rightarrow t = \ldots\)
+            marks:
+              - code: M1
+                note: Sets model (d) with \(A=5\) equal to 2.5 and solves for \(t\); calculator or numerical method accepted.
+          - scheme: |
+              \(t = 1.055\ldots\) hours \(\approx 63\) minutes
+              Closer to 63 than 60, so model (d)
+            marks:
+              - code: A1ft
+                note: Awrt 63 minutes or 1.06 hours, compared with 63 and their (c)(ii) time, choosing the closer model. ft their (c)(ii).
+  - q: 9
+    stamp: 4c42e5d5
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(300-200=100\) ml min\(^{-1}\) \(=0.1\) L min\(^{-1}\)
+              \(\Rightarrow V=4+0.1t\)
+            marks:
+              - code: B1
+                note: Net rate of 100 ml or 0.1 litres per minute seen; not for the printed volume alone.
+          - scheme: |
+              Rate in \(=0.3\times 2e^{-0.1t}=0.6e^{-0.1t}\)
+            marks:
+              - code: B1
+          - scheme: |
+              Rate out \(=0.2\times\dfrac{m}{4+0.1t}\)
+            marks:
+              - code: M1
+                note: Multiplies the outflow rate by \(\frac{m}{V}\), with their volume. Condone inconsistent units (200 for 0.2).
+          - scheme: |
+              \(\dfrac{\mathrm{d}m}{\mathrm{d}t}=0.6e^{-0.1t}-\dfrac{0.2m}{4+0.1t}\)
+              \(\phantom{\dfrac{\mathrm{d}m}{\mathrm{d}t}}=0.6e^{-0.1t}-\dfrac{2m}{40+t}\)
+            marks:
+              - code: A1 AG
+                note: Rate in minus rate out in consistent units, simplified without error to the printed equation.
+      - part: b
+        rows:
+          - scheme: |
+              \(\mu=e^{\int \frac{2}{40+t}\,\mathrm{d}t}\)
+            marks:
+              - code: M1
+                note: Forms \(e^{\int P\,\mathrm{d}t}\) with \(P=\frac{2}{40+t}\) from the standard form. Condone a sign slip in \(P\).
+          - scheme: |
+              \(\phantom{\mu}=(40+t)^2\)
+            marks:
+              - code: A1
+          - scheme: |
+              \((40+t)^2m=\int 0.6(40+t)^2e^{-0.1t}\,\mathrm{d}t\)
+              \(\phantom{(40+t)^2m}=\ldots\)
+            marks:
+              - code: dM1
+                note: Multiplies through by their integrating factor \(\mu\) of the form \((40+t)^n\), \(n\geq1\), integrates LHS to \(\mu m\), and applies parts to RHS, differentiating the polynomial factor. Condone coefficient slips.
+          - scheme: |
+              \(=-6(t^2+80t+1600)e^{-0.1t}\)
+              \(\phantom{=}+12\int (t+40)e^{-0.1t}\,\mathrm{d}t\)
+            marks:
+              - code: A1
+                note: oe, \((40+t)^2\) expanded or not.
+          - scheme: |
+              \(\int (t+40)e^{-0.1t}\,\mathrm{d}t\)
+              \(\phantom{A}=-10(t+40)e^{-0.1t}+\int 10e^{-0.1t}\,\mathrm{d}t\)
+            marks:
+              - code: dM1
+                note: Applies parts to the remaining integral, differentiating the linear factor. Condone coefficient slips.
+          - scheme: |
+              \(\int 0.6(40+t)^2e^{-0.1t}\,\mathrm{d}t\)
+              \(\phantom{A}=-6e^{-0.1t}(t^2+100t+2600)\)
+            marks:
+              - code: A1
+                note: oe.
+          - scheme: |
+              \((40+t)^2m=-6e^{-0.1t}(t^2+100t+2600)+c\)
+            marks:
+              - code: A1
+                note: oe; constant of integration required.
+          - scheme: |
+              \(40^2\times 4=-6(2600)+c\Rightarrow c=\ldots\ [=22000]\)
+            marks:
+              - code: M1
+                note: Substitutes \(t=0\), \(m=4\) into their solution containing a constant of integration and solves for it.
+          - scheme: |
+              \(m=\dfrac{22000-6e^{-0.1t}(t^2+100t+2600)}{(40+t)^2}\)
+            marks:
+              - code: A1
+                note: oe, with \(m\) as subject.
+      - part: c
+        rows:
+          - scheme: |
+              \(m(20)=\dfrac{22000-30000e^{-2}}{3600}\), \(V=6\)
+              \(\dfrac{m(20)}{6}=\ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t=20\) into their \(m\) and divides by their volume at \(t=20\).
+          - scheme: |
+              \(\approx 0.831\), close to \(0.82\), so the model is good
+            marks:
+              - code: A1ft
+                note: awrt 0.831, ft their \(m\). Concludes model good if within 5\% of 0.82, otherwise not, with comparison stated.
+  - q: 10
+    stamp: dab1c6b8
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              Resistance increases with speed, and is zero
+              when the boat is at rest
+            marks:
+              - code: E1
+                note: States that resistance increases with, or depends on, speed, or is zero at rest. Not for "more realistic" alone.
+      - part: b
+        rows:
+          - scheme: |
+              \(m\frac{\mathrm{d}v}{\mathrm{d}t} = -0.2mv - m\)
+              \(\Rightarrow \frac{\mathrm{d}v}{\mathrm{d}t} + 0.2v = -1\)
+            marks:
+              - code: B1
+                note: Both resistances opposing the motion in \(F = ma\), then division by \(m\) to the printed result.
+      - part: c.i
+        rows:
+          - scheme: |
+              \(e^{\int 0.2\,\mathrm{d}t} = e^{t/5}\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(\frac{\mathrm{d}}{\mathrm{d}t}\left(ve^{t/5}\right) = -e^{t/5}\)
+              \(\Rightarrow ve^{t/5} = \int -e^{t/5}\,\mathrm{d}t\)
+            marks:
+              - code: M1
+                note: Multiplies through by their integrating factor \(e^{kt}\) and integrates both sides, the RHS to the form \(pe^{kt}\). Separating variables accepted.
+          - scheme: |
+              \(ve^{t/5} = -5e^{t/5} + c\)
+              \(\Rightarrow v = -5 + ce^{-t/5}\)
+            marks:
+              - code: A1
+                note: oe, in either form, with the constant.
+          - scheme: |
+              \(0 = -5 + ce^{-2} \Rightarrow c = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t = 10\), \(v = 0\) into their general solution containing a constant and solves for it.
+          - scheme: |
+              \(v = 5\left(e^{2-t/5} - 1\right)\)
+            marks:
+              - code: A1
+                note: oe, eg \(5e^2e^{-t/5} - 5\), or with \(c\) awrt 36.9.
+      - part: c.ii
+        rows:
+          - scheme: |
+              \(v = 5(e-1)\ [\approx 8.59]\)
+            marks:
+              - code: B1ft
+                note: ft their (c)(i) solution at \(t = 5\). Accept \(5(e-1)\) or awrt 8.59.
+      - part: d
+        rows:
+          - scheme: |
+              \(m\frac{\mathrm{d}v}{\mathrm{d}t} = kt^2 - 0.2mv\)
+              \(\Rightarrow \frac{\mathrm{d}v}{\mathrm{d}t} + 0.2v = \lambda t^2,\ \lambda = \frac{k}{m} > 0\)
+            marks:
+              - code: B1
+                note: Driving force \(kt^2\) and opposing resistance \(0.2mv\) in \(F = ma\), division by \(m\), and \(\lambda\) identified as a positive constant.
+      - part: e.i
+        rows:
+          - scheme: |
+              \(e^{\int 0.2\,\mathrm{d}t} = e^{t/5}\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(\frac{\mathrm{d}}{\mathrm{d}t}\left(ve^{t/5}\right) = \lambda t^2e^{t/5}\)
+              \(\int t^2e^{t/5}\,\mathrm{d}t = 5t^2e^{t/5} - \int 10te^{t/5}\,\mathrm{d}t\)
+            marks:
+              - code: M1
+                note: Multiplies through by their \(e^{kt}\) and applies parts to \(\int t^2e^{kt}\,\mathrm{d}t\), reaching the form \(pt^2e^{kt} - \int qte^{kt}\,\mathrm{d}t\). Condone coefficient slips.
+              - code: A1
+                note: Correct, with or without \(\lambda\).
+          - scheme: |
+              \(\int te^{t/5}\,\mathrm{d}t = 5te^{t/5} - \int 5e^{t/5}\,\mathrm{d}t\)
+            marks:
+              - code: dM1
+                note: Applies parts again to their \(\int te^{kt}\,\mathrm{d}t\), reaching the form \(pte^{kt} \pm qe^{kt}\); a tabular method accepted. Condone coefficient slips.
+          - scheme: |
+              \(\int t^2e^{t/5}\,\mathrm{d}t = 5e^{t/5}\left(t^2 - 10t + 50\right)\)
+            marks:
+              - code: A1
+                note: oe, eg expanded.
+          - scheme: |
+              \(v = 5\lambda\left(t^2 - 10t + 50\right) + ce^{-t/5}\)
+            marks:
+              - code: A1
+                note: oe, eg as \(ve^{t/5} = \ldots\), with the constant.
+          - scheme: |
+              \(0 = 250\lambda + c \Rightarrow c = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t = 0\), \(v = 0\) into their general solution containing a constant and solves for it.
+          - scheme: |
+              \(c = -250\lambda\)
+              \(\Rightarrow v = 5\lambda\left(t^2 - 10t + 50 - 50e^{-t/5}\right)\)
+            marks:
+              - code: A1 AG
+                note: \(c = -250\lambda\) from a correct substituted equation, leading without error to the printed result. A0 if \(\lambda\) is dropped and reinstated.
+      - part: e.ii
+        rows:
+          - scheme: |
+              \(5\lambda\left(25 - 50e^{-1}\right) = \text{"}5(e-1)\text{"}\)
+              \(\Rightarrow \lambda = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t = 5\) in the printed expression and equates to their (c)(ii) velocity.
+          - scheme: |
+              \(\lambda = \frac{e(e-1)}{25(e-2)}\ [\approx 0.260]\)
+            marks:
+              - code: A1
+                note: oe, or awrt 0.260.
+      - part: f
+        rows:
+          - scheme: |
+              \(\int_0^5 5\lambda\left(t^2-10t+50-50e^{-t/5}\right)\mathrm{d}t\)
+              \(\phantom{=} = 5\lambda\left[\frac{t^3}{3} - 5t^2 + 50t + 250e^{-t/5}\right]_0^5\)
+            marks:
+              - code: M1
+                note: 'Integrates the (e)(i) expression: polynomial powers increased by 1 and \(e^{-t/5} \to ke^{-t/5}\). Condone coefficient slips.'
+              - code: A1
+                note: Correct, in \(\lambda\) or its value.
+          - scheme: |
+              \(\int_5^{10} 5\left(e^{2-t/5} - 1\right)\mathrm{d}t\)
+              \(\phantom{=} = 5\left[-5e^{2-t/5} - t\right]_5^{10}\)
+            marks:
+              - code: M1
+                note: 'Integrates their (c)(i) expression: \(e^{2-t/5} \to ke^{2-t/5}\) and the constant to a multiple of \(t\).'
+              - code: A1
+          - scheme: |
+              \(s = 5\lambda\left(\frac{250}{e} - \frac{250}{3}\right) + 25(e-2)\)
+              \(\phantom{s} = \ldots\ [\approx 11.2 + 18.0]\)
+            marks:
+              - code: dM1
+                note: Applies limits 0 to 5 and 5 to 10 to their integrals, with their \(\lambda\), and adds. Needs both previous M1 marks.
+          - scheme: |
+              \(29\) m
+            marks:
+              - code: A1
+  - q: 11
+    stamp: 3da04853
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              Resistance increases as the speed of the cage increases
+            marks:
+              - code: E1
+                note: States that resistance increases with, or depends on, speed. Not for "more realistic" alone.
+      - part: b
+        rows:
+          - scheme: |
+              \(m\frac{\mathrm{d}v}{\mathrm{d}t} = 0.75mg - mg - 0.25mv\)
+              \(\Rightarrow \frac{\mathrm{d}v}{\mathrm{d}t} + 0.25v = -\frac14 g\)
+            marks:
+              - code: B1
+                note: Newton's second law with tension, weight and resistance, correct signs, leading without error to the printed equation.
+      - part: c.i
+        rows:
+          - scheme: |
+              \(e^{\int 0.25\,\mathrm{d}t} = e^{t/4}\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(\frac{\mathrm{d}}{\mathrm{d}t}\left(ve^{t/4}\right) = -\frac14 ge^{t/4}\)
+              \(\Rightarrow ve^{t/4} = \ldots\)
+            marks:
+              - code: M1
+                note: Multiplies through by their integrating factor and integrates both sides, LHS to \(v\) times their integrating factor.
+          - scheme: |
+              \(ve^{t/4} = -ge^{t/4} + c\)
+            marks:
+              - code: A1
+                note: oe; needs the constant.
+          - scheme: |
+              \(0 = ce^{-2} - g \Rightarrow c = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t = 8\), \(v = 0\) into their solution containing a constant and solves for it.
+          - scheme: |
+              \(v = g\left(e^{2-t/4} - 1\right)\)
+            marks:
+              - code: A1
+                note: oe, with \(g\) or \(9.8\).
+      - part: c.ii
+        rows:
+          - scheme: |
+              \(v = g(e-1)\ [\approx 16.8]\)
+            marks:
+              - code: B1ft
+                note: ft their (c)(i) solution at \(t = 4\), exact or to 3 s.f.
+      - part: d
+        rows:
+          - scheme: |
+              \(m\frac{\mathrm{d}v}{\mathrm{d}t} = m(g + \lambda t) - mg - 0.25mv\)
+              \(\Rightarrow \frac{\mathrm{d}v}{\mathrm{d}t} + 0.25v = \lambda t\)
+            marks:
+              - code: B1
+                note: Newton's second law with tension, weight and resistance, correct signs, leading without error to the printed equation.
+      - part: e.i
+        rows:
+          - scheme: |
+              \(e^{\int 0.25\,\mathrm{d}t} = e^{t/4}\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(ve^{t/4} = \lambda\int te^{t/4}\,\mathrm{d}t\)
+              \(\phantom{ve^{t/4}} = \lambda\left(4te^{t/4} - \int 4e^{t/4}\,\mathrm{d}t\right)\)
+            marks:
+              - code: M1
+                note: Multiplies through by their integrating factor and integrates \(te^{t/4}\) by parts to the form \(pte^{t/4} - \int qe^{t/4}\,\mathrm{d}t\). Condone sign and coefficient slips.
+          - scheme: |
+              \(\int te^{t/4}\,\mathrm{d}t = 4te^{t/4} - 16e^{t/4}\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(v = 4\lambda(t-4) + ce^{-t/4}\)
+            marks:
+              - code: A1
+                note: oe, such as \(ve^{t/4} = \lambda\left(4te^{t/4} - 16e^{t/4}\right) + c\); needs the constant.
+          - scheme: |
+              \(0 = -16\lambda + c \Rightarrow c = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t = 0\), \(v = 0\) into their solution containing a constant and solves for it.
+          - scheme: |
+              \(c = 16\lambda\)
+              \(\Rightarrow v = 4\lambda\left(t - 4 + 4e^{-t/4}\right)\)
+            marks:
+              - code: A1 AG
+                note: Correct \(c\) substituted into a correct general solution, leading without error to the printed expression.
+      - part: e.ii
+        rows:
+          - scheme: |
+              \(4\lambda\left(4 - 4 + 4e^{-1}\right) = \text{"}g(e-1)\text{"}\)
+              \(\Rightarrow \lambda = \ldots\)
+            marks:
+              - code: M1
+                note: Equates \(v(4)\) from the printed expression to their (c)(ii) velocity and solves for \(\lambda\).
+          - scheme: |
+              \(\lambda = \frac{ge(e-1)}{16}\ [\approx 2.86]\)
+            marks:
+              - code: A1
+                note: oe, or awrt 2.86.
+      - part: f
+        rows:
+          - scheme: |
+              \(\int 4\lambda\left(t - 4 + 4e^{-t/4}\right)\mathrm{d}t\)
+              \(\phantom{\int} = 4\lambda\left[\frac{t^2}{2} - 4t - 16e^{-t/4}\right]\)
+            marks:
+              - code: M1
+                note: 'Integrates the first-stage \(v\): power of \(t\) increased in at least one term, or \(e^{-t/4} \to ke^{-t/4}\).'
+              - code: A1
+                note: oe; a correct definite value \(\left(32 - \frac{64}{e}\right)\lambda\) implies it.
+          - scheme: |
+              \(\int g\left(e^{2-t/4} - 1\right)\mathrm{d}t\)
+              \(\phantom{\int} = g\left[-4e^{2-t/4} - t\right]\)
+            marks:
+              - code: M1
+                note: Integrates their second-stage \(v\), of the form \(Ae^{-t/4} + B\), with \(e^{-t/4} \to ke^{-t/4}\) or the constant to a multiple of \(t\).
+              - code: A1
+                note: oe; a correct definite value \(4g(e-2)\) implies it.
+          - scheme: |
+              \(\left(32 - \frac{64}{e}\right)\text{"}\lambda\text{"} + 4g(e-2) = \ldots\)
+            marks:
+              - code: dM1
+                note: Applies limits 0, 4 and 4, 8 to their integrals and adds, with their \(\lambda\).
+          - scheme: |
+              \(52\) (m)
+            marks:
+              - code: A1
+  - q: 12
+    stamp: 6321dcf2
+    parts:
+      - part: a.i
+        rows:
+          - scheme: |
+              Volume \(= 2 + rt - st\)
+            marks:
+              - code: M1
+                note: Forms the volume as initial volume plus inflow minus outflow in time \(t\).
+          - scheme: |
+              \(\phantom{V} = 2 + (r-s)t\)
+              \(\Rightarrow\) concentration \(= \frac{m}{2+(r-s)t}\)
+            marks:
+              - code: A1 AG
+                note: Mass divided by the correct volume, reaching the printed result.
+      - part: a.ii
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}m}{\mathrm{d}t} = 10r - s\times\frac{m}{2+(r-s)t}\)
+            marks:
+              - code: M1
+                note: Forms \(\frac{\mathrm{d}m}{\mathrm{d}t}\) as rate in \(10r\) minus rate out \(s\) times the concentration from (i). Condone a sign slip.
+          - scheme: |
+              \(\frac{\mathrm{d}m}{\mathrm{d}t}+\frac{sm}{2+(r-s)t}=10r\)
+            marks:
+              - code: A1 AG
+                note: Correct equation rearranged to the printed result without error.
+      - part: b.i
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}m}{\mathrm{d}t}+\frac{r}{2}m=10r\)
+              \(\mu = e^{rt/2}\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(\frac{\mathrm{d}}{\mathrm{d}t}\left(me^{rt/2}\right)=10re^{rt/2}\)
+              \(\Rightarrow me^{rt/2} = \ldots\)
+            marks:
+              - code: M1
+                note: Multiplies through by their integrating factor of the form \(e^{kt}\) and integrates the RHS to the form \(Ae^{kt}\).
+          - scheme: |
+              \(me^{rt/2} = 20e^{rt/2}+c\)
+            marks:
+              - code: A1
+                note: oe, with the constant.
+          - scheme: |
+              \(4 = 20 + c \Rightarrow c = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t=0\), \(m=4\) into their general solution containing a constant and finds it.
+          - scheme: |
+              \(m = 20 - 16e^{-rt/2}\)
+            marks:
+              - code: A1
+                note: oe, \(m\) in terms of \(r\) and \(t\).
+      - part: b.ii
+        rows:
+          - scheme: |
+              \(\frac{\text{"}20-16e^{-r}\text{"}}{2} = 8 \Rightarrow e^{-r} = \ldots\)
+              \(\Rightarrow r = \ldots\)
+            marks:
+              - code: M1
+                note: Sets their \(\frac{m}{2}\) equal to 8 at \(t=2\), with \(m\) of the form \(a+be^{-kt}\), and solves using logarithms. Not for setting \(m=8\).
+          - scheme: |
+              \(r = \ln 4\)
+            marks:
+              - code: A1
+                note: oe, or awrt 1.39.
+      - part: c.i
+        rows:
+          - scheme: |
+              Volume \(= 2 - rt = 0\) when \(t = \frac{2}{r}\): tank empty
+            marks:
+              - code: E1
+                note: Uses the volume \(2-rt\) to conclude the tank is empty at \(t=\frac{2}{r}\). A zero denominator alone, without reference to volume, is not enough.
+      - part: c.ii
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}m}{\mathrm{d}t}+\frac{2r}{2-rt}m=10r\)
+              \(\mu = e^{\int \frac{2r}{2-rt}\,\mathrm{d}t}\)
+            marks:
+              - code: M1
+                note: Substitutes \(s=2r\) and writes the integrating factor as \(e^{\int P\,\mathrm{d}t}\) with their \(P\) of the form \(\frac{k}{2-rt}\).
+          - scheme: |
+              \(\phantom{\mu} = e^{-2\ln(2-rt)} = (2-rt)^{-2}\)
+            marks:
+              - code: A1
+                note: Simplified from the exponential; accept \(\frac{1}{(2-rt)^2}\).
+          - scheme: |
+              \(\frac{\mathrm{d}}{\mathrm{d}t}\left(m(2-rt)^{-2}\right)=10r(2-rt)^{-2}\)
+              \(\Rightarrow m(2-rt)^{-2} = \ldots\)
+            marks:
+              - code: dM1
+                note: Multiplies through by their integrating factor of the form \((2-rt)^n\) and integrates the RHS to the form \(A(2-rt)^{n+1}\).
+          - scheme: |
+              \(m(2-rt)^{-2} = \frac{10}{2-rt}+c\)
+            marks:
+              - code: A1
+                note: oe, with the constant.
+          - scheme: |
+              \(4 = 20 + 4c \Rightarrow c = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t=0\), \(m=4\) into their general solution containing a constant and finds it.
+          - scheme: |
+              \(m = 10(2-rt) - 4(2-rt)^2\)
+              \([= 4 + 6rt - 4r^2t^2]\)
+            marks:
+              - code: A1
+                note: oe.
+          - scheme: |
+              \(\frac{\mathrm{d}m}{\mathrm{d}t} = 6r - 8r^2t = 0 \Rightarrow t = \ldots\)
+            marks:
+              - code: M1
+                note: Differentiates their \(m\), at least one power of \(t\) reduced by 1, sets it to zero and solves for \(t\); completing the square equally valid.
+          - scheme: |
+              \(t = \frac{3}{4r}\)
+            marks:
+              - code: A1
+                note: No justification of the maximum or of \(t<\frac{2}{r}\) needed.
+          - scheme: |
+              \(m = 4 + 6r\left(\frac{3}{4r}\right) - 4r^2\left(\frac{3}{4r}\right)^2\)
+            marks:
+              - code: dM1
+                note: Substitutes their \(t\) into their particular solution.
+          - scheme: |
+              \(m_{\max} = \frac{25}{4}\) (g)
+            marks:
+              - code: A1
+                note: Accept 6.25.
+  - q: 13
+    stamp: 2dfe0dbc
+    parts:
+      - part: a.i
+        rows:
+          - scheme: |
+              Volume \(= 4 + pt - qt\)
+            marks:
+              - code: M1
+                note: Forms the volume at time \(t\) as initial volume plus inflow minus outflow.
+          - scheme: |
+              Proportion \(= \dfrac{x}{4+(p-q)t}\)
+            marks:
+              - code: A1 AG
+                note: Divides \(x\) by the correct volume and reaches the printed form without error.
+      - part: a.ii
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}x}{\mathrm{d}t} = 0.6p - q\times\frac{x}{4+(p-q)t}\)
+            marks:
+              - code: M1
+                note: Forms \(\frac{\mathrm{d}x}{\mathrm{d}t}\) as rate in minus rate out, with rate out as \(q\) times the proportion from (a)(i). Condone sign slips.
+          - scheme: |
+              \(\frac{\mathrm{d}x}{\mathrm{d}t}+\frac{qx}{4+(p-q)t}=\frac{3p}{5}\)
+            marks:
+              - code: A1 AG
+                note: Correct rate equation, with rate in \(0.6p\) or \(\frac{3p}{5}\), rearranged to the printed result without error.
+      - part: b.i
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}x}{\mathrm{d}t} + \frac{p}{4}x = \frac{3p}{5}\)
+              \(\mu = e^{pt/4}\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(xe^{pt/4} = \int \frac{3p}{5}e^{pt/4}\,\mathrm{d}t\)
+            marks:
+              - code: M1
+                note: Multiplies through by their integrating factor \(e^{kt}\) and integrates both sides, RHS to the form \(Ae^{kt}\); or separates the variables and integrates.
+          - scheme: |
+              \(xe^{pt/4} = \frac{12}{5}e^{pt/4} + c\)
+            marks:
+              - code: A1
+                note: Correct, including the constant; any equivalent form.
+          - scheme: |
+              \(t = 0,\ x = 0 \Rightarrow c = \ldots\ [= -\frac{12}{5}]\)
+            marks:
+              - code: M1
+                note: Substitutes \(t = 0\), \(x = 0\) into their general solution containing a constant to find it.
+          - scheme: |
+              \(x = \frac{12}{5}\left(1 - e^{-pt/4}\right)\)
+            marks:
+              - code: A1
+                note: oe, with \(x\) the subject.
+      - part: b.ii
+        rows:
+          - scheme: |
+              \(0.3\times 4 = \text{"}\frac{12}{5}\left(1 - e^{-p}\right)\text{"}\)
+              \(\Rightarrow e^{-p} = \ldots \Rightarrow p = \ldots\)
+            marks:
+              - code: M1
+                note: Equates \(0.3\times 4\) to their \(x\), of the form \(A(1 - e^{-kpt})\), at \(t = 4\) and uses logarithms to solve for \(p\).
+          - scheme: |
+              \(p = \ln 2\)
+            marks:
+              - code: A1
+                note: Or awrt 0.693.
+      - part: c.i
+        rows:
+          - scheme: |
+              Volume \(= 4 - pt = 0\) at \(t = \frac{4}{p}\): tank empty
+            marks:
+              - code: E1
+                note: Shows the volume \(4 - pt\) is zero at \(t = \frac{4}{p}\) and concludes the tank is empty, or that the denominator is zero or negative for \(t \geq \frac{4}{p}\).
+      - part: c.ii
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}x}{\mathrm{d}t} + \frac{2px}{4-pt} = \frac{3p}{5}\)
+              \(\mu = e^{\int \frac{2p}{4-pt}\,\mathrm{d}t}\)
+            marks:
+              - code: M1
+                note: Uses \(q = 2p\) and writes the integrating factor as \(e\) to the integral of their coefficient of \(x\), integrated to a logarithm.
+          - scheme: |
+              \(\phantom{\mu} = e^{-2\ln(4-pt)} = (4-pt)^{-2}\)
+            marks:
+              - code: A1
+                note: oe such as \(\frac{1}{(4-pt)^2}\).
+          - scheme: |
+              \(x(4-pt)^{-2} = \int \frac{3p}{5}(4-pt)^{-2}\,\mathrm{d}t\)
+            marks:
+              - code: dM1
+                note: Multiplies through by their integrating factor and integrates both sides, RHS to the form \(k(4-pt)^{-1}\).
+          - scheme: |
+              \(x(4-pt)^{-2} = \frac{3}{5(4-pt)} + c\)
+            marks:
+              - code: A1
+                note: Correct, including the constant; any equivalent form.
+          - scheme: |
+              \(t = 0,\ x = 0 \Rightarrow c = \ldots\ [= -\frac{3}{20}]\)
+            marks:
+              - code: M1
+                note: Substitutes \(t = 0\), \(x = 0\) into their general solution containing a constant to find it.
+          - scheme: |
+              \(x = \frac{3}{5}(4-pt) - \frac{3}{20}(4-pt)^2\)
+              \(\phantom{x} [= \frac{3pt}{5} - \frac{3p^2t^2}{20}]\)
+            marks:
+              - code: A1
+                note: oe, with \(x\) the subject; need not be expanded.
+          - scheme: |
+              \(\frac{\mathrm{d}x}{\mathrm{d}t} = \frac{3p}{5} - \frac{3p^2t}{10} = 0\)
+              \(\Rightarrow t = \ldots\)
+            marks:
+              - code: M1
+                note: Differentiates their quadratic \(x\), power of at least one term reduced by 1, and sets it to zero; or completes the square.
+          - scheme: |
+              \(t = \frac{2}{p}\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(x = \frac{3p}{5}\times\frac{2}{p} - \frac{3p^2}{20}\times\frac{4}{p^2}\)
+            marks:
+              - code: dM1
+                note: Substitutes their \(t\) into their particular solution.
+          - scheme: |
+              Maximum \(= \frac{3}{5}\) litres
+            marks:
+              - code: A1
+                note: oe such as 0.6. No justification that it is a maximum is needed.
+  - q: 14
+    stamp: 60d584b5
+    parts:
+      - part: a.i
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}C}{\mathrm{d}t} = k(M - C)\)
+            marks:
+              - code: B1
+                note: Any letter for the constant. A proportionality statement without an equation scores B0.
+      - part: a.ii
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}C}{\mathrm{d}t} = Mke^{-kt}\)
+              \(k(M - C) = k\left(M - M(1 - e^{-kt})\right)\)
+            marks:
+              - code: M1
+                note: Differentiates \(C\) to the form \(\alpha e^{-kt}\) and substitutes \(C\) into \(k(M-C)\), or into their equation from (a)(i).
+          - scheme: |
+              \(\phantom{k(M - C)} = kMe^{-kt} = \frac{\mathrm{d}C}{\mathrm{d}t}\)
+            marks:
+              - code: A1
+                note: cso. Both sides shown equal, with a conclusion.
+          - scheme: |
+              \(C(0) = M(1 - 1) = 0\)
+              \(e^{-kt} \to 0 \Rightarrow C \to M\) as \(t \to \infty\)
+            marks:
+              - code: B1
+                note: Both conditions, with \(e^{-kt} \to 0\) stated or implied.
+      - part: b
+        rows:
+          - scheme: |
+              \(-\frac{t+2}{t(1+t+t^2)} = \frac{A}{t} + \frac{Bt+D}{1+t+t^2}\)
+            marks:
+              - code: M1
+                note: Uses partial fractions of the form \(\frac{A}{t}+\frac{Bt+D}{1+t+t^2}\); the fraction may be taken with either sign.
+          - scheme: |
+              \(-(t+2) = A(1+t+t^2) + t(Bt+D)\)
+              \(\Rightarrow A = \ldots,\ B = \ldots,\ D = \ldots\)
+            marks:
+              - code: dM1
+                note: Multiplies through and compares coefficients or substitutes values to find the constants. Condone slips.
+          - scheme: |
+              \(-\frac{2}{t} + \frac{2t+1}{1+t+t^2}\)
+            marks:
+              - code: A1
+                note: oe, including the positive fraction with all signs reversed.
+          - scheme: |
+              \(\int \ldots\,\mathrm{d}t = -2\ln t + \ln(1+t+t^2)\)
+              \(\Rightarrow e^{-2\ln t + \ln(1+t+t^2)}\)
+            marks:
+              - code: M1
+                note: Integrates their partial fractions to \(\alpha\ln t + \beta\ln(1+t+t^2)\) and forms \(e^{\int P\,\mathrm{d}t}\). Condone a sign slip in \(P\).
+          - scheme: |
+              \(= \frac{1+t+t^2}{t^2}\)
+            marks:
+              - code: A1 AG
+                note: Correct integral and log laws leading without error to the printed form; combined steps accepted.
+      - part: c.i
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{1+t+t^2}{t^2}C\right) = 0\)
+              \(\Rightarrow \frac{1+t+t^2}{t^2}C = K\)
+            marks:
+              - code: M1
+                note: Uses the integrating factor from (b), writing the LHS as \(\frac{\mathrm{d}}{\mathrm{d}t}(\mu C)\), or separates variables, and integrates.
+              - code: A1
+                note: Constant of integration required; oe such as \(\ln C\) expression.
+          - scheme: |
+              \(C = \frac{Kt^2}{1+t+t^2} \to K\) as \(t \to \infty\)
+              \(\Rightarrow K = M\)
+            marks:
+              - code: M1
+                note: Rearranges for \(C\) and lets \(t \to \infty\) to equate their constant to \(M\).
+          - scheme: |
+              \(C = \frac{Mt^2}{1+t+t^2}\)
+            marks:
+              - code: A1 AG
+                note: Correct limit with \(K = M\) stated, leading without error to the printed result.
+      - part: c.ii
+        rows:
+          - scheme: |
+              \(\frac{Mt^2}{1+t+t^2} = \frac{M}{2} \Rightarrow t^2 - t - 1 = 0\)
+              \(\Rightarrow t = \ldots\ [= 1.618\ldots]\)
+            marks:
+              - code: M1
+                note: Sets \(C = \frac{M}{2}\), forms a three-term quadratic and solves it by any means.
+          - scheme: |
+              97 minutes
+            marks:
+              - code: A1
+                note: cao, oe such as 1 hour 37 minutes. Negative root rejected.
+      - part: d
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{1+t+t^2}{t^2}C\right) = \frac{1+t+t^2}{t^2} \times \frac{3t^2e^{-t}}{1+t+t^2}\)
+              \(\phantom{\frac{\mathrm{d}}{\mathrm{d}t}} = 3e^{-t}\)
+            marks:
+              - code: M1
+                note: Multiplies through by the integrating factor, writing the LHS as \(\frac{\mathrm{d}}{\mathrm{d}t}(\mu C)\) and the RHS as \(\mu S(t)\).
+              - code: A1
+          - scheme: |
+              \(\frac{1+t+t^2}{t^2}C = -3e^{-t} + K\)
+              \(\Rightarrow C = \frac{Kt^2 - 3t^2e^{-t}}{1+t+t^2}\)
+            marks:
+              - code: dM1
+                note: Integrates their RHS to the form \(\alpha e^{-t} + K\) and divides by the integrating factor.
+          - scheme: |
+              \(t^2e^{-t} \to 0 \Rightarrow C \to K\) as \(t \to \infty\)
+              \(\Rightarrow K = M\)
+            marks:
+              - code: M1
+                note: Lets \(t \to \infty\), with the exponential term tending to 0, to equate their constant to \(M\).
+          - scheme: |
+              \(C = \frac{Mt^2 - 3t^2e^{-t}}{1+t+t^2}\)
+            marks:
+              - code: A1 AG
+                note: Correct integration and limits, \(t^2e^{-t} \to 0\) stated, leading without error to the printed result.
+      - part: e
+        rows:
+          - scheme: |
+              \(C(1.75) = \frac{10(1.75)^2 - 3(1.75)^2e^{-1.75}}{1 + 1.75 + 1.75^2}\)
+              \(\phantom{C(1.75)} = \ldots\ [\approx 4.99]\)
+            marks:
+              - code: M1
+                note: Substitutes \(M = 10\) and \(t = 1.75\) hours into the model (d) expression, or solves \(C = 5\) for \(t\) numerically.
+          - scheme: |
+              \(4.99 \approx 5\); model (c) gives "97" min, not 105
+              \(\Rightarrow\) model (d) more consistent
+            marks:
+              - code: A1ft
+                note: ft their (c)(ii) time. Needs awrt 4.99 (or awrt 105 minutes) and a comparison showing model (d) closer to the data.
