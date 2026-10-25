@@ -1,0 +1,814 @@
+format: 1
+pack: Integration with Inverse Trig
+last_updated: 25 October 2026
+questions:
+  - q: 1
+    stamp: acdcceb8
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(x(4-x) = 4 - (x-2)^2\)
+            marks:
+              - code: M1
+                note: Writes \(x(4-x)\) in the form \(p - (x-q)^2\). Condone slips in \(p\) or \(q\).
+          - scheme: |
+              \(\int \frac{1}{\sqrt{4-(x-2)^2}}\,\mathrm{d}x\)
+              \(\phantom{\int} = \arcsin\left(\frac{x-2}{2}\right)\)
+            marks:
+              - code: M1
+                note: Integrates their \(\frac{1}{\sqrt{p-(x-q)^2}}\) to the form \(k\arcsin\left(\frac{x-q}{r}\right)\). Condone a wrong \(k\) or \(r\).
+              - code: A1
+                note: oe, such as \(\arcsin\left(\frac{x}{2}-1\right)\) or \(-\arccos\left(\frac{x-2}{2}\right)\).
+          - scheme: |
+              \(\lim_{t\to 4^-}\arcsin\left(\tfrac{t-2}{2}\right) - \lim_{s\to 0^+}\arcsin\left(\tfrac{s-2}{2}\right)\)
+              \(\phantom{\lim} = \arcsin(1) - \arcsin(-1)\)
+            marks:
+              - code: dM1
+                note: Evaluates their arcsin form as limits at 0 and 4 and subtracts. Not for substituting 0 and 4 with no limit seen.
+          - scheme: |
+              \(= \frac{\pi}{2} - \left(-\frac{\pi}{2}\right) = \pi\)
+            marks:
+              - code: A1
+  - q: 2
+    stamp: 2c05d9fb
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \((x^2 - 2x + 5 =)\ (x - 1)^2 + 4\)
+            marks:
+              - code: M1
+                note: Completes the square to the form \((x \pm 1)^2 + q\). Condone a wrong constant \(q\).
+          - scheme: |
+              \(\int_0^3 \frac{1}{(x - 1)^2 + 2^2}\,\mathrm{d}x\)
+              \(\phantom{A} = \tfrac12\left[\arctan\left(\frac{x - 1}{2}\right)\right]_0^3\)
+            marks:
+              - code: M1
+                note: Integrates their \(\frac{1}{(x \pm 1)^2 + q}\), \(q > 0\), to the form \(k\arctan\left(\frac{x \pm 1}{\sqrt q}\right)\), or to \(ku\) after a tan substitution.
+              - code: A1
+                note: oe, such as \(\frac12 u\) after \(x - 1 = 2\tan u\).
+          - scheme: |
+              \(\tfrac12\left(\arctan 1 - \arctan\left(-\tfrac12\right)\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes 3 and 0 into their arctan form and subtracts, or uses the changed limits after a substitution.
+          - scheme: |
+              \(= \tfrac12\left(\tfrac{\pi}{4} + \arctan\tfrac12\right)\)
+            marks:
+              - code: A1
+                note: Any correct exact form; implied by correctly combining \(\arctan 1 - \arctan\left(-\frac12\right)\) in the next step.
+          - scheme: |
+              \(\tan\left(\tfrac{\pi}{4} + \arctan\tfrac12\right)\)
+              \(\phantom{\tan} = \frac{1 + \frac12}{1 - 1 \times \frac12} = \ldots\)
+            marks:
+              - code: M1
+                note: Applies \(\tan(A \pm B)\), or the arctan addition formula, to their two angles with their tangents substituted, or shows \(\arctan 3 - \frac{\pi}{4} = \arctan\frac12\). Condone sign slips.
+          - scheme: |
+              \(= 3\), with \(\tfrac{\pi}{4} + \arctan\tfrac12\) in \(\left(0, \tfrac{\pi}{2}\right)\)
+              \(\Rightarrow \int_0^3 \frac{1}{x^2 - 2x + 5}\,\mathrm{d}x = \tfrac12\arctan 3\)
+            marks:
+              - code: A1 AG
+                note: Correct substituted formula leading without error to tangent 3, the angle placed in \(\left(0, \frac{\pi}{2}\right)\), directly or as in \((0, \pi)\) with a positive tangent, and the printed result stated.
+  - q: 3
+    stamp: 229cc520
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(10 + 8x - 2x^2 = 2\left(9 - (x - 2)^2\right)\)
+            marks:
+              - code: M1
+                note: Completes the square to the form \(p\left(q - (x - r)^2\right)\) oe. Condone slips in the constants.
+          - scheme: |
+              \(\frac{1}{\sqrt{2}}\int_1^4 \frac{1}{\sqrt{9 - (x - 2)^2}}\,\mathrm{d}x\)
+              \(\phantom{A} = \frac{1}{\sqrt{2}}\left[\arcsin\left(\frac{x - 2}{3}\right)\right]_1^4\)
+            marks:
+              - code: M1
+                note: Takes out \(\sqrt{p}\) and integrates to the form \(k\arcsin\left(\frac{x - r}{s}\right)\), by the standard result or a substitution. Condone slips in \(k\) and \(s\).
+              - code: A1
+                note: oe, such as \(\frac{1}{\sqrt{2}}\arcsin\frac{u}{3}\) with \(u = x - 2\).
+          - scheme: |
+              \(= \frac{1}{\sqrt{2}}\left(\arcsin\left(\frac23\right) - \arcsin\left(-\frac13\right)\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits, or their transformed limits, into their arcsin form and subtracts.
+          - scheme: |
+              \(= \frac{1}{\sqrt{2}}\left(\arcsin\left(\frac23\right) + \arcsin\left(\frac13\right)\right)\)
+            marks:
+              - code: A1 AG
+                note: Correct substituted limits leading without error to the printed result, with the sign of \(\arcsin\left(-\frac13\right)\) handled correctly.
+  - q: 4
+    stamp: 36792f66
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              The upper limit is \(\infty\): the interval of integration is unbounded.
+            marks:
+              - code: E1
+                note: States the upper limit is infinite or the interval is unbounded. E0 if it also says the integrand is undefined in the interval.
+      - part: b
+        rows:
+          - scheme: |
+              \(x^2 - 6x + 18 = (x-3)^2 + 9\)
+            marks:
+              - code: M1
+                note: Writes the denominator as \((x \pm 3)^2 + c\) with \(c > 0\).
+          - scheme: |
+              \(\int \frac{1}{(x-3)^2 + 9}\,\mathrm{d}x = \frac13\arctan\left(\frac{x-3}{3}\right)\)
+            marks:
+              - code: M1
+                note: Integrates their completed square to the form \(p\arctan(q(x-3))\), or \(p\arctan(qu)\) after substituting \(u = x - 3\).
+              - code: A1
+          - scheme: |
+              \(\lim_{t\to\infty}\left[\tfrac13\arctan\left(\tfrac{x-3}{3}\right)\right]_0^t\)
+              \(\phantom{l} = \tfrac13\left(\tfrac{\pi}{2} - \left(-\tfrac{\pi}{4}\right)\right)\)
+            marks:
+              - code: dM1
+                note: Applies limits \(0\) and \(t\) to their arctan form, using \(\arctan \to \frac{\pi}{2}\) as \(t \to \infty\). Condone \(\infty\) substituted directly.
+          - scheme: |
+              \(= \frac{\pi}{4}\), so \(k = \frac14\)
+            marks:
+              - code: A1
+                note: cso. Accept \(\frac{\pi}{4}\) with \(k\) not stated; a decimal value scores A0.
+  - q: 5
+    stamp: 02b89de8
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(x^2 - 4x + 8 = (x-2)^2 + 4\)
+            marks:
+              - code: M1
+                note: Writes the denominator as \((x \pm 2)^2 + k\), \(k > 0\). Condone a slip in \(k\).
+          - scheme: |
+              \(\int_0^4 \frac{1}{(x-2)^2 + 2^2}\,\mathrm{d}x\)
+              \(\phantom{\int} = \left[\tfrac12\arctan\left(\tfrac{x-2}{2}\right)\right]_0^4\)
+            marks:
+              - code: M1
+                note: Integrates to \(p\arctan\left(\frac{x-2}{q}\right)\), or \(p\arctan\frac{u}{q}\) with \(u = x - 2\). Condone wrong \(p\) or \(q\).
+              - code: A1
+          - scheme: |
+              \(\tfrac12\arctan(1) - \tfrac12\arctan(-1)\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits, 4 and 0 (or \(\pm 2\) for \(u\)), into their arctan form and subtracts.
+          - scheme: |
+              \(= \frac{\pi}{4}\)
+            marks:
+              - code: A1
+                note: cso.
+  - q: 6
+    stamp: 8a6f6f4f
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\displaystyle\int_{-1}^{4}\frac{9}{(x-1)^2+4}\,\mathrm{d}x\)
+              \(\phantom{A} = \left[k\arctan\left(\frac{x-1}{2}\right)\right]_{-1}^{4}\)
+            marks:
+              - code: M1
+                note: Integrates to the form \(k\arctan(px+q)\), by recognition or a substitution such as \(x-1=2\tan\theta\). Condone slips in \(k\).
+          - scheme: |
+              \(= \left[\frac92\arctan\left(\frac{x-1}{2}\right)\right]_{-1}^{4}\)
+            marks:
+              - code: A1
+                note: oe, including the correct integral in \(\theta\).
+          - scheme: |
+              \(\frac92\left(\arctan\frac32 - \arctan(-1)\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes \(4\) and \(-1\), or the corresponding limits of their substitution, and subtracts the right way round.
+          - scheme: |
+              \(= \frac92\left(\arctan\frac32 + \frac{\pi}{4}\right)\ [= 7.957\ldots]\)
+            marks:
+              - code: A1
+                note: Exact, or awrt 7.96.
+          - scheme: |
+              \(V = 36 \times \text{"}7.957\text{"} \times 240\)
+            marks:
+              - code: M1
+                note: Multiplies their area in graph units by \(6^2\) and by 240, or works in centimetres throughout. Not for scaling by 6 alone.
+          - scheme: |
+              \(= 6.87 \times 10^4\,\mathrm{cm}^3\)
+            marks:
+              - code: A1
+                note: awrt \(6.87 \times 10^4\) (68\,700), or awrt \(0.0687\,\mathrm{m}^3\).
+  - q: 7
+    stamp: 52367b23
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(u = \ln x \Rightarrow \mathrm{d}u = \frac{1}{x}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Uses \(u = \ln x\) with \(\mathrm{d}u = \frac{1}{x}\,\mathrm{d}x\) oe to replace \(\frac{1}{x}\,\mathrm{d}x\). Implied by integrating directly to an \(\arcsin\) of a multiple of \(\ln x\).
+          - scheme: |
+              \(\int \frac{1}{\sqrt{4-u^2}}\,\mathrm{d}u\)
+            marks:
+              - code: A1
+                note: Limits need not be seen. Implied by \(\arcsin\left(\frac{\ln x}{2}\right)\).
+          - scheme: |
+              \(\arcsin\left(\tfrac{u}{2}\right)\)
+            marks:
+              - code: M1
+                note: Integrates to \(k\arcsin\left(\frac{u}{a}\right)\) or \(k\arcsin(bu)\), any nonzero constants.
+              - code: A1
+                note: Correct, or \(\arcsin\left(\frac{\ln x}{2}\right)\).
+          - scheme: |
+              \(x = 1, e \Rightarrow u = 0, 1\)
+              \(\arcsin\left(\tfrac12\right) - \arcsin 0\)
+            marks:
+              - code: dM1
+                note: Applies \(u\)-limits 0 and 1, or \(x\)-limits 1 and \(e\) after substituting back, and subtracts.
+          - scheme: |
+              \(= \frac{\pi}{6}\)
+            marks:
+              - code: A1
+                note: cao. Not 0.524 or \(30^\circ\).
+  - q: 8
+    stamp: 165049ca
+    parts:
+      - part: i
+        rows:
+          - scheme: |
+              \(9x^2+12x+20 = 9\left(x+\tfrac23\right)^2 + \ldots\)
+            marks:
+              - code: M1
+                note: Writes the denominator as \(9\left(x \pm \frac23\right)^2 + k\) or \((3x \pm 2)^2 + k\), \(k \neq 0\), oe.
+          - scheme: |
+              \(\phantom{9x^2+12x+20} = 9\left(x+\tfrac23\right)^2 + 16\)
+            marks:
+              - code: A1
+                note: oe, such as \((3x+2)^2 + 16\).
+          - scheme: |
+              \(\displaystyle\int \ldots\,\mathrm{d}x = \frac19 \cdot \frac{1}{\text{"}\frac43\text{"}}\arctan\left(\frac{x+\frac23}{\text{"}\frac43\text{"}}\right)\)
+            marks:
+              - code: M1
+                note: Integrates their completed square to \(p\arctan(\text{linear in } x)\). Condone an incorrect \(p\).
+          - scheme: |
+              \(\frac{1}{12}\arctan\left(\frac{3x+2}{4}\right) + c\)
+            marks:
+              - code: A1
+                note: oe. Needs \(+c\).
+      - part: ii
+        rows:
+          - scheme: |
+              \(45+12x-9x^2 = \ldots - 9\left(x-\tfrac23\right)^2\)
+            marks:
+              - code: M1
+                note: Writes the quadratic as \(k - 9\left(x \pm \frac23\right)^2\) or \(k - (3x \pm 2)^2\), \(k > 0\), oe.
+          - scheme: |
+              \(\phantom{45+12x-9x^2} = 49 - (3x-2)^2\)
+            marks:
+              - code: A1
+                note: oe, such as \(9\left[\frac{49}{9} - \left(x-\frac23\right)^2\right]\).
+          - scheme: |
+              \(\displaystyle\int \ldots\,\mathrm{d}x = \frac13\arcsin\left(\frac{x-\frac23}{\text{"}\frac73\text{"}}\right)\)
+            marks:
+              - code: M1
+                note: Integrates their completed square to \(p\arcsin(\text{linear in } x)\). Condone an incorrect \(p\).
+          - scheme: |
+              \(\frac13\arcsin\left(\frac{3x-2}{7}\right) + c\)
+            marks:
+              - code: A1
+                note: oe. Needs \(+c\).
+  - q: 9
+    stamp: '89852760'
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(6x+1 = \lambda(8x-8)+\mu \Rightarrow \lambda = \ldots,\ \mu = \ldots\)
+            marks:
+              - code: M1
+                note: Writes \(6x+1\) as a multiple of \(8x-8\) plus a constant, or splits the integral equivalently. Condone slips in the constants.
+          - scheme: |
+              \(\tfrac34\ln(4x^2-8x+13)\)
+            marks:
+              - code: A1
+                note: Or \(A = \frac34\) stated.
+          - scheme: |
+              \(4x^2-8x+13 = (2x-2)^2+9\)
+              \(\text{"}7\text{"}\int \frac{1}{(2x-2)^2+9}\,\mathrm{d}x = k\arctan\left(\frac{2x-2}{3}\right)\)
+            marks:
+              - code: M1
+                note: Completes the square and integrates their constant term to \(k\arctan\) of a linear expression in \(x\). Condone slips in \(k\).
+          - scheme: |
+              \(\tfrac76\arctan\left(\frac{2x-2}{3}\right)\)
+            marks:
+              - code: A1
+                note: Or \(B = \frac76\) stated. Condone a missing \(+c\).
+      - part: b
+        rows:
+          - scheme: |
+              \(\frac{1}{\frac52-1}\int_1^{5/2} f(x)\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Divides the integral of \(f(x)\) from \(1\) to \(\frac52\) by \(\frac32\), or multiplies it by \(\frac23\).
+          - scheme: |
+              \(\frac23\left(\text{"}\tfrac34\ln 18+\tfrac76\cdot\tfrac{\pi}{4}\text{"}-\text{"}\tfrac34\ln 9\text{"}\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits into their (a) of the form \(A\ln(4x^2-8x+13)+B\arctan\left(\frac{2x-2}{3}\right)\) and subtracts.
+          - scheme: |
+              \(\frac23\left(\tfrac34\ln 2+\tfrac{7\pi}{24}\right)\)
+              \(\phantom{\frac23} = \frac12\ln 2+\frac{7\pi}{36}\)
+            marks:
+              - code: A1 AG
+                note: Correct substituted expression leading without error to the printed result; combined steps accepted. A decimal check earns A0.
+      - part: c
+        rows:
+          - scheme: |
+              \(3-\ln 2-\frac{7\pi}{18}\)
+            marks:
+              - code: B1
+                note: oe, or awrt 1.09.
+  - q: 10
+    stamp: 6e4cc1a9
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(4x - 1 = 2(2x - 4) + 7\)
+            marks:
+              - code: M1
+                note: Writes the numerator as a multiple of \(2x - 4\) plus a constant, or splits the integrand equivalently. Condone arithmetic slips.
+          - scheme: |
+              \(\int \frac{2(2x-4)}{x^2-4x+8}\,\mathrm{d}x\)
+              \(\phantom{A} = 2\ln(x^2-4x+8)\)
+            marks:
+              - code: A1
+                note: Correct term, or \(B = 2\) stated. Condone a modulus.
+          - scheme: |
+              \(x^2 - 4x + 8 = (x-2)^2 + 4\)
+              \(\int \frac{\text{"}7\text{"}}{(x-2)^2+4}\,\mathrm{d}x\)
+              \(\phantom{A} = \text{"}7\text{"} \times \tfrac12\arctan\left(\frac{x-2}{2}\right)\)
+            marks:
+              - code: M1
+                note: Completes the square and integrates their constant term to the form \(k\arctan(px+q)\). Condone slips in \(k\), \(p\) or \(q\).
+          - scheme: |
+              \(\tfrac72\arctan\left(\frac{x-2}{2}\right) + 2\ln(x^2-4x+8) + c\)
+            marks:
+              - code: A1
+                note: Correct expression in the given form, or \(A = \frac72\) stated.
+  - q: 11
+    stamp: e9e6b211
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(x^3-3x^2+9x+13=(x+1)(x^2-4x+13)\)
+              \(2x^2-3x+31 \equiv P(x^2-4x+13)+Q(x+1)\)
+            marks:
+              - code: M1
+                note: Uses the factorised denominator and multiplies through to form an identity in \(P\) and \(Q\). Condone a sign slip.
+          - scheme: |
+              \(x^2\colon P = \ldots\)
+              \(x\colon -4P+Q=-3 \Rightarrow Q = \ldots\)
+            marks:
+              - code: dM1
+                note: Compares coefficients or substitutes values of \(x\), and solves two equations for both \(P\) and \(Q\).
+          - scheme: |
+              \(P=2,\ Q=5\)
+            marks:
+              - code: A1
+      - part: b
+        rows:
+          - scheme: |
+              \(\int \frac{\text{"}2\text{"}}{x+1}\,\mathrm{d}x = 2\ln|x+1|\)
+            marks:
+              - code: M1
+                note: Integrates their \(\frac{P}{x+1}\) to \(k\ln|x+1|\).
+              - code: A1ft
+                note: \(2\ln|x+1|\), ft their \(P\).
+          - scheme: |
+              \(x^2-4x+13=(x-2)^2+9\)
+              \(\int \frac{\text{"}5\text{"}}{(x-2)^2+9}\,\mathrm{d}x = k\arctan\left(\frac{x-2}{3}\right)\)
+            marks:
+              - code: M1
+                note: Completes the square as \((x-2)^2+a\), \(a>0\), and integrates their term to \(k\arctan\left(\frac{x-2}{\sqrt a}\right)\). Condone slips in \(k\).
+          - scheme: |
+              \(\int g(x)\,\mathrm{d}x = 2\ln|x+1|\)
+              \(\phantom{\int g(x)\,\mathrm{d}x} + \frac53\arctan\left(\frac{x-2}{3}\right)+c\)
+            marks:
+              - code: A1ft
+                note: \(B=\frac53\), ft their \(Q\) as \(\frac{Q}{3}\). Condone a missing \(+c\).
+      - part: c
+        rows:
+          - scheme: |
+              \(\int_0^\infty g(x)\,\mathrm{d}x = \lim_{t\to\infty}\int_0^t g(x)\,\mathrm{d}x\)
+              \(\int_0^t g(x)\,\mathrm{d}x = 2\ln(t+1)+\frac53\arctan\left(\frac{t-2}{3}\right)\)
+              \(\phantom{\int_0^t g(x)\,\mathrm{d}x =} - \frac53\arctan\left(-\frac23\right)\)
+            marks:
+              - code: M1
+                note: Replaces the upper limit by a variable, or writes a limit, and substitutes it and 0 into their (b) answer of the form \(A\ln|x+1|+B\arctan(\ldots)\).
+          - scheme: |
+              \(t\to\infty\colon \arctan\left(\frac{t-2}{3}\right)\to\frac{\pi}{2}\), \(2\ln(t+1)\to\infty\)
+              so the integral diverges
+            marks:
+              - code: A1 AG
+                note: cso. States the arctan term tends to \(\frac{\pi}{2}\) or is bounded, \(\ln(t+1)\to\infty\), and concludes divergence. A0 for evaluating at \(\infty\) directly.
+  - q: 12
+    stamp: 04485c7b
+    parts:
+      - part: i
+        rows:
+          - scheme: |
+              \(\cosh y = x \Rightarrow \sinh y\frac{\mathrm{d}y}{\mathrm{d}x} = 1\)
+            marks:
+              - code: M1
+                note: Writes \(\cosh y = x\) and differentiates implicitly, or finds \(\frac{\mathrm{d}x}{\mathrm{d}y}\) and inverts. Condone a sign slip.
+          - scheme: |
+              \(\sinh^2 y = \cosh^2 y - 1 = x^2 - 1\)
+            marks:
+              - code: M1
+                note: Uses \(\cosh^2 y - \sinh^2 y = 1\) to express \(\sinh y\) or \(\sinh^2 y\) in terms of \(x\). Condone a sign slip in the identity.
+          - scheme: |
+              \(y \geq 0 \Rightarrow \sinh y = \sqrt{x^2 - 1}\)
+              \(\Rightarrow \frac{\mathrm{d}y}{\mathrm{d}x} = \frac{1}{\sqrt{x^2-1}}\)
+            marks:
+              - code: A1 AG
+                note: Printed result without error, with the positive root justified, e.g. \(y \geq 0\) so \(\sinh y \geq 0\).
+      - part: ii
+        rows:
+          - scheme: |
+              \(y = \int \frac{1}{\sqrt{x^2-1}}\,\mathrm{d}x\)
+              \(\phantom{y} = \int \frac{x+\sqrt{x^2-1}}{\sqrt{x^2-1}\left(x+\sqrt{x^2-1}\right)}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Multiplies numerator and denominator of the integrand by \(x + \sqrt{x^2-1}\).
+          - scheme: |
+              \(\phantom{y} = \int \frac{1+\frac{x}{\sqrt{x^2-1}}}{x+\sqrt{x^2-1}}\,\mathrm{d}x\), numerator the
+              derivative of the denominator
+            marks:
+              - code: A1
+                note: Integrand in the form \(\frac{f'(x)}{f(x)}\) with \(f(x) = x + \sqrt{x^2-1}\), the derivative shown or stated.
+          - scheme: |
+              \(y = \ln\left(x+\sqrt{x^2-1}\right) + c\)
+              \(x = 1,\ y = 0 \Rightarrow 0 = \ln 1 + c \Rightarrow c = \ldots\)
+            marks:
+              - code: dM1
+                note: Integrates to \(\ln\left(x+\sqrt{x^2-1}\right) + c\) and substitutes \(x = 1\), \(y = \operatorname{arcosh} 1 = 0\) to find \(c\).
+          - scheme: |
+              \(c = 0 \Rightarrow y = \ln\left(x+\sqrt{x^2-1}\right)\)
+            marks:
+              - code: A1 AG
+                note: Printed result without error from a correct evaluation of \(c\). A0 if \(c\) is omitted or assumed zero.
+      - part: iii
+        rows:
+          - scheme: |
+              \(\sqrt{4x^2-9} = 3\sqrt{\left(\frac{2x}{3}\right)^2 - 1}\)
+              \(\Rightarrow \int \frac{1}{\sqrt{4x^2-9}}\,\mathrm{d}x = k\operatorname{arcosh}\left(\frac{2x}{3}\right)\)
+            marks:
+              - code: M1
+                note: Rewrites the integrand to use (i), by factorising or a substitution such as \(u = \frac{2x}{3}\), and integrates to \(k\operatorname{arcosh}(px)\). Condone wrong constants.
+          - scheme: |
+              \(\frac12\operatorname{arcosh}\left(\frac{2x}{3}\right)\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\frac12\operatorname{arcosh}\left(\frac23 \times \frac52\right) - \frac12\operatorname{arcosh}\left(\frac23 \times \frac{15}{8}\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits into their \(k\operatorname{arcosh}(px)\) and subtracts, in the correct order.
+          - scheme: |
+              \(= \frac12\left(\operatorname{arcosh}\frac53 - \operatorname{arcosh}\frac54\right)\)
+            marks:
+              - code: A1
+                note: Printed result, with no errors seen.
+          - scheme: |
+              \(\operatorname{arcosh}\frac53 = \ln\left(\frac53 + \sqrt{\frac{25}{9}-1}\right)\ [= \ln 3]\)
+              \(\operatorname{arcosh}\frac54 = \ln\left(\frac54 + \sqrt{\frac{25}{16}-1}\right)\ [= \ln 2]\)
+            marks:
+              - code: M1
+                note: Uses (ii) to write both \(\operatorname{arcosh}\frac53\) and \(\operatorname{arcosh}\frac54\) as logarithms. Need not be simplified.
+          - scheme: |
+              \(\frac12(\ln 3 - \ln 2) = \frac12\ln\frac32\)
+            marks:
+              - code: A1
+                note: Any exact logarithmic form, e.g. \(\frac12(\ln 3 - \ln 2)\) or \(\ln\sqrt{\frac32}\). A decimal alone scores A0.
+  - q: 13
+    stamp: 73981c75
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(25x^2-20x+13 = (5x-2)^2+9\)
+            marks:
+              - code: M1
+                note: Completes the square to \((5x-2)^2 \pm k\) or \(25\left(x-\frac25\right)^2 \pm k\), \(k \neq 0\). Condone an arithmetic slip in \(k\).
+          - scheme: |
+              \(\int \frac{\mathrm{d}x}{(5x-2)^2+9} = \frac{1}{15}\arctan\left(\frac{5x-2}{3}\right)\)
+            marks:
+              - code: M1
+                note: Integrates their completed square to \(\lambda\arctan\left(\frac{5x-2}{\mu}\right)\), or the same in \(x-\frac25\) or a substituted variable. Condone a wrong \(\lambda\).
+              - code: A1
+          - scheme: |
+              \(\frac{1}{15}\left(\arctan 1-\arctan(-1)\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits into their arctan form and subtracts, or the changed limits after a substitution.
+          - scheme: |
+              \(= \frac{\pi}{30}\)
+            marks:
+              - code: A1
+                note: cso.
+      - part: b
+        rows:
+          - scheme: |
+              \(\int \frac{\mathrm{d}x}{\sqrt{(5x-2)^2+9}}\)
+              \(\phantom{\int} = \lambda\ln\left(5x-2+\sqrt{(5x-2)^2+9}\right)\)
+            marks:
+              - code: M1
+                note: Integrates to \(\lambda\operatorname{arsinh}\left(\frac{u}{\mu}\right)\) or \(\lambda\ln\left(u+\sqrt{u^2+\mu^2}\right)\), with \(u\) as \(5x-2\), \(x-\frac25\) or a substituted variable. Condone a wrong \(\lambda\).
+              - code: A1
+                note: Correct inside, \(\frac{u}{3}\) or \(u+\sqrt{u^2+9}\) with \(u = 5x-2\), or the equivalent in their variable.
+          - scheme: |
+              \(\lambda = \frac15\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\frac15\left(\ln(3+3\sqrt2)-\ln(-3+3\sqrt2)\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits into their integral and subtracts, or the changed limits after a substitution.
+              - code: A1
+                note: oe, such as \(\frac15\left(\operatorname{arsinh}1-\operatorname{arsinh}(-1)\right)\).
+          - scheme: |
+              \(\frac15\ln\left(\frac{1+\sqrt2}{\sqrt2-1}\right)\)
+              \(\phantom{\tfrac15} = \frac15\ln\left(\frac{(1+\sqrt2)(\sqrt2+1)}{(\sqrt2-1)(\sqrt2+1)}\right)\)
+            marks:
+              - code: M1
+                note: Combines their logarithms and rationalises, or uses \(\ln(\sqrt2-1) = -\ln(\sqrt2+1)\), or writes \(\operatorname{arsinh}1\) as \(\ln(1+\sqrt2)\). Condone sign slips.
+          - scheme: |
+              \(= \frac15\ln(3+2\sqrt2)\)
+            marks:
+              - code: A1
+                note: Or \(\frac25\ln(1+\sqrt2)\), or any correct rational \(p\), \(q\), \(r\).
+  - q: 14
+    stamp: '41831162'
+    parts:
+      - part: i
+        rows:
+          - scheme: |
+              \(\tanh y = \frac{e^y - e^{-y}}{e^y + e^{-y}} = \frac{e^{2y} - 1}{e^{2y} + 1}\)
+            marks:
+              - code: M1
+                note: Writes \(\tanh y\) in exponentials and multiplies numerator and denominator by \(e^y\), or equivalent. Condone sign slips.
+              - code: A1
+                note: oe, such as \(\frac{1 - e^{-2y}}{1 + e^{-2y}}\).
+          - scheme: |
+              \(x(e^{2y} + 1) = e^{2y} - 1 \Rightarrow e^{2y} = \ldots\)
+              \(\Rightarrow 2y = \ln(\ldots)\)
+            marks:
+              - code: M1
+                note: Sets their expression equal to \(x\), makes \(e^{2y}\) (or \(e^{-2y}\)) the subject and takes logarithms. Condone sign slips.
+          - scheme: |
+              \(e^{2y}(1 - x) = 1 + x \Rightarrow e^{2y} = \frac{1+x}{1-x}\)
+              \(y = \frac12\ln\left(\frac{1+x}{1-x}\right)\)
+              \(\operatorname{artanh}x = \frac12\ln\left(\frac{1+x}{1-x}\right)\)
+            marks:
+              - code: A1 AG
+                note: Correct equation for \(e^{2y}\) leading without error to the printed result, and the artanh form stated. A0 if the artanh line is missing.
+      - part: ii
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}}{\mathrm{d}x}(\operatorname{artanh}x) = \frac12\left(\frac{1}{1+x} + \frac{1}{1-x}\right)\)
+            marks:
+              - code: M1
+                note: Differentiates the logarithmic form from (i) to two terms \(\frac{a}{1 \pm x}\), or uses partial fractions, or the standard \(\int \frac{1}{a^2-x^2}\,\mathrm{d}x\) with \(a = \frac23\). Condone sign slips.
+          - scheme: |
+              \(\int \frac{1}{1-x^2}\,\mathrm{d}x = \operatorname{artanh}x\ (+c)\)
+            marks:
+              - code: A1
+                note: oe, such as \(\frac12\ln\left(\frac{1+x}{1-x}\right)\), or the correct partial fractions, or the correct \(a\) and factor.
+          - scheme: |
+              \(\int \frac{1}{4-9x^2}\,\mathrm{d}x = \frac14\int \frac{1}{1-\left(\frac{3x}{2}\right)^2}\,\mathrm{d}x\)
+              \(\phantom{\int \frac{1}{4-9x^2}\,\mathrm{d}x} = k\operatorname{artanh}\left(\frac{3x}{2}\right)\)
+            marks:
+              - code: M1
+                note: Takes out the factor 4, or substitutes \(u = \frac{3x}{2}\), and integrates to \(k\operatorname{artanh}\left(\frac{3x}{2}\right)\) or \(k\ln\left(\frac{2+3x}{2-3x}\right)\), any \(k\).
+          - scheme: |
+              \(\frac16\operatorname{artanh}\left(\frac{3x}{2}\right)\)
+            marks:
+              - code: A1
+                note: oe, such as \(\frac1{12}\ln\left(\frac{2+3x}{2-3x}\right)\).
+          - scheme: |
+              \(\frac1{12}\left[\ln\left(\frac{1+\frac{3x}{2}}{1-\frac{3x}{2}}\right)\right]_{1/5}^{2/5}\)
+              \(\phantom{A} = \frac1{12}\left(\ln 4 - \ln\frac{13}{7}\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits into a logarithmic form of their integral and subtracts.
+          - scheme: |
+              \(\frac1{12}\ln\left(\frac{28}{13}\right)\)
+            marks:
+              - code: A1
+                note: Any exact logarithmic form, such as \(\frac1{12}(\ln 28 - \ln 13)\). A decimal, awrt 0.0639, scores A0.
+  - q: 15
+    stamp: 863c2a84
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\frac{P}{x-1}+\frac{Qx+R}{x^2+4x+13}\)
+              \(x^2+14x+21 \equiv P(x^2+4x+13)\)
+              \(\phantom{x^2+14x+21 \equiv} + (Qx+R)(x-1)\)
+            marks:
+              - code: M1
+                note: Uses the correct partial-fraction form and multiplies through to an identity. Condone slips in expanding.
+          - scheme: |
+              \(P+Q=1,\ 4P-Q+R=14,\ 13P-R=21\)
+              \(\Rightarrow P = \ldots,\ Q = \ldots,\ R = \ldots\)
+            marks:
+              - code: dM1
+                note: Compares coefficients or substitutes values of \(x\), and solves for all three constants. Condone arithmetic slips.
+          - scheme: |
+              \(P=2,\ Q=-1,\ R=5\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(-x+5 = -\tfrac12(2x+4)+7\)
+              \(\int \frac{2}{x-1}\,\mathrm{d}x - \tfrac12\int \frac{2x+4}{x^2+4x+13}\,\mathrm{d}x\)
+              \(\phantom{A} = \ldots\ln|x-1| + \ldots\ln(x^2+4x+13)\)
+            marks:
+              - code: M1
+                note: Writes their \(Qx+R\), \(Q \neq 0\), as \(k(2x+4)+m\) and integrates to \(\alpha\ln|x-1|+\beta\ln(x^2+4x+13)\). Condone coefficient slips.
+          - scheme: |
+              \(2\ln|x-1| - \tfrac12\ln(x^2+4x+13)\)
+            marks:
+              - code: A1
+                note: Correct \(A=2\) and \(B=-\frac12\).
+          - scheme: |
+              \(x^2+4x+13 = (x+2)^2+9\)
+              \(7\int \frac{1}{(x+2)^2+9}\,\mathrm{d}x = \ldots\arctan\left(\frac{x+2}{3}\right)\)
+            marks:
+              - code: M1
+                note: Completes the square and integrates their constant \(m\) over \((x+2)^2+9\) to \(k\arctan\left(\frac{x+2}{3}\right)\). Condone slips in \(k\).
+          - scheme: |
+              \(\ldots + \tfrac73\arctan\left(\frac{x+2}{3}\right) + c\)
+              \(A=2,\ B=-\tfrac12,\ D=\tfrac73\)
+            marks:
+              - code: A1
+                note: Correct \(D=\frac73\), or awrt 2.33.
+  - q: 16
+    stamp: 6bed9594
+    parts:
+      - part: i
+        rows:
+          - scheme: |
+              \(1-\tanh^2u = 1-\left(\frac{e^u-e^{-u}}{e^u+e^{-u}}\right)^2\)
+            marks:
+              - code: M1
+                note: Writes \(\tanh u\) and \(\operatorname{sech}u\), or \(\sinh u\) and \(\cosh u\), in exponentials and attempts the identity from either side. Condone sign slips.
+          - scheme: |
+              \(\phantom{1-\tanh^2u} = \frac{(e^u+e^{-u})^2-(e^u-e^{-u})^2}{(e^u+e^{-u})^2}\)
+              \(\phantom{1-\tanh^2u} = \frac{4}{(e^u+e^{-u})^2}\)
+            marks:
+              - code: A1
+                note: Numerator simplified to 4, oe such as \(\cosh^2u-\sinh^2u=1\) shown in exponentials.
+          - scheme: |
+              \(\phantom{1-\tanh^2u} = \left(\frac{2}{e^u+e^{-u}}\right)^2 = \operatorname{sech}^2u\)
+            marks:
+              - code: A1 AG
+                note: Correct exponential working leading without error to \(\operatorname{sech}^2u\). Hyperbolic identities quoted without exponentials score A0.
+      - part: ii
+        rows:
+          - scheme: |
+              \(y = \tanh u = \frac{e^u-e^{-u}}{e^u+e^{-u}} \Rightarrow y = \frac{e^{2u}-1}{e^{2u}+1}\)
+            marks:
+              - code: M1
+                note: Writes \(y=\tanh u\) in exponentials and clears \(e^{-u}\), such as by multiplying through by \(e^u\). Condone sign slips.
+              - code: A1
+                note: oe such as \(ye^{2u}+y=e^{2u}-1\).
+          - scheme: |
+              \(e^{2u}(1-y) = 1+y \Rightarrow e^{2u} = \frac{1+y}{1-y}\)
+              \(\phantom{e^{2u}(1-y) = 1+y} \Rightarrow 2u = \ln\left(\frac{1+y}{1-y}\right)\)
+            marks:
+              - code: M1
+                note: Collects the \(e^{2u}\) terms, makes \(e^{2u}\) the subject and takes logarithms. Condone sign slips.
+          - scheme: |
+              \(\operatorname{artanh}y = \frac12\ln\left(\frac{1+y}{1-y}\right)\)
+            marks:
+              - code: A1 AG
+                note: Correct working leading without error to the printed result, with \(u\) replaced by \(\operatorname{artanh}y\). No reference to \(|y|<1\) needed.
+      - part: iii
+        rows:
+          - scheme: |
+              \(x = 4\tanh u \Rightarrow \mathrm{d}x = 4\operatorname{sech}^2u\,\mathrm{d}u\)
+              \(\int \frac{1}{16-x^2}\,\mathrm{d}x = \int \frac{4\operatorname{sech}^2u}{16-16\tanh^2u}\,\mathrm{d}u\)
+            marks:
+              - code: M1
+                note: Substitutes \(x=4\tanh u\) and \(\mathrm{d}x=k\operatorname{sech}^2u\,\mathrm{d}u\) to obtain an integral wholly in \(u\).
+          - scheme: |
+              \(\phantom{\int \frac{1}{16-x^2}\,\mathrm{d}x} = \int \frac{4\operatorname{sech}^2u}{16\operatorname{sech}^2u}\,\mathrm{d}u = \int \tfrac14\,\mathrm{d}u\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\phantom{\int \frac{1}{16-x^2}\,\mathrm{d}x} = \frac{u}{4}\ (+c)\), \(\tanh u = \frac{x}{4} \Rightarrow u = \ldots\)
+            marks:
+              - code: M1
+                note: Integrates their constant integrand to \(ku\) and uses \(\tanh u=\frac{x}{4}\) to return to \(x\).
+          - scheme: |
+              \(\int \frac{1}{16-x^2}\,\mathrm{d}x = \frac14\operatorname{artanh}\frac{x}{4}+c\)
+            marks:
+              - code: A1
+                note: From correct working, with \(+c\).
+          - scheme: |
+              \(\operatorname{artanh}\frac{x}{4} = \frac12\ln\left(\frac{1+\frac{x}{4}}{1-\frac{x}{4}}\right)\)
+            marks:
+              - code: M1
+                note: Uses (ii) with \(y=\frac{x}{4}\) in their \(k\operatorname{artanh}\frac{x}{4}\).
+          - scheme: |
+              \(\int \frac{1}{16-x^2}\,\mathrm{d}x = \frac14\times\frac12\ln\left(\frac{4+x}{4-x}\right)+c\)
+              \(\phantom{\int \frac{1}{16-x^2}\,\mathrm{d}x} = \frac18\ln\left(\frac{4+x}{4-x}\right)+c\)
+            marks:
+              - code: A1 AG
+                note: Clears the fractions inside the logarithm and combines the coefficients without error to the printed result.
+      - part: iv
+        rows:
+          - scheme: |
+              \(-t^2+6t+7 = -(t-3)^2 + \ldots\)
+            marks:
+              - code: M1
+                note: Reaches a form \(a-(t\pm3)^2\) or \(-\left((t\pm3)^2+b\right)\). Condone slips in the constant.
+          - scheme: |
+              \(-t^2+6t+7 = 16-(t-3)^2\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\int \frac{1}{16-(t-3)^2}\,\mathrm{d}t = \frac18\ln\left(\frac{4+(t-3)}{4-(t-3)}\right)\)
+            marks:
+              - code: M1
+                note: Integrates their \(\frac{1}{a-(t-3)^2}\) as in (iii), with \(x=t-3\), to \(k\ln\left(\frac{\sqrt a+t-3}{\sqrt a-t+3}\right)\) or \(k\operatorname{artanh}\frac{t-3}{\sqrt a}\).
+          - scheme: |
+              \(\left[\frac18\ln\left(\frac{t+1}{7-t}\right)\right]_1^5\)
+              \(\phantom{A} = \frac18\ln 3 - \frac18\ln\frac13\)
+            marks:
+              - code: dM1
+                note: Substitutes the limits 5 and 1 into their integral and subtracts, or \(2\) and \(-2\) after changing variable to \(t-3\).
+          - scheme: |
+              \(\phantom{A} = \frac14\ln 3\)
+            marks:
+              - code: A1 AG
+                note: Exact working leading without error to \(\frac14\ln 3\). A decimal check alone scores A0.
+  - q: 17
+    stamp: 81e15cab
+    parts:
+      - part: i
+        rows:
+          - scheme: |
+              \(x^2-6x+5 = (x-3)^2 - 4\)
+              \(\int \frac{1}{\sqrt{(x-3)^2-4}}\,\mathrm{d}x = \operatorname{arcosh}\left(\frac{x-3}{\ldots}\right)\)
+            marks:
+              - code: M1
+                note: Completes the square to \((x-3)^2 - k\) and integrates to the form \(\operatorname{arcosh}\left(\frac{x-3}{p}\right)\), by standard result or substitution. Condone a wrong \(k\).
+          - scheme: |
+              \(\operatorname{arcosh}\left(\frac{x-3}{2}\right) + c\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\ln\left(\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right) + c\)
+            marks:
+              - code: A1ft
+                note: ft their \(\operatorname{arcosh}\left(\frac{x-3}{p}\right)\), using \(\operatorname{arcosh} t = \ln\left(t+\sqrt{t^2-1}\right)\). oe, including \(\ln\left(x-3+\sqrt{x^2-6x+5}\right)+c\).
+      - part: ii
+        rows:
+          - scheme: |
+              \(x-3 = 2\cosh u \Rightarrow \mathrm{d}x = 2\sinh u\,\mathrm{d}u\)
+              \(\sqrt{x^2-6x+5} = \sqrt{4\cosh^2u-4}\)
+              \(\phantom{\sqrt{x^2-6x+5}} = 2\sinh u\)
+            marks:
+              - code: M1
+                note: Replaces \(\mathrm{d}x\) by \(k\sinh u\,\mathrm{d}u\) and the square root by an expression in \(u\). Condone coefficient slips.
+          - scheme: |
+              \(\int \sqrt{x^2-6x+5}\,\mathrm{d}x = 4\int \sinh^2u\,\mathrm{d}u\)
+            marks:
+              - code: A1
+                note: oe, such as \(\int (4\cosh^2u - 4)\,\mathrm{d}u\).
+          - scheme: |
+              \(2\int (\cosh 2u - 1)\,\mathrm{d}u = \ldots\)
+            marks:
+              - code: M1
+                note: Uses \(\cosh 2u = 1 \pm 2\sinh^2u\), or exponentials, and integrates to the form \(p\sinh 2u + qu\) or its exponential equivalent. Condone sign and coefficient slips.
+          - scheme: |
+              \(\sinh 2u - 2u + c\)
+            marks:
+              - code: A1
+                note: oe
+          - scheme: |
+              \(\sinh 2u = 2\cosh u\sqrt{\cosh^2u-1}\)
+              \(\phantom{\sinh 2u} = (x-3)\sqrt{\frac{(x-3)^2}{4}-1}\)
+              \(u = \ln\left(\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right)\)
+            marks:
+              - code: M1
+                note: Uses \(\sinh 2u = 2\sinh u\cosh u\) with \(\sinh u = \sqrt{\cosh^2u-1}\), and replaces \(u\) by their logarithm from (i), all in terms of \(x\).
+          - scheme: |
+              \(I = (x-3)\sqrt{\frac{(x-3)^2}{4}-1} - 2u + c\)
+              \(\phantom{I} = 2\left(\frac{x-3}{2}\sqrt{\frac{(x-3)^2}{4}-1}\right.\)
+              \(\phantom{I = 2}\left.{} - \ln\left(\frac{x-3}{2}+\sqrt{\frac{(x-3)^2}{4}-1}\right)\right) + c\)
+            marks:
+              - code: A1 AG
+                note: cso. Correct result in \(u\) converted to the printed result without error.

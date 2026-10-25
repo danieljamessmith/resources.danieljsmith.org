@@ -625,6 +625,16 @@ const rawResources: Resource[] = [
     topic: 'Further Calculus',
   },
   {
+    id: 'fm-further-integration-inverse-trig-ms',
+    title: 'Integration with Inverse Trig',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/further-calculus/ms/_QBT___MS__Integration_with_Inverse_Trig.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-further-integration-inverse-trig',
+    topic: 'Further Calculus',
+  },
+  {
     id: 'fm-further-volumes-revolution',
     title: 'Volumes of Revolution',
     description: '',
