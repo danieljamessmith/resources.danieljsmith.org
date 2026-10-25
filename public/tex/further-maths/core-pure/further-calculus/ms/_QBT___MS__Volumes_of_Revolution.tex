@@ -1,0 +1,318 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/markscheme_preamble.tex}
+
+\djsSchemeHeader{Volumes of Revolution}
+\djsSitePath{Core Pure}{Further Calculus}
+
+\djsLastUpdated{25 October 2026}
+\begin{document}
+\djsSetQuestionCount{15}
+\djsAddMarks{1}{6}
+\djsAddMarks{2}{7}
+\djsAddMarks{3}{5}
+\djsAddMarks{4}{5}
+\djsAddMarks{5}{10}
+\djsAddMarks{6}{8}
+\djsAddMarks{7}{5}
+\djsAddMarks{8}{7}
+\djsAddMarks{9}{6}
+\djsAddMarks{10}{8}
+\djsAddMarks{11}{6}
+\djsAddMarks{12}{7}
+\djsAddMarks{13}{9}
+\djsAddMarks{14}{11}
+\djsAddMarks{15}{9}
+\vspace*{6pt}
+\djsContentsTitle
+\vspace{30pt}
+\msContentsHeading
+\begin{mscontents}{}
+Question & Marks by part & Marks & Page \\
+\msContentsQuestion{1} & (a)\,2\msSep (b)\,4 & 6 & \msContentsPage{1} \\
+\msContentsQuestion{2} & (a)\,2\msSep (b)\,5 & 7 & \msContentsPage{2} \\
+\msContentsQuestion{3} & & 5 & \msContentsPage{3} \\
+\msContentsQuestion{4} & & 5 & \msContentsPage{4} \\
+\msContentsQuestion{5} & (a)\,2\msSep (b)\,5\msSep (c)\,3 & 10 & \msContentsPage{5} \\
+\msContentsQuestion{6} & & 8 & \msContentsPage{6} \\
+\msContentsQuestion{7} & & 5 & \msContentsPage{7} \\
+\msContentsQuestion{8} & & 7 & \msContentsPage{8} \\
+\msContentsQuestion{9} & & 6 & \msContentsPage{9} \\
+\msContentsQuestion{10} & (a)\,6\msSep (b)\,2 & 8 & \msContentsPage{10} \\
+\msContentsQuestion{11} & & 6 & \msContentsPage{11} \\
+\msContentsQuestion{12} & & 7 & \msContentsPage{12} \\
+\msContentsQuestion{13} & (a)\,3\msSep (b)\,6 & 9 & \msContentsPage{13} \\
+\msContentsQuestion{14} & (a)\,4\msSep (b)\,7 & 11 & \msContentsPage{14} \\
+\msContentsQuestion{15} & (a)\,3\msSep (b)\,6 & 9 & \msContentsPage{15} \\
+\SetCell[c=2]{r} Total & & 109 & \\
+\end{mscontents}
+\newpage
+\input{../../../../_shared/markscheme_conventions.tex}
+
+\msQuestion{1}
+\begin{msscheme}{
+  hline{3-4,6-9} = {2-Z}{0.4pt, msGrid},
+  hline{5,10} = {0.4pt, msGrid},
+  row{10} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+1(a) & {\(\frac{\mathrm{d}}{\mathrm{d}x}\ln(\sec x+\tan x) = \frac{\sec x\tan x+\sec^2 x}{\sec x+\tan x}\)} & M1 & {Divides a derivative of \(\sec x+\tan x\) of the form \(p\sec x\tan x+q\sec^2 x\) by \(\sec x+\tan x\), oe in sines and cosines.} \\
+& {\(\phantom{\frac{\mathrm{d}}{\mathrm{d}x}} = \frac{\sec x(\tan x+\sec x)}{\sec x+\tan x} = \sec x\)} & A1~AG & {Correct derivative simplified without error to \(\sec x\); combined steps accepted.} \\
+\nopagebreak & & [2] & \\
+1(b) & {\(V = \pi\int_0^{\pi/3}\sec x\,\mathrm{d}x\)} & B1 & {Needs the \(\pi\); limits may be implied by their substitution.} \\
+& {\(\phantom{V} = \pi\left[\ln(\sec x+\tan x)\right]_0^{\pi/3}\)} & M1 & {Obtains \(\ln(\sec x+\tan x)\), or another correct integral of \(\sec x\). The \(\pi\) need not be seen.} \\
+& {\(\phantom{V} = \pi\left(\ln(2+\sqrt{3}) - \ln 1\right)\)} & dM1 & {Substitutes both limits and subtracts, evaluating \(\sec\) and \(\tan\) exactly. Condone the zero lower-limit term unwritten.} \\
+& {\(V = \pi\ln(2+\sqrt{3})\)} & A1 & {oe exact, such as \(-\pi\ln(2-\sqrt{3})\).} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 1 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{2}
+\begin{msscheme}{
+  hline{3-4,6-9} = {2-Z}{0.4pt, msGrid},
+  hline{5,10} = {0.4pt, msGrid},
+  row{10} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+2(a) & {\(\sinh(2\ln 2) = \frac{e^{2\ln 2} - e^{-2\ln 2}}{2}\)\\[4pt] \(e^{2\ln 2} = e^{\ln 4} = 4\)} & M1 & {Uses the exponential definition of \(\sinh\) with \(2\ln 2\), or a double-angle identity with \(\ln 2\), and evaluates at least one exponential.} \\
+& {\(\sinh(2\ln 2) = \frac{4 - \frac14}{2} = \frac{15}{8}\)} & A1~AG & {Correct substituted expression leading without error to \(\frac{15}{8}\); combined steps accepted.} \\
+\nopagebreak & & [2] & \\
+2(b) & {\(V = \pi\int_0^{2\ln 2} (\cosh x - 1)\,\mathrm{d}x\)} & B1 & {Correct integral with limits \(0\) and \(2\ln 2\), oe such as a cylinder of volume \(2\pi\ln 2\) subtracted. Needs the \(\pi\).} \\
+& {\(\int (\cosh x - 1)\,\mathrm{d}x = \sinh x - x\)} & M1 A1 & {\msNote{M1}{Integrates at least one term correctly, such as \(\cosh x \to \sinh x\).}\\ \msNote{A1}{With or without \(\pi\).}} \\
+& {\(\pi\left[\sinh x - x\right]_0^{2\ln 2} = \pi\left(\tfrac{15}{8} - 2\ln 2 - 0\right)\)} & dM1 & {Applies their limits to their integral of the form \(p\sinh x + qx\), evaluating \(\sinh(2\ln 2)\) by (a) or otherwise.} \\
+& {\(V = \pi\left(\frac{15}{8} - 2\ln 2\right)\)} & A1 & {Any exact equivalent, such as \(\frac{15\pi}{8} - \pi\ln 4\).} \\
+\nopagebreak & & [5] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 2 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{3}
+\begin{msscheme}{
+  hline{3-6} = {2-Z}{0.4pt, msGrid},
+  hline{7} = {0.4pt, msGrid},
+  row{7} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+3 & {\(\pi\int_0^k \frac{k-x}{k+x}\,\mathrm{d}x = 1\)} & B1 & {Needs \(\pi\), \(y^2\) as the integrand and limits 0 and \(k\); the \(= 1\) may be seen later.} \\
+& {\(\frac{k-x}{k+x} = -1 + \frac{2k}{k+x}\)\\[4pt] \(\Rightarrow \int \ldots \,\mathrm{d}x = \ldots\)} & M1 & {Writes the integrand as a constant plus \(\frac{c}{k+x}\) and integrates to the form \(px + q\ln(k+x)\). Condone sign and coefficient slips.} \\
+& {\(\left[-x + 2k\ln(k+x)\right]_0^k\)} & A1 & {Accept \(\ln|k+x|\) or any equivalent, such as \(2k\ln(k+x) - x + c\).} \\
+& {\(\pi\left(-k + 2k\ln 2k - 2k\ln k\right) = 1\)\\[4pt] \(\Rightarrow \pi k(2\ln 2 - 1) = 1 \Rightarrow k = \ldots\)} & dM1 & {Substitutes both limits into their integral, subtracts, and combines the logarithms to a constant multiple of \(k\).} \\
+& {\(k = \frac{1}{\pi(2\ln 2 - 1)}\)} & A1 & {Or any exact equivalent, such as \(\frac{1}{\pi(\ln 4 - 1)}\).} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 3 & & 5 & \\
+\end{msscheme}
+
+\msQuestion{4}
+\begin{msscheme}{
+  hline{3-6} = {2-Z}{0.4pt, msGrid},
+  hline{7} = {0.4pt, msGrid},
+  row{7} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+4 & {\(\pi\int_0^k \frac{x^2}{k^2+x^2}\,\mathrm{d}x = 1\)} & B1 & {Needs the \(\pi\) and limits 0 and \(k\); the equation with 1 may appear later.} \\
+& {\(\frac{x^2}{k^2+x^2} = 1 - \frac{k^2}{k^2+x^2}\)\\[4pt] \(\Rightarrow \int \ldots\,\mathrm{d}x = x - \ldots\arctan\frac{x}{k}\)} & M1 & {Writes the integrand as \(1 - \frac{p}{k^2+x^2}\) and integrates to \(x \pm q\arctan\frac{x}{k}\), or substitutes \(x = k\tan\theta\) and integrates \(\tan^2\theta\) via \(\sec^2\theta - 1\). Condone coefficient slips.} \\
+& {\(\left[x - k\arctan\frac{x}{k}\right]_0^k\)} & A1 & {oe, such as \(k(\tan\theta - \theta)\) after \(x = k\tan\theta\).} \\
+& {\(\pi\left(k - k\arctan 1\right) = 1 \Rightarrow k = \ldots\)} & dM1 & {Substitutes both limits, in the variable used, into their integral, equates \(\pi\) times the result to 1 and solves for \(k\).} \\
+& {\(k = \frac{4}{\pi(4-\pi)}\)} & A1 & {Any exact equivalent, such as \(\frac{1}{\pi\left(1 - \frac{\pi}{4}\right)}\).} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 4 & & 5 & \\
+\end{msscheme}
+
+\msQuestion{5}
+\begin{msscheme}{
+  hline{3-4,6-10,12-14} = {2-Z}{0.4pt, msGrid},
+  hline{5,11,15} = {0.4pt, msGrid},
+  row{15} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+5(a) & {\(\int \sin^2\theta\,\mathrm{d}\theta = \int \tfrac12(1 - \cos 2\theta)\,\mathrm{d}\theta\)\\[4pt] \(\phantom{\int \sin^2\theta\,\mathrm{d}\theta} = \ldots\)} & M1 & {Uses \(\sin^2\theta = \frac12(1 \pm \cos 2\theta)\) and integrates to the form \(p\theta + q\sin 2\theta\). Condone sign and coefficient slips.} \\
+& {\(= \frac{\theta}{2} - \frac{\sin 2\theta}{4} + c\)} & A1 & {oe, with \(+c\).} \\
+\nopagebreak & & [2] & \\
+5(b) & {\(\frac{\mathrm{d}y}{\mathrm{d}\theta} = -\operatorname{cosec}^2\theta\)} & B1 & \\
+& {\(V = \pi\int (6\sin^2\theta)^2 \times \text{"}{-\operatorname{cosec}^2\theta}\text{"}\,\mathrm{d}\theta\)} & M1 & {Uses \(\pi\int x^2\frac{\mathrm{d}y}{\mathrm{d}\theta}\,\mathrm{d}\theta\) with \(x = 6\sin^2\theta\) and their \(\frac{\mathrm{d}y}{\mathrm{d}\theta}\) of the form \(\pm p\operatorname{cosec}^2\theta\). Limits not needed.} \\
+& {\(= 36\pi\int -\sin^2\theta\,\mathrm{d}\theta\)} & A1 & {oe. Limits not needed.} \\
+& {\(y = \sqrt3 \Rightarrow \theta = \frac{\pi}{6}\)\\[4pt] \(y = \frac{1}{\sqrt3} \Rightarrow \theta = \frac{\pi}{3}\)} & B1 & {Both, matched to their \(y\) values; may be seen as limits.} \\
+& {\(V = 36\pi\int_{\pi/6}^{\pi/3} \sin^2\theta\,\mathrm{d}\theta\)\\[4pt] \(k = 36\pi,\ a = \frac{\pi}{6},\ b = \frac{\pi}{3}\)} & A1 & {cso. Accept \(k = -36\pi\), \(a = \frac{\pi}{3}\), \(b = \frac{\pi}{6}\).} \\
+\nopagebreak & & [5] & \\
+5(c) & {\(V = 36\pi\left[\frac{\theta}{2} - \frac{\sin 2\theta}{4}\right]_{\pi/6}^{\pi/3}\)} & M1 & {Substitutes their limits from (b) into their integral from (a), of the form \(p\theta + q\sin 2\theta\), and subtracts.} \\
+& {\(= 36\pi\left(\frac{\pi}{6} - \frac{\sqrt3}{8} - \frac{\pi}{12} + \frac{\sqrt3}{8}\right)\)} & dM1 & {Uses exact values of \(\sin\frac{2\pi}{3}\) and \(\sin\frac{\pi}{3}\), or their equality, to reach an exact expression.} \\
+& {\(= 3\pi^2\)} & A1 & {cso. \(p = 3\) alone scores A0.} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 5 & & 10 & \\
+\end{msscheme}
+
+\msQuestion{6}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+6 & {\(t^2 = y + 3 \Rightarrow x = \frac{9}{(y+3)^2}\)} & B1 & {oe. Implied by a correct integrand in \(t\).} \\
+& {\(V = \pi\int_0^a \frac{81}{(y+3)^4}\,\mathrm{d}y\)} & M1 A1 & {\msNote{M1}{Uses \(\pi\int x^2\,\mathrm{d}y\) with their \(x\) in terms of \(y\), or \(\pi\int x^2\frac{\mathrm{d}y}{\mathrm{d}t}\,\mathrm{d}t\). Needs the \(\pi\); limits not needed.}\\ \msNote{A1}{Correct integral with limits 0 and \(a\), or \(162\pi\int_{\sqrt3}^{\sqrt{a+3}} t^{-7}\,\mathrm{d}t\).}} \\
+& {\(\pi\left[-\frac{27}{(y+3)^3}\right]_0^a\)} & M1 A1 & {\msNote{M1}{Integrates to the form \(k(y+3)^{-3}\), or \(kt^{-6}\) in \(t\). Condone coefficient slips.}\\ \msNote{A1}{oe, such as \(-27\pi t^{-6}\).}} \\
+& {\(\pi\left(1 - \frac{27}{(a+3)^3}\right) = \frac{7\pi}{8}\)} & dM1 & {Substitutes both limits into their integral, subtracts the right way round and sets equal to \(\frac{7\pi}{8}\).} \\
+& {\((a+3)^3 = 216\)} & A1 & {oe, such as \(t^6 = 216\).} \\
+& {\(a = 3\)} & A1 & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 6 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{7}
+\begin{msscheme}{
+  hline{3-6} = {2-Z}{0.4pt, msGrid},
+  hline{7} = {0.4pt, msGrid},
+  row{7} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+7 & {\((V =) \pi\int_0^8 \left(4 - \frac{x+4}{x+1}\right)\mathrm{d}x\)} & B1 & {Needs \(\pi\) and both limits. Accept oe, such as \(32\pi - \pi\int_0^8 \frac{x+4}{x+1}\,\mathrm{d}x\).} \\
+& {\(4 - \frac{x+4}{x+1} = \frac{3x}{x+1} = 3 - \frac{3}{x+1}\)\\[4pt] \(\Rightarrow \int \left(3 - \frac{3}{x+1}\right)\mathrm{d}x = \ldots\)} & M1 & {Writes their integrand as a constant plus a multiple of \(\frac{1}{x+1}\), by division or substitution, and integrates to the form \(px + q\ln(x+1)\). Condone coefficient slips.} \\
+& {\(\pi\left[3x - 3\ln(x+1)\right]_0^8\)} & A1 & {Correct integral of the correct integrand, oe such as \(x + 3\ln(x+1)\) for \(\frac{x+4}{x+1}\).} \\
+& {\(\pi\left((24 - 3\ln 9) - (0 - 3\ln 1)\right)\)} & dM1 & {Substitutes both limits (\(1\) and \(9\) if in \(u = x+1\)) into their integral and subtracts.} \\
+& {\(= 24\pi - 6\pi\ln 3\)} & A1 & {Any exact form, such as \(3\pi(8 - \ln 9)\).} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 7 & & 5 & \\
+\end{msscheme}
+
+\msQuestion{8}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+8 & {\(\frac{e^a - e^{-a}}{2} = 2 \Rightarrow e^{2a} - 4e^a - 1 = 0\)\\[4pt] \(\phantom{\frac{e^a}{2}} \Rightarrow e^a = \ldots\)} & M1 & {Writes \(\sinh a = 2\) in exponentials and forms a three-term quadratic in \(e^a\), or uses \(\operatorname{arsinh} x = \ln\left(x + \sqrt{x^2+1}\right)\). Condone sign slips.} \\
+& {\(e^a = 2 + \sqrt5 \Rightarrow a = \ln(2 + \sqrt5)\)} & A1 & {A0 if \(2 - \sqrt5\) is retained.} \\
+& {\(V = \pi\int_0^a \left(4 - \sinh^2 x\right)\mathrm{d}x\)} & B1 & {Accept the cylinder \(4\pi a\) minus \(\pi\int_0^a \sinh^2 x\,\mathrm{d}x\). Upper limit \(a\), \(\operatorname{arsinh} 2\) or their logarithm. Needs the \(\pi\).} \\
+& {\(\pi\int_0^a \left(4 - \tfrac12(\cosh 2x - 1)\right)\mathrm{d}x\)\\[4pt] \(\phantom{\pi} = \pi\left[\tfrac92 x - \tfrac14\sinh 2x\right]_0^a\)} & M1 A1 & {\msNote{M1}{Uses an identity for \(\sinh^2 x\), or exponentials, and integrates to the form \(px + q\sinh 2x\) or its exponential equivalent. Condone sign and coefficient slips.}\\ \msNote{A1}{Correct integral, oe; \(\pi\) not needed.}} \\
+& {\(\cosh a = \sqrt5 \Rightarrow \sinh 2a = 2(2)(\sqrt5) = 4\sqrt5\)\\[4pt] \(V = \pi\left(\tfrac92 a - \tfrac14(4\sqrt5)\right)\)} & dM1 & {Substitutes both limits and evaluates \(\sinh 2a\) exactly, from \(\sinh a = 2\) with \(\cosh^2 a = 1 + \sinh^2 a\), or from their \(e^a\).} \\
+& {\(V = \pi\left(\tfrac92\ln(2 + \sqrt5) - \sqrt5\right)\)} & A1 & {Exact oe, with a logarithm; \(\operatorname{arsinh} 2\) in place of the logarithm scores A0.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 8 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{9}
+\begin{msscheme}{
+  hline{3-6} = {2-Z}{0.4pt, msGrid},
+  hline{7} = {0.4pt, msGrid},
+  row{7} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+9 & {\(V = \pi\int x^2\frac{\mathrm{d}y}{\mathrm{d}t}\,\mathrm{d}t\), \(\frac{\mathrm{d}y}{\mathrm{d}t} = 16t\)\\[4pt] \(\phantom{V} = \pi\int \left(12t(1-t)^2\right)^2(16t)\,\mathrm{d}t\)} & M1 & {Uses \(\pi\int x^2\frac{\mathrm{d}y}{\mathrm{d}t}\,\mathrm{d}t\) with their \(\frac{\mathrm{d}y}{\mathrm{d}t}\) and \(x\) substituted. Condone a slip in \(\frac{\mathrm{d}y}{\mathrm{d}t}\).} \\
+& {\(V = 2304\pi\int_0^1 t^3(1-t)^4\,\mathrm{d}t\)} & A1 & {Correct integral with limits 0 and 1, oe unsimplified.} \\
+& {\(2304\pi\int_0^1 \left(t^3 - 4t^4 + 6t^5 - 4t^6 + t^7\right)\mathrm{d}t\)\\[4pt] \(= 2304\pi\left[\frac{t^4}{4} - \frac{4t^5}{5} + t^6 - \frac{4t^7}{7} + \frac{t^8}{8}\right]_0^1\)} & M1 A1 & {\msNote{M1}{Expands their integrand into a polynomial, or substitutes \(u = 1 - t\), and integrates, raising at least one power by 1.}\\ \msNote{A1}{Correct integrated terms, oe.}} \\
+& {\(= 2304\pi\left(\frac14 - \frac45 + 1 - \frac47 + \frac18\right)\)} & dM1 & {Substitutes \(t = 1\) and \(t = 0\), or limits in their variable, into their integrated expression.} \\
+& {\(V = \frac{288\pi}{35}\ [\approx 25.9]\)} & A1 & {\(\frac{288\pi}{35}\) oe, or awrt 25.9.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 9 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{10}
+\begin{msscheme}{
+  hline{3-8,10-11} = {2-Z}{0.4pt, msGrid},
+  hline{9,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+10(a) & {\(V = \pi\int_{-1.088}^{1.088} \frac{8 - 6y^2 - y\sin 2y}{20}\,\mathrm{d}y\)} & B1 & {Needs \(\pi\), \(x^2\) in terms of \(y\) and limits \(\pm 1.088\); accept \(2\pi\int_0^{1.088}\) by symmetry.} \\
+& {\(\int y\sin 2y\,\mathrm{d}y = -\frac{y}{2}\cos 2y\)\\[4pt] \(\phantom{\int y\sin 2y\,\mathrm{d}y =} + \int \frac12\cos 2y\,\mathrm{d}y\)} & M1 & {Uses parts on \(y\sin 2y\) to reach \(\pm py\cos 2y \pm q\int\cos 2y\,\mathrm{d}y\). Condone sign and coefficient slips.} \\
+& {\(\phantom{\int y\sin 2y\,\mathrm{d}y} = -\frac{y}{2}\cos 2y + \frac14\sin 2y\)} & A1 & \\
+& {\(V = \frac{\pi}{20}\left[8y - 2y^3\right.\)\\[4pt] \(\phantom{V = \frac{\pi}{20}} \left.+ \frac{y}{2}\cos 2y - \frac14\sin 2y\right]_{-1.088}^{1.088}\)} & A1 & {Correct integral of all terms, oe; the \(\frac{\pi}{20}\) may appear later.} \\
+& {Substitutes \(y = 1.088\) and \(y = -1.088\)\\[4pt] and subtracts: \(V = \ldots\)} & dM1 & {Substitutes both limits into their integral of all terms and subtracts.} \\
+& {\(V = 1.76\,\mathrm{cm}^3\)} & A1 & {awrt 1.76. Not for a calculator's definite integral without the integration.} \\
+\nopagebreak & & [6] & \\
+10(b) & {\(80 \times \text{"}1.76\text{"} = 140.8\), compared with \(140\)} & M1 & {Multiplies their (a) by 80 and compares the result with 140.} \\
+& {Model uses the tallest drop, so overestimates:\\[4pt] unlikely to be enough chocolate} & E1 & {Concludes not enough, because the other drops are smaller so the total is overestimated, oe. E0 for concluding from \(140.8 > 140\) alone.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 10 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{11}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+11 & {\(V = \pi\int x^2\frac{\mathrm{d}y}{\mathrm{d}t}\,\mathrm{d}t = \pi\int\frac{4}{(1+t)^2}\cdot 2t\,\mathrm{d}t\)} & M1 & {Forms \(\pi\int x^2\frac{\mathrm{d}y}{\mathrm{d}t}\,\mathrm{d}t\) with their \(x^2\) in \(t\) and \(\frac{\mathrm{d}y}{\mathrm{d}t} = kt\). Needs the \(\pi\); limits not needed.} \\
+& {\(V = 8\pi\int\frac{t}{(1+t)^2}\,\mathrm{d}t\)} & A1 & {Correct integrand oe; limits need not be seen.} \\
+& {\(\frac{t}{(1+t)^2} = \frac{1}{1+t} - \frac{1}{(1+t)^2}\)\\[4pt] \(\Rightarrow \int\ldots\,\mathrm{d}t = \ldots\)} & M1 & {Integrates by any valid method (partial fractions, \(u = 1+t\), parts) to the form \(p\ln(1+t) + \frac{q}{1+t}\) oe. Condone coefficient slips.} \\
+& {\(8\pi\left[\ln(1+t) + \frac{1}{1+t}\right]\)} & A1 & {Correct integral oe, such as \(\ln(1+t) - \frac{t}{1+t}\) or in \(u\); the \(8\pi\) need not be present.} \\
+& {\(t^2 + 1 = 2 \Rightarrow t = 1\), \(t^2 + 1 = 5 \Rightarrow t = 2\)\\[4pt] \(8\pi\left[\ldots\right]_1^2 = 8\pi\left(\ln 3 + \frac13 - \ln 2 - \frac12\right)\)} & dM1 & {Finds \(t = 1\) and \(t = 2\) from \(y = 2\) and \(y = 5\) and substitutes both into their integral, subtracting. Equivalent limits after a substitution accepted.} \\
+& {\(V = 8\pi\ln\frac32 - \frac{4\pi}{3}\ [\approx 6.00]\)} & A1 & {oe, or awrt 6.00.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 11 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{12}
+\begin{msscheme}{
+  hline{3-8} = {2-Z}{0.4pt, msGrid},
+  hline{9} = {0.4pt, msGrid},
+  row{9} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+12 & {\(\sin x = 2\sin x\cos x \Rightarrow \cos x = \ldots\)} & M1 & {Uses \(\sin 2x = 2\sin x\cos x\) and solves for \(\cos x\), by factorising or dividing by \(\sin x\). Condone not stating \(x = 0\).} \\
+& {\(x = \frac{\pi}{3}\)} & A1 & \\
+& {\(V = \pi\int_0^{\pi/3}\left(\sin^2 2x - \sin^2 x\right)\mathrm{d}x\)} & B1 & {oe, such as the difference of two volume integrals. Needs the \(\pi\) and the difference of the squares.} \\
+& {\(\sin^2 2x - \sin^2 x = \tfrac12(\cos 2x - \cos 4x)\)\\[4pt] \(\Rightarrow \pi\int \tfrac12(\cos 2x - \cos 4x)\,\mathrm{d}x = \ldots\)} & M1 & {Uses a double-angle identity on both squares and integrates to the form \(px + q\sin 2x + r\sin 4x\). Condone sign and coefficient slips.} \\
+& {\(\pi\left[\frac{\sin 2x}{4} - \frac{\sin 4x}{8}\right]_0^{\pi/3}\)} & A1 & {oe, with or without the \(\pi\).} \\
+& {\(\pi\left(\frac{\sqrt3}{8} + \frac{\sqrt3}{16}\right)\)} & dM1 & {Substitutes \(\frac{\pi}{3}\) (or their upper limit) and 0 into their integral of that form and subtracts, using exact values.} \\
+& {\(V = \frac{3\sqrt3\pi}{16}\)} & A1 & {oe in terms of \(\pi\), or awrt \(0.325\pi\). A0 for awrt 1.02 alone.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 12 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{13}
+\begin{msscheme}{
+  hline{3-5,7-12} = {2-Z}{0.4pt, msGrid},
+  hline{6,13} = {0.4pt, msGrid},
+  row{13} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+13(a) & {\(\beta = \operatorname{arcosh}(1+2\alpha) \Rightarrow \cosh\beta = 1+2\alpha\)} & M1 & {Applies \(\cosh\) to the curve's equation at \(P\), or equates the log form of \(\operatorname{arcosh}(1+2\alpha)\) to \(\ln(2+\sqrt3)\).} \\
+& {\(\operatorname{arcosh}2 = \ln\left(2+\sqrt{2^2-1}\right) = \ln(2+\sqrt3)\)\\[4pt] \(\Rightarrow \cosh\beta = 2\)} & M1 & {Uses \(\operatorname{arcosh}u = \ln(u+\sqrt{u^2-1})\) with \(u = 2\), or substitutes \(\beta\) into the exponential form of \(\cosh\). Not for \(\cosh\beta = 2\) from a calculator.} \\
+& {\(1+2\alpha = 2 \Rightarrow \alpha = \frac12\)} & A1~AG & {Correct exact working leading without error to \(\alpha = \frac12\). Working back from \(\alpha = \frac12\) earns nothing.} \\
+\nopagebreak & & [3] & \\
+13(b) & {\(\cosh y = 1+2x \Rightarrow x = \frac{\cosh y - 1}{2}\)} & B1 & \\
+& {\(V = \pi\int_0^{\beta}\left(\frac{\cosh y - 1}{2}\right)^2\mathrm{d}y\)} & B1 & {Needs \(\pi\), \(x^2\) as their function of \(y\), and limits \(0\) and \(\beta\) oe.} \\
+& {\((\cosh y - 1)^2 = \tfrac12(\cosh 2y + 1) - 2\cosh y + 1\)\\[4pt] \(\Rightarrow \int (\cosh y - 1)^2\,\mathrm{d}y = \ldots\)} & M1 & {Expands, uses a double-angle identity or exponentials, and integrates to the form \(p\sinh 2y + q\sinh y + ry\) or its exponential equivalent. Condone sign and coefficient slips.} \\
+& {\(V = \frac{\pi}{4}\left[\tfrac14\sinh 2y - 2\sinh y + \tfrac32 y\right]_0^{\beta}\)} & A1 & {Correct integral oe, including exponential forms. The factor \(\frac{\pi}{4}\) may be absent here.} \\
+& {\(\cosh\beta = 2 \Rightarrow \sinh\beta = \sqrt3,\ \sinh 2\beta = 4\sqrt3\)\\[4pt] \(V = \frac{\pi}{4}\left(\tfrac14(4\sqrt3) - 2\sqrt3 + \tfrac32\beta\right)\)} & dM1 & {Substitutes the limits, with \(\sinh\beta\) and \(\sinh 2\beta\) (or \(e^{\pm\beta}\), \(e^{\pm 2\beta}\)) found exactly. Condone slips. Not for decimals.} \\
+& {\(V = \frac{\pi}{8}\left(3\ln(2+\sqrt3) - 2\sqrt3\right)\)} & A1 & {Any exact equivalent; \(\ln(2+\sqrt3)\) may be left as \(\beta\) or \(\operatorname{arcosh}2\).} \\
+\nopagebreak & & [6] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 13 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{14}
+\begin{msscheme}{
+  hline{3-6,8-13} = {2-Z}{0.4pt, msGrid},
+  hline{7,14} = {0.4pt, msGrid},
+  row{14} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+14(a) & {\(x = \sin\theta - \frac13\left(3\sin\theta - 4\sin^3\theta\right)\)} & M1 & {Uses a triple-angle identity for \(\sin 3\theta\), or any valid expansion, to write \(x\) in terms of \(\sin\theta\) alone. Condone sign slips.} \\
+& {\(x = \frac43\sin^3\theta\)} & A1 & \\
+& {\(\cos\theta = 1 - y \Rightarrow \sin^2\theta = 1 - (1-y)^2\)\\[4pt] \(x^2 = \text{"}\frac{16}{9}\text{"}\sin^6\theta\)\\[4pt] \(\phantom{x^2} = \text{"}\frac{16}{9}\text{"}\left(1 - (1-y)^2\right)^3\)} & M1 & {Uses \(\sin^2\theta + \cos^2\theta = 1\) with \(\cos\theta = 1 - y\), and substitutes into their \(x^2\) of the form \(k\sin^6\theta\).} \\
+& {\(x^2 = \frac{16}{9}\left(2y - y^2\right)^3 = \frac{16}{9}y^3(2-y)^3\)} & A1~AG & {Correct substituted equation leading without error to the printed result; combined steps accepted.} \\
+\nopagebreak & & [4] & \\
+14(b) & {\(V = \pi\int_0^2 \frac{16}{9}y^3(2-y)^3\,\mathrm{d}y\)} & B1 & {Needs the \(\pi\), the integrand from (a) and limits 0 and 2.} \\
+& {\(\int_0^2 \left(8y^3 - 12y^4 + 6y^5 - y^6\right)\mathrm{d}y\)\\[4pt] \(\phantom{\int} = \left[2y^4 - \frac{12}{5}y^5 + y^6 - \frac17 y^7\right]_0^2\)} & M1 A1 & {\msNote{M1}{Integrates \(y^3(2-y)^3\) by expanding or any valid method, raising the power of at least one term by 1. Condone expansion slips.}\\ \msNote{A1}{Correct integral, with or without the factor \(\frac{16\pi}{9}\).}} \\
+& {\(\frac{16\pi}{9}\left(32 - \frac{384}{5} + 64 - \frac{128}{7}\right)\)} & dM1 & {Substitutes \(y = 2\) and \(y = 0\) into their integrated expression and subtracts.} \\
+& {\(\frac{512\pi}{315}\ [\approx 5.11]\)} & A1 & {oe, or awrt 5.11.} \\
+& {\(\left(\frac32\right)^3 \times \text{"}\frac{512\pi}{315}\text{"}\)} & M1 & {Multiplies their model volume by the cube of 3 over their model height, or integrates with lengths scaled by \(\frac32\).} \\
+& {\(\frac{192\pi}{35} \approx 17.2\,\mathrm{cm}^3\)} & A1 & {oe, or awrt 17.2.} \\
+\nopagebreak & & [7] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 14 & & 11 & \\
+\end{msscheme}
+
+\msQuestion{15}
+\begin{msscheme}{
+  hline{3-4,6-11} = {2-Z}{0.4pt, msGrid},
+  hline{5,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+15(a) & {\(\cos 5\theta = \cos(4\theta + \theta) = \cos 4\theta\cos\theta - \sin 4\theta\sin\theta\)\\[4pt] \(\cos 3\theta = \cos(4\theta - \theta) = \cos 4\theta\cos\theta + \sin 4\theta\sin\theta\)} & M1 A1 & {\msNote{M1}{Expands \(\cos(4\theta + \theta)\) and \(\cos(4\theta - \theta)\) by compound-angle formulae. Condone sign slips.}\\ \msNote{A1}{Both expansions correct.}} \\
+& {\(\cos 5\theta + \cos 3\theta = 2\cos 4\theta\cos\theta\)\\[4pt] \(\Rightarrow \cos 4\theta\cos\theta \equiv \tfrac12(\cos 5\theta + \cos 3\theta)\)} & A1~AG & {Correct expansions combined without error to the printed identity, with LHS = RHS or a conclusion in words.} \\
+\nopagebreak & & [3] & \\
+15(b) & {\(V = \pi\int x^2\frac{\mathrm{d}y}{\mathrm{d}\theta}\,\mathrm{d}\theta\), \(\frac{\mathrm{d}y}{\mathrm{d}\theta} = 24\cos\theta\)} & M1 & {Uses \(\pi\int x^2\,\mathrm{d}y\) with \(x^2\) in terms of \(\theta\) and \(\mathrm{d}y\) as their \(k\cos\theta\,\mathrm{d}\theta\). Limits not needed.} \\
+& {\(V = 5400\pi\int_0^{\pi/2}\sin^2 2\theta\cos\theta\,\mathrm{d}\theta\)} & A1 & {Correct integral with limits \(0\) and \(\frac{\pi}{2}\), oe, need not be simplified.} \\
+& {\(2700\pi\int_0^{\pi/2}\left(\cos\theta - \tfrac12\cos 5\theta - \tfrac12\cos 3\theta\right)\mathrm{d}\theta\)} & M1 & {Simplifies the integrand, by \(\sin^2 2\theta = \frac12(1 \pm \cos 4\theta)\) and part (a) or otherwise, and integrates at least one term correctly. Condone sign slips.} \\
+& {\(= 2700\pi\left[\sin\theta - \tfrac{1}{10}\sin 5\theta - \tfrac16\sin 3\theta\right]_0^{\pi/2}\)} & A1 & {Correct integral, oe, including \(5400\pi\left[\frac43u^3 - \frac45u^5\right]_0^1\) with \(u = \sin\theta\).} \\
+& {\(= 2700\pi\left[\left(1 - \tfrac{1}{10} + \tfrac16\right) - 0\right]\)} & dM1 & {Substitutes both limits, or the matching limits in a new variable, into their integral and subtracts.} \\
+& {\(V = 2880\pi\ (\mathrm{mm}^3)\)} & A1 & {Or awrt 9050.} \\
+\nopagebreak & & [6] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 15 & & 9 & \\
+\end{msscheme}
+
+\end{document}

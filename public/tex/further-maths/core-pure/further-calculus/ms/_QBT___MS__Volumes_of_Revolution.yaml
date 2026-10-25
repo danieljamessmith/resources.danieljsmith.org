@@ -1,0 +1,641 @@
+format: 1
+pack: Volumes of Revolution
+last_updated: 25 October 2026
+questions:
+  - q: 1
+    stamp: b007bc6f
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}}{\mathrm{d}x}\ln(\sec x+\tan x) = \frac{\sec x\tan x+\sec^2 x}{\sec x+\tan x}\)
+            marks:
+              - code: M1
+                note: Divides a derivative of \(\sec x+\tan x\) of the form \(p\sec x\tan x+q\sec^2 x\) by \(\sec x+\tan x\), oe in sines and cosines.
+          - scheme: |
+              \(\phantom{\frac{\mathrm{d}}{\mathrm{d}x}} = \frac{\sec x(\tan x+\sec x)}{\sec x+\tan x} = \sec x\)
+            marks:
+              - code: A1 AG
+                note: Correct derivative simplified without error to \(\sec x\); combined steps accepted.
+      - part: b
+        rows:
+          - scheme: |
+              \(V = \pi\int_0^{\pi/3}\sec x\,\mathrm{d}x\)
+            marks:
+              - code: B1
+                note: Needs the \(\pi\); limits may be implied by their substitution.
+          - scheme: |
+              \(\phantom{V} = \pi\left[\ln(\sec x+\tan x)\right]_0^{\pi/3}\)
+            marks:
+              - code: M1
+                note: Obtains \(\ln(\sec x+\tan x)\), or another correct integral of \(\sec x\). The \(\pi\) need not be seen.
+          - scheme: |
+              \(\phantom{V} = \pi\left(\ln(2+\sqrt{3}) - \ln 1\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits and subtracts, evaluating \(\sec\) and \(\tan\) exactly. Condone the zero lower-limit term unwritten.
+          - scheme: |
+              \(V = \pi\ln(2+\sqrt{3})\)
+            marks:
+              - code: A1
+                note: oe exact, such as \(-\pi\ln(2-\sqrt{3})\).
+  - q: 2
+    stamp: d9a8778b
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\sinh(2\ln 2) = \frac{e^{2\ln 2} - e^{-2\ln 2}}{2}\)
+              \(e^{2\ln 2} = e^{\ln 4} = 4\)
+            marks:
+              - code: M1
+                note: Uses the exponential definition of \(\sinh\) with \(2\ln 2\), or a double-angle identity with \(\ln 2\), and evaluates at least one exponential.
+          - scheme: |
+              \(\sinh(2\ln 2) = \frac{4 - \frac14}{2} = \frac{15}{8}\)
+            marks:
+              - code: A1 AG
+                note: Correct substituted expression leading without error to \(\frac{15}{8}\); combined steps accepted.
+      - part: b
+        rows:
+          - scheme: |
+              \(V = \pi\int_0^{2\ln 2} (\cosh x - 1)\,\mathrm{d}x\)
+            marks:
+              - code: B1
+                note: Correct integral with limits \(0\) and \(2\ln 2\), oe such as a cylinder of volume \(2\pi\ln 2\) subtracted. Needs the \(\pi\).
+          - scheme: |
+              \(\int (\cosh x - 1)\,\mathrm{d}x = \sinh x - x\)
+            marks:
+              - code: M1
+                note: Integrates at least one term correctly, such as \(\cosh x \to \sinh x\).
+              - code: A1
+                note: With or without \(\pi\).
+          - scheme: |
+              \(\pi\left[\sinh x - x\right]_0^{2\ln 2} = \pi\left(\tfrac{15}{8} - 2\ln 2 - 0\right)\)
+            marks:
+              - code: dM1
+                note: Applies their limits to their integral of the form \(p\sinh x + qx\), evaluating \(\sinh(2\ln 2)\) by (a) or otherwise.
+          - scheme: |
+              \(V = \pi\left(\frac{15}{8} - 2\ln 2\right)\)
+            marks:
+              - code: A1
+                note: Any exact equivalent, such as \(\frac{15\pi}{8} - \pi\ln 4\).
+  - q: 3
+    stamp: a0ee66ce
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\pi\int_0^k \frac{k-x}{k+x}\,\mathrm{d}x = 1\)
+            marks:
+              - code: B1
+                note: Needs \(\pi\), \(y^2\) as the integrand and limits 0 and \(k\); the \(= 1\) may be seen later.
+          - scheme: |
+              \(\frac{k-x}{k+x} = -1 + \frac{2k}{k+x}\)
+              \(\Rightarrow \int \ldots \,\mathrm{d}x = \ldots\)
+            marks:
+              - code: M1
+                note: Writes the integrand as a constant plus \(\frac{c}{k+x}\) and integrates to the form \(px + q\ln(k+x)\). Condone sign and coefficient slips.
+          - scheme: |
+              \(\left[-x + 2k\ln(k+x)\right]_0^k\)
+            marks:
+              - code: A1
+                note: Accept \(\ln|k+x|\) or any equivalent, such as \(2k\ln(k+x) - x + c\).
+          - scheme: |
+              \(\pi\left(-k + 2k\ln 2k - 2k\ln k\right) = 1\)
+              \(\Rightarrow \pi k(2\ln 2 - 1) = 1 \Rightarrow k = \ldots\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits into their integral, subtracts, and combines the logarithms to a constant multiple of \(k\).
+          - scheme: |
+              \(k = \frac{1}{\pi(2\ln 2 - 1)}\)
+            marks:
+              - code: A1
+                note: Or any exact equivalent, such as \(\frac{1}{\pi(\ln 4 - 1)}\).
+  - q: 4
+    stamp: 5aaf52c5
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\pi\int_0^k \frac{x^2}{k^2+x^2}\,\mathrm{d}x = 1\)
+            marks:
+              - code: B1
+                note: Needs the \(\pi\) and limits 0 and \(k\); the equation with 1 may appear later.
+          - scheme: |
+              \(\frac{x^2}{k^2+x^2} = 1 - \frac{k^2}{k^2+x^2}\)
+              \(\Rightarrow \int \ldots\,\mathrm{d}x = x - \ldots\arctan\frac{x}{k}\)
+            marks:
+              - code: M1
+                note: Writes the integrand as \(1 - \frac{p}{k^2+x^2}\) and integrates to \(x \pm q\arctan\frac{x}{k}\), or substitutes \(x = k\tan\theta\) and integrates \(\tan^2\theta\) via \(\sec^2\theta - 1\). Condone coefficient slips.
+          - scheme: |
+              \(\left[x - k\arctan\frac{x}{k}\right]_0^k\)
+            marks:
+              - code: A1
+                note: oe, such as \(k(\tan\theta - \theta)\) after \(x = k\tan\theta\).
+          - scheme: |
+              \(\pi\left(k - k\arctan 1\right) = 1 \Rightarrow k = \ldots\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits, in the variable used, into their integral, equates \(\pi\) times the result to 1 and solves for \(k\).
+          - scheme: |
+              \(k = \frac{4}{\pi(4-\pi)}\)
+            marks:
+              - code: A1
+                note: Any exact equivalent, such as \(\frac{1}{\pi\left(1 - \frac{\pi}{4}\right)}\).
+  - q: 5
+    stamp: 8f4d95f2
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\int \sin^2\theta\,\mathrm{d}\theta = \int \tfrac12(1 - \cos 2\theta)\,\mathrm{d}\theta\)
+              \(\phantom{\int \sin^2\theta\,\mathrm{d}\theta} = \ldots\)
+            marks:
+              - code: M1
+                note: Uses \(\sin^2\theta = \frac12(1 \pm \cos 2\theta)\) and integrates to the form \(p\theta + q\sin 2\theta\). Condone sign and coefficient slips.
+          - scheme: |
+              \(= \frac{\theta}{2} - \frac{\sin 2\theta}{4} + c\)
+            marks:
+              - code: A1
+                note: oe, with \(+c\).
+      - part: b
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}y}{\mathrm{d}\theta} = -\operatorname{cosec}^2\theta\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(V = \pi\int (6\sin^2\theta)^2 \times \text{"}{-\operatorname{cosec}^2\theta}\text{"}\,\mathrm{d}\theta\)
+            marks:
+              - code: M1
+                note: Uses \(\pi\int x^2\frac{\mathrm{d}y}{\mathrm{d}\theta}\,\mathrm{d}\theta\) with \(x = 6\sin^2\theta\) and their \(\frac{\mathrm{d}y}{\mathrm{d}\theta}\) of the form \(\pm p\operatorname{cosec}^2\theta\). Limits not needed.
+          - scheme: |
+              \(= 36\pi\int -\sin^2\theta\,\mathrm{d}\theta\)
+            marks:
+              - code: A1
+                note: oe. Limits not needed.
+          - scheme: |
+              \(y = \sqrt3 \Rightarrow \theta = \frac{\pi}{6}\)
+              \(y = \frac{1}{\sqrt3} \Rightarrow \theta = \frac{\pi}{3}\)
+            marks:
+              - code: B1
+                note: Both, matched to their \(y\) values; may be seen as limits.
+          - scheme: |
+              \(V = 36\pi\int_{\pi/6}^{\pi/3} \sin^2\theta\,\mathrm{d}\theta\)
+              \(k = 36\pi,\ a = \frac{\pi}{6},\ b = \frac{\pi}{3}\)
+            marks:
+              - code: A1
+                note: cso. Accept \(k = -36\pi\), \(a = \frac{\pi}{3}\), \(b = \frac{\pi}{6}\).
+      - part: c
+        rows:
+          - scheme: |
+              \(V = 36\pi\left[\frac{\theta}{2} - \frac{\sin 2\theta}{4}\right]_{\pi/6}^{\pi/3}\)
+            marks:
+              - code: M1
+                note: Substitutes their limits from (b) into their integral from (a), of the form \(p\theta + q\sin 2\theta\), and subtracts.
+          - scheme: |
+              \(= 36\pi\left(\frac{\pi}{6} - \frac{\sqrt3}{8} - \frac{\pi}{12} + \frac{\sqrt3}{8}\right)\)
+            marks:
+              - code: dM1
+                note: Uses exact values of \(\sin\frac{2\pi}{3}\) and \(\sin\frac{\pi}{3}\), or their equality, to reach an exact expression.
+          - scheme: |
+              \(= 3\pi^2\)
+            marks:
+              - code: A1
+                note: cso. \(p = 3\) alone scores A0.
+  - q: 6
+    stamp: '31296883'
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(t^2 = y + 3 \Rightarrow x = \frac{9}{(y+3)^2}\)
+            marks:
+              - code: B1
+                note: oe. Implied by a correct integrand in \(t\).
+          - scheme: |
+              \(V = \pi\int_0^a \frac{81}{(y+3)^4}\,\mathrm{d}y\)
+            marks:
+              - code: M1
+                note: Uses \(\pi\int x^2\,\mathrm{d}y\) with their \(x\) in terms of \(y\), or \(\pi\int x^2\frac{\mathrm{d}y}{\mathrm{d}t}\,\mathrm{d}t\). Needs the \(\pi\); limits not needed.
+              - code: A1
+                note: Correct integral with limits 0 and \(a\), or \(162\pi\int_{\sqrt3}^{\sqrt{a+3}} t^{-7}\,\mathrm{d}t\).
+          - scheme: |
+              \(\pi\left[-\frac{27}{(y+3)^3}\right]_0^a\)
+            marks:
+              - code: M1
+                note: Integrates to the form \(k(y+3)^{-3}\), or \(kt^{-6}\) in \(t\). Condone coefficient slips.
+              - code: A1
+                note: oe, such as \(-27\pi t^{-6}\).
+          - scheme: |
+              \(\pi\left(1 - \frac{27}{(a+3)^3}\right) = \frac{7\pi}{8}\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits into their integral, subtracts the right way round and sets equal to \(\frac{7\pi}{8}\).
+          - scheme: |
+              \((a+3)^3 = 216\)
+            marks:
+              - code: A1
+                note: oe, such as \(t^6 = 216\).
+          - scheme: |
+              \(a = 3\)
+            marks:
+              - code: A1
+  - q: 7
+    stamp: 216e320c
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \((V =) \pi\int_0^8 \left(4 - \frac{x+4}{x+1}\right)\mathrm{d}x\)
+            marks:
+              - code: B1
+                note: Needs \(\pi\) and both limits. Accept oe, such as \(32\pi - \pi\int_0^8 \frac{x+4}{x+1}\,\mathrm{d}x\).
+          - scheme: |
+              \(4 - \frac{x+4}{x+1} = \frac{3x}{x+1} = 3 - \frac{3}{x+1}\)
+              \(\Rightarrow \int \left(3 - \frac{3}{x+1}\right)\mathrm{d}x = \ldots\)
+            marks:
+              - code: M1
+                note: Writes their integrand as a constant plus a multiple of \(\frac{1}{x+1}\), by division or substitution, and integrates to the form \(px + q\ln(x+1)\). Condone coefficient slips.
+          - scheme: |
+              \(\pi\left[3x - 3\ln(x+1)\right]_0^8\)
+            marks:
+              - code: A1
+                note: Correct integral of the correct integrand, oe such as \(x + 3\ln(x+1)\) for \(\frac{x+4}{x+1}\).
+          - scheme: |
+              \(\pi\left((24 - 3\ln 9) - (0 - 3\ln 1)\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits (\(1\) and \(9\) if in \(u = x+1\)) into their integral and subtracts.
+          - scheme: |
+              \(= 24\pi - 6\pi\ln 3\)
+            marks:
+              - code: A1
+                note: Any exact form, such as \(3\pi(8 - \ln 9)\).
+  - q: 8
+    stamp: e1aba3fe
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\frac{e^a - e^{-a}}{2} = 2 \Rightarrow e^{2a} - 4e^a - 1 = 0\)
+              \(\phantom{\frac{e^a}{2}} \Rightarrow e^a = \ldots\)
+            marks:
+              - code: M1
+                note: Writes \(\sinh a = 2\) in exponentials and forms a three-term quadratic in \(e^a\), or uses \(\operatorname{arsinh} x = \ln\left(x + \sqrt{x^2+1}\right)\). Condone sign slips.
+          - scheme: |
+              \(e^a = 2 + \sqrt5 \Rightarrow a = \ln(2 + \sqrt5)\)
+            marks:
+              - code: A1
+                note: A0 if \(2 - \sqrt5\) is retained.
+          - scheme: |
+              \(V = \pi\int_0^a \left(4 - \sinh^2 x\right)\mathrm{d}x\)
+            marks:
+              - code: B1
+                note: Accept the cylinder \(4\pi a\) minus \(\pi\int_0^a \sinh^2 x\,\mathrm{d}x\). Upper limit \(a\), \(\operatorname{arsinh} 2\) or their logarithm. Needs the \(\pi\).
+          - scheme: |
+              \(\pi\int_0^a \left(4 - \tfrac12(\cosh 2x - 1)\right)\mathrm{d}x\)
+              \(\phantom{\pi} = \pi\left[\tfrac92 x - \tfrac14\sinh 2x\right]_0^a\)
+            marks:
+              - code: M1
+                note: Uses an identity for \(\sinh^2 x\), or exponentials, and integrates to the form \(px + q\sinh 2x\) or its exponential equivalent. Condone sign and coefficient slips.
+              - code: A1
+                note: Correct integral, oe; \(\pi\) not needed.
+          - scheme: |
+              \(\cosh a = \sqrt5 \Rightarrow \sinh 2a = 2(2)(\sqrt5) = 4\sqrt5\)
+              \(V = \pi\left(\tfrac92 a - \tfrac14(4\sqrt5)\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits and evaluates \(\sinh 2a\) exactly, from \(\sinh a = 2\) with \(\cosh^2 a = 1 + \sinh^2 a\), or from their \(e^a\).
+          - scheme: |
+              \(V = \pi\left(\tfrac92\ln(2 + \sqrt5) - \sqrt5\right)\)
+            marks:
+              - code: A1
+                note: Exact oe, with a logarithm; \(\operatorname{arsinh} 2\) in place of the logarithm scores A0.
+  - q: 9
+    stamp: 5fa867f8
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(V = \pi\int x^2\frac{\mathrm{d}y}{\mathrm{d}t}\,\mathrm{d}t\), \(\frac{\mathrm{d}y}{\mathrm{d}t} = 16t\)
+              \(\phantom{V} = \pi\int \left(12t(1-t)^2\right)^2(16t)\,\mathrm{d}t\)
+            marks:
+              - code: M1
+                note: Uses \(\pi\int x^2\frac{\mathrm{d}y}{\mathrm{d}t}\,\mathrm{d}t\) with their \(\frac{\mathrm{d}y}{\mathrm{d}t}\) and \(x\) substituted. Condone a slip in \(\frac{\mathrm{d}y}{\mathrm{d}t}\).
+          - scheme: |
+              \(V = 2304\pi\int_0^1 t^3(1-t)^4\,\mathrm{d}t\)
+            marks:
+              - code: A1
+                note: Correct integral with limits 0 and 1, oe unsimplified.
+          - scheme: |
+              \(2304\pi\int_0^1 \left(t^3 - 4t^4 + 6t^5 - 4t^6 + t^7\right)\mathrm{d}t\)
+              \(= 2304\pi\left[\frac{t^4}{4} - \frac{4t^5}{5} + t^6 - \frac{4t^7}{7} + \frac{t^8}{8}\right]_0^1\)
+            marks:
+              - code: M1
+                note: Expands their integrand into a polynomial, or substitutes \(u = 1 - t\), and integrates, raising at least one power by 1.
+              - code: A1
+                note: Correct integrated terms, oe.
+          - scheme: |
+              \(= 2304\pi\left(\frac14 - \frac45 + 1 - \frac47 + \frac18\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes \(t = 1\) and \(t = 0\), or limits in their variable, into their integrated expression.
+          - scheme: |
+              \(V = \frac{288\pi}{35}\ [\approx 25.9]\)
+            marks:
+              - code: A1
+                note: \(\frac{288\pi}{35}\) oe, or awrt 25.9.
+  - q: 10
+    stamp: db7f87ef
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(V = \pi\int_{-1.088}^{1.088} \frac{8 - 6y^2 - y\sin 2y}{20}\,\mathrm{d}y\)
+            marks:
+              - code: B1
+                note: Needs \(\pi\), \(x^2\) in terms of \(y\) and limits \(\pm 1.088\); accept \(2\pi\int_0^{1.088}\) by symmetry.
+          - scheme: |
+              \(\int y\sin 2y\,\mathrm{d}y = -\frac{y}{2}\cos 2y\)
+              \(\phantom{\int y\sin 2y\,\mathrm{d}y =} + \int \frac12\cos 2y\,\mathrm{d}y\)
+            marks:
+              - code: M1
+                note: Uses parts on \(y\sin 2y\) to reach \(\pm py\cos 2y \pm q\int\cos 2y\,\mathrm{d}y\). Condone sign and coefficient slips.
+          - scheme: |
+              \(\phantom{\int y\sin 2y\,\mathrm{d}y} = -\frac{y}{2}\cos 2y + \frac14\sin 2y\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(V = \frac{\pi}{20}\left[8y - 2y^3\right.\)
+              \(\phantom{V = \frac{\pi}{20}} \left.+ \frac{y}{2}\cos 2y - \frac14\sin 2y\right]_{-1.088}^{1.088}\)
+            marks:
+              - code: A1
+                note: Correct integral of all terms, oe; the \(\frac{\pi}{20}\) may appear later.
+          - scheme: |
+              Substitutes \(y = 1.088\) and \(y = -1.088\)
+              and subtracts: \(V = \ldots\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits into their integral of all terms and subtracts.
+          - scheme: |
+              \(V = 1.76\,\mathrm{cm}^3\)
+            marks:
+              - code: A1
+                note: awrt 1.76. Not for a calculator's definite integral without the integration.
+      - part: b
+        rows:
+          - scheme: |
+              \(80 \times \text{"}1.76\text{"} = 140.8\), compared with \(140\)
+            marks:
+              - code: M1
+                note: Multiplies their (a) by 80 and compares the result with 140.
+          - scheme: |
+              Model uses the tallest drop, so overestimates:
+              unlikely to be enough chocolate
+            marks:
+              - code: E1
+                note: Concludes not enough, because the other drops are smaller so the total is overestimated, oe. E0 for concluding from \(140.8 > 140\) alone.
+  - q: 11
+    stamp: 18a5efa1
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(V = \pi\int x^2\frac{\mathrm{d}y}{\mathrm{d}t}\,\mathrm{d}t = \pi\int\frac{4}{(1+t)^2}\cdot 2t\,\mathrm{d}t\)
+            marks:
+              - code: M1
+                note: Forms \(\pi\int x^2\frac{\mathrm{d}y}{\mathrm{d}t}\,\mathrm{d}t\) with their \(x^2\) in \(t\) and \(\frac{\mathrm{d}y}{\mathrm{d}t} = kt\). Needs the \(\pi\); limits not needed.
+          - scheme: |
+              \(V = 8\pi\int\frac{t}{(1+t)^2}\,\mathrm{d}t\)
+            marks:
+              - code: A1
+                note: Correct integrand oe; limits need not be seen.
+          - scheme: |
+              \(\frac{t}{(1+t)^2} = \frac{1}{1+t} - \frac{1}{(1+t)^2}\)
+              \(\Rightarrow \int\ldots\,\mathrm{d}t = \ldots\)
+            marks:
+              - code: M1
+                note: Integrates by any valid method (partial fractions, \(u = 1+t\), parts) to the form \(p\ln(1+t) + \frac{q}{1+t}\) oe. Condone coefficient slips.
+          - scheme: |
+              \(8\pi\left[\ln(1+t) + \frac{1}{1+t}\right]\)
+            marks:
+              - code: A1
+                note: Correct integral oe, such as \(\ln(1+t) - \frac{t}{1+t}\) or in \(u\); the \(8\pi\) need not be present.
+          - scheme: |
+              \(t^2 + 1 = 2 \Rightarrow t = 1\), \(t^2 + 1 = 5 \Rightarrow t = 2\)
+              \(8\pi\left[\ldots\right]_1^2 = 8\pi\left(\ln 3 + \frac13 - \ln 2 - \frac12\right)\)
+            marks:
+              - code: dM1
+                note: Finds \(t = 1\) and \(t = 2\) from \(y = 2\) and \(y = 5\) and substitutes both into their integral, subtracting. Equivalent limits after a substitution accepted.
+          - scheme: |
+              \(V = 8\pi\ln\frac32 - \frac{4\pi}{3}\ [\approx 6.00]\)
+            marks:
+              - code: A1
+                note: oe, or awrt 6.00.
+  - q: 12
+    stamp: aa697689
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\sin x = 2\sin x\cos x \Rightarrow \cos x = \ldots\)
+            marks:
+              - code: M1
+                note: Uses \(\sin 2x = 2\sin x\cos x\) and solves for \(\cos x\), by factorising or dividing by \(\sin x\). Condone not stating \(x = 0\).
+          - scheme: |
+              \(x = \frac{\pi}{3}\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(V = \pi\int_0^{\pi/3}\left(\sin^2 2x - \sin^2 x\right)\mathrm{d}x\)
+            marks:
+              - code: B1
+                note: oe, such as the difference of two volume integrals. Needs the \(\pi\) and the difference of the squares.
+          - scheme: |
+              \(\sin^2 2x - \sin^2 x = \tfrac12(\cos 2x - \cos 4x)\)
+              \(\Rightarrow \pi\int \tfrac12(\cos 2x - \cos 4x)\,\mathrm{d}x = \ldots\)
+            marks:
+              - code: M1
+                note: Uses a double-angle identity on both squares and integrates to the form \(px + q\sin 2x + r\sin 4x\). Condone sign and coefficient slips.
+          - scheme: |
+              \(\pi\left[\frac{\sin 2x}{4} - \frac{\sin 4x}{8}\right]_0^{\pi/3}\)
+            marks:
+              - code: A1
+                note: oe, with or without the \(\pi\).
+          - scheme: |
+              \(\pi\left(\frac{\sqrt3}{8} + \frac{\sqrt3}{16}\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes \(\frac{\pi}{3}\) (or their upper limit) and 0 into their integral of that form and subtracts, using exact values.
+          - scheme: |
+              \(V = \frac{3\sqrt3\pi}{16}\)
+            marks:
+              - code: A1
+                note: oe in terms of \(\pi\), or awrt \(0.325\pi\). A0 for awrt 1.02 alone.
+  - q: 13
+    stamp: 66a19d32
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\beta = \operatorname{arcosh}(1+2\alpha) \Rightarrow \cosh\beta = 1+2\alpha\)
+            marks:
+              - code: M1
+                note: Applies \(\cosh\) to the curve's equation at \(P\), or equates the log form of \(\operatorname{arcosh}(1+2\alpha)\) to \(\ln(2+\sqrt3)\).
+          - scheme: |
+              \(\operatorname{arcosh}2 = \ln\left(2+\sqrt{2^2-1}\right) = \ln(2+\sqrt3)\)
+              \(\Rightarrow \cosh\beta = 2\)
+            marks:
+              - code: M1
+                note: Uses \(\operatorname{arcosh}u = \ln(u+\sqrt{u^2-1})\) with \(u = 2\), or substitutes \(\beta\) into the exponential form of \(\cosh\). Not for \(\cosh\beta = 2\) from a calculator.
+          - scheme: |
+              \(1+2\alpha = 2 \Rightarrow \alpha = \frac12\)
+            marks:
+              - code: A1 AG
+                note: Correct exact working leading without error to \(\alpha = \frac12\). Working back from \(\alpha = \frac12\) earns nothing.
+      - part: b
+        rows:
+          - scheme: |
+              \(\cosh y = 1+2x \Rightarrow x = \frac{\cosh y - 1}{2}\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(V = \pi\int_0^{\beta}\left(\frac{\cosh y - 1}{2}\right)^2\mathrm{d}y\)
+            marks:
+              - code: B1
+                note: Needs \(\pi\), \(x^2\) as their function of \(y\), and limits \(0\) and \(\beta\) oe.
+          - scheme: |
+              \((\cosh y - 1)^2 = \tfrac12(\cosh 2y + 1) - 2\cosh y + 1\)
+              \(\Rightarrow \int (\cosh y - 1)^2\,\mathrm{d}y = \ldots\)
+            marks:
+              - code: M1
+                note: Expands, uses a double-angle identity or exponentials, and integrates to the form \(p\sinh 2y + q\sinh y + ry\) or its exponential equivalent. Condone sign and coefficient slips.
+          - scheme: |
+              \(V = \frac{\pi}{4}\left[\tfrac14\sinh 2y - 2\sinh y + \tfrac32 y\right]_0^{\beta}\)
+            marks:
+              - code: A1
+                note: Correct integral oe, including exponential forms. The factor \(\frac{\pi}{4}\) may be absent here.
+          - scheme: |
+              \(\cosh\beta = 2 \Rightarrow \sinh\beta = \sqrt3,\ \sinh 2\beta = 4\sqrt3\)
+              \(V = \frac{\pi}{4}\left(\tfrac14(4\sqrt3) - 2\sqrt3 + \tfrac32\beta\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes the limits, with \(\sinh\beta\) and \(\sinh 2\beta\) (or \(e^{\pm\beta}\), \(e^{\pm 2\beta}\)) found exactly. Condone slips. Not for decimals.
+          - scheme: |
+              \(V = \frac{\pi}{8}\left(3\ln(2+\sqrt3) - 2\sqrt3\right)\)
+            marks:
+              - code: A1
+                note: Any exact equivalent; \(\ln(2+\sqrt3)\) may be left as \(\beta\) or \(\operatorname{arcosh}2\).
+  - q: 14
+    stamp: 70a75b3e
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(x = \sin\theta - \frac13\left(3\sin\theta - 4\sin^3\theta\right)\)
+            marks:
+              - code: M1
+                note: Uses a triple-angle identity for \(\sin 3\theta\), or any valid expansion, to write \(x\) in terms of \(\sin\theta\) alone. Condone sign slips.
+          - scheme: |
+              \(x = \frac43\sin^3\theta\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\cos\theta = 1 - y \Rightarrow \sin^2\theta = 1 - (1-y)^2\)
+              \(x^2 = \text{"}\frac{16}{9}\text{"}\sin^6\theta\)
+              \(\phantom{x^2} = \text{"}\frac{16}{9}\text{"}\left(1 - (1-y)^2\right)^3\)
+            marks:
+              - code: M1
+                note: Uses \(\sin^2\theta + \cos^2\theta = 1\) with \(\cos\theta = 1 - y\), and substitutes into their \(x^2\) of the form \(k\sin^6\theta\).
+          - scheme: |
+              \(x^2 = \frac{16}{9}\left(2y - y^2\right)^3 = \frac{16}{9}y^3(2-y)^3\)
+            marks:
+              - code: A1 AG
+                note: Correct substituted equation leading without error to the printed result; combined steps accepted.
+      - part: b
+        rows:
+          - scheme: |
+              \(V = \pi\int_0^2 \frac{16}{9}y^3(2-y)^3\,\mathrm{d}y\)
+            marks:
+              - code: B1
+                note: Needs the \(\pi\), the integrand from (a) and limits 0 and 2.
+          - scheme: |
+              \(\int_0^2 \left(8y^3 - 12y^4 + 6y^5 - y^6\right)\mathrm{d}y\)
+              \(\phantom{\int} = \left[2y^4 - \frac{12}{5}y^5 + y^6 - \frac17 y^7\right]_0^2\)
+            marks:
+              - code: M1
+                note: Integrates \(y^3(2-y)^3\) by expanding or any valid method, raising the power of at least one term by 1. Condone expansion slips.
+              - code: A1
+                note: Correct integral, with or without the factor \(\frac{16\pi}{9}\).
+          - scheme: |
+              \(\frac{16\pi}{9}\left(32 - \frac{384}{5} + 64 - \frac{128}{7}\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes \(y = 2\) and \(y = 0\) into their integrated expression and subtracts.
+          - scheme: |
+              \(\frac{512\pi}{315}\ [\approx 5.11]\)
+            marks:
+              - code: A1
+                note: oe, or awrt 5.11.
+          - scheme: |
+              \(\left(\frac32\right)^3 \times \text{"}\frac{512\pi}{315}\text{"}\)
+            marks:
+              - code: M1
+                note: Multiplies their model volume by the cube of 3 over their model height, or integrates with lengths scaled by \(\frac32\).
+          - scheme: |
+              \(\frac{192\pi}{35} \approx 17.2\,\mathrm{cm}^3\)
+            marks:
+              - code: A1
+                note: oe, or awrt 17.2.
+  - q: 15
+    stamp: d4107e40
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\cos 5\theta = \cos(4\theta + \theta) = \cos 4\theta\cos\theta - \sin 4\theta\sin\theta\)
+              \(\cos 3\theta = \cos(4\theta - \theta) = \cos 4\theta\cos\theta + \sin 4\theta\sin\theta\)
+            marks:
+              - code: M1
+                note: Expands \(\cos(4\theta + \theta)\) and \(\cos(4\theta - \theta)\) by compound-angle formulae. Condone sign slips.
+              - code: A1
+                note: Both expansions correct.
+          - scheme: |
+              \(\cos 5\theta + \cos 3\theta = 2\cos 4\theta\cos\theta\)
+              \(\Rightarrow \cos 4\theta\cos\theta \equiv \tfrac12(\cos 5\theta + \cos 3\theta)\)
+            marks:
+              - code: A1 AG
+                note: Correct expansions combined without error to the printed identity, with LHS = RHS or a conclusion in words.
+      - part: b
+        rows:
+          - scheme: |
+              \(V = \pi\int x^2\frac{\mathrm{d}y}{\mathrm{d}\theta}\,\mathrm{d}\theta\), \(\frac{\mathrm{d}y}{\mathrm{d}\theta} = 24\cos\theta\)
+            marks:
+              - code: M1
+                note: Uses \(\pi\int x^2\,\mathrm{d}y\) with \(x^2\) in terms of \(\theta\) and \(\mathrm{d}y\) as their \(k\cos\theta\,\mathrm{d}\theta\). Limits not needed.
+          - scheme: |
+              \(V = 5400\pi\int_0^{\pi/2}\sin^2 2\theta\cos\theta\,\mathrm{d}\theta\)
+            marks:
+              - code: A1
+                note: Correct integral with limits \(0\) and \(\frac{\pi}{2}\), oe, need not be simplified.
+          - scheme: |
+              \(2700\pi\int_0^{\pi/2}\left(\cos\theta - \tfrac12\cos 5\theta - \tfrac12\cos 3\theta\right)\mathrm{d}\theta\)
+            marks:
+              - code: M1
+                note: Simplifies the integrand, by \(\sin^2 2\theta = \frac12(1 \pm \cos 4\theta)\) and part (a) or otherwise, and integrates at least one term correctly. Condone sign slips.
+          - scheme: |
+              \(= 2700\pi\left[\sin\theta - \tfrac{1}{10}\sin 5\theta - \tfrac16\sin 3\theta\right]_0^{\pi/2}\)
+            marks:
+              - code: A1
+                note: Correct integral, oe, including \(5400\pi\left[\frac43u^3 - \frac45u^5\right]_0^1\) with \(u = \sin\theta\).
+          - scheme: |
+              \(= 2700\pi\left[\left(1 - \tfrac{1}{10} + \tfrac16\right) - 0\right]\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits, or the matching limits in a new variable, into their integral and subtracts.
+          - scheme: |
+              \(V = 2880\pi\ (\mathrm{mm}^3)\)
+            marks:
+              - code: A1
+                note: Or awrt 9050.

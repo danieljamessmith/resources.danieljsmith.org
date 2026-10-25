@@ -655,6 +655,16 @@ const rawResources: Resource[] = [
     topic: 'Further Calculus',
   },
   {
+    id: 'fm-further-volumes-revolution-ms',
+    title: 'Volumes of Revolution',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/further-calculus/ms/_QBT___MS__Volumes_of_Revolution.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-further-volumes-revolution',
+    topic: 'Further Calculus',
+  },
+  {
     id: 'fm-further-maclaurin-series',
     title: 'Maclaurin Series',
     description: '',
