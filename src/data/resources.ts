@@ -790,6 +790,16 @@ const rawResources: Resource[] = [
     topic: 'Differential Equations',
   },
   {
+    id: 'fm-integrating-factor-ms',
+    title: 'Integrating Factor Method',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/differential-equations/ms/_QBT___MS__Integrating_Factor_Method.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-integrating-factor',
+    topic: 'Differential Equations',
+  },
+  {
     id: 'fm-modelling-1st-order',
     title: 'Modelling with 1st Order Differential Equations',
     description: '',

@@ -1,0 +1,332 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/markscheme_preamble.tex}
+
+\djsSchemeHeader{Integrating Factor Method}
+\djsSitePath{Core Pure}{Differential Equations}
+
+\djsLastUpdated{25 October 2026}
+\begin{document}
+\djsSetQuestionCount{15}
+\djsAddMarks{1}{7}
+\djsAddMarks{2}{7}
+\djsAddMarks{3}{7}
+\djsAddMarks{4}{6}
+\djsAddMarks{5}{5}
+\djsAddMarks{6}{8}
+\djsAddMarks{7}{6}
+\djsAddMarks{8}{6}
+\djsAddMarks{9}{9}
+\djsAddMarks{10}{9}
+\djsAddMarks{11}{5}
+\djsAddMarks{12}{11}
+\djsAddMarks{13}{8}
+\djsAddMarks{14}{8}
+\djsAddMarks{15}{8}
+\vspace*{6pt}
+\djsContentsTitle
+\vspace{30pt}
+\msContentsHeading
+\begin{mscontents}{}
+Question & Marks by part & Marks & Page \\
+\msContentsQuestion{1} & (a)\,4\msSep (b)\,3 & 7 & \msContentsPage{1} \\
+\msContentsQuestion{2} & (a)\,4\msSep (b)\,3 & 7 & \msContentsPage{2} \\
+\msContentsQuestion{3} & (a)\,5\msSep (b)\,2 & 7 & \msContentsPage{3} \\
+\msContentsQuestion{4} & (a)\,2\msSep (b)\,4 & 6 & \msContentsPage{4} \\
+\msContentsQuestion{5} & & 5 & \msContentsPage{5} \\
+\msContentsQuestion{6} & (a)\,3\msSep (b)\,5 & 8 & \msContentsPage{6} \\
+\msContentsQuestion{7} & & 6 & \msContentsPage{7} \\
+\msContentsQuestion{8} & & 6 & \msContentsPage{8} \\
+\msContentsQuestion{9} & (a)\,3\msSep (b)\,6 & 9 & \msContentsPage{9} \\
+\msContentsQuestion{10} & (a)\,3\msSep (b)\,6 & 9 & \msContentsPage{10} \\
+\msContentsQuestion{11} & & 5 & \msContentsPage{11} \\
+\msContentsQuestion{12} & (a)\,5\msSep (b)\,6 & 11 & \msContentsPage{12} \\
+\msContentsQuestion{13} & (a)\,3\msSep (b)\,5 & 8 & \msContentsPage{13} \\
+\msContentsQuestion{14} & (a)\,3\msSep (b)\,5 & 8 & \msContentsPage{14} \\
+\msContentsQuestion{15} & (a)\,3\msSep (b)\,5 & 8 & \msContentsPage{15} \\
+\SetCell[c=2]{r} Total & & 110 & \\
+\end{mscontents}
+\newpage
+\input{../../../../_shared/markscheme_conventions.tex}
+
+\msQuestion{1}
+\begin{msscheme}{
+  hline{3-6,8-10} = {2-Z}{0.4pt, msGrid},
+  hline{7,11} = {0.4pt, msGrid},
+  row{11} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+1(a) & {\(e^{\int \frac{2x}{x^2+1}\,\mathrm{d}x} = e^{\ln(x^2+1)}\)} & M1 & {Forms \(e^{\int P\,\mathrm{d}x}\) with the given \(P\) and integrates to the form \(e^{k\ln(x^2+1)}\).} \\
+& {\(\phantom{e} = x^2+1\)} & A1 & \\
+& {\((x^2+1)y = \int 6x(x^2+1)\,\mathrm{d}x\)\\[4pt] \(\phantom{(x^2+1)y} = \ldots\)} & dM1 & {Multiplies through by their integrating factor, LHS of the form (their factor)\(\times y\), and integrates the RHS with at least one power increased by 1.} \\
+& {\(y = \dfrac{\frac32x^4+3x^2+c}{x^2+1}\)} & A1 & {oe, in the form \(y = \ldots\), with a constant of integration.} \\
+\nopagebreak & & [4] & \\
+1(b) & {\(\frac72 = \dfrac{c}{1} \Rightarrow c = \ldots\ [= \tfrac72]\)} & M1 & {Substitutes \(x=0\), \(y=\frac72\) into their general solution containing a constant and finds the constant.} \\
+& {\(4(x^2+1) = \frac32x^4+3x^2+\text{"}\tfrac72\text{"}\)\\[4pt] \(\Rightarrow 3x^4-2x^2-1 = 0 \Rightarrow x^2 = \ldots\)} & M1 & {Sets their particular solution equal to 4 and solves the resulting three-term quadratic in \(x^2\) by any method, calculator allowed, reaching \(x^2 = \ldots\)} \\
+& {\(x = 1\)} & A1 & {Only \(x = 1\) given as the answer.} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 1 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{2}
+\begin{msscheme}{
+  hline{3-6,8-10} = {2-Z}{0.4pt, msGrid},
+  hline{7,11} = {0.4pt, msGrid},
+  row{11} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+2(a) & {\(\frac{\mathrm{d}y}{\mathrm{d}x}-\frac{2}{1+x}y=(1+x)^3\)\\[4pt] \(e^{\int -\frac{2}{1+x}\,\mathrm{d}x} = \ldots\)} & M1 & {Divides by \(1+x\) and attempts \(e^{\int P\,\mathrm{d}x}\) with their \(P\), reaching the form \(e^{k\ln(1+x)}\) or \((1+x)^k\). Condone sign slips.} \\
+& {\(e^{-2\ln(1+x)} = (1+x)^{-2}\)} & A1 & {oe, such as \(\frac{1}{(1+x)^2}\); not left as \(e^{-2\ln(1+x)}\).} \\
+& {\(\frac{\mathrm{d}}{\mathrm{d}x}\left(y(1+x)^{-2}\right)=1+x\)\\[4pt] \(\Rightarrow y(1+x)^{-2}=\int(1+x)\,\mathrm{d}x = \ldots\)} & dM1 & {Multiplies their standard form by their integrating factor and integrates: LHS as \(y\,\times\) their integrating factor, at least one RHS term with power increased by 1.} \\
+& {\(y=(1+x)^2\left(\frac{x^2}{2}+x+c\right)\)} & A1 & {Any equivalent form with an arbitrary constant, such as \(y=\frac12(1+x)^4+c(1+x)^2\). Must be \(y=\ldots\).} \\
+\nopagebreak & & [4] & \\
+2(b) & {\(-1=(1+0)^2\left(0+0+c\right) \Rightarrow c=\ldots\ [=-1]\)} & M1 & {Substitutes \(x=0\), \(y=-1\) into their general solution with an arbitrary constant and finds the constant.} \\
+& {\((1+x)^2\left(\frac{x^2}{2}+x-1\right)=0\)\\[4pt] \(\Rightarrow x^2+2x-2=0 \Rightarrow x=\ldots\)} & M1 & {Sets their particular solution to 0 and solves the remaining quadratic factor by any means, calculator allowed, to \(x=\ldots\).} \\
+& {\(x=\sqrt{3}-1\)} & A1 & {Exact, with \(-1-\sqrt{3}\) rejected or not given.} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 2 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{3}
+\begin{msscheme}{
+  hline{3-7,9-10} = {2-Z}{0.4pt, msGrid},
+  hline{8,11} = {0.4pt, msGrid},
+  row{11} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+3(a) & {\(\frac{\mathrm{d}y}{\mathrm{d}x}+\frac{1}{1+x}y=\frac{\ln(1+x)}{1+x}\)\\[4pt] \(e^{\int \frac{1}{1+x}\,\mathrm{d}x}=e^{\ln(1+x)}\)} & M1 & {Divides by \(1+x\) and forms \(e^{\int P\,\mathrm{d}x}\) with \(P=\frac{k}{1+x}\), or recognises the LHS as \(\frac{\mathrm{d}}{\mathrm{d}x}\left((1+x)y\right)\).} \\
+& {\(= 1+x\)} & A1 & {Or \(\frac{\mathrm{d}}{\mathrm{d}x}\left((1+x)y\right)=\ln(1+x)\) stated. Accept \(|1+x|\).} \\
+& {\((1+x)y=\int\ln(1+x)\,\mathrm{d}x\)\\[4pt] \(\phantom{(1+x)y} = x\ln(1+x)-\int\frac{x}{1+x}\,\mathrm{d}x\)} & dM1 & {Multiplies through by their integrating factor and integrates \(\ln(1+x)\) by parts to the form \(\alpha x\ln(1+x)-\int g(x)\,\mathrm{d}x\), or uses \(\int\ln u\,\mathrm{d}u=u\ln u-u\) with \(u=1+x\).} \\
+& {\(\phantom{(1+x)y} = (1+x)\ln(1+x)-x\ (+c)\)} & A1 & {oe, such as \((1+x)\ln(1+x)-(1+x)\).} \\
+& {\(y=\ln(1+x)+\frac{c-x}{1+x}\)} & A1 & {cso. Any equivalent form \(y=\ldots\) with the arbitrary constant divided by \(1+x\). Accept \(\ln|1+x|\).} \\
+\nopagebreak & & [5] & \\
+3(b) & {\(-1=\ln 1+\frac{c-0}{1+0}\Rightarrow c=-1\)\\[4pt] \(0=\ln(1+x)-1\Rightarrow x=\ldots\)} & M1 & {Substitutes \(x=0\), \(y=-1\) into their general solution containing an arbitrary constant, then sets \(y=0\) and solves for \(x\).} \\
+& {\(x=e-1\)} & A1 & {Or awrt 1.72.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 3 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{4}
+\begin{msscheme}{
+  hline{3-4,6-9} = {2-Z}{0.4pt, msGrid},
+  hline{5,10} = {0.4pt, msGrid},
+  row{10} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+4(a) & {\(\frac{\mathrm{d}}{\mathrm{d}x}\ln(\sec x+\tan x)=\frac{\sec x\tan x+\sec^2 x}{\sec x+\tan x}\)} & M1 & {Obtains a quotient of the form \(\frac{f'(x)}{\sec x+\tan x}\) with an attempt at \(f'(x)\). Condone one slip in the derivatives of \(\sec x\) or \(\tan x\).} \\
+& {\(\phantom{A}=\frac{\sec x(\tan x+\sec x)}{\sec x+\tan x}=\sec x\)} & A1~AG & {Correct derivative simplified without error to \(\sec x\), by factorising or otherwise. A0 for a jump from the quotient to \(\sec x\) with no simplification shown.} \\
+\nopagebreak & & [2] & \\
+4(b) & {\(e^{\int -2\tan x\,\mathrm{d}x}=e^{-2\ln \sec x}\)} & M1 & {Attempts \(e^{\int -2\tan x\,\mathrm{d}x}\), integrating \(\tan x\) to \(\pm\ln\sec x\) or \(\pm\ln\cos x\). Condone sign slips and a missing modulus.} \\
+& {\(\cos^2 x\)} & A1 & {oe such as \(\frac{1}{\sec^2 x}\); not left in exponential form.} \\
+& {\(y\cos^2 x=\int \sec x\,\mathrm{d}x\)\\[4pt] \(\phantom{y\cos^2 x}=\ln(\sec x+\tan x)+c\)} & dM1 & {Writes \(y\times\) their integrating factor \(=\int\) their integrating factor \(\times\sec^3 x\,\mathrm{d}x\) and integrates, using part (a) where the integrand is \(\sec x\).} \\
+& {\(y=\sec^2 x\bigl(\ln(\sec x+\tan x)+c\bigr)\)} & A1 & {\(y=\ldots\) oe, with the constant also multiplied by \(\sec^2 x\). Condone a modulus.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 4 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{5}
+\begin{msscheme}{
+  hline{3-6} = {2-Z}{0.4pt, msGrid},
+  hline{7} = {0.4pt, msGrid},
+  row{7} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+5 & {\(e^{\int -\tan x\,\mathrm{d}x} = e^{-\ln(\sec x)}\)} & M1 & {Integrates \(\pm\tan x\) inside the exponential to the form \(\pm\ln(\sec x)\) or \(\pm\ln(\cos x)\). Condone sign slips and a missing modulus.} \\
+& {\(= \cos x\)} & A1 & {oe, such as \(\frac{1}{\sec x}\).} \\
+& {\(y\cos x = \int \frac{\cos x}{\sqrt{1+\sin x}}\,\mathrm{d}x\)\\[4pt] \(\phantom{y\cos x} = \int u^{-1/2}\,\mathrm{d}u = \ldots\)} & dM1 & {Writes \(y\) times their integrating factor equal to the integral of \(Q\) times it, and integrates to the form \(k\sqrt{1+\sin x}\), by substitution or inspection.} \\
+& {\(\phantom{y\cos x} = 2\sqrt{1+\sin x}\)} & A1 & \\
+& {\(y = \frac{2\sqrt{1+\sin x}+c}{\cos x}\)} & A1 & {oe, such as \(y\cos x = 2\sqrt{1+\sin x}+c\); constant added before dividing. \(y\) need not be the subject.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 5 & & 5 & \\
+\end{msscheme}
+
+\msQuestion{6}
+\begin{msscheme}{
+  hline{3-5,7-11} = {2-Z}{0.4pt, msGrid},
+  hline{6,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+6(a) & {\(\frac{\mathrm{d}y}{\mathrm{d}x} + \frac{1}{x^2}y = \frac{1}{x^2}\)} & B1 & \\
+& {\(e^{\int x^{-2}\,\mathrm{d}x} = e^{\ldots}\)} & M1 & {Uses \(e^{\int P\,\mathrm{d}x}\) with their \(P\) from a form \(\frac{\mathrm{d}y}{\mathrm{d}x} + Py = Q\), raising the power by 1. Not for quoting the formula alone.} \\
+& {\(\int x^{-2}\,\mathrm{d}x = -x^{-1} \Rightarrow e^{-1/x}\)} & A1~AG & {Correct integral from a correct standard form, leading without error to \(e^{-1/x}\).} \\
+\nopagebreak & & [3] & \\
+6(b) & {\(\frac{\mathrm{d}}{\mathrm{d}x}\left(ye^{-1/x}\right) = \frac{e^{-1/x}}{x^2}\)} & M1 & {Multiplies their standard form by \(e^{-1/x}\) and writes LHS as \(\frac{\mathrm{d}}{\mathrm{d}x}(ye^{-1/x})\). Condone slips on RHS.} \\
+& {\(ye^{-1/x} = \int \frac{e^{-1/x}}{x^2}\,\mathrm{d}x = \ldots\)} & dM1 & {Integrates both sides, RHS to the form \(ke^{-1/x}\), by inspection or substitution. The constant need not appear.} \\
+& {\(ye^{-1/x} = e^{-1/x} + c \Rightarrow y = 1 + ce^{1/x}\)} & A1 & {oe, including the unrearranged form. Needs the constant.} \\
+& {\(3 = 1 + ce \Rightarrow c = \ldots\)} & M1 & {Substitutes \(x = 1\), \(y = 3\) into their general solution with an arbitrary constant and solves for the constant.} \\
+& {\(y = 1 + 2e^{1/x - 1}\)} & A1 & {oe, such as \(y = 1 + \frac{2}{e}e^{1/x}\), or with the coefficient awrt 0.736.} \\
+\nopagebreak & & [5] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 6 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{7}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+7 & {\(\frac{\mathrm{d}y}{\mathrm{d}x} - y\coth x = \cosh x\)\\[4pt] \(e^{-\int \coth x\,\mathrm{d}x} = e^{-\ln(\sinh x)}\)} & M1 & {Divides by \(\sinh x\) and attempts \(e^{\int P\,\mathrm{d}x}\) with \(P = \pm\coth x\), integrating to the form \(\pm\ln(\sinh x)\). Condone a sign slip.} \\
+& {\(\phantom{e^{-\int \coth x\,\mathrm{d}x}} = \frac{1}{\sinh x}\)} & A1 & {oe, such as \(\operatorname{cosech} x\).} \\
+& {\(\frac{y}{\sinh x} = \int \coth x\,\mathrm{d}x\)} & dM1 & {Writes \(y \times\) their integrating factor \(=\int\) (their integrating factor \(\times \cosh x\)) \(\mathrm{d}x\) and attempts the integral.} \\
+& {\(\frac{y}{\sinh x} = \ln(\sinh x) + c\)} & A1 & {Any equivalent form, with the constant.} \\
+& {\(\sinh\bigl(\ln(1+\sqrt{2})\bigr) = 1\)\\[4pt] \(\Rightarrow 2 = 1(\ln 1 + c) \Rightarrow c = \ldots\)} & M1 & {Substitutes \(x = \ln(1+\sqrt{2})\), \(y = 2\) into their general solution with a constant, evaluating \(\sinh\bigl(\ln(1+\sqrt{2})\bigr)\) by any means, to find \(c\).} \\
+& {\(y = \sinh x\bigl(\ln(\sinh x) + 2\bigr)\)} & A1 & {Any equivalent exact form, such as \(y = \sinh x\ln(\sinh x) + 2\sinh x\).} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 7 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{8}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+8 & {\(\frac{\mathrm{d}y}{\mathrm{d}x} - 2\coth x\,y = \sinh x\cosh x\)\\[4pt] \(e^{\int -2\coth x\,\mathrm{d}x} = e^{-2\ln(\sinh x)}\)} & M1 & {Divides by \(\sinh x\) and attempts \(e^{\int P\,\mathrm{d}x}\) with \(P = k\coth x\), integrating to a multiple of \(\ln(\sinh x)\). Condone sign and coefficient slips.} \\
+& {\(\phantom{e^{\int}} = \frac{1}{\sinh^2 x}\)} & A1 & {oe, such as \(\operatorname{cosech}^2 x\).} \\
+& {\(\frac{y}{\sinh^2 x} = \int \coth x\,\mathrm{d}x\)} & dM1 & {Multiplies through by their integrating factor, writes the LHS as \(y \times\) their integrating factor, and attempts to integrate the RHS.} \\
+& {\(\frac{y}{\sinh^2 x} = \ln(\sinh x) + c\)} & A1 & {oe, with the constant. Condone \(\ln|\sinh x|\).} \\
+& {\(\sinh\bigl(\ln(1+\sqrt{2})\bigr) = 1\)\\[4pt] \(5 = 1^2(\ln 1 + c) \Rightarrow c = \ldots\)} & M1 & {Substitutes \(y = 5\) and \(x = \ln(1+\sqrt{2})\) into their general solution containing a constant and solves for it.} \\
+& {\(y = \sinh^2 x\bigl(\ln(\sinh x) + 5\bigr)\)} & A1 & {Any equivalent exact form.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 8 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{9}
+\begin{msscheme}{
+  hline{3-5,7-12} = {2-Z}{0.4pt, msGrid},
+  hline{6,13} = {0.4pt, msGrid},
+  row{13} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+9(a) & {\(\frac{\mathrm{d}y}{\mathrm{d}x}-\coth x\,y=\cosh^3 x\)} & B1 & \\
+& {\(e^{\int -\coth x\,\mathrm{d}x}=e^{-\ln(\sinh x)}\)} & M1 & {Integrates their \(P\), of the form \(k\coth x\), to \(k\ln(\sinh x)\) and forms \(e^{\int P\,\mathrm{d}x}\). Condone a sign slip.} \\
+& {\(\frac{1}{\sinh x}\)} & A1 & {oe, such as \(\operatorname{cosech} x\). Condone \(|\sinh x|\).} \\
+\nopagebreak & & [3] & \\
+9(b) & {\(\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{y}{\sinh x}\right)=\frac{\cosh^3 x}{\sinh x}\)} & M1 & {Multiplies by their integrating factor \(\mu\), a function of \(x\), to reach \(\frac{\mathrm{d}}{\mathrm{d}x}(\mu y)=\mu Q\), or writes \(\mu y=\int\mu Q\,\mathrm{d}x\).} \\
+& {\(\frac{y}{\sinh x}=\int\frac{\cosh x(1+\sinh^2 x)}{\sinh x}\,\mathrm{d}x\)\\[4pt] \(\phantom{\frac{y}{\sinh x}}=\int\left(\frac1u+u\right)\mathrm{d}u=\ldots\)} & dM1 & {Uses \(\cosh^2 x=1+\sinh^2 x\) and integrates the right side to the form \(p\ln(\sinh x)+q\sinh^2 x\), \(q\cosh^2 x\) or \(q\cosh 2x\), by any valid method. Condone coefficient slips.} \\
+& {\(\ln(\sinh x)+\tfrac12\sinh^2 x\)} & A1 & {oe, such as \(\frac14\cosh 2x\) or \(\frac12\cosh^2 x\) for \(\frac12\sinh^2 x\).} \\
+& {\(y=\sinh x\ln(\sinh x)+\tfrac12\sinh^3 x+c\sinh x\)} & A1 & {Needs the constant; \(y\) need not be the subject.} \\
+& {\(\sinh(\ln(1+\sqrt2))=1\)\\[4pt] \(\Rightarrow 2=0+\tfrac12+c\Rightarrow c=\ldots\)} & M1 & {Substitutes \(y=2\) and \(\sinh x=1\), from the exponential definition or a calculator, into a general solution with a constant, to find it.} \\
+& {\(y=\sinh x\ln(\sinh x)+\tfrac12\sinh^3 x+\tfrac32\sinh x\)} & A1 & {Any equivalent exact form for \(y\); \(c\) depends on the form of their integral.} \\
+\nopagebreak & & [6] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 9 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{10}
+\begin{msscheme}{
+  hline{3-5,7-12} = {2-Z}{0.4pt, msGrid},
+  hline{6,13} = {0.4pt, msGrid},
+  row{13} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+10(a) & {\(\frac{\mathrm{d}y}{\mathrm{d}x}+y\tan x=x\sec x\)} & B1 & \\
+& {\(e^{\int\tan x\,\mathrm{d}x}=e^{\ln(\sec x)}\)} & M1 & {Forms \(e^{\int P\,\mathrm{d}x}\) with \(P\) the coefficient of \(y\) in their standard form, integrating to a log form such as \(\pm\ln(\cos x)\).} \\
+& {\(\phantom{e^{\int\tan x\,\mathrm{d}x}}=\sec x\)} & A1~AG & {cso from a correct integral to \(\sec x\). Condone omitted modulus signs.} \\
+\nopagebreak & & [3] & \\
+10(b) & {\(\sec x\frac{\mathrm{d}y}{\mathrm{d}x}+y\sec x\tan x=x\sec^2 x\)\\[4pt] \(\Rightarrow \frac{\mathrm{d}}{\mathrm{d}x}(y\sec x)=x\sec^2 x\)} & M1 & {Multiplies their standard form by \(\sec x\) and writes LHS as \(\frac{\mathrm{d}}{\mathrm{d}x}(y\sec x)\); implied by \(y\sec x=\int x\sec^2 x\,\mathrm{d}x\).} \\
+& {\(y\sec x=x\tan x-\int\tan x\,\mathrm{d}x\)} & dM1 & {Integrates by parts with \(u=x\) to the form \(x\tan x\pm\int\tan x\,\mathrm{d}x\). Condone sign slips.} \\
+& {\(\int x\sec^2 x\,\mathrm{d}x=x\tan x+\ln(\cos x)\)} & A1 & {oe, such as \(x\tan x-\ln(\sec x)\); condone omitted modulus.} \\
+& {\(y=x\sin x+\cos x\ln(\cos x)+c\cos x\)} & A1 & {oe, including \(y\sec x=x\tan x+\ln(\cos x)+c\). Constant must be present.} \\
+& {\(\sqrt2=\frac{\pi}{4}+\ln\frac{\sqrt2}{2}+c\Rightarrow c=\ldots\)} & M1 & {Substitutes \(x=\frac{\pi}{4}\), \(y=1\) into their general solution containing a constant and solves for it.} \\
+& {\(y=x\sin x+\cos x\left[\ln(\cos x)+\sqrt2-\frac{\pi}{4}+\frac12\ln2\right]\)} & A1 & {oe, including \(y\sec x=\ldots\); constant exact or awrt 0.975.} \\
+\nopagebreak & & [6] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 10 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{11}
+\begin{msscheme}{
+  hline{3-6} = {2-Z}{0.4pt, msGrid},
+  hline{7} = {0.4pt, msGrid},
+  row{7} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+11 & {\(e^{\int \cot x\,\mathrm{d}x} = e^{\ln(\sin x)}\)} & M1 & {Uses \(e^{\int \cot x\,\mathrm{d}x}\) with \(\cot x\) integrated to the form \(k\ln(\sin x)\). Condone a missing modulus.} \\
+& {\(\sin x\)} & A1 & {Accept \(|\sin x|\).} \\
+& {\(\frac{\mathrm{d}}{\mathrm{d}x}(y\sin x) = \frac{\cos x}{\sin x\left(1+[\ln(\sin x)]^2\right)}\)\\[4pt] \(u = \ln(\sin x) \Rightarrow y\sin x = \int \frac{1}{1+u^2}\,\mathrm{d}u\)} & dM1 & {Multiplies through by their integrating factor and integrates both sides, the RHS by a substitution such as \(u=\ln(\sin x)\) or by inspection. Condone slips in the substitution.} \\
+& {\(y\sin x = \arctan(\ln(\sin x))\)} & A1 & {Correct integral; the constant need not appear yet.} \\
+& {\(y = \frac{\arctan(\ln(\sin x)) + c}{\sin x}\)} & A1 & {oe, such as \(y\sin x = \arctan(\ln(\sin x)) + c\). Needs the constant.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 11 & & 5 & \\
+\end{msscheme}
+
+\msQuestion{12}
+\begin{msscheme}{
+  hline{3-7,9-14} = {2-Z}{0.4pt, msGrid},
+  hline{8,15} = {0.4pt, msGrid},
+  row{15} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+12(a) & {\(\frac{\mathrm{d}y}{\mathrm{d}x}+\frac{x+1}{x(x-1)}y=x-1\)} & B1 & {RHS need not be simplified.} \\
+& {\(\frac{x+1}{x(x-1)}=\frac{A}{x}+\frac{B}{x-1}\)\\[4pt] \(\Rightarrow x+1=A(x-1)+Bx \Rightarrow A=\ldots,\ B=\ldots\)} & M1 & {Uses partial fractions of the form \(\frac{A}{x}+\frac{B}{x-1}\) and finds both constants by substitution or equating coefficients. Condone arithmetic slips.} \\
+& {\(\frac{x+1}{x(x-1)}=-\frac{1}{x}+\frac{2}{x-1}\)} & A1 & \\
+& {\(e^{\int\left(-\frac{1}{x}+\frac{2}{x-1}\right)\mathrm{d}x}=e^{-\ln x+2\ln(x-1)}\)} & M1 & {Forms \(e^{\int P\,\mathrm{d}x}\) with their partial fractions integrated to the form \(p\ln x+q\ln(x-1)\). Condone missing modulus signs.} \\
+& {\(\phantom{e^{\int}}=\frac{(x-1)^2}{x}\)} & A1~AG & {Correct exponent leading by log laws without error to the printed result. Modulus signs not required.} \\
+\nopagebreak & & [5] & \\
+12(b) & {\(\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{(x-1)^2}{x}y\right)=\frac{(x-1)^3}{x}\)} & M1 & {Multiplies the standard form by the integrating factor, with LHS as \(\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{(x-1)^2}{x}y\right)\) and RHS their \(Q\) times the integrating factor.} \\
+& {\(\frac{(x-1)^2}{x}y=\int\left(x^2-3x+3-\frac{1}{x}\right)\mathrm{d}x\)\\[4pt] \(\phantom{\frac{(x-1)^2}{x}y}=\ldots\)} & dM1 & {Writes the integrand as a polynomial plus \(\frac{k}{x}\), oe by substitution, and integrates, with at least one power increased by 1 or \(\frac{k}{x}\to k\ln x\).} \\
+& {\(\frac{x^3}{3}-\frac{3x^2}{2}+3x-\ln x\)} & A1 & {Condone \(\ln|x|\).} \\
+& {\(y=\frac{x}{(x-1)^2}\left(\frac{x^3}{3}-\frac{3x^2}{2}+3x-\ln x+c\right)\)} & A1 & {oe; \(y\) need not be the subject.} \\
+& {\(2=\frac{2}{1^2}\left(\frac{8}{3}-6+6-\ln 2+c\right)\Rightarrow c=\ldots\)\\[4pt] \([c=\ln 2-\tfrac53]\)} & M1 & {Substitutes \(x=2\), \(y=2\) into their general solution containing a constant of integration and solves for \(c\).} \\
+& {\(y=\frac{x}{(x-1)^2}\left(\frac{x^3}{3}-\frac{3x^2}{2}+3x-\ln x+\ln 2-\frac{5}{3}\right)\)} & A1 & {oe with \(y\) the subject, such as \(\ln\frac{2}{x}\), or constant awrt \(-0.974\).} \\
+\nopagebreak & & [6] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 12 & & 11 & \\
+\end{msscheme}
+
+\msQuestion{13}
+\begin{msscheme}{
+  hline{3-5,7-10} = {2-Z}{0.4pt, msGrid},
+  hline{6,11} = {0.4pt, msGrid},
+  row{11} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+13(a) & {\(\frac{\mathrm{d}}{\mathrm{d}x}\bigl(\ln(\cosh x+1)\bigr)=\frac{\sinh x}{\cosh x+1}\)} & M1 & {Uses the chain rule to obtain the form \(\frac{k\sinh x}{\cosh x+1}\). Condone a sign slip.} \\
+& {\(\phantom{\frac{\mathrm{d}}{\mathrm{d}x}} = \frac{2\sinh\left(\frac{x}{2}\right)\cosh\left(\frac{x}{2}\right)}{2\cosh^2\left(\frac{x}{2}\right)}\)} & M1 & {Writes both \(\sinh x\) and \(\cosh x+1\) in terms of \(\frac{x}{2}\) by double-angle identities or exponential definitions. Condone coefficient slips.} \\
+& {\(\phantom{\frac{\mathrm{d}}{\mathrm{d}x}} = \tanh\left(\frac{x}{2}\right)\)} & A1~AG & {Correct derivative and identities leading without error to \(\tanh\left(\frac{x}{2}\right)\); combined steps accepted.} \\
+\nopagebreak & & [3] & \\
+13(b) & {\(e^{\int \tanh\left(\frac{x}{2}\right)\mathrm{d}x} = e^{\ln(\cosh x+1)} = \cosh x+1\)\\[4pt] \(\frac{\mathrm{d}}{\mathrm{d}x}\bigl((\cosh x+1)y\bigr)=(\cosh x+1)\sinh x\)} & M1 & {Uses part (a) to obtain integrating factor \(\cosh x+1\) and multiplies the RHS by it, or writes the LHS as \(\frac{\mathrm{d}}{\mathrm{d}x}\bigl((\cosh x+1)y\bigr)\).} \\
+& {\((\cosh x+1)y=\frac12(\cosh x+1)^2+c\)} & dM1 A1 & {\msNote{dM1}{Integrates both sides, LHS to \((\cosh x+1)y\) and RHS to a form such as \(k(\cosh x+1)^2\), \(p\cosh^2x+q\cosh x\) or \(p\cosh 2x+q\cosh x\).}\\ \msNote{A1}{Correct, oe in any arrangement; needs \(+c\).}} \\
+& {\(2\times 2=\frac12\times 2^2+c \Rightarrow c=\ldots\ [=2]\)} & M1 & {Substitutes \(x=0\), \(y=2\) into their general solution with a constant and solves for it.} \\
+& {\(y=\frac{\cosh x+1}{2}+\frac{2}{\cosh x+1}\)} & A1 & {Exact, oe such as \(y=\frac{\frac14\cosh 2x+\cosh x+\frac{11}{4}}{\cosh x+1}\); must be \(y\) in terms of \(x\).} \\
+\nopagebreak & & [5] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 13 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{14}
+\begin{msscheme}{
+  hline{3-5,7-11} = {2-Z}{0.4pt, msGrid},
+  hline{6,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+14(a) & {\(\frac{\mathrm{d}}{\mathrm{d}x}\ln\left(\coth\frac{x}{2}\right)\)\\[4pt] \(\phantom{A} = \frac{1}{\coth\frac{x}{2}}\times\left(-\tfrac12\operatorname{cosech}^2\frac{x}{2}\right)\)} & M1 & {Applies the chain rule to reach the form \(k\,\frac{\operatorname{cosech}^2(x/2)}{\coth(x/2)}\), or an equivalent via exponentials. Condone slips in \(k\) or sign.} \\
+& {\(\phantom{A} = -\frac{1}{2\sinh\frac{x}{2}\cosh\frac{x}{2}} = -\frac{1}{\sinh x}\)} & M1 & {Writes in terms of \(\sinh\frac{x}{2}\) and \(\cosh\frac{x}{2}\) and uses the double-angle identity, or exponentials, to reach a function of \(x\).} \\
+& {\(\phantom{A} = -\operatorname{cosech} x\)} & A1~AG & {Correct chain-rule derivative leading without error to the printed result; combined steps accepted.} \\
+\nopagebreak & & [3] & \\
+14(b) & {\(\mu = e^{\int -\operatorname{cosech}x\,\mathrm{d}x} = \coth\frac{x}{2}\)\\[4pt] \(\coth\frac{x}{2}\frac{\mathrm{d}y}{\mathrm{d}x} - \operatorname{cosech}x\coth\frac{x}{2}\,y\)\\[4pt] \(\phantom{A} = \coth\frac{x}{2}\tanh\frac{x}{2}\)} & M1 & {Uses (a) to obtain the integrating factor \(\coth\frac{x}{2}\) and multiplies the equation through. Condone a sign slip giving \(\tanh\frac{x}{2}\).} \\
+& {\(y\coth\frac{x}{2} = \int \coth\frac{x}{2}\tanh\frac{x}{2}\,\mathrm{d}x = \ldots\)} & dM1 & {Writes \(y \times\) their integrating factor \(= \int\) their integrating factor \(\times \tanh\frac{x}{2}\,\mathrm{d}x\) and integrates the RHS.} \\
+& {\(y\coth\frac{x}{2} = x + c\)\\[4pt] \(\Rightarrow y = (x+c)\tanh\frac{x}{2}\)} & A1 & {Either form, with the constant.} \\
+& {\(\tanh\frac{\ln 3}{2} = \frac{3-1}{3+1} = \frac12\)\\[4pt] \(1 = (\ln 3 + c)\times\frac12 \Rightarrow c = \ldots\)} & M1 & {Substitutes \(x=\ln 3\), \(y=1\) into their general solution with a constant and solves for \(c\); a calculator value of \(\tanh\frac{\ln 3}{2}\) is enough.} \\
+& {\(y = (x + 2 - \ln 3)\tanh\frac{x}{2}\)} & A1 & {Exact, oe, as \(y\) in terms of \(x\); \(c\) alone does not score.} \\
+\nopagebreak & & [5] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 14 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{15}
+\begin{msscheme}{
+  hline{3-5,7-11} = {2-Z}{0.4pt, msGrid},
+  hline{6,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+15(a) & {\(\ln(\cosh x+1)-\ln(\sinh x)\)\\[4pt] \(\Rightarrow \frac{\sinh x}{\cosh x+1}-\frac{\cosh x}{\sinh x}\)} & M1 & {Differentiates using \(\frac{f'}{f}\), by splitting the logarithm, reaching \(\frac{\sinh x}{\cosh x+1}-\frac{\cosh x}{\sinh x}\), or by the quotient rule a single fraction \(\frac{\sinh^2 x-\cosh x(\cosh x+1)}{\sinh x(\cosh x+1)}\). Condone sign slips.} \\
+& {\(\frac{\sinh^2 x-\cosh^2 x-\cosh x}{\sinh x(\cosh x+1)}\)\\[4pt] \(\phantom{A} = \frac{-1-\cosh x}{\sinh x(\cosh x+1)}\)} & M1 & {Combines over a common denominator and uses \(\cosh^2 x-\sinh^2 x=1\) to simplify the numerator.} \\
+& {\(= -\frac{1}{\sinh x} = -\operatorname{cosech} x\)} & A1~AG & {Correct derivative leading without error to the printed result; combined steps accepted.} \\
+\nopagebreak & & [3] & \\
+15(b) & {\(\frac{\mathrm{d}y}{\mathrm{d}x}-\operatorname{cosech}x\,y=\frac{1-\cosh x}{\sinh x}\)\\[4pt] \(\mu = e^{\int -\operatorname{cosech}x\,\mathrm{d}x} = \frac{\cosh x+1}{\sinh x}\)\\[4pt] \(\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{\cosh x+1}{\sinh x}y\right)\)\\[4pt] \(\phantom{A} = \frac{(\cosh x+1)(1-\cosh x)}{\sinh^2 x}\)} & M1 & {Divides by \(\sinh x\), uses part (a) for the integrating factor \(\frac{\cosh x+1}{\sinh x}\) and multiplies through. Condone slips in the RHS.} \\
+& {\(\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{\cosh x+1}{\sinh x}y\right) = -1\)\\[4pt] \(\Rightarrow \frac{\cosh x+1}{\sinh x}y = \ldots\)} & dM1 & {Simplifies the RHS using \(\cosh^2 x-\sinh^2 x=1\) and integrates both sides. Condone a sign slip.} \\
+& {\(\frac{\cosh x+1}{\sinh x}y = -x+c\)} & A1 & {Correct, with \(+c\), in any equivalent form.} \\
+& {\(\sinh(\ln 3)=\frac43,\ \cosh(\ln 3)=\frac53\)\\[4pt] \(\frac{\frac83}{\frac43}\times 2 = \text{"}c-\ln 3\text{"} \Rightarrow c=\ldots\ [=4+\ln 3]\)} & M1 & {Substitutes \(x=\ln 3\), \(y=2\) into their general solution containing \(c\), evaluates \(\sinh(\ln 3)\) and \(\cosh(\ln 3)\), and solves for \(c\). Condone arithmetic slips.} \\
+& {\(y=\frac{(4+\ln 3-x)\sinh x}{\cosh x+1}\)} & A1 & {Any exact equivalent, e.g. \(y=(4+\ln 3-x)\tanh\frac{x}{2}\).} \\
+\nopagebreak & & [5] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 15 & & 8 & \\
+\end{msscheme}
+
+\end{document}
