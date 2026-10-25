@@ -1,3 +1,38 @@
+@import "tailwindcss" source("../");
+
+/* Fonts: Arial for text, Georgia for headings, as on the tuition site. */
+@theme {
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-display: Georgia, Cambria, serif;
+}
+
+/* The palette. Each colour wraps one of the variables below, which the
+   theme toggle switches, so the utilities must inline them (`inline`) to
+   follow the switch rather than freeze the light values. */
+@theme inline {
+  --color-action: rgb(var(--action));
+  --color-ink: rgb(var(--ink));
+  --color-muted: rgb(var(--muted));
+  --color-accent: rgb(var(--accent));
+  --color-rule: rgb(var(--rule));
+  --color-tint: rgb(var(--tint));
+  --color-surface: rgb(var(--surface));
+  --color-surface-raised: rgb(var(--surface-raised));
+  --color-surface-overlay: rgb(var(--surface-overlay));
+}
+
+/* Defaults kept from the earlier base styles: borders without a colour
+   class stay light grey rather than currentColor, and buttons keep the
+   pointer cursor. */
+@layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    border-color: #e5e7eb;
+  }
+  button:not(:disabled), [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
 :root {
   color-scheme: light;
   --surface: 250 249 246;

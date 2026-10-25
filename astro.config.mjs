@@ -1,14 +1,17 @@
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://resources.danieljsmith.org',
   trailingSlash: 'always',
-  integrations: [tailwind(), sitemap({
+  integrations: [sitemap({
     filter: (page) => {
       const path = new URL(page).pathname.replace(/\/$/, '');
       return !path.startsWith('/source/') && path !== '/404' && path !== '/further-maths';
     },
   })],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

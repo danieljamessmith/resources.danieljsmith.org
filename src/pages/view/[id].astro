@@ -145,41 +145,41 @@ const partnerPaneLabel = partnerResource ? paneLabel(partnerResource.type) : '';
             <>
               <a
                 href={breadcrumb.href}
-                class="inline-flex items-center gap-1.5 flex-shrink-0 p-1 -ml-1 rounded-sm text-muted hover:text-accent hover:bg-surface-overlay transition-colors"
+                class="inline-flex items-center gap-1.5 shrink-0 p-1 -ml-1 rounded-xs text-muted hover:text-accent hover:bg-surface-overlay transition-colors"
                 aria-label={breadcrumb.aria}
                 title={breadcrumb.aria}
               >
-                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
                 <span class="md:hidden text-ink text-sm font-medium">{breadcrumb.label}</span>
               </a>
-              <a href={breadcrumb.href} class="hidden md:inline text-ink hover:text-accent transition-colors flex-shrink-0">
+              <a href={breadcrumb.href} class="hidden md:inline text-ink hover:text-accent transition-colors shrink-0">
                 {breadcrumb.label}
               </a>
-              <span class="hidden md:inline text-muted flex-shrink-0" aria-hidden="true">/</span>
+              <span class="hidden md:inline text-muted shrink-0" aria-hidden="true">/</span>
             </>
           ) : (
             <>
               <a
                 href={breadcrumb.sectionHref}
-                class="inline-flex items-center gap-1.5 flex-shrink-0 p-1 -ml-1 rounded-sm text-muted hover:text-accent hover:bg-surface-overlay transition-colors"
+                class="inline-flex items-center gap-1.5 shrink-0 p-1 -ml-1 rounded-xs text-muted hover:text-accent hover:bg-surface-overlay transition-colors"
                 aria-label={`Back to ${breadcrumb.sectionLabel}`}
                 title={`Back to ${breadcrumb.sectionLabel}`}
               >
-                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
                 <span class="md:hidden text-ink text-sm font-medium">{breadcrumb.sectionLabel}</span>
               </a>
-              <a href={breadcrumb.parentHref} class="hidden 2xl:inline text-ink hover:text-accent transition-colors flex-shrink-0">
+              <a href={breadcrumb.parentHref} class="hidden 2xl:inline text-ink hover:text-accent transition-colors shrink-0">
                 {breadcrumb.parentLabel}
               </a>
-              <span class="hidden 2xl:inline text-muted flex-shrink-0" aria-hidden="true">/</span>
-              <a href={breadcrumb.sectionHref} class="hidden md:inline text-ink hover:text-accent transition-colors flex-shrink-0">
+              <span class="hidden 2xl:inline text-muted shrink-0" aria-hidden="true">/</span>
+              <a href={breadcrumb.sectionHref} class="hidden md:inline text-ink hover:text-accent transition-colors shrink-0">
                 {breadcrumb.sectionLabel}
               </a>
-              <span class="hidden md:inline text-muted flex-shrink-0" aria-hidden="true">/</span>
+              <span class="hidden md:inline text-muted shrink-0" aria-hidden="true">/</span>
             </>
           )}
           {/* Title is shown only at md+; on mobile the "Open PDF" landing already renders a large title (and, outside TMUA, a description). */}
@@ -187,7 +187,7 @@ const partnerPaneLabel = partnerResource ? paneLabel(partnerResource.type) : '';
             {resource.title}
           </h1>
         </nav>
-        <div class="hidden md:flex flex-shrink-0 items-center gap-2">
+        <div class="hidden md:flex shrink-0 items-center gap-2">
           {familyLinks.map((link) =>
             link.partner ? (
               <a href={link.href} data-pair-link data-hide-on-split class="viewer-btn viewer-btn--primary" title={link.aria}>
@@ -503,7 +503,7 @@ const partnerPaneLabel = partnerResource ? paneLabel(partnerResource.type) : '';
           <a
             href={resource.file}
             data-pdf-link
-            class="block w-full py-3 rounded-sm bg-action hover:bg-action/90 text-white text-base font-semibold transition-colors"
+            class="block w-full py-3 rounded-xs bg-action hover:bg-action/90 text-white text-base font-semibold transition-colors"
           >
             Open PDF
           </a>
@@ -512,7 +512,7 @@ const partnerPaneLabel = partnerResource ? paneLabel(partnerResource.type) : '';
             <a
               href={resource.file}
               download={resource.downloadName}
-              class="flex-1 py-2.5 rounded-sm border border-rule text-ink hover:bg-surface-raised text-sm font-medium transition-colors text-center"
+              class="flex-1 py-2.5 rounded-xs border border-rule text-ink hover:bg-surface-raised text-sm font-medium transition-colors text-center"
             >
               Download
             </a>
@@ -522,7 +522,7 @@ const partnerPaneLabel = partnerResource ? paneLabel(partnerResource.type) : '';
                 href={link.href}
                 data-pair-link={link.partner ? '' : undefined}
                 class:list={[
-                  'flex-1 py-2.5 rounded-sm border text-sm font-medium transition-colors text-center',
+                  'flex-1 py-2.5 rounded-xs border text-sm font-medium transition-colors text-center',
                   'border-rule text-accent hover:bg-tint hover:border-rule',
                 ]}
               >

@@ -43,7 +43,7 @@ const texHref = resource.type ? resource.file.split('?')[0].replace(/\.pdf$/, '.
         {texHref && (
           <a
             href={texHref}
-            class="inline-flex items-center gap-2 px-3 py-2 rounded-sm border border-rule text-ink hover:bg-surface-raised text-sm font-medium transition-colors whitespace-nowrap"
+            class="inline-flex items-center gap-2 px-3 py-2 rounded-xs border border-rule text-ink hover:bg-surface-raised text-sm font-medium transition-colors whitespace-nowrap"
             title="Open raw .tex URL"
           >
             Open raw
@@ -59,7 +59,7 @@ const texHref = resource.type ? resource.file.split('?')[0].replace(/\.pdf$/, '.
             <button
               type="button"
               data-copy-all
-              class="inline-flex items-center gap-2 px-3 py-2 rounded-sm border border-rule text-accent hover:bg-tint hover:border-rule text-sm font-medium transition-colors"
+              class="inline-flex items-center gap-2 px-3 py-2 rounded-xs border border-rule text-accent hover:bg-tint hover:border-rule text-sm font-medium transition-colors"
             >
               Copy all
             </button>
@@ -76,7 +76,7 @@ const texHref = resource.type ? resource.file.split('?')[0].replace(/\.pdf$/, '.
               <button
                 type="button"
                 data-copy-question
-                class="px-3 py-2 rounded-sm border border-rule text-ink hover:bg-surface-raised text-sm font-medium transition-colors"
+                class="px-3 py-2 rounded-xs border border-rule text-ink hover:bg-surface-raised text-sm font-medium transition-colors"
               >
                 Copy Q block
               </button>
@@ -87,11 +87,11 @@ const texHref = resource.type ? resource.file.split('?')[0].replace(/\.pdf$/, '.
           <pre
             id="tex-viewer"
             data-tex-src={texHref}
-            class="bg-surface-raised border border-rule rounded-sm p-4 overflow-auto text-xs sm:text-sm leading-6 whitespace-pre"
+            class="bg-surface-raised border border-rule rounded-xs p-4 overflow-auto text-xs sm:text-sm leading-6 whitespace-pre"
           >Loading source…</pre>
         </>
       ) : (
-        <div class="bg-surface-raised border border-rule rounded-sm p-4 text-ink">
+        <div class="bg-surface-raised border border-rule rounded-xs p-4 text-ink">
           No source `.tex` is available for this resource.
         </div>
       )}
