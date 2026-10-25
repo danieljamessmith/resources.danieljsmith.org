@@ -4,7 +4,7 @@
 \djsSolnHeader{Plane Intersections}
 \djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}
 
-\djsLastUpdated{14 October 2026}
+\djsLastUpdated{25 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -20,9 +20,9 @@
 % [Source: _QBT___Solns__Plane_Intersections, Q1]
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Consider the linear system $A\mathbf{x}=\mathbf{b}$, where
+  \item Consider the linear system $\mathbf{A}\mathbf{x}=\mathbf{b}$, where
   \[
-  A=\begin{pmatrix}
+  \mathbf{A}=\begin{pmatrix}
   3&-2&1\\
   2&1&-4\\
   7&0&-7
@@ -32,7 +32,7 @@
   \qquad
   \mathbf{b}=\begin{pmatrix}5\\1\\7\end{pmatrix}
   \]
-  Show that $A$ is singular, and deduce that the system does not have a unique solution. \marks{2}\\
+  Show that $\mathbf{A}$ is singular, and deduce that the system does not have a unique solution. \marks{2}\\
   
   \item Show that the system is consistent. Interpret the solution set geometrically. \marks{3} \\
 \end{enumerate}
@@ -41,14 +41,9 @@
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Using a calculator:
-\[
-\det(A)=0
-\]
-
-Alternatively, expanding along the first row:
+  \item Expanding along the first row:
 \begin{align*}
-\det(A)
+\det(\mathbf{A})
 &=3\begin{vmatrix}1&-4\\0&-7\end{vmatrix}
 -(-2)\begin{vmatrix}2&-4\\7&-7\end{vmatrix}
 +1\begin{vmatrix}2&1\\7&0\end{vmatrix}\\
@@ -57,9 +52,9 @@ Alternatively, expanding along the first row:
 &=0
 \end{align*}
 
-Therefore \(A\) is singular.
+Therefore \(\mathbf{A}\) is singular.
 
-Since a unique solution to \(A\mathbf{x}=\mathbf{b}\) would require \(A\) to be non-singular, the system does not have a unique solution.
+Since a unique solution to \(\mathbf{A}\mathbf{x}=\mathbf{b}\) would require \(\mathbf{A}\) to be non-singular, the system does not have a unique solution.
 
 \item The system is
 \begin{align*}
@@ -104,34 +99,20 @@ y&=1-2x+4z \\
 &=-1+2z
 \end{align*}
 
-Let \(z=t\), where \(t\in\mathbb{R}\). Then
+Let \(z=\lambda\), where \(\lambda\in\mathbb{R}\). Then
 \[
-x=1+t,\qquad y=-1+2t,\qquad z=t
+x=1+\lambda,\qquad y=-1+2\lambda,\qquad z=\lambda
 \]
 
-So the general solution is
-\[
-(x,y,z)=(1+t,-1+2t,t),\qquad t\in\mathbb{R}
-\]
-
-or equivalently
-\[
-\begin{pmatrix}x\\y\\z\end{pmatrix}
-=
-\begin{pmatrix}1\\-1\\0\end{pmatrix}
-+t\begin{pmatrix}1\\2\\1\end{pmatrix},
-\qquad t\in\mathbb{R}
-\]
-
-Geometrically, each equation represents a plane in \(\mathbb{R}^3\). Since the third equation is dependent on the first two and is compatible with them, all three planes intersect in the line
+Geometrically, each equation represents a plane. Since the third equation is the first equation plus twice the second, all three planes intersect in the line
 \[
 \mathbf{r}=
 \begin{pmatrix}1\\-1\\0\end{pmatrix}
-+t\begin{pmatrix}1\\2\\1\end{pmatrix},
-\qquad t\in\mathbb{R}
++\lambda\begin{pmatrix}1\\2\\1\end{pmatrix},
+\qquad \lambda\in\mathbb{R}
 \]
 
-Hence the solution set is a line in \(\mathbb{R}^3\), so the planes form a \textbf{sheaf}.
+Hence the solution set is a line, so the planes form a \textbf{sheaf}.
 \end{enumerate}
 \end{djsSolution}
 
@@ -162,7 +143,7 @@ Hence the solution set is a line in \(\mathbb{R}^3\), so the planes form a \text
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Let the coefficient matrix be
 \[
-A=\begin{pmatrix}
+\mathbf{A}=\begin{pmatrix}
 1&2&-1\\
 2&-1&4\\
 3&1&3
@@ -171,10 +152,10 @@ A=\begin{pmatrix}
 
 and calculate using, for example, a calculator:
 \[
-\det(A)=0
+\det(\mathbf{A})=0
 \]
 
-Therefore $A$ is not invertible, so the system cannot have a unique solution for any value of $a$.
+Therefore $\mathbf{A}$ is not invertible, so the system cannot have a unique solution for any value of $a$.
 
   \item When $a=4$, the third equation is
 \[
@@ -195,10 +176,10 @@ So the third equation is exactly the sum of the first two, and adds no new condi
 
 To find the solutions, solve the first two equations only. Let
 \[
-z=5t
+z=5\lambda
 \]
 
-where $t\in\mathbb{R}$.
+where $\lambda\in\mathbb{R}$.
 
 From
 \[
@@ -221,27 +202,25 @@ Substitute into the second equation:
 y&=1+\frac{6}{5}z
 \end{align*}
 
-Since $z=5t$, this gives
+Since $z=5\lambda$, this gives
 \[
-y=1+6t
+y=1+6\lambda
 \]
 
 Then
 \begin{align*}
 x&=3-2y+z\\
-&=3-2(1+6t)+5t\\
-&=3-2-12t+5t\\
-&=1-7t
+&=3-2(1+6\lambda)+5\lambda\\
+&=3-2-12\lambda+5\lambda\\
+&=1-7\lambda
 \end{align*}
 
-Hence the solutions are
+Hence there are infinitely many solutions, forming the line
 \[
-x=1-7t,\qquad y=1+6t,\qquad z=5t,\qquad t\in\mathbb{R}
+\mathbf{r}=\begin{pmatrix}1\\1\\0\end{pmatrix}+\lambda\begin{pmatrix}-7\\6\\5\end{pmatrix},\qquad \lambda\in\mathbb{R}
 \]
 
-So there are infinitely many solutions.
-
-Geometrically, each equation represents a plane in $\mathbb{R}^3$. The first two planes intersect in a line, and the third plane contains that same line, so the planes form a \textbf{sheaf}.
+Geometrically, each equation represents a plane. The first two planes intersect in a line, and the third plane contains that same line, so the planes form a \textbf{sheaf}.
 
   \item If $a\ne 4$, then any point satisfying the first two equations must also satisfy
 \begin{align*}
@@ -284,7 +263,7 @@ x-y+2z&=3\\
 \end{aligned}
 \] \\
 where $m$ is a constant. \\
-\begin{enumerate}[label=(\roman*)]
+\begin{enumerate}[label=\textbf{(\alph*)}]
   \item Investigate the arrangement of the planes:
 
   when $m=2$;
@@ -296,10 +275,10 @@ where $m$ is a constant. \\
 \vspace*{10pt}
 
 \begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\roman*)}]
+\begin{enumerate}[label=\textbf{(\alph*)}]
   \item Let the planes be \(P_1,P_2,P_3\), with coefficient matrix
 \[
-A=\begin{pmatrix}
+\mathbf{A}=\begin{pmatrix}
 1 & -1 & 2\\
 2 & 1 & 1\\
 3 & 0 & m+1
@@ -308,7 +287,7 @@ A=\begin{pmatrix}
 
 Its determinant is
 \begin{align*}
-\det A
+\det(\mathbf{A})
 &=1\begin{vmatrix}1&1\\0&m+1\end{vmatrix}
 -(-1)\begin{vmatrix}2&1\\3&m+1\end{vmatrix}
 +2\begin{vmatrix}2&1\\3&0\end{vmatrix}\\
@@ -318,7 +297,7 @@ Its determinant is
 &=3(m-2)
 \end{align*}
 
-If \(m\ne 2\), then \(\det A\ne 0\), so the three planes meet in exactly one point.
+If \(m\ne 2\), then \(\det(\mathbf{A})\ne 0\), so the three planes meet in exactly one point.
 
 To find this point, solve the first two equations:
 \begin{align*}
@@ -375,28 +354,28 @@ So \(P_3\) is obtained from \(P_1\) and \(P_2\), which means the line of interse
 
 To find that line, let
 \[
-z=t
+z=\lambda
 \]
 
-Then from \(x+z=\frac73\),
+Then from \(x+z=\frac73\):
 \[
-x=\frac73-t
+x=\frac73-\lambda
 \]
 
-And from \(y=z-\frac23\),
+And from \(y=z-\frac23\):
 \[
-y=t-\frac23
+y=\lambda-\frac23
 \]
 
 Hence the common line is
 \[
-x=\frac73-t,\qquad y=t-\frac23,\qquad z=t
+\mathbf{r}=\begin{pmatrix}\frac73\\[2pt]-\frac23\\[2pt]0\end{pmatrix}+\lambda\begin{pmatrix}-1\\1\\1\end{pmatrix},\qquad \lambda\in\mathbb{R}
 \]
 
 So the arrangements are:
 \begin{itemize}
 \item if \(m\ne 2\), the three planes meet at one point \(\left(\frac73,-\frac23,0\right)\)
-\item if \(m=2\), the three planes have a common line \(x=\frac73-t,\ y=t-\frac23,\ z=t\), so form a \textbf{sheaf}.
+\item if \(m=2\), the three planes share the line found above, so form a \textbf{sheaf}.
 \end{itemize}
 
   \item The three position vectors are
@@ -489,7 +468,7 @@ where $k$ is a constant. \\
   &=1\begin{vmatrix}k&1\\-1&1\end{vmatrix}
    -1\begin{vmatrix}3&1\\2&1\end{vmatrix}
    +0\begin{vmatrix}3&k\\2&-1\end{vmatrix} \\
-  &=1(k\cdot 1-1\cdot(-1)) -1(3\cdot 1-1\cdot 2) +0 \\
+  &=1(k\times 1-1\times(-1)) -1(3\times 1-1\times 2) +0 \\
   &=(k+1)-(3-2) \\
   &=k
   \end{align*}
@@ -499,7 +478,31 @@ where $k$ is a constant. \\
   k\neq 0
   \]
 
-  \item We solve the three plane equations
+  \item The coefficient matrix is \(\mathbf{M}\) with \(k=2\), which has an inverse by part (a). Using a calculator:
+  \[
+  \mathbf{M}^{-1}=\frac12\begin{pmatrix}
+  3 & -1 & 1\\
+  -1 & 1 & -1\\
+  -7 & 3 & -1
+  \end{pmatrix}
+  \]
+
+  so
+  \[
+  \begin{pmatrix}x\\y\\z\end{pmatrix}
+  =\mathbf{M}^{-1}\begin{pmatrix}1\\p\\4\end{pmatrix}
+  =\frac12\begin{pmatrix}3-p+4\\-1+p-4\\-7+3p-4\end{pmatrix}
+  =\frac12\begin{pmatrix}7-p\\p-5\\3p-11\end{pmatrix}
+  \]
+
+  Hence the planes intersect at
+  \[
+  \left(\frac{7-p}{2},\,\frac{p-5}{2},\,\frac{3p-11}{2}\right)
+  \]
+
+  \textit{Alternative Solution:}
+
+  We solve the three plane equations
   \[
   \begin{aligned}
   x+y&=1 \\
@@ -508,7 +511,7 @@ where $k$ is a constant. \\
   \end{aligned}
   \]
 
-  From the first equation,
+  From the first equation:
   \[
   y=1-x
   \]
@@ -549,35 +552,13 @@ where $k$ is a constant. \\
    &=\frac{p-5}{2}
   \end{align*}
 
-  And using $3x+z=5$,
+  And using $3x+z=5$:
   \begin{align*}
   z&=5-3x \\
    &=5-3\left(\frac{7-p}{2}\right) \\
    &=\frac{10-21+3p}{2} \\
    &=\frac{3p-11}{2}
   \end{align*}
-
-  Hence the planes intersect at
-  \[
-  \left(\frac{7-p}{2},\,\frac{p-5}{2},\,\frac{3p-11}{2}\right)
-  \]
-
-  Alternatively, the coefficient matrix is \(\mathbf{M}\) with \(k=2\), which has an inverse by part (a). Using a calculator,
-  \[
-  \mathbf{M}^{-1}=\frac12\begin{pmatrix}
-  3 & -1 & 1\\
-  -1 & 1 & -1\\
-  -7 & 3 & -1
-  \end{pmatrix}
-  \]
-
-  so
-  \[
-  \begin{pmatrix}x\\y\\z\end{pmatrix}
-  =\mathbf{M}^{-1}\begin{pmatrix}1\\p\\4\end{pmatrix}
-  =\frac12\begin{pmatrix}3-p+4\\-1+p-4\\-7+3p-4\end{pmatrix}
-  =\frac12\begin{pmatrix}7-p\\p-5\\3p-11\end{pmatrix}
-  \]
 
   which gives the same point.
 
@@ -592,7 +573,7 @@ where $k$ is a constant. \\
     \end{aligned}
     \]
 
-    Using the first two equations,
+    Using the first two equations:
     \[
     (3x+z)-(x+y)=q-1
     \]
@@ -631,19 +612,19 @@ where $k$ is a constant. \\
 
     Therefore the three planes have infinitely many common points, forming a line.
 
-    Let $x=t$. Then
+    Let $x=\lambda$. Then
     \[
-    y=1-t
+    y=1-\lambda
     \]
 
-    and from $3x+z=5$,
+    and from $3x+z=5$:
     \[
-    z=5-3t
+    z=5-3\lambda
     \]
 
-    So the solution set is
+    So the solution set is the line
     \[
-    (x,y,z)=\bigl(t,\,1-t,\,5-3t\bigr),\qquad t\in\mathbb{R}
+    \mathbf{r}=\begin{pmatrix}0\\1\\5\end{pmatrix}+\lambda\begin{pmatrix}1\\-1\\-3\end{pmatrix},\qquad \lambda\in\mathbb{R}
     \]
 
     Geometrically, the three planes intersect in a common line, so form a \textbf{sheaf}.
@@ -679,7 +660,7 @@ The planes do not intersect in exactly one point. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Let the coefficient matrix be
 \[
-A=\begin{pmatrix}
+\mathbf{A}=\begin{pmatrix}
 1 & -1 & 2\\
 k+1 & k & 2-k\\
 5-2k & 2-2k & k+2
@@ -688,12 +669,12 @@ k+1 & k & 2-k\\
 
 The planes fail to intersect in exactly one point when the system does \emph{not} have a unique solution, so we require
 \[
-\det A=0
+\det(\mathbf{A})=0
 \]
 
-Expanding along the first row,
+Expanding along the first row:
 \begin{align*}
-\det A
+\det(\mathbf{A})
 &=1\begin{vmatrix}k&2-k\\2-2k&k+2\end{vmatrix}
 -(-1)\begin{vmatrix}k+1&2-k\\5-2k&k+2\end{vmatrix}
 +2\begin{vmatrix}k+1&k\\5-2k&2-2k\end{vmatrix}\\
@@ -755,26 +736,6 @@ These are not scalar multiples, so the first two planes are not parallel. Hence 
 
 Therefore the system is consistent, and the three planes form a \textbf{sheaf}: they share a common line, so there are infinitely many solutions.
 
-To find the line, add the first two equations:
-\[
-3x+3z=7 \quad \Rightarrow \quad x+z=\frac73
-\]
-
-Then substitute into \(2x+y+z=3\):
-\[
-2x+y+\left(\frac73-x\right)=3
-\]
-
-so
-\[
-x+y=\frac23
-\]
-
-Hence the common line is
-\[
-x+y=\frac23,\qquad x+z=\frac73
-\]
-
 \medskip
 
 For \(k=4\), the planes are
@@ -788,7 +749,7 @@ x-y+2z&=4\\
 
 Suppose a point lies on the first two planes. Then
 \[
-2(x-y+2z)-(5x+4y-2z)=2\cdot 4-0
+2(x-y+2z)-(5x+4y-2z)=2\times 4-0
 \]
 
 so
@@ -810,41 +771,7 @@ Now check how the planes are arranged. Their normals are
 \mathbf n_3=\begin{pmatrix}-3\\-6\\6\end{pmatrix}
 \]
 
-No two of these are scalar multiples, so no two planes are parallel. Hence each pair of planes meets in a line.
-
-Let \(\mathbf d_{ij}\) be a direction vector for the line of intersection of planes \(i\) and \(j\). Then
-\[
-\mathbf d_{ij}=\mathbf n_i\times \mathbf n_j
-\]
-
-Also,
-\[
-\mathbf n_3=2\mathbf n_1-\mathbf n_2
-\]
-
-So
-\[
-\mathbf d_{13}
-=\mathbf n_1\times \mathbf n_3
-=\mathbf n_1\times(2\mathbf n_1-\mathbf n_2)
-=-(\mathbf n_1\times \mathbf n_2)
-=-\mathbf d_{12}
-\]
-
-and
-\[
-\mathbf d_{23}
-=\mathbf n_2\times \mathbf n_3
-=\mathbf n_2\times(2\mathbf n_1-\mathbf n_2)
-=-2(\mathbf n_1\times \mathbf n_2)
-=-2\mathbf d_{12}
-\]
-
-Hence all three pairwise intersection lines are parallel.
-
-They cannot all be the same line, because that would give a common line to all three planes, contradicting the fact that the system is inconsistent.
-
-Therefore, when \(k=4\), the three planes form a \textbf{prism}: each pair of planes meets in a line, but the three lines are parallel and distinct, so there is no common point.
+No two of these are scalar multiples, so no two planes are parallel. Hence each pair of planes meets in a line. Since the three planes have no common point, these three lines are parallel and distinct, so when \(k=4\) the three planes form a \textbf{triangular prism}.
 \end{enumerate} 
 \end{djsSolution} 
 
@@ -887,7 +814,7 @@ where $a$, $b$ and $c$ are constants. \\
   \begin{enumerate}[label=(\roman*)]
     \item For the three planes to intersect at a unique point, the coefficient matrix must have non-zero determinant:
     \[
-    A=
+    \mathbf{A}=
     \begin{pmatrix}
     1 & a & 0\\
     2 & 1 & 1\\
@@ -897,7 +824,7 @@ where $a$, $b$ and $c$ are constants. \\
 
     So
     \begin{align*}
-    \det(A)
+    \det(\mathbf{A})
     &=
     \begin{vmatrix}
     1 & a & 0\\
@@ -923,9 +850,9 @@ where $a$, $b$ and $c$ are constants. \\
     &=2-b-a
     \end{align*}
 
-    In the case where the planes do \textbf{not} intersect at a unique point,
+    In the case where the planes do \textbf{not} intersect at a unique point, we need
     \[
-    \det(A)=0
+    \det(\mathbf{A})=0
     \]
 
     so
@@ -938,7 +865,7 @@ where $a$, $b$ and $c$ are constants. \\
 
     First find the line of intersection of \(P_1\) and \(P_2\).
 
-    From \(P_1\),
+    From \(P_1\):
     \[
     x=-1-ay
     \]
@@ -951,7 +878,7 @@ where $a$, $b$ and $c$ are constants. \\
     z&=5+(2a-1)y
     \end{align*}
 
-    So the line \(P_1\cap P_2\) has coordinates
+    So the points on the line of intersection of \(P_1\) and \(P_2\) satisfy
     \[
     x=-1-ay,\qquad z=5+(2a-1)y
     \]
@@ -973,7 +900,7 @@ where $a$, $b$ and $c$ are constants. \\
 
   \item Now take \(b=1-a\) and \(c=5\).
 
-  From the first plane,
+  From the first plane:
   \[
   x=-1-ay
   \]
@@ -986,7 +913,7 @@ where $a$, $b$ and $c$ are constants. \\
   z&=5+(2a-1)y
   \end{align*}
 
-  Now substitute \(x=-1-ay\) and \(z=5+(2a-1)y\) into the third plane
+  Now substitute \(x=-1-ay\) and \(z=5+(2a-1)y\) into the third plane:
   \[
   3x+(1-a)y+2z=5
   \]
@@ -1021,16 +948,16 @@ where $a$, $b$ and $c$ are constants. \\
 % [Source: _QBT___Solns__Plane_Intersections, Q7]
 
 You are given that $a$ is a parameter which can take only real values. \\
-The matrix $A$ is given by
+The matrix $\mathbf{A}$ is given by
 \[
-A=\begin{pmatrix}
+\mathbf{A}=\begin{pmatrix}
 3&2&a\\
 1&3&0\\
 2&-1&1
 \end{pmatrix}
 \] \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find an expression for the determinant of $A$ in terms of $a$. \marks{2} \\
+  \item Find an expression for the determinant of $\mathbf{A}$ in terms of $a$. \marks{2} \\
 \end{enumerate}
 You are given the following system of equations in $x$, $y$ and $z$.
 \[
@@ -1042,16 +969,16 @@ x+3y&=5\\
 \] \\
 The system can be written in the form
 \[
-A\begin{pmatrix}x\\ y\\ z\end{pmatrix}=\begin{pmatrix}8\\5\\3\end{pmatrix}
+\mathbf{A}\begin{pmatrix}x\\ y\\ z\end{pmatrix}=\begin{pmatrix}8\\5\\3\end{pmatrix}
 \] \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item
   \begin{enumerate}[label=(\roman*)]
-    \item In the case where $A$ is not singular, solve the given system by using $A^{-1}$. \marks{6}
-    \item In the case where $A$ is singular, describe the configuration of the planes whose equations are the three equations of the system. \marks{3} \\
+    \item In the case where $\mathbf{A}$ is not singular, solve the given system by using $\mathbf{A}^{-1}$. \marks{6}
+    \item In the case where $\mathbf{A}$ is singular, describe the configuration of the planes whose equations are the three equations of the system. \marks{3} \\
   \end{enumerate}
 \end{enumerate}
-The transformation represented by $A$ is denoted by $T$. \\
+The transformation represented by $\mathbf{A}$ is denoted by $T$. \\
 A 3-D solid of volume $a^2+3$ is transformed by $T$ to an image. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item
@@ -1065,32 +992,32 @@ A 3-D solid of volume $a^2+3$ is transformed by $T$ to an image. \\
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Expanding $\det(A)$ along the first row,
+  \item Expanding $\det(\mathbf{A})$ along the first row:
 \begin{align*}
-\det(A)
+\det(\mathbf{A})
 &= 3\begin{vmatrix}3&0\\-1&1\end{vmatrix}
 -2\begin{vmatrix}1&0\\2&1\end{vmatrix}
 +a\begin{vmatrix}1&3\\2&-1\end{vmatrix} \\
-&= 3(3\cdot 1-0\cdot(-1))
--2(1\cdot 1-0\cdot 2)
-+a(1\cdot(-1)-3\cdot 2) \\
+&= 3(3\times 1-0\times(-1))
+-2(1\times 1-0\times 2)
++a(1\times(-1)-3\times 2) \\
 &= 3(3)-2(1)+a(-1-6) \\
 &= 9-2-7a \\
 &= 7(1-a)
 \end{align*}
 
   \item \begin{enumerate}[label=(\roman*)]
-    \item For $A$ to be non-singular, we need
+    \item For $\mathbf{A}$ to be non-singular, we need
 \[
-\det(A)\neq 0
+\det(\mathbf{A})\neq 0
 \]
 
 So
 \[
-7(1-a)\neq 0 \implies a\neq 1
+7(1-a)\neq 0\quad\Longrightarrow\quad a\neq 1
 \]
 
-The matrix of cofactors of $A$ is
+The matrix of cofactors of $\mathbf{A}$ is
 \[
 \begin{pmatrix}
 3 & -1 & -7 \\
@@ -1099,9 +1026,9 @@ The matrix of cofactors of $A$ is
 \end{pmatrix}
 \]
 
-Transposing this gives the adjugate, and dividing by $\det(A)$ gives, for $a\neq 1$,
+Transposing this gives the adjugate, and dividing by $\det(\mathbf{A})$, for $a\neq 1$, gives
 \[
-A^{-1}=\frac{1}{7(1-a)}
+\mathbf{A}^{-1}=\frac{1}{7(1-a)}
 \begin{pmatrix}
 3 & -a-2 & -3a \\
 -1 & 3-2a & a \\
@@ -1112,7 +1039,7 @@ A^{-1}=\frac{1}{7(1-a)}
 Now
 \[
 \begin{pmatrix}x\\y\\z\end{pmatrix}
-=A^{-1}\begin{pmatrix}8\\5\\3\end{pmatrix}
+=\mathbf{A}^{-1}\begin{pmatrix}8\\5\\3\end{pmatrix}
 \]
 
 So
@@ -1153,14 +1080,14 @@ So
 \end{pmatrix}
 \end{align*}
 
-Hence, for $a\neq 1$,
+Hence, for $a\neq 1$, the solution is
 \[
 x=2,\quad y=1,\quad z=0
 \]
 
-    \item $A$ is singular when
+    \item $\mathbf{A}$ is singular when
 \[
-7(1-a)=0 \implies a=1
+7(1-a)=0\quad\Longrightarrow\quad a=1
 \]
 
 In this case the equations are
@@ -1195,17 +1122,17 @@ Hence the configuration is: the three distinct planes all share a common line, s
   \item \begin{enumerate}[label=(\roman*)]
     \item Orientation is reversed when
 \[
-\det(A)<0
+\det(\mathbf{A})<0
 \]
 
 Since
 \[
-\det(A)=7(1-a)
+\det(\mathbf{A})=7(1-a)
 \]
 
 we need
 \[
-7(1-a)<0 \implies 1-a<0 \implies a>1
+7(1-a)<0\quad\Longrightarrow\quad 1-a<0\quad\Longrightarrow\quad a>1
 \]
 
 Hence, the orientation is reversed for
@@ -1215,7 +1142,7 @@ a>1
 
     \item Volume scale factor under the transformation $T$ is
 \[
-|\det(A)|=|7(1-a)|
+|\det(\mathbf{A})|=|7(1-a)|
 \]
 
 So the image volume is
@@ -1240,7 +1167,7 @@ for all real $a$, divide through by $a^2+3$ to get
 
 So
 \[
-7|1-a|<1 \implies |1-a|<\frac{1}{7}
+7|1-a|<1\quad\Longrightarrow\quad |1-a|<\frac{1}{7}
 \]
 
 Hence
@@ -1253,7 +1180,7 @@ Subtracting $1$ throughout gives
 -\frac{8}{7}<-a<-\frac{6}{7}
 \]
 
-Multiplying through by $-1$ and reversing the inequalities,
+Multiplying through by $-1$ and reversing the inequalities:
 \[
 \frac{6}{7}<a<\frac{8}{7}
 \]
