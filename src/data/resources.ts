@@ -909,6 +909,16 @@ const rawResources: Resource[] = [
     pairId: 'fm-systems-de',
     topic: 'Differential Equations',
   },
+  {
+    id: 'fm-systems-de-ms',
+    title: 'Systems of Differential Equations',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/differential-equations/ms/_QBT___MS__Systems_of_Differential_Equations.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-systems-de',
+    topic: 'Differential Equations',
+  },
 
   // --- A-level Further Maths: Proof by Induction ---
   {
