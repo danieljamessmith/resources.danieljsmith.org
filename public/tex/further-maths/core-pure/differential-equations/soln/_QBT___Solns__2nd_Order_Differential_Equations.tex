@@ -4,7 +4,7 @@
 \djsSolnHeader{2nd Order Differential Equations}
 \djsSitePath{Core Pure}{Differential Equations}
 
-\djsLastUpdated{14 October 2026}
+\djsLastUpdated{25 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -46,17 +46,12 @@
   \lambda^2+4=0
   \]
 
-  So
-  \[
-  \lambda=\pm 2i
-  \]
-
-  Hence the general solution is
+  which has roots $\lambda=\pm 2i$. Hence the general solution is
   \[
   y=C_1\cos 2x+C_2\sin 2x
   \]
 
-  \item From part (a), the complementary solution is
+  \item From part (a), the complementary function is
   \[
   y_c=C_1\cos 2x+C_2\sin 2x
   \]
@@ -67,10 +62,10 @@
   \]
 
   Differentiate:
-  \begin{align*}
+  \[
   \frac{\mathrm{d}y_p}{\mathrm{d}x}
-  &= (A\cos 2x+B\sin 2x)+x(-2A\sin 2x+2B\cos 2x)
-  \end{align*}
+  = (A\cos 2x+B\sin 2x)+x(-2A\sin 2x+2B\cos 2x)
+  \]
 
   Differentiate again:
   \begin{align*}
@@ -142,15 +137,9 @@ Its auxiliary equation is
 \lambda^2+4\lambda+5=0
 \]
 
-Using the quadratic formula:
-\begin{align*}
-\lambda&=\frac{-4\pm\sqrt{4^2-4(1)(5)}}{2(1)}\\
-&=-2\pm i
-\end{align*}
-
-Hence the complementary function is
+which has roots \(\lambda=-2\pm i\). Hence the complementary function is
 \[
-y_c=e^{-2t}(C_1\cos t+C_2\sin t)
+y_c=e^{-2t}(A\cos t+B\sin t)
 \]
 
 Now find a particular integral for
@@ -158,58 +147,58 @@ Now find a particular integral for
 \frac{\mathrm{d}^2y}{\mathrm{d}t^2}+4\frac{\mathrm{d}y}{\mathrm{d}t}+5y=8\cos t
 \]
 
-Since the forcing term is \(8\cos t\), try
+Since the right-hand side is \(8\cos t\), try
 \[
-y_p=A\cos t+B\sin t
+y_p=a\cos t+b\sin t
 \]
 
 Then
 \[
-\frac{\mathrm{d}y_p}{\mathrm{d}t}=-A\sin t+B\cos t
+\frac{\mathrm{d}y_p}{\mathrm{d}t}=-a\sin t+b\cos t
 \]
 
 and
 \[
-\frac{\mathrm{d}^2y_p}{\mathrm{d}t^2}=-A\cos t-B\sin t
+\frac{\mathrm{d}^2y_p}{\mathrm{d}t^2}=-a\cos t-b\sin t
 \]
 
 Substituting into the differential equation:
 \begin{align*}
 \frac{\mathrm{d}^2y_p}{\mathrm{d}t^2}+4\frac{\mathrm{d}y_p}{\mathrm{d}t}+5y_p
-&=(-A\cos t-B\sin t)+4(-A\sin t+B\cos t)+5(A\cos t+B\sin t)\\
-&=(-A+4B+5A)\cos t+(-B-4A+5B)\sin t\\
-&=(4A+4B)\cos t+(-4A+4B)\sin t
+&=(-a\cos t-b\sin t)+4(-a\sin t+b\cos t)+5(a\cos t+b\sin t)\\
+&=(-a+4b+5a)\cos t+(-b-4a+5b)\sin t\\
+&=(4a+4b)\cos t+(-4a+4b)\sin t
 \end{align*}
 
 This must equal \(8\cos t\), so equating coefficients gives
 \[
-4A+4B=8,\qquad -4A+4B=0
+4a+4b=8,\qquad -4a+4b=0
 \]
 
 Divide both equations by \(4\):
 \[
-A+B=2,\qquad -A+B=0
+a+b=2,\qquad -a+b=0
 \]
 
-From \(-A+B=0\), we get
+From \(-a+b=0\), we get
 \[
-B=A
+b=a
 \]
 
-Substitute into \(A+B=2\):
+Substitute into \(a+b=2\):
 \[
-A+A=2
+a+a=2
 \]
 \[
-2A=2
+2a=2
 \]
 \[
-A=1
+a=1
 \]
 
 Therefore
 \[
-B=1
+b=1
 \]
 
 So the particular integral is
@@ -219,58 +208,58 @@ y_p=\cos t+\sin t
 
 Hence the general solution is
 \[
-y=e^{-2t}(C_1\cos t+C_2\sin t)+\cos t+\sin t
+y=e^{-2t}(A\cos t+B\sin t)+\cos t+\sin t
 \]
 
 Now use the initial conditions.
 
-Given \(y(0)=3\), substitute \(t=0\):
+When \(t=0\), \(y=3\):
 \begin{align*}
-3&=e^{0}(C_1\cos 0+C_2\sin 0)+\cos 0+\sin 0\\
-&=1(C_1\cdot 1+C_2\cdot 0)+1+0\\
-&=C_1+1
+3&=e^{0}(A\cos 0+B\sin 0)+\cos 0+\sin 0\\
+&=1(A\times 1+B\times 0)+1+0\\
+&=A+1
 \end{align*}
 
 So
 \[
-C_1+1=3
+A+1=3
 \]
 \[
-C_1=2
+A=2
 \]
 
 Next differentiate the general solution:
 \begin{align*}
 \frac{\mathrm{d}y}{\mathrm{d}t}
-&=\frac{\mathrm{d}}{\mathrm{d}t}\left[e^{-2t}(C_1\cos t+C_2\sin t)\right]+\frac{\mathrm{d}}{\mathrm{d}t}(\cos t+\sin t)\\
-&=-2e^{-2t}(C_1\cos t+C_2\sin t)+e^{-2t}(-C_1\sin t+C_2\cos t)-\sin t+\cos t\\
-&=e^{-2t}\left[(-2C_1+C_2)\cos t+(-C_1-2C_2)\sin t\right]-\sin t+\cos t
+&=\frac{\mathrm{d}}{\mathrm{d}t}\left[e^{-2t}(A\cos t+B\sin t)\right]+\frac{\mathrm{d}}{\mathrm{d}t}(\cos t+\sin t)\\
+&=-2e^{-2t}(A\cos t+B\sin t)+e^{-2t}(-A\sin t+B\cos t)-\sin t+\cos t\\
+&=e^{-2t}\left[(-2A+B)\cos t+(-A-2B)\sin t\right]-\sin t+\cos t
 \end{align*}
 
-Given \(\frac{\mathrm{d}y}{\mathrm{d}t}(0)=1\), substitute \(t=0\):
+When \(t=0\), \(\frac{\mathrm{d}y}{\mathrm{d}t}=1\):
 \begin{align*}
-1&=e^{0}\left[(-2C_1+C_2)\cos 0+(-C_1-2C_2)\sin 0\right]-\sin 0+\cos 0\\
-&=1\left[(-2C_1+C_2)\cdot 1+(-C_1-2C_2)\cdot 0\right]-0+1\\
-&=(-2C_1+C_2)+1
+1&=e^{0}\left[(-2A+B)\cos 0+(-A-2B)\sin 0\right]-\sin 0+\cos 0\\
+&=1\left[(-2A+B)\times 1+(-A-2B)\times 0\right]-0+1\\
+&=(-2A+B)+1
 \end{align*}
 
 So
 \[
-(-2C_1+C_2)+1=1
+(-2A+B)+1=1
 \]
 \[
--2C_1+C_2=0
+-2A+B=0
 \]
 
-Using \(C_1=2\):
+Using \(A=2\):
 \[
--2(2)+C_2=0
+-2(2)+B=0
 \]
 \[
--4+C_2=0
+-4+B=0
 \]
 \[
-C_2=4
+B=4
 \]
 
 Therefore the particular solution satisfying the given conditions is
@@ -313,13 +302,7 @@ A damped oscillator is governed by \\
   \lambda^2+6\lambda+13=0
   \]
 
-  Solving,
-  \begin{align*}
-  \lambda&=\frac{-6\pm\sqrt{6^2-4(1)(13)}}{2} \\
-   &=-3\pm 2i
-  \end{align*}
-
-  Hence the complementary function is
+  which has roots $\lambda=-3\pm 2i$. Hence the complementary function is
   \[
   y_c=e^{-3t}(A\cos 2t+B\sin 2t)
   \]
@@ -341,7 +324,7 @@ A damped oscillator is governed by \\
   &=75\sin 2t
   \end{align*}
 
-  Collecting $\sin 2t$ and $\cos 2t$ terms,
+  Collecting $\sin 2t$ and $\cos 2t$ terms:
   \begin{align*}
   &( -4a-12b+13a)\sin 2t+(12a-4b+13b)\cos 2t \\
   &=75\sin 2t
@@ -358,9 +341,9 @@ A damped oscillator is governed by \\
   12a+9b&=0
   \end{align*}
 
-  Solve these simultaneously. From the second equation,
+  Solve these simultaneously. From the second equation:
   \[
-  4a+3b=0 \quad \Rightarrow \quad b=-\frac{4a}{3}
+  4a+3b=0\quad\Longrightarrow\quad b=-\frac{4a}{3}
   \]
 
   Substitute into the first:
@@ -386,23 +369,20 @@ A damped oscillator is governed by \\
   y=e^{-3t}(A\cos 2t+B\sin 2t)+3\sin 2t-4\cos 2t
   \]
 
-  \item From part (a),
+  \item From part (a):
   \[
   y=e^{-3t}(A\cos 2t+B\sin 2t)+3\sin 2t-4\cos 2t
   \]
 
   As $t\to+\infty$, the exponential factor tends to $0$. Also $\sin 2t$ and $\cos 2t$ remain bounded, so
-  \begin{align*}
-  e^{-3t}(A\cos 2t+B\sin 2t) 
-  &\longrightarrow 0
-  \end{align*}
+  \[
+  e^{-3t}(A\cos 2t+B\sin 2t)\to 0
+  \]
 
-  Therefore, whatever the initial conditions,
+  Therefore, whatever the initial conditions, for large positive $t$:
   \[
   y\approx 3\sin 2t-4\cos 2t
   \]
-
-  for large positive $t$.
 
   Now write this in the form $R\sin(2t-\phi)$. Using the identity
   \[
@@ -414,35 +394,35 @@ A damped oscillator is governed by \\
   R\sin(2t-\phi)=R\cos\phi\,\sin 2t-R\sin\phi\,\cos 2t
   \]
 
-  Comparing with $3\sin 2t-4\cos 2t$ gives
+  Equating coefficients with $3\sin 2t-4\cos 2t$ gives
   \begin{align*}
   R\cos\phi&=3 \\
   R\sin\phi&=4
   \end{align*}
 
-  Squaring and adding,
+  Squaring and adding:
   \begin{align*}
   R^2\cos^2\phi+R^2\sin^2\phi&=3^2+4^2 \\
   R^2(\cos^2\phi+\sin^2\phi)&=25 \\
   R^2&=25
   \end{align*}
 
-  Since $R>0$,
+  Since $R>0$:
   \[
   R=5
   \]
 
-  Also,
+  Also
   \[
   \tan\phi=\frac{R\sin\phi}{R\cos\phi}=\frac{4}{3}
   \]
 
-  Since $0<\phi<\frac{\pi}{2}$,
+  Since $0<\phi<\frac{\pi}{2}$:
   \[
   \phi=\arctan\left(\frac{4}{3}\right)\approx 0.927
   \]
 
-  Hence for large positive $t$,
+  Hence, for large positive $t$:
   \[
   y\approx 5\sin\left(2t-\arctan\frac{4}{3}\right)
   \]
@@ -477,15 +457,9 @@ Its auxiliary equation is
 \lambda^2+2\lambda+5=0
 \]
 
-Solving,
-\begin{align*}
-\lambda &= \frac{-2\pm\sqrt{2^2-4(1)(5)}}{2} \\
-  &= -1\pm 2i
-\end{align*}
-
-So the complementary function is
+which has roots $\lambda=-1\pm 2i$. So the complementary function is
 \[
-y_c=e^{-t}(C_1\cos 2t+C_2\sin 2t)
+y_c=e^{-t}(A\cos 2t+B\sin 2t)
 \]
 
 Now find a particular integral for
@@ -493,54 +467,53 @@ Now find a particular integral for
 \frac{\mathrm{d}^2 y}{\mathrm{d} t^2}+2\frac{\mathrm{d} y}{\mathrm{d} t}+5y=10\cos t
 \]
 
-Since the forcing term is $10\cos t$, try
+Since the right-hand side is $10\cos t$, try
 \[
-y_p=A\cos t+B\sin t
+y_p=a\cos t+b\sin t
 \]
 
 Then
 \[
-\frac{\mathrm{d} y_p}{\mathrm{d} t}=-A\sin t+B\cos t
+\frac{\mathrm{d} y_p}{\mathrm{d} t}=-a\sin t+b\cos t
 \]
 
 and
 \[
-\frac{\mathrm{d}^2 y_p}{\mathrm{d} t^2}=-A\cos t-B\sin t
+\frac{\mathrm{d}^2 y_p}{\mathrm{d} t^2}=-a\cos t-b\sin t
 \]
 
-Substituting into the differential equation,
-\begin{align*}
-(-A\cos t-B\sin t)+2(-A\sin t+B\cos t)+5(A\cos t+B\sin t)
-&=10\cos t
-\end{align*}
+Substituting into the differential equation:
+\[
+(-a\cos t-b\sin t)+2(-a\sin t+b\cos t)+5(a\cos t+b\sin t)=10\cos t
+\]
 
-Collecting $\cos t$ and $\sin t$ terms,
+Collecting $\cos t$ and $\sin t$ terms:
 \begin{align*}
-(-A+2B+5A)\cos t+(-B-2A+5B)\sin t &= 10\cos t \\
-(4A+2B)\cos t+(4B-2A)\sin t &= 10\cos t
+(-a+2b+5a)\cos t+(-b-2a+5b)\sin t &= 10\cos t \\
+(4a+2b)\cos t+(4b-2a)\sin t &= 10\cos t
 \end{align*}
 
 Equating coefficients gives
 \[
-4A+2B=10,\qquad 4B-2A=0
+4a+2b=10,\qquad 4b-2a=0
 \]
 
-From $4B-2A=0$,
+From $4b-2a=0$:
 \[
-A=2B
+a=2b
 \]
 
-Substitute into $4A+2B=10$:
+Substitute into $4a+2b=10$:
 \begin{align*}
-4(2B)+2B &= 10 \\
-8B+2B &= 10 \\
-10B &= 10 \\
-B &= 1
+4(2b)+2b &= 10 \\
+8b+2b &= 10 \\
+10b &= 10 \\
+b &= 1
 \end{align*}
 
 Hence
 \[
-A=2
+a=2
 \]
 
 So the particular integral is
@@ -550,49 +523,49 @@ y_p=2\cos t+\sin t
 
 Therefore the general solution is
 \[
-y=e^{-t}(C_1\cos 2t+C_2\sin 2t)+2\cos t+\sin t
+y=e^{-t}(A\cos 2t+B\sin 2t)+2\cos t+\sin t
 \]
 
 Now use the initial conditions.
 
 When $t=0$, $y=5$:
 \begin{align*}
-5 &= e^0(C_1\cos 0+C_2\sin 0)+2\cos 0+\sin 0 \\
-  &= C_1+2
+5 &= e^0(A\cos 0+B\sin 0)+2\cos 0+\sin 0 \\
+  &= A+2
 \end{align*}
 
 So
 \[
-C_1=3
+A=3
 \]
 
 Next differentiate the general solution:
-\begin{align*}
+\[
 \frac{\mathrm{d} y}{\mathrm{d} t}
-&= \frac{\mathrm{d}}{\mathrm{d} t}\left[e^{-t}(C_1\cos 2t+C_2\sin 2t)\right]+\frac{\mathrm{d}}{\mathrm{d} t}(2\cos t+\sin t)
-\end{align*}
+= \frac{\mathrm{d}}{\mathrm{d} t}\left[e^{-t}(A\cos 2t+B\sin 2t)\right]+\frac{\mathrm{d}}{\mathrm{d} t}(2\cos t+\sin t)
+\]
 
-Using the product rule on the first term,
+Using the product rule on the first term:
 \begin{align*}
 \frac{\mathrm{d} y}{\mathrm{d} t}
-&= -e^{-t}(C_1\cos 2t+C_2\sin 2t)
-+e^{-t}(-2C_1\sin 2t+2C_2\cos 2t)
+&= -e^{-t}(A\cos 2t+B\sin 2t)
++e^{-t}(-2A\sin 2t+2B\cos 2t)
 -2\sin t+\cos t \\
-&= e^{-t}\left[(-C_1+2C_2)\cos 2t+(-2C_1-C_2)\sin 2t\right]-2\sin t+\cos t
+&= e^{-t}\left[(-A+2B)\cos 2t+(-2A-B)\sin 2t\right]-2\sin t+\cos t
 \end{align*}
 
-Now use $\frac{\mathrm{d} y}{\mathrm{d} t}=2$ when $t=0$:
+When $t=0$, $\frac{\mathrm{d} y}{\mathrm{d} t}=2$:
 \begin{align*}
-2&=e^0\left[(-C_1+2C_2)\cos 0+(-2C_1-C_2)\sin 0\right]-2\sin 0+\cos 0 \\
-&=(-C_1+2C_2)+1
+2&=e^0\left[(-A+2B)\cos 0+(-2A-B)\sin 0\right]-2\sin 0+\cos 0 \\
+&=(-A+2B)+1
 \end{align*}
 
-Substitute $C_1=3$:
+Substitute $A=3$:
 \begin{align*}
-2 &= -3+2C_2+1 \\
-2 &= 2C_2-2 \\
-4 &= 2C_2 \\
-C_2 &= 2
+2 &= -3+2B+1 \\
+2 &= 2B-2 \\
+4 &= 2B \\
+B &= 2
 \end{align*}
 
 Hence the required particular solution satisfying the given conditions is
@@ -630,20 +603,14 @@ y(t)=e^{-t}(3\cos 2t+2\sin 2t)+2\cos t+\sin t
 \lambda^2+4\lambda+13=0
 \]
 
-Using the quadratic formula,
-\begin{align*}
-\lambda&=\frac{-4\pm\sqrt{4^2-4(1)(13)}}{2} \\
-&=-2\pm 3i
-\end{align*}
-
-Hence the general solution is
+which has roots $\lambda=-2\pm 3i$. Hence the general solution is
 \[
 y=e^{-2x}\left(A\cos 3x+B\sin 3x\right)
 \]
 
   \item From part (a), the complementary function is
 \[
-y_c=e^{-2x}\left(C\cos 3x+D\sin 3x\right)
+y_c=e^{-2x}\left(A\cos 3x+B\sin 3x\right)
 \]
 
 For a particular integral, try
@@ -660,7 +627,7 @@ Then
 &= e^{-2x}\left[(b-2a)\cos x+(-a-2b)\sin x\right]
 \end{align*}
 
-Also,
+Also
 \begin{align*}
 \frac{\mathrm{d}^2y_p}{\mathrm{d}x^2}
 &= \frac{\mathrm{d}}{\mathrm{d}x}\left\{e^{-2x}\left[(b-2a)\cos x+(-a-2b)\sin x\right]\right\} \\
@@ -692,7 +659,7 @@ Hence
 8a\cos x+8b\sin x=6\cos x-8\sin x
 \]
 
-Comparing coefficients,
+Equating coefficients gives
 \[
 8a=6, \qquad 8b=-8
 \]
@@ -709,12 +676,12 @@ y_p=e^{-2x}\left(\frac{3}{4}\cos x-\sin x\right)
 
 Thus the general solution is
 \[
-y=e^{-2x}\left(C\cos 3x+D\sin 3x\right)+e^{-2x}\left(\frac{3}{4}\cos x-\sin x\right)
+y=e^{-2x}\left(A\cos 3x+B\sin 3x\right)+e^{-2x}\left(\frac{3}{4}\cos x-\sin x\right)
 \]
 
 So
 \[
-y=e^{-2x}\left(C\cos 3x+D\sin 3x+\frac{3}{4}\cos x-\sin x\right)
+y=e^{-2x}\left(A\cos 3x+B\sin 3x+\frac{3}{4}\cos x-\sin x\right)
 \]
 \end{enumerate}
 \end{djsSolution}
@@ -748,13 +715,7 @@ For the complementary function, solve the auxiliary equation
 \lambda^2+4\lambda+13=0
 \]
 
-Using the quadratic formula,
-\begin{align*}
-\lambda&=\frac{-4\pm\sqrt{4^2-4(1)(13)}}{2} \\
-&=-2\pm 3i
-\end{align*}
-
-Hence the complementary function is
+which has roots $\lambda=-2\pm 3i$. Hence the complementary function is
 \[
 y_c=e^{-2t}(A\cos 3t+B\sin 3t)
 \]
@@ -770,7 +731,7 @@ Then
 \frac{\mathrm{d}^2y_p}{\mathrm{d}t^2}&=-9a\cos 3t-9b\sin 3t
 \end{align*}
 
-Substituting into the differential equation,
+Substituting into the differential equation:
 \begin{align*}
 \frac{\mathrm{d}^2y_p}{\mathrm{d}t^2}+4\frac{\mathrm{d}y_p}{\mathrm{d}t}+13y_p
 &=\left(-9a\cos 3t-9b\sin 3t\right)+4\left(-3a\sin 3t+3b\cos 3t\right)+13\left(a\cos 3t+b\sin 3t\right) \\
@@ -784,13 +745,13 @@ Equating coefficients with $28\cos 3t-4\sin 3t$ gives
 4b-12a&=-4
 \end{align*}
 
-Dividing both equations by $4$,
+Dividing both equations by $4$:
 \begin{align*}
 a+3b&=7 \\
 b-3a&=-1
 \end{align*}
 
-From the second equation,
+From the second equation:
 \[
 b=3a-1
 \]
@@ -832,16 +793,14 @@ So
 A=4
 \]
 
-Next differentiate $y$.
-
-For the homogeneous part,
+Next differentiate $y$, starting with the complementary function:
 \begin{align*}
 \frac{\mathrm{d}}{\mathrm{d}t}\left[e^{-2t}(A\cos 3t+B\sin 3t)\right]
 &=e^{-2t}\left(-2\right)(A\cos 3t+B\sin 3t)+e^{-2t}\left(-3A\sin 3t+3B\cos 3t\right) \\
 &=e^{-2t}\left[(3B-2A)\cos 3t+(-3A-2B)\sin 3t\right]
 \end{align*}
 
-Also,
+Also
 \[
 \frac{\mathrm{d}}{\mathrm{d}t}\left(\cos 3t+2\sin 3t\right)=-3\sin 3t+6\cos 3t
 \]
@@ -851,7 +810,7 @@ Therefore
 \frac{\mathrm{d}y}{\mathrm{d}t}=e^{-2t}\left[(3B-2A)\cos 3t+(-3A-2B)\sin 3t\right]-3\sin 3t+6\cos 3t
 \]
 
-Using $\frac{\mathrm{d}y}{\mathrm{d}t}=7$ when $t=0$,
+When $t=0$, $\frac{\mathrm{d}y}{\mathrm{d}t}=7$:
 \begin{align*}
 7&=e^{0}\left[(3B-2A)\cos 0+(-3A-2B)\sin 0\right]-3\sin 0+6\cos 0 \\
 &=(3B-2A)(1)+0+0+6 \\
@@ -868,7 +827,7 @@ B&=3
 
 Hence the required particular solution is
 \[
-y=(4\cos 3t+3\sin 3t)e^{-2t}+\cos 3t+2\sin 3t
+y=e^{-2t}(4\cos 3t+3\sin 3t)+\cos 3t+2\sin 3t
 \]
 \end{djsSolution}
 
@@ -908,7 +867,7 @@ Its auxiliary equation is
 \lambda^2-\lambda-6=0
 \]
 
-Factorising,
+Factorising:
 \[
 (\lambda-3)(\lambda+2)=0
 \]
@@ -929,7 +888,7 @@ Then
 \frac{\mathrm{d}^2y_p}{\mathrm{d}x^2} &= -a\sin x-b\cos x
 \end{align*}
 
-Substituting into the differential equation,
+Substituting into the differential equation:
 \begin{align*}
 \frac{\mathrm{d}^2y_p}{\mathrm{d}x^2}-\frac{\mathrm{d}y_p}{\mathrm{d}x}-6y_p
 &=\left(-a\sin x-b\cos x\right)-\left(a\cos x-b\sin x\right)-6\left(a\sin x+b\cos x\right) \\
@@ -943,7 +902,7 @@ b-7a&=50 \\
 -a-7b&=0
 \end{align*}
 
-From the second equation,
+From the second equation:
 \[
 a=-7b
 \]
@@ -971,13 +930,13 @@ Hence the general solution is
 y=Ae^{3x}+Be^{-2x}-7\sin x+\cos x
 \]
 
-Now use the initial conditions. First,
+Now use the initial conditions. First, substitute \(x=0\):
 \begin{align*}
 y(0)&=Ae^0+Be^0-7\sin 0+\cos 0 \\
 &=A+B+1
 \end{align*}
 
-Since \(y(0)=3\),
+Since \(y(0)=3\):
 \[
 A+B+1=3
 \]
@@ -1026,7 +985,7 @@ Add this to \(3A-2B=1\):
 A&=1
 \end{align*}
 
-Then from \(A+B=2\),
+Then from \(A+B=2\):
 \begin{align*}
 1+B&=2 \\
 B&=1
@@ -1054,7 +1013,7 @@ given that, when $t=0$, $y=1$ and $\frac{\mathrm{d}y}{\mathrm{d}t}=2$. \marks{11
 \vspace*{10pt}
 
 \begin{djsSolution}
-For the homogeneous part,
+The homogeneous equation is
 \[
 \frac{\mathrm{d}^2 y}{\mathrm{d}t^2}+4\frac{\mathrm{d}y}{\mathrm{d}t}+13y=0
 \]
@@ -1064,12 +1023,7 @@ The auxiliary equation is
 \lambda^2+4\lambda+13=0
 \]
 
-So
-\[
-\lambda=\frac{-4\pm\sqrt{16-52}}{2}=-2\pm 3i
-\]
-
-Hence
+which has roots $\lambda=-2\pm 3i$. Hence
 \[
 y_c=e^{-2t}\left(A\cos 3t+B\sin 3t\right)
 \]
@@ -1088,7 +1042,7 @@ Then
 &= e^{-2t}\left[(-b-2a)\sin t+(a-2b)\cos t\right]
 \end{align*}
 
-Also,
+Also
 \begin{align*}
 \frac{\mathrm{d}^2y_p}{\mathrm{d}t^2}
 &= \frac{\mathrm{d}}{\mathrm{d}t}\left\{e^{-2t}\left[(-b-2a)\sin t+(a-2b)\cos t\right]\right\} \\
@@ -1120,7 +1074,7 @@ Hence
 8a\sin t+8b\cos t=8\sin t
 \]
 
-Comparing coefficients,
+Equating coefficients gives
 \[
 8a=8, \qquad 8b=0
 \]
@@ -1147,7 +1101,7 @@ y=e^{-2t}\left(A\cos 3t+B\sin 3t+\sin t\right)
 
 Now use the initial conditions.
 
-Given $y(0)=1$,
+When $t=0$, $y=1$:
 \[
 1=e^{0}\left(A\cos 0+B\sin 0+\sin 0\right)
 \]
@@ -1171,12 +1125,12 @@ Now differentiate:
 &= e^{-2t}\left(-3A\sin 3t+3B\cos 3t+\cos t-2A\cos 3t-2B\sin 3t-2\sin t\right)
 \end{align*}
 
-At $t=0$,
+When $t=0$, $\frac{\mathrm{d}y}{\mathrm{d}t}=2$, so
 \[
-\frac{\mathrm{d}y}{\mathrm{d}t}(0)=3B+1-2A
+2=3B+1-2A
 \]
 
-Since $\frac{\mathrm{d}y}{\mathrm{d}t}(0)=2$ and $A=1$,
+With $A=1$:
 \[
 2=3B+1-2
 \]
@@ -1226,7 +1180,14 @@ y=e^{-2t}\bigl(\cos 3t+\sin 3t+\sin t\bigr)
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Using \(\tanh x=\frac{\sinh x}{\cosh x}\),
+  \item Using
+\[
+\tanh x=\frac{\sinh x}{\cosh x},\qquad
+\cosh x=\frac{e^x+e^{-x}}{2},\qquad
+\sinh x=\frac{e^x-e^{-x}}{2}
+\]
+
+we have
 \begin{align*}
 (1+\tanh x)\cosh x
 &=\left(1+\frac{\sinh x}{\cosh x}\right)\cosh x \\
@@ -1235,17 +1196,17 @@ y=e^{-2t}\bigl(\cos 3t+\sin 3t+\sin t\bigr)
 &=e^x
 \end{align*}
 
-Hence, for all real \(x\),
+Hence, for all real \(x\):
 \[
 (1+\tanh x)\cosh x=e^x
 \]
 
-\item From part \((a)\), the differential equation becomes
+\item From part (a), the differential equation becomes
 \[
 \frac{\mathrm{d}^2 y}{\mathrm{d}x^2}-2\frac{\mathrm{d}y}{\mathrm{d}x}+y=3e^x
 \]
 
-For the homogeneous equation,
+The homogeneous equation is
 \[
 \frac{\mathrm{d}^2 y}{\mathrm{d}x^2}-2\frac{\mathrm{d}y}{\mathrm{d}x}+y=0
 \]
@@ -1267,45 +1228,45 @@ y_c=(A+Bx)e^x
 
 For a particular integral, since the right-hand side is $3e^x$ and $\lambda=1$ is a repeated root, try
 \[
-y_p=Cx^2e^x
+y_p=ax^2e^x
 \]
 
 Then
 \begin{align*}
 \frac{\mathrm{d}y_p}{\mathrm{d}x}
-&= \frac{\mathrm{d}}{\mathrm{d}x}\left(Cx^2e^x\right) \\
-&= 2Cxe^x+Cx^2e^x \\
-&= e^x\left(Cx^2+2Cx\right)
+&= \frac{\mathrm{d}}{\mathrm{d}x}\left(ax^2e^x\right) \\
+&= 2axe^x+ax^2e^x \\
+&= e^x\left(ax^2+2ax\right)
 \end{align*}
 
 Differentiate again:
 \begin{align*}
 \frac{\mathrm{d}^2y_p}{\mathrm{d}x^2}
-&= \frac{\mathrm{d}}{\mathrm{d}x}\left[e^x\left(Cx^2+2Cx\right)\right] \\
-&= e^x\left(Cx^2+2Cx\right)+e^x\left(2Cx+2C\right) \\
-&= e^x\left(Cx^2+4Cx+2C\right)
+&= \frac{\mathrm{d}}{\mathrm{d}x}\left[e^x\left(ax^2+2ax\right)\right] \\
+&= e^x\left(ax^2+2ax\right)+e^x\left(2ax+2a\right) \\
+&= e^x\left(ax^2+4ax+2a\right)
 \end{align*}
 
 Substituting into the differential equation gives
 \begin{align*}
 \frac{\mathrm{d}^2y_p}{\mathrm{d}x^2}-2\frac{\mathrm{d}y_p}{\mathrm{d}x}+y_p
-&= e^x\left(Cx^2+4Cx+2C\right)-2e^x\left(Cx^2+2Cx\right)+Cx^2e^x \\
-&= 2Ce^x
+&= e^x\left(ax^2+4ax+2a\right)-2e^x\left(ax^2+2ax\right)+ax^2e^x \\
+&= 2ae^x
 \end{align*}
 
 So
 \[
-2Ce^x=3e^x
+2ae^x=3e^x
 \]
 
 Hence
 \[
-2C=3
+2a=3
 \]
 
 So
 \[
-C=\frac{3}{2}
+a=\frac{3}{2}
 \]
 
 Therefore
@@ -1325,10 +1286,10 @@ y=e^x\left(A+Bx+\frac{3x^2}{2}\right)
 
 Now use the initial conditions.
 
-From $y(0)=1$,
+When $x=0$, $y=1$:
 \begin{align*}
 1
-&= e^0\left(A+B\cdot 0+\frac{3(0)^2}{2}\right) \\
+&= e^0\left(A+B\times 0+\frac{3(0)^2}{2}\right) \\
 &= A
 \end{align*}
 
@@ -1345,12 +1306,12 @@ Now differentiate:
 &= e^x\left(A+Bx+\frac{3x^2}{2}+B+3x\right)
 \end{align*}
 
-At $x=0$,
+When $x=0$, $\frac{\mathrm{d}y}{\mathrm{d}x}=0$, so
 \[
-\frac{\mathrm{d}y}{\mathrm{d}x}(0)=A+B
+0=A+B
 \]
 
-Since $\frac{\mathrm{d}y}{\mathrm{d}x}(0)=0$ and $A=1$,
+With $A=1$:
 \[
 0=1+B
 \]
@@ -1404,7 +1365,7 @@ we get
 &= e^{-x}
 \end{align*}
 
-Also,
+Also
 \begin{align*}
 \cosh x+\sinh x
 &= \frac{e^x+e^{-x}}{2}+\frac{e^x-e^{-x}}{2} \\
@@ -1413,16 +1374,11 @@ Also,
 &= e^x
 \end{align*}
 
-Therefore,
+Therefore
 \[
 \frac{\cosh x-\sinh x}{\cosh x+\sinh x}
 = \frac{e^{-x}}{e^x}
 = e^{-2x}
-\]
-
-Hence,
-\[
-\frac{\cosh x-\sinh x}{\cosh x+\sinh x}=e^{-2x}
 \]
 
 \item From part (a), the differential equation becomes
@@ -1430,7 +1386,7 @@ Hence,
 \frac{\mathrm{d}^2 y}{\mathrm{d}x^2}+4\frac{\mathrm{d}y}{\mathrm{d}x}+4y=4e^{-2x}
 \]
 
-For the homogeneous equation,
+The homogeneous equation is
 \[
 \frac{\mathrm{d}^2 y}{\mathrm{d}x^2}+4\frac{\mathrm{d}y}{\mathrm{d}x}+4y=0
 \]
@@ -1447,50 +1403,50 @@ So
 
 Hence the complementary function is
 \[
-y_c=(Cx+D)e^{-2x}
+y_c=(A+Bx)e^{-2x}
 \]
 
 Since the right-hand side is $4e^{-2x}$ and $-2$ is a repeated root of the auxiliary equation, try
 \[
-y_p=Ax^2e^{-2x}
+y_p=ax^2e^{-2x}
 \]
 
 Differentiate:
 \begin{align*}
 \frac{\mathrm{d}y_p}{\mathrm{d}x}
-&= \frac{\mathrm{d}}{\mathrm{d}x}\left(Ax^2e^{-2x}\right) \\
-&= 2Axe^{-2x}-2Ax^2e^{-2x} \\
-&= e^{-2x}(2Ax-2Ax^2)
+&= \frac{\mathrm{d}}{\mathrm{d}x}\left(ax^2e^{-2x}\right) \\
+&= 2axe^{-2x}-2ax^2e^{-2x} \\
+&= e^{-2x}(2ax-2ax^2)
 \end{align*}
 
 Differentiate again:
 \begin{align*}
 \frac{\mathrm{d}^2y_p}{\mathrm{d}x^2}
-&= \frac{\mathrm{d}}{\mathrm{d}x}\left[e^{-2x}(2Ax-2Ax^2)\right] \\
-&= -2e^{-2x}(2Ax-2Ax^2)+e^{-2x}(2A-4Ax) \\
-&= e^{-2x}(2A-8Ax+4Ax^2)
+&= \frac{\mathrm{d}}{\mathrm{d}x}\left[e^{-2x}(2ax-2ax^2)\right] \\
+&= -2e^{-2x}(2ax-2ax^2)+e^{-2x}(2a-4ax) \\
+&= e^{-2x}(2a-8ax+4ax^2)
 \end{align*}
 
 Substituting into the differential equation gives
 \begin{align*}
 \frac{\mathrm{d}^2y_p}{\mathrm{d}x^2}+4\frac{\mathrm{d}y_p}{\mathrm{d}x}+4y_p
-&= e^{-2x}(2A-8Ax+4Ax^2)+4e^{-2x}(2Ax-2Ax^2)+4Ax^2e^{-2x} \\
-&= e^{-2x}(2A)
+&= e^{-2x}(2a-8ax+4ax^2)+4e^{-2x}(2ax-2ax^2)+4ax^2e^{-2x} \\
+&= e^{-2x}(2a)
 \end{align*}
 
 So
 \[
-2Ae^{-2x}=4e^{-2x}
+2ae^{-2x}=4e^{-2x}
 \]
 
 Hence
 \[
-2A=4
+2a=4
 \]
 
 So
 \[
-A=2
+a=2
 \]
 
 Therefore
@@ -1500,54 +1456,54 @@ y_p=2x^2e^{-2x}
 
 Thus the general solution is
 \[
-y=(Cx+D)e^{-2x}+2x^2e^{-2x}
+y=(A+Bx)e^{-2x}+2x^2e^{-2x}
 \]
 
 So
 \[
-y=e^{-2x}(2x^2+Cx+D)
+y=e^{-2x}(2x^2+Bx+A)
 \]
 
 Now use the initial conditions.
 
-Since $y(0)=1$,
+When $x=0$, $y=1$:
 \begin{align*}
 1
-&= e^{0}(2\cdot 0^2+C\cdot 0+D) \\
-&= D
+&= e^{0}(2\times 0^2+B\times 0+A) \\
+&= A
 \end{align*}
 
 So
 \[
-D=1
+A=1
 \]
 
 Now differentiate:
 \begin{align*}
 \frac{\mathrm{d}y}{\mathrm{d}x}
-&= \frac{\mathrm{d}}{\mathrm{d}x}\left[e^{-2x}(2x^2+Cx+D)\right] \\
-&= -2e^{-2x}(2x^2+Cx+D)+e^{-2x}(4x+C) \\
-&= e^{-2x}(4x+C-4x^2-2Cx-2D)
+&= \frac{\mathrm{d}}{\mathrm{d}x}\left[e^{-2x}(2x^2+Bx+A)\right] \\
+&= -2e^{-2x}(2x^2+Bx+A)+e^{-2x}(4x+B) \\
+&= e^{-2x}(4x+B-4x^2-2Bx-2A)
 \end{align*}
 
-At $x=0$,
+When $x=0$, $\frac{\mathrm{d}y}{\mathrm{d}x}=1$, so
 \[
-\frac{\mathrm{d}y}{\mathrm{d}x}(0)=C-2D
+1=B-2A
 \]
 
-Since $\frac{\mathrm{d}y}{\mathrm{d}x}(0)=1$ and $D=1$,
+With $A=1$:
 \[
-1=C-2
+1=B-2
 \]
 
 Hence
 \[
-C=3
+B=3
 \]
 
-Substituting $C=3$ and $D=1$, the required particular solution is
+Substituting $A=1$ and $B=3$, the required particular solution is
 \[
-y=(2x^2+3x+1)e^{-2x}
+y=e^{-2x}(2x^2+3x+1)
 \]
 \end{enumerate}
 \end{djsSolution}
@@ -1588,12 +1544,7 @@ we have
 &=e^x+2e^{-x}
 \end{align*}
 
-Hence
-\[
-3\cosh x-\sinh x=e^x+2e^{-x}
-\]
-
-  \item From part (a),
+  \item From part (a):
 \[
 6(3\cosh x-\sinh x)=6(e^x+2e^{-x})=6e^x+12e^{-x}
 \]
@@ -1613,11 +1564,10 @@ The auxiliary equation is
 \lambda^2-\lambda-2=0
 \]
 
-Factorising,
-\begin{align*}
-\lambda^2-\lambda-2&=0\\
-(\lambda-2)(\lambda+1)&=0
-\end{align*}
+Factorising:
+\[
+(\lambda-2)(\lambda+1)=0
+\]
 
 So the roots are $\lambda=2$ and $\lambda=-1$. Therefore the complementary function is
 \[
@@ -1626,68 +1576,67 @@ y_c=Ae^{2x}+Be^{-x}
 
 Now find a particular integral. Since the right-hand side is $6e^x+12e^{-x}$, take
 \[
-y_p=Ce^x+Dxe^{-x}
+y_p=ae^x+bxe^{-x}
 \]
 
-We use $Dxe^{-x}$ rather than $De^{-x}$ because $e^{-x}$ is already part of the complementary function.
+We use $bxe^{-x}$ rather than $be^{-x}$ because $e^{-x}$ is already part of the complementary function.
 
-For the $Ce^x$ term,
+For the $ae^x$ term:
 \[
-\frac{\mathrm{d}}{\mathrm{d}x}(Ce^x)=Ce^x,
+\frac{\mathrm{d}}{\mathrm{d}x}(ae^x)=ae^x,
 \qquad
-\frac{\mathrm{d}^2}{\mathrm{d}x^2}(Ce^x)=Ce^x
+\frac{\mathrm{d}^2}{\mathrm{d}x^2}(ae^x)=ae^x
 \]
 
-Substituting into the left-hand side,
+Substituting into the left-hand side:
 \begin{align*}
-\frac{\mathrm{d}^2}{\mathrm{d}x^2}(Ce^x)-\frac{\mathrm{d}}{\mathrm{d}x}(Ce^x)-2(Ce^x)
-&=Ce^x-Ce^x-2Ce^x\\
-&=-2Ce^x
+\frac{\mathrm{d}^2}{\mathrm{d}x^2}(ae^x)-\frac{\mathrm{d}}{\mathrm{d}x}(ae^x)-2(ae^x)
+&=ae^x-ae^x-2ae^x\\
+&=-2ae^x
 \end{align*}
 
 This must equal $6e^x$, so
 \[
--2C=6
+-2a=6
 \]
 
 Hence
 \[
-C=-3
+a=-3
 \]
 
-For the $Dxe^{-x}$ term,
+For the $bxe^{-x}$ term:
 \begin{align*}
-y&=Dxe^{-x}\\
-\frac{\mathrm{d}y}{\mathrm{d}x}
-&=D\frac{\mathrm{d}}{\mathrm{d}x}(xe^{-x})\\
-&=D\left(e^{-x}-xe^{-x}\right)\\
-&=D(1-x)e^{-x}
+\frac{\mathrm{d}}{\mathrm{d}x}(bxe^{-x})
+&=b\frac{\mathrm{d}}{\mathrm{d}x}(xe^{-x})\\
+&=b\left(e^{-x}-xe^{-x}\right)\\
+&=b(1-x)e^{-x}
 \end{align*}
 
 Differentiate again:
 \begin{align*}
-\frac{\mathrm{d}^2 y}{\mathrm{d}x^2}
-&=D\frac{\mathrm{d}}{\mathrm{d}x}\left((1-x)e^{-x}\right)\\
-&=D\left((-1)e^{-x}+(1-x)(-e^{-x})\right)\\
-&=D(x-2)e^{-x}
+\frac{\mathrm{d}^2}{\mathrm{d}x^2}(bxe^{-x})
+&=b\frac{\mathrm{d}}{\mathrm{d}x}\left((1-x)e^{-x}\right)\\
+&=b\left((-1)e^{-x}+(1-x)(-e^{-x})\right)\\
+&=b(x-2)e^{-x}
 \end{align*}
 
-Substituting into the left-hand side,
+Substituting into the left-hand side:
 \begin{align*}
-\frac{\mathrm{d}^2 y}{\mathrm{d}x^2}-\frac{\mathrm{d}y}{\mathrm{d}x}-2y
-&=D(x-2)e^{-x}-D(1-x)e^{-x}-2Dxe^{-x}\\
-&=D\bigl(x-2-1+x-2x\bigr)e^{-x}\\
-&=-3De^{-x}
+\frac{\mathrm{d}^2}{\mathrm{d}x^2}(bxe^{-x})-\frac{\mathrm{d}}{\mathrm{d}x}(bxe^{-x})-2(bxe^{-x})
+&=b(x-2)e^{-x}-b(1-x)e^{-x}-2bxe^{-x}\\
+&=b\bigl(x-2-1+x-2x\bigr)e^{-x}\\
+&=-3be^{-x}
 \end{align*}
 
 This must equal $12e^{-x}$, so
 \[
--3D=12
+-3b=12
 \]
 
 Hence
 \[
-D=-4
+b=-4
 \]
 
 Therefore a particular integral is
@@ -1769,19 +1718,16 @@ y=4e^{2x}-3e^x-4xe^{-x}
 \questionitem
 % [Source: _QBT___Solns__2nd_Order_Differential_Equations, Q12]
 
-Determine the solution $y(x)$ of the initial value problem \\
+Find the particular solution of the differential equation \\
 \[
 \frac{\mathrm{d}^2 y}{\mathrm{d}x^2} - 4\frac{\mathrm{d}y}{\mathrm{d}x} + 4y = xe^{2x}
 \] \\
-subject to
-\[
- y(0)=1, \qquad \left.\frac{\mathrm{d}y}{\mathrm{d}x}\right|_{x=0} = 0
-\] \marks[-20pt]{10}
+given that, when $x=0$, $y=1$ and $\frac{\mathrm{d}y}{\mathrm{d}x}=0$. \marks{10}
 
 \vspace*{10pt}
 
 \begin{djsSolution}
-For the homogeneous equation,
+The homogeneous equation is
 \[
 \frac{\mathrm{d}^2 y}{\mathrm{d}x^2}-4\frac{\mathrm{d}y}{\mathrm{d}x}+4y=0
 \]
@@ -1837,7 +1783,7 @@ So
 =e^{2x}(6ax+2b)
 \]
 
-Comparing with $xe^{2x}$, we get
+Equating coefficients with $xe^{2x}$ gives
 \[
 6a=1, \qquad 2b=0
 \]
@@ -1864,10 +1810,10 @@ y=e^{2x}\left(A+Bx+\frac{x^3}{6}\right)
 
 Now use the initial conditions.
 
-From $y(0)=1$,
+When $x=0$, $y=1$:
 \begin{align*}
 1
-&= e^{0}\left(A+B\cdot 0+\frac{0^3}{6}\right) \\
+&= e^{0}\left(A+B\times 0+\frac{0^3}{6}\right) \\
 &= A
 \end{align*}
 
@@ -1884,12 +1830,12 @@ Now differentiate:
 &= e^{2x}\left(2A+2Bx+\frac{x^3}{3}+B+\frac{x^2}{2}\right)
 \end{align*}
 
-At $x=0$,
+When $x=0$, $\frac{\mathrm{d}y}{\mathrm{d}x}=0$, so
 \[
-\frac{\mathrm{d}y}{\mathrm{d}x}(0)=2A+B
+0=2A+B
 \]
 
-Since $\frac{\mathrm{d}y}{\mathrm{d}x}(0)=0$ and $A=1$,
+With $A=1$:
 \[
 0=2+B
 \]
@@ -1899,9 +1845,9 @@ Hence
 B=-2
 \]
 
-Substituting $A=1$ and $B=-2$, the solution of the initial value problem is
+Substituting $A=1$ and $B=-2$, the required particular solution is
 \[
-y(x)=e^{2x}\left(\frac{x^3}{6}-2x+1\right)
+y=e^{2x}\left(\frac{x^3}{6}-2x+1\right)
 \]
 \end{djsSolution}
 \end{enumerate}
