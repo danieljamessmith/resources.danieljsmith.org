@@ -4,7 +4,7 @@
 \djsSolnHeader{Linear Transformations}
 \djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}
 
-\djsLastUpdated{15 October 2026}
+\djsLastUpdated{25 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -19,23 +19,23 @@
 \questionitem
 % [Source: _QBT___Solns__Linear_Transformations, Q1]
 
-The transformation $U$, represented by the $2\times 2$ matrix $P$, is a reflection in the $x$-axis. \\
+The transformation $U$, represented by the $2\times 2$ matrix $\mathbf{P}$, is a reflection in the $x$-axis. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Write down the matrix $P$. \marks{1} \\
+  \item Write down the matrix $\mathbf{P}$. \marks{1} \\
 \end{enumerate}
 
-The transformation $V$, represented by the $2\times 2$ matrix $Q$, is a reflection in the line $y=x$. \\
+The transformation $V$, represented by the $2\times 2$ matrix $\mathbf{Q}$, is a reflection in the line $y=x$. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Write down the matrix $Q$. \marks{1} \\
+  \item Write down the matrix $\mathbf{Q}$. \marks{1} \\
 \end{enumerate}
 
-Given that $U$ followed by $V$ is transformation $T$, which is represented by the matrix $R$ \\
+Given that $U$ followed by $V$ is transformation $T$, which is represented by the matrix $\mathbf{R}$ \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item express $R$ in terms of $P$ and $Q$, \marks{1}
-  \item find the matrix $R$, \marks{1}
+  \item express $\mathbf{R}$ in terms of $\mathbf{P}$ and $\mathbf{Q}$, \marks{1}
+  \item find the matrix $\mathbf{R}$, \marks{1}
   \item give a full geometrical description of $T$ as a single transformation. \marks{2} \\
 \end{enumerate}
 
@@ -45,39 +45,39 @@ Given that $U$ followed by $V$ is transformation $T$, which is represented by th
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item A reflection in the $x$-axis maps $(x,y)$ to $(x,-y)$, so
   \[
-  P=\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+  \mathbf{P}=\begin{pmatrix}1&0\\0&-1\end{pmatrix}
   \]
 
   \item A reflection in the line $y=x$ swaps the coordinates, so
   \[
-  Q=\begin{pmatrix}0&1\\1&0\end{pmatrix}
+  \mathbf{Q}=\begin{pmatrix}0&1\\1&0\end{pmatrix}
   \]
 
   \item If a point is first transformed by $U$ and then by $V$, then with column vectors
   \[
-  \mathbf{x}\mapsto P\mathbf{x}\mapsto Q(P\mathbf{x})=(QP)\mathbf{x}
+  \mathbf{x}\mapsto \mathbf{P}\mathbf{x}\mapsto \mathbf{Q}(\mathbf{P}\mathbf{x})=(\mathbf{Q}\mathbf{P})\mathbf{x}
   \]
 
   Hence
   \[
-  R=QP
+  \mathbf{R}=\mathbf{Q}\mathbf{P}
   \]
 
-  \item Using part (c),
+  \item Using part (c):
   \[
-  R=QP=\begin{pmatrix}0&1\\1&0\end{pmatrix}\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+  \mathbf{R}=\mathbf{Q}\mathbf{P}=\begin{pmatrix}0&1\\1&0\end{pmatrix}\begin{pmatrix}1&0\\0&-1\end{pmatrix}
   \]
 
-  Multiplying,
+  Multiplying:
   \[
-  R=\begin{pmatrix}
-  0\cdot 1+1\cdot 0 & 0\cdot 0+1\cdot (-1)\\
-  1\cdot 1+0\cdot 0 & 1\cdot 0+0\cdot (-1)
+  \mathbf{R}=\begin{pmatrix}
+  0\times 1+1\times 0 & 0\times 0+1\times (-1)\\
+  1\times 1+0\times 0 & 1\times 0+0\times (-1)
   \end{pmatrix}
   =\begin{pmatrix}0&-1\\1&0\end{pmatrix}
   \]
 
-  \item Apply $R$ to a general point:
+  \item Apply $\mathbf{R}$ to a general point:
   \[
   \begin{pmatrix}x'\\y'\end{pmatrix}
   =
@@ -89,9 +89,7 @@ Given that $U$ followed by $V$ is transformation $T$, which is represented by th
 
   So $(x,y)\mapsto (-y,x)$.
 
-  This is a rotation through $90^\circ$ anticlockwise about the origin.
-
-  Therefore $T$ is a rotation of $90^\circ$ anticlockwise about the origin.
+  Hence $T$ is a rotation through $90^\circ$ anticlockwise about the origin.
 \end{enumerate}
 \end{djsSolution}
 
@@ -104,28 +102,28 @@ Given that $U$ followed by $V$ is transformation $T$, which is represented by th
 
 A right-angled triangle $T$ has vertices $A(-2,1)$, $B(1,1)$ and $C(1,5)$. When $T$ is transformed by the matrix
 \[
-P = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}
+\mathbf{P} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}
 \]
 the image is $T'$. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Find the coordinates of the vertices of $T'$. \marks{2} \\
-  \item Describe fully the transformation represented by $P$. \marks{2} \\
+  \item Describe fully the transformation represented by $\mathbf{P}$. \marks{2} \\
 \end{enumerate}
 
 The matrices
 \[
-Q = \begin{pmatrix} 2 & -1 \\ 0 & 3 \end{pmatrix}
+\mathbf{Q} = \begin{pmatrix} 2 & -1 \\ 0 & 3 \end{pmatrix}
 \]
 and
 \[
-R = \begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix}
+\mathbf{R} = \begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix}
 \]
-represent two transformations. When $T$ is transformed by the matrix $QR$, the image is $T''$. \\
+represent two transformations. When $T$ is transformed by the matrix $\mathbf{QR}$, the image is $T''$. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Find $QR$. \marks{1} \\
-  \item Find the determinant of $QR$. \marks{2} \\
+  \item Find $\mathbf{QR}$. \marks{1} \\
+  \item Find the determinant of $\mathbf{QR}$. \marks{2} \\
   \item Using your answer to part (d), find the area of $T''$. \marks{3} \\
 \end{enumerate}
 
@@ -137,12 +135,12 @@ represent two transformations. When $T$ is transformed by the matrix $QR$, the i
 
   Applying
   \[
-  P=\begin{pmatrix}0&-1\\1&0\end{pmatrix}
+  \mathbf{P}=\begin{pmatrix}0&-1\\1&0\end{pmatrix}
   \]
 
   gives
   \[
-  P\begin{pmatrix}x\\y\end{pmatrix}
+  \mathbf{P}\begin{pmatrix}x\\y\end{pmatrix}
   =
   \begin{pmatrix}0&-1\\1&0\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}
   =
@@ -151,53 +149,53 @@ represent two transformations. When $T$ is transformed by the matrix $QR$, the i
 
   So each point \((x,y)\) maps to \((-y,x)\).
 
-  For \(A(-2,1)\),
+  For \(A(-2,1)\):
   \[
   A' = (-1,-2)
   \]
 
-  For \(B(1,1)\),
+  For \(B(1,1)\):
   \[
   B' = (-1,1)
   \]
 
-  For \(C(1,5)\),
+  For \(C(1,5)\):
   \[
   C' = (-5,1)
   \]
 
   Hence the vertices of \(T'\) are \(A'(-1,-2)\), \(B'(-1,1)\), \(C'(-5,1)\).
 
-  \item To identify the transformation, look at what \(P\) does to the unit basis vectors.
+  \item To identify the transformation, look at what \(\mathbf{P}\) does to the unit vectors:
   \[
-  P\begin{pmatrix}1\\0\end{pmatrix}
+  \mathbf{P}\begin{pmatrix}1\\0\end{pmatrix}
   =
   \begin{pmatrix}0\\1\end{pmatrix}
   \]
 
   so the positive \(x\)-axis maps to the positive \(y\)-axis.
 
-  Also,
+  Also
   \[
-  P\begin{pmatrix}0\\1\end{pmatrix}
+  \mathbf{P}\begin{pmatrix}0\\1\end{pmatrix}
   =
   \begin{pmatrix}-1\\0\end{pmatrix}
   \]
 
   so the positive \(y\)-axis maps to the negative \(x\)-axis.
 
-  This is a rotation of \(90^\circ\) anticlockwise about the origin.
+  This is a rotation through \(90^\circ\) anticlockwise about the origin.
 
   \item
   \[
-  QR=
+  \mathbf{QR}=
   \begin{pmatrix}2&-1\\0&3\end{pmatrix}
   \begin{pmatrix}1&2\\1&0\end{pmatrix}
   \]
 
   Multiplying row by column:
   \[
-  QR=
+  \mathbf{QR}=
   \begin{pmatrix}
   2(1)+(-1)(1) & 2(2)+(-1)(0)\\
   0(1)+3(1) & 0(2)+3(0)
@@ -211,12 +209,12 @@ represent two transformations. When $T$ is transformed by the matrix $QR$, the i
 
   \item Using
   \[
-  QR=\begin{pmatrix}1&4\\3&0\end{pmatrix}
+  \mathbf{QR}=\begin{pmatrix}1&4\\3&0\end{pmatrix}
   \]
 
   its determinant is
   \[
-  \det(QR)=1\cdot 0-4\cdot 3=-12
+  \det(\mathbf{QR})=1\times 0-4\times 3=-12
   \]
 
   \item The original triangle \(T\) is right-angled with side lengths
@@ -231,10 +229,10 @@ represent two transformations. When $T$ is transformed by the matrix $QR$, the i
 
   The magnitude of the determinant gives the area scale factor, so
   \[
-  \text{area scale factor}=|\det(QR)|=|-12|=12
+  \text{area scale factor}=|\det(\mathbf{QR})|=|-12|=12
   \]
 
-  Therefore,
+  Therefore
   \[
   \text{Area of }T''=12\times 6=72
   \]
@@ -273,7 +271,7 @@ represent two transformations. When $T$ is transformed by the matrix $QR$, the i
 \begin{enumerate}[label=\textbf{(\roman*)}]
   \item For a $2\times 2$ transformation matrix, the first column is the image of $\begin{pmatrix}1\\0\end{pmatrix}$ and the second column is the image of $\begin{pmatrix}0\\1\end{pmatrix}$.
   
-  \begin{enumerate}[label=\textbf{(\alph*)}]
+  \begin{enumerate}[label=(\alph*)]
     \item A reflection in the line $y=x$ swaps the coordinates, so
     \[
     \begin{pmatrix}1\\0\end{pmatrix}\mapsto \begin{pmatrix}0\\1\end{pmatrix},
@@ -289,19 +287,19 @@ represent two transformations. When $T$ is transformed by the matrix $QR$, the i
     \end{pmatrix}
     \]
 
-    \item A clockwise rotation through angle $\theta$ about the origin has matrix
+    \item A rotation through $60^\circ$ clockwise is an anticlockwise rotation through $-60^\circ$. The matrix for an anticlockwise rotation through angle $\theta$ about the origin is
     \[
     \begin{pmatrix}
-    \cos\theta & \sin\theta\\
-    -\sin\theta & \cos\theta
+    \cos\theta & -\sin\theta\\
+    \sin\theta & \cos\theta
     \end{pmatrix}
     \]
 
-    With $\theta=60^\circ$,
+    With $\theta=-60^\circ$:
     \[
-    \cos 60^\circ=\frac12,
+    \cos(-60^\circ)=\frac12,
     \qquad
-    \sin 60^\circ=\frac{\sqrt3}{2}
+    \sin(-60^\circ)=-\frac{\sqrt3}{2}
     \]
 
     So the matrix is
@@ -314,22 +312,22 @@ represent two transformations. When $T$ is transformed by the matrix $QR$, the i
 
     \item Let
     \[
-    R=
+    \mathbf{R}=
     \begin{pmatrix}
     \frac12 & \frac{\sqrt3}{2}\\
     -\frac{\sqrt3}{2} & \frac12
     \end{pmatrix},
     \qquad
-    F=
+    \mathbf{F}=
     \begin{pmatrix}
     0 & 1\\
     1 & 0
     \end{pmatrix}
     \]
 
-    Since the rotation is done first and the reflection second, the required matrix is $FR$.
+    Since the rotation is done first and the reflection second, the required matrix is $\mathbf{F}\mathbf{R}$:
     \begin{align*}
-    FR&=
+    \mathbf{F}\mathbf{R}&=
     \begin{pmatrix}
     0 & 1\\
     1 & 0
@@ -340,10 +338,10 @@ represent two transformations. When $T$ is transformed by the matrix $QR$, the i
     \end{pmatrix}\\
     &=
     \begin{pmatrix}
-    0\cdot \frac12+1\cdot\left(-\frac{\sqrt3}{2}\right) &
-    0\cdot \frac{\sqrt3}{2}+1\cdot \frac12\\[4pt]
-    1\cdot \frac12+0\cdot\left(-\frac{\sqrt3}{2}\right) &
-    1\cdot \frac{\sqrt3}{2}+0\cdot \frac12
+    0\times \frac12+1\times\left(-\frac{\sqrt3}{2}\right) &
+    0\times \frac{\sqrt3}{2}+1\times \frac12\\[4pt]
+    1\times \frac12+0\times\left(-\frac{\sqrt3}{2}\right) &
+    1\times \frac{\sqrt3}{2}+0\times \frac12
     \end{pmatrix}\\
     &=
     \begin{pmatrix}
@@ -355,19 +353,19 @@ represent two transformations. When $T$ is transformed by the matrix $QR$, the i
 
   \item Let
   \[
-  A=
+  \mathbf{A}=
   \begin{pmatrix}
   2 & 5\\
   1 & -1
   \end{pmatrix}
   \]
 
-  The determinant of $A$ is
+  The determinant of $\mathbf{A}$ is
   \[
-  \det(A)=2(-1)-5(1)=-7
+  \det(\mathbf{A})=2(-1)-5(1)=-7
   \]
 
-  A transformation by a matrix scales area by the factor $|\det(A)|$, so the area scale factor is
+  A transformation by a matrix scales area by the factor $|\det(\mathbf{A})|$, so the area scale factor is
   \[
   |-7|=7
   \]
@@ -390,7 +388,7 @@ represent two transformations. When $T$ is transformed by the matrix $QR$, the i
   \begin{pmatrix}k-1\\-3\end{pmatrix}
   \]
 
-  So
+  The matrix whose columns are these side vectors maps the unit square onto a parallelogram with these sides, and $T$ is half of that parallelogram, so
   \begin{align*}
   \text{Area of }T
   &=\frac12\left|\det
@@ -411,17 +409,11 @@ represent two transformations. When $T$ is transformed by the matrix $QR$, the i
   \]
 
   Therefore
-  \[
-  \frac32(k+3)=12
-  \]
-  \[
-  k+3=8
-  \]
-  \[
-  k=5
-  \]
-
-  Hence the value of $k$ is $5$.
+  \begin{align*}
+  \frac32(k+3)&=12\\
+  k+3&=8\\
+  k&=5
+  \end{align*}
 \end{enumerate}
 \end{djsSolution}
 
@@ -472,24 +464,24 @@ Given that $U$ followed by $V$ is the transformation $W$, which is represented b
 \begin{pmatrix}2\\3\end{pmatrix}
 \]
 
-So the area of $S$ is
+The matrix whose columns are these side vectors maps the unit square onto a parallelogram with these sides, so the area of $S$ is
 \[
 \left|\det\begin{pmatrix}3&2\\1&3\end{pmatrix}\right|
-=|3\cdot 3-2\cdot 1|
+=|3\times 3-2\times 1|
 =|9-2|
 =7
 \]
 
-A linear transformation represented by matrix $\mathbf P$ multiplies area by the factor $|\det \mathbf P|$.
+A linear transformation represented by matrix $\mathbf P$ multiplies area by the factor $|\det(\mathbf P)|$.
 
-Since the image of $S$ has area $35$,
+The image of $S$ has area $35$, which gives
 \[
-35=|\det \mathbf P|\times 7
+35=|\det(\mathbf P)|\times 7
 \]
 
 so
 \[
-|\det \mathbf P|=5
+|\det(\mathbf P)|=5
 \]
 
 Now
@@ -499,8 +491,8 @@ Now
 
 so
 \begin{align*}
-\det \mathbf P
-&=(p+1)(p+1)-2\cdot 2\\
+\det(\mathbf P)
+&=(p+1)(p+1)-2\times 2\\
 &=(p+1)^2-4\\
 &=p^2+2p+1-4\\
 &=p^2+2p-3
@@ -539,7 +531,7 @@ p^2+2p+2=0
 
 which has no real solutions.
 
-Since $p$ is positive,
+Since $p$ is positive, the value is
 \[
 p=2
 \]
@@ -554,7 +546,7 @@ A stretch of scale factor $2$ parallel to the $x$-axis, with the $y$-axis invari
 \begin{pmatrix}2&0\\0&1\end{pmatrix}
 \]
 
-Since the reflection is followed by the stretch,
+The reflection is followed by the stretch, so
 \[
 \mathbf Q=
 \begin{pmatrix}2&0\\0&1\end{pmatrix}
@@ -568,7 +560,7 @@ Since the reflection is followed by the stretch,
 \mathbf P=\begin{pmatrix}3&2\\2&3\end{pmatrix}
 \]
 
-Since $U$ followed by $V$ is represented by $\mathbf R$,
+The transformation $U$ followed by $V$ is represented by $\mathbf R$, so
 \[
 \mathbf R=\mathbf Q\mathbf P
 \]
@@ -581,8 +573,8 @@ Therefore
 \begin{pmatrix}3&2\\2&3\end{pmatrix}\\
 &=
 \begin{pmatrix}
-0\cdot 3+2\cdot 2 & 0\cdot 2+2\cdot 3\\
-1\cdot 3+0\cdot 2 & 1\cdot 2+0\cdot 3
+0\times 3+2\times 2 & 0\times 2+2\times 3\\
+1\times 3+0\times 2 & 1\times 2+0\times 3
 \end{pmatrix}\\
 &=
 \begin{pmatrix}4&6\\3&2\end{pmatrix}
@@ -599,30 +591,30 @@ Therefore
 
 Consider the matrix
 \[
-A=\begin{pmatrix}
+\mathbf{A}=\begin{pmatrix}
 -\frac{1}{2} & \frac{\sqrt{3}}{2}\\[6pt]
 \frac{\sqrt{3}}{2} & \frac{1}{2}
 \end{pmatrix}
 \] \\
 
 \begin{enumerate}[label=\textbf{(\roman*)}]
-  \item Calculate $A^2$. \marks{1} \\
+  \item Calculate $\mathbf{A}^2$. \marks{1} \\
 \end{enumerate}
 
-You are told that the matrix $A$ represents a reflection in a line through the origin. \\
+You are told that the matrix $\mathbf{A}$ represents a reflection in a line through the origin. \\
 
 \begin{enumerate}[label=\textbf{(\roman*)}, resume]
   \item Explain why your answer to part (i) is consistent with this information. \marks{1} \\
   \item By finding the invariant points of the transformation, determine the equation of the mirror line. \marks{2} \\
   \item Describe fully the transformation represented by
   \[
-  B=\begin{pmatrix}
+  \mathbf{B}=\begin{pmatrix}
   -\frac{1}{2} & -\frac{\sqrt{3}}{2}\\[6pt]
   \frac{\sqrt{3}}{2} & -\frac{1}{2}
   \end{pmatrix}
   \]
   \marks[-30pt]{2}
-  \item A composite transformation is formed by the transformation represented by $A$ followed by the transformation represented by $B$. Find the single matrix that represents this composite transformation. \marks{1} \\
+  \item A composite transformation is formed by the transformation represented by $\mathbf{A}$ followed by the transformation represented by $\mathbf{B}$. Find the single matrix that represents this composite transformation. \marks{1} \\
   \item The composite transformation described in part (v) is equivalent to a single reflection. Find the equation of the mirror line of this reflection. \marks{2} \\
 \end{enumerate}
 
@@ -632,7 +624,7 @@ You are told that the matrix $A$ represents a reflection in a line through the o
 \begin{enumerate}[label=\textbf{(\roman*)}]
 \item
 \[
-A^2
+\mathbf{A}^2
 =
 \begin{pmatrix}
 -\frac12 & \frac{\sqrt3}{2}\\[4pt]
@@ -644,10 +636,10 @@ A^2
 \end{pmatrix}
 \]
 
-Calculating each entry,
-\[
-A^2
-=
+Calculating each entry:
+\begin{align*}
+\mathbf{A}^2
+&=
 \begin{pmatrix}
 \left(-\frac12\right)\left(-\frac12\right)+\left(\frac{\sqrt3}{2}\right)\left(\frac{\sqrt3}{2}\right)
 &
@@ -656,10 +648,8 @@ A^2
 \left(\frac{\sqrt3}{2}\right)\left(-\frac12\right)+\left(\frac12\right)\left(\frac{\sqrt3}{2}\right)
 &
 \left(\frac{\sqrt3}{2}\right)\left(\frac{\sqrt3}{2}\right)+\left(\frac12\right)\left(\frac12\right)
-\end{pmatrix}
-\]
-\[
-=
+\end{pmatrix}\\
+&=
 \begin{pmatrix}
 \frac14+\frac34 & -\frac{\sqrt3}{4}+\frac{\sqrt3}{4}\\[4pt]
 -\frac{\sqrt3}{4}+\frac{\sqrt3}{4} & \frac34+\frac14
@@ -669,17 +659,17 @@ A^2
 1&0\\[2pt]
 0&1
 \end{pmatrix}
-\]
+\end{align*}
 
 \item
 A reflection done twice takes every point back to its original position, so its matrix squared should be the identity matrix.
 
-Since in part (i) we found \(A^2=I\), this is consistent with \(A\) representing a reflection.
+Since in part (i) we found \(\mathbf{A}^2=\mathbf{I}\), this is consistent with \(\mathbf{A}\) representing a reflection.
 
 \item
 Points on the mirror line are unchanged by the reflection, so invariant points satisfy
 \[
-A\begin{pmatrix}x\\y\end{pmatrix}
+\mathbf{A}\begin{pmatrix}x\\y\end{pmatrix}
 =
 \begin{pmatrix}x\\y\end{pmatrix}
 \]
@@ -713,7 +703,7 @@ So
 \sqrt3\,x-y&=0
 \end{align*}
 
-From either equation,
+From either equation:
 \[
 y=\sqrt3\,x
 \]
@@ -724,7 +714,7 @@ y=\sqrt3 x
 \]
 
 \item
-The standard matrix for a rotation through angle \(\theta\) about the origin is
+The matrix for an anticlockwise rotation through angle \(\theta\) about the origin is
 \[
 \begin{pmatrix}
 \cos\theta & -\sin\theta\\
@@ -734,7 +724,7 @@ The standard matrix for a rotation through angle \(\theta\) about the origin is
 
 Now
 \[
-B=
+\mathbf{B}=
 \begin{pmatrix}
 -\frac12 & -\frac{\sqrt3}{2}\\[4pt]
 \frac{\sqrt3}{2} & -\frac12
@@ -751,12 +741,12 @@ This gives
 \theta=120^\circ
 \]
 
-Therefore \(B\) represents a rotation of \(120^\circ\) anticlockwise about the origin.
+Therefore \(\mathbf{B}\) represents a rotation through \(120^\circ\) anticlockwise about the origin.
 
 \item
-If \(A\) is followed by \(B\), the composite matrix is \(BA\).
-\[
-BA=
+If \(\mathbf{A}\) is followed by \(\mathbf{B}\), the composite matrix is \(\mathbf{B}\mathbf{A}\):
+\begin{align*}
+\mathbf{B}\mathbf{A}&=
 \begin{pmatrix}
 -\frac12 & -\frac{\sqrt3}{2}\\[4pt]
 \frac{\sqrt3}{2} & -\frac12
@@ -764,10 +754,8 @@ BA=
 \begin{pmatrix}
 -\frac12 & \frac{\sqrt3}{2}\\[4pt]
 \frac{\sqrt3}{2} & \frac12
-\end{pmatrix}
-\]
-\[
-=
+\end{pmatrix}\\
+&=
 \begin{pmatrix}
 \left(-\frac12\right)\left(-\frac12\right)+\left(-\frac{\sqrt3}{2}\right)\left(\frac{\sqrt3}{2}\right)
 &
@@ -776,10 +764,8 @@ BA=
 \left(\frac{\sqrt3}{2}\right)\left(-\frac12\right)+\left(-\frac12\right)\left(\frac{\sqrt3}{2}\right)
 &
 \left(\frac{\sqrt3}{2}\right)\left(\frac{\sqrt3}{2}\right)+\left(-\frac12\right)\left(\frac12\right)
-\end{pmatrix}
-\]
-\[
-=
+\end{pmatrix}\\
+&=
 \begin{pmatrix}
 \frac14-\frac34 & -\frac{\sqrt3}{4}-\frac{\sqrt3}{4}\\[4pt]
 -\frac{\sqrt3}{4}-\frac{\sqrt3}{4} & \frac34-\frac14
@@ -789,12 +775,12 @@ BA=
 -\frac12 & -\frac{\sqrt3}{2}\\[4pt]
 -\frac{\sqrt3}{2} & \frac12
 \end{pmatrix}
-\]
+\end{align*}
 
 \item
 Let
 \[
-M=
+\mathbf{M}=
 \begin{pmatrix}
 -\frac12 & -\frac{\sqrt3}{2}\\[4pt]
 -\frac{\sqrt3}{2} & \frac12
@@ -803,7 +789,7 @@ M=
 
 The mirror line consists of invariant points, so solve
 \[
-M\begin{pmatrix}x\\y\end{pmatrix}
+\mathbf{M}\begin{pmatrix}x\\y\end{pmatrix}
 =
 \begin{pmatrix}x\\y\end{pmatrix}
 \]
@@ -814,7 +800,7 @@ This gives
 -\frac{\sqrt3}{2}x+\frac12y&=y
 \end{align*}
 
-Multiplying by \(2\),
+Multiplying by \(2\):
 \begin{align*}
 -x-\sqrt3\,y&=2x\\
 -\sqrt3\,x+y&=2y
@@ -914,7 +900,7 @@ The unit square in the $x$-$y$ plane is transformed by $\mathbf{M}$ onto rectang
 
   which swaps the coordinates, so this is a reflection in the line $y=x$.
 
-  Therefore the transformations are: first a stretch in the $y$-direction by scale factor $k$, then a reflection in the line $y=x$.
+  Therefore the transformations are: first a stretch parallel to the $y$-axis with scale factor $k$, then a reflection in the line $y=x$.
 
   \item First find $\mathbf{M}$:
   \[
@@ -935,9 +921,9 @@ The unit square in the $x$-$y$ plane is transformed by $\mathbf{M}$ onto rectang
   \end{pmatrix}
   \]
 
-  The area scale factor of a transformation is $|\det \mathbf{M}|$, so
+  The area scale factor of a transformation is $|\det(\mathbf{M})|$, so
   \[
-  \det \mathbf{M}
+  \det(\mathbf{M})
   =
   \begin{vmatrix}
   0 & k\\
@@ -948,7 +934,7 @@ The unit square in the $x$-$y$ plane is transformed by $\mathbf{M}$ onto rectang
 
   Hence the area scale factor is
   \[
-  |\det \mathbf{M}|=k
+  |\det(\mathbf{M})|=k
   \]
 
   Since the unit square has area $1$, the area of rectangle $OABC$ is
@@ -968,7 +954,7 @@ The unit square in the $x$-$y$ plane is transformed by $\mathbf{M}$ onto rectang
   \[
   \mathbf{M}^{-1}
   =
-  \frac{1}{-k}
+  -\frac{1}{k}
   \begin{pmatrix}
   0 & -k\\
   -1 & 0
@@ -1081,9 +1067,8 @@ Identify and correct the error in Bilal's work. \marks{2}
 \vspace*{10pt}
 
 \begin{djsSolution}
-The standard matrix for a rotation about the $y$-axis is
+The matrix for a rotation through angle $\theta$ about the $y$-axis, anticlockwise when viewed from the positive $y$-axis towards the origin, is
 \[
-R_y(\theta)=
 \begin{pmatrix}
 \cos\theta & 0 & \sin\theta\\
 0 & 1 & 0\\
@@ -1112,7 +1097,7 @@ So the angle is not $30^\circ$, but
 
 equivalently $330^\circ$.
 
-Bilal's error is that he ignored the negative sign on the sine term. The transformation is a rotation about the $y$-axis through $30^\circ$ clockwise when viewed from the positive $y$-axis.
+Bilal's error is that he ignored the negative sign on the sine term. The transformation is a rotation through $30^\circ$ about the $y$-axis, clockwise when viewed from the positive $y$-axis towards the origin.
 \end{djsSolution}
 
 
@@ -1233,7 +1218,7 @@ Since \(\mathbf{A}^3=\mathbf{I}\), three applications give a full turn, so the a
 
 For the sense, \(\mathbf{A}\) sends \(\mathbf{i}\mapsto\mathbf{k}\), \(\mathbf{k}\mapsto\mathbf{j}\) and \(\mathbf{j}\mapsto\mathbf{i}\). Viewed from \((1,1,1)\) towards the origin, the positive \(x\)-, \(y\)- and \(z\)-axes appear in anticlockwise order, so \(x\to z\to y\) is clockwise.
 
-Therefore \(\mathbf{A}\) represents a rotation of \(120^\circ\) clockwise about the line \(x=y=z\), viewed from \((1,1,1)\) towards the origin.
+Therefore \(\mathbf{A}\) represents a rotation through \(120^\circ\) about the line \(x=y=z\), clockwise when viewed from \((1,1,1)\) towards the origin.
 
   \item A reflection in the plane \(x=y\) swaps the \(x\)- and \(y\)-coordinates and leaves \(z\) unchanged.
 
@@ -1249,7 +1234,7 @@ Therefore
 
   \item Apply \(\mathbf{B}\) to \(Q=(4,-1,2)\):
 \[
-\mathbf{Q}'
+\overrightarrow{OQ'}
 =
 \mathbf{B}
 \begin{pmatrix}
@@ -1327,28 +1312,28 @@ Given that $O$ is the origin \\
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-\item Comparing \(\mathbf M\) with the standard rotation matrix about the \(y\)-axis,
+\item The matrix for a rotation through \(\alpha^\circ\) about the \(y\)-axis, anticlockwise when viewed from the positive \(y\)-axis towards the origin, is
 \[
 \begin{pmatrix}
-\cos\alpha & 0 & \sin\alpha\\
+\cos\alpha^\circ & 0 & \sin\alpha^\circ\\
 0&1&0\\
--\sin\alpha&0&\cos\alpha
+-\sin\alpha^\circ&0&\cos\alpha^\circ
 \end{pmatrix}
 \]
 
-gives
+Comparing this with \(\mathbf M\) gives
 \[
-\cos\alpha=-\frac{\sqrt2}{2},
+\cos\alpha^\circ=-\frac{\sqrt2}{2},
 \qquad
-\sin\alpha=-\frac{\sqrt2}{2}
+\sin\alpha^\circ=-\frac{\sqrt2}{2}
 \]
 
-So \(\alpha\) is in the third quadrant, hence
+So \(\alpha^\circ\) is in the third quadrant, hence
 \[
-\alpha=225^\circ
+\alpha=225
 \]
 
-\item \(\mathbf M\) represents a rotation of \(225^\circ\), so \(\mathbf M^k\) represents a rotation of \(225k^\circ\).
+\item \(\mathbf M\) represents a rotation through \(225^\circ\), so \(\mathbf M^k\) represents a rotation through \(225k^\circ\).
 
 For \(\mathbf M^k=\mathbf I\), the total rotation must be a multiple of \(360^\circ\), so
 \[
@@ -1357,14 +1342,12 @@ For \(\mathbf M^k=\mathbf I\), the total rotation must be a multiple of \(360^\c
 
 for some positive integer \(n\).
 
-Dividing by \(45\),
+Dividing by \(45\):
 \[
 5k=8n
 \]
 
 The smallest positive integer \(k\) satisfying this is \(k=8\) (with \(n=5\)).
-
-So the smallest possible value of \(k\) is \(8\).
 
 \item Reflection in the plane \(x=0\) changes \((x,y,z)\) to \((-x,y,z)\), so
 \[
@@ -1454,14 +1437,14 @@ Hence the coordinates of \(B\) are
 \overrightarrow{OB}=\begin{pmatrix}2\sqrt2\\2\\-\sqrt2\end{pmatrix}
 \]
 
-Using the scalar product,
+Using the scalar product:
 \[
 \overrightarrow{OA}\cdot\overrightarrow{OB}
 =1(2\sqrt2)+2(2)+3(-\sqrt2)
 =4-\sqrt2
 \]
 
-Also,
+Also
 \[
 |\overrightarrow{OA}|=\sqrt{1^2+2^2+3^2}=\sqrt{14}
 \]
@@ -1483,12 +1466,12 @@ So if \(\theta=\angle AOB\), then
 
 Therefore
 \[
-\theta=\cos^{-1}\left(\frac{4-\sqrt2}{14}\right)\approx 79.4^\circ
+\theta=\cos^{-1}\left(\frac{4-\sqrt2}{14}\right)\approx 79.4^\circ\qquad\text{(3 s.f.)}
 \]
 
-So the size of angle \(AOB\) is \(79.4^\circ\) to \(3\) significant figures.
+So the size of angle \(AOB\) is \(79.4^\circ\), as required.
 
-\item Using the area formula for a triangle,
+\item Using the area formula for a triangle:
 \[
 \text{Area of } \triangle AOB
 =\frac12 |\overrightarrow{OA}|\,|\overrightarrow{OB}|\,\sin\angle AOB
@@ -1515,10 +1498,8 @@ Hence
 \begin{align*}
 \text{Area}
 &=7\sqrt{1-\left(\frac{4-\sqrt2}{14}\right)^2} \\
-&\approx 6.88
+&\approx 6.88\qquad\text{(3 s.f.)}
 \end{align*}
-
-So the area of triangle \(AOB\) is \(6.88\) square units to \(3\) significant figures.
 \end{enumerate}
 \end{djsSolution}
 
@@ -1560,7 +1541,7 @@ and $\mathbf{R}$ is non-singular, we can multiply on the left by $\mathbf{R}^{-1
 \mathbf{A}=\mathbf{R}^{-1}\mathbf{B}
 \]
 
-For a rotation about the $x$-axis through angle $\theta$,
+The matrix for a rotation through angle $\theta$ about the $x$-axis, anticlockwise when viewed from the positive $x$-axis towards the origin, is
 \[
 \mathbf{R}=
 \begin{pmatrix}
@@ -1610,16 +1591,6 @@ Now calculate $\mathbf{A}$:
 
 This matrix contains no $\theta$, so $\mathbf{A}$ is independent of the value of $\theta$.
 
-Hence
-\[
-\mathbf{A}=
-\begin{pmatrix}
-1&0&0\\
-0&0&1\\
-0&1&0
-\end{pmatrix}
-\]
-
   \item The matrix $\mathbf{A}$ maps
 \[
 \begin{pmatrix}x\\y\\z\end{pmatrix}
@@ -1641,15 +1612,15 @@ Therefore, $\mathbf{A}$ represents a reflection in the plane $y=z$.
 % [Source: _QBT___Solns__Linear_Transformations, Q11]
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Specify fully the transformation $\mathbf{T}$ of the plane associated with the matrix $\mathbf{M}$, where
+  \item Specify fully the transformation $T$ of the plane associated with the matrix $\mathbf{M}$, where
   \[
   \mathbf{M} = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}
   \]
   and $0<\theta<2\pi$. \marks{2} \\
   \item
   \begin{enumerate}[label=(\roman*)]
-    \item Find $\det \mathbf{M}$. \marks{1}
-    \item Deduce \textbf{two properties} of the transformation $\mathbf{T}$ from the value of $\det \mathbf{M}$. \marks{2} \\
+    \item Find $\det(\mathbf{M})$. \marks{1}
+    \item Deduce \textbf{two properties} of the transformation $T$ from the value of $\det(\mathbf{M})$. \marks{2} \\
   \end{enumerate}
   \item Prove that
   \[
@@ -1657,7 +1628,7 @@ Therefore, $\mathbf{A}$ represents a reflection in the plane $y=z$.
   \]
   where $n$ is a positive integer. \marks{6} \\
   
-  \item Hence specify fully a \textbf{single} transformation which is equivalent to $n$ applications of the transformation $\mathbf{T}$. \marks{1} \\
+  \item Hence specify fully a \textbf{single} transformation which is equivalent to $n$ applications of the transformation $T$. \marks{1} \\
 \end{enumerate}
 
 \vspace*{10pt}
@@ -1675,32 +1646,30 @@ Therefore, $\mathbf{A}$ represents a reflection in the plane $y=z$.
   \begin{pmatrix}x\\y\end{pmatrix}
   \]
 
-  This is the standard matrix for a rotation in the plane.
+  This is the matrix for an anticlockwise rotation through angle $\theta$ about the origin.
 
-  So $\mathbf{T}$ is a rotation through angle $\theta$ anticlockwise about the origin.
+  So $T$ is a rotation through angle $\theta$ anticlockwise about the origin.
 
   \item
   \begin{enumerate}[label=(\roman*)]
     \item
-    \[
-    \det \mathbf{M}
-    =
+    \begin{align*}
+    \det(\mathbf{M})
+    &=
     \begin{vmatrix}
     \cos\theta & -\sin\theta\\
     \sin\theta & \cos\theta
     \end{vmatrix}
     =
-    \cos\theta\cos\theta-(-\sin\theta)(\sin\theta)
-    \]
-    \[
-    =\cos^2\theta+\sin^2\theta=1
-    \]
+    \cos\theta\cos\theta-(-\sin\theta)(\sin\theta)\\
+    &=\cos^2\theta+\sin^2\theta=1
+    \end{align*}
 
-    \item Since $|\det \mathbf{M}|=1$, the area scale factor is $1$.
+    \item Since $|\det(\mathbf{M})|=1$, the area scale factor is $1$.
 
     So areas are preserved.
 
-    Also, $\det \mathbf{M}>0$, so orientation is preserved.
+    Also, $\det(\mathbf{M})>0$, so orientation is preserved.
 
     Therefore there is no reflection.
 
@@ -1709,7 +1678,7 @@ Therefore, $\mathbf{A}$ represents a reflection in the plane $y=z$.
 
   \item We prove the result by induction on $n$.
 
-  First, when $n=1$,
+  First, when $n=1$:
   \[
   \mathbf{M}^1=\mathbf{M}=
   \begin{pmatrix}
@@ -1725,7 +1694,7 @@ Therefore, $\mathbf{A}$ represents a reflection in the plane $y=z$.
 
   So the statement is true for $n=1$.
 
-  Now assume that for some positive integer $k$,
+  Assume the statement is true for $n=k$:
   \[
   \mathbf{M}^k=
   \begin{pmatrix}
@@ -1739,7 +1708,7 @@ Therefore, $\mathbf{A}$ represents a reflection in the plane $y=z$.
   \mathbf{M}^{k+1}=\mathbf{M}^k\mathbf{M}
   \]
 
-  Substituting the induction hypothesis,
+  Substituting the induction hypothesis:
   \[
   \mathbf{M}^{k+1}
   =
@@ -1753,7 +1722,7 @@ Therefore, $\mathbf{A}$ represents a reflection in the plane $y=z$.
   \end{pmatrix}
   \]
 
-  Multiplying the matrices,
+  Multiplying the matrices:
   \[
   \mathbf{M}^{k+1}
   =
@@ -1768,7 +1737,7 @@ Therefore, $\mathbf{A}$ represents a reflection in the plane $y=z$.
   \end{pmatrix}
   \]
 
-  Using the angle addition formulae,
+  The angle addition formulae are
   \[
   \cos(A+B)=\cos A\cos B-\sin A\sin B
   \]
@@ -1776,7 +1745,7 @@ Therefore, $\mathbf{A}$ represents a reflection in the plane $y=z$.
   \sin(A+B)=\sin A\cos B+\cos A\sin B
   \]
 
-  we get
+  so
   \[
   \mathbf{M}^{k+1}
   =
@@ -1799,7 +1768,7 @@ Therefore, $\mathbf{A}$ represents a reflection in the plane $y=z$.
 
   for all positive integers $n$.
 
-  \item From part (c), $n$ applications of $\mathbf{T}$ have matrix
+  \item From part (c), $n$ applications of $T$ have matrix
   \[
   \mathbf{M}^n=
   \begin{pmatrix}
@@ -1809,8 +1778,6 @@ Therefore, $\mathbf{A}$ represents a reflection in the plane $y=z$.
   \]
 
   This is the matrix of a rotation through angle $n\theta$ anticlockwise about the origin.
-
-  So the single equivalent transformation is a rotation about the origin through angle $n\theta$ anticlockwise.
 \end{enumerate}
 \end{djsSolution}
 
