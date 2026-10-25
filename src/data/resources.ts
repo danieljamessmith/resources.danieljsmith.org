@@ -448,6 +448,16 @@ const rawResources: Resource[] = [
     topic: 'Vectors',
   },
   {
+    id: 'fm-vectors-invariant-points-and-lines-ms',
+    title: 'Invariant Points and Lines',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/vectors/ms/_QBT___MS__Invariant_Points_and_Lines.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-vectors-invariant-points-and-lines',
+    topic: 'Vectors',
+  },
+  {
     id: 'fm-vectors-vector-product',
     title: 'Vector Product',
     description: '',
