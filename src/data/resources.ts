@@ -982,6 +982,16 @@ const rawResources: Resource[] = [
     topic: 'Proof by Induction',
   },
   {
+    id: 'fm-induction-matrices-ms',
+    title: 'Proof by Induction - Matrices',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/induction/ms/_QBT___MS__Proof_by_Induction___Matrices.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-induction-matrices',
+    topic: 'Proof by Induction',
+  },
+  {
     id: 'fm-induction-divisibility',
     title: 'Proof by Induction - Divisibility',
     description: '',

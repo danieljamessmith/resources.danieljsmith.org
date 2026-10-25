@@ -1,0 +1,335 @@
+format: 1
+pack: Proof by Induction - Matrices
+last_updated: 25 October 2026
+questions:
+  - q: 1
+    stamp: 115296da
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(n=1\): \(\begin{pmatrix}2^1 & 3^1-2^1\\0 & 3^1\end{pmatrix} = \begin{pmatrix}2 & 1\\0 & 3\end{pmatrix}\)
+            marks:
+              - code: B1
+                note: Needs the formula evaluated at \(n=1\) and shown equal to the given matrix; 'true for \(n=1\)' alone is not enough.
+          - scheme: |
+              Assume true for \(n=k\):
+              \(\begin{pmatrix}2 & 1\\0 & 3\end{pmatrix}^{k+1}\)
+              \(\phantom{A} = \begin{pmatrix}2^k & 3^k-2^k\\0 & 3^k\end{pmatrix}\begin{pmatrix}2 & 1\\0 & 3\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: States the assumption for \(n=k\) and writes the \((k+1)\)th power as the assumed \(k\)th-power matrix times the given matrix, in either order.
+          - scheme: |
+              \(\phantom{A} = \begin{pmatrix}2^{k+1} & 2^k+3(3^k-2^k)\\0 & 3^{k+1}\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Multiplies their matrices in either order, forming the top-right entry row by column. Condone slips.
+              - code: A1
+                note: Correct product in either order; entries need not be simplified.
+          - scheme: |
+              \(2^k+3^{k+1}-3\times2^k = 3^{k+1}-2^{k+1}\)
+            marks:
+              - code: A1
+                note: Top-right entry correctly simplified to \(3^{k+1}-2^{k+1}\), other entries \(2^{k+1}\), \(0\), \(3^{k+1}\). Not for the result asserted directly from the product.
+          - scheme: |
+              True for \(n=1\); true for \(n=k\)
+              \(\Rightarrow\) true for \(n=k+1\); so true for all \(n\in\mathbb{Z}^+\)
+            marks:
+              - code: E1
+                note: 'Concludes with all three points: true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), hence true for all positive integers.'
+  - q: 2
+    stamp: bc9fe1fb
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(n=1\): LHS \(= \begin{pmatrix}3 & -1\\ 1 & 1\end{pmatrix}\)
+              RHS \(= 2^{0}\begin{pmatrix}3 & -1\\ 1 & 1\end{pmatrix} = \begin{pmatrix}3 & -1\\ 1 & 1\end{pmatrix}\)
+            marks:
+              - code: B1
+                note: Both sides evaluated at \(n=1\) and shown equal; a bare statement that it is true scores B0.
+          - scheme: |
+              Assumes \(\mathbf{A}^k = 2^{k-1}\begin{pmatrix}k+2 & -k\\ k & 2-k\end{pmatrix}\)
+              \(\mathbf{A}^{k+1} = 2^{k-1}\begin{pmatrix}k+2 & -k\\ k & 2-k\end{pmatrix}\begin{pmatrix}3 & -1\\ 1 & 1\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Assumes the result for \(n=k\) and writes \(\mathbf{A}^{k+1}\) as their \(\mathbf{A}^k\) times \(\mathbf{A}\), in either order.
+          - scheme: |
+              \(\phantom{\mathbf{A}^{k+1}} = 2^{k-1}\begin{pmatrix}3(k+2)-k & -(k+2)-k\\ 3k+2-k & -k+2-k\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Multiplies the matrices in the order set up, attempting all four elements. Condone one slip.
+              - code: A1
+                note: Correct product for their order, need not be simplified.
+          - scheme: |
+              \(\phantom{\mathbf{A}^{k+1}} = 2^{k}\begin{pmatrix}k+3 & -(k+1)\\ k+1 & 2-(k+1)\end{pmatrix}\)
+            marks:
+              - code: A1
+                note: cso. Takes out the factor 2 to reach the result with \(n=k+1\), shown in that form or stated as the \(n=k+1\) result.
+          - scheme: |
+              True for \(n=1\); true for \(n=k\) \(\Rightarrow\) true for \(n=k+1\)
+              \(\Rightarrow\) true for all \(n \in \mathbb{N}\)
+            marks:
+              - code: E1
+                note: States true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), and hence true for all \(n \in \mathbb{N}\).
+  - q: 3
+    stamp: 95604d18
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(n=1\): \(2^1\begin{pmatrix}2&1\\-1&0\end{pmatrix}=\begin{pmatrix}4&2\\-2&0\end{pmatrix}=\mathbf{A}\)
+            marks:
+              - code: B1
+                note: Formula evaluated at \(n=1\) and shown equal to \(\mathbf{A}\); a bare statement that it is true for \(n=1\) scores nothing.
+          - scheme: |
+              Assume \(\mathbf{A}^k=2^k\begin{pmatrix}k+1&k\\-k&1-k\end{pmatrix}\)
+              \(\mathbf{A}^{k+1}=2^k\begin{pmatrix}k+1&k\\-k&1-k\end{pmatrix}\begin{pmatrix}4&2\\-2&0\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: States the assumption for \(n=k\) and writes \(\mathbf{A}^{k+1}\) as \(\mathbf{A}^k\mathbf{A}\) or \(\mathbf{A}\mathbf{A}^k\) with the assumed form substituted.
+          - scheme: |
+              \(\phantom{\mathbf{A}^{k+1}}=2^k\begin{pmatrix}4(k+1)-2k&2(k+1)\\-4k-2(1-k)&-2k\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Multiplies row by column for all four elements, in either order. Condone arithmetic slips.
+              - code: A1
+                note: Correct product in either order; need not be simplified.
+          - scheme: |
+              \(\phantom{\mathbf{A}^{k+1}}=2^{k+1}\begin{pmatrix}k+2&k+1\\-(k+1)&1-(k+1)\end{pmatrix}\)
+            marks:
+              - code: A1
+                note: Factor \(2^{k+1}\) with every element shown equal to the formula's with \(n=k+1\), by rewriting or by comparison with a stated target.
+          - scheme: |
+              True for \(n=1\); true for \(n=k\) \(\Rightarrow\) true for \(n=k+1\)
+              \(\Rightarrow\) true for all positive integers \(n\)
+            marks:
+              - code: E1
+                note: States true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), hence true for all positive integers \(n\).
+      - part: b
+        rows:
+          - scheme: |
+              \(\mathbf{A}^n=2^n\mathbf{M}\), \(\mathbf{M}=\begin{pmatrix}n+1&n\\-n&1-n\end{pmatrix}\)
+              \(\det\mathbf{M}=(n+1)(1-n)+n^2=1\)
+              \(\mathbf{B}=2^{-n}\mathbf{M}^{-1}\)
+            marks:
+              - code: M1
+                note: 'Takes out \(2^n\), or works with \(\mathbf{A}^n\): swaps the leading diagonal, negates the other two elements and divides by their determinant. Condone determinant slips.'
+          - scheme: |
+              \(\mathbf{B}=\frac{1}{2^n}\begin{pmatrix}1-n&-n\\n&n+1\end{pmatrix}\)
+            marks:
+              - code: A1
+                note: oe, such as \(2^{-n}\) or the factor multiplied into each element.
+  - q: 4
+    stamp: 7f22e2b5
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(n = 1\): \(2^1 = 2\), \(1\times 2^0 = 1\), \(\frac{1(0)}{2}2^{-1} = 0\)
+              \(\Rightarrow\) RHS \(= \mathbf{A}\)
+            marks:
+              - code: B1
+                note: RHS at \(n = 1\) evaluated and shown equal to \(\mathbf{A}\); not for stating "true for \(n=1\)" alone.
+          - scheme: |
+              Assume true for \(n = k\): \(\mathbf{A}^k = \) the given matrix with \(n = k\)
+              \(\mathbf{A}^{k+1} = \mathbf{A}^k\mathbf{A}\)
+            marks:
+              - code: M1
+                note: States the assumption for \(n = k\) and writes \(\mathbf{A}^{k+1}\) as \(\mathbf{A}^k\mathbf{A}\) or \(\mathbf{A}\mathbf{A}^k\) with the assumed matrix.
+          - scheme: |
+              Diagonal: \(2^k\times 2 = 2^{k+1}\)
+              Below diagonal: \(k2^{k-1}\times 2 + 2^k\times 1\)
+              Bottom left: \(\frac{k(k-1)}{2}2^{k-2}\times 2 + k2^{k-1}\times 1\)
+            marks:
+              - code: M1
+                note: Multiplies the two matrices, attempting at least the entries below the diagonal. Condone slips.
+              - code: A1
+                note: All nine entries correct, unsimplified.
+          - scheme: |
+              \(k2^k + 2^k = (k+1)2^k\)
+              \(\left(\frac{k(k-1)}{2}+k\right)2^{k-1} = \frac{k(k+1)}{2}2^{k-1}\)
+              \(\phantom{\left(\frac{k(k-1)}{2}+k\right)2^{k-1}} = \frac{(k+1)k}{2}2^{(k+1)-2}\)
+            marks:
+              - code: A1
+                note: cso. Every entry in the \(n=k+1\) form, the bottom-left reaching \(\frac{k(k+1)}{2}2^{k-1}\) oe by correct algebra.
+          - scheme: |
+              True for \(n=1\); true for \(n=k\) \(\Rightarrow\) true for \(n=k+1\)
+              \(\Rightarrow\) true for all \(n \geq 1\)
+            marks:
+              - code: E1
+                note: 'Concludes with all three: true for \(n=1\); true for \(n=k\) implies true for \(n=k+1\); hence true for all integers \(n \geq 1\).'
+  - q: 5
+    stamp: '70831583'
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(n=1\): \(\begin{pmatrix}(3c)^1 & 1(3c)^0\\0&(3c)^1\end{pmatrix} = \begin{pmatrix}3c&1\\0&3c\end{pmatrix} = \mathbf{M}\)
+            marks:
+              - code: B1
+                note: Needs the RHS with \(n=1\) substituted shown equal to \(\mathbf{M}\).
+          - scheme: |
+              Assume \(\mathbf{M}^k=\begin{pmatrix}(3c)^k & k(3c)^{k-1}\\0&(3c)^k\end{pmatrix}\)
+              \(\mathbf{M}^{k+1}=\mathbf{M}^k\mathbf{M}\)
+            marks:
+              - code: M1
+                note: States the assumption for \(n=k\) and writes \(\mathbf{M}^{k+1}\) as \(\mathbf{M}^k\mathbf{M}\) or \(\mathbf{M}\mathbf{M}^k\).
+          - scheme: |
+              \(\begin{pmatrix}(3c)^k & k(3c)^{k-1}\\0&(3c)^k\end{pmatrix}\begin{pmatrix}3c&1\\0&3c\end{pmatrix}\)
+              \(\phantom{A}=\begin{pmatrix}(3c)^{k+1} & (3c)^k+3ck(3c)^{k-1}\\0&(3c)^{k+1}\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Multiplies the assumed \(\mathbf{M}^k\) and \(\mathbf{M}\), in either order, by rows and columns. Condone slips in entries.
+              - code: A1
+                note: Correct product, any unsimplified form.
+          - scheme: |
+              \(\phantom{A}=\begin{pmatrix}(3c)^{k+1} & (k+1)(3c)^k\\0&(3c)^{k+1}\end{pmatrix}\)
+            marks:
+              - code: A1
+                note: Top-right entry reaches \((k+1)(3c)^k\), oe such as \((k+1)(3c)^{(k+1)-1}\), without error.
+          - scheme: |
+              True for \(n=1\); true for \(n=k\) \(\Rightarrow\) true for \(n=k+1\);
+              so true for all positive integers \(n\)
+            marks:
+              - code: E1
+                note: States the base case, the implication from \(n=k\) to \(n=k+1\), and truth for all positive integers \(n\).
+      - part: b
+        rows:
+          - scheme: |
+              \(\det(\mathbf{M}^n)=(3c)^n(3c)^n-n(3c)^{n-1}\times 0\)
+            marks:
+              - code: M1
+                note: Uses \(ad-bc\) on the matrix from (a), or \((\det\mathbf{M})^n\).
+          - scheme: |
+              \(\phantom{\det(\mathbf{M}^n)}=(3c)^{2n}\)
+            marks:
+              - code: A1
+                note: oe, such as \((9c^2)^n\) or \(9^nc^{2n}\).
+          - scheme: |
+              \((9c^2)^n=144^n \Rightarrow 9c^2=144\)
+            marks:
+              - code: M1
+                note: Equates their determinant, of the form \((kc^2)^n\) or \((kc)^{2n}\), to \(144^n\) and removes the power \(n\) by roots, bases or logs.
+              - code: A1
+                note: oe, such as \(3c=12\) or \(c^2=16\).
+          - scheme: |
+              \(c=4\)
+            marks:
+              - code: A1
+                note: A0 if \(c=-4\) is also given as an answer.
+  - q: 6
+    stamp: 41ce7e39
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(n=1\): \((-1)^1 = -1\), \(-1(-1)^1 = 1\), \(\frac{1(0)}{2}(-1)^1 = 0\)
+              RHS = given matrix, so true for \(n=1\)
+            marks:
+              - code: B1
+                note: Evaluates the RHS at \(n=1\) and states it equals the given matrix. Writing the given matrix alone is not enough.
+          - scheme: |
+              Assumes true for \(n=k\); writes the \((k+1)\)th power
+              as the \(k\)th-power matrix times the given matrix
+            marks:
+              - code: M1
+                note: States the assumption for \(n=k\) and forms the product of the assumed matrix and the given matrix, in either order.
+          - scheme: |
+              Leading diagonal: \(-(-1)^k\)
+              Above diagonal: \((-1)^k + k(-1)^k\)
+              Top right: \(-k(-1)^k - \frac{k(k-1)}{2}(-1)^k\)
+            marks:
+              - code: M1
+                note: Multiplies their assumed matrix by the given matrix, finding all entries or the three distinct non-zero types. Condone sign slips.
+              - code: A1
+                note: All entries correct, need not be simplified.
+          - scheme: |
+              \((-1)^{k+1}\), \(\;-(k+1)(-1)^{k+1}\)
+              \(\frac{(k+1)k}{2}(-1)^{k+1}\), zeros below the diagonal
+            marks:
+              - code: A1
+                note: cso. All entries shown in the given form with \(n=k+1\); top right as \(\frac{(k+1)k}{2}(-1)^{k+1}\) oe.
+          - scheme: |
+              True for \(n=1\); true for \(n=k\) \(\Rightarrow\) true for \(n=k+1\)
+              \(\Rightarrow\) true for all \(n \in \mathbb{Z}^+\)
+            marks:
+              - code: E1
+                note: 'Concludes with all three points: true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), so true for all positive integers \(n\).'
+  - q: 7
+    stamp: b8928d49
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(F_2 = F_1 + F_0 = 1\)
+              \(\Rightarrow \mathbf{M}^1 = \begin{pmatrix}1&1\\1&0\end{pmatrix} = \begin{pmatrix}F_2&F_1\\F_1&F_0\end{pmatrix}\)
+            marks:
+              - code: B1
+                note: Needs \(F_2 = 1\) from the recurrence and \(\mathbf{M}\) matched entry by entry with \(F_2, F_1, F_0\).
+          - scheme: |
+              Assume \(\mathbf{M}^k = \begin{pmatrix}F_{k+1}&F_k\\F_k&F_{k-1}\end{pmatrix}\)
+              \(\mathbf{M}^{k+1} = \mathbf{M}^k\mathbf{M}\)
+              \(\phantom{\mathbf{M}^{k+1}} = \begin{pmatrix}F_{k+1}&F_k\\F_k&F_{k-1}\end{pmatrix}\begin{pmatrix}1&1\\1&0\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: States the result for \(n=k\) and writes \(\mathbf{M}^{k+1}\) as \(\mathbf{M}^k\mathbf{M}\) or \(\mathbf{M}\mathbf{M}^k\) with the assumed form substituted.
+          - scheme: |
+              \(\phantom{\mathbf{M}^{k+1}} = \begin{pmatrix}F_{k+1}+F_k & F_{k+1}\\F_k+F_{k-1} & F_k\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Multiplies the two matrices row by column to four entries in terms of \(F\); condone one slip.
+              - code: A1
+                note: Correct product, simplified or not, from either order of multiplication.
+          - scheme: |
+              \(F_{k+1}+F_k = F_{k+2}\), \(F_k+F_{k-1} = F_{k+1}\)
+              \(\Rightarrow \mathbf{M}^{k+1} = \begin{pmatrix}F_{k+2}&F_{k+1}\\F_{k+1}&F_k\end{pmatrix}\)
+            marks:
+              - code: A1
+                note: cso. Uses the recurrence on both sums to reach the \(n=k+1\) form.
+          - scheme: |
+              True for \(n=1\); true for \(n=k\)
+              \(\Rightarrow\) true for \(n=k+1\);
+              so true for all integers \(n \geq 1\)
+            marks:
+              - code: E1
+                note: States true for \(n=1\), that true for \(n=k\) implies true for \(n=k+1\), and hence true for all integers \(n \geq 1\).
+  - q: 8
+    stamp: dd6a9a26
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(n=1\): \(2^1-1=1\), \(1+(1-2)2^0=0\),
+              \(1\times 2^0=1\), \(2^1=2\) \(\Rightarrow\) formula gives \(\mathbf{A}\)
+            marks:
+              - code: B1
+                note: Formula evaluated at \(n=1\) and shown equal to \(\mathbf{A}\). Not for "true for \(n=1\)" alone.
+          - scheme: |
+              Assumes the formula true for \(n=k\)
+              \(\mathbf{A}^{k+1}=\mathbf{A}^k\mathbf{A}\), with the assumed \(\mathbf{A}^k\)
+            marks:
+              - code: M1
+                note: States the assumption for \(n=k\) and writes \(\mathbf{A}^{k+1}\) as \(\mathbf{A}^k\mathbf{A}\) or \(\mathbf{A}\mathbf{A}^k\) using it.
+          - scheme: |
+              Row 1: \(1,\ 1+2(2^k-1),\)
+              \(\phantom{Row 1: 1,\ }(2^k-1)+2\bigl(1+(k-2)2^{k-1}\bigr)\)
+              Row 2: \(0,\ 2^{k+1},\ 2^k+2k\,2^{k-1}\)
+              Row 3: \(0,\ 0,\ 2^{k+1}\)
+            marks:
+              - code: M1
+                note: Multiplies their \(\mathbf{A}^k\) and \(\mathbf{A}\) row by column, in either order, attempting every non-zero entry. Condone slips.
+              - code: A1
+                note: Correct product, unsimplified, oe for \(\mathbf{A}\mathbf{A}^k\).
+          - scheme: |
+              Entries \(2^{k+1}-1\), \(1+(k-1)2^k\), \((k+1)2^k\), \(2^{k+1}\)
+              \(\Rightarrow\) the formula with \(n=k+1\)
+            marks:
+              - code: A1
+                note: cso. Every entry shown to match the formula with \(n=k+1\); \(1+(k-1)2^k\) and \((k+1)2^k\) need not be rewritten in terms of \(k+1\).
+          - scheme: |
+              True for \(n=1\); if true for \(n=k\), true for \(n=k+1\)
+              \(\Rightarrow\) true for all positive integers \(n\)
+            marks:
+              - code: E1
+                note: 'Concludes with all three: true for \(n=1\); true for \(n=k\) implies true for \(n=k+1\); hence true for all positive integers \(n\).'
