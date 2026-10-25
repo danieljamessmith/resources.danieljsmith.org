@@ -1,0 +1,258 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/markscheme_preamble.tex}
+
+\djsSchemeHeader{Vector Product}
+\djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}
+
+\djsLastUpdated{25 October 2026}
+\begin{document}
+\djsSetQuestionCount{10}
+\djsAddMarks{1}{6}
+\djsAddMarks{2}{8}
+\djsAddMarks{3}{9}
+\djsAddMarks{4}{9}
+\djsAddMarks{5}{9}
+\djsAddMarks{6}{7}
+\djsAddMarks{7}{7}
+\djsAddMarks{8}{10}
+\djsAddMarks{9}{9}
+\djsAddMarks{10}{18}
+\vspace*{6pt}
+\djsContentsTitle
+\vspace{30pt}
+\msContentsHeading
+\begin{mscontents}{}
+Question & Marks by part & Marks & Page \\
+\msContentsQuestion{1} & (a)\,3\msSep (b)\,3 & 6 & \msContentsPage{1} \\
+\msContentsQuestion{2} & (a)\,2\msSep (b)(i)\,4\msSep (b)(ii)\,2 & 8 & \msContentsPage{2} \\
+\msContentsQuestion{3} & (a)\,3\msSep (b)\,3\msSep (c)\,3 & 9 & \msContentsPage{3} \\
+\msContentsQuestion{4} & (a)\,6\msSep (b)\,3 & 9 & \msContentsPage{4} \\
+\msContentsQuestion{5} & (a)\,5\msSep (b)\,2\msSep (c)\,2 & 9 & \msContentsPage{5} \\
+\msContentsQuestion{6} & (a)\,3\msSep (b)\,4 & 7 & \msContentsPage{6} \\
+\msContentsQuestion{7} & (a)(i)\,1\msSep (a)(ii)\,2\msSep (a)(iii)\,2\msSep (b)(i)\,1\msSep (b)(ii)\,1 & 7 & \msContentsPage{7} \\
+\msContentsQuestion{8} & (a)\,4\msSep (b)\,2\msSep (c)\,4 & 10 & \msContentsPage{8} \\
+\msContentsQuestion{9} & & 9 & \msContentsPage{9} \\
+\msContentsQuestion{10} & (a)\,6\msSep (b)\,4\msSep (c)\,4\msSep (d)\,4 & 18 & \msContentsPage{10} \\
+\SetCell[c=2]{r} Total & & 92 & \\
+\end{mscontents}
+\newpage
+\input{../../../../_shared/markscheme_conventions.tex}
+
+\msQuestion{1}
+\begin{msscheme}{
+  hline{3-5,7-9} = {2-Z}{0.4pt, msGrid},
+  hline{6,10} = {0.4pt, msGrid},
+  row{10} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+1(a) & {\(\mathbf q\times\mathbf p = (2m+3)\mathbf i - 5\mathbf j + (6-m)\mathbf k\)} & B1 & {Any form; the components need not be simplified.} \\
+& {\(-5 = -\lambda\), \(2m+3 = \lambda\) or \(6-m = \lambda\)\\[4pt] \(\Rightarrow \lambda = \ldots,\ m = \ldots\)} & M1 & {Equates at least two components of their \(\mathbf q\times\mathbf p\) to those of \(\lambda\mathbf n\) and solves for \(\lambda\) and \(m\). Condone sign slips.} \\
+& {\(\lambda = 5,\ m = 1\)} & A1 & \\
+\nopagebreak & & [3] & \\
+1(b) & {\(|\mathbf q\times\mathbf p| = \sqrt{75}\ [= 5\sqrt3]\)\\[4pt] \(|\mathbf p| = \sqrt{14},\ |\mathbf q| = \sqrt6\)} & B1 & {All three, in any form.} \\
+& {\(\sin\theta = \frac{\text{"}5\sqrt3\text{"}}{\text{"}\sqrt6\text{"}\,\text{"}\sqrt{14}\text{"}}\ \left[= \frac{5}{2\sqrt7}\right]\)} & M1 & {Uses \(|\mathbf q\times\mathbf p| = |\mathbf q||\mathbf p|\sin\theta\) with their magnitudes to find \(\sin\theta\).} \\
+& {\(\theta = 70.9^\circ\)} & A1 & {awrt \(70.9^\circ\) or awrt 1.24 rad. A0 for the obtuse angle.} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 1 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{2}
+\begin{msscheme}{
+  hline{3-4,6-9,11-12} = {2-Z}{0.4pt, msGrid},
+  hline{5,10,13} = {0.4pt, msGrid},
+  row{13} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+2(a) & {\(\overrightarrow{AB}\times\overrightarrow{AC}=\mathbf 0\) only if \(\overrightarrow{AB}\) and \(\overrightarrow{AC}\)\\[4pt] are parallel, or one is \(\mathbf 0\)} & B1 & {Accept oe such as \(|\mathbf a||\mathbf b|\sin\theta = 0\) only when \(\theta = 0\) or \(\pi\), or a zero vector.} \\
+& {\(\overrightarrow{AB}=\begin{pmatrix}t-1\\2\\4-t\end{pmatrix}\), \(\overrightarrow{AC}=\begin{pmatrix}3\\0\\1\end{pmatrix}\neq\mathbf 0\)\\[4pt] \(y\)-components \(2\) and \(0\), so \(\overrightarrow{AB}\neq k\overrightarrow{AC}\) for any \(t\)\\[4pt] \(\Rightarrow\) statement false for all \(t\)} & E1 & {Shows \(\overrightarrow{AB}\) is never a multiple of \(\overrightarrow{AC}\), by components, and concludes false for all \(t\). Not for computing the vector product.} \\
+\nopagebreak & & [2] & \\
+2(b)(i) & {\(\begin{pmatrix}t-1\\2\\4-t\end{pmatrix}\times\begin{pmatrix}3\\0\\1\end{pmatrix}=\begin{pmatrix}2\cdot1-(4-t)\cdot0\\(4-t)\cdot3-(t-1)\cdot1\\(t-1)\cdot0-2\cdot3\end{pmatrix}\)} & M1 & {Forms two sides of the triangle as vectors in \(t\) and attempts their vector product, all three components. Condone sign slips.} \\
+& {\(\phantom{\overrightarrow{AB}} = \begin{pmatrix}2\\13-4t\\-6\end{pmatrix}\)} & A1 & {Correct vector, or its negative.} \\
+& {\(\text{Area}=\tfrac12\sqrt{2^2+\text{"}(13-4t)\text{"}^2+(-6)^2}\)} & dM1 & {Takes half the magnitude of their vector product, squaring all three components.} \\
+& {\(\phantom{\text{Area}} = \tfrac12\sqrt{(13-4t)^2+40}\)} & A1 & {Correct expression oe, such as \(\frac12\sqrt{16t^2-104t+209}\).} \\
+\nopagebreak & & [4] & \\
+2(b)(ii) & {\((13-4t)^2+40\) least when \(13-4t=0\Rightarrow t=\ldots\)} & M1 & {Finds the minimum of the area or the expression under their root, by a squared term set to zero, completing the square or a derivative set to zero.} \\
+& {\(t=\frac{13}{4}\)} & A1 & {oe, such as \(3.25\).} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 2 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{3}
+\begin{msscheme}{
+  hline{3-4,6-8,10-11} = {2-Z}{0.4pt, msGrid},
+  hline{5,9,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+3(a) & {\(\overrightarrow{AB} = (p-1)\mathbf{i} + 2\mathbf{j} + 2\mathbf{k}\)\\[4pt] \(\overrightarrow{AB}\cdot\mathbf{j} = |\overrightarrow{AB}|\cos 60^\circ\)\\[4pt] \(\Rightarrow 2 = \tfrac12\sqrt{(p-1)^2 + 2^2 + 2^2}\)} & M1 A1 & {\msNote{M1}{Equates the scalar product of their \(\overrightarrow{AB}\), a difference of position vectors, with \(\mathbf{j}\) to their \(|\overrightarrow{AB}|\cos 60^\circ\). Condone sign slips.}\\ \msNote{A1}{Any correct equation in \(p\) alone.}} \\
+& {\((p-1)^2 = 8 \Rightarrow p = 1 \pm 2\sqrt{2}\)} & A1 & {Both values, oe, or awrt \(3.83\) and \(-1.83\).} \\
+\nopagebreak & & [3] & \\
+3(b) & {\(\overrightarrow{OA}\times\overrightarrow{AB} = 2\mathbf{i} - 2\mathbf{j} + (3-p)\mathbf{k}\)} & B1 & \\
+& {\(\text{"}2\mathbf{i} - 2\mathbf{j} + (3-p)\mathbf{k}\text{"} = \lambda(2\mathbf{i} - 2\mathbf{j} + \mathbf{k})\)\\[4pt] \(\Rightarrow \lambda = 1,\ p = \ldots\)} & M1 & {Equates their vector product, with a component in \(p\), to a multiple of the given vector, or equates ratios of components, and solves for \(p\).} \\
+& {\(p = 2\)} & A1 & {cso.} \\
+\nopagebreak & & [3] & \\
+3(c) & {\(\overrightarrow{OA}\times\overrightarrow{OB} = 2\mathbf{i} - 2\mathbf{j} + (3-p)\mathbf{k}\)\\[4pt] \(\tfrac12\sqrt{2^2 + (-2)^2 + (3-p)^2} = \tfrac32\)} & M1 A1 & {\msNote{M1}{Sets half the magnitude of a vector product of two sides, in terms of \(p\), equal to \(\frac32\). Condone slips in the vector product; needs the \(\frac12\).}\\ \msNote{A1}{Any correct equation in \(p\) alone.}} \\
+& {\((3-p)^2 = 1 \Rightarrow p = 2\) or \(p = 4\)} & A1 & \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 3 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{4}
+\begin{msscheme}{
+  hline{3-8,10-12} = {2-Z}{0.4pt, msGrid},
+  hline{9,13} = {0.4pt, msGrid},
+  row{13} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+4(a) & {\(\mathbf p\times\mathbf q = \mathbf i(1 - 0) - \mathbf j(1 - 2x)\)\\[4pt] \(\phantom{\mathbf p\times\mathbf q =} + \mathbf k(0 - x)\)} & M1 & {Attempts \(\mathbf p\times\mathbf q\) by determinant or component formula, giving three components in terms of \(x\). Condone sign slips.} \\
+& {\(\phantom{\mathbf p\times\mathbf q} = \mathbf i + (2x - 1)\mathbf j - x\mathbf k\)} & A1 & {oe, as a column vector.} \\
+& {\(1^2 + (2x - 1)^2 + (-x)^2 = 2\)\\[4pt] \(\Rightarrow 5x^2 - 4x = 0 \Rightarrow x = \ldots\)} & M1 & {Equates the squared magnitude of their \(\mathbf p\times\mathbf q\) to 2, or its magnitude to \(\sqrt2\), and solves for \(x\) by any means.} \\
+& {\(x = 0\) or \(x = \frac45\)} & A1 & {Both values; 0.8 accepted.} \\
+& {\(1 + 3(2x - 1) - mx = 0\ [\Rightarrow x(6 - m) = 2]\)} & M1 & {Sets the scalar product of their \(\mathbf p\times\mathbf q\) with \(\mathbf i + 3\mathbf j + m\mathbf k\) equal to zero. Need not be simplified.} \\
+& {\(x \neq 0\), so \(x = \frac45\), \(m = \frac72\)} & A1 & {Both values, oe such as 0.8 and 3.5. A0 if \(x = 0\) is retained as a solution.} \\
+\nopagebreak & & [6] & \\
+4(b) & {\(|\mathbf p| = \sqrt6\), \(|\mathbf q| = \frac{\sqrt{41}}{5}\)} & B1 & {Both, with \(x = \frac45\); oe such as \(\sqrt{1.64}\).} \\
+& {\(\sqrt2 = \sqrt6 \times \frac{\sqrt{41}}{5}\sin\theta \Rightarrow \theta = \ldots\)} & M1 & {Uses \(|\mathbf p\times\mathbf q| = |\mathbf p||\mathbf q|\sin\theta\) with \(\sqrt2\) and their magnitudes to find \(\theta\). A scalar-product method scores M0 A0.} \\
+& {\(\theta = 26.8^\circ\)} & A1 & {awrt \(26.8^\circ\) or 0.468 radians, or \(\sin^{-1}\frac{5}{\sqrt{123}}\) oe.} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 4 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{5}
+\begin{msscheme}{
+  hline{3-7,9-10,12-13} = {2-Z}{0.4pt, msGrid},
+  hline{8,11,14} = {0.4pt, msGrid},
+  row{14} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+5(a) & {\(\overrightarrow{OR} = 2\overrightarrow{OM} - \overrightarrow{OP} \Rightarrow R(0, 1, 3)\)\\[4pt] \(\overrightarrow{PR} = -2\mathbf i + 2\mathbf j + 2\mathbf k\)} & B1 & {Correct \(R\) or \(\overrightarrow{PR}\), soi.} \\
+& {\(\overrightarrow{PQ}\times\overrightarrow{PR} = (\mathbf i + 2\mathbf j)\times(-2\mathbf i + 2\mathbf j + 2\mathbf k)\)} & M1 & {Expands the vector product of two side vectors of the triangle, using their \(R\). Condone one slip in a component.} \\
+& {\(\phantom{\overrightarrow{PQ}\times\overrightarrow{PR}} = 4\mathbf i - 2\mathbf j + 6\mathbf k\)} & A1 & {Or its negative.} \\
+& {\(\text{Area} = \tfrac12\sqrt{4^2 + (-2)^2 + 6^2}\)} & dM1 & {Takes half the magnitude of their vector product.} \\
+& {\(\phantom{\text{Area}} = \tfrac12\sqrt{56} = \sqrt{14}\)} & A1~AG & {Correct vector product and magnitude leading without error to \(\sqrt{14}\).} \\
+\nopagebreak & & [5] & \\
+5(b) & {\(\mathbf n = 2\mathbf i - \mathbf j + 3\mathbf k\)\\[4pt] \(k = (2\mathbf i - \mathbf j + \mathbf k)\cdot(2\mathbf i - \mathbf j + 3\mathbf k) = \ldots\)} & M1 & {Uses their vector product from (a), or a multiple, as \(\mathbf n\), and finds its scalar product with the position vector of \(P\), \(Q\) or \(R\).} \\
+& {\(\mathbf r\cdot(2\mathbf i - \mathbf j + 3\mathbf k) = 8\)} & A1 & {Or any multiple, such as \(\mathbf r\cdot(4\mathbf i - 2\mathbf j + 6\mathbf k) = 16\). A Cartesian equation alone scores A0.} \\
+\nopagebreak & & [2] & \\
+5(c) & {\(\text{distance} = \dfrac{8}{\sqrt{2^2 + (-1)^2 + 3^2}}\)} & M1 & {Divides \(|k|\) by \(|\mathbf n|\), both from their plane equation in (b).} \\
+& {\(\phantom{\text{distance}} = \frac{8}{\sqrt{14}} = \frac{4\sqrt{14}}{7}\)} & A1 & {Either form, or any exact equivalent.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 5 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{6}
+\begin{msscheme}{
+  hline{3-5,7-10} = {2-Z}{0.4pt, msGrid},
+  hline{6,11} = {0.4pt, msGrid},
+  row{11} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+6(a) & {\(\mathbf p\times\mathbf q = 6\mathbf i - 6\mathbf j + 6\mathbf k\)} & B1 & {Or any nonzero multiple of \(\mathbf i - \mathbf j + \mathbf k\).} \\
+& {\(t\mathbf i - \mathbf j + \mathbf k = \lambda\left(\text{"}\mathbf i - \mathbf j + \mathbf k\text{"}\right)\)\\[4pt] \(\Rightarrow \lambda = 1,\ t = \ldots\)} & M1 & {Sets \(\mathbf r\) as a multiple of their normal vector and compares components, or sets \(\mathbf r \times\) their normal \(= \mathbf 0\), to find \(t\).} \\
+& {\(t = 1\)} & A1 & \\
+\nopagebreak & & [3] & \\
+6(b) & {\((\mathbf p\times\mathbf q)\cdot\mathbf r\)\\[4pt] \(\phantom{(\mathbf p} = \text{"}(6\mathbf i - 6\mathbf j + 6\mathbf k)\text{"}\cdot(t\mathbf i - \mathbf j + \mathbf k)\)} & M1 & {Forms the scalar product of their vector \(\mathbf p\times\mathbf q\) with \(\mathbf r\), or the determinant with rows \(\mathbf p\), \(\mathbf q\), \(\mathbf r\) in any order.} \\
+& {\(\phantom{(\mathbf p} = 6(t + 2)\)} & A1 & {\(\pm 6(t+2)\) oe, the sign depending on the order.} \\
+& {\(\tfrac16\left|\text{"}6(t+2)\text{"}\right| = 9 \Rightarrow t + 2 = \pm 9\)\\[4pt] \(\Rightarrow t = \ldots\)} & M1 & {Sets \(\frac16\) of their triple product, or its modulus, equal to 9 or \(\pm 9\) and solves for \(t\). Needs the \(\frac16\).} \\
+& {\(t = 7\) or \(t = -11\)} & A1 & {Both values and no others.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 6 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{7}
+\begin{msscheme}{
+  hline{3,5-6,8-9,11,13} = {2-Z}{0.4pt, msGrid},
+  hline{4,7,10,12,14} = {0.4pt, msGrid},
+  row{14} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+7(a)(i) & {\((\mathbf r-\mathbf q)\times(\mathbf q-\mathbf p) = -2\mathbf p\)} & B1 & \\
+\nopagebreak & & [1] & \\
+7(a)(ii) & {\(\mathbf p\times 2\mathbf p = 2(\mathbf p\times\mathbf p) = \ldots\)} & M1 & {Replaces the vector product by \(2\mathbf p\) and uses \(\mathbf p\times\mathbf p = \mathbf 0\), or that parallel vectors have zero vector product.} \\
+& {\(\mathbf 0\)} & A1 & {Identified as the zero vector, not the scalar \(0\).} \\
+\nopagebreak & & [2] & \\
+7(a)(iii) & {\(\mathbf p\cdot 2\mathbf p = 2\lvert\mathbf p\rvert^2 = 2(5^2)\)} & M1 & {Replaces the vector product by \(2\mathbf p\) and uses \(\mathbf p\cdot\mathbf p = \lvert\mathbf p\rvert^2\) with \(\lvert\mathbf p\rvert = 5\).} \\
+& {\(50\)} & A1 & \\
+\nopagebreak & & [2] & \\
+7(b)(i) & {\(OP\) is perpendicular to the plane \(PQR\)} & E1 & {States \(OP\) is normal to plane \(PQR\), oe such as perpendicular to both \(PQ\) and \(QR\). Not for perpendicular to one line alone.} \\
+\nopagebreak & & [1] & \\
+7(b)(ii) & {\(50 \neq 0\), so \(O\), \(P\), \(Q\) and \(R\) are not coplanar} & E1 & {States the four points are not coplanar, oe such as \(O\) not in plane \(PQR\). Need not mention \(50 \neq 0\).} \\
+\nopagebreak & & [1] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 7 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{8}
+\begin{msscheme}{
+  hline{3-6,8-9,11-14} = {2-Z}{0.4pt, msGrid},
+  hline{7,10,15} = {0.4pt, msGrid},
+  row{15} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+8(a) & {\(\mathbf{c} = 3\mathbf{g} - \mathbf{a} - \mathbf{b} = \ldots\)} & M1 & {Rearranges \(\mathbf{g} = \frac13(\mathbf{a} + \mathbf{b} + \mathbf{c})\) for \(\mathbf{c}\) and substitutes the given vectors.} \\
+& {\(\mathbf{c} = 5\mathbf{i} + 3\mathbf{j} + 3\mathbf{k}\)} & A1 & \\
+& {\(\overrightarrow{AB} = 3\mathbf{i} + 2\mathbf{j} - 3\mathbf{k}\), \(\overrightarrow{AC} = \text{"}3\mathbf{i} + 4\mathbf{j}\text{"}\)\\[4pt] \(\overrightarrow{AB} \times \overrightarrow{AC}\)\\[4pt] \(\phantom{A} = (0 + 12)\mathbf{i} - (0 + 9)\mathbf{j} + (12 - 6)\mathbf{k}\)} & M1 & {Subtracts position vectors for \(\overrightarrow{AB}\) and \(\overrightarrow{AC}\), with their \(\mathbf{c}\), and expands the cross product by a correct pattern for all three components. Condone sign slips.} \\
+& {\(\phantom{A} = 12\mathbf{i} - 9\mathbf{j} + 6\mathbf{k}\)} & A1 & {Any vector form.} \\
+\nopagebreak & & [4] & \\
+8(b) & {\(\mathbf{n} = \text{"}4\mathbf{i} - 3\mathbf{j} + 2\mathbf{k}\text{"}\)\\[4pt] \(p = \mathbf{a} \cdot \mathbf{n} = 2(4) + (-1)(-3) + 3(2) = \ldots\)} & M1 & {Takes their (a) result, or a multiple of it, as \(\mathbf{n}\) and finds its scalar product with the position vector of \(A\), \(B\), \(C\) or \(G\).} \\
+& {\(\mathbf{r} \cdot (4\mathbf{i} - 3\mathbf{j} + 2\mathbf{k}) = 17\)} & A1 & {Or any multiple, such as \(\mathbf{r} \cdot (12\mathbf{i} - 9\mathbf{j} + 6\mathbf{k}) = 51\). A0 for \(4x - 3y + 2z = 17\) alone.} \\
+\nopagebreak & & [2] & \\
+8(c) & {\(\overrightarrow{AD} = \mathbf{d} - \mathbf{a} = -\mathbf{i} + 6\mathbf{j} + \mathbf{k}\)} & B1 & {Or any vector from a point of \(\Pi\) to \(D\), such as \(\overrightarrow{BD} = -4\mathbf{i} + 4\mathbf{j} + 4\mathbf{k}\).} \\
+& {\(\text{"}(12\mathbf{i} - 9\mathbf{j} + 6\mathbf{k})\text{"} \cdot \text{"}(-\mathbf{i} + 6\mathbf{j} + \mathbf{k})\text{"}\)\\[4pt] \(\phantom{A} = -12 - 54 + 6 \ [= -60]\)} & M1 & {Forms the scalar product of their (a) result with their edge to \(D\), or a determinant of three edges from one vertex.} \\
+& {\(V = \frac16\left|\text{"}{-60}\text{"}\right| = \ldots\)} & M1 & {Takes one sixth of the modulus of their scalar triple product.} \\
+& {\(V = 10\)} & A1 & {Must be positive.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 8 & & 10 & \\
+\end{msscheme}
+
+\msQuestion{9}
+\begin{msscheme}{
+  hline{3-10} = {2-Z}{0.4pt, msGrid},
+  hline{11} = {0.4pt, msGrid},
+  row{11} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+9 & {\(L_3:\ (x,y,z) = (3+t,\ -6-5t,\ 1-2t)\)\\[4pt] \(8+3\lambda = 9-4\mu\)\\[4pt] \(3+2\lambda = -2+3\mu\)\\[4pt] \(1-\lambda = -1+3\mu\)} & M1 & {Writes two of the lines in parametric form, with different parameters, and equates all three coordinates. Condone sign slips.} \\
+& {\(\Rightarrow \lambda = \ldots,\ \mu = \ldots\)} & dM1 & {Solves two of their equations simultaneously for both parameters, by any method.} \\
+& {\(\lambda = -1,\ \mu = 1 \Rightarrow L_1 \cap L_2 = (5,\ 1,\ 2)\)} & A1 & {One correct vertex. The vertices may be found in any order.} \\
+& {\(L_1 \cap L_3 = (2,\ -1,\ 3)\)} & A1 & \\
+& {\(L_2 \cap L_3 = (1,\ 4,\ 5)\)} & A1 & \\
+& {\(\overrightarrow{AB} \times \overrightarrow{AC}\)\\[4pt] \(\phantom{A} = \text{"}(-3\mathbf i - 2\mathbf j + \mathbf k)\text{"}\)\\[4pt] \(\phantom{A = } \times \text{"}(-4\mathbf i + 3\mathbf j + 3\mathbf k)\text{"} = \ldots\)} & M1 & {Finds two sides as differences of their vertices and expands their cross product, by determinant or components. Condone sign slips.} \\
+& {\(\phantom{A} = -9\mathbf i + 5\mathbf j - 17\mathbf k\)} & A1 & {Or its negative, depending on the sides chosen.} \\
+& {\(\text{Area} = \tfrac12\sqrt{(-9)^2 + 5^2 + (-17)^2}\)} & dM1 & {Takes half the magnitude of their cross product, using all three components.} \\
+& {\(\phantom{\text{Area}} = \tfrac12\sqrt{395}\)} & A1 & {Or awrt 9.94.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 9 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{10}
+\begin{msscheme}{
+  hline{3-8,10-13,15-18,20-23} = {2-Z}{0.4pt, msGrid},
+  hline{9,14,19,24} = {0.4pt, msGrid},
+  row{24} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+10(a) & {\(z = t \Rightarrow x = t - 2,\ y = \ldots\)} & M1 & {Uses both plane equations to express two coordinates in terms of a parameter, or finds a point on \(\ell\) and the vector product of the normals.} \\
+& {\(\left(t - 2,\ \tfrac{7 - t}{2},\ t\right)\)} & A1 & {Any correct parametrisation.} \\
+& {\((t - 11)^2 + \left(\tfrac{t + 13}{2}\right)^2 + (t + 1)^2 = 225\)} & M1 & {Sets the squared distance from \(A\) to their general point equal to 225, with all three components. Condone sign slips.} \\
+& {\(t^2 - 6t - 27 = 0\)} & A1 & {Correct three-term quadratic, oe.} \\
+& {\(t = \ldots \Rightarrow (\ldots,\ \ldots,\ \ldots)\)} & dM1 & {Solves their three-term quadratic and substitutes a root into their general point.} \\
+& {\(B(-5, 5, -3)\), \(C(7, -1, 9)\)} & A1 & {Both points, with \(B\) the one whose \(z\) coordinate is negative.} \\
+\nopagebreak & & [6] & \\
+10(b) & {\(\overrightarrow{AB} = -14\mathbf{i} - 5\mathbf{j} - 2\mathbf{k}\)\\[4pt] \(\overrightarrow{AC} = -2\mathbf{i} - 11\mathbf{j} + 10\mathbf{k}\)\\[4pt] \(\overrightarrow{AB} \times \overrightarrow{AC} = \ldots\)} & M1 & {Forms two vectors between \(A\), \(B\) and \(C\) from their points and attempts their vector product, with a correct method for at least two components.} \\
+& {\(\phantom{\overrightarrow{AB}} = -72\mathbf{i} + 144\mathbf{j} + 144\mathbf{k}\)} & A1 & {Any nonzero multiple of \(-\mathbf{i} + 2\mathbf{j} + 2\mathbf{k}\).} \\
+& {\(-x + 2y + 2z = -9 + 20 - 2\)} & M1 & {Forms \(\mathbf{r} \cdot \mathbf{n} = \mathbf{a} \cdot \mathbf{n}\) with their normal and a point of the plane, or substitutes such a point to find the constant.} \\
+& {\(x - 2y - 2z + 9 = 0\)} & A1 & {Any Cartesian form, such as \(-x + 2y + 2z = 9\); a vector equation scores A0.} \\
+\nopagebreak & & [4] & \\
+10(c) & {\(\overrightarrow{AD} = -\mathbf{i} - 6\mathbf{j} + (\alpha + 1)\mathbf{k}\)} & B1 & {Or any vector from a point of plane \(ABC\) to \(D\), either direction; or, by area \(\times\) distance, the distance \(\frac{|2\alpha - 9|}{3}\) from \(D\) to plane \(ABC\), oe.} \\
+& {\(\text{"}{-72}\mathbf{i} + 144\mathbf{j} + 144\mathbf{k}\text{"} \cdot \overrightarrow{AD}\)\\[4pt] \(\phantom{A} = 144\alpha - 648\)} & M1 & {Forms the scalar product of their \(\overrightarrow{AB} \times \overrightarrow{AC}\) (factor restored if rescaled) with their vector to \(D\), or a determinant, linear in \(\alpha\); or finds the area of \(ABC\) as \(\frac12|\)their \(\overrightarrow{AB} \times \overrightarrow{AC}|\).} \\
+& {\(\tfrac16\left|144\alpha - 648\right| = 156 \Rightarrow \alpha = \ldots\)} & M1 & {Sets \(\frac16\) of their triple product, or its modulus, or their \(\frac13 \times\) area \(\times\) distance, equal to 156 and solves for \(\alpha\). One value is enough.} \\
+& {\(\alpha = 11\) or \(\alpha = -2\)} & A1 & {Both values and no others.} \\
+\nopagebreak & & [4] & \\
+10(d) & {Direction of \(\ell\): \(2\mathbf{i} - \mathbf{j} + 2\mathbf{k}\)\\[4pt] \(\overrightarrow{AD} = -\mathbf{i} - 6\mathbf{j} + 12\mathbf{k}\)\\[4pt] \((2\mathbf{i} - \mathbf{j} + 2\mathbf{k}) \times \overrightarrow{AD} = \ldots\)} & M1 & {Forms direction vectors of both lines, with their positive \(\alpha\) from (c), and attempts their vector product, with a correct method for at least two components.} \\
+& {\(\phantom{(2\mathbf{i}} = -26\mathbf{j} - 13\mathbf{k}\)} & A1 & {Any nonzero multiple of \(2\mathbf{j} + \mathbf{k}\).} \\
+& {\(\overrightarrow{BA} = 14\mathbf{i} + 5\mathbf{j} + 2\mathbf{k}\)\\[4pt] \(\dfrac{\left|14(0) + 5(-26) + 2(-13)\right|}{\sqrt{26^2 + 13^2}} = \ldots\)} & dM1 & {Divides the scalar product of a vector joining a point of each line with their common normal by the normal's magnitude.} \\
+& {\(\phantom{A} = \frac{12}{\sqrt5} = 5.4\)} & A1 & {5.4, to 2 s.f. as required; an exact or 3 s.f. answer alone scores A0.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 10 & & 18 & \\
+\end{msscheme}
+
+\end{document}

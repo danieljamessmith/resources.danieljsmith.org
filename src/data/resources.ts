@@ -480,6 +480,16 @@ const rawResources: Resource[] = [
     topic: 'Vectors',
   },
   {
+    id: 'fm-vectors-vector-product-ms',
+    title: 'Vector Product',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/vectors/ms/_QBT___MS__Vector_Product.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-vectors-vector-product',
+    topic: 'Vectors',
+  },
+  {
     id: 'fm-vectors-shortest-distances',
     title: 'Shortest Distances',
     description: '',
