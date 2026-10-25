@@ -570,6 +570,16 @@ const rawResources: Resource[] = [
     pairId: 'fm-vectors-reflections-in-planes',
     topic: 'Vectors',
   },
+  {
+    id: 'fm-vectors-reflections-in-planes-ms',
+    title: 'Reflections in Planes',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/vectors/ms/_QBT___MS__Reflections_in_Planes.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-vectors-reflections-in-planes',
+    topic: 'Vectors',
+  },
 
   // --- A-level Further Maths: Further Calculus (notes → pairs in teaching order) ---
   {
