@@ -91,7 +91,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Matrix_Determinants___Inverses.pdf': '78d50770',
   '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Plane_Intersections.pdf': '1e47d3b4',
   '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Reflections_in_Planes.pdf': '3caec8d4',
-  '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Vector_Product.pdf': '7811d07c',
+  '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Vector_Product.pdf': 'e989b8ea',
   '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Vectors___Shortest_Distances.pdf': '6d593462',
   '/tex/further-maths/further-mechanics/centre-of-mass/qbt/_QBT__Centre_of_Mass_of_Circular_Laminae.pdf': '7de816c2',
   '/tex/further-maths/further-mechanics/centre-of-mass/qbt/_QBT__Centre_of_Mass_of_Composite_Solids.pdf': '843f8c40',
