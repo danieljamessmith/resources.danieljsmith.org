@@ -4,7 +4,7 @@
 \djsSolnHeader{Shortest Distances}
 \djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}
 
-\djsLastUpdated{15 October 2026}
+\djsLastUpdated{25 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -38,7 +38,7 @@ The line $L$ has vector equation
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Using the Cartesian form of the point-to-plane distance formula,
+  \item Using the Cartesian form of the point-to-plane distance formula:
 \[
 \mathrm{dist}
 =\frac{\left\lvert ax_0+by_0+cz_0-d\right\rvert}{\sqrt{a^2+b^2+c^2}}
@@ -60,7 +60,7 @@ Substituting into the formula:
 &=\frac{10\sqrt{14}}{7}
 \end{align*}
 
-So the shortest distance from $P$ to $\Pi$ is $\displaystyle \frac{20}{\sqrt{14}}=\frac{10\sqrt{14}}{7}$.
+So the shortest distance from $P$ to $\Pi$ is $\frac{20}{\sqrt{14}}=\frac{10\sqrt{14}}{7}$.
 
   \item A general point on $L$ has coordinates
 \[
@@ -89,7 +89,7 @@ Hence $P$ lies on $L$, with parameter value $\lambda=3$.
 
   \item Let the point where $L$ meets $\Pi$ correspond to parameter $\lambda$.
 
-From the line,
+From the line:
 \[
 x=2+\lambda,\qquad y=1-2\lambda,\qquad z=-3+2\lambda
 \]
@@ -114,7 +114,7 @@ So the line meets the plane at $(1,3,-5)$.
 
   \item The direction vector of $L$ is
 \[
-\mathbf d=\begin{pmatrix}1\\-2\\2\end{pmatrix}
+\mathbf u=\begin{pmatrix}1\\-2\\2\end{pmatrix}
 \]
 
 and a normal vector to $\Pi$ is
@@ -122,14 +122,14 @@ and a normal vector to $\Pi$ is
 \mathbf n=\begin{pmatrix}3\\1\\2\end{pmatrix}
 \]
 
-For the acute angle $\theta$ between a line and a plane,
+For the acute angle $\theta$ between a line and a plane:
 \[
-\sin\theta=\frac{\left\lvert \mathbf d\cdot\mathbf n\right\rvert}{\left\lvert \mathbf d\right\rvert\left\lvert \mathbf n\right\rvert}
+\sin\theta=\frac{\left\lvert \mathbf u\cdot\mathbf n\right\rvert}{\left\lvert \mathbf u\right\rvert\left\lvert \mathbf n\right\rvert}
 \]
 
-First find the dot product:
+First find the scalar product:
 \begin{align*}
-\mathbf d\cdot\mathbf n
+\mathbf u\cdot\mathbf n
 &=1(3)+(-2)(1)+2(2)\\
 &=3-2+4\\
 &=5
@@ -137,7 +137,7 @@ First find the dot product:
 
 Now find the magnitudes:
 \begin{align*}
-\left\lvert \mathbf d\right\rvert
+\left\lvert \mathbf u\right\rvert
 &=\sqrt{1^2+(-2)^2+2^2}
 =\sqrt{1+4+4}
 =3\\
@@ -147,7 +147,7 @@ Now find the magnitudes:
 =\sqrt{14}
 \end{align*}
 
-Therefore,
+Therefore
 \begin{align*}
 \sin\theta
 &=\frac{5}{3\sqrt{14}}
@@ -158,7 +158,7 @@ So
 \theta=\sin^{-1}\left(\frac{5}{3\sqrt{14}}\right)\approx 26.5^\circ
 \]
 
-Hence the acute angle between $L$ and $\Pi$ is $\displaystyle \sin^{-1}\left(\frac{5}{3\sqrt{14}}\right)\approx 26.5^\circ$.
+Hence the acute angle between $L$ and $\Pi$ is $\sin^{-1}\left(\frac{5}{3\sqrt{14}}\right)\approx 26.5^\circ$.
 
   \item From part (b), $P$ corresponds to $\lambda=3$ on the line.
 
@@ -169,9 +169,9 @@ So the change in parameter is
 3-(-1)=4
 \]
 
-Since the direction vector $\mathbf d$ of the line has magnitude
+Since the direction vector $\mathbf u$ of the line has magnitude
 \[
-\left\lvert \mathbf d\right\rvert=3
+\left\lvert \mathbf u\right\rvert=3
 \]
 
 the length of the line segment from $P$ to the plane along $L$ is
@@ -186,9 +186,9 @@ From part (d), the angle between the line and the plane is $\theta$, where
 
 The perpendicular distance from $P$ to the plane is the component of $PC$ perpendicular to the plane:
 \begin{align*}
-\text{distance}
+\mathrm{dist}
 &=PC\sin\theta\\
-&=12\cdot \frac{5}{3\sqrt{14}}\\
+&=12\times\frac{5}{3\sqrt{14}}\\
 &=\frac{60}{3\sqrt{14}}\\
 &=\frac{20}{\sqrt{14}}
 \end{align*}
@@ -231,7 +231,7 @@ The planes $P_1$ and $P_2$ have equations $x+y+z=3$ and $2x-y=1$ respectively. \
 
 So we may use the parallel direction vector
 \[
-\mathbf d=\begin{pmatrix}1\\1\\-1\end{pmatrix}
+\mathbf u=\begin{pmatrix}1\\1\\-1\end{pmatrix}
 \]
 
 For the plane $P_1:x+y+z=3$, a normal vector is
@@ -241,13 +241,13 @@ For the plane $P_1:x+y+z=3$, a normal vector is
 
 If $\alpha$ is the acute angle between a line and a plane, then
 \[
-\sin\alpha=\frac{\left\lvert \mathbf d\cdot \mathbf n_1\right\rvert}{\left\lvert \mathbf d\right\rvert\left\lvert \mathbf n_1\right\rvert}
+\sin\alpha=\frac{\left\lvert \mathbf u\cdot \mathbf n_1\right\rvert}{\left\lvert \mathbf u\right\rvert\left\lvert \mathbf n_1\right\rvert}
 \]
 
 Now
 \begin{align*}
-\mathbf d\cdot \mathbf n_1&=(1)(1)+(1)(1)+(-1)(1)=1 \\
-\left\lvert \mathbf d\right\rvert&=\sqrt{1^2+1^2+(-1)^2}=\sqrt{3} \\
+\mathbf u\cdot \mathbf n_1&=(1)(1)+(1)(1)+(-1)(1)=1 \\
+\left\lvert \mathbf u\right\rvert&=\sqrt{1^2+1^2+(-1)^2}=\sqrt{3} \\
 \left\lvert \mathbf n_1\right\rvert&=\sqrt{1^2+1^2+1^2}=\sqrt{3}
 \end{align*}
 
@@ -261,9 +261,9 @@ So
 \alpha=\sin^{-1}\left(\frac13\right)\approx 19.5^\circ
 \]
 
-The acute angle between $CD$ and $P_1$ is $\sin^{-1}(1/3)\approx 19.5^\circ$.
+The acute angle between $CD$ and $P_1$ is $\sin^{-1}\left(\frac13\right)\approx 19.5^\circ$.
 
-  \item The line $CD$ through $C=(0,0,2)$ with direction vector $\mathbf d$ has equation
+  \item The line $CD$ through $C=(0,0,2)$ with direction vector $\mathbf u$ has equation
 \[
 \mathbf r=\begin{pmatrix}0\\0\\2\end{pmatrix}+t\begin{pmatrix}1\\1\\-1\end{pmatrix}
 \]
@@ -288,7 +288,7 @@ t&=1
 
 Both planes are met when $t=1$, so the line $CD$ meets $P_1$ and $P_2$ at the same point.
 
-When $t=1$,
+When $t=1$:
 \[
 (x,y,z)=(1,1,2-1)=(1,1,1)
 \]
@@ -307,12 +307,11 @@ Therefore the common point is $(1,1,1)$.
 \end{vmatrix}
 \]
 
-Expanding,
+Expanding:
 \begin{align*}
-&=\mathbf i(1\cdot 0-1\cdot(-1))
--\mathbf j(1\cdot 0-1\cdot 2)
-+\mathbf k(1\cdot(-1)-1\cdot 2) \\
-&=\mathbf i(1)-\mathbf j(-2)+\mathbf k(-3) \\
+&=\mathbf i(1\times 0-1\times(-1))
+-\mathbf j(1\times 0-1\times 2)
++\mathbf k(1\times(-1)-1\times 2) \\
 &=\mathbf i+2\mathbf j-3\mathbf k
 \end{align*}
 
@@ -333,12 +332,12 @@ normal vectors are
 \mathbf n_1=\mathbf i+\mathbf j+\mathbf k, \qquad \mathbf n_2=2\mathbf i-\mathbf j
 \]
 
-If $\theta$ is the acute angle between the planes, then since $\left\lvert \mathbf n_1\times \mathbf n_2\right\rvert=\left\lvert \mathbf n_1\right\rvert\left\lvert \mathbf n_2\right\rvert\sin\theta$,
+If $\theta$ is the acute angle between the planes, then $\left\lvert \mathbf n_1\times \mathbf n_2\right\rvert=\left\lvert \mathbf n_1\right\rvert\left\lvert \mathbf n_2\right\rvert\sin\theta$, so
 \[
 \sin\theta=\frac{\left\lvert \mathbf n_1\times \mathbf n_2\right\rvert}{\left\lvert \mathbf n_1\right\rvert\left\lvert \mathbf n_2\right\rvert}
 \]
 
-From part (i), $\mathbf n_1\times\mathbf n_2=\mathbf i+2\mathbf j-3\mathbf k$, so
+From part (c)(i), $\mathbf n_1\times\mathbf n_2=\mathbf i+2\mathbf j-3\mathbf k$, so
 \begin{align*}
 \left\lvert \mathbf n_1\times \mathbf n_2\right\rvert&=\sqrt{1^2+2^2+(-3)^2}=\sqrt{14} \\
 \left\lvert \mathbf n_1\right\rvert&=\sqrt{1^2+1^2+1^2}=\sqrt{3} \\
@@ -355,16 +354,16 @@ Hence
 \theta=\sin^{-1}\left(\sqrt{\frac{14}{15}}\right)\approx 75.0^\circ
 \]
 
-The acute angle between the planes is $\sin^{-1}\sqrt{14/15}\approx 75.0^\circ$.
+The acute angle between the planes is $\sin^{-1}\left(\sqrt{\frac{14}{15}}\right)\approx 75.0^\circ$.
 
-    \item From part (b), the planes intersect at the point
+    \item From part (b), a point on both planes, and so on their line of intersection, is
 \[
 A=(1,1,1)
 \]
 
-From part (i), a direction vector for their line of intersection is
+From part (c)(i), a direction vector for their line of intersection is
 \[
-\mathbf v=\begin{pmatrix}1\\2\\-3\end{pmatrix}
+\mathbf b=\begin{pmatrix}1\\2\\-3\end{pmatrix}
 \]
 
 So the line of intersection is
@@ -390,7 +389,7 @@ we have
 \mathbf p-\mathbf a=\begin{pmatrix}0\\0\\2\end{pmatrix}-\begin{pmatrix}1\\1\\1\end{pmatrix}=\begin{pmatrix}-1\\-1\\1\end{pmatrix}
 \]
 
-Now find the cross product:
+Now find the vector product:
 \[
 (\mathbf p-\mathbf a)\times\mathbf b
 =
@@ -404,11 +403,10 @@ Now find the cross product:
 So
 \begin{align*}
 (\mathbf p-\mathbf a)\times\mathbf b
-&=\mathbf i\bigl((-1)(-3)-1\cdot 2\bigr)
--\mathbf j\bigl((-1)(-3)-1\cdot 1\bigr)
-+\mathbf k\bigl((-1)\cdot 2-(-1)\cdot 1\bigr) \\
-&=\mathbf i(1)-\mathbf j(2)+\mathbf k(-1) \\
-&=\mathbf i-2\mathbf j-\mathbf k
+&=\mathbf i\bigl((-1)(-3)-1\times 2\bigr)
+-\mathbf j\bigl((-1)(-3)-1\times 1\bigr)
++\mathbf k\bigl((-1)\times 2-(-1)\times 1\bigr) \\
+&=\begin{pmatrix}1\\-2\\-1\end{pmatrix}
 \end{align*}
 
 Hence
@@ -475,7 +473,7 @@ The point $A$ lies on $\ell$. Given that the shortest distance between $A$ and $
   \begin{pmatrix}4\\-1\\-2\end{pmatrix}
   \]
   
-  Check the dot products:
+  Check the scalar products:
   \[
   \mathbf n\cdot \begin{pmatrix}1\\2\\1\end{pmatrix}
   =1(1)+(-2)(2)+3(1)
@@ -493,7 +491,7 @@ The point $A$ lies on $\ell$. Given that the shortest distance between $A$ and $
   
   Therefore \(\mathbf i-2\mathbf j+3\mathbf k\) is perpendicular to \(\Pi\).
 
-  \item Using the normal vector \(\mathbf n=\begin{pmatrix}1\\-2\\3\end{pmatrix}\) and the point \(\begin{pmatrix}2\\-1\\3\end{pmatrix}\) on \(\Pi\), the Cartesian equation is
+  \item Using the normal vector \(\mathbf n=\mathbf i-2\mathbf j+3\mathbf k\) and the point \((2,-1,3)\) on \(\Pi\), an equation of \(\Pi\) is
   \[
   \mathbf n\cdot \left(\begin{pmatrix}x\\y\\z\end{pmatrix}-\begin{pmatrix}2\\-1\\3\end{pmatrix}\right)=0
   \]
@@ -511,12 +509,12 @@ The point $A$ lies on $\ell$. Given that the shortest distance between $A$ and $
   x-2y+3z=13
   \]
 
-  \item Since \(A\) lies on the line \(\ell\),
+  \item \(A\) lies on the line \(\ell\) with equation
   \[
   \mathbf r=\begin{pmatrix}-2\\1\\4\end{pmatrix}+t\begin{pmatrix}1\\1\\1\end{pmatrix}
   \]
 
-  the coordinates of \(A\) are
+  so the coordinates of \(A\) are
   \[
   A=(-2+t,\ 1+t,\ 4+t)
   \]
@@ -556,10 +554,10 @@ The point $A$ lies on $\ell$. Given that the shortest distance between $A$ and $
   
   Substitute back into the line:
   \[
-  t=7 \implies A=(5,8,11)
+  t=7\quad\Longrightarrow\quad A=(5,8,11)
   \]
   \[
-  t=-2 \implies A=(-4,-1,2)
+  t=-2\quad\Longrightarrow\quad A=(-4,-1,2)
   \]
   
   Therefore the possible coordinates of \(A\) are \((5,8,11)\) or \((-4,-1,2)\).
@@ -610,7 +608,7 @@ A normal vector to the plane is
 1&2&0\\
 1&0&-1
 \end{vmatrix} \\
-&=\mathbf i(2\cdot(-1)-0\cdot 0)-\mathbf j(1\cdot(-1)-0\cdot 1)+\mathbf k(1\cdot 0-2\cdot 1) \\
+&=\mathbf i(2\times(-1)-0\times 0)-\mathbf j(1\times(-1)-0\times 1)+\mathbf k(1\times 0-2\times 1) \\
 &=\begin{pmatrix}-2\\1\\-2\end{pmatrix}
 \end{align*}
 
@@ -624,7 +622,7 @@ The plane has equation
 2x-y+2z=d
 \]
 
-Since it passes through \(A(1,-2,3)\),
+It passes through \(A(1,-2,3)\), so
 \begin{align*}
 d&=2(1)-(-2)+2(3)\\
 &=2+2+6\\
@@ -636,7 +634,13 @@ Hence the plane is
 \Pi:\;2x-y+2z=10
 \]
 
-Using the point-to-plane distance formula with \(D(4,1,0)\),
+Using the point-to-plane distance formula
+\[
+\mathrm{dist}
+=\frac{\left\lvert ax_0+by_0+cz_0-d\right\rvert}{\sqrt{a^2+b^2+c^2}}
+\]
+
+with \(a=2\), \(b=-1\), \(c=2\), \(d=10\) and \(D(4,1,0)\):
 \begin{align*}
 \mathrm{dist}
 &=\frac{\left\lvert 2(4)-1+2(0)-10\right\rvert}{\sqrt{2^2+(-1)^2+2^2}} \\
@@ -679,11 +683,11 @@ First find the common normal direction:
 2&1&2\\
 1&-2&1
 \end{vmatrix} \\
-&=\mathbf i(1\cdot 1-2\cdot(-2))-\mathbf j(2\cdot 1-2\cdot 1)+\mathbf k(2\cdot(-2)-1\cdot 1) \\
+&=\mathbf i(1\times 1-2\times(-2))-\mathbf j(2\times 1-2\times 1)+\mathbf k(2\times(-2)-1\times 1) \\
 &=\begin{pmatrix}5\\0\\-5\end{pmatrix}
 \end{align*}
 
-Also,
+Also
 \[
 \mathbf a_2-\mathbf a_1
 =\begin{pmatrix}3-1\\-1-2\\4-(-1)\end{pmatrix}
@@ -712,7 +716,7 @@ And the denominator is
 &=5\sqrt2
 \end{align*}
 
-Therefore,
+Therefore
 \begin{align*}
 \mathrm{dist}
 &=\frac{15}{5\sqrt2} \\
@@ -743,7 +747,7 @@ and
 \[
 2x+y-z=3
 \] \\
-\begin{enumerate}[label=(\roman*)]
+\begin{enumerate}[label=\textbf{(\roman*)}]
   \item Find the shortest distance between $\ell_1$ and $\ell_2$. \marks{6} \\
   \item Find a Cartesian equation of the plane which contains $\ell_1$ and is parallel to $\ell_2$. \marks{2} \\
 \end{enumerate}
@@ -770,7 +774,7 @@ and
   x=3
   \]
 
-  Substituting into \(x-y+t=6\),
+  Substituting into \(x-y+t=6\):
   \begin{align*}
   3-y+t&=6\\
   -y&=3-t\\
@@ -785,31 +789,31 @@ and
   So we can take
   \[
   \mathbf a_1=\begin{pmatrix}2\\-1\\3\end{pmatrix},\quad
-  \mathbf d_1=\begin{pmatrix}1\\2\\-1\end{pmatrix},\quad
+  \mathbf b_1=\begin{pmatrix}1\\2\\-1\end{pmatrix},\quad
   \mathbf a_2=\begin{pmatrix}3\\-3\\0\end{pmatrix},\quad
-  \mathbf d_2=\begin{pmatrix}0\\1\\1\end{pmatrix}
+  \mathbf b_2=\begin{pmatrix}0\\1\\1\end{pmatrix}
   \]
 
-  For the shortest distance between two skew lines,
+  For the shortest distance between two skew lines:
   \[
   \mathrm{dist}
-  =\frac{\left\lvert(\mathbf a_2-\mathbf a_1)\cdot(\mathbf d_1\times\mathbf d_2)\right\rvert}
-  {\left\lvert\mathbf d_1\times\mathbf d_2\right\rvert}
+  =\frac{\left\lvert(\mathbf a_2-\mathbf a_1)\cdot(\mathbf b_1\times\mathbf b_2)\right\rvert}
+  {\left\lvert\mathbf b_1\times\mathbf b_2\right\rvert}
   \]
 
-  First calculate the cross product:
+  First calculate the vector product:
   \begin{align*}
-  \mathbf d_1\times\mathbf d_2
-  &=\begin{pmatrix}1\\2\\-1\end{pmatrix}\times\begin{pmatrix}0\\1\\1\end{pmatrix}\\
-  &=\begin{pmatrix}
-  2(1)-(-1)(1)\\
-  -\bigl(1(1)-(-1)(0)\bigr)\\
-  1(1)-2(0)
-  \end{pmatrix}\\
+  \mathbf b_1\times\mathbf b_2
+  &=\begin{vmatrix}
+  \mathbf i & \mathbf j & \mathbf k\\
+  1 & 2 & -1\\
+  0 & 1 & 1
+  \end{vmatrix}\\
+  &=\mathbf i\bigl(2(1)-(-1)(1)\bigr)-\mathbf j\bigl(1(1)-(-1)(0)\bigr)+\mathbf k\bigl(1(1)-2(0)\bigr)\\
   &=\begin{pmatrix}3\\-1\\1\end{pmatrix}
   \end{align*}
 
-  Also,
+  Also
   \[
   \mathbf a_2-\mathbf a_1
   =\begin{pmatrix}3\\-3\\0\end{pmatrix}-\begin{pmatrix}2\\-1\\3\end{pmatrix}
@@ -818,7 +822,7 @@ and
 
   Now find the scalar triple product:
   \begin{align*}
-  (\mathbf a_2-\mathbf a_1)\cdot(\mathbf d_1\times\mathbf d_2)
+  (\mathbf a_2-\mathbf a_1)\cdot(\mathbf b_1\times\mathbf b_2)
   &=\begin{pmatrix}1\\-2\\-3\end{pmatrix}\cdot\begin{pmatrix}3\\-1\\1\end{pmatrix}\\
   &=1(3)+(-2)(-1)+(-3)(1)\\
   &=3+2-3\\
@@ -827,7 +831,7 @@ and
 
   And
   \begin{align*}
-  \left\lvert\mathbf d_1\times\mathbf d_2\right\rvert
+  \left\lvert\mathbf b_1\times\mathbf b_2\right\rvert
   &=\sqrt{3^2+(-1)^2+1^2}\\
   &=\sqrt{11}
   \end{align*}
@@ -841,14 +845,14 @@ and
 
   \item A plane containing \(\ell_1\) and parallel to \(\ell_2\) must contain both direction vectors
   \[
-  \mathbf d_1=\begin{pmatrix}1\\2\\-1\end{pmatrix},
+  \mathbf b_1=\begin{pmatrix}1\\2\\-1\end{pmatrix},
   \qquad
-  \mathbf d_2=\begin{pmatrix}0\\1\\1\end{pmatrix}
+  \mathbf b_2=\begin{pmatrix}0\\1\\1\end{pmatrix}
   \]
 
   So a normal vector to the plane is
   \[
-  \mathbf n=\mathbf d_1\times\mathbf d_2=\begin{pmatrix}3\\-1\\1\end{pmatrix}
+  \mathbf n=\mathbf b_1\times\mathbf b_2=\begin{pmatrix}3\\-1\\1\end{pmatrix}
   \]
 
   The plane passes through the point \((2,-1,3)\) on \(\ell_1\). Hence its equation is
@@ -858,7 +862,7 @@ and
   3(x-2)-(y+1)+(z-3)&=0
   \end{align*}
 
-  Simplifying,
+  Simplifying:
   \begin{align*}
   3x-6-y-1+z-3&=0\\
   3x-y+z-10&=0
@@ -910,18 +914,18 @@ The line $\ell$ has equation
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Let the coefficient matrix be
 \[
-A=\begin{pmatrix}
+\mathbf{A}=\begin{pmatrix}
 1 & \lambda & 1\\
 2 & -1 & 2\\
 2 & 1 & -1
 \end{pmatrix}
 \]
 
-The three planes meet at a unique point if and only if the simultaneous equations have a unique solution, that is, if and only if $\det A\neq 0$.
+The three planes meet at a unique point if and only if the simultaneous equations have a unique solution, that is, if and only if $\det(\mathbf{A})\neq 0$.
 
-Expanding along the first row,
+Expanding along the first row:
 \begin{align*}
-\det A
+\det(\mathbf{A})
 &=1\begin{vmatrix}-1&2\\1&-1\end{vmatrix}
 -\lambda\begin{vmatrix}2&2\\2&-1\end{vmatrix}
 +1\begin{vmatrix}2&-1\\2&1\end{vmatrix}\\
@@ -939,7 +943,7 @@ So the planes meet at a unique point whenever
 3(2\lambda+1)\neq 0
 \]
 
-that is,
+that is
 \[
 \lambda\neq -\frac12
 \]
@@ -979,12 +983,12 @@ x+2y+z&=4\\
 
 Write this system as
 \[
-A\mathbf{x}=\mathbf{b}
+\mathbf{A}\mathbf{x}=\mathbf{b}
 \]
 
 where
 \[
-A=
+\mathbf{A}=
 \begin{pmatrix}
 1&2&1\\
 2&-1&2\\
@@ -1006,14 +1010,14 @@ z
 \end{pmatrix}
 \]
 
-Since $\det A\neq 0$, the matrix is invertible, so
+Since $\det(\mathbf{A})\neq 0$, the matrix is invertible, so
 \[
-\mathbf{x}=A^{-1}\mathbf{b}
+\mathbf{x}=\mathbf{A}^{-1}\mathbf{b}
 \]
 
-Using a calculator to find the inverse,
+Using a calculator to find the inverse:
 \[
-A^{-1}=
+\mathbf{A}^{-1}=
 \begin{pmatrix}
 -\frac1{15}&\frac15&\frac13\\[4pt]
 \frac25&-\frac15&0\\[4pt]
@@ -1088,7 +1092,7 @@ Q=(-1,1,0)
 
 on the line $\ell$, and the direction vector of $\ell$ as
 \[
-\mathbf d=
+\mathbf u=
 \begin{pmatrix}
 1\\
 -1\\
@@ -1121,24 +1125,18 @@ Then
 Using
 \[
 \mathrm{dist}
-=\frac{\left\lvert \overrightarrow{QP}\times \mathbf d\right\rvert}{\left\lvert \mathbf d\right\rvert}
+=\frac{\left\lvert \overrightarrow{QP}\times \mathbf u\right\rvert}{\left\lvert \mathbf u\right\rvert}
 \]
 
-First find the cross product:
+First find the vector product:
 \begin{align*}
-\overrightarrow{QP}\times \mathbf d
+\overrightarrow{QP}\times \mathbf u
 &=
-\begin{pmatrix}
-3\\
-0\\
-0
-\end{pmatrix}
-\times
-\begin{pmatrix}
-1\\
--1\\
-1
-\end{pmatrix}\\
+\begin{vmatrix}
+\mathbf i & \mathbf j & \mathbf k\\
+3 & 0 & 0\\
+1 & -1 & 1
+\end{vmatrix}\\
 &=
 \begin{pmatrix}
 0\\
@@ -1149,15 +1147,15 @@ First find the cross product:
 
 So
 \begin{align*}
-\left\lvert \overrightarrow{QP}\times \mathbf d\right\rvert
+\left\lvert \overrightarrow{QP}\times \mathbf u\right\rvert
 &=\sqrt{0^2+(-3)^2+(-3)^2}\\
 &=\sqrt{18}\\
 &=3\sqrt2
 \end{align*}
 
-Also,
+Also
 \[
-\left\lvert \mathbf d\right\rvert=\sqrt{1^2+(-1)^2+1^2}=\sqrt3
+\left\lvert \mathbf u\right\rvert=\sqrt{1^2+(-1)^2+1^2}=\sqrt3
 \]
 
 Hence
@@ -1172,7 +1170,7 @@ Therefore the shortest distance between $P$ and $\ell$ is
 \sqrt6
 \]
 
-  \item \begin{enumerate}[label=\textbf{(\roman*)}]
+  \item \begin{enumerate}[label=(\roman*)]
     \item The plane
 \[
 2x+y-z=5
@@ -1190,7 +1188,7 @@ has normal vector
 
 The line $\ell$ has direction vector
 \[
-\mathbf d=
+\mathbf u=
 \begin{pmatrix}
 1\\
 -1\\
@@ -1200,7 +1198,7 @@ The line $\ell$ has direction vector
 
 Now
 \begin{align*}
-\mathbf d\cdot \mathbf n
+\mathbf u\cdot \mathbf n
 &=
 \begin{pmatrix}
 1\\
@@ -1220,7 +1218,7 @@ Now
 
 So $\ell$ is either parallel to the plane or lies in the plane.
 
-Take the point $Q=(-1,1,0)$ on $\ell$. Substituting into the plane equation,
+Take the point $Q=(-1,1,0)$ on $\ell$. Substituting into the plane equation:
 \[
 2(-1)+1-0=-1
 \]
@@ -1239,7 +1237,7 @@ Using $Q=(-1,1,0)$ and the formula
 =\frac{|ax_0+by_0+cz_0-d|}{\sqrt{a^2+b^2+c^2}}
 \]
 
-for the plane $2x+y-z=5$,
+for the plane $2x+y-z=5$:
 \begin{align*}
 \mathrm{dist}
 &=\frac{|2(-1)+1(1)+(-1)(0)-5|}{\sqrt{2^2+1^2+(-1)^2}}\\
@@ -1312,9 +1310,7 @@ Therefore the distance between $\ell$ and the plane is
     -\mathbf{j}\bigl(\lambda(-1)-2(1)\bigr)
     +\mathbf{k}\bigl(\lambda(1)-(-2)(1)\bigr)\\
     &=
-    \mathbf{i}(2-2)-\mathbf{j}(-\lambda-2)+\mathbf{k}(\lambda+2)\\
-    &=
-    0\mathbf{i}+(\lambda+2)\mathbf{j}+(\lambda+2)\mathbf{k}\\
+    (\lambda+2)\mathbf{j}+(\lambda+2)\mathbf{k}\\
     &=
     (\lambda+2)(\mathbf{j}+\mathbf{k})
     \end{align*}
@@ -1384,9 +1380,9 @@ Therefore the distance between $\ell$ and the plane is
     \item
     Write the lines as
     \[
-    L_1:\ \mathbf{r}=\mathbf{a}_1+s\mathbf{b}_1,
+    \ell_1:\ \mathbf{r}=\mathbf{a}_1+s\mathbf{b}_1,
     \qquad
-    L_2:\ \mathbf{r}=\mathbf{a}_2+t\mathbf{b}_2
+    \ell_2:\ \mathbf{r}=\mathbf{a}_2+t\mathbf{b}_2
     \]
 
     where
@@ -1396,7 +1392,7 @@ Therefore the distance between $\ell$ and the plane is
     \mathbf{a}_2=\begin{pmatrix}2\\3\\3\end{pmatrix},\quad \mathbf{b}_2=\begin{pmatrix}1\\1\\-1\end{pmatrix}
     \]
 
-    Using the formula for the distance between two skew lines,
+    Using the formula for the distance between two skew lines:
     \[
     \mathrm{dist}
     =
@@ -1404,7 +1400,7 @@ Therefore the distance between $\ell$ and the plane is
     {\left\lvert\mathbf{b}_1\times\mathbf{b}_2\right\rvert}
     \]
 
-    From part (a)(ii), with \(\lambda=1\),
+    From part (a)(ii), with \(\lambda=1\):
     \[
     \mathbf{b}_1\times\mathbf{b}_2
     =(1+2)(\mathbf{j}+\mathbf{k})
@@ -1425,7 +1421,7 @@ Therefore the distance between $\ell$ and the plane is
     &=
     \begin{pmatrix}1\\3\\4\end{pmatrix}\cdot\begin{pmatrix}0\\3\\3\end{pmatrix}\\
     &=
-    1\cdot 0+3\cdot 3+4\cdot 3\\
+    1\times 0+3\times 3+4\times 3\\
     &=
     21
     \end{align*}
@@ -1481,7 +1477,7 @@ It is given that the shortest distance between the line through $A$ and $D$ and 
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-\item Writing the points in coordinates,
+\item Writing the points in coordinates:
 \[
 A=(1,2,0),\quad B=(2,2,0),\quad C=(1,3,2),\quad D=(2,3,m)
 \]
@@ -1491,17 +1487,17 @@ So the direction vectors of the two lines are
 \overrightarrow{AD}=\begin{pmatrix}1\\1\\m\end{pmatrix},\qquad \overrightarrow{BC}=\begin{pmatrix}-1\\1\\2\end{pmatrix}
 \]
 
-Also,
+Also
 \[
 \overrightarrow{AB}=\begin{pmatrix}1\\0\\0\end{pmatrix}
 \]
 
-Using the formula for the distance between two skew lines,
+Using the formula for the distance between two skew lines:
 \[
 \mathrm{dist}=\frac{\left\lvert \overrightarrow{AB}\cdot\left(\overrightarrow{AD}\times\overrightarrow{BC}\right)\right\rvert}{\left\lvert \overrightarrow{AD}\times\overrightarrow{BC}\right\rvert}
 \]
 
-First find the cross product:
+First find the vector product:
 \begin{align*}
 \overrightarrow{AD}\times\overrightarrow{BC}
 &=
@@ -1510,7 +1506,7 @@ First find the cross product:
 1 & 1 & m\\
 -1 & 1 & 2
 \end{vmatrix} \\
-&= \mathbf i(1\cdot 2-m\cdot 1)-\mathbf j(1\cdot 2-m(-1))+\mathbf k(1\cdot 1-1(-1)) \\
+&= \mathbf i(1\times 2-m\times 1)-\mathbf j(1\times 2-m\times(-1))+\mathbf k(1\times 1-1\times(-1)) \\
 &= (2-m)\mathbf i-(2+m)\mathbf j+2\mathbf k
 \end{align*}
 
@@ -1521,7 +1517,7 @@ Now the scalar triple product is
 &=2-m
 \end{align*}
 
-Next,
+Next
 \begin{align*}
 \left\lvert \overrightarrow{AD}\times\overrightarrow{BC}\right\rvert^2
 &=(2-m)^2+(-2-m)^2+2^2 \\
@@ -1544,7 +1540,7 @@ This is given to be \(\frac{1}{\sqrt{14}}\), so
 \frac{|2-m|}{\sqrt{2m^2+12}}=\frac{1}{\sqrt{14}}
 \]
 
-Squaring both sides,
+Squaring both sides:
 \begin{align*}
 14(2-m)^2&=2m^2+12 \\
 14(m^2-4m+4)&=2m^2+12 \\
@@ -1553,7 +1549,7 @@ Squaring both sides,
 3m^2-14m+11&=0
 \end{align*}
 
-Factorising,
+Factorising:
 \[
 3m^2-14m+11=(3m-11)(m-1)
 \]
@@ -1573,22 +1569,22 @@ Since \(m\) is an integer, the only possible value is
 m=1
 \]
 
-\item Using \(m=1\),
+\item Using \(m=1\):
 \[
 D=(2,3,1)
 \]
 
-For the line through \(A\) and \(D\),
+For the line through \(A\) and \(D\):
 \[
 \overrightarrow{AD}=\begin{pmatrix}1\\1\\1\end{pmatrix}
 \]
 
-Also,
+Also
 \[
 \overrightarrow{AC}=\begin{pmatrix}0\\1\\2\end{pmatrix}
 \]
 
-Using the point-to-line distance formula,
+Using the point-to-line distance formula:
 \[
 \mathrm{dist}=\frac{\left\lvert \overrightarrow{AC}\times\overrightarrow{AD}\right\rvert}{\left\lvert \overrightarrow{AD}\right\rvert}
 \]
@@ -1602,7 +1598,7 @@ Now
 0 & 1 & 2\\
 1 & 1 & 1
 \end{vmatrix} \\
-&=\mathbf i(1\cdot 1-2\cdot 1)-\mathbf j(0\cdot 1-2\cdot 1)+\mathbf k(0\cdot 1-1\cdot 1) \\
+&=\mathbf i(1\times 1-2\times 1)-\mathbf j(0\times 1-2\times 1)+\mathbf k(0\times 1-1\times 1) \\
 &=-\mathbf i+2\mathbf j-\mathbf k
 \end{align*}
 
@@ -1626,7 +1622,7 @@ So the shortest distance of \(C\) from the line through \(A\) and \(D\) is
 \sqrt{2}
 \]
 
-\item With \(m=1\),
+\item With \(m=1\):
 \[
 \overrightarrow{AB}=\begin{pmatrix}1\\0\\0\end{pmatrix},\quad \overrightarrow{AC}=\begin{pmatrix}0\\1\\2\end{pmatrix},\quad \overrightarrow{AD}=\begin{pmatrix}1\\1\\1\end{pmatrix}
 \]
@@ -1657,7 +1653,7 @@ A normal to plane \(ACD\) is
 &=-\mathbf i+2\mathbf j-\mathbf k
 \end{align*}
 
-Using the acute angle formula for two planes,
+Using the acute angle formula for two planes:
 \[
 \cos\theta=\frac{\left\lvert \mathbf n_{ABD}\cdot \mathbf n_{ACD}\right\rvert}{\left\lvert \mathbf n_{ABD}\right\rvert\left\lvert \mathbf n_{ACD}\right\rvert}
 \]
@@ -1675,7 +1671,7 @@ Hence
 \left\lvert \mathbf n_{ABD}\cdot \mathbf n_{ACD}\right\rvert=3
 \]
 
-Also,
+Also
 \[
 \left\lvert \mathbf n_{ABD}\right\rvert=\sqrt{0^2+(-1)^2+1^2}=\sqrt{2}
 \]
@@ -1699,7 +1695,7 @@ So the acute angle between the planes \(ABD\) and \(ACD\) is
 \theta=\cos^{-1}\left(\frac{\sqrt{3}}{2}\right)
 \]
 
-That is,
+That is
 \[
 \theta=\frac{\pi}{6}=30^\circ
 \]
