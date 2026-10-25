@@ -684,6 +684,16 @@ const rawResources: Resource[] = [
     pairId: 'fm-further-maclaurin-series',
     topic: 'Further Calculus',
   },
+  {
+    id: 'fm-further-maclaurin-series-ms',
+    title: 'Maclaurin Series',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/further-calculus/ms/_QBT___MS__Maclaurin_Series.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-further-maclaurin-series',
+    topic: 'Further Calculus',
+  },
 
   // --- A-level Further Maths: Polar Coordinates ---
   {

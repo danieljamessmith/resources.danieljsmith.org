@@ -1,0 +1,820 @@
+format: 1
+pack: Maclaurin Series
+last_updated: 25 October 2026
+questions:
+  - q: 1
+    stamp: f31fd088
+    parts:
+      - part: a.i
+        rows:
+          - scheme: |
+              \(f'(x) = -2e^{-2x}\)
+            marks:
+              - code: M1
+                note: Differentiates to the form \(ke^{-2x}\), any nonzero constant \(k\).
+          - scheme: |
+              \(f''(x) = 4e^{-2x}\)
+            marks:
+              - code: A1
+                note: Both derivatives correct.
+      - part: a.ii
+        rows:
+          - scheme: |
+              \(f(0) = 1,\ f'(0) = \text{"}{-2}\text{"},\ f''(0) = \text{"}4\text{"}\)
+              \(e^{-2x} = 1 + x(\text{"}{-2}\text{"}) + \frac{x^2}{2!}(\text{"}4\text{"}) + \cdots\)
+            marks:
+              - code: M1
+                note: Uses \(f(0) + xf'(0) + \frac{x^2}{2!}f''(0)\) with their derivatives from (a)(i) at \(x = 0\). Not for replacing \(x\) by \(-2x\) in the series for \(e^x\).
+          - scheme: |
+              \(e^{-2x} = 1 - 2x + 2x^2 + \cdots\)
+            marks:
+              - code: A1
+      - part: b
+        rows:
+          - scheme: |
+              \(x = \tfrac18\)
+              \(e^{-1/4} \approx 1 - 2\left(\tfrac18\right) + 2\left(\tfrac18\right)^2\)
+            marks:
+              - code: M1
+                note: Substitutes \(x = \frac18\) into their three-term series from (a)(ii).
+          - scheme: |
+              \(\phantom{e^{-1/4}} = 1 - \tfrac14 + \tfrac1{32} = \tfrac{25}{32}\)
+            marks:
+              - code: A1 AG
+                note: From the correct series, reaching \(\frac{25}{32}\) without error; combined arithmetic accepted. Not for a calculator value of \(e^{-1/4}\).
+  - q: 2
+    stamp: 9123d15b
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \cdots\)
+            marks:
+              - code: M1
+                note: Uses the standard series, or derivatives at \(x = 0\) in the Maclaurin formula, with factorial denominators. Need not be simplified.
+          - scheme: |
+              \(\phantom{e^x} = 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + \frac{x^4}{24}\)
+            marks:
+              - code: A1
+                note: All five terms, with the factorials evaluated.
+      - part: b
+        rows:
+          - scheme: |
+              \(e^{-x} = 1 - x + \frac{x^2}{2} - \frac{x^3}{6} + \frac{x^4}{24}\)
+            marks:
+              - code: B1ft
+                note: ft their five terms in (a) with \(x\) replaced by \(-x\), signs simplified.
+      - part: c
+        rows:
+          - scheme: |
+              \(\cosh x = \tfrac12\left(e^x + e^{-x}\right)\)
+              \(\phantom{\cosh x} = 1 + \frac{x^2}{2} + \frac{x^4}{24} + \cdots\)
+            marks:
+              - code: M1
+                note: Adds their series for \(e^x\) and \(e^{-x}\) and halves, reaching at least the terms in \(x^2\) and \(x^4\).
+          - scheme: |
+              \(\cosh^2\left(\tfrac{x}{2}\right) = \tfrac12\left(\text{"}1 + \frac{x^2}{2} + \frac{x^4}{24}\text{"} + 1\right)\)
+            marks:
+              - code: dM1
+                note: Adds 1 to their series for \(\cosh x\) and divides by 2.
+          - scheme: |
+              \(\phantom{\cosh^2\left(\tfrac{x}{2}\right)} = 1 + \tfrac14 x^2 + \tfrac1{48}x^4 + \cdots\)
+            marks:
+              - code: A1
+                note: Correct series, or \(a = 1\), \(b = \frac14\), \(c = \frac1{48}\) stated.
+  - q: 3
+    stamp: a9ea7f73
+    parts:
+      - part: i
+        rows:
+          - scheme: |
+              \(\sin 2x = 2x - \frac{(2x)^3}{3!} + \frac{(2x)^5}{5!} + \cdots\)
+              \(\cos 3x = 1 - \frac{(3x)^2}{2!} + \frac{(3x)^4}{4!} + \cdots\)
+            marks:
+              - code: M1
+                note: Replaces \(x\) by \(2x\) in the \(\sin x\) series and by \(3x\) in the \(\cos x\) series, at least two terms each. Need not be simplified.
+          - scheme: |
+              \(\cos x - \cos 3x = \left(1 - \frac{x^2}{2} + \frac{x^4}{24}\right)\)
+              \(\phantom{\cos x - \cos 3x =} - \text{"}\left(1 - \frac{9x^2}{2} + \frac{81x^4}{24}\right)\text{"}\)
+              \(\phantom{\cos x - \cos 3x} = 4x^2 - \frac{10}{3}x^4 + \cdots\)
+            marks:
+              - code: M1
+                note: Subtracts their \(\cos 3x\) series from the \(\cos x\) series, reaching terms in \(x^2\) and \(x^4\). Condone sign slips.
+          - scheme: |
+              \(\text{"}\left(2x - \frac43x^3 + \frac{4}{15}x^5\right)\text{"}\,\text{"}\left(4x^2 - \frac{10}{3}x^4\right)\text{"}\)
+              \(\phantom{A} = 8x^3 - \frac{20}{3}x^5 - \frac{16}{3}x^5 + \cdots\)
+            marks:
+              - code: dM1
+                note: Multiplies their two series, forming the \(x^3\) term and both products giving \(x^5\). Condone slips in coefficients.
+          - scheme: |
+              \(\sin 2x(\cos x - \cos 3x) = 8x^3 - 12x^5 + \cdots\)
+            marks:
+              - code: A1
+                note: \(8x^3\)
+              - code: A1
+                note: \(-12x^5\)
+      - part: ii
+        rows:
+          - scheme: |
+              \(2\left(\text{"}8x^3 - 12x^5\text{"}\right) = x\)
+            marks:
+              - code: M1
+                note: Replaces the LHS by twice their series from (i), of the form \(ax^3 + bx^5\), and equates to \(x\).
+          - scheme: |
+              \(24x^4 - 16x^2 + 1 = 0\)
+              \(\Rightarrow x^2 = \frac{16 \pm \sqrt{256 - 96}}{48} = \ldots\)
+            marks:
+              - code: dM1
+                note: Divides by \(x\) and solves their three-term quadratic in \(x^2\) by the formula with their values or completing the square.
+          - scheme: |
+              \(x^2 = \frac{4 - \sqrt{10}}{12} \Rightarrow x = \sqrt{\frac{4 - \sqrt{10}}{12}}\)
+            marks:
+              - code: A1 AG
+                note: From a correct quadratic in \(x^2\) without error, selecting the smaller value of \(x^2\) and the positive root.
+  - q: 4
+    stamp: 47fd730b
+    parts:
+      - part: a.i
+        rows:
+          - scheme: |
+              \(f'(x) = \frac{\cos x}{1 + \sin x}\)
+              \(f''(x) = \frac{(-\sin x)(1 + \sin x) - \cos x \cos x}{(1 + \sin x)^2}\)
+            marks:
+              - code: M1
+                note: Obtains \(f'(x)\) of the form \(\frac{k\cos x}{1 + \sin x}\) and differentiates it by the quotient or product rule. Condone sign slips.
+          - scheme: |
+              \(f''(x) = -\frac{1}{1 + \sin x}\)
+            marks:
+              - code: A1
+                note: Any correct form, simplified or not.
+      - part: a.ii
+        rows:
+          - scheme: |
+              \(f(0) = 0,\ f'(0) = 1,\ f''(0) = \text{"}{-1}\text{"}\)
+              \(f(x) = 0 + x(1) + \frac{x^2}{2!}(\text{"}{-1}\text{"}) + \cdots\)
+            marks:
+              - code: M1
+                note: Substitutes \(x = 0\) into their \(f'\) and \(f''\) and uses \(f(0) + xf'(0) + \frac{x^2}{2!}f''(0)\), or composes the series for \(\ln(1+u)\) and \(\sin x\).
+          - scheme: |
+              \(f(x) = x - \frac{x^2}{2} + \cdots\)
+            marks:
+              - code: A1
+      - part: a.iii
+        rows:
+          - scheme: |
+              \(\int_0^{2/5} \text{"}x - \frac{x^2}{2}\text{"}\,\mathrm{d}x = \left[\frac{x^2}{2} - \frac{x^3}{6}\right]_0^{2/5}\)
+              \(\phantom{\int_0^{2/5}} = \frac{(2/5)^2}{2} - \frac{(2/5)^3}{6}\)
+            marks:
+              - code: M1
+                note: Integrates their two-term series, raising the power of at least one term, and substitutes \(x = \frac25\).
+          - scheme: |
+              \(= \frac{26}{375} \approx 0.069333\)
+            marks:
+              - code: A1
+                note: awrt 0.069333; \(\frac{26}{375}\) alone or fewer than 6 d.p. scores A0.
+  - q: 5
+    stamp: aa4a4ddb
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\ln\left(\frac{1+2x}{1-x}\right) = \ln(1+2x) - \ln(1-x)\)
+              \(\ln(1+2x) = 2x - \frac{(2x)^2}{2} + \frac{(2x)^3}{3} + \cdots\)
+              \(\ln(1-x) = -x - \frac{x^2}{2} - \frac{x^3}{3} - \cdots\)
+            marks:
+              - code: M1
+                note: Splits the logarithm and substitutes \(2x\) and \(-x\) into the \(\ln(1+x)\) series, to at least the \(x^3\) terms. Condone sign slips.
+          - scheme: |
+              \(\left(2x - 2x^2 + \frac83x^3\right) - \left(-x - \frac12x^2 - \frac13x^3\right)\)
+              \(\phantom{A} = 3x - \frac32x^2 + 3x^3\)
+            marks:
+              - code: A1 AG
+                note: Correct expansions of both logarithms combined without error to the printed terms.
+      - part: b
+        rows:
+          - scheme: |
+              Series valid only for \(-\frac12 < x \leq \frac12\)
+            marks:
+              - code: B1
+                note: Accept \(|2x| < 1\) or \(|x| < \frac12\); condone the endpoints.
+          - scheme: |
+              \(x = \frac58 > \frac12\), outside the range of validity
+            marks:
+              - code: E1
+                note: States that \(\frac58\) lies outside a correct range, so the series is not valid there. Not for saying only that the answer is inaccurate.
+      - part: c
+        rows:
+          - scheme: |
+              \(\ln 2 \approx 3\left(\tfrac14\right) - \tfrac32\left(\tfrac14\right)^2 + 3\left(\tfrac14\right)^3\)
+              \(\ln 8 = 3\ln 2 \approx 3 \times \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(x = \frac14\) into the three terms as an approximation for \(\ln 2\) and multiplies by 3. Condone arithmetic slips.
+          - scheme: |
+              \(\ln 8 \approx \frac{135}{64} \approx 2.11\)
+            marks:
+              - code: A1
+                note: \(\frac{135}{64}\) oe, or awrt 2.11.
+          - scheme: |
+              \(x = \tfrac14 \Rightarrow \frac{1+2x}{1-x} = \frac{3/2}{3/4} = 2\)
+              \(-\tfrac12 < \tfrac14 \leq \tfrac12\), within the range of validity
+            marks:
+              - code: E1
+                note: Shows \(\frac{1+2x}{1-x} = 2\) at \(x = \frac14\) and states that \(\frac14\) lies in the range of validity.
+  - q: 6
+    stamp: d4adae6e
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(-\ln(1-x) = x + \frac{x^2}{2} + \frac{x^3}{3} + \cdots\)
+            marks:
+              - code: M1
+                note: Writes the series for \(\ln(1-x)\) or \(-\ln(1-x)\) with at least two terms and an indication it continues. Condone a sign slip.
+          - scheme: |
+              \(0 < x < 1 \Rightarrow \frac{x^2}{2} + \frac{x^3}{3} + \cdots > 0\)
+              \(\phantom{0 < x < 1} \Rightarrow -\ln(1-x) > x\)
+            marks:
+              - code: A1 AG
+                note: Correct series, with the terms after \(x\) stated positive for \(0 < x < 1\), leading to the printed inequality. A0 without the reason.
+      - part: b
+        rows:
+          - scheme: |
+              \(x = 1 - \tfrac1t\), \(t > 1 \Rightarrow 0 < x < 1\)
+              \(-\ln\left(\tfrac1t\right) > 1 - \tfrac1t \Rightarrow \ln t > 1 - \tfrac1t\)
+            marks:
+              - code: B1
+                note: Substitutes \(x = 1 - \frac1t\) into (a), states \(0 < x < 1\) for \(t > 1\), and reaches the printed result without error.
+      - part: c
+        rows:
+          - scheme: |
+              \(\ln\left(\tfrac54\right) > 1 - \frac{1}{5/4}\)
+            marks:
+              - code: M1
+                note: Substitutes \(t = \frac54\) into the inequality from (b). Comparing calculator values scores nothing in this part.
+          - scheme: |
+              \(\ln\left(\tfrac54\right) > \tfrac15\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(5\ln\left(\tfrac54\right) > 1 = \ln e\)
+              \(\phantom{5} \Rightarrow \left(\tfrac54\right)^5 > e\)
+            marks:
+              - code: A1
+                note: cso. Multiplies by 5 and compares with \(\ln e\), or exponentiates, concluding \(\left(\frac54\right)^5\) is greater.
+  - q: 7
+    stamp: 4a56e2c8
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\ln(1+2x) - \ln(1-x)\)
+              \(\phantom{A} = \left(2x - \frac{(2x)^2}{2} + \frac{(2x)^3}{3}\right)\)
+              \(\phantom{A = } - \left(-x - \frac{x^2}{2} - \frac{x^3}{3}\right)\)
+            marks:
+              - code: M1
+                note: Splits the logarithm as a difference and expands both with \(\ln(1+u)\), \(u = 2x\) and \(u = -x\), at least to \(x^2\). Condone sign slips.
+          - scheme: |
+              \(3x - \frac32 x^2 + 3x^3\)
+            marks:
+              - code: A1
+                note: oe; isw.
+      - part: b
+        rows:
+          - scheme: |
+              \(\frac{1+2x}{1-x} = \frac{10}{7} \Rightarrow x = \frac18\)
+              \(\ln\left(\frac{10}{7}\right) \approx 3\left(\frac18\right) - \frac32\left(\frac18\right)^2\)
+              \(\phantom{\ln\left(\frac{10}{7}\right) \approx} + 3\left(\frac18\right)^3\)
+            marks:
+              - code: M1
+                note: Solves \(\frac{1+2x}{1-x} = \frac{10}{7}\) for \(x\) and substitutes their \(x\) into their three terms from (a).
+          - scheme: |
+              \(\phantom{A} = \frac{192}{512} - \frac{12}{512} + \frac{3}{512} = \frac{183}{512}\)
+            marks:
+              - code: A1 AG
+                note: Correct substitution of \(x = \frac18\) into correct terms, reaching \(\frac{183}{512}\) without error. Not for decimal comparison alone.
+      - part: c
+        rows:
+          - scheme: |
+              \(\frac{1+2x}{1-x} = 10 \Rightarrow x = \frac34\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(\ln(1+2x)\) series valid only for \(-\frac12 < x \leq \frac12\)
+              \(x = \frac34\) is outside this range
+            marks:
+              - code: E1
+                note: States \(x = \frac34\) lies outside the range of validity, with \(|x| < \frac12\), \(x \leq \frac12\) or \(-\frac12 < x \leq \frac12\) seen. Not for "\(x\) too large" alone.
+  - q: 8
+    stamp: c2005c23
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\sin\left(\frac{x}{2}\right) = \frac{x}{2} - \frac{x^3}{48} + \frac{x^5}{3840} + \cdots\)
+              \(\cos\left(\frac{x}{3}\right) = 1 - \frac{x^2}{18} + \frac{x^4}{1944} + \cdots\)
+            marks:
+              - code: M1
+                note: Replaces \(x\) by \(\frac{x}{2}\) in the \(\sin\) series and by \(\frac{x}{3}\) in the \(\cos\) series, at least two terms each. Need not be simplified.
+          - scheme: |
+              \(\frac{\sin(x/2)}{x/2} = 1 - \frac{x^2}{24} + \frac{x^4}{1920} + \cdots\)
+            marks:
+              - code: M1
+                note: Divides each term of their series for \(\sin\left(\frac{x}{2}\right)\) by \(\frac{x}{2}\). Condone one arithmetic slip.
+          - scheme: |
+              \(\left(1 - \frac{x^2}{24} + \frac{x^4}{1920}\right)\left(1 - \frac{x^2}{18} + \frac{x^4}{1944}\right)\)
+              \(\phantom{(} = 1 - \left(\frac{1}{24} + \frac{1}{18}\right)x^2\)
+              \(\phantom{(=} + \left(\frac{1}{1920} + \frac{1}{1944} + \frac{1}{432}\right)x^4 + \cdots\)
+            marks:
+              - code: dM1
+                note: Multiplies their two series, gathering the \(x^2\) and \(x^4\) terms. Condone one missing \(x^4\) product and arithmetic slips.
+          - scheme: |
+              \(= 1 - \frac{7}{72}x^2 + \frac{521}{155520}x^4\)
+            marks:
+              - code: A1
+                note: \(1 - \frac{7}{72}x^2\), simplified.
+              - code: A1
+                note: \(\frac{521}{155520}x^4\) cao; a decimal coefficient scores A0.
+      - part: b
+        rows:
+          - scheme: |
+              \(\int \left(\frac{1}{x} - \frac{7x}{72} + \frac{521x^3}{155520}\right)\mathrm{d}x\)
+              \(\phantom{\int} = \ln x - \frac{7x^2}{144} + \frac{521x^4}{622080}\)
+            marks:
+              - code: M1
+                note: Divides their series from (a), of the form \(1 + px^2 + qx^4\), by \(x\) and integrates, with \(\frac{1}{x} \to \ln x\) or another power increased by 1.
+          - scheme: |
+              \(\left[\ln x - \frac{7x^2}{144} + \frac{521x^4}{622080}\right]_{\pi/6}^{2\pi/3} = \ldots\)
+              \([= \ln 4 - \frac{35\pi^2}{1728} + \frac{8857\pi^4}{53747712}]\)
+            marks:
+              - code: dM1
+                note: Substitutes \(\frac{2\pi}{3}\) and \(\frac{\pi}{6}\) into their integral and subtracts. Implied by a correct answer.
+          - scheme: |
+              \(\approx 1.20244\)
+            marks:
+              - code: A1
+                note: awrt 1.20244.
+      - part: c
+        rows:
+          - scheme: |
+              \(1.20169\)
+            marks:
+              - code: B1
+      - part: d
+        rows:
+          - scheme: |
+              \(1.20244 - 1.20169 = 0.00075\)
+              Overestimate; accurate to 3 d.p. but not to 4 d.p.
+            marks:
+              - code: E1
+                note: Makes any correct comment on the accuracy of (b), such as accurate to 3 d.p. (or 2 d.p.), or an error of 0.00075 oe. Direction not required. "Close" alone is not enough.
+  - q: 9
+    stamp: c3383c38
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\frac{x}{\sin x} = \frac{1}{1 - \frac{x^2}{6} + \frac{x^4}{120} - \frac{x^6}{5040} + \cdots}\)
+            marks:
+              - code: M1
+                note: Uses the series for \(\sin x\), with at least three terms, divided by \(x\). Condone factorial or sign slips.
+          - scheme: |
+              \((1 + ax^2 + bx^4 + cx^6)\)
+              \(\quad\times\left(1 - \frac{x^2}{6} + \frac{x^4}{120} - \frac{x^6}{5040}\right) = 1\)
+            marks:
+              - code: M1
+                note: Multiplies by their series and sets the product equal to 1, collecting at least the terms in \(x^2\) and \(x^4\).
+          - scheme: |
+              \(a - \frac16 = 0\), \(b - \frac{a}{6} + \frac1{120} = 0\),
+              \(c - \frac{b}{6} + \frac{a}{120} - \frac1{5040} = 0\)
+              \(\Rightarrow a = \ldots,\ b = \ldots,\ c = \ldots\)
+            marks:
+              - code: dM1
+                note: Equates their coefficients of \(x^2\), \(x^4\) and \(x^6\) to zero and solves for all three. Condone arithmetic slips.
+          - scheme: |
+              \(a = \frac16\), \(b = \frac7{360}\)
+            marks:
+              - code: A1
+                note: Both exact.
+          - scheme: |
+              \(c = \frac{31}{15120}\)
+            marks:
+              - code: A1
+  - q: 10
+    stamp: b4956c42
+    parts:
+      - part: i
+        rows:
+          - scheme: |
+              \(\ln\left(\frac{(1+x)^2}{1-2x}\right) = 2\ln(1+x) - \ln(1-2x)\)
+            marks:
+              - code: M1
+                note: Splits into multiples of \(\ln(1+x)\) and \(\ln(1-2x)\) by log laws. Condone one sign or coefficient slip.
+          - scheme: |
+              \(2\ln(1+x) = 2x - x^2 + \tfrac23 x^3 - \cdots\)
+              \(\ln(1-2x) = -2x - \frac{(2x)^2}{2} - \frac{(2x)^3}{3} - \cdots\)
+            marks:
+              - code: M1
+                note: Uses \(2x\) for \(x\) in the series for \(\ln(1-x)\), or \(-2x\) in that for \(\ln(1+x)\), to the \(x^3\) term. Condone sign slips.
+          - scheme: |
+              \(4x + x^2 + \tfrac{10}{3}x^3\)
+            marks:
+              - code: A1
+                note: All three terms correct, oe.
+          - scheme: |
+              \(-\tfrac12 \leq x < \tfrac12\)
+            marks:
+              - code: B1
+                note: Both endpoints, with the correct strict and non-strict inequalities.
+      - part: ii
+        rows:
+          - scheme: |
+              \((1+x)^2 = 2(1-2x)\)
+              \(\Rightarrow x^2 + 6x - 1 = 0 \Rightarrow x = \ldots\)
+            marks:
+              - code: M1
+                note: Clears the fraction to a three-term quadratic and solves it by any method, calculator allowed. Condone sign slips.
+          - scheme: |
+              \(x = \sqrt{10} - 3\)
+            marks:
+              - code: A1
+                note: Or awrt 0.162, with \(-3 - \sqrt{10}\) rejected or not given.
+          - scheme: |
+              \(\ln 2 \approx 4(\text{"}\sqrt{10}-3\text{"}) + (\text{"}\sqrt{10}-3\text{"})^2\)
+              \(\phantom{\ln 2 \approx} + \tfrac{10}{3}(\text{"}\sqrt{10}-3\text{"})^3\)
+            marks:
+              - code: M1
+                note: Substitutes their root of the quadratic into their three-term series from (i) as the approximation to \(\ln 2\).
+          - scheme: |
+              \(\ln 2 \approx 0.690\)
+            marks:
+              - code: A1
+                note: 0.690, to 3 d.p.
+  - q: 11
+    stamp: 58252d26
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(e^{x^2} = 1 + x^2 + \cdots \Rightarrow e^{x^2} - x = 1 - x + x^2 + \cdots\)
+            marks:
+              - code: M1
+                note: Replaces \(x\) by \(x^2\) in the series for \(e^x\), reaching at least \(1 + x^2\), and subtracts \(x\).
+          - scheme: |
+              \(e^{e^{x^2}-x} = e \times e^{u}\), \(u = -x + x^2 + \cdots\)
+            marks:
+              - code: M1
+                note: Takes out the factor \(e\), writing the expression as \(e \times e^{u}\) with \(u\) their exponent less 1.
+          - scheme: |
+              \(e^u = 1 + \text{"}(-x + x^2)\text{"} + \tfrac12\text{"}(-x + x^2)\text{"}^2 + \cdots\)
+              \(\phantom{e^u} = 1 - x + \ldots x^2 + \cdots\)
+            marks:
+              - code: dM1
+                note: Substitutes their \(u\), of the form \(-x + kx^2\), into \(1 + u + \frac{u^2}{2}\) and collects terms to \(x^2\). Condone slips in squaring.
+          - scheme: |
+              \(e^{e^{x^2}-x} = e - ex + \frac{3e}{2}x^2 + \cdots\)
+            marks:
+              - code: A1
+                note: \(e - ex\), oe such as \(e(1 - x + \cdots)\).
+              - code: A1
+                note: \(\frac{3e}{2}x^2\) oe.
+  - q: 12
+    stamp: 552382a1
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\cosh x = \tfrac12\left(e^x + e^{-x}\right)\)
+              \(\phantom{\cosh x} = 1 + \frac{x^2}{2} + \frac{x^4}{24} + \frac{x^6}{720} + \cdots\)
+              \(\sinh x = \tfrac12\left(e^x - e^{-x}\right)\)
+              \(\phantom{\sinh x} = x + \frac{x^3}{6} + \frac{x^5}{120} + \frac{x^7}{5040} + \cdots\)
+            marks:
+              - code: M1
+                note: Adds and subtracts their series for \(e^x\) and \(e^{-x}\) and halves, giving at least three terms of each series. Condone factorial slips.
+          - scheme: |
+              \(x\cosh x - \sinh x = \left(\tfrac12 - \tfrac16\right)x^3\)
+              \(\phantom{x\cosh x} + \left(\tfrac1{24} - \tfrac1{120}\right)x^5 + \left(\tfrac1{720} - \tfrac1{5040}\right)x^7 + \cdots\)
+            marks:
+              - code: dM1
+                note: Multiplies their \(\cosh x\) series by \(x\), subtracts their \(\sinh x\) series and collects like powers of \(x\).
+          - scheme: |
+              \(x\cosh x - \sinh x = \frac{x^3}{3} + \frac{x^5}{30} + \frac{x^7}{840} + \cdots\)
+            marks:
+              - code: A1
+      - part: b
+        rows:
+          - scheme: |
+              \(\frac{(ix)^3}{3} + \frac{(ix)^5}{30} + \frac{(ix)^7}{840}\)
+              \(\phantom{A} = -\frac{ix^3}{3} + \frac{ix^5}{30} - \frac{ix^7}{840}\)
+            marks:
+              - code: M1
+                note: Replaces \(x\) by \(ix\) in their three-term series from (a) and simplifies the powers of \(i\). Condone one sign slip.
+          - scheme: |
+              \(ix\cosh(ix) - \sinh(ix) = ix\cos x - i\sin x\)
+            marks:
+              - code: B1
+                note: Both identities used, giving \(i(x\cos x - \sin x)\) oe.
+          - scheme: |
+              \(x\cos x - \sin x = -\frac{x^3}{3} + \frac{x^5}{30} - \frac{x^7}{840} + \cdots\)
+            marks:
+              - code: A1
+                note: cso.
+  - q: 13
+    stamp: 880c49bb
+    parts:
+      - part: i
+        rows:
+          - scheme: |
+              \(x = \tan y \Rightarrow 1 = \sec^2 y\,\frac{\mathrm{d}y}{\mathrm{d}x}\)
+            marks:
+              - code: M1
+                note: Writes \(x = \tan y\) and differentiates with respect to \(x\) or \(y\), reaching \(\sec^2 y\). Condone a sign slip.
+          - scheme: |
+              \(\frac{\mathrm{d}y}{\mathrm{d}x} = \frac{1}{\sec^2 y} = \frac{1}{1 + \tan^2 y}\)
+            marks:
+              - code: M1
+                note: Uses \(\sec^2 y = 1 + \tan^2 y\), or an equivalent identity, with \(\tan y = x\) to write the derivative in terms of \(x\).
+          - scheme: |
+              \(\frac{\mathrm{d}y}{\mathrm{d}x} = \frac{1}{1 + x^2}\)
+            marks:
+              - code: A1 AG
+                note: Correct differentiated equation leading without error to the printed result.
+      - part: ii
+        rows:
+          - scheme: |
+              \(\frac{1}{1 + x^2} = 1 + (-x^2) + (-x^2)^2 + \cdots\)
+            marks:
+              - code: M1
+                note: Expands \((1 + x^2)^{-1}\) by the binomial or geometric series to at least three terms. Condone sign slips.
+          - scheme: |
+              \(\phantom{\frac{1}{1 + x^2}} = 1 - x^2 + x^4 - \cdots\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\arctan x = \int \text{"}1 - x^2 + x^4\text{"}\,\mathrm{d}x\)
+              \(\arctan 0 = 0 \Rightarrow c = \ldots\)
+            marks:
+              - code: dM1
+                note: Integrates their series term by term, raising each power by 1, and finds the constant from \(\arctan 0 = 0\).
+          - scheme: |
+              \(\arctan x = x - \frac{x^3}{3} + \frac{x^5}{5} + \cdots\)
+            marks:
+              - code: A1
+      - part: iii
+        rows:
+          - scheme: |
+              \(\ln(1 + t) = t - \frac{t^2}{2} + \frac{t^3}{3} - \frac{t^4}{4} + \cdots\)
+              with \(t = \text{"}x - \frac{x^3}{3}\text{"}\)
+            marks:
+              - code: M1
+                note: Uses the \(\ln(1 + t)\) series, with at least three terms, and \(t\) replaced by their series for \(\arctan x\).
+          - scheme: |
+              \(t^2 = x^2 - \frac{2}{3}x^4 + \cdots\), \(t^3 = x^3 + \cdots\),
+              \(t^4 = x^4 + \cdots\)
+            marks:
+              - code: M1
+                note: Expands at least two of \(t^2\), \(t^3\), \(t^4\) from their series, keeping terms up to \(x^4\). Condone coefficient slips.
+          - scheme: |
+              \(x - \frac{x^3}{3} - \frac12\left(x^2 - \frac23 x^4\right) + \frac{x^3}{3} - \frac{x^4}{4}\)
+            marks:
+              - code: dM1
+                note: Substitutes their powers into the series and collects the terms in each power up to \(x^4\).
+          - scheme: |
+              \(\ln(1 + \arctan x) = x - \frac{x^2}{2} + \frac{x^4}{12} + \cdots\)
+            marks:
+              - code: A1
+                note: Any two of \(x\), \(-\frac{x^2}{2}\), \(\frac{x^4}{12}\) correct.
+              - code: A1
+                note: All correct, with no \(x^3\) term other than \(0x^3\). cso.
+  - q: 14
+    stamp: 99be7770
+    parts:
+      - part: a.i
+        rows:
+          - scheme: |
+              \(f'(x) = 2\operatorname{sech}x\,(-\operatorname{sech}x\tanh x)\)
+              \(\phantom{f'(x)} = -2\operatorname{sech}^2x\tanh x\)
+            marks:
+              - code: M1
+                note: Uses the chain rule on \((\operatorname{sech}x)^2\), or a quotient rule on \(\frac{1}{\cosh^2x}\), to obtain the form \(k\operatorname{sech}^2x\tanh x\).
+              - code: A1
+                note: oe, such as \(-\frac{2\sinh x}{\cosh^3x}\).
+          - scheme: |
+              \(f'' = -2f'\tanh x - 2f\operatorname{sech}^2x = 4f - 6f^2\)
+              \(f''' = 4f' - 12ff'\)
+              \(f^{(4)} = 4f'' - 12\bigl((f')^2 + ff''\bigr)\)
+              \(\Rightarrow f^{(4)}(0) = \ldots\)
+            marks:
+              - code: dM1
+                note: Differentiates three more times, in \(x\) or in terms of \(f\), and substitutes \(x = 0\). Condone sign and coefficient slips.
+          - scheme: |
+              \(f(0) = 1,\ f'(0) = 0,\ f''(0) = -2\)
+              \(f^{(4)}(0) = 4(-2) - 12\bigl(0 + 1(-2)\bigr)\)
+              \(\phantom{f^{(4)}(0)} = 16\)
+            marks:
+              - code: A1 AG
+                note: Correct derivatives with correct values at 0 substituted, leading without error to 16.
+      - part: a.ii
+        rows:
+          - scheme: |
+              \(f(x) = 1 + \frac{x^2}{2!}(-2) + \frac{x^4}{4!}(16) + \cdots\)
+            marks:
+              - code: M1
+                note: Substitutes their \(f(0)\), \(f''(0)\) from (a)(i) and 16 into the Maclaurin formula with factorial denominators.
+          - scheme: |
+              \(\operatorname{sech}^2x = 1 - x^2 + \frac23x^4 + \cdots\)
+            marks:
+              - code: A1
+      - part: b
+        rows:
+          - scheme: |
+              \(\cos(\sqrt2\,x) = 1 - \frac{(\sqrt2\,x)^2}{2!} + \frac{(\sqrt2\,x)^4}{4!} + \cdots\)
+            marks:
+              - code: M1
+                note: Substitutes \(\sqrt2\,x\) for \(x\) in the series for \(\cos x\), reaching the \(x^4\) term.
+          - scheme: |
+              \(\cos(\sqrt2\,x) = 1 - x^2 + \frac16x^4 + \cdots\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\frac{\operatorname{sech}^2x - \cos(\sqrt2\,x)}{x^4}\)
+              \(\phantom{A} = \frac{\bigl(\frac23 - \text{"}\frac16\text{"}\bigr)x^4 + \cdots}{x^4}\)
+            marks:
+              - code: M1
+                note: Subtracts their series for \(\cos(\sqrt2\,x)\) from \(1 - x^2 + \frac23x^4\) and divides by \(x^4\). Condone slips in the coefficients.
+          - scheme: |
+              \(\phantom{A} = \tfrac12 + \text{terms in positive powers of } x\)
+              \(\to \tfrac12\) as \(x \to 0\)
+            marks:
+              - code: A1 AG
+                note: Correct series leading without error to \(\frac12\), with a statement that the terms in positive powers of \(x\) tend to 0.
+  - q: 15
+    stamp: 6297ee71
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(2(1-\cos x) = 2\sum_{r=1}^{\infty}(-1)^{r+1}\frac{x^{2r}}{(2r)!}\)
+              \(x\sin x = \sum_{r=0}^{\infty}(-1)^r\frac{x^{2r+2}}{(2r+1)!}\)
+            marks:
+              - code: M1
+                note: Uses the general terms of the booklet's \(\cos x\) and \(\sin x\) series to write general terms for both expressions. Condone sign and index slips.
+          - scheme: |
+              \(x\sin x = \sum_{r=1}^{\infty}(-1)^{r-1}\frac{x^{2r}}{(2r-1)!}\)
+            marks:
+              - code: A1
+                note: Both general terms correct in powers of \(x^{2r}\), oe. Summation limits need not be stated.
+          - scheme: |
+              \(\frac{2(-1)^{r+1}}{(2r)!}-\frac{(-1)^{r-1}}{(2r-1)!}\)
+              \(\phantom{A} = (-1)^r\,\frac{-2+2r}{(2r)!}\)
+            marks:
+              - code: M1
+                note: Subtracts their coefficients of \(x^{2r}\) and writes them over \((2r)!\), using \((2r)! = 2r(2r-1)!\). Condone sign slips.
+          - scheme: |
+              \(\Rightarrow (-1)^r\frac{2(r-1)}{(2r)!}x^{2r}\)
+            marks:
+              - code: A1 AG
+                note: Correct difference of coefficients leading without error to the printed general term, including \(x^{2r}\); combined steps accepted.
+      - part: b
+        rows:
+          - scheme: |
+              \(2(1-\cos x)-x\sin x = \frac{2(2-1)}{4!}x^4+\cdots\)
+            marks:
+              - code: M1
+                note: Finds the first nonzero term of the numerator, by \(r = 2\) in (a) or by expanding the series.
+          - scheme: |
+              \(\phantom{2(1-\cos x)-x\sin x} = \frac{x^4}{12}+\cdots\)
+            marks:
+              - code: A1
+          - scheme: |
+              \((1-\cos x)^2 = \left(\frac{x^2}{2}-\frac{x^4}{24}+\cdots\right)^2\)
+              \(\phantom{(1-\cos x)^2} = \frac{x^4}{4}+\cdots\)
+              \(\frac{2(1-\cos x)-x\sin x}{(1-\cos x)^2} = \frac{\text{"}\frac{x^4}{12}\text{"}+\cdots}{\frac{x^4}{4}+\cdots}\)
+            marks:
+              - code: M1
+                note: Squares their series for \(1-\cos x\) to a leading term in \(x^4\) and divides the leading terms. Condone coefficient slips.
+          - scheme: |
+              \(\lim_{x\to 0}\left[\ldots\right] = \frac{1/12}{1/4} = \frac13\)
+            marks:
+              - code: A1 AG
+                note: Correct quotient of both series leading without error to \(\frac13\), with the limit taken.
+  - q: 16
+    stamp: ac4c82d6
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\cosh y = \frac{x+3}{x+2}\)
+              \(\Rightarrow \sinh y\,\frac{\mathrm{d}y}{\mathrm{d}x} = \frac{(x+2)-(x+3)}{(x+2)^2}\)
+              \(\phantom{\Rightarrow \sinh y\,\frac{\mathrm{d}y}{\mathrm{d}x}} = -\frac{1}{(x+2)^2}\)
+            marks:
+              - code: M1
+                note: Differentiates \(\cosh y\) implicitly and the right side by the quotient or product rule, or differentiates arcosh by the chain rule. Condone sign slips.
+              - code: A1
+                note: Correct equation, oe; need not be simplified.
+          - scheme: |
+              \(\sinh y = \sqrt{\left(\frac{x+3}{x+2}\right)^2 - 1} = \frac{\sqrt{2x+5}}{x+2}\)
+            marks:
+              - code: M1
+                note: Uses \(\sinh^2 y = \cosh^2 y - 1\) with their \(\cosh y\) to write \(\sinh y\) in terms of \(x\). Condone algebraic slips.
+          - scheme: |
+              \(\frac{\sqrt{2x+5}}{x+2}\,\frac{\mathrm{d}y}{\mathrm{d}x} = -\frac{1}{(x+2)^2}\)
+              \(\Rightarrow (x+2)\sqrt{5+2x}\,\frac{\mathrm{d}y}{\mathrm{d}x} + 1 = 0\)
+            marks:
+              - code: A1 AG
+                note: Correct substituted equation leading without error to the printed result. Condone the positive root taken without comment.
+      - part: b
+        rows:
+          - scheme: |
+              \((x+2)\frac{\mathrm{d}y}{\mathrm{d}x} + (5+2x)^{-\frac12} = 0\)
+              \(\Rightarrow (x+2)\frac{\mathrm{d}^2y}{\mathrm{d}x^2} + \frac{\mathrm{d}y}{\mathrm{d}x} - (5+2x)^{-\frac32} = 0\)
+            marks:
+              - code: M1
+                note: Differentiates the relation from (a), in any arrangement, or their \(\frac{\mathrm{d}y}{\mathrm{d}x}\) from it, using the product rule to obtain \(\frac{\mathrm{d}^2y}{\mathrm{d}x^2}\). Condone sign and coefficient slips.
+              - code: A1
+                note: Any correct relation or expression for \(\frac{\mathrm{d}^2y}{\mathrm{d}x^2}\); need not be simplified.
+          - scheme: |
+              \(y(0) = \operatorname{arcosh}\tfrac32 = \ln\left(\tfrac32 + \sqrt{\tfrac94 - 1}\right)\)
+              \(\phantom{y(0)} = \ln\left(\frac{3+\sqrt5}{2}\right)\)
+            marks:
+              - code: B1
+                note: Needs the logarithmic form; \(\operatorname{arcosh}\frac32\) alone is not enough.
+          - scheme: |
+              \(y'(0) = -\frac{1}{2\sqrt5}\)
+              \(2y''(0) - \frac{1}{2\sqrt5} - \frac{1}{5\sqrt5} = 0 \Rightarrow y''(0) = \ldots\)
+              \(y = y(0) + xy'(0) + \frac{x^2}{2!}y''(0)\)
+            marks:
+              - code: M1
+                note: Substitutes \(x = 0\) into their expressions for \(y'(0)\) and \(y''(0)\) and uses them in the Maclaurin formula, including the \(\frac{1}{2!}\).
+          - scheme: |
+              \(a = 1,\ b = -\frac{1}{2\sqrt5},\ c = \frac{7}{40\sqrt5}\)
+            marks:
+              - code: A1
+                note: All three, oe such as \(-\frac{\sqrt5}{10}\) and \(\frac{7\sqrt5}{200}\), or awrt \(-0.224\) and \(0.0783\); or the series in the given form.
+  - q: 17
+    stamp: 7079c150
+    parts:
+      - part: a.i
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}y}{\mathrm{d}x} = n(1+\cosh x)^{n-1}\sinh x\)
+              \(\frac{\mathrm{d}^2y}{\mathrm{d}x^2} = n(n-1)(1+\cosh x)^{n-2}\sinh^2 x\)
+              \(\phantom{\frac{\mathrm{d}^2y}{\mathrm{d}x^2}} + n(1+\cosh x)^{n-1}\cosh x\)
+            marks:
+              - code: M1
+                note: Differentiates twice, the second time by the product rule, reaching terms in \((1+\cosh x)^{n-2}\sinh^2 x\) and \((1+\cosh x)^{n-1}\cosh x\). Condone coefficient slips.
+              - code: A1
+                note: Correct, unsimplified.
+          - scheme: |
+              \(\sinh^2 x = (\cosh x - 1)(\cosh x + 1)\)
+              \(\Rightarrow \frac{\mathrm{d}^2y}{\mathrm{d}x^2} = n(1+\cosh x)^{n-1}\)
+              \(\phantom{\Rightarrow \frac{\mathrm{d}^2y}{\mathrm{d}x^2} =} \times\left((n-1)(\cosh x - 1) + \cosh x\right)\)
+            marks:
+              - code: M1
+                note: Replaces \(\sinh^2 x\) by \(\cosh^2 x - 1\) oe and takes out the factor \((1+\cosh x)^{n-1}\). Condone sign slips.
+          - scheme: |
+              \(= n(1+\cosh x)^{n-1}\left(n(1+\cosh x) - (2n-1)\right)\)
+              \(= n^2(1+\cosh x)^n - n(2n-1)(1+\cosh x)^{n-1}\)
+            marks:
+              - code: A1 AG
+                note: Printed result reached without error from a correct factorised form; combined steps accepted.
+      - part: a.ii
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}^2}{\mathrm{d}x^2}(1+\cosh x)^{n-1} = (n-1)^2(1+\cosh x)^{n-1}\)
+              \(\phantom{\frac{\mathrm{d}^2}{\mathrm{d}x^2}(1+\cosh x)^{n-1}} - (n-1)(2n-3)(1+\cosh x)^{n-2}\)
+            marks:
+              - code: M1
+                note: Applies (a)(i) to both terms, replacing \(n\) by \(n-1\) for the second, or differentiates twice by another valid method. Condone coefficient slips.
+          - scheme: |
+              \(\frac{\mathrm{d}^4y}{\mathrm{d}x^4} = n^4(1+\cosh x)^n\)
+              \(\phantom{\frac{\mathrm{d}^4y}{\mathrm{d}x^4} =} - n(2n-1)(2n^2-2n+1)(1+\cosh x)^{n-1}\)
+              \(\phantom{\frac{\mathrm{d}^4y}{\mathrm{d}x^4} =} + n(n-1)(2n-1)(2n-3)(1+\cosh x)^{n-2}\)
+            marks:
+              - code: A1
+                note: Any correct equivalent; need not be collected.
+      - part: b
+        rows:
+          - scheme: |
+              \(y(0) = 2^n\)
+              \(y''(0) = n^2 2^n - n(2n-1)2^{n-1} = \ldots\)
+              \(y^{(4)}(0) = n^4 2^n - n(2n-1)(2n^2-2n+1)2^{n-1}\)
+              \(\phantom{y^{(4)}(0) =} + n(n-1)(2n-1)(2n-3)2^{n-2} = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(\cosh 0 = 1\) into \(y\) and their (a)(i) and (a)(ii) expressions in powers of \((1+\cosh x)\).
+          - scheme: |
+              \(y''(0) = n2^{n-1}\), \(y^{(4)}(0) = n(3n-1)2^{n-2}\)
+            marks:
+              - code: A1
+                note: Both correct, oe.
+          - scheme: |
+              \(y = 2^n + \frac{x^2}{2!}\text{"}n2^{n-1}\text{"} + \frac{x^4}{4!}\text{"}n(3n-1)2^{n-2}\text{"} + \cdots\)
+            marks:
+              - code: dM1
+                note: Uses the Maclaurin formula with their values and \(2!\), \(4!\), with no odd-power terms. No justification that the odd derivatives vanish is needed.
+          - scheme: |
+              \(y = 2^n + n2^{n-2}x^2 + \frac{n(3n-1)2^{n-5}}{3}x^4 + \cdots\)
+            marks:
+              - code: A1
+                note: All three terms, with \(x^2\) coefficient \(n2^{n-2}\) or \(\frac{n2^n}{4}\), and \(x^4\) coefficient \(\frac{n(3n-1)2^{n-5}}{3}\) or \(\frac{n(3n-1)2^n}{96}\) only. A0 for any other form, such as \(\frac{n(3n-1)2^{n-2}}{24}\).
