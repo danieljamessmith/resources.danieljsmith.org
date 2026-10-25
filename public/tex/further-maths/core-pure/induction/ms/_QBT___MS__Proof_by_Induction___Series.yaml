@@ -1,0 +1,452 @@
+format: 1
+pack: Proof by Induction - Series
+last_updated: 25 October 2026
+questions:
+  - q: 1
+    stamp: cb6cdecc
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(n=1\): LHS \(= 1\times 2 = 2\), RHS \(= 2+(1-1)2^{2} = 2\)
+            marks:
+              - code: B1
+                note: Both sides evaluated at \(n=1\) and shown equal to 2.
+          - scheme: |
+              Assume \(\sum_{r=1}^{k} r\,2^r = 2+(k-1)2^{k+1}\)
+              \(\sum_{r=1}^{k+1} r\,2^r = \sum_{r=1}^{k} r\,2^r + (k+1)2^{k+1}\)
+            marks:
+              - code: M1
+                note: States the assumption for \(n=k\) and adds a \((k+1)\)th term of the form \((k+1)2^{\ldots}\) to the sum to \(k\). Condone a slip in the power.
+          - scheme: |
+              \(= 2+(k-1)2^{k+1}+(k+1)2^{k+1}\)
+              \(= 2+\bigl((k-1)+(k+1)\bigr)2^{k+1}\)
+            marks:
+              - code: M1
+                note: Replaces the sum to \(k\) by the hypothesis and collects the terms in \(2^{k+1}\), or writes both with a common power of 2. Condone sign slips.
+          - scheme: |
+              \(= 2+2k\,2^{k+1}\)
+            marks:
+              - code: A1
+                note: oe, such as \(2+k\,2^{k+2}\).
+          - scheme: |
+              \(= 2+k\,2^{k+2} = 2+\bigl((k+1)-1\bigr)2^{(k+1)+1}\)
+            marks:
+              - code: A1
+                note: cso. \(2+\bigl((k+1)-1\bigr)2^{(k+1)+1}\) seen, or \(2+k\,2^{k+2}\) explicitly compared with the result at \(n=k+1\).
+          - scheme: |
+              True for \(n=1\); true for \(n=k\) \(\Rightarrow\) true for \(n=k+1\); so true for all \(n \geq 1\)
+            marks:
+              - code: E1
+                note: 'States all three points: true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), so true for all \(n \geq 1\). One sentence accepted.'
+  - q: 2
+    stamp: 7a6e3373
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(n=1\): LHS \(= 2 + 2\times 3 = 8\)
+              \(\phantom{n=1:}\) RHS \(= 2^2 + 3^2 - 5 = 8\)
+            marks:
+              - code: B1
+                note: Both sides evaluated to 8; a bare 8 = 8 is not enough.
+          - scheme: |
+              Assumes true for \(n=k\):
+              \(\sum_{r=1}^{k+1} = 2^{k+1}+3^{k+1}-5\)
+              \(\phantom{\sum_{r=1}^{k+1}} + 2^{k+1}+2\times 3^{k+1}\)
+            marks:
+              - code: M1
+                note: States the assumption for \(n=k\) and adds a \((k+1)\)th term to its RHS, or shows RHS\((k+1)\) \(-\) RHS\((k)\) is that term. Condone a slip in the term.
+          - scheme: |
+              \(\phantom{\sum_{r=1}^{k+1}} = 2\times 2^{k+1} + 3\times 3^{k+1} - 5\)
+            marks:
+              - code: M1
+                note: Collects like powers of 2 and of 3 from their sum, e.g. \(2^{k+1}+2^{k+1}\) to \(2\times 2^{k+1}\).
+              - code: A1
+                note: Correct, oe.
+          - scheme: |
+              \(\phantom{\sum_{r=1}^{k+1}} = 2^{k+2}+3^{k+2}-5\)
+            marks:
+              - code: A1
+                note: cso; reached from their sum, or \(2^{k+2}+3^{k+2}-5\) shown equal to their expression; A0 if asserted.
+          - scheme: |
+              True for \(n=1\); true for \(n=k\)
+              \(\Rightarrow\) true for \(n=k+1\);
+              so true for all \(n \geq 1\)
+            marks:
+              - code: E1
+                note: 'States all three: true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), hence true for all \(n \geq 1\).'
+  - q: 3
+    stamp: 3d0650f8
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(n=1\): LHS \(= 1(2)(3) = 6\)
+              \(\phantom{n=1:}\) RHS \(= \tfrac14(1)(2)(3)(4) = 6\)
+            marks:
+              - code: B1
+                note: Both sides evaluated at \(n=1\); "true for \(n=1\)" alone is not enough.
+          - scheme: |
+              Assumes true for \(n=k\):
+              \(\sum_{r=1}^{k+1} r(r+1)(r+2)\)
+              \(\phantom{A} = \tfrac14k(k+1)(k+2)(k+3) + (k+1)(k+2)(k+3)\)
+            marks:
+              - code: M1
+                note: States the assumption for \(n=k\), in words or symbols, and adds the \((k+1)\)th term \((k+1)(k+2)(k+3)\) to the sum to \(k\).
+          - scheme: |
+              \(\phantom{A} = (k+1)(k+2)(k+3)\left(\tfrac{k}{4}+1\right)\)
+            marks:
+              - code: M1
+                note: Uses the hypothesis and takes out a common factor of at least two of \(k+1\), \(k+2\), \(k+3\), or expands both terms into one quartic. Condone slips in the remaining bracket.
+              - code: A1
+                note: Correct factorised expression oe, or \(\frac14(k^4+10k^3+35k^2+50k+24)\).
+          - scheme: |
+              \(\phantom{A} = \tfrac14(k+1)(k+2)(k+3)(k+4)\)
+            marks:
+              - code: A1
+                note: cso, oe in terms of \(k+1\). A quartic must be shown equal to the target with \(n=k+1\).
+          - scheme: |
+              True for \(n=1\); true for \(n=k\) \(\Rightarrow\) true for \(n=k+1\); so true for all positive integers \(n\)
+            marks:
+              - code: E1
+                note: 'States all three points: true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), hence true for all positive integers \(n\).'
+  - q: 4
+    stamp: daf405cb
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(n=1\): LHS \(= 1\times 3^0 = 1\)
+              RHS \(= \frac{1+(2-1)3^1}{4} = 1\)
+            marks:
+              - code: B1
+                note: Both sides shown to equal 1; a bare statement that it is true for \(n=1\) is not enough.
+          - scheme: |
+              Assume true for \(n=k\):
+              \(\sum_{r=1}^{k+1} r\,3^{r-1}\)
+              \(\phantom{A} = \sum_{r=1}^{k} r\,3^{r-1} + (k+1)3^k\)
+            marks:
+              - code: M1
+                note: States the assumption for \(n=k\) and adds a \((k+1)\)th term of the form \((k+1)3^{p}\) to the sum to \(k\). Condone a slip in the power.
+          - scheme: |
+              \(\phantom{A} = \frac{1+(2k-1)3^k + 4(k+1)3^k}{4}\)
+            marks:
+              - code: M1
+                note: Replaces the sum to \(k\) by the hypothesis and writes the result as a single fraction over 4 or a multiple of 4. Condone sign slips.
+          - scheme: |
+              \(\phantom{A} = \frac{1+(6k+3)3^k}{4}\)
+            marks:
+              - code: A1
+                note: Correct numerator collected as one multiple of \(3^k\), oe.
+          - scheme: |
+              \(\phantom{A} = \frac{1+(2k+1)3^{k+1}}{4}\)
+            marks:
+              - code: A1
+                note: cso. Reached by factorising \(3^{k+1}\), or by simplifying the RHS at \(n=k+1\) to the same expression as their sum.
+          - scheme: |
+              True for \(n=1\); true for \(n=k\)
+              \(\Rightarrow\) true for \(n=k+1\)
+              \(\Rightarrow\) true for all \(n\in\mathbb{Z}^+\)
+            marks:
+              - code: E1
+                note: States true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), and hence true for all positive integers \(n\); any order.
+  - q: 5
+    stamp: 85e1a7d0
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(n=1\): LHS \(= 1^3 = 1\), RHS \(= \frac14(1)^2(2)^2 = 1\)
+            marks:
+              - code: B1
+                note: Both sides shown equal to 1.
+          - scheme: |
+              Assume \(\sum_{r=1}^{k} r^3 = \frac14k^2(k+1)^2\)
+              \(\sum_{r=1}^{k+1} r^3 = \sum_{r=1}^{k} r^3 + (k+1)^3\)
+            marks:
+              - code: M1
+                note: Assumes the result for \(n=k\) and adds \((k+1)^3\) to the sum to \(k\).
+          - scheme: |
+              \(\phantom{\sum} = \frac14k^2(k+1)^2 + (k+1)^3\)
+              \(\phantom{\sum} = (k+1)^2(\ldots)\)
+            marks:
+              - code: M1
+                note: Substitutes the hypothesis and takes out a factor \((k+1)^2\) or \(\frac14(k+1)^2\); or expands to a quartic for comparison with \(\frac14(k+1)^2(k+2)^2\) expanded.
+          - scheme: |
+              \(\phantom{\sum} = (k+1)^2\left(\frac{k^2}{4}+k+1\right)\)
+            marks:
+              - code: A1
+                note: Correct expression, oe such as \(\frac14(k^4+6k^3+13k^2+12k+4)\).
+          - scheme: |
+              \(\phantom{\sum} = \frac14(k+1)^2(k+2)^2\)
+            marks:
+              - code: A1
+                note: Reaches \(\frac14(k+1)^2(k+2)^2\), or shows it equals their correct quartic, without error.
+          - scheme: |
+              True for \(n=1\); true for \(n=k \Rightarrow\) true for \(n=k+1\)
+              so true for all integers \(n \ge 1\)
+            marks:
+              - code: E1
+                note: States true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), hence true for all \(n\ge1\); may be split across the proof.
+      - part: b
+        rows:
+          - scheme: |
+              \(\frac14(2n)^2(2n+1)^2 = n^2(2n+1)^2\)
+            marks:
+              - code: B1
+                note: Or any equivalent factorised form. Not an expanded polynomial.
+      - part: c
+        rows:
+          - scheme: |
+              \(\sum_{r=1}^{n}(2r)^3 = 8\sum_{r=1}^{n} r^3 = 8\times\frac14n^2(n+1)^2\)
+            marks:
+              - code: M1
+                note: Takes out the factor \(8\) or \(2^3\) and applies the formula of part (a) with upper limit \(n\).
+          - scheme: |
+              \(\phantom{\sum} = 2n^2(n+1)^2\)
+            marks:
+              - code: A1
+                note: Or any equivalent factorised form.
+      - part: d
+        rows:
+          - scheme: |
+              First \(2n\) cubes \(-\) even cubes:
+              \(1^3+3^3+\cdots+(2n-1)^3\)
+              \(\phantom{1} = n^2(2n+1)^2 - 2n^2(n+1)^2\)
+            marks:
+              - code: M1
+                note: Subtracts their (c) from their (b); or expands \(\sum(2r-1)^3\) and applies standard summation formulae.
+              - code: A1
+                note: Correct difference, or correct unsimplified sum by the other route.
+          - scheme: |
+              \(\phantom{1} = n^2(2n^2-1)\), \(a=1\), \(b=2\)
+            marks:
+              - code: A1
+                note: cso. \(a=1\), \(b=2\) stated, or \(n^2(2n^2-1)\) reached.
+  - q: 6
+    stamp: 6f4f9505
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(n=1\): LHS \(= \frac{1}{1\times 3} = \frac13\), RHS \(= \frac{1}{2+1} = \frac13\)
+            marks:
+              - code: B1
+                note: Both sides evaluated as \(\frac13\); a bare statement that it is true for \(n=1\) is not enough.
+          - scheme: |
+              Assume true for \(n=k\):
+              \(\sum_{r=1}^{k+1} = \frac{k}{2k+1} + \frac{1}{(2k+1)(2k+3)}\)
+            marks:
+              - code: M1
+                note: States the assumption for \(n=k\) and adds the \((k+1)\)th term to the sum of \(k\) terms. The term need not be simplified.
+          - scheme: |
+              \(\phantom{\sum} = \frac{k(2k+3)+1}{(2k+1)(2k+3)}\)
+            marks:
+              - code: M1
+                note: Replaces the sum of \(k\) terms by \(\frac{k}{2k+1}\) and combines over any common denominator. Condone slips in the numerator.
+              - code: A1
+                note: Any correct single fraction, unsimplified.
+          - scheme: |
+              \(\phantom{\sum} = \frac{(2k+1)(k+1)}{(2k+1)(2k+3)} = \frac{k+1}{2(k+1)+1}\)
+            marks:
+              - code: A1
+                note: cso. Correct factorisation reaching \(\frac{k+1}{2k+3}\) or \(\frac{k+1}{2(k+1)+1}\).
+          - scheme: |
+              True for \(n=1\); true for \(n=k\) \(\Rightarrow\) true for \(n=k+1\); so true for all positive integers \(n\)
+            marks:
+              - code: E1
+                note: 'States all three points: true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), hence true for all positive integers \(n\).'
+      - part: b
+        rows:
+          - scheme: |
+              \(\sum_{r=n+1}^{2n} = \frac{2n}{4n+1} - \frac{n}{2n+1}\)
+              \(\phantom{\sum} = \frac{2n(2n+1) - n(4n+1)}{(4n+1)(2n+1)}\)
+            marks:
+              - code: M1
+                note: Replaces \(n\) by \(2n\) in the result of (a), subtracts the sum of \(n\) terms and combines over a common denominator. Condone slips in the numerator.
+          - scheme: |
+              \(\phantom{\sum} = \frac{n}{(4n+1)(2n+1)}\)
+              \(a=4,\ b=1,\ c=2,\ d=1\)
+            marks:
+              - code: A1
+                note: cso. Factors in either order, so \(a=2,\ b=1,\ c=4,\ d=1\) also scores.
+  - q: 7
+    stamp: c3e713bd
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(n=1\): LHS \(= \frac12\), RHS \(= 2 - \frac32 = \frac12\)
+            marks:
+              - code: B1
+                note: Both sides shown equal to \(\frac12\); not for one side alone.
+          - scheme: |
+              Assume \(\sum_{r=1}^{k}\frac{r}{2^r} = 2 - \frac{k+2}{2^k}\)
+              \(\sum_{r=1}^{k+1}\frac{r}{2^r} = 2 - \frac{k+2}{2^k} + \frac{k+1}{2^{k+1}}\)
+            marks:
+              - code: M1
+                note: States or uses the result for \(n=k\) and adds a \((k+1)\)th term to it. Condone a slip in the term.
+          - scheme: |
+              \(\phantom{\sum_{r=1}^{k+1}\frac{r}{2^r}} = 2 - \frac{2(k+2)-(k+1)}{2^{k+1}}\)
+            marks:
+              - code: M1
+                note: Combines their expression over a common denominator such as \(2^{k+1}\). Condone sign slips.
+              - code: A1
+                note: Correct single fraction oe; need not be simplified.
+          - scheme: |
+              \(\phantom{\sum_{r=1}^{k+1}\frac{r}{2^r}} = 2 - \frac{(k+1)+2}{2^{k+1}}\)
+            marks:
+              - code: A1
+                note: cso. \(2-\frac{k+3}{2^{k+1}}\) scores only if linked to the result for \(n=k+1\), stated as target or conclusion.
+          - scheme: |
+              True for \(n=1\); true for \(n=k \Rightarrow\) true for \(n=k+1\)
+              so true for all \(n \ge 1\)
+            marks:
+              - code: E1
+                note: States true for \(n=1\), truth for \(n=k\) implies truth for \(n=k+1\), hence true for all \(n \ge 1\). Needs the assumption for \(n=k\) stated somewhere.
+  - q: 8
+    stamp: 63ff79d1
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(n=1\): LHS \(= \frac{1}{1\times2\times3} = \frac16\)
+              RHS \(= \frac{1\times4}{4\times2\times3} = \frac16\)
+            marks:
+              - code: B1
+                note: Both sides evaluated as \(\frac16\). Not for a bare "true for \(n=1\)".
+          - scheme: |
+              Assume \(\sum_{r=1}^{k} \frac{1}{r(r+1)(r+2)} = \frac{k(k+3)}{4(k+1)(k+2)}\)
+              \(\sum_{r=1}^{k+1} \frac{1}{r(r+1)(r+2)}\)
+              \(\phantom{A} = \sum_{r=1}^{k} \frac{1}{r(r+1)(r+2)} + \frac{1}{(k+1)(k+2)(k+3)}\)
+            marks:
+              - code: M1
+                note: States the assumption for \(n=k\) and adds the \((k+1)\)th term to the sum to \(k\) terms. Condone a slip in the added term.
+          - scheme: |
+              \(\phantom{A} = \frac{k(k+3)}{4(k+1)(k+2)} + \frac{1}{(k+1)(k+2)(k+3)}\)
+              \(\phantom{A} = \frac{\ldots}{4(k+1)(k+2)(k+3)}\)
+            marks:
+              - code: M1
+                note: Replaces the sum to \(k\) terms by the hypothesis and combines with their \((k+1)\)th term over a common denominator. Condone numerator slips.
+          - scheme: |
+              \(\phantom{A} = \frac{k(k+3)^2+4}{4(k+1)(k+2)(k+3)}\)
+            marks:
+              - code: A1
+                note: Any correct single fraction, unsimplified or with the numerator expanded.
+          - scheme: |
+              \(\phantom{A} = \frac{(k+1)^2(k+4)}{4(k+1)(k+2)(k+3)}\)
+              \(\phantom{A} = \frac{(k+1)(k+4)}{4(k+2)(k+3)}\)
+            marks:
+              - code: A1
+                note: 'cso, oe in terms of \(k+1\): numerator factorised, or the \(n=k+1\) result shown equal to their fraction; A0 if asserted.'
+          - scheme: |
+              True for \(n=1\); true for \(n=k \Rightarrow\) true for \(n=k+1\)
+              \(\Rightarrow\) true for all \(n \in \mathbb{Z}^+\)
+            marks:
+              - code: E1
+                note: 'Concludes with all three points: true for \(n=1\); if true for \(n=k\) then true for \(n=k+1\); so true for all \(n \in \mathbb{Z}^+\).'
+  - q: 9
+    stamp: 8af126d0
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(n=1\): LHS \(= 1^3 = 1\), RHS \(= 1^2(2-1) = 1\)
+            marks:
+              - code: B1
+                note: Both sides shown equal to 1; a bare "true for \(n=1\)" is not enough.
+          - scheme: |
+              Assumes \(\sum_{r=1}^{k}(2r-1)^3 = k^2(2k^2-1)\)
+              \(\sum_{r=1}^{k+1}(2r-1)^3 = \sum_{r=1}^{k}(2r-1)^3 + (2k+1)^3\)
+            marks:
+              - code: M1
+                note: Assumes the result for \(n=k\) and adds the \((k+1)\)th term, \((2k+1)^3\) or \((2(k+1)-1)^3\), to the sum to \(k\).
+          - scheme: |
+              \(\phantom{\sum} = k^2(2k^2-1) + (2k+1)^3 = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(k^2(2k^2-1)\) for the sum to \(k\) and expands or factorises towards the \(n=k+1\) form. Condone slips in expanding the cube.
+          - scheme: |
+              \(\phantom{\sum} = 2k^4+8k^3+11k^2+6k+1\)
+            marks:
+              - code: A1
+                note: oe, such as a correct factorised form.
+          - scheme: |
+              \((k+1)^2(2(k+1)^2-1) = (k^2+2k+1)(2k^2+4k+1)\)
+              \(\phantom{(k+1)^2} = 2k^4+8k^3+11k^2+6k+1\)
+            marks:
+              - code: A1
+                note: Shows the quartic equals \((k+1)^2(2(k+1)^2-1)\), by expanding this or factorising the quartic, without error.
+          - scheme: |
+              True for \(n=1\); true for \(n=k \Rightarrow\) true for \(n=k+1\)
+              \(\Rightarrow\) true for all positive integers \(n\)
+            marks:
+              - code: E1
+                note: States true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), and so true for all positive integers \(n\); may be spread through the working.
+      - part: b
+        rows:
+          - scheme: |
+              \(\sum_{r=1}^{2n}(2r-1)^3 = (2n)^2\left(2(2n)^2-1\right)\)
+            marks:
+              - code: M1
+                note: Replaces \(n\) by \(2n\) throughout the formula from (a). Need not be simplified.
+          - scheme: |
+              \(\phantom{\sum} = 4n^2(8n^2-1)\)
+            marks:
+              - code: A1
+                note: oe, such as \(32n^4-4n^2\).
+          - scheme: |
+              \(\text{"}4n^2(8n^2-1)\text{"} = kn^2(2n^2-1)\)
+            marks:
+              - code: M1
+                note: Sets their sum to \(2n\), obtained from (a)'s formula, equal to \(k\) times \(n^2(2n^2-1)\).
+          - scheme: |
+              \(32n^2-4 = 2kn^2-k \Rightarrow (32-2k)n^2 = 4-k\)
+            marks:
+              - code: dM1
+                note: Divides by \(n^2\) and collects the \(n^2\) terms to reach the form \(n^2(\ldots) = \ldots\). Condone sign slips.
+          - scheme: |
+              \(n^2 = \frac{k-4}{2(k-16)}\)
+            marks:
+              - code: A1 AG
+                note: Correct substituted equation leading without error to the printed form; combined steps accepted.
+  - q: 10
+    stamp: ec9e55cf
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(n=1\): LHS \(= \log\left(1-\frac14\right) = \log\frac34\)
+              RHS \(= \log\left(\frac{2!\,3!}{2^4}\right) = \log\frac34\)
+            marks:
+              - code: B1
+                note: Both sides shown equal to \(\log\frac34\), oe; the RHS must be evaluated, not just stated.
+          - scheme: |
+              Assumes true for \(n=k\):
+              \(\sum_{r=1}^{k+1}\ldots = \log\left(\frac{(2k)!(2k+1)!}{2^{4k}(k!)^4}\right)\)
+              \(\phantom{\sum_{r=1}^{k+1}\ldots} + \log\left(1-\frac{1}{4(k+1)^2}\right)\)
+            marks:
+              - code: M1
+                note: States the assumption for \(n=k\) and adds the \((k+1)\)th term to the assumed sum.
+          - scheme: |
+              \(= \log\left(\frac{(2k)!(2k+1)!}{2^{4k}(k!)^4}\times\frac{4(k+1)^2-1}{4(k+1)^2}\right)\)
+            marks:
+              - code: M1
+                note: Combines the two logs into one and writes the extra term as a single fraction. Condone slips in expanding.
+          - scheme: |
+              \(= \log\left(\frac{(2k)!(2k+1)!(2k+1)(2k+3)}{2^{4k}(k!)^4(2k+2)^2}\right)\)
+            marks:
+              - code: A1
+                note: Correct single log with the extra term as \(\frac{(2k+1)(2k+3)}{(2k+2)^2}\), oe such as \(4(k+1)^2\) in the denominator.
+          - scheme: |
+              \(= \log\left(\frac{(2k+2)!(2k+3)!}{2^{4k}(k!)^4(2k+2)^4}\right)\)
+              \(= \log\left(\frac{(2k+2)!(2k+3)!}{2^{4(k+1)}((k+1)!)^4}\right)\)
+            marks:
+              - code: A1
+                note: cso. Factorial identities for \((2k+2)!\), \((2k+3)!\) and \((k+1)!\) used without error to reach the \(n=k+1\) form; working from both ends to a common expression accepted.
+          - scheme: |
+              True for \(n=1\); true for \(n=k\) \(\Rightarrow\) true for \(n=k+1\); so true for all positive integers \(n\)
+            marks:
+              - code: E1
+                note: States true for \(n=1\), that truth for \(n=k\) implies truth for \(n=k+1\), and hence true for all positive integers \(n\).

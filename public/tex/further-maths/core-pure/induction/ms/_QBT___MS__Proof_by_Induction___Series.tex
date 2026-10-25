@@ -1,0 +1,217 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/markscheme_preamble.tex}
+
+\djsSchemeHeader{Proof by Induction - Series}
+\djsSitePath{Core Pure}{Proof by Induction}
+
+\djsLastUpdated{25 October 2026}
+\begin{document}
+\djsSetQuestionCount{10}
+\djsAddMarks{1}{6}
+\djsAddMarks{2}{6}
+\djsAddMarks{3}{6}
+\djsAddMarks{4}{6}
+\djsAddMarks{5}{12}
+\djsAddMarks{6}{8}
+\djsAddMarks{7}{6}
+\djsAddMarks{8}{6}
+\djsAddMarks{9}{11}
+\djsAddMarks{10}{6}
+\vspace*{6pt}
+\djsContentsTitle
+\vspace{30pt}
+\msContentsHeading
+\begin{mscontents}{}
+Question & Marks by part & Marks & Page \\
+\msContentsQuestion{1} & & 6 & \msContentsPage{1} \\
+\msContentsQuestion{2} & & 6 & \msContentsPage{2} \\
+\msContentsQuestion{3} & & 6 & \msContentsPage{3} \\
+\msContentsQuestion{4} & & 6 & \msContentsPage{4} \\
+\msContentsQuestion{5} & (a)\,6\msSep (b)\,1\msSep (c)\,2\msSep (d)\,3 & 12 & \msContentsPage{5} \\
+\msContentsQuestion{6} & (a)\,6\msSep (b)\,2 & 8 & \msContentsPage{6} \\
+\msContentsQuestion{7} & & 6 & \msContentsPage{7} \\
+\msContentsQuestion{8} & & 6 & \msContentsPage{8} \\
+\msContentsQuestion{9} & (a)\,6\msSep (b)\,5 & 11 & \msContentsPage{9} \\
+\msContentsQuestion{10} & & 6 & \msContentsPage{10} \\
+\SetCell[c=2]{r} Total & & 73 & \\
+\end{mscontents}
+\newpage
+\input{../../../../_shared/markscheme_conventions.tex}
+
+\msQuestion{1}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+1 & {\(n=1\): LHS \(= 1\times 2 = 2\), RHS \(= 2+(1-1)2^{2} = 2\)} & B1 & {Both sides evaluated at \(n=1\) and shown equal to 2.} \\
+& {Assume \(\sum_{r=1}^{k} r\,2^r = 2+(k-1)2^{k+1}\)\\[4pt] \(\sum_{r=1}^{k+1} r\,2^r = \sum_{r=1}^{k} r\,2^r + (k+1)2^{k+1}\)} & M1 & {States the assumption for \(n=k\) and adds a \((k+1)\)th term of the form \((k+1)2^{\ldots}\) to the sum to \(k\). Condone a slip in the power.} \\
+& {\(= 2+(k-1)2^{k+1}+(k+1)2^{k+1}\)\\[4pt] \(= 2+\bigl((k-1)+(k+1)\bigr)2^{k+1}\)} & M1 & {Replaces the sum to \(k\) by the hypothesis and collects the terms in \(2^{k+1}\), or writes both with a common power of 2. Condone sign slips.} \\
+& {\(= 2+2k\,2^{k+1}\)} & A1 & {oe, such as \(2+k\,2^{k+2}\).} \\
+& {\(= 2+k\,2^{k+2} = 2+\bigl((k+1)-1\bigr)2^{(k+1)+1}\)} & A1 & {cso. \(2+\bigl((k+1)-1\bigr)2^{(k+1)+1}\) seen, or \(2+k\,2^{k+2}\) explicitly compared with the result at \(n=k+1\).} \\
+& {True for \(n=1\); true for \(n=k\) \(\Rightarrow\) true for \(n=k+1\); so true for all \(n \geq 1\)} & E1 & {States all three points: true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), so true for all \(n \geq 1\). One sentence accepted.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 1 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{2}
+\begin{msscheme}{
+  hline{3-6} = {2-Z}{0.4pt, msGrid},
+  hline{7} = {0.4pt, msGrid},
+  row{7} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+2 & {\(n=1\): LHS \(= 2 + 2\times 3 = 8\)\\[4pt] \(\phantom{n=1:}\) RHS \(= 2^2 + 3^2 - 5 = 8\)} & B1 & {Both sides evaluated to 8; a bare 8 = 8 is not enough.} \\
+& {Assumes true for \(n=k\):\\[4pt] \(\sum_{r=1}^{k+1} = 2^{k+1}+3^{k+1}-5\)\\[4pt] \(\phantom{\sum_{r=1}^{k+1}} + 2^{k+1}+2\times 3^{k+1}\)} & M1 & {States the assumption for \(n=k\) and adds a \((k+1)\)th term to its RHS, or shows RHS\((k+1)\) \(-\) RHS\((k)\) is that term. Condone a slip in the term.} \\
+& {\(\phantom{\sum_{r=1}^{k+1}} = 2\times 2^{k+1} + 3\times 3^{k+1} - 5\)} & M1 A1 & {\msNote{M1}{Collects like powers of 2 and of 3 from their sum, e.g. \(2^{k+1}+2^{k+1}\) to \(2\times 2^{k+1}\).}\\ \msNote{A1}{Correct, oe.}} \\
+& {\(\phantom{\sum_{r=1}^{k+1}} = 2^{k+2}+3^{k+2}-5\)} & A1 & {cso; reached from their sum, or \(2^{k+2}+3^{k+2}-5\) shown equal to their expression; A0 if asserted.} \\
+& {True for \(n=1\); true for \(n=k\)\\[4pt] \(\Rightarrow\) true for \(n=k+1\);\\[4pt] so true for all \(n \geq 1\)} & E1 & {States all three: true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), hence true for all \(n \geq 1\).} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 2 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{3}
+\begin{msscheme}{
+  hline{3-6} = {2-Z}{0.4pt, msGrid},
+  hline{7} = {0.4pt, msGrid},
+  row{7} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+3 & {\(n=1\): LHS \(= 1(2)(3) = 6\)\\[4pt] \(\phantom{n=1:}\) RHS \(= \tfrac14(1)(2)(3)(4) = 6\)} & B1 & {Both sides evaluated at \(n=1\); "true for \(n=1\)" alone is not enough.} \\
+& {Assumes true for \(n=k\):\\[4pt] \(\sum_{r=1}^{k+1} r(r+1)(r+2)\)\\[4pt] \(\phantom{A} = \tfrac14k(k+1)(k+2)(k+3) + (k+1)(k+2)(k+3)\)} & M1 & {States the assumption for \(n=k\), in words or symbols, and adds the \((k+1)\)th term \((k+1)(k+2)(k+3)\) to the sum to \(k\).} \\
+& {\(\phantom{A} = (k+1)(k+2)(k+3)\left(\tfrac{k}{4}+1\right)\)} & M1 A1 & {\msNote{M1}{Uses the hypothesis and takes out a common factor of at least two of \(k+1\), \(k+2\), \(k+3\), or expands both terms into one quartic. Condone slips in the remaining bracket.}\\ \msNote{A1}{Correct factorised expression oe, or \(\frac14(k^4+10k^3+35k^2+50k+24)\).}} \\
+& {\(\phantom{A} = \tfrac14(k+1)(k+2)(k+3)(k+4)\)} & A1 & {cso, oe in terms of \(k+1\). A quartic must be shown equal to the target with \(n=k+1\).} \\
+& {True for \(n=1\); true for \(n=k\) \(\Rightarrow\) true for \(n=k+1\); so true for all positive integers \(n\)} & E1 & {States all three points: true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), hence true for all positive integers \(n\).} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 3 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{4}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+4 & {\(n=1\): LHS \(= 1\times 3^0 = 1\)\\[4pt] RHS \(= \frac{1+(2-1)3^1}{4} = 1\)} & B1 & {Both sides shown to equal 1; a bare statement that it is true for \(n=1\) is not enough.} \\
+& {Assume true for \(n=k\):\\[4pt] \(\sum_{r=1}^{k+1} r\,3^{r-1}\)\\[4pt] \(\phantom{A} = \sum_{r=1}^{k} r\,3^{r-1} + (k+1)3^k\)} & M1 & {States the assumption for \(n=k\) and adds a \((k+1)\)th term of the form \((k+1)3^{p}\) to the sum to \(k\). Condone a slip in the power.} \\
+& {\(\phantom{A} = \frac{1+(2k-1)3^k + 4(k+1)3^k}{4}\)} & M1 & {Replaces the sum to \(k\) by the hypothesis and writes the result as a single fraction over 4 or a multiple of 4. Condone sign slips.} \\
+& {\(\phantom{A} = \frac{1+(6k+3)3^k}{4}\)} & A1 & {Correct numerator collected as one multiple of \(3^k\), oe.} \\
+& {\(\phantom{A} = \frac{1+(2k+1)3^{k+1}}{4}\)} & A1 & {cso. Reached by factorising \(3^{k+1}\), or by simplifying the RHS at \(n=k+1\) to the same expression as their sum.} \\
+& {True for \(n=1\); true for \(n=k\)\\[4pt] \(\Rightarrow\) true for \(n=k+1\)\\[4pt] \(\Rightarrow\) true for all \(n\in\mathbb{Z}^+\)} & E1 & {States true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), and hence true for all positive integers \(n\); any order.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 4 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{5}
+\begin{msscheme}{
+  hline{3-8,10,12-13,15-16} = {2-Z}{0.4pt, msGrid},
+  hline{9,11,14,17} = {0.4pt, msGrid},
+  row{17} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+5(a) & {\(n=1\): LHS \(= 1^3 = 1\), RHS \(= \frac14(1)^2(2)^2 = 1\)} & B1 & {Both sides shown equal to 1.} \\
+& {Assume \(\sum_{r=1}^{k} r^3 = \frac14k^2(k+1)^2\)\\[4pt] \(\sum_{r=1}^{k+1} r^3 = \sum_{r=1}^{k} r^3 + (k+1)^3\)} & M1 & {Assumes the result for \(n=k\) and adds \((k+1)^3\) to the sum to \(k\).} \\
+& {\(\phantom{\sum} = \frac14k^2(k+1)^2 + (k+1)^3\)\\[4pt] \(\phantom{\sum} = (k+1)^2(\ldots)\)} & M1 & {Substitutes the hypothesis and takes out a factor \((k+1)^2\) or \(\frac14(k+1)^2\); or expands to a quartic for comparison with \(\frac14(k+1)^2(k+2)^2\) expanded.} \\
+& {\(\phantom{\sum} = (k+1)^2\left(\frac{k^2}{4}+k+1\right)\)} & A1 & {Correct expression, oe such as \(\frac14(k^4+6k^3+13k^2+12k+4)\).} \\
+& {\(\phantom{\sum} = \frac14(k+1)^2(k+2)^2\)} & A1 & {Reaches \(\frac14(k+1)^2(k+2)^2\), or shows it equals their correct quartic, without error.} \\
+& {True for \(n=1\); true for \(n=k \Rightarrow\) true for \(n=k+1\)\\[4pt] so true for all integers \(n \ge 1\)} & E1 & {States true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), hence true for all \(n\ge1\); may be split across the proof.} \\
+\nopagebreak & & [6] & \\
+5(b) & {\(\frac14(2n)^2(2n+1)^2 = n^2(2n+1)^2\)} & B1 & {Or any equivalent factorised form. Not an expanded polynomial.} \\
+\nopagebreak & & [1] & \\
+5(c) & {\(\sum_{r=1}^{n}(2r)^3 = 8\sum_{r=1}^{n} r^3 = 8\times\frac14n^2(n+1)^2\)} & M1 & {Takes out the factor \(8\) or \(2^3\) and applies the formula of part (a) with upper limit \(n\).} \\
+& {\(\phantom{\sum} = 2n^2(n+1)^2\)} & A1 & {Or any equivalent factorised form.} \\
+\nopagebreak & & [2] & \\
+5(d) & {First \(2n\) cubes \(-\) even cubes:\\[4pt] \(1^3+3^3+\cdots+(2n-1)^3\)\\[4pt] \(\phantom{1} = n^2(2n+1)^2 - 2n^2(n+1)^2\)} & M1 A1 & {\msNote{M1}{Subtracts their (c) from their (b); or expands \(\sum(2r-1)^3\) and applies standard summation formulae.}\\ \msNote{A1}{Correct difference, or correct unsimplified sum by the other route.}} \\
+& {\(\phantom{1} = n^2(2n^2-1)\), \(a=1\), \(b=2\)} & A1 & {cso. \(a=1\), \(b=2\) stated, or \(n^2(2n^2-1)\) reached.} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 5 & & 12 & \\
+\end{msscheme}
+
+\msQuestion{6}
+\begin{msscheme}{
+  hline{3-7,9-10} = {2-Z}{0.4pt, msGrid},
+  hline{8,11} = {0.4pt, msGrid},
+  row{11} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+6(a) & {\(n=1\): LHS \(= \frac{1}{1\times 3} = \frac13\), RHS \(= \frac{1}{2+1} = \frac13\)} & B1 & {Both sides evaluated as \(\frac13\); a bare statement that it is true for \(n=1\) is not enough.} \\
+& {Assume true for \(n=k\):\\[4pt] \(\sum_{r=1}^{k+1} = \frac{k}{2k+1} + \frac{1}{(2k+1)(2k+3)}\)} & M1 & {States the assumption for \(n=k\) and adds the \((k+1)\)th term to the sum of \(k\) terms. The term need not be simplified.} \\
+& {\(\phantom{\sum} = \frac{k(2k+3)+1}{(2k+1)(2k+3)}\)} & M1 A1 & {\msNote{M1}{Replaces the sum of \(k\) terms by \(\frac{k}{2k+1}\) and combines over any common denominator. Condone slips in the numerator.}\\ \msNote{A1}{Any correct single fraction, unsimplified.}} \\
+& {\(\phantom{\sum} = \frac{(2k+1)(k+1)}{(2k+1)(2k+3)} = \frac{k+1}{2(k+1)+1}\)} & A1 & {cso. Correct factorisation reaching \(\frac{k+1}{2k+3}\) or \(\frac{k+1}{2(k+1)+1}\).} \\
+& {True for \(n=1\); true for \(n=k\) \(\Rightarrow\) true for \(n=k+1\); so true for all positive integers \(n\)} & E1 & {States all three points: true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), hence true for all positive integers \(n\).} \\
+\nopagebreak & & [6] & \\
+6(b) & {\(\sum_{r=n+1}^{2n} = \frac{2n}{4n+1} - \frac{n}{2n+1}\)\\[4pt] \(\phantom{\sum} = \frac{2n(2n+1) - n(4n+1)}{(4n+1)(2n+1)}\)} & M1 & {Replaces \(n\) by \(2n\) in the result of (a), subtracts the sum of \(n\) terms and combines over a common denominator. Condone slips in the numerator.} \\
+& {\(\phantom{\sum} = \frac{n}{(4n+1)(2n+1)}\)\\[4pt] \(a=4,\ b=1,\ c=2,\ d=1\)} & A1 & {cso. Factors in either order, so \(a=2,\ b=1,\ c=4,\ d=1\) also scores.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 6 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{7}
+\begin{msscheme}{
+  hline{3-6} = {2-Z}{0.4pt, msGrid},
+  hline{7} = {0.4pt, msGrid},
+  row{7} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+7 & {\(n=1\): LHS \(= \frac12\), RHS \(= 2 - \frac32 = \frac12\)} & B1 & {Both sides shown equal to \(\frac12\); not for one side alone.} \\
+& {Assume \(\sum_{r=1}^{k}\frac{r}{2^r} = 2 - \frac{k+2}{2^k}\)\\[4pt] \(\sum_{r=1}^{k+1}\frac{r}{2^r} = 2 - \frac{k+2}{2^k} + \frac{k+1}{2^{k+1}}\)} & M1 & {States or uses the result for \(n=k\) and adds a \((k+1)\)th term to it. Condone a slip in the term.} \\
+& {\(\phantom{\sum_{r=1}^{k+1}\frac{r}{2^r}} = 2 - \frac{2(k+2)-(k+1)}{2^{k+1}}\)} & M1 A1 & {\msNote{M1}{Combines their expression over a common denominator such as \(2^{k+1}\). Condone sign slips.}\\ \msNote{A1}{Correct single fraction oe; need not be simplified.}} \\
+& {\(\phantom{\sum_{r=1}^{k+1}\frac{r}{2^r}} = 2 - \frac{(k+1)+2}{2^{k+1}}\)} & A1 & {cso. \(2-\frac{k+3}{2^{k+1}}\) scores only if linked to the result for \(n=k+1\), stated as target or conclusion.} \\
+& {True for \(n=1\); true for \(n=k \Rightarrow\) true for \(n=k+1\)\\[4pt] so true for all \(n \ge 1\)} & E1 & {States true for \(n=1\), truth for \(n=k\) implies truth for \(n=k+1\), hence true for all \(n \ge 1\). Needs the assumption for \(n=k\) stated somewhere.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 7 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{8}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+8 & {\(n=1\): LHS \(= \frac{1}{1\times2\times3} = \frac16\)\\[4pt] RHS \(= \frac{1\times4}{4\times2\times3} = \frac16\)} & B1 & {Both sides evaluated as \(\frac16\). Not for a bare "true for \(n=1\)".} \\
+& {Assume \(\sum_{r=1}^{k} \frac{1}{r(r+1)(r+2)} = \frac{k(k+3)}{4(k+1)(k+2)}\)\\[4pt] \(\sum_{r=1}^{k+1} \frac{1}{r(r+1)(r+2)}\)\\[4pt] \(\phantom{A} = \sum_{r=1}^{k} \frac{1}{r(r+1)(r+2)} + \frac{1}{(k+1)(k+2)(k+3)}\)} & M1 & {States the assumption for \(n=k\) and adds the \((k+1)\)th term to the sum to \(k\) terms. Condone a slip in the added term.} \\
+& {\(\phantom{A} = \frac{k(k+3)}{4(k+1)(k+2)} + \frac{1}{(k+1)(k+2)(k+3)}\)\\[4pt] \(\phantom{A} = \frac{\ldots}{4(k+1)(k+2)(k+3)}\)} & M1 & {Replaces the sum to \(k\) terms by the hypothesis and combines with their \((k+1)\)th term over a common denominator. Condone numerator slips.} \\
+& {\(\phantom{A} = \frac{k(k+3)^2+4}{4(k+1)(k+2)(k+3)}\)} & A1 & {Any correct single fraction, unsimplified or with the numerator expanded.} \\
+& {\(\phantom{A} = \frac{(k+1)^2(k+4)}{4(k+1)(k+2)(k+3)}\)\\[4pt] \(\phantom{A} = \frac{(k+1)(k+4)}{4(k+2)(k+3)}\)} & A1 & {cso, oe in terms of \(k+1\): numerator factorised, or the \(n=k+1\) result shown equal to their fraction; A0 if asserted.} \\
+& {True for \(n=1\); true for \(n=k \Rightarrow\) true for \(n=k+1\)\\[4pt] \(\Rightarrow\) true for all \(n \in \mathbb{Z}^+\)} & E1 & {Concludes with all three points: true for \(n=1\); if true for \(n=k\) then true for \(n=k+1\); so true for all \(n \in \mathbb{Z}^+\).} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 8 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{9}
+\begin{msscheme}{
+  hline{3-8,10-14} = {2-Z}{0.4pt, msGrid},
+  hline{9,15} = {0.4pt, msGrid},
+  row{15} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+9(a) & {\(n=1\): LHS \(= 1^3 = 1\), RHS \(= 1^2(2-1) = 1\)} & B1 & {Both sides shown equal to 1; a bare "true for \(n=1\)" is not enough.} \\
+& {Assumes \(\sum_{r=1}^{k}(2r-1)^3 = k^2(2k^2-1)\)\\[4pt] \(\sum_{r=1}^{k+1}(2r-1)^3 = \sum_{r=1}^{k}(2r-1)^3 + (2k+1)^3\)} & M1 & {Assumes the result for \(n=k\) and adds the \((k+1)\)th term, \((2k+1)^3\) or \((2(k+1)-1)^3\), to the sum to \(k\).} \\
+& {\(\phantom{\sum} = k^2(2k^2-1) + (2k+1)^3 = \ldots\)} & M1 & {Substitutes \(k^2(2k^2-1)\) for the sum to \(k\) and expands or factorises towards the \(n=k+1\) form. Condone slips in expanding the cube.} \\
+& {\(\phantom{\sum} = 2k^4+8k^3+11k^2+6k+1\)} & A1 & {oe, such as a correct factorised form.} \\
+& {\((k+1)^2(2(k+1)^2-1) = (k^2+2k+1)(2k^2+4k+1)\)\\[4pt] \(\phantom{(k+1)^2} = 2k^4+8k^3+11k^2+6k+1\)} & A1 & {Shows the quartic equals \((k+1)^2(2(k+1)^2-1)\), by expanding this or factorising the quartic, without error.} \\
+& {True for \(n=1\); true for \(n=k \Rightarrow\) true for \(n=k+1\)\\[4pt] \(\Rightarrow\) true for all positive integers \(n\)} & E1 & {States true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), and so true for all positive integers \(n\); may be spread through the working.} \\
+\nopagebreak & & [6] & \\
+9(b) & {\(\sum_{r=1}^{2n}(2r-1)^3 = (2n)^2\left(2(2n)^2-1\right)\)} & M1 & {Replaces \(n\) by \(2n\) throughout the formula from (a). Need not be simplified.} \\
+& {\(\phantom{\sum} = 4n^2(8n^2-1)\)} & A1 & {oe, such as \(32n^4-4n^2\).} \\
+& {\(\text{"}4n^2(8n^2-1)\text{"} = kn^2(2n^2-1)\)} & M1 & {Sets their sum to \(2n\), obtained from (a)'s formula, equal to \(k\) times \(n^2(2n^2-1)\).} \\
+& {\(32n^2-4 = 2kn^2-k \Rightarrow (32-2k)n^2 = 4-k\)} & dM1 & {Divides by \(n^2\) and collects the \(n^2\) terms to reach the form \(n^2(\ldots) = \ldots\). Condone sign slips.} \\
+& {\(n^2 = \frac{k-4}{2(k-16)}\)} & A1~AG & {Correct substituted equation leading without error to the printed form; combined steps accepted.} \\
+\nopagebreak & & [5] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 9 & & 11 & \\
+\end{msscheme}
+
+\msQuestion{10}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+10 & {\(n=1\): LHS \(= \log\left(1-\frac14\right) = \log\frac34\)\\[4pt] RHS \(= \log\left(\frac{2!\,3!}{2^4}\right) = \log\frac34\)} & B1 & {Both sides shown equal to \(\log\frac34\), oe; the RHS must be evaluated, not just stated.} \\
+& {Assumes true for \(n=k\):\\[4pt] \(\sum_{r=1}^{k+1}\ldots = \log\left(\frac{(2k)!(2k+1)!}{2^{4k}(k!)^4}\right)\)\\[4pt] \(\phantom{\sum_{r=1}^{k+1}\ldots} + \log\left(1-\frac{1}{4(k+1)^2}\right)\)} & M1 & {States the assumption for \(n=k\) and adds the \((k+1)\)th term to the assumed sum.} \\
+& {\(= \log\left(\frac{(2k)!(2k+1)!}{2^{4k}(k!)^4}\times\frac{4(k+1)^2-1}{4(k+1)^2}\right)\)} & M1 & {Combines the two logs into one and writes the extra term as a single fraction. Condone slips in expanding.} \\
+& {\(= \log\left(\frac{(2k)!(2k+1)!(2k+1)(2k+3)}{2^{4k}(k!)^4(2k+2)^2}\right)\)} & A1 & {Correct single log with the extra term as \(\frac{(2k+1)(2k+3)}{(2k+2)^2}\), oe such as \(4(k+1)^2\) in the denominator.} \\
+& {\(= \log\left(\frac{(2k+2)!(2k+3)!}{2^{4k}(k!)^4(2k+2)^4}\right)\)\\[4pt] \(= \log\left(\frac{(2k+2)!(2k+3)!}{2^{4(k+1)}((k+1)!)^4}\right)\)} & A1 & {cso. Factorial identities for \((2k+2)!\), \((2k+3)!\) and \((k+1)!\) used without error to reach the \(n=k+1\) form; working from both ends to a common expression accepted.} \\
+& {True for \(n=1\); true for \(n=k\) \(\Rightarrow\) true for \(n=k+1\); so true for all positive integers \(n\)} & E1 & {States true for \(n=1\), that truth for \(n=k\) implies truth for \(n=k+1\), and hence true for all positive integers \(n\).} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 10 & & 6 & \\
+\end{msscheme}
+
+\end{document}
