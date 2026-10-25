@@ -4,7 +4,7 @@
 \djsSolnHeader{Integration of Polar Curves}
 \djsSitePath{Core Pure}{Polar Coordinates}
 
-\djsLastUpdated{21 October 2026}
+\djsLastUpdated{25 October 2026}
 \begin{document}
 \djsFrontMatter
 	\begin{enumerate}[
@@ -23,7 +23,7 @@
     \centering
 \begin{tikzpicture}[scale=1.6]
 \def\twopi{6.283185}
-\draw[-{Stealth[length=3mm]}, thick] (0,0) -- (2.1,0) node[right] {$\theta = 0$};
+\draw[-{Stealth[length=3mm]}, thick] (0,0) -- (2.1,0) node[right] {Initial line};
 \draw[thick, black]
   plot[smooth, samples=400, domain=0:\twopi]
     ({(1+sin(deg(2*\x)))*cos(deg(\x))},{(1+sin(deg(2*\x)))*sin(deg(\x))});
@@ -61,8 +61,6 @@ The diagram above shows the curve with polar equation $r=1+\sin 2\theta$ for $0\
 	  \[
 	  \theta=\frac{3\pi}{4},\ \frac{7\pi}{4}
 	  \]
-
-	  Therefore the values of \(\theta\) at the pole are \(\displaystyle \frac{3\pi}{4}\) and \(\displaystyle \frac{7\pi}{4}\).
 	
 	  \item \(r=1+\sin 2\theta\) is largest when \(\sin 2\theta=1\). Hence
 	  \[
@@ -79,12 +77,12 @@ The diagram above shows the curve with polar equation $r=1+\sin 2\theta$ for $0\
 	  \theta=\frac{\pi}{4},\ \frac{5\pi}{4}
 	  \]
 
-	  Therefore the points are
+	  Therefore the points have polar coordinates
 	  \[
-	  (2,\tfrac{\pi}{4}) \quad \text{and} \quad (2,\tfrac{5\pi}{4})
+	  \left(2,\frac{\pi}{4}\right) \quad \text{and} \quad \left(2,\frac{5\pi}{4}\right)
 	  \]
 	
-	  \item The area enclosed by a polar curve is
+	  \item The polar area formula is
 	  \[
 	  A=\frac12\int_{\alpha}^{\beta} r^2\,\mathrm{d}\theta
 	  \]
@@ -94,7 +92,7 @@ The diagram above shows the curve with polar equation $r=1+\sin 2\theta$ for $0\
 	  A=\frac12\int_0^{2\pi}(1+\sin 2\theta)^2\,\mathrm{d}\theta
 	  \]
 
-	  Expanding,
+	  Expanding:
 	  \[
 	  A=\frac12\int_0^{2\pi}\left(1+2\sin 2\theta+\sin^2 2\theta\right)\,\mathrm{d}\theta
 	  \]
@@ -110,7 +108,7 @@ The diagram above shows the curve with polar equation $r=1+\sin 2\theta$ for $0\
 	   &=\frac12\int_0^{2\pi}\left(\frac32+2\sin 2\theta-\frac12\cos 4\theta\right)\,\mathrm{d}\theta
 	  \end{align*}
 
-	  Integrating term by term,
+	  Integrating term by term:
 	  \begin{align*}
 	  A&=\frac12\left[\frac32\theta-\cos 2\theta-\frac18\sin 4\theta\right]_0^{2\pi} \\
 	   &=\frac12\left(3\pi-1-0-(-1)\right) \\
@@ -122,14 +120,14 @@ The diagram above shows the curve with polar equation $r=1+\sin 2\theta$ for $0\
 	  x=r\cos\theta,\qquad y=r\sin\theta,\qquad r^2=x^2+y^2
 	  \]
 
-	  and \(\sin 2\theta=2\sin\theta\cos\theta\),
+	  and \(\sin 2\theta=2\sin\theta\cos\theta\), the equation becomes
 	  \[
 	  r=1+2\sin\theta\cos\theta
 	  \]
 
 	  Now
 	  \[
-	  \sin\theta=\frac{y}{r},\qquad \cos\theta=\frac{x}{r}
+	  \cos\theta=\frac{x}{r},\qquad \sin\theta=\frac{y}{r}
 	  \]
 
 	  so
@@ -137,12 +135,12 @@ The diagram above shows the curve with polar equation $r=1+\sin 2\theta$ for $0\
 	  r=1+\frac{2xy}{r^2}
 	  \]
 
-	  Multiplying by \(r^2\),
+	  Multiplying by \(r^2\):
 	  \[
 	  r^3=r^2+2xy
 	  \]
 
-	  Since \(r^2=x^2+y^2\),
+	  Since \(r^2=x^2+y^2\), this becomes
 	  \[
 	  r^3=x^2+y^2+2xy=(x+y)^2
 	  \]
@@ -170,7 +168,7 @@ The diagram above shows the curve with polar equation $r=1+\sin 2\theta$ for $0\
 \coordinate (O) at (0,0);
 
 \draw[-{Stealth[length=3mm]}, thick, black]
-  (O) -- (\ArrowLen,0) node[right] {$\theta=0$};
+  (O) -- (\ArrowLen,0) node[right] {Initial line};
 
 \draw[thick, black]
   (O)
@@ -215,25 +213,20 @@ The diagram above shows the curve $C$ with polar equation $r^2=8\cos 2\theta$. \
 	\begin{enumerate}[label=\textbf{(\alph*)}]
 	\item Using
 	\[
-	x=r\cos\theta,\qquad y=r\sin\theta
+	x=r\cos\theta,\qquad y=r\sin\theta,\qquad r^2=x^2+y^2
 	\]
 
-	we have
-	\[
-	r^2=x^2+y^2
-	\]
-
-	Also,
+	and the identity
 	\[
 	\cos 2\theta=\cos^2\theta-\sin^2\theta
 	\]
 
-	and since
+	with
 	\[
 	\cos\theta=\frac{x}{r},\qquad \sin\theta=\frac{y}{r}
 	\]
 
-	it follows that
+	gives
 	\begin{align*}
 	\cos 2\theta
 	&=\left(\frac{x}{r}\right)^2-\left(\frac{y}{r}\right)^2 \\
@@ -241,14 +234,14 @@ The diagram above shows the curve $C$ with polar equation $r^2=8\cos 2\theta$. \
 	\end{align*}
 	
 	Now substitute into the polar equation \(r^2=8\cos 2\theta\):
-	\begin{align*}
-	r^2&=8\cdot \frac{x^2-y^2}{r^2}
-	\end{align*}
+	\[
+	r^2=\frac{8(x^2-y^2)}{r^2}
+	\]
 
-	and since \(r^2=x^2+y^2\),
-	\begin{align*}
-	x^2+y^2&=\frac{8(x^2-y^2)}{x^2+y^2}
-	\end{align*}
+	and since \(r^2=x^2+y^2\), this becomes
+	\[
+	x^2+y^2=\frac{8(x^2-y^2)}{x^2+y^2}
+	\]
 
 	Multiplying both sides by \(x^2+y^2\) gives
 	\[
@@ -273,7 +266,7 @@ The diagram above shows the curve $C$ with polar equation $r^2=8\cos 2\theta$. \
 	
 	Hence the coordinate axes are lines of symmetry of \(C\).
 	
-	\item For a polar curve, the area enclosed is
+	\item The polar area formula is
 	\[
 	A=\frac12\int_{\alpha}^{\beta} r^2\,\mathrm{d}\theta
 	\]
@@ -354,7 +347,7 @@ The diagram above shows the curve $C$ with polar equation $r^2=8\cos 2\theta$. \
 	r=2\left(1+\cos\frac{2\pi}{3}\right)=2\left(1-\frac12\right)=1
 	\]
 
-	So the curves meet at the pole and at \(\left(1,\frac{2\pi}{3}\right)\).
+	So the curves meet at the pole and at the point with polar coordinates \(\left(1,\frac{2\pi}{3}\right)\).
 
 	  \item The smaller region is the part inside the cardioid between
 	\[
@@ -371,19 +364,19 @@ The diagram above shows the curve $C$ with polar equation $r^2=8\cos 2\theta$. \
 	A=\frac12\int_{2\pi/3}^{\pi}\left[2(1+\cos\theta)\right]^2\,\mathrm{d}\theta
 	\]
 	
-	Now simplify the integrand:
+	Now simplify the integrand, using \(\cos^2\theta=\frac{1+\cos 2\theta}{2}\):
 	\begin{align*}
 	A&=2\int_{2\pi/3}^{\pi}(1+2\cos\theta+\cos^2\theta)\,\mathrm{d}\theta \\
 	&=2\int_{2\pi/3}^{\pi}\left(1+2\cos\theta+\frac{1+\cos2\theta}{2}\right)\,\mathrm{d}\theta \\
 	&=\int_{2\pi/3}^{\pi}(3+4\cos\theta+\cos2\theta)\,\mathrm{d}\theta
 	\end{align*}
 	
-	Integrating,
+	Integrating:
 	\begin{align*}
 	A&=\left[3\theta+4\sin\theta+\frac12\sin2\theta\right]_{2\pi/3}^{\pi} \\
 	&=\left(3\pi+4\sin\pi+\frac12\sin2\pi\right)
-	-\left(3\cdot\frac{2\pi}{3}+4\sin\frac{2\pi}{3}+\frac12\sin\frac{4\pi}{3}\right) \\
-	&=3\pi-\left(2\pi+4\cdot\frac{\sqrt3}{2}+\frac12\cdot\left(-\frac{\sqrt3}{2}\right)\right) \\
+	-\left(3\times\frac{2\pi}{3}+4\sin\frac{2\pi}{3}+\frac12\sin\frac{4\pi}{3}\right) \\
+	&=3\pi-\left(2\pi+4\times\frac{\sqrt3}{2}+\frac12\times\left(-\frac{\sqrt3}{2}\right)\right) \\
 	&=\pi-2\sqrt3+\frac{\sqrt3}{4} \\
 	&=\pi-\frac{7\sqrt3}{4}
 	\end{align*}
@@ -480,14 +473,7 @@ Find, correct to three significant figures, the area of the shaded region enclos
 	\theta=\frac{\pi}{12},\ \frac{5\pi}{12}
 	\]
 	
-	So the points of intersection are at $\theta=\frac{\pi}{12}$ and $\theta=\frac{5\pi}{12}$.
-	
-	For $\frac{\pi}{12}\le \theta \le \frac{5\pi}{12}$, we have $\sin 2\theta \ge \frac12$, so
-	\[
-	2+\sin 2\theta \ge \frac52
-	\]
-	
-	Therefore the curve $C$ lies outside the circle on this interval.
+	So $A$ and $B$ are at $\theta=\frac{\pi}{12}$ and $\theta=\frac{5\pi}{12}$, and the diagram shows $C$ outside the circle between them.
 
 	Using the polar area formula:
 	\[
@@ -496,36 +482,36 @@ Find, correct to three significant figures, the area of the shaded region enclos
 
 	the required area is
 	\[
-	\text{Area}=\frac12\int_{\pi/12}^{5\pi/12}\left[\left(2+\sin 2\theta\right)^2-\left(\frac52\right)^2\right]\mathrm{d}\theta
+	\text{Area}=\frac12\int_{\pi/12}^{5\pi/12}\left[\left(2+\sin 2\theta\right)^2-\left(\frac52\right)^2\right]\,\mathrm{d}\theta
 	\]
 	
 	Now expand the integrand:
 	\begin{align*}
-	\text{Area}&=\frac12\int_{\pi/12}^{5\pi/12}\left(4+4\sin 2\theta+\sin^2 2\theta-\frac{25}{4}\right)\mathrm{d}\theta\\
-	&=\frac12\int_{\pi/12}^{5\pi/12}\left(-\frac94+4\sin 2\theta+\sin^2 2\theta\right)\mathrm{d}\theta
+	\text{Area}&=\frac12\int_{\pi/12}^{5\pi/12}\left(4+4\sin 2\theta+\sin^2 2\theta-\frac{25}{4}\right)\,\mathrm{d}\theta\\
+	&=\frac12\int_{\pi/12}^{5\pi/12}\left(-\frac94+4\sin 2\theta+\sin^2 2\theta\right)\,\mathrm{d}\theta
 	\end{align*}
 	
-	Use the identity
+	Use the identity:
 	\[
 	\sin^2 2\theta=\frac{1-\cos 4\theta}{2}
 	\]
 	
 	Then
 	\begin{align*}
-	\text{Area}&=\frac12\int_{\pi/12}^{5\pi/12}\left(-\frac94+4\sin 2\theta+\frac{1-\cos 4\theta}{2}\right)\mathrm{d}\theta\\
-	&=\frac12\int_{\pi/12}^{5\pi/12}\left(-\frac74+4\sin 2\theta-\frac12\cos 4\theta\right)\mathrm{d}\theta
+	\text{Area}&=\frac12\int_{\pi/12}^{5\pi/12}\left(-\frac94+4\sin 2\theta+\frac{1-\cos 4\theta}{2}\right)\,\mathrm{d}\theta\\
+	&=\frac12\int_{\pi/12}^{5\pi/12}\left(-\frac74+4\sin 2\theta-\frac12\cos 4\theta\right)\,\mathrm{d}\theta
 	\end{align*}
 	
-	Integrating,
-	\begin{align*}
-	\text{Area}&=\left[-\frac{7\theta}{8}-\cos 2\theta-\frac{1}{16}\sin 4\theta\right]_{\pi/12}^{5\pi/12}
-	\end{align*}
+	Integrating:
+	\[
+	\text{Area}=\left[-\frac{7\theta}{8}-\cos 2\theta-\frac{1}{16}\sin 4\theta\right]_{\pi/12}^{5\pi/12}
+	\]
 	
 	Now substitute the limits:
-	\begin{align*}
-	\text{Area}&=\left(-\frac{35\pi}{96}-\cos\frac{5\pi}{6}-\frac{1}{16}\sin\frac{5\pi}{3}\right)
+	\[
+	\text{Area}=\left(-\frac{35\pi}{96}-\cos\frac{5\pi}{6}-\frac{1}{16}\sin\frac{5\pi}{3}\right)
 	-\left(-\frac{7\pi}{96}-\cos\frac{\pi}{6}-\frac{1}{16}\sin\frac{\pi}{3}\right)
-	\end{align*}
+	\]
 	
 	Using
 	\[
@@ -550,10 +536,8 @@ Find, correct to three significant figures, the area of the shaded region enclos
 	
 	and numerically
 	\[
-	\text{Area}\approx 0.924
+	\text{Area}\approx 0.924\qquad\text{(3 s.f.)}
 	\]
-	
-	Therefore, the area of the shaded region is $0.924$ square units, correct to three significant figures.
 	\end{djsSolution}
 	
 	
@@ -574,7 +558,7 @@ Find, correct to three significant figures, the area of the shaded region enclos
 \coordinate (A) at (45:{3*\ascl});
 \coordinate (B) at ({2*\ascl},0);
 
-\draw[-{Stealth[length=3mm]}, thick] (O) -- (X) node[right] {$\theta=0$};
+\draw[-{Stealth[length=3mm]}, thick] (O) -- (X) node[right] {Initial line};
 \draw[dashed] (R) -- (Q);
 \pic["$\frac{\pi}{4}$", draw, angle radius=8mm, angle eccentricity=1.35] {angle=X--O--Q};
 
@@ -605,9 +589,9 @@ The diagram above shows the curve $C$ with polar equation $r=a(2+\sin 2\theta)$ 
 	  r=a\left(2+\sin\frac{\pi}{2}\right)=a(2+1)=3a
 	  \]
 
-	  so
+	  so $A$ has polar coordinates
 	  \[
-	  A=\left(3a,\frac{\pi}{4}\right)
+	  \left(3a,\frac{\pi}{4}\right)
 	  \]
 	
 	  For point $B$, $\theta=0$, so
@@ -615,19 +599,19 @@ The diagram above shows the curve $C$ with polar equation $r=a(2+\sin 2\theta)$ 
 	  r=a(2+\sin 0)=2a
 	  \]
 
-	  hence
+	  hence $B$ has polar coordinates
 	  \[
-	  B=(2a,0)
+	  (2a,0)
 	  \]
 	
 	  \item The line $\theta=\frac{\pi}{4}$ is the line $y=x$, and reflection in $y=x$ swaps $x$ and $y$. So $C$ is symmetrical about $\theta=\frac{\pi}{4}$ if its Cartesian equation is unchanged when $x$ and $y$ are swapped.
 
-	  Using $\sin 2\theta=2\sin\theta\cos\theta$ with $x=r\cos\theta$ and $y=r\sin\theta$,
+	  Using $\sin 2\theta=2\sin\theta\cos\theta$ with $x=r\cos\theta$ and $y=r\sin\theta$:
 	  \[
 	  r=a(2+2\sin\theta\cos\theta)=2a+\frac{2axy}{r^2}
 	  \]
 
-	  Multiplying by $r^2$ and using $r^2=x^2+y^2$,
+	  Multiplying by $r^2$ and using $r^2=x^2+y^2$:
 	  \[
 	  \left(x^2+y^2\right)^{3/2}=2a\left(x^2+y^2\right)+2axy
 	  \]
@@ -645,40 +629,20 @@ The diagram above shows the curve $C$ with polar equation $r=a(2+\sin 2\theta)$ 
 
 	  leaves the equation unchanged, since reflection in the line $\theta=\frac{\pi}{4}$ sends $\theta$ to $\frac{\pi}{2}-\theta$.
 	
-	  Here,
+	  Here
 	  \[
 	  r=a\left(2+\sin 2\left(\frac{\pi}{2}-\theta\right)\right)
 	  =a\left(2+\sin(\pi-2\theta)\right)
 	  \]
 
-	  and since $\sin(\pi-2\theta)=\sin 2\theta$,
+	  and since $\sin(\pi-2\theta)=\sin 2\theta$, this is
 	  \[
 	  r=a(2+\sin 2\theta)
 	  \]
 	
 	  So the equation is unchanged, and therefore $C$ is symmetrical about the line $\theta=\frac{\pi}{4}$.
 	
-	  \item The region is inside $C$ and outside the circle $r=2a$, so we need
-	  \[
-	  a(2+\sin 2\theta)\ge 2a
-	  \]
-
-	  Since $a>0$, this gives
-	  \[
-	  2+\sin 2\theta \ge 2
-	  \]
-	  \[
-	  \sin 2\theta \ge 0
-	  \]
-	
-	  On $-\pi\le \theta \le \pi$, this happens on
-	  \[
-	  -\pi\le \theta \le -\frac{\pi}{2}
-	  \qquad \text{and} \qquad
-	  0\le \theta \le \frac{\pi}{2}
-	  \]
-
-	  so there are two equal regions.
+	  \item The curve meets the circle where $a(2+\sin 2\theta)=2a$, that is where $\sin 2\theta=0$. The diagram shows two equal regions inside $C$ and outside the circle, for $0\le \theta \le \frac{\pi}{2}$ and for $-\pi\le \theta \le -\frac{\pi}{2}$.
 	
 	  Find the area of one region, for $0\le \theta \le \frac{\pi}{2}$.
 	
@@ -714,7 +678,7 @@ The diagram above shows the curve $C$ with polar equation $r=a(2+\sin 2\theta)$ 
 	  =2-(-2)=4
 	  \]
 	
-	  Also,
+	  Also
 	  \[
 	  \sin^2 2\theta=\frac{1-\cos 4\theta}{2}
 	  \]
@@ -735,7 +699,7 @@ The diagram above shows the curve $C$ with polar equation $r=a(2+\sin 2\theta)$ 
 	
 	  There are two such regions, so the total area is
 	  \[
-	  2A_1=2a^2\left(2+\frac{\pi}{8}\right)
+	  \text{Area}=2A_1=2a^2\left(2+\frac{\pi}{8}\right)
 	  =a^2\left(4+\frac{\pi}{4}\right)
 	  =\frac{a^2(16+\pi)}{4}
 	  \]
@@ -835,7 +799,7 @@ where $a$ is a positive constant. \\
 	
 	Now find $r$:
 	\[
-	r=4a\cos\frac{\pi}{4}=4a\cdot \frac{1}{\sqrt2}=2\sqrt2\,a
+	r=4a\cos\frac{\pi}{4}=4a\times\frac{1}{\sqrt2}=2\sqrt2\,a
 	\]
 	
 	So the polar coordinates of $P$ are
@@ -843,9 +807,14 @@ where $a$ is a positive constant. \\
 	\left(2\sqrt2\,a,\frac{\pi}{4}\right)
 	\]
 	
-	  \item In Cartesian form, $r=4a\cos\theta$ gives $r^2=4ar\cos\theta$, so
+	  \item Using
 	\[
-	x^2+y^2=4ax \implies (x-2a)^2+y^2=4a^2
+	x=r\cos\theta,\qquad y=r\sin\theta,\qquad r^2=x^2+y^2
+	\]
+
+	the equation $r=4a\cos\theta$ gives $r^2=4ar\cos\theta$, so
+	\[
+	x^2+y^2=4ax\quad\Longrightarrow\quad(x-2a)^2+y^2=4a^2
 	\]
 
 	which is the circle with centre $(2a,0)$ and radius $2a$. The curve $r=2a\sec\theta$ is $r\cos\theta=2a$, the line
@@ -894,7 +863,7 @@ where $a$ is a positive constant. \\
 	A=8a^2\int_0^{\pi/4}\cos^2\theta\,\mathrm{d}\theta-2a^2\int_0^{\pi/4}\sec^2\theta\,\mathrm{d}\theta
 	\]
 	
-	Use
+	Use the identity:
 	\[
 	\cos^2\theta=\frac{1+\cos 2\theta}{2}
 	\]
@@ -992,7 +961,7 @@ Find the value of $a$. \marks{8} \\
 	r=a
 	\]
 	
-	At points of intersection,
+	At points of intersection:
 	\[
 	a(1+\cos\theta)=a
 	\]
@@ -1029,7 +998,7 @@ Find the value of $a$. \marks{8} \\
 
 	the shaded area is
 	\[
-	\frac12\int_{-\pi/2}^{\pi/2}\left([a(1+\cos\theta)]^2-a^2\right)\,\mathrm{d}\theta
+	A=\frac12\int_{-\pi/2}^{\pi/2}\left([a(1+\cos\theta)]^2-a^2\right)\,\mathrm{d}\theta
 	\]
 	
 	Expand the bracket:
@@ -1046,14 +1015,14 @@ Find the value of $a$. \marks{8} \\
 	
 	Now evaluate the two parts separately.
 	
-	First,
+	First:
 	\[
 	\int_{-\pi/2}^{\pi/2} 2\cos\theta\,\mathrm{d}\theta
 	=2[\sin\theta]_{-\pi/2}^{\pi/2}
 	=2(1-(-1))=4
 	\]
 	
-	For the second part, use
+	For the second part, use the identity:
 	\[
 	\cos^2\theta=\frac{1+\cos2\theta}{2}
 	\]
@@ -1097,12 +1066,10 @@ Find the value of $a$. \marks{8} \\
 	a^2=9
 	\]
 
-	Since $a>0$,
+	Since $a>0$, this gives
 	\[
 	a=3
 	\]
-	
-	Therefore, the value of $a$ is $3$.
 	\end{djsSolution}
 	
 	
@@ -1162,7 +1129,7 @@ Find the value of $a$. \marks{8} \\
 \end{figure}
 
 
-In the first quadrant, the curve $r=a\sin 2\theta$ intersects the circle $r=a\cos\theta$ at the pole and at one other point. \\
+In the first quadrant, the curve $r=a\sin 2\theta$, where $a$ is a positive constant, intersects the circle $r=a\cos\theta$ at the pole and at one other point. \\
 
 The region $R$ shown consists of the points that lie inside both curves. \\
 
@@ -1176,12 +1143,12 @@ Find the exact area of $R$ in terms of $a$. \marks{7} \\
 	a\sin 2\theta=a\cos\theta
 	\]
 	
-	Since \(a\neq 0\),
+	Since \(a\neq 0\), dividing by \(a\) gives
 	\[
 	\sin 2\theta=\cos\theta
 	\]
 	
-	Using \(\sin 2\theta=2\sin\theta\cos\theta\),
+	Using \(\sin 2\theta=2\sin\theta\cos\theta\):
 	\[
 	2\sin\theta\cos\theta=\cos\theta
 	\]
@@ -1199,38 +1166,24 @@ Find the exact area of $R$ in terms of $a$. \marks{7} \\
 	2\sin\theta-1=0\quad\Longrightarrow\quad\sin\theta=\frac12\quad\Longrightarrow\quad\theta=\frac{\pi}{6}
 	\]
 	
-	At \(\theta=\frac{\pi}{2}\),
+	At \(\theta=\frac{\pi}{2}\):
 	\[
 	r=a\cos\frac{\pi}{2}=0
 	\]
 
 	so this is the pole.
 	
-	At the other intersection,
+	At the other intersection:
 	\[
 	r=a\cos\frac{\pi}{6}=\frac{a\sqrt3}{2}
 	\]
 	
-	So the non-pole intersection is at
+	So the other intersection has polar coordinates
 	\[
-	\left(r,\theta\right)=\left(\frac{a\sqrt3}{2},\frac{\pi}{6}\right)
+	\left(\frac{a\sqrt3}{2},\frac{\pi}{6}\right)
 	\]
 	
-	Now find which curve forms the boundary of the region inside both curves.
-	
-	For \(0\le \theta\le \frac{\pi}{6}\),
-	\[
-	a\sin2\theta \le a\cos\theta
-	\]
-
-	so the smaller radius is \(r=a\sin2\theta\).
-	
-	For \(\frac{\pi}{6}\le \theta\le \frac{\pi}{2}\),
-	\[
-	a\cos\theta \le a\sin2\theta
-	\]
-
-	so the smaller radius is \(r=a\cos\theta\).
+	The diagram shows that \(R\) is bounded by \(r=a\sin2\theta\) for \(0\le \theta\le \frac{\pi}{6}\) and by \(r=a\cos\theta\) for \(\frac{\pi}{6}\le \theta\le \frac{\pi}{2}\).
 	
 	Hence, using the polar area formula:
 	\[
@@ -1244,7 +1197,7 @@ Find the exact area of $R$ in terms of $a$. \marks{7} \\
 	
 	Now evaluate the integrals.
 	
-	First, use
+	First, use the identity:
 	\[
 	\sin^22\theta=\frac{1-\cos4\theta}{2}
 	\]
@@ -1258,7 +1211,7 @@ Find the exact area of $R$ in terms of $a$. \marks{7} \\
 	&=\frac{\pi}{12}-\frac{\sqrt3}{16}
 	\end{align*}
 	
-	Next, use
+	Next, use the identity:
 	\[
 	\cos^2\theta=\frac{1+\cos2\theta}{2}
 	\]
@@ -1369,36 +1322,11 @@ The common region enclosed by $C_1$ and $C_2$ is shaded in the diagram above. \\
 	r=a
 	\]
 
-	So the points where $C_1$ meets $C_2$ are
+	So the points where $C_1$ meets $C_2$ have polar coordinates
 	\[
-	(a,\tfrac{\pi}{3}) \quad \text{and} \quad (a,\tfrac{5\pi}{3})
+	\left(a,\frac{\pi}{3}\right) \quad \text{and} \quad \left(a,\frac{5\pi}{3}\right)
 	\]
-	  \item For the common region, the boundary is given by the smaller of the two radii.
-	
-	Compare the curves:
-	\[
-	2a(1-\cos\theta)\le a
-	\]
-	\[
-	2(1-\cos\theta)\le 1
-	\]
-	\[
-	\cos\theta\ge \frac12
-	\]
-
-	So:
-	\[
-	0\le \theta\le \frac{\pi}{3}
-	\quad \text{and} \quad
-	\frac{5\pi}{3}\le \theta\le 2\pi
-	\]
-
-	give the cardioid $r=2a(1-\cos\theta)$ as the inner curve, and
-	\[
-	\frac{\pi}{3}\le \theta\le \frac{5\pi}{3}
-	\]
-
-	gives the circle $r=a$ as the inner curve.
+	  \item The diagram shows that $R$ is bounded by the cardioid for $0\le \theta\le \frac{\pi}{3}$ and $\frac{5\pi}{3}\le \theta\le 2\pi$, and by the circle for $\frac{\pi}{3}\le \theta\le \frac{5\pi}{3}$.
 	
 	Using the polar area formula:
 	\[
@@ -1406,13 +1334,13 @@ The common region enclosed by $C_1$ and $C_2$ is shaded in the diagram above. \\
 	\]
 
 	the shaded area is
-	\begin{align*}
-	A&=\frac12\left[
+	\[
+	A=\frac12\left[
 	\int_0^{\pi/3}\bigl(2a(1-\cos\theta)\bigr)^2\,\mathrm{d}\theta
 	+\int_{\pi/3}^{5\pi/3}a^2\,\mathrm{d}\theta
 	+\int_{5\pi/3}^{2\pi}\bigl(2a(1-\cos\theta)\bigr)^2\,\mathrm{d}\theta
 	\right]
-	\end{align*}
+	\]
 	
 	By symmetry, the first and third integrals are equal, so
 	\begin{align*}
@@ -1422,7 +1350,7 @@ The common region enclosed by $C_1$ and $C_2$ is shaded in the diagram above. \\
 	+\frac12a^2\left(\frac{5\pi}{3}-\frac{\pi}{3}\right)
 	\end{align*}
 	
-	Now use
+	Now use the identity:
 	\[
 	\cos^2\theta=\frac{1+\cos2\theta}{2}
 	\]
@@ -1430,18 +1358,18 @@ The common region enclosed by $C_1$ and $C_2$ is shaded in the diagram above. \\
 	So
 	\begin{align*}
 	A&=4a^2\int_0^{\pi/3}\left(1-2\cos\theta+\frac{1+\cos2\theta}{2}\right)\,\mathrm{d}\theta
-	+\frac12a^2\cdot\frac{4\pi}{3} \\
+	+\frac12a^2\times\frac{4\pi}{3} \\
 	&=4a^2\int_0^{\pi/3}\left(\frac32-2\cos\theta+\frac12\cos2\theta\right)\,\mathrm{d}\theta
 	+\frac{2\pi a^2}{3}
 	\end{align*}
 	
-	Integrating,
+	Integrating:
 	\begin{align*}
 	A&=4a^2\left[\frac32\theta-2\sin\theta+\frac14\sin2\theta\right]_0^{\pi/3}
 	+\frac{2\pi a^2}{3} \\
-	&=4a^2\left(\frac32\cdot\frac{\pi}{3}-2\sin\frac{\pi}{3}+\frac14\sin\frac{2\pi}{3}\right)
+	&=4a^2\left(\frac32\times\frac{\pi}{3}-2\sin\frac{\pi}{3}+\frac14\sin\frac{2\pi}{3}\right)
 	+\frac{2\pi a^2}{3} \\
-	&=4a^2\left(\frac{\pi}{2}-2\cdot\frac{\sqrt3}{2}+\frac14\cdot\frac{\sqrt3}{2}\right)
+	&=4a^2\left(\frac{\pi}{2}-2\times\frac{\sqrt3}{2}+\frac14\times\frac{\sqrt3}{2}\right)
 	+\frac{2\pi a^2}{3} \\
 	&=4a^2\left(\frac{\pi}{2}-\sqrt3+\frac{\sqrt3}{8}\right)
 	+\frac{2\pi a^2}{3} \\
@@ -1451,7 +1379,7 @@ The common region enclosed by $C_1$ and $C_2$ is shaded in the diagram above. \\
 	&=\frac{8\pi a^2}{3}-\frac{7\sqrt3\,a^2}{2}
 	\end{align*}
 	
-	Putting this over a denominator of $6$,
+	Putting this over a denominator of $6$:
 	\[
 	A=\frac{1}{6}a^2(16\pi-21\sqrt3)
 	\]
@@ -1521,10 +1449,10 @@ A curve has polar equation $r=a\sin^23\theta$, where $a$ is a positive constant 
 	
 		So the area of one petal is
 		\[
-		A_1=\frac{1}{2}\int_0^{\pi/3} a^2\sin^4(3\theta)\,\mathrm{d}\theta
+		A_1=\frac{1}{2}\int_0^{\pi/3} a^2\sin^4 3\theta\,\mathrm{d}\theta
 		\]
 	
-		Use
+		Use the double-angle identities:
 		\[
 		\sin^4 x=\left(\frac{1-\cos 2x}{2}\right)^2
 		=\frac{1-2\cos 2x+\cos^2 2x}{4}
@@ -1534,7 +1462,7 @@ A curve has polar equation $r=a\sin^23\theta$, where $a$ is a positive constant 
 	
 		Therefore
 		\[
-		\sin^4(3\theta)=\frac{3-4\cos 6\theta+\cos 12\theta}{8}
+		\sin^4 3\theta=\frac{3-4\cos 6\theta+\cos 12\theta}{8}
 		\]
 	
 		Substitute into the integral:
@@ -1542,27 +1470,27 @@ A curve has polar equation $r=a\sin^23\theta$, where $a$ is a positive constant 
 		A_1
 		&=\frac{a^2}{2}\int_0^{\pi/3}\frac{3-4\cos 6\theta+\cos 12\theta}{8}\,\mathrm{d}\theta\\
 		&=\frac{a^2}{16}\int_0^{\pi/3}\left(3-4\cos 6\theta+\cos 12\theta\right)\,\mathrm{d}\theta\\
-		&=\frac{a^2}{16}\left[3\theta-\frac{4}{6}\sin 6\theta+\frac{1}{12}\sin 12\theta\right]_0^{\pi/3}
+		&=\frac{a^2}{16}\left[3\theta-\frac{2}{3}\sin 6\theta+\frac{1}{12}\sin 12\theta\right]_0^{\pi/3}
 		\end{align*}
 	
 		Now evaluate:
 		\[
-		\sin\left(6\cdot \frac{\pi}{3}\right)=\sin 2\pi=0,
+		\sin\left(6\times\frac{\pi}{3}\right)=\sin 2\pi=0,
 		\qquad
-		\sin\left(12\cdot \frac{\pi}{3}\right)=\sin 4\pi=0
+		\sin\left(12\times\frac{\pi}{3}\right)=\sin 4\pi=0
 		\]
 	
 		Hence
 		\begin{align*}
 		A_1
-		&=\frac{a^2}{16}\left[3\cdot \frac{\pi}{3}-0+0\right]\\
+		&=\frac{a^2}{16}\left[3\times\frac{\pi}{3}-0+0\right]\\
 		&=\frac{\pi a^2}{16}
 		\end{align*}
 	
 		There are 6 identical petals, so the total area is
 		\begin{align*}
-		A_{\text{total}}
-		&=6\cdot \frac{\pi a^2}{16}\\
+		A
+		&=6\times\frac{\pi a^2}{16}\\
 		&=\frac{3\pi a^2}{8}
 		\end{align*}
 	\end{enumerate}
@@ -1608,7 +1536,7 @@ A curve has polar equation $r=a\sin^23\theta$, where $a$ is a positive constant 
 \node[above left] at ({1.1*(1+2*sin(60))*cos(60)},{1.1*(1+2*sin(60))*sin(60)}) {$C$};
 \node at (0.75,1.75) {$R$};
 \node[above left] at (V) {$\theta=\frac{\pi}{2}$};
-\node[below right] at (X) {$\theta=0$};
+\node[below right] at (X) {Initial line};
 \end{tikzpicture}
 \end{figure}
 
@@ -1635,12 +1563,12 @@ Find the exact area of the shaded region $R$. \marks{7} \\
 
 	the point $A$ has $y$-coordinate $1$.
 	
-	In polar coordinates,
+	Using
 	\[
-	y=r\sin\theta
+	x=r\cos\theta,\qquad y=r\sin\theta
 	\]
 
-	so at $A$,
+	the condition $y=1$ at $A$ becomes
 	\[
 	(1+2\sin\theta)\sin\theta=1
 	\]
@@ -1666,9 +1594,9 @@ Find the exact area of the shaded region $R$. \marks{7} \\
 	r_A=1+2\sin\frac{\pi}{6}=1+2\left(\frac12\right)=2
 	\]
 
-	Therefore
+	Therefore $A$ has polar coordinates
 	\[
-	A=\left(2,\frac{\pi}{6}\right)
+	\left(2,\frac{\pi}{6}\right)
 	\]
 
 	and in Cartesian coordinates
@@ -1676,10 +1604,7 @@ Find the exact area of the shaded region $R$. \marks{7} \\
 	x=2\cos\frac{\pi}{6}=\sqrt{3}, \qquad y=2\sin\frac{\pi}{6}=1
 	\]
 
-	so
-	\[
-	A=(\sqrt{3},1)
-	\]
+	so $A$ has Cartesian coordinates $(\sqrt{3},1)$.
 	
 	The line $\theta=\frac{\pi}{2}$ is the $y$-axis, so the line $AN$, perpendicular to it, is horizontal. Since it passes through $A$, its equation is
 	\[
@@ -1705,8 +1630,8 @@ Find the exact area of the shaded region $R$. \marks{7} \\
 
 	we get
 	\begin{align*}
-	\frac12\int_{\pi/6}^{\pi/2}\left(1+4\sin\theta+4\sin^2\theta\right)\mathrm{d}\theta
-	&=\frac12\int_{\pi/6}^{\pi/2}\left(3+4\sin\theta-2\cos2\theta\right)\mathrm{d}\theta\\
+	\frac12\int_{\pi/6}^{\pi/2}\left(1+4\sin\theta+4\sin^2\theta\right)\,\mathrm{d}\theta
+	&=\frac12\int_{\pi/6}^{\pi/2}\left(3+4\sin\theta-2\cos2\theta\right)\,\mathrm{d}\theta\\
 	&=\frac12\left[3\theta-4\cos\theta-\sin2\theta\right]_{\pi/6}^{\pi/2}\\
 	&=\frac12\left(\frac{3\pi}{2}-\left(\frac{\pi}{2}-2\sqrt3-\frac{\sqrt3}{2}\right)\right)\\
 	&=\frac{\pi}{2}+\frac{5\sqrt3}{4}
@@ -1750,14 +1675,14 @@ Find the exact area of the shaded region $R$. \marks{7} \\
 	
 	Using the polar area formula:
 	\[
-	\text{Area}(R)=\frac12\int_{\pi/6}^{\pi/2}\left[\bigl(1+2\sin\theta\bigr)^2-\operatorname{cosec}^2\theta\right]\mathrm{d}\theta
+	\text{Area}(R)=\frac12\int_{\pi/6}^{\pi/2}\left[\bigl(1+2\sin\theta\bigr)^2-\operatorname{cosec}^2\theta\right]\,\mathrm{d}\theta
 	\]
 
 	Expand the bracket:
-	\begin{align*}
+	\[
 	\text{Area}(R)
-	&=\frac12\int_{\pi/6}^{\pi/2}\left(1+4\sin\theta+4\sin^2\theta-\operatorname{cosec}^2\theta\right)\mathrm{d}\theta
-	\end{align*}
+	=\frac12\int_{\pi/6}^{\pi/2}\left(1+4\sin\theta+4\sin^2\theta-\operatorname{cosec}^2\theta\right)\,\mathrm{d}\theta
+	\]
 	
 	Now integrate term by term. Using
 	\[
@@ -1766,8 +1691,8 @@ Find the exact area of the shaded region $R$. \marks{7} \\
 
 	we get
 	\begin{align*}
-	\int \left(1+4\sin\theta+4\sin^2\theta-\operatorname{cosec}^2\theta\right)\mathrm{d}\theta
-	&=\int \left(1+4\sin\theta+2-2\cos2\theta-\operatorname{cosec}^2\theta\right)\mathrm{d}\theta\\
+	\int \left(1+4\sin\theta+4\sin^2\theta-\operatorname{cosec}^2\theta\right)\,\mathrm{d}\theta
+	&=\int \left(1+4\sin\theta+2-2\cos2\theta-\operatorname{cosec}^2\theta\right)\,\mathrm{d}\theta\\
 	&=3\theta-4\cos\theta-\sin2\theta+\cot\theta
 	\end{align*}
 
@@ -1864,7 +1789,7 @@ r^2=\frac{\pi^2-(\theta-\pi)^2}{1+(\theta-\pi)^2},\quad 0\leq\theta\leq2\pi
 
 	  So its polar coordinates are \((\pi,\pi)\).
 
-	  \item The area enclosed by a polar curve is
+	  \item The polar area formula is
 	  \[
 	  A=\frac12\int_{\alpha}^{\beta} r^2\,\mathrm{d}\theta
 	  \]
@@ -1874,14 +1799,14 @@ r^2=\frac{\pi^2-(\theta-\pi)^2}{1+(\theta-\pi)^2},\quad 0\leq\theta\leq2\pi
 	  A=\frac12\int_0^{2\pi}\frac{\pi^2-(\theta-\pi)^2}{1+(\theta-\pi)^2}\,\mathrm{d}\theta
 	  \]
 	
-	  Use the substitution
+	  Use the substitution:
 	  \[
 	  u=\theta-\pi
 	  \]
 
 	  Then \(\mathrm{d}u=\mathrm{d}\theta\), and the limits change as follows:
 	  \[
-	  \theta=0 \implies u=-\pi, \qquad \theta=2\pi \implies u=\pi
+	  \theta=0\quad\Longrightarrow\quad u=-\pi, \qquad \theta=2\pi\quad\Longrightarrow\quad u=\pi
 	  \]
 
 	  Hence
@@ -1896,24 +1821,24 @@ r^2=\frac{\pi^2-(\theta-\pi)^2}{1+(\theta-\pi)^2},\quad 0\leq\theta\leq2\pi
 	  &=-1+\frac{\pi^2+1}{1+u^2}
 	  \end{align*}
 	
-	  Therefore
+	  Using the standard result
+	  \[
+	  \int \dfrac{1}{u^2+a^2}\,\mathrm{d}u=\dfrac{1}{a}\arctan\left(\dfrac{u}{a}\right)+c
+	  \]
+
+	  with \(a=1\) gives
 	  \begin{align*}
 	  A
 	  &=\frac12\int_{-\pi}^{\pi}\left(-1+\frac{\pi^2+1}{1+u^2}\right)\,\mathrm{d}u \\
 	  &=\frac12\left[-u+(\pi^2+1)\arctan u\right]_{-\pi}^{\pi}
 	  \end{align*}
-
-	  using
-	  \[
-	  \int \frac{1}{1+u^2}\,\mathrm{d}u=\arctan u + c
-	  \]
 	
 	  Now substitute the limits:
 	  \begin{align*}
 	  A
 	  &=\frac12\Bigl[\bigl(-\pi+(\pi^2+1)\arctan\pi\bigr)-\bigl(\pi-(\pi^2+1)\arctan\pi\bigr)\Bigr] \\
 	  &=\frac12\Bigl[-2\pi+2(\pi^2+1)\arctan\pi\Bigr] \\
-	  &=(\pi^2+1)\arctan(\pi)-\pi
+	  &=(\pi^2+1)\arctan\pi-\pi
 	  \end{align*}
 	\end{enumerate}
 	\end{djsSolution}

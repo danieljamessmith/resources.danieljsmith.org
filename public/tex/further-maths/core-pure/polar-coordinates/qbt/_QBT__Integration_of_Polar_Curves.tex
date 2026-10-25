@@ -4,7 +4,7 @@
 \djsQbtHeader{Integration of Polar Curves}
 \djsSitePath{Core Pure}{Polar Coordinates}
 
-\djsLastUpdated{21 October 2026}
+\djsLastUpdated{25 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -23,7 +23,7 @@
     \centering
 \begin{tikzpicture}[scale=1.6]
 \def\twopi{6.283185}
-\draw[-{Stealth[length=3mm]}, thick] (0,0) -- (2.1,0) node[right] {$\theta = 0$};
+\draw[-{Stealth[length=3mm]}, thick] (0,0) -- (2.1,0) node[right] {Initial line};
 \draw[thick, black]
   plot[smooth, samples=400, domain=0:\twopi]
     ({(1+sin(deg(2*\x)))*cos(deg(\x))},{(1+sin(deg(2*\x)))*sin(deg(\x))});
@@ -56,7 +56,7 @@ The diagram above shows the curve with polar equation $r=1+\sin 2\theta$ for $0\
 \coordinate (O) at (0,0);
 
 \draw[-{Stealth[length=3mm]}, thick, black]
-  (O) -- (\ArrowLen,0) node[right] {$\theta=0$};
+  (O) -- (\ArrowLen,0) node[right] {Initial line};
 
 \draw[thick, black]
   (O)
@@ -187,7 +187,7 @@ Find, correct to three significant figures, the area of the shaded region enclos
 \coordinate (A) at (45:{3*\ascl});
 \coordinate (B) at ({2*\ascl},0);
 
-\draw[-{Stealth[length=3mm]}, thick] (O) -- (X) node[right] {$\theta=0$};
+\draw[-{Stealth[length=3mm]}, thick] (O) -- (X) node[right] {Initial line};
 \draw[dashed] (R) -- (Q);
 \pic["$\frac{\pi}{4}$", draw, angle radius=8mm, angle eccentricity=1.35] {angle=X--O--Q};
 
@@ -388,7 +388,7 @@ Find the value of $a$. \marks{8} \\
 \end{figure}
 
 
-In the first quadrant, the curve $r=a\sin 2\theta$ intersects the circle $r=a\cos\theta$ at the pole and at one other point. \\
+In the first quadrant, the curve $r=a\sin 2\theta$, where $a$ is a positive constant, intersects the circle $r=a\cos\theta$ at the pole and at one other point. \\
 
 The region $R$ shown consists of the points that lie inside both curves. \\
 
@@ -502,7 +502,7 @@ A curve has polar equation $r=a\sin^23\theta$, where $a$ is a positive constant 
 \node[above left] at ({1.1*(1+2*sin(60))*cos(60)},{1.1*(1+2*sin(60))*sin(60)}) {$C$};
 \node at (0.75,1.75) {$R$};
 \node[above left] at (V) {$\theta=\frac{\pi}{2}$};
-\node[below right] at (X) {$\theta=0$};
+\node[below right] at (X) {Initial line};
 \end{tikzpicture}
 \end{figure}
 
