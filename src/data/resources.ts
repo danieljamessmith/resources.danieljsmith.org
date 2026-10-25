@@ -717,6 +717,16 @@ const rawResources: Resource[] = [
     topic: 'Polar Coordinates',
   },
   {
+    id: 'fm-polar-basics-ms',
+    title: 'Polar Coordinates Basics',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/polar-coordinates/ms/_QBT___MS__Polar_Coordinates_Basics.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-polar-basics',
+    topic: 'Polar Coordinates',
+  },
+  {
     id: 'fm-polar-integration-polar-curves',
     title: 'Integration of Polar Curves',
     description: '',

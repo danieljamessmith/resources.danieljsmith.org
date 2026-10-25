@@ -66,6 +66,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/misc-pure/soln/_QBT___Solns__Roots_of_Polynomials.pdf': '8f10b136',
   '/tex/further-maths/core-pure/misc-pure/soln/_QBT___Solns__Series___Method_of_Differences.pdf': 'addcee8f',
   '/tex/further-maths/core-pure/polar-coordinates/ms/_QBT___MS__Integration_of_Polar_Curves.pdf': '3ad952f8',
+  '/tex/further-maths/core-pure/polar-coordinates/ms/_QBT___MS__Polar_Coordinates_Basics.pdf': 'b265b9e1',
   '/tex/further-maths/core-pure/polar-coordinates/qbt/_QBT__Integration_of_Polar_Curves.pdf': '6f1675af',
   '/tex/further-maths/core-pure/polar-coordinates/qbt/_QBT__Polar_Coordinates_Basics.pdf': '013f0f47',
   '/tex/further-maths/core-pure/polar-coordinates/qbt/_QBT__Tangents_to_Polar_Curves.pdf': 'f0c66d3b',

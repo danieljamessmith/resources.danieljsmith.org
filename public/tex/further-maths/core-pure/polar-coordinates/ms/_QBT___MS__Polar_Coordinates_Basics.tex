@@ -1,0 +1,435 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/markscheme_preamble.tex}
+
+\djsSchemeHeader{Polar Coordinates Basics}
+\djsSitePath{Core Pure}{Polar Coordinates}
+
+\djsLastUpdated{25 October 2026}
+\begin{document}
+\djsSetQuestionCount{10}
+\djsAddMarks{1}{8}
+\djsAddMarks{2}{8}
+\djsAddMarks{3}{7}
+\djsAddMarks{4}{8}
+\djsAddMarks{5}{11}
+\djsAddMarks{6}{7}
+\djsAddMarks{7}{12}
+\djsAddMarks{8}{13}
+\djsAddMarks{9}{8}
+\djsAddMarks{10}{15}
+\vspace*{6pt}
+\djsContentsTitle
+\vspace{30pt}
+\msContentsHeading
+\begin{mscontents}{}
+Question & Marks by part & Marks & Page \\
+\msContentsQuestion{1} & (a)\,3\msSep (b)\,2\msSep (c)\,3 & 8 & \msContentsPage{1} \\
+\msContentsQuestion{2} & (a)\,1\msSep (b)\,3\msSep (c)\,4 & 8 & \msContentsPage{2} \\
+\msContentsQuestion{3} & (a)\,1\msSep (b)\,6 & 7 & \msContentsPage{3} \\
+\msContentsQuestion{4} & (a)\,4\msSep (b)\,4 & 8 & \msContentsPage{4} \\
+\msContentsQuestion{5} & (a)\,4\msSep (b)\,4\msSep (c)\,3 & 11 & \msContentsPage{5} \\
+\msContentsQuestion{6} & (i)\,4\msSep (ii)\,3 & 7 & \msContentsPage{6} \\
+\msContentsQuestion{7} & (a)\,3\msSep (b)\,3\msSep (c)\,2\msSep (d)\,4 & 12 & \msContentsPage{7} \\
+\msContentsQuestion{8} & (i)\,2\msSep (ii)(a)\,4\msSep (ii)(b)\,3\msSep (iii)\,4 & 13 & \msContentsPage{8} \\
+\msContentsQuestion{9} & (a)\,2\msSep (b)\,6 & 8 & \msContentsPage{9} \\
+\msContentsQuestion{10} & (a)\,3\msSep (b)(i)\,3\msSep (b)(ii)\,5\msSep (b)(iii)\,4 & 15 & \msContentsPage{10} \\
+\SetCell[c=2]{r} Total & & 97 & \\
+\end{mscontents}
+\newpage
+\input{../../../../_shared/markscheme_conventions.tex}
+
+\msQuestion{1}
+\begin{msscheme}{
+  hline{3-5,7-8,10-13} = {2-Z}{0.4pt, msGrid},
+  hline{6,9,14} = {0.4pt, msGrid},
+  row{14} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+1(a) & {\(A = (1+2\pi, \pi)\)} & B1 & {Accept \(r\) awrt 7.28; \(\theta = \pi\) or \(180^\circ\).} \\
+& {\(x = \text{"}(1+2\pi)\text{"}\cos\pi,\ y = \text{"}(1+2\pi)\text{"}\sin\pi\)} & M1 & {Uses \(x = r\cos\theta\) and \(y = r\sin\theta\) with their \(r\) and \(\theta = \pi\).} \\
+& {\((-1-2\pi, 0)\)} & A1 & {oe, or awrt \((-7.28, 0)\).} \\
+\nopagebreak & & [3] & \\
+1(b) & {\(1+2\theta = 8-\theta \Rightarrow \theta = \ldots\)} & M1 & {Equates the two expressions for \(r\) and solves for \(\theta\). Condone sign slips.} \\
+& {\(\left(\frac{17}{3}, \frac73\right)\)} & A1 & {oe, or awrt \((5.67, 2.33)\). Both coordinates needed.} \\
+\nopagebreak & & [2] & \\
+1(c) & \SetCell[c=3]{c} \msFigure{\begin{tikzpicture}[scale=0.75]
+\def\rOuter{8}
+\def\rStart{1}
+\def\growth{2}
+\pgfmathsetmacro{\thOne}{pi}
+\pgfmathsetmacro{\thTwo}{2*pi}
+\pgfmathsetmacro{\rInner}{\rOuter-\thTwo}
+\pgfmathsetmacro{\rA}{\rStart+\growth*\thOne}
+\pgfmathsetmacro{\axisEnd}{1.15*\rOuter}
+\pgfmathsetmacro{\labelOne}{\rStart+\growth*pi/2}
+\pgfmathsetmacro{\labelTwo}{\rOuter-pi/2}
+\coordinate (O) at (0,0);
+\coordinate (A) at (180:\rA);
+\coordinate (S) at (0:\rOuter);
+\coordinate (T) at (0:\rInner);
+\coordinate (L) at (\axisEnd,0);
+\coordinate (LabelOne) at (90:\labelOne);
+\coordinate (LabelTwo) at (90:\labelTwo);
+\draw[thick, black, samples=150, domain=0:\thOne, variable=\t]
+  plot ({(\rStart+\growth*\t)*cos(deg(\t))},{(\rStart+\growth*\t)*sin(deg(\t))});
+\draw[thick, black, samples=200, domain=0:\thTwo, variable=\t]
+  plot ({(\rOuter-\t)*cos(deg(\t))},{(\rOuter-\t)*sin(deg(\t))});
+\draw[-{Stealth[length=3mm]}, thick, black] (O) -- (L);
+\node[below left=2pt] at (O) {$O$};
+\node[left=2pt] at (A) {$A$};
+\node[below right] at (L) {Initial line};
+\node[below left] at (LabelOne) {$C_1$};
+\node[above right] at (LabelTwo) {$C_2$};
+\foreach \P in {S,T} {\fill[black] (\P) circle (1.5pt);}
+\node[above right=2pt] at (S) {$(8,0)$};
+\node[below right=2pt] at (T) {$(8-2\pi,2\pi)$};
+\end{tikzpicture}} & & \\
+& \msFeature{Shape} & B1 & {Spiral making one anticlockwise turn with \(r\) decreasing throughout, starting and ending on the initial line, not reaching \(O\).} \\
+& \msFeature{Labelled point} & B1 & {Start on the initial line labelled 8 or \((8, 0)\).} \\
+& \msFeature{Labelled point} & B1 & {End on the initial line between \(O\) and the start, labelled \(8-2\pi\), awrt 1.72, or \((8-2\pi, 2\pi)\).} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 1 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{2}
+\begin{msscheme}{
+  hline{3,5-7,9-12} = {2-Z}{0.4pt, msGrid},
+  hline{4,8,13} = {0.4pt, msGrid},
+  row{13} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+2(a) & {\(r = \dfrac{6}{2-\sin\frac{\pi}{6}} = \dfrac{6}{2-\frac12} = 4\)} & B1 & {Needs \(\sin\frac{\pi}{6} = \frac12\) substituted, or the denominator \(\frac32\) seen, leading to \(r = 4\).} \\
+\nopagebreak & & [1] & \\
+2(b) & {\(r\) greatest when \(2-\sin\theta\) is least: \(\sin\theta = 1\)} & B1 & {Identifies \(\sin\theta = 1\), or \(\theta = \frac{\pi}{2}\), as giving greatest \(r\), by the least denominator or otherwise.} \\
+& {\(\theta = \frac{\pi}{2} \Rightarrow r = \dfrac{6}{2-1} = \ldots\)} & M1 & {Substitutes their \(\theta\), from maximising \(r\), into the equation of \(C\) to find \(r\).} \\
+& {\(\left(6, \frac{\pi}{2}\right)\)} & A1 & {Accept \(r = 6\), \(\theta = \frac{\pi}{2}\) stated separately.} \\
+\nopagebreak & & [3] & \\
+2(c) & {\(r\sin\theta = r\cos\theta \Rightarrow \tan\theta = 1\)} & M1 & {Substitutes \(x = r\cos\theta\), \(y = r\sin\theta\) into \(y = x\), reaching \(\tan\theta = 1\) or an angle directly.} \\
+& {\(\theta = \frac{\pi}{4},\ -\frac{3\pi}{4}\)} & A1 & {Both, with no others in \(-\pi<\theta\leq\pi\). Condone \(\frac{5\pi}{4}\) for the second.} \\
+& {\(r = \dfrac{6}{2-\frac{\sqrt2}{2}},\ x = r\cos\frac{\pi}{4} = \ldots\)\\[4pt] \(r = \dfrac{6}{2+\frac{\sqrt2}{2}},\ x = r\cos\left(-\frac{3\pi}{4}\right) = \ldots\)} & M1 & {Finds \(r\) at one of their angles and uses \(x = r\cos\theta\) or \(y = r\sin\theta\). Need not be simplified.} \\
+& {\(\left(\frac{6+12\sqrt2}{7}, \frac{6+12\sqrt2}{7}\right)\), \(\left(\frac{6-12\sqrt2}{7}, \frac{6-12\sqrt2}{7}\right)\)} & A1 & {Both points, each with both coordinates, in any exact form; need not be rationalised.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 2 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{3}
+\begin{msscheme}{
+  hline{3-4,6-12} = {2-Z}{0.4pt, msGrid},
+  hline{5,13} = {0.4pt, msGrid},
+  row{13} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+3(a) & \SetCell[c=3]{c} \msFigure{\begin{tikzpicture}[scale=0.85]
+\def\base{4}
+\def\amp{3}
+\def\axislen{2.5}
+\def\leftspace{7.5}
+\def\rightspace{3.5}
+\def\verticalspace{5.3}
+\coordinate (O) at (0,0);
+\coordinate (InitialEnd) at (\axislen,0);
+\path[use as bounding box] (-\leftspace,-\verticalspace) rectangle (\rightspace,\verticalspace);
+\draw[thick, black, domain=-180:180, samples=300, variable=\t]
+  plot ({(\base-\amp*cos(\t))*cos(\t)},{(\base-\amp*cos(\t))*sin(\t)});
+\draw[-{Stealth[length=3mm]}, thick, black] (O) -- (InitialEnd)
+  node[right] {Initial line};
+\node[below left=2pt] at (O) {$O$};
+\end{tikzpicture}} & & \\
+& \msFeature{Symmetry} & B1 & {Given portion reflected in the initial line, giving a closed curve symmetric about it and still passing through \((1,0)\).} \\
+\nopagebreak & & [1] & \\
+3(b) & \SetCell[c=3]{c} \msFigure{\begin{tikzpicture}[scale=0.85]
+\def\base{4}
+\def\amp{3}
+\def\axislen{2.5}
+\def\leftspace{7.5}
+\def\rightspace{3.5}
+\def\verticalspace{5.3}
+\def\lineX{1}
+\pgfmathsetmacro{\interR}{\base-\amp/3}
+\pgfmathsetmacro{\interAng}{acos(1/3)}
+\coordinate (O) at (0,0);
+\coordinate (InitialEnd) at (\axislen,0);
+\coordinate (LineBottom) at (\lineX,-\verticalspace);
+\coordinate (LineTop) at (\lineX,\verticalspace);
+\coordinate (IntersectionZero) at (\lineX,0);
+\coordinate (IntersectionUpper) at (\interAng:\interR);
+\coordinate (IntersectionLower) at (-\interAng:\interR);
+\path[use as bounding box] (-\leftspace,-\verticalspace) rectangle (\rightspace,\verticalspace);
+\draw[thick, black, domain=-180:180, samples=300, variable=\t]
+  plot ({(\base-\amp*cos(\t))*cos(\t)},{(\base-\amp*cos(\t))*sin(\t)});
+\draw[thick, black] (LineBottom) -- (LineTop) node[above right] {$\ell$};
+\draw[-{Stealth[length=3mm]}, thick, black] (O) -- (InitialEnd)
+  node[right] {Initial line};
+\node[below left=2pt] at (O) {$O$};
+\foreach \P in {IntersectionZero,IntersectionUpper,IntersectionLower}
+  {\fill[black] (\P) circle (1.5pt);}
+\node[above right=3pt] at (IntersectionZero) {$(1,0)$};
+\node[above right=3pt] at (IntersectionUpper) {$(3,1.23)$};
+\node[below right=3pt] at (IntersectionLower) {$(3,-1.23)$};
+\end{tikzpicture}} & & \\
+& \msFeature{Intercepts} & B1 & {Vertical line through \((1,0)\) on the initial line, meeting \(C\) there and crossing it once above and once below the initial line.} \\
+& {\((4-3\cos\theta)\cos\theta = 1\)} & M1 & {Substitutes for \(r\) in \(r\cos\theta=1\) to obtain an equation in \(\cos\theta\) alone.} \\
+& {\(3\cos^2\theta - 4\cos\theta + 1 = 0\)} & A1 & {oe, any three-term form.} \\
+& {\((3\cos\theta-1)(\cos\theta-1)=0 \Rightarrow \cos\theta = \ldots\)\\[4pt] \(\theta = \ldots,\ r = 4-3\cos\theta = \ldots\)} & dM1 & {Solves their three-term quadratic in \(\cos\theta\) by any means, then finds at least one \(\theta\) and its \(r\) from either equation.} \\
+& {\((1, 0)\)} & A1 & \\
+& {\((3, 1.23)\), \((3, -1.23)\)} & A1 & {Both, with \(r = 3\) and angles awrt \(\pm1.23\). A0 for an angle outside \(-\pi<\theta\leq\pi\).} \\
+\nopagebreak & & [6] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 3 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{4}
+\begin{msscheme}{
+  hline{3-5,7-11} = {2-Z}{0.4pt, msGrid},
+  hline{6,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+4(a) & {\(x^2+y^2+4x-6y=12\)} & M1 A1 & {\msNote{M1}{Replaces \(r^2\) by \(x^2+y^2\) and at least one of \(r\cos\theta\), \(r\sin\theta\) by \(x\), \(y\).}\\ \msNote{A1}{Correct equation, oe.}} \\
+& {\((x+2)^2-4+(y-3)^2-9=12\)} & M1 & {Completes the square in both \(x\) and \(y\) for their equation of the form \(x^2+y^2+ax+by=c\). Condone sign slips.} \\
+& {\((x+2)^2+(y-3)^2=25\)\\[4pt] Centre \((-2,3)\), radius \(5\)} & A1 & {Both centre and radius, from a correct equation in circle form.} \\
+\nopagebreak & & [4] & \\
+4(b) & \SetCell[c=3]{c} \msFigure{\begin{tikzpicture}
+\begin{axis}[
+width=0.8\linewidth,
+height=8cm,
+axis lines=middle,
+axis equal image,
+xmin=-8, xmax=4,
+ymin=-3, ymax=9,
+xtick=\empty,
+ytick=\empty,
+xlabel={$x$},
+ylabel={$y$},
+clip=false
+]
+\addplot[domain=0:360,samples=181,smooth] ({-2+5*cos(x)},{3+5*sin(x)});
+\fill (axis cs:-2,3) circle (2pt);
+\node[anchor=east] at (axis cs:-2.2,3) {\((-2,3)\)};
+\fill (axis cs:0,0) circle (2pt);
+\node[anchor=north east] at (axis cs:-0.15,-0.15) {\(O(0,0)\)};
+\node at (axis cs:2.4,6.6) {\(C_1\)};
+\end{axis}
+\end{tikzpicture}} & & \\
+& \msFeature{Centre and radius} & B1 & {Circle with its centre marked in the second quadrant, labelled \((-2,3)\).} \\
+& \msFeature{Labelled point} & B1 & {Pole marked at the origin, inside the circle.} \\
+& {\(OA=\sqrt{(-2)^2+3^2}\ [=\sqrt{13}]\)\\[4pt] \(5\pm\text{"}\sqrt{13}\text{"}\)} & M1 & {Finds the distance from the pole to their centre and adds it to and subtracts it from their radius. No justification that the pole is inside is needed.} \\
+& {Greatest \(5+\sqrt{13}\), least \(5-\sqrt{13}\)} & A1 & {Both, correctly identified.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 4 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{5}
+\begin{msscheme}{
+  hline{3-6,8-11,13-16} = {2-Z}{0.4pt, msGrid},
+  hline{7,12,17} = {0.4pt, msGrid},
+  row{17} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+5(a) & {\(x^2+\left(y-\frac{\sqrt3}{2}\right)^2=\ldots\)} & M1 & {Completes the square in \(y\), or compares with the general circle equation. Condone a slip in the constant.} \\
+& {Centre \(\left(0,\frac{\sqrt3}{2}\right)\), radius \(\frac{\sqrt3}{2}\)} & A1 & {Both, exact or awrt 0.866.} \\
+& {\(r^2\cos^2\theta+r^2\sin^2\theta=\sqrt3\,r\sin\theta\)} & M1 & {Substitutes \(x=r\cos\theta\), \(y=r\sin\theta\), or uses \(x^2+y^2=r^2\) with \(y=r\sin\theta\).} \\
+& {\(r^2=\sqrt3\,r\sin\theta\), \(r\neq0\)\\[4pt] \(\Rightarrow r=\sqrt3\sin\theta\)} & A1~AG & {Correct substituted equation leading without error to the printed result. Needs \(r\neq0\), or non-pole, stated when dividing by \(r\).} \\
+\nopagebreak & & [4] & \\
+5(b) & {\(\sqrt3\sin\theta=1+\cos\theta\)\\[4pt] \(\Rightarrow \sqrt3\sin\theta-\cos\theta=R\sin(\theta-\alpha)=1\)} & M1 & {Equates the radii and reduces to one trigonometric function, e.g. any harmonic form with \(R\) and \(\alpha\) attempted, or half-angle identities. Condone sign slips.} \\
+& {\(R=2,\ \alpha=\frac{\pi}{6}\)} & A1 & {Or a correct equivalent single-function equation by another route.} \\
+& {\(\sin\left(\theta-\frac{\pi}{6}\right)=\frac12 \Rightarrow \theta=\ldots\)} & dM1 & {Solves their equation for \(\theta\) in \(0\le\theta\le\pi\), finding at least one value.} \\
+& {\(\theta=\frac{\pi}{3}\) (\(\theta=\pi\) is the pole)\\[4pt] \(P\left(\frac32,\frac{\pi}{3}\right)\)} & A1 & {cso. Exact. Needs \(\theta=\pi\) rejected, or \(\frac{\pi}{3}\) shown to be the only solution in \(0<\theta<\pi\), with one intersection stated.} \\
+\nopagebreak & & [4] & \\
+5(c) & \SetCell[c=3]{c} \msFigure{\begin{tikzpicture}[x=3.2cm,y=3.2cm]
+\draw[->] (-1.2,0) -- (2.5,0) node[right] {\(x\)};
+\draw[->] (0,-0.3) -- (0,2.1) node[above] {\(y\)};
+\draw[domain=0:180,samples=181,smooth,variable=\t]
+  plot ({sqrt(3)*sin(\t)*cos(\t)},{sqrt(3)*sin(\t)*sin(\t)});
+\draw[domain=0:180,samples=181,smooth,variable=\t]
+  plot ({(1+cos(\t))*cos(\t)},{(1+cos(\t))*sin(\t)});
+\node at (-0.85,1.55) {\(C_1\)};
+\node at (1.95,0.8) {\(C_2\)};
+\fill (0,0) circle (1.5pt);
+\node[below left] at (0,0) {\((0,0)\)};
+\fill (2,0) circle (1.5pt);
+\node[below] at (2,0) {\((2,0)\)};
+\fill (0.75,{3*sqrt(3)/4}) circle (1.5pt);
+\node[above right] at (0.75,{3*sqrt(3)/4}) {\(P\left(\frac32,\frac{\pi}{3}\right)\)};
+\end{tikzpicture}} & & \\
+& \msFeature{Shape} & B1 & {Complete circle above the initial line, touching it at the pole.} \\
+& \msFeature{Shape} & B1 & {Upper half of a cardioid from \((2,0)\), passing into \(x<0\) before reaching the pole; both curves labelled.} \\
+& \msFeature{Intercepts} & B1 & {\(P\) marked at the intersection, and \((2,0)\) and \((0,0)\) indicated.} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 5 & & 11 & \\
+\end{msscheme}
+
+\msQuestion{6}
+\begin{msscheme}{
+  hline{3-6,8-10} = {2-Z}{0.4pt, msGrid},
+  hline{7,11} = {0.4pt, msGrid},
+  row{11} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+6(i) & {\(r^4 = 5r^2\cos^2\theta + 4r^2\cos\theta\sin\theta\)\\[4pt] \(\phantom{r^4 =} + 2r^2\sin^2\theta\)} & M1 & {Substitutes \(x=r\cos\theta\), \(y=r\sin\theta\) and \(x^2+y^2=r^2\) throughout. Condone one slip.} \\
+& {\(r^2 = 5\cos^2\theta + 4\cos\theta\sin\theta + 2\sin^2\theta\)} & A1 & \\
+& {\(r^2 = \tfrac52(1+\cos2\theta) + 2\sin2\theta\)\\[4pt] \(\phantom{r^2 =} + (1-\cos2\theta)\)} & M1 & {Uses double-angle identities for all of \(\cos^2\theta\), \(\sin^2\theta\) and \(\sin\theta\cos\theta\). Condone sign and coefficient slips.} \\
+& {\(r^2 = \dfrac{7+3\cos2\theta+4\sin2\theta}{2}\)} & A1~AG & {Correct equation in \(r\) and \(\theta\) leading without error to the printed result; combined steps accepted.} \\
+\nopagebreak & & [4] & \\
+6(ii) & {\(3\cos2\theta+4\sin2\theta = R\cos(2\theta-\alpha)\)\\[4pt] \(\dfrac{7-R}{2} \leq r^2 \leq \dfrac{7+R}{2}\)} & M1 & {Expresses \(3\cos2\theta+4\sin2\theta\) as any single harmonic form and uses its bounds \(\pm R\) in \(r^2\). Condone a wrong \(R\).} \\
+& {\(R = 5 \Rightarrow 1 \leq r^2 \leq 6\)} & A1 & \\
+& {Least distance \(1\), greatest distance \(\sqrt6\)} & A1 & {Both distances, exact. Not for the values of \(r^2\) alone.} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 6 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{7}
+\begin{msscheme}{
+  hline{3-5,7-10,12-13,15-17} = {2-Z}{0.4pt, msGrid},
+  hline{6,11,14,18} = {0.4pt, msGrid},
+  row{18} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+7(a) & {\(r\cos\left(\theta+\tfrac{\pi}{6}\right)=6\)\\[4pt] \(r\left(\cos\theta\cos\tfrac{\pi}{6}-\sin\theta\sin\tfrac{\pi}{6}\right)=6\)} & M1 & {Multiplies through by \(\cos\left(\theta+\frac{\pi}{6}\right)\) and expands the compound angle. Condone sign slips in the expansion.} \\
+& {\(\tfrac{\sqrt3}{2}x-\tfrac12y=6\)} & dM1 & {Replaces \(r\cos\theta\) by \(x\) and \(r\sin\theta\) by \(y\).} \\
+& {\(y=\sqrt3x-12\)} & A1 & {cso. Must be in the form \(y=mx+c\); another linear form such as \(\sqrt3x-y=12\) scores A0.} \\
+\nopagebreak & & [3] & \\
+7(b) & \SetCell[c=3]{c} \msFigure{\begin{tikzpicture}[scale=0.5]
+\def\sketchangle{40}
+\def\initiallen{15}
+\def\raylen{12}
+\def\lowerheight{-12}
+\def\upperheight{6}
+\pgfmathsetmacro{\initialintercept}{4*sqrt(3)}
+\pgfmathsetmacro{\lowerx}{(\lowerheight+12)/sqrt(3)}
+\pgfmathsetmacro{\upperx}{(\upperheight+12)/sqrt(3)}
+\coordinate (O) at (0,0);
+\coordinate (E) at (\initiallen,0);
+\coordinate (F) at (-\sketchangle:\raylen);
+\coordinate (A) at (\initialintercept,0);
+\coordinate (L) at (\lowerx,\lowerheight);
+\coordinate (U) at (\upperx,\upperheight);
+\draw[thick, black, -{Stealth[length=3mm]}] (O) -- (E)
+  node[above left] {Initial line};
+\draw[thick, black] (L) -- (U) node[pos=0.93, above left] {$G_1$};
+\draw[thick, black, -{Stealth[length=3mm]}] (O) -- (F)
+  node[below right] {$G_2$};
+\pic["$\alpha$", draw, angle radius=8mm, angle eccentricity=1.4]
+  {angle=F--O--E};
+\fill[black] (A) circle (2pt);
+\node[above left=2pt] at (A) {$\left(4\sqrt3,0\right)$};
+\node[below left=2pt] at (O) {$O$};
+\end{tikzpicture}} & & \\
+& \msFeature{Shape} & B1 & {Straight line with positive gradient crossing the initial line to the right of \(O\), extending above and below it.} \\
+& \msFeature{Half-line} & B1 & {Ray from \(O\) below the initial line meeting \(G_1\), with \(\alpha\) marked between the ray and the initial line.} \\
+& \msFeature{Labelled point} & B1 & {\(\left(4\sqrt3,0\right)\), \(\left(6\sec\frac{\pi}{6},0\right)\) or awrt \((6.93,0)\), at the crossing of \(G_1\) and the initial line.} \\
+\nopagebreak & & [3] & \\
+7(c) & {\(r=6\sec\left(-\alpha+\tfrac{\pi}{6}\right)\)} & M1 & {Substitutes \(\theta=-\alpha\) into the equation of \(G_1\).} \\
+& {\(\left(6\sec\left(\tfrac{\pi}{6}-\alpha\right),\,-\alpha\right)\)} & A1 & {Both coordinates, oe such as \(\frac{6}{\cos\left(\frac{\pi}{6}-\alpha\right)}\) or expanded.} \\
+\nopagebreak & & [2] & \\
+7(d) & {\(12\sqrt3=\tfrac12\left(\text{"}4\sqrt3\text{"}\right)\left(\text{"}6\sec\left(\tfrac{\pi}{6}-\alpha\right)\text{"}\right)\sin\alpha\)} & M1 A1 & {\msNote{M1}{Forms the triangle's area in terms of \(\alpha\), e.g. \(\frac12ab\sin C\) with their sides from \(O\) and angle \(\alpha\), or \(\frac12\int r^2\,\mathrm{d}\theta\), equal to \(12\sqrt3\).}\\ \msNote{A1}{Correct equation, oe.}} \\
+& {\(\sin\alpha=\cos\left(\tfrac{\pi}{6}-\alpha\right)\)\\[4pt] \(\phantom{\sin\alpha}=\tfrac{\sqrt3}{2}\cos\alpha+\tfrac12\sin\alpha\)\\[4pt] \(\Rightarrow\tan\alpha=\ldots\)} & dM1 & {Expands the compound angle and rearranges to an equation in \(\tan\alpha\) alone. Condone sign slips.} \\
+& {\(\tan\alpha=\sqrt3\Rightarrow\alpha=\tfrac{\pi}{3}\)} & A1 & {cso, with no other values given.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 7 & & 12 & \\
+\end{msscheme}
+
+\msQuestion{8}
+\begin{msscheme}{
+  hline{3-4,6-9,11-13,15-19} = {2-Z}{0.4pt, msGrid},
+  hline{5,10,14,20} = {0.4pt, msGrid},
+  row{20} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+8(i) & {\(2(1+\cos 3\theta) = 0 \Rightarrow \cos 3\theta = -1\)\\[4pt] \(\phantom{2(1+\cos 3\theta)} \Rightarrow \theta = \ldots\)} & M1 & {Sets \(r = 0\) and solves \(\cos 3\theta = -1\) for at least one value of \(\theta\).} \\
+& {\(\alpha = \frac{\pi}{3}\)} & A1 & {In terms of \(\pi\); 1.05 alone scores A0.} \\
+\nopagebreak & & [2] & \\
+8(ii)(a) & {\(f\left(\frac{2k\pi}{3}-\theta\right) = 2[1+\cos(2k\pi - 3\theta)]\)\\[4pt] \(\phantom{f} = 2[1+\cos 2k\pi\cos 3\theta + \sin 2k\pi\sin 3\theta]\)} & M1 & {Expands \(\cos(2k\pi - 3\theta)\) by the addition formula, or uses the evenness and period \(2\pi\) of cosine.} \\
+& {\(\phantom{f} = 2(1+\cos 3\theta) = f(\theta)\)} & A1 & {Reaches \(f(\theta)\) without error for general integer \(k\), not a particular value.} \\
+& {\(f\left(\theta+\frac{2\pi}{3}\right) = 2[1+\cos(3\theta + 2\pi)]\)\\[4pt] \(\phantom{f} = 2[1+\cos 3\theta\cos 2\pi - \sin 3\theta\sin 2\pi]\)} & M1 & {Expands \(\cos(3\theta + 2\pi)\) by the addition formula, or uses the period \(2\pi\) of cosine.} \\
+& {\(\phantom{f} = 2(1+\cos 3\theta) = f(\theta)\)} & A1~AG & {Correct substituted expression leading without error to \(f(\theta)\), with \(= f(\theta)\) or a statement in words to conclude.} \\
+\nopagebreak & & [4] & \\
+8(ii)(b) & {Reflection in \(\theta = \beta\): \(\theta \to 2\beta - \theta\)\\[4pt] \(2\beta = \frac{2k\pi}{3} \Rightarrow \theta = \frac{k\pi}{3}\)} & B1 & {Lines \(\theta = \frac{k\pi}{3}\) oe, linked to the first identity.} \\
+& {\(\theta = 0,\ \frac{\pi}{3},\ \frac{2\pi}{3}\)} & B1 & {All three and no others.} \\
+& {Rotation through \(\frac{2\pi}{3}\)} & B1 & \\
+\nopagebreak & & [3] & \\
+8(iii) & \SetCell[c=3]{c} \msFigure{\begin{tikzpicture}[scale=1.1]
+\def\radScale{2}
+\def\frequency{3}
+\pgfmathsetmacro{\maxRadius}{2*\radScale}
+\pgfmathsetmacro{\axisLength}{1.2*\maxRadius}
+\coordinate (O) at (0,0);
+\coordinate (H) at (\axisLength,0);
+\coordinate (P) at (0:\maxRadius);
+\coordinate (Q) at (120:\maxRadius);
+\coordinate (R) at (240:\maxRadius);
+\foreach \centreAngle in {0,120,240} {
+  \pgfmathsetmacro{\startAngle}{\centreAngle-180/\frequency}
+  \pgfmathsetmacro{\endAngle}{\centreAngle+180/\frequency}
+  \draw[thick, black]
+    plot[smooth, samples=121, domain=\startAngle:\endAngle, variable=\t]
+    ({\radScale*(1+cos(\frequency*\t))*cos(\t)},
+     {\radScale*(1+cos(\frequency*\t))*sin(\t)});
+}
+\draw[thick, black, -{Stealth[length=3mm]}] (O) -- (H)
+  node[right] {Initial line};
+\foreach \point in {P,Q,R} {
+  \fill[black] (\point) circle (1.5pt);
+}
+\node[above right] at (P) {$\left(4,0\right)$};
+\node[above left] at (Q) {$\left(4,\frac{2\pi}{3}\right)$};
+\node[below left] at (R) {$\left(4,\frac{4\pi}{3}\right)$};
+\node[below left=2pt] at (O) {$O$};
+\end{tikzpicture}} & & \\
+& \msFeature{Shape} & B1 & {Three equal closed lobes meeting at \(O\), one centred on the initial line, the others in roughly the correct directions.} \\
+& {\(r_{\max} = 4\)} & B1 & \\
+& {\(\cos 3\theta = 1 \Rightarrow 3\theta = 2k\pi \Rightarrow \theta = \ldots\)} & M1 & {Sets \(\cos 3\theta = 1\) and finds at least one nonzero value of \(\theta\).} \\
+& {\(\theta = 0,\ \frac{2\pi}{3},\ \frac{4\pi}{3}\)} & A1 & {All three, or 0, awrt 2.09 and 4.19, with no others in \(0 \leq \theta < 2\pi\).} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 8 & & 13 & \\
+\end{msscheme}
+
+\msQuestion{9}
+\begin{msscheme}{
+  hline{3-4,6-11} = {2-Z}{0.4pt, msGrid},
+  hline{5,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+9(a) & {\(r\cos\left(\theta-\frac{\pi}{4}\right)=3\)\\[4pt] \(\Rightarrow \frac{r\cos\theta+r\sin\theta}{\sqrt2}=3\)} & M1 & {Expands \(\cos\left(\theta-\frac{\pi}{4}\right)\) and replaces \(r\cos\theta\), \(r\sin\theta\) by \(x\), \(y\). Condone a slip in the value of \(\cos\frac{\pi}{4}\).} \\
+& {\(x+y=3\sqrt2\)} & A1~AG & {Correct expansion with \(\cos\frac{\pi}{4}=\sin\frac{\pi}{4}=\frac{1}{\sqrt2}\), leading without error to the printed equation.} \\
+\nopagebreak & & [2] & \\
+9(b) & {\(\sin2\theta=2\cos^2\left(\theta-\frac{\pi}{4}\right)-1\)\\[4pt] \(\phantom{\sin2\theta}=\frac{18}{r^2}-1\)\\[4pt] \(r=5-2\left(\frac{18}{r^2}-1\right)\)} & M1 & {Eliminates \(\theta\) using \(L\) and a double-angle identity, e.g. via \((x+y)^2=r^2(1+\sin2\theta)\), to an equation in \(r\) alone. Condone sign slips.} \\
+& {\(r^3-7r^2+36=0\)} & A1 & {oe, e.g. \(r=7-\frac{36}{r^2}\).} \\
+& {\((r-3)(r-6)(r+2)=0 \Rightarrow r=\ldots\)} & dM1 & {Solves their cubic by any means, calculator included, to obtain values of \(r\).} \\
+& {\(r=3,\ r=6\) (\(r=-2\) rejected as \(3\le r\le7\))} & A1 & {Both values, with \(r=-2\) rejected for any valid reason.} \\
+& {\(\cos\left(\theta-\frac{\pi}{4}\right)=\frac{3}{\text{"}r\text{"}}\), \(-\frac{\pi}{2}<\theta-\frac{\pi}{4}<\frac{\pi}{2}\)\\[4pt] \(\Rightarrow \theta=\ldots\)} & M1 & {Substitutes a positive value of their \(r\) into either equation and solves for \(\theta\) in \(-\frac{\pi}{4}<\theta<\frac{3\pi}{4}\).} \\
+& {\(\left(3,\frac{\pi}{4}\right),\ \left(6,-\frac{\pi}{12}\right),\ \left(6,\frac{7\pi}{12}\right)\)\\[4pt] No other solutions in the range of \(L\)} & A1 & {cso. All three exact points and no others, with a statement that the cosine equations have no further solutions in the range of \(L\).} \\
+\nopagebreak & & [6] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 9 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{10}
+\begin{msscheme}{
+  hline{3-5,7-9,11-15,17-20} = {2-Z}{0.4pt, msGrid},
+  hline{6,10,16,21} = {0.4pt, msGrid},
+  row{21} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+10(a) & {\((r\cos\theta)^2-(r\sin\theta)^2=6r\cos\theta\)} & M1 & {Substitutes both into the Cartesian equation.} \\
+& {\(r^2\cos2\theta=6r\cos\theta \Rightarrow r\cos2\theta=6\cos\theta\)} & A1 & \\
+& {\(x>0 \Rightarrow \cos\theta>0\), \(r>0 \Rightarrow \cos2\theta>0\)\\[4pt] \(\Rightarrow -\frac{\pi}{4}<\theta<\frac{\pi}{4}\), \(r=6\cos\theta\sec2\theta\)} & A1~AG & {Printed equation reached without error, with the range deduced from \(\cos\theta>0\) and \(\cos2\theta>0\). A0 if the range is only stated.} \\
+\nopagebreak & & [3] & \\
+10(b)(i) & {\(0<\cos2\theta=\cos^2\theta-\sin^2\theta\leq\cos^2\theta\leq\cos\theta\)} & M1 & {Attempts a valid justification: bounds \(\cos2\theta\) by \(\cos\theta\) on the interval, sets \(\frac{\mathrm{d}r}{\mathrm{d}\theta}=0\), or writes \(r^2=2x^2-6x\) for \(x\geq6\).} \\
+& {\(r=\dfrac{6\cos\theta}{\cos2\theta}\geq6\), equality only at \(\theta=0\)} & A1 & {Or an equivalent conclusion: the stationary point shown to be a minimum, or \(r^2\) increasing for \(x\geq6\).} \\
+& {\(N=(6,0)\)} & A1 & \\
+\nopagebreak & & [3] & \\
+10(b)(ii) & {\(6\sqrt3\cos2\theta=6\cos\theta\)\\[4pt] \(\Rightarrow \sqrt3(2\cos^2\theta-1)=\cos\theta\)} & M1 & {Equates \(6\sqrt3\) to the polar equation and uses a double-angle formula to reach an equation in \(\cos\theta\) only; or eliminates \(y\) using \(x^2+y^2=108\).} \\
+& {\(2\sqrt3\cos^2\theta-\cos\theta-\sqrt3=0\)} & A1 & {oe, or \(2x^2-6x-108=0\) oe.} \\
+& {\((2\cos\theta-\sqrt3)(\sqrt3\cos\theta+1)=0 \Rightarrow \cos\theta=\ldots\)} & dM1 & {Solves their three-term quadratic by factorising (product of constants correct), the formula or completing the square; calculator allowed.} \\
+& {\(\cos\theta=\frac{\sqrt3}{2}\) (\(-\frac{1}{\sqrt3}\) rejected as \(\cos\theta>0\))} & A1 & {Other root rejected with a reason, eg \(\cos\theta>0\) on the interval; or \(x=9\) with \(x=-6\) rejected.} \\
+& {\(P\left(6\sqrt3,\frac{\pi}{6}\right)\), \(Q\left(6\sqrt3,-\frac{\pi}{6}\right)\)} & A1 & {Both points exact, angles in the stated interval; \(\frac{11\pi}{6}\) for \(Q\) scores A0.} \\
+\nopagebreak & & [5] & \\
+10(b)(iii) & {\(NP^2=6^2+(6\sqrt3)^2-2(6)(6\sqrt3)\cos\frac{\pi}{6}\)} & M1 & {Uses the cosine rule in triangle \(ONP\) with \(ON=6\), their \(OP\) from (b)(ii) and angle \(\frac{\pi}{6}\), or the distance formula, or finds the Cartesian coordinates of \(P\).} \\
+& {\(NP=6\)} & A1 & {\(NP=6\), or \(P(9, 3\sqrt3)\) oe.} \\
+& {\(\angle ONP=\pi-2\left(\frac{\pi}{6}\right)\ [=\tfrac{2\pi}{3}]\)\\[4pt] \(\angle PNQ=2\pi-2\angle ONP=\ldots\)} & M1 & {Uses \(ON=NP\) to find \(\angle ONP\) and symmetry about the initial line to reach \(\angle PNQ\); or any valid route, eg the direction of \(NP\).} \\
+& {\(\angle PNQ=\frac{2\pi}{3}\)} & A1 & {Exact, in radians; \(120^\circ\) scores A0.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 10 & & 15 & \\
+\end{msscheme}
+
+\end{document}
