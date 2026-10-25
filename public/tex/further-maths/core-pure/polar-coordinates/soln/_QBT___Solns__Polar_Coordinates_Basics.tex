@@ -3,7 +3,7 @@
 
 \djsSolnHeader{Polar Coordinates Basics}
 \djsSitePath{Core Pure}{Polar Coordinates}
-\djsLastUpdated{15 October 2026}
+\djsLastUpdated{25 October 2026}
 
 \begin{document}
 \djsFrontMatter
@@ -67,7 +67,7 @@ The diagram above shows $C_1$. Its endpoint $A$ lies on the ray opposite the ini
 \item
 The ray opposite the initial line has \(\theta=\pi\), giving \(r=1+2\pi\). Hence the polar coordinates of \(A\) are
 \[
-(1+2\pi,\,\pi)
+(1+2\pi,\pi)
 \]
 
 Using \(x=r\cos\theta\) and \(y=r\sin\theta\):
@@ -78,19 +78,19 @@ y&=(1+2\pi)\sin\pi=0
 
 Thus the Cartesian coordinates of \(A\) are
 \[
-(-1-2\pi,\,0)
+(-1-2\pi,0)
 \]
 
 \item At the intersection, the two radii are equal:
 \begin{align*}
 1+2\theta&=8-\theta\\
-3\theta&=7\quad\Rightarrow\quad\theta=\dfrac73\\
+3\theta&=7\quad\Longrightarrow\quad\theta=\dfrac73\\
 r&=1+2\left(\dfrac73\right)=\dfrac{17}{3}
 \end{align*}
 
 The polar coordinates of the intersection are
 \[
-\left(\dfrac{17}{3},\,\dfrac73\right)
+\left(\dfrac{17}{3},\dfrac73\right)
 \]
 
 \item The sketch should look like:\par\nopagebreak
@@ -143,7 +143,7 @@ The curve $C$ has the polar equation
 r=\frac{6}{2-\sin\theta},\qquad -\pi<\theta\leq\pi
 \] \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
-\item Verify that the point with polar coordinates $\left(4,\dfrac{\pi}{6}\right)$ lies on $C$. \marks{1} \\
+\item Verify that the point with polar coordinates $\left(4,\frac{\pi}{6}\right)$ lies on $C$. \marks{1} \\
 \item Find the exact polar coordinates of the point on $C$ which is furthest from the pole, $O$. \marks{3} \\
 \item The Cartesian line $y=x$ intersects $C$ at two points. Find the exact Cartesian coordinates of both points. \marks{4} \\
 \end{enumerate}
@@ -152,26 +152,26 @@ r=\frac{6}{2-\sin\theta},\qquad -\pi<\theta\leq\pi
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-\item Substituting \(\theta=\frac{\pi}{6}\) into the polar equation gives:
+\item Substituting \(\theta=\frac{\pi}{6}\) into the polar equation gives
 \[
 r=\dfrac{6}{2-\sin\frac{\pi}{6}}=\dfrac{6}{2-\frac12}=4
 \]
 
 Thus \(\left(4,\frac{\pi}{6}\right)\) lies on \(C\).
 
-\item Since \(-1\leq\sin\theta\leq1\),
+\item Since \(-1\leq\sin\theta\leq1\), it follows that
 \[
 1\leq 2-\sin\theta\leq3
-\qquad\Longrightarrow\qquad
+\quad\Longrightarrow\quad
 2\leq r\leq6
 \]
 
-As \(r>0\), the distance from the pole is \(r\). The greatest distance is therefore \(6\), attained when \(\sin\theta=1\), so \(\theta=\frac{\pi}{2}\) in the given interval. The required polar coordinates are:
+As \(r>0\), the distance from the pole is \(r\). The greatest distance is therefore \(6\), attained when \(\sin\theta=1\), so \(\theta=\frac{\pi}{2}\) in the given interval. The required polar coordinates are
 \[
 \left(6,\dfrac{\pi}{2}\right)
 \]
 
-\item Using \(x=r\cos\theta\) and \(y=r\sin\theta\), the line \(y=x\) gives:
+\item Using \(x=r\cos\theta\) and \(y=r\sin\theta\), the line \(y=x\) gives
 \begin{align*}
 r\sin\theta&=r\cos\theta\\
 \sin\theta&=\cos\theta \qquad (r>0)\\
@@ -182,7 +182,7 @@ r\sin\theta&=r\cos\theta\\
 At \(\theta=\frac{\pi}{4}\):
 \begin{align*}
 r&=\dfrac{6}{2-\frac{\sqrt2}{2}}=\dfrac{12}{4-\sqrt2}\\
-x=y&=\dfrac{12}{4-\sqrt2}\cdot\dfrac{\sqrt2}{2}
+x=y&=\dfrac{12}{4-\sqrt2}\times\dfrac{\sqrt2}{2}
 =\dfrac{6\sqrt2(4+\sqrt2)}{16-2}
 =\dfrac{6+12\sqrt2}{7}
 \end{align*}
@@ -190,12 +190,12 @@ x=y&=\dfrac{12}{4-\sqrt2}\cdot\dfrac{\sqrt2}{2}
 At \(\theta=-\frac{3\pi}{4}\):
 \begin{align*}
 r&=\dfrac{6}{2+\frac{\sqrt2}{2}}=\dfrac{12}{4+\sqrt2}\\
-x=y&=\dfrac{12}{4+\sqrt2}\cdot\left(-\dfrac{\sqrt2}{2}\right)
+x=y&=\dfrac{12}{4+\sqrt2}\times\left(-\dfrac{\sqrt2}{2}\right)
 =-\dfrac{6\sqrt2(4-\sqrt2)}{16-2}
 =\dfrac{6-12\sqrt2}{7}
 \end{align*}
 
-The two Cartesian coordinates are:
+The Cartesian coordinates of the two points are
 \[
 \left(\dfrac{6+12\sqrt2}{7},\dfrac{6+12\sqrt2}{7}\right)
 \quad\text{and}\quad
@@ -226,7 +226,7 @@ The two Cartesian coordinates are:
 \draw[thick, black, domain=0:180, samples=200, variable=\t]
   plot ({(\base-\amp*cos(\t))*cos(\t)},{(\base-\amp*cos(\t))*sin(\t)});
 \draw[-{Stealth[length=3mm]}, thick, black] (O) -- (InitialEnd)
-  node[right] {$\theta=0$};
+  node[right] {Initial line};
 \node[left] at (O) {$O$};
 \end{tikzpicture}
 \end{figure}
@@ -267,7 +267,7 @@ The completed sketch should look like:\par\nopagebreak
 \draw[thick, black, domain=-180:180, samples=300, variable=\t]
   plot ({(\base-\amp*cos(\t))*cos(\t)},{(\base-\amp*cos(\t))*sin(\t)});
 \draw[-{Stealth[length=3mm]}, thick, black] (O) -- (InitialEnd)
-  node[right] {$\theta=0$};
+  node[right] {Initial line};
 \node[below left=2pt] at (O) {$O$};
 \end{tikzpicture}
 
@@ -297,7 +297,7 @@ Since \(\cos(-\theta)=\cos\theta\), the curve is symmetric about the initial lin
   plot ({(\base-\amp*cos(\t))*cos(\t)},{(\base-\amp*cos(\t))*sin(\t)});
 \draw[thick, black] (LineBottom) -- (LineTop) node[above right] {$\ell$};
 \draw[-{Stealth[length=3mm]}, thick, black] (O) -- (InitialEnd)
-  node[right] {$\theta=0$};
+  node[right] {Initial line};
 \node[below left=2pt] at (O) {$O$};
 \foreach \P in {IntersectionZero,IntersectionUpper,IntersectionLower}
   {\fill[black] (\P) circle (1.5pt);}
@@ -315,7 +315,7 @@ At an intersection, substitute \(r=4-3\cos\theta\) into the equation of \(\ell\)
 (3\cos\theta-1)(\cos\theta-1)&=0
 \end{align*}
 
-Thus \(\cos\theta=1\) or \(\cos\theta=\frac13\). In the given range \(-\pi<\theta\leq\pi\), these give:
+Thus \(\cos\theta=1\) or \(\cos\theta=\frac13\). In the given range \(-\pi<\theta\leq\pi\), these give
 \begin{align*}
 \cos\theta=1&\quad\Longrightarrow\quad \theta=0,\qquad r=4-3=1\\
 \cos\theta=\dfrac13&\quad\Longrightarrow\quad
@@ -323,9 +323,9 @@ Thus \(\cos\theta=1\) or \(\cos\theta=\frac13\). In the given range \(-\pi<\thet
 r=4-3\left(\dfrac13\right)=3
 \end{align*}
 
-The polar coordinates, with non-zero angles in radians to \(3\) significant figures, are:
+The polar coordinates are
 \[
-(1,0),\qquad (3,1.23),\qquad (3,-1.23)
+(1,0),\qquad (3,1.23),\qquad (3,-1.23)\qquad\text{(3 s.f.)}
 \]
 
 \end{enumerate}
@@ -351,14 +351,14 @@ where $r>0$ and $-\pi<\theta\leq\pi$. \\
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-\item Using \(x=r\cos\theta\), \(y=r\sin\theta\) and \(r^2=x^2+y^2\), the polar equation becomes:
+\item Using \(x=r\cos\theta\), \(y=r\sin\theta\) and \(r^2=x^2+y^2\), the polar equation becomes
 \begin{align*}
 x^2+y^2+4x-6y&=12\\
 (x^2+4x+4)+(y^2-6y+9)&=12+4+9\\
 (x+2)^2+(y-3)^2&=25
 \end{align*}
 
-This has the standard circle form \((x-a)^2+(y-b)^2=R^2\), so:
+This has the standard circle form \((x-a)^2+(y-b)^2=R^2\), so
 \[
 \text{Centre }(-2,3),\qquad \text{radius }5
 \]
@@ -388,7 +388,7 @@ clip=false
 \end{axis}
 \end{tikzpicture}
 
-The distance of a point on \(C_1\) from the pole is \(r\), since \(r>0\). The distance from the pole to the centre \(A(-2,3)\) is:
+The distance of a point on \(C_1\) from the pole is \(r\), since \(r>0\). The centre \(A\) has Cartesian coordinates \((-2,3)\), so its distance from the pole is
 \[
 OA=\sqrt{(-2)^2+3^2}=\sqrt{13}
 \]
@@ -411,7 +411,7 @@ Since \(\sqrt{13}<5\), the pole lies inside the circle. The line through \(A\) a
 \node[above right] at ($(O)!0.5!(A)$) {\(\sqrt{13}\)};
 \end{tikzpicture}
 
-For any point \(P\) on \(C_1\), \(AP=5\), and the sides of triangle \(OAP\) give \(AP-OA\leq OP\leq OA+AP\), with equality only when \(P\) lies on the line through \(O\) and \(A\). Hence the extremes are at \(F\) and \(N\):
+From the diagram, the extremes are at \(F\) and \(N\):
 \begin{align*}
 \text{Greatest distance}=OF&=OA+AF=5+\sqrt{13}\\
 \text{Least distance}=ON&=AN-OA=5-\sqrt{13}
@@ -454,9 +454,9 @@ x^2+y^2-\sqrt{3}\,y&=0\\
 x^2+\left(y-\dfrac{\sqrt{3}}{2}\right)^2&=\dfrac{3}{4}
 \end{align*}
 
-Hence the centre and radius are:
+Hence the centre and radius are
 \[
-\text{centre }\left(0,\dfrac{\sqrt{3}}{2}\right),\qquad
+\text{Centre }\left(0,\dfrac{\sqrt{3}}{2}\right),\qquad
 \text{radius }\dfrac{\sqrt{3}}{2}
 \]
 
@@ -466,7 +466,7 @@ r^2\cos^2\theta+r^2\sin^2\theta&=\sqrt{3}\,r\sin\theta\\
 r^2&=\sqrt{3}\,r\sin\theta
 \end{align*}
 
-At a non-pole point, \(r\ne0\), so division by \(r\) gives:
+At a non-pole point, \(r\ne0\), so division by \(r\) gives
 \[
 r=\sqrt{3}\sin\theta
 \]
@@ -474,23 +474,49 @@ r=\sqrt{3}\sin\theta
 \item Since both radii are positive for \(0<\theta<\pi\), a non-pole intersection must have equal radii at the same angle:
 \begin{align*}
 \sqrt{3}\sin\theta&=1+\cos\theta\\
-\sqrt{3}\sin\theta-\cos\theta&=1\\
+\sqrt{3}\sin\theta-\cos\theta&=1
+\end{align*}
+
+Write \(\sqrt{3}\sin\theta-\cos\theta\) in the form \(R\sin(\theta-\alpha)\), where \(R>0\) and \(0<\alpha<\frac{\pi}{2}\). Expanding:
+\[
+R\sin(\theta-\alpha)=R\sin\theta\cos\alpha-R\cos\theta\sin\alpha
+\]
+
+Comparing the coefficients of \(\sin\theta\) and \(\cos\theta\):
+\[
+R\cos\alpha=\sqrt{3},\qquad R\sin\alpha=1
+\]
+
+so
+\[
+R=\sqrt{\left(\sqrt{3}\right)^2+1^2}=2,\qquad
+\tan\alpha=\dfrac{1}{\sqrt{3}}
+\quad\Longrightarrow\quad
+\alpha=\dfrac{\pi}{6}
+\]
+
+Hence the equation becomes
+\begin{align*}
 2\sin\left(\theta-\dfrac{\pi}{6}\right)&=1\\
 \sin\left(\theta-\dfrac{\pi}{6}\right)&=\dfrac12
 \end{align*}
 
-For \(0\leq\theta\leq\pi\), this gives:
+For \(0\leq\theta\leq\pi\), this gives
 \[
 \theta-\dfrac{\pi}{6}=\dfrac{\pi}{6}\quad\text{or}\quad\dfrac{5\pi}{6},
 \qquad\text{so}\qquad
 \theta=\dfrac{\pi}{3}\quad\text{or}\quad\pi
 \]
 
-The value \(\theta=\pi\) is the pole endpoint and is excluded from the interval. Therefore there is exactly one non-pole intersection. Its radius and polar coordinates are:
-\begin{align*}
-r&=1+\cos\dfrac{\pi}{3}=\dfrac32\\
-P&=\left(\dfrac32,\dfrac{\pi}{3}\right)
-\end{align*}
+The value \(\theta=\pi\) is the pole endpoint and is excluded from the interval. Therefore there is exactly one non-pole intersection. Its radius is
+\[
+r=1+\cos\dfrac{\pi}{3}=\dfrac32
+\]
+
+so \(P\) has polar coordinates
+\[
+\left(\dfrac32,\dfrac{\pi}{3}\right)
+\]
 
 \item The sketch should look like:\par\nopagebreak
 
@@ -511,7 +537,7 @@ P&=\left(\dfrac32,\dfrac{\pi}{3}\right)
 \node[above right] at (0.75,{3*sqrt(3)/4}) {\(P\left(\frac32,\frac{\pi}{3}\right)\)};
 \end{tikzpicture}
 
-\(C_1\) is the full circle from part (a), lying above the initial line and touching it at the pole. At both limiting endpoints, \(r=\sqrt{3}\sin\theta=0\), so its only point on the initial line is \((0,0)\).
+\(C_1\) is the full circle from part (a), lying above the initial line and touching it at the pole. At both limiting endpoints, \(r=\sqrt{3}\sin\theta=0\), so its only point on the initial line has Cartesian coordinates \((0,0)\).
 
 \(C_2\) is the upper half of the cardioid, extending slightly into \(x<0\) before reaching the pole. Since \(r(0)=2\) and \(r(\pi)=0\), its points on the initial line have Cartesian coordinates \((2,0)\) and \((0,0)\).
 \end{enumerate}
@@ -540,12 +566,12 @@ r^2=\frac{7+3\cos 2\theta+4\sin 2\theta}{2}
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\roman*)}, start=1]
-\item Using \(x=r\cos\theta\), \(y=r\sin\theta\) and \(x^2+y^2=r^2\), the Cartesian equation becomes
+\item Using \(x=r\cos\theta\), \(y=r\sin\theta\) and \(r^2=x^2+y^2\), the Cartesian equation becomes
 \[
 r^4=5r^2\cos^2\theta+4r^2\cos\theta\sin\theta+2r^2\sin^2\theta
 \]
 
-Since \(r>0\), we can divide by \(r^2\). Applying the double-angle identities gives
+Since \(r>0\), we can divide by \(r^2\). Applying the double angle formulae gives
 \begin{align*}
 r^2&=5\cos^2\theta+4\cos\theta\sin\theta+2\sin^2\theta\\
 &=\dfrac{5}{2}(1+\cos2\theta)+2\sin2\theta+(1-\cos2\theta)\\
@@ -553,14 +579,22 @@ r^2&=5\cos^2\theta+4\cos\theta\sin\theta+2\sin^2\theta\\
 &=\dfrac{7+3\cos2\theta+4\sin2\theta}{2}
 \end{align*}
 
-\item Write the trigonometric expression as a single cosine. Choose \(\alpha\) in the first quadrant with \(\cos\alpha=\frac35\) and \(\sin\alpha=\frac45\). Then
-\begin{align*}
-5\cos(2\theta-\alpha)
-&=5\cos2\theta\cos\alpha+5\sin2\theta\sin\alpha\\
-&=3\cos2\theta+4\sin2\theta
-\end{align*}
+\item Write \(3\cos2\theta+4\sin2\theta\) in the form \(R\cos(2\theta-\alpha)\), where \(R>0\) and \(0<\alpha<\frac{\pi}{2}\). Expanding:
+\[
+R\cos(2\theta-\alpha)=R\cos2\theta\cos\alpha+R\sin2\theta\sin\alpha
+\]
 
-Hence, using part (i),
+Comparing the coefficients of \(\cos2\theta\) and \(\sin2\theta\):
+\[
+R\cos\alpha=3,\qquad R\sin\alpha=4
+\]
+
+so
+\[
+R=\sqrt{3^2+4^2}=5,\qquad \tan\alpha=\dfrac43
+\]
+
+Hence, using part (i):
 \[
 r^2=\dfrac{7+5\cos(2\theta-\alpha)}{2}
 \]
@@ -608,7 +642,7 @@ The graph $G_2$ is the ray with polar equation
 \[
 \theta=-\alpha,\qquad r>0
 \] \\
-where $0<\alpha<\dfrac{\pi}{2}$. \\
+where $0<\alpha<\frac{\pi}{2}$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
 \item Show that $G_1$ is a straight line by finding its Cartesian equation in the form $y=mx+c$. \marks{3} \\
 \item On a copy of the diagram above, sketch $G_1$ and $G_2$. Label the angle $\alpha$ and give the polar coordinates of the intersection of $G_1$ with the initial line. \marks{3} \\
@@ -622,10 +656,10 @@ where $0<\alpha<\dfrac{\pi}{2}$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
 \item Using \(x=r\cos\theta\) and \(y=r\sin\theta\):
 \begin{align*}
-r&=6\sec\left(\theta+\frac{\pi}{6}\right)\\
-r\cos\left(\theta+\frac{\pi}{6}\right)&=6\\
-r\left(\frac{\sqrt3}{2}\cos\theta-\frac12\sin\theta\right)&=6\\
-\frac{\sqrt3}{2}x-\frac12y&=6\\
+r&=6\sec\left(\theta+\dfrac{\pi}{6}\right)\\
+r\cos\left(\theta+\dfrac{\pi}{6}\right)&=6\\
+r\left(\dfrac{\sqrt3}{2}\cos\theta-\dfrac12\sin\theta\right)&=6\\
+\dfrac{\sqrt3}{2}x-\dfrac12y&=6\\
 y&=\sqrt3x-12\qquad(m=\sqrt3,\ c=-12)
 \end{align*}
 
@@ -658,38 +692,38 @@ y&=\sqrt3x-12\qquad(m=\sqrt3,\ c=-12)
 \node[below left=2pt] at (O) {$O$};
 \end{tikzpicture}
 
-The ray \(G_2\) makes an angle \(\alpha\) clockwise from the initial line. At the intersection of \(G_1\) with the initial line, \(\theta=0\), so the polar coordinates are:
+The ray \(G_2\) makes an angle \(\alpha\) clockwise from the initial line. At the intersection of \(G_1\) with the initial line, \(\theta=0\), so the polar coordinates are
 \[
-\left(6\sec\frac{\pi}{6},\,0\right)=\left(4\sqrt3,\,0\right)
+\left(6\sec\dfrac{\pi}{6},0\right)=\left(4\sqrt3,0\right)
 \]
 
 \item At the intersection, \(\theta=-\alpha\). Substituting into the equation of \(G_1\):
 \[
-r=6\sec\left(-\alpha+\frac{\pi}{6}\right)
+r=6\sec\left(-\alpha+\dfrac{\pi}{6}\right)
 \]
 
-Thus the polar coordinates are:
+Thus the polar coordinates are
 \[
-\left(6\sec\left(\frac{\pi}{6}-\alpha\right),\,-\alpha\right)
+\left(6\sec\left(\dfrac{\pi}{6}-\alpha\right),-\alpha\right)
 \]
 
-\item From parts (b) and (c), the two sides of the triangle meeting at \(O\) have lengths \(4\sqrt3\) and \(6\sec\left(\frac{\pi}{6}-\alpha\right)\). Their included angle is \(\alpha\), so the triangle area formula gives:
+\item From parts (b) and (c), the two sides of the triangle meeting at \(O\) have lengths \(4\sqrt3\) and \(6\sec\left(\frac{\pi}{6}-\alpha\right)\). Their included angle is \(\alpha\), so the triangle area formula gives
 \begin{align*}
-12\sqrt3&=\frac12\left(4\sqrt3\right)\left(6\sec\left(\frac{\pi}{6}-\alpha\right)\right)\sin\alpha\\
-1&=\frac{\sin\alpha}{\cos\left(\frac{\pi}{6}-\alpha\right)}\\
-\sin\alpha&=\cos\left(\frac{\pi}{6}-\alpha\right)
+12\sqrt3&=\dfrac12\left(4\sqrt3\right)\left(6\sec\left(\dfrac{\pi}{6}-\alpha\right)\right)\sin\alpha\\
+1&=\dfrac{\sin\alpha}{\cos\left(\frac{\pi}{6}-\alpha\right)}\\
+\sin\alpha&=\cos\left(\dfrac{\pi}{6}-\alpha\right)
 \end{align*}
 
 Expanding the cosine:
 \begin{align*}
-\sin\alpha&=\frac{\sqrt3}{2}\cos\alpha+\frac12\sin\alpha\\
-\frac12\sin\alpha&=\frac{\sqrt3}{2}\cos\alpha\\
+\sin\alpha&=\dfrac{\sqrt3}{2}\cos\alpha+\dfrac12\sin\alpha\\
+\dfrac12\sin\alpha&=\dfrac{\sqrt3}{2}\cos\alpha\\
 \tan\alpha&=\sqrt3
 \end{align*}
 
 Since \(0<\alpha<\frac{\pi}{2}\):
 \[
-\alpha=\frac{\pi}{3}
+\alpha=\dfrac{\pi}{3}
 \]
 
 \end{enumerate}
@@ -717,7 +751,7 @@ Since \(0<\alpha<\frac{\pi}{2}\):
 \draw[thick, black, -{Stealth[length=3mm]}] (O) -- (H);
 \draw[dashed, black] (O) -- (T);
 \node[below left] at (O) {$O$};
-\node[right] at (H) {$\theta=0$};
+\node[right] at (H) {Initial line};
 \node[above right] at (T) {$\theta=\alpha$};
 \end{tikzpicture}
 \end{figure}
@@ -757,14 +791,14 @@ At the pole, the radius tends to zero. The first positive angle at which this ha
 3\theta&=\pi
 \end{align*}
 
-The tangent at the pole lies along the limiting direction of the radius vector, so
+The tangent at the pole is the line through the pole at the angle where \(r=0\), so
 \[
 \alpha=\dfrac{\pi}{3}
 \]
 
 \item
 \begin{enumerate}[label=(\alph*), start=1]
-\item Using the cosine subtraction formula, with \(\cos 2k\pi=1\) and \(\sin 2k\pi=0\) for every integer \(k\):
+\item Using the addition formula for cosine, with \(\cos 2k\pi=1\) and \(\sin 2k\pi=0\) for every integer \(k\):
 \begin{align*}
 f\left(\dfrac{2k\pi}{3}-\theta\right)
 &=2\left[1+\cos\left(2k\pi-3\theta\right)\right]\\
@@ -773,7 +807,7 @@ f\left(\dfrac{2k\pi}{3}-\theta\right)
 &=f(\theta)
 \end{align*}
 
-Similarly, using the cosine addition formula:
+Similarly, using the addition formula for cosine:
 \begin{align*}
 f\left(\theta+\dfrac{2\pi}{3}\right)
 &=2\left[1+\cos\left(3\theta+2\pi\right)\right]\\
@@ -814,7 +848,7 @@ The second identity in part (ii)(a) gives rotational symmetry. Since \(\cos 3\th
      {\radScale*(1+cos(\frequency*\t))*sin(\t)});
 }
 \draw[thick, black, -{Stealth[length=3mm]}] (O) -- (H)
-  node[right] {$\theta=0$};
+  node[right] {Initial line};
 \foreach \point in {P,Q,R} {
   \fill[black] (\point) circle (1.5pt);
 }
@@ -826,7 +860,7 @@ The second identity in part (ii)(a) gives rotational symmetry. Since \(\cos 3\th
 
 The three identical lobes meet at \(O\) and are related by rotations of \(\frac{2\pi}{3}\). The labelled points are given in polar coordinates.
 
-Since \(\cos 3\theta\leq 1\),
+Since \(\cos 3\theta\leq 1\), the radius satisfies
 \[
 r=2(1+\cos 3\theta)\leq 4
 \]
@@ -872,62 +906,62 @@ Fully justify that you have found every point of intersection. \marks{6} \\
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
 \item Multiplying the polar equation by \(\cos\left(\theta-\frac{\pi}{4}\right)\) and expanding:
 \begin{align*}
-r\cos\left(\theta-\frac{\pi}{4}\right)&=3\\
-\frac{r\cos\theta+r\sin\theta}{\sqrt{2}}&=3
+r\cos\left(\theta-\dfrac{\pi}{4}\right)&=3\\
+\dfrac{r\cos\theta+r\sin\theta}{\sqrt{2}}&=3
 \end{align*}
 
-Using \(x=r\cos\theta\) and \(y=r\sin\theta\), we obtain:
+Using \(x=r\cos\theta\) and \(y=r\sin\theta\), we obtain
 \[
 x+y=3\sqrt{2}
 \]
 
-\item On \(C\), \(3\leq r\leq7\), so \(r>0\). At an intersection, the equation of \(L\) gives:
+\item On \(C\), \(3\leq r\leq7\), so \(r>0\). At an intersection, the equation of \(L\) gives
 \[
-\cos\left(\theta-\frac{\pi}{4}\right)=\frac{3}{r}
+\cos\left(\theta-\dfrac{\pi}{4}\right)=\dfrac{3}{r}
 \]
 
-Using the double-angle identity:
+Using the double angle formula:
 \begin{align*}
 \sin2\theta
-&=\cos\left(2\theta-\frac{\pi}{2}\right)\\
-&=2\cos^2\left(\theta-\frac{\pi}{4}\right)-1\\
-&=\frac{18}{r^2}-1
+&=\cos\left(2\theta-\dfrac{\pi}{2}\right)\\
+&=2\cos^2\left(\theta-\dfrac{\pi}{4}\right)-1\\
+&=\dfrac{18}{r^2}-1
 \end{align*}
 
 Substituting into the equation of \(C\):
 \begin{align*}
-r&=5-2\left(\frac{18}{r^2}-1\right)\\
-r&=7-\frac{36}{r^2}\\
+r&=5-2\left(\dfrac{18}{r^2}-1\right)\\
+r&=7-\dfrac{36}{r^2}\\
 r^3-7r^2+36&=0\\
 (r-3)(r^2-4r-12)&=0\\
 (r-3)(r-6)(r+2)&=0
 \end{align*}
 
 Since \(3\leq r\leq7\), the possible radii are \(r=3\) and \(r=6\).
-The angular restriction on \(L\) gives:
+The angular restriction on \(L\) gives
 \[
--\frac{\pi}{2}<\theta-\frac{\pi}{4}<\frac{\pi}{2}
+-\dfrac{\pi}{2}<\theta-\dfrac{\pi}{4}<\dfrac{\pi}{2}
 \]
 
 For \(r=3\):
 \begin{align*}
-\cos\left(\theta-\frac{\pi}{4}\right)&=1\\
-\theta-\frac{\pi}{4}&=0\\
-\theta&=\frac{\pi}{4}
+\cos\left(\theta-\dfrac{\pi}{4}\right)&=1\\
+\theta-\dfrac{\pi}{4}&=0\\
+\theta&=\dfrac{\pi}{4}
 \end{align*}
 
 For \(r=6\):
 \begin{align*}
-\cos\left(\theta-\frac{\pi}{4}\right)&=\frac12\\
-\theta-\frac{\pi}{4}&=\pm\frac{\pi}{3}\\
-\theta&=-\frac{\pi}{12}\quad\text{or}\quad\frac{7\pi}{12}
+\cos\left(\theta-\dfrac{\pi}{4}\right)&=\dfrac12\\
+\theta-\dfrac{\pi}{4}&=\pm\dfrac{\pi}{3}\\
+\theta&=-\dfrac{\pi}{12}\quad\text{or}\quad\dfrac{7\pi}{12}
 \end{align*}
 
-All transformations above are reversible for \(r>0\), and these are all the solutions of the cosine equations in the allowed interval. All three angles also lie in the domain of \(C\). Hence every intersection has been found, and the exact polar coordinates are:
+All transformations above are reversible for \(r>0\), and these are all the solutions of the cosine equations in the allowed interval. All three angles also lie in the domain of \(C\). Hence every intersection has been found, and the exact polar coordinates are
 \[
-\left(3,\frac{\pi}{4}\right),\qquad
-\left(6,-\frac{\pi}{12}\right),\qquad
-\left(6,\frac{7\pi}{12}\right)
+\left(3,\dfrac{\pi}{4}\right),\qquad
+\left(6,-\dfrac{\pi}{12}\right),\qquad
+\left(6,\dfrac{7\pi}{12}\right)
 \]
 
 \end{enumerate}
@@ -975,7 +1009,7 @@ where $r>0$. \marks{3} \\
 \item The diagram above shows the curve $C$. \\
 \begin{enumerate}[label=(\roman*)]
 \item Find the polar coordinates of the point $N$ on $C$ nearest to the pole $O$. Justify that your point gives the minimum value of $r$. \marks{3} \\
-\item The circle $r=6\sqrt{3}$ meets $C$ at $P$ and $Q$, where $P$ lies above the initial line and $Q$ lies below it. Find their exact polar coordinates, using angles in the interval $-\dfrac{\pi}{4}<\theta<\dfrac{\pi}{4}$. \marks{5} \\
+\item The circle $r=6\sqrt{3}$ meets $C$ at $P$ and $Q$, where $P$ lies above the initial line and $Q$ lies below it. Find their exact polar coordinates, using angles in the interval $-\frac{\pi}{4}<\theta<\frac{\pi}{4}$. \marks{5} \\
 \item Find the exact value, in radians, of the angle $PNQ$. \marks{4} \\
 \end{enumerate}
 \end{enumerate}
@@ -1009,9 +1043,9 @@ r=6\cos\theta\sec2\theta,\qquad -\dfrac{\pi}{4}<\theta<\dfrac{\pi}{4}
 r&=\dfrac{6\cos\theta}{\cos2\theta}\geq6
 \end{align*}
 
-Equality occurs only when \(\theta=0\), which gives \(r=6\). Thus the nearest point has polar coordinates
+Equality occurs only when \(\theta=0\), which gives \(r=6\). Thus \(N\) has polar coordinates
 \[
-N=(6,0)
+(6,0)
 \]
 
 \item At an intersection, \(r=6\sqrt3\). Using the polar equation from part (a):
@@ -1023,10 +1057,14 @@ N=(6,0)
 \cos\theta&=\dfrac{\sqrt3}{2}\quad\text{or}\quad-\dfrac{1}{\sqrt3}
 \end{align*}
 
-Since \(\cos\theta>0\) on the given interval, the negative value is excluded. Hence \(\theta=\pm\frac{\pi}{6}\). The positive angle gives the point above the initial line, so
+Since \(\cos\theta>0\) on the given interval, the negative value is excluded. Hence \(\theta=\pm\frac{\pi}{6}\). The positive angle gives the point above the initial line, so \(P\) has polar coordinates
 \[
-P=\left(6\sqrt3,\dfrac{\pi}{6}\right),\qquad
-Q=\left(6\sqrt3,-\dfrac{\pi}{6}\right)
+\left(6\sqrt3,\dfrac{\pi}{6}\right)
+\]
+
+and \(Q\) has polar coordinates
+\[
+\left(6\sqrt3,-\dfrac{\pi}{6}\right)
 \]
 
 \item From the polar coordinates, \(ON=6\), \(OP=6\sqrt3\) and \(\angle NOP=\frac{\pi}{6}\). Applying the cosine rule in triangle \(ONP\):
