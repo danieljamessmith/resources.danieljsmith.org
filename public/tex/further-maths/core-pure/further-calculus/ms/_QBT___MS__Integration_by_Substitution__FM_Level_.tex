@@ -1,0 +1,319 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/markscheme_preamble.tex}
+
+\djsSchemeHeader{Integration by Substitution}
+\djsSitePath{Core Pure}{Further Calculus}
+
+\djsLastUpdated{25 October 2026}
+\begin{document}
+\djsSetQuestionCount{15}
+\djsAddMarks{1}{6}
+\djsAddMarks{2}{8}
+\djsAddMarks{3}{11}
+\djsAddMarks{4}{6}
+\djsAddMarks{5}{10}
+\djsAddMarks{6}{6}
+\djsAddMarks{7}{6}
+\djsAddMarks{8}{6}
+\djsAddMarks{9}{8}
+\djsAddMarks{10}{6}
+\djsAddMarks{11}{6}
+\djsAddMarks{12}{7}
+\djsAddMarks{13}{6}
+\djsAddMarks{14}{8}
+\djsAddMarks{15}{7}
+\vspace*{6pt}
+\djsContentsTitle
+\vspace{30pt}
+\msContentsHeading
+\begin{mscontents}{}
+Question & Marks by part & Marks & Page \\
+\msContentsQuestion{1} & & 6 & \msContentsPage{1} \\
+\msContentsQuestion{2} & (a)\,3\msSep (b)\,5 & 8 & \msContentsPage{2} \\
+\msContentsQuestion{3} & (i)\,5\msSep (ii)\,6 & 11 & \msContentsPage{3} \\
+\msContentsQuestion{4} & & 6 & \msContentsPage{4} \\
+\msContentsQuestion{5} & (i)\,4\msSep (ii)\,6 & 10 & \msContentsPage{5} \\
+\msContentsQuestion{6} & & 6 & \msContentsPage{6} \\
+\msContentsQuestion{7} & & 6 & \msContentsPage{7} \\
+\msContentsQuestion{8} & & 6 & \msContentsPage{8} \\
+\msContentsQuestion{9} & (a)\,3\msSep (b)\,5 & 8 & \msContentsPage{9} \\
+\msContentsQuestion{10} & & 6 & \msContentsPage{10} \\
+\msContentsQuestion{11} & & 6 & \msContentsPage{11} \\
+\msContentsQuestion{12} & & 7 & \msContentsPage{12} \\
+\msContentsQuestion{13} & & 6 & \msContentsPage{13} \\
+\msContentsQuestion{14} & & 8 & \msContentsPage{14} \\
+\msContentsQuestion{15} & & 7 & \msContentsPage{15} \\
+\SetCell[c=2]{r} Total & & 107 & \\
+\end{mscontents}
+\newpage
+\input{../../../../_shared/markscheme_conventions.tex}
+
+\msQuestion{1}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+1 & {\(u = x + 1 \Rightarrow x - 1 = u - 2,\ \mathrm{d}x = \mathrm{d}u\)} & M1 & {Uses \(u = x + 1\), or another substitution removing the root, expressing \(x - 1\) and \(\mathrm{d}x\) in terms of \(u\). Condone one slip.} \\
+& {\(\int \frac{(u-2)^2}{\sqrt{u}}\,\mathrm{d}u\)} & A1 & {Correct integral in \(u\) alone, oe. Limits not needed.} \\
+& {\(\int \left(u^{3/2} - 4u^{1/2} + 4u^{-1/2}\right)\mathrm{d}u = \ldots\)} & M1 & {Writes the integrand as a sum of powers of \(u\) and integrates, raising at least one power by 1. Condone expansion slips.} \\
+& {\(\left[\frac25 u^{5/2} - \frac83 u^{3/2} + 8u^{1/2}\right]\)} & A1 & {Correct, oe; need not be simplified.} \\
+& {\(\left(\frac{64}{5} - \frac{64}{3} + 16\right)\)\\[4pt] \(\phantom{=}- \left(\frac{8\sqrt{2}}{5} - \frac{16\sqrt{2}}{3} + 8\sqrt{2}\right)\)} & dM1 & {Substitutes limits matching their substitution (2 and 4 for \(u = x + 1\)), or 1 and 3 after reverting to \(x\), and subtracts.} \\
+& {\(= \frac{112}{15} - \frac{64\sqrt{2}}{15} = \frac{16}{15}(7 - 4\sqrt{2})\)} & A1~AG & {Exact values at both limits leading without error to the printed result; combined steps accepted. A0 for decimal evaluation.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 1 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{2}
+\begin{msscheme}{
+  hline{3-5,7-10} = {2-Z}{0.4pt, msGrid},
+  hline{6,11} = {0.4pt, msGrid},
+  row{11} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+2(a) & {\(\mathrm{d}u = 2x\,\mathrm{d}x\), \(x^2 = u - 1\)\\[4pt] \(\int \frac{x^8}{1+x^2}\,x\,\mathrm{d}x = \int \frac{(u-1)^4}{u}\cdot\frac{\mathrm{d}u}{2}\)} & M1 & {Uses \(x\,\mathrm{d}x = \frac12\,\mathrm{d}u\) oe and \(x^2 = u - 1\) to write the whole integrand in \(u\). Condone a slip in the factor \(\frac12\).} \\
+& {\(x = 0 \Rightarrow u = 1\), \(x = 2 \Rightarrow u = 5\)} & B1 & {Both; may be seen only as the limits of the integral.} \\
+& {\(\int_0^2 \frac{x^9}{1+x^2}\,\mathrm{d}x = \int_1^5 \frac{(u-1)^4}{2u}\,\mathrm{d}u\)} & A1~AG & {Correct substitution of every factor, including \(\mathrm{d}x\), leading without error to the printed integrand.} \\
+\nopagebreak & & [3] & \\
+2(b) & {\(\frac{(u-1)^4}{u} = u^3 - 4u^2 + 6u - 4 + \frac1u\)} & M1 & {Expands \((u-1)^4\) and divides each term by \(u\), giving five terms including \(\frac1u\). Condone coefficient slips.} \\
+& {\(\frac12\left[\frac{u^4}{4} - \frac{4u^3}{3} + 3u^2 - 4u + \ln u\right]\)} & M1 A1 & {\msNote{M1}{Integrates term by term, with at least one power increased by 1 and \(\frac1u \to \ln u\).}\\ \msNote{A1}{Correct integral oe; need not be simplified.}} \\
+& {\(\left(\frac{625}{8} - \frac{250}{3} + \frac{75}{2} - 10 + \frac12\ln 5\right)\)\\[4pt] \(\phantom{=} - \left(\frac18 - \frac23 + \frac32 - 2 + \frac12\ln 1\right)\)} & dM1 & {Substitutes \(u = 5\) and \(u = 1\) into their integral and subtracts. Not for the limits 0 and 2.} \\
+& {\(= \frac{70}{3} + \frac12\ln 5\)} & A1 & {cso. Exact \(A = \frac{70}{3}\) and \(B = \frac12\), oe.} \\
+\nopagebreak & & [5] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 2 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{3}
+\begin{msscheme}{
+  hline{3-6,8-13} = {2-Z}{0.4pt, msGrid},
+  hline{7,14} = {0.4pt, msGrid},
+  row{14} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+3(i) & {\(x^2 + 4x + 8 = (x + 2)^2 + 4\)} & M1 & {Completes the square to the form \((x + 2)^2 + k\). Condone a slip in \(k\).} \\
+& {\(\displaystyle\int_{-2}^{0} \frac{1}{(x+2)^2 + 4}\,\mathrm{d}x\)\\[4pt] \(\phantom{A} = \left[\tfrac12\arctan\left(\tfrac{x+2}{2}\right)\right]_{-2}^{0}\)} & M1 A1 & {\msNote{M1}{Integrates their completed square to the form \(p\arctan\left(\frac{x+2}{q}\right)\), by formula or substitution.}} \\
+& {\(\tfrac12\left(\arctan 1 - \arctan 0\right)\)} & dM1 & {Substitutes both limits into their arctan expression and subtracts, or uses limits changed for a substitution.} \\
+& {\(= \frac{\pi}{8}\)} & A1 & {cso.} \\
+\nopagebreak & & [5] & \\
+3(ii) & {\(x = 2\sin\theta,\ \mathrm{d}x = 2\cos\theta\,\mathrm{d}\theta\)\\[4pt] \(\displaystyle\int \frac{4\sin^2\theta}{2\cos\theta}\cdot 2\cos\theta\,\mathrm{d}\theta\)} & M1 & {Uses a substitution such as \(x = 2\sin\theta\), replacing \(x\), \(\sqrt{4 - x^2}\) and \(\mathrm{d}x\). Condone a coefficient slip in \(\mathrm{d}x\).} \\
+& {\(= \displaystyle\int 4\sin^2\theta\,\mathrm{d}\theta\)} & A1 & {oe, with or without limits.} \\
+& {\(\displaystyle 2\int (1 - \cos 2\theta)\,\mathrm{d}\theta\)} & M1 & {Uses \(\sin^2\theta = \frac12(1 - \cos 2\theta)\) and integrates to the form \(p\theta + q\sin 2\theta\). Condone sign and coefficient slips.} \\
+& {\(= 2\left[\theta - \tfrac12\sin 2\theta\right]\)} & A1 & {oe.} \\
+& {\(x = 0 \Rightarrow \theta = 0,\ x = \sqrt3 \Rightarrow \theta = \frac{\pi}{3}\)\\[4pt] \(2\left(\frac{\pi}{3} - \frac12\sin\frac{2\pi}{3}\right) - 0\)} & dM1 & {Uses the changed limits \(0\) and \(\frac{\pi}{3}\) in their integral, or returns to \(x\) and uses \(0\) and \(\sqrt3\).} \\
+& {\(= \frac{2\pi}{3} - \frac{\sqrt3}{2}\)} & A1 & {cso. Any exact equivalent.} \\
+\nopagebreak & & [6] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 3 & & 11 & \\
+\end{msscheme}
+
+\msQuestion{4}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+4 & {\(x = 4\cosh u \Rightarrow \mathrm{d}x = 4\sinh u\,\mathrm{d}u\)\\[4pt] \(I = \int \frac{4\sinh u}{16\cosh^2 u}\cdot 4\sinh u\,\mathrm{d}u\)} & M1 & {Substitutes \(x = 4\cosh u\) fully, with \(\mathrm{d}x = k\sinh u\,\mathrm{d}u\) and \(\sqrt{x^2-16}\) as a multiple of \(\sinh u\). Condone coefficient slips.} \\
+& {\(\phantom{I} = \int \tanh^2 u\,\mathrm{d}u\)} & A1 & {oe, with no incorrect coefficients seen.} \\
+& {\(\phantom{I} = \int \left(1 - \operatorname{sech}^2 u\right)\mathrm{d}u = \ldots\)} & M1 & {Uses \(\tanh^2 u = 1 - \operatorname{sech}^2 u\) and integrates to the form \(u \pm k\tanh u\). Condone sign and coefficient slips.} \\
+& {\(\phantom{I} = u - \tanh u + c\)} & A1 & \\
+& {\(u = \operatorname{arcosh}\left(\frac{x}{4}\right)\), \(\tanh u = \frac{\sqrt{x^2-16}/4}{x/4}\)} & M1 & {Uses \(u = \operatorname{arcosh}\left(\frac{x}{4}\right)\) and \(\tanh u\) in terms of \(x\) from \(\cosh u = \frac{x}{4}\), in their result of the form \(u \pm k\tanh u\).} \\
+& {\(I = \operatorname{arcosh}\left(\frac{x}{4}\right) - \frac{\sqrt{x^2-16}}{x} + c\)} & A1~AG & {Correct substituted integral leading without error to the printed result, with \(+c\). Condone no justification that \(\sinh u > 0\).} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 4 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{5}
+\begin{msscheme}{
+  hline{3-5,7-12} = {2-Z}{0.4pt, msGrid},
+  hline{6,13} = {0.4pt, msGrid},
+  row{13} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+5(i) & {\(\frac{1}{(x+1)(x+2)} = \frac{1}{x+1} - \frac{1}{x+2}\)\\[4pt] \(\Rightarrow \ln(x+1) - \ln(x+2)\)} & M1 A1 & {\msNote{M1}{Splits into partial fractions \(\frac{A}{x+1}+\frac{B}{x+2}\) and integrates to logarithms. Condone slips in \(A\) and \(B\).}} \\
+& {\((\ln 3 - \ln 4) - (\ln 2 - \ln 3)\)} & dM1 & {Substitutes both limits into their \(p\ln(x+1)+q\ln(x+2)\) and subtracts. Collecting the logarithms is not needed.} \\
+& {\(\ln\frac{9}{8}\)} & A1 & {Or an equivalent with the logarithms collected, such as \(2\ln 3 - 3\ln 2\).} \\
+\nopagebreak & & [4] & \\
+5(ii) & {\(x = 2\sin\theta,\ \mathrm{d}x = 2\cos\theta\,\mathrm{d}\theta\)\\[4pt] \(\Rightarrow \int \frac{2\cos\theta}{4\sin^2\theta}\cdot 2\cos\theta\,\mathrm{d}\theta\)} & M1 & {Substitutes \(x = 2\sin\theta\) oe throughout, with \(\mathrm{d}x = k\cos\theta\,\mathrm{d}\theta\). Condone coefficient slips.} \\
+& {\(\int \cot^2\theta\,\mathrm{d}\theta\)} & A1 & {Correct integrand in \(\theta\), oe such as \(\frac{\cos^2\theta}{\sin^2\theta}\).} \\
+& {\(\int (\operatorname{cosec}^2\theta - 1)\,\mathrm{d}\theta = \ldots\)} & M1 & {Uses \(\cot^2\theta = \pm\operatorname{cosec}^2\theta \pm 1\) and integrates to the form \(p\cot\theta + q\theta\). Condone sign slips.} \\
+& {\(-\cot\theta - \theta\)} & A1 & \\
+& {\(\theta = \frac{\pi}{6},\ \frac{\pi}{3}\)\\[4pt] \(\Rightarrow \left(-\frac{1}{\sqrt3} - \frac{\pi}{3}\right) - \left(-\sqrt3 - \frac{\pi}{6}\right)\)} & dM1 & {Uses the limits \(\frac{\pi}{6}\) and \(\frac{\pi}{3}\), or returns to \(x\), substituting both into their \(p\cot\theta + q\theta\) and subtracting.} \\
+& {\(\frac{2\sqrt3}{3} - \frac{\pi}{6}\)} & A1 & {cso. Or any exact equivalent, such as \(\frac{2}{\sqrt3} - \frac{\pi}{6}\).} \\
+\nopagebreak & & [6] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 5 & & 10 & \\
+\end{msscheme}
+
+\msQuestion{6}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+6 & {\(x = 4\sinh u \Rightarrow \mathrm{d}x = 4\cosh u\,\mathrm{d}u\)\\[4pt] \(\sqrt{x^2 + 16} = 4\cosh u\)\\[4pt] \(\int \frac{16\sinh^2 u}{4\cosh u}\,4\cosh u\,\mathrm{d}u\)} & M1 & {Uses \(x = 4\sinh u\), or another workable substitution, replacing \(x\), \(\sqrt{x^2+16}\) and \(\mathrm{d}x\) in terms of \(u\). Condone coefficient slips.} \\
+& {\(= 16\int \sinh^2 u\,\mathrm{d}u\)} & A1 & \\
+& {\(8\int (\cosh 2u - 1)\,\mathrm{d}u\)\\[4pt] \(\phantom{8} = 8\left(\tfrac12\sinh 2u - u\right)\)} & M1 & {Uses \(\sinh^2 u = \pm\frac12(\cosh 2u \pm 1)\), or exponentials, and integrates to the form \(p\sinh 2u + qu\). Condone sign and coefficient slips.} \\
+& {\(= 4\sinh 2u - 8u + c\)} & A1 & {oe} \\
+& {\(8\sinh u\cosh u - 8u\)\\[4pt] \(\phantom{8} = 8\left(\tfrac{x}{4}\right)\left(\tfrac{\sqrt{x^2+16}}{4}\right) - 8\operatorname{arsinh}\left(\tfrac{x}{4}\right)\)} & M1 & {Uses \(\sinh 2u = 2\sinh u\cosh u\), \(\cosh u = \frac14\sqrt{x^2+16}\) and \(u = \operatorname{arsinh}\frac{x}{4}\) on their result of the form \(p\sinh 2u + qu\).} \\
+& {\(= \tfrac12 x\sqrt{x^2 + 16} - 8\operatorname{arsinh}\left(\tfrac{x}{4}\right) + c\)} & A1~AG & {Printed result, including \(+c\), reached without error from a correct integral in \(u\); combined steps accepted.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 6 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{7}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+7 & {\(u = e^x \Rightarrow \mathrm{d}x = \frac{\mathrm{d}u}{u}\)\\[4pt] \(\int \frac{u^3+2u^2}{\sqrt{u+4}}\cdot\frac{1}{u}\,\mathrm{d}u\)} & M1 & {Replaces the exponentials by powers of \(u\) and \(\mathrm{d}x\) by \(\frac{\mathrm{d}u}{u}\) oe. Condone slips in powers. Also for \(u = e^x + 4\) directly.} \\
+& {\(= \int \frac{u^2+2u}{\sqrt{u+4}}\,\mathrm{d}u\)} & A1 & {oe, limits not required. After \(v = e^x + 4\) directly, \(\frac{(v-4)^2+2(v-4)}{\sqrt v}\) oe.} \\
+& {\(v = u + 4 \Rightarrow \int \frac{(v-4)^2+2(v-4)}{\sqrt v}\,\mathrm{d}v\)\\[4pt] \(\phantom{v = u + 4} = \int \left(v^{3/2}-6v^{1/2}+8v^{-1/2}\right)\mathrm{d}v\)\\[4pt] \(\phantom{v = u + 4} = \ldots\)} & M1 & {Writes the integrand as a sum of powers of \(v\) and integrates, raising at least one power by 1. Condone expansion slips.} \\
+& {\(\left[\tfrac25 v^{5/2}-4v^{3/2}+16v^{1/2}\right]\)} & A1 & {oe, limits not required.} \\
+& {\(\left(\tfrac25 \cdot 6^{5/2}-4\cdot 6^{3/2}+16\cdot 6^{1/2}\right)\)\\[4pt] \(\phantom{=} - \left(\tfrac25 \cdot 5^{5/2}-4\cdot 5^{3/2}+16\cdot 5^{1/2}\right)\)} & dM1 & {Substitutes limits 5 and 6 in \(v\), or the original limits after substituting back, into their integral and subtracts.} \\
+& {\(= \tfrac{32}{5}\sqrt6 - 6\sqrt5 = \frac{32\sqrt6-30\sqrt5}{5}\)} & A1~AG & {Correct substituted expression leading without error to the printed result in exact surds; combined steps accepted. A decimal check alone earns nothing.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 7 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{8}
+\begin{msscheme}{
+  hline{3-6} = {2-Z}{0.4pt, msGrid},
+  hline{7} = {0.4pt, msGrid},
+  row{7} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+8 & {\(\mathrm{d}u = \frac23\operatorname{sech}^2 x\,\mathrm{d}x\), \(\tanh x = \frac32 u\)\\[4pt] \(\Rightarrow \int \frac{\frac32}{\sqrt{9 - 4\left(\frac32 u\right)^2}}\,\mathrm{d}u\)} & M1 & {Replaces \(\operatorname{sech}^2 x\,\mathrm{d}x\) by \(k\,\mathrm{d}u\) and \(\tanh x\) by a multiple of \(u\), giving an integral in \(u\) only. Condone slips in the constants.} \\
+& {\(= \frac12\int \frac{1}{\sqrt{1 - u^2}}\,\mathrm{d}u\)} & A1 & {Correct integrand in \(u\), oe.} \\
+& {\(= \frac12\arcsin u\)} & M1 A1 & {\msNote{M1}{Integrates their integral of the form \(\frac{p}{\sqrt{a^2 - b^2u^2}}\) to \(\lambda\arcsin(\mu u)\).}} \\
+& {\(x = 0 \Rightarrow u = 0\), \(x = 1 \Rightarrow u = \frac23\tanh 1\)\\[4pt] \(\frac12\arcsin\left(\frac23\tanh 1\right) - \frac12\arcsin 0\)} & dM1 & {Applies \(u\)-limits \(0\) and \(\frac23\tanh 1\) to their arcsin form, or substitutes back for \(u\) and applies \(0\) and \(1\).} \\
+& {\(= \frac12\arcsin\left(\frac23\tanh 1\right)\ [\approx 0.266]\)} & A1 & {oe, or awrt 0.266.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 8 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{9}
+\begin{msscheme}{
+  hline{3-5,7-11} = {2-Z}{0.4pt, msGrid},
+  hline{6,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+9(a) & {\(x = \frac{u^2-1}{2},\ \mathrm{d}x = u\,\mathrm{d}u\)\\[4pt] \(\int \frac{\frac12(u^2-1)}{2+u}\,u\,\mathrm{d}u\)} & M1 & {Replaces \(x\), \(\sqrt{2x+1}\) and \(\mathrm{d}x\) by expressions in \(u\), with \(\mathrm{d}x\) of the form \(ku\,\mathrm{d}u\).} \\
+& {\(x = 0 \Rightarrow u = 1,\ x = \frac{15}{2} \Rightarrow u = 4\)} & B1 & \\
+& {\(\int_1^4 \frac{u(u^2-1)}{2(u+2)}\,\mathrm{d}u\)} & A1~AG & {Correct substituted integral leading without error to the printed integrand.} \\
+\nopagebreak & & [3] & \\
+9(b) & {\(u^3 - u = (u+2)(au^2+bu+c) + d \Rightarrow \ldots\)} & M1 & {Divides \(u^3-u\) by \(u+2\) by any method, reaching a quadratic quotient and a constant remainder. Condone slips.} \\
+& {\(\frac{u(u^2-1)}{2(u+2)} = \frac12\left(u^2-2u+3-\frac{6}{u+2}\right)\)} & A1 & {Or quotient \(u^2-2u+3\) and remainder \(-6\) stated.} \\
+& {\(\frac12\left[\frac{u^3}{3}-u^2+3u-6\ln(u+2)\right]_1^4\)} & M1 & {Integrates their quotient and \(\frac{d}{u+2}\), with \(\frac{d}{u+2} \to d\ln(u+2)\) and at least one power increased by 1. Condone coefficient slips.} \\
+& {\(\frac12\left[\left(\frac{52}{3}-6\ln 6\right)-\left(\frac73-6\ln 3\right)\right]\)\\[4pt] \(\ln 6 - \ln 3 = \ln 2 \Rightarrow \ldots\)} & dM1 & {Substitutes 4 and 1 into their integral, subtracts, and combines their logarithms into a single logarithm.} \\
+& {\(\frac{15}{2} - 3\ln 2\)} & A1 & {cso. Or \(A = \frac{15}{2}\), \(B = 3\). Not for \(\frac{15}{2} - \ln 8\) or a decimal.} \\
+\nopagebreak & & [5] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 9 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{10}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+10 & {\(u = 1 + \sin x \Rightarrow \mathrm{d}u = \cos x\,\mathrm{d}x\)} & M1 & {Uses an appropriate substitution such as \(u = 1 + \sin x\), replacing \(\cos x\,\mathrm{d}x\) by a multiple of \(\mathrm{d}u\).} \\
+& {\(\cos 2x = 1 - 2(u - 1)^2\)\\[4pt] \(I = \int \frac{-2u^2 + 4u - 1}{u^{3/2}}\,\mathrm{d}u\)} & A1 & {Correct integrand wholly in \(u\), oe. Need not be expanded.} \\
+& {\(\int \left(-2u^{1/2} + 4u^{-1/2} - u^{-3/2}\right)\mathrm{d}u\)} & M1 & {Divides their quadratic in \(u\) by \(u^{3/2}\) term by term and integrates, raising the power of at least one term by 1.} \\
+& {\(= \left[-\tfrac43 u^{3/2} + 8u^{1/2} + 2u^{-1/2}\right]\)} & A1 & {oe, need not be simplified.} \\
+& {\(\left(-\tfrac43\left(\tfrac32\right)^{3/2} + 8\left(\tfrac32\right)^{1/2} + 2\left(\tfrac32\right)^{-1/2}\right)\)\\[4pt] \(\phantom{=} - \left(-\tfrac43 + 8 + 2\right)\)} & dM1 & {Applies limits 1 and \(\frac32\) to their integral, or 0 and \(\frac{\pi}{6}\) after substituting back, subtracting the right way round.} \\
+& {\(= -\tfrac{26}{3} + \tfrac{11}{3}\sqrt6\)} & A1 & {cso. In the form \(a + b\sqrt6\), or \(a = -\frac{26}{3}\), \(b = \frac{11}{3}\) stated; \(\frac{11\sqrt6 - 26}{3}\) alone scores A0.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 10 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{11}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+11 & {\(x = 4\sin\theta \Rightarrow \mathrm{d}x = 4\cos\theta\,\mathrm{d}\theta\)\\[4pt] \(\int \frac{16\sin^2\theta}{\sqrt{16 - 16\sin^2\theta}}\,4\cos\theta\,\mathrm{d}\theta\)} & M1 & {Uses \(x = 4\sin\theta\) or \(x = 4\cos\theta\), replacing \(x^2\), the root and \(\mathrm{d}x\). Condone coefficient slips.} \\
+& {\(16\int \sin^2\theta\,\mathrm{d}\theta\)} & A1 & {oe, such as \(16\cos^2\theta\) from \(x = 4\cos\theta\).} \\
+& {\(8\int (1 - \cos 2\theta)\,\mathrm{d}\theta = \ldots\)} & M1 & {Uses \(\sin^2\theta = \frac12(1 - \cos 2\theta)\) and integrates to the form \(p\theta + q\sin 2\theta\). Condone sign and coefficient slips.} \\
+& {\(8\left[\theta - \tfrac12\sin 2\theta\right]\)} & A1 & {oe, such as \(8\theta - 4\sin 2\theta\).} \\
+& {\(x = 0 \Rightarrow \theta = 0\), \(x = 2\sqrt{2} \Rightarrow \theta = \frac{\pi}{4}\)\\[4pt] \(8\left(\frac{\pi}{4} - \frac12\sin\frac{\pi}{2}\right) - 8(0 - 0)\)} & dM1 & {Converts both limits to \(\theta\), or returns to \(x\), and subtracts. Not for the \(x\)-limits put into a function of \(\theta\).} \\
+& {\(2\pi - 4\)} & A1 & {cso. Accept \(-4 + 2\pi\), or \(a = -4\), \(b = 2\).} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 11 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{12}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+12 & {\(u = \tfrac32\tanh x\), \(\mathrm{d}u = \tfrac32\operatorname{sech}^2 x\,\mathrm{d}x\)\\[4pt] \(\Rightarrow \int \frac{\frac23}{\sqrt{4 - 9\left(\frac{2u}{3}\right)^2}}\,\mathrm{d}u\)} & M1 & {Substitutes for \(\tanh x\), such as \(u = k\tanh x\), replacing both \(\operatorname{sech}^2 x\,\mathrm{d}x\) and \(\tanh^2 x\) in the new variable. Condone coefficient slips.} \\
+& {\(= \tfrac13\int \frac{1}{\sqrt{1-u^2}}\,\mathrm{d}u\)} & A1 & {Correct integrand for their substitution, oe such as \(\frac{1}{\sqrt{4-9u^2}}\) for \(u = \tanh x\).} \\
+& {\(e^{2x} = 2+\sqrt3\)\\[4pt] \(\Rightarrow \tanh x = \frac{1+\sqrt3}{3+\sqrt3} = \frac{1}{\sqrt3}\)\\[4pt] \(\Rightarrow u = \frac{\sqrt3}{2}\)} & B1 & {Exact upper limit for their variable, from exponentials; \(\frac{1}{\sqrt3}\) for \(u = \tanh x\). Not from a calculator decimal alone.} \\
+& {\(\tfrac13\arcsin u\)} & M1 A1 & {\msNote{M1}{Integrates their \(\frac{p}{\sqrt{a^2 - b^2u^2}}\) to \(k\arcsin(\lambda u)\). Condone coefficient slips.}\\ \msNote{A1}{oe in their variable, such as \(\frac13\arcsin\frac{3u}{2}\) for \(u = \tanh x\).}} \\
+& {\(\tfrac13\left(\arcsin\text{"}\tfrac{\sqrt3}{2}\text{"} - \arcsin 0\right)\)} & dM1 & {Substitutes both limits, in the variable of their integral, into their arcsin form and subtracts.} \\
+& {\(\frac{\pi}{9}\)} & A1 & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 12 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{13}
+\begin{msscheme}{
+  hline{3-14} = {2-Z}{0.4pt, msGrid},
+  hline{15} = {0.4pt, msGrid},
+  cell{8-14}{2-4} = {bg=msTint},
+  row{15} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+13 & {\(x = 2\sec\theta \Rightarrow \mathrm{d}x = 2\sec\theta\tan\theta\,\mathrm{d}\theta\)\\[4pt] \(\int \frac{\sqrt{4\sec^2\theta - 4}}{4\sec^2\theta}\,2\sec\theta\tan\theta\,\mathrm{d}\theta\)} & M1 & {Replaces \(x\), \(\mathrm{d}x\) and \(\sqrt{x^2-4}\), with \(\mathrm{d}x = k\sec\theta\tan\theta\,\mathrm{d}\theta\). Condone a slip in simplifying the root.} \\
+& {\(\phantom{\int} = \int \frac{\tan^2\theta}{\sec\theta}\,\mathrm{d}\theta\)} & A1 & {oe, such as \(\frac{\sin^2\theta}{\cos\theta}\).} \\
+& {\(\int (\sec\theta - \cos\theta)\,\mathrm{d}\theta = \ldots\)} & M1 & {Uses \(\tan^2\theta = \sec^2\theta - 1\) oe and integrates both terms, \(\sec\theta\) to any form of its standard integral. Condone sign and coefficient slips.} \\
+& {\(\ln|\sec\theta + \tan\theta| - \sin\theta\)} & A1 & {oe} \\
+& {\(\theta = 0,\ \tfrac{\pi}{3}\)\\[4pt] \(\left(\ln(2+\sqrt3) - \sin\tfrac{\pi}{3}\right) - (\ln 1 - \sin 0)\)} & dM1 & {Applies limits \(0\) and \(\frac{\pi}{3}\) to their integral and subtracts, or returns to \(x\) and uses \(2\) and \(4\).} \\
+& {\(\ln(2+\sqrt3) - \tfrac{\sqrt3}{2}\)} & A1 & {cso. Accept simplified exact equivalents such as \(-\ln(2-\sqrt3) - \frac{\sqrt3}{2}\).} \\
+& \SetCell[c=3]{l} \msAlternative{Substitution \(x = 2\cosh u\)} & & \\
+\nopagebreak & {\(x = 2\cosh u \Rightarrow \mathrm{d}x = 2\sinh u\,\mathrm{d}u\)\\[4pt] \(\int \frac{\sqrt{4\cosh^2 u - 4}}{4\cosh^2 u}\,2\sinh u\,\mathrm{d}u\)} & M1 & {Replaces \(x\), \(\mathrm{d}x\) and \(\sqrt{x^2-4}\), with \(\mathrm{d}x = k\sinh u\,\mathrm{d}u\). Condone a slip in simplifying the root.} \\
+& {\(\phantom{\int} = \int \tanh^2 u\,\mathrm{d}u\)} & A1 & {oe, such as \(\frac{\sinh^2 u}{\cosh^2 u}\).} \\
+& {\(\int (1 - \operatorname{sech}^2 u)\,\mathrm{d}u = \ldots\)} & M1 & {Uses \(\tanh^2 u = 1 - \operatorname{sech}^2 u\) oe and integrates to the form \(pu + q\tanh u\). Condone sign and coefficient slips.} \\
+& {\(u - \tanh u\)} & A1 & \\
+& {\(u = 0,\ \operatorname{arcosh}2 = \ln(2+\sqrt3)\)\\[4pt] \(\ln(2+\sqrt3) - \tanh\left(\operatorname{arcosh}2\right) - 0\)} & dM1 & {Applies limits \(0\) and \(\operatorname{arcosh}2\) to their integral and subtracts, or returns to \(x\) and uses \(2\) and \(4\).} \\
+& {\(\ln(2+\sqrt3) - \tfrac{\sqrt3}{2}\)} & A1 & {cso. Accept simplified exact equivalents such as \(-\ln(2-\sqrt3) - \frac{\sqrt3}{2}\).} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 13 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{14}
+\begin{msscheme}{
+  hline{3-9} = {2-Z}{0.4pt, msGrid},
+  hline{10} = {0.4pt, msGrid},
+  row{10} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+14 & {\(\sin 3\theta = 3\sin\theta - 4\sin^3\theta\)\\[4pt] \(\phantom{\sin 3\theta} = \sin\theta\left(3 - 4(1 - \cos^2\theta)\right)\)} & M1 & {Uses a triple-angle or compound-angle expansion and \(\sin^2\theta = 1 - \cos^2\theta\) to write \(\sin 3\theta\) as \(\sin\theta\) times a function of \(\cos\theta\). Condone sign slips.} \\
+& {\(\sin 3\theta = \sin\theta(4\cos^2\theta - 1)\)} & A1 & \\
+& {\(u = \cos\theta \Rightarrow \mathrm{d}u = -\sin\theta\,\mathrm{d}\theta\)\\[4pt] \(\theta = 0 \Rightarrow u = 1\), \(\theta = \frac{\pi}{2} \Rightarrow u = 0\)} & M1 & {Uses \(u = \cos\theta\) with \(\mathrm{d}u = \pm\sin\theta\,\mathrm{d}\theta\) to reach an integral in \(u\) alone, and changes the limits or later returns to \(\theta\).} \\
+& {\(\int_0^1 \frac{4u^2 - 1}{u + 2}\,\mathrm{d}u\)} & A1 & {oe such as \(-\int_1^0\); the sign from \(\mathrm{d}u\) and the order of the limits must be consistent.} \\
+& {\(\frac{4u^2 - 1}{u + 2} = 4u - 8 + \frac{15}{u + 2}\)} & M1 & {Divides by \(u + 2\), or substitutes \(v = u + 2\), and integrates, including a term \(k\ln(u + 2)\). Condone coefficient slips.} \\
+& {\(\left[2u^2 - 8u + 15\ln(u + 2)\right]_0^1\)} & A1 & \\
+& {\((2 - 8 + 15\ln 3) - 15\ln 2\)} & dM1 & {Substitutes both limits into their integral and subtracts.} \\
+& {\(= 15\ln\left(\frac{3}{2}\right) - 6\)} & A1~AG & {Correct substituted expression leading without error to the printed result, logarithms combined.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 14 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{15}
+\begin{msscheme}{
+  hline{3-8} = {2-Z}{0.4pt, msGrid},
+  hline{9} = {0.4pt, msGrid},
+  row{9} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+15 & {\(u = \sin\theta \Rightarrow \mathrm{d}u = \cos\theta\,\mathrm{d}\theta\)\\[4pt] \(\cos^5\theta = (1-u^2)^2\cos\theta\)} & M1 & {Uses \(u = \sin\theta\) with \(\mathrm{d}u = \cos\theta\,\mathrm{d}\theta\) and \(\cos^2\theta = 1 - u^2\) to reach an integrand in \(u\) only. Condone sign slips.} \\
+& {\(\int_0^1 \frac{(1-u^2)^2}{2+u}\,\mathrm{d}u\)} & A1 & {Correct integral with limits 0 and 1, oe; numerator may be expanded.} \\
+& {\(\frac{u^4-2u^2+1}{u+2} = \ldots + \frac{\ldots}{u+2}\)} & M1 & {Divides their quartic by \(u+2\), by any method, to a cubic quotient and a constant remainder. Condone slips.} \\
+& {\(u^3-2u^2+2u-4+\frac{9}{u+2}\)} & A1 & \\
+& {\(\left[\frac{u^4}{4}-\frac{2u^3}{3}+u^2-4u+9\ln(u+2)\right]_0^1\)} & M1 & {Integrates their quotient, raising at least one power by 1, and their remainder \(\frac{k}{u+2}\) to \(k\ln(u+2)\).} \\
+& {\(\left(\tfrac14-\tfrac23+1-4+9\ln 3\right)-9\ln 2\)} & dM1 & {Substitutes \(u = 1\) and \(u = 0\), or \(\theta = \frac{\pi}{2}\) and \(0\) after reversing the substitution, and subtracts.} \\
+& {\(= 9\ln\left(\tfrac32\right) - \tfrac{41}{12}\)} & A1~AG & {cso. Correct substituted expression, including \(9\ln 2\) from the lower limit, leading without error to the printed result.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 15 & & 7 & \\
+\end{msscheme}
+
+\end{document}

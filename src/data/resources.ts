@@ -584,6 +584,16 @@ const rawResources: Resource[] = [
     topic: 'Further Calculus',
   },
   {
+    id: 'fm-further-integration-by-substitution-ms',
+    title: 'Integration by Substitution',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/further-calculus/ms/_QBT___MS__Integration_by_Substitution__FM_Level_.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-further-integration-by-substitution',
+    topic: 'Further Calculus',
+  },
+  {
     id: 'fm-further-integration-inverse-trig',
     title: 'Integration with Inverse Trig',
     description: '',

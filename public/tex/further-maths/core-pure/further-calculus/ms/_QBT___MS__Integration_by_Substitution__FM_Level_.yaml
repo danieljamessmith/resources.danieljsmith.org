@@ -1,0 +1,664 @@
+format: 1
+pack: Integration by Substitution
+last_updated: 25 October 2026
+questions:
+  - q: 1
+    stamp: 8f27166a
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(u = x + 1 \Rightarrow x - 1 = u - 2,\ \mathrm{d}x = \mathrm{d}u\)
+            marks:
+              - code: M1
+                note: Uses \(u = x + 1\), or another substitution removing the root, expressing \(x - 1\) and \(\mathrm{d}x\) in terms of \(u\). Condone one slip.
+          - scheme: |
+              \(\int \frac{(u-2)^2}{\sqrt{u}}\,\mathrm{d}u\)
+            marks:
+              - code: A1
+                note: Correct integral in \(u\) alone, oe. Limits not needed.
+          - scheme: |
+              \(\int \left(u^{3/2} - 4u^{1/2} + 4u^{-1/2}\right)\mathrm{d}u = \ldots\)
+            marks:
+              - code: M1
+                note: Writes the integrand as a sum of powers of \(u\) and integrates, raising at least one power by 1. Condone expansion slips.
+          - scheme: |
+              \(\left[\frac25 u^{5/2} - \frac83 u^{3/2} + 8u^{1/2}\right]\)
+            marks:
+              - code: A1
+                note: Correct, oe; need not be simplified.
+          - scheme: |
+              \(\left(\frac{64}{5} - \frac{64}{3} + 16\right)\)
+              \(\phantom{=}- \left(\frac{8\sqrt{2}}{5} - \frac{16\sqrt{2}}{3} + 8\sqrt{2}\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes limits matching their substitution (2 and 4 for \(u = x + 1\)), or 1 and 3 after reverting to \(x\), and subtracts.
+          - scheme: |
+              \(= \frac{112}{15} - \frac{64\sqrt{2}}{15} = \frac{16}{15}(7 - 4\sqrt{2})\)
+            marks:
+              - code: A1 AG
+                note: Exact values at both limits leading without error to the printed result; combined steps accepted. A0 for decimal evaluation.
+  - q: 2
+    stamp: a74e7231
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\mathrm{d}u = 2x\,\mathrm{d}x\), \(x^2 = u - 1\)
+              \(\int \frac{x^8}{1+x^2}\,x\,\mathrm{d}x = \int \frac{(u-1)^4}{u}\cdot\frac{\mathrm{d}u}{2}\)
+            marks:
+              - code: M1
+                note: Uses \(x\,\mathrm{d}x = \frac12\,\mathrm{d}u\) oe and \(x^2 = u - 1\) to write the whole integrand in \(u\). Condone a slip in the factor \(\frac12\).
+          - scheme: |
+              \(x = 0 \Rightarrow u = 1\), \(x = 2 \Rightarrow u = 5\)
+            marks:
+              - code: B1
+                note: Both; may be seen only as the limits of the integral.
+          - scheme: |
+              \(\int_0^2 \frac{x^9}{1+x^2}\,\mathrm{d}x = \int_1^5 \frac{(u-1)^4}{2u}\,\mathrm{d}u\)
+            marks:
+              - code: A1 AG
+                note: Correct substitution of every factor, including \(\mathrm{d}x\), leading without error to the printed integrand.
+      - part: b
+        rows:
+          - scheme: |
+              \(\frac{(u-1)^4}{u} = u^3 - 4u^2 + 6u - 4 + \frac1u\)
+            marks:
+              - code: M1
+                note: Expands \((u-1)^4\) and divides each term by \(u\), giving five terms including \(\frac1u\). Condone coefficient slips.
+          - scheme: |
+              \(\frac12\left[\frac{u^4}{4} - \frac{4u^3}{3} + 3u^2 - 4u + \ln u\right]\)
+            marks:
+              - code: M1
+                note: Integrates term by term, with at least one power increased by 1 and \(\frac1u \to \ln u\).
+              - code: A1
+                note: Correct integral oe; need not be simplified.
+          - scheme: |
+              \(\left(\frac{625}{8} - \frac{250}{3} + \frac{75}{2} - 10 + \frac12\ln 5\right)\)
+              \(\phantom{=} - \left(\frac18 - \frac23 + \frac32 - 2 + \frac12\ln 1\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes \(u = 5\) and \(u = 1\) into their integral and subtracts. Not for the limits 0 and 2.
+          - scheme: |
+              \(= \frac{70}{3} + \frac12\ln 5\)
+            marks:
+              - code: A1
+                note: cso. Exact \(A = \frac{70}{3}\) and \(B = \frac12\), oe.
+  - q: 3
+    stamp: 1093f8de
+    parts:
+      - part: i
+        rows:
+          - scheme: |
+              \(x^2 + 4x + 8 = (x + 2)^2 + 4\)
+            marks:
+              - code: M1
+                note: Completes the square to the form \((x + 2)^2 + k\). Condone a slip in \(k\).
+          - scheme: |
+              \(\displaystyle\int_{-2}^{0} \frac{1}{(x+2)^2 + 4}\,\mathrm{d}x\)
+              \(\phantom{A} = \left[\tfrac12\arctan\left(\tfrac{x+2}{2}\right)\right]_{-2}^{0}\)
+            marks:
+              - code: M1
+                note: Integrates their completed square to the form \(p\arctan\left(\frac{x+2}{q}\right)\), by formula or substitution.
+              - code: A1
+          - scheme: |
+              \(\tfrac12\left(\arctan 1 - \arctan 0\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits into their arctan expression and subtracts, or uses limits changed for a substitution.
+          - scheme: |
+              \(= \frac{\pi}{8}\)
+            marks:
+              - code: A1
+                note: cso.
+      - part: ii
+        rows:
+          - scheme: |
+              \(x = 2\sin\theta,\ \mathrm{d}x = 2\cos\theta\,\mathrm{d}\theta\)
+              \(\displaystyle\int \frac{4\sin^2\theta}{2\cos\theta}\cdot 2\cos\theta\,\mathrm{d}\theta\)
+            marks:
+              - code: M1
+                note: Uses a substitution such as \(x = 2\sin\theta\), replacing \(x\), \(\sqrt{4 - x^2}\) and \(\mathrm{d}x\). Condone a coefficient slip in \(\mathrm{d}x\).
+          - scheme: |
+              \(= \displaystyle\int 4\sin^2\theta\,\mathrm{d}\theta\)
+            marks:
+              - code: A1
+                note: oe, with or without limits.
+          - scheme: |
+              \(\displaystyle 2\int (1 - \cos 2\theta)\,\mathrm{d}\theta\)
+            marks:
+              - code: M1
+                note: Uses \(\sin^2\theta = \frac12(1 - \cos 2\theta)\) and integrates to the form \(p\theta + q\sin 2\theta\). Condone sign and coefficient slips.
+          - scheme: |
+              \(= 2\left[\theta - \tfrac12\sin 2\theta\right]\)
+            marks:
+              - code: A1
+                note: oe.
+          - scheme: |
+              \(x = 0 \Rightarrow \theta = 0,\ x = \sqrt3 \Rightarrow \theta = \frac{\pi}{3}\)
+              \(2\left(\frac{\pi}{3} - \frac12\sin\frac{2\pi}{3}\right) - 0\)
+            marks:
+              - code: dM1
+                note: Uses the changed limits \(0\) and \(\frac{\pi}{3}\) in their integral, or returns to \(x\) and uses \(0\) and \(\sqrt3\).
+          - scheme: |
+              \(= \frac{2\pi}{3} - \frac{\sqrt3}{2}\)
+            marks:
+              - code: A1
+                note: cso. Any exact equivalent.
+  - q: 4
+    stamp: 4ed066c1
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(x = 4\cosh u \Rightarrow \mathrm{d}x = 4\sinh u\,\mathrm{d}u\)
+              \(I = \int \frac{4\sinh u}{16\cosh^2 u}\cdot 4\sinh u\,\mathrm{d}u\)
+            marks:
+              - code: M1
+                note: Substitutes \(x = 4\cosh u\) fully, with \(\mathrm{d}x = k\sinh u\,\mathrm{d}u\) and \(\sqrt{x^2-16}\) as a multiple of \(\sinh u\). Condone coefficient slips.
+          - scheme: |
+              \(\phantom{I} = \int \tanh^2 u\,\mathrm{d}u\)
+            marks:
+              - code: A1
+                note: oe, with no incorrect coefficients seen.
+          - scheme: |
+              \(\phantom{I} = \int \left(1 - \operatorname{sech}^2 u\right)\mathrm{d}u = \ldots\)
+            marks:
+              - code: M1
+                note: Uses \(\tanh^2 u = 1 - \operatorname{sech}^2 u\) and integrates to the form \(u \pm k\tanh u\). Condone sign and coefficient slips.
+          - scheme: |
+              \(\phantom{I} = u - \tanh u + c\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(u = \operatorname{arcosh}\left(\frac{x}{4}\right)\), \(\tanh u = \frac{\sqrt{x^2-16}/4}{x/4}\)
+            marks:
+              - code: M1
+                note: Uses \(u = \operatorname{arcosh}\left(\frac{x}{4}\right)\) and \(\tanh u\) in terms of \(x\) from \(\cosh u = \frac{x}{4}\), in their result of the form \(u \pm k\tanh u\).
+          - scheme: |
+              \(I = \operatorname{arcosh}\left(\frac{x}{4}\right) - \frac{\sqrt{x^2-16}}{x} + c\)
+            marks:
+              - code: A1 AG
+                note: Correct substituted integral leading without error to the printed result, with \(+c\). Condone no justification that \(\sinh u > 0\).
+  - q: 5
+    stamp: '45691469'
+    parts:
+      - part: i
+        rows:
+          - scheme: |
+              \(\frac{1}{(x+1)(x+2)} = \frac{1}{x+1} - \frac{1}{x+2}\)
+              \(\Rightarrow \ln(x+1) - \ln(x+2)\)
+            marks:
+              - code: M1
+                note: Splits into partial fractions \(\frac{A}{x+1}+\frac{B}{x+2}\) and integrates to logarithms. Condone slips in \(A\) and \(B\).
+              - code: A1
+          - scheme: |
+              \((\ln 3 - \ln 4) - (\ln 2 - \ln 3)\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits into their \(p\ln(x+1)+q\ln(x+2)\) and subtracts. Collecting the logarithms is not needed.
+          - scheme: |
+              \(\ln\frac{9}{8}\)
+            marks:
+              - code: A1
+                note: Or an equivalent with the logarithms collected, such as \(2\ln 3 - 3\ln 2\).
+      - part: ii
+        rows:
+          - scheme: |
+              \(x = 2\sin\theta,\ \mathrm{d}x = 2\cos\theta\,\mathrm{d}\theta\)
+              \(\Rightarrow \int \frac{2\cos\theta}{4\sin^2\theta}\cdot 2\cos\theta\,\mathrm{d}\theta\)
+            marks:
+              - code: M1
+                note: Substitutes \(x = 2\sin\theta\) oe throughout, with \(\mathrm{d}x = k\cos\theta\,\mathrm{d}\theta\). Condone coefficient slips.
+          - scheme: |
+              \(\int \cot^2\theta\,\mathrm{d}\theta\)
+            marks:
+              - code: A1
+                note: Correct integrand in \(\theta\), oe such as \(\frac{\cos^2\theta}{\sin^2\theta}\).
+          - scheme: |
+              \(\int (\operatorname{cosec}^2\theta - 1)\,\mathrm{d}\theta = \ldots\)
+            marks:
+              - code: M1
+                note: Uses \(\cot^2\theta = \pm\operatorname{cosec}^2\theta \pm 1\) and integrates to the form \(p\cot\theta + q\theta\). Condone sign slips.
+          - scheme: |
+              \(-\cot\theta - \theta\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\theta = \frac{\pi}{6},\ \frac{\pi}{3}\)
+              \(\Rightarrow \left(-\frac{1}{\sqrt3} - \frac{\pi}{3}\right) - \left(-\sqrt3 - \frac{\pi}{6}\right)\)
+            marks:
+              - code: dM1
+                note: Uses the limits \(\frac{\pi}{6}\) and \(\frac{\pi}{3}\), or returns to \(x\), substituting both into their \(p\cot\theta + q\theta\) and subtracting.
+          - scheme: |
+              \(\frac{2\sqrt3}{3} - \frac{\pi}{6}\)
+            marks:
+              - code: A1
+                note: cso. Or any exact equivalent, such as \(\frac{2}{\sqrt3} - \frac{\pi}{6}\).
+  - q: 6
+    stamp: a8904925
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(x = 4\sinh u \Rightarrow \mathrm{d}x = 4\cosh u\,\mathrm{d}u\)
+              \(\sqrt{x^2 + 16} = 4\cosh u\)
+              \(\int \frac{16\sinh^2 u}{4\cosh u}\,4\cosh u\,\mathrm{d}u\)
+            marks:
+              - code: M1
+                note: Uses \(x = 4\sinh u\), or another workable substitution, replacing \(x\), \(\sqrt{x^2+16}\) and \(\mathrm{d}x\) in terms of \(u\). Condone coefficient slips.
+          - scheme: |
+              \(= 16\int \sinh^2 u\,\mathrm{d}u\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(8\int (\cosh 2u - 1)\,\mathrm{d}u\)
+              \(\phantom{8} = 8\left(\tfrac12\sinh 2u - u\right)\)
+            marks:
+              - code: M1
+                note: Uses \(\sinh^2 u = \pm\frac12(\cosh 2u \pm 1)\), or exponentials, and integrates to the form \(p\sinh 2u + qu\). Condone sign and coefficient slips.
+          - scheme: |
+              \(= 4\sinh 2u - 8u + c\)
+            marks:
+              - code: A1
+                note: oe
+          - scheme: |
+              \(8\sinh u\cosh u - 8u\)
+              \(\phantom{8} = 8\left(\tfrac{x}{4}\right)\left(\tfrac{\sqrt{x^2+16}}{4}\right) - 8\operatorname{arsinh}\left(\tfrac{x}{4}\right)\)
+            marks:
+              - code: M1
+                note: Uses \(\sinh 2u = 2\sinh u\cosh u\), \(\cosh u = \frac14\sqrt{x^2+16}\) and \(u = \operatorname{arsinh}\frac{x}{4}\) on their result of the form \(p\sinh 2u + qu\).
+          - scheme: |
+              \(= \tfrac12 x\sqrt{x^2 + 16} - 8\operatorname{arsinh}\left(\tfrac{x}{4}\right) + c\)
+            marks:
+              - code: A1 AG
+                note: Printed result, including \(+c\), reached without error from a correct integral in \(u\); combined steps accepted.
+  - q: 7
+    stamp: e5c961e2
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(u = e^x \Rightarrow \mathrm{d}x = \frac{\mathrm{d}u}{u}\)
+              \(\int \frac{u^3+2u^2}{\sqrt{u+4}}\cdot\frac{1}{u}\,\mathrm{d}u\)
+            marks:
+              - code: M1
+                note: Replaces the exponentials by powers of \(u\) and \(\mathrm{d}x\) by \(\frac{\mathrm{d}u}{u}\) oe. Condone slips in powers. Also for \(u = e^x + 4\) directly.
+          - scheme: |
+              \(= \int \frac{u^2+2u}{\sqrt{u+4}}\,\mathrm{d}u\)
+            marks:
+              - code: A1
+                note: oe, limits not required. After \(v = e^x + 4\) directly, \(\frac{(v-4)^2+2(v-4)}{\sqrt v}\) oe.
+          - scheme: |
+              \(v = u + 4 \Rightarrow \int \frac{(v-4)^2+2(v-4)}{\sqrt v}\,\mathrm{d}v\)
+              \(\phantom{v = u + 4} = \int \left(v^{3/2}-6v^{1/2}+8v^{-1/2}\right)\mathrm{d}v\)
+              \(\phantom{v = u + 4} = \ldots\)
+            marks:
+              - code: M1
+                note: Writes the integrand as a sum of powers of \(v\) and integrates, raising at least one power by 1. Condone expansion slips.
+          - scheme: |
+              \(\left[\tfrac25 v^{5/2}-4v^{3/2}+16v^{1/2}\right]\)
+            marks:
+              - code: A1
+                note: oe, limits not required.
+          - scheme: |
+              \(\left(\tfrac25 \cdot 6^{5/2}-4\cdot 6^{3/2}+16\cdot 6^{1/2}\right)\)
+              \(\phantom{=} - \left(\tfrac25 \cdot 5^{5/2}-4\cdot 5^{3/2}+16\cdot 5^{1/2}\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes limits 5 and 6 in \(v\), or the original limits after substituting back, into their integral and subtracts.
+          - scheme: |
+              \(= \tfrac{32}{5}\sqrt6 - 6\sqrt5 = \frac{32\sqrt6-30\sqrt5}{5}\)
+            marks:
+              - code: A1 AG
+                note: Correct substituted expression leading without error to the printed result in exact surds; combined steps accepted. A decimal check alone earns nothing.
+  - q: 8
+    stamp: da3d66b4
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\mathrm{d}u = \frac23\operatorname{sech}^2 x\,\mathrm{d}x\), \(\tanh x = \frac32 u\)
+              \(\Rightarrow \int \frac{\frac32}{\sqrt{9 - 4\left(\frac32 u\right)^2}}\,\mathrm{d}u\)
+            marks:
+              - code: M1
+                note: Replaces \(\operatorname{sech}^2 x\,\mathrm{d}x\) by \(k\,\mathrm{d}u\) and \(\tanh x\) by a multiple of \(u\), giving an integral in \(u\) only. Condone slips in the constants.
+          - scheme: |
+              \(= \frac12\int \frac{1}{\sqrt{1 - u^2}}\,\mathrm{d}u\)
+            marks:
+              - code: A1
+                note: Correct integrand in \(u\), oe.
+          - scheme: |
+              \(= \frac12\arcsin u\)
+            marks:
+              - code: M1
+                note: Integrates their integral of the form \(\frac{p}{\sqrt{a^2 - b^2u^2}}\) to \(\lambda\arcsin(\mu u)\).
+              - code: A1
+          - scheme: |
+              \(x = 0 \Rightarrow u = 0\), \(x = 1 \Rightarrow u = \frac23\tanh 1\)
+              \(\frac12\arcsin\left(\frac23\tanh 1\right) - \frac12\arcsin 0\)
+            marks:
+              - code: dM1
+                note: Applies \(u\)-limits \(0\) and \(\frac23\tanh 1\) to their arcsin form, or substitutes back for \(u\) and applies \(0\) and \(1\).
+          - scheme: |
+              \(= \frac12\arcsin\left(\frac23\tanh 1\right)\ [\approx 0.266]\)
+            marks:
+              - code: A1
+                note: oe, or awrt 0.266.
+  - q: 9
+    stamp: d57f6d31
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(x = \frac{u^2-1}{2},\ \mathrm{d}x = u\,\mathrm{d}u\)
+              \(\int \frac{\frac12(u^2-1)}{2+u}\,u\,\mathrm{d}u\)
+            marks:
+              - code: M1
+                note: Replaces \(x\), \(\sqrt{2x+1}\) and \(\mathrm{d}x\) by expressions in \(u\), with \(\mathrm{d}x\) of the form \(ku\,\mathrm{d}u\).
+          - scheme: |
+              \(x = 0 \Rightarrow u = 1,\ x = \frac{15}{2} \Rightarrow u = 4\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(\int_1^4 \frac{u(u^2-1)}{2(u+2)}\,\mathrm{d}u\)
+            marks:
+              - code: A1 AG
+                note: Correct substituted integral leading without error to the printed integrand.
+      - part: b
+        rows:
+          - scheme: |
+              \(u^3 - u = (u+2)(au^2+bu+c) + d \Rightarrow \ldots\)
+            marks:
+              - code: M1
+                note: Divides \(u^3-u\) by \(u+2\) by any method, reaching a quadratic quotient and a constant remainder. Condone slips.
+          - scheme: |
+              \(\frac{u(u^2-1)}{2(u+2)} = \frac12\left(u^2-2u+3-\frac{6}{u+2}\right)\)
+            marks:
+              - code: A1
+                note: Or quotient \(u^2-2u+3\) and remainder \(-6\) stated.
+          - scheme: |
+              \(\frac12\left[\frac{u^3}{3}-u^2+3u-6\ln(u+2)\right]_1^4\)
+            marks:
+              - code: M1
+                note: Integrates their quotient and \(\frac{d}{u+2}\), with \(\frac{d}{u+2} \to d\ln(u+2)\) and at least one power increased by 1. Condone coefficient slips.
+          - scheme: |
+              \(\frac12\left[\left(\frac{52}{3}-6\ln 6\right)-\left(\frac73-6\ln 3\right)\right]\)
+              \(\ln 6 - \ln 3 = \ln 2 \Rightarrow \ldots\)
+            marks:
+              - code: dM1
+                note: Substitutes 4 and 1 into their integral, subtracts, and combines their logarithms into a single logarithm.
+          - scheme: |
+              \(\frac{15}{2} - 3\ln 2\)
+            marks:
+              - code: A1
+                note: cso. Or \(A = \frac{15}{2}\), \(B = 3\). Not for \(\frac{15}{2} - \ln 8\) or a decimal.
+  - q: 10
+    stamp: 0af7423c
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(u = 1 + \sin x \Rightarrow \mathrm{d}u = \cos x\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Uses an appropriate substitution such as \(u = 1 + \sin x\), replacing \(\cos x\,\mathrm{d}x\) by a multiple of \(\mathrm{d}u\).
+          - scheme: |
+              \(\cos 2x = 1 - 2(u - 1)^2\)
+              \(I = \int \frac{-2u^2 + 4u - 1}{u^{3/2}}\,\mathrm{d}u\)
+            marks:
+              - code: A1
+                note: Correct integrand wholly in \(u\), oe. Need not be expanded.
+          - scheme: |
+              \(\int \left(-2u^{1/2} + 4u^{-1/2} - u^{-3/2}\right)\mathrm{d}u\)
+            marks:
+              - code: M1
+                note: Divides their quadratic in \(u\) by \(u^{3/2}\) term by term and integrates, raising the power of at least one term by 1.
+          - scheme: |
+              \(= \left[-\tfrac43 u^{3/2} + 8u^{1/2} + 2u^{-1/2}\right]\)
+            marks:
+              - code: A1
+                note: oe, need not be simplified.
+          - scheme: |
+              \(\left(-\tfrac43\left(\tfrac32\right)^{3/2} + 8\left(\tfrac32\right)^{1/2} + 2\left(\tfrac32\right)^{-1/2}\right)\)
+              \(\phantom{=} - \left(-\tfrac43 + 8 + 2\right)\)
+            marks:
+              - code: dM1
+                note: Applies limits 1 and \(\frac32\) to their integral, or 0 and \(\frac{\pi}{6}\) after substituting back, subtracting the right way round.
+          - scheme: |
+              \(= -\tfrac{26}{3} + \tfrac{11}{3}\sqrt6\)
+            marks:
+              - code: A1
+                note: cso. In the form \(a + b\sqrt6\), or \(a = -\frac{26}{3}\), \(b = \frac{11}{3}\) stated; \(\frac{11\sqrt6 - 26}{3}\) alone scores A0.
+  - q: 11
+    stamp: 8354d5ab
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(x = 4\sin\theta \Rightarrow \mathrm{d}x = 4\cos\theta\,\mathrm{d}\theta\)
+              \(\int \frac{16\sin^2\theta}{\sqrt{16 - 16\sin^2\theta}}\,4\cos\theta\,\mathrm{d}\theta\)
+            marks:
+              - code: M1
+                note: Uses \(x = 4\sin\theta\) or \(x = 4\cos\theta\), replacing \(x^2\), the root and \(\mathrm{d}x\). Condone coefficient slips.
+          - scheme: |
+              \(16\int \sin^2\theta\,\mathrm{d}\theta\)
+            marks:
+              - code: A1
+                note: oe, such as \(16\cos^2\theta\) from \(x = 4\cos\theta\).
+          - scheme: |
+              \(8\int (1 - \cos 2\theta)\,\mathrm{d}\theta = \ldots\)
+            marks:
+              - code: M1
+                note: Uses \(\sin^2\theta = \frac12(1 - \cos 2\theta)\) and integrates to the form \(p\theta + q\sin 2\theta\). Condone sign and coefficient slips.
+          - scheme: |
+              \(8\left[\theta - \tfrac12\sin 2\theta\right]\)
+            marks:
+              - code: A1
+                note: oe, such as \(8\theta - 4\sin 2\theta\).
+          - scheme: |
+              \(x = 0 \Rightarrow \theta = 0\), \(x = 2\sqrt{2} \Rightarrow \theta = \frac{\pi}{4}\)
+              \(8\left(\frac{\pi}{4} - \frac12\sin\frac{\pi}{2}\right) - 8(0 - 0)\)
+            marks:
+              - code: dM1
+                note: Converts both limits to \(\theta\), or returns to \(x\), and subtracts. Not for the \(x\)-limits put into a function of \(\theta\).
+          - scheme: |
+              \(2\pi - 4\)
+            marks:
+              - code: A1
+                note: cso. Accept \(-4 + 2\pi\), or \(a = -4\), \(b = 2\).
+  - q: 12
+    stamp: '8358e480'
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(u = \tfrac32\tanh x\), \(\mathrm{d}u = \tfrac32\operatorname{sech}^2 x\,\mathrm{d}x\)
+              \(\Rightarrow \int \frac{\frac23}{\sqrt{4 - 9\left(\frac{2u}{3}\right)^2}}\,\mathrm{d}u\)
+            marks:
+              - code: M1
+                note: Substitutes for \(\tanh x\), such as \(u = k\tanh x\), replacing both \(\operatorname{sech}^2 x\,\mathrm{d}x\) and \(\tanh^2 x\) in the new variable. Condone coefficient slips.
+          - scheme: |
+              \(= \tfrac13\int \frac{1}{\sqrt{1-u^2}}\,\mathrm{d}u\)
+            marks:
+              - code: A1
+                note: Correct integrand for their substitution, oe such as \(\frac{1}{\sqrt{4-9u^2}}\) for \(u = \tanh x\).
+          - scheme: |
+              \(e^{2x} = 2+\sqrt3\)
+              \(\Rightarrow \tanh x = \frac{1+\sqrt3}{3+\sqrt3} = \frac{1}{\sqrt3}\)
+              \(\Rightarrow u = \frac{\sqrt3}{2}\)
+            marks:
+              - code: B1
+                note: Exact upper limit for their variable, from exponentials; \(\frac{1}{\sqrt3}\) for \(u = \tanh x\). Not from a calculator decimal alone.
+          - scheme: |
+              \(\tfrac13\arcsin u\)
+            marks:
+              - code: M1
+                note: Integrates their \(\frac{p}{\sqrt{a^2 - b^2u^2}}\) to \(k\arcsin(\lambda u)\). Condone coefficient slips.
+              - code: A1
+                note: oe in their variable, such as \(\frac13\arcsin\frac{3u}{2}\) for \(u = \tanh x\).
+          - scheme: |
+              \(\tfrac13\left(\arcsin\text{"}\tfrac{\sqrt3}{2}\text{"} - \arcsin 0\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits, in the variable of their integral, into their arcsin form and subtracts.
+          - scheme: |
+              \(\frac{\pi}{9}\)
+            marks:
+              - code: A1
+  - q: 13
+    stamp: a1e8d0f6
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(x = 2\sec\theta \Rightarrow \mathrm{d}x = 2\sec\theta\tan\theta\,\mathrm{d}\theta\)
+              \(\int \frac{\sqrt{4\sec^2\theta - 4}}{4\sec^2\theta}\,2\sec\theta\tan\theta\,\mathrm{d}\theta\)
+            marks:
+              - code: M1
+                note: Replaces \(x\), \(\mathrm{d}x\) and \(\sqrt{x^2-4}\), with \(\mathrm{d}x = k\sec\theta\tan\theta\,\mathrm{d}\theta\). Condone a slip in simplifying the root.
+          - scheme: |
+              \(\phantom{\int} = \int \frac{\tan^2\theta}{\sec\theta}\,\mathrm{d}\theta\)
+            marks:
+              - code: A1
+                note: oe, such as \(\frac{\sin^2\theta}{\cos\theta}\).
+          - scheme: |
+              \(\int (\sec\theta - \cos\theta)\,\mathrm{d}\theta = \ldots\)
+            marks:
+              - code: M1
+                note: Uses \(\tan^2\theta = \sec^2\theta - 1\) oe and integrates both terms, \(\sec\theta\) to any form of its standard integral. Condone sign and coefficient slips.
+          - scheme: |
+              \(\ln|\sec\theta + \tan\theta| - \sin\theta\)
+            marks:
+              - code: A1
+                note: oe
+          - scheme: |
+              \(\theta = 0,\ \tfrac{\pi}{3}\)
+              \(\left(\ln(2+\sqrt3) - \sin\tfrac{\pi}{3}\right) - (\ln 1 - \sin 0)\)
+            marks:
+              - code: dM1
+                note: Applies limits \(0\) and \(\frac{\pi}{3}\) to their integral and subtracts, or returns to \(x\) and uses \(2\) and \(4\).
+          - scheme: |
+              \(\ln(2+\sqrt3) - \tfrac{\sqrt3}{2}\)
+            marks:
+              - code: A1
+                note: cso. Accept simplified exact equivalents such as \(-\ln(2-\sqrt3) - \frac{\sqrt3}{2}\).
+        alt:
+          title: Substitution \(x = 2\cosh u\)
+          rows:
+            - scheme: |
+                \(x = 2\cosh u \Rightarrow \mathrm{d}x = 2\sinh u\,\mathrm{d}u\)
+                \(\int \frac{\sqrt{4\cosh^2 u - 4}}{4\cosh^2 u}\,2\sinh u\,\mathrm{d}u\)
+              marks:
+                - code: M1
+                  note: Replaces \(x\), \(\mathrm{d}x\) and \(\sqrt{x^2-4}\), with \(\mathrm{d}x = k\sinh u\,\mathrm{d}u\). Condone a slip in simplifying the root.
+            - scheme: |
+                \(\phantom{\int} = \int \tanh^2 u\,\mathrm{d}u\)
+              marks:
+                - code: A1
+                  note: oe, such as \(\frac{\sinh^2 u}{\cosh^2 u}\).
+            - scheme: |
+                \(\int (1 - \operatorname{sech}^2 u)\,\mathrm{d}u = \ldots\)
+              marks:
+                - code: M1
+                  note: Uses \(\tanh^2 u = 1 - \operatorname{sech}^2 u\) oe and integrates to the form \(pu + q\tanh u\). Condone sign and coefficient slips.
+            - scheme: |
+                \(u - \tanh u\)
+              marks:
+                - code: A1
+            - scheme: |
+                \(u = 0,\ \operatorname{arcosh}2 = \ln(2+\sqrt3)\)
+                \(\ln(2+\sqrt3) - \tanh\left(\operatorname{arcosh}2\right) - 0\)
+              marks:
+                - code: dM1
+                  note: Applies limits \(0\) and \(\operatorname{arcosh}2\) to their integral and subtracts, or returns to \(x\) and uses \(2\) and \(4\).
+            - scheme: |
+                \(\ln(2+\sqrt3) - \tfrac{\sqrt3}{2}\)
+              marks:
+                - code: A1
+                  note: cso. Accept simplified exact equivalents such as \(-\ln(2-\sqrt3) - \frac{\sqrt3}{2}\).
+  - q: 14
+    stamp: 6bd6853f
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\sin 3\theta = 3\sin\theta - 4\sin^3\theta\)
+              \(\phantom{\sin 3\theta} = \sin\theta\left(3 - 4(1 - \cos^2\theta)\right)\)
+            marks:
+              - code: M1
+                note: Uses a triple-angle or compound-angle expansion and \(\sin^2\theta = 1 - \cos^2\theta\) to write \(\sin 3\theta\) as \(\sin\theta\) times a function of \(\cos\theta\). Condone sign slips.
+          - scheme: |
+              \(\sin 3\theta = \sin\theta(4\cos^2\theta - 1)\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(u = \cos\theta \Rightarrow \mathrm{d}u = -\sin\theta\,\mathrm{d}\theta\)
+              \(\theta = 0 \Rightarrow u = 1\), \(\theta = \frac{\pi}{2} \Rightarrow u = 0\)
+            marks:
+              - code: M1
+                note: Uses \(u = \cos\theta\) with \(\mathrm{d}u = \pm\sin\theta\,\mathrm{d}\theta\) to reach an integral in \(u\) alone, and changes the limits or later returns to \(\theta\).
+          - scheme: |
+              \(\int_0^1 \frac{4u^2 - 1}{u + 2}\,\mathrm{d}u\)
+            marks:
+              - code: A1
+                note: oe such as \(-\int_1^0\); the sign from \(\mathrm{d}u\) and the order of the limits must be consistent.
+          - scheme: |
+              \(\frac{4u^2 - 1}{u + 2} = 4u - 8 + \frac{15}{u + 2}\)
+            marks:
+              - code: M1
+                note: Divides by \(u + 2\), or substitutes \(v = u + 2\), and integrates, including a term \(k\ln(u + 2)\). Condone coefficient slips.
+          - scheme: |
+              \(\left[2u^2 - 8u + 15\ln(u + 2)\right]_0^1\)
+            marks:
+              - code: A1
+          - scheme: |
+              \((2 - 8 + 15\ln 3) - 15\ln 2\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits into their integral and subtracts.
+          - scheme: |
+              \(= 15\ln\left(\frac{3}{2}\right) - 6\)
+            marks:
+              - code: A1 AG
+                note: Correct substituted expression leading without error to the printed result, logarithms combined.
+  - q: 15
+    stamp: a29cb83a
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(u = \sin\theta \Rightarrow \mathrm{d}u = \cos\theta\,\mathrm{d}\theta\)
+              \(\cos^5\theta = (1-u^2)^2\cos\theta\)
+            marks:
+              - code: M1
+                note: Uses \(u = \sin\theta\) with \(\mathrm{d}u = \cos\theta\,\mathrm{d}\theta\) and \(\cos^2\theta = 1 - u^2\) to reach an integrand in \(u\) only. Condone sign slips.
+          - scheme: |
+              \(\int_0^1 \frac{(1-u^2)^2}{2+u}\,\mathrm{d}u\)
+            marks:
+              - code: A1
+                note: Correct integral with limits 0 and 1, oe; numerator may be expanded.
+          - scheme: |
+              \(\frac{u^4-2u^2+1}{u+2} = \ldots + \frac{\ldots}{u+2}\)
+            marks:
+              - code: M1
+                note: Divides their quartic by \(u+2\), by any method, to a cubic quotient and a constant remainder. Condone slips.
+          - scheme: |
+              \(u^3-2u^2+2u-4+\frac{9}{u+2}\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\left[\frac{u^4}{4}-\frac{2u^3}{3}+u^2-4u+9\ln(u+2)\right]_0^1\)
+            marks:
+              - code: M1
+                note: Integrates their quotient, raising at least one power by 1, and their remainder \(\frac{k}{u+2}\) to \(k\ln(u+2)\).
+          - scheme: |
+              \(\left(\tfrac14-\tfrac23+1-4+9\ln 3\right)-9\ln 2\)
+            marks:
+              - code: dM1
+                note: Substitutes \(u = 1\) and \(u = 0\), or \(\theta = \frac{\pi}{2}\) and \(0\) after reversing the substitution, and subtracts.
+          - scheme: |
+              \(= 9\ln\left(\tfrac32\right) - \tfrac{41}{12}\)
+            marks:
+              - code: A1 AG
+                note: cso. Correct substituted expression, including \(9\ln 2\) from the lower limit, leading without error to the printed result.
