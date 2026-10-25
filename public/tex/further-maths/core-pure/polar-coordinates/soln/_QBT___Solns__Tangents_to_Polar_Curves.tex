@@ -4,7 +4,7 @@
 \djsSolnHeader{Tangents to Polar Curves}
 \djsSitePath{Core Pure}{Polar Coordinates}
 
-\djsLastUpdated{15 October 2026}
+\djsLastUpdated{25 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -30,28 +30,15 @@ Given that $O$ is the pole, find the exact length of the line $OP$. \marks{6}
 
 \vspace*{10pt}
 \begin{djsSolution}
-For a polar curve,
+For a polar curve:
 \[
 x=r\cos\theta,\qquad y=r\sin\theta
 \]
 
-so
+A tangent perpendicular to the initial line is vertical, so
 \[
-\frac{\mathrm{d}y}{\mathrm{d}x}
-=
-\frac{\dfrac{\mathrm{d}y}{\mathrm{d}\theta}}{\dfrac{\mathrm{d}x}{\mathrm{d}\theta}}
-=
-\frac{r'\sin\theta+r\cos\theta}{r'\cos\theta-r\sin\theta}
+\frac{\mathrm{d}x}{\mathrm{d}\theta}=0
 \]
-
-where \(r'=\frac{\mathrm{d}r}{\mathrm{d}\theta}\).
-
-A tangent perpendicular to the initial line is vertical, so \(\frac{\mathrm{d}y}{\mathrm{d}x}\) is undefined. Therefore
-\[
-r'\cos\theta-r\sin\theta=0
-\]
-
-with \(r'\sin\theta+r\cos\theta\neq 0\)
 
 Given
 \[
@@ -60,7 +47,12 @@ r=3\sin 2\theta
 
 we have
 \[
-r'=6\cos 2\theta
+\frac{\mathrm{d}r}{\mathrm{d}\theta}=6\cos 2\theta
+\]
+
+Differentiating \(x=r\cos\theta\) by the product rule:
+\[
+\frac{\mathrm{d}x}{\mathrm{d}\theta}=\frac{\mathrm{d}r}{\mathrm{d}\theta}\cos\theta-r\sin\theta
 \]
 
 Substituting into the vertical tangent condition gives
@@ -82,20 +74,13 @@ Then
 6\cos\theta(\cos^2\theta-2\sin^2\theta)&=0
 \end{align*}
 
-Using \(\sin^2\theta=1-\cos^2\theta\),
+Using \(\sin^2\theta=1-\cos^2\theta\):
 \begin{align*}
 6\cos\theta\bigl(\cos^2\theta-2(1-\cos^2\theta)\bigr)&=0\\
 6\cos\theta(3\cos^2\theta-2)&=0
 \end{align*}
 
-Since \(P\) is a non-pole point and \(0\leq \theta \leq \frac{\pi}{2}\), we must have
-\[
-0<\theta<\frac{\pi}{2}
-\]
-
-so \(\cos\theta\neq 0\)
-
-Hence
+The factor \(\cos\theta=0\) gives \(\theta=\frac{\pi}{2}\), where \(r=3\sin\pi=0\). This is the pole, but \(P\) is not the pole. Hence
 \[
 3\cos^2\theta-2=0
 \]
@@ -110,7 +95,7 @@ Also
 \sin^2\theta=1-\frac{2}{3}=\frac{1}{3}
 \]
 
-Because \(0<\theta<\frac{\pi}{2}\), both sine and cosine are positive, so
+Because \(0\leq\theta\leq\frac{\pi}{2}\), neither \(\sin\theta\) nor \(\cos\theta\) is negative, so
 \[
 \cos\theta=\sqrt{\frac{2}{3}},
 \qquad
@@ -121,21 +106,11 @@ Now
 \begin{align*}
 r&=3\sin 2\theta\\
 &=3(2\sin\theta\cos\theta)\\
-&=6\cdot \frac{1}{\sqrt{3}}\cdot \sqrt{\frac{2}{3}}\\
+&=6\times \frac{1}{\sqrt{3}}\times \sqrt{\frac{2}{3}}\\
 &=2\sqrt{2}
 \end{align*}
 
-Finally, check that the numerator is non-zero:
-\begin{align*}
-r'\sin\theta+r\cos\theta
-&=6\cos 2\theta\sin\theta+3\sin 2\theta\cos\theta\\
-&=6\left(\frac{1}{3}\right)\left(\frac{1}{\sqrt{3}}\right)
-+3\left(\frac{2\sqrt{2}}{3}\right)\left(\sqrt{\frac{2}{3}}\right)\\
-&=\frac{2}{\sqrt{3}}+\frac{4}{\sqrt{3}}\\
-&=\frac{6}{\sqrt{3}}=2\sqrt{3}\neq 0
-\end{align*}
-
-So the tangent is genuinely perpendicular to the initial line, and since \(OP=r\),
+The length \(OP\) is \(r\), so
 \[
 OP=2\sqrt{2}
 \]
@@ -160,17 +135,15 @@ Given that $O$ is the pole, find the exact length of the line $OP$. \marks{6}
 \vspace*{10pt}
 
 \begin{djsSolution}
-For a polar curve,
+For a polar curve:
 \[
-x=r\cos\theta,\qquad y=r\sin\theta,\qquad \frac{\mathrm{d}y}{\mathrm{d}x}=\frac{\mathrm{d}y/\mathrm{d}\theta}{\mathrm{d}x/\mathrm{d}\theta}
+x=r\cos\theta,\qquad y=r\sin\theta
 \]
 
-A tangent parallel to the initial line is horizontal, so its gradient is \(0\). Hence we require
+A tangent parallel to the initial line is horizontal, so
 \[
 \frac{\mathrm{d}y}{\mathrm{d}\theta}=0
 \]
-
-with \(\frac{\mathrm{d}x}{\mathrm{d}\theta}\neq 0\).
 
 Here
 \[
@@ -182,12 +155,7 @@ so
 \frac{\mathrm{d}r}{\mathrm{d}\theta}=6\cos 3\theta
 \]
 
-Now
-\[
-y=r\sin\theta
-\]
-
-so, by the product rule,
+Differentiating \(y=r\sin\theta\) by the product rule:
 \begin{align*}
 \frac{\mathrm{d}y}{\mathrm{d}\theta}
 &=\frac{\mathrm{d}r}{\mathrm{d}\theta}\sin\theta+r\cos\theta \\
@@ -204,54 +172,38 @@ Divide by \(2\):
 3\cos 3\theta \sin\theta+\sin 3\theta \cos\theta=0
 \]
 
-Using the product-to-sum identities,
+Using the triple-angle expansions:
 \[
-\sin\theta\cos 3\theta=\frac12(\sin 4\theta-\sin 2\theta),
+\cos 3\theta=4\cos^3\theta-3\cos\theta,
 \qquad
-\cos\theta\sin 3\theta=\frac12(\sin 4\theta+\sin 2\theta)
+\sin 3\theta=3\sin\theta-4\sin^3\theta
 \]
 
 So
 \begin{align*}
 0
-&=3\cdot \frac12(\sin 4\theta-\sin 2\theta)+\frac12(\sin 4\theta+\sin 2\theta) \\
-&=\frac12\bigl(4\sin 4\theta-2\sin 2\theta\bigr)
+&=3(4\cos^3\theta-3\cos\theta)\sin\theta+(3\sin\theta-4\sin^3\theta)\cos\theta \\
+&=\sin\theta\cos\theta\left(12\cos^2\theta-9+3-4\sin^2\theta\right) \\
+&=\sin\theta\cos\theta\left(12\cos^2\theta-6-4(1-\cos^2\theta)\right) \\
+&=\sin\theta\cos\theta\left(16\cos^2\theta-10\right)
 \end{align*}
 
-Hence
+The factor \(\sin\theta=0\) gives \(\theta=0\), where \(r=2\sin 0=0\). This is the pole, but \(P\) is not the pole. Also \(\cos\theta>0\) for \(0\leq\theta\leq\frac{\pi}{3}\). Hence
 \[
-2\sin 4\theta-\sin 2\theta=0
-\]
-
-Using \(\sin 4\theta=2\sin 2\theta \cos 2\theta\),
-\begin{align*}
-0&=2(2\sin 2\theta \cos 2\theta)-\sin 2\theta \\
-&=\sin 2\theta(4\cos 2\theta-1)
-\end{align*}
-
-At a non-pole point on this curve, \(0<\theta<\frac{\pi}{3}\), so \(0<2\theta<\frac{2\pi}{3}\), and therefore \(\sin 2\theta\neq 0\). Thus
-\[
-4\cos 2\theta-1=0
+16\cos^2\theta-10=0
 \]
 
 so
 \[
-\cos 2\theta=\frac14
+\cos^2\theta=\frac58
 \]
-
-Now use \(\cos 2\theta=2\cos^2\theta-1\):
-\begin{align*}
-2\cos^2\theta-1&=\frac14 \\
-2\cos^2\theta&=\frac54 \\
-\cos^2\theta&=\frac58
-\end{align*}
 
 Therefore
 \[
 \sin^2\theta=1-\frac58=\frac38
 \]
 
-Since \(0<\theta<\frac{\pi}{3}\), both \(\sin\theta\) and \(\cos\theta\) are positive, so
+Since \(0\leq\theta\leq\frac{\pi}{3}\), \(\sin\theta\) is not negative, so
 \[
 \sin\theta=\sqrt{\frac38}=\frac{\sqrt6}{4}
 \]
@@ -261,25 +213,15 @@ Now
 r=2\sin 3\theta
 \]
 
-and using \(\sin 3\theta=3\sin\theta-4\sin^3\theta\),
+and using \(\sin 3\theta=3\sin\theta-4\sin^3\theta\) again:
 \begin{align*}
 r
-&=2\left(3\cdot \frac{\sqrt6}{4}-4\left(\frac{\sqrt6}{4}\right)^3\right) \\
-&=2\left(\frac{3\sqrt6}{4}-4\cdot \frac{6\sqrt6}{64}\right) \\
+&=2\left(3\times \frac{\sqrt6}{4}-4\left(\frac{\sqrt6}{4}\right)^3\right) \\
+&=2\left(\frac{3\sqrt6}{4}-4\times \frac{6\sqrt6}{64}\right) \\
 &=2\left(\frac{3\sqrt6}{4}-\frac{3\sqrt6}{8}\right) \\
 &=2\left(\frac{3\sqrt6}{8}\right) \\
 &=\frac{3\sqrt6}{4}
 \end{align*}
-
-Finally, check that this really is a horizontal tangent:
-\begin{align*}
-\frac{\mathrm{d}x}{\mathrm{d}\theta}
-&=\frac{\mathrm{d}r}{\mathrm{d}\theta}\cos\theta-r\sin\theta \\
-&=6\cos 3\theta\cos\theta-2\sin 3\theta\sin\theta \\
-&=-3\neq 0
-\end{align*}
-
-So the tangent is genuinely parallel to the initial line.
 
 Hence the exact length of \(OP\) is
 \[
@@ -325,7 +267,7 @@ r = 2(1 + \cos \theta), \qquad -\pi \leq \theta \leq \pi
   intersects the curve $C_1$ at the pole $O$ and at the point $A$. The straight line drawn through $A$ perpendicular to the initial line intersects the part of $C_1$ above the initial line again at the point $B$. \\
   \begin{enumerate}[label=(\roman*)]
     \item Find the polar coordinates of $A$. \marks{4}
-    \item Show that the length of $OB$ is $\dfrac{6}{5}$. \marks{6}
+    \item Show that the length of $OB$ is $\frac{6}{5}$. \marks{6}
     \item Find the length of $AB$, giving your answer to three significant figures. \marks{3}
   \end{enumerate}
 \end{enumerate}
@@ -334,9 +276,9 @@ r = 2(1 + \cos \theta), \qquad -\pi \leq \theta \leq \pi
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Using the polar area formula,
+  \item Using the polar area formula:
 \[
-\text{Area}=\frac12\int_{-\pi}^{\pi} r^2\,\mathrm{d}\theta
+\text{Area}=\frac12\int_{\alpha}^{\beta} r^2\,\mathrm{d}\theta
 \]
 
 Here \(r=2(1+\cos\theta)\), so
@@ -345,7 +287,7 @@ Here \(r=2(1+\cos\theta)\), so
 =2\int_{-\pi}^{\pi}(1+2\cos\theta+\cos^2\theta)\,\mathrm{d}\theta
 \]
 
-Using \(\cos^2\theta=\frac{1+\cos 2\theta}{2}\),
+Using \(\cos^2\theta=\frac{1+\cos 2\theta}{2}\):
 \[
 \text{Area}
 =2\int_{-\pi}^{\pi}\left(1+2\cos\theta+\frac{1+\cos2\theta}{2}\right)\,\mathrm{d}\theta
@@ -365,8 +307,6 @@ At \(\theta=\pi\) and \(\theta=-\pi\), the sine terms are \(0\), so
 =6\pi
 \]
 
-Hence the area of the region bounded by \(C_1\) is \(6\pi\).
-
   \item
 \begin{enumerate}[label=(\roman*)]
 \item Since both curves have \(r\ge 0\) on the given ranges, any intersection away from the pole must occur for the same value of \(\theta\).
@@ -376,12 +316,12 @@ So we solve
 2(1+\cos\theta)=\sin\theta
 \]
 
-Squaring both sides,
+Squaring both sides:
 \[
 4(1+\cos\theta)^2=\sin^2\theta
 \]
 
-Using \(\sin^2\theta=1-\cos^2\theta\),
+Using \(\sin^2\theta=1-\cos^2\theta\):
 \[
 4(1+2\cos\theta+\cos^2\theta)=1-\cos^2\theta
 \]
@@ -422,16 +362,19 @@ So the polar coordinates of \(A\) are
 \left(\frac45,\ \arccos\left(-\frac35\right)\right)
 \]
 
-Equivalently, \(\theta\approx 126.9^\circ\).
-
 \item The line through \(A\) perpendicular to the initial line is a vertical line, so points \(A\) and \(B\) have the same \(x\)-coordinate.
 
-For \(A\),
+For a polar curve:
 \[
-x_A=r\cos\theta=\frac45\cdot\left(-\frac35\right)=-\frac{12}{25}
+x=r\cos\theta,\qquad y=r\sin\theta
 \]
 
-For a general point on \(C_1\),
+For \(A\):
+\[
+x_A=r\cos\theta=\frac45\times\left(-\frac35\right)=-\frac{12}{25}
+\]
+
+For a general point on \(C_1\):
 \[
 r=2(1+\cos\theta)
 \]
@@ -465,26 +408,26 @@ So
 c=-\frac35 \quad \text{or} \quad c=-\frac25
 \]
 
-The root \(c=-\frac35\) corresponds to \(A\), so for \(B\),
+The root \(c=-\frac35\) corresponds to \(A\), so for \(B\):
 \[
 \cos\theta=-\frac25
 \]
 
 Hence
 \[
-r_B=2\left(1-\frac25\right)=2\cdot\frac35=\frac65
+r_B=2\left(1-\frac25\right)=2\times\frac35=\frac65
 \]
 
-Since \(OB\) is the distance from the pole to \(B\),
+\(OB\) is the distance from the pole to \(B\), so
 \[
 OB=\frac65
 \]
 
 \item Since \(AB\) is vertical, its length is the difference between the \(y\)-coordinates of \(B\) and \(A\).
 
-For \(A\),
+For \(A\):
 \[
-y_A=r\sin\theta=\frac45\cdot\frac45=\frac{16}{25}
+y_A=r\sin\theta=\frac45\times\frac45=\frac{16}{25}
 \]
 
 For \(B\), we have \(\cos\theta=-\frac25\), and \(B\) is above the initial line, so
@@ -496,25 +439,15 @@ For \(B\), we have \(\cos\theta=-\frac25\), and \(B\) is above the initial line,
 
 Therefore
 \[
-y_B=r\sin\theta=\frac65\cdot\frac{\sqrt{21}}{5}
+y_B=r\sin\theta=\frac65\times\frac{\sqrt{21}}{5}
 =\frac{6\sqrt{21}}{25}
 \]
 
 So
 \[
 AB=y_B-y_A=\frac{6\sqrt{21}}{25}-\frac{16}{25}
-=\frac{6\sqrt{21}-16}{25}
+=\frac{6\sqrt{21}-16}{25}\approx 0.460\qquad\text{(3 s.f.)}
 \]
-\[
-AB\approx 0.460
-\]
-
-Hence
-\[
-AB=\frac{6\sqrt{21}-16}{25}\approx 0.460
-\]
-
-to three significant figures.
 \end{enumerate}
 \end{enumerate}
 \end{djsSolution}
@@ -582,13 +515,13 @@ Also shown are the tangents to $C$ that are parallel and perpendicular to the in
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Find the area of the finite region, shaded in the figure, enclosed by $C$. \marks{4} \\
   \item Find the values of $\theta$ for which the tangent to $C$ is parallel to the initial line. Hence find the polar coordinates of the points $A$ and $B$, where $ZY$ touches $C$. \marks{6} \\
-  \item Hence show that the length of $WZ$ is $\dfrac{9a}{4}$. \marks{2} \\
+  \item Hence show that the length of $WZ$ is $\frac{9a}{4}$. \marks{2} \\
 \end{enumerate}
-Given that the length of $WX$ is $\dfrac{3\sqrt{3}a}{2}$ \\
+Given that the length of $WX$ is $\frac{3\sqrt{3}a}{2}$ \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item find the area of the rectangle $WXYZ$. \marks{2} \\
 \end{enumerate}
-A logo is modelled by the cardioid $C$, where $a = 8\,\text{cm}$. The logo is cut from the rectangular card $WXYZ$, shown in the figure. \\
+A logo is modelled by the cardioid $C$, where $a = 8\,\mathrm{cm}$. The logo is cut from the rectangular card $WXYZ$, shown in the figure. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item Find a numerical value for the area of card wasted in making the logo. \marks{3} \\
 \end{enumerate}
@@ -597,9 +530,9 @@ A logo is modelled by the cardioid $C$, where $a = 8\,\text{cm}$. The logo is cu
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item For a polar curve \(r=f(\theta)\), the area enclosed is
+  \item Using the polar area formula:
   \[
-  \frac12\int r^2\,\mathrm{d}\theta
+  \text{Area}=\frac12\int_{\alpha}^{\beta} r^2\,\mathrm{d}\theta
   \]
 
   Here \(r=a(1+\sin\theta)\), and \(0\le \theta<2\pi\) traces the whole cardioid once, so
@@ -609,7 +542,7 @@ A logo is modelled by the cardioid $C$, where $a = 8\,\text{cm}$. The logo is cu
   &= \frac{a^2}{2}\int_0^{2\pi}\left(1+2\sin\theta+\sin^2\theta\right)\,\mathrm{d}\theta
   \end{align*}
 
-  Using \(\sin^2\theta=\frac{1-\cos 2\theta}{2}\),
+  Using \(\sin^2\theta=\frac{1-\cos 2\theta}{2}\):
   \begin{align*}
   \text{Area}
   &= \frac{a^2}{2}\int_0^{2\pi}\left(1+2\sin\theta+\frac{1-\cos 2\theta}{2}\right)\,\mathrm{d}\theta \\
@@ -623,29 +556,20 @@ A logo is modelled by the cardioid $C$, where $a = 8\,\text{cm}$. The logo is cu
   \frac{3\pi a^2}{2}
   \]
 
-  \item Let
+  \item For a polar curve:
   \[
   x=r\cos\theta,\qquad y=r\sin\theta
   \]
 
-  with
+  Here
   \[
   r=a(1+\sin\theta),\qquad \frac{\mathrm{d}r}{\mathrm{d}\theta}=a\cos\theta
   \]
 
-  Also,
-  \[
-  \frac{\mathrm{d}y}{\mathrm{d}x}
-  =
-  \frac{\frac{\mathrm{d}y}{\mathrm{d}\theta}}{\frac{\mathrm{d}x}{\mathrm{d}\theta}}
-  \]
-
-  A tangent parallel to the initial line is horizontal, so we need
+  A tangent parallel to the initial line is horizontal, so
   \[
   \frac{\mathrm{d}y}{\mathrm{d}\theta}=0
   \]
-
-  with \(\frac{\mathrm{d}x}{\mathrm{d}\theta}\neq 0\).
 
   Now
   \begin{align*}
@@ -668,12 +592,12 @@ A logo is modelled by the cardioid $C$, where $a = 8\,\text{cm}$. The logo is cu
   1+2\sin\theta=0
   \]
 
-  From \(\cos\theta=0\),
+  From \(\cos\theta=0\):
   \[
   \theta=\frac{\pi}{2},\ \frac{3\pi}{2}
   \]
 
-  From \(1+2\sin\theta=0\),
+  From \(1+2\sin\theta=0\):
   \[
   \sin\theta=-\frac12
   \]
@@ -683,7 +607,7 @@ A logo is modelled by the cardioid $C$, where $a = 8\,\text{cm}$. The logo is cu
   \theta=\frac{7\pi}{6},\ \frac{11\pi}{6}
   \]
 
-  At \(\theta=\frac{3\pi}{2}\),
+  At \(\theta=\frac{3\pi}{2}\):
   \[
   r=a(1+\sin\tfrac{3\pi}{2})=a(1-1)=0
   \]
@@ -700,7 +624,7 @@ A logo is modelled by the cardioid $C$, where $a = 8\,\text{cm}$. The logo is cu
   \theta=\frac{7\pi}{6},\ \frac{11\pi}{6}
   \]
 
-  At each of these,
+  At each of these:
   \[
   r=a\left(1+\sin\theta\right)=a\left(1-\frac12\right)=\frac a2
   \]
@@ -721,7 +645,7 @@ A logo is modelled by the cardioid $C$, where $a = 8\,\text{cm}$. The logo is cu
 
   so its \(y\)-coordinate is
   \[
-  y=r\sin\theta=2a\cdot 1=2a
+  y=r\sin\theta=2a\times 1=2a
   \]
 
   The lower horizontal tangent touches at \(A\) and \(B\), where \(r=\frac a2\) and \(\theta=\frac{7\pi}{6}\) or \(\frac{11\pi}{6}\), so
@@ -753,40 +677,25 @@ A logo is modelled by the cardioid $C$, where $a = 8\,\text{cm}$. The logo is cu
   &= \frac{27\sqrt3\,a^2}{8}
   \end{align*}
 
-  Therefore the area of rectangle \(WXYZ\) is
-  \[
-  \frac{27\sqrt3\,a^2}{8}
-  \]
-
-  \item When \(a=8\),
+  \item When \(a=8\):
   \begin{align*}
   \text{Area of rectangle}
   &= \frac{27\sqrt3\,a^2}{8} \\
-  &= \frac{27\sqrt3\cdot 8^2}{8} \\
-  &= 216\sqrt3 \ \text{cm}^2
+  &= \frac{27\sqrt3\times 8^2}{8} \\
+  &= 216\sqrt3\,\mathrm{cm}^2
   \end{align*}
 
-  From part (a),
+  From part (a):
   \begin{align*}
   \text{Area of cardioid}
   &= \frac{3\pi a^2}{2} \\
-  &= \frac{3\pi\cdot 8^2}{2} \\
-  &= 96\pi \ \text{cm}^2
+  &= \frac{3\pi\times 8^2}{2} \\
+  &= 96\pi\,\mathrm{cm}^2
   \end{align*}
 
-  So the wasted area is
-  \begin{align*}
-  216\sqrt3-96\pi \ \text{cm}^2
-  \end{align*}
-
-  Numerically,
+  So the area of card wasted is
   \[
-  216\sqrt3-96\pi \approx 72.5
-  \]
-
-  Therefore the area of card wasted is
-  \[
-  216\sqrt3-96\pi\ \text{cm}^2 \approx 72.5\ \text{cm}^2
+  \left(216\sqrt3-96\pi\right)\,\mathrm{cm}^2\approx 72.5\,\mathrm{cm}^2
   \]
 \end{enumerate}
 \end{djsSolution}
@@ -833,14 +742,14 @@ A logo is modelled by the cardioid $C$, where $a = 8\,\text{cm}$. The logo is cu
 
 The diagram above shows a sketch of the curve $C$ with equation
 \[
-r = 4(1 - \cos \theta) \qquad 0 \leq \theta \leq \frac{\pi}{2}
+r = 4(1 - \cos \theta), \qquad 0 \leq \theta \leq \frac{\pi}{2}
 \]
 \\
 The diagram above also shows the tangent to $C$ at the point $A$, where $A$ is not the pole. \\
 This tangent is perpendicular to the initial line. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Use differentiation to prove that the polar coordinates of $A$ are $\left(2, \dfrac{\pi}{3}\right)$. \marks{4} \\
+  \item Use differentiation to prove that the polar coordinates of $A$ are $\left(2, \frac{\pi}{3}\right)$. \marks{4} \\
 \end{enumerate}
 The finite region $R$, shown shaded in the diagram above, is bounded by $C$, the tangent at $A$ and the initial line. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
@@ -851,31 +760,20 @@ The finite region $R$, shown shaded in the diagram above, is bounded by $C$, the
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item For a polar curve,
+  \item For a polar curve:
 \[
-\frac{\mathrm{d}y}{\mathrm{d}x}
-=
-\frac{\dfrac{\mathrm{d}y}{\mathrm{d}\theta}}{\dfrac{\mathrm{d}x}{\mathrm{d}\theta}}
+x=r\cos\theta,\qquad y=r\sin\theta
+\]
+
+A tangent perpendicular to the initial line is vertical, so
+\[
+\frac{\mathrm{d}x}{\mathrm{d}\theta}=0
 \]
 
 Here
-\[
-x=r\cos\theta=4(1-\cos\theta)\cos\theta,
-\qquad
-y=r\sin\theta=4(1-\cos\theta)\sin\theta
-\]
-
-The initial line is the positive \(x\)-axis, so a tangent perpendicular to the initial line is a vertical tangent.  
-Therefore we need
-\[
-\frac{\mathrm{d}x}{\mathrm{d}\theta}=0
-\quad\text{and}\quad
-\frac{\mathrm{d}y}{\mathrm{d}\theta}\ne 0
-\]
-
-Now
 \begin{align*}
-x&=4(\cos\theta-\cos^2\theta) \\
+x&=4(1-\cos\theta)\cos\theta \\
+&=4(\cos\theta-\cos^2\theta) \\
 \frac{\mathrm{d}x}{\mathrm{d}\theta}
 &=4(-\sin\theta+2\sin\theta\cos\theta) \\
 &=4\sin\theta(2\cos\theta-1)
@@ -897,10 +795,10 @@ Since \(0\le \theta\le \frac{\pi}{2}\), this gives
 \[
 \theta=0
 \quad\text{or}\quad
-\cos\theta=\frac12 \Rightarrow \theta=\frac{\pi}{3}
+\cos\theta=\frac12\quad\Longrightarrow\quad\theta=\frac{\pi}{3}
 \]
 
-At \(\theta=0\),
+At \(\theta=0\):
 \[
 r=4(1-\cos 0)=4(1-1)=0
 \]
@@ -917,28 +815,12 @@ Now find \(r\):
 r=4\left(1-\cos\frac{\pi}{3}\right)=4\left(1-\frac12\right)=2
 \]
 
-To confirm the tangent is vertical, differentiate \(y\):
-\begin{align*}
-y&=4(1-\cos\theta)\sin\theta \\
-\frac{\mathrm{d}y}{\mathrm{d}\theta}
-&=4\left(\sin^2\theta+(1-\cos\theta)\cos\theta\right)
-\end{align*}
-
-At \(\theta=\frac{\pi}{3}\),
-\begin{align*}
-\frac{\mathrm{d}y}{\mathrm{d}\theta}
-&=4\left(\frac34+\frac12\cdot\frac12\right) \\
-&=4\left(\frac34+\frac14\right)=4\ne 0
-\end{align*}
-
-So the tangent is indeed perpendicular to the initial line there.
-
 Therefore the polar coordinates of \(A\) are
 \[
 \left(2,\frac{\pi}{3}\right)
 \]
 
-  \item Since \(A=\left(2,\frac{\pi}{3}\right)\), its Cartesian \(x\)-coordinate is
+  \item Since \(A\) has polar coordinates \(\left(2,\frac{\pi}{3}\right)\), its Cartesian \(x\)-coordinate is
 \[
 x_A=r\cos\theta=2\cos\frac{\pi}{3}=1
 \]
@@ -947,7 +829,7 @@ So the tangent at \(A\) is the vertical line \(x=1\).
 
 Hence the shaded region \(R\) is the area under the curve from \(O\) to \(A\), above the initial line, so
 \[
-A_R=\int y\,\mathrm{d}x
+\text{Area}(R)=\int y\,\mathrm{d}x
 =
 \int_0^{\pi/3} y\frac{\mathrm{d}x}{\mathrm{d}\theta}\,\mathrm{d}\theta
 \]
@@ -961,7 +843,7 @@ y=4(1-\cos\theta)\sin\theta,
 
 gives
 \[
-A_R
+\text{Area}(R)
 =
 16\int_0^{\pi/3}(1-\cos\theta)\sin^2\theta(2\cos\theta-1)\,\mathrm{d}\theta
 \]
@@ -976,7 +858,7 @@ Now use \(\sin^2\theta=1-\cos^2\theta\):
 
 Therefore
 \[
-A_R
+\text{Area}(R)
 =
 16\int_0^{\pi/3}
 \left(
@@ -998,7 +880,7 @@ so
 &=\frac18(3+4\cos2\theta+\cos4\theta)
 \end{align*}
 
-Also,
+Also
 \[
 \int \cos^3\theta\,\mathrm{d}\theta
 =
@@ -1009,7 +891,7 @@ Also,
 
 So
 \begin{align*}
-A_R
+\text{Area}(R)
 &=16\Biggl[
 \frac34\theta+\frac12\sin2\theta+\frac1{16}\sin4\theta
 -3\left(\sin\theta-\frac13\sin^3\theta\right)  \\
@@ -1039,12 +921,12 @@ Now substitute the limits:
 
 Hence
 \begin{align*}
-A_R
+\text{Area}(R)
 &=16\left[
 \left(\frac{\sqrt3}{2}\right)^3
-+\frac14\cdot\frac{\sqrt3}{2}
-+\frac1{16}\cdot\left(-\frac{\sqrt3}{2}\right)
--\frac34\cdot\frac{\pi}{3}
++\frac14\times\frac{\sqrt3}{2}
++\frac1{16}\times\left(-\frac{\sqrt3}{2}\right)
+-\frac34\times\frac{\pi}{3}
 \right] \\
 &=16\left[
 \frac{3\sqrt3}{8}
@@ -1059,10 +941,7 @@ A_R
 &=\frac12(15\sqrt3-8\pi)
 \end{align*}
 
-Therefore the exact area of \(R\) is
-\[
-\frac12(15\sqrt3-8\pi)
-\]
+as required.
 \end{enumerate}
 \end{djsSolution}
 
@@ -1118,7 +997,7 @@ r = 1 + 2\cos 2\theta, \qquad 0 \leq \theta \leq \frac{\pi}{3}
 At the point $P$ on $C$, the tangent to $C$ is parallel to the initial line. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Show that $P$ has polar coordinates $\left(2, \dfrac{\pi}{6}\right)$. \marks{4} \\
+  \item Show that $P$ has polar coordinates $\left(2, \frac{\pi}{6}\right)$. \marks{4} \\
 \end{enumerate}
 The point $A$ on $C$ has polar coordinates $(3, 0)$. \\
 
@@ -1131,31 +1010,19 @@ The finite region $R$, shown shaded in the figure above, is bounded by the arc $
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Using
+  \item For a polar curve:
 \[
 x=r\cos\theta,\qquad y=r\sin\theta
 \]
 
-with
-\[
-r=1+2\cos 2\theta
-\]
-
-we have
-\[
-\frac{\mathrm{d}y}{\mathrm{d}x}=\frac{\frac{\mathrm{d}y}{\mathrm{d}\theta}}{\frac{\mathrm{d}x}{\mathrm{d}\theta}}
-\]
-
-Since the tangent is parallel to the initial line, it is horizontal, so
+A tangent parallel to the initial line is horizontal, so
 \[
 \frac{\mathrm{d}y}{\mathrm{d}\theta}=0
-\qquad \text{and} \qquad
-\frac{\mathrm{d}x}{\mathrm{d}\theta}\neq 0
 \]
 
-First,
+Here
 \[
-\frac{\mathrm{d}r}{\mathrm{d}\theta}=-4\sin 2\theta
+r=1+2\cos 2\theta,\qquad \frac{\mathrm{d}r}{\mathrm{d}\theta}=-4\sin 2\theta
 \]
 
 Now
@@ -1191,26 +1058,11 @@ and in the given interval this gives
 
 Now find \(r\):
 \[
-r=1+2\cos\left(2\cdot \frac{\pi}{6}\right)
+r=1+2\cos\left(2\times \frac{\pi}{6}\right)
 =1+2\cos\frac{\pi}{3}
-=1+2\cdot \frac12
+=1+2\times \frac12
 =2
 \]
-
-Also,
-\[
-\frac{\mathrm{d}x}{\mathrm{d}\theta}
-=\frac{\mathrm{d}}{\mathrm{d}\theta}(r\cos\theta)
-=\frac{\mathrm{d}r}{\mathrm{d}\theta}\cos\theta-r\sin\theta
-\]
-
-and at \(\theta=\frac{\pi}{6}\),
-\[
-\frac{\mathrm{d}x}{\mathrm{d}\theta}
-=(-2\sqrt3)\cdot \frac{\sqrt3}{2}-2\cdot \frac12=-3-1=-4\neq 0
-\]
-
-so this does give a horizontal tangent.
 
 Therefore \(P\) has polar coordinates
 \[
@@ -1219,17 +1071,12 @@ Therefore \(P\) has polar coordinates
 
   \item Let \(Q\) be the point where the tangent at \(P\) meets the vertical line through \(A\).
 
-From part (a),
+From part (a), \(P\) has polar coordinates \(\left(2,\frac{\pi}{6}\right)\), so its Cartesian coordinates are
 \[
-P=\left(2,\frac{\pi}{6}\right)
+\left(2\cos\frac{\pi}{6},\,2\sin\frac{\pi}{6}\right)=(\sqrt3,1)
 \]
 
-so in Cartesian coordinates,
-\[
-P=\left(2\cos\frac{\pi}{6},\,2\sin\frac{\pi}{6}\right)=(\sqrt3,1)
-\]
-
-Also \(A=(3,0)\), since its polar coordinates are \((3,0)\).
+Also \(A\) has Cartesian coordinates \((3,0)\), since its polar coordinates are \((3,0)\).
 
 The tangent at \(P\) is parallel to the initial line, so it is
 \[
@@ -1241,17 +1088,14 @@ The line through \(A\) parallel to \(\theta=\frac{\pi}{2}\) is vertical, so it i
 x=3
 \]
 
-Hence
-\[
-Q=(3,1)
-\]
+Hence \(Q\) has Cartesian coordinates \((3,1)\).
 
 If the arc \(AP\) were replaced by the chord \(AP\), the region would be triangle \(AQP\). So
 \[
 \text{Area}(R)=\text{Area}(\triangle AQP)-\text{area between chord }AP\text{ and arc }AP
 \]
 
-First,
+First
 \[
 AQ=1,\qquad QP=3-\sqrt3
 \]
@@ -1268,7 +1112,12 @@ This is
 \text{Area of sector }OAP-\text{Area}(\triangle OAP)
 \]
 
-For the sector,
+Using the polar area formula:
+\[
+\text{Area}=\frac12\int_{\alpha}^{\beta} r^2\,\mathrm{d}\theta
+\]
+
+so
 \[
 \text{Area of sector }OAP=\frac12\int_0^{\pi/6} r^2\,\mathrm{d}\theta
 =\frac12\int_0^{\pi/6}(1+2\cos 2\theta)^2\,\mathrm{d}\theta
@@ -1288,19 +1137,19 @@ So
 &=\frac12\int_0^{\pi/6}\left(3+4\cos 2\theta+2\cos 4\theta\right)\,\mathrm{d}\theta \\
 &=\frac12\left[3\theta+2\sin 2\theta+\frac12\sin 4\theta\right]_0^{\pi/6} \\
 &=\frac12\left(\frac{\pi}{2}+2\sin\frac{\pi}{3}+\frac12\sin\frac{2\pi}{3}\right) \\
-&=\frac12\left(\frac{\pi}{2}+2\cdot \frac{\sqrt3}{2}+\frac12\cdot \frac{\sqrt3}{2}\right) \\
+&=\frac12\left(\frac{\pi}{2}+2\times \frac{\sqrt3}{2}+\frac12\times \frac{\sqrt3}{2}\right) \\
 &=\frac12\left(\frac{\pi}{2}+\sqrt3+\frac{\sqrt3}{4}\right) \\
 &=\frac{\pi}{4}+\frac{5\sqrt3}{8}
 \end{align*}
 
-For triangle \(OAP\),
+For triangle \(OAP\):
 \[
 OA=3,\qquad OP=2,\qquad \angle AOP=\frac{\pi}{6}
 \]
 
 so
 \[
-\text{Area}(\triangle OAP)=\frac12\cdot 3\cdot 2\cdot \sin\frac{\pi}{6}=\frac32
+\text{Area}(\triangle OAP)=\frac12\times 3\times 2\times \sin\frac{\pi}{6}=\frac32
 \]
 
 Hence the area between chord \(AP\) and arc \(AP\) is
@@ -1315,16 +1164,6 @@ Therefore
 &=\frac{3-\sqrt3}{2}+\frac32-\frac{\pi}{4}-\frac{5\sqrt3}{8} \\
 &=3-\frac{\pi}{4}-\frac{9\sqrt3}{8}
 \end{align*}
-
-So the exact area of \(R\) is
-\[
-3-\frac{\pi}{4}-\frac{9\sqrt3}{8}
-\]
-
-equivalently
-\[
-\frac{24-2\pi-9\sqrt3}{8}
-\]
 \end{enumerate}
 \end{djsSolution}
 
@@ -1414,7 +1253,7 @@ Let $\psi$ be the angle that $TPQ$ makes with the initial line. \\
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Let the Cartesian coordinates of \(P\) be \((x,y)\).  
-  Since \(P\) has polar coordinates \((r,\theta)\),
+  \(P\) has polar coordinates \((r,\theta)\), so
   \[
   x=r\cos\theta,\qquad y=r\sin\theta
   \]
@@ -1450,7 +1289,7 @@ Let $\psi$ be the angle that $TPQ$ makes with the initial line. \\
   r'=\frac{\mathrm{d}r}{\mathrm{d}\theta}
   \]
 
-  From part (a),
+  From part (a):
   \[
   \tan\psi=\frac{r'\sin\theta+r\cos\theta}{r'\cos\theta-r\sin\theta}
   \]
@@ -1486,17 +1325,16 @@ Let $\psi$ be the angle that $TPQ$ makes with the initial line. \\
   \]
 
   So
-  \begin{align*}
-  \frac{r}{\frac{\mathrm{d}r}{\mathrm{d}\theta}} &= \tan\alpha \\
-  \frac{\mathrm{d}r}{\mathrm{d}\theta} &= r\cot\alpha
-  \end{align*}
+  \[
+  r'=r\cot\alpha
+  \]
 
   This is a separable differential equation:
   \[
   \frac{1}{r}\,\mathrm{d}r=\cot\alpha\,\mathrm{d}\theta
   \]
 
-  Integrating,
+  Integrating:
   \begin{align*}
   \int \frac{1}{r}\,\mathrm{d}r &= \int \cot\alpha\,\mathrm{d}\theta \\
   \ln r &= (\cot\alpha)\theta + c
@@ -1519,10 +1357,7 @@ Let $\psi$ be the angle that $TPQ$ makes with the initial line. \\
   r &= 2e^{(\cot\alpha)\theta}
   \end{align*}
 
-  Therefore the polar equation of \(C\) is
-  \[
-  r = 2e^{(\cot \alpha)\theta}
-  \]
+  as required.
 \end{enumerate}
 \end{djsSolution}
 
@@ -1571,14 +1406,14 @@ Let $\psi$ be the angle that $TPQ$ makes with the initial line. \\
 \node at (Rpos) {$R$};
 \node[above left] at (-0.1,\yB) {$\ell_1$};
 \node[right] at (\xA,2.0) {$\ell_2$};
-\node[below right] at (7.8,0) {initial line};
+\node[below right] at (7.8,0) {Initial line};
 \end{tikzpicture}
 \end{figure}
 
 
 The figure above shows a sketch of the curve $C$ with equation
 \[
-r = \frac{6}{2 - \cos \theta} \qquad 0 \leq \theta \leq \pi
+r = \frac{6}{2 - \cos \theta}, \qquad 0 \leq \theta \leq \pi
 \]
 \\
 Given that $C$ meets the initial line at the point $A$, as shown in the figure above \\
@@ -1600,52 +1435,26 @@ The region $R$, shown shaded in the figure above, is bounded by $C$, $\ell_1$ an
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-\item On the initial line, \(\theta=0\).
+\item On the initial line, \(\theta=0\), so
 \[
 r=\frac{6}{2-\cos 0}=\frac{6}{2-1}=6
 \]
 
 So the polar coordinates of \(A\) are \((6,0)\).
 
-\item Using
+\item For a polar curve:
 \[
 x=r\cos\theta,\qquad y=r\sin\theta
 \]
 
-we have
-\[
-x=\frac{6\cos\theta}{2-\cos\theta},
-\qquad
-y=\frac{6\sin\theta}{2-\cos\theta}
-\]
-
-For a tangent parallel to the initial line, we need
-\[
-\frac{\mathrm{d}y}{\mathrm{d}x}=0
-\]
-
-and
-\[
-\frac{\mathrm{d}y}{\mathrm{d}x}
-=
-\frac{\dfrac{\mathrm{d}y}{\mathrm{d}\theta}}{\dfrac{\mathrm{d}x}{\mathrm{d}\theta}}
-\]
-
-Now differentiate \(x\) and \(y\) with respect to \(\theta\).
-\begin{align*}
-\frac{\mathrm{d}x}{\mathrm{d}\theta}
-&=
-\frac{(-6\sin\theta)(2-\cos\theta)-6\cos\theta(\sin\theta)}{(2-\cos\theta)^2} \\
-&=
-\frac{-12\sin\theta+6\sin\theta\cos\theta-6\sin\theta\cos\theta}{(2-\cos\theta)^2} \\
-&=
-\frac{-12\sin\theta}{(2-\cos\theta)^2}
-\end{align*}
-
-For \(0<\theta<\pi\), \(\sin\theta\neq 0\), so \(\frac{\mathrm{d}x}{\mathrm{d}\theta}\neq 0\).  
-Hence a horizontal tangent occurs when
+A tangent parallel to the initial line is horizontal, so
 \[
 \frac{\mathrm{d}y}{\mathrm{d}\theta}=0
+\]
+
+Here
+\[
+y=r\sin\theta=\frac{6\sin\theta}{2-\cos\theta}
 \]
 
 Now
@@ -1666,13 +1475,13 @@ Now
 So
 \[
 \frac{\mathrm{d}y}{\mathrm{d}\theta}=0
-\quad\Rightarrow\quad
+\quad\Longrightarrow\quad
 2\cos\theta-1=0
-\quad\Rightarrow\quad
+\quad\Longrightarrow\quad
 \cos\theta=\frac12
 \]
 
-Since \(0\leq \theta\leq \pi\),
+Since \(0\leq \theta\leq \pi\), this gives
 \[
 \theta=\frac{\pi}{3}
 \]
@@ -1689,15 +1498,20 @@ r=\frac{6}{2-\cos\left(\frac{\pi}{3}\right)}
 
 So the polar coordinates of \(B\) are
 \[
-(4,\tfrac{\pi}{3})
+\left(4,\frac{\pi}{3}\right)
 \]
 
-\item Start with the polar equation
+\item For a polar curve:
+\[
+x=r\cos\theta,\qquad y=r\sin\theta,\qquad r^2=x^2+y^2
+\]
+
+Start with the polar equation of \(C\):
 \[
 r=\frac{6}{2-\cos\theta}
 \]
 
-Rearranging,
+Rearranging:
 \[
 r(2-\cos\theta)=6
 \]
@@ -1712,7 +1526,7 @@ so
 2r=x+6
 \]
 
-Squaring both sides and using \(r^2=x^2+y^2\),
+Squaring both sides and using \(r^2=x^2+y^2\):
 \begin{align*}
 4r^2&=(x+6)^2 \\
 4(x^2+y^2)&=x^2+12x+36 \\
@@ -1738,12 +1552,12 @@ y=\frac{\sqrt{3}}{2}\sqrt{16-(x-2)^2}
 
 Now find the bounding lines.
 
-At \(A=(6,0)\), the tangent \(\ell_2\) is perpendicular to the initial line, so it is vertical:
+At \(A\), which has Cartesian coordinates \((6,0)\), the tangent \(\ell_2\) is perpendicular to the initial line, so it is vertical:
 \[
 \ell_2:\ x=6
 \]
 
-From part (b), \(B=(4,\pi/3)\), so in Cartesian coordinates
+From part (b), \(B\) has polar coordinates \(\left(4,\frac{\pi}{3}\right)\), so its Cartesian coordinates are given by
 \[
 x=4\cos\frac{\pi}{3}=2,
 \qquad
@@ -1773,32 +1587,18 @@ So
 \frac{\sqrt{3}}{2}\int_{2}^{6}\sqrt{16-(x-2)^2}\,\mathrm{d}x
 \end{align*}
 
-Let
+Now use the substitution \(x-2=4\sin t\). Then
 \[
-u=x-2
+\mathrm{d}x=4\cos t\,\mathrm{d}t
 \]
 
-Then when \(x=2\), \(u=0\), and when \(x=6\), \(u=4\). So
-\[
-\text{Area}(R)
-=
-8\sqrt{3}
--
-\frac{\sqrt{3}}{2}\int_{0}^{4}\sqrt{16-u^2}\,\mathrm{d}u
-\]
-
-Now use \(u=4\sin t\). Then
-\[
-\mathrm{d}u=4\cos t\,\mathrm{d}t
-\]
-
-and the limits become \(t=0\) to \(t=\frac{\pi}{2}\).
+and when \(x=2\), \(t=0\), and when \(x=6\), \(t=\frac{\pi}{2}\). So
 \begin{align*}
-\int_{0}^{4}\sqrt{16-u^2}\,\mathrm{d}u
+\int_{2}^{6}\sqrt{16-(x-2)^2}\,\mathrm{d}x
 &=
 \int_{0}^{\pi/2}\sqrt{16-16\sin^2 t}\,(4\cos t)\,\mathrm{d}t \\
 &=
-\int_{0}^{\pi/2}4\cos t\cdot 4\cos t\,\mathrm{d}t \\
+\int_{0}^{\pi/2}4\cos t\times 4\cos t\,\mathrm{d}t \\
 &=
 16\int_{0}^{\pi/2}\cos^2 t\,\mathrm{d}t \\
 &=
@@ -1824,15 +1624,7 @@ Therefore
 \sqrt{3}(8-2\pi)
 \end{align*}
 
-So the exact area is
-\[
-\sqrt{3}(8-2\pi)
-\]
-
-and therefore
-\[
-p=8,\qquad q=-2
-\]
+so the area is in the form \(\sqrt{3}(p+q\pi)\) with \(p=8\), \(q=-2\).
 \end{enumerate}
 \end{djsSolution}
 
