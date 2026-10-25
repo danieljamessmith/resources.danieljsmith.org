@@ -484,7 +484,7 @@ The `*.generated.ts` files **must not be hand-edited** — they're regenerated o
 | Tool | Notes |
 |------|-------|
 | Shell | PowerShell (`pwsh`). Chain with `;` not `&&`. Use `Select-Object -First N` not `head`, `Select-String` not `grep` (or use `rg`). |
-| Package manager | npm (Node ≥ 20) |
+| Package manager | npm (Node ≥ 26) |
 | Test runner | Vitest (`npm run test` → `vitest run`) — colocated `*.test.mjs` next to each script |
 | LaTeX build | `latexmk` — args mirrored between `.vscode/settings.json` and `scripts/compile-tex.mjs` |
 | TeX Live | Pinned in `texlive/`: `repository.txt` names one dated snapshot of the TeX Live 2026 package repository, and `packages.txt` the packages installed on top of the basic scheme. `texlive/install.sh` installs exactly that on Linux (cloud sessions, as root); `texlive/use-snapshot.ps1` points a Windows TeX Live 2026 at it. Move the snapshot date deliberately, then rebuild every deployed PDF and review the diff |

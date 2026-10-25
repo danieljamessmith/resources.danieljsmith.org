@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run check
+      - name: Check .tex files
+        run: node scripts/check-tex.mjs
+      - name: Check private terms
+        run: node scripts/check-private-terms.mjs
+        env:
+          PRIVATE_TERMS: ${{ secrets.PRIVATE_TERMS }}
+      - run: npm run build
