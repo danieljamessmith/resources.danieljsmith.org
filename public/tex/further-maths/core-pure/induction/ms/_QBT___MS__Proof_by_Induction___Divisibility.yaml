@@ -1,0 +1,318 @@
+format: 1
+pack: Proof by Induction - Divisibility
+last_updated: 25 October 2026
+questions:
+  - q: 1
+    stamp: c18ef207
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(n=1:\ 1^5-1=0\), divisible by 5
+            marks:
+              - code: B1
+                note: Needs the value 0 and a statement that it is divisible by 5, or true for \(n=1\).
+          - scheme: |
+              Assume true for \(n=k\): \(k^5-k=5m\)
+              Considers \((k+1)^5-(k+1)\)
+            marks:
+              - code: M1
+                note: States the assumption that \(k^5-k\) is divisible by 5 and considers the expression with \(n=k+1\).
+          - scheme: |
+              \((k+1)^5-(k+1)-(k^5-k)\)
+              \(\phantom{(}=(k^5+5k^4+\ldots+1)-(k+1)-(k^5-k)\)
+            marks:
+              - code: M1
+                note: Expands \((k+1)^5\) to six terms, condoning coefficient slips, and forms the difference, or another multiple of \(k^5-k\) subtracted, or rearranges to isolate \(k^5-k\).
+          - scheme: |
+              \(\phantom{(}=5k^4+10k^3+10k^2+5k\)
+            marks:
+              - code: A1
+                note: Or the correct equivalent expression for their route.
+          - scheme: |
+              \((k+1)^5-(k+1)\)
+              \(\phantom{(}=(k^5-k)+5(k^4+2k^3+2k^2+k)\)
+              \(\Rightarrow\) divisible by 5
+            marks:
+              - code: A1
+                note: cso. Needs the factor 5 shown and the assumption used for \(k^5-k\).
+          - scheme: |
+              True for \(n=1\); true for \(n=k\)
+              \(\Rightarrow\) true for \(n=k+1\)
+              \(\Rightarrow\) true for all positive integers \(n\)
+            marks:
+              - code: E1
+                note: States true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), hence true for all positive integers \(n\).
+  - q: 2
+    stamp: a8e016fa
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(u_1 = 5^2 - 2^1 = 23\)
+            marks:
+              - code: B1
+                note: \(u_1\) evaluated as 23, or \(25 - 2\); "true for \(n=1\)" alone is B0.
+          - scheme: |
+              Assume \(5^{2k} - 2^k = 23m\)
+              \(u_{k+1} = 5^{2(k+1)} - 2^{k+1}\)
+            marks:
+              - code: M1
+                note: Assumes \(u_k\) divisible by 23 and writes \(u_{k+1}\), or \(u_{k+1} - \lambda u_k\), in terms of \(k\).
+          - scheme: |
+              \(\phantom{u_{k+1}} = 25 \times 5^{2k} - 2 \times 2^k\)
+            marks:
+              - code: M1
+                note: Uses index laws to write \(u_{k+1}\) in terms of \(5^{2k}\) and \(2^k\). Condone one coefficient slip.
+          - scheme: |
+              \(\phantom{u_{k+1}} = 23 \times 5^{2k} + 2\left(5^{2k} - 2^k\right)\)
+            marks:
+              - code: A1
+                note: oe, e.g. \(25\left(5^{2k}-2^k\right) + 23 \times 2^k\), or \(u_{k+1} - 2u_k = 23 \times 5^{2k}\).
+          - scheme: |
+              \(\phantom{u_{k+1}} = 23 \times 5^{2k} + 2(23m)\)
+              \(\phantom{u_{k+1}} = 23\left(5^{2k} + 2m\right)\)
+            marks:
+              - code: A1
+                note: 'cso. Uses the hypothesis to show \(u_{k+1}\) is a multiple of 23: factor 23 explicit, or each term stated divisible by 23.'
+          - scheme: |
+              True for \(n = 1\); true for \(n = k\) \(\Rightarrow\) true for \(n = k+1\); so true for all \(n \in \mathbb{Z}^+\)
+            marks:
+              - code: E1
+                note: 'States all three points: true for \(n=1\), truth for \(n=k\) implies truth for \(n=k+1\), so true for all positive integers \(n\).'
+  - q: 3
+    stamp: 3b80fb33
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(n=1:\ 9-8-1=0\), divisible by 64
+            marks:
+              - code: B1
+                note: Needs the value 0 and a statement that it is divisible by 64, or \(0=64\times0\).
+          - scheme: |
+              Assume \(9^k-8k-1=64m\)
+              Considers \(9^{k+1}-8(k+1)-1\)
+            marks:
+              - code: M1
+                note: States the assumption for \(n=k\) and writes the expression for \(n=k+1\). Not for assuming the result for \(n=k+1\).
+          - scheme: |
+              \(9^{k+1}-8(k+1)-1=9\times 9^k-8k-9\)
+              \(\phantom{9^{k+1}-8(k+1)-1}=9(9^k-8k-1)+\ldots\)
+            marks:
+              - code: M1
+                note: Uses \(9^{k+1}=9\times9^k\) and relates the result to \(9^k-8k-1\) or \(64m\), e.g. by substituting \(9^k=64m+8k+1\) or forming a difference with the \(n=k\) expression. Condone slips.
+          - scheme: |
+              \(\phantom{9^{k+1}-8(k+1)-1}=9(9^k-8k-1)+64k\)
+            marks:
+              - code: A1
+                note: Correct expression, oe such as \(9(64m+8k+1)-8k-9\).
+          - scheme: |
+              \(\phantom{9^{k+1}-8(k+1)-1}=9(64m)+64k\)
+              \(\phantom{9^{k+1}-8(k+1)-1}=64(9m+k)\)
+            marks:
+              - code: A1
+                note: cso. Shown as 64 times an integer expression, or both terms identified as multiples of 64.
+          - scheme: |
+              True for \(n=1\); true for \(n=k\Rightarrow\) true for \(n=k+1\)
+              so true for all positive integers \(n\)
+            marks:
+              - code: E1
+                note: 'Concludes, naming: true for \(n=1\); true for \(n=k\) implies true for \(n=k+1\); so true for all positive integers \(n\).'
+  - q: 4
+    stamp: 0c6d84bc
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(n=0\): \(2^0+2\times3^0+4^1=7\)
+            marks:
+              - code: B1
+                note: Evaluation to 7 shown. Checking \(n=1\) alone does not score.
+          - scheme: |
+              Assumes \(2^k+2\times3^{2k}+4^{2k+1}=7m\)
+              \(n=k+1\): \(2^{k+1}+2\times3^{2k+2}+4^{2k+3}\)
+            marks:
+              - code: M1
+                note: States the assumption for \(n=k\) and writes the expression with \(n=k+1\) substituted.
+          - scheme: |
+              \(= 2\times2^k+18\times3^{2k}+16\times4^{2k+1}\)
+            marks:
+              - code: M1
+                note: Writes each term of the \(n=k+1\) expression, or of a combination such as its difference from the \(n=k\) expression, as a multiple of \(2^k\), \(3^{2k}\) or \(4^{2k+1}\). Condone a coefficient slip.
+          - scheme: |
+              \(= 2\left(2^k+2\times3^{2k}+4^{2k+1}\right)\)
+              \(\phantom{=}+14\times3^{2k}+14\times4^{2k+1}\)
+            marks:
+              - code: A1
+                note: 'oe: a multiple of the \(n=k\) expression plus terms with a visible factor 7, or with one power replaced using the assumption.'
+          - scheme: |
+              \(= 14m+14\left(3^{2k}+4^{2k+1}\right)\)
+              \(= 7\left(2m+2\times3^{2k}+2\times4^{2k+1}\right)\)
+            marks:
+              - code: A1
+                note: cso. The \(n=k+1\) expression as 7 times an integer expression, or a sum of multiples of 7, with the assumption applied.
+          - scheme: |
+              True for \(n=0\)
+              True for \(n=k\) \(\Rightarrow\) true for \(n=k+1\)
+              \(\Rightarrow\) true for all non-negative integers \(n\)
+            marks:
+              - code: E1
+                note: States true for \(n=0\), true for \(n=k\) implies true for \(n=k+1\), so true for all non-negative integers \(n\). Condone "for all \(n\)".
+  - q: 5
+    stamp: 283b73e6
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(n=1: 7^1-6(1)-1=0\), divisible by 36
+            marks:
+              - code: B1
+                note: Needs the value 0 and a statement that it is divisible by 36, or \(0=36\times0\).
+          - scheme: |
+              Assume \(7^k-6k-1=36m\)
+              \(n=k+1: 7^{k+1}-6(k+1)-1\)
+            marks:
+              - code: M1
+                note: States the assumption for \(n=k\), in words or as \(=36m\), and writes the expression with \(n=k+1\).
+          - scheme: |
+              \(7^{k+1}-6(k+1)-1=7\times7^k-6k-7\)
+              \(\phantom{7^{k+1}-6(k+1)-1}=7(7^k-6k-1)+\ldots\)
+            marks:
+              - code: M1
+                note: Writes \(7^{k+1}\) as \(7\times7^k\) and expresses the \(n=k+1\) expression using \(7^k-6k-1\) or \(36m\), or subtracts a multiple of it. Condone slips in the remainder.
+          - scheme: |
+              \(\phantom{7^{k+1}-6(k+1)-1}=7(7^k-6k-1)+36k\)
+            marks:
+              - code: A1
+                note: Correct unsimplified expression, oe such as a correct difference equal to \(36k\).
+          - scheme: |
+              \(\phantom{7^{k+1}-6(k+1)-1}=7(36m)+36k=36(7m+k)\)
+            marks:
+              - code: A1
+                note: Factor of 36 shown, or every term stated to be a multiple of 36, using the assumption.
+          - scheme: |
+              True for \(n=1\); true for \(n=k\) \(\Rightarrow\) true for \(n=k+1\); so true for all \(n\in\mathbb{Z}^+\)
+            marks:
+              - code: E1
+                note: States true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), and hence true for all positive integers \(n\).
+  - q: 6
+    stamp: '15405702'
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(f(1) = 9 - 8 + 63 = 64\)
+            marks:
+              - code: B1
+                note: 64 must be seen; \(f(1)\) stated divisible by 64 without its value is B0.
+          - scheme: |
+              Assume \(9^k - 8k + 63 = 64m\)
+              \(f(k+1) = 9^{k+1} - 8(k+1) + 63\)
+            marks:
+              - code: M1
+                note: States the assumption for \(n = k\) and substitutes \(k+1\) into \(f\). Not for assuming the result for \(n = k+1\).
+          - scheme: |
+              \(f(k+1) = 9 \times 9^k - 8k + 55\)
+              \(\phantom{f(k+1)} = 9(9^k - 8k + 63) + \ldots\)
+            marks:
+              - code: M1
+                note: Writes \(9^{k+1}\) as \(9 \times 9^k\) and expresses \(f(k+1)\) in terms of \(f(k)\), or forms \(f(k+1) - 9f(k)\) oe. Condone arithmetic slips.
+          - scheme: |
+              \(f(k+1) = 9(9^k - 8k + 63) + 64k - 512\)
+            marks:
+              - code: A1
+                note: oe, unsimplified accepted, such as \(f(k+1) - 9f(k) = 64k - 512\).
+          - scheme: |
+              \(f(k+1) = 9(64m) + 64(k-8)\)
+              \(\phantom{f(k+1)} = 64(9m + k - 8)\)
+            marks:
+              - code: A1
+                note: cso. Every term shown to be a multiple of 64, with \(f(k+1)\) stated divisible by 64.
+          - scheme: |
+              True for \(n = 1\);
+              true for \(n = k \Rightarrow\) true for \(n = k+1\);
+              so true for all \(n \geq 1\)
+            marks:
+              - code: E1
+                note: 'States all three points: true for \(n = 1\), true for \(k\) implies true for \(k+1\), so true for all \(n \geq 1\).'
+  - q: 7
+    stamp: a4ac86ee
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(n=1\colon 7^2+8\times 13-9 = 144 = 36\times 4\)
+            marks:
+              - code: B1
+                note: Shows 144 and that it is a multiple of 36.
+          - scheme: |
+              Assumes \(7^{2k}+8\times 13^k-9 = 36m\)
+              \(n=k+1\colon 7^{2k+2}+8\times 13^{k+1}-9\)
+            marks:
+              - code: M1
+                note: States the assumption for \(n=k\) and writes the expression with \(n=k+1\). Condone divisibility assumed in words.
+          - scheme: |
+              \(\phantom{n} = 49\times 7^{2k}+104\times 13^k-9\)
+              \(\phantom{n} = 13(7^{2k}+8\times 13^k-9)+\ldots\)
+            marks:
+              - code: M1
+                note: Uses index laws and rearranges in terms of the \(n=k\) expression, or forms the \(n=k+1\) expression minus a multiple of it. Condone arithmetic slips.
+          - scheme: |
+              \(\phantom{n} = 13(7^{2k}+8\times 13^k-9)+36(7^{2k}+3)\)
+            marks:
+              - code: A1
+                note: Correct, unsimplified, oe such as \(49(7^{2k}+8\times 13^k-9)-36(8\times 13^k-12)\).
+          - scheme: |
+              \(\phantom{n} = 36(13m+7^{2k}+3)\)
+            marks:
+              - code: A1
+                note: Uses the assumption to show a multiple of 36, by a factor of 36 shown or each term stated divisible by 36.
+          - scheme: |
+              True for \(n=1\); true for \(n=k\)
+              \(\Rightarrow\) true for \(n=k+1\); so true for all
+              positive integers \(n\)
+            marks:
+              - code: E1
+                note: 'Concludes with all three: true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), and so true for all positive integers \(n\).'
+  - q: 8
+    stamp: 1bfdfc9e
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(n=1: 13+12+11=36=12\times3\)
+            marks:
+              - code: B1
+                note: Needs 36 shown as a multiple of 12, or stated divisible by 12.
+          - scheme: |
+              Assumes \(13^k+3\times4^k+11=12m\)
+              Considers \(13^{k+1}+3\times4^{k+1}+11\)
+            marks:
+              - code: M1
+                note: States the assumption for \(n=k\) and writes the expression for \(n=k+1\). Not for the \(n=k+1\) expression alone.
+          - scheme: |
+              \((13^{k+1}+3\times4^{k+1}+11)\)
+              \(\phantom{=}-(13^k+3\times4^k+11)\)
+              \(=13^k(13-1)+3\times4^k(4-1)\)
+            marks:
+              - code: M1
+                note: Subtracts the \(n=k\) expression, or any multiple of it, from the \(n=k+1\) expression and writes \(13^{k+1}\), \(4^{k+1}\) in terms of \(13^k\), \(4^k\). Condone slips.
+          - scheme: |
+              \(=12\times13^k+9\times4^k\)
+            marks:
+              - code: A1
+                note: Or the correct simplified result for another multiple subtracted.
+          - scheme: |
+              \(13^{k+1}+3\times4^{k+1}+11\)
+              \(\phantom{1}=12m+12\times13^k+12(3\times4^{k-1})\)
+              \(\phantom{1}=12(m+13^k+3\times4^{k-1})\)
+            marks:
+              - code: A1
+                note: cso. Shows \(9\times4^k\) as a multiple of 12 and uses the hypothesis to write the \(n=k+1\) expression as 12 times an integer.
+          - scheme: |
+              True for \(n=1\); true for \(n=k\Rightarrow\) true for \(n=k+1\)
+              so true for all \(n\in\mathbb{Z}^+\)
+            marks:
+              - code: E1
+                note: Concludes with true for \(n=1\), true for \(n=k\) implies true for \(n=k+1\), and so true for all positive integers \(n\).

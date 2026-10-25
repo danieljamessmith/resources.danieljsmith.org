@@ -1012,6 +1012,16 @@ const rawResources: Resource[] = [
     topic: 'Proof by Induction',
   },
   {
+    id: 'fm-induction-divisibility-ms',
+    title: 'Proof by Induction - Divisibility',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/induction/ms/_QBT___MS__Proof_by_Induction___Divisibility.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-induction-divisibility',
+    topic: 'Proof by Induction',
+  },
+  {
     id: 'fm-induction-derivatives',
     title: 'Proof by Induction - Derivatives',
     description: '',
