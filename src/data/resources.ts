@@ -563,6 +563,16 @@ const rawResources: Resource[] = [
     topic: 'Further Calculus',
   },
   {
+    id: 'fm-further-integration-by-parts-ms',
+    title: 'Integration by Parts',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/further-calculus/ms/_QBT___MS__Integration_by_Parts__FM_Level_.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-further-integration-by-parts',
+    topic: 'Further Calculus',
+  },
+  {
     id: 'fm-further-integration-by-substitution',
     title: 'Integration by Substitution',
     description: '',

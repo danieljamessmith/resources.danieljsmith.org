@@ -1,0 +1,332 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/markscheme_preamble.tex}
+
+\djsSchemeHeader{Integration by Parts}
+\djsSitePath{Core Pure}{Further Calculus}
+
+\djsLastUpdated{25 October 2026}
+\begin{document}
+\djsSetQuestionCount{15}
+\djsAddMarks{1}{5}
+\djsAddMarks{2}{6}
+\djsAddMarks{3}{7}
+\djsAddMarks{4}{5}
+\djsAddMarks{5}{7}
+\djsAddMarks{6}{7}
+\djsAddMarks{7}{7}
+\djsAddMarks{8}{9}
+\djsAddMarks{9}{9}
+\djsAddMarks{10}{6}
+\djsAddMarks{11}{6}
+\djsAddMarks{12}{6}
+\djsAddMarks{13}{6}
+\djsAddMarks{14}{7}
+\djsAddMarks{15}{12}
+\vspace*{6pt}
+\djsContentsTitle
+\vspace{30pt}
+\msContentsHeading
+\begin{mscontents}{}
+Question & Marks by part & Marks & Page \\
+\msContentsQuestion{1} & & 5 & \msContentsPage{1} \\
+\msContentsQuestion{2} & (a)\,2\msSep (b)\,4 & 6 & \msContentsPage{2} \\
+\msContentsQuestion{3} & & 7 & \msContentsPage{3} \\
+\msContentsQuestion{4} & & 5 & \msContentsPage{4} \\
+\msContentsQuestion{5} & (a)\,2\msSep (b)\,5 & 7 & \msContentsPage{5} \\
+\msContentsQuestion{6} & (a)\,5\msSep (b)\,2 & 7 & \msContentsPage{6} \\
+\msContentsQuestion{7} & (a)\,5\msSep (b)\,2 & 7 & \msContentsPage{7} \\
+\msContentsQuestion{8} & (a)\,3\msSep (b)\,5\msSep (c)\,1 & 9 & \msContentsPage{8} \\
+\msContentsQuestion{9} & (a)\,3\msSep (b)\,5\msSep (c)\,1 & 9 & \msContentsPage{9} \\
+\msContentsQuestion{10} & & 6 & \msContentsPage{10} \\
+\msContentsQuestion{11} & & 6 & \msContentsPage{11} \\
+\msContentsQuestion{12} & & 6 & \msContentsPage{12} \\
+\msContentsQuestion{13} & (a)\,2\msSep (b)\,4 & 6 & \msContentsPage{13} \\
+\msContentsQuestion{14} & (a)\,2\msSep (b)\,5 & 7 & \msContentsPage{14} \\
+\msContentsQuestion{15} & (i)\,1\msSep (ii)\,3\msSep (iii)\,8 & 12 & \msContentsPage{15} \\
+\SetCell[c=2]{r} Total & & 105 & \\
+\end{mscontents}
+\newpage
+\input{../../../../_shared/markscheme_conventions.tex}
+
+\msQuestion{1}
+\begin{msscheme}{
+  hline{3-5} = {2-Z}{0.4pt, msGrid},
+  hline{6} = {0.4pt, msGrid},
+  row{6} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+1 & {\(I = \left[\frac23 x^{3/2}\ln\left(\frac9x\right)\right]_1^9\)\\[4pt] \(\phantom{I} - \int_1^9 \frac23 x^{3/2}\left(-\frac1x\right)\mathrm{d}x\)} & M1 A1 & {\msNote{M1}{Integrates \(\sqrt{x}\) and differentiates the logarithm, reaching \(px^{3/2}\ln\left(\frac9x\right) \pm \int qx^{1/2}\,\mathrm{d}x\), oe after splitting the logarithm. Condone coefficient slips.}\\ \msNote{A1}{Correct, oe. Limits not needed.}} \\
+& {\(\frac23\int x^{1/2}\,\mathrm{d}x = \frac49 x^{3/2}\)} & A1 & \\
+& {\(I = \left(\frac23(27)\ln 1 + \frac49(27)\right)\)\\[4pt] \(\phantom{I =} - \left(\frac23\ln 9 + \frac49\right)\)} & dM1 & {Substitutes 9 and 1 into their integrated expression and subtracts, upper minus lower.} \\
+& {\(I = \frac{104}{9} - \frac43\ln 3\)} & A1 & {cso, or \(a = \frac{104}{9}\), \(b = -\frac43\) stated. Not for \(\ln 9\) left in the answer.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 1 & & 5 & \\
+\end{msscheme}
+
+\msQuestion{2}
+\begin{msscheme}{
+  hline{3-4,6-8} = {2-Z}{0.4pt, msGrid},
+  hline{5,9} = {0.4pt, msGrid},
+  row{9} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+2(a) & {\(\frac{\mathrm{d}y}{\mathrm{d}x} = \frac{1}{1+\left(\frac{x-2}{x+2}\right)^2}\)\\[4pt] \(\phantom{\frac{\mathrm{d}y}{\mathrm{d}x} =} \times \frac{(x+2)-(x-2)}{(x+2)^2}\)} & M1 & {Uses \(\frac{1}{1+w^2}\) times an attempt at the derivative of \(\frac{x-2}{x+2}\) by quotient or product rule, or differentiates \(\tan y = \frac{x-2}{x+2}\) implicitly. Condone sign slips.} \\
+& {\(= \frac{2}{x^2+4}\)} & A1 & {Simplified. Not for an unsimplified form such as \(\frac{4}{2x^2+8}\).} \\
+\nopagebreak & & [2] & \\
+2(b) & {\(u = \arctan\left(\frac{x-2}{x+2}\right)\), \(v = x\)\\[4pt] \(I = x\arctan\left(\frac{x-2}{x+2}\right) - \int \frac{2x}{x^2+4}\,\mathrm{d}x\)} & M1 A1 & {\msNote{M1}{Uses parts with \(v = x\), reaching \(x\arctan\left(\frac{x-2}{x+2}\right) - \int x \times\) their (a) \(\mathrm{d}x\), their (a) any derivative found there. Condone a sign slip.}\\ \msNote{A1}{oe.}} \\
+& {\(\int \frac{2x}{x^2+4}\,\mathrm{d}x = \ln(x^2+4)\)} & M1 & {Integrates their \(\frac{kx}{x^2+4}\) to \(\lambda\ln(x^2+4)\), by substitution or inspection.} \\
+& {\(I = x\arctan\left(\frac{x-2}{x+2}\right) - \ln(x^2+4) + c\)} & A1 & {oe, including \(+\,c\).} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 2 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{3}
+\begin{msscheme}{
+  hline{3-6} = {2-Z}{0.4pt, msGrid},
+  hline{7} = {0.4pt, msGrid},
+  row{7} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+3 & {\(\left[\tfrac{x^3}{3}\ln(1+x)\right]_0^2\)\\[4pt] \(\phantom{A} - \int_0^2 \frac{x^3}{3(1+x)}\,\mathrm{d}x\)} & M1 A1 & {\msNote{M1}{Uses parts with \(u = \ln(1+x)\), reaching the form \(kx^3\ln(1+x) - \int \frac{mx^3}{1+x}\,\mathrm{d}x\). Condone coefficient slips.}\\ \msNote{A1}{Limits need not appear yet.}} \\
+& {\(\frac{x^3}{1+x} = x^2 - x + 1 - \frac{1}{1+x}\)} & M1 A1 & {\msNote{M1}{Divides \(x^3\) by \(1+x\), or writes \(x^3\) in powers of \(1+x\), reaching a quadratic plus \(\frac{k}{1+x}\). Condone coefficient slips.}} \\
+& {\(\int \frac{x^3}{1+x}\,\mathrm{d}x = \frac{x^3}{3} - \frac{x^2}{2} + x - \ln(1+x)\)} & A1 & {With or without the factor \(\frac13\).} \\
+& {\(\tfrac83\ln 3 - \tfrac13\left(\tfrac83 - 2 + 2 - \ln 3\right) - 0\)} & dM1 & {Substitutes \(x = 2\) and \(x = 0\), or the limits after a substitution, into both their \(uv\) term and their integral, and subtracts.} \\
+& {\(= 3\ln 3 - \frac89\), so \(a = -\frac89\), \(b = 3\)} & A1 & {cso. \(3\ln 3 - \frac89\) oe, or \(a\) and \(b\) stated; not \(\ln 27 - \frac89\).} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 3 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{4}
+\begin{msscheme}{
+  hline{3-5} = {2-Z}{0.4pt, msGrid},
+  hline{6} = {0.4pt, msGrid},
+  row{6} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+4 & {\(t = 2x+1\): \(\int \operatorname{arsinh}(2x+1)\,\mathrm{d}x = \tfrac12\int \operatorname{arsinh} t\,\mathrm{d}t\)\\[4pt] \(\phantom{\int} = \tfrac12\left(t\operatorname{arsinh} t - \int \frac{t}{\sqrt{t^2+1}}\,\mathrm{d}t\right)\)} & M1 A1 & {\msNote{M1}{Uses parts with \(u = \operatorname{arsinh}\) and \(v = t\), \(x\) or \(x + \frac12\), differentiating arsinh to \(\frac{k}{\sqrt{(2x+1)^2+1}}\) or \(\frac{k}{\sqrt{t^2+1}}\). Condone slips in the factor \(\frac12\) or 2.}\\ \msNote{A1}{Correct in either variable, such as \(x\operatorname{arsinh}(2x+1) - \int \frac{2x}{\sqrt{(2x+1)^2+1}}\,\mathrm{d}x\).}} \\
+& {\(\int \frac{t}{\sqrt{t^2+1}}\,\mathrm{d}t = \sqrt{t^2+1}\)} & M1 & {Integrates their remaining integral to \(\lambda\sqrt{t^2+1}\), or in \(x\) to a form including \(\lambda\sqrt{(2x+1)^2+1}\), by inspection or substitution.} \\
+& {\(\tfrac12(2x+1)\operatorname{arsinh}(2x+1)\)\\[4pt] \(\phantom{\tfrac12} - \tfrac12\sqrt{(2x+1)^2+1}\)} & A1 & {oe in \(x\); \(+c\) not needed here.} \\
+& {\(\tfrac12(2x+1)\ln\left(2x+1+\sqrt{(2x+1)^2+1}\right)\)\\[4pt] \(\phantom{\tfrac12} - \tfrac12\sqrt{(2x+1)^2+1} + c\)} & A1 & {oe, with \(+c\). A0 if any arsinh remains.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 4 & & 5 & \\
+\end{msscheme}
+
+\msQuestion{5}
+\begin{msscheme}{
+  hline{3-4,6-9} = {2-Z}{0.4pt, msGrid},
+  hline{5,10} = {0.4pt, msGrid},
+  row{10} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+5(a) & {\(h(\theta) = 3\sin^2\theta + 5\sin\theta\cos\theta - 2\cos^2\theta\)\\[4pt] \(\phantom{h(\theta)} = \tfrac32(1 - \cos2\theta) + \tfrac52\sin2\theta - (1 + \cos2\theta)\)} & M1 & {Expands and replaces \(\sin^2\theta\), \(\cos^2\theta\) and \(\sin\theta\cos\theta\) by double-angle forms, or expands the printed form in \(\theta\) to compare. Condone sign slips.} \\
+& {\(h(\theta) = \tfrac12 - \tfrac52\cos2\theta + \tfrac52\sin2\theta\)} & A1~AG & {Correct expansion and identities leading without error to the printed result; if both sides are worked, a conclusion is needed.} \\
+\nopagebreak & & [2] & \\
+5(b) & {\(\int\left(\tfrac{\pi}{2} - \theta\right)\cos2\theta\,\mathrm{d}\theta\)\\[4pt] \(\phantom{A} = \tfrac12\left(\tfrac{\pi}{2} - \theta\right)\sin2\theta + \tfrac12\int\sin2\theta\,\mathrm{d}\theta\)} & M1 A1 & {\msNote{M1}{Uses (a) and integrates by parts, differentiating the linear factor, on a product with \(\cos2\theta\) or \(\sin2\theta\), reaching the form \(uv - \int v\frac{\mathrm{d}u}{\mathrm{d}\theta}\,\mathrm{d}\theta\). Condone sign and coefficient slips.}\\ \msNote{A1}{One by-parts result correct; need not be simplified.}} \\
+& {\(I = \Big[\tfrac{\pi\theta}{4} - \tfrac{\theta^2}{4}\)\\[4pt] \(\phantom{I =} - \tfrac54\left(\tfrac{\pi}{2} - \theta\right)\sin2\theta + \tfrac58\cos2\theta\)\\[4pt] \(\phantom{I =} - \tfrac54\left(\tfrac{\pi}{2} - \theta\right)\cos2\theta - \tfrac58\sin2\theta\Big]_0^{\frac{\pi}{2}}\)} & A1 & {Every term integrated correctly, combined or as separate integrals; need not be simplified.} \\
+& {\(= \left(\tfrac{\pi^2}{16} - \tfrac58\right) - \left(\tfrac58 - \tfrac{5\pi}{8}\right)\)} & dM1 & {Substitutes \(\frac{\pi}{2}\) and \(0\) into their integrated terms and subtracts, upper minus lower.} \\
+& {\(= \frac{\pi^2 + 10\pi - 20}{16}\)} & A1 & {oe exact, such as \(\frac{\pi^2}{16} + \frac{5\pi}{8} - \frac54\).} \\
+\nopagebreak & & [5] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 5 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{6}
+\begin{msscheme}{
+  hline{3-6,8-9} = {2-Z}{0.4pt, msGrid},
+  hline{7,10} = {0.4pt, msGrid},
+  row{10} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+6(a) & {\(\int x^2\arctan x\,\mathrm{d}x\)\\[4pt] \(\phantom{A} = \frac{x^3}{3}\arctan x - \int \frac{x^3}{3(1+x^2)}\,\mathrm{d}x\)} & M1 A1 & {\msNote{M1}{Applies parts with \(u = \arctan x\), reaching the form \(px^3\arctan x - q\int \frac{x^3}{1+x^2}\,\mathrm{d}x\). Condone sign and coefficient slips.}\\ \msNote{A1}{Correct, oe.}} \\
+& {\(\frac{x^3}{1+x^2} = x - \frac{x}{1+x^2}\)} & M1 & {Divides to the form \(Ax + \frac{Bx}{1+x^2}\), or uses an equivalent substitution such as \(t = 1+x^2\). Condone coefficient slips.} \\
+& {\(\int\left(x - \frac{x}{1+x^2}\right)\mathrm{d}x = \frac{x^2}{2} - \frac12\ln(1+x^2)\)} & A1 & {Both terms correct, oe, including in a substitution variable.} \\
+& {\(\frac{x^3}{3}\arctan x - \frac{x^2}{6} + \frac16\ln(1+x^2) + c\)} & A1 & {oe, with \(+c\).} \\
+\nopagebreak & & [5] & \\
+6(b) & {\(\left(\frac13\arctan 1 - \frac16 + \frac16\ln 2\right) - \left(\frac16\ln 1\right)\)} & M1 & {Substitutes \(x = 1\) and \(x = 0\) into their answer to (a), containing an \(\arctan x\) term, and subtracts. Zero lower-limit terms need not be shown.} \\
+& {\(\frac{\pi}{12} - \frac16 + \frac{\ln 2}{6}\ \left[= \frac{\pi + 2\ln 2 - 2}{12}\right]\)} & A1 & {Any exact equivalent.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 6 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{7}
+\begin{msscheme}{
+  hline{3-6,8-9} = {2-Z}{0.4pt, msGrid},
+  hline{7,10} = {0.4pt, msGrid},
+  row{10} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+7(a) & {\(\int x^3\arctan x\,\mathrm{d}x\)\\[4pt] \(\phantom{\int} = \frac{x^4}{4}\arctan x - \int \frac{x^4}{4(1+x^2)}\,\mathrm{d}x\)} & M1 A1 & {\msNote{M1}{Integrates by parts with \(u = \arctan x\), reaching the form \(px^4\arctan x - q\int \frac{x^4}{1+x^2}\,\mathrm{d}x\). Condone coefficient slips.}} \\
+& {\(\frac{x^4}{1+x^2} = x^2 - 1 + \frac{1}{1+x^2}\)} & M1 & {Divides, or splits \(x^4 = (x^4 - 1) + 1\), reaching the form \(ax^2 + b + \frac{c}{1+x^2}\). Condone coefficient slips.} \\
+& {\(\frac14\int \left(x^2 - 1 + \frac{1}{1+x^2}\right)\mathrm{d}x\)\\[4pt] \(\phantom{\frac14} = \frac14\left(\frac{x^3}{3} - x + \arctan x\right)\)} & A1 & {Correct integral, with or without the \(\frac14\).} \\
+& {\(\frac{x^4-1}{4}\arctan x - \frac{x^3}{12} + \frac{x}{4} + c\)} & A1 & {Any equivalent form, with \(+c\).} \\
+\nopagebreak & & [5] & \\
+7(b) & {\(\left[\text{"}\frac{x^4-1}{4}\arctan x - \frac{x^3}{12} + \frac{x}{4}\text{"}\right]_0^{\sqrt3}\)\\[4pt] \(\phantom{[} = \frac{8}{4}\cdot\frac{\pi}{3} - \frac{3\sqrt3}{12} + \frac{\sqrt3}{4} - 0\)} & M1 & {Substitutes \(\sqrt3\) and 0 into their answer to (a), which has an \(\arctan x\) term, and subtracts. A zero lower value may be implied.} \\
+& {\(\frac{2\pi}{3}\)} & A1 & {cso, from a correct antiderivative.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 7 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{8}
+\begin{msscheme}{
+  hline{3-4,6-9,11} = {2-Z}{0.4pt, msGrid},
+  hline{5,10,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+8(a) & {\(\frac{\mathrm{d}}{\mathrm{d}x}\left[\tfrac12\ln(1+x) - \tfrac12\ln(1-x)\right]\)\\[4pt] \(\phantom{A} = \frac12\left[\frac{1}{1+x} + \frac{1}{1-x}\right]\)} & M1 A1 & {\msNote{M1}{Differentiates \(\frac12\ln\left(\frac{1+x}{1-x}\right)\), split into two logarithms or by the chain rule. Condone sign and coefficient slips. Not for differentiating \(\tanh y = x\).}\\ \msNote{A1}{Any correct unsimplified form.}} \\
+& {\(\phantom{A} = \frac12\cdot\frac{(1-x)+(1+x)}{(1+x)(1-x)} = \frac{1}{1-x^2}\)} & A1~AG & {Correct derivative leading without error to \(\frac{1}{1-x^2}\); combined steps accepted.} \\
+\nopagebreak & & [3] & \\
+8(b) & {\(\int \operatorname{artanh} x\,\mathrm{d}x\)\\[4pt] \(\phantom{A} = x\operatorname{artanh} x - \int \frac{x}{1-x^2}\,\mathrm{d}x\)} & M1 A1 & {\msNote{M1}{Integrates by parts with \(v = x\) and their derivative from (a), reaching \(x\operatorname{artanh} x \pm \int x\,f(x)\,\mathrm{d}x\).}} \\
+& {\(\phantom{A} = x\operatorname{artanh} x + \frac12\ln(1-x^2)\)} & A1 & {oe, such as \(+\frac12\ln(1-x) + \frac12\ln(1+x)\) by partial fractions.} \\
+& {\(\left[\text{"}x\operatorname{artanh} x + \frac12\ln(1-x^2)\text{"}\right]_0^{1/2}\)\\[4pt] \(\phantom{A} = \frac12\operatorname{artanh}\frac12 + \frac12\ln\frac34 - 0\)\\[4pt] \(\operatorname{artanh}\frac12 = \frac12\ln\left(\frac{1+\frac12}{1-\frac12}\right)\ [= \tfrac12\ln 3]\)} & dM1 & {Substitutes both limits into their integral of the form \(x\operatorname{artanh} x + k\ln(1-x^2)\) and writes \(\operatorname{artanh}\frac12\) as a logarithm.} \\
+& {\(\frac34\ln 3 - \ln 2\)} & A1 & {Any exact logarithmic form, such as \(\frac14\ln\frac{27}{16}\), with no \(\operatorname{artanh}\) remaining.} \\
+\nopagebreak & & [5] & \\
+8(c) & {\(\operatorname{artanh} x\) is defined only for \(|x| < 1\)\\[4pt] \(0 \leq x \leq \frac32\) includes \(x = 1\) and \(x > 1\)} & E1 & {States that \(\operatorname{artanh} x\) is undefined, or not real, for \(x \geq 1\) (or \(x > 1\)) and that the interval contains such values.} \\
+\nopagebreak & & [1] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 8 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{9}
+\begin{msscheme}{
+  hline{3-4,6-9,11} = {2-Z}{0.4pt, msGrid},
+  hline{5,10,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+9(a) & {\(\frac{\mathrm{d}}{\mathrm{d}x}\left(\tfrac12\left[\ln(1+x)-\ln(1-x)\right]\right)\)\\[4pt] \(\phantom{A} = \frac12\left(\frac{1}{1+x}+\frac{1}{1-x}\right)\)} & M1 A1 & {\msNote{M1}{Differentiates the logarithmic form, by splitting the logarithm or by the chain or quotient rule, to terms in \(\frac{1}{1+x}\) and \(\frac{1}{1-x}\). Condone sign slips.}\\ \msNote{A1}{Correct derivative, unsimplified.}} \\
+& {\(\phantom{A} = \frac12\left(\frac{(1-x)+(1+x)}{1-x^2}\right) = \frac{1}{1-x^2}\)} & A1~AG & {Combines over a common denominator to the printed result without error.} \\
+\nopagebreak & & [3] & \\
+9(b) & {\(\int_0^{1/3}\operatorname{artanh}(2x)\,\mathrm{d}x\)\\[4pt] \(\phantom{A} = \left[x\operatorname{artanh}(2x)\right]_0^{1/3}-\int_0^{1/3}\frac{2x}{1-4x^2}\,\mathrm{d}x\)} & M1 A1 & {\msNote{M1}{Uses parts with \(v = x\) and a derivative of \(\operatorname{artanh}(2x)\) of the form \(\frac{k}{1-4x^2}\) from (a), reaching \(x\operatorname{artanh}(2x) - \int \frac{kx}{1-4x^2}\,\mathrm{d}x\).}} \\
+& {\(\int\frac{2x}{1-4x^2}\,\mathrm{d}x = -\tfrac14\ln(1-4x^2)\)} & A1 & {oe, including by substitution with correct limits in the new variable.} \\
+& {\(\tfrac13\operatorname{artanh}\left(\tfrac23\right)+\tfrac14\ln\left(\tfrac59\right)\)\\[4pt] \(\operatorname{artanh}\left(\tfrac23\right) = \tfrac12\ln\left(\frac{1+\frac23}{1-\frac23}\right) = \ldots\)} & dM1 & {Applies both limits to their expression and uses the logarithmic form to write \(\operatorname{artanh}\left(\frac23\right)\) as a logarithm.} \\
+& {\(\frac{5}{12}\ln 5-\frac12\ln 3\)} & A1 & {oe exact logarithmic form, such as \(\frac1{12}\ln\left(\frac{3125}{729}\right)\); a decimal scores A0. cso.} \\
+\nopagebreak & & [5] & \\
+9(c) & {At \(x = \frac12\), \(2x = 1\) and \(\operatorname{artanh} 1\) is undefined} & E1 & {States the integrand is undefined or infinite at the upper limit, \(x = \frac12\), as \(2x = 1\). Not for a general domain remark without the limit.} \\
+\nopagebreak & & [1] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 9 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{10}
+\begin{msscheme}{
+  hline{3-6} = {2-Z}{0.4pt, msGrid},
+  hline{7} = {0.4pt, msGrid},
+  row{7} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+10 & {\(I = \frac{x^2}{2}\operatorname{artanh}(2x-1)\)\\[4pt] \(\phantom{I =} - \int \frac{x^2}{2}\cdot\frac{2}{1-(2x-1)^2}\,\mathrm{d}x\)} & M1 A1 & {\msNote{M1}{Integrates by parts with \(u = \operatorname{artanh}(2x-1)\), reaching \(px^2\operatorname{artanh}(2x-1) - \int \frac{qx^2}{1-(2x-1)^2}\,\mathrm{d}x\). Condone coefficient slips.}\\ \msNote{A1}{Correct expression; need not be simplified.}} \\
+& {\(\frac{x}{1-x} = -1 + \frac{1}{1-x}\)\\[4pt] \(\Rightarrow \int \frac{x}{1-x}\,\mathrm{d}x = \ldots\)} & M1 & {Writes their rational integrand as a constant plus \(\frac{k}{1-x}\), by division or substitution, and integrates to the form \(ax + b\ln(1-x)\).} \\
+& {\(I = \frac{x^2}{2}\operatorname{artanh}(2x-1) + \frac{x}{4} + \frac14\ln(1-x)\)} & A1 & {oe; \(c\) not needed here.} \\
+& {\(\operatorname{artanh}(2x-1) = \frac12\ln\left(\frac{1+(2x-1)}{1-(2x-1)}\right)\)\\[4pt] \(\phantom{\operatorname{artanh}(2x-1)} = \ldots\ [= \tfrac12\ln\tfrac{x}{1-x}]\)} & M1 & {Uses \(\operatorname{artanh} t = \frac12\ln\frac{1+t}{1-t}\) with \(t = 2x-1\) in their expression. Condone slips simplifying the argument.} \\
+& {\(I = \frac{x^2}{4}\ln x + \frac{1-x^2}{4}\ln(1-x) + \frac{x}{4} + c\)} & A1 & {Any correct form in logarithms with no artanh, such as \(\frac{x^2}{4}\ln\frac{x}{1-x} + \frac14\ln(1-x) + \frac{x}{4} + c\). Needs \(+\,c\).} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 10 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{11}
+\begin{msscheme}{
+  hline{3-6} = {2-Z}{0.4pt, msGrid},
+  hline{7} = {0.4pt, msGrid},
+  row{7} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+11 & {\(\int_0^3 (x^3-6x^2+9x)e^{-x}\,\mathrm{d}x\)\\[4pt] \(= -(x^3-6x^2+9x)e^{-x}\)\\[4pt] \(\phantom{=} + \int (3x^2-12x+9)e^{-x}\,\mathrm{d}x\)} & M1 A1 & {\msNote{M1}{Integrates by parts with the polynomial, expanded or not, differentiated, reaching \(\pm p(x)e^{-x} \pm \int q(x)e^{-x}\,\mathrm{d}x\). Condone sign slips.}\\ \msNote{A1}{Correct first application, oe.}} \\
+& {\(= -(x^3-6x^2+9x)e^{-x} - (3x^2-12x+9)e^{-x}\)\\[4pt] \(\phantom{=} - (6x-12)e^{-x} - 6e^{-x}\)} & dM1 & {Applies parts again, or a tabular method, until no integral remains. Condone sign and coefficient slips.} \\
+& {\(= (-x^3+3x^2-3x-3)e^{-x}\)} & A1 & {Correct antiderivative, oe; need not be simplified.} \\
+& {\(\left[\ldots\right]_0^3 = (-27+27-9-3)e^{-3} - (-3)e^{0}\)} & dM1 & {Substitutes \(x = 3\) and \(x = 0\) into their antiderivative of the form \(p(x)e^{-x}\) and subtracts; the lower limit is not taken as zero.} \\
+& {\(3 - 12e^{-3}\)} & A1 & {cso. In the form \(A + Be^{-3}\), or \(A = 3\), \(B = -12\); \(3 - \frac{12}{e^3}\) scores A0.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 11 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{12}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+12 & {\(t = \ln x \Rightarrow \mathrm{d}x = e^t\,\mathrm{d}t\)\\[4pt] \(x = e^{-1/2} \Rightarrow t = -\tfrac12\), \(x = 1 \Rightarrow t = 0\)} & M1 & {Substitutes \(t = \ln x\) or \(x = e^t\), replacing \(\mathrm{d}x\) by \(e^t\,\mathrm{d}t\) oe, and changes the limits or later returns to \(x\).} \\
+& {\(I = \int_{-1/2}^{0} t^2e^{2t}\,\mathrm{d}t\)} & A1 & \\
+& {\(\int t^2e^{2t}\,\mathrm{d}t = \tfrac12 t^2e^{2t} - \int te^{2t}\,\mathrm{d}t\)\\[4pt] \(\phantom{\int t^2e^{2t}\,\mathrm{d}t} = \tfrac12 t^2e^{2t} - \tfrac12 te^{2t} + \int \tfrac12 e^{2t}\,\mathrm{d}t\)} & M1 & {Applies integration by parts twice, each time to the form \(pt^ke^{2t} - \int qt^{k-1}e^{2t}\,\mathrm{d}t\). Condone sign and coefficient slips.} \\
+& {\(e^{2t}\left(\tfrac12 t^2 - \tfrac12 t + \tfrac14\right)\)} & A1 & {Correct antiderivative, oe; need not be simplified.} \\
+& {\(\tfrac14 - e^{-1}\left(\tfrac18 + \tfrac14 + \tfrac14\right)\)} & dM1 & {Substitutes both limits into their antiderivative, in \(t\) or back in \(x\), and subtracts the right way round.} \\
+& {\(\tfrac14 - \frac{5}{8e}\), so \(a = \tfrac14\), \(b = -\tfrac58\)} & A1 & {cso. Exact values; a decimal value of the integral scores A0.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 12 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{13}
+\begin{msscheme}{
+  hline{3-4,6-8} = {2-Z}{0.4pt, msGrid},
+  hline{5,9} = {0.4pt, msGrid},
+  row{9} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+13(a) & {\(\frac{\mathrm{d}y}{\mathrm{d}x} = \frac{1}{\sqrt{1-\left(\frac{x-1}{3}\right)^2}} \times \frac13\)} & M1 & {Differentiates to the form \(\frac{k}{\sqrt{1-\left(\frac{x-1}{3}\right)^2}}\), or \(\frac{k}{\cos y}\) from \(\sin y = \frac{x-1}{3}\). Condone a wrong or missing \(k\).} \\
+& {\(\phantom{\frac{\mathrm{d}y}{\mathrm{d}x}} = \frac{1}{\sqrt{9-(x-1)^2}}\)} & A1 & {Simplified, or \(\frac{1}{\sqrt{8+2x-x^2}}\).} \\
+\nopagebreak & & [2] & \\
+13(b) & {\(x\arcsin\left(\tfrac{x-1}{3}\right) - \int \frac{x}{\sqrt{9-(x-1)^2}}\,\mathrm{d}x\)} & M1 A1 & {\msNote{M1}{Applies parts with \(v = x\) or \(x - 1\), reaching \(v\arcsin\left(\frac{x-1}{3}\right) \pm \int v \times\) their (a) \(\mathrm{d}x\), their (a) of the form \(\frac{k}{\sqrt{9-(x-1)^2}}\).}\\ \msNote{A1}{Correct, oe such as with \(v = x - 1\).}} \\
+& {\(\int \frac{(x-1)+1}{\sqrt{9-(x-1)^2}}\,\mathrm{d}x\)\\[4pt] \(\phantom{\int} = -\sqrt{9-(x-1)^2} + \arcsin\left(\tfrac{x-1}{3}\right)\)} & M1 & {Integrates their remaining integral to the form \(p\sqrt{9-(x-1)^2} + q\arcsin\left(\frac{x-1}{3}\right)\), by splitting the numerator or by substitution.} \\
+& {\((x-1)\arcsin\left(\tfrac{x-1}{3}\right) + \sqrt{9-(x-1)^2} + c\)} & A1 & {oe, such as uncollected arcsin terms or \(\sqrt{8+2x-x^2}\). Needs \(+c\).} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 13 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{14}
+\begin{msscheme}{
+  hline{3-4,6-10} = {2-Z}{0.4pt, msGrid},
+  hline{5,11} = {0.4pt, msGrid},
+  row{11} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+14(a) & {\(g(\theta) = 1+\sin^2\theta+\cos^2\theta\)\\[4pt] \(\phantom{g(\theta) =}+2\sin\theta-2\cos\theta-2\sin\theta\cos\theta\)\\[4pt] \(\phantom{g(\theta)} = 1+1+2\sin\theta-2\cos\theta-\sin 2\theta\)} & M1 & {Expands to six terms and uses both \(\sin^2\theta+\cos^2\theta=1\) and \(2\sin\theta\cos\theta=\sin 2\theta\). Condone one sign slip in the expansion.} \\
+& {\(g(\theta) = 2+2\sin\theta-2\cos\theta-\sin 2\theta\)} & A1~AG & {Correct expansion leading without error to the printed result.} \\
+\nopagebreak & & [2] & \\
+14(b) & {\(\int_0^{\pi/2}\theta\left(2+2\sin\theta-2\cos\theta-\sin 2\theta\right)\mathrm{d}\theta\)\\[4pt] \(\int\theta\sin\theta\,\mathrm{d}\theta = -\theta\cos\theta+\int\cos\theta\,\mathrm{d}\theta\)} & M1 & {Uses (a) and applies integration by parts to a term \(\theta\sin k\theta\) or \(\theta\cos k\theta\), differentiating \(\theta\). Condone sign and coefficient slips.} \\
+& {\(\int\theta\sin\theta\,\mathrm{d}\theta = -\theta\cos\theta+\sin\theta\)} & A1 & {Any one of the three products integrated correctly.} \\
+& {\(\int\theta\cos\theta\,\mathrm{d}\theta = \theta\sin\theta+\cos\theta\)\\[4pt] \(\int\theta\sin 2\theta\,\mathrm{d}\theta = -\tfrac12\theta\cos 2\theta+\tfrac14\sin 2\theta\)\\[4pt] \(\int 2\theta\,\mathrm{d}\theta = \theta^2\)} & A1 & {All four terms correct, combined or integrated separately.} \\
+& {\(\left(\tfrac{\pi^2}{4}+2-\pi-\tfrac{\pi}{4}\right)-(-2)\)} & dM1 & {Substitutes \(\frac{\pi}{2}\) and \(0\) into their integrated terms and subtracts.} \\
+& {\(\frac{\pi^2-5\pi+16}{4}\)} & A1 & {Any exact equivalent, such as \(\frac{\pi^2}{4}-\frac{5\pi}{4}+4\).} \\
+\nopagebreak & & [5] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 14 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{15}
+\begin{msscheme}{
+  hline{3-4,6-8,10-17} = {2-Z}{0.4pt, msGrid},
+  hline{5,9,18} = {0.4pt, msGrid},
+  row{18} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+15(i) & \SetCell[c=3]{c} \msFigure{\begin{tikzpicture}
+\begin{axis}[
+width=0.75\linewidth,
+height=8cm,
+axis lines=middle,
+xmin=-5, xmax=5,
+ymin=-2.5, ymax=2.5,
+xlabel={$x$},
+ylabel={$y$},
+xtick={0},
+ytick={-1.5708,0,1.5708},
+yticklabels={$-\frac{\pi}{2}$,$0$,$\frac{\pi}{2}$},
+yticklabel style={fill=white, inner sep=1pt},
+samples=200
+]
+\addplot[domain=-5:5] {atan(x)*pi/180};
+\addplot[dashed] coordinates {(-5,1.5708) (5,1.5708)};
+\addplot[dashed] coordinates {(-5,-1.5708) (5,-1.5708)};
+\end{axis}
+\end{tikzpicture}} & & \\
+& \msFeature{Asymptotes} & B1 & {Increasing curve through the origin, approaching both \(y = \frac{\pi}{2}\) and \(y = -\frac{\pi}{2}\), with both asymptotes labelled.} \\
+\nopagebreak & & [1] & \\
+15(ii) & {\(y = \arctan x \Rightarrow x = \tan y\)\\[4pt] \(1 = \sec^2 y\,\frac{\mathrm{d}y}{\mathrm{d}x}\)} & M1 & {Writes \(x = \tan y\) and differentiates implicitly, or finds \(\frac{\mathrm{d}x}{\mathrm{d}y} = \sec^2 y\) and inverts. Condone a slip in the derivative of \(\tan y\).} \\
+& {\(\frac{\mathrm{d}y}{\mathrm{d}x} = \frac{1}{\sec^2 y} = \frac{1}{1 + \tan^2 y}\)} & M1 & {Uses \(\sec^2 y = 1 + \tan^2 y\) to write their derivative in terms of \(x\).} \\
+& {\(\phantom{\frac{\mathrm{d}y}{\mathrm{d}x}} = \frac{1}{1 + x^2}\)} & A1~AG & {Correct working from \(x = \tan y\), leading without error to the printed result in \(x\).} \\
+\nopagebreak & & [3] & \\
+15(iii) & {\(I = \left[\tfrac{x^2}{2}(\arctan x)^2\right]_0^1\)\\[4pt] \(\phantom{I =} - \int_0^1 \tfrac{x^2}{2}\cdot\tfrac{2\arctan x}{1+x^2}\,\mathrm{d}x\)} & M1 & {Integrates by parts with \(u = (\arctan x)^2\), reaching \(\frac{x^2}{2}(\arctan x)^2 - \int k\frac{x^2\arctan x}{1+x^2}\,\mathrm{d}x\). Condone a slip in \(k\).} \\
+& {\(\phantom{I} = \frac{\pi^2}{32} - \int_0^1 \frac{x^2\arctan x}{1+x^2}\,\mathrm{d}x\)} & A1 & \\
+& {\(\frac{x^2}{1+x^2} = 1 - \frac{1}{1+x^2}\)\\[4pt] \(\Rightarrow I = \frac{\pi^2}{32} - \int_0^1 \arctan x\,\mathrm{d}x\)\\[4pt] \(\phantom{\Rightarrow I = \frac{\pi^2}{32}} + \int_0^1 \frac{\arctan x}{1+x^2}\,\mathrm{d}x\)} & M1 & {Writes \(\frac{x^2}{1+x^2}\) as \(1 - \frac{1}{1+x^2}\), by division or otherwise, and splits their integral into two.} \\
+& {\(\int_0^1 \arctan x\,\mathrm{d}x = \left[x\arctan x\right]_0^1\)\\[4pt] \(\phantom{\int_0^1 \arctan x\,\mathrm{d}x =} - \int_0^1 \frac{x}{1+x^2}\,\mathrm{d}x\)} & M1 & {Integrates by parts with \(u = \arctan x\), \(\frac{\mathrm{d}v}{\mathrm{d}x} = 1\), reaching \(x\arctan x \pm \int \frac{kx}{1+x^2}\,\mathrm{d}x\).} \\
+& {\(\int_0^1 \arctan x\,\mathrm{d}x = \frac{\pi}{4} - \frac{1}{2}\ln 2\)} & A1 & {\(\int \frac{x}{1+x^2}\,\mathrm{d}x\) by substitution or by inspection.} \\
+& {\(t = \arctan x \Rightarrow \int_0^1 \frac{\arctan x}{1+x^2}\,\mathrm{d}x\)\\[4pt] \(\phantom{t = \arctan x} = \int_0^{\pi/4} t\,\mathrm{d}t\)} & M1 & {Substitutes \(t = \arctan x\) or \(x = \tan t\), replacing \(\mathrm{d}x\), to reach \(\int t\,\mathrm{d}t\); or integrates by inspection to \(k(\arctan x)^2\).} \\
+& {\(\phantom{t = \arctan x} = \left[\frac{t^2}{2}\right]_0^{\pi/4} = \frac{\pi^2}{32}\)} & A1 & \\
+& {\(I = \frac{\pi^2}{32} - \left(\frac{\pi}{4} - \frac{1}{2}\ln 2\right) + \frac{\pi^2}{32}\)\\[4pt] \(\phantom{I} = \frac{\pi^2}{16} - \frac{\pi}{4} + \frac{1}{2}\ln 2\)} & A1~AG & {Correct values of all three terms combined with correct signs, leading without error to the printed result.} \\
+\nopagebreak & & [8] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 15 & & 12 & \\
+\end{msscheme}
+
+\end{document}

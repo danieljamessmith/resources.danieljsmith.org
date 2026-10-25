@@ -1,0 +1,620 @@
+format: 1
+pack: Integration by Parts
+last_updated: 25 October 2026
+questions:
+  - q: 1
+    stamp: cc691e8f
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(I = \left[\frac23 x^{3/2}\ln\left(\frac9x\right)\right]_1^9\)
+              \(\phantom{I} - \int_1^9 \frac23 x^{3/2}\left(-\frac1x\right)\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Integrates \(\sqrt{x}\) and differentiates the logarithm, reaching \(px^{3/2}\ln\left(\frac9x\right) \pm \int qx^{1/2}\,\mathrm{d}x\), oe after splitting the logarithm. Condone coefficient slips.
+              - code: A1
+                note: Correct, oe. Limits not needed.
+          - scheme: |
+              \(\frac23\int x^{1/2}\,\mathrm{d}x = \frac49 x^{3/2}\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(I = \left(\frac23(27)\ln 1 + \frac49(27)\right)\)
+              \(\phantom{I =} - \left(\frac23\ln 9 + \frac49\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes 9 and 1 into their integrated expression and subtracts, upper minus lower.
+          - scheme: |
+              \(I = \frac{104}{9} - \frac43\ln 3\)
+            marks:
+              - code: A1
+                note: cso, or \(a = \frac{104}{9}\), \(b = -\frac43\) stated. Not for \(\ln 9\) left in the answer.
+  - q: 2
+    stamp: e33d2712
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}y}{\mathrm{d}x} = \frac{1}{1+\left(\frac{x-2}{x+2}\right)^2}\)
+              \(\phantom{\frac{\mathrm{d}y}{\mathrm{d}x} =} \times \frac{(x+2)-(x-2)}{(x+2)^2}\)
+            marks:
+              - code: M1
+                note: Uses \(\frac{1}{1+w^2}\) times an attempt at the derivative of \(\frac{x-2}{x+2}\) by quotient or product rule, or differentiates \(\tan y = \frac{x-2}{x+2}\) implicitly. Condone sign slips.
+          - scheme: |
+              \(= \frac{2}{x^2+4}\)
+            marks:
+              - code: A1
+                note: Simplified. Not for an unsimplified form such as \(\frac{4}{2x^2+8}\).
+      - part: b
+        rows:
+          - scheme: |
+              \(u = \arctan\left(\frac{x-2}{x+2}\right)\), \(v = x\)
+              \(I = x\arctan\left(\frac{x-2}{x+2}\right) - \int \frac{2x}{x^2+4}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Uses parts with \(v = x\), reaching \(x\arctan\left(\frac{x-2}{x+2}\right) - \int x \times\) their (a) \(\mathrm{d}x\), their (a) any derivative found there. Condone a sign slip.
+              - code: A1
+                note: oe.
+          - scheme: |
+              \(\int \frac{2x}{x^2+4}\,\mathrm{d}x = \ln(x^2+4)\)
+            marks:
+              - code: M1
+                note: Integrates their \(\frac{kx}{x^2+4}\) to \(\lambda\ln(x^2+4)\), by substitution or inspection.
+          - scheme: |
+              \(I = x\arctan\left(\frac{x-2}{x+2}\right) - \ln(x^2+4) + c\)
+            marks:
+              - code: A1
+                note: oe, including \(+\,c\).
+  - q: 3
+    stamp: 3101d442
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\left[\tfrac{x^3}{3}\ln(1+x)\right]_0^2\)
+              \(\phantom{A} - \int_0^2 \frac{x^3}{3(1+x)}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Uses parts with \(u = \ln(1+x)\), reaching the form \(kx^3\ln(1+x) - \int \frac{mx^3}{1+x}\,\mathrm{d}x\). Condone coefficient slips.
+              - code: A1
+                note: Limits need not appear yet.
+          - scheme: |
+              \(\frac{x^3}{1+x} = x^2 - x + 1 - \frac{1}{1+x}\)
+            marks:
+              - code: M1
+                note: Divides \(x^3\) by \(1+x\), or writes \(x^3\) in powers of \(1+x\), reaching a quadratic plus \(\frac{k}{1+x}\). Condone coefficient slips.
+              - code: A1
+          - scheme: |
+              \(\int \frac{x^3}{1+x}\,\mathrm{d}x = \frac{x^3}{3} - \frac{x^2}{2} + x - \ln(1+x)\)
+            marks:
+              - code: A1
+                note: With or without the factor \(\frac13\).
+          - scheme: |
+              \(\tfrac83\ln 3 - \tfrac13\left(\tfrac83 - 2 + 2 - \ln 3\right) - 0\)
+            marks:
+              - code: dM1
+                note: Substitutes \(x = 2\) and \(x = 0\), or the limits after a substitution, into both their \(uv\) term and their integral, and subtracts.
+          - scheme: |
+              \(= 3\ln 3 - \frac89\), so \(a = -\frac89\), \(b = 3\)
+            marks:
+              - code: A1
+                note: cso. \(3\ln 3 - \frac89\) oe, or \(a\) and \(b\) stated; not \(\ln 27 - \frac89\).
+  - q: 4
+    stamp: f8419b07
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(t = 2x+1\): \(\int \operatorname{arsinh}(2x+1)\,\mathrm{d}x = \tfrac12\int \operatorname{arsinh} t\,\mathrm{d}t\)
+              \(\phantom{\int} = \tfrac12\left(t\operatorname{arsinh} t - \int \frac{t}{\sqrt{t^2+1}}\,\mathrm{d}t\right)\)
+            marks:
+              - code: M1
+                note: Uses parts with \(u = \operatorname{arsinh}\) and \(v = t\), \(x\) or \(x + \frac12\), differentiating arsinh to \(\frac{k}{\sqrt{(2x+1)^2+1}}\) or \(\frac{k}{\sqrt{t^2+1}}\). Condone slips in the factor \(\frac12\) or 2.
+              - code: A1
+                note: Correct in either variable, such as \(x\operatorname{arsinh}(2x+1) - \int \frac{2x}{\sqrt{(2x+1)^2+1}}\,\mathrm{d}x\).
+          - scheme: |
+              \(\int \frac{t}{\sqrt{t^2+1}}\,\mathrm{d}t = \sqrt{t^2+1}\)
+            marks:
+              - code: M1
+                note: Integrates their remaining integral to \(\lambda\sqrt{t^2+1}\), or in \(x\) to a form including \(\lambda\sqrt{(2x+1)^2+1}\), by inspection or substitution.
+          - scheme: |
+              \(\tfrac12(2x+1)\operatorname{arsinh}(2x+1)\)
+              \(\phantom{\tfrac12} - \tfrac12\sqrt{(2x+1)^2+1}\)
+            marks:
+              - code: A1
+                note: oe in \(x\); \(+c\) not needed here.
+          - scheme: |
+              \(\tfrac12(2x+1)\ln\left(2x+1+\sqrt{(2x+1)^2+1}\right)\)
+              \(\phantom{\tfrac12} - \tfrac12\sqrt{(2x+1)^2+1} + c\)
+            marks:
+              - code: A1
+                note: oe, with \(+c\). A0 if any arsinh remains.
+  - q: 5
+    stamp: aa5d4bcc
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(h(\theta) = 3\sin^2\theta + 5\sin\theta\cos\theta - 2\cos^2\theta\)
+              \(\phantom{h(\theta)} = \tfrac32(1 - \cos2\theta) + \tfrac52\sin2\theta - (1 + \cos2\theta)\)
+            marks:
+              - code: M1
+                note: Expands and replaces \(\sin^2\theta\), \(\cos^2\theta\) and \(\sin\theta\cos\theta\) by double-angle forms, or expands the printed form in \(\theta\) to compare. Condone sign slips.
+          - scheme: |
+              \(h(\theta) = \tfrac12 - \tfrac52\cos2\theta + \tfrac52\sin2\theta\)
+            marks:
+              - code: A1 AG
+                note: Correct expansion and identities leading without error to the printed result; if both sides are worked, a conclusion is needed.
+      - part: b
+        rows:
+          - scheme: |
+              \(\int\left(\tfrac{\pi}{2} - \theta\right)\cos2\theta\,\mathrm{d}\theta\)
+              \(\phantom{A} = \tfrac12\left(\tfrac{\pi}{2} - \theta\right)\sin2\theta + \tfrac12\int\sin2\theta\,\mathrm{d}\theta\)
+            marks:
+              - code: M1
+                note: Uses (a) and integrates by parts, differentiating the linear factor, on a product with \(\cos2\theta\) or \(\sin2\theta\), reaching the form \(uv - \int v\frac{\mathrm{d}u}{\mathrm{d}\theta}\,\mathrm{d}\theta\). Condone sign and coefficient slips.
+              - code: A1
+                note: One by-parts result correct; need not be simplified.
+          - scheme: |
+              \(I = \Big[\tfrac{\pi\theta}{4} - \tfrac{\theta^2}{4}\)
+              \(\phantom{I =} - \tfrac54\left(\tfrac{\pi}{2} - \theta\right)\sin2\theta + \tfrac58\cos2\theta\)
+              \(\phantom{I =} - \tfrac54\left(\tfrac{\pi}{2} - \theta\right)\cos2\theta - \tfrac58\sin2\theta\Big]_0^{\frac{\pi}{2}}\)
+            marks:
+              - code: A1
+                note: Every term integrated correctly, combined or as separate integrals; need not be simplified.
+          - scheme: |
+              \(= \left(\tfrac{\pi^2}{16} - \tfrac58\right) - \left(\tfrac58 - \tfrac{5\pi}{8}\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes \(\frac{\pi}{2}\) and \(0\) into their integrated terms and subtracts, upper minus lower.
+          - scheme: |
+              \(= \frac{\pi^2 + 10\pi - 20}{16}\)
+            marks:
+              - code: A1
+                note: oe exact, such as \(\frac{\pi^2}{16} + \frac{5\pi}{8} - \frac54\).
+  - q: 6
+    stamp: 806d62f4
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\int x^2\arctan x\,\mathrm{d}x\)
+              \(\phantom{A} = \frac{x^3}{3}\arctan x - \int \frac{x^3}{3(1+x^2)}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Applies parts with \(u = \arctan x\), reaching the form \(px^3\arctan x - q\int \frac{x^3}{1+x^2}\,\mathrm{d}x\). Condone sign and coefficient slips.
+              - code: A1
+                note: Correct, oe.
+          - scheme: |
+              \(\frac{x^3}{1+x^2} = x - \frac{x}{1+x^2}\)
+            marks:
+              - code: M1
+                note: Divides to the form \(Ax + \frac{Bx}{1+x^2}\), or uses an equivalent substitution such as \(t = 1+x^2\). Condone coefficient slips.
+          - scheme: |
+              \(\int\left(x - \frac{x}{1+x^2}\right)\mathrm{d}x = \frac{x^2}{2} - \frac12\ln(1+x^2)\)
+            marks:
+              - code: A1
+                note: Both terms correct, oe, including in a substitution variable.
+          - scheme: |
+              \(\frac{x^3}{3}\arctan x - \frac{x^2}{6} + \frac16\ln(1+x^2) + c\)
+            marks:
+              - code: A1
+                note: oe, with \(+c\).
+      - part: b
+        rows:
+          - scheme: |
+              \(\left(\frac13\arctan 1 - \frac16 + \frac16\ln 2\right) - \left(\frac16\ln 1\right)\)
+            marks:
+              - code: M1
+                note: Substitutes \(x = 1\) and \(x = 0\) into their answer to (a), containing an \(\arctan x\) term, and subtracts. Zero lower-limit terms need not be shown.
+          - scheme: |
+              \(\frac{\pi}{12} - \frac16 + \frac{\ln 2}{6}\ \left[= \frac{\pi + 2\ln 2 - 2}{12}\right]\)
+            marks:
+              - code: A1
+                note: Any exact equivalent.
+  - q: 7
+    stamp: d40f7817
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\int x^3\arctan x\,\mathrm{d}x\)
+              \(\phantom{\int} = \frac{x^4}{4}\arctan x - \int \frac{x^4}{4(1+x^2)}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Integrates by parts with \(u = \arctan x\), reaching the form \(px^4\arctan x - q\int \frac{x^4}{1+x^2}\,\mathrm{d}x\). Condone coefficient slips.
+              - code: A1
+          - scheme: |
+              \(\frac{x^4}{1+x^2} = x^2 - 1 + \frac{1}{1+x^2}\)
+            marks:
+              - code: M1
+                note: Divides, or splits \(x^4 = (x^4 - 1) + 1\), reaching the form \(ax^2 + b + \frac{c}{1+x^2}\). Condone coefficient slips.
+          - scheme: |
+              \(\frac14\int \left(x^2 - 1 + \frac{1}{1+x^2}\right)\mathrm{d}x\)
+              \(\phantom{\frac14} = \frac14\left(\frac{x^3}{3} - x + \arctan x\right)\)
+            marks:
+              - code: A1
+                note: Correct integral, with or without the \(\frac14\).
+          - scheme: |
+              \(\frac{x^4-1}{4}\arctan x - \frac{x^3}{12} + \frac{x}{4} + c\)
+            marks:
+              - code: A1
+                note: Any equivalent form, with \(+c\).
+      - part: b
+        rows:
+          - scheme: |
+              \(\left[\text{"}\frac{x^4-1}{4}\arctan x - \frac{x^3}{12} + \frac{x}{4}\text{"}\right]_0^{\sqrt3}\)
+              \(\phantom{[} = \frac{8}{4}\cdot\frac{\pi}{3} - \frac{3\sqrt3}{12} + \frac{\sqrt3}{4} - 0\)
+            marks:
+              - code: M1
+                note: Substitutes \(\sqrt3\) and 0 into their answer to (a), which has an \(\arctan x\) term, and subtracts. A zero lower value may be implied.
+          - scheme: |
+              \(\frac{2\pi}{3}\)
+            marks:
+              - code: A1
+                note: cso, from a correct antiderivative.
+  - q: 8
+    stamp: 5e5ec21a
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}}{\mathrm{d}x}\left[\tfrac12\ln(1+x) - \tfrac12\ln(1-x)\right]\)
+              \(\phantom{A} = \frac12\left[\frac{1}{1+x} + \frac{1}{1-x}\right]\)
+            marks:
+              - code: M1
+                note: Differentiates \(\frac12\ln\left(\frac{1+x}{1-x}\right)\), split into two logarithms or by the chain rule. Condone sign and coefficient slips. Not for differentiating \(\tanh y = x\).
+              - code: A1
+                note: Any correct unsimplified form.
+          - scheme: |
+              \(\phantom{A} = \frac12\cdot\frac{(1-x)+(1+x)}{(1+x)(1-x)} = \frac{1}{1-x^2}\)
+            marks:
+              - code: A1 AG
+                note: Correct derivative leading without error to \(\frac{1}{1-x^2}\); combined steps accepted.
+      - part: b
+        rows:
+          - scheme: |
+              \(\int \operatorname{artanh} x\,\mathrm{d}x\)
+              \(\phantom{A} = x\operatorname{artanh} x - \int \frac{x}{1-x^2}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Integrates by parts with \(v = x\) and their derivative from (a), reaching \(x\operatorname{artanh} x \pm \int x\,f(x)\,\mathrm{d}x\).
+              - code: A1
+          - scheme: |
+              \(\phantom{A} = x\operatorname{artanh} x + \frac12\ln(1-x^2)\)
+            marks:
+              - code: A1
+                note: oe, such as \(+\frac12\ln(1-x) + \frac12\ln(1+x)\) by partial fractions.
+          - scheme: |
+              \(\left[\text{"}x\operatorname{artanh} x + \frac12\ln(1-x^2)\text{"}\right]_0^{1/2}\)
+              \(\phantom{A} = \frac12\operatorname{artanh}\frac12 + \frac12\ln\frac34 - 0\)
+              \(\operatorname{artanh}\frac12 = \frac12\ln\left(\frac{1+\frac12}{1-\frac12}\right)\ [= \tfrac12\ln 3]\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits into their integral of the form \(x\operatorname{artanh} x + k\ln(1-x^2)\) and writes \(\operatorname{artanh}\frac12\) as a logarithm.
+          - scheme: |
+              \(\frac34\ln 3 - \ln 2\)
+            marks:
+              - code: A1
+                note: Any exact logarithmic form, such as \(\frac14\ln\frac{27}{16}\), with no \(\operatorname{artanh}\) remaining.
+      - part: c
+        rows:
+          - scheme: |
+              \(\operatorname{artanh} x\) is defined only for \(|x| < 1\)
+              \(0 \leq x \leq \frac32\) includes \(x = 1\) and \(x > 1\)
+            marks:
+              - code: E1
+                note: States that \(\operatorname{artanh} x\) is undefined, or not real, for \(x \geq 1\) (or \(x > 1\)) and that the interval contains such values.
+  - q: 9
+    stamp: 93e5f5d5
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}}{\mathrm{d}x}\left(\tfrac12\left[\ln(1+x)-\ln(1-x)\right]\right)\)
+              \(\phantom{A} = \frac12\left(\frac{1}{1+x}+\frac{1}{1-x}\right)\)
+            marks:
+              - code: M1
+                note: Differentiates the logarithmic form, by splitting the logarithm or by the chain or quotient rule, to terms in \(\frac{1}{1+x}\) and \(\frac{1}{1-x}\). Condone sign slips.
+              - code: A1
+                note: Correct derivative, unsimplified.
+          - scheme: |
+              \(\phantom{A} = \frac12\left(\frac{(1-x)+(1+x)}{1-x^2}\right) = \frac{1}{1-x^2}\)
+            marks:
+              - code: A1 AG
+                note: Combines over a common denominator to the printed result without error.
+      - part: b
+        rows:
+          - scheme: |
+              \(\int_0^{1/3}\operatorname{artanh}(2x)\,\mathrm{d}x\)
+              \(\phantom{A} = \left[x\operatorname{artanh}(2x)\right]_0^{1/3}-\int_0^{1/3}\frac{2x}{1-4x^2}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Uses parts with \(v = x\) and a derivative of \(\operatorname{artanh}(2x)\) of the form \(\frac{k}{1-4x^2}\) from (a), reaching \(x\operatorname{artanh}(2x) - \int \frac{kx}{1-4x^2}\,\mathrm{d}x\).
+              - code: A1
+          - scheme: |
+              \(\int\frac{2x}{1-4x^2}\,\mathrm{d}x = -\tfrac14\ln(1-4x^2)\)
+            marks:
+              - code: A1
+                note: oe, including by substitution with correct limits in the new variable.
+          - scheme: |
+              \(\tfrac13\operatorname{artanh}\left(\tfrac23\right)+\tfrac14\ln\left(\tfrac59\right)\)
+              \(\operatorname{artanh}\left(\tfrac23\right) = \tfrac12\ln\left(\frac{1+\frac23}{1-\frac23}\right) = \ldots\)
+            marks:
+              - code: dM1
+                note: Applies both limits to their expression and uses the logarithmic form to write \(\operatorname{artanh}\left(\frac23\right)\) as a logarithm.
+          - scheme: |
+              \(\frac{5}{12}\ln 5-\frac12\ln 3\)
+            marks:
+              - code: A1
+                note: oe exact logarithmic form, such as \(\frac1{12}\ln\left(\frac{3125}{729}\right)\); a decimal scores A0. cso.
+      - part: c
+        rows:
+          - scheme: |
+              At \(x = \frac12\), \(2x = 1\) and \(\operatorname{artanh} 1\) is undefined
+            marks:
+              - code: E1
+                note: States the integrand is undefined or infinite at the upper limit, \(x = \frac12\), as \(2x = 1\). Not for a general domain remark without the limit.
+  - q: 10
+    stamp: 107dac55
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(I = \frac{x^2}{2}\operatorname{artanh}(2x-1)\)
+              \(\phantom{I =} - \int \frac{x^2}{2}\cdot\frac{2}{1-(2x-1)^2}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Integrates by parts with \(u = \operatorname{artanh}(2x-1)\), reaching \(px^2\operatorname{artanh}(2x-1) - \int \frac{qx^2}{1-(2x-1)^2}\,\mathrm{d}x\). Condone coefficient slips.
+              - code: A1
+                note: Correct expression; need not be simplified.
+          - scheme: |
+              \(\frac{x}{1-x} = -1 + \frac{1}{1-x}\)
+              \(\Rightarrow \int \frac{x}{1-x}\,\mathrm{d}x = \ldots\)
+            marks:
+              - code: M1
+                note: Writes their rational integrand as a constant plus \(\frac{k}{1-x}\), by division or substitution, and integrates to the form \(ax + b\ln(1-x)\).
+          - scheme: |
+              \(I = \frac{x^2}{2}\operatorname{artanh}(2x-1) + \frac{x}{4} + \frac14\ln(1-x)\)
+            marks:
+              - code: A1
+                note: oe; \(c\) not needed here.
+          - scheme: |
+              \(\operatorname{artanh}(2x-1) = \frac12\ln\left(\frac{1+(2x-1)}{1-(2x-1)}\right)\)
+              \(\phantom{\operatorname{artanh}(2x-1)} = \ldots\ [= \tfrac12\ln\tfrac{x}{1-x}]\)
+            marks:
+              - code: M1
+                note: Uses \(\operatorname{artanh} t = \frac12\ln\frac{1+t}{1-t}\) with \(t = 2x-1\) in their expression. Condone slips simplifying the argument.
+          - scheme: |
+              \(I = \frac{x^2}{4}\ln x + \frac{1-x^2}{4}\ln(1-x) + \frac{x}{4} + c\)
+            marks:
+              - code: A1
+                note: Any correct form in logarithms with no artanh, such as \(\frac{x^2}{4}\ln\frac{x}{1-x} + \frac14\ln(1-x) + \frac{x}{4} + c\). Needs \(+\,c\).
+  - q: 11
+    stamp: d5e0693c
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\int_0^3 (x^3-6x^2+9x)e^{-x}\,\mathrm{d}x\)
+              \(= -(x^3-6x^2+9x)e^{-x}\)
+              \(\phantom{=} + \int (3x^2-12x+9)e^{-x}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Integrates by parts with the polynomial, expanded or not, differentiated, reaching \(\pm p(x)e^{-x} \pm \int q(x)e^{-x}\,\mathrm{d}x\). Condone sign slips.
+              - code: A1
+                note: Correct first application, oe.
+          - scheme: |
+              \(= -(x^3-6x^2+9x)e^{-x} - (3x^2-12x+9)e^{-x}\)
+              \(\phantom{=} - (6x-12)e^{-x} - 6e^{-x}\)
+            marks:
+              - code: dM1
+                note: Applies parts again, or a tabular method, until no integral remains. Condone sign and coefficient slips.
+          - scheme: |
+              \(= (-x^3+3x^2-3x-3)e^{-x}\)
+            marks:
+              - code: A1
+                note: Correct antiderivative, oe; need not be simplified.
+          - scheme: |
+              \(\left[\ldots\right]_0^3 = (-27+27-9-3)e^{-3} - (-3)e^{0}\)
+            marks:
+              - code: dM1
+                note: Substitutes \(x = 3\) and \(x = 0\) into their antiderivative of the form \(p(x)e^{-x}\) and subtracts; the lower limit is not taken as zero.
+          - scheme: |
+              \(3 - 12e^{-3}\)
+            marks:
+              - code: A1
+                note: cso. In the form \(A + Be^{-3}\), or \(A = 3\), \(B = -12\); \(3 - \frac{12}{e^3}\) scores A0.
+  - q: 12
+    stamp: 2ce74944
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(t = \ln x \Rightarrow \mathrm{d}x = e^t\,\mathrm{d}t\)
+              \(x = e^{-1/2} \Rightarrow t = -\tfrac12\), \(x = 1 \Rightarrow t = 0\)
+            marks:
+              - code: M1
+                note: Substitutes \(t = \ln x\) or \(x = e^t\), replacing \(\mathrm{d}x\) by \(e^t\,\mathrm{d}t\) oe, and changes the limits or later returns to \(x\).
+          - scheme: |
+              \(I = \int_{-1/2}^{0} t^2e^{2t}\,\mathrm{d}t\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\int t^2e^{2t}\,\mathrm{d}t = \tfrac12 t^2e^{2t} - \int te^{2t}\,\mathrm{d}t\)
+              \(\phantom{\int t^2e^{2t}\,\mathrm{d}t} = \tfrac12 t^2e^{2t} - \tfrac12 te^{2t} + \int \tfrac12 e^{2t}\,\mathrm{d}t\)
+            marks:
+              - code: M1
+                note: Applies integration by parts twice, each time to the form \(pt^ke^{2t} - \int qt^{k-1}e^{2t}\,\mathrm{d}t\). Condone sign and coefficient slips.
+          - scheme: |
+              \(e^{2t}\left(\tfrac12 t^2 - \tfrac12 t + \tfrac14\right)\)
+            marks:
+              - code: A1
+                note: Correct antiderivative, oe; need not be simplified.
+          - scheme: |
+              \(\tfrac14 - e^{-1}\left(\tfrac18 + \tfrac14 + \tfrac14\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits into their antiderivative, in \(t\) or back in \(x\), and subtracts the right way round.
+          - scheme: |
+              \(\tfrac14 - \frac{5}{8e}\), so \(a = \tfrac14\), \(b = -\tfrac58\)
+            marks:
+              - code: A1
+                note: cso. Exact values; a decimal value of the integral scores A0.
+  - q: 13
+    stamp: 75a1a2ba
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}y}{\mathrm{d}x} = \frac{1}{\sqrt{1-\left(\frac{x-1}{3}\right)^2}} \times \frac13\)
+            marks:
+              - code: M1
+                note: Differentiates to the form \(\frac{k}{\sqrt{1-\left(\frac{x-1}{3}\right)^2}}\), or \(\frac{k}{\cos y}\) from \(\sin y = \frac{x-1}{3}\). Condone a wrong or missing \(k\).
+          - scheme: |
+              \(\phantom{\frac{\mathrm{d}y}{\mathrm{d}x}} = \frac{1}{\sqrt{9-(x-1)^2}}\)
+            marks:
+              - code: A1
+                note: Simplified, or \(\frac{1}{\sqrt{8+2x-x^2}}\).
+      - part: b
+        rows:
+          - scheme: |
+              \(x\arcsin\left(\tfrac{x-1}{3}\right) - \int \frac{x}{\sqrt{9-(x-1)^2}}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Applies parts with \(v = x\) or \(x - 1\), reaching \(v\arcsin\left(\frac{x-1}{3}\right) \pm \int v \times\) their (a) \(\mathrm{d}x\), their (a) of the form \(\frac{k}{\sqrt{9-(x-1)^2}}\).
+              - code: A1
+                note: Correct, oe such as with \(v = x - 1\).
+          - scheme: |
+              \(\int \frac{(x-1)+1}{\sqrt{9-(x-1)^2}}\,\mathrm{d}x\)
+              \(\phantom{\int} = -\sqrt{9-(x-1)^2} + \arcsin\left(\tfrac{x-1}{3}\right)\)
+            marks:
+              - code: M1
+                note: Integrates their remaining integral to the form \(p\sqrt{9-(x-1)^2} + q\arcsin\left(\frac{x-1}{3}\right)\), by splitting the numerator or by substitution.
+          - scheme: |
+              \((x-1)\arcsin\left(\tfrac{x-1}{3}\right) + \sqrt{9-(x-1)^2} + c\)
+            marks:
+              - code: A1
+                note: oe, such as uncollected arcsin terms or \(\sqrt{8+2x-x^2}\). Needs \(+c\).
+  - q: 14
+    stamp: 96b30d7a
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(g(\theta) = 1+\sin^2\theta+\cos^2\theta\)
+              \(\phantom{g(\theta) =}+2\sin\theta-2\cos\theta-2\sin\theta\cos\theta\)
+              \(\phantom{g(\theta)} = 1+1+2\sin\theta-2\cos\theta-\sin 2\theta\)
+            marks:
+              - code: M1
+                note: Expands to six terms and uses both \(\sin^2\theta+\cos^2\theta=1\) and \(2\sin\theta\cos\theta=\sin 2\theta\). Condone one sign slip in the expansion.
+          - scheme: |
+              \(g(\theta) = 2+2\sin\theta-2\cos\theta-\sin 2\theta\)
+            marks:
+              - code: A1 AG
+                note: Correct expansion leading without error to the printed result.
+      - part: b
+        rows:
+          - scheme: |
+              \(\int_0^{\pi/2}\theta\left(2+2\sin\theta-2\cos\theta-\sin 2\theta\right)\mathrm{d}\theta\)
+              \(\int\theta\sin\theta\,\mathrm{d}\theta = -\theta\cos\theta+\int\cos\theta\,\mathrm{d}\theta\)
+            marks:
+              - code: M1
+                note: Uses (a) and applies integration by parts to a term \(\theta\sin k\theta\) or \(\theta\cos k\theta\), differentiating \(\theta\). Condone sign and coefficient slips.
+          - scheme: |
+              \(\int\theta\sin\theta\,\mathrm{d}\theta = -\theta\cos\theta+\sin\theta\)
+            marks:
+              - code: A1
+                note: Any one of the three products integrated correctly.
+          - scheme: |
+              \(\int\theta\cos\theta\,\mathrm{d}\theta = \theta\sin\theta+\cos\theta\)
+              \(\int\theta\sin 2\theta\,\mathrm{d}\theta = -\tfrac12\theta\cos 2\theta+\tfrac14\sin 2\theta\)
+              \(\int 2\theta\,\mathrm{d}\theta = \theta^2\)
+            marks:
+              - code: A1
+                note: All four terms correct, combined or integrated separately.
+          - scheme: |
+              \(\left(\tfrac{\pi^2}{4}+2-\pi-\tfrac{\pi}{4}\right)-(-2)\)
+            marks:
+              - code: dM1
+                note: Substitutes \(\frac{\pi}{2}\) and \(0\) into their integrated terms and subtracts.
+          - scheme: |
+              \(\frac{\pi^2-5\pi+16}{4}\)
+            marks:
+              - code: A1
+                note: Any exact equivalent, such as \(\frac{\pi^2}{4}-\frac{5\pi}{4}+4\).
+  - q: 15
+    stamp: '38975849'
+    parts:
+      - part: i
+        rows:
+          - figure: 1
+            marks:
+              - code: B1
+                note: Increasing curve through the origin, approaching both \(y = \frac{\pi}{2}\) and \(y = -\frac{\pi}{2}\), with both asymptotes labelled.
+                feature: asymptotes
+      - part: ii
+        rows:
+          - scheme: |
+              \(y = \arctan x \Rightarrow x = \tan y\)
+              \(1 = \sec^2 y\,\frac{\mathrm{d}y}{\mathrm{d}x}\)
+            marks:
+              - code: M1
+                note: Writes \(x = \tan y\) and differentiates implicitly, or finds \(\frac{\mathrm{d}x}{\mathrm{d}y} = \sec^2 y\) and inverts. Condone a slip in the derivative of \(\tan y\).
+          - scheme: |
+              \(\frac{\mathrm{d}y}{\mathrm{d}x} = \frac{1}{\sec^2 y} = \frac{1}{1 + \tan^2 y}\)
+            marks:
+              - code: M1
+                note: Uses \(\sec^2 y = 1 + \tan^2 y\) to write their derivative in terms of \(x\).
+          - scheme: |
+              \(\phantom{\frac{\mathrm{d}y}{\mathrm{d}x}} = \frac{1}{1 + x^2}\)
+            marks:
+              - code: A1 AG
+                note: Correct working from \(x = \tan y\), leading without error to the printed result in \(x\).
+      - part: iii
+        rows:
+          - scheme: |
+              \(I = \left[\tfrac{x^2}{2}(\arctan x)^2\right]_0^1\)
+              \(\phantom{I =} - \int_0^1 \tfrac{x^2}{2}\cdot\tfrac{2\arctan x}{1+x^2}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Integrates by parts with \(u = (\arctan x)^2\), reaching \(\frac{x^2}{2}(\arctan x)^2 - \int k\frac{x^2\arctan x}{1+x^2}\,\mathrm{d}x\). Condone a slip in \(k\).
+          - scheme: |
+              \(\phantom{I} = \frac{\pi^2}{32} - \int_0^1 \frac{x^2\arctan x}{1+x^2}\,\mathrm{d}x\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\frac{x^2}{1+x^2} = 1 - \frac{1}{1+x^2}\)
+              \(\Rightarrow I = \frac{\pi^2}{32} - \int_0^1 \arctan x\,\mathrm{d}x\)
+              \(\phantom{\Rightarrow I = \frac{\pi^2}{32}} + \int_0^1 \frac{\arctan x}{1+x^2}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Writes \(\frac{x^2}{1+x^2}\) as \(1 - \frac{1}{1+x^2}\), by division or otherwise, and splits their integral into two.
+          - scheme: |
+              \(\int_0^1 \arctan x\,\mathrm{d}x = \left[x\arctan x\right]_0^1\)
+              \(\phantom{\int_0^1 \arctan x\,\mathrm{d}x =} - \int_0^1 \frac{x}{1+x^2}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Integrates by parts with \(u = \arctan x\), \(\frac{\mathrm{d}v}{\mathrm{d}x} = 1\), reaching \(x\arctan x \pm \int \frac{kx}{1+x^2}\,\mathrm{d}x\).
+          - scheme: |
+              \(\int_0^1 \arctan x\,\mathrm{d}x = \frac{\pi}{4} - \frac{1}{2}\ln 2\)
+            marks:
+              - code: A1
+                note: \(\int \frac{x}{1+x^2}\,\mathrm{d}x\) by substitution or by inspection.
+          - scheme: |
+              \(t = \arctan x \Rightarrow \int_0^1 \frac{\arctan x}{1+x^2}\,\mathrm{d}x\)
+              \(\phantom{t = \arctan x} = \int_0^{\pi/4} t\,\mathrm{d}t\)
+            marks:
+              - code: M1
+                note: Substitutes \(t = \arctan x\) or \(x = \tan t\), replacing \(\mathrm{d}x\), to reach \(\int t\,\mathrm{d}t\); or integrates by inspection to \(k(\arctan x)^2\).
+          - scheme: |
+              \(\phantom{t = \arctan x} = \left[\frac{t^2}{2}\right]_0^{\pi/4} = \frac{\pi^2}{32}\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(I = \frac{\pi^2}{32} - \left(\frac{\pi}{4} - \frac{1}{2}\ln 2\right) + \frac{\pi^2}{32}\)
+              \(\phantom{I} = \frac{\pi^2}{16} - \frac{\pi}{4} + \frac{1}{2}\ln 2\)
+            marks:
+              - code: A1 AG
+                note: Correct values of all three terms combined with correct signs, leading without error to the printed result.
