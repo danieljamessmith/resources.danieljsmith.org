@@ -1041,6 +1041,16 @@ const rawResources: Resource[] = [
     pairId: 'fm-induction-derivatives',
     topic: 'Proof by Induction',
   },
+  {
+    id: 'fm-induction-derivatives-ms',
+    title: 'Proof by Induction - Derivatives',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/induction/ms/_QBT___MS__Proof_by_Induction___Derivatives.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-induction-derivatives',
+    topic: 'Proof by Induction',
+  },
 
   // --- A-level Further Maths: Miscellaneous Pure ---
   {
