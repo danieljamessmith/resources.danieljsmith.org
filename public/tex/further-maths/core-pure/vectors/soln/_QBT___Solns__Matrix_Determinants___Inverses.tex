@@ -4,7 +4,7 @@
 \djsSolnHeader{Matrix Determinants \& Inverses}
 \djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}
 
-\djsLastUpdated{14 October 2026}
+\djsLastUpdated{25 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -20,17 +20,17 @@
 % [Source: _QBT___Solns__Matrix_Determinants___Inverses, Q1]
 
 \[
-B = \begin{pmatrix} 1 & a \\ 1 & 3 \end{pmatrix}
+\mathbf{B} = \begin{pmatrix} 1 & a \\ 1 & 3 \end{pmatrix}
 \] \\
 where $a$ is a real constant and $a \neq 3$. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find $B^{-1}$ in terms of $a$. \marks{2} \\
+  \item Find $\mathbf{B}^{-1}$ in terms of $a$. \marks{2} \\
 \end{enumerate}
 
 Given that
 \[
-B^{-1} = 2\mathbf{I} - \frac{1}{2}B
+\mathbf{B}^{-1} = 2\mathbf{I} - \frac{1}{2}\mathbf{B}
 \] \\
 where $\mathbf{I}$ is the $2 \times 2$ identity matrix, \\
 
@@ -44,37 +44,37 @@ where $\mathbf{I}$ is the $2 \times 2$ identity matrix, \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item For
 \[
-B=\begin{pmatrix}1&a\\1&3\end{pmatrix}
+\mathbf{B}=\begin{pmatrix}1&a\\1&3\end{pmatrix}
 \]
 
 the determinant is
 \[
-\det(B)=1\cdot 3-1\cdot a=3-a
+\det(\mathbf{B})=1\times 3-1\times a=3-a
 \]
 
-Since $a\neq 3$, $\det(B)\neq 0$, so $B^{-1}$ exists.
+Since $a\neq 3$, $\det(\mathbf{B})\neq 0$, so $\mathbf{B}^{-1}$ exists.
 
 So
 \[
-B^{-1}
+\mathbf{B}^{-1}
 =\frac{1}{3-a}\begin{pmatrix}3&-a\\-1&1\end{pmatrix}
 \]
 
   \item We are given
 \[
-B^{-1}=2\mathbf I-\frac12 B
+\mathbf{B}^{-1}=2\mathbf{I}-\frac12 \mathbf{B}
 \]
 
 Now
 \[
-2\mathbf I=\begin{pmatrix}2&0\\0&2\end{pmatrix},
+2\mathbf{I}=\begin{pmatrix}2&0\\0&2\end{pmatrix},
 \qquad
-\frac12 B=\begin{pmatrix}\frac12&\frac a2\\[2pt]\frac12&\frac32\end{pmatrix}
+\frac12 \mathbf{B}=\begin{pmatrix}\frac12&\frac a2\\[2pt]\frac12&\frac32\end{pmatrix}
 \]
 
 So
 \[
-2\mathbf I-\frac12 B
+2\mathbf{I}-\frac12 \mathbf{B}
 =
 \begin{pmatrix}
 2-\frac12 & 0-\frac a2\\[4pt]
@@ -93,9 +93,9 @@ So
 \end{pmatrix}
 \]
 
-From part (a),
+From part (a):
 \[
-B^{-1}=\frac{1}{3-a}\begin{pmatrix}3&-a\\-1&1\end{pmatrix}
+\mathbf{B}^{-1}=\frac{1}{3-a}\begin{pmatrix}3&-a\\-1&1\end{pmatrix}
 \]
 
 Since this is equal to
@@ -117,8 +117,6 @@ and therefore
 \[
 a=1
 \]
-
-So the value of $a$ is $1$.
 \end{enumerate}
 \end{djsSolution}
 
@@ -131,26 +129,26 @@ So the value of $a$ is $1$.
 
 Given that
 \[
-A=\begin{pmatrix}k+1 & 2\\ 1-2k & k-4\\ 2k-1 & 4-k\end{pmatrix}
+\mathbf{A}=\begin{pmatrix}k+1 & 2\\ 1-2k & k-4\\ 2k-1 & 4-k\end{pmatrix}
 \quad \text{and} \quad
-B=\begin{pmatrix}1 & 1 & 1\\ 1 & 0 & 1\end{pmatrix}
+\mathbf{B}=\begin{pmatrix}1 & 1 & 1\\ 1 & 0 & 1\end{pmatrix}
 \] \\
 where $k$ is a constant, \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item determine the matrix $BA$. \marks{2} \\
-  \item hence find the values of $k$ for which $BA$ is singular. \marks{4} \\
+  \item determine the matrix $\mathbf{BA}$. \marks{2} \\
+  \item hence find the values of $k$ for which $\mathbf{BA}$ is singular. \marks{4} \\
 \end{enumerate}
 
 \vspace*{10pt}
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Since $B$ is $2\times 3$ and $A$ is $3\times 2$, the product $BA$ is a $2\times 2$ matrix.
+  \item Since $\mathbf{B}$ is $2\times 3$ and $\mathbf{A}$ is $3\times 2$, the product $\mathbf{BA}$ is a $2\times 2$ matrix.
 
-  Multiply rows of $B$ by columns of $A$:
+  Multiply rows of $\mathbf{B}$ by columns of $\mathbf{A}$:
   \[
-  BA=
+  \mathbf{BA}=
   \begin{pmatrix}
   1 & 1 & 1\\
   1 & 0 & 1
@@ -170,14 +168,14 @@ where $k$ is a constant, \\
 
   Therefore
   \[
-  BA=\begin{pmatrix}k+1 & 2\\ 3k & 6-k\end{pmatrix}
+  \mathbf{BA}=\begin{pmatrix}k+1 & 2\\ 3k & 6-k\end{pmatrix}
   \]
 
   \item A matrix is singular if its determinant is $0$.
 
   So
   \[
-  \det(BA)=
+  \det(\mathbf{BA})=
   \begin{vmatrix}
   k+1 & 2\\
   3k & 6-k
@@ -185,13 +183,13 @@ where $k$ is a constant, \\
   =(k+1)(6-k)-2(3k)
   \]
   \begin{align*}
-  \det(BA)&=6k+6-k^2-k-6k \\
+  \det(\mathbf{BA})&=6k+6-k^2-k-6k \\
           &=-k^2-k+6 \\
           &=-(k^2+k-6) \\
           &=-(k+3)(k-2)
   \end{align*}
 
-  For singularity,
+  So \(\mathbf{BA}\) is singular when
   \[
   -(k+3)(k-2)=0
   \]
@@ -200,8 +198,6 @@ where $k$ is a constant, \\
   \[
   k=-3 \quad \text{or} \quad k=2
   \]
-
-  So the values of $k$ for which $BA$ is singular are $k=2$ and $k=-3$.
 \end{enumerate}
 \end{djsSolution}
 
@@ -282,7 +278,7 @@ In 2024, the total number of bicycles manufactured increased by $3.8\%$. \\
 
   \item Let
   \[
-  A=\begin{pmatrix}
+  \mathbf{A}=\begin{pmatrix}
   1&1&1\\
   -1&-1&1\\
   1.10&0.95&1.05
@@ -295,12 +291,12 @@ In 2024, the total number of bicycles manufactured increased by $3.8\%$. \\
 
   Then the matrix equation is
   \[
-  A\mathbf{x}=\mathbf{b}
+  \mathbf{A}\mathbf{x}=\mathbf{b}
   \]
 
 Using a calculator, the inverse is
 \[
-A^{-1}
+\mathbf{A}^{-1}
 =
 \begin{pmatrix}
 1&1&1\\
@@ -316,7 +312,7 @@ A^{-1}
 \end{pmatrix}
 \]
 
-To obtain
+So
 \begin{align*}
 \begin{pmatrix}
 C\\
@@ -359,7 +355,7 @@ So
 \text{Commuter }=320,\qquad \text{Electric }=280,\qquad \text{Folding }=400
 \]
 
-\textit{Alternative Solution (elimination):}
+\textit{Alternative Solution:}
 
 The equivalent system is
   \begin{align*}
@@ -436,7 +432,7 @@ Form and solve a matrix equation to find the initial number enrolled in each cou
 \begin{djsSolution}
 Let the initial numbers enrolled in art, dance and pottery be \(A\), \(D\) and \(P\) respectively.
 
-From the information given,
+From the information given:
 \[
 A+D+P=580
 \]
@@ -458,7 +454,7 @@ By the end of the year, the total enrolment had increased by \(20\), so the new 
 
 To avoid decimals, multiply this last equation by \(20\):
 \[
-19A+22D+23P=12000
+19A+22D+23P=12\,000
 \]
 
 So the matrix equation is
@@ -477,7 +473,7 @@ P
 \begin{pmatrix}
 580\\
 20\\
-12000
+12\,000
 \end{pmatrix}
 \]
 
@@ -493,7 +489,7 @@ Using a calculator, the inverse is
 -\frac{41}{2}&\frac32&1
 \end{pmatrix}\]
 
-To obtain 
+So
 \begin{align*}
 \begin{pmatrix}
     A \\ D \\ P
@@ -506,7 +502,7 @@ To obtain
 \end{pmatrix}^{-1}\begin{pmatrix}
 580\\
 20\\
-12000
+12\,000
 \end{pmatrix} \\
 &= \begin{pmatrix}
 \frac12&\frac12&0\\
@@ -515,7 +511,7 @@ To obtain
 \end{pmatrix}\begin{pmatrix}
 580\\
 20\\
-12000
+12\,000
 \end{pmatrix} \\
 &= \begin{pmatrix}
 300\\
@@ -529,7 +525,7 @@ So
 \text{Art }=300,\qquad \text{Dance }=140,\qquad \text{Pottery }=140
 \]
 
-\textit{Alternative Solution (elimination):}
+\textit{Alternative Solution:}
 
 Now solve the equivalent system of equations.
 
@@ -546,10 +542,10 @@ Substitute into \(A+D+P=580\):
 D+P&=280
 \end{align*}
 
-Now substitute \(A=300\) into \(19A+22D+23P=12000\):
+Now substitute \(A=300\) into \(19A+22D+23P=12\,000\):
 \begin{align*}
-19(300)+22D+23P&=12000\\
-5700+22D+23P&=12000\\
+19(300)+22D+23P&=12\,000\\
+5700+22D+23P&=12\,000\\
 22D+23P&=6300
 \end{align*}
 
@@ -584,9 +580,9 @@ Hence the initial enrolments were:
 \questionitem
 % [Source: _QBT___Solns__Matrix_Determinants___Inverses, Q5]
 
-The matrix $A$ is given by
+The matrix $\mathbf{A}$ is given by
 \[
-A=\begin{pmatrix}
+\mathbf{A}=\begin{pmatrix}
 2 & k & 1\\
 1 & 0 & 2\\
 k & -1 & 1
@@ -595,11 +591,11 @@ k & -1 & 1
 where $k$ is a real constant. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Show that $A$ is non-singular for all real values of $k$. \marks{3} \\
+  \item Show that $\mathbf{A}$ is non-singular for all real values of $k$. \marks{3} \\
   \item Given that
   \[
 \renewcommand{\arraystretch}{1.5}
-A^{-1}=\begin{pmatrix}
+\mathbf{A}^{-1}=\begin{pmatrix}
   \tfrac{1}{2} & -\frac{1}{2} & \frac{1}{2}\\
   \frac{1}{4} & \frac{1}{4} & -\frac{3}{4}\\
   -\frac{1}{4} & \frac{3}{4} & -\frac{1}{4}
@@ -612,13 +608,13 @@ A^{-1}=\begin{pmatrix}
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Expanding $\det A$ along the first row,
+  \item Expanding $\det(\mathbf{A})$ along the first row:
 \begin{align*}
-\det A
+\det(\mathbf{A})
 &=2\begin{vmatrix}0&2\\-1&1\end{vmatrix}
 -k\begin{vmatrix}1&2\\ k&1\end{vmatrix}
 +1\begin{vmatrix}1&0\\ k&-1\end{vmatrix}\\
-&=2(0\cdot 1-2(-1))-k(1\cdot 1-2k)+1(1\cdot(-1)-0\cdot k)\\
+&=2(0\times 1-2(-1))-k(1\times 1-2k)+1(1\times(-1)-0\times k)\\
 &=2(2)-k(1-2k)-1\\
 &=4-k+2k^2-1\\
 &=2k^2-k+3
@@ -636,17 +632,17 @@ and the coefficient of $k^2$ is positive, so
 
 Hence
 \[
-\det A\neq 0 \quad \text{for all real } k
+\det(\mathbf{A})\neq 0 \quad \text{for all real } k
 \]
 
-Therefore $A$ is non-singular for all real values of $k$.
+Therefore $\mathbf{A}$ is non-singular for all real values of $k$.
 
-  \item Let the given matrix be $B$. Since $B=A^{-1}$, we must have
+  \item Let the given matrix be $\mathbf{B}$. Since $\mathbf{B}=\mathbf{A}^{-1}$, we must have
 \[
-AB=I
+\mathbf{AB}=\mathbf{I}
 \]
 
-Using the $(1,1)$ entry of $AB$,
+Using the $(1,1)$ entry of $\mathbf{AB}$:
 \begin{align*}
 \begin{pmatrix}2 & k & 1\end{pmatrix}
 \begin{pmatrix}
@@ -655,14 +651,12 @@ Using the $(1,1)$ entry of $AB$,
 -\frac14
 \end{pmatrix}
 &=1\\
-2\cdot \frac12+k\cdot \frac14+1\cdot\left(-\frac14\right)&=1\\
+2\times \frac12+k\times \frac14+1\times\left(-\frac14\right)&=1\\
 1+\frac{k}{4}-\frac14&=1\\
 \frac{k+3}{4}&=1\\
 k+3&=4\\
 k&=1
 \end{align*}
-
-Therefore, $k=1$.
 \end{enumerate}
 \end{djsSolution}
 
@@ -695,31 +689,26 @@ Form and solve a matrix equation to find, to $2$ significant figures, the number
 \vspace*{10pt}
 
 \begin{djsSolution}
-Let
-\[
-x,\ y,\ z
-\]
-
-be the numbers of passes of types \(A\), \(B\) and \(C\) sold in 2023.
+Let the numbers of passes of types \(A\), \(B\) and \(C\) sold in 2023 be \(x\), \(y\) and \(z\) respectively.
 
 Then the numbers sold in 2024 were:
 \[
 1.25x,\quad 0.8y,\quad 1.5z
 \]
 
-Since \(900\,000\) passes were sold in 2023,
+In total \(900\,000\) passes were sold in 2023, so
 \[
-x+y+z=900000
+x+y+z=900\,000
 \]
 
-Since \(1\,050\,000\) passes were sold in 2024,
+In total \(1\,050\,000\) passes were sold in 2024, so
 \[
-1.25x+0.8y+1.5z=1050000
+1.25x+0.8y+1.5z=1\,050\,000
 \]
 
 To avoid decimals, multiply this equation by \(20\):
 \[
-25x+16y+30z=21000000
+25x+16y+30z=21\,000\,000
 \]
 
 Now use the 2024 profit information.
@@ -731,12 +720,12 @@ A:\pounds 16,\qquad B:\pounds 15,\qquad C:\pounds 12
 
 So the total profit in 2024 is
 \[
-16(1.25x)+15(0.8y)+12(1.5z)=15120000
+16(1.25x)+15(0.8y)+12(1.5z)=15\,120\,000
 \]
 
 This simplifies to
 \[
-20x+12y+18z=15120000
+20x+12y+18z=15\,120\,000
 \]
 
 So the matrix equation is
@@ -751,13 +740,13 @@ x\\y\\z
 \end{pmatrix}
 =
 \begin{pmatrix}
-900000\\21000000\\15120000
+900\,000\\21\,000\,000\\15\,120\,000
 \end{pmatrix}
 \]
 
 Let
 \[
-M=
+\mathbf{M}=
 \begin{pmatrix}
 1&1&1\\
 25&16&30\\
@@ -765,18 +754,20 @@ M=
 \end{pmatrix}
 \]
 
-Then
-\[
-\det(M)=
-1\begin{vmatrix}16&30\\12&18\end{vmatrix}
+Expanding along the first row:
+\begin{align*}
+\det(\mathbf{M})
+&=1\begin{vmatrix}16&30\\12&18\end{vmatrix}
 -1\begin{vmatrix}25&30\\20&18\end{vmatrix}
-+1\begin{vmatrix}25&16\\20&12\end{vmatrix}
-\]
-\[
-=(-72)-(-150)+(-20)=58
-\]
++1\begin{vmatrix}25&16\\20&12\end{vmatrix}\\
+&=(-72)-(-150)+(-20)\\
+&=58
+\end{align*}
 
-Since \(\det(M)\neq 0\), the inverse exists.
+Since \(\det(\mathbf{M})\neq 0\), the inverse exists and
+\[
+\mathbf{M}^{-1}=\frac{1}{\det(\mathbf{M})}\operatorname{adj}(\mathbf{M})
+\]
 
 The matrix of cofactors is
 \[
@@ -787,9 +778,9 @@ The matrix of cofactors is
 \end{pmatrix}
 \]
 
-So the adjugate matrix is
+The adjugate, \(\operatorname{adj}(\mathbf{M})\), is the transposed matrix of cofactors:
 \[
-\operatorname{adj}(M)=
+\operatorname{adj}(\mathbf{M})=
 \begin{pmatrix}
 -72&-6&14\\
 150&-2&-5\\
@@ -799,7 +790,7 @@ So the adjugate matrix is
 
 Hence
 \[
-M^{-1}=\frac1{58}
+\mathbf{M}^{-1}=\frac1{58}
 \begin{pmatrix}
 -72&-6&14\\
 150&-2&-5\\
@@ -807,7 +798,7 @@ M^{-1}=\frac1{58}
 \end{pmatrix}
 \]
 
-Now multiply both sides of the matrix equation by \(M^{-1}\):
+Now multiply both sides of the matrix equation by \(\mathbf{M}^{-1}\):
 \[
 \begin{pmatrix}
 x\\y\\z
@@ -820,7 +811,7 @@ x\\y\\z
 -20&8&-9
 \end{pmatrix}
 \begin{pmatrix}
-900000\\21000000\\15120000
+900\,000\\21\,000\,000\\15\,120\,000
 \end{pmatrix}
 \]
 
@@ -832,25 +823,18 @@ x\\y\\z
 =
 \frac1{58}
 \begin{pmatrix}
-20880000\\17400000\\13920000
+20\,880\,000\\17\,400\,000\\13\,920\,000
 \end{pmatrix}
 =
 \begin{pmatrix}
-360000\\300000\\240000
+360\,000\\300\,000\\240\,000
 \end{pmatrix}
 \]
 
-Therefore, the numbers of passes sold in 2023 were
+So the numbers of passes of each type sold in 2023 were
 \[
-A=360000,\qquad B=300000,\qquad C=240000
+A:\ 3.6\times 10^5,\qquad B:\ 3.0\times 10^5,\qquad C:\ 2.4\times 10^5\qquad\text{(2 s.f.)}
 \]
-
-To \(2\) significant figures:
-\[
-A=3.6\times 10^5,\qquad B=3.0\times 10^5,\qquad C=2.4\times 10^5
-\]
-
-So the 2023 sales were \(3.6\times 10^5\) of \(A\), \(3.0\times 10^5\) of \(B\), and \(2.4\times 10^5\) of \(C\).
 \end{djsSolution}
 
 
@@ -861,7 +845,7 @@ So the 2023 sales were \(3.6\times 10^5\) of \(A\), \(3.0\times 10^5\) of \(B\),
 % [Source: _QBT___Solns__Matrix_Determinants___Inverses, Q7]
 
 \[
-A = \begin{pmatrix}
+\mathbf{A} = \begin{pmatrix}
 a & 1 & 0 \\
 2 & 3 & 1 \\
 0 & 1 & a
@@ -870,42 +854,38 @@ a & 1 & 0 \\
 where $a$ is a real constant. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Determine the values of $a$ for which $A$ is singular. \marks{2} \\
-  \item Hence, for all other values of $a$, find $A^{-1}$ in terms of $a$. \marks{4} \\
+  \item Determine the values of $a$ for which $\mathbf{A}$ is singular. \marks{2} \\
+  \item Hence, for all other values of $a$, find $\mathbf{A}^{-1}$ in terms of $a$. \marks{4} \\
 \end{enumerate}
 
 \vspace*{10pt}
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Expand $\det(A)$ along the first row:
-  \[
-  \det(A)=
-  a\begin{vmatrix}3&1\\[2pt]1&a\end{vmatrix}
-  -\begin{vmatrix}2&1\\[2pt]0&a\end{vmatrix}
-  +0\begin{vmatrix}2&3\\[2pt]0&1\end{vmatrix}
-  \]
-  \[
-  =a(3a-1)-2a
-  =3a^2-3a
-  =3a(a-1)
-  \]
+  \item Expand $\det(\mathbf{A})$ along the first row:
+  \begin{align*}
+  \det(\mathbf{A})
+  &=a\begin{vmatrix}3&1\\[2pt]1&a\end{vmatrix}
+  -1\begin{vmatrix}2&1\\[2pt]0&a\end{vmatrix}
+  +0\begin{vmatrix}2&3\\[2pt]0&1\end{vmatrix}\\
+  &=a(3a-1)-2a\\
+  &=3a^2-3a\\
+  &=3a(a-1)
+  \end{align*}
 
-  $A$ is singular when $\det(A)=0$, so
+  $\mathbf{A}$ is singular when $\det(\mathbf{A})=0$, so
   \[
-  3a(a-1)=0 \implies a=0 \text{ or } a=1
+  3a(a-1)=0\quad\Longrightarrow\quad a=0 \text{ or } a=1
   \]
-
-  Therefore, $A$ is singular for $a=0$ or $a=1$.
 
   \item For $a\neq 0,1$, the inverse exists and
   \[
-  A^{-1}=\frac{1}{\det(A)}\operatorname{adj}(A)
+  \mathbf{A}^{-1}=\frac{1}{\det(\mathbf{A})}\operatorname{adj}(\mathbf{A})
   \]
 
-  From part (a),
+  From part (a):
   \[
-  \det(A)=3a(a-1)
+  \det(\mathbf{A})=3a(a-1)
   \]
 
   The matrix of cofactors is
@@ -917,9 +897,9 @@ where $a$ is a real constant. \\
   \end{pmatrix}
   \]
 
-  So the adjugate matrix is its transpose:
+  The adjugate, \(\operatorname{adj}(\mathbf{A})\), is the transposed matrix of cofactors:
   \[
-  \operatorname{adj}(A)=
+  \operatorname{adj}(\mathbf{A})=
   \begin{pmatrix}
   3a-1 & -a & 1\\
   -2a & a^2 & -a\\
@@ -929,7 +909,7 @@ where $a$ is a real constant. \\
 
   Therefore
   \[
-  A^{-1}
+  \mathbf{A}^{-1}
   =\frac{1}{3a(a-1)}
   \begin{pmatrix}
   3a-1 & -a & 1\\
@@ -949,13 +929,13 @@ where $a$ is a real constant. \\
 % [Source: _QBT___Solns__Matrix_Determinants___Inverses, Q8]
 
 \[
-A = \begin{pmatrix}
+\mathbf{A} = \begin{pmatrix}
 k & 2 & 1 \\
 -1 & 3 & 0 \\
 4 & -2 & 1
 \end{pmatrix}
 \qquad
-B = \begin{pmatrix}
+\mathbf{B} = \begin{pmatrix}
 3 & -4 & -3 \\
 1 & k - 4 & -1 \\
 -10 & 2k + 8 & 3k + 2
@@ -966,16 +946,16 @@ where $k$ is a constant. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Determine the value of the constant $c$ for which
   \[
-  AB = (3k - c)I
+  \mathbf{AB} = (3k - c)\mathbf{I}
   \]
   \marks[-20pt]{2}
-  \item Hence determine the value of $k$ for which $A^{-1}$ does not exist. \marks{2} \\
+  \item Hence determine the value of $k$ for which $\mathbf{A}^{-1}$ does not exist. \marks{2} \\
 \end{enumerate}
 
-Given that $A^{-1}$ does exist, \\
+Given that $\mathbf{A}^{-1}$ does exist, \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item write down $A^{-1}$ in terms of $k$. \marks{1} \\
+  \item write down $\mathbf{A}^{-1}$ in terms of $k$. \marks{1} \\
   \item Use the answer to part (c) to solve the simultaneous equations
   \[
   \begin{aligned}
@@ -991,9 +971,9 @@ Given that $A^{-1}$ does exist, \\
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Multiplying \(A\) by \(B\),
+  \item Multiplying \(\mathbf{A}\) by \(\mathbf{B}\):
 \begin{align*}
-AB&=
+\mathbf{AB}&=
 \begin{pmatrix}
 k & 2 & 1\\
 -1 & 3 & 0\\
@@ -1016,33 +996,33 @@ k & 2 & 1\\
 0 & 3k-8 & 0\\
 0 & 0 & 3k-8
 \end{pmatrix}
-=(3k-8)I
+=(3k-8)\mathbf{I}
 \end{align*}
 
-Comparing with \((3k-c)I\), we get \(c=8\).
+Comparing with \((3k-c)\mathbf{I}\), we get \(c=8\).
 
-  \item From part (a),
+  \item From part (a):
 \[
-AB=(3k-8)I
+\mathbf{AB}=(3k-8)\mathbf{I}
 \]
 
 If \(3k-8\neq 0\), then
 \[
-A\left(\frac{1}{3k-8}B\right)=I
+\mathbf{A}\left(\frac{1}{3k-8}\mathbf{B}\right)=\mathbf{I}
 \]
 
-so \(A^{-1}\) exists.
+so \(\mathbf{A}^{-1}\) exists.
 
-Therefore \(A^{-1}\) does not exist when
+Therefore \(\mathbf{A}^{-1}\) does not exist when
 \[
 3k-8=0
 \]
 
 Hence \(k=\frac{8}{3}\).
 
-  \item Given that \(A^{-1}\) exists, \(k\neq \frac{8}{3}\), so from part (a)
+  \item Given that \(\mathbf{A}^{-1}\) exists, \(k\neq \frac{8}{3}\), so from part (a)
 \[
-A^{-1}=\frac{1}{3k-8}B
+\mathbf{A}^{-1}=\frac{1}{3k-8}\mathbf{B}
 =\frac{1}{3k-8}
 \begin{pmatrix}
 3 & -4 & -3\\
@@ -1051,11 +1031,9 @@ A^{-1}=\frac{1}{3k-8}B
 \end{pmatrix}
 \]
 
-This is \(A^{-1}\).
-
   \item Write the equations as
 \[
-A\begin{pmatrix}x\\y\\z\end{pmatrix}
+\mathbf{A}\begin{pmatrix}x\\y\\z\end{pmatrix}
 =
 \begin{pmatrix}1\\2\\3\end{pmatrix}
 \]
@@ -1063,7 +1041,7 @@ A\begin{pmatrix}x\\y\\z\end{pmatrix}
 So
 \[
 \begin{pmatrix}x\\y\\z\end{pmatrix}
-=A^{-1}\begin{pmatrix}1\\2\\3\end{pmatrix}
+=\mathbf{A}^{-1}\begin{pmatrix}1\\2\\3\end{pmatrix}
 =
 \frac{1}{3k-8}
 \begin{pmatrix}
@@ -1113,9 +1091,9 @@ z=\frac{13k+12}{3k-8}
 
 You are given that $a$ is a real parameter. \\
 
-The matrix $A$ is given by
+The matrix $\mathbf{A}$ is given by
 \[
-A=\begin{pmatrix}
+\mathbf{A}=\begin{pmatrix}
 1 & -2 & 3 \\
 4 & 1 & -1 \\
 a & 0 & 1
@@ -1123,7 +1101,7 @@ a & 0 & 1
 \] \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find an expression for $\det(A)$ in terms of $a$. \marks{2} \\
+  \item Find an expression for $\det(\mathbf{A})$ in terms of $a$. \marks{2} \\
 \end{enumerate}
 
 You are given the following system of equations in $x$, $y$ and $z$. \\
@@ -1138,18 +1116,18 @@ ax+z&=a-1
 
 The system can be written in the form
 \[
-A\begin{pmatrix}x \\ y \\ z\end{pmatrix}=\begin{pmatrix}-6 \\ 7 \\ a-1\end{pmatrix}
+\mathbf{A}\begin{pmatrix}x \\ y \\ z\end{pmatrix}=\begin{pmatrix}-6 \\ 7 \\ a-1\end{pmatrix}
 \] \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item
   \begin{enumerate}[label=(\roman*)]
-    \item In the case where $A$ is not singular, solve the given system by using $A^{-1}$. \marks{6}
-    \item In the case where $A$ is singular, describe the configuration of the planes whose equations are the three equations of the system. \marks{3} \\
+    \item In the case where $\mathbf{A}$ is not singular, solve the given system by using $\mathbf{A}^{-1}$. \marks{6}
+    \item In the case where $\mathbf{A}$ is singular, describe the configuration of the planes whose equations are the three equations of the system. \marks{3} \\
   \end{enumerate}
 \end{enumerate}
 
-The transformation represented by $A$ is denoted by $T$. \\
+The transformation represented by $\mathbf{A}$ is denoted by $T$. \\
 A solid of volume $12$ is transformed by $T$ to an image in 3-D space. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
@@ -1164,9 +1142,9 @@ A solid of volume $12$ is transformed by $T$ to an image in 3-D space. \\
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Expanding along the first row,
+  \item Expanding along the first row:
   \begin{align*}
-  \det(A)
+  \det(\mathbf{A})
   &=1\begin{vmatrix}1&-1\\0&1\end{vmatrix}
   -(-2)\begin{vmatrix}4&-1\\ a&1\end{vmatrix}
   +3\begin{vmatrix}4&1\\ a&0\end{vmatrix} \\
@@ -1177,17 +1155,17 @@ A solid of volume $12$ is transformed by $T$ to an image in 3-D space. \\
 
   \item
   \begin{enumerate}[label=(\roman*)]
-    \item From part (a), \(A\) is non-singular when
+    \item From part (a), \(\mathbf{A}\) is non-singular when
     \[
-    9-a\neq 0 \quad \Rightarrow \quad a\neq 9
+    9-a\neq 0\quad\Longrightarrow\quad a\neq 9
     \]
 
-    Using
+    For \(a\neq 9\), the inverse exists and
     \[
-    A^{-1}=\frac{1}{\det(A)}\operatorname{adj}(A)
+    \mathbf{A}^{-1}=\frac{1}{\det(\mathbf{A})}\operatorname{adj}(\mathbf{A})
     \]
 
-    the matrix of cofactors is
+    The matrix of cofactors is
     \[
     \begin{pmatrix}
     1 & -a-4 & -a \\
@@ -1196,9 +1174,9 @@ A solid of volume $12$ is transformed by $T$ to an image in 3-D space. \\
     \end{pmatrix}
     \]
 
-    so
+    The adjugate, \(\operatorname{adj}(\mathbf{A})\), is the transposed matrix of cofactors:
     \[
-    \operatorname{adj}(A)=
+    \operatorname{adj}(\mathbf{A})=
     \begin{pmatrix}
     1 & 2 & -1 \\
     -a-4 & 1-3a & 13 \\
@@ -1208,7 +1186,7 @@ A solid of volume $12$ is transformed by $T$ to an image in 3-D space. \\
 
     Hence
     \[
-    A^{-1}=\frac{1}{9-a}
+    \mathbf{A}^{-1}=\frac{1}{9-a}
     \begin{pmatrix}
     1 & 2 & -1 \\
     -a-4 & 1-3a & 13 \\
@@ -1219,7 +1197,7 @@ A solid of volume $12$ is transformed by $T$ to an image in 3-D space. \\
     Therefore
     \begin{align*}
     \begin{pmatrix}x\\y\\z\end{pmatrix}
-    &=A^{-1}\begin{pmatrix}-6\\7\\a-1\end{pmatrix} \\
+    &=\mathbf{A}^{-1}\begin{pmatrix}-6\\7\\a-1\end{pmatrix} \\
     &=\frac{1}{9-a}
     \begin{pmatrix}
     1 & 2 & -1 \\
@@ -1248,14 +1226,14 @@ A solid of volume $12$ is transformed by $T$ to an image in 3-D space. \\
     &=\begin{pmatrix}1\\2\\-1\end{pmatrix}
     \end{align*}
 
-    So, for \(a\neq 9\),
+    So, for \(a\neq 9\), the solution is
     \[
     x=1,\qquad y=2,\qquad z=-1
     \]
 
-    \item \(A\) is singular when
+    \item \(\mathbf{A}\) is singular when
     \[
-    9-a=0 \quad \Rightarrow \quad a=9
+    9-a=0\quad\Longrightarrow\quad a=9
     \]
 
     Then the three plane equations are
@@ -1267,24 +1245,24 @@ A solid of volume $12$ is transformed by $T$ to an image in 3-D space. \\
 
     Now
     \[
-    (9,0,1)=(1,-2,3)+2(4,1,-1)
+    \begin{pmatrix}9\\0\\1\end{pmatrix}=\begin{pmatrix}1\\-2\\3\end{pmatrix}+2\begin{pmatrix}4\\1\\-1\end{pmatrix}
     \]
 
     and
     \[
-    8=-6+2\cdot 7
+    8=-6+2\times 7
     \]
 
     So the third equation is obtained by adding the first equation to \(2\) times the second equation.
 
     Therefore any point which lies on the intersection of the first two planes also lies on the third plane. Since the first two planes are distinct and not parallel, they intersect in a line.
 
-    Hence, when \(a=9\), the three planes are distinct planes with a common line of intersection, so there are infinitely many solutions.
+    Hence, when \(a=9\), the three planes form a \textbf{sheaf}: they are distinct and share a common line of intersection, so there are infinitely many solutions.
   \end{enumerate}
 
   \item
   \begin{enumerate}[label=(\roman*)]
-    \item The orientation is reversed when \(\det(A)<0\).
+    \item The orientation is reversed when \(\det(\mathbf{A})<0\), so
     \[
     9-a<0
     \]
@@ -1292,14 +1270,9 @@ A solid of volume $12$ is transformed by $T$ to an image in 3-D space. \\
     a>9
     \]
 
-    Therefore, the orientation is reversed for
-    \[
-    a>9
-    \]
-
     \item The volume scale factor is
     \[
-    |\det(A)|=|9-a|
+    |\det(\mathbf{A})|=|9-a|
     \]
 
     So the image volume is
@@ -1354,11 +1327,11 @@ where $k$ is a constant. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Write the equations in matrix form as
 \[
-A\begin{pmatrix}x\\y\\z\end{pmatrix}
+\mathbf{A}\begin{pmatrix}x\\y\\z\end{pmatrix}
 =
 \begin{pmatrix}4\\k+11\\k+4\end{pmatrix},
 \qquad
-A=
+\mathbf{A}=
 \begin{pmatrix}
 1&2&-1\\
 3&k&2\\
@@ -1368,12 +1341,12 @@ A=
 
 The three planes have a unique point of intersection exactly when this linear system has a unique solution, that is when
 \[
-\det(A)\neq 0
+\det(\mathbf{A})\neq 0
 \]
 
 Now expand the determinant along the first row:
 \begin{align*}
-\det(A)
+\det(\mathbf{A})
 &=
 1\begin{vmatrix}k&2\\k&4\end{vmatrix}
 -2\begin{vmatrix}3&2\\0&4\end{vmatrix}
@@ -1385,7 +1358,7 @@ Now expand the determinant along the first row:
 
 So
 \[
-\det(A)\neq 0 \iff -(k+24)\neq 0 \iff k\neq -24
+\det(\mathbf{A})\neq 0 \iff -(k+24)\neq 0 \iff k\neq -24
 \]
 
 Hence the planes have a unique point of intersection for all values of $k$ except
@@ -1395,7 +1368,7 @@ k=-24
 
   \item To find the intersection point, eliminate the $ky$ term first.
 
-From the second and third equations,
+Subtracting the third equation from the second:
 \begin{align*}
 (3x+ky+2z)-(ky+4z)&=(k+11)-(k+4)\\
 3x-2z&=7
