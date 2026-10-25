@@ -1,0 +1,243 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/markscheme_preamble.tex}
+
+\djsSchemeHeader{Shortest Distances}
+\djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}
+
+\djsLastUpdated{25 October 2026}
+\begin{document}
+\djsSetQuestionCount{8}
+\djsAddMarks{1}{13}
+\djsAddMarks{2}{18}
+\djsAddMarks{3}{8}
+\djsAddMarks{4}{10}
+\djsAddMarks{5}{8}
+\djsAddMarks{6}{17}
+\djsAddMarks{7}{9}
+\djsAddMarks{8}{16}
+\vspace*{6pt}
+\djsContentsTitle
+\vspace{30pt}
+\msContentsHeading
+\begin{mscontents}{}
+Question & Marks by part & Marks & Page \\
+\msContentsQuestion{1} & (a)\,2\msSep (b)\,2\msSep (c)\,3\msSep (d)\,3\msSep (e)\,3 & 13 & \msContentsPage{1} \\
+\msContentsQuestion{2} & (a)\,4\msSep (b)\,5\msSep (c)(i)\,2\msSep (c)(ii)\,3\msSep (c)(iii)\,4 & 18 & \msContentsPage{2} \\
+\msContentsQuestion{3} & (a)\,2\msSep (b)\,2\msSep (c)\,4 & 8 & \msContentsPage{3} \\
+\msContentsQuestion{4} & (a)\,6\msSep (b)\,4 & 10 & \msContentsPage{4} \\
+\msContentsQuestion{5} & (i)\,6\msSep (ii)\,2 & 8 & \msContentsPage{5} \\
+\msContentsQuestion{6} & (a)\,3\msSep (b)\,3\msSep (c)\,2\msSep (d)\,4\msSep (e)(i)\,3\msSep (e)(ii)\,2 & 17 & \msContentsPage{6} \\
+\msContentsQuestion{7} & (a)(i)\,1\msSep (a)(ii)\,2\msSep (b)(i)\,3\msSep (b)(ii)\,3 & 9 & \msContentsPage{7} \\
+\msContentsQuestion{8} & (a)\,7\msSep (b)\,4\msSep (c)\,5 & 16 & \msContentsPage{8} \\
+\SetCell[c=2]{r} Total & & 99 & \\
+\end{mscontents}
+\newpage
+\input{../../../../_shared/markscheme_conventions.tex}
+
+\msQuestion{1}
+\begin{msscheme}{
+  hline{3-4,6-7,9-11,13-15,17-19} = {2-Z}{0.4pt, msGrid},
+  hline{5,8,12,16,20} = {0.4pt, msGrid},
+  row{20} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+1(a) & {\(\frac{\lvert 3(5) + 1(-5) + 2(3) + 4\rvert}{\sqrt{3^2 + 1^2 + 2^2}}\)} & M1 & {Substitutes \(P\) and the plane into the distance formula, or finds the foot of the perpendicular. Condone one sign slip.} \\
+& {\(= \frac{20}{\sqrt{14}}\ \left[= \frac{10\sqrt{14}}{7}\right]\)} & A1 & {\(\frac{20}{\sqrt{14}}\) oe, or awrt 5.35.} \\
+\nopagebreak & & [2] & \\
+1(b) & {\(2 + \lambda = 5 \Rightarrow \lambda = 3\)} & M1 & {Equates one component of the general point of \(L\) to that of \(P\) and solves for \(\lambda\).} \\
+& {\(y = 1 - 2(3) = -5\), \(z = -3 + 2(3) = 3\)\\[4pt] so \(P\) lies on \(L\)} & A1~AG & {Both other components shown to match \(P\) at \(\lambda = 3\), or \(\lambda = 3\) from all three, with a conclusion.} \\
+\nopagebreak & & [2] & \\
+1(c) & {\(3(2 + \lambda) + (1 - 2\lambda) + 2(-3 + 2\lambda) = -4\)\\[4pt] \(\Rightarrow \lambda = \ldots\)} & M1 & {Substitutes all three components of \(L\) into the plane equation and solves for \(\lambda\). Condone sign slips.} \\
+& {\(\lambda = \text{"}{-1}\text{"} \Rightarrow (2 - 1,\ 1 + 2,\ -3 - 2)\)} & dM1 & {Substitutes their \(\lambda\) into the equation of \(L\).} \\
+& {\((1, 3, -5)\)} & A1 & \\
+\nopagebreak & & [3] & \\
+1(d) & {\(\mathbf{u}\cdot\mathbf{n} = 3 - 2 + 4 = 5\), \(\lvert\mathbf{u}\rvert = 3\), \(\lvert\mathbf{n}\rvert = \sqrt{14}\)} & B1 & {All three values, seen or used.} \\
+& {\(\sin\theta = \frac{\text{"}5\text{"}}{\text{"}3\text{"}\,\text{"}\sqrt{14}\text{"}} \Rightarrow \theta = \ldots\)} & M1 & {Uses \(\sin\theta = \frac{\lvert\mathbf{u}\cdot\mathbf{n}\rvert}{\lvert\mathbf{u}\rvert\lvert\mathbf{n}\rvert}\) with their values, or finds the angle with the normal by cosine and subtracts it from \(90^\circ\).} \\
+& {\(\theta = 26.5^\circ\)} & A1 & {awrt \(26.5^\circ\), or awrt 0.462 radians.} \\
+\nopagebreak & & [3] & \\
+1(e) & {\(PC = \left(3 - (-1)\right) \times 3 = \ldots\ [= 12]\)} & M1 & {Finds \(PC\) as the change in \(\lambda\) times their \(\lvert\mathbf{u}\rvert\), or as the magnitude of \(\overrightarrow{PC}\) using their point from (c).} \\
+& {\(\text{"}12\text{"} \times \text{"}\frac{5}{3\sqrt{14}}\text{"}\)} & dM1 & {Multiplies their \(PC\) by their \(\sin\theta\) from (d), or by the cosine of their angle with the normal.} \\
+& {\(= \frac{20}{\sqrt{14}}\), as in (a)} & A1 & {\(\frac{20}{\sqrt{14}}\) oe, or awrt 5.35, with a statement that it agrees with (a).} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 1 & & 13 & \\
+\end{msscheme}
+
+\msQuestion{2}
+\begin{msscheme}{
+  hline{3-6,8-12,14-15,17-19,21-24} = {2-Z}{0.4pt, msGrid},
+  hline{7,13,16,20,25} = {0.4pt, msGrid},
+  row{25} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+2(a) & {\(\overrightarrow{CD} = \begin{pmatrix}3\\3\\-3\end{pmatrix}\)} & B1 & {Or any nonzero multiple, such as \(\mathbf i + \mathbf j - \mathbf k\).} \\
+& {\(\sin\alpha = \frac{\lvert(1)(1)+(1)(1)+(-1)(1)\rvert}{\sqrt3\sqrt3}\)} & M1 & {Uses the scalar product of their direction of \(CD\) and \(\mathbf i + \mathbf j + \mathbf k\) over the product of magnitudes, as \(\sin\alpha\), or as a cosine then subtracts from \(90^\circ\).} \\
+& {\(\sin\alpha = \frac13\)} & A1 & {Or the cosine of the angle with the normal \(= \frac13\).} \\
+& {\(\alpha = 19.5^\circ\)} & A1 & \\
+\nopagebreak & & [4] & \\
+2(b) & {\(\mathbf r = \begin{pmatrix}0\\0\\2\end{pmatrix} + t\begin{pmatrix}1\\1\\-1\end{pmatrix}\)} & M1 & {Uses \(C\) or \(D\) and their direction of \(CD\) from (a) in a vector or parametric equation.} \\
+& {\((x, y, z) = (t, t, 2 - t)\)} & A1 & {oe for their point and parameter.} \\
+& {\(P_1\colon\ t + t + 2 - t = 3 \Rightarrow t = \ldots\)\\[4pt] \(P_2\colon\ 2t - t = 1 \Rightarrow t = \ldots\)} & M1 & {Substitutes their general point into both plane equations and solves each, or into one and tests the resulting point in the other.} \\
+& {\(t = 1\) from both, so the point is common to \(P_1\) and \(P_2\)} & A1 & {The same parameter from both, or the point from one shown to satisfy the other, with a conclusion that it is common. A0 if the conclusion is missing.} \\
+& {\((1, 1, 1)\)} & A1 & \\
+\nopagebreak & & [5] & \\
+2(c)(i) & {\((\mathbf i + \mathbf j + \mathbf k) \times (2\mathbf i - \mathbf j)\)\\[4pt] \(\phantom{(} = \mathbf i(0 + 1) - \mathbf j(0 - 2) + \mathbf k(-1 - 2)\)} & M1 & {Expands a determinant or uses the component formula for all three components. Condone one sign slip.} \\
+& {\(= \mathbf i + 2\mathbf j - 3\mathbf k\)} & A1 & \\
+\nopagebreak & & [2] & \\
+2(c)(ii) & {\(\lvert\mathbf i + 2\mathbf j - 3\mathbf k\rvert = \sqrt{14}\)\\[4pt] \(\lvert\mathbf i + \mathbf j + \mathbf k\rvert = \sqrt3,\ \lvert 2\mathbf i - \mathbf j\rvert = \sqrt5\)} & B1 & {All three needed.} \\
+& {\(\sin\theta = \frac{\text{"}\sqrt{14}\text{"}}{\sqrt3\sqrt5} \Rightarrow \theta = \ldots\)} & M1 & {Divides the magnitude of their vector from (c)(i) by the product of the normals' magnitudes as \(\sin\theta\), and finds \(\theta\). Not for a scalar-product route that doesn't use (c)(i).} \\
+& {\(\theta = 75.0^\circ\)} & A1 & \\
+\nopagebreak & & [3] & \\
+2(c)(iii) & {\(\begin{pmatrix}0\\0\\2\end{pmatrix} - \begin{pmatrix}1\\1\\1\end{pmatrix} = \begin{pmatrix}-1\\-1\\1\end{pmatrix}\)\\[4pt] \(\begin{pmatrix}-1\\-1\\1\end{pmatrix} \times \begin{pmatrix}1\\2\\-3\end{pmatrix} = \ldots\)} & M1 & {Forms the vector from a point on both planes, such as their point from (b), to \(C\), and crosses it with their direction from (c)(i). Condone sign slips.} \\
+& {\(\begin{pmatrix}1\\-2\\-1\end{pmatrix}\)} & A1 & {Or its negative.} \\
+& {\(\text{dist} = \frac{\text{"}\sqrt6\text{"}}{\sqrt{14}}\)} & dM1 & {Divides the magnitude of their cross product by the magnitude of their direction.} \\
+& {\(= \sqrt{\tfrac37} \approx 0.655\)} & A1 & \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 2 & & 18 & \\
+\end{msscheme}
+
+\msQuestion{3}
+\begin{msscheme}{
+  hline{3-4,6-7,9-12} = {2-Z}{0.4pt, msGrid},
+  hline{5,8,13} = {0.4pt, msGrid},
+  row{13} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+3(a) & {\((1)(1) + (-2)(2) + (3)(1) = \ldots\)\\[4pt] \((1)(4) + (-2)(-1) + (3)(-2) = \ldots\)} & M1 & {Forms the scalar product of the vector with both direction vectors, or finds the vector product of the direction vectors.} \\
+& {\(1 - 4 + 3 = 0\) and \(4 + 2 - 6 = 0\)\\[4pt] Perpendicular to both direction vectors \(\Rightarrow\) perpendicular to \(\Pi\)} & A1~AG & {Both products shown evaluated to zero, or the vector product shown to be a multiple of the vector, with a conclusion.} \\
+\nopagebreak & & [2] & \\
+3(b) & {\(x - 2y + 3z = (1)(2) + (-2)(-1) + (3)(3) = \ldots\)} & M1 & {Substitutes \((2, -1, 3)\), or another point of \(\Pi\), into \(x - 2y + 3z = d\), or expands \((\mathbf{i} - 2\mathbf{j} + 3\mathbf{k})\cdot(\mathbf{r} - \mathbf{a}) = 0\). Condone sign slips.} \\
+& {\(x - 2y + 3z = 13\)} & A1 & {Cartesian form, oe. \(\mathbf{r}\cdot(\mathbf{i} - 2\mathbf{j} + 3\mathbf{k}) = 13\) alone scores A0.} \\
+\nopagebreak & & [2] & \\
+3(c) & {\(A = (-2 + t,\ 1 + t,\ 4 + t)\)\\[4pt] \(\frac{|(-2 + t) - 2(1 + t) + 3(4 + t) - \text{"}13\text{"}|}{\sqrt{1 + 4 + 9}}\)\\[4pt] \(\phantom{A} = \frac{9}{\sqrt{14}}\)} & M1 & {Uses a general point of \(\ell\) in a point-to-plane distance with their plane from (b), set equal to \(\frac{9}{\sqrt{14}}\), or an equivalent method such as parallel planes. Condone sign slips.} \\
+& {\(|2t - 5| = 9\)} & A1 & {oe, such as \((2t - 5)^2 = 81\) or \(2t - 5 = \pm 9\).} \\
+& {\(2t - 5 = 9\) or \(2t - 5 = -9 \Rightarrow t = \ldots\ [= 7, -2]\)} & dM1 & {Solves both cases, or their quadratic, for two values of \(t\).} \\
+& {\(A = (5, 8, 11)\) or \((-4, -1, 2)\)} & A1 & {Both points, as coordinates or position vectors, and no others.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 3 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{4}
+\begin{msscheme}{
+  hline{3-8,10-13} = {2-Z}{0.4pt, msGrid},
+  hline{9,14} = {0.4pt, msGrid},
+  row{14} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+4(a) & {\(\overrightarrow{AB} = \begin{pmatrix}1\\2\\0\end{pmatrix}\), \(\overrightarrow{AC} = \begin{pmatrix}1\\0\\-1\end{pmatrix}\)\\[4pt] \(\overrightarrow{AB}\times\overrightarrow{AC} = \ldots\)} & M1 & {Finds two non-parallel vectors in the plane and attempts their cross product, or solves two scalar products with them equal to zero. Condone sign slips.} \\
+& {\(\mathbf n = \begin{pmatrix}-2\\1\\-2\end{pmatrix}\)} & A1 & {Any nonzero multiple.} \\
+& {\(2x - y + 2z = 2(1) - (-2) + 2(3)\)} & M1 & {Substitutes a point of \(\Pi\) into \(ax + by + cz = d\) or \(\mathbf r\cdot\mathbf n = d\), with their normal, to find \(d\).} \\
+& {\(2x - y + 2z = 10\)} & A1 & {oe, including \(\mathbf r\cdot\begin{pmatrix}2\\-1\\2\end{pmatrix} = 10\) or any multiple.} \\
+& {\(\text{dist} = \frac{\lvert 2(4) - 1 + 2(0) - 10\rvert}{\sqrt{2^2 + (-1)^2 + 2^2}} = \ldots\)} & M1 & {Uses the point-to-plane formula with \(D\) and their plane \(ax + by + cz = d\), or projects \(\overrightarrow{AD}\) onto their normal. Condone sign slips.} \\
+& {\(= 1\)} & A1 & \\
+\nopagebreak & & [6] & \\
+4(b) & {\(\begin{pmatrix}2\\1\\2\end{pmatrix}\times\begin{pmatrix}1\\-2\\1\end{pmatrix} = \ldots\)} & M1 & {Attempts the cross product of the two direction vectors, or solves two scalar products with them equal to zero. Condone sign slips.} \\
+& {\(= \begin{pmatrix}5\\0\\-5\end{pmatrix}\)} & A1 & {Any nonzero multiple.} \\
+& {\(\begin{pmatrix}2\\-3\\5\end{pmatrix}\cdot\text{"}\begin{pmatrix}5\\0\\-5\end{pmatrix}\text{"}\ [= -15]\)\\[4pt] \(\text{dist} = \frac{15}{\sqrt{5^2 + 0^2 + (-5)^2}} = \ldots\)} & dM1 & {Divides the scalar product of a vector joining the lines with their normal by the normal's magnitude. Condone a missing modulus.} \\
+& {\(= \frac{3\sqrt2}{2}\)} & A1 & {Any exact form, such as \(\frac{3}{\sqrt2}\).} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 4 & & 10 & \\
+\end{msscheme}
+
+\msQuestion{5}
+\begin{msscheme}{
+  hline{3-8,10-11} = {2-Z}{0.4pt, msGrid},
+  hline{9,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+5(i) & {Sets \(z = t\): \(x - y + t = 6,\ 2x + y - t = 3\)\\[4pt] \(\phantom{A} \Rightarrow x = \ldots,\ y = \ldots\)} & M1 & {Solves the plane equations with one variable as parameter, or crosses the normals and finds a common point. Condone slips.} \\
+& {\(\mathbf r = \begin{pmatrix}3\\-3\\0\end{pmatrix} + t\begin{pmatrix}0\\1\\1\end{pmatrix}\)} & A1 & {Any point on \(\ell_2\) and any multiple of the direction.} \\
+& {\(\begin{pmatrix}1\\2\\-1\end{pmatrix}\times\text{"}\begin{pmatrix}0\\1\\1\end{pmatrix}\text{"} = \ldots\)} & M1 & {Forms the vector product of the two directions, or finds a vector perpendicular to both. At least two components correct for their vectors.} \\
+& {\(\phantom{A} = \begin{pmatrix}3\\-1\\1\end{pmatrix}\)} & A1 & {Or any nonzero multiple.} \\
+& {\(\dfrac{\left|\begin{pmatrix}1\\-2\\-3\end{pmatrix}\cdot\text{"}\begin{pmatrix}3\\-1\\1\end{pmatrix}\text{"}\right|}{\sqrt{11}} = \ldots\)} & dM1 & {Divides the scalar product of a vector joining the two lines with their normal by the normal's magnitude. Condone a missing modulus.} \\
+& {\(\dfrac{2}{\sqrt{11}}\)} & A1 & {oe, or awrt 0.603.} \\
+\nopagebreak & & [6] & \\
+5(ii) & {\(\text{"}\begin{pmatrix}3\\-1\\1\end{pmatrix}\text{"}\cdot\begin{pmatrix}2\\-1\\3\end{pmatrix} = \ldots\)} & M1 & {Forms \(ax + by + cz = d\) with their normal from (i) and finds \(d\) from a point on \(\ell_1\).} \\
+& {\(3x - y + z = 10\)} & A1 & {Any Cartesian equivalent. Not for a vector equation alone.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 5 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{6}
+\begin{msscheme}{
+  hline{3-5,7-9,11-12,14-17,19-21,23-24} = {2-Z}{0.4pt, msGrid},
+  hline{6,10,13,18,22,25} = {0.4pt, msGrid},
+  row{25} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+6(a) & {\(\det\begin{pmatrix}1&\lambda&1\\2&-1&2\\2&1&-1\end{pmatrix}\)\\[4pt] \(\phantom{\det} = 1(1-2) - \lambda(-2-4) + 1(2+2)\)} & M1 & {Expands the determinant of the coefficient matrix by any row or column, giving an expression in \(\lambda\). Condone sign slips.} \\
+& {\(\phantom{\det} = 6\lambda + 3\)} & A1 & {oe, such as \(3(2\lambda+1)\).} \\
+& {\(6\lambda + 3 = 0 \Rightarrow \lambda = -\tfrac12\)\\[4pt] Unique point for all \(\lambda \neq -\tfrac12\)} & A1 & {Needs the conclusion that the point is unique for every other \(\lambda\). The case \(\lambda = -\frac12\) need not be examined further.} \\
+\nopagebreak & & [3] & \\
+6(b) & {\(\begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}1&2&1\\2&-1&2\\2&1&-1\end{pmatrix}^{-1}\begin{pmatrix}4\\3\\5\end{pmatrix}\)} & M1 & {Writes the system as \(\mathbf{A}\mathbf{x} = \mathbf{b}\) with \(\lambda = 2\) and uses \(\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}\). Not for solving the equations without matrices.} \\
+& {\(\mathbf{A}^{-1} = \frac{1}{15}\begin{pmatrix}-1&3&5\\6&-3&0\\4&3&-5\end{pmatrix}\)} & B1 & {Any equivalent form; an inverse from a calculator is accepted.} \\
+& {\(\begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}2\\1\\0\end{pmatrix}\), \(P = (2, 1, 0)\)} & A1 & \\
+\nopagebreak & & [3] & \\
+6(c) & {\(\frac{x+1}{1} = \frac{y-1}{-1} = \frac{z}{1} = t\)\\[4pt] \(\Rightarrow x = t - 1,\ y = 1 - t,\ z = t\)} & M1 & {Sets the ratios equal to a parameter and writes \(x\), \(y\), \(z\) in terms of it, or reads a point and a direction from the Cartesian form. Condone sign slips.} \\
+& {\(\mathbf{r} = \begin{pmatrix}-1\\1\\0\end{pmatrix} + t\begin{pmatrix}1\\-1\\1\end{pmatrix}\)} & A1 & {Any point of \(\ell\) and any multiple of its direction, with \(\mathbf{r} =\) or equivalent.} \\
+\nopagebreak & & [2] & \\
+6(d) & {\(\text{"}\begin{pmatrix}2\\1\\0\end{pmatrix}\text{"} - \begin{pmatrix}-1\\1\\0\end{pmatrix} = \begin{pmatrix}3\\0\\0\end{pmatrix}\)\\[4pt] \(\begin{pmatrix}3\\0\\0\end{pmatrix} \times \begin{pmatrix}1\\-1\\1\end{pmatrix} = \ldots\)} & M1 & {Forms the vector from any point of \(\ell\) to their \(P\) and its vector product with the direction of \(\ell\). Condone sign slips.} \\
+& {\(\phantom{\begin{pmatrix}3\\0\\0\end{pmatrix}} = \begin{pmatrix}0\\-3\\-3\end{pmatrix}\)} & A1 & {oe, such as its negative, or the multiple that their multiple of the direction gives.} \\
+& {\(\dfrac{\sqrt{0^2 + (-3)^2 + (-3)^2}}{\sqrt{1^2 + (-1)^2 + 1^2}} = \ldots\)} & dM1 & {Divides the magnitude of their vector product by the magnitude of their direction of \(\ell\).} \\
+& {\(= \sqrt6\)} & A1 & {\(\sqrt6\) or awrt 2.45.} \\
+\nopagebreak & & [4] & \\
+6(e)(i) & {\(\begin{pmatrix}1\\-1\\1\end{pmatrix} \cdot \begin{pmatrix}2\\1\\-1\end{pmatrix} = 2 - 1 - 1\)} & M1 & {Forms the scalar product of the direction of \(\ell\) with the normal of the plane.} \\
+& {\(\phantom{\begin{pmatrix}1\\-1\\1\end{pmatrix}} = 0\)} & A1 & \\
+& {\(2(-1) + 1 - 0 = -1 \neq 5\)\\[4pt] so \(\ell\) is not in the plane, and is parallel to it} & A1~AG & {Needs the zero scalar product and a point of \(\ell\) shown not to satisfy the plane's equation, then a conclusion of parallel in words.} \\
+\nopagebreak & & [3] & \\
+6(e)(ii) & {\(\dfrac{\left|2(-1) + 1(1) - 1(0) - 5\right|}{\sqrt{2^2 + 1^2 + (-1)^2}} = \ldots\)} & M1 & {Substitutes any point of \(\ell\) into the point-to-plane distance formula, or uses the parallel plane through \(\ell\). Unquoted, implied only by a correct substitution.} \\
+& {\(= \frac{6}{\sqrt6} = \sqrt6\)} & A1 & {\(\sqrt6\) or awrt 2.45.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 6 & & 17 & \\
+\end{msscheme}
+
+\msQuestion{7}
+\begin{msscheme}{
+  hline{3,5-6,8-10,12-14} = {2-Z}{0.4pt, msGrid},
+  hline{4,7,11,15} = {0.4pt, msGrid},
+  row{15} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+7(a)(i) & {\(\mathbf{u}\cdot\mathbf{v} = \lambda - 4\)} & B1 & \\
+\nopagebreak & & [1] & \\
+7(a)(ii) & {\(\mathbf{u}\times\mathbf{v} = (2-2)\mathbf{i} - (-\lambda-2)\mathbf{j}\)\\[4pt] \(\phantom{\mathbf{u}\times\mathbf{v} =} + (\lambda+2)\mathbf{k}\)} & M1 & {Attempts all three components by a determinant or the component formula. Condone sign slips.} \\
+& {\(\phantom{\mathbf{u}\times\mathbf{v}} = (\lambda+2)(\mathbf{j}+\mathbf{k})\)} & A1 & {oe, such as a column vector; need not be factorised.} \\
+\nopagebreak & & [2] & \\
+7(b)(i) & {\(\lvert 2\mathbf{i}-2\mathbf{j}+2\mathbf{k}\rvert = 2\sqrt3\), \(\lvert\mathbf{i}+\mathbf{j}-\mathbf{k}\rvert = \sqrt3\)} & B1 & \\
+& {\(\cos\theta = \dfrac{\lvert\text{"}2-4\text{"}\rvert}{2\sqrt3\times\sqrt3} = \ldots\)} & M1 & {Divides their (a)(i) at \(\lambda = 2\) by the product of their magnitudes in the cosine formula. Condone a missing modulus.} \\
+& {\(\theta = 70.5^\circ\)} & A1 & {awrt \(70.5^\circ\) or 1.23 rad, or \(\cos^{-1}\frac13\).} \\
+\nopagebreak & & [3] & \\
+7(b)(ii) & {\((\mathbf{i}-2\mathbf{j}+2\mathbf{k})\times(\mathbf{i}+\mathbf{j}-\mathbf{k}) = 3(\mathbf{j}+\mathbf{k})\)} & B1ft & {ft their (a)(ii) at \(\lambda = 1\); any nonzero multiple accepted.} \\
+& {\(\dfrac{\lvert(\mathbf{i}+3\mathbf{j}+4\mathbf{k})\cdot\text{"}(3\mathbf{j}+3\mathbf{k})\text{"}\rvert}{\lvert\text{"}3\mathbf{j}+3\mathbf{k}\text{"}\rvert}\)\\[4pt] \(\phantom{A} = \ldots\)} & M1 & {Divides the scalar product of a vector joining the two lines with their common normal by its magnitude. Condone sign slips in the joining vector.} \\
+& {\(\dfrac{7\sqrt2}{2}\)} & A1 & {\(\frac{7\sqrt2}{2}\) or \(\frac72\sqrt2\). Not for \(\frac{7}{\sqrt2}\) or a decimal alone.} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 7 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{8}
+\begin{msscheme}{
+  hline{3-8,10-12,14-17} = {2-Z}{0.4pt, msGrid},
+  hline{9,13,18} = {0.4pt, msGrid},
+  row{18} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+8(a) & {\(\overrightarrow{AD} = \begin{pmatrix}1\\1\\m\end{pmatrix}\), \(\overrightarrow{BC} = \begin{pmatrix}-1\\1\\2\end{pmatrix}\), \(\overrightarrow{AB} = \begin{pmatrix}1\\0\\0\end{pmatrix}\)} & B1 & {All three, oe; any vector joining a point of one line to a point of the other in place of \(\overrightarrow{AB}\).} \\
+& {\(\begin{pmatrix}1\\1\\m\end{pmatrix}\times\begin{pmatrix}-1\\1\\2\end{pmatrix} = \begin{pmatrix}2-m\\-2-m\\2\end{pmatrix}\)} & M1 A1 & {\msNote{M1}{Attempts the vector product of their two direction vectors. Condone sign slips.}\\ \msNote{A1}{oe, such as its negative.}} \\
+& {\(\dfrac{\left|\overrightarrow{AB}\cdot\text{"}\mathbf{n}\text{"}\right|}{\left|\text{"}\mathbf{n}\text{"}\right|} = \dfrac{1}{\sqrt{14}}\), \(\mathbf{n}\) their vector product} & M1 & {Uses the scalar product of their joining vector with their vector product, divided by its magnitude, and sets it equal to \(\frac{1}{\sqrt{14}}\).} \\
+& {\(\dfrac{|2-m|}{\sqrt{2m^2+12}} = \dfrac{1}{\sqrt{14}}\)} & A1 & {Correct equation oe, need not be simplified. Condone a missing modulus.} \\
+& {\(14(2-m)^2 = 2m^2+12\)\\[4pt] \(\Rightarrow 3m^2-14m+11 = 0 \Rightarrow m = \ldots\)} & dM1 & {Squares and solves their three-term quadratic in \(m\) by any means, a calculator included.} \\
+& {\(m = 1\) or \(m = \tfrac{11}{3}\); \(m\) is an integer, so \(m = 1\)} & A1~AG & {cso. Both roots from a correct quadratic, with \(\frac{11}{3}\) rejected as not an integer. A0 if \(m = 1\) is only verified.} \\
+\nopagebreak & & [7] & \\
+8(b) & {\(\overrightarrow{AC}\times\overrightarrow{AD} = \begin{pmatrix}0\\1\\2\end{pmatrix}\times\begin{pmatrix}1\\1\\1\end{pmatrix} = \begin{pmatrix}-1\\2\\-1\end{pmatrix}\)} & M1 A1 & {\msNote{M1}{Attempts the vector product of a vector from a point on the line to \(C\) with the line's direction, using \(m = 1\). Condone sign slips.}\\ \msNote{A1}{Or its negative.}} \\
+& {\(d = \dfrac{\left|\text{"}{-\mathbf{i}+2\mathbf{j}-\mathbf{k}}\text{"}\right|}{\left|\overrightarrow{AD}\right|} = \dfrac{\sqrt{6}}{\sqrt{3}}\)} & dM1 & {Divides the magnitude of their vector product by the magnitude of their direction vector.} \\
+& {\(d = \sqrt{2}\)} & A1 & {Or awrt 1.41.} \\
+\nopagebreak & & [4] & \\
+8(c) & {\(\overrightarrow{AB}\times\overrightarrow{AD} = \begin{pmatrix}1\\0\\0\end{pmatrix}\times\begin{pmatrix}1\\1\\1\end{pmatrix} = \begin{pmatrix}0\\-1\\1\end{pmatrix}\)} & M1 A1 & {\msNote{M1}{Attempts the vector product of two non-parallel vectors in plane \(ABD\), or finds a normal from two scalar products set to zero. Condone sign slips.}\\ \msNote{A1}{Any nonzero multiple.}} \\
+& {\(\mathbf{n}_{ACD} = \begin{pmatrix}-1\\2\\-1\end{pmatrix}\)} & B1 & {Any nonzero multiple; may be taken from (b).} \\
+& {\(\cos\theta = \dfrac{\left|\text{"}(0, -1, 1)\text{"}\cdot\text{"}(-1, 2, -1)\text{"}\right|}{\sqrt{2}\,\sqrt{6}}\)} & M1 & {Uses the scalar product of their two normals divided by the product of their magnitudes.} \\
+& {\(\cos\theta = \dfrac{3}{\sqrt{12}} = \dfrac{\sqrt{3}}{2}\)\\[4pt] so the acute angle is \(\cos^{-1}\left(\frac{\sqrt{3}}{2}\right)\)} & A1~AG & {cso, from correct normals. A negative cosine must be made positive, or the obtuse angle replaced by its supplement. Needs a concluding statement.} \\
+\nopagebreak & & [5] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 8 & & 16 & \\
+\end{msscheme}
+
+\end{document}

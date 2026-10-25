@@ -490,6 +490,16 @@ const rawResources: Resource[] = [
     topic: 'Vectors',
   },
   {
+    id: 'fm-vectors-shortest-distances-ms',
+    title: 'Shortest Distances',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/vectors/ms/_QBT___MS__Vectors___Shortest_Distances.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-vectors-shortest-distances',
+    topic: 'Vectors',
+  },
+  {
     id: 'fm-vectors-plane-intersections',
     title: 'Plane Intersections',
     description: '',
