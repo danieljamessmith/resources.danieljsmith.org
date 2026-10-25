@@ -4,7 +4,7 @@
 \djsSolnHeader{Modelling with 2nd Order Differential Equations}
 \djsSitePath{Core Pure}{Differential Equations}
 
-\djsLastUpdated{15 October 2026}
+\djsLastUpdated{25 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -58,10 +58,7 @@ where $p$ is a constant and $p\ge 0$. \\
   y(0)=A \qquad \text{where } A>0
   \]
 
-  since the body is above its steady running height at $t=0$. Also, it is at rest then, so
-  \[
-  \frac{\mathrm{d}y}{\mathrm{d}t}(0)=0
-  \]
+  since the body is above its steady running height at $t=0$. Also, it is at rest then, so when $t=0$, $\frac{\mathrm{d}y}{\mathrm{d}t}=0$.
 
   The auxiliary equation for
   \[
@@ -75,12 +72,12 @@ where $p$ is a constant and $p\ge 0$. \\
 
   Its discriminant is
   \[
-  \Delta=p^2-4(4)(9)=p^2-144
+  p^2-4(4)(9)=p^2-144
   \]
 
   We now consider cases.
 
-  If $0\le p<12$, then $\Delta<0$, so the roots are complex and the motion is oscillatory:
+  If $0\le p<12$, then $p^2-144<0$, so the roots are complex and the motion is oscillatory:
   \[
   y=e^{-pt/8}\left(C\cos \omega t+D\sin \omega t\right)
   \]
@@ -118,7 +115,7 @@ where $p$ is a constant and $p\ge 0$. \\
   &=\left[D-\frac{3}{2}(C+Dt)\right]e^{-3t/2}
   \end{align*}
 
-  Now use $\frac{\mathrm{d}y}{\mathrm{d}t}(0)=0$:
+  When $t=0$, $\frac{\mathrm{d}y}{\mathrm{d}t}=0$:
   \[
   0=D-\frac{3}{2}A
   \]
@@ -147,8 +144,8 @@ where $p$ is a constant and $p\ge 0$. \\
 
   Using the initial conditions:
   \begin{align*}
-  y(0)=A &\implies C+D=A \\
-  \frac{\mathrm{d}y}{\mathrm{d}t}(0)=0 &\implies -aC-bD=0
+  y(0)=A &\quad\Longrightarrow\quad C+D=A \\
+  \frac{\mathrm{d}y}{\mathrm{d}t}=0\text{ when }t=0 &\quad\Longrightarrow\quad -aC-bD=0
   \end{align*}
 
   Solving these gives
@@ -163,7 +160,7 @@ where $p$ is a constant and $p\ge 0$. \\
    &=\frac{Ae^{-bt}}{b-a}\left(be^{(b-a)t}-a\right)
   \end{align*}
 
-  Now $A>0$, $e^{-bt}>0$, and $b-a>0$. Also, for $t\ge0$,
+  Now $A>0$, $e^{-bt}>0$, and $b-a>0$. Also, for $t\ge0$:
   \[
   e^{(b-a)t}\ge 1
   \]
@@ -185,13 +182,13 @@ where $p$ is a constant and $p\ge 0$. \\
   0<p<12
   \]
 
-  So the graph is a damped oscillation about $y=0$, starting with $y>0$ and a horizontal tangent at $t=0$, and then crossing the axis.
+  The sketch should look like:
 
   \begin{center}
   \begin{tikzpicture}
   \begin{axis}[
-  width=8cm,
-  height=5cm,
+  width=0.75\linewidth,
+  height=8cm,
   axis lines=middle,
   xlabel={$t$},
   ylabel={$y$},
@@ -206,6 +203,8 @@ where $p$ is a constant and $p\ge 0$. \\
   \end{axis}
   \end{tikzpicture}
   \end{center}
+
+  The graph is a damped oscillation about $y=0$, starting with $y>0$ and a horizontal tangent at $t=0$, and then crossing the axis.
 \end{enumerate}
 \end{djsSolution}
 
@@ -246,23 +245,23 @@ Initially the error is decreasing at $9$ units per second, so $\frac{\mathrm{d} 
   \lambda^2+\lambda-6=0
   \]
 
-  Factorising,
+  Factorising:
   \[
   (\lambda+3)(\lambda-2)=0
   \]
 
   so the roots are $\lambda=-3$ and $\lambda=2$.
 
-  Hence the complementary solution is
+  Hence the complementary function is
   \[
-  E=Ae^{-3t}+Be^{2t}
+  E_c=Ae^{-3t}+Be^{2t}
   \]
 
-  Since the right-hand side is a constant, try a constant particular solution $E=k$.
+  Since the right-hand side is a constant, try a constant particular integral $E_p=k$.
 
   Then
   \[
-  \frac{\mathrm{d}E}{\mathrm{d}t}=0, \qquad \frac{\mathrm{d}^2E}{\mathrm{d}t^2}=0
+  \frac{\mathrm{d}E_p}{\mathrm{d}t}=0, \qquad \frac{\mathrm{d}^2E_p}{\mathrm{d}t^2}=0
   \]
 
   so substituting into the differential equation gives
@@ -296,7 +295,7 @@ Initially the error is decreasing at $9$ units per second, so $\frac{\mathrm{d} 
   \frac{\mathrm{d}E}{\mathrm{d}t}=-3Ae^{-3t}
   \]
 
-  Using the initial condition $\frac{\mathrm{d}E}{\mathrm{d}t}=-9$ when $t=0$,
+  Using the initial condition $\frac{\mathrm{d}E}{\mathrm{d}t}=-9$ when $t=0$:
   \[
   -3Ae^{0}=-9
   \]
@@ -316,14 +315,14 @@ Initially the error is decreasing at $9$ units per second, so $\frac{\mathrm{d} 
   \begin{align*}
   E(\ln 2)&=3e^{-3\ln 2}+2 \\
   &=3\left(e^{\ln 2}\right)^{-3}+2 \\
-  &=3\cdot 2^{-3}+2 \\
+  &=3\times 2^{-3}+2 \\
   &=\frac{3}{8}+2 \\
   &=\frac{19}{8}
   \end{align*}
 
   Therefore, $E=\frac{19}{8}$ when $t=\ln 2$.
 
-  \item From part (a),
+  \item From part (a):
   \[
   E=3e^{-3t}+2
   \]
@@ -344,7 +343,7 @@ Initially the error is decreasing at $9$ units per second, so $\frac{\mathrm{d} 
 \questionitem
 % [Source: _QBT___Solns__Modelling_with_2nd_Order_Differential_Equations, Q3]
 
-A trolley moves on a horizontal track and is attached to a spring and a dashpot. The trolley is pulled to the right of its equilibrium position and released. \\
+A trolley moves on a horizontal track and is attached to a spring and a damper. The trolley is pulled to the right of its equilibrium position and released. \\
 
 At time $t$ seconds after release, its horizontal displacement is $x$ metres to the right of a fixed point $P$, where $P$ is the equilibrium position and is $1.2$ metres from the left-hand end of the track. \\
 
@@ -374,7 +373,7 @@ where $k$ is a positive constant. \\
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item At $t=0$,
+  \item When $t=0$:
 \[
 x=0.18,\qquad \frac{\mathrm{d}x}{\mathrm{d}t}=0,\qquad \frac{\mathrm{d}^2x}{\mathrm{d}t^2}=-0.10
 \]
@@ -400,15 +399,7 @@ The auxiliary equation is
 9\lambda^2+6\lambda+5=0
 \]
 
-Using the quadratic formula,
-\begin{align*}
-\lambda
-&=\frac{-6\pm\sqrt{6^2-4(9)(5)}}{2(9)}\\
-&=\frac{-6\pm\sqrt{36-180}}{18}\\
-&=\frac{-6\pm\sqrt{-144}}{18}\\
-&=\frac{-6\pm 12i}{18}\\
-&=-\frac13\pm \frac23i
-\end{align*}
+which has roots $\lambda=-\frac13\pm\frac23i$.
 
 So the complementary function is
 \[
@@ -437,7 +428,7 @@ Now differentiate:
 +e^{-t/3}\left(-\frac{2A}{3}\sin\frac{2t}{3}+\frac{2B}{3}\cos\frac{2t}{3}\right)
 \end{align*}
 
-At $t=0$,
+When $t=0$:
 \begin{align*}
 0
 &= -\frac13(A)+\frac23(B)\\
@@ -449,7 +440,7 @@ So
 2B=A
 \]
 
-Since $A=0.18$,
+Since $A=0.18$:
 \[
 2B=0.18
 \]
@@ -462,12 +453,12 @@ Hence the particular solution is
 x=e^{-t/3}\left(0.18\cos\frac{2t}{3}+0.09\sin\frac{2t}{3}\right)
 \]
 
-  \item The trolley is $1.2$ m from the left-hand end when $x=0$, so its distance from the left-hand end is
+  \item The trolley is $1.2\,\mathrm{m}$ from the left-hand end when $x=0$, so its distance from the left-hand end is
 \[
 1.2+x
 \]
 
-At $t=4.5$,
+At $t=4.5$:
 \begin{align*}
 x(4.5)
 &=e^{-4.5/3}\left(0.18\cos\frac{2(4.5)}{3}+0.09\sin\frac{2(4.5)}{3}\right)\\
@@ -481,7 +472,7 @@ So the distance from the left-hand end is
 &\approx 1.16
 \end{align*}
 
-Hence, the trolley is approximately $1.16\,\text{m}$ from the left-hand end of the track.
+Hence, the trolley is approximately $1.16\,\mathrm{m}$ from the left-hand end of the track.
 
   \item One limitation is that the model assumes the spring force is proportional to displacement and the damping force is proportional to velocity.
 \end{enumerate}
@@ -529,7 +520,7 @@ Hence, the trolley is approximately $1.16\,\text{m}$ from the left-hand end of t
 
 A particle of mass $m\,\mathrm{kg}$ moves in a horizontal line through its equilibrium position $O$. At time $t$ seconds its displacement from $O$ is $x$ metres and its speed is $v\,\mathrm{m\,s^{-1}}$. When the particle is to the right of $O$, it is acted on by a restoring force of magnitude $9mx$ newtons directed towards $O$, as shown in the diagram. \\
 
-At $t=0$, the particle is $1$ m to the right of $O$ and is projected towards $O$ with speed $6\,\mathrm{m\,s^{-1}}$. \\
+At $t=0$, the particle is $1\,\mathrm{m}$ to the right of $O$ and is projected towards $O$ with speed $6\,\mathrm{m\,s^{-1}}$. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item In the absence of damping and any external force,
@@ -568,12 +559,12 @@ At $t=0$, the particle is $1$ m to the right of $O$ and is projected towards $O$
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item
   \begin{enumerate}[label=(\roman*)]
-    \item Taking displacement to the right as positive, the restoring force is
+    \item The restoring force acts towards \(O\), so it is
     \[
     -9mx
     \]
 
-    By Newton's second law,
+    Using Newton's second law:
     \[
     m\frac{\mathrm{d}^2x}{\mathrm{d}t^2}=-9mx
     \]
@@ -583,19 +574,19 @@ At $t=0$, the particle is $1$ m to the right of $O$ and is projected towards $O$
     \frac{\mathrm{d}^2x}{\mathrm{d}t^2}+9x=0
     \]
 
-    \item From part (i),
+    \item From part (a)(i):
     \[
     \frac{\mathrm{d}^2x}{\mathrm{d}t^2}=-9x
     \]
 
     so the acceleration is proportional to the displacement and directed towards the equilibrium position. Therefore the motion is simple harmonic motion.
 
-    \item For SHM,
+    \item Comparing with the equation of simple harmonic motion
     \[
-    \omega^2=9
+    \frac{\mathrm{d}^2x}{\mathrm{d}t^2}=-\omega^2x
     \]
 
-    so \(\omega=3\). Hence the period is
+    gives \(\omega^2=9\), so \(\omega=3\). The period is
     \[
     T=\frac{2\pi}{\omega}=\frac{2\pi}{3}\,\mathrm{s}
     \]
@@ -615,7 +606,7 @@ At $t=0$, the particle is $1$ m to the right of $O$ and is projected towards $O$
     x=A\cos 3t+B\sin 3t
     \]
 
-    Using \(x(0)=1\),
+    Using \(x(0)=1\):
     \[
     1=A\cos 0+B\sin 0=A
     \]
@@ -627,12 +618,7 @@ At $t=0$, the particle is $1$ m to the right of $O$ and is projected towards $O$
     \frac{\mathrm{d}x}{\mathrm{d}t}=-3A\sin 3t+3B\cos 3t
     \]
 
-    At \(t=0\), the particle is projected towards \(O\) with speed \(6\), so
-    \[
-    \frac{\mathrm{d}x}{\mathrm{d}t}(0)=-6
-    \]
-
-    Hence
+    The particle is projected towards \(O\) with speed \(6\), so when \(t=0\), \(\frac{\mathrm{d}x}{\mathrm{d}t}=-6\):
     \[
     -6=-3A\sin 0+3B\cos 0=3B
     \]
@@ -672,7 +658,7 @@ At $t=0$, the particle is $1$ m to the right of $O$ and is projected towards $O$
     -6m\frac{\mathrm{d}x}{\mathrm{d}t}-9mx
     \]
 
-    By Newton's second law,
+    Using Newton's second law:
     \[
     m\frac{\mathrm{d}^2x}{\mathrm{d}t^2}=-6m\frac{\mathrm{d}x}{\mathrm{d}t}-9mx
     \]
@@ -707,7 +693,7 @@ At $t=0$, the particle is $1$ m to the right of $O$ and is projected towards $O$
     \frac{\mathrm{d}^2x}{\mathrm{d}t^2}+6\frac{\mathrm{d}x}{\mathrm{d}t}+9x=25\cos 4t
     \]
 
-    From part (b), the complementary function is
+    From part (b)(iii), the complementary function is
     \[
     x_c=(A+Bt)e^{-3t}
     \]
@@ -734,13 +720,13 @@ At $t=0$, the particle is $1$ m to the right of $O$ and is projected towards $O$
     (-7a+24b)\cos 4t+(-24a-7b)\sin 4t=25\cos 4t
     \]
 
-    Equating coefficients,
+    Equating coefficients:
     \begin{align*}
     -7a+24b&=25 \\
     -24a-7b&=0
     \end{align*}
 
-    From the second equation,
+    From the second equation:
     \[
     24a+7b=0
     \]
@@ -757,7 +743,7 @@ At $t=0$, the particle is $1$ m to the right of $O$ and is projected towards $O$
 
     Now use the initial conditions.
 
-    Since \(x(0)=1\),
+    Since \(x(0)=1\):
     \[
     A-\frac{7}{25}=1
     \]
@@ -774,17 +760,12 @@ At $t=0$, the particle is $1$ m to the right of $O$ and is projected towards $O$
     &= \left(B-3A-3Bt\right)e^{-3t}+\frac{28}{25}\sin 4t+\frac{96}{25}\cos 4t
     \end{align*}
 
-    Since the particle is initially projected towards \(O\) with speed \(6\),
-    \[
-    \frac{\mathrm{d}x}{\mathrm{d}t}(0)=-6
-    \]
-
-    Therefore
+    The particle is initially projected towards \(O\) with speed \(6\), so when \(t=0\), \(\frac{\mathrm{d}x}{\mathrm{d}t}=-6\):
     \[
     B-3A+\frac{96}{25}=-6
     \]
 
-    Substituting \(A=\frac{32}{25}\),
+    Substituting \(A=\frac{32}{25}\):
     \[
     B-3\left(\frac{32}{25}\right)+\frac{96}{25}=-6
     \]
@@ -797,12 +778,12 @@ At $t=0$, the particle is $1$ m to the right of $O$ and is projected towards $O$
     x=\left(\frac{32}{25}-6t\right)e^{-3t}-\frac{7}{25}\cos 4t+\frac{24}{25}\sin 4t
     \]
 
-    \item From part (i),
+    \item From part (c)(i):
     \[
     x=\left(\frac{32}{25}-6t\right)e^{-3t}-\frac{7}{25}\cos 4t+\frac{24}{25}\sin 4t
     \]
 
-    As \(t\to\infty\),
+    As \(t\to\infty\):
     \[
     \left(\frac{32}{25}-6t\right)e^{-3t}\to 0
     \]
@@ -812,14 +793,17 @@ At $t=0$, the particle is $1$ m to the right of $O$ and is projected towards $O$
     x=-\frac{7}{25}\cos 4t+\frac{24}{25}\sin 4t
     \]
 
-    This is a sinusoidal function, so it is simple harmonic motion with angular frequency \(4\).
-
-    Hence its period is
+    This is a sinusoidal function of \(4t\), so it satisfies the equation of simple harmonic motion
     \[
-    T=\frac{2\pi}{4}=\frac{\pi}{2}\approx 1.57\,\mathrm{s}
+    \frac{\mathrm{d}^2x}{\mathrm{d}t^2}=-\omega^2x
     \]
 
-    which is consistent with the observed period of about \(1.6\) s.
+    with \(\omega=4\). Hence its period is
+    \[
+    T=\frac{2\pi}{\omega}=\frac{2\pi}{4}=\frac{\pi}{2}\approx 1.57\,\mathrm{s}
+    \]
+
+    which is consistent with the observed period of about \(1.6\,\mathrm{s}\).
   \end{enumerate}
 \end{enumerate}
 \end{djsSolution}
@@ -861,17 +845,11 @@ When $t=0$, $q=1$ and $\frac{\mathrm{d} q}{\mathrm{d} t}=15$. \\
   \lambda^2+2\lambda+10=0
   \]
 
-  Solving,
-  \begin{align*}
-  \lambda&=\frac{-2\pm\sqrt{2^2-4(1)(10)}}{2} \\
-  &=\frac{-2\pm\sqrt{-36}}{2} \\
-  &=\frac{-2\pm 6i}{2} \\
-  &=-1\pm 3i
-  \end{align*}
+  which has roots \(\lambda=-1\pm 3i\).
 
   Hence the complementary function is
   \[
-  e^{-t}(A\cos 3t+B\sin 3t)
+  q_c=e^{-t}(A\cos 3t+B\sin 3t)
   \]
 
   For a particular integral, since the forcing term is \(37\cos 3t\), try
@@ -947,7 +925,7 @@ When $t=0$, $q=1$ and $\frac{\mathrm{d} q}{\mathrm{d} t}=15$. \\
   15&=3B-A+18
   \end{align*}
 
-  Since \(A=0\),
+  Since \(A=0\):
   \begin{align*}
   15&=3B+18 \\
   3B&=-3 \\
@@ -956,7 +934,7 @@ When $t=0$, $q=1$ and $\frac{\mathrm{d} q}{\mathrm{d} t}=15$. \\
 
   So
   \[
-  q=e^{-t}(0\cdot \cos 3t-\sin 3t)+\cos 3t+6\sin 3t
+  q=e^{-t}(0\times\cos 3t-\sin 3t)+\cos 3t+6\sin 3t
   \]
 
   Hence
@@ -979,7 +957,7 @@ When $t=0$, $q=1$ and $\frac{\mathrm{d} q}{\mathrm{d} t}=15$. \\
   R\cos(3t-\alpha)=R\cos\alpha\cos 3t+R\sin\alpha\sin 3t
   \]
 
-  Comparing coefficients with \(\cos 3t+6\sin 3t\),
+  Comparing coefficients with \(\cos 3t+6\sin 3t\):
   \begin{align*}
   R\cos\alpha&=1 \\
   R\sin\alpha&=6
@@ -992,12 +970,12 @@ When $t=0$, $q=1$ and $\frac{\mathrm{d} q}{\mathrm{d} t}=15$. \\
   R^2&=37
   \end{align*}
 
-  Since \(R>0\),
+  Since \(R>0\):
   \[
   R=\sqrt{37}
   \]
 
-  Also,
+  Also
   \[
   \tan\alpha=\frac{R\sin\alpha}{R\cos\alpha}=\frac{6}{1}=6
   \]
@@ -1063,9 +1041,7 @@ Let $y$ metres be the downward displacement of the load from its equilibrium pos
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Take downward as the positive direction.
-
-  Since $y$ is measured from the \emph{equilibrium position}, the weight is already balanced by the spring tension at equilibrium, so weight does not appear in the equation of motion.
+  \item Since $y$ is measured from the \emph{equilibrium position}, the weight is already balanced by the spring tension at equilibrium, so weight does not appear in the equation of motion.
 
   When the load is displaced a distance $y$ downward from equilibrium:
 
@@ -1074,7 +1050,7 @@ Let $y$ metres be the downward displacement of the load from its equilibrium pos
     \item the liquid resistance has magnitude $c\left|\frac{\mathrm{d}y}{\mathrm{d}t}\right|$ and acts opposite to the motion, so its force is $-c\frac{\mathrm{d}y}{\mathrm{d}t}$.
   \end{itemize}
 
-  Using Newton's second law,
+  Using Newton's second law:
   \[
   m\frac{\mathrm{d}^2y}{\mathrm{d}t^2}=-c\frac{\mathrm{d}y}{\mathrm{d}t}-ky
   \]
@@ -1089,7 +1065,7 @@ Let $y$ metres be the downward displacement of the load from its equilibrium pos
   m\lambda^2+c\lambda+k=0
   \]
 
-  Using the quadratic formula,
+  Using the quadratic formula:
   \begin{align*}
   \lambda
   &=\frac{-c\pm\sqrt{c^2-4mk}}{2m} \\
@@ -1103,15 +1079,15 @@ Let $y$ metres be the downward displacement of the load from its equilibrium pos
 
   Hence the roots are
   \[
-  \lambda=\frac{-c}{2m}\pm i\frac{\sqrt{4km-c^2}}{2m}
+  \lambda=-\frac{c}{2m}\pm i\frac{\sqrt{4km-c^2}}{2m}
   \]
 
-  For roots of the form $\alpha\pm i\beta$, the complementary solution is
+  For roots of the form $\alpha\pm i\beta$, the general solution is
   \[
   y=e^{\alpha t}\left(P\cos \beta t+Q\sin \beta t\right)
   \]
 
-  Here,
+  Here
   \[
   \alpha=-\frac{c}{2m},
   \qquad
@@ -1125,25 +1101,25 @@ Let $y$ metres be the downward displacement of the load from its equilibrium pos
 
   This is the required form.
 
-  \item For these values,
+  \item For these values:
   \[
   m=5,\qquad c=30,\qquad k=125
   \]
 
-  So from part (a),
+  So from part (a):
   \begin{align*}
-  y&=e^{-\frac{30t}{2\cdot 5}}\left(P\cos\left(\frac{\sqrt{4(125)(5)-30^2}}{2\cdot 5}t\right)+Q\sin\left(\frac{\sqrt{4(125)(5)-30^2}}{2\cdot 5}t\right)\right) \\
+  y&=e^{-\frac{30t}{2\times 5}}\left(P\cos\left(\frac{\sqrt{4(125)(5)-30^2}}{2\times 5}t\right)+Q\sin\left(\frac{\sqrt{4(125)(5)-30^2}}{2\times 5}t\right)\right) \\
   &=e^{-3t}\left(P\cos\left(\frac{\sqrt{2500-900}}{10}t\right)+Q\sin\left(\frac{\sqrt{1600}}{10}t\right)\right) \\
   &=e^{-3t}\left(P\cos 4t+Q\sin 4t\right)
   \end{align*}
 
   \begin{enumerate}[label=(\roman*)]
-    \item At $t=0$, the load is $0.12$ m below equilibrium, so
+    \item At $t=0$, the load is $0.12\,\mathrm{m}$ below equilibrium, so
     \[
     y(0)=0.12
     \]
 
-    Substituting into the expression for $y$,
+    Substituting into the expression for $y$:
     \begin{align*}
     0.12
     &=e^0\left(P\cos 0+Q\sin 0\right) \\
@@ -1155,26 +1131,23 @@ Let $y$ metres be the downward displacement of the load from its equilibrium pos
     P=0.12
     \]
 
-    The load is moving \emph{upwards} with speed $0.12\,\mathrm{m\,s^{-1}}$, and downward is positive, so
-    \[
-    \frac{\mathrm{d}y}{\mathrm{d}t}(0)=-0.12
-    \]
+    The load is moving \emph{upwards} with speed $0.12\,\mathrm{m\,s^{-1}}$, and downward is positive, so when $t=0$, $\frac{\mathrm{d}y}{\mathrm{d}t}=-0.12$.
 
     Differentiate
     \[
     y=e^{-3t}(P\cos 4t+Q\sin 4t)
     \]
 
-    Using the product rule,
+    Using the product rule:
     \begin{align*}
     \frac{\mathrm{d}y}{\mathrm{d}t}
     &=(-3e^{-3t})(P\cos 4t+Q\sin 4t)+e^{-3t}(-4P\sin 4t+4Q\cos 4t) \\
     &=e^{-3t}\left(-3P\cos 4t-3Q\sin 4t-4P\sin 4t+4Q\cos 4t\right)
     \end{align*}
 
-    Now put $t=0$:
+    When $t=0$:
     \begin{align*}
-    \frac{\mathrm{d}y}{\mathrm{d}t}(0)
+    \frac{\mathrm{d}y}{\mathrm{d}t}
     &=1\left(-3P\cos 0-3Q\sin 0-4P\sin 0+4Q\cos 0\right) \\
     &=-3P+4Q
     \end{align*}
@@ -1184,7 +1157,7 @@ Let $y$ metres be the downward displacement of the load from its equilibrium pos
     -0.12=-3P+4Q
     \]
 
-    Using $P=0.12$,
+    Using $P=0.12$:
     \begin{align*}
     -0.12&=-3(0.12)+4Q \\
     -0.12&=-0.36+4Q \\
@@ -1199,7 +1172,7 @@ Let $y$ metres be the downward displacement of the load from its equilibrium pos
 
     \item The load is at equilibrium when $y=0$.
 
-    Using the values of $P$ and $Q$,
+    Using the values of $P$ and $Q$:
     \[
     0=e^{-3t}(0.12\cos 4t+0.06\sin 4t)
     \]
@@ -1214,7 +1187,7 @@ Let $y$ metres be the downward displacement of the load from its equilibrium pos
     2\cos 4t+\sin 4t=0
     \]
 
-    Rearranging,
+    Rearranging:
     \[
     \sin 4t=-2\cos 4t
     \]
@@ -1224,17 +1197,12 @@ Let $y$ metres be the downward displacement of the load from its equilibrium pos
     \tan 4t=-2
     \]
 
-    The first positive solution occurs in quadrant II, so
+    The first positive solution has $4t$ in the second quadrant, so
     \[
     4t=\pi-\arctan 2
     \]
 
     Hence
-    \[
-    t=\frac{\pi-\arctan 2}{4}
-    \]
-
-    Therefore,
     \[
     t=\frac{\pi-\arctan 2}{4}\approx 0.509\,\mathrm{s}
     \]
@@ -1245,7 +1213,7 @@ Let $y$ metres be the downward displacement of the load from its equilibrium pos
   m\frac{\mathrm{d}^2y}{\mathrm{d}t^2}+ky=0
   \]
 
-  With $m=5$ and $k=125$,
+  With $m=5$ and $k=125$:
   \[
   5\frac{\mathrm{d}^2y}{\mathrm{d}t^2}+125y=0
   \]
@@ -1285,12 +1253,7 @@ Let $y$ metres be the downward displacement of the load from its equilibrium pos
   \frac{\mathrm{d}y}{\mathrm{d}t}=-5A\sin 5t+5B\cos 5t
   \]
 
-  Since the load is moving upwards at $0.12\,\mathrm{m\,s^{-1}}$ initially,
-  \[
-  \frac{\mathrm{d}y}{\mathrm{d}t}(0)=-0.12
-  \]
-
-  So
+  The load is moving upwards at $0.12\,\mathrm{m\,s^{-1}}$ initially, so when $t=0$, $\frac{\mathrm{d}y}{\mathrm{d}t}=-0.12$:
   \begin{align*}
   -0.12&=-5A\sin 0+5B\cos 0 \\
   -0.12&=5B
@@ -1322,11 +1285,11 @@ where $t$ is the number of seconds after the box is placed on the platform. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Find a general solution of the differential equation \marks{4} \\
 \end{enumerate}
-Initially, the display reads $0$ kg and the displayed mass is increasing at $5\,\mathrm{kg\,s^{-1}}$. \\
+Initially, the display reads $0\,\mathrm{kg}$ and the displayed mass is increasing at $5\,\mathrm{kg\,s^{-1}}$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item Find, according to the model, the greatest value shown on the display \marks{8} \\
 \end{enumerate}
-The machine is programmed to print a label only when the displayed mass is less than $4.05$ kg. \\
+The machine is programmed to print a label only when the displayed mass is less than $4.05\,\mathrm{kg}$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item Determine whether, according to the model, the machine will print a label exactly $8$ seconds after the box is placed on the platform \marks{2} \\
 \end{enumerate}
@@ -1350,23 +1313,16 @@ The machine is programmed to print a label only when the displayed mass is less 
   4\lambda^2+4\lambda+5=0
   \]
 
-  Using the quadratic formula,
-  \begin{align*}
-  \lambda&=\frac{-4\pm\sqrt{4^2-4(4)(5)}}{2(4)}\\
-  &=\frac{-4\pm\sqrt{16-80}}{8}\\
-  &=\frac{-4\pm\sqrt{-64}}{8}\\
-  &=\frac{-4\pm 8i}{8}\\
-  &=-\frac12\pm i
-  \end{align*}
+  which has roots \(\lambda=-\frac12\pm i\).
 
   So the complementary function is
   \[
   m_c=e^{-t/2}(A\cos t+B\sin t)
   \]
 
-  For a particular integral, try a constant value \(m=k\). Then
+  For a particular integral, try a constant \(m_p=k\). Then
   \[
-  \frac{\mathrm{d}m}{\mathrm{d}t}=0,\qquad \frac{\mathrm{d}^2m}{\mathrm{d}t^2}=0
+  \frac{\mathrm{d}m_p}{\mathrm{d}t}=0,\qquad \frac{\mathrm{d}^2m_p}{\mathrm{d}t^2}=0
   \]
 
   so substituting gives
@@ -1384,7 +1340,7 @@ The machine is programmed to print a label only when the displayed mass is less 
   m=4+e^{-t/2}(A\cos t+B\sin t)
   \]
 
-  \item Using the initial condition \(m(0)=0\),
+  \item Using the initial condition \(m(0)=0\):
   \begin{align*}
   0&=4+e^{0}(A\cos 0+B\sin 0)\\
   0&=4+A
@@ -1415,12 +1371,12 @@ The machine is programmed to print a label only when the displayed mass is less 
   \frac{\mathrm{d}u}{\mathrm{d}t}=4\sin t+B\cos t
   \]
 
-  and by the product rule,
+  and by the product rule:
   \[
   \frac{\mathrm{d}m}{\mathrm{d}t}=e^{-t/2}\left(\frac{\mathrm{d}u}{\mathrm{d}t}-\frac12u\right)
   \]
 
-  Using the second initial condition \(\frac{\mathrm{d}m}{\mathrm{d}t}=5\) when \(t=0\),
+  Using the second initial condition \(\frac{\mathrm{d}m}{\mathrm{d}t}=5\) when \(t=0\):
   \begin{align*}
   5&=e^{0}\left[\left(4\sin 0+B\cos 0\right)-\frac12\left(-4\cos 0+B\sin 0\right)\right]\\
   5&=B-\frac12(-4)\\
@@ -1457,7 +1413,7 @@ The machine is programmed to print a label only when the displayed mass is less 
   &=\frac52e^{-t/2}(\sin t+2\cos t)
   \end{align*}
 
-  For a stationary point,
+  For a stationary point:
   \[
   \frac{\mathrm{d}m}{\mathrm{d}t}=0
   \]
@@ -1479,12 +1435,12 @@ The machine is programmed to print a label only when the displayed mass is less 
 
   This is the first stationary point after \(t=0\), and since \(\frac{\mathrm{d}m}{\mathrm{d}t}>0\) initially and then changes to negative, it is a maximum.
 
-  At this value of \(t\), the angle is in quadrant II, so
+  At this value of \(t\), the angle is in the second quadrant, so
   \[
   \cos t=-\frac{1}{\sqrt{5}},\qquad \sin t=\frac{2}{\sqrt{5}}
   \]
 
-  Substituting into \(m\),
+  Substituting into \(m\):
   \begin{align*}
   m_{\max}
   &=4+e^{-t/2}\left(-4\cos t+3\sin t\right)\\
@@ -1499,11 +1455,6 @@ The machine is programmed to print a label only when the displayed mass is less 
   m_{\max}=4+2\sqrt5\,e^{-(\pi-\arctan 2)/2}
   \]
 
-  Numerically,
-  \[
-  m_{\max}\approx 5.62
-  \]
-
   Later maxima occur after further oscillations, but the factor \(e^{-t/2}\) is smaller, so they are all less than this first one.
 
   Therefore the greatest value shown on the display is
@@ -1511,17 +1462,17 @@ The machine is programmed to print a label only when the displayed mass is less 
   4+2\sqrt5\,e^{-(\pi-\arctan 2)/2}\approx 5.62\,\mathrm{kg}
   \]
 
-  \item At \(t=8\),
+  \item At \(t=8\):
   \[
   m(8)=4+e^{-4}(-4\cos 8+3\sin 8)
   \]
 
-  Evaluating this,
+  Evaluating this:
   \[
   m(8)\approx 4.065
   \]
 
-  The machine prints a label only when the displayed mass is less than \(4.05\) kg. Since
+  The machine prints a label only when the displayed mass is less than \(4.05\,\mathrm{kg}\). Since
   \[
   4.065>4.05
   \]
@@ -1579,23 +1530,23 @@ Hence
 
 For the particular integral, try
 \[
-\theta_p=Ce^{-4t}
+\theta_p=ae^{-4t}
 \]
 
 Then
 \[
-\frac{\mathrm{d}\theta_p}{\mathrm{d}t}=-4Ce^{-4t},
+\frac{\mathrm{d}\theta_p}{\mathrm{d}t}=-4ae^{-4t},
 \qquad
-\frac{\mathrm{d}^2\theta_p}{\mathrm{d}t^2}=16Ce^{-4t}
+\frac{\mathrm{d}^2\theta_p}{\mathrm{d}t^2}=16ae^{-4t}
 \]
 
 Substituting into the differential equation:
 \begin{align*}
-16Ce^{-4t}+5(-4Ce^{-4t})+6(Ce^{-4t})&=4e^{-4t}\\
-(16-20+6)Ce^{-4t}&=4e^{-4t}\\
-2Ce^{-4t}&=4e^{-4t}\\
-2C&=4\\
-C&=2
+16ae^{-4t}+5(-4ae^{-4t})+6(ae^{-4t})&=4e^{-4t}\\
+(16-20+6)ae^{-4t}&=4e^{-4t}\\
+2ae^{-4t}&=4e^{-4t}\\
+2a&=4\\
+a&=2
 \end{align*}
 
 So the general solution is
@@ -1610,17 +1561,14 @@ At \(t=0\), the pointer is passing through its rest position, so
 \theta(0)=0
 \]
 
-Also, clockwise is taken as positive, and the initial angular velocity is \(1\,\mathrm{rad\,s}^{-1}\) anticlockwise, so
-\[
-\frac{\mathrm{d}\theta}{\mathrm{d}t}(0)=-1
-\]
+Also, clockwise is taken as positive, and the initial angular velocity is \(1\,\mathrm{rad\,s^{-1}}\) anticlockwise, so when \(t=0\), \(\frac{\mathrm{d}\theta}{\mathrm{d}t}=-1\).
 
 Differentiate \(\theta\):
 \[
 \frac{\mathrm{d}\theta}{\mathrm{d}t}=-2Ae^{-2t}-3Be^{-3t}-8e^{-4t}
 \]
 
-Using \(t=0\):
+When \(t=0\):
 \begin{align*}
 A+B+2&=0\\
 -2A-3B-8&=-1
@@ -1649,7 +1597,7 @@ Therefore
 
 \item To find the greatest clockwise displacement, we find the stationary points of \(\theta\).
 
-From part (a),
+From part (a):
 \[
 \theta=e^{-2t}-3e^{-3t}+2e^{-4t}
 \]
@@ -1661,7 +1609,7 @@ Differentiate:
 &=e^{-4t}\bigl(-2e^{2t}+9e^t-8\bigr)
 \end{align*}
 
-At a stationary point,
+At a stationary point:
 \[
 \frac{\mathrm{d}\theta}{\mathrm{d}t}=0
 \]
@@ -1701,7 +1649,7 @@ Factor \(\theta\):
 &=e^{-4t}(e^t-1)(e^t-2)
 \end{align*}
 
-For \(0<t<\ln 2\),
+For \(0<t<\ln 2\):
 \[
 e^t-1>0
 \quad\text{and}\quad
@@ -1710,7 +1658,7 @@ e^t-2<0
 
 so \(\theta<0\), which is an anticlockwise displacement.
 
-For \(t>\ln 2\),
+For \(t>\ln 2\):
 \[
 e^t-1>0
 \quad\text{and}\quad
@@ -1731,10 +1679,8 @@ Substituting into \(\theta\):
 
 Hence the greatest clockwise angular displacement is
 \[
-0.025\,\mathrm{rad}
+0.025\,\mathrm{rad}\qquad\text{(3 d.p.)}
 \]
-
-to 3 decimal places.
 
 \item The pointer is at rest position when \(\theta=0\).
 
@@ -1798,10 +1744,7 @@ The auxiliary equation is
 \lambda^2+2\lambda+10=0
 \]
 
-So
-\[
-\lambda=\frac{-2\pm\sqrt{4-40}}{2}=-1\pm 3i
-\]
+which has roots \(\lambda=-1\pm 3i\).
 
 Hence the complementary function is
 \[
@@ -1829,7 +1772,7 @@ Substituting into the differential equation:
 &=(9C+2D)\cos t+(9D-2C)\sin t
 \end{align*}
 
-Comparing coefficients with \(20\cos t+5\sin t\),
+Comparing coefficients with \(20\cos t+5\sin t\):
 \[
 9C+2D=20,\qquad 9D-2C=5
 \]
@@ -1846,7 +1789,7 @@ so
 -4C+18D&=10
 \end{align*}
 
-Subtracting,
+Subtracting:
 \[
 85C=170
 \]
@@ -1856,7 +1799,7 @@ so
 C=2
 \]
 
-Substituting into \(9C+2D=20\),
+Substituting into \(9C+2D=20\):
 \[
 18+2D=20
 \]
@@ -1876,7 +1819,7 @@ So the general solution is
 y=e^{-t}(A\cos 3t+B\sin 3t)+2\cos t+\sin t
 \]
 
-  \item Using \(y(0)=3\),
+  \item Using \(y(0)=3\):
 \[
 3=e^0(A\cos 0+B\sin 0)+2\cos 0+\sin 0
 \]
@@ -1898,12 +1841,12 @@ Now differentiate the general solution:
 &=e^{-t}(-A\cos 3t-B\sin 3t-3A\sin 3t+3B\cos 3t)-2\sin t+\cos t
 \end{align*}
 
-Using \(\frac{\mathrm{d}y}{\mathrm{d}t}=3\) when \(t=0\),
+Using \(\frac{\mathrm{d}y}{\mathrm{d}t}=3\) when \(t=0\):
 \[
 3=(-A+3B)+1
 \]
 
-Since \(A=1\),
+Since \(A=1\):
 \[
 3=(-1+3B)+1=3B
 \]
@@ -1923,7 +1866,7 @@ y=e^{-t}(\cos 3t+\sin 3t)+2\cos t+\sin t
 \frac{\mathrm{d}y}{\mathrm{d}t}=0
 \]
 
-From part (b),
+From part (b):
 \begin{align*}
 \frac{\mathrm{d}y}{\mathrm{d}t}
 &=e^{-t}(-\cos 3t-\sin 3t-3\sin 3t+3\cos 3t)-2\sin t+\cos t\\
@@ -1948,9 +1891,9 @@ a=y(0.2068)
 &\approx 3.297
 \end{align*}
 
-Therefore, correct to \(3\) significant figures,
+Therefore
 \[
-a=3.30
+a=3.30\qquad\text{(3 s.f.)}
 \]
   \end{enumerate}
 \end{djsSolution}
@@ -2012,7 +1955,7 @@ where $x$ is the displacement, in metres, of the glider from its equilibrium pos
   \end{enumerate}
 \end{enumerate}
 Initially, the glider is $0.20\,\mathrm{m}$ to the right of equilibrium and is moving towards equilibrium at $0.50\,\mathrm{m\,s^{-1}}$. \\
-Given that $4$ seconds after the motion begins, the displacement of the glider is $\beta$ m, \\
+Given that $4$ seconds after the motion begins, the displacement of the glider is $\beta\,\mathrm{m}$, \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item determine, according to the model, the value of $\beta$ to $3$ significant figures \marks{4} \\
   \item Given that the true value of $\beta$ is $0.46\,\mathrm{m}$, comment on the suitability of the model \marks{1} \\
@@ -2032,41 +1975,41 @@ Given that $4$ seconds after the motion begins, the displacement of the glider i
 
     whose solutions involve $\cos 4t$ and $\sin 4t$.
 
-    Since the forcing term is $3\sin 4t$, the usual trial $A\cos 4t+B\sin 4t$ would duplicate the complementary function, so we try
+    Since the forcing term is $3\sin 4t$, the usual trial $a\cos 4t+b\sin 4t$ would duplicate the complementary function, so we try
     \[
-    x_p=t(A\cos 4t+B\sin 4t)
+    x_p=t(a\cos 4t+b\sin 4t)
     \]
 
     Differentiate:
     \begin{align*}
     \frac{\mathrm{d}x_p}{\mathrm{d}t}
-    &= (A\cos 4t+B\sin 4t)+t(-4A\sin 4t+4B\cos 4t) \\
-    &= A\cos 4t+B\sin 4t-4At\sin 4t+4Bt\cos 4t
+    &= (a\cos 4t+b\sin 4t)+t(-4a\sin 4t+4b\cos 4t) \\
+    &= a\cos 4t+b\sin 4t-4at\sin 4t+4bt\cos 4t
     \end{align*}
 
     Differentiate again:
     \begin{align*}
     \frac{\mathrm{d}^2x_p}{\mathrm{d}t^2}
-    &= -4A\sin 4t+4B\cos 4t-4A\sin 4t-16At\cos 4t+4B\cos 4t-16Bt\sin 4t \\
-    &= -8A\sin 4t+8B\cos 4t-16At\cos 4t-16Bt\sin 4t
+    &= -4a\sin 4t+4b\cos 4t-4a\sin 4t-16at\cos 4t+4b\cos 4t-16bt\sin 4t \\
+    &= -8a\sin 4t+8b\cos 4t-16at\cos 4t-16bt\sin 4t
     \end{align*}
 
     Substitute into the differential equation:
     \begin{align*}
     \frac{\mathrm{d}^2x_p}{\mathrm{d}t^2}+16x_p
-    &= \left(-8A\sin 4t+8B\cos 4t-16At\cos 4t-16Bt\sin 4t\right) \\
-    &\quad +16t(A\cos 4t+B\sin 4t) \\
-    &= -8A\sin 4t+8B\cos 4t
+    &= \left(-8a\sin 4t+8b\cos 4t-16at\cos 4t-16bt\sin 4t\right) \\
+    &\quad +16t(a\cos 4t+b\sin 4t) \\
+    &= -8a\sin 4t+8b\cos 4t
     \end{align*}
 
     For this to equal $3\sin 4t$, we compare coefficients:
     \[
-    -8A=3,\qquad 8B=0
+    -8a=3,\qquad 8b=0
     \]
 
     Hence
     \[
-    A=-\frac{3}{8},\qquad B=0
+    a=-\frac{3}{8},\qquad b=0
     \]
 
     So a particular solution is
@@ -2074,7 +2017,7 @@ Given that $4$ seconds after the motion begins, the displacement of the glider i
     x_p=-\frac{3}{8}t\cos 4t
     \]
 
-    \item The complementary function $x_c$ comes from
+    \item The auxiliary equation for the complementary function $x_c$ is
     \[
     \lambda^2+16=0
     \]
@@ -2086,60 +2029,55 @@ Given that $4$ seconds after the motion begins, the displacement of the glider i
 
     Therefore
     \[
-    x_c=C\cos 4t+D\sin 4t
+    x_c=A\cos 4t+B\sin 4t
     \]
 
     Hence the general solution is
     \[
-    x=x_c+x_p=C\cos 4t+D\sin 4t-\frac{3}{8}t\cos 4t
+    x=x_c+x_p=A\cos 4t+B\sin 4t-\frac{3}{8}t\cos 4t
     \]
   \end{enumerate}
 
-  \item Using
+  \item From part (a)(ii), the general solution is
   \[
-  x=C\cos 4t+D\sin 4t-\frac{3}{8}t\cos 4t
+  x=A\cos 4t+B\sin 4t-\frac{3}{8}t\cos 4t
   \]
 
   First use $x(0)=0.20$:
   \[
-  0.20=C\cos 0+D\sin 0-\frac{3}{8}(0)\cos 0
+  0.20=A\cos 0+B\sin 0-\frac{3}{8}(0)\cos 0
   \]
 
   so
   \[
-  C=0.20
+  A=0.20
   \]
 
   Differentiate $x$:
   \begin{align*}
   \frac{\mathrm{d}x}{\mathrm{d}t}
-  &= -4C\sin 4t+4D\cos 4t-\frac{3}{8}\cos 4t+\frac{3}{2}t\sin 4t
+  &= -4A\sin 4t+4B\cos 4t-\frac{3}{8}\cos 4t+\frac{3}{2}t\sin 4t
   \end{align*}
 
-  Initially the glider is to the right of equilibrium, and moving towards equilibrium, so its initial velocity is negative:
+  Initially the glider is to the right of equilibrium, and moving towards equilibrium, so its initial velocity is negative. When $t=0$, $\frac{\mathrm{d}x}{\mathrm{d}t}=-0.50$:
   \[
-  \frac{\mathrm{d}x}{\mathrm{d}t}(0)=-0.50
-  \]
-
-  Substitute $t=0$:
-  \[
-  -0.50=-4C\sin 0+4D\cos 0-\frac{3}{8}\cos 0+\frac{3}{2}(0)\sin 0
+  -0.50=-4A\sin 0+4B\cos 0-\frac{3}{8}\cos 0+\frac{3}{2}(0)\sin 0
   \]
 
   so
   \[
-  -0.50=4D-\frac{3}{8}
+  -0.50=4B-\frac{3}{8}
   \]
 
   Hence
   \begin{align*}
-  4D&=-\frac{1}{2}+\frac{3}{8} \\
+  4B&=-\frac{1}{2}+\frac{3}{8} \\
      &=-\frac{1}{8}
   \end{align*}
 
   and therefore
   \[
-  D=-\frac{1}{32}
+  B=-\frac{1}{32}
   \]
 
   So the displacement is
@@ -2147,7 +2085,7 @@ Given that $4$ seconds after the motion begins, the displacement of the glider i
   x=0.20\cos 4t-\frac{1}{32}\sin 4t-\frac{3}{8}t\cos 4t
   \]
 
-  When $t=4$,
+  When $t=4$:
   \begin{align*}
   \beta=x(4)
   &=0.20\cos 16-\frac{1}{32}\sin 16-\frac{3}{8}(4)\cos 16 \\
@@ -2157,12 +2095,10 @@ Given that $4$ seconds after the motion begins, the displacement of the glider i
 
   Therefore
   \[
-  \beta \approx 1.25\,\mathrm{m}
+  \beta \approx 1.25\,\mathrm{m}\qquad\text{(3 s.f.)}
   \]
 
-  to 3 significant figures.
-
-  \item The model is not very suitable, since it predicts $\beta\approx 1.25$ m whereas the true value is $0.46$ m, so it overestimates the displacement by a large amount.
+  \item The model is not very suitable, since it predicts $\beta\approx 1.25\,\mathrm{m}$ whereas the true value is $0.46\,\mathrm{m}$, so it overestimates the displacement by a large amount.
 
   \item With the periodic driving force removed, the right-hand side becomes $0$, so the differential equation is
   \[
@@ -2232,65 +2168,59 @@ For $t\ge 0$, the trolley is subject to three forces modelled as follows:
 
     So the term involving $\frac{\mathrm{d}x}{\mathrm{d}t}$ is negative.
 
-    \item At $t=0$, we have $x=1$ and $\frac{\mathrm{d}x}{\mathrm{d}t}=1$.
-
-    Substituting into
+    \item When $t=0$, $x=1$ and $\frac{\mathrm{d}x}{\mathrm{d}t}=1$. Substituting these and $t=0$ into
     \[
     4(t+1)-x-2\frac{\mathrm{d}x}{\mathrm{d}t}=2\frac{\mathrm{d}^2x}{\mathrm{d}t^2}
     \]
 
     gives
     \begin{align*}
-    4(0+1)-1-2(1)&=2\frac{\mathrm{d}^2x}{\mathrm{d}t^2}(0)\\
-    4-1-2&=2\frac{\mathrm{d}^2x}{\mathrm{d}t^2}(0)\\
-    1&=2\frac{\mathrm{d}^2x}{\mathrm{d}t^2}(0)
+    4(0+1)-1-2(1)&=2\frac{\mathrm{d}^2x}{\mathrm{d}t^2}\\
+    4-1-2&=2\frac{\mathrm{d}^2x}{\mathrm{d}t^2}\\
+    1&=2\frac{\mathrm{d}^2x}{\mathrm{d}t^2}
     \end{align*}
 
     Hence
     \[
-    \frac{\mathrm{d}^2x}{\mathrm{d}t^2}(0)=\frac12
+    \frac{\mathrm{d}^2x}{\mathrm{d}t^2}=\frac12
     \]
 
-    So the acceleration at $t=0$ is $\frac12\,\text{m s}^{-2}$.
+    So the acceleration at $t=0$ is $\frac12\,\mathrm{m\,s^{-2}}$.
   \end{enumerate}
 
   \item
   \begin{enumerate}[label=(\roman*)]
-    \item The Maclaurin series for $g(t)$ begins
+    \item Maclaurin's series is
     \[
-    g(t)=g(0)+\frac{\mathrm{d}g}{\mathrm{d}t}(0)t+\cdots
+    g(t)=g(0)+tg'(0)+\frac{t^2}{2!}g''(0)+\frac{t^3}{3!}g'''(0)+\cdots
     \]
 
-    From the initial conditions,
+    From the initial conditions:
     \[
-    g(0)=1,\qquad \frac{\mathrm{d}g}{\mathrm{d}t}(0)=1
+    g(0)=1,\qquad g'(0)=1
     \]
 
-    Therefore, up to and including the term in $t$,
+    Therefore, up to and including the term in $t$:
     \[
     g(t)=1+t
     \]
 
-    So the required Maclaurin series is $1+t$.
-
     \item The $t^2$ term in the Maclaurin series is
     \[
-    \frac{1}{2!}\frac{\mathrm{d}^2g}{\mathrm{d}t^2}(0)t^2
+    \frac{t^2}{2!}g''(0)
     \]
 
-    From part (a)(ii),
+    From part (a)(ii):
     \[
-    \frac{\mathrm{d}^2g}{\mathrm{d}t^2}(0)=\frac12
+    g''(0)=\frac12
     \]
 
     Hence
     \[
-    \frac{1}{2!}\frac{\mathrm{d}^2g}{\mathrm{d}t^2}(0)t^2
-    =\frac{1}{2}\cdot\frac12\,t^2
+    \frac{t^2}{2!}g''(0)
+    =\frac{t^2}{2}\times\frac12
     =\frac14 t^2
     \]
-
-    So the term in $t^2$ is $\frac14 t^2$.
 
     \item For $x=g(t)$, the differential equation is
     \[
@@ -2305,47 +2235,45 @@ For $t\ge 0$, the trolley is subject to three forces modelled as follows:
 
     Now substitute $t=0$.
 
-    From earlier parts,
+    From earlier parts:
     \[
-    \frac{\mathrm{d}g}{\mathrm{d}t}(0)=1,
+    g'(0)=1,
     \qquad
-    \frac{\mathrm{d}^2g}{\mathrm{d}t^2}(0)=\frac12
+    g''(0)=\frac12
     \]
 
     So
     \begin{align*}
-    4-1-2\left(\frac12\right)&=2\frac{\mathrm{d}^3g}{\mathrm{d}t^3}(0)\\
-    4-1-1&=2\frac{\mathrm{d}^3g}{\mathrm{d}t^3}(0)\\
-    2&=2\frac{\mathrm{d}^3g}{\mathrm{d}t^3}(0)
+    4-1-2\left(\frac12\right)&=2g'''(0)\\
+    4-1-1&=2g'''(0)\\
+    2&=2g'''(0)
     \end{align*}
 
     Hence
     \[
-    \frac{\mathrm{d}^3g}{\mathrm{d}t^3}(0)=1
+    g'''(0)=1
     \]
 
     The $t^3$ term in the Maclaurin series is therefore
     \[
-    \frac{1}{3!}\frac{\mathrm{d}^3g}{\mathrm{d}t^3}(0)t^3
-    =\frac{1}{6}\cdot 1 \cdot t^3
+    \frac{t^3}{3!}g'''(0)
+    =\frac{t^3}{6}\times 1
     =\frac16 t^3
     \]
-
-    So the term in $t^3$ is $\frac16 t^3$.
   \end{enumerate}
 
   \item
   \begin{enumerate}[label=(\roman*)]
-    \item Using the series up to and including the term in $t^3$,
+    \item Using the series up to and including the term in $t^3$:
     \[
     g(t)\approx 1+t+\frac14 t^2+\frac16 t^3
     \]
 
-    At $t=0.4$,
+    At $t=0.4$:
     \begin{align*}
     g(0.4)&\approx 1+0.4+\frac14(0.4)^2+\frac16(0.4)^3\\
     &=1+0.4+0.04+\frac{0.064}{6}\\
-    &=1.450666\ldots
+    &\approx 1.4507
     \end{align*}
 
     So
@@ -2353,7 +2281,7 @@ For $t\ge 0$, the trolley is subject to three forces modelled as follows:
     g(0.4)\approx 1.451
     \]
 
-    This is very close to the sensor reading $1.45\,\text{m}$, differing by about $6.67\times10^{-4}\,\text{m}$. Therefore the model appears suitable.
+    This is very close to the sensor reading $1.45\,\mathrm{m}$, differing by about $6.67\times10^{-4}\,\mathrm{m}$. Therefore the model appears suitable.
 
     \item Although the full Maclaurin series is valid for all $t\ge 0$, using only terms up to $t^3$ at $t=8$ is not sensible because the omitted higher-order terms would be large.
 
@@ -2387,7 +2315,7 @@ Later, $Q$ reaches the point $B$ where $x=a$ and comes to instantaneous rest. \\
   \item Hence show that
   \[ v^2=\lambda^2\bigl(a^2-x^2\bigr) \]
   \marks[-20pt]{1}
-  \item The quantity $r$ is defined by $r=\dfrac{1}{v}$. Using part (c), determine an expression for $r_m$, the mean value of $r$ with respect to the displacement, as $Q$ moves directly from $A$ to $B$. \marks{4}
+  \item The quantity $r$ is defined by $r=\frac{1}{v}$. Using part (c), determine an expression for $r_m$, the mean value of $r$ with respect to the displacement, as $Q$ moves directly from $A$ to $B$. \marks{4}
   \item One measure of the validity of the model is consideration of the value of $r_m$. If $r_m$ exceeds $7.2$ then the model is considered to be valid. The value of $a$ is measured as $0.240$ to $3$ significant figures. The value of $\lambda$ is measured as $0.80\pm 0.02$. Determine what can be inferred about the validity of the model from the given information. \marks{2}
   \item Find, according to the model, the least possible value of the velocity of $Q$ at time $t=0$. Give your answer to $2$ significant figures. \marks{2}
 \end{enumerate}
@@ -2403,58 +2331,58 @@ Later, $Q$ reaches the point $B$ where $x=a$ and comes to instantaneous rest. \\
 
   is
   \[
-  x=A\cos(\lambda t)+B\sin(\lambda t)
+  x=C\cos(\lambda t)+D\sin(\lambda t)
   \]
 
-  where $A$ and $B$ are constants.
+  where $C$ and $D$ are constants.
 
-  \item From part (a),
+  \item From part (a):
   \[
-  x=A\cos(\lambda t)+B\sin(\lambda t)
+  x=C\cos(\lambda t)+D\sin(\lambda t)
   \]
 
-  Using $x=-\frac{a}{2}$ when $t=0$,
+  Using $x=-\frac{a}{2}$ when $t=0$:
   \begin{align*}
-  x(0)&=A\cos 0+B\sin 0\\
-      &=A\\
+  x(0)&=C\cos 0+D\sin 0\\
+      &=C\\
       &=-\frac{a}{2}
   \end{align*}
 
   so
   \[
-  A=-\frac{a}{2}
+  C=-\frac{a}{2}
   \]
 
   The particle later reaches $x=a$ and is instantaneously at rest there, so $x=a$ is a turning point. Hence the amplitude is $a$, giving
   \[
-  A^2+B^2=a^2
+  C^2+D^2=a^2
   \]
 
-  Substituting $A=-\frac{a}{2}$,
+  Substituting $C=-\frac{a}{2}$:
   \begin{align*}
-  \left(-\frac{a}{2}\right)^2+B^2&=a^2\\
-  \frac{a^2}{4}+B^2&=a^2\\
-  B^2&=\frac{3a^2}{4}
+  \left(-\frac{a}{2}\right)^2+D^2&=a^2\\
+  \frac{a^2}{4}+D^2&=a^2\\
+  D^2&=\frac{3a^2}{4}
   \end{align*}
 
   so
   \[
-  B=\pm \frac{\sqrt{3}a}{2}
+  D=\pm \frac{\sqrt{3}a}{2}
   \]
 
   Now
   \[
-  v=\frac{\mathrm{d}x}{\mathrm{d}t}=-A\lambda \sin(\lambda t)+B\lambda \cos(\lambda t)
+  v=\frac{\mathrm{d}x}{\mathrm{d}t}=-C\lambda \sin(\lambda t)+D\lambda \cos(\lambda t)
   \]
 
   Hence
   \[
-  v(0)=B\lambda
+  v(0)=D\lambda
   \]
 
-  Since the particle is moving in the positive direction at $t=0$, we have $v(0)>0$, so $B>0$. Therefore
+  Since the particle is moving in the positive direction at $t=0$, we have $v(0)>0$, so $D>0$. Therefore
   \[
-  B=\frac{\sqrt{3}a}{2}
+  D=\frac{\sqrt{3}a}{2}
   \]
 
   Thus
@@ -2464,7 +2392,7 @@ Later, $Q$ reaches the point $B$ where $x=a$ and comes to instantaneous rest. \\
    &=a\cos\left(\lambda t-\frac{2\pi}{3}\right)
   \end{align*}
 
-  Differentiating,
+  Differentiating:
   \[
   v=\frac{\mathrm{d}x}{\mathrm{d}t}=-a\lambda \sin\left(\lambda t-\frac{2\pi}{3}\right)
   \]
@@ -2492,12 +2420,7 @@ Later, $Q$ reaches the point $B$ where $x=a$ and comes to instantaneous rest. \\
      &=\lambda^2(a^2-x^2)
   \end{align*}
 
-  Hence
-  \[
-  v^2=\lambda^2(a^2-x^2)
-  \]
-
-  \item As $Q$ moves directly from $A$ to $B$, $x$ increases from $-\frac{a}{2}$ to $a$, and $v>0$ on this interval. From part (c),
+  \item As $Q$ moves directly from $A$ to $B$, $x$ increases from $-\frac{a}{2}$ to $a$, and $v>0$ on this interval. From part (c):
   \[
   v=\lambda\sqrt{a^2-x^2}
   \]
@@ -2507,33 +2430,33 @@ Later, $Q$ reaches the point $B$ where $x=a$ and comes to instantaneous rest. \\
   r=\frac{1}{v}=\frac{1}{\lambda\sqrt{a^2-x^2}}
   \]
 
+  Using the standard integral:
+  \[
+  \int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d}x=\arcsin\left(\frac{x}{a}\right)+c\qquad (|x|<a)
+  \]
+
   The mean value of $r$ with respect to displacement is
   \begin{align*}
   r_m&=\frac{1}{a-(-a/2)}\int_{-a/2}^{a} r\,\mathrm{d}x\\
      &=\frac{1}{3a/2}\int_{-a/2}^{a}\frac{1}{\lambda\sqrt{a^2-x^2}}\,\mathrm{d}x\\
      &=\frac{2}{3a\lambda}\int_{-a/2}^{a}\frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d}x\\
-     &=\frac{2}{3a\lambda}\left[\sin^{-1}\left(\frac{x}{a}\right)\right]_{-a/2}^{a}\\
+     &=\frac{2}{3a\lambda}\left[\arcsin\left(\frac{x}{a}\right)\right]_{-a/2}^{a}\\
      &=\frac{2}{3a\lambda}\left(\frac{\pi}{2}-\left(-\frac{\pi}{6}\right)\right)\\
-     &=\frac{2}{3a\lambda}\cdot \frac{2\pi}{3}\\
+     &=\frac{2}{3a\lambda}\times\frac{2\pi}{3}\\
      &=\frac{4\pi}{9a\lambda}
   \end{align*}
 
-  Therefore
-  \[
-  r_m=\frac{4\pi}{9a\lambda}
-  \]
-
-  \item Since $a=0.240$ to 3 significant figures,
+  \item Since $a=0.240$ to 3 significant figures:
   \[
   0.2395\le a\le 0.2405
   \]
 
-  and since $\lambda=0.80\pm 0.02$,
+  and since $\lambda=0.80\pm 0.02$:
   \[
   0.78\le \lambda\le 0.82
   \]
 
-  From part (d),
+  From part (d):
   \[
   r_m=\frac{4\pi}{9a\lambda}
   \]
@@ -2552,7 +2475,7 @@ Later, $Q$ reaches the point $B$ where $x=a$ and comes to instantaneous rest. \\
 
   Therefore, the validity of the model is inconclusive from the given information.
 
-  \item From part (b),
+  \item From part (b):
   \[
   v(0)=-a\lambda \sin\left(-\frac{2\pi}{3}\right)=\frac{\sqrt{3}}{2}a\lambda
   \]
@@ -2563,9 +2486,9 @@ Later, $Q$ reaches the point $B$ where $x=a$ and comes to instantaneous rest. \\
           &\approx 0.1617
   \end{align*}
 
-  So, to 2 significant figures,
+  So
   \[
-  v_{\min}=0.16\ \text{m s}^{-1}
+  v_{\min}=0.16\,\mathrm{m\,s^{-1}}\qquad\text{(2 s.f.)}
   \]
 \end{enumerate}
 \end{djsSolution}
