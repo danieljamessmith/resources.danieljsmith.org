@@ -520,6 +520,16 @@ const rawResources: Resource[] = [
     topic: 'Vectors',
   },
   {
+    id: 'fm-vectors-plane-intersections-ms',
+    title: 'Plane Intersections',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/vectors/ms/_QBT___MS__Plane_Intersections.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-vectors-plane-intersections',
+    topic: 'Vectors',
+  },
+  {
     id: 'fm-vectors-reflections-in-planes',
     title: 'Reflections in Planes',
     description: '',

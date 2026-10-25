@@ -1,0 +1,431 @@
+format: 1
+pack: Plane Intersections
+last_updated: 25 October 2026
+questions:
+  - q: 1
+    stamp: 66bda25f
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\det\mathbf{A} = 3(-7-0)+2(-14+28)+1(0-7)\)
+            marks:
+              - code: M1
+                note: Expands along any row or column, with three \(2\times2\) minors and their signs. Condone one slip in a minor.
+          - scheme: |
+              \(\phantom{\det\mathbf{A}} = -21+28-7 = 0\)
+              so \(\mathbf{A}\) is singular and there is no unique solution
+            marks:
+              - code: A1 AG
+                note: Correct expansion leading without error to 0, then both conclusions, singular and no unique solution.
+      - part: b
+        rows:
+          - scheme: |
+              \((3x-2y+z)+2(2x+y-4z) = 5+2(1)\)
+            marks:
+              - code: M1
+                note: Combines two equations to compare with the third, or solves two and substitutes into the third. Condone arithmetic slips.
+          - scheme: |
+              \(\Rightarrow 7x-7z=7\), the third equation,
+              so the system is consistent
+            marks:
+              - code: A1
+                note: Correct combination matching the third equation, constants included, and consistent stated.
+          - scheme: |
+              The three planes meet in a common line (a sheaf)
+              \(\left[\mathbf{r} = \begin{pmatrix}1\\-1\\0\end{pmatrix} + \lambda\begin{pmatrix}1\\2\\1\end{pmatrix}\right]\)
+            marks:
+              - code: E1
+                note: States the planes meet in a common line, or form a sheaf. Not for infinitely many solutions alone; the line's equation is not needed.
+  - q: 2
+    stamp: a516c196
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\det\mathbf{A} = 1(-7) - 2(-6) - 1(5) = 0\)
+            marks:
+              - code: B1
+                note: \(\det\mathbf{A} = 0\) for the coefficient matrix; a calculator value is accepted.
+          - scheme: |
+              \(\mathbf{A}\) is singular, so no unique solution
+            marks:
+              - code: E1
+                note: States that \(\mathbf{A}\) is singular or not invertible, so there is no unique solution. Needs \(\det\mathbf{A} = 0\).
+      - part: b
+        rows:
+          - scheme: |
+              \((x+2y-z) + (2x-y+4z) = 3 + 1\)
+            marks:
+              - code: M1
+                note: Adds the first two equations, or eliminates one variable from the system by any method, and compares with the third.
+          - scheme: |
+              \(\Rightarrow 3x+y+3z = 4\), the third equation, so consistent
+            marks:
+              - code: A1
+                note: Correct sum identified with the third equation, or \(0 = 0\) by elimination, and a conclusion of consistency.
+          - scheme: |
+              The three planes meet in a common line (a sheaf)
+            marks:
+              - code: E1
+                note: States the planes meet in a single common line, or form a sheaf. Not for infinitely many solutions alone.
+      - part: c
+        rows:
+          - scheme: |
+              First two equations \(\Rightarrow 3x+y+3z = 4\)
+            marks:
+              - code: M1
+                note: Combines the first two equations to give \(3x+y+3z = 4\), or eliminates by any method. May be seen in (b).
+          - scheme: |
+              \(3x+y+3z = a \ne 4\): contradiction, so inconsistent
+            marks:
+              - code: A1
+                note: Contradiction with the third equation for \(a \ne 4\) and a conclusion of inconsistency.
+          - scheme: |
+              Normals \((1, 2, -1)\), \((2, -1, 4)\), \((3, 1, 3)\): no two parallel
+              \(\Rightarrow\) triangular prism
+            marks:
+              - code: E1
+                note: States triangular prism, with a reason no two planes are parallel, such as no two normals being multiples.
+  - q: 3
+    stamp: aea13915
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\begin{vmatrix}1&-1&2\\2&1&1\\3&0&m+1\end{vmatrix}\)
+              \(\phantom{A} = 1(m+1) + 1\bigl(2(m+1) - 3\bigr) + 2(0 - 3)\)
+            marks:
+              - code: M1
+                note: Expands the determinant of the coefficient matrix in terms of \(m\) by any row or column. Condone sign slips.
+          - scheme: |
+              \(\phantom{A} = 3(m - 2)\)
+            marks:
+              - code: A1
+                note: \(3(m-2)\) oe, such as \(3m - 6\).
+          - scheme: |
+              \(m \ne 2 \Rightarrow \det \ne 0\): the planes meet in a single point
+            marks:
+              - code: E1
+                note: Relates the non-zero determinant to a unique point of intersection. The point need not be found.
+          - scheme: |
+              \(m = 2\): first \(+\) second gives \(3x + 3z = 7\)
+              third: \(3x + 3z = 7\)
+            marks:
+              - code: M1
+                note: Substitutes \(m = 2\) and tests consistency, by combining the first two equations to compare with the third, or by elimination.
+          - scheme: |
+              Third equation is the sum of the first two, so consistent
+            marks:
+              - code: A1
+                note: Third equation shown to be the sum of the first two, or elimination reaching \(0 = 0\), with consistency stated or implied.
+          - scheme: |
+              The planes meet in a common line (a sheaf)
+            marks:
+              - code: E1
+                note: States the planes share one common line, or form a sheaf, from a correct consistency result. The line need not be found.
+      - part: b
+        rows:
+          - scheme: |
+              \(\begin{vmatrix}1&-1&2\\2&1&1\\3&0&4\end{vmatrix} = 1(4) + 1(8 - 3) + 2(0 - 3)\)
+            marks:
+              - code: M1
+                note: Forms the determinant or scalar triple product of the three vectors and attempts to evaluate it, or uses another valid coplanarity test. Condone sign slips.
+          - scheme: |
+              \(= 3 \ne 0\), so not coplanar: the student is incorrect
+            marks:
+              - code: A1
+                note: Value \(\pm 3\), depending on order, and concludes the student is incorrect.
+  - q: 4
+    stamp: d060c0f7
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\det\mathbf{M} = 1(k + 1) - 1(3 - 2) + 0\)
+            marks:
+              - code: M1
+                note: Expands the \(3\times3\) determinant along any row or column, with every nonzero \(2\times2\) minor attempted. Condone sign slips.
+          - scheme: |
+              \(\det\mathbf{M} = k\), so an inverse exists for \(k \neq 0\)
+            marks:
+              - code: A1
+      - part: b
+        rows:
+          - scheme: |
+              \(\mathbf{M}^{-1} = \frac12\begin{pmatrix}3 & -1 & 1\\-1 & 1 & -1\\-7 & 3 & -1\end{pmatrix}\)
+            marks:
+              - code: B1
+                note: Correct inverse with \(k = 2\), from a calculator or otherwise.
+          - scheme: |
+              \(\begin{pmatrix}x\\y\\z\end{pmatrix} = \text{"}\mathbf{M}^{-1}\text{"}\begin{pmatrix}1\\p\\4\end{pmatrix} = \ldots\)
+            marks:
+              - code: M1
+                note: Multiplies their \(3\times3\) inverse by \(\begin{pmatrix}1\\p\\4\end{pmatrix}\), in that order, for at least one component.
+          - scheme: |
+              \(x = \frac{7-p}{2}\)
+            marks:
+              - code: A1
+                note: oe. Coordinates may be given as a column vector.
+          - scheme: |
+              \(y = \frac{p-5}{2}\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(z = \frac{3p-11}{2}\)
+            marks:
+              - code: A1
+        alt:
+          title: Elimination
+          rows:
+            - scheme: |
+                \(y = 1 - x \Rightarrow 3x + 2(1 - x) + z = p\)
+                \(\phantom{y = 1 - x \Rightarrow}\ 2x - (1 - x) + z = 4\)
+              marks:
+                - code: M1
+                  note: Eliminates one variable from two pairs of the equations, giving two equations in the other two. Condone sign slips.
+            - scheme: |
+                \(x + z = p - 2,\quad 3x + z = 5\)
+              marks:
+                - code: A1
+                  note: oe, or the correct pair for another eliminated variable.
+            - scheme: |
+                \(2x = 5 - (p - 2) \Rightarrow x = \ldots\)
+                \(y = 1 - x = \ldots,\quad z = 5 - 3x = \ldots\)
+              marks:
+                - code: dM1
+                  note: Solves their pair for one variable and substitutes back to find the other two.
+            - scheme: |
+                \(x = \frac{7-p}{2}\)
+              marks:
+                - code: A1
+                  note: oe. Coordinates may be given as a column vector.
+            - scheme: |
+                \(y = \frac{p-5}{2},\quad z = \frac{3p-11}{2}\)
+              marks:
+                - code: A1
+                  note: Both correct, oe.
+      - part: c.i
+        rows:
+          - scheme: |
+              \((3x + z) - (x + y) = 2x - y + z \Rightarrow q - 1 = 4\)
+            marks:
+              - code: M1
+                note: Combines two of the equations to match the variable terms of the third, or eliminates variables to compare with it, reaching an equation in \(q\). Condone sign slips.
+          - scheme: |
+              \(q = 5\)
+            marks:
+              - code: A1
+      - part: c.ii
+        rows:
+          - scheme: |
+              Third equation follows from the first two, so infinitely many solutions
+            marks:
+              - code: E1
+                note: States that one equation is a combination of the other two, or that the system is consistent with no unique solution, and so has infinitely many solutions.
+          - scheme: |
+              The three planes meet in a common line (a sheaf)
+            marks:
+              - code: E1
+                note: States that the planes meet in a single common line; ``sheaf'' alone accepted. The line's equation is not needed.
+  - q: 5
+    stamp: dc721949
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\begin{vmatrix}1 & -1 & 2\\ k+1 & k & 2-k\\ 5-2k & 2-2k & k+2\end{vmatrix} = 0\)
+              \(\Rightarrow k(k+2)-(2-k)(2-2k) + \ldots = 0\)
+            marks:
+              - code: M1
+                note: Sets the determinant of the coefficient matrix to zero and expands it, with at least two of the three \(2 \times 2\) terms correct in form. Condone sign slips.
+          - scheme: |
+              \(-2k^2 + 10k - 8 = 0\)
+            marks:
+              - code: A1
+                note: Correct quadratic, oe such as \(k^2 - 5k + 4 = 0\).
+          - scheme: |
+              \(-2(k-1)(k-4) = 0 \Rightarrow k = \ldots\)
+            marks:
+              - code: dM1
+                note: Solves their three-term quadratic by any means, a calculator allowed.
+          - scheme: |
+              \(k = 1\) or \(k = 4\)
+            marks:
+              - code: A1
+                note: Both values and no others.
+      - part: b
+        rows:
+          - scheme: |
+              \(k = 1\): \((x - y + 2z) + (2x + y + z) = 4 + 3\)
+              \(\phantom{k = 1\text{:}} \Rightarrow 3x + 3z = 7\)
+            marks:
+              - code: M1
+                note: Substitutes \(k = 1\) and combines two equations to compare with the third, or eliminates a variable from two pairs and compares.
+          - scheme: |
+              Same as the third equation, so consistent
+            marks:
+              - code: A1
+                note: Shows the third equation is the sum of the first two and states consistent.
+          - scheme: |
+              \(\mathbf{n}_1 = \begin{pmatrix}1\\-1\\2\end{pmatrix}\), \(\mathbf{n}_2 = \begin{pmatrix}2\\1\\1\end{pmatrix}\) not parallel
+              \(\Rightarrow\) the planes meet in a common line: a sheaf
+            marks:
+              - code: E1
+                note: States sheaf, or a common line, with at least two normals shown not parallel.
+          - scheme: |
+              \(k = 4\): \(2(x - y + 2z) - (5x + 4y - 2z) = 2 \times 4 - 0\)
+              \(\phantom{k = 4\text{:}} \Rightarrow -3x - 6y + 6z = 8\)
+            marks:
+              - code: M1
+                note: Substitutes \(k = 4\) and combines two equations to compare with the third, or eliminates a variable from two pairs and compares. Condone arithmetic slips.
+          - scheme: |
+              But \(-3x - 6y + 6z = 4\): \(8 \neq 4\), so inconsistent
+            marks:
+              - code: A1
+                note: Correct contradiction and states inconsistent.
+          - scheme: |
+              \(\begin{pmatrix}1\\-1\\2\end{pmatrix}\), \(\begin{pmatrix}5\\4\\-2\end{pmatrix}\), \(\begin{pmatrix}-3\\-6\\6\end{pmatrix}\): no two parallel
+              \(\Rightarrow\) triangular prism
+            marks:
+              - code: E1
+                note: States triangular prism, with all three pairs of normals shown or stated not parallel. E0 without the normals.
+  - q: 6
+    stamp: bc166d93
+    parts:
+      - part: a.i
+        rows:
+          - scheme: |
+              \(\det\mathbf{A} = 1(2-b) - a(4-3) = 0\)
+            marks:
+              - code: M1
+                note: Sets an expansion of the determinant of the coefficient matrix equal to zero. Condone one sign slip.
+          - scheme: |
+              \(b = 2-a\)
+            marks:
+              - code: A1
+                note: oe
+      - part: a.ii
+        rows:
+          - scheme: |
+              \(x = -1-ay,\quad z = 5+(2a-1)y\)
+            marks:
+              - code: M1
+                note: Finds the line of intersection of two planes, or a point on it, or reduces to two equations in two variables, or writes one plane as a combination of the others. Condone sign slips.
+          - scheme: |
+              \(3(-1-ay)+(2-a)y+2\bigl(5+(2a-1)y\bigr) = c\)
+            marks:
+              - code: dM1
+                note: Uses their \(b\) in terms of \(a\) with their line, point, reduced equations or combination to find \(c\).
+          - scheme: |
+              \(c = 7\)
+            marks:
+              - code: A1
+      - part: b
+        rows:
+          - scheme: |
+              \(x = -1-ay \Rightarrow 2(-1-ay)+y+z = 3\)
+            marks:
+              - code: M1
+                note: Eliminates a variable between two of the equations, giving one variable in terms of the others. Condone sign slips.
+          - scheme: |
+              \(z = 5+(2a-1)y\)
+            marks:
+              - code: A1
+                note: oe, or the correct result of another elimination.
+          - scheme: |
+              \(3(-1-ay)+(1-a)y+2\bigl(5+(2a-1)y\bigr) = 5\)
+              \(\Rightarrow 7-y = 5 \Rightarrow y = \ldots\)
+            marks:
+              - code: dM1
+                note: Substitutes their expressions into the third equation, with \(b = 1-a\) and \(c = 5\), and solves for the remaining variable.
+          - scheme: |
+              \(y = 2\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(x = -1-2a,\quad z = 4a+3\)
+            marks:
+              - code: A1
+                note: Both, oe, as coordinates or separate values.
+  - q: 7
+    stamp: eaec0391
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\det\mathbf{A} = 3(3 - 0) - 2(1 - 0) + a(-1 - 6)\)
+            marks:
+              - code: M1
+                note: Expands along any row or column, three terms each an element times its \(2 \times 2\) determinant, or uses Sarrus' rule. Condone sign slips.
+          - scheme: |
+              \(\det\mathbf{A} = 7(1 - a)\)
+            marks:
+              - code: A1
+                note: oe, such as \(7 - 7a\).
+      - part: b.i
+        rows:
+          - scheme: |
+              Minors: \(\begin{pmatrix}3 & 1 & -7\\ 2+a & 3-2a & -7\\ -3a & -a & 7\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Attempts all nine \(2 \times 2\) minors; implied by a matrix of cofactors.
+          - scheme: |
+              \(\mathrm{adj}\,\mathbf{A} = \begin{pmatrix}3 & -a-2 & -3a\\ -1 & 3-2a & a\\ -7 & 7 & 7\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Applies the alternating signs and transposes their matrix of minors, in either order.
+          - scheme: |
+              \(\mathbf{A}^{-1} = \frac{1}{7(1-a)}\begin{pmatrix}3 & -a-2 & -3a\\ -1 & 3-2a & a\\ -7 & 7 & 7\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Divides their adjugate by their determinant from (a), in terms of \(a\).
+              - code: A1
+                note: Correct inverse, oe; the factor may be multiplied in.
+          - scheme: |
+              \(\begin{pmatrix}x\\ y\\ z\end{pmatrix} = \text{"}\mathbf{A}^{-1}\text{"}\begin{pmatrix}8\\ 5\\ 3\end{pmatrix}\)
+              \(\phantom{\begin{pmatrix}x\\ y\\ z\end{pmatrix}} = \frac{1}{7(1-a)}\begin{pmatrix}14-14a\\ 7-7a\\ 0\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Multiplies their \(\mathbf{A}^{-1}\), in terms of \(a\), by \((8, 5, 3)^{T}\) in that order, at least one element attempted.
+          - scheme: |
+              \(x = 2,\ y = 1,\ z = 0\)
+            marks:
+              - code: A1
+                note: cso; all three values.
+      - part: b.ii
+        rows:
+          - scheme: |
+              With \(a = 1\), adds the second and third equations:
+              \((x + 3y) + (2x - y + z) = 5 + 3\)
+            marks:
+              - code: M1
+                note: Sets \(a = 1\) and compares a combination of two equations with the third.
+          - scheme: |
+              \(\Rightarrow 3x + 2y + z = 8\), the first equation, so consistent
+            marks:
+              - code: A1
+                note: Shows the first equation is the sum of the others, oe, and concludes the equations are consistent or have solutions.
+          - scheme: |
+              The three planes meet in a common line: a sheaf
+            marks:
+              - code: E1
+                note: States the planes share a single common line, or form a sheaf. No check that the normals are non-parallel is needed.
+      - part: c.i
+        rows:
+          - scheme: |
+              \(a > 1\)
+            marks:
+              - code: B1
+      - part: c.ii
+        rows:
+          - scheme: |
+              \(|7(1-a)|(a^2 + 3) < a^2 + 3 \Rightarrow |7(1-a)| < 1\)
+            marks:
+              - code: M1
+                note: Uses the modulus of their determinant from (a) as the volume scale factor, reaching \(|\det\mathbf{A}| < 1\) or both cases. Not for \(7(1-a) < 1\) alone.
+          - scheme: |
+              \(\frac67 < a < \frac87\)
+            marks:
+              - code: A1
+                note: oe, such as \(\left(\frac67, \frac87\right)\).

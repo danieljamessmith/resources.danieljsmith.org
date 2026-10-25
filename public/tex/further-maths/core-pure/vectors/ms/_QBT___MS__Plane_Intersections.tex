@@ -1,0 +1,198 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/markscheme_preamble.tex}
+
+\djsSchemeHeader{Plane Intersections}
+\djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}
+
+\djsLastUpdated{25 October 2026}
+\begin{document}
+\djsSetQuestionCount{7}
+\djsAddMarks{1}{5}
+\djsAddMarks{2}{8}
+\djsAddMarks{3}{8}
+\djsAddMarks{4}{11}
+\djsAddMarks{5}{10}
+\djsAddMarks{6}{10}
+\djsAddMarks{7}{14}
+\vspace*{6pt}
+\djsContentsTitle
+\vspace{30pt}
+\msContentsHeading
+\begin{mscontents}{}
+Question & Marks by part & Marks & Page \\
+\msContentsQuestion{1} & (a)\,2\msSep (b)\,3 & 5 & \msContentsPage{1} \\
+\msContentsQuestion{2} & (a)\,2\msSep (b)\,3\msSep (c)\,3 & 8 & \msContentsPage{2} \\
+\msContentsQuestion{3} & (a)\,6\msSep (b)\,2 & 8 & \msContentsPage{3} \\
+\msContentsQuestion{4} & (a)\,2\msSep (b)\,5\msSep (c)(i)\,2\msSep (c)(ii)\,2 & 11 & \msContentsPage{4} \\
+\msContentsQuestion{5} & (a)\,4\msSep (b)\,6 & 10 & \msContentsPage{5} \\
+\msContentsQuestion{6} & (a)(i)\,2\msSep (a)(ii)\,3\msSep (b)\,5 & 10 & \msContentsPage{6} \\
+\msContentsQuestion{7} & (a)\,2\msSep (b)(i)\,6\msSep (b)(ii)\,3\msSep (c)(i)\,1\msSep (c)(ii)\,2 & 14 & \msContentsPage{7} \\
+\SetCell[c=2]{r} Total & & 66 & \\
+\end{mscontents}
+\newpage
+\input{../../../../_shared/markscheme_conventions.tex}
+
+\msQuestion{1}
+\begin{msscheme}{
+  hline{3-4,6-8} = {2-Z}{0.4pt, msGrid},
+  hline{5,9} = {0.4pt, msGrid},
+  row{9} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+1(a) & {\(\det\mathbf{A} = 3(-7-0)+2(-14+28)+1(0-7)\)} & M1 & {Expands along any row or column, with three \(2\times2\) minors and their signs. Condone one slip in a minor.} \\
+& {\(\phantom{\det\mathbf{A}} = -21+28-7 = 0\)\\[4pt] so \(\mathbf{A}\) is singular and there is no unique solution} & A1~AG & {Correct expansion leading without error to 0, then both conclusions, singular and no unique solution.} \\
+\nopagebreak & & [2] & \\
+1(b) & {\((3x-2y+z)+2(2x+y-4z) = 5+2(1)\)} & M1 & {Combines two equations to compare with the third, or solves two and substitutes into the third. Condone arithmetic slips.} \\
+& {\(\Rightarrow 7x-7z=7\), the third equation,\\[4pt] so the system is consistent} & A1 & {Correct combination matching the third equation, constants included, and consistent stated.} \\
+& {The three planes meet in a common line (a sheaf)\\[4pt] \(\left[\mathbf{r} = \begin{pmatrix}1\\-1\\0\end{pmatrix} + \lambda\begin{pmatrix}1\\2\\1\end{pmatrix}\right]\)} & E1 & {States the planes meet in a common line, or form a sheaf. Not for infinitely many solutions alone; the line's equation is not needed.} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 1 & & 5 & \\
+\end{msscheme}
+
+\msQuestion{2}
+\begin{msscheme}{
+  hline{3-4,6-8,10-12} = {2-Z}{0.4pt, msGrid},
+  hline{5,9,13} = {0.4pt, msGrid},
+  row{13} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+2(a) & {\(\det\mathbf{A} = 1(-7) - 2(-6) - 1(5) = 0\)} & B1 & {\(\det\mathbf{A} = 0\) for the coefficient matrix; a calculator value is accepted.} \\
+& {\(\mathbf{A}\) is singular, so no unique solution} & E1 & {States that \(\mathbf{A}\) is singular or not invertible, so there is no unique solution. Needs \(\det\mathbf{A} = 0\).} \\
+\nopagebreak & & [2] & \\
+2(b) & {\((x+2y-z) + (2x-y+4z) = 3 + 1\)} & M1 & {Adds the first two equations, or eliminates one variable from the system by any method, and compares with the third.} \\
+& {\(\Rightarrow 3x+y+3z = 4\), the third equation, so consistent} & A1 & {Correct sum identified with the third equation, or \(0 = 0\) by elimination, and a conclusion of consistency.} \\
+& {The three planes meet in a common line (a sheaf)} & E1 & {States the planes meet in a single common line, or form a sheaf. Not for infinitely many solutions alone.} \\
+\nopagebreak & & [3] & \\
+2(c) & {First two equations \(\Rightarrow 3x+y+3z = 4\)} & M1 & {Combines the first two equations to give \(3x+y+3z = 4\), or eliminates by any method. May be seen in (b).} \\
+& {\(3x+y+3z = a \ne 4\): contradiction, so inconsistent} & A1 & {Contradiction with the third equation for \(a \ne 4\) and a conclusion of inconsistency.} \\
+& {Normals \((1, 2, -1)\), \((2, -1, 4)\), \((3, 1, 3)\): no two parallel\\[4pt] \(\Rightarrow\) triangular prism} & E1 & {States triangular prism, with a reason no two planes are parallel, such as no two normals being multiples.} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 2 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{3}
+\begin{msscheme}{
+  hline{3-8,10-11} = {2-Z}{0.4pt, msGrid},
+  hline{9,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+3(a) & {\(\begin{vmatrix}1&-1&2\\2&1&1\\3&0&m+1\end{vmatrix}\)\\[4pt] \(\phantom{A} = 1(m+1) + 1\bigl(2(m+1) - 3\bigr) + 2(0 - 3)\)} & M1 & {Expands the determinant of the coefficient matrix in terms of \(m\) by any row or column. Condone sign slips.} \\
+& {\(\phantom{A} = 3(m - 2)\)} & A1 & {\(3(m-2)\) oe, such as \(3m - 6\).} \\
+& {\(m \ne 2 \Rightarrow \det \ne 0\): the planes meet in a single point} & E1 & {Relates the non-zero determinant to a unique point of intersection. The point need not be found.} \\
+& {\(m = 2\): first \(+\) second gives \(3x + 3z = 7\)\\[4pt] third: \(3x + 3z = 7\)} & M1 & {Substitutes \(m = 2\) and tests consistency, by combining the first two equations to compare with the third, or by elimination.} \\
+& {Third equation is the sum of the first two, so consistent} & A1 & {Third equation shown to be the sum of the first two, or elimination reaching \(0 = 0\), with consistency stated or implied.} \\
+& {The planes meet in a common line (a sheaf)} & E1 & {States the planes share one common line, or form a sheaf, from a correct consistency result. The line need not be found.} \\
+\nopagebreak & & [6] & \\
+3(b) & {\(\begin{vmatrix}1&-1&2\\2&1&1\\3&0&4\end{vmatrix} = 1(4) + 1(8 - 3) + 2(0 - 3)\)} & M1 & {Forms the determinant or scalar triple product of the three vectors and attempts to evaluate it, or uses another valid coplanarity test. Condone sign slips.} \\
+& {\(= 3 \ne 0\), so not coplanar: the student is incorrect} & A1 & {Value \(\pm 3\), depending on order, and concludes the student is incorrect.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 3 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{4}
+\begin{msscheme}{
+  hline{3-4,6-16,18-19,21-22} = {2-Z}{0.4pt, msGrid},
+  hline{5,17,20,23} = {0.4pt, msGrid},
+  cell{10-15}{2-4} = {bg=msTint},
+  row{23} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+4(a) & {\(\det\mathbf{M} = 1(k + 1) - 1(3 - 2) + 0\)} & M1 & {Expands the \(3\times3\) determinant along any row or column, with every nonzero \(2\times2\) minor attempted. Condone sign slips.} \\
+& {\(\det\mathbf{M} = k\), so an inverse exists for \(k \neq 0\)} & A1 & \\
+\nopagebreak & & [2] & \\
+4(b) & {\(\mathbf{M}^{-1} = \frac12\begin{pmatrix}3 & -1 & 1\\-1 & 1 & -1\\-7 & 3 & -1\end{pmatrix}\)} & B1 & {Correct inverse with \(k = 2\), from a calculator or otherwise.} \\
+& {\(\begin{pmatrix}x\\y\\z\end{pmatrix} = \text{"}\mathbf{M}^{-1}\text{"}\begin{pmatrix}1\\p\\4\end{pmatrix} = \ldots\)} & M1 & {Multiplies their \(3\times3\) inverse by \(\begin{pmatrix}1\\p\\4\end{pmatrix}\), in that order, for at least one component.} \\
+& {\(x = \frac{7-p}{2}\)} & A1 & {oe. Coordinates may be given as a column vector.} \\
+& {\(y = \frac{p-5}{2}\)} & A1 & \\
+& {\(z = \frac{3p-11}{2}\)} & A1 & \\
+& \SetCell[c=3]{l} \msAlternative{Elimination} & & \\
+\nopagebreak & {\(y = 1 - x \Rightarrow 3x + 2(1 - x) + z = p\)\\[4pt] \(\phantom{y = 1 - x \Rightarrow}\ 2x - (1 - x) + z = 4\)} & M1 & {Eliminates one variable from two pairs of the equations, giving two equations in the other two. Condone sign slips.} \\
+& {\(x + z = p - 2,\quad 3x + z = 5\)} & A1 & {oe, or the correct pair for another eliminated variable.} \\
+& {\(2x = 5 - (p - 2) \Rightarrow x = \ldots\)\\[4pt] \(y = 1 - x = \ldots,\quad z = 5 - 3x = \ldots\)} & dM1 & {Solves their pair for one variable and substitutes back to find the other two.} \\
+& {\(x = \frac{7-p}{2}\)} & A1 & {oe. Coordinates may be given as a column vector.} \\
+& {\(y = \frac{p-5}{2},\quad z = \frac{3p-11}{2}\)} & A1 & {Both correct, oe.} \\
+\nopagebreak & & [5] & \\
+4(c)(i) & {\((3x + z) - (x + y) = 2x - y + z \Rightarrow q - 1 = 4\)} & M1 & {Combines two of the equations to match the variable terms of the third, or eliminates variables to compare with it, reaching an equation in \(q\). Condone sign slips.} \\
+& {\(q = 5\)} & A1 & \\
+\nopagebreak & & [2] & \\
+4(c)(ii) & {Third equation follows from the first two, so infinitely many solutions} & E1 & {States that one equation is a combination of the other two, or that the system is consistent with no unique solution, and so has infinitely many solutions.} \\
+& {The three planes meet in a common line (a sheaf)} & E1 & {States that the planes meet in a single common line; ``sheaf'' alone accepted. The line's equation is not needed.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 4 & & 11 & \\
+\end{msscheme}
+
+\msQuestion{5}
+\begin{msscheme}{
+  hline{3-6,8-13} = {2-Z}{0.4pt, msGrid},
+  hline{7,14} = {0.4pt, msGrid},
+  row{14} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+5(a) & {\(\begin{vmatrix}1 & -1 & 2\\ k+1 & k & 2-k\\ 5-2k & 2-2k & k+2\end{vmatrix} = 0\)\\[4pt] \(\Rightarrow k(k+2)-(2-k)(2-2k) + \ldots = 0\)} & M1 & {Sets the determinant of the coefficient matrix to zero and expands it, with at least two of the three \(2 \times 2\) terms correct in form. Condone sign slips.} \\
+& {\(-2k^2 + 10k - 8 = 0\)} & A1 & {Correct quadratic, oe such as \(k^2 - 5k + 4 = 0\).} \\
+& {\(-2(k-1)(k-4) = 0 \Rightarrow k = \ldots\)} & dM1 & {Solves their three-term quadratic by any means, a calculator allowed.} \\
+& {\(k = 1\) or \(k = 4\)} & A1 & {Both values and no others.} \\
+\nopagebreak & & [4] & \\
+5(b) & {\(k = 1\): \((x - y + 2z) + (2x + y + z) = 4 + 3\)\\[4pt] \(\phantom{k = 1\text{:}} \Rightarrow 3x + 3z = 7\)} & M1 & {Substitutes \(k = 1\) and combines two equations to compare with the third, or eliminates a variable from two pairs and compares.} \\
+& {Same as the third equation, so consistent} & A1 & {Shows the third equation is the sum of the first two and states consistent.} \\
+& {\(\mathbf{n}_1 = \begin{pmatrix}1\\-1\\2\end{pmatrix}\), \(\mathbf{n}_2 = \begin{pmatrix}2\\1\\1\end{pmatrix}\) not parallel\\[4pt] \(\Rightarrow\) the planes meet in a common line: a sheaf} & E1 & {States sheaf, or a common line, with at least two normals shown not parallel.} \\
+& {\(k = 4\): \(2(x - y + 2z) - (5x + 4y - 2z) = 2 \times 4 - 0\)\\[4pt] \(\phantom{k = 4\text{:}} \Rightarrow -3x - 6y + 6z = 8\)} & M1 & {Substitutes \(k = 4\) and combines two equations to compare with the third, or eliminates a variable from two pairs and compares. Condone arithmetic slips.} \\
+& {But \(-3x - 6y + 6z = 4\): \(8 \neq 4\), so inconsistent} & A1 & {Correct contradiction and states inconsistent.} \\
+& {\(\begin{pmatrix}1\\-1\\2\end{pmatrix}\), \(\begin{pmatrix}5\\4\\-2\end{pmatrix}\), \(\begin{pmatrix}-3\\-6\\6\end{pmatrix}\): no two parallel\\[4pt] \(\Rightarrow\) triangular prism} & E1 & {States triangular prism, with all three pairs of normals shown or stated not parallel. E0 without the normals.} \\
+\nopagebreak & & [6] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 5 & & 10 & \\
+\end{msscheme}
+
+\msQuestion{6}
+\begin{msscheme}{
+  hline{3-4,6-8,10-14} = {2-Z}{0.4pt, msGrid},
+  hline{5,9,15} = {0.4pt, msGrid},
+  row{15} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+6(a)(i) & {\(\det\mathbf{A} = 1(2-b) - a(4-3) = 0\)} & M1 & {Sets an expansion of the determinant of the coefficient matrix equal to zero. Condone one sign slip.} \\
+& {\(b = 2-a\)} & A1 & {oe} \\
+\nopagebreak & & [2] & \\
+6(a)(ii) & {\(x = -1-ay,\quad z = 5+(2a-1)y\)} & M1 & {Finds the line of intersection of two planes, or a point on it, or reduces to two equations in two variables, or writes one plane as a combination of the others. Condone sign slips.} \\
+& {\(3(-1-ay)+(2-a)y+2\bigl(5+(2a-1)y\bigr) = c\)} & dM1 & {Uses their \(b\) in terms of \(a\) with their line, point, reduced equations or combination to find \(c\).} \\
+& {\(c = 7\)} & A1 & \\
+\nopagebreak & & [3] & \\
+6(b) & {\(x = -1-ay \Rightarrow 2(-1-ay)+y+z = 3\)} & M1 & {Eliminates a variable between two of the equations, giving one variable in terms of the others. Condone sign slips.} \\
+& {\(z = 5+(2a-1)y\)} & A1 & {oe, or the correct result of another elimination.} \\
+& {\(3(-1-ay)+(1-a)y+2\bigl(5+(2a-1)y\bigr) = 5\)\\[4pt] \(\Rightarrow 7-y = 5 \Rightarrow y = \ldots\)} & dM1 & {Substitutes their expressions into the third equation, with \(b = 1-a\) and \(c = 5\), and solves for the remaining variable.} \\
+& {\(y = 2\)} & A1 & \\
+& {\(x = -1-2a,\quad z = 4a+3\)} & A1 & {Both, oe, as coordinates or separate values.} \\
+\nopagebreak & & [5] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 6 & & 10 & \\
+\end{msscheme}
+
+\msQuestion{7}
+\begin{msscheme}{
+  hline{3-4,6-10,12-14,16,18-19} = {2-Z}{0.4pt, msGrid},
+  hline{5,11,15,17,20} = {0.4pt, msGrid},
+  row{20} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+7(a) & {\(\det\mathbf{A} = 3(3 - 0) - 2(1 - 0) + a(-1 - 6)\)} & M1 & {Expands along any row or column, three terms each an element times its \(2 \times 2\) determinant, or uses Sarrus' rule. Condone sign slips.} \\
+& {\(\det\mathbf{A} = 7(1 - a)\)} & A1 & {oe, such as \(7 - 7a\).} \\
+\nopagebreak & & [2] & \\
+7(b)(i) & {Minors: \(\begin{pmatrix}3 & 1 & -7\\ 2+a & 3-2a & -7\\ -3a & -a & 7\end{pmatrix}\)} & M1 & {Attempts all nine \(2 \times 2\) minors; implied by a matrix of cofactors.} \\
+& {\(\mathrm{adj}\,\mathbf{A} = \begin{pmatrix}3 & -a-2 & -3a\\ -1 & 3-2a & a\\ -7 & 7 & 7\end{pmatrix}\)} & M1 & {Applies the alternating signs and transposes their matrix of minors, in either order.} \\
+& {\(\mathbf{A}^{-1} = \frac{1}{7(1-a)}\begin{pmatrix}3 & -a-2 & -3a\\ -1 & 3-2a & a\\ -7 & 7 & 7\end{pmatrix}\)} & M1 A1 & {\msNote{M1}{Divides their adjugate by their determinant from (a), in terms of \(a\).}\\ \msNote{A1}{Correct inverse, oe; the factor may be multiplied in.}} \\
+& {\(\begin{pmatrix}x\\ y\\ z\end{pmatrix} = \text{"}\mathbf{A}^{-1}\text{"}\begin{pmatrix}8\\ 5\\ 3\end{pmatrix}\)\\[4pt] \(\phantom{\begin{pmatrix}x\\ y\\ z\end{pmatrix}} = \frac{1}{7(1-a)}\begin{pmatrix}14-14a\\ 7-7a\\ 0\end{pmatrix}\)} & M1 & {Multiplies their \(\mathbf{A}^{-1}\), in terms of \(a\), by \((8, 5, 3)^{T}\) in that order, at least one element attempted.} \\
+& {\(x = 2,\ y = 1,\ z = 0\)} & A1 & {cso; all three values.} \\
+\nopagebreak & & [6] & \\
+7(b)(ii) & {With \(a = 1\), adds the second and third equations:\\[4pt] \((x + 3y) + (2x - y + z) = 5 + 3\)} & M1 & {Sets \(a = 1\) and compares a combination of two equations with the third.} \\
+& {\(\Rightarrow 3x + 2y + z = 8\), the first equation, so consistent} & A1 & {Shows the first equation is the sum of the others, oe, and concludes the equations are consistent or have solutions.} \\
+& {The three planes meet in a common line: a sheaf} & E1 & {States the planes share a single common line, or form a sheaf. No check that the normals are non-parallel is needed.} \\
+\nopagebreak & & [3] & \\
+7(c)(i) & {\(a > 1\)} & B1 & \\
+\nopagebreak & & [1] & \\
+7(c)(ii) & {\(|7(1-a)|(a^2 + 3) < a^2 + 3 \Rightarrow |7(1-a)| < 1\)} & M1 & {Uses the modulus of their determinant from (a) as the volume scale factor, reaching \(|\det\mathbf{A}| < 1\) or both cases. Not for \(7(1-a) < 1\) alone.} \\
+& {\(\frac67 < a < \frac87\)} & A1 & {oe, such as \(\left(\frac67, \frac87\right)\).} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 7 & & 14 & \\
+\end{msscheme}
+
+\end{document}
