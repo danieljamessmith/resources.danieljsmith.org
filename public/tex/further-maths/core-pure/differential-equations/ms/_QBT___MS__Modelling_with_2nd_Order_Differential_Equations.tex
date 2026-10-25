@@ -1,0 +1,394 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/markscheme_preamble.tex}
+
+\djsSchemeHeader{Modelling with 2nd Order Differential Equations}
+\djsSitePath{Core Pure}{Differential Equations}
+
+\djsLastUpdated{25 October 2026}
+\begin{document}
+\djsSetQuestionCount{12}
+\djsAddMarks{1}{5}
+\djsAddMarks{2}{7}
+\djsAddMarks{3}{10}
+\djsAddMarks{4}{25}
+\djsAddMarks{5}{14}
+\djsAddMarks{6}{19}
+\djsAddMarks{7}{14}
+\djsAddMarks{8}{15}
+\djsAddMarks{9}{14}
+\djsAddMarks{10}{14}
+\djsAddMarks{11}{12}
+\djsAddMarks{12}{13}
+\vspace*{6pt}
+\djsContentsTitle
+\vspace{30pt}
+\msContentsHeading
+\begin{mscontents}{}
+Question & Marks by part & Marks & Page \\
+\msContentsQuestion{1} & (a)(i)\,1\msSep (a)(ii)\,1\msSep (b)\,2\msSep (c)\,1 & 5 & \msContentsPage{1} \\
+\msContentsQuestion{2} & (a)\,6\msSep (b)\,1 & 7 & \msContentsPage{2} \\
+\msContentsQuestion{3} & (a)\,2\msSep (b)\,5\msSep (c)\,2\msSep (d)\,1 & 10 & \msContentsPage{3} \\
+\msContentsQuestion{4} & (a)(i)\,1\msSep (a)(ii)\,1\msSep (a)(iii)\,1\msSep (a)(iv)\,5\msSep (a)(v)\,2\msSep (b)(i)\,1\msSep (b)(ii)\,1\msSep (b)(iii)\,3\msSep (c)(i)\,8\msSep (c)(ii)\,2 & 25 & \msContentsPage{4} \\
+\msContentsQuestion{5} & (a)\,10\msSep (b)\,4 & 14 & \msContentsPage{5} \\
+\msContentsQuestion{6} & (a)\,5\msSep (b)(i)\,4\msSep (b)(ii)\,5\msSep (c)\,5 & 19 & \msContentsPage{6} \\
+\msContentsQuestion{7} & (a)\,4\msSep (b)\,8\msSep (c)\,2 & 14 & \msContentsPage{7} \\
+\msContentsQuestion{8} & (a)\,9\msSep (b)\,4\msSep (c)\,2 & 15 & \msContentsPage{8} \\
+\msContentsQuestion{9} & (a)\,7\msSep (b)\,3\msSep (c)\,4 & 14 & \msContentsPage{9} \\
+\msContentsQuestion{10} & (a)(i)\,4\msSep (a)(ii)\,4\msSep (b)\,4\msSep (c)\,1\msSep (d)\,1 & 14 & \msContentsPage{10} \\
+\msContentsQuestion{11} & (a)(i)\,1\msSep (a)(ii)\,2\msSep (b)(i)\,1\msSep (b)(ii)\,1\msSep (b)(iii)\,4\msSep (c)(i)\,2\msSep (c)(ii)\,1 & 12 & \msContentsPage{11} \\
+\msContentsQuestion{12} & (a)\,1\msSep (b)\,3\msSep (c)\,1\msSep (d)\,4\msSep (e)\,2\msSep (f)\,2 & 13 & \msContentsPage{12} \\
+\SetCell[c=2]{r} Total & & 162 & \\
+\end{mscontents}
+\newpage
+\input{../../../../_shared/markscheme_conventions.tex}
+
+\msQuestion{1}
+\begin{msscheme}{
+  hline{3,5,7-8,10-11} = {2-Z}{0.4pt, msGrid},
+  hline{4,6,9,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+1(a)(i) & {\(p = 0\)} & B1 & \\
+\nopagebreak & & [1] & \\
+1(a)(ii) & {Real suspension is damped, so the amplitude decreases;\\[4pt] simple harmonic motion keeps a constant amplitude} & E1 & {States that damping (shock absorbers, friction, energy loss) makes oscillations die away, unlike simple harmonic motion's constant amplitude. Either idea alone, clearly expressed, is enough.} \\
+\nopagebreak & & [1] & \\
+1(b) & {\(4\lambda^2 + p\lambda + 9 = 0\)\\[4pt] \(p^2 - 4(4)(9) \geq 0 \Rightarrow p \ldots\)} & M1 & {Uses the discriminant of the auxiliary equation with the condition for real roots. Condone \(>\) for \(\geq\) and a numerical slip.} \\
+& {\(p \geq 12\)} & A1 & {Must include \(p = 12\) and no negative values; condone \(p \leq -12\) also stated if \(p \geq 12\) is then given as the answer.} \\
+\nopagebreak & & [2] & \\
+1(c) & \SetCell[c=3]{c} \msFigure{\begin{tikzpicture}
+\begin{axis}[
+width=0.75\linewidth,
+height=8cm,
+axis lines=middle,
+xlabel={$t$},
+ylabel={$y$},
+xmin=0, xmax=14,
+ymin=-1.2, ymax=1.5,
+xtick=\empty,
+ytick=\empty,
+domain=0:14,
+samples=200
+]
+\addplot[black, smooth] {exp(-0.2*x)*(cos(deg(x))+0.2*sin(deg(x)))};
+\end{axis}
+\end{tikzpicture}} & & \\
+& \msFeature{Shape} & B1 & {Oscillation about the \(t\)-axis with decreasing amplitude, starting at positive \(y\) with zero gradient and crossing the axis.} \\
+\nopagebreak & & [1] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 1 & & 5 & \\
+\end{msscheme}
+
+\msQuestion{2}
+\begin{msscheme}{
+  hline{3-8,10} = {2-Z}{0.4pt, msGrid},
+  hline{9,11} = {0.4pt, msGrid},
+  row{11} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+2(a) & {\(\lambda^2+\lambda-6=0 \Rightarrow \lambda=\ldots\)} & M1 & {Forms the auxiliary equation and solves it by factorising with product of constants \(-6\), the formula or completing the square; calculator allowed.} \\
+& {\(\lambda=-3,\ 2\)\\[4pt] \((E=)\ Ae^{-3t}+Be^{2t}\)} & A1 & \\
+& {\(-6k=-12 \Rightarrow k=2\)} & B1 & \\
+& {\(E\) tends to a finite limit \(\Rightarrow B=0\)} & B1 & {\(B=0\) stated or used, the coefficient of \(e^{2t}\) removed.} \\
+& {\(\frac{\mathrm{d}E}{\mathrm{d}t}=-3Ae^{-3t} \Rightarrow -3A=-9 \Rightarrow A=\ldots\)\\[4pt] \(E=\text{"}3\text{"}e^{-3\ln 2}+\text{"}2\text{"}\)} & M1 & {Differentiates their solution of the form \(Ae^{-3t}+c\), uses \(\frac{\mathrm{d}E}{\mathrm{d}t}=-9\) at \(t=0\) to find \(A\), and substitutes \(t=\ln 2\). Condone sign slips.} \\
+& {\(E=\frac{19}{8}\)} & A1 & {\(\frac{19}{8}\) oe, such as 2.375.} \\
+\nopagebreak & & [6] & \\
+2(b) & {\(E\to 2\)} & B1ft & {ft their constant particular integral, for a solution whose remaining exponential term decays.} \\
+\nopagebreak & & [1] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 2 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{3}
+\begin{msscheme}{
+  hline{3-4,6-10,12-13,15} = {2-Z}{0.4pt, msGrid},
+  hline{5,11,14,16} = {0.4pt, msGrid},
+  row{16} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+3(a) & {\(3k(-0.10) + 2k(0) + 5(0.18) = 0 \Rightarrow k = \ldots\)} & M1 & {Substitutes all three initial values into the differential equation. Condone a sign slip.} \\
+& {\(k = 3\)} & A1 & \\
+\nopagebreak & & [2] & \\
+3(b) & {\(9\lambda^2 + 6\lambda + 5 = 0 \Rightarrow \lambda = \ldots\)} & M1 & {Forms the auxiliary equation with their positive \(k\) and solves it by any means; calculator allowed.} \\
+& {\(\lambda = -\frac13 \pm \frac23 i\)\\[4pt] \(x = e^{-t/3}\left(A\cos\frac{2t}{3} + B\sin\frac{2t}{3}\right)\)} & A1 & {oe, such as \(Re^{-t/3}\cos\left(\frac{2t}{3} - \alpha\right)\).} \\
+& {\(t = 0,\ x = 0.18 \Rightarrow A = 0.18\)} & M1 & {Uses \(x = 0.18\) at \(t = 0\) in their general solution with two arbitrary constants to find one constant.} \\
+& {\(\frac{\mathrm{d}x}{\mathrm{d}t} = -\frac13 e^{-t/3}\left(A\cos\frac{2t}{3} + B\sin\frac{2t}{3}\right)\)\\[4pt] \(\phantom{\frac{\mathrm{d}x}{\mathrm{d}t}} + e^{-t/3}\left(-\frac{2A}{3}\sin\frac{2t}{3} + \frac{2B}{3}\cos\frac{2t}{3}\right)\)\\[4pt] \(t = 0:\ 0 = -\frac13 A + \frac23 B \Rightarrow B = \ldots\)} & M1 & {Differentiates their solution of the form \(e^{pt}(A\cos qt + B\sin qt)\) by the product rule, sets \(\frac{\mathrm{d}x}{\mathrm{d}t} = 0\) at \(t = 0\) and solves. Condone coefficient slips.} \\
+& {\(x = e^{-t/3}\left(0.18\cos\frac{2t}{3} + 0.09\sin\frac{2t}{3}\right)\)} & A1 & {oe, exact or decimal coefficients; needs \(x = \ldots\)} \\
+\nopagebreak & & [5] & \\
+3(c) & {\(1.2 + e^{-1.5}\left(\text{"}0.18\text{"}\cos 3 + \text{"}0.09\text{"}\sin 3\right)\)} & M1 & {Substitutes \(t = 4.5\) into their particular solution and adds 1.2.} \\
+& {\(= 1.16\) m} & A1 & {awrt 1.16} \\
+\nopagebreak & & [2] & \\
+3(d) & {Spring and damping forces assumed proportional to displacement and velocity} & E1 & {States any valid limitation, such as forces not exactly linear, spring exceeding its elastic limit, or the track's length limiting the motion. Not for a bare "unrealistic".} \\
+\nopagebreak & & [1] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 3 & & 10 & \\
+\end{msscheme}
+
+\msQuestion{4}
+\begin{msscheme}{
+  hline{3,5,7,9-13,15-16,18,20,22-24,26-33,35-36} = {2-Z}{0.4pt, msGrid},
+  hline{4,6,8,14,17,19,21,25,34,37} = {0.4pt, msGrid},
+  row{37} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+4(a)(i) & {\(m\frac{\mathrm{d}^2x}{\mathrm{d}t^2} = -9mx\)\\[4pt] \(\Rightarrow \frac{\mathrm{d}^2x}{\mathrm{d}t^2}+9x=0\)} & B1 & {Needs \(F=ma\) with the force as \(-9mx\), leading to the printed equation.} \\
+\nopagebreak & & [1] & \\
+4(a)(ii) & {Simple harmonic motion} & B1 & {Accept SHM.} \\
+\nopagebreak & & [1] & \\
+4(a)(iii) & {\(T = \frac{2\pi}{3}\) (s)} & B1 & {Or awrt 2.09.} \\
+\nopagebreak & & [1] & \\
+4(a)(iv) & {\(\lambda^2+9=0 \Rightarrow \lambda = \ldots\)} & M1 & {Forms the auxiliary equation and solves it, or quotes the solution form for \(\ddot{x} = -\omega^2 x\) with \(\omega = 3\). Implied by a correct general solution.} \\
+& {\(\lambda = \pm 3i\)\\[4pt] \(x = A\cos 3t + B\sin 3t\)} & A1 & {Needs \(x =\); any letters for the constants.} \\
+& {\(t=0,\ x=1 \Rightarrow A = \ldots\ [=1]\)} & M1 & {Substitutes \(t=0\), \(x=1\) into their general solution with two arbitrary constants.} \\
+& {\(\frac{\mathrm{d}x}{\mathrm{d}t} = -3A\sin 3t + 3B\cos 3t\)\\[4pt] \(t=0,\ \frac{\mathrm{d}x}{\mathrm{d}t} = -6 \Rightarrow B = \ldots\ [=-2]\)} & M1 & {Differentiates their general solution and substitutes \(t=0\) with \(\frac{\mathrm{d}x}{\mathrm{d}t} = \pm 6\).} \\
+& {\(x = \cos 3t - 2\sin 3t\)} & A1 & \\
+\nopagebreak & & [5] & \\
+4(a)(v) & {Amplitude \(= \sqrt{\text{"}1\text{"}^2 + \text{"}(-2)\text{"}^2}\)} & M1 & {Uses \(\sqrt{A^2+B^2}\) with their \(A\) and \(B\), or finds \(R\) in \(R\cos(3t+\alpha)\) oe.} \\
+& {\(= \sqrt{5}\) (m)} & A1 & {Or awrt 2.24.} \\
+\nopagebreak & & [2] & \\
+4(b)(i) & {\(m\frac{\mathrm{d}^2x}{\mathrm{d}t^2} = -6m\frac{\mathrm{d}x}{\mathrm{d}t} - 9mx\)\\[4pt] \(\Rightarrow \frac{\mathrm{d}^2x}{\mathrm{d}t^2}+6\frac{\mathrm{d}x}{\mathrm{d}t}+9x=0\)} & B1 & {Needs \(F=ma\) with both forces signed correctly, \(-6m\frac{\mathrm{d}x}{\mathrm{d}t}\) and \(-9mx\), leading to the printed equation.} \\
+\nopagebreak & & [1] & \\
+4(b)(ii) & {\(\lambda^2+6\lambda+9=0\): \(6^2-4\times 9 = 0\)\\[4pt] Repeated root, so critically damped} & B1 & {Critically damped, with a reason: a repeated root, or discriminant shown to be zero.} \\
+\nopagebreak & & [1] & \\
+4(b)(iii) & {\(\lambda^2+6\lambda+9=0 \Rightarrow \lambda = \ldots\)} & M1 & {Forms the auxiliary equation and solves it by any means; may be seen in (b)(ii).} \\
+& {\(\lambda = -3\) (repeated)} & A1 & \\
+& {\(x = (A+Bt)e^{-3t}\)} & A1 & {Needs \(x =\); any letters for the constants.} \\
+\nopagebreak & & [3] & \\
+4(c)(i) & {\((x =)\ a\cos 4t + b\sin 4t\)} & B1 & \\
+& {\(-16a\cos 4t - 16b\sin 4t + 6(-4a\sin 4t + 4b\cos 4t)\)\\[4pt] \(\phantom{=} + 9(a\cos 4t + b\sin 4t) = 25\cos 4t\)} & M1 & {Differentiates their trial function twice, substitutes into the differential equation and equates coefficients of \(\cos 4t\) and \(\sin 4t\). Condone sign and coefficient slips.} \\
+& {\(-7a+24b=25,\quad -24a-7b=0\)} & A1 & {Both equations correct, oe.} \\
+& {\(\Rightarrow a = \ldots,\ b = \ldots\)} & dM1 & {Solves their pair of simultaneous equations for \(a\) and \(b\) by any means.} \\
+& {\(a = -\frac{7}{25},\ b = \frac{24}{25}\)} & A1 & \\
+& {\(x = (A+Bt)e^{-3t} \text{"}- \frac{7}{25}\cos 4t + \frac{24}{25}\sin 4t\text{"}\)\\[4pt] \(t=0,\ x=1 \Rightarrow A = \ldots\ [=\frac{32}{25}]\)} & M1 & {Substitutes \(t=0\), \(x=1\) into a general solution of the form \((A+Bt)e^{-3t} +\) their particular integral.} \\
+& {\(\frac{\mathrm{d}x}{\mathrm{d}t} = (B-3A-3Bt)e^{-3t}\)\\[4pt] \(\phantom{\frac{\mathrm{d}x}{\mathrm{d}t}} + \frac{28}{25}\sin 4t + \frac{96}{25}\cos 4t\)\\[4pt] \(t=0,\ \frac{\mathrm{d}x}{\mathrm{d}t}=-6 \Rightarrow B = \ldots\ [=-6]\)} & M1 & {Differentiates their general solution, using the product rule on \(Bte^{-3t}\), and substitutes \(t=0\) with \(\frac{\mathrm{d}x}{\mathrm{d}t} = \pm 6\).} \\
+& {\(x = \left(\frac{32}{25}-6t\right)e^{-3t}\)\\[4pt] \(\phantom{x =} - \frac{7}{25}\cos 4t + \frac{24}{25}\sin 4t\)} & A1 & {oe; needs \(x =\).} \\
+\nopagebreak & & [8] & \\
+4(c)(ii) & {\(\left(\frac{32}{25}-6t\right)e^{-3t} \to 0\), \(\omega = 4\)\\[4pt] \(T = \frac{2\pi}{4}\)} & M1 & {States the exponential terms tend to 0 and uses \(T = \frac{2\pi}{\omega}\) with \(\omega\) from their particular integral.} \\
+& {\(= \frac{\pi}{2} \approx 1.57\), consistent with 1.6} & A1 & {\(\frac{\pi}{2}\) or awrt 1.57, with a conclusion that this is consistent with 1.6.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 4 & & 25 & \\
+\end{msscheme}
+
+\msQuestion{5}
+\begin{msscheme}{
+  hline{3-12,14-17} = {2-Z}{0.4pt, msGrid},
+  hline{13,18} = {0.4pt, msGrid},
+  row{18} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+5(a) & {\(\lambda^2+2\lambda+10=0 \Rightarrow \lambda=\ldots\)} & M1 & {Forms the auxiliary equation and solves it by any method; calculator allowed.} \\
+& {\(\lambda=-1\pm 3i\)\\[4pt] \(q=e^{-t}(A\cos 3t+B\sin 3t)\)} & A1 & \\
+& {\(q=a\cos 3t+b\sin 3t\)} & B1 & \\
+& {\(-9a\cos 3t-9b\sin 3t+2(-3a\sin 3t+3b\cos 3t)\)\\[4pt] \(\phantom{-9a}+10(a\cos 3t+b\sin 3t)=37\cos 3t\)} & M1 & {Differentiates a trial function of the form \(a\cos 3t+b\sin 3t\) twice, substitutes and equates coefficients of \(\cos 3t\) and \(\sin 3t\). Condone sign and coefficient slips.} \\
+& {\(a+6b=37,\quad b-6a=0\)} & A1 & \\
+& {\(a=1,\quad b=6\)} & A1 & \\
+& {\(q=e^{-t}(A\cos 3t+B\sin 3t)+\cos 3t+6\sin 3t\)} & A1ft & {ft their complementary function, with two arbitrary constants, plus their particular integral with numerical coefficients.} \\
+& {\(1=A+1 \Rightarrow A=\ldots\)} & M1 & {Substitutes \(t=0\), \(q=1\) into their general solution with two arbitrary constants.} \\
+& {\(\frac{\mathrm{d}q}{\mathrm{d}t}=-e^{-t}(A\cos 3t+B\sin 3t)\)\\[4pt] \(\phantom{\frac{\mathrm{d}q}{\mathrm{d}t}=}+e^{-t}(-3A\sin 3t+3B\cos 3t)\)\\[4pt] \(\phantom{\frac{\mathrm{d}q}{\mathrm{d}t}=}-3\sin 3t+18\cos 3t\)\\[4pt] \(15=3B-A+18 \Rightarrow B=\ldots\)} & M1 & {Differentiates their general solution, using the product rule on the exponential term, and substitutes \(t=0\), \(\frac{\mathrm{d}q}{\mathrm{d}t}=15\). Condone sign slips.} \\
+& {\(q=\cos 3t+6\sin 3t-e^{-t}\sin 3t\)} & A1 & \\
+\nopagebreak & & [10] & \\
+5(b) & {\(q\approx\cos 3t+6\sin 3t\)} & B1 & {No justification for discarding \(e^{-t}\sin 3t\) is needed.} \\
+& {\(R\cos\alpha=1,\quad R\sin\alpha=6\)\\[4pt] \(\Rightarrow R=\ldots,\quad \tan\alpha=\ldots\)} & M1 & {Compares coefficients for their \(q\approx p\cos 3t+r\sin 3t\) and finds \(R\) or \(\alpha\). Condone sign slips or \(\tan\alpha=\frac{1}{6}\).} \\
+& {\(R=\sqrt{37}\)} & A1 & {Or awrt 6.08.} \\
+& {\(q\approx\sqrt{37}\cos(3t-\arctan 6)\)} & A1 & {\(\alpha=\arctan 6\) or awrt 1.41, in the stated form \(R\cos(3t-\alpha)\). Values of \(R\) and \(\alpha\) alone, or \(80.5^\circ\), do not score.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 5 & & 14 & \\
+\end{msscheme}
+
+\msQuestion{6}
+\begin{msscheme}{
+  hline{3-6,8-11,13-16,18-22} = {2-Z}{0.4pt, msGrid},
+  hline{7,12,17,23} = {0.4pt, msGrid},
+  row{23} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+6(a) & {\(m\frac{\mathrm{d}^2y}{\mathrm{d}t^2} = -c\frac{\mathrm{d}y}{\mathrm{d}t} - ky\)\\[4pt] \(\Rightarrow m\frac{\mathrm{d}^2y}{\mathrm{d}t^2} + c\frac{\mathrm{d}y}{\mathrm{d}t} + ky = 0\)} & M1 A1 & {\msNote{M1}{Applies Newton's second law with a spring force proportional to \(y\) and a resistance proportional to \(\frac{\mathrm{d}y}{\mathrm{d}t}\), weight absent or cancelled by the equilibrium tension. Condone sign slips.}\\ \msNote{A1}{Printed equation, with both forces correctly signed against displacement and motion.}} \\
+& {\(m\lambda^2 + c\lambda + k = 0\)\\[4pt] \(\Rightarrow \lambda = \frac{-c \pm \sqrt{c^2 - 4mk}}{2m}\)} & M1 & {Forms the auxiliary equation and solves it by the quadratic formula or completing the square. Condone sign slips.} \\
+& {\(\lambda = -\frac{c}{2m} \pm i\frac{\sqrt{4km - c^2}}{2m}\)} & A1 & {Needs \(\sqrt{c^2-4km}\) written as \(i\sqrt{4km-c^2}\), oe.} \\
+& {\(y = e^{-\frac{ct}{2m}}\Big(P\cos\left(\frac{\sqrt{4km-c^2}}{2m}t\right)\)\\[4pt] \(\phantom{y = e^{-\frac{ct}{2m}}\Big(} + Q\sin\left(\frac{\sqrt{4km-c^2}}{2m}t\right)\Big)\)} & A1~AG & {Printed solution from correct complex roots via \(e^{\alpha t}(P\cos\beta t + Q\sin\beta t)\), with no errors.} \\
+\nopagebreak & & [5] & \\
+6(b)(i) & {\(y = e^{-3t}(P\cos 4t + Q\sin 4t)\)} & B1 & \\
+& {\(t = 0,\ y = 0.12 \Rightarrow P = \ldots\)} & M1 & {Substitutes \(t = 0\), \(y = 0.12\) into their solution of the form \(e^{-at}(P\cos bt + Q\sin bt)\).} \\
+& {\(\frac{\mathrm{d}y}{\mathrm{d}t} = -3e^{-3t}(P\cos 4t + Q\sin 4t)\)\\[4pt] \(\phantom{\frac{\mathrm{d}y}{\mathrm{d}t} =} + e^{-3t}(-4P\sin 4t + 4Q\cos 4t)\)\\[4pt] \(t = 0: -3P + 4Q = -0.12 \Rightarrow Q = \ldots\)} & M1 & {Differentiates their solution by the product rule and substitutes \(t = 0\), \(\frac{\mathrm{d}y}{\mathrm{d}t} = -0.12\). Condone sign slips.} \\
+& {\(P = 0.12,\ Q = 0.06\)} & A1 & \\
+\nopagebreak & & [4] & \\
+6(b)(ii) & {\(e^{-3t}(0.12\cos 4t + 0.06\sin 4t) = 0\)\\[4pt] \(\Rightarrow 0.12\cos 4t + 0.06\sin 4t = 0\)} & M1 & {Sets their \(y = 0\) and removes the non-zero exponential factor.} \\
+& {\(\tan 4t = -2\)} & A1 & {oe, including a correct harmonic form equated to zero.} \\
+& {\(4t = \pi - \arctan 2\ [= 2.034\ldots]\)} & M1 A1 & {\msNote{M1}{Finds the smallest positive \(4t\) satisfying their equation, e.g. adds \(\pi\) to a negative principal value.}\\ \msNote{A1}{oe, or awrt 2.03.}} \\
+& {\(t = \frac{\pi - \arctan 2}{4} \approx 0.509\)} & A1 & {Exact form or awrt 0.509.} \\
+\nopagebreak & & [5] & \\
+6(c) & {\(5\frac{\mathrm{d}^2y}{\mathrm{d}t^2} + 125y = 0\)\\[4pt] \(\Rightarrow 5\lambda^2 + 125 = 0 \Rightarrow \lambda = \ldots\)} & M1 & {Sets \(c = 0\) and solves the auxiliary equation by any method.} \\
+& {\(\lambda = \pm 5i\)\\[4pt] \(y = A\cos 5t + B\sin 5t\)} & A1 & \\
+& {\(t = 0,\ y = 0.12 \Rightarrow A = \ldots\)} & M1 & {Substitutes \(t = 0\), \(y = 0.12\) into their solution of the form \(A\cos\omega t + B\sin\omega t\).} \\
+& {\(\frac{\mathrm{d}y}{\mathrm{d}t} = -5A\sin 5t + 5B\cos 5t\)\\[4pt] \(t = 0: 5B = -0.12 \Rightarrow B = \ldots\)} & M1 & {Differentiates their solution and substitutes \(t = 0\), \(\frac{\mathrm{d}y}{\mathrm{d}t} = -0.12\). Condone sign slips.} \\
+& {\(y = 0.12\cos 5t - 0.024\sin 5t\)} & A1 & {\(y\) in terms of \(t\), oe such as a correct harmonic form, constants to 2 s.f.; A0 for \(A\) and \(B\) stated alone.} \\
+\nopagebreak & & [5] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 6 & & 19 & \\
+\end{msscheme}
+
+\msQuestion{7}
+\begin{msscheme}{
+  hline{3-6,8-15,17-18} = {2-Z}{0.4pt, msGrid},
+  hline{7,16,19} = {0.4pt, msGrid},
+  row{19} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+7(a) & {\(4\lambda^2+4\lambda+5=0 \Rightarrow \lambda=\ldots\)} & M1 & {Forms the auxiliary equation and solves it: correct formula with their values, completing the square, or calculator.} \\
+& {\(\lambda=-\tfrac12\pm i\)\\[4pt] \((m=)\ e^{-t/2}(A\cos t+B\sin t)\)} & A1 & {oe, such as \(Re^{-t/2}\cos(t+\alpha)\).} \\
+& {\(5k=20 \Rightarrow k=4\)} & B1 & \\
+& {\(m=4+e^{-t/2}(A\cos t+B\sin t)\)} & A1ft & {ft their complementary function plus their constant particular integral; must be \(m=\ldots\) in terms of \(t\).} \\
+\nopagebreak & & [4] & \\
+7(b) & {\(t=0,\ m=0:\ 0=4+A \Rightarrow A=\ldots\ [=-4]\)} & M1 & {Substitutes \(t=0\), \(m=0\) into their general solution to find a constant.} \\
+& {\(\frac{\mathrm{d}m}{\mathrm{d}t}=-\tfrac12e^{-t/2}(A\cos t+B\sin t)\)\\[4pt] \(\phantom{\frac{\mathrm{d}m}{\mathrm{d}t}=}+e^{-t/2}(-A\sin t+B\cos t)\)\\[4pt] \(5=-\tfrac12A+B \Rightarrow B=\ldots\)} & M1 & {Differentiates their general solution by the product rule, both terms present, and substitutes \(t=0\), \(\frac{\mathrm{d}m}{\mathrm{d}t}=5\). Condone sign slips.} \\
+& {\(m=4+e^{-t/2}(-4\cos t+3\sin t)\)} & A1 & \\
+& {\(\frac{\mathrm{d}m}{\mathrm{d}t}=e^{-t/2}\left(\tfrac52\sin t+5\cos t\right)=0\)} & M1 & {Differentiates their particular solution by the product rule and sets the derivative to 0. Need not be simplified.} \\
+& {\(\tan t=-2\)} & A1 & {oe} \\
+& {\(t=\pi-\arctan 2\ [\approx 2.03]\)} & A1 & {oe, or awrt 2.03. No justification that this gives the greatest value is required.} \\
+& {\(m=4+e^{-\text{"}2.03\text{"}/2}\left(-4\cos\text{"}2.03\text{"}+3\sin\text{"}2.03\text{"}\right)\)\\[4pt] \(\phantom{m}=\ldots\)} & dM1 & {Substitutes their first positive root of \(\frac{\mathrm{d}m}{\mathrm{d}t}=0\) into their particular solution.} \\
+& {\(m_{\max}\approx 5.62\) (kg)} & A1 & {awrt 5.62, or exact \(4+2\sqrt5\,e^{-(\pi-\arctan 2)/2}\).} \\
+\nopagebreak & & [8] & \\
+7(c) & {\(m(8)=4+e^{-4}(-4\cos 8+3\sin 8)=\ldots\)} & M1 & {Substitutes \(t=8\) into their particular solution from (b), in radians, and evaluates.} \\
+& {\(m(8)\approx 4.065>4.05\), so no label is printed} & A1 & {awrt 4.07 (or 4.065), compared with 4.05, and concludes no label is printed.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 7 & & 14 & \\
+\end{msscheme}
+
+\msQuestion{8}
+\begin{msscheme}{
+  hline{3-11,13-16,18-19} = {2-Z}{0.4pt, msGrid},
+  hline{12,17,20} = {0.4pt, msGrid},
+  row{20} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+8(a) & {\(\lambda^2+5\lambda+6=0 \Rightarrow \lambda=\ldots\)} & M1 & {Forms the auxiliary equation and solves it by any method; calculator allowed.} \\
+& {\((\theta=)\,Ae^{-2t}+Be^{-3t}\)} & A1 & \\
+& {\(\theta=ae^{-4t}\)} & B1 & \\
+& {\(16ae^{-4t}-20ae^{-4t}+6ae^{-4t}=4e^{-4t}\)\\[4pt] \(\Rightarrow a=\ldots\)} & M1 & {Differentiates their particular integral of the form \(ae^{-4t}\) twice and substitutes into the equation. Condone coefficient slips.} \\
+& {\(a=2\)} & A1 & \\
+& {\(\theta=Ae^{-2t}+Be^{-3t}+2e^{-4t}\)} & A1ft & {ft their complementary function and their \(a\); needs \(\theta=\) and two arbitrary constants.} \\
+& {\(t=0,\ \theta=0 \Rightarrow A+B+2=0\)} & M1 & {Substitutes \(t=0\), \(\theta=0\) into their general solution with two arbitrary constants.} \\
+& {\(\frac{\mathrm{d}\theta}{\mathrm{d}t}=-2Ae^{-2t}-3Be^{-3t}-8e^{-4t}\)\\[4pt] \(-2A-3B-8=-1 \Rightarrow A=\ldots,\ B=\ldots\)} & M1 & {Differentiates their general solution, uses \(\frac{\mathrm{d}\theta}{\mathrm{d}t}=\pm1\) at \(t=0\) and solves both equations for \(A\) and \(B\).} \\
+& {\(\theta=e^{-2t}-3e^{-3t}+2e^{-4t}\)} & A1 & \\
+\nopagebreak & & [9] & \\
+8(b) & {\(\frac{\mathrm{d}\theta}{\mathrm{d}t}=-2e^{-2t}+9e^{-3t}-8e^{-4t}=0\)} & M1 & {Differentiates their \(\theta\), with at least one term \(ke^{pt}\to kpe^{pt}\), and sets the derivative equal to zero.} \\
+& {\(2e^{2t}-9e^{t}+8=0\)} & A1 & {Correct quadratic in \(e^t\), any multiple or equivalent.} \\
+& {\(e^t=\frac{9+\sqrt{17}}{4} \Rightarrow t=\ldots\ [=1.188]\)\\[4pt] \(\theta=e^{-2t}-3e^{-3t}+2e^{-4t}=\ldots\)} & dM1 & {Solves for \(e^t\), takes logarithms and substitutes the root giving positive \(\theta\) into their \(\theta\); trying both roots also scores. No justification of the choice needed.} \\
+& {\(0.025\) (rad)} & A1 & {awrt 0.025} \\
+\nopagebreak & & [4] & \\
+8(c) & {\(e^{-4t}(e^t-1)(e^t-2)=0 \Rightarrow t=\ldots\)} & M1 & {Sets their \(\theta=0\) and solves for a positive \(t\), e.g. as a quadratic in \(e^t\); calculator allowed.} \\
+& {\(t=\ln 2\approx 0.693\), close to \(0.69\), so supports the model} & A1 & {\(\ln 2\) or awrt 0.693, with a conclusion that the model is supported because it agrees with 0.69 to 2 d.p. oe.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 8 & & 15 & \\
+\end{msscheme}
+
+\msQuestion{9}
+\begin{msscheme}{
+  hline{3-9,11-13,15-18} = {2-Z}{0.4pt, msGrid},
+  hline{10,14,19} = {0.4pt, msGrid},
+  row{19} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+9(a) & {\(\lambda^2+2\lambda+10=0 \Rightarrow \lambda=\ldots\)} & M1 & {Forms the three-term auxiliary equation and solves it by formula, completing the square or calculator.} \\
+& {\(\lambda=-1\pm 3i\)\\[4pt] \((y=)\ e^{-t}(A\cos 3t+B\sin 3t)\)} & A1 & {oe, in \(t\).} \\
+& {\(y=C\cos t+D\sin t\)} & B1 & \\
+& {\((-C\cos t-D\sin t)+2(-C\sin t+D\cos t)\)\\[4pt] \(\phantom{(}+10(C\cos t+D\sin t)=20\cos t+5\sin t\)} & M1 & {Differentiates their \(C\cos t+D\sin t\) twice, substitutes into the equation and equates coefficients of \(\cos t\) and \(\sin t\). Condone sign slips.} \\
+& {\(9C+2D=20,\quad 9D-2C=5\)} & A1 & {Both equations, oe.} \\
+& {\(C=2,\quad D=1\)} & A1 & \\
+& {\(y=e^{-t}(A\cos 3t+B\sin 3t)+2\cos t+\sin t\)} & A1ft & {ft their complementary function of the form \(e^{pt}(A\cos qt+B\sin qt)\) plus their particular integral; needs \(y=\) and in \(t\).} \\
+\nopagebreak & & [7] & \\
+9(b) & {\(3=A+2 \Rightarrow A=\ldots\)} & M1 & {Substitutes \(t=0\), \(y=3\) into their general solution of the form complementary function plus particular integral to find \(A\).} \\
+& {\(\frac{\mathrm{d}y}{\mathrm{d}t}=-e^{-t}(A\cos 3t+B\sin 3t)\)\\[4pt] \(\phantom{\frac{\mathrm{d}y}{\mathrm{d}t}=}+e^{-t}(-3A\sin 3t+3B\cos 3t)-2\sin t+\cos t\)\\[4pt] \(3=-A+3B+1 \Rightarrow B=\ldots\)} & M1 & {Differentiates their general solution, using the product rule on the exponential term, and substitutes \(t=0\), \(\frac{\mathrm{d}y}{\mathrm{d}t}=3\). Condone sign slips.} \\
+& {\(y=e^{-t}(\cos 3t+\sin 3t)+2\cos t+\sin t\)} & A1 & \\
+\nopagebreak & & [3] & \\
+9(c) & {\(e^{-t}(2\cos 3t-4\sin 3t)+\cos t-2\sin t=0\)\\[4pt] \(\Rightarrow t=\ldots\)} & M1 & {Sets the derivative of their particular solution equal to 0 and finds its smallest positive root by calculator or iteration.} \\
+& {\(t=0.2068\)} & A1 & {awrt 0.207} \\
+& {\(a=e^{-0.2068}(\cos 0.6204+\sin 0.6204)\)\\[4pt] \(\phantom{a=}+2\cos 0.2068+\sin 0.2068\)} & dM1 & {Substitutes their \(t\) into their particular solution from (b).} \\
+& {\(a=3.30\)} & A1 & {awrt 3.30} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 9 & & 14 & \\
+\end{msscheme}
+
+\msQuestion{10}
+\begin{msscheme}{
+  hline{3-6,8-11,13-16,18,20} = {2-Z}{0.4pt, msGrid},
+  hline{7,12,17,19,21} = {0.4pt, msGrid},
+  row{21} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+10(a)(i) & {\(x = t(a\cos 4t + b\sin 4t)\)\\[4pt] \(\frac{\mathrm{d}x}{\mathrm{d}t} = a\cos 4t + b\sin 4t\)\\[4pt] \(\phantom{\frac{\mathrm{d}x}{\mathrm{d}t}} + t(-4a\sin 4t + 4b\cos 4t)\)\\[4pt] \(\frac{\mathrm{d}^2x}{\mathrm{d}t^2} = \ldots\)} & M1 & {Differentiates a trial of the form \(t(a\cos 4t + b\sin 4t)\), or the given \(x\), twice using the product rule. Condone sign and coefficient slips.} \\
+& {\(\frac{\mathrm{d}^2x}{\mathrm{d}t^2} = -8a\sin 4t + 8b\cos 4t\)\\[4pt] \(\phantom{\frac{\mathrm{d}^2x}{\mathrm{d}t^2}} - 16t(a\cos 4t + b\sin 4t)\)} & A1 & {Any form; or \(3\sin 4t + 6t\cos 4t\) from the given \(x\).} \\
+& {\(-8a\sin 4t + 8b\cos 4t = 3\sin 4t\)\\[4pt] \(\Rightarrow a = \ldots,\ b = \ldots\)} & M1 & {Substitutes into the equation and compares coefficients of \(\sin 4t\) and \(\cos 4t\); or, for the given \(x\), substitutes and simplifies the LHS.} \\
+& {\(a = -\frac38,\ b = 0 \Rightarrow x = -\frac38 t\cos 4t\)} & A1~AG & {From a correct substituted equation without error. Verification route: LHS shown to equal \(3\sin 4t\), with LHS = RHS stated.} \\
+\nopagebreak & & [4] & \\
+10(a)(ii) & {\(\lambda^2 + 16 = 0 \Rightarrow \lambda = \ldots\)} & M1 & {Forms the auxiliary equation and solves it by any method.} \\
+& {\(\lambda = \pm 4i\)} & A1 & \\
+& {\(x = A\cos 4t + B\sin 4t\)} & A1 & {oe, such as \(R\cos(4t + \alpha)\).} \\
+& {\(x = A\cos 4t + B\sin 4t - \frac38 t\cos 4t\)} & A1ft & {ft their complementary function with two arbitrary constants, plus \(-\frac38 t\cos 4t\); must be \(x =\) a function of \(t\).} \\
+\nopagebreak & & [4] & \\
+10(b) & {\(t = 0,\ x = 0.20 \Rightarrow A = 0.20\)} & M1 & {Substitutes \(t = 0\), \(x = 0.20\) into their general solution with two arbitrary constants.} \\
+& {\(\frac{\mathrm{d}x}{\mathrm{d}t} = -4A\sin 4t + 4B\cos 4t\)\\[4pt] \(\phantom{\frac{\mathrm{d}x}{\mathrm{d}t}} - \frac38\cos 4t + \frac32 t\sin 4t\)\\[4pt] \(-0.50 = 4B - \frac38 \Rightarrow B = \ldots\)} & M1 & {Differentiates their general solution, using the product rule on the \(t\cos 4t\) term, and substitutes \(t = 0\), \(\frac{\mathrm{d}x}{\mathrm{d}t} = \pm 0.5\).} \\
+& {\(x = 0.20\cos 4t - \frac1{32}\sin 4t - \frac38 t\cos 4t\)} & A1 & {Needs \(\frac{\mathrm{d}x}{\mathrm{d}t} = -0.5\) used; \(B = -0.03125\) accepted.} \\
+& {\(\beta = 0.20\cos 16 - \frac1{32}\sin 16 - \frac32\cos 16\)\\[4pt] \(\phantom{\beta} = 1.25\)} & A1 & {awrt 1.25} \\
+\nopagebreak & & [4] & \\
+10(c) & {Not suitable: model gives \(1.25\), far more than \(0.46\)} & E1 & {States the model is not suitable, comparing \(1.25\) with \(0.46\): e.g. overestimates by about 0.8 m, or by more than double. A0 for a conclusion without the comparison.} \\
+\nopagebreak & & [1] & \\
+10(d) & {\(\frac{\mathrm{d}^2x}{\mathrm{d}t^2} + 16x = 0\)} & B1 & {oe, such as \(\frac{\mathrm{d}^2x}{\mathrm{d}t^2} = -16x\).} \\
+\nopagebreak & & [1] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 10 & & 14 & \\
+\end{msscheme}
+
+\msQuestion{11}
+\begin{msscheme}{
+  hline{3,5-6,8,10,12-14,16-17,19} = {2-Z}{0.4pt, msGrid},
+  hline{4,7,9,11,15,18,20} = {0.4pt, msGrid},
+  row{20} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+11(a)(i) & {\(\frac{\mathrm{d}x}{\mathrm{d}t} > 0\), resistance opposes motion\\[4pt] \(\Rightarrow -2\left|\frac{\mathrm{d}x}{\mathrm{d}t}\right| = -2\frac{\mathrm{d}x}{\mathrm{d}t}\), so term negative} & E1 & {States that the velocity is positive (or the trolley moves away from \(A\)) and the resistance opposes motion, so the term is negative.} \\
+\nopagebreak & & [1] & \\
+11(a)(ii) & {\(4(0+1) - 1 - 2(1) = 2\frac{\mathrm{d}^2x}{\mathrm{d}t^2} \Rightarrow \frac{\mathrm{d}^2x}{\mathrm{d}t^2} = \ldots\)} & M1 & {Substitutes \(t = 0\), \(x = 1\) and \(\frac{\mathrm{d}x}{\mathrm{d}t} = 1\) into the equation and solves for the second derivative. Condone one arithmetic slip.} \\
+& {\(\frac{\mathrm{d}^2x}{\mathrm{d}t^2} = \frac12\ (\mathrm{m\,s^{-2}})\)} & A1 & \\
+\nopagebreak & & [2] & \\
+11(b)(i) & {\(g(0) = 1,\ g'(0) = 1 \Rightarrow g(t) = 1 + t\)} & B1 & {Needs \(g(0) = 1\) and \(g'(0) = 1\) used in the Maclaurin form.} \\
+\nopagebreak & & [1] & \\
+11(b)(ii) & {\(\frac{t^2}{2!}g''(0) = \frac{t^2}{2} \times \frac12 = \frac14 t^2\)} & B1 & {Needs \(\frac{g''(0)}{2!}t^2\) with \(g''(0) = \frac12\) shown.} \\
+\nopagebreak & & [1] & \\
+11(b)(iii) & {\(4 - \frac{\mathrm{d}x}{\mathrm{d}t} - 2\frac{\mathrm{d}^2x}{\mathrm{d}t^2} = 2\frac{\mathrm{d}^3x}{\mathrm{d}t^3}\)} & M1 A1 & {\msNote{M1}{Differentiates every term with respect to \(t\), raising each derivative's order by one. Condone sign or coefficient slips.}\\ \msNote{A1}{Correct equation, in \(x\) or \(g\).}} \\
+& {\(4 - 1 - 2\left(\tfrac12\right) = 2g'''(0) \Rightarrow g'''(0) = \ldots\)} & M1 & {Substitutes \(g'(0) = 1\) and their \(g''(0)\) into their differentiated equation, which contains a third derivative, and solves for \(g'''(0)\).} \\
+& {\(g'''(0) = 1 \Rightarrow \frac{t^3}{3!} \times 1 = \frac16 t^3\)} & A1~AG & {Correct substituted equation leading without error to \(g'''(0) = 1\), then \(\frac{g'''(0)}{3!}t^3\) used to reach the printed term.} \\
+\nopagebreak & & [4] & \\
+11(c)(i) & {\(1 + 0.4 + \frac14(0.4)^2 + \frac16(0.4)^3 = \ldots\)} & M1 & {Substitutes \(t = 0.4\) into \(1 + t + \frac14t^2 + \frac16t^3\).} \\
+& {\(\approx 1.451\), close to 1.45, so model suitable} & A1 & {awrt 1.451 (or 1.45), compared with 1.45, concludes the model is suitable.} \\
+\nopagebreak & & [2] & \\
+11(c)(ii) & {Omitted terms in \(t^4, t^5, \ldots\) large at \(t = 8\),\\[4pt] so cubic inaccurate} & E1 & {States that the omitted higher-power terms are large at \(t = 8\), or that \(t = 8\) is not small. Not for claiming the series is invalid there.} \\
+\nopagebreak & & [1] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 11 & & 12 & \\
+\end{msscheme}
+
+\msQuestion{12}
+\begin{msscheme}{
+  hline{3,5-7,9,11-14,16-17,19-20} = {2-Z}{0.4pt, msGrid},
+  hline{4,8,10,15,18,21} = {0.4pt, msGrid},
+  row{21} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+12(a) & {\((x =)\ C\cos\lambda t + D\sin\lambda t\)} & B1 & {oe, such as \(R\cos(\lambda t + \alpha)\), with two arbitrary constants.} \\
+\nopagebreak & & [1] & \\
+12(b) & {\(x(0) = C = -\tfrac{a}{2}\), \(C^2 + D^2 = a^2\)\\[4pt] \(v(0) = D\lambda > 0 \Rightarrow D = \ldots\)} & M1 & {Uses \(x = -\frac{a}{2}\) at \(t = 0\) and that the amplitude is \(a\) to find values for both constants. Condone the wrong sign of \(D\).} \\
+& {\(x = -\tfrac{a}{2}\cos\lambda t + \tfrac{\sqrt3}{2}a\sin\lambda t\)\\[4pt] \(\phantom{x} = a\cos\left(\lambda t - \tfrac{2\pi}{3}\right)\)} & A1 & {oe, such as \(a\sin\left(\lambda t - \frac{\pi}{6}\right)\).} \\
+& {\(v = \tfrac{a\lambda}{2}\sin\lambda t + \tfrac{\sqrt3}{2}a\lambda\cos\lambda t\)\\[4pt] \(\phantom{v} = -a\lambda\sin\left(\lambda t - \tfrac{2\pi}{3}\right)\)} & A1ft & {ft their \(x\) of the form \(C\cos\lambda t + D\sin\lambda t\) or \(R\cos(\lambda t + \alpha)\) with values found; correct derivative, oe.} \\
+\nopagebreak & & [3] & \\
+12(c) & {\(v^2 = a^2\lambda^2\sin^2\left(\lambda t - \tfrac{2\pi}{3}\right)\)\\[4pt] \(\phantom{v^2} = \lambda^2\left(a^2 - a^2\cos^2\left(\lambda t - \tfrac{2\pi}{3}\right)\right)\)\\[4pt] \(\phantom{v^2} = \lambda^2(a^2 - x^2)\)} & B1 & {Correct \(v^2\) from (b) and \(\sin^2 + \cos^2 = 1\) leading without error to the printed result; working in the expanded form accepted.} \\
+\nopagebreak & & [1] & \\
+12(d) & {\(r_m = \frac{2}{3a}\int_{-a/2}^{a}\frac{1}{\lambda\sqrt{a^2-x^2}}\,\mathrm{d}x\)} & B1 & {Divisor \(\frac{3a}{2}\), limits \(-\frac{a}{2}\) and \(a\), and \(r = \frac{1}{\lambda\sqrt{a^2-x^2}}\).} \\
+& {\(\phantom{r_m} = \frac{2}{3a\lambda}\left[\arcsin\frac{x}{a}\right]_{-a/2}^{a}\)} & M1 & {Integrates to the form \(k\arcsin\frac{x}{a}\), or substitutes \(x = a\sin u\) and integrates. Condone a wrong constant \(k\).} \\
+& {\(\phantom{r_m} = \frac{2}{3a\lambda}\left(\frac{\pi}{2} + \frac{\pi}{6}\right)\)} & dM1 & {Substitutes both limits, or the corresponding limits in \(u\), into their integral and subtracts.} \\
+& {\(r_m = \frac{4\pi}{9a\lambda}\)} & A1 & {oe} \\
+\nopagebreak & & [4] & \\
+12(e) & {\(0.2395 \le a < 0.2405\), \(0.78 \le \lambda \le 0.82\)\\[4pt] \(\frac{4\pi}{9(0.2405)(0.82)} \le r_m \le \frac{4\pi}{9(0.2395)(0.78)}\)} & M1 & {Substitutes the greatest values of both \(a\) and \(\lambda\), and the least of both, into their \(r_m\) of the form \(\frac{k}{a\lambda}\). Condone \(0.2404\) for the upper bound of \(a\).} \\
+& {\(7.08 \le r_m \le 7.47\)\\[4pt] 7.2 lies in this range, so validity cannot be determined} & A1 & {awrt 7.08 and 7.47, with a conclusion in words that the validity cannot be determined. A0 if the conclusion is missing.} \\
+\nopagebreak & & [2] & \\
+12(f) & {\(v(0) = \frac{\sqrt3}{2}a\lambda = \frac{\sqrt3}{2}(0.2395)(0.78)\)} & M1 & {Uses \(v\) at \(t = 0\) from their \(v\), or \(v^2 = \lambda^2\left(a^2 - \frac{a^2}{4}\right)\), with the lower bounds of both \(a\) and \(\lambda\).} \\
+& {\(\phantom{v(0)} = 0.16\ (\mathrm{m\,s^{-1}})\)} & A1 & \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 12 & & 13 & \\
+\end{msscheme}
+
+\end{document}

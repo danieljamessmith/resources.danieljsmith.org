@@ -880,6 +880,16 @@ const rawResources: Resource[] = [
     topic: 'Differential Equations',
   },
   {
+    id: 'fm-modelling-2nd-order-ms',
+    title: 'Modelling with 2nd Order Differential Equations',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/differential-equations/ms/_QBT___MS__Modelling_with_2nd_Order_Differential_Equations.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-modelling-2nd-order',
+    topic: 'Differential Equations',
+  },
+  {
     id: 'fm-systems-de',
     title: 'Systems of Differential Equations',
     description: '',

@@ -1,0 +1,982 @@
+format: 1
+pack: Modelling with 2nd Order Differential Equations
+last_updated: 25 October 2026
+questions:
+  - q: 1
+    stamp: 540ffcd7
+    parts:
+      - part: a.i
+        rows:
+          - scheme: |
+              \(p = 0\)
+            marks:
+              - code: B1
+      - part: a.ii
+        rows:
+          - scheme: |
+              Real suspension is damped, so the amplitude decreases;
+              simple harmonic motion keeps a constant amplitude
+            marks:
+              - code: E1
+                note: States that damping (shock absorbers, friction, energy loss) makes oscillations die away, unlike simple harmonic motion's constant amplitude. Either idea alone, clearly expressed, is enough.
+      - part: b
+        rows:
+          - scheme: |
+              \(4\lambda^2 + p\lambda + 9 = 0\)
+              \(p^2 - 4(4)(9) \geq 0 \Rightarrow p \ldots\)
+            marks:
+              - code: M1
+                note: Uses the discriminant of the auxiliary equation with the condition for real roots. Condone \(>\) for \(\geq\) and a numerical slip.
+          - scheme: |
+              \(p \geq 12\)
+            marks:
+              - code: A1
+                note: Must include \(p = 12\) and no negative values; condone \(p \leq -12\) also stated if \(p \geq 12\) is then given as the answer.
+      - part: c
+        rows:
+          - figure: 1
+            marks:
+              - code: B1
+                note: Oscillation about the \(t\)-axis with decreasing amplitude, starting at positive \(y\) with zero gradient and crossing the axis.
+                feature: shape
+  - q: 2
+    stamp: 18859d87
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\lambda^2+\lambda-6=0 \Rightarrow \lambda=\ldots\)
+            marks:
+              - code: M1
+                note: Forms the auxiliary equation and solves it by factorising with product of constants \(-6\), the formula or completing the square; calculator allowed.
+          - scheme: |
+              \(\lambda=-3,\ 2\)
+              \((E=)\ Ae^{-3t}+Be^{2t}\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(-6k=-12 \Rightarrow k=2\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(E\) tends to a finite limit \(\Rightarrow B=0\)
+            marks:
+              - code: B1
+                note: \(B=0\) stated or used, the coefficient of \(e^{2t}\) removed.
+          - scheme: |
+              \(\frac{\mathrm{d}E}{\mathrm{d}t}=-3Ae^{-3t} \Rightarrow -3A=-9 \Rightarrow A=\ldots\)
+              \(E=\text{"}3\text{"}e^{-3\ln 2}+\text{"}2\text{"}\)
+            marks:
+              - code: M1
+                note: Differentiates their solution of the form \(Ae^{-3t}+c\), uses \(\frac{\mathrm{d}E}{\mathrm{d}t}=-9\) at \(t=0\) to find \(A\), and substitutes \(t=\ln 2\). Condone sign slips.
+          - scheme: |
+              \(E=\frac{19}{8}\)
+            marks:
+              - code: A1
+                note: \(\frac{19}{8}\) oe, such as 2.375.
+      - part: b
+        rows:
+          - scheme: |
+              \(E\to 2\)
+            marks:
+              - code: B1ft
+                note: ft their constant particular integral, for a solution whose remaining exponential term decays.
+  - q: 3
+    stamp: 9fe5da11
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(3k(-0.10) + 2k(0) + 5(0.18) = 0 \Rightarrow k = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes all three initial values into the differential equation. Condone a sign slip.
+          - scheme: |
+              \(k = 3\)
+            marks:
+              - code: A1
+      - part: b
+        rows:
+          - scheme: |
+              \(9\lambda^2 + 6\lambda + 5 = 0 \Rightarrow \lambda = \ldots\)
+            marks:
+              - code: M1
+                note: Forms the auxiliary equation with their positive \(k\) and solves it by any means; calculator allowed.
+          - scheme: |
+              \(\lambda = -\frac13 \pm \frac23 i\)
+              \(x = e^{-t/3}\left(A\cos\frac{2t}{3} + B\sin\frac{2t}{3}\right)\)
+            marks:
+              - code: A1
+                note: oe, such as \(Re^{-t/3}\cos\left(\frac{2t}{3} - \alpha\right)\).
+          - scheme: |
+              \(t = 0,\ x = 0.18 \Rightarrow A = 0.18\)
+            marks:
+              - code: M1
+                note: Uses \(x = 0.18\) at \(t = 0\) in their general solution with two arbitrary constants to find one constant.
+          - scheme: |
+              \(\frac{\mathrm{d}x}{\mathrm{d}t} = -\frac13 e^{-t/3}\left(A\cos\frac{2t}{3} + B\sin\frac{2t}{3}\right)\)
+              \(\phantom{\frac{\mathrm{d}x}{\mathrm{d}t}} + e^{-t/3}\left(-\frac{2A}{3}\sin\frac{2t}{3} + \frac{2B}{3}\cos\frac{2t}{3}\right)\)
+              \(t = 0:\ 0 = -\frac13 A + \frac23 B \Rightarrow B = \ldots\)
+            marks:
+              - code: M1
+                note: Differentiates their solution of the form \(e^{pt}(A\cos qt + B\sin qt)\) by the product rule, sets \(\frac{\mathrm{d}x}{\mathrm{d}t} = 0\) at \(t = 0\) and solves. Condone coefficient slips.
+          - scheme: |
+              \(x = e^{-t/3}\left(0.18\cos\frac{2t}{3} + 0.09\sin\frac{2t}{3}\right)\)
+            marks:
+              - code: A1
+                note: oe, exact or decimal coefficients; needs \(x = \ldots\)
+      - part: c
+        rows:
+          - scheme: |
+              \(1.2 + e^{-1.5}\left(\text{"}0.18\text{"}\cos 3 + \text{"}0.09\text{"}\sin 3\right)\)
+            marks:
+              - code: M1
+                note: Substitutes \(t = 4.5\) into their particular solution and adds 1.2.
+          - scheme: |
+              \(= 1.16\) m
+            marks:
+              - code: A1
+                note: awrt 1.16
+      - part: d
+        rows:
+          - scheme: |
+              Spring and damping forces assumed proportional to displacement and velocity
+            marks:
+              - code: E1
+                note: States any valid limitation, such as forces not exactly linear, spring exceeding its elastic limit, or the track's length limiting the motion. Not for a bare "unrealistic".
+  - q: 4
+    stamp: f9efb300
+    parts:
+      - part: a.i
+        rows:
+          - scheme: |
+              \(m\frac{\mathrm{d}^2x}{\mathrm{d}t^2} = -9mx\)
+              \(\Rightarrow \frac{\mathrm{d}^2x}{\mathrm{d}t^2}+9x=0\)
+            marks:
+              - code: B1
+                note: Needs \(F=ma\) with the force as \(-9mx\), leading to the printed equation.
+      - part: a.ii
+        rows:
+          - scheme: |
+              Simple harmonic motion
+            marks:
+              - code: B1
+                note: Accept SHM.
+      - part: a.iii
+        rows:
+          - scheme: |
+              \(T = \frac{2\pi}{3}\) (s)
+            marks:
+              - code: B1
+                note: Or awrt 2.09.
+      - part: a.iv
+        rows:
+          - scheme: |
+              \(\lambda^2+9=0 \Rightarrow \lambda = \ldots\)
+            marks:
+              - code: M1
+                note: Forms the auxiliary equation and solves it, or quotes the solution form for \(\ddot{x} = -\omega^2 x\) with \(\omega = 3\). Implied by a correct general solution.
+          - scheme: |
+              \(\lambda = \pm 3i\)
+              \(x = A\cos 3t + B\sin 3t\)
+            marks:
+              - code: A1
+                note: Needs \(x =\); any letters for the constants.
+          - scheme: |
+              \(t=0,\ x=1 \Rightarrow A = \ldots\ [=1]\)
+            marks:
+              - code: M1
+                note: Substitutes \(t=0\), \(x=1\) into their general solution with two arbitrary constants.
+          - scheme: |
+              \(\frac{\mathrm{d}x}{\mathrm{d}t} = -3A\sin 3t + 3B\cos 3t\)
+              \(t=0,\ \frac{\mathrm{d}x}{\mathrm{d}t} = -6 \Rightarrow B = \ldots\ [=-2]\)
+            marks:
+              - code: M1
+                note: Differentiates their general solution and substitutes \(t=0\) with \(\frac{\mathrm{d}x}{\mathrm{d}t} = \pm 6\).
+          - scheme: |
+              \(x = \cos 3t - 2\sin 3t\)
+            marks:
+              - code: A1
+      - part: a.v
+        rows:
+          - scheme: |
+              Amplitude \(= \sqrt{\text{"}1\text{"}^2 + \text{"}(-2)\text{"}^2}\)
+            marks:
+              - code: M1
+                note: Uses \(\sqrt{A^2+B^2}\) with their \(A\) and \(B\), or finds \(R\) in \(R\cos(3t+\alpha)\) oe.
+          - scheme: |
+              \(= \sqrt{5}\) (m)
+            marks:
+              - code: A1
+                note: Or awrt 2.24.
+      - part: b.i
+        rows:
+          - scheme: |
+              \(m\frac{\mathrm{d}^2x}{\mathrm{d}t^2} = -6m\frac{\mathrm{d}x}{\mathrm{d}t} - 9mx\)
+              \(\Rightarrow \frac{\mathrm{d}^2x}{\mathrm{d}t^2}+6\frac{\mathrm{d}x}{\mathrm{d}t}+9x=0\)
+            marks:
+              - code: B1
+                note: Needs \(F=ma\) with both forces signed correctly, \(-6m\frac{\mathrm{d}x}{\mathrm{d}t}\) and \(-9mx\), leading to the printed equation.
+      - part: b.ii
+        rows:
+          - scheme: |
+              \(\lambda^2+6\lambda+9=0\): \(6^2-4\times 9 = 0\)
+              Repeated root, so critically damped
+            marks:
+              - code: B1
+                note: 'Critically damped, with a reason: a repeated root, or discriminant shown to be zero.'
+      - part: b.iii
+        rows:
+          - scheme: |
+              \(\lambda^2+6\lambda+9=0 \Rightarrow \lambda = \ldots\)
+            marks:
+              - code: M1
+                note: Forms the auxiliary equation and solves it by any means; may be seen in (b)(ii).
+          - scheme: |
+              \(\lambda = -3\) (repeated)
+            marks:
+              - code: A1
+          - scheme: |
+              \(x = (A+Bt)e^{-3t}\)
+            marks:
+              - code: A1
+                note: Needs \(x =\); any letters for the constants.
+      - part: c.i
+        rows:
+          - scheme: |
+              \((x =)\ a\cos 4t + b\sin 4t\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(-16a\cos 4t - 16b\sin 4t + 6(-4a\sin 4t + 4b\cos 4t)\)
+              \(\phantom{=} + 9(a\cos 4t + b\sin 4t) = 25\cos 4t\)
+            marks:
+              - code: M1
+                note: Differentiates their trial function twice, substitutes into the differential equation and equates coefficients of \(\cos 4t\) and \(\sin 4t\). Condone sign and coefficient slips.
+          - scheme: |
+              \(-7a+24b=25,\quad -24a-7b=0\)
+            marks:
+              - code: A1
+                note: Both equations correct, oe.
+          - scheme: |
+              \(\Rightarrow a = \ldots,\ b = \ldots\)
+            marks:
+              - code: dM1
+                note: Solves their pair of simultaneous equations for \(a\) and \(b\) by any means.
+          - scheme: |
+              \(a = -\frac{7}{25},\ b = \frac{24}{25}\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(x = (A+Bt)e^{-3t} \text{"}- \frac{7}{25}\cos 4t + \frac{24}{25}\sin 4t\text{"}\)
+              \(t=0,\ x=1 \Rightarrow A = \ldots\ [=\frac{32}{25}]\)
+            marks:
+              - code: M1
+                note: Substitutes \(t=0\), \(x=1\) into a general solution of the form \((A+Bt)e^{-3t} +\) their particular integral.
+          - scheme: |
+              \(\frac{\mathrm{d}x}{\mathrm{d}t} = (B-3A-3Bt)e^{-3t}\)
+              \(\phantom{\frac{\mathrm{d}x}{\mathrm{d}t}} + \frac{28}{25}\sin 4t + \frac{96}{25}\cos 4t\)
+              \(t=0,\ \frac{\mathrm{d}x}{\mathrm{d}t}=-6 \Rightarrow B = \ldots\ [=-6]\)
+            marks:
+              - code: M1
+                note: Differentiates their general solution, using the product rule on \(Bte^{-3t}\), and substitutes \(t=0\) with \(\frac{\mathrm{d}x}{\mathrm{d}t} = \pm 6\).
+          - scheme: |
+              \(x = \left(\frac{32}{25}-6t\right)e^{-3t}\)
+              \(\phantom{x =} - \frac{7}{25}\cos 4t + \frac{24}{25}\sin 4t\)
+            marks:
+              - code: A1
+                note: oe; needs \(x =\).
+      - part: c.ii
+        rows:
+          - scheme: |
+              \(\left(\frac{32}{25}-6t\right)e^{-3t} \to 0\), \(\omega = 4\)
+              \(T = \frac{2\pi}{4}\)
+            marks:
+              - code: M1
+                note: States the exponential terms tend to 0 and uses \(T = \frac{2\pi}{\omega}\) with \(\omega\) from their particular integral.
+          - scheme: |
+              \(= \frac{\pi}{2} \approx 1.57\), consistent with 1.6
+            marks:
+              - code: A1
+                note: \(\frac{\pi}{2}\) or awrt 1.57, with a conclusion that this is consistent with 1.6.
+  - q: 5
+    stamp: 6c457f24
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\lambda^2+2\lambda+10=0 \Rightarrow \lambda=\ldots\)
+            marks:
+              - code: M1
+                note: Forms the auxiliary equation and solves it by any method; calculator allowed.
+          - scheme: |
+              \(\lambda=-1\pm 3i\)
+              \(q=e^{-t}(A\cos 3t+B\sin 3t)\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(q=a\cos 3t+b\sin 3t\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(-9a\cos 3t-9b\sin 3t+2(-3a\sin 3t+3b\cos 3t)\)
+              \(\phantom{-9a}+10(a\cos 3t+b\sin 3t)=37\cos 3t\)
+            marks:
+              - code: M1
+                note: Differentiates a trial function of the form \(a\cos 3t+b\sin 3t\) twice, substitutes and equates coefficients of \(\cos 3t\) and \(\sin 3t\). Condone sign and coefficient slips.
+          - scheme: |
+              \(a+6b=37,\quad b-6a=0\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(a=1,\quad b=6\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(q=e^{-t}(A\cos 3t+B\sin 3t)+\cos 3t+6\sin 3t\)
+            marks:
+              - code: A1ft
+                note: ft their complementary function, with two arbitrary constants, plus their particular integral with numerical coefficients.
+          - scheme: |
+              \(1=A+1 \Rightarrow A=\ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t=0\), \(q=1\) into their general solution with two arbitrary constants.
+          - scheme: |
+              \(\frac{\mathrm{d}q}{\mathrm{d}t}=-e^{-t}(A\cos 3t+B\sin 3t)\)
+              \(\phantom{\frac{\mathrm{d}q}{\mathrm{d}t}=}+e^{-t}(-3A\sin 3t+3B\cos 3t)\)
+              \(\phantom{\frac{\mathrm{d}q}{\mathrm{d}t}=}-3\sin 3t+18\cos 3t\)
+              \(15=3B-A+18 \Rightarrow B=\ldots\)
+            marks:
+              - code: M1
+                note: Differentiates their general solution, using the product rule on the exponential term, and substitutes \(t=0\), \(\frac{\mathrm{d}q}{\mathrm{d}t}=15\). Condone sign slips.
+          - scheme: |
+              \(q=\cos 3t+6\sin 3t-e^{-t}\sin 3t\)
+            marks:
+              - code: A1
+      - part: b
+        rows:
+          - scheme: |
+              \(q\approx\cos 3t+6\sin 3t\)
+            marks:
+              - code: B1
+                note: No justification for discarding \(e^{-t}\sin 3t\) is needed.
+          - scheme: |
+              \(R\cos\alpha=1,\quad R\sin\alpha=6\)
+              \(\Rightarrow R=\ldots,\quad \tan\alpha=\ldots\)
+            marks:
+              - code: M1
+                note: Compares coefficients for their \(q\approx p\cos 3t+r\sin 3t\) and finds \(R\) or \(\alpha\). Condone sign slips or \(\tan\alpha=\frac{1}{6}\).
+          - scheme: |
+              \(R=\sqrt{37}\)
+            marks:
+              - code: A1
+                note: Or awrt 6.08.
+          - scheme: |
+              \(q\approx\sqrt{37}\cos(3t-\arctan 6)\)
+            marks:
+              - code: A1
+                note: \(\alpha=\arctan 6\) or awrt 1.41, in the stated form \(R\cos(3t-\alpha)\). Values of \(R\) and \(\alpha\) alone, or \(80.5^\circ\), do not score.
+  - q: 6
+    stamp: 70c56ecf
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(m\frac{\mathrm{d}^2y}{\mathrm{d}t^2} = -c\frac{\mathrm{d}y}{\mathrm{d}t} - ky\)
+              \(\Rightarrow m\frac{\mathrm{d}^2y}{\mathrm{d}t^2} + c\frac{\mathrm{d}y}{\mathrm{d}t} + ky = 0\)
+            marks:
+              - code: M1
+                note: Applies Newton's second law with a spring force proportional to \(y\) and a resistance proportional to \(\frac{\mathrm{d}y}{\mathrm{d}t}\), weight absent or cancelled by the equilibrium tension. Condone sign slips.
+              - code: A1
+                note: Printed equation, with both forces correctly signed against displacement and motion.
+          - scheme: |
+              \(m\lambda^2 + c\lambda + k = 0\)
+              \(\Rightarrow \lambda = \frac{-c \pm \sqrt{c^2 - 4mk}}{2m}\)
+            marks:
+              - code: M1
+                note: Forms the auxiliary equation and solves it by the quadratic formula or completing the square. Condone sign slips.
+          - scheme: |
+              \(\lambda = -\frac{c}{2m} \pm i\frac{\sqrt{4km - c^2}}{2m}\)
+            marks:
+              - code: A1
+                note: Needs \(\sqrt{c^2-4km}\) written as \(i\sqrt{4km-c^2}\), oe.
+          - scheme: |
+              \(y = e^{-\frac{ct}{2m}}\Big(P\cos\left(\frac{\sqrt{4km-c^2}}{2m}t\right)\)
+              \(\phantom{y = e^{-\frac{ct}{2m}}\Big(} + Q\sin\left(\frac{\sqrt{4km-c^2}}{2m}t\right)\Big)\)
+            marks:
+              - code: A1 AG
+                note: Printed solution from correct complex roots via \(e^{\alpha t}(P\cos\beta t + Q\sin\beta t)\), with no errors.
+      - part: b.i
+        rows:
+          - scheme: |
+              \(y = e^{-3t}(P\cos 4t + Q\sin 4t)\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(t = 0,\ y = 0.12 \Rightarrow P = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t = 0\), \(y = 0.12\) into their solution of the form \(e^{-at}(P\cos bt + Q\sin bt)\).
+          - scheme: |
+              \(\frac{\mathrm{d}y}{\mathrm{d}t} = -3e^{-3t}(P\cos 4t + Q\sin 4t)\)
+              \(\phantom{\frac{\mathrm{d}y}{\mathrm{d}t} =} + e^{-3t}(-4P\sin 4t + 4Q\cos 4t)\)
+              \(t = 0: -3P + 4Q = -0.12 \Rightarrow Q = \ldots\)
+            marks:
+              - code: M1
+                note: Differentiates their solution by the product rule and substitutes \(t = 0\), \(\frac{\mathrm{d}y}{\mathrm{d}t} = -0.12\). Condone sign slips.
+          - scheme: |
+              \(P = 0.12,\ Q = 0.06\)
+            marks:
+              - code: A1
+      - part: b.ii
+        rows:
+          - scheme: |
+              \(e^{-3t}(0.12\cos 4t + 0.06\sin 4t) = 0\)
+              \(\Rightarrow 0.12\cos 4t + 0.06\sin 4t = 0\)
+            marks:
+              - code: M1
+                note: Sets their \(y = 0\) and removes the non-zero exponential factor.
+          - scheme: |
+              \(\tan 4t = -2\)
+            marks:
+              - code: A1
+                note: oe, including a correct harmonic form equated to zero.
+          - scheme: |
+              \(4t = \pi - \arctan 2\ [= 2.034\ldots]\)
+            marks:
+              - code: M1
+                note: Finds the smallest positive \(4t\) satisfying their equation, e.g. adds \(\pi\) to a negative principal value.
+              - code: A1
+                note: oe, or awrt 2.03.
+          - scheme: |
+              \(t = \frac{\pi - \arctan 2}{4} \approx 0.509\)
+            marks:
+              - code: A1
+                note: Exact form or awrt 0.509.
+      - part: c
+        rows:
+          - scheme: |
+              \(5\frac{\mathrm{d}^2y}{\mathrm{d}t^2} + 125y = 0\)
+              \(\Rightarrow 5\lambda^2 + 125 = 0 \Rightarrow \lambda = \ldots\)
+            marks:
+              - code: M1
+                note: Sets \(c = 0\) and solves the auxiliary equation by any method.
+          - scheme: |
+              \(\lambda = \pm 5i\)
+              \(y = A\cos 5t + B\sin 5t\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(t = 0,\ y = 0.12 \Rightarrow A = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t = 0\), \(y = 0.12\) into their solution of the form \(A\cos\omega t + B\sin\omega t\).
+          - scheme: |
+              \(\frac{\mathrm{d}y}{\mathrm{d}t} = -5A\sin 5t + 5B\cos 5t\)
+              \(t = 0: 5B = -0.12 \Rightarrow B = \ldots\)
+            marks:
+              - code: M1
+                note: Differentiates their solution and substitutes \(t = 0\), \(\frac{\mathrm{d}y}{\mathrm{d}t} = -0.12\). Condone sign slips.
+          - scheme: |
+              \(y = 0.12\cos 5t - 0.024\sin 5t\)
+            marks:
+              - code: A1
+                note: \(y\) in terms of \(t\), oe such as a correct harmonic form, constants to 2 s.f.; A0 for \(A\) and \(B\) stated alone.
+  - q: 7
+    stamp: d94f0d8e
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(4\lambda^2+4\lambda+5=0 \Rightarrow \lambda=\ldots\)
+            marks:
+              - code: M1
+                note: 'Forms the auxiliary equation and solves it: correct formula with their values, completing the square, or calculator.'
+          - scheme: |
+              \(\lambda=-\tfrac12\pm i\)
+              \((m=)\ e^{-t/2}(A\cos t+B\sin t)\)
+            marks:
+              - code: A1
+                note: oe, such as \(Re^{-t/2}\cos(t+\alpha)\).
+          - scheme: |
+              \(5k=20 \Rightarrow k=4\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(m=4+e^{-t/2}(A\cos t+B\sin t)\)
+            marks:
+              - code: A1ft
+                note: ft their complementary function plus their constant particular integral; must be \(m=\ldots\) in terms of \(t\).
+      - part: b
+        rows:
+          - scheme: |
+              \(t=0,\ m=0:\ 0=4+A \Rightarrow A=\ldots\ [=-4]\)
+            marks:
+              - code: M1
+                note: Substitutes \(t=0\), \(m=0\) into their general solution to find a constant.
+          - scheme: |
+              \(\frac{\mathrm{d}m}{\mathrm{d}t}=-\tfrac12e^{-t/2}(A\cos t+B\sin t)\)
+              \(\phantom{\frac{\mathrm{d}m}{\mathrm{d}t}=}+e^{-t/2}(-A\sin t+B\cos t)\)
+              \(5=-\tfrac12A+B \Rightarrow B=\ldots\)
+            marks:
+              - code: M1
+                note: Differentiates their general solution by the product rule, both terms present, and substitutes \(t=0\), \(\frac{\mathrm{d}m}{\mathrm{d}t}=5\). Condone sign slips.
+          - scheme: |
+              \(m=4+e^{-t/2}(-4\cos t+3\sin t)\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\frac{\mathrm{d}m}{\mathrm{d}t}=e^{-t/2}\left(\tfrac52\sin t+5\cos t\right)=0\)
+            marks:
+              - code: M1
+                note: Differentiates their particular solution by the product rule and sets the derivative to 0. Need not be simplified.
+          - scheme: |
+              \(\tan t=-2\)
+            marks:
+              - code: A1
+                note: oe
+          - scheme: |
+              \(t=\pi-\arctan 2\ [\approx 2.03]\)
+            marks:
+              - code: A1
+                note: oe, or awrt 2.03. No justification that this gives the greatest value is required.
+          - scheme: |
+              \(m=4+e^{-\text{"}2.03\text{"}/2}\left(-4\cos\text{"}2.03\text{"}+3\sin\text{"}2.03\text{"}\right)\)
+              \(\phantom{m}=\ldots\)
+            marks:
+              - code: dM1
+                note: Substitutes their first positive root of \(\frac{\mathrm{d}m}{\mathrm{d}t}=0\) into their particular solution.
+          - scheme: |
+              \(m_{\max}\approx 5.62\) (kg)
+            marks:
+              - code: A1
+                note: awrt 5.62, or exact \(4+2\sqrt5\,e^{-(\pi-\arctan 2)/2}\).
+      - part: c
+        rows:
+          - scheme: |
+              \(m(8)=4+e^{-4}(-4\cos 8+3\sin 8)=\ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t=8\) into their particular solution from (b), in radians, and evaluates.
+          - scheme: |
+              \(m(8)\approx 4.065>4.05\), so no label is printed
+            marks:
+              - code: A1
+                note: awrt 4.07 (or 4.065), compared with 4.05, and concludes no label is printed.
+  - q: 8
+    stamp: 3a0dbdc6
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\lambda^2+5\lambda+6=0 \Rightarrow \lambda=\ldots\)
+            marks:
+              - code: M1
+                note: Forms the auxiliary equation and solves it by any method; calculator allowed.
+          - scheme: |
+              \((\theta=)\,Ae^{-2t}+Be^{-3t}\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\theta=ae^{-4t}\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(16ae^{-4t}-20ae^{-4t}+6ae^{-4t}=4e^{-4t}\)
+              \(\Rightarrow a=\ldots\)
+            marks:
+              - code: M1
+                note: Differentiates their particular integral of the form \(ae^{-4t}\) twice and substitutes into the equation. Condone coefficient slips.
+          - scheme: |
+              \(a=2\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\theta=Ae^{-2t}+Be^{-3t}+2e^{-4t}\)
+            marks:
+              - code: A1ft
+                note: ft their complementary function and their \(a\); needs \(\theta=\) and two arbitrary constants.
+          - scheme: |
+              \(t=0,\ \theta=0 \Rightarrow A+B+2=0\)
+            marks:
+              - code: M1
+                note: Substitutes \(t=0\), \(\theta=0\) into their general solution with two arbitrary constants.
+          - scheme: |
+              \(\frac{\mathrm{d}\theta}{\mathrm{d}t}=-2Ae^{-2t}-3Be^{-3t}-8e^{-4t}\)
+              \(-2A-3B-8=-1 \Rightarrow A=\ldots,\ B=\ldots\)
+            marks:
+              - code: M1
+                note: Differentiates their general solution, uses \(\frac{\mathrm{d}\theta}{\mathrm{d}t}=\pm1\) at \(t=0\) and solves both equations for \(A\) and \(B\).
+          - scheme: |
+              \(\theta=e^{-2t}-3e^{-3t}+2e^{-4t}\)
+            marks:
+              - code: A1
+      - part: b
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}\theta}{\mathrm{d}t}=-2e^{-2t}+9e^{-3t}-8e^{-4t}=0\)
+            marks:
+              - code: M1
+                note: Differentiates their \(\theta\), with at least one term \(ke^{pt}\to kpe^{pt}\), and sets the derivative equal to zero.
+          - scheme: |
+              \(2e^{2t}-9e^{t}+8=0\)
+            marks:
+              - code: A1
+                note: Correct quadratic in \(e^t\), any multiple or equivalent.
+          - scheme: |
+              \(e^t=\frac{9+\sqrt{17}}{4} \Rightarrow t=\ldots\ [=1.188]\)
+              \(\theta=e^{-2t}-3e^{-3t}+2e^{-4t}=\ldots\)
+            marks:
+              - code: dM1
+                note: Solves for \(e^t\), takes logarithms and substitutes the root giving positive \(\theta\) into their \(\theta\); trying both roots also scores. No justification of the choice needed.
+          - scheme: |
+              \(0.025\) (rad)
+            marks:
+              - code: A1
+                note: awrt 0.025
+      - part: c
+        rows:
+          - scheme: |
+              \(e^{-4t}(e^t-1)(e^t-2)=0 \Rightarrow t=\ldots\)
+            marks:
+              - code: M1
+                note: Sets their \(\theta=0\) and solves for a positive \(t\), e.g. as a quadratic in \(e^t\); calculator allowed.
+          - scheme: |
+              \(t=\ln 2\approx 0.693\), close to \(0.69\), so supports the model
+            marks:
+              - code: A1
+                note: \(\ln 2\) or awrt 0.693, with a conclusion that the model is supported because it agrees with 0.69 to 2 d.p. oe.
+  - q: 9
+    stamp: f73a1918
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\lambda^2+2\lambda+10=0 \Rightarrow \lambda=\ldots\)
+            marks:
+              - code: M1
+                note: Forms the three-term auxiliary equation and solves it by formula, completing the square or calculator.
+          - scheme: |
+              \(\lambda=-1\pm 3i\)
+              \((y=)\ e^{-t}(A\cos 3t+B\sin 3t)\)
+            marks:
+              - code: A1
+                note: oe, in \(t\).
+          - scheme: |
+              \(y=C\cos t+D\sin t\)
+            marks:
+              - code: B1
+          - scheme: |
+              \((-C\cos t-D\sin t)+2(-C\sin t+D\cos t)\)
+              \(\phantom{(}+10(C\cos t+D\sin t)=20\cos t+5\sin t\)
+            marks:
+              - code: M1
+                note: Differentiates their \(C\cos t+D\sin t\) twice, substitutes into the equation and equates coefficients of \(\cos t\) and \(\sin t\). Condone sign slips.
+          - scheme: |
+              \(9C+2D=20,\quad 9D-2C=5\)
+            marks:
+              - code: A1
+                note: Both equations, oe.
+          - scheme: |
+              \(C=2,\quad D=1\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(y=e^{-t}(A\cos 3t+B\sin 3t)+2\cos t+\sin t\)
+            marks:
+              - code: A1ft
+                note: ft their complementary function of the form \(e^{pt}(A\cos qt+B\sin qt)\) plus their particular integral; needs \(y=\) and in \(t\).
+      - part: b
+        rows:
+          - scheme: |
+              \(3=A+2 \Rightarrow A=\ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t=0\), \(y=3\) into their general solution of the form complementary function plus particular integral to find \(A\).
+          - scheme: |
+              \(\frac{\mathrm{d}y}{\mathrm{d}t}=-e^{-t}(A\cos 3t+B\sin 3t)\)
+              \(\phantom{\frac{\mathrm{d}y}{\mathrm{d}t}=}+e^{-t}(-3A\sin 3t+3B\cos 3t)-2\sin t+\cos t\)
+              \(3=-A+3B+1 \Rightarrow B=\ldots\)
+            marks:
+              - code: M1
+                note: Differentiates their general solution, using the product rule on the exponential term, and substitutes \(t=0\), \(\frac{\mathrm{d}y}{\mathrm{d}t}=3\). Condone sign slips.
+          - scheme: |
+              \(y=e^{-t}(\cos 3t+\sin 3t)+2\cos t+\sin t\)
+            marks:
+              - code: A1
+      - part: c
+        rows:
+          - scheme: |
+              \(e^{-t}(2\cos 3t-4\sin 3t)+\cos t-2\sin t=0\)
+              \(\Rightarrow t=\ldots\)
+            marks:
+              - code: M1
+                note: Sets the derivative of their particular solution equal to 0 and finds its smallest positive root by calculator or iteration.
+          - scheme: |
+              \(t=0.2068\)
+            marks:
+              - code: A1
+                note: awrt 0.207
+          - scheme: |
+              \(a=e^{-0.2068}(\cos 0.6204+\sin 0.6204)\)
+              \(\phantom{a=}+2\cos 0.2068+\sin 0.2068\)
+            marks:
+              - code: dM1
+                note: Substitutes their \(t\) into their particular solution from (b).
+          - scheme: |
+              \(a=3.30\)
+            marks:
+              - code: A1
+                note: awrt 3.30
+  - q: 10
+    stamp: 4ba348b5
+    parts:
+      - part: a.i
+        rows:
+          - scheme: |
+              \(x = t(a\cos 4t + b\sin 4t)\)
+              \(\frac{\mathrm{d}x}{\mathrm{d}t} = a\cos 4t + b\sin 4t\)
+              \(\phantom{\frac{\mathrm{d}x}{\mathrm{d}t}} + t(-4a\sin 4t + 4b\cos 4t)\)
+              \(\frac{\mathrm{d}^2x}{\mathrm{d}t^2} = \ldots\)
+            marks:
+              - code: M1
+                note: Differentiates a trial of the form \(t(a\cos 4t + b\sin 4t)\), or the given \(x\), twice using the product rule. Condone sign and coefficient slips.
+          - scheme: |
+              \(\frac{\mathrm{d}^2x}{\mathrm{d}t^2} = -8a\sin 4t + 8b\cos 4t\)
+              \(\phantom{\frac{\mathrm{d}^2x}{\mathrm{d}t^2}} - 16t(a\cos 4t + b\sin 4t)\)
+            marks:
+              - code: A1
+                note: Any form; or \(3\sin 4t + 6t\cos 4t\) from the given \(x\).
+          - scheme: |
+              \(-8a\sin 4t + 8b\cos 4t = 3\sin 4t\)
+              \(\Rightarrow a = \ldots,\ b = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes into the equation and compares coefficients of \(\sin 4t\) and \(\cos 4t\); or, for the given \(x\), substitutes and simplifies the LHS.
+          - scheme: |
+              \(a = -\frac38,\ b = 0 \Rightarrow x = -\frac38 t\cos 4t\)
+            marks:
+              - code: A1 AG
+                note: 'From a correct substituted equation without error. Verification route: LHS shown to equal \(3\sin 4t\), with LHS = RHS stated.'
+      - part: a.ii
+        rows:
+          - scheme: |
+              \(\lambda^2 + 16 = 0 \Rightarrow \lambda = \ldots\)
+            marks:
+              - code: M1
+                note: Forms the auxiliary equation and solves it by any method.
+          - scheme: |
+              \(\lambda = \pm 4i\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(x = A\cos 4t + B\sin 4t\)
+            marks:
+              - code: A1
+                note: oe, such as \(R\cos(4t + \alpha)\).
+          - scheme: |
+              \(x = A\cos 4t + B\sin 4t - \frac38 t\cos 4t\)
+            marks:
+              - code: A1ft
+                note: ft their complementary function with two arbitrary constants, plus \(-\frac38 t\cos 4t\); must be \(x =\) a function of \(t\).
+      - part: b
+        rows:
+          - scheme: |
+              \(t = 0,\ x = 0.20 \Rightarrow A = 0.20\)
+            marks:
+              - code: M1
+                note: Substitutes \(t = 0\), \(x = 0.20\) into their general solution with two arbitrary constants.
+          - scheme: |
+              \(\frac{\mathrm{d}x}{\mathrm{d}t} = -4A\sin 4t + 4B\cos 4t\)
+              \(\phantom{\frac{\mathrm{d}x}{\mathrm{d}t}} - \frac38\cos 4t + \frac32 t\sin 4t\)
+              \(-0.50 = 4B - \frac38 \Rightarrow B = \ldots\)
+            marks:
+              - code: M1
+                note: Differentiates their general solution, using the product rule on the \(t\cos 4t\) term, and substitutes \(t = 0\), \(\frac{\mathrm{d}x}{\mathrm{d}t} = \pm 0.5\).
+          - scheme: |
+              \(x = 0.20\cos 4t - \frac1{32}\sin 4t - \frac38 t\cos 4t\)
+            marks:
+              - code: A1
+                note: Needs \(\frac{\mathrm{d}x}{\mathrm{d}t} = -0.5\) used; \(B = -0.03125\) accepted.
+          - scheme: |
+              \(\beta = 0.20\cos 16 - \frac1{32}\sin 16 - \frac32\cos 16\)
+              \(\phantom{\beta} = 1.25\)
+            marks:
+              - code: A1
+                note: awrt 1.25
+      - part: c
+        rows:
+          - scheme: |
+              Not suitable: model gives \(1.25\), far more than \(0.46\)
+            marks:
+              - code: E1
+                note: 'States the model is not suitable, comparing \(1.25\) with \(0.46\): e.g. overestimates by about 0.8 m, or by more than double. A0 for a conclusion without the comparison.'
+      - part: d
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}^2x}{\mathrm{d}t^2} + 16x = 0\)
+            marks:
+              - code: B1
+                note: oe, such as \(\frac{\mathrm{d}^2x}{\mathrm{d}t^2} = -16x\).
+  - q: 11
+    stamp: fcd4059f
+    parts:
+      - part: a.i
+        rows:
+          - scheme: |
+              \(\frac{\mathrm{d}x}{\mathrm{d}t} > 0\), resistance opposes motion
+              \(\Rightarrow -2\left|\frac{\mathrm{d}x}{\mathrm{d}t}\right| = -2\frac{\mathrm{d}x}{\mathrm{d}t}\), so term negative
+            marks:
+              - code: E1
+                note: States that the velocity is positive (or the trolley moves away from \(A\)) and the resistance opposes motion, so the term is negative.
+      - part: a.ii
+        rows:
+          - scheme: |
+              \(4(0+1) - 1 - 2(1) = 2\frac{\mathrm{d}^2x}{\mathrm{d}t^2} \Rightarrow \frac{\mathrm{d}^2x}{\mathrm{d}t^2} = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t = 0\), \(x = 1\) and \(\frac{\mathrm{d}x}{\mathrm{d}t} = 1\) into the equation and solves for the second derivative. Condone one arithmetic slip.
+          - scheme: |
+              \(\frac{\mathrm{d}^2x}{\mathrm{d}t^2} = \frac12\ (\mathrm{m\,s^{-2}})\)
+            marks:
+              - code: A1
+      - part: b.i
+        rows:
+          - scheme: |
+              \(g(0) = 1,\ g'(0) = 1 \Rightarrow g(t) = 1 + t\)
+            marks:
+              - code: B1
+                note: Needs \(g(0) = 1\) and \(g'(0) = 1\) used in the Maclaurin form.
+      - part: b.ii
+        rows:
+          - scheme: |
+              \(\frac{t^2}{2!}g''(0) = \frac{t^2}{2} \times \frac12 = \frac14 t^2\)
+            marks:
+              - code: B1
+                note: Needs \(\frac{g''(0)}{2!}t^2\) with \(g''(0) = \frac12\) shown.
+      - part: b.iii
+        rows:
+          - scheme: |
+              \(4 - \frac{\mathrm{d}x}{\mathrm{d}t} - 2\frac{\mathrm{d}^2x}{\mathrm{d}t^2} = 2\frac{\mathrm{d}^3x}{\mathrm{d}t^3}\)
+            marks:
+              - code: M1
+                note: Differentiates every term with respect to \(t\), raising each derivative's order by one. Condone sign or coefficient slips.
+              - code: A1
+                note: Correct equation, in \(x\) or \(g\).
+          - scheme: |
+              \(4 - 1 - 2\left(\tfrac12\right) = 2g'''(0) \Rightarrow g'''(0) = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(g'(0) = 1\) and their \(g''(0)\) into their differentiated equation, which contains a third derivative, and solves for \(g'''(0)\).
+          - scheme: |
+              \(g'''(0) = 1 \Rightarrow \frac{t^3}{3!} \times 1 = \frac16 t^3\)
+            marks:
+              - code: A1 AG
+                note: Correct substituted equation leading without error to \(g'''(0) = 1\), then \(\frac{g'''(0)}{3!}t^3\) used to reach the printed term.
+      - part: c.i
+        rows:
+          - scheme: |
+              \(1 + 0.4 + \frac14(0.4)^2 + \frac16(0.4)^3 = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(t = 0.4\) into \(1 + t + \frac14t^2 + \frac16t^3\).
+          - scheme: |
+              \(\approx 1.451\), close to 1.45, so model suitable
+            marks:
+              - code: A1
+                note: awrt 1.451 (or 1.45), compared with 1.45, concludes the model is suitable.
+      - part: c.ii
+        rows:
+          - scheme: |
+              Omitted terms in \(t^4, t^5, \ldots\) large at \(t = 8\),
+              so cubic inaccurate
+            marks:
+              - code: E1
+                note: States that the omitted higher-power terms are large at \(t = 8\), or that \(t = 8\) is not small. Not for claiming the series is invalid there.
+  - q: 12
+    stamp: da72c82a
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \((x =)\ C\cos\lambda t + D\sin\lambda t\)
+            marks:
+              - code: B1
+                note: oe, such as \(R\cos(\lambda t + \alpha)\), with two arbitrary constants.
+      - part: b
+        rows:
+          - scheme: |
+              \(x(0) = C = -\tfrac{a}{2}\), \(C^2 + D^2 = a^2\)
+              \(v(0) = D\lambda > 0 \Rightarrow D = \ldots\)
+            marks:
+              - code: M1
+                note: Uses \(x = -\frac{a}{2}\) at \(t = 0\) and that the amplitude is \(a\) to find values for both constants. Condone the wrong sign of \(D\).
+          - scheme: |
+              \(x = -\tfrac{a}{2}\cos\lambda t + \tfrac{\sqrt3}{2}a\sin\lambda t\)
+              \(\phantom{x} = a\cos\left(\lambda t - \tfrac{2\pi}{3}\right)\)
+            marks:
+              - code: A1
+                note: oe, such as \(a\sin\left(\lambda t - \frac{\pi}{6}\right)\).
+          - scheme: |
+              \(v = \tfrac{a\lambda}{2}\sin\lambda t + \tfrac{\sqrt3}{2}a\lambda\cos\lambda t\)
+              \(\phantom{v} = -a\lambda\sin\left(\lambda t - \tfrac{2\pi}{3}\right)\)
+            marks:
+              - code: A1ft
+                note: ft their \(x\) of the form \(C\cos\lambda t + D\sin\lambda t\) or \(R\cos(\lambda t + \alpha)\) with values found; correct derivative, oe.
+      - part: c
+        rows:
+          - scheme: |
+              \(v^2 = a^2\lambda^2\sin^2\left(\lambda t - \tfrac{2\pi}{3}\right)\)
+              \(\phantom{v^2} = \lambda^2\left(a^2 - a^2\cos^2\left(\lambda t - \tfrac{2\pi}{3}\right)\right)\)
+              \(\phantom{v^2} = \lambda^2(a^2 - x^2)\)
+            marks:
+              - code: B1
+                note: Correct \(v^2\) from (b) and \(\sin^2 + \cos^2 = 1\) leading without error to the printed result; working in the expanded form accepted.
+      - part: d
+        rows:
+          - scheme: |
+              \(r_m = \frac{2}{3a}\int_{-a/2}^{a}\frac{1}{\lambda\sqrt{a^2-x^2}}\,\mathrm{d}x\)
+            marks:
+              - code: B1
+                note: Divisor \(\frac{3a}{2}\), limits \(-\frac{a}{2}\) and \(a\), and \(r = \frac{1}{\lambda\sqrt{a^2-x^2}}\).
+          - scheme: |
+              \(\phantom{r_m} = \frac{2}{3a\lambda}\left[\arcsin\frac{x}{a}\right]_{-a/2}^{a}\)
+            marks:
+              - code: M1
+                note: Integrates to the form \(k\arcsin\frac{x}{a}\), or substitutes \(x = a\sin u\) and integrates. Condone a wrong constant \(k\).
+          - scheme: |
+              \(\phantom{r_m} = \frac{2}{3a\lambda}\left(\frac{\pi}{2} + \frac{\pi}{6}\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits, or the corresponding limits in \(u\), into their integral and subtracts.
+          - scheme: |
+              \(r_m = \frac{4\pi}{9a\lambda}\)
+            marks:
+              - code: A1
+                note: oe
+      - part: e
+        rows:
+          - scheme: |
+              \(0.2395 \le a < 0.2405\), \(0.78 \le \lambda \le 0.82\)
+              \(\frac{4\pi}{9(0.2405)(0.82)} \le r_m \le \frac{4\pi}{9(0.2395)(0.78)}\)
+            marks:
+              - code: M1
+                note: Substitutes the greatest values of both \(a\) and \(\lambda\), and the least of both, into their \(r_m\) of the form \(\frac{k}{a\lambda}\). Condone \(0.2404\) for the upper bound of \(a\).
+          - scheme: |
+              \(7.08 \le r_m \le 7.47\)
+              7.2 lies in this range, so validity cannot be determined
+            marks:
+              - code: A1
+                note: awrt 7.08 and 7.47, with a conclusion in words that the validity cannot be determined. A0 if the conclusion is missing.
+      - part: f
+        rows:
+          - scheme: |
+              \(v(0) = \frac{\sqrt3}{2}a\lambda = \frac{\sqrt3}{2}(0.2395)(0.78)\)
+            marks:
+              - code: M1
+                note: Uses \(v\) at \(t = 0\) from their \(v\), or \(v^2 = \lambda^2\left(a^2 - \frac{a^2}{4}\right)\), with the lower bounds of both \(a\) and \(\lambda\).
+          - scheme: |
+              \(\phantom{v(0)} = 0.16\ (\mathrm{m\,s^{-1}})\)
+            marks:
+              - code: A1
