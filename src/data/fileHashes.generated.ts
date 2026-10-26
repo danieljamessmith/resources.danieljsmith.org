@@ -31,6 +31,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/differential-equations/soln/_QBT___Solns__Modelling_with_1st_Order_Differential_Equations.pdf': 'cf660522',
   '/tex/further-maths/core-pure/differential-equations/soln/_QBT___Solns__Modelling_with_2nd_Order_Differential_Equations.pdf': 'd8b476f1',
   '/tex/further-maths/core-pure/differential-equations/soln/_QBT___Solns__Systems_of_Differential_Equations.pdf': 'b9dd8c88',
+  '/tex/further-maths/core-pure/further-calculus/ms/_QBT___MS__Improper_Integrals_and_Mean_Values.pdf': '918bef1c',
   '/tex/further-maths/core-pure/further-calculus/ms/_QBT___MS__Integration_by_Parts__FM_Level_.pdf': '86ec9bab',
   '/tex/further-maths/core-pure/further-calculus/ms/_QBT___MS__Integration_by_Substitution__FM_Level_.pdf': 'b9312e67',
   '/tex/further-maths/core-pure/further-calculus/ms/_QBT___MS__Integration_with_Inverse_Trig.pdf': '6ba47851',

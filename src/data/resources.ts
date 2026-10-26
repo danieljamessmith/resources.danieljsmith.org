@@ -705,6 +705,16 @@ const rawResources: Resource[] = [
     topic: 'Further Calculus',
   },
   {
+    id: 'fm-further-improper-integrals-mean-values-ms',
+    title: 'Improper Integrals and Mean Values',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/further-calculus/ms/_QBT___MS__Improper_Integrals_and_Mean_Values.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-further-improper-integrals-mean-values',
+    topic: 'Further Calculus',
+  },
+  {
     id: 'fm-further-integration-inverse-trig',
     title: 'Integration with Inverse Trig',
     description: '',

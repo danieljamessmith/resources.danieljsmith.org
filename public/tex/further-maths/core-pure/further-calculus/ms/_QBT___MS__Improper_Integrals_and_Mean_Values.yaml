@@ -1,0 +1,684 @@
+format: 1
+pack: Improper Integrals and Mean Values
+last_updated: 26 October 2026
+questions:
+  - q: 1
+    stamp: cbaa0b97
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\int \frac{x}{x^2+1}\,\mathrm{d}x = \tfrac12\ln(x^2+1)\)
+            marks:
+              - code: M1
+                note: Integrates to the form \(k\ln(x^2+1)\), or \(k\ln u\) after substituting \(u = x^2+1\).
+              - code: A1
+                note: oe, such as \(\frac12\ln u\). Condone modulus signs.
+          - scheme: |
+              \(\frac{1}{3-1}\left(\text{"}\tfrac12\text{"}\ln 10 - \text{"}\tfrac12\text{"}\ln 2\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes limits 1 and 3 (or 2 and 10 in \(u\)) into their \(k\ln(x^2+1)\), subtracts, and divides by 2.
+          - scheme: |
+              \(\tfrac14\ln 5\)
+            marks:
+              - code: A1
+                note: Must be in the form \(p\ln q\); accept \(\frac18\ln 25\). A0 for \(\frac14(\ln 10 - \ln 2)\) or a decimal.
+  - q: 2
+    stamp: 3d14bfc9
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\int x(x^2+5)^{-\frac32}\,\mathrm{d}x = k(x^2+5)^{-\frac12}\)
+            marks:
+              - code: M1
+                note: Integrates to the form \(k(x^2+5)^{-\frac12}\), \(k \neq 0\), by reverse chain rule or substitution \(u = x^2+5\).
+          - scheme: |
+              \(\phantom{\int} = -(x^2+5)^{-\frac12}\ (+c)\)
+            marks:
+              - code: A1
+                note: oe, such as \(-\frac{1}{\sqrt{u}}\) with \(u = x^2+5\).
+          - scheme: |
+              \(\int_2^t \ldots\,\mathrm{d}x = \left[-\frac{1}{\sqrt{x^2+5}}\right]_2^t\)
+              \(\phantom{\int_2^t} = -\frac{1}{\sqrt{t^2+5}} + \frac13\)
+            marks:
+              - code: M1
+                note: Replaces \(\infty\) by \(t\) (any letter) and substitutes \(t\) and 2, or corresponding limits in \(u\), into their \(k(x^2+5)^{-\frac12}\), subtracting.
+          - scheme: |
+              As \(t\to\infty\), \(\frac{1}{\sqrt{t^2+5}}\to 0\)
+            marks:
+              - code: dM1
+                note: States that their term in \(t\) tends to 0 as \(t\to\infty\), in limit notation or words. Not for substituting \(\infty\) directly.
+          - scheme: |
+              \(\int_2^\infty \ldots\,\mathrm{d}x = \frac13 - 0 = \frac13\)
+            marks:
+              - code: A1 AG
+                note: 'cso: correct antiderivative and limits leading without error to \(\frac13\), with the limiting process shown.'
+  - q: 3
+    stamp: 303bab27
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\dfrac{4}{x(x+1)(x+2)}=\dfrac{A}{x}+\dfrac{B}{x+1}+\dfrac{C}{x+2}\)
+            marks:
+              - code: M1
+                note: Uses the correct form with three constants. Not for a form missing a term.
+          - scheme: |
+              \(4=A(x+1)(x+2)+Bx(x+2)+Cx(x+1)\)
+              \(\Rightarrow A=\ldots,\ B=\ldots,\ C=\ldots\)
+            marks:
+              - code: dM1
+                note: Finds all three constants, by substituting values or equating coefficients. Condone arithmetic slips.
+          - scheme: |
+              \(\dfrac{2}{x}-\dfrac{4}{x+1}+\dfrac{2}{x+2}\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(2\ln x-4\ln(x+1)+2\ln(x+2)\)
+            marks:
+              - code: M1
+                note: Integrates at least two of their partial fractions of the form \(\frac{a}{x+b}\) to \(a\ln(x+b)\). Modulus signs not needed.
+              - code: A1
+                note: All three correct; need not be combined.
+          - scheme: |
+              \(\left[2\ln\dfrac{x(x+2)}{(x+1)^2}\right]_1^{t}\)
+              \(\phantom{A}=2\ln\dfrac{t(t+2)}{(t+1)^2}-2\ln\dfrac{3}{4}\)
+            marks:
+              - code: M1
+                note: Replaces \(\infty\) by \(t\) or uses a limit, combines their log terms into one logarithm of a function of \(t\), and substitutes both limits. Condone sign slips.
+          - scheme: |
+              As \(t\to\infty\), \(\dfrac{t^2+2t}{t^2+2t+1}=\dfrac{1+\frac{2}{t}}{1+\frac{2}{t}+\frac{1}{t^2}}\to1\)
+              \(\Rightarrow 2\ln(\ldots)\to0\), so the integral converges
+            marks:
+              - code: dM1
+                note: Shows the argument of the combined logarithm tends to 1 (e.g. dividing by \(t^2\)), so its log tends to 0, and concludes convergence. Not for 0 written without a limit argument.
+          - scheme: |
+              \(\ln\dfrac{16}{9}\)
+            marks:
+              - code: A1
+                note: cso. Must be in the form \(\ln k\), or \(k=\frac{16}{9}\) stated; \(2\ln\frac43\) alone does not score.
+  - q: 4
+    stamp: 2f1b6d73
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(y = \dfrac{1+\sin x}{1-\sin^2 x} = \dfrac{1+\sin x}{\cos^2 x}\)
+            marks:
+              - code: M1
+                note: Multiplies numerator and denominator by \(1+\sin x\) and uses \(1-\sin^2 x=\cos^2 x\) to reach a denominator of \(\cos^2 x\).
+          - scheme: |
+              \(y = \sec^2 x + \sec x\tan x\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\displaystyle\int \left(\sec^2 x + \sec x\tan x\right)\mathrm{d}x = \tan x + \sec x\)
+            marks:
+              - code: M1
+                note: Integrates their expression of the form \(p\sec^2 x + q\sec x\tan x\) to the form \(a\tan x + b\sec x\).
+              - code: A1
+                note: 'A1: Correct \(\tan x + \sec x\).'
+          - scheme: |
+              \(\dfrac{6}{\pi}\left[\left(\tfrac{1}{\sqrt3}+\tfrac{2}{\sqrt3}\right)-(0+1)\right]\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits into their integral, subtracts, and divides by \(\frac{\pi}{6}\). Need not be simplified.
+          - scheme: |
+              \(\dfrac{6\left(\sqrt3-1\right)}{\pi}\)
+            marks:
+              - code: A1
+                note: cso. Any equivalent exact form.
+  - q: 5
+    stamp: ceebf7ee
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\frac{1}{2}\int_0^2 40\tanh^2\left(\tfrac12 t\right)\mathrm{d}t\)
+              \(\phantom{A} = 20\int_0^2 \left(1-\operatorname{sech}^2\left(\tfrac12 t\right)\right)\mathrm{d}t\)
+            marks:
+              - code: M1
+                note: Uses a hyperbolic identity, such as \(\tanh^2 x = 1-\operatorname{sech}^2 x\), to replace \(\tanh^2\left(\frac12 t\right)\) in the integral of \(p\). Condone a sign slip in the identity.
+          - scheme: |
+              \(20\left[t-2\tanh\left(\tfrac12 t\right)\right]_0^2\)
+            marks:
+              - code: M1
+                note: Integrates to the form \(\alpha t+\beta\tanh\left(\frac12 t\right)\).
+              - code: A1
+                note: Correct, with factor 20, or 40 if not yet divided by 2.
+          - scheme: |
+              \(20\left(2-2\tanh 1\right)-20(0) \ [=40(1-\tanh 1)]\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits into their integral and divides by 2. Lower limit giving 0 need not be shown.
+          - scheme: |
+              \(\tanh 1=\frac{e-e^{-1}}{e+e^{-1}} \ \left[=\frac{e^2-1}{e^2+1}\right]\)
+            marks:
+              - code: M1
+                note: Writes \(\tanh 1\), or \(\sinh 1\) and \(\cosh 1\), in exponential form in their expression. Need not be simplified.
+          - scheme: |
+              \(\frac{80}{e^2+1}\)
+            marks:
+              - code: A1
+                note: cso. Only this form scores, not e.g. \(\frac{80e^{-2}}{1+e^{-2}}\) or \(40(1-\tanh 1)\).
+  - q: 6
+    stamp: 6a80259c
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              Upper limit is infinite, so the interval of integration is unbounded
+            marks:
+              - code: E1
+                note: States that the upper limit is infinite, or the interval unbounded. Not for a reason about the integrand alone.
+      - part: b
+        rows:
+          - scheme: |
+              \(u = \ln x,\ \frac{\mathrm{d}v}{\mathrm{d}x} = x^{-3} \Rightarrow v = -\frac{1}{2x^2}\)
+              \(\int \frac{\ln x}{x^3}\,\mathrm{d}x = -\frac{\ln x}{2x^2} + \int \frac{1}{2x^3}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Integrates by parts with \(u = \ln x\), reaching the form \(px^{-2}\ln x \pm \int qx^{-3}\,\mathrm{d}x\). Condone sign and coefficient slips.
+              - code: A1
+                note: Correct first stage; need not be simplified.
+          - scheme: |
+              \(\phantom{\int \frac{\ln x}{x^3}\,\mathrm{d}x} = -\frac{\ln x}{2x^2} - \frac{1}{4x^2} + c\)
+            marks:
+              - code: A1
+                note: oe. Needs \(+c\).
+      - part: c
+        rows:
+          - scheme: |
+              \(\int_e^t \frac{\ln x}{x^3}\,\mathrm{d}x = \left[\text{"}-\frac{\ln x}{2x^2} - \frac{1}{4x^2}\text{"}\right]_e^t\)
+            marks:
+              - code: M1
+                note: Replaces \(\infty\) by \(t\) and substitutes \(t\) and \(e\) into their (b) of the form \(px^{-2}\ln x + qx^{-2}\). Not for substituting \(\infty\) directly.
+          - scheme: |
+              \(\phantom{\int_e^t} = \frac{3}{4e^2} - \frac{\ln t}{2t^2} - \frac{1}{4t^2}\)
+            marks:
+              - code: A1
+                note: oe; \(\ln e\) need not be evaluated.
+          - scheme: |
+              As \(t\to\infty\), \(\frac{\ln t}{t^2}\to 0\) and \(\frac{1}{t^2}\to 0\)
+            marks:
+              - code: dM1
+                note: Lets \(t\to\infty\), stating explicitly that \(\frac{\ln t}{t^2}\to 0\) (oe) and \(\frac{1}{t^2}\to 0\). Not for replacing the terms by 0 without a statement.
+          - scheme: |
+              Converges: \(\int_e^\infty \frac{\ln x}{x^3}\,\mathrm{d}x = \frac{3}{4e^2}\)
+            marks:
+              - code: A1
+                note: cso. Exact value oe, with a statement that the integral converges or the limit is finite.
+  - q: 7
+    stamp: 4507d440
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(9(x^2-2x)+25 = 9\left[(x-1)^2-1\right]+25\)
+            marks:
+              - code: M1
+                note: Takes out 9 from the \(x\) terms and completes the square to \(9(x\pm1)^2+q\), or compares coefficients of \(a(x+p)^2+q\). Condone a slip in \(q\).
+          - scheme: |
+              \(= 9(x-1)^2+16\)
+            marks:
+              - code: A1
+                note: Or \(a=9\), \(p=-1\), \(q=16\) stated.
+      - part: b
+        rows:
+          - scheme: |
+              \(\int\frac{\mathrm{d}x}{\sqrt{9(x-1)^2+16}}\)
+              \(\phantom{=} = \frac13\int\frac{\mathrm{d}x}{\sqrt{(x-1)^2+\left(\frac43\right)^2}}\)
+            marks:
+              - code: M1
+                note: Uses their (a), of the form \(9(x+p)^2+q\) with \(q>0\), with the arsinh result to reach \(\lambda\operatorname{arsinh}(\mu(x+p))\) or a logarithmic equivalent. Condone slips in \(\lambda\), \(\mu\).
+          - scheme: |
+              \(= \frac13\operatorname{arsinh}\left(\frac{3(x-1)}{4}\right)+c\)
+            marks:
+              - code: A1
+                note: oe, including a logarithmic form. Needs \(+c\).
+      - part: c
+        rows:
+          - scheme: |
+              \(\frac12\times\frac13\left[\operatorname{arsinh}\left(\frac{3(x-1)}{4}\right)\right]_0^2\)
+              \(\phantom{=} = \frac16\left(\operatorname{arsinh}\frac34-\operatorname{arsinh}\left(-\frac34\right)\right)\)
+            marks:
+              - code: M1
+                note: Substitutes 0 and 2 into their (b), of the form \(\lambda\operatorname{arsinh}(\mu(x+p))\) or a logarithmic equivalent, subtracts and divides by 2. Condone sign slips.
+          - scheme: |
+              \(\operatorname{arsinh}\frac34 = \ln\left(\frac34+\sqrt{\frac9{16}+1}\right) = \ldots\)
+            marks:
+              - code: M1
+                note: Uses \(\operatorname{arsinh}t=\ln\left(t+\sqrt{t^2+1}\right)\) on at least one of their values, or evaluates a logarithmic form from (b) at a limit.
+          - scheme: |
+              \(\frac16(\ln 2+\ln 2) = \frac13\ln 2\)
+            marks:
+              - code: A1
+                note: cso. Any form \(A\ln B\) with \(B\) an integer, such as \(\frac16\ln4\). Not \(\frac16\left(\ln2-\ln\frac12\right)\).
+  - q: 8
+    stamp: bdb1ee8e
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\int \ln(1+x)\,\mathrm{d}x = x\ln(1+x) - \int \frac{x}{1+x}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Applies parts with \(u = \ln(1+x)\), reaching \(px\ln(1+x) - \int \frac{qx}{1+x}\,\mathrm{d}x\), or the equivalent after substituting \(t = 1+x\). Condone sign slips.
+          - scheme: |
+              \(\phantom{\int} = x\ln(1+x) - x + \ln(1+x)\)
+            marks:
+              - code: A1
+                note: oe, such as \((1+x)\ln(1+x) - x\) or \(t\ln t - t\).
+          - scheme: |
+              \(\frac{1}{e-1}\Big[(1+x)\ln(1+x) - x\Big]_0^{e-1}\)
+              \(\phantom{A} = \frac{1}{e-1}\big((e\ln e - (e-1)) - 1\times\ln 1\big)\)
+            marks:
+              - code: dM1
+                note: Substitutes both limits, or 1 and \(e\) after substituting \(t = 1+x\), into their antiderivative and divides by \(e-1\).
+          - scheme: |
+              \(\phantom{A} = \frac{1}{e-1}\)
+            marks:
+              - code: A1 AG
+                note: Correct substituted expression, using \(\ln e = 1\) and \(\ln 1 = 0\), leading without error to the printed result.
+      - part: b
+        rows:
+          - scheme: |
+              \(x = e^{y} - 1\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(\frac{1}{1-0}\int_0^1 (e^{y} - 1)\,\mathrm{d}y = \Big[e^{y} - y\Big]_0^1 = \ldots\)
+            marks:
+              - code: M1
+                note: Integrates their \(x\) in terms of \(y\), at least one term correct, and substitutes \(y = 1\) and \(y = 0\). Division by \(1-0\) need not be shown.
+          - scheme: |
+              \(e - 2\)
+            marks:
+              - code: A1
+  - q: 9
+    stamp: 53ca581f
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\frac{n}{2\pi}\int_0^{2\pi/n}\left(a^2\sin^2 nt + 2ab\sin nt\sin 2nt\right.\)
+              \(\phantom{\frac{n}{2\pi}\int_0^{2\pi/n}}\left.{}+ b^2\sin^2 2nt\right)\mathrm{d}t\)
+            marks:
+              - code: M1
+                note: Forms the integral of \(I^2\), expanded into three terms, from \(0\) to \(\frac{2\pi}{n}\), with or without \(\frac{n}{2\pi}\). Condone a slip in the cross term's coefficient.
+          - scheme: |
+              \(\int\sin^2 nt\,\mathrm{d}t = \int\tfrac12(1-\cos 2nt)\,\mathrm{d}t\)
+              \(\phantom{\int\sin^2 nt\,\mathrm{d}t} = \frac{t}{2} - \frac{\sin 2nt}{4n}\)
+            marks:
+              - code: M1
+                note: Uses \(\sin^2 x = \frac12(1\pm\cos 2x)\) for at least one square and integrates to the form \(pt + q\sin knt\). Condone sign and coefficient slips.
+          - scheme: |
+              \(\int_0^{2\pi/n}\sin^2 nt\,\mathrm{d}t = \int_0^{2\pi/n}\sin^2 2nt\,\mathrm{d}t = \frac{\pi}{n}\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\int\sin nt\sin 2nt\,\mathrm{d}t = \int 2\sin^2 nt\cos nt\,\mathrm{d}t\)
+              \(\phantom{\int\sin nt\sin 2nt\,\mathrm{d}t} = \frac{2\sin^3 nt}{3n}\)
+            marks:
+              - code: M1
+                note: Integrates the cross term by a valid method, e.g. to the form \(k\sin^3 nt\), or by product-to-sum to \(p\sin nt + q\sin 3nt\). Condone coefficient slips.
+          - scheme: |
+              \(\left[\frac{2\sin^3 nt}{3n}\right]_0^{2\pi/n} = 0\)
+            marks:
+              - code: A1
+                note: Limits substituted into a correct integral; a bare statement that the integral is zero does not score.
+          - scheme: |
+              \(\frac{n}{2\pi}\left(a^2\times\text{"}\tfrac{\pi}{n}\text{"} + 2ab\times\text{"}0\text{"} + b^2\times\text{"}\tfrac{\pi}{n}\text{"}\right)\)
+              \(\Rightarrow \text{RMS} = \sqrt{\ldots}\)
+            marks:
+              - code: dM1
+                note: Combines their three integrals with their coefficients, multiplies by \(\frac{n}{2\pi}\) and takes the square root. Depends on the first M1.
+                depends_on: '1'
+          - scheme: |
+              \(\frac{a^2+b^2}{2} \Rightarrow \text{RMS} = \sqrt{\frac{a^2+b^2}{2}}\)
+            marks:
+              - code: A1 AG
+                note: 'cso: correct integrals combined without error to the printed result.'
+  - q: 10
+    stamp: bcc6f9d9
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\dfrac{x+3}{x^{2}(x+1)}=\dfrac{A}{x}+\dfrac{B}{x^2}+\dfrac{C}{x+1}\)
+            marks:
+              - code: M1
+                note: Uses partial fractions with separate terms in \(x\) and \(x^2\) for the repeated factor, and a term in \(x+1\).
+          - scheme: |
+              \(x+3=Ax(x+1)+B(x+1)+Cx^2\)
+              \(\Rightarrow A=\ldots,\ B=\ldots,\ C=\ldots\)
+            marks:
+              - code: dM1
+                note: Clears fractions and finds all three constants, by substitution or equating coefficients. Condone arithmetic slips.
+          - scheme: |
+              \(-\dfrac{2}{x}+\dfrac{3}{x^2}+\dfrac{2}{x+1}\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\left[-2\ln x-\dfrac{3}{x}+2\ln(x+1)\right]\)
+            marks:
+              - code: M1
+                note: Integrates their partial fractions to the form \(p\ln x+\frac{q}{x}+r\ln(x+1)\). Condone sign and coefficient slips.
+              - code: A1
+                note: Correct antiderivative; modulus signs optional.
+          - scheme: |
+              \(\lim_{t\to\infty}\left[2\ln\left(\dfrac{x+1}{x}\right)-\dfrac{3}{x}\right]_{1}^{t}\)
+              \(=\lim_{t\to\infty}\left(2\ln\left(1+\tfrac{1}{t}\right)-\tfrac{3}{t}-2\ln 2+3\right)\)
+            marks:
+              - code: M1
+                note: Uses an upper limit \(t\), combines their two log terms into one logarithm, before or after substituting, and substitutes both limits. Not if \(\infty\) is substituted.
+          - scheme: |
+              \(t\to\infty:\ \ln\left(1+\tfrac{1}{t}\right)\to\ln 1=0,\ \tfrac{3}{t}\to 0\)
+            marks:
+              - code: dM1
+                note: States, as \(t\to\infty\), that their combined log term tends to \(\ln 1=0\) and their \(\frac{k}{t}\) term tends to 0.
+          - scheme: |
+              \(\displaystyle\int_{1}^{\infty}\dfrac{x+3}{x^{2}(x+1)}\,\mathrm{d}x=3-2\ln 2=3-\ln 4\)
+            marks:
+              - code: A1 AG
+                note: cso, from correct limits leading without error to \(3-\ln 4\). Withhold if \(\infty\) is substituted or \(\ln\infty\) terms are cancelled anywhere.
+  - q: 11
+    stamp: ebd6d8e4
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              Upper limit is infinite, so the interval of integration is unbounded
+            marks:
+              - code: E1
+                note: States that the upper limit is infinite, or the interval is unbounded. Not for a reference to the integrand alone.
+      - part: b
+        rows:
+          - scheme: |
+              \(\frac{10}{(x+2)(3x+1)} = \frac{A}{x+2}+\frac{B}{3x+1}\)
+              \(10 = A(3x+1)+B(x+2) \Rightarrow A = \ldots,\ B = \ldots\)
+            marks:
+              - code: M1
+                note: Uses the correct partial-fraction form and a method for both constants, by substitution or comparing coefficients.
+          - scheme: |
+              \(A=-2,\ B=6\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\int\left(-\frac{2}{x+2}+\frac{6}{3x+1}\right)\mathrm{d}x\)
+              \(\phantom{A} = p\ln(x+2)+q\ln(3x+1)\)
+            marks:
+              - code: M1
+                note: Integrates their two partial fractions to the form \(p\ln(x+2)+q\ln(3x+1)\). Condone coefficient slips and missing modulus signs.
+          - scheme: |
+              \(= 2\ln\left(\frac{3x+1}{x+2}\right)\)
+            marks:
+              - code: A1
+                note: Correct single logarithm, oe; may first be seen after the limits are substituted.
+          - scheme: |
+              \(\left[2\ln\frac{3x+1}{x+2}\right]_0^t = 2\ln\frac{3t+1}{t+2} - 2\ln\frac12\)
+              \(\frac{3t+1}{t+2} = \frac{3+\frac1t}{1+\frac2t} \to \ldots\) as \(t\to\infty\)
+            marks:
+              - code: dM1
+                note: Replaces \(\infty\) by a variable, substitutes both limits and finds the limit of their logarithm's argument as it tends to infinity. Not for substituting \(\infty\) directly.
+          - scheme: |
+              \(2\ln 3 + 2\ln 2 = 2\ln 6\)
+            marks:
+              - code: A1
+                note: cso. Any correct \(a\ln b\) with integer \(a\) and rational \(b\), or \(a=2\), \(b=6\) stated.
+  - q: 12
+    stamp: 3ccd1bcf
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              At \(x=1\), \(\sqrt[3]{x^2-1}=0\): integrand undefined
+              \(x=1\) lies in \([0,3]\)
+            marks:
+              - code: E1
+                note: States the integrand is undefined or unbounded (or denominator zero) at \(x=1\), and that 1 lies within the interval of integration.
+      - part: b
+        rows:
+          - scheme: |
+              \(\int x\left(x^2-1\right)^{-\frac13}\,\mathrm{d}x = k\left(x^2-1\right)^{\frac23}\)
+            marks:
+              - code: M1
+                note: Integrates to the form \(k\left(x^2-1\right)^{\frac23}\), or \(ku^{\frac23}\) with \(u=x^2-1\), by inspection or substitution.
+          - scheme: |
+              \(\phantom{\int} = \frac34\left(x^2-1\right)^{\frac23}\ (+c)\)
+            marks:
+              - code: A1
+                note: oe, including \(\frac34u^{\frac23}\) with \(u=x^2-1\).
+          - scheme: |
+              Splits at \(x=1\):
+              \(\lim_{t\to1^-}\left[\frac34\left(x^2-1\right)^{\frac23}\right]_0^t\)
+              \(\phantom{=} + \lim_{s\to1^+}\left[\frac34\left(x^2-1\right)^{\frac23}\right]_s^3\)
+            marks:
+              - code: M1
+                note: Splits at \(x=1\) into two integrals, each written with a limit of a variable endpoint tending to 1 from the appropriate side.
+          - scheme: |
+              \(= \left(0-\frac34\right) + \left(3-0\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes the endpoints into their antiderivative in both integrals and evaluates the limits, with the terms at the variable endpoint tending to 0.
+          - scheme: |
+              Both limits finite, so converges; \(=\frac94\)
+            marks:
+              - code: A1
+                note: cso. \(\frac94\) oe with a statement that the integral converges or both limits are finite. A0 without the limit argument.
+  - q: 13
+    stamp: 68850c1f
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              Integrand undefined (unbounded) at the lower limit \(x=0\)
+            marks:
+              - code: E1
+                note: States the integrand is undefined, or tends to infinity, at \(x=0\). Not for a reason based on the range or the upper limit.
+      - part: b
+        rows:
+          - scheme: |
+              \(\int x^{-\frac12}(\ln x)^2\,\mathrm{d}x = 2x^{\frac12}(\ln x)^2\)
+              \(\phantom{A} - \int 2x^{\frac12}\times\frac{2\ln x}{x}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Integrates by parts with \(u=(\ln x)^2\), reaching the form \(px^{\frac12}(\ln x)^2 - q\int x^{-\frac12}\ln x\,\mathrm{d}x\). Condone coefficient slips.
+              - code: A1
+                note: Correct; need not be simplified.
+          - scheme: |
+              \(\int x^{-\frac12}\ln x\,\mathrm{d}x = 2x^{\frac12}\ln x - \int 2x^{-\frac12}\,\mathrm{d}x\)
+            marks:
+              - code: dM1
+                note: Integrates \(\int x^{-\frac12}\ln x\,\mathrm{d}x\) by parts with \(u=\ln x\), reaching the form \(rx^{\frac12}\ln x - s\int x^{-\frac12}\,\mathrm{d}x\). Condone coefficient slips.
+          - scheme: |
+              \(= 2\sqrt{x}(\ln x)^2 - 4\left(2\sqrt{x}\ln x - 4\sqrt{x}\right) + c\)
+              \(= 2\sqrt{x}\left((\ln x)^2 - 4\ln x + 8\right) + c\)
+            marks:
+              - code: A1 AG
+                note: Both stages correctly combined, final integral done, leading without error to the printed result, including \(+c\).
+      - part: c
+        rows:
+          - scheme: |
+              \(\lim_{t\to0^{+}}\int_t^{e} x^{-\frac12}(\ln x)^2\,\mathrm{d}x\)
+              \(\phantom{A} = \lim_{t\to0^{+}}\left[2\sqrt{x}\left((\ln x)^2-4\ln x+8\right)\right]_t^{e}\)
+            marks:
+              - code: M1
+                note: Replaces the lower limit by \(t\), or another letter, and substitutes both limits into the result of (b). Not for substituting \(x=0\).
+          - scheme: |
+              \(= 10\sqrt{e} - 2\sqrt{t}\left((\ln t)^2 - 4\ln t + 8\right)\)
+            marks:
+              - code: A1
+                note: Correct expression in \(t\), oe, e.g. expanded.
+          - scheme: |
+              As \(t\to0^{+}\): \(\sqrt{t}(\ln t)^2\to0\), \(\sqrt{t}\ln t\to0\), \(\sqrt{t}\to0\)
+            marks:
+              - code: dM1
+                note: Lets \(t\to0^{+}\), using the given result for the \(\sqrt{t}(\ln t)^2\) and \(\sqrt{t}\ln t\) terms and \(\sqrt{t}\to0\).
+          - scheme: |
+              Limit finite, so integral exists, \(= 10\sqrt{e}\)
+            marks:
+              - code: A1
+                note: cso. Exact \(10\sqrt{e}\) with a statement that the limit is finite, or the integral exists.
+  - q: 14
+    stamp: 36f08512
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\int \frac{(\ln x)^2}{x^2}\,\mathrm{d}x = -\frac{(\ln x)^2}{x} + \int \frac{2\ln x}{x^2}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Integrates by parts with \(u=(\ln x)^2\) (or \(t^2\) after \(x=e^t\)) to the form \(p\frac{(\ln x)^2}{x} + q\int\frac{\ln x}{x^2}\,\mathrm{d}x\). Condone sign and coefficient slips.
+              - code: A1
+                note: Correct, need not be simplified.
+          - scheme: |
+              \(\int \frac{\ln x}{x^2}\,\mathrm{d}x = -\frac{\ln x}{x} + \int \frac{1}{x^2}\,\mathrm{d}x\)
+            marks:
+              - code: dM1
+                note: Integrates \(\frac{\ln x}{x^2}\) (or \(te^{-t}\)) by parts to the form \(p\frac{\ln x}{x} + q\int\frac{1}{x^2}\,\mathrm{d}x\). Condone sign and coefficient slips.
+          - scheme: |
+              \(-\frac{(\ln x)^2}{x} - \frac{2\ln x}{x} - \frac{2}{x}\)
+            marks:
+              - code: A1
+                note: oe; constant not needed.
+          - scheme: |
+              \(\left(-\frac{(\ln a)^2}{a} - \frac{2\ln a}{a} - \frac{2}{a}\right) - (-2)\)
+            marks:
+              - code: dM1
+                note: Substitutes \(a\) and 1 into their antiderivative from two integrations by parts and subtracts.
+          - scheme: |
+              \(2 - \frac{(\ln a)^2}{a} - \frac{2\ln a}{a} - \frac{2}{a}\)
+            marks:
+              - code: A1
+                note: oe
+      - part: b
+        rows:
+          - scheme: |
+              \(0\)
+            marks:
+              - code: B1
+      - part: c
+        rows:
+          - scheme: |
+              \(\lim_{a\to\infty}\left(2 - \frac{(\ln a)^2}{a} - \frac{2\ln a}{a} - \frac{2}{a}\right)\)
+              \(\phantom{A} = 2 - 0 - 0 - 0\)
+            marks:
+              - code: M1
+                note: Lets \(a\to\infty\) in their (a) of the form constant plus multiples of \(\frac{(\ln a)^2}{a}\), \(\frac{\ln a}{a}\), \(\frac1a\), stating each such term tends to 0.
+          - scheme: |
+              \(\int_1^{\infty} \frac{(\ln x)^2}{x^2}\,\mathrm{d}x = 2\)
+            marks:
+              - code: A1
+  - q: 15
+    stamp: b198b6ce
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\dfrac{5x-3}{(x^2+3)(x+1)}=\dfrac{A}{x+1}+\dfrac{Bx+C}{x^2+3}\)
+            marks:
+              - code: M1
+                note: Uses a constant over \(x+1\) and a linear numerator over \(x^2+3\).
+          - scheme: |
+              \(5x-3=A(x^2+3)+(Bx+C)(x+1)\)
+              \(\Rightarrow A=\ldots,\ B=\ldots,\ C=\ldots\)
+            marks:
+              - code: dM1
+                note: Multiplies through and finds all three constants by substitution or equating coefficients. Condone arithmetic slips.
+          - scheme: |
+              \(A=-2,\ B=2,\ C=3\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\int\left(-\dfrac{2}{x+1}+\dfrac{2x}{x^2+3}\right)\mathrm{d}x\)
+              \(\phantom{=}=-2\ln(x+1)+\ln(x^2+3)\)
+            marks:
+              - code: M1
+                note: Integrates their \(\frac{A}{x+1}\) and \(\frac{Bx}{x^2+3}\) to the forms \(\alpha\ln(x+1)\) and \(\beta\ln(x^2+3)\). Condone coefficient slips.
+          - scheme: |
+              \(\int\dfrac{3}{x^2+3}\,\mathrm{d}x=\dfrac{3}{\sqrt{3}}\arctan\left(\dfrac{x}{\sqrt{3}}\right)\)
+            marks:
+              - code: M1
+                note: Integrates their \(\frac{C}{x^2+3}\) to the form \(k\arctan\left(\frac{x}{\sqrt{3}}\right)\).
+          - scheme: |
+              \(\ln\left(\dfrac{x^2+3}{(x+1)^2}\right)+\sqrt{3}\arctan\left(\dfrac{x}{\sqrt{3}}\right)\)
+            marks:
+              - code: A1
+                note: Correct antiderivative oe, logarithms combined or not; modulus signs condoned.
+          - scheme: |
+              \(\lim_{t\to\infty}\left[\ln\left(\dfrac{t^2+3}{(t+1)^2}\right)+\sqrt{3}\arctan\left(\dfrac{t}{\sqrt{3}}\right)\right]\)
+              \(\phantom{=}-(\ln 3+0)\)
+              \(=0+\sqrt{3}\cdot\dfrac{\pi}{2}-\ln 3\)
+            marks:
+              - code: dM1
+                note: Replaces \(\infty\) by a limit, applies both limits, combines the logarithms into one tending to \(\ln 1\), and uses \(\arctan\to\frac{\pi}{2}\). Not for evaluating separate logarithms at infinity.
+          - scheme: |
+              \(\tfrac12\sqrt{3}\,\pi+\ln\tfrac13\): \(p=\tfrac12,\ q=\tfrac13\)
+            marks:
+              - code: A1
+                note: cso. Needs \(q=\frac13\) or \(\ln\frac13\); \(-\ln 3\) alone scores A0.
+  - q: 16
+    stamp: bc46ba68
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              As \(y \to 0^{+}\), \(\ln y \to -\infty\), \((\ln y)^2 \to \infty\)
+              Integrand unbounded at \(y = 0\)
+            marks:
+              - code: E1
+                note: States the integrand is unbounded or undefined at \(y = 0\), referring to \(\ln y\) or \((\ln y)^2\) there.
+      - part: b.i
+        rows:
+          - scheme: |
+              \((\ln y)^2 = x^2\), \(\mathrm{d}y = -e^{-x}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Replaces \((\ln y)^2\) by \(x^2\) and \(\mathrm{d}y\) by \(\pm e^{-x}\,\mathrm{d}x\). Condone a sign slip in \(\mathrm{d}y\).
+          - scheme: |
+              \(y = 1 \Rightarrow x = 0\)
+              \(y \to 0^{+} \Rightarrow x = -\ln y \to \infty\)
+            marks:
+              - code: B1
+                note: Both limits, with \(x \to \infty\) justified as \(y \to 0^{+}\) by \(-\ln y \to \infty\) or \(e^{-x} \to 0\). B0 for \(y = 0 \Rightarrow x = \infty\) with no limiting argument.
+          - scheme: |
+              \(\int_{\infty}^{0} x^2\left(-e^{-x}\right)\mathrm{d}x = \int_{0}^{\infty} x^2 e^{-x}\,\mathrm{d}x\)
+            marks:
+              - code: A1 AG
+                note: Correct substituted integral with limits \(\infty\) to \(0\) and the minus sign, reversed to the printed result without error.
+      - part: b.ii
+        rows:
+          - scheme: |
+              \(\int x^2e^{-x}\,\mathrm{d}x = -x^2e^{-x} + \int 2xe^{-x}\,\mathrm{d}x\)
+            marks:
+              - code: M1
+                note: Integrates by parts with \(u = x^2\), reaching \(\pm x^2e^{-x} \pm \int kxe^{-x}\,\mathrm{d}x\). Tabular method accepted.
+              - code: A1
+          - scheme: |
+              \(\phantom{\int} = -x^2e^{-x} - 2xe^{-x} - 2e^{-x}\)
+            marks:
+              - code: dM1
+                note: Integrates their \(\int kxe^{-x}\,\mathrm{d}x\) by parts, reaching the form \(pxe^{-x} + qe^{-x}\).
+              - code: A1
+                note: oe; constant not needed.
+          - scheme: |
+              \(\left[-e^{-x}(x^2+2x+2)\right]_0^t = 2 - e^{-t}(t^2+2t+2)\)
+              As \(t \to \infty\), \(t^2e^{-t}, te^{-t}, e^{-t} \to 0\)
+            marks:
+              - code: dM1
+                note: Applies limits \(0\) and \(t\) to their antiderivative of the form \(e^{-x}\times\) quadratic, and lets \(t \to \infty\) with the exponential terms tending to 0. Not for substituting \(\infty\) directly.
+          - scheme: |
+              \(\int_{0}^{\infty} x^2 e^{-x}\,\mathrm{d}x = 2\)
+            marks:
+              - code: A1
+                note: cso. A bare answer scores nothing.
+      - part: b.iii
+        rows:
+          - scheme: |
+              \(\int_{0}^{1} (\ln y)^2\,\mathrm{d}y = 2\)
+            marks:
+              - code: B1ft
+                note: ft their value from (b)(ii).
