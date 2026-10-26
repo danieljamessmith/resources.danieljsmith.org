@@ -1,0 +1,259 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/pack_preamble.tex}
+
+\djsQbtHeader{Standard Summations}
+\djsSitePath{Core Pure}{Miscellaneous Pure}
+\djsLastUpdated{26 October 2026}
+
+\begin{document}
+\djsFrontMatter
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+% [Source: _QBT__Standard_Summations, Q1]
+
+Using the formulae for $\sum_{r=1}^{n} r$ and $\sum_{r=1}^{n} r^2$, show that
+\[\sum_{r=5}^{12} (2r-1)(r+3) = 1556\] \marks[-30pt]{4}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT__Standard_Summations, Q2]
+
+Using standard summation results, find the exact value of
+\[\sum_{r=21}^{60} (3r-1)(r+2)\] \marks[-30pt]{4}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT__Standard_Summations, Q3]
+
+Using standard summation results, find the exact value of
+\[\sum_{r=11}^{40} r(r-3)(r+3)\] \marks[-30pt]{4}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT__Standard_Summations, Q4]
+
+The positive integer $k$ is such that
+\[\sum_{r=1}^{k} \left(6r^2 - k^2\right) = 205\] \\
+Find the value of $k$, showing clearly that there is only one possible value. \marks{4} \\
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT__Standard_Summations, Q5]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Prove that, for all positive integers $n$,
+  \[\sum_{r=1}^{n} (2r-1)^3 = n^2\left(2n^2-1\right)\] \marks[-30pt]{5}
+  \item Jo evaluated
+  \[\dfrac{1}{n^2}\sum_{r=1}^{n} (2r-1)^3\]
+  for $n = 2$, $n = 3$ and $n = 4$, and obtained a prime number each time. Jo then made the statement: \\
+
+  ``For all integers $n \geq 2$,
+  \[\dfrac{1}{n^2}\sum_{r=1}^{n} (2r-1)^3\]
+  is a prime number.'' \\
+
+  Disprove Jo's statement. \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+% [Source: _QBT__Standard_Summations, Q6]
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[scale=1.2]
+\def\L{3.6}
+\def\H{1.2}
+\def\dx{0.9}
+\def\dy{0.65}
+\def\off{0.4}
+\coordinate (A) at (0,0);
+\coordinate (B) at (\L,0);
+\coordinate (C) at (\L,\H);
+\coordinate (D) at (0,\H);
+\foreach \p in {A,B,C,D} { \coordinate (\p2) at ($(\p)+(\dx,\dy)$); }
+\draw[thick] (A) -- (B) -- (C) -- (D) -- cycle;
+\draw[thick] (A2) -- (B2) -- (C2) -- (D2) -- cycle;
+\foreach \p in {A,B,C,D} { \draw[thick] (\p) -- (\p2); }
+\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] ($(A)+(0,-\off)$) -- ($(B)+(0,-\off)$) node[midway, fill=white, inner sep=2pt] {$(r+3)$};
+\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] ($(B)+(0.35,-0.15)$) -- ($(B2)+(0.35,-0.15)$) node[midway, below right] {$(r+1)$};
+\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick] ($(B2)+(0.35,0)$) -- ($(C2)+(0.35,0)$) node[midway, right] {$r$};
+\end{tikzpicture}
+\end{figure}
+
+
+A block in the shape of a cuboid has length $(r+3)\,\mathrm{cm}$, width $(r+1)\,\mathrm{cm}$ and height $r\,\mathrm{cm}$, as shown in the diagram above. \\
+
+A set consists of $n$ such blocks. The first block has a height of $1\,\mathrm{cm}$, the second block has a height of $2\,\mathrm{cm}$, the third block has a height of $3\,\mathrm{cm}$, and so on, so that the $r$th block has height $r\,\mathrm{cm}$. \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use the standard results for $\sum_{r=1}^{n} r^3$, $\sum_{r=1}^{n} r^2$ and $\sum_{r=1}^{n} r$ to show that the \textbf{total} volume, $V\,\mathrm{cm}^3$, of all $n$ blocks in the set is given by
+  \[V = \dfrac{n}{12}(n+1)(n+2)(3n+13), \qquad n \geq 1\] \marks[-30pt]{5}
+  \item Find the smallest number of blocks in the set for which the total volume of the set exceeds $5000\,\mathrm{cm}^3$. \marks{2} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+% [Source: _QBT__Standard_Summations, Q7]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use the standard results for $\sum r$, $\sum r^2$ and $\sum r^3$ to show that for all positive integers $n$
+  \[\sum_{r=1}^{n} r(2r-1)^2 = \dfrac{1}{6}n(n+1)(an^2+bn+c)\]
+  where $a$, $b$ and $c$ are integers to be determined. \marks{5} \\
+  \item Hence determine the positive integer $k$ for which
+  \[\sum_{r=1}^{k} r(2r-1)^2 = 193\sum_{r=1}^{k} r\] \marks[-30pt]{4}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+% [Source: _QBT__Standard_Summations, Q8]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[\sum_{r=1}^{n} r^2(r+3)\]
+  can be expressed in the form
+  \[kn(n+1)(an^2+bn+c)\]
+  where $k$ is a rational number and $a$, $b$ and $c$ are integers. \marks{4} \\
+  \item Show that there is exactly one positive integer $n$ for which
+  \[2\sum_{r=1}^{n} r^2(r+3) = 19\sum_{r=1}^{n} r(r+1)\]
+  and state this value of $n$. \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+% [Source: _QBT__Standard_Summations, Q9]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find an expression for
+  \[\sum_{r=1}^{2m}(r-1)(r+3)\]
+  in the form $\frac{1}{3}m(am^2+bm+c)$, where $a$, $b$, $c$ are integers whose values are to be determined. \marks{4} \\
+  \item Hence show that
+  \[\sum_{r=2m+1}^{4m}(r-1)(r+3)=\dfrac{1}{3}m\left(56m^2+54m-11\right)\]
+  and use this result to find the value of
+  \[\sum_{r=21}^{40}(r-1)(r+3)\] \marks[-30pt]{5}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+% [Source: _QBT__Standard_Summations, Q10]
+
+\begin{enumerate}[label=\textbf{(\roman*)}]
+  \item Use standard series to show that
+  \[\sum_{r=1}^{n} r(r+1)(4r-k) = \dfrac{1}{3}n(n+1)(n+2)(3n+1-k)\]
+  where $k$ is a constant. \marks{5} \\
+  \item Using your result from part (i) with $k=1$, find
+  \[\sum_{r=n+1}^{2n} r(r+1)(4r-1)\]
+  giving your answer in fully factorised form. \marks{3} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+% [Source: _QBT__Standard_Summations, Q11]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use the standard results for $\sum_{r=1}^{n} r^3$, $\sum_{r=1}^{n} r^2$ and $\sum_{r=1}^{n} r$ to show that
+  \[\sum_{r=1}^{n} (2r-1)^3 = n^2\left(2n^2 - 1\right)\]
+  for all positive integers $n$. \marks{5} \\
+  \item Hence find any positive integer values of $n$ for which
+  \[\sum_{r=n+1}^{2n} (2r-1)^3 = 29n^4 - 34n^2 + \sum_{r=1}^{\infty} 240\left(\dfrac{3}{5}\right)^{r}\] \marks[-30pt]{5}
+\end{enumerate}
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+% [Source: _QBT__Standard_Summations, Q12]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use the standard results for $\sum_{r=1}^{n} r$, $\sum_{r=1}^{n} r^2$ and $\sum_{r=1}^{n} r^3$ to show that, for all positive integers $n$,
+  \[\sum_{r=1}^{n} r(r+1)(2r+1) = \dfrac{1}{2}n(n+a)^2(n+b)\]
+  where $a$ and $b$ are integers to be found. \marks{5} \\
+  \item Given that
+  \[\sum_{r=11}^{n} r(r+1)(2r+1) = 17\,940\]
+  use your answer to part (a) to find the value of the positive integer $n$, showing clear algebraic working. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 13 ----
+\questionitem
+% [Source: _QBT__Standard_Summations, Q13]
+
+In this question you may assume the results for
+\[\sum_{r=1}^{n} r^3, \quad \sum_{r=1}^{n} r^2 \quad \text{and} \quad \sum_{r=1}^{n} r\] \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that
+  \[1^3 - 2^3 + 3^3 - 4^3 + \cdots + (2n-1)^3 - (2n)^3 = -n^2(4n+3)\] \marks[-20pt]{5}
+\end{enumerate}
+Ten consecutive positive integers are written down, the smallest of which is odd. Starting with the cube of the smallest integer, the cubes of these ten integers are alternately added and subtracted, so that the cube of the largest integer is subtracted. The result is $-3725$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item Use the answer to part (a) to determine the smallest of these ten integers. \marks{4} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 14 ----
+\questionitem
+% [Source: _QBT__Standard_Summations, Q14]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Use the standard summation formulae to show that, for $n \in \mathbb{N}$,
+  \[\sum_{r=1}^{n} \left(6r^2 + 2r - 8\right) = an(n-b)(n+c)\]
+  where $a$, $b$ and $c$ are positive integers to be determined. \marks{4} \\
+  \item Explain why, for $k \in \mathbb{N}$,
+  \[\sum_{r=1}^{4k+1} r\sin\left(90r\right)^\circ = 2k+1\] \marks[-30pt]{3}
+\end{enumerate}
+Using the results from part (a) and part (b) and showing all your working, \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+  \item find the value of the integer $n$, where $n \geq 3$, that satisfies
+  \[\sum_{r=3}^{n} \left(6r^2 + 2r - 8\right) = 3\left[\sum_{r=3}^{4n+1} r\sin\left(90r\right)^\circ\right]^2\]
+  and show that there are no other such values of $n$. \marks{6} \\
+\end{enumerate}
+
+\newpage
+
+% ---- Question 15 ----
+\questionitem
+% [Source: _QBT__Standard_Summations, Q15]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Explain why, for $n \in \mathbb{N}$,
+  \[\sum_{r=1}^{2n} (-1)^r f(r) = \sum_{r=1}^{n} \left(f(2r) - f(2r-1)\right)\]
+  for any function $f(r)$. \marks{2} \\
+  \item Use the result of part (a) and the standard summation formulae to show that, for $n \in \mathbb{N}$,
+  \[\sum_{r=1}^{2n} (-1)^r r^2(r+1) = n(n+1)(4n+1)\] \marks[-30pt]{4}
+  \item Hence show that, for $n \in \mathbb{N}$,
+  \[\sum_{r=1}^{2n} r(r+1)\left((-1)^r r + 3\right) = n(n+1)(12n+5)\] \marks[-30pt]{3}
+  \item Hence evaluate
+  \[\sum_{r=11}^{41} r(r+1)\left((-1)^r r + 3\right)\] \marks[-30pt]{4}
+\end{enumerate}
+
+\end{enumerate}
+\end{document}
