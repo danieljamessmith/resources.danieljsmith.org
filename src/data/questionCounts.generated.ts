@@ -11,6 +11,7 @@ export const questionCounts: Record<string, number> = {
   '/tex/further-maths/core-pure/differential-equations/qbt/_QBT__Modelling_with_1st_Order_Differential_Equations.pdf': 14,
   '/tex/further-maths/core-pure/differential-equations/qbt/_QBT__Modelling_with_2nd_Order_Differential_Equations.pdf': 12,
   '/tex/further-maths/core-pure/differential-equations/qbt/_QBT__Systems_of_Differential_Equations.pdf': 12,
+  '/tex/further-maths/core-pure/further-calculus/qbt/_QBT__Improper_Integrals_and_Mean_Values.pdf': 16,
   '/tex/further-maths/core-pure/further-calculus/qbt/_QBT__Integration_by_Parts__FM_Level_.pdf': 15,
   '/tex/further-maths/core-pure/further-calculus/qbt/_QBT__Integration_by_Substitution__FM_Level_.pdf': 15,
   '/tex/further-maths/core-pure/further-calculus/qbt/_QBT__Integration_with_Inverse_Trig.pdf': 17,

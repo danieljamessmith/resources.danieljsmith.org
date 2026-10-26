@@ -1,0 +1,1027 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/pack_preamble.tex}
+
+\djsSolnHeader{Improper Integrals and Mean Values}
+\djsSitePath{Core Pure}{Further Calculus}
+\djsLastUpdated{26 October 2026}
+
+\begin{document}
+\djsFrontMatter
+\begin{enumerate}[
+  label=\textbf{\arabic*.},
+  leftmargin=*,
+  topsep=0pt,
+  partopsep=0pt,
+  parsep=0pt
+]
+
+% ---- Question 1 ----
+\questionitem
+% [Source: _QBT___Solns__Improper_Integrals_and_Mean_Values, Q1]
+
+The function $\mathrm{f}$ is defined by
+\[\mathrm{f}(x) = \dfrac{x}{x^2+1}, \qquad 1 \leqslant x \leqslant 3\] \\
+Find the mean value of $\mathrm{f}$ over the interval $1 \leqslant x \leqslant 3$. \\
+
+Give your answer in the form $p\ln q$, where $p$ is a rational number and $q$ is an integer. \marks{4} \\
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+The mean value of \(\mathrm{f}(x)\) over \(a\leqslant x\leqslant b\) is
+\[
+\dfrac{1}{b-a}\int_a^b \mathrm{f}(x)\,\mathrm{d}x
+\]
+
+So here the mean value is
+\[
+\frac{1}{3-1}\int_1^3 \frac{x}{x^2+1}\,\mathrm{d}x
+\]
+
+The numerator is a multiple of the derivative of the denominator, since \(\frac{\mathrm{d}}{\mathrm{d}x}\left(x^2+1\right)=2x\). Also \(x^2+1>0\) for all \(x\), so the logarithm needs no modulus signs. Hence
+\begin{align*}
+\int_1^3 \frac{x}{x^2+1}\,\mathrm{d}x &= \frac12\int_1^3 \frac{2x}{x^2+1}\,\mathrm{d}x\\
+&= \left[\dfrac12\ln\left(x^2+1\right)\right]_1^3\\
+&= \dfrac12\ln 10-\dfrac12\ln 2\\
+&= \dfrac12\ln 5
+\end{align*}
+
+Therefore the mean value is
+\[
+\frac12\times\frac12\ln 5=\frac14\ln 5
+\]
+
+This is in the form \(p\ln q\) with \(p=\frac14\) and \(q=5\).
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 2 ----
+\questionitem
+% [Source: _QBT___Solns__Improper_Integrals_and_Mean_Values, Q2]
+
+Show that
+\[\int_{2}^{\infty} \dfrac{x}{(x^{2}+5)^{\frac{3}{2}}}\,\mathrm{d}x = \dfrac{1}{3}\]
+You must show the limiting process clearly. \marks{5} \\
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+Replace the infinite upper limit by \(t\) and take the limit:
+\[
+\int_{2}^{\infty} \dfrac{x}{(x^{2}+5)^{\frac{3}{2}}}\,\mathrm{d}x=\lim_{t\to\infty}\int_{2}^{t} x\left(x^{2}+5\right)^{-\frac{3}{2}}\,\mathrm{d}x
+\]
+
+The integrand is a multiple of \(f'(x)\left(f(x)\right)^{-\frac{3}{2}}\) with \(f(x)=x^2+5\), so use the reverse chain rule. Differentiating gives
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(x^{2}+5\right)^{-\frac{1}{2}}=-\dfrac{1}{2}\times 2x\left(x^{2}+5\right)^{-\frac{3}{2}}=-x\left(x^{2}+5\right)^{-\frac{3}{2}}
+\]
+
+so
+\[
+\int x\left(x^{2}+5\right)^{-\frac{3}{2}}\,\mathrm{d}x=-\left(x^{2}+5\right)^{-\frac{1}{2}}+c=-\dfrac{1}{\sqrt{x^{2}+5}}+c
+\]
+
+For \(t>2\):
+\begin{align*}
+\int_{2}^{t} \dfrac{x}{(x^{2}+5)^{\frac{3}{2}}}\,\mathrm{d}x&=\left[-\dfrac{1}{\sqrt{x^{2}+5}}\right]_{2}^{t}\\
+&=-\dfrac{1}{\sqrt{t^{2}+5}}+\dfrac{1}{\sqrt{4+5}}\\
+&=\dfrac{1}{3}-\dfrac{1}{\sqrt{t^{2}+5}}
+\end{align*}
+
+As \(t\to\infty\), \(\sqrt{t^{2}+5}\to\infty\), so \(\frac{1}{\sqrt{t^{2}+5}}\to 0\). Therefore the limit exists and
+\[
+\int_{2}^{\infty} \dfrac{x}{(x^{2}+5)^{\frac{3}{2}}}\,\mathrm{d}x=\lim_{t\to\infty}\left(\dfrac{1}{3}-\dfrac{1}{\sqrt{t^{2}+5}}\right)=\dfrac{1}{3}-0=\dfrac{1}{3}
+\]
+
+as required.
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 3 ----
+\questionitem
+% [Source: _QBT___Solns__Improper_Integrals_and_Mean_Values, Q3]
+
+By first expressing
+\[\dfrac{4}{x(x+1)(x+2)}\]
+in partial fractions, show that the improper integral
+\[\int_1^{\infty} \dfrac{4}{x(x+1)(x+2)}\,\mathrm{d}x\]
+converges, and find its exact value in the form $\ln k$, where $k$ is a rational number to be determined. \marks{8} \\
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+Write the integrand in partial fractions:
+\[
+\dfrac{4}{x(x+1)(x+2)}=\dfrac{A}{x}+\dfrac{B}{x+1}+\dfrac{C}{x+2}
+\]
+
+Multiplying through by \(x(x+1)(x+2)\) gives
+\[
+4=A(x+1)(x+2)+Bx(x+2)+Cx(x+1)
+\]
+
+Substituting values of \(x\):
+\begin{align*}
+x=0:&\quad 4=2A\quad\Longrightarrow\quad A=2\\
+x=-1:&\quad 4=-B\quad\Longrightarrow\quad B=-4\\
+x=-2:&\quad 4=2C\quad\Longrightarrow\quad C=2
+\end{align*}
+
+So
+\[
+\dfrac{4}{x(x+1)(x+2)}=\dfrac{2}{x}-\dfrac{4}{x+1}+\dfrac{2}{x+2}
+\]
+
+The integral has an infinite upper limit, so replace it with \(t\) and consider the limit as \(t\to\infty\). For \(x\geqslant 1\), the expressions \(x\), \(x+1\) and \(x+2\) are all positive, so no modulus signs are needed in the logarithms. For \(t>1\):
+\begin{align*}
+\int_1^{t}\dfrac{4}{x(x+1)(x+2)}\,\mathrm{d}x
+&=\int_1^{t}\left(\dfrac{2}{x}-\dfrac{4}{x+1}+\dfrac{2}{x+2}\right)\mathrm{d}x\\
+&=\Big[2\ln x-4\ln(x+1)+2\ln(x+2)\Big]_1^{t}\\
+&=\left[2\ln\left(\dfrac{x(x+2)}{(x+1)^2}\right)\right]_1^{t}\\
+&=2\ln\left(\dfrac{t(t+2)}{(t+1)^2}\right)-2\ln\left(\dfrac{1\times3}{2^2}\right)\\
+&=2\ln\left(\dfrac{t^2+2t}{t^2+2t+1}\right)-2\ln\left(\dfrac{3}{4}\right)
+\end{align*}
+
+Dividing the numerator and denominator by \(t^2\):
+\[
+\dfrac{t^2+2t}{t^2+2t+1}=\dfrac{1+\frac{2}{t}}{1+\frac{2}{t}+\frac{1}{t^2}}\to\dfrac{1+0}{1+0+0}=1\quad\text{as } t\to\infty
+\]
+
+Hence
+\[
+2\ln\left(\dfrac{t^2+2t}{t^2+2t+1}\right)\to 2\ln 1=0\quad\text{as } t\to\infty
+\]
+
+The limit exists and is finite, so the improper integral converges. Its value is
+\begin{align*}
+\int_1^{\infty}\dfrac{4}{x(x+1)(x+2)}\,\mathrm{d}x
+&=\lim_{t\to\infty}\left[2\ln\left(\dfrac{t^2+2t}{t^2+2t+1}\right)-2\ln\left(\dfrac{3}{4}\right)\right]\\
+&=0-2\ln\left(\dfrac{3}{4}\right)\\
+&=2\ln\left(\dfrac{4}{3}\right)\\
+&=\ln\left(\dfrac{16}{9}\right)
+\end{align*}
+
+This is in the form \(\ln k\) with \(k=\frac{16}{9}\).
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 4 ----
+\questionitem
+% [Source: _QBT___Solns__Improper_Integrals_and_Mean_Values, Q4]
+
+Let
+\[y = \dfrac{1}{1 - \sin x}\]
+By first writing $y$ in terms of $\sec x$ and $\tan x$, find the exact mean value of $y$ with respect to $x$ over the interval $0 \leqslant x \leqslant \frac{1}{6}\pi$. \marks{6} \\
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+Multiply the numerator and denominator by \(1+\sin x\):
+\begin{align*}
+y&=\dfrac{1+\sin x}{(1-\sin x)(1+\sin x)}\\
+&=\dfrac{1+\sin x}{1-\sin^2 x}\\
+&=\dfrac{1+\sin x}{\cos^2 x}\\
+&=\dfrac{1}{\cos^2 x}+\dfrac{1}{\cos x}\times\dfrac{\sin x}{\cos x}\\
+&=\sec^2 x+\sec x\tan x
+\end{align*}
+
+The mean value of \(y\) over \(a\leqslant x\leqslant b\) is
+\[
+\dfrac{1}{b-a}\int_a^b y\,\mathrm{d}x
+\]
+
+Using \(\frac{\mathrm{d}}{\mathrm{d}x}(\tan x)=\sec^2 x\) and \(\frac{\mathrm{d}}{\mathrm{d}x}(\sec x)=\sec x\tan x\):
+\begin{align*}
+\int_0^{\frac{\pi}{6}}\left(\sec^2 x+\sec x\tan x\right)\mathrm{d}x&=\left[\tan x+\sec x\right]_0^{\frac{\pi}{6}}\\
+&=\left(\dfrac{1}{\sqrt{3}}+\dfrac{2}{\sqrt{3}}\right)-(0+1)\\
+&=\dfrac{3}{\sqrt{3}}-1\\
+&=\sqrt{3}-1
+\end{align*}
+
+The interval has length \(\frac{\pi}{6}\), so the mean value is
+\[
+\dfrac{1}{\frac{\pi}{6}}\left(\sqrt{3}-1\right)=\dfrac{6\left(\sqrt{3}-1\right)}{\pi}
+\]
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 5 ----
+\questionitem
+% [Source: _QBT___Solns__Improper_Integrals_and_Mean_Values, Q5]
+
+The power drawn, $p$ watts, by an electric motor at time $t$ hours after it is switched on can be modelled by the equation
+\[p = 40\tanh^2\left(\tfrac{1}{2}t\right), \qquad t \geqslant 0\] \\
+Using an appropriate hyperbolic identity, find, according to the model, the \textbf{mean} power drawn by the motor over the first $2$ hours after it is switched on. Give your answer as an exact value in the form $\frac{a}{e^2+b}$, where $a$ and $b$ are integers. \marks{6} \\
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+The mean value of \(p\) over \(t_1\leqslant t\leqslant t_2\) is
+\[
+\dfrac{1}{t_2-t_1}\int_{t_1}^{t_2} p\,\mathrm{d}t
+\]
+
+So the mean value of \(p\) over \(0\leqslant t\leqslant 2\) is
+\[
+\frac{1}{2-0}\int_0^2 40\tanh^2\left(\tfrac{1}{2}t\right)\mathrm{d}t
+\]
+
+Dividing the identity \(\cosh^2 x-\sinh^2 x=1\) by \(\cosh^2 x\) gives
+\[
+1-\tanh^2 x=\operatorname{sech}^2 x\quad\Longrightarrow\quad \tanh^2 x=1-\operatorname{sech}^2 x
+\]
+
+So, with \(x=\frac{1}{2}t\), the mean value is
+\[
+20\int_0^2 \left(1-\operatorname{sech}^2\left(\tfrac{1}{2}t\right)\right)\mathrm{d}t
+\]
+
+Since \(\frac{\mathrm{d}}{\mathrm{d}t}\tanh\left(\frac{1}{2}t\right)=\frac{1}{2}\operatorname{sech}^2\left(\frac{1}{2}t\right)\), we have \(\int\operatorname{sech}^2\left(\frac{1}{2}t\right)\mathrm{d}t=2\tanh\left(\frac{1}{2}t\right)+c\). Hence the mean value is
+\begin{align*}
+20\left[t-2\tanh\left(\tfrac{1}{2}t\right)\right]_0^2&=20\left(2-2\tanh 1\right)-20(0-0)\\
+&=40\left(1-\tanh 1\right)
+\end{align*}
+
+Now write \(\tanh 1\) in exponential form:
+\[
+\tanh 1=\frac{e-e^{-1}}{e+e^{-1}}=\frac{e^2-1}{e^2+1}
+\]
+
+so
+\[
+1-\tanh 1=\frac{(e^2+1)-(e^2-1)}{e^2+1}=\frac{2}{e^2+1}
+\]
+
+Therefore the mean value is
+\[
+40\times\frac{2}{e^2+1}=\frac{80}{e^2+1}
+\]
+
+The mean power drawn over the first \(2\) hours is \(\frac{80}{e^2+1}\,\mathrm{W}\), which is in the form \(\frac{a}{e^2+b}\) with \(a=80\), \(b=1\).
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 6 ----
+\questionitem
+% [Source: _QBT___Solns__Improper_Integrals_and_Mean_Values, Q6]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Explain why
+  \[\int_{e}^{\infty} \dfrac{\ln x}{x^{3}}\,\mathrm{d}x\]
+  is an improper integral. \marks{1} \\
+  \item Use integration by parts to find
+  \[\int \dfrac{\ln x}{x^{3}}\,\mathrm{d}x\] \marks[-30pt]{3}
+  \item Hence show that
+  \[\int_{e}^{\infty} \dfrac{\ln x}{x^{3}}\,\mathrm{d}x\]
+  converges, and find its exact value. You should show the limiting process used, and state clearly the behaviour of any limit you rely on. \marks{4} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item The upper limit of integration is infinite, so the interval of integration is unbounded and the integral is improper.
+
+  \item Integration by parts states
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
+\]
+
+Take \(u=\ln x\), \(\frac{\mathrm{d}v}{\mathrm{d}x}=x^{-3}\), so \(\frac{\mathrm{d}u}{\mathrm{d}x}=\frac{1}{x}\), \(v=-\frac{1}{2x^2}\). Then
+\begin{align*}
+\int \dfrac{\ln x}{x^{3}}\,\mathrm{d}x &= -\dfrac{\ln x}{2x^2} - \int \left(-\dfrac{1}{2x^2}\right)\dfrac{1}{x}\,\mathrm{d}x\\
+&= -\dfrac{\ln x}{2x^2} + \dfrac12\int x^{-3}\,\mathrm{d}x\\
+&= -\dfrac{\ln x}{2x^2} + \dfrac12\left(-\dfrac{1}{2x^2}\right) + c\\
+&= -\dfrac{\ln x}{2x^2} - \dfrac{1}{4x^2} + c
+\end{align*}
+
+  \item Replace the infinite upper limit by \(t\), where \(t>e\), and let \(t\to\infty\):
+\[
+\int_{e}^{\infty} \dfrac{\ln x}{x^{3}}\,\mathrm{d}x = \lim_{t\to\infty}\int_{e}^{t} \dfrac{\ln x}{x^{3}}\,\mathrm{d}x
+\]
+
+Using part (b), and \(\ln e = 1\):
+\begin{align*}
+\int_{e}^{t} \dfrac{\ln x}{x^{3}}\,\mathrm{d}x &= \left[-\dfrac{\ln x}{2x^2} - \dfrac{1}{4x^2}\right]_{e}^{t}\\
+&= \left(-\dfrac{\ln t}{2t^2} - \dfrac{1}{4t^2}\right) - \left(-\dfrac{1}{2e^2} - \dfrac{1}{4e^2}\right)\\
+&= \dfrac{3}{4e^2} - \dfrac{\ln t}{2t^2} - \dfrac{1}{4t^2}
+\end{align*}
+
+As \(t\to\infty\), \(\frac{\ln t}{t^2}\to 0\), since a positive power of \(t\) grows faster than \(\ln t\). Also \(\frac{1}{t^2}\to 0\). Therefore
+\[
+\lim_{t\to\infty}\int_{e}^{t} \dfrac{\ln x}{x^{3}}\,\mathrm{d}x = \dfrac{3}{4e^2} - 0 - 0 = \dfrac{3}{4e^2}
+\]
+
+The limit exists and is finite, so the integral converges, with
+\[
+\int_{e}^{\infty} \dfrac{\ln x}{x^{3}}\,\mathrm{d}x = \dfrac{3}{4e^2}
+\]
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 7 ----
+\questionitem
+% [Source: _QBT___Solns__Improper_Integrals_and_Mean_Values, Q7]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Express $9x^2 - 18x + 25$ in the form $a(x+p)^2 + q$, where $a$, $p$ and $q$ are integers. \marks{2} \\
+  \item Hence use a standard integral from the formula book to find
+  \[\int \dfrac{1}{\sqrt{9x^2 - 18x + 25}}\,\mathrm{d}x\] \marks[-30pt]{2}
+  \item Determine the exact mean value of the function
+  \[\mathrm{g}(x) = \dfrac{1}{\sqrt{9x^2 - 18x + 25}}, \qquad 0 \leqslant x \leqslant 2\]
+  giving your answer in the form $A \ln B$, where $A$ and $B$ are rational constants with $B$ an integer. \marks{3} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item Take out the factor of \(9\) from the \(x\) terms and complete the square:
+\begin{align*}
+9x^2-18x+25&=9\left(x^2-2x\right)+25\\
+&=9\left[(x-1)^2-1\right]+25\\
+&=9(x-1)^2+16
+\end{align*}
+
+This is in the form \(a(x+p)^2+q\) with \(a=9\), \(p=-1\), \(q=16\).
+
+  \item Using part (a), factor out the \(9\) inside the square root:
+\begin{align*}
+\int \dfrac{1}{\sqrt{9x^2-18x+25}}\,\mathrm{d}x&=\int \dfrac{1}{\sqrt{9(x-1)^2+16}}\,\mathrm{d}x\\
+&=\dfrac{1}{3}\int \dfrac{1}{\sqrt{(x-1)^2+\left(\frac{4}{3}\right)^2}}\,\mathrm{d}x
+\end{align*}
+
+The standard result from the formula book, with its constant written as \(k\) since \(a\) is already in use, is
+\[
+\int \dfrac{1}{\sqrt{x^2+k^2}}\,\mathrm{d}x=\operatorname{arsinh}\left(\dfrac{x}{k}\right)+c
+\]
+
+Applying this with \(k=\frac{4}{3}\), and with \(x\) replaced by \(x-1\):
+\begin{align*}
+\int \dfrac{1}{\sqrt{9x^2-18x+25}}\,\mathrm{d}x&=\dfrac{1}{3}\operatorname{arsinh}\left(\dfrac{x-1}{\frac{4}{3}}\right)+c\\
+&=\dfrac{1}{3}\operatorname{arsinh}\left(\dfrac{3(x-1)}{4}\right)+c
+\end{align*}
+
+  \item The mean value of \(\mathrm{g}(x)\) over \(x_1\leqslant x\leqslant x_2\) is
+\[
+\dfrac{1}{x_2-x_1}\int_{x_1}^{x_2} \mathrm{g}(x)\,\mathrm{d}x
+\]
+
+So the mean value of \(\mathrm{g}\) over \(0\leqslant x\leqslant 2\) is
+\begin{align*}
+\dfrac{1}{2-0}\int_0^2 \mathrm{g}(x)\,\mathrm{d}x&=\dfrac{1}{2}\times\dfrac{1}{3}\left[\operatorname{arsinh}\left(\dfrac{3(x-1)}{4}\right)\right]_0^2\\
+&=\dfrac{1}{6}\left(\operatorname{arsinh}\left(\dfrac{3}{4}\right)-\operatorname{arsinh}\left(-\dfrac{3}{4}\right)\right)
+\end{align*}
+
+The formula book gives
+\[
+\operatorname{arsinh} t=\ln\left(t+\sqrt{t^2+1}\right)
+\]
+
+Since \(\sqrt{\frac{9}{16}+1}=\frac{5}{4}\):
+\begin{align*}
+\operatorname{arsinh}\left(\dfrac{3}{4}\right)&=\ln\left(\dfrac{3}{4}+\dfrac{5}{4}\right)=\ln 2\\
+\operatorname{arsinh}\left(-\dfrac{3}{4}\right)&=\ln\left(-\dfrac{3}{4}+\dfrac{5}{4}\right)=\ln\dfrac{1}{2}=-\ln 2
+\end{align*}
+
+Therefore the mean value is
+\[
+\dfrac{1}{6}\left(\ln 2-(-\ln 2)\right)=\dfrac{1}{6}\times 2\ln 2=\dfrac{1}{3}\ln 2
+\]
+
+This is in the form \(A\ln B\) with \(A=\frac{1}{3}\), \(B=2\).
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 8 ----
+\questionitem
+% [Source: _QBT___Solns__Improper_Integrals_and_Mean_Values, Q8]
+
+Let $y = \ln(1 + x)$. \\
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that the mean value of $y$ with respect to $x$ over the interval $0 \leqslant x \leqslant e - 1$ is
+  \[\dfrac{1}{e - 1}\] \marks[-30pt]{4}
+  \item Find, in exact form, the mean value of $x$ with respect to $y$ over the interval $0 \leqslant y \leqslant 1$. \marks{3} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item The mean value of \(f(x)\) over \(a\leqslant x\leqslant b\) is
+\[
+\dfrac{1}{b-a}\int_a^b f(x)\,\mathrm{d}x
+\]
+
+So the integral \(\int_0^{e-1}\ln(1+x)\,\mathrm{d}x\) is needed. Integration by parts states
+\[
+\displaystyle\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
+\]
+
+Take \(u=\ln(1+x)\), \(\frac{\mathrm{d}v}{\mathrm{d}x}=1\), so \(\frac{\mathrm{d}u}{\mathrm{d}x}=\frac{1}{1+x}\), \(v=x\). Note that \(1+x>0\) on the interval. Then
+\begin{align*}
+\int \ln(1+x)\,\mathrm{d}x &= x\ln(1+x)-\int\frac{x}{1+x}\,\mathrm{d}x\\
+&= x\ln(1+x)-\int\left(1-\frac{1}{1+x}\right)\mathrm{d}x\\
+&= x\ln(1+x)-x+\ln(1+x)+c
+\end{align*}
+
+Evaluating between the limits, using \(\ln e=1\) and \(\ln 1=0\):
+\begin{align*}
+\int_0^{e-1}\ln(1+x)\,\mathrm{d}x &= \Big[(1+x)\ln(1+x)-x\Big]_0^{e-1}\\
+&= \big(e\ln e-(e-1)\big)-\big(1\times\ln 1-0\big)\\
+&= e-e+1\\
+&= 1
+\end{align*}
+
+Hence the mean value is
+\[
+\frac{1}{(e-1)-0}\times 1=\frac{1}{e-1}
+\]
+
+as required.
+
+  \item Rearranging \(y=\ln(1+x)\):
+\[
+1+x=e^{y}\quad\Longrightarrow\quad x=e^{y}-1
+\]
+
+The mean value of \(x\) with respect to \(y\) over \(0\leqslant y\leqslant 1\) is
+\begin{align*}
+\frac{1}{1-0}\int_0^1\left(e^{y}-1\right)\mathrm{d}y &= \Big[e^{y}-y\Big]_0^1\\
+&= (e-1)-(1-0)\\
+&= e-2
+\end{align*}
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 9 ----
+\questionitem
+% [Source: _QBT___Solns__Improper_Integrals_and_Mean_Values, Q9]
+
+In an electrical circuit, the current $I$ amps at time $t$ seconds is modelled by
+\[ I = a\sin nt + b\sin 2nt \]
+where $a$, $b$ and $n$ are positive constants. The RMS value of the current, in amps, is defined to be the square root of the mean value of $I^2$ over the interval $0 \leqslant t \leqslant \frac{2\pi}{n}$. \\
+
+Show that the RMS value of the current is
+\[\sqrt{\dfrac{a^2+b^2}{2}}\]
+amps. \marks{7} \\
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+The mean value of \(f(t)\) over \(p\leqslant t\leqslant q\) is
+\[
+\dfrac{1}{q-p}\int_p^q f(t)\,\mathrm{d}t
+\]
+
+So the mean value of \(I^2\) over \(0 \leqslant t \leqslant \frac{2\pi}{n}\) is
+\[
+\frac{n}{2\pi}\int_0^{2\pi/n} I^2\,\mathrm{d}t
+\]
+
+Expanding \(I^2\):
+\[
+I^2 = a^2\sin^2 nt + 2ab\sin nt\sin 2nt + b^2\sin^2 2nt
+\]
+
+Using the double angle formula \(\cos 2x = 1-2\sin^2 x\), we have \(\sin^2 x = \frac{1}{2}(1-\cos 2x)\). Hence
+\begin{align*}
+\int_0^{2\pi/n} \sin^2 nt\,\mathrm{d}t &= \int_0^{2\pi/n} \frac{1}{2}\left(1-\cos 2nt\right)\mathrm{d}t\\
+&= \left[\frac{t}{2} - \frac{\sin 2nt}{4n}\right]_0^{2\pi/n}\\
+&= \left(\frac{\pi}{n} - \frac{\sin 4\pi}{4n}\right) - 0\\
+&= \frac{\pi}{n}
+\end{align*}
+
+Similarly
+\begin{align*}
+\int_0^{2\pi/n} \sin^2 2nt\,\mathrm{d}t &= \int_0^{2\pi/n} \frac{1}{2}\left(1-\cos 4nt\right)\mathrm{d}t\\
+&= \left[\frac{t}{2} - \frac{\sin 4nt}{8n}\right]_0^{2\pi/n}\\
+&= \left(\frac{\pi}{n} - \frac{\sin 8\pi}{8n}\right) - 0\\
+&= \frac{\pi}{n}
+\end{align*}
+
+For the cross term, use the double angle formula \(\sin 2nt = 2\sin nt\cos nt\):
+\begin{align*}
+\int_0^{2\pi/n} \sin nt\sin 2nt\,\mathrm{d}t &= \int_0^{2\pi/n} 2\sin^2 nt\cos nt\,\mathrm{d}t\\
+&= \left[\frac{2\sin^3 nt}{3n}\right]_0^{2\pi/n}\\
+&= \frac{2\sin^3 2\pi}{3n} - 0\\
+&= 0
+\end{align*}
+
+Combining these results:
+\begin{align*}
+\int_0^{2\pi/n} I^2\,\mathrm{d}t &= a^2\times\frac{\pi}{n} + 2ab\times 0 + b^2\times\frac{\pi}{n}\\
+&= \frac{\left(a^2+b^2\right)\pi}{n}
+\end{align*}
+
+So the mean value of \(I^2\) is
+\[
+\frac{n}{2\pi}\times\frac{\left(a^2+b^2\right)\pi}{n} = \frac{a^2+b^2}{2}
+\]
+
+Taking the square root, the RMS value of the current is
+\[
+\sqrt{\dfrac{a^2+b^2}{2}}
+\]
+
+amps, as required.
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 10 ----
+\questionitem
+% [Source: _QBT___Solns__Improper_Integrals_and_Mean_Values, Q10]
+
+Prove that
+\[\int_{1}^{\infty} \dfrac{x+3}{x^{2}(x+1)}\,\mathrm{d}x = 3 - \ln 4\]
+Show the limiting process clearly. \marks{8} \\
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+The integral is improper, so it is defined as
+\[
+\int_{1}^{\infty} \dfrac{x+3}{x^{2}(x+1)}\,\mathrm{d}x=\lim_{t\to\infty}\int_{1}^{t} \dfrac{x+3}{x^{2}(x+1)}\,\mathrm{d}x
+\]
+
+First write the integrand in partial fractions:
+\[
+\dfrac{x+3}{x^{2}(x+1)}=\dfrac{A}{x}+\dfrac{B}{x^2}+\dfrac{C}{x+1}\quad\Longrightarrow\quad x+3=Ax(x+1)+B(x+1)+Cx^2
+\]
+
+Setting \(x=0\) gives \(B=3\). Setting \(x=-1\) gives \(2=C\). Equating coefficients of \(x^2\) gives \(A+C=0\), so \(A=-2\). Hence
+\[
+\dfrac{x+3}{x^{2}(x+1)}=-\dfrac{2}{x}+\dfrac{3}{x^2}+\dfrac{2}{x+1}
+\]
+
+Since \(x\geqslant 1\), both \(x\) and \(x+1\) are positive, so no modulus signs are needed in the logarithms. For \(t>1\):
+\begin{align*}
+\int_{1}^{t} \left(-\dfrac{2}{x}+\dfrac{3}{x^2}+\dfrac{2}{x+1}\right)\mathrm{d}x
+&=\left[-2\ln x-\dfrac{3}{x}+2\ln(x+1)\right]_{1}^{t}\\
+&=\left[2\ln\left(\dfrac{x+1}{x}\right)-\dfrac{3}{x}\right]_{1}^{t}\\
+&=\left(2\ln\left(1+\dfrac{1}{t}\right)-\dfrac{3}{t}\right)-\left(2\ln 2-3\right)
+\end{align*}
+
+The logarithms are combined before taking the limit, since \(\ln t\) and \(\ln(t+1)\) separately both tend to infinity.
+
+As \(t\to\infty\), \(\frac{1}{t}\to 0\), so \(1+\frac{1}{t}\to 1\) and \(\ln\left(1+\frac{1}{t}\right)\to\ln 1=0\). Also \(\frac{3}{t}\to 0\). Therefore
+\begin{align*}
+\int_{1}^{\infty} \dfrac{x+3}{x^{2}(x+1)}\,\mathrm{d}x
+&=\lim_{t\to\infty}\left(2\ln\left(1+\dfrac{1}{t}\right)-\dfrac{3}{t}-2\ln 2+3\right)\\
+&=0-0-2\ln 2+3\\
+&=3-\ln 4
+\end{align*}
+
+as required.
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 11 ----
+\questionitem
+% [Source: _QBT___Solns__Improper_Integrals_and_Mean_Values, Q11]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Explain why
+  \[\int_{0}^{\infty} \dfrac{10}{(x+2)(3x+1)}\,\mathrm{d}x\]
+  is an improper integral. \marks{1} \\
+  \item Show that
+  \[\int_{0}^{\infty} \dfrac{10}{(x+2)(3x+1)}\,\mathrm{d}x = a\ln b\]
+  where $a$ is an integer and $b$ is a rational number, both to be determined. You must show clearly how you deal with the infinite limit. \marks{6} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item The upper limit of integration is infinite, so the interval of integration is unbounded and the integral is improper.
+  \item First express the integrand in partial fractions:
+\[
+\dfrac{10}{(x+2)(3x+1)}=\dfrac{A}{x+2}+\dfrac{B}{3x+1}
+\]
+
+so
+\[
+10=A(3x+1)+B(x+2)
+\]
+
+Setting \(x=-2\) gives \(10=-5A\), so \(A=-2\). Setting \(x=-\frac{1}{3}\) gives \(10=\frac{5}{3}B\), so \(B=6\).
+
+For \(x\geqslant 0\), both \(x+2\) and \(3x+1\) are positive, so
+\begin{align*}
+\int \dfrac{10}{(x+2)(3x+1)}\,\mathrm{d}x &= \int\left(-\dfrac{2}{x+2}+\dfrac{6}{3x+1}\right)\mathrm{d}x\\
+&=-2\ln(x+2)+2\ln(3x+1)+c\\
+&=2\ln\left(\dfrac{3x+1}{x+2}\right)+c
+\end{align*}
+
+Replace the infinite limit by \(t\), where \(t>0\):
+\begin{align*}
+\int_0^t \dfrac{10}{(x+2)(3x+1)}\,\mathrm{d}x &= \left[2\ln\left(\dfrac{3x+1}{x+2}\right)\right]_0^t\\
+&=2\ln\left(\dfrac{3t+1}{t+2}\right)-2\ln\left(\dfrac{1}{2}\right)\\
+&=2\ln\left(\dfrac{3t+1}{t+2}\right)+2\ln 2
+\end{align*}
+
+Dividing the numerator and denominator by \(t\):
+\[
+\dfrac{3t+1}{t+2}=\dfrac{3+\frac{1}{t}}{1+\frac{2}{t}}\to\dfrac{3+0}{1+0}=3\quad\text{as } t\to\infty
+\]
+
+so \(2\ln\left(\frac{3t+1}{t+2}\right)\to 2\ln 3\). Therefore
+\begin{align*}
+\int_0^\infty \dfrac{10}{(x+2)(3x+1)}\,\mathrm{d}x &= \lim_{t\to\infty}\left(2\ln\left(\dfrac{3t+1}{t+2}\right)+2\ln 2\right)\\
+&=2\ln 3+2\ln 2\\
+&=2\ln 6
+\end{align*}
+
+This is in the form \(a\ln b\) with \(a=2\), \(b=6\).
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 12 ----
+\questionitem
+% [Source: _QBT___Solns__Improper_Integrals_and_Mean_Values, Q12]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Explain why
+  \[\int_0^3 \dfrac{x}{\sqrt[3]{x^2-1}}\,\mathrm{d}x\]
+  is an improper integral. \marks{1} \\
+  \item Use an appropriate limit argument to show that this integral converges, and find its exact value. \marks{5} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item When \(x=1\), \(x^2-1=0\), so the denominator \(\sqrt[3]{x^2-1}\) is zero and the integrand is undefined (it is unbounded near \(x=1\)). Since \(x=1\) lies inside the interval of integration \([0,3]\), the integral is improper.
+
+  \item First find an antiderivative. Write the integrand as \(x\left(x^2-1\right)^{-\frac13}\), taking real cube roots, which exist for negative numbers too: for example \(\sqrt[3]{-1}=-1\). By the chain rule, for \(x\neq 1\):
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\sqrt[3]{x^2-1}\right)^2=\frac{\mathrm{d}}{\mathrm{d}x}\left(x^2-1\right)^{\frac23}=\dfrac23\left(x^2-1\right)^{-\frac13}\times 2x=\dfrac43\,\dfrac{x}{\sqrt[3]{x^2-1}}
+\]
+
+Hence
+\[
+\int \dfrac{x}{\sqrt[3]{x^2-1}}\,\mathrm{d}x=\dfrac34\left(\sqrt[3]{x^2-1}\right)^2+c
+\]
+
+Split the integral at the point where the integrand is undefined:
+\[
+\int_0^3 \dfrac{x}{\sqrt[3]{x^2-1}}\,\mathrm{d}x=\int_0^1 \dfrac{x}{\sqrt[3]{x^2-1}}\,\mathrm{d}x+\int_1^3 \dfrac{x}{\sqrt[3]{x^2-1}}\,\mathrm{d}x
+\]
+
+The original integral converges if and only if both of these converge.
+
+For the first integral, with \(0<t<1\):
+\begin{align*}
+\int_0^1 \dfrac{x}{\sqrt[3]{x^2-1}}\,\mathrm{d}x&=\lim_{t\to 1^-}\left[\dfrac34\left(\sqrt[3]{x^2-1}\right)^2\right]_0^t\\
+&=\lim_{t\to 1^-}\left(\dfrac34\left(\sqrt[3]{t^2-1}\right)^2-\dfrac34\left(\sqrt[3]{-1}\right)^2\right)\\
+&=0-\dfrac34\times(-1)^2\\
+&=-\dfrac34
+\end{align*}
+
+since \(t^2-1\to 0\) as \(t\to1^-\). This is finite, so the first integral converges.
+
+For the second integral, with \(1<s<3\):
+\begin{align*}
+\int_1^3 \dfrac{x}{\sqrt[3]{x^2-1}}\,\mathrm{d}x&=\lim_{s\to 1^+}\left[\dfrac34\left(\sqrt[3]{x^2-1}\right)^2\right]_s^3\\
+&=\lim_{s\to 1^+}\left(\dfrac34\left(\sqrt[3]{8}\right)^2-\dfrac34\left(\sqrt[3]{s^2-1}\right)^2\right)\\
+&=\dfrac34\times 4-0\\
+&=3
+\end{align*}
+
+This is also finite, so the second integral converges.
+
+Both limits exist and are finite, so the integral converges, and
+\[
+\int_0^3 \dfrac{x}{\sqrt[3]{x^2-1}}\,\mathrm{d}x=-\dfrac34+3=\dfrac94
+\]
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 13 ----
+\questionitem
+% [Source: _QBT___Solns__Improper_Integrals_and_Mean_Values, Q13]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Explain why
+  \[\int_0^{e} \dfrac{(\ln x)^2}{\sqrt{x}}\,\mathrm{d}x\]
+  is an improper integral. \marks{1} \\
+  \item By using integration by parts twice, show that
+  \[\int x^{-\frac{1}{2}} (\ln x)^2\,\mathrm{d}x = 2\sqrt{x}\left((\ln x)^2 - 4\ln x + 8\right) + c\] \marks[-30pt]{4}
+  \item You may assume that, for any constant $k > 0$ and any positive integer $n$, $x^k(\ln x)^n \to 0$ as $x \to 0^{+}$. \\
+
+  Show that
+  \[\int_0^{e} \dfrac{(\ln x)^2}{\sqrt{x}}\,\mathrm{d}x\]
+  exists and find its exact value. \marks{4} \\
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item The integrand is not defined at the lower limit \(x=0\). As \(x\to0^{+}\), \((\ln x)^2\to\infty\) and \(\sqrt{x}\to0\), so \(\frac{(\ln x)^2}{\sqrt{x}}\to\infty\). The integrand is unbounded on the interval of integration, so the integral is improper.
+
+  \item Integration by parts states
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x = uv-\int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
+\]
+
+First take \(u=(\ln x)^2\), \(\frac{\mathrm{d}v}{\mathrm{d}x}=x^{-\frac12}\), so \(\frac{\mathrm{d}u}{\mathrm{d}x}=\frac{2\ln x}{x}\), \(v=2x^{\frac12}\). Then
+\begin{align*}
+\int x^{-\frac12}(\ln x)^2\,\mathrm{d}x &= 2x^{\frac12}(\ln x)^2-\int 2x^{\frac12}\times\frac{2\ln x}{x}\,\mathrm{d}x\\
+&= 2\sqrt{x}(\ln x)^2-4\int x^{-\frac12}\ln x\,\mathrm{d}x
+\end{align*}
+
+For the remaining integral take \(u=\ln x\), \(\frac{\mathrm{d}v}{\mathrm{d}x}=x^{-\frac12}\), so \(\frac{\mathrm{d}u}{\mathrm{d}x}=\frac{1}{x}\), \(v=2x^{\frac12}\). Then
+\begin{align*}
+\int x^{-\frac12}\ln x\,\mathrm{d}x &= 2x^{\frac12}\ln x-\int 2x^{\frac12}\times\frac{1}{x}\,\mathrm{d}x\\
+&= 2\sqrt{x}\ln x-2\int x^{-\frac12}\,\mathrm{d}x\\
+&= 2\sqrt{x}\ln x-4\sqrt{x}
+\end{align*}
+
+Combining the two results:
+\begin{align*}
+\int x^{-\frac12}(\ln x)^2\,\mathrm{d}x &= 2\sqrt{x}(\ln x)^2-4\left(2\sqrt{x}\ln x-4\sqrt{x}\right)+c\\
+&= 2\sqrt{x}(\ln x)^2-8\sqrt{x}\ln x+16\sqrt{x}+c\\
+&= 2\sqrt{x}\left((\ln x)^2-4\ln x+8\right)+c
+\end{align*}
+
+as required.
+
+  \item Since the integrand is unbounded at \(x=0\), replace the lower limit by \(t\), where \(0<t<e\), and let \(t\to0^{+}\):
+\[
+\int_0^{e}\dfrac{(\ln x)^2}{\sqrt{x}}\,\mathrm{d}x=\lim_{t\to0^{+}}\int_t^{e}x^{-\frac12}(\ln x)^2\,\mathrm{d}x
+\]
+
+Using part (b):
+\begin{align*}
+\int_t^{e}x^{-\frac12}(\ln x)^2\,\mathrm{d}x &= \left[2\sqrt{x}\left((\ln x)^2-4\ln x+8\right)\right]_t^{e}\\
+&= 2\sqrt{e}\,(1-4+8)-2\sqrt{t}\left((\ln t)^2-4\ln t+8\right)\\
+&= 10\sqrt{e}-2t^{\frac12}(\ln t)^2+8t^{\frac12}\ln t-16t^{\frac12}
+\end{align*}
+
+As \(t\to0^{+}\), using the given result with \(k=\frac12\) and \(n=2\), \(t^{\frac12}(\ln t)^2\to0\); with \(k=\frac12\) and \(n=1\), \(t^{\frac12}\ln t\to0\); and \(16t^{\frac12}\to0\). Hence
+\[
+\lim_{t\to0^{+}}\int_t^{e}x^{-\frac12}(\ln x)^2\,\mathrm{d}x=10\sqrt{e}-0+0-0=10\sqrt{e}
+\]
+
+The limit is finite, so the integral exists, and
+\[
+\int_0^{e}\dfrac{(\ln x)^2}{\sqrt{x}}\,\mathrm{d}x=10\sqrt{e}
+\]
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 14 ----
+\questionitem
+% [Source: _QBT___Solns__Improper_Integrals_and_Mean_Values, Q14]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find
+  \[\int_1^a \dfrac{(\ln x)^2}{x^2}\,\mathrm{d}x\]
+  where $a > 1$, giving your answer in terms of $a$. \marks{6} \\
+  \item Write down the value of
+  \[\lim_{a \to \infty} \dfrac{(\ln a)^k}{a}\]
+  where $k$ is a positive constant. \marks{1} \\
+  \item Hence find
+  \[\int_1^{\infty} \dfrac{(\ln x)^2}{x^2}\,\mathrm{d}x\] \marks[-30pt]{2}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item Integration by parts states
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
+\]
+
+Take \(u=(\ln x)^2\), \(\frac{\mathrm{d}v}{\mathrm{d}x}=x^{-2}\), so \(\frac{\mathrm{d}u}{\mathrm{d}x}=\frac{2\ln x}{x}\), \(v=-\frac{1}{x}\). Then
+\begin{align*}
+\int \frac{(\ln x)^2}{x^2}\,\mathrm{d}x &= -\frac{(\ln x)^2}{x} - \int \left(-\frac{1}{x}\right)\frac{2\ln x}{x}\,\mathrm{d}x\\
+&= -\frac{(\ln x)^2}{x} + 2\int \frac{\ln x}{x^2}\,\mathrm{d}x
+\end{align*}
+
+For the remaining integral, apply integration by parts again with \(u=\ln x\), \(\frac{\mathrm{d}v}{\mathrm{d}x}=x^{-2}\), so \(\frac{\mathrm{d}u}{\mathrm{d}x}=\frac{1}{x}\), \(v=-\frac{1}{x}\):
+\begin{align*}
+\int \frac{\ln x}{x^2}\,\mathrm{d}x &= -\frac{\ln x}{x} - \int \left(-\frac{1}{x}\right)\frac{1}{x}\,\mathrm{d}x\\
+&= -\frac{\ln x}{x} + \int x^{-2}\,\mathrm{d}x\\
+&= -\frac{\ln x}{x} - \frac{1}{x} + c
+\end{align*}
+
+Combining these:
+\[
+\int \frac{(\ln x)^2}{x^2}\,\mathrm{d}x = -\frac{(\ln x)^2}{x} - \frac{2\ln x}{x} - \frac{2}{x} + c
+\]
+
+Evaluating between the limits, using \(\ln 1=0\):
+\begin{align*}
+\int_1^a \frac{(\ln x)^2}{x^2}\,\mathrm{d}x &= \left[-\frac{(\ln x)^2}{x} - \frac{2\ln x}{x} - \frac{2}{x}\right]_1^a\\
+&= \left(-\frac{(\ln a)^2}{a} - \frac{2\ln a}{a} - \frac{2}{a}\right) - (0 - 0 - 2)\\
+&= 2 - \frac{(\ln a)^2}{a} - \frac{2\ln a}{a} - \frac{2}{a}
+\end{align*}
+
+  \item Any power of \(\ln a\) grows more slowly than \(a\), so
+\[
+\lim_{a \to \infty} \frac{(\ln a)^k}{a} = 0
+\]
+
+  \item The improper integral is defined as a limit, so using part (a):
+\[
+\int_1^{\infty} \frac{(\ln x)^2}{x^2}\,\mathrm{d}x = \lim_{a\to\infty}\left(2 - \frac{(\ln a)^2}{a} - \frac{2\ln a}{a} - \frac{2}{a}\right)
+\]
+
+By part (b) with \(k=2\) and with \(k=1\), \(\frac{(\ln a)^2}{a}\to 0\) and \(\frac{\ln a}{a}\to 0\) as \(a\to\infty\); also \(\frac{2}{a}\to 0\). Therefore
+\[
+\int_1^{\infty} \frac{(\ln x)^2}{x^2}\,\mathrm{d}x = 2 - 0 - 0 - 0 = 2
+\]
+
+\end{enumerate}
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 15 ----
+\questionitem
+% [Source: _QBT___Solns__Improper_Integrals_and_Mean_Values, Q15]
+
+Show that
+\[\int_0^{\infty} \dfrac{5x-3}{(x^2+3)(x+1)}\,\mathrm{d}x = p\sqrt{3}\,\pi + \ln q\]
+where $p$ and $q$ are rational numbers to be found. \marks{8} \\
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+First express the integrand in partial fractions:
+\[
+\dfrac{5x-3}{(x^2+3)(x+1)}=\dfrac{A}{x+1}+\dfrac{Bx+C}{x^2+3}
+\]
+
+Multiplying through by \((x^2+3)(x+1)\) gives
+\[
+5x-3=A(x^2+3)+(Bx+C)(x+1)
+\]
+
+Setting \(x=-1\):
+\[
+-8=4A\quad\Longrightarrow\quad A=-2
+\]
+
+Equating coefficients of \(x^2\) and the constant terms:
+\begin{align*}
+x^2:&\quad 0=A+B\quad\Longrightarrow\quad B=2\\
+\text{constant}:&\quad -3=3A+C\quad\Longrightarrow\quad C=3
+\end{align*}
+
+So
+\[
+\dfrac{5x-3}{(x^2+3)(x+1)}=-\dfrac{2}{x+1}+\dfrac{2x}{x^2+3}+\dfrac{3}{x^2+3}
+\]
+
+For the last term, the standard result is
+\[
+\int\dfrac{1}{x^2+a^2}\,\mathrm{d}x=\dfrac{1}{a}\arctan\left(\dfrac{x}{a}\right)+c
+\]
+
+with \(a=\sqrt{3}\). Since \(x+1>0\) for \(x\geqslant 0\), the logarithm needs no modulus, so
+\begin{align*}
+\int\dfrac{5x-3}{(x^2+3)(x+1)}\,\mathrm{d}x&=-2\ln(x+1)+\ln(x^2+3)+\dfrac{3}{\sqrt{3}}\arctan\left(\dfrac{x}{\sqrt{3}}\right)+c\\
+&=\ln\left(\dfrac{x^2+3}{(x+1)^2}\right)+\sqrt{3}\arctan\left(\dfrac{x}{\sqrt{3}}\right)+c
+\end{align*}
+
+The integral is improper, so write it as a limit:
+\begin{align*}
+\int_0^{\infty}\dfrac{5x-3}{(x^2+3)(x+1)}\,\mathrm{d}x&=\lim_{t\to\infty}\left[\ln\left(\dfrac{x^2+3}{(x+1)^2}\right)+\sqrt{3}\arctan\left(\dfrac{x}{\sqrt{3}}\right)\right]_0^{t}\\
+&=\lim_{t\to\infty}\left[\ln\left(\dfrac{t^2+3}{(t+1)^2}\right)+\sqrt{3}\arctan\left(\dfrac{t}{\sqrt{3}}\right)\right]-\left(\ln 3+\sqrt{3}\arctan 0\right)
+\end{align*}
+
+Dividing the numerator and denominator by \(t^2\):
+\[
+\dfrac{t^2+3}{(t+1)^2}=\dfrac{1+\frac{3}{t^2}}{\left(1+\frac{1}{t}\right)^2}\to 1\quad\text{as } t\to\infty
+\]
+
+so \(\ln\left(\frac{t^2+3}{(t+1)^2}\right)\to\ln 1=0\). Also \(\arctan\left(\frac{t}{\sqrt{3}}\right)\to\frac{\pi}{2}\), and \(\arctan 0=0\). Therefore
+\begin{align*}
+\int_0^{\infty}\dfrac{5x-3}{(x^2+3)(x+1)}\,\mathrm{d}x&=0+\dfrac{\sqrt{3}\,\pi}{2}-\ln 3\\
+&=\dfrac{1}{2}\sqrt{3}\,\pi+\ln\dfrac{1}{3}
+\end{align*}
+
+This is in the form \(p\sqrt{3}\,\pi+\ln q\) with \(p=\frac{1}{2}\) and \(q=\frac{1}{3}\).
+\end{djsSolution}
+
+\newpage
+
+% ---- Question 16 ----
+\questionitem
+% [Source: _QBT___Solns__Improper_Integrals_and_Mean_Values, Q16]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Explain why
+  \[\int_{0}^{1} (\ln y)^2\,\mathrm{d}y\]
+  is an improper integral. \marks{1} \\
+  \item
+  \begin{enumerate}[label=(\roman*)]
+    \item Show that the substitution $y = e^{-x}$ transforms
+    \[\int_{0}^{1} (\ln y)^2\,\mathrm{d}y \quad \text{into} \quad \int_{0}^{\infty} x^2 e^{-x}\,\mathrm{d}x\]
+    explaining clearly how the limits of integration are obtained. \marks{3} \\
+    \item Evaluate
+    \[\int_{0}^{\infty} x^2 e^{-x}\,\mathrm{d}x\]
+    showing the limiting process used. \marks{6} \\
+    \item Hence write down the value of
+    \[\int_{0}^{1} (\ln y)^2\,\mathrm{d}y\] \marks[-30pt]{1}
+  \end{enumerate}
+\end{enumerate}
+
+\vspace*{10pt}
+
+\begin{djsSolution}
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+  \item As \(y \to 0^{+}\), \(\ln y \to -\infty\), so \((\ln y)^2 \to \infty\). The integrand is therefore unbounded (and undefined) at the lower limit \(y=0\), so the integral is improper.
+
+  \item
+  \begin{enumerate}[label=(\roman*), start=1]
+    \item With \(y=e^{-x}\), we have \(\ln y=-x\), so \((\ln y)^2=x^2\). Also
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x}=-e^{-x}\quad\Longrightarrow\quad \mathrm{d}y=-e^{-x}\,\mathrm{d}x
+\]
+
+For the limits: when \(y=1\), \(e^{-x}=1\), so \(x=0\). The lower limit is improper, so write it as \(y=s\) and let \(s\to 0^{+}\). Then \(x=-\ln s\), and as \(s \to 0^{+}\), \(-\ln s \to \infty\). So the lower limit \(y \to 0^{+}\) corresponds to \(x \to \infty\).
+
+Hence
+\begin{align*}
+\int_{0}^{1} (\ln y)^2\,\mathrm{d}y &= \int_{\infty}^{0} x^2\left(-e^{-x}\right)\mathrm{d}x\\
+&= \int_{0}^{\infty} x^2 e^{-x}\,\mathrm{d}x
+\end{align*}
+
+as required, where reversing the limits removes the minus sign.
+
+    \item The integral is defined as
+\[
+\int_{0}^{\infty} x^2 e^{-x}\,\mathrm{d}x=\lim_{t\to\infty}\int_{0}^{t} x^2 e^{-x}\,\mathrm{d}x
+\]
+
+First find the indefinite integral using integration by parts:
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x = uv - \int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
+\]
+
+Take \(u=x^2\), \(\frac{\mathrm{d}v}{\mathrm{d}x}=e^{-x}\), so \(\frac{\mathrm{d}u}{\mathrm{d}x}=2x\), \(v=-e^{-x}\):
+\[
+\int x^2e^{-x}\,\mathrm{d}x=-x^2e^{-x}+\int 2xe^{-x}\,\mathrm{d}x
+\]
+
+For the remaining integral take \(u=2x\), \(\frac{\mathrm{d}v}{\mathrm{d}x}=e^{-x}\), so \(\frac{\mathrm{d}u}{\mathrm{d}x}=2\), \(v=-e^{-x}\):
+\begin{align*}
+\int 2xe^{-x}\,\mathrm{d}x&=-2xe^{-x}+\int 2e^{-x}\,\mathrm{d}x\\
+&=-2xe^{-x}-2e^{-x}+c
+\end{align*}
+
+Therefore
+\[
+\int x^2e^{-x}\,\mathrm{d}x=-e^{-x}\left(x^2+2x+2\right)+c
+\]
+
+So
+\begin{align*}
+\int_{0}^{t} x^2 e^{-x}\,\mathrm{d}x&=\left[-e^{-x}\left(x^2+2x+2\right)\right]_{0}^{t}\\
+&=-e^{-t}\left(t^2+2t+2\right)-\left(-e^{0}\times 2\right)\\
+&=2-t^2e^{-t}-2te^{-t}-2e^{-t}
+\end{align*}
+
+As \(t\to\infty\), the exponential dominates any power of \(t\), so \(t^2e^{-t}\to 0\) and \(te^{-t}\to 0\); also \(e^{-t}\to 0\). Hence
+\[
+\int_{0}^{\infty} x^2 e^{-x}\,\mathrm{d}x=\lim_{t\to\infty}\left(2-t^2e^{-t}-2te^{-t}-2e^{-t}\right)=2
+\]
+
+    \item By part (b)(i) the two integrals are equal, so by part (b)(ii)
+\[
+\int_{0}^{1} (\ln y)^2\,\mathrm{d}y=2
+\]
+  \end{enumerate}
+\end{enumerate}
+\end{djsSolution}
+
+\end{enumerate}
+\end{document}
