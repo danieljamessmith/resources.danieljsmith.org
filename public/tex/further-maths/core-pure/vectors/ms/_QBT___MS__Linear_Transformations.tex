@@ -1,0 +1,281 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/markscheme_preamble.tex}
+
+\djsSchemeHeader{Linear Transformations}
+\djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}
+
+\djsLastUpdated{26 October 2026}
+\begin{document}
+\djsSetQuestionCount{11}
+\djsAddMarks{1}{6}
+\djsAddMarks{2}{10}
+\djsAddMarks{3}{9}
+\djsAddMarks{4}{10}
+\djsAddMarks{5}{9}
+\djsAddMarks{6}{8}
+\djsAddMarks{7}{2}
+\djsAddMarks{8}{5}
+\djsAddMarks{9}{11}
+\djsAddMarks{10}{4}
+\djsAddMarks{11}{12}
+\vspace*{6pt}
+\djsContentsTitle
+\vspace{30pt}
+\msContentsHeading
+\begin{mscontents}{}
+Question & Marks by part & Marks & Page \\
+\msContentsQuestion{1} & (a)\,1\msSep (b)\,1\msSep (c)\,1\msSep (d)\,1\msSep (e)\,2 & 6 & \msContentsPage{1} \\
+\msContentsQuestion{2} & (a)\,2\msSep (b)\,2\msSep (c)\,1\msSep (d)\,2\msSep (e)\,3 & 10 & \msContentsPage{2} \\
+\msContentsQuestion{3} & (i)(a)\,1\msSep (i)(b)\,1\msSep (i)(c)\,1\msSep (ii)\,6 & 9 & \msContentsPage{3} \\
+\msContentsQuestion{4} & (a)\,6\msSep (b)\,3\msSep (c)\,1 & 10 & \msContentsPage{4} \\
+\msContentsQuestion{5} & (i)\,1\msSep (ii)\,1\msSep (iii)\,2\msSep (iv)\,2\msSep (v)\,1\msSep (vi)\,2 & 9 & \msContentsPage{5} \\
+\msContentsQuestion{6} & (a)\,2\msSep (b)\,3\msSep (c)\,3 & 8 & \msContentsPage{6} \\
+\msContentsQuestion{7} & & 2 & \msContentsPage{7} \\
+\msContentsQuestion{8} & (a)\,1\msSep (b)\,2\msSep (c)\,1\msSep (d)\,1 & 5 & \msContentsPage{8} \\
+\msContentsQuestion{9} & (a)\,1\msSep (b)\,2\msSep (c)\,1\msSep (d)\,2\msSep (e)\,3\msSep (f)\,2 & 11 & \msContentsPage{9} \\
+\msContentsQuestion{10} & (a)\,3\msSep (b)\,1 & 4 & \msContentsPage{10} \\
+\msContentsQuestion{11} & (a)\,2\msSep (b)(i)\,1\msSep (b)(ii)\,2\msSep (c)\,6\msSep (d)\,1 & 12 & \msContentsPage{11} \\
+\SetCell[c=2]{r} Total & & 86 & \\
+\end{mscontents}
+\newpage
+\input{../../../../_shared/markscheme_conventions.tex}
+
+\msQuestion{1}
+\begin{msscheme}{
+  hline{3,5,7,9,11-12} = {2-Z}{0.4pt, msGrid},
+  hline{4,6,8,10,13} = {0.4pt, msGrid},
+  row{13} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+1(a) & {\(\mathbf{P} = \begin{pmatrix}1&0\\0&-1\end{pmatrix}\)} & B1 & \\
+\nopagebreak & & [1] & \\
+1(b) & {\(\mathbf{Q} = \begin{pmatrix}0&1\\1&0\end{pmatrix}\)} & B1 & \\
+\nopagebreak & & [1] & \\
+1(c) & {\(\mathbf{R} = \mathbf{Q}\mathbf{P}\)} & B1 & {B0 for \(\mathbf{P}\mathbf{Q}\).} \\
+\nopagebreak & & [1] & \\
+1(d) & {\(\mathbf{R} = \begin{pmatrix}0&-1\\1&0\end{pmatrix}\)} & B1ft & {ft their \(\mathbf{P}\) and \(\mathbf{Q}\), multiplied as \(\mathbf{Q}\mathbf{P}\).} \\
+\nopagebreak & & [1] & \\
+1(e) & {Rotation about the origin} & B1 & {Accept about \(O\) or \((0,0)\).} \\
+& {through \(90^\circ\) anticlockwise} & B1 & {Accept \(\frac{\pi}{2}\) anticlockwise or \(270^\circ\) clockwise. Direction required.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 1 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{2}
+\begin{msscheme}{
+  hline{3-4,6-7,9,11-12,14-16} = {2-Z}{0.4pt, msGrid},
+  hline{5,8,10,13,17} = {0.4pt, msGrid},
+  row{17} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+2(a) & {\(\begin{pmatrix}0&-1\\1&0\end{pmatrix}\begin{pmatrix}-2&1&1\\1&1&5\end{pmatrix} = \ldots\)} & M1 & {Applies \(\mathbf{P}\) to the vertices, by multiplying or by the rule \((x,y) \mapsto (-y,x)\). One correct image is enough.} \\
+& {\(A'(-1,-2)\), \(B'(-1,1)\), \(C'(-5,1)\)} & A1 & {All three, as coordinates or column vectors.} \\
+\nopagebreak & & [2] & \\
+2(b) & {Rotation about the origin} & B1 & {Needs rotation and the centre \(O\) or \((0,0)\).} \\
+& {through \(90^\circ\) anticlockwise} & B1 & {Accept \(\frac{\pi}{2}\) anticlockwise or \(270^\circ\) clockwise. Condone \(+90^\circ\) with no direction.} \\
+\nopagebreak & & [2] & \\
+2(c) & {\(\mathbf{QR} = \begin{pmatrix}1&4\\3&0\end{pmatrix}\)} & B1 & \\
+\nopagebreak & & [1] & \\
+2(d) & {\(\det(\mathbf{QR}) = 1\times 0 - 4\times 3\)} & M1 & {Uses \(ad - bc\) on their \(2\times2\) \(\mathbf{QR}\), or multiplies \(\det\mathbf{Q}\) by \(\det\mathbf{R}\). Condone one sign slip.} \\
+& {\(\phantom{\det(\mathbf{QR})} = -12\)} & A1 & \\
+\nopagebreak & & [2] & \\
+2(e) & {\(\text{Area of } T = \tfrac12\times 3\times 4 = 6\)} & B1 & \\
+& {\(\text{Area of } T'' = |\text{"}{-12}\text{"}| \times 6\)} & M1 & {Multiplies their area of \(T\) by the modulus of their determinant from (d). Not for an area found from the vertices of \(T''\).} \\
+& {\(\phantom{\text{Area of } T''} = 72\)} & A1ft & {ft their area of \(T\) and their determinant.} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 2 & & 10 & \\
+\end{msscheme}
+
+\msQuestion{3}
+\begin{msscheme}{
+  hline{3,5,7,9-13} = {2-Z}{0.4pt, msGrid},
+  hline{4,6,8,14} = {0.4pt, msGrid},
+  row{14} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+3(i)(a) & {\(\begin{pmatrix}0 & 1\\1 & 0\end{pmatrix}\)} & B1 & \\
+\nopagebreak & & [1] & \\
+3(i)(b) & {\(\begin{pmatrix}\frac12 & \frac{\sqrt3}{2}\\-\frac{\sqrt3}{2} & \frac12\end{pmatrix}\)} & B1 & {Exact values, or awrt 0.866 for \(\frac{\sqrt3}{2}\).} \\
+\nopagebreak & & [1] & \\
+3(i)(c) & {\(\begin{pmatrix}0 & 1\\1 & 0\end{pmatrix}\begin{pmatrix}\frac12 & \frac{\sqrt3}{2}\\-\frac{\sqrt3}{2} & \frac12\end{pmatrix} = \begin{pmatrix}-\frac{\sqrt3}{2} & \frac12\\\frac12 & \frac{\sqrt3}{2}\end{pmatrix}\)} & B1ft & {ft their (a) times their (b), in that order. Not for the product in the reverse order.} \\
+\nopagebreak & & [1] & \\
+3(ii) & {\(\det\begin{pmatrix}2 & 5\\1 & -1\end{pmatrix} = -2 - 5 = -7\)} & B1 & \\
+& {Area of \(T = \dfrac{84}{\text{"}7\text{"}} = 12\)} & M1 A1 & {\msNote{M1}{Divides 84 by the modulus of their determinant, or equates their scale factor times the area of \(T\) to 84.}} \\
+& {\(\tfrac12\left|\det\begin{pmatrix}4 & k-1\\3 & -3\end{pmatrix}\right|\)\\[4pt] \(\phantom{A} = \tfrac12\left|-12 - 3(k-1)\right|\)} & M1 & {Finds the area of \(T\) in terms of \(k\) by any method, such as half a determinant of two side vectors or the shoelace formula. Condone sign slips.} \\
+& {\(\phantom{A} = \tfrac32(k+3)\)} & A1 & {\(\frac32(k+3)\) or \(\frac32|k+3|\) oe.} \\
+& {\(\tfrac32(k+3) = 12 \Rightarrow k = 5\)} & A1 & {\(k = 5\) only; A0 if \(k = -11\) is also given.} \\
+\nopagebreak & & [6] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 3 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{4}
+\begin{msscheme}{
+  hline{3-8,10-12,14} = {2-Z}{0.4pt, msGrid},
+  hline{9,13,15} = {0.4pt, msGrid},
+  row{15} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+4(a) & {\(\begin{pmatrix}3\\1\end{pmatrix},\ \begin{pmatrix}2\\3\end{pmatrix}\)\\[4pt] \(\text{Area of } S = \left|\det\begin{pmatrix}3&2\\1&3\end{pmatrix}\right| = \ldots\)} & M1 & {Finds the area of \(S\) by any valid method, such as the determinant of two adjacent side vectors from one vertex. Condone a sign slip.} \\
+& {\(\text{Area of } S = 7\)} & A1 & \\
+& {\(\text{"}7\text{"}\,|\det\mathbf P| = 35\)} & M1 & {Equates their area of \(S\) times \(\det\mathbf P\), with or without the modulus, to 35, oe.} \\
+& {\(\det\mathbf P = p^2 + 2p - 3 = \pm 5\)} & A1 & {Correct \(\det\mathbf P\) in any form, such as \((p+1)^2 - 4\), equated to 5 or to \(\pm 5\).} \\
+& {\(p^2 + 2p - 8 = 0 \Rightarrow p = \ldots\)} & dM1 & {Solves their quadratic in \(p\) by factorising, the formula, completing the square or a calculator.} \\
+& {\(p = 2\) \((p = -4 \text{ rejected})\)} & A1 & {\(p = 2\) only, with \(-4\) rejected. The case \(\det\mathbf P = -5\) need not be solved.} \\
+\nopagebreak & & [6] & \\
+4(b) & {\(\begin{pmatrix}0&1\\1&0\end{pmatrix}\)} & B1 & \\
+& {\(\begin{pmatrix}2&0\\0&1\end{pmatrix}\)} & B1 & \\
+& {\(\mathbf Q = \begin{pmatrix}2&0\\0&1\end{pmatrix}\begin{pmatrix}0&1\\1&0\end{pmatrix}\)\\[4pt] \(\phantom{\mathbf Q} = \begin{pmatrix}0&2\\1&0\end{pmatrix}\)} & B1ft & {ft their two matrices, stretch times reflection in that order, multiplied correctly.} \\
+\nopagebreak & & [3] & \\
+4(c) & {\(\mathbf R = \mathbf Q\mathbf P = \begin{pmatrix}0&2\\1&0\end{pmatrix}\begin{pmatrix}3&2\\2&3\end{pmatrix}\)\\[4pt] \(\phantom{\mathbf R} = \begin{pmatrix}4&6\\3&2\end{pmatrix}\)} & B1ft & {ft their \(\mathbf Q\) and their \(p\), with \(\mathbf Q\mathbf P\), in that order, multiplied correctly.} \\
+\nopagebreak & & [1] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 4 & & 10 & \\
+\end{msscheme}
+
+\msQuestion{5}
+\begin{msscheme}{
+  hline{3,5,7-8,10-11,13,15-16} = {2-Z}{0.4pt, msGrid},
+  hline{4,6,9,12,14,17} = {0.4pt, msGrid},
+  row{17} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+5(i) & {\(\mathbf{A}^2 = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}\)} & B1 & \\
+\nopagebreak & & [1] & \\
+5(ii) & {A reflection applied twice returns every point\\[4pt] to itself, so \(\mathbf{A}^2 = \mathbf{I}\) is consistent} & E1 & {States that reflecting twice leaves every point unchanged, or that a reflection is self-inverse, and links this to \(\mathbf{A}^2 = \mathbf{I}\).} \\
+\nopagebreak & & [1] & \\
+5(iii) & {\(-\tfrac12 x + \tfrac{\sqrt3}{2}y = x\)\\[4pt] \(\tfrac{\sqrt3}{2}x + \tfrac12 y = y\)} & M1 & {Sets \(\mathbf{A}\) times a general point \((x, y)\) equal to \((x, y)\), forming at least one equation. Condone slips in multiplying.} \\
+& {\(y = \sqrt3\,x\)} & A1 & {oe, such as \(\sqrt3\,x - y = 0\).} \\
+\nopagebreak & & [2] & \\
+5(iv) & {Rotation about the origin} & B1 & {Needs the centre, the origin or \((0, 0)\).} \\
+& {through \(120^\circ\) anticlockwise} & B1 & {Accept \(\frac{2\pi}{3}\), or \(240^\circ\) clockwise. The direction is required.} \\
+\nopagebreak & & [2] & \\
+5(v) & {\(\mathbf{BA} = \begin{pmatrix} -\frac12 & -\frac{\sqrt3}{2} \\ -\frac{\sqrt3}{2} & \frac12 \end{pmatrix}\)} & B1 & {The product in the order \(\mathbf{BA}\); \(\mathbf{AB}\) scores B0.} \\
+\nopagebreak & & [1] & \\
+5(vi) & {\(-\tfrac12 x - \tfrac{\sqrt3}{2}y = x\)\\[4pt] \(-\tfrac{\sqrt3}{2}x + \tfrac12 y = y\)} & M1 & {Sets their \(2 \times 2\) matrix from (v) times \((x, y)\) equal to \((x, y)\), forming at least one equation. Condone slips in multiplying.} \\
+& {\(y = -\sqrt3\,x\)} & A1ft & {oe. ft their matrix from (v), where its invariant points form a line.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 5 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{6}
+\begin{msscheme}{
+  hline{3-4,6-8,10-12} = {2-Z}{0.4pt, msGrid},
+  hline{5,9,13} = {0.4pt, msGrid},
+  row{13} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+6(a) & {Stretch parallel to the \(y\)-axis, scale factor \(k\)} & B1 & {Names a stretch; its direction and scale factor are not needed, but B0 if a wrong one is given.} \\
+& {then reflection in the line \(y = x\)} & B1 & {The reflection, after the stretch; its mirror line is not needed, but B0 if wrong. Reflection first scores B1 B1 only with the stretch parallel to the \(x\)-axis; otherwise B1 B0.} \\
+\nopagebreak & & [2] & \\
+6(b) & {\(\mathbf{M} = \begin{pmatrix} 0 & k \\ 1 & 0 \end{pmatrix}\), \(\det \mathbf{M} = -k\)\\[4pt] Area \(= k\)} & B1 & {Must be positive.} \\
+& {\(\mathbf{M}^{-1} = -\frac{1}{k}\begin{pmatrix} 0 & -k \\ -1 & 0 \end{pmatrix}\)} & M1 & {Attempts the inverse of their \(\mathbf{M}\), by the determinant and adjugate, or as the inverses of the two matrices in reverse order. Condone one sign slip.} \\
+& {\(\phantom{\mathbf{M}^{-1}} = \begin{pmatrix} 0 & 1 \\ \frac{1}{k} & 0 \end{pmatrix}\)} & A1 & \\
+\nopagebreak & & [3] & \\
+6(c) & {\(\begin{pmatrix} 0 & k \\ 1 & 0 \end{pmatrix}\begin{pmatrix} x \\ \frac{x}{\sqrt{k}} \end{pmatrix} = \ldots\)} & M1 & {Applies their \(\mathbf{M}\) to a general point of the line, such as \(\left(x, \frac{x}{\sqrt{k}}\right)\) or \((x, mx)\), or to its direction vector.} \\
+& {\(= \begin{pmatrix} \sqrt{k}\,x \\ x \end{pmatrix}\)} & A1 & {oe, such as \(\left(\frac{kx}{\sqrt{k}}, x\right)\).} \\
+& {\(X = \sqrt{k}\,x,\ Y = x \Rightarrow Y = \frac{X}{\sqrt{k}}\)\\[4pt] so the line is invariant} & A1~AG & {cso. Image shown to satisfy \(y = \frac{x}{\sqrt{k}}\), or to be a multiple of the direction vector, with a conclusion. Via \((x, mx)\), needs \(m^2 = \frac{1}{k}\) and \(m = \frac{1}{\sqrt{k}}\).} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 6 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{7}
+\begin{msscheme}{
+  hline{3} = {2-Z}{0.4pt, msGrid},
+  hline{4} = {0.4pt, msGrid},
+  row{4} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+7 & {Compares with rotation about the \(y\)-axis:\\[4pt] \(\cos\theta = \frac{\sqrt3}{2}\), \(\sin\theta = \ldots\)} & M1 & {Uses the \(y\)-axis rotation matrix, with \(\sin\theta\) top right and \(-\sin\theta\) bottom left, to find the sign of \(\sin\theta\).} \\
+& {\(\sin\theta = -\frac12\): Bilal ignored the sign\\[4pt] \(\theta = -30^\circ\) (or \(330^\circ\))} & A1 & {Error named as the sign of \(\sin\theta\), and \(\theta = -30^\circ\) or \(330^\circ\) oe, or \(30^\circ\) clockwise viewed from the positive \(y\)-axis.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 7 & & 2 & \\
+\end{msscheme}
+
+\msQuestion{8}
+\begin{msscheme}{
+  hline{3,5-6,8,10} = {2-Z}{0.4pt, msGrid},
+  hline{4,7,9,11} = {0.4pt, msGrid},
+  row{11} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+8(a) & {\(\mathbf{A}^5 = \begin{pmatrix}0 & 0 & 1\\1 & 0 & 0\\0 & 1 & 0\end{pmatrix}\)} & B1 & \\
+\nopagebreak & & [1] & \\
+8(b) & {Rotation about the line \(x = y = z\)} & B1 & {Rotation, with axis \(x = y = z\) oe, such as the direction \(\mathbf{i} + \mathbf{j} + \mathbf{k}\).} \\
+& {through \(120^\circ\), clockwise viewed from \((1, 1, 1)\) towards the origin} & B1 & {Angle with a correct sense, oe such as anticlockwise viewed from the origin towards \((1, 1, 1)\), or \(240^\circ\) anticlockwise from \((1, 1, 1)\). B0 without a sense.} \\
+\nopagebreak & & [2] & \\
+8(c) & {\(\mathbf{B} = \begin{pmatrix}0 & 1 & 0\\1 & 0 & 0\\0 & 0 & 1\end{pmatrix}\)} & B1 & \\
+\nopagebreak & & [1] & \\
+8(d) & {\(Q'\) is \((-1, 4, 2)\)} & B1ft & {ft their \(\mathbf{B}\) applied to \((4, -1, 2)\). Condone a column vector.} \\
+\nopagebreak & & [1] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 8 & & 5 & \\
+\end{msscheme}
+
+\msQuestion{9}
+\begin{msscheme}{
+  hline{3,5-6,8,10-11,13-15,17-18} = {2-Z}{0.4pt, msGrid},
+  hline{4,7,9,12,16,19} = {0.4pt, msGrid},
+  row{19} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+9(a) & {\(\alpha = 225\)} & B1 & {Or any \(225 + 360n\), such as \(-135\).} \\
+\nopagebreak & & [1] & \\
+9(b) & {\(225k = 360n \Rightarrow 5k = 8n \Rightarrow k = \ldots\)} & M1 & {Sets \(k\) times their \(\alpha\) equal to a multiple of 360, or to 360 times an integer, and attempts the least \(k\).} \\
+& {\(k = 8\)} & A1 & \\
+\nopagebreak & & [2] & \\
+9(c) & {\(\mathbf{N} = \begin{pmatrix}-1&0&0\\0&1&0\\0&0&1\end{pmatrix}\)} & B1 & \\
+\nopagebreak & & [1] & \\
+9(d) & {\(\mathbf{N}\mathbf{M}\begin{pmatrix}1\\2\\3\end{pmatrix} = \mathbf{N}\begin{pmatrix}-2\sqrt2\\2\\-\sqrt2\end{pmatrix} = \ldots\)} & M1 & {Multiplies \((1, 2, 3)\) by \(\mathbf{M}\), then by their reflection matrix \(\mathbf{N}\), or by their \(\mathbf{NM}\), in that order. Condone slips.} \\
+& {\(\phantom{\mathbf{N}\mathbf{M}} = \begin{pmatrix}2\sqrt2\\2\\-\sqrt2\end{pmatrix} \Rightarrow B = (2\sqrt2, 2, -\sqrt2)\)} & A1~AG & {Correct products with \(\mathbf{M}\) and the correct \(\mathbf{N}\), surds simplified, leading without error to the printed coordinates.} \\
+\nopagebreak & & [2] & \\
+9(e) & {\(|\overrightarrow{OA}| = \sqrt{14}\), \(|\overrightarrow{OB}| = \sqrt{8 + 4 + 2} = \sqrt{14}\)} & B1 & \\
+& {\(\cos\angle AOB = \frac{2\sqrt2 + 4 - 3\sqrt2}{\sqrt{14}\sqrt{14}}\)} & M1 & {Divides a three-term scalar product of \(\overrightarrow{OA}\) and \(\overrightarrow{OB}\) by their magnitudes, or uses the cosine rule with their \(|AB|\). Condone slips.} \\
+& {\(\phantom{\cos\angle AOB} = \frac{4 - \sqrt2}{14} \Rightarrow \angle AOB = 79.4^\circ\)} & A1~AG & {Correct \(\cos\angle AOB = \frac{4-\sqrt2}{14}\) oe, leading without error to \(79.4^\circ\).} \\
+\nopagebreak & & [3] & \\
+9(f) & {\(\text{Area} = \frac12\sqrt{14}\sqrt{14}\sin 79.4^\circ\)} & M1 & {Uses \(\frac12|\overrightarrow{OA}||\overrightarrow{OB}|\sin\angle AOB\) with their magnitudes and \(79.4^\circ\), a more accurate angle or the exact sine.} \\
+& {\(\phantom{\text{Area}} = 6.88\)} & A1 & \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 9 & & 11 & \\
+\end{msscheme}
+
+\msQuestion{10}
+\begin{msscheme}{
+  hline{3-5,7} = {2-Z}{0.4pt, msGrid},
+  hline{6,8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+10(a) & {\(\mathbf{R} = \begin{pmatrix}1&0&0\\0&\cos\theta&-\sin\theta\\0&\sin\theta&\cos\theta\end{pmatrix}\)\\[4pt] \(\Rightarrow \mathbf{R}^{-1} = \begin{pmatrix}1&0&0\\0&\cos\theta&\sin\theta\\0&-\sin\theta&\cos\theta\end{pmatrix}\)} & B1 & {Correct \(\mathbf{R}\) or \(\mathbf{R}^{-1}\), stated or used.} \\
+& {\(\mathbf{A} = \mathbf{R}^{-1}\mathbf{B} = \ldots\)} & M1 & {Uses \(\mathbf{A} = \mathbf{R}^{-1}\mathbf{B}\), not \(\mathbf{B}\mathbf{R}^{-1}\), with their \(\mathbf{R}^{-1}\) of a rotation matrix's form, and attempts the product. Condone slips in multiplying.} \\
+& {\(\mathbf{A} = \begin{pmatrix}1&0&0\\0&0&\cos^2\theta+\sin^2\theta\\0&\sin^2\theta+\cos^2\theta&0\end{pmatrix}\)\\[4pt] \(\phantom{\mathbf{A}} = \begin{pmatrix}1&0&0\\0&0&1\\0&1&0\end{pmatrix}\), so no \(\theta\)} & A1~AG & {Correct product simplified by \(\sin^2\theta+\cos^2\theta=1\) to a matrix free of \(\theta\), with a conclusion that \(\mathbf{A}\) is independent of \(\theta\).} \\
+\nopagebreak & & [3] & \\
+10(b) & {Reflection in the plane \(y = z\)} & B1 & {Needs reflection and the plane, \(y = z\) oe.} \\
+\nopagebreak & & [1] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 10 & & 4 & \\
+\end{msscheme}
+
+\msQuestion{11}
+\begin{msscheme}{
+  hline{3-4,6,8-9,11-16,18} = {2-Z}{0.4pt, msGrid},
+  hline{5,7,10,17,19} = {0.4pt, msGrid},
+  row{19} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+11(a) & {Rotation about the origin} & B1 & \\
+& {through angle \(\theta\) anticlockwise} & B1 & {Accept clockwise through \(2\pi - \theta\).} \\
+\nopagebreak & & [2] & \\
+11(b)(i) & {\(\det(\mathbf{M}) = \cos^2\theta + \sin^2\theta = 1\)} & B1 & \\
+\nopagebreak & & [1] & \\
+11(b)(ii) & {\(|\det(\mathbf{M})| = 1 \Rightarrow\) area is preserved} & E1 & {States that area is preserved, or the area scale factor is 1, linked to the determinant.} \\
+& {\(\det(\mathbf{M}) > 0 \Rightarrow\) orientation is preserved} & E1 & {States that orientation is preserved, or that \(T\) involves no reflection, linked to the determinant being positive.} \\
+\nopagebreak & & [2] & \\
+11(c) & {\(n = 1\): \(\cos 1\theta = \cos\theta\), \(\sin 1\theta = \sin\theta\)\\[4pt] \(\Rightarrow \mathbf{M}^1 = \mathbf{M}\), so true for \(n = 1\)} & B1 & {Formula evaluated at \(n = 1\) and seen to give \(\mathbf{M}\).} \\
+& {Assumes true for \(n = k\):\\[4pt] \(\mathbf{M}^{k+1} = \mathbf{M}^k\mathbf{M}\)} & M1 & {Assumes the result for \(n = k\) and writes \(\mathbf{M}^{k+1}\) as \(\mathbf{M}^k\mathbf{M}\) or \(\mathbf{M}\mathbf{M}^k\). Not if the result for \(n = k\) is stated as fact.} \\
+& {\(\begin{pmatrix}\cos k\theta & -\sin k\theta \\ \sin k\theta & \cos k\theta\end{pmatrix}\begin{pmatrix}\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta\end{pmatrix} = \ldots\)} & M1 & {Multiplies the assumed form of \(\mathbf{M}^k\) and \(\mathbf{M}\), in either order, each entry a sum of two products. Condone sign slips.} \\
+& {\(\begin{pmatrix} c & -s \\ s & c\end{pmatrix}\), where\\[4pt] \(c = \cos k\theta\cos\theta - \sin k\theta\sin\theta\)\\[4pt] \(s = \sin k\theta\cos\theta + \cos k\theta\sin\theta\)} & A1 & {All four entries correct, unsimplified.} \\
+& {\(\Rightarrow \mathbf{M}^{k+1} = \begin{pmatrix}\cos(k+1)\theta & -\sin(k+1)\theta \\ \sin(k+1)\theta & \cos(k+1)\theta\end{pmatrix}\)} & A1 & {cso. All four entries in the form for \(n = k + 1\), using the addition formulae.} \\
+& {True for \(n = 1\); true for \(n = k\)\\[4pt] \(\Rightarrow\) true for \(n = k + 1\)\\[4pt] \(\Rightarrow\) true for all positive integers \(n\)} & E1 & {Concludes with all three points, true for \(n = 1\), true for \(n = k\) implies true for \(n = k + 1\), and so true for all positive integers \(n\).} \\
+\nopagebreak & & [6] & \\
+11(d) & {Rotation through \(n\theta\) anticlockwise about the origin} & B1ft & {ft their description in (a) with \(\theta\) replaced by \(n\theta\). Needs the centre, angle and sense. Condone the angle not reduced modulo \(2\pi\).} \\
+\nopagebreak & & [1] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 11 & & 12 & \\
+\end{msscheme}
+
+\end{document}
