@@ -1,0 +1,234 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/markscheme_preamble.tex}
+
+\djsSchemeHeader{Matrix Determinants \& Inverses}
+\djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}
+
+\djsLastUpdated{26 October 2026}
+\begin{document}
+\djsSetQuestionCount{10}
+\djsAddMarks{1}{5}
+\djsAddMarks{2}{6}
+\djsAddMarks{3}{10}
+\djsAddMarks{4}{7}
+\djsAddMarks{5}{5}
+\djsAddMarks{6}{8}
+\djsAddMarks{7}{6}
+\djsAddMarks{8}{8}
+\djsAddMarks{9}{14}
+\djsAddMarks{10}{9}
+\vspace*{6pt}
+\djsContentsTitle
+\vspace{30pt}
+\msContentsHeading
+\begin{mscontents}{}
+Question & Marks by part & Marks & Page \\
+\msContentsQuestion{1} & (a)\,2\msSep (b)\,3 & 5 & \msContentsPage{1} \\
+\msContentsQuestion{2} & (a)\,2\msSep (b)\,4 & 6 & \msContentsPage{2} \\
+\msContentsQuestion{3} & (a)(i)\,2\msSep (a)(ii)\,4\msSep (b)\,4 & 10 & \msContentsPage{3} \\
+\msContentsQuestion{4} & & 7 & \msContentsPage{4} \\
+\msContentsQuestion{5} & (a)\,3\msSep (b)\,2 & 5 & \msContentsPage{5} \\
+\msContentsQuestion{6} & & 8 & \msContentsPage{6} \\
+\msContentsQuestion{7} & (a)\,2\msSep (b)\,4 & 6 & \msContentsPage{7} \\
+\msContentsQuestion{8} & (a)\,2\msSep (b)\,2\msSep (c)\,1\msSep (d)\,3 & 8 & \msContentsPage{8} \\
+\msContentsQuestion{9} & (a)\,2\msSep (b)(i)\,6\msSep (b)(ii)\,3\msSep (c)(i)\,1\msSep (c)(ii)\,2 & 14 & \msContentsPage{9} \\
+\msContentsQuestion{10} & (a)\,4\msSep (b)\,5 & 9 & \msContentsPage{10} \\
+\SetCell[c=2]{r} Total & & 78 & \\
+\end{mscontents}
+\newpage
+\input{../../../../_shared/markscheme_conventions.tex}
+
+\msQuestion{1}
+\begin{msscheme}{
+  hline{3-4,6-8} = {2-Z}{0.4pt, msGrid},
+  hline{5,9} = {0.4pt, msGrid},
+  row{9} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+1(a) & {\(\det\mathbf{B} = 3 - a\)\\[4pt] \(\mathbf{B}^{-1} = \frac{1}{\ldots}\begin{pmatrix}3 & -a\\ -1 & 1\end{pmatrix}\)} & M1 & {Uses either the swap of the leading diagonal with the other entries negated, or division by a determinant of \(\pm(3 - a)\).} \\
+& {\(\mathbf{B}^{-1} = \frac{1}{3-a}\begin{pmatrix}3 & -a\\ -1 & 1\end{pmatrix}\)} & A1 & {oe, such as the factor taken into the entries.} \\
+\nopagebreak & & [2] & \\
+1(b) & {\(2\mathbf{I} - \frac12\mathbf{B} = \begin{pmatrix}\frac32 & -\frac{a}{2}\\ -\frac12 & \frac12\end{pmatrix}\)} & B1 & {oe, such as \(\frac12\begin{pmatrix}3 & -a\\ -1 & 1\end{pmatrix}\).} \\
+& {Equates with their \(\mathbf{B}^{-1}\):\\[4pt] \(\frac{1}{3-a} = \frac12 \Rightarrow a = \ldots\)} & M1 & {Equates their \(\mathbf{B}^{-1}\) in terms of \(a\) with their \(2\mathbf{I} - \frac12\mathbf{B}\), and solves an equation in \(a\) from the scalar factors or one entry.} \\
+& {\(a = 1\)} & A1 & {\(a = 1\) only, with any other value from comparing entries rejected.} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 1 & & 5 & \\
+\end{msscheme}
+
+\msQuestion{2}
+\begin{msscheme}{
+  hline{3-4,6-9} = {2-Z}{0.4pt, msGrid},
+  hline{5,10} = {0.4pt, msGrid},
+  row{10} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+2(a) & {\(\mathbf{BA} = \begin{pmatrix}(k+1)+(1-2k)+(2k-1) & \ldots\\ \ldots & \ldots\end{pmatrix}\)} & M1 & {Forms a \(2\times 2\) matrix by multiplying rows of \(\mathbf{B}\) by columns of \(\mathbf{A}\), with at least two entries correct. Need not be simplified.} \\
+& {\(\mathbf{BA} = \begin{pmatrix}k+1 & 2\\ 3k & 6-k\end{pmatrix}\)} & A1 & {All four entries correct and simplified.} \\
+\nopagebreak & & [2] & \\
+2(b) & {\((k+1)(6-k) - 2(3k) = 0\)} & M1 & {Sets \(ad - bc\) of their \(2\times 2\) \(\mathbf{BA}\) equal to zero, in either order of subtraction. Condone sign slips in expanding.} \\
+& {\(k^2 + k - 6 = 0\)} & A1 & {oe three-term quadratic.} \\
+& {\((k+3)(k-2) = 0 \Rightarrow k = \ldots\)} & dM1 & {Solves their three-term quadratic by factorising, the formula or completing the square, leading to \(k = \ldots\); a calculator is allowed.} \\
+& {\(k = -3\), \(k = 2\)} & A1 & {Both values and no others.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 2 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{3}
+\begin{msscheme}{
+  hline{3-4,6-9,11-13} = {2-Z}{0.4pt, msGrid},
+  hline{5,10,14} = {0.4pt, msGrid},
+  row{14} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+3(a)(i) & {\(C\), \(E\), \(F\) for Commuter, Electric, Folding} & B1 & \\
+& {each the number of that model manufactured in 2023} & B1 & {Needs both the number of bicycles and the year 2023; one statement may cover all three.} \\
+\nopagebreak & & [2] & \\
+3(a)(ii) & {\(C + E + F = 1000\)} & B1 & \\
+& {\(F = C + E - 200\)} & B1 & {oe, such as \(C + E - F = 200\).} \\
+& {\(1.10C + 0.95E + 1.05F = 1000 \times 1.038\)} & M1 & {Applies a percentage multiplier to each variable and equates the sum to a 2024 total, or the sum of the changes to the increase. Condone one wrong multiplier.} \\
+& {\(1.10C + 0.95E + 1.05F = 1038\)} & A1 & {oe, such as \(0.1C - 0.05E + 0.05F = 38\).} \\
+\nopagebreak & & [4] & \\
+3(b) & {\(\begin{pmatrix}1&1&1\\-1&-1&1\\1.10&0.95&1.05\end{pmatrix}\begin{pmatrix}C\\E\\F\end{pmatrix} = \begin{pmatrix}1000\\-200\\1038\end{pmatrix}\)} & M1 A1ft & {\msNote{M1}{Writes their equations from (a)(ii) as a \(3 \times 3\) coefficient matrix times \(\begin{pmatrix}C\\E\\F\end{pmatrix}\) equal to a column of constants, or a \(2 \times 2\) one after eliminating a variable. Without a matrix equation, (b) scores 0.}\\ \msNote{A1ft}{Correct matrix equation for their (a)(ii) equations; any consistent order of rows and variables.}} \\
+& {\(\begin{pmatrix}C\\E\\F\end{pmatrix} = \text{"}\begin{pmatrix}1&1&1\\-1&-1&1\\1.10&0.95&1.05\end{pmatrix}\text{"}^{-1}\begin{pmatrix}1000\\-200\\1038\end{pmatrix}\)\\[4pt] \(\phantom{\begin{pmatrix}C\\E\\F\end{pmatrix}} = \ldots\)} & dM1 & {Multiplies the constant column on the left by the inverse of their coefficient matrix and obtains values. The inverse may be found by calculator and need not be shown. Not for elimination alone.} \\
+& {\(C = 320,\ E = 280,\ F = 400\)} & A1 & {cao. Bare correct values after a correct matrix equation imply the dM1; values found by elimination alone, with no inverse used, score dM0 A0.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 3 & & 10 & \\
+\end{msscheme}
+
+\msQuestion{4}
+\begin{msscheme}{
+  hline{3-8} = {2-Z}{0.4pt, msGrid},
+  hline{9} = {0.4pt, msGrid},
+  row{9} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+4 & {\(A + D + P = 580\)} & B1 & \\
+& {\(A - D - P = 20\)} & B1 & {oe, such as \(A = D + P + 20\).} \\
+& {\(0.95A + 1.10D + 1.15P = \ldots\)} & M1 & {Applies a percentage multiplier to each of \(A\), \(D\) and \(P\) and equates the sum to a new total, or the sum of the changes to the increase. Condone one wrong multiplier.} \\
+& {\(0.95A + 1.10D + 1.15P = 600\)} & A1 & {oe, such as \(19A + 22D + 23P = 12\,000\) or \(-0.05A + 0.1D + 0.15P = 20\).} \\
+& {\(\begin{pmatrix}1&1&1\\1&-1&-1\\19&22&23\end{pmatrix}\begin{pmatrix}A\\D\\P\end{pmatrix} = \begin{pmatrix}580\\20\\12\,000\end{pmatrix}\)} & M1 & {Writes their three equations as a \(3 \times 3\) coefficient matrix times \(\begin{pmatrix}A\\D\\P\end{pmatrix}\) equal to a constant vector, or a \(2 \times 2\) one after eliminating a variable. Without a matrix equation, only B1 B1 M1 A1.} \\
+& {\(\begin{pmatrix}A\\D\\P\end{pmatrix} = \begin{pmatrix}1&1&1\\1&-1&-1\\19&22&23\end{pmatrix}^{-1}\begin{pmatrix}580\\20\\12\,000\end{pmatrix} = \ldots\)} & dM1 & {Multiplies their constant vector on the left by the inverse of their coefficient matrix, by calculator or otherwise, to obtain values. Not for elimination alone.} \\
+& {\(A = 300,\ D = 140,\ P = 140\)} & A1 & {cao. Bare correct values after a correct matrix equation imply the dM1; values found by elimination alone, with no inverse used, score dM0 A0.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 4 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{5}
+\begin{msscheme}{
+  hline{3-5,7-8} = {2-Z}{0.4pt, msGrid},
+  hline{6,9} = {0.4pt, msGrid},
+  row{9} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+5(a) & {\(\det\mathbf{A} = 2(0+2) - k(1-2k) + 1(-1-0)\)} & M1 & {Expands along any row or column, or by the rule of Sarrus, with all three terms. Condone sign and arithmetic slips.} \\
+& {\(\det\mathbf{A} = 2k^2 - k + 3\)} & A1 & \\
+& {\(b^2 - 4ac = (-1)^2 - 4(2)(3) = -23 < 0\)\\[4pt] \(\Rightarrow \det\mathbf{A} \neq 0\) for all real \(k\)\\[4pt] \(\Rightarrow \mathbf{A}\) is non-singular} & A1~AG & {Correct discriminant, or \(2\left(k-\frac14\right)^2+\frac{23}{8} > 0\), with \(\det\mathbf{A} \neq 0\) or non-singular concluded for all \(k\).} \\
+\nopagebreak & & [3] & \\
+5(b) & {\(2\times\tfrac12 + k\times\tfrac14 + 1\times\left(-\tfrac14\right) = 1\)\\[4pt] \(\Rightarrow k = \ldots\)} & M1 & {Equates an entry of \(\mathbf{AA}^{-1}\) or \(\mathbf{A}^{-1}\mathbf{A}\) involving \(k\) to that of \(\mathbf{I}\), or uses another valid link, and solves for \(k\). Condone arithmetic slips.} \\
+& {\(k = 1\)} & A1 & {\(k = 1\) only; A0 if another value found is not rejected.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 5 & & 5 & \\
+\end{msscheme}
+
+\msQuestion{6}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+6 & {\(x + y + z = 900\,000\)} & B1 & \\
+& {\(1.25x + 0.8y + 1.5z = 1\,050\,000\)} & M1 A1 & {\msNote{M1}{Applies a percentage multiplier to at least two of the 2023 variables and equates the sum to \(1\,050\,000\), or the sum of the changes to \(150\,000\).}\\ \msNote{A1}{oe, such as \(25x + 16y + 30z = 21\,000\,000\) or \(0.25x - 0.2y + 0.5z = 150\,000\).}} \\
+& {\(16(1.25x) + 15(0.8y) + 12(1.5z) = 15\,120\,000\)} & M1 A1 & {\msNote{M1}{Multiplies each profit per pass by their 2024 sales of that type and equates the sum to the total profit. Condone multiplier slips.}\\ \msNote{A1}{oe, such as \(20x + 12y + 18z = 15\,120\,000\), or consistent working in millions.}} \\
+& {\(\begin{pmatrix}1&1&1\\25&16&30\\20&12&18\end{pmatrix}\begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}900\,000\\21\,000\,000\\15\,120\,000\end{pmatrix}\)} & M1 & {Writes their three equations as a \(3 \times 3\) coefficient matrix times \((x, y, z)\) equal to their constants, or a \(2 \times 2\) one after eliminating a variable. Without a matrix equation, only B1 M1 A1 M1 A1.} \\
+& {\(\begin{pmatrix}x\\y\\z\end{pmatrix} = \frac1{58}\begin{pmatrix}-72&-6&14\\150&-2&-5\\-20&8&-9\end{pmatrix}\begin{pmatrix}900\,000\\21\,000\,000\\15\,120\,000\end{pmatrix}\)} & dM1 & {Multiplies their constants on the left by the inverse of their coefficient matrix, by calculator or otherwise, to obtain values. Not for elimination alone.} \\
+& {\(A\): \(3.6 \times 10^5\), \(B\): \(3.0 \times 10^5\), \(C\): \(2.4 \times 10^5\)} & A1 & {All three, each identified with its pass type; exact values accepted. Bare correct values after a correct matrix equation imply the dM1; values found by elimination alone, with no inverse used, score dM0 A0.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 6 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{7}
+\begin{msscheme}{
+  hline{3-4,6-8} = {2-Z}{0.4pt, msGrid},
+  hline{5,9} = {0.4pt, msGrid},
+  row{9} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+7(a) & {\(\det\mathbf{A} = a(3a-1) - 1(2a) = 3a^2 - 3a\)\\[4pt] \(3a(a-1) = 0 \Rightarrow a = \ldots\)} & M1 & {Expands \(\det\mathbf{A}\) by any row or column, or by Sarrus' rule, sets it equal to 0 and solves. Condone sign slips.} \\
+& {\(a = 0\) or \(a = 1\)} & A1 & {Both values and no others.} \\
+\nopagebreak & & [2] & \\
+7(b) & {Minors: \(\begin{pmatrix} 3a-1 & 2a & 2 \\ a & a^2 & a \\ 1 & a & 3a-2 \end{pmatrix}\)} & M1 & {Forms a matrix of 2-by-2 determinants, each from deleting its entry's row and column. Condone slips in some entries.} \\
+& {\(\operatorname{adj}\mathbf{A} = \begin{pmatrix} 3a-1 & -a & 1 \\ -2a & a^2 & -a \\ 2 & -a & 3a-2 \end{pmatrix}\)} & M1 & {Applies the alternating sign pattern and transposes their matrix of minors, in either order.} \\
+& {\(\mathbf{A}^{-1} = \frac{1}{3a(a-1)}\begin{pmatrix} 3a-1 & -a & 1 \\ -2a & a^2 & -a \\ 2 & -a & 3a-2 \end{pmatrix}\)} & M1 A1 & {\msNote{M1}{Multiplies their adjugate, a 3-by-3 matrix, by the reciprocal of their quadratic determinant from (a).}\\ \msNote{A1}{Correct inverse, oe such as the factor taken inside the matrix or \(3a^2-3a\) unfactorised.}} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 7 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{8}
+\begin{msscheme}{
+  hline{3-4,6-7,9,11-12} = {2-Z}{0.4pt, msGrid},
+  hline{5,8,10,13} = {0.4pt, msGrid},
+  row{13} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+8(a) & {\(\mathbf{AB}\): leading diagonal \(3k + 2 - 10 = 3k - 8\)\\[4pt] other entries \(0\), e.g. \(-4k + 2(k-4) + (2k+8) = 0\)\\[4pt] \(\Rightarrow \mathbf{AB} = (3k-8)\mathbf{I}\)} & M1 & {Forms at least one diagonal entry of \(\mathbf{AB}\) as rows of \(\mathbf{A}\) times columns of \(\mathbf{B}\). Condone slips; off-diagonal entries need not be shown.} \\
+& {\(c = 8\)} & A1 & \\
+\nopagebreak & & [2] & \\
+8(b) & {\(\mathbf{A}^{-1} = \frac{1}{3k-8}\mathbf{B}\) unless\\[4pt] \(3k - \text{"}8\text{"} = 0 \Rightarrow k = \ldots\)} & M1 & {Sets their \(3k - c\) equal to zero, using part (a). Not for \(\det\mathbf{A} = 0\) alone.} \\
+& {\(k = \frac{8}{3}\)} & A1 & \\
+\nopagebreak & & [2] & \\
+8(c) & {\(\mathbf{A}^{-1} = \frac{1}{3k-8}\mathbf{B}\)} & B1ft & {ft their \(c\): \(\frac{1}{3k-c}\mathbf{B}\), with \(\mathbf{B}\) named or written out.} \\
+\nopagebreak & & [1] & \\
+8(d) & {\(x = \frac{3 - 8 - 9}{3k-8}\)\\[4pt] \(y = \frac{1 + 2(k-4) - 3}{3k-8}\)\\[4pt] \(z = \frac{-10 + 2(2k+8) + 3(3k+2)}{3k-8}\)} & M1 & {Multiplies their \(\mathbf{A}^{-1}\) from (c), of the form \(\lambda\mathbf{B}\), by the column of constants \(1, 2, 3\), for at least one component. Condone slips.} \\
+& {\(x = -\frac{14}{3k-8}\), \(y = \frac{2k-10}{3k-8}\)\\[4pt] \(z = \frac{13k+12}{3k-8}\)} & A1 A1 & {\msNote{A1}{Any two correct, in any form.}\\ \msNote{A1}{All three, each a single fraction with terms collected; equivalents such as \(\frac{14}{8-3k}\) or \(\frac{2(k-5)}{3k-8}\) accepted.}} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 8 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{9}
+\begin{msscheme}{
+  hline{3-4,6-10,12-14,16,18-19} = {2-Z}{0.4pt, msGrid},
+  hline{5,11,15,17,20} = {0.4pt, msGrid},
+  row{20} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+9(a) & {\(\det(\mathbf{A}) = 1(1) + 2(4+a) + 3(0-a)\)} & M1 & {Expands along any row or column with three \(2 \times 2\) determinants, or uses the rule of Sarrus. Condone sign slips.} \\
+& {\(\phantom{\det(\mathbf{A})} = 9 - a\)} & A1 & \\
+\nopagebreak & & [2] & \\
+9(b)(i) & {Minors: \(\begin{pmatrix}1 & a+4 & -a\\ -2 & 1-3a & 2a\\ -1 & -13 & 9\end{pmatrix}\)} & M1 & {Attempts the matrix of minors, each entry a \(2 \times 2\) determinant from the correct rows and columns. Condone arithmetic slips.} \\
+& {\(\operatorname{adj}(\mathbf{A}) = \begin{pmatrix}1 & 2 & -1\\ -a-4 & 1-3a & 13\\ -a & -2a & 9\end{pmatrix}\)} & M1 & {Applies the alternating sign pattern to their minors and transposes, in either order.} \\
+& {\(\mathbf{A}^{-1} = \frac{1}{9-a}\begin{pmatrix}1 & 2 & -1\\ -a-4 & 1-3a & 13\\ -a & -2a & 9\end{pmatrix}\)} & M1 A1 & {\msNote{M1}{Divides their adjugate by their determinant from (a).}\\ \msNote{A1}{Correct inverse oe, with \(\frac{1}{9-a}\) inside or outside the matrix.}} \\
+& {\(\begin{pmatrix}x\\ y\\ z\end{pmatrix} = \mathbf{A}^{-1}\begin{pmatrix}-6\\ 7\\ a-1\end{pmatrix} = \frac{1}{9-a}\begin{pmatrix}9-a\\ 18-2a\\ a-9\end{pmatrix}\)} & dM1 & {Multiplies their \(\mathbf{A}^{-1}\) by the column of constants, inverse on the left, attempting all three entries.} \\
+& {\(x = 1,\ y = 2,\ z = -1\)} & A1 & {cso, from the product with \(9-a\) cancelled.} \\
+\nopagebreak & & [6] & \\
+9(b)(ii) & {\(a = 9\): \((9, 0, 1) = \lambda(1, -2, 3) + \mu(4, 1, -1)\)\\[4pt] \(\phantom{a = 9:} \Rightarrow \lambda = \ldots,\ \mu = \ldots\)} & M1 & {Substitutes \(a = 9\) and seeks a combination of the first two equations giving the third, or eliminates a variable between pairs.} \\
+& {Third \(=\) first \(+\ 2 \times\) second, with \(8 = -6 + 2(7)\)} & A1 & {Correct combination, checked for the constants as well as the coefficients, oe by elimination giving consistent equations.} \\
+& {Sheaf: three distinct planes meeting in a common line} & E1 & {States a sheaf, or three planes meeting in one common line, after the A1. Infinitely many solutions alone is not enough.} \\
+\nopagebreak & & [3] & \\
+9(c)(i) & {\(9 - a < 0 \Rightarrow a > 9\)} & B1 & \\
+\nopagebreak & & [1] & \\
+9(c)(ii) & {\(12|9-a| < 12 \Rightarrow |9-a| < 1\)} & M1 & {Forms \(|\text{their } \det(\mathbf{A})| < 1\), or the equivalent for volumes, or considers both signs of the determinant.} \\
+& {\(8 < a < 10\)} & A1 & {oe, such as \((8, 10)\). Condone \(a = 9\) excluded.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 9 & & 14 & \\
+\end{msscheme}
+
+\msQuestion{10}
+\begin{msscheme}{
+  hline{3-6,8-11} = {2-Z}{0.4pt, msGrid},
+  hline{7,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+10(a) & {Unique point of intersection\\[4pt] \(\iff \det\begin{pmatrix}1&2&-1\\3&k&2\\0&k&4\end{pmatrix} \neq 0\)} & B1 & \\
+& {\(\det = 1(4k-2k) - 2(12) - 1(3k)\)} & M1 & {Expands the determinant of the coefficient matrix by any valid method to an expression in \(k\). Condone sign slips.} \\
+& {\(\phantom{\det} = -(k+24)\)} & A1 & {oe, such as \(-k-24\).} \\
+& {Unique point for all \(k\) except \(k = -24\)} & A1 & {cso. Needs the conclusion that \(k = -24\) is the only exception.} \\
+\nopagebreak & & [4] & \\
+10(b) & {Second equation \(-\) third: \(3x - 2z = 7\)\\[4pt] \(3\times\) first \(-\) \((3x - 2z = 7)\): \(6y - z = 5\)} & M1 A1 & {\msNote{M1}{Combines the equations to eliminate \(k\), reaching two equations free of \(k\). Condone arithmetic slips.}\\ \msNote{A1}{Both correct, oe such as \(x = 4y - 1\) and \(z = 6y - 5\).}} \\
+& {\(ky + 4(6y - 5) = k + 4 \Rightarrow (k+24)y = k+24\)\\[4pt] \(k \neq -24 \Rightarrow y = \ldots\)} & dM1 & {Substitutes their equations into one containing \(k\) to reach one equation in one unknown, and divides by its coefficient, using \(k \neq -24\).} \\
+& {\(y = 1\)} & A1 & \\
+& {\(x = 3,\ z = 1\): the point \((3, 1, 1)\), independent of \(k\)} & A1 & {cso. Both values, with the point stated to be independent of \(k\); A0 if the conclusion is missing.} \\
+\nopagebreak & & [5] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 10 & & 9 & \\
+\end{msscheme}
+
+\end{document}

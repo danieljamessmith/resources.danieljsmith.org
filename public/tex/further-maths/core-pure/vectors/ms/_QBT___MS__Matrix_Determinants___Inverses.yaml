@@ -1,0 +1,457 @@
+format: 1
+pack: Matrix Determinants \& Inverses
+last_updated: 26 October 2026
+questions:
+  - q: 1
+    stamp: 612f063a
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\det\mathbf{B} = 3 - a\)
+              \(\mathbf{B}^{-1} = \frac{1}{\ldots}\begin{pmatrix}3 & -a\\ -1 & 1\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Uses either the swap of the leading diagonal with the other entries negated, or division by a determinant of \(\pm(3 - a)\).
+          - scheme: |
+              \(\mathbf{B}^{-1} = \frac{1}{3-a}\begin{pmatrix}3 & -a\\ -1 & 1\end{pmatrix}\)
+            marks:
+              - code: A1
+                note: oe, such as the factor taken into the entries.
+      - part: b
+        rows:
+          - scheme: |
+              \(2\mathbf{I} - \frac12\mathbf{B} = \begin{pmatrix}\frac32 & -\frac{a}{2}\\ -\frac12 & \frac12\end{pmatrix}\)
+            marks:
+              - code: B1
+                note: oe, such as \(\frac12\begin{pmatrix}3 & -a\\ -1 & 1\end{pmatrix}\).
+          - scheme: |
+              Equates with their \(\mathbf{B}^{-1}\):
+              \(\frac{1}{3-a} = \frac12 \Rightarrow a = \ldots\)
+            marks:
+              - code: M1
+                note: Equates their \(\mathbf{B}^{-1}\) in terms of \(a\) with their \(2\mathbf{I} - \frac12\mathbf{B}\), and solves an equation in \(a\) from the scalar factors or one entry.
+          - scheme: |
+              \(a = 1\)
+            marks:
+              - code: A1
+                note: \(a = 1\) only, with any other value from comparing entries rejected.
+  - q: 2
+    stamp: e3387202
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\mathbf{BA} = \begin{pmatrix}(k+1)+(1-2k)+(2k-1) & \ldots\\ \ldots & \ldots\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Forms a \(2\times 2\) matrix by multiplying rows of \(\mathbf{B}\) by columns of \(\mathbf{A}\), with at least two entries correct. Need not be simplified.
+          - scheme: |
+              \(\mathbf{BA} = \begin{pmatrix}k+1 & 2\\ 3k & 6-k\end{pmatrix}\)
+            marks:
+              - code: A1
+                note: All four entries correct and simplified.
+      - part: b
+        rows:
+          - scheme: |
+              \((k+1)(6-k) - 2(3k) = 0\)
+            marks:
+              - code: M1
+                note: Sets \(ad - bc\) of their \(2\times 2\) \(\mathbf{BA}\) equal to zero, in either order of subtraction. Condone sign slips in expanding.
+          - scheme: |
+              \(k^2 + k - 6 = 0\)
+            marks:
+              - code: A1
+                note: oe three-term quadratic.
+          - scheme: |
+              \((k+3)(k-2) = 0 \Rightarrow k = \ldots\)
+            marks:
+              - code: dM1
+                note: Solves their three-term quadratic by factorising, the formula or completing the square, leading to \(k = \ldots\); a calculator is allowed.
+          - scheme: |
+              \(k = -3\), \(k = 2\)
+            marks:
+              - code: A1
+                note: Both values and no others.
+  - q: 3
+    stamp: 44cb5b12
+    parts:
+      - part: a.i
+        rows:
+          - scheme: |
+              \(C\), \(E\), \(F\) for Commuter, Electric, Folding
+            marks:
+              - code: B1
+          - scheme: |
+              each the number of that model manufactured in 2023
+            marks:
+              - code: B1
+                note: Needs both the number of bicycles and the year 2023; one statement may cover all three.
+      - part: a.ii
+        rows:
+          - scheme: |
+              \(C + E + F = 1000\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(F = C + E - 200\)
+            marks:
+              - code: B1
+                note: oe, such as \(C + E - F = 200\).
+          - scheme: |
+              \(1.10C + 0.95E + 1.05F = 1000 \times 1.038\)
+            marks:
+              - code: M1
+                note: Applies a percentage multiplier to each variable and equates the sum to a 2024 total, or the sum of the changes to the increase. Condone one wrong multiplier.
+          - scheme: |
+              \(1.10C + 0.95E + 1.05F = 1038\)
+            marks:
+              - code: A1
+                note: oe, such as \(0.1C - 0.05E + 0.05F = 38\).
+      - part: b
+        rows:
+          - scheme: |
+              \(\begin{pmatrix}1&1&1\\-1&-1&1\\1.10&0.95&1.05\end{pmatrix}\begin{pmatrix}C\\E\\F\end{pmatrix} = \begin{pmatrix}1000\\-200\\1038\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Writes their equations from (a)(ii) as a \(3 \times 3\) coefficient matrix times \(\begin{pmatrix}C\\E\\F\end{pmatrix}\) equal to a column of constants, or a \(2 \times 2\) one after eliminating a variable. Without a matrix equation, (b) scores 0.
+              - code: A1ft
+                note: Correct matrix equation for their (a)(ii) equations; any consistent order of rows and variables.
+          - scheme: |
+              \(\begin{pmatrix}C\\E\\F\end{pmatrix} = \text{"}\begin{pmatrix}1&1&1\\-1&-1&1\\1.10&0.95&1.05\end{pmatrix}\text{"}^{-1}\begin{pmatrix}1000\\-200\\1038\end{pmatrix}\)
+              \(\phantom{\begin{pmatrix}C\\E\\F\end{pmatrix}} = \ldots\)
+            marks:
+              - code: dM1
+                note: Multiplies the constant column on the left by the inverse of their coefficient matrix and obtains values. The inverse may be found by calculator and need not be shown. Not for elimination alone.
+          - scheme: |
+              \(C = 320,\ E = 280,\ F = 400\)
+            marks:
+              - code: A1
+                note: cao. Bare correct values after a correct matrix equation imply the dM1; values found by elimination alone, with no inverse used, score dM0 A0.
+  - q: 4
+    stamp: 558b67bf
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(A + D + P = 580\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(A - D - P = 20\)
+            marks:
+              - code: B1
+                note: oe, such as \(A = D + P + 20\).
+          - scheme: |
+              \(0.95A + 1.10D + 1.15P = \ldots\)
+            marks:
+              - code: M1
+                note: Applies a percentage multiplier to each of \(A\), \(D\) and \(P\) and equates the sum to a new total, or the sum of the changes to the increase. Condone one wrong multiplier.
+          - scheme: |
+              \(0.95A + 1.10D + 1.15P = 600\)
+            marks:
+              - code: A1
+                note: oe, such as \(19A + 22D + 23P = 12\,000\) or \(-0.05A + 0.1D + 0.15P = 20\).
+          - scheme: |
+              \(\begin{pmatrix}1&1&1\\1&-1&-1\\19&22&23\end{pmatrix}\begin{pmatrix}A\\D\\P\end{pmatrix} = \begin{pmatrix}580\\20\\12\,000\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Writes their three equations as a \(3 \times 3\) coefficient matrix times \(\begin{pmatrix}A\\D\\P\end{pmatrix}\) equal to a constant vector, or a \(2 \times 2\) one after eliminating a variable. Without a matrix equation, only B1 B1 M1 A1.
+          - scheme: |
+              \(\begin{pmatrix}A\\D\\P\end{pmatrix} = \begin{pmatrix}1&1&1\\1&-1&-1\\19&22&23\end{pmatrix}^{-1}\begin{pmatrix}580\\20\\12\,000\end{pmatrix} = \ldots\)
+            marks:
+              - code: dM1
+                note: Multiplies their constant vector on the left by the inverse of their coefficient matrix, by calculator or otherwise, to obtain values. Not for elimination alone.
+          - scheme: |
+              \(A = 300,\ D = 140,\ P = 140\)
+            marks:
+              - code: A1
+                note: cao. Bare correct values after a correct matrix equation imply the dM1; values found by elimination alone, with no inverse used, score dM0 A0.
+  - q: 5
+    stamp: b8cc0976
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\det\mathbf{A} = 2(0+2) - k(1-2k) + 1(-1-0)\)
+            marks:
+              - code: M1
+                note: Expands along any row or column, or by the rule of Sarrus, with all three terms. Condone sign and arithmetic slips.
+          - scheme: |
+              \(\det\mathbf{A} = 2k^2 - k + 3\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(b^2 - 4ac = (-1)^2 - 4(2)(3) = -23 < 0\)
+              \(\Rightarrow \det\mathbf{A} \neq 0\) for all real \(k\)
+              \(\Rightarrow \mathbf{A}\) is non-singular
+            marks:
+              - code: A1 AG
+                note: Correct discriminant, or \(2\left(k-\frac14\right)^2+\frac{23}{8} > 0\), with \(\det\mathbf{A} \neq 0\) or non-singular concluded for all \(k\).
+      - part: b
+        rows:
+          - scheme: |
+              \(2\times\tfrac12 + k\times\tfrac14 + 1\times\left(-\tfrac14\right) = 1\)
+              \(\Rightarrow k = \ldots\)
+            marks:
+              - code: M1
+                note: Equates an entry of \(\mathbf{AA}^{-1}\) or \(\mathbf{A}^{-1}\mathbf{A}\) involving \(k\) to that of \(\mathbf{I}\), or uses another valid link, and solves for \(k\). Condone arithmetic slips.
+          - scheme: |
+              \(k = 1\)
+            marks:
+              - code: A1
+                note: \(k = 1\) only; A0 if another value found is not rejected.
+  - q: 6
+    stamp: f65cb667
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(x + y + z = 900\,000\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(1.25x + 0.8y + 1.5z = 1\,050\,000\)
+            marks:
+              - code: M1
+                note: Applies a percentage multiplier to at least two of the 2023 variables and equates the sum to \(1\,050\,000\), or the sum of the changes to \(150\,000\).
+              - code: A1
+                note: oe, such as \(25x + 16y + 30z = 21\,000\,000\) or \(0.25x - 0.2y + 0.5z = 150\,000\).
+          - scheme: |
+              \(16(1.25x) + 15(0.8y) + 12(1.5z) = 15\,120\,000\)
+            marks:
+              - code: M1
+                note: Multiplies each profit per pass by their 2024 sales of that type and equates the sum to the total profit. Condone multiplier slips.
+              - code: A1
+                note: oe, such as \(20x + 12y + 18z = 15\,120\,000\), or consistent working in millions.
+          - scheme: |
+              \(\begin{pmatrix}1&1&1\\25&16&30\\20&12&18\end{pmatrix}\begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}900\,000\\21\,000\,000\\15\,120\,000\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Writes their three equations as a \(3 \times 3\) coefficient matrix times \((x, y, z)\) equal to their constants, or a \(2 \times 2\) one after eliminating a variable. Without a matrix equation, only B1 M1 A1 M1 A1.
+          - scheme: |
+              \(\begin{pmatrix}x\\y\\z\end{pmatrix} = \frac1{58}\begin{pmatrix}-72&-6&14\\150&-2&-5\\-20&8&-9\end{pmatrix}\begin{pmatrix}900\,000\\21\,000\,000\\15\,120\,000\end{pmatrix}\)
+            marks:
+              - code: dM1
+                note: Multiplies their constants on the left by the inverse of their coefficient matrix, by calculator or otherwise, to obtain values. Not for elimination alone.
+          - scheme: |
+              \(A\): \(3.6 \times 10^5\), \(B\): \(3.0 \times 10^5\), \(C\): \(2.4 \times 10^5\)
+            marks:
+              - code: A1
+                note: All three, each identified with its pass type; exact values accepted. Bare correct values after a correct matrix equation imply the dM1; values found by elimination alone, with no inverse used, score dM0 A0.
+  - q: 7
+    stamp: 42976cf6
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\det\mathbf{A} = a(3a-1) - 1(2a) = 3a^2 - 3a\)
+              \(3a(a-1) = 0 \Rightarrow a = \ldots\)
+            marks:
+              - code: M1
+                note: Expands \(\det\mathbf{A}\) by any row or column, or by Sarrus' rule, sets it equal to 0 and solves. Condone sign slips.
+          - scheme: |
+              \(a = 0\) or \(a = 1\)
+            marks:
+              - code: A1
+                note: Both values and no others.
+      - part: b
+        rows:
+          - scheme: |
+              Minors: \(\begin{pmatrix} 3a-1 & 2a & 2 \\ a & a^2 & a \\ 1 & a & 3a-2 \end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Forms a matrix of 2-by-2 determinants, each from deleting its entry's row and column. Condone slips in some entries.
+          - scheme: |
+              \(\operatorname{adj}\mathbf{A} = \begin{pmatrix} 3a-1 & -a & 1 \\ -2a & a^2 & -a \\ 2 & -a & 3a-2 \end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Applies the alternating sign pattern and transposes their matrix of minors, in either order.
+          - scheme: |
+              \(\mathbf{A}^{-1} = \frac{1}{3a(a-1)}\begin{pmatrix} 3a-1 & -a & 1 \\ -2a & a^2 & -a \\ 2 & -a & 3a-2 \end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Multiplies their adjugate, a 3-by-3 matrix, by the reciprocal of their quadratic determinant from (a).
+              - code: A1
+                note: Correct inverse, oe such as the factor taken inside the matrix or \(3a^2-3a\) unfactorised.
+  - q: 8
+    stamp: c9e681b4
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\mathbf{AB}\): leading diagonal \(3k + 2 - 10 = 3k - 8\)
+              other entries \(0\), e.g. \(-4k + 2(k-4) + (2k+8) = 0\)
+              \(\Rightarrow \mathbf{AB} = (3k-8)\mathbf{I}\)
+            marks:
+              - code: M1
+                note: Forms at least one diagonal entry of \(\mathbf{AB}\) as rows of \(\mathbf{A}\) times columns of \(\mathbf{B}\). Condone slips; off-diagonal entries need not be shown.
+          - scheme: |
+              \(c = 8\)
+            marks:
+              - code: A1
+      - part: b
+        rows:
+          - scheme: |
+              \(\mathbf{A}^{-1} = \frac{1}{3k-8}\mathbf{B}\) unless
+              \(3k - \text{"}8\text{"} = 0 \Rightarrow k = \ldots\)
+            marks:
+              - code: M1
+                note: Sets their \(3k - c\) equal to zero, using part (a). Not for \(\det\mathbf{A} = 0\) alone.
+          - scheme: |
+              \(k = \frac{8}{3}\)
+            marks:
+              - code: A1
+      - part: c
+        rows:
+          - scheme: |
+              \(\mathbf{A}^{-1} = \frac{1}{3k-8}\mathbf{B}\)
+            marks:
+              - code: B1ft
+                note: 'ft their \(c\): \(\frac{1}{3k-c}\mathbf{B}\), with \(\mathbf{B}\) named or written out.'
+      - part: d
+        rows:
+          - scheme: |
+              \(x = \frac{3 - 8 - 9}{3k-8}\)
+              \(y = \frac{1 + 2(k-4) - 3}{3k-8}\)
+              \(z = \frac{-10 + 2(2k+8) + 3(3k+2)}{3k-8}\)
+            marks:
+              - code: M1
+                note: Multiplies their \(\mathbf{A}^{-1}\) from (c), of the form \(\lambda\mathbf{B}\), by the column of constants \(1, 2, 3\), for at least one component. Condone slips.
+          - scheme: |
+              \(x = -\frac{14}{3k-8}\), \(y = \frac{2k-10}{3k-8}\)
+              \(z = \frac{13k+12}{3k-8}\)
+            marks:
+              - code: A1
+                note: Any two correct, in any form.
+              - code: A1
+                note: All three, each a single fraction with terms collected; equivalents such as \(\frac{14}{8-3k}\) or \(\frac{2(k-5)}{3k-8}\) accepted.
+  - q: 9
+    stamp: 8fee9875
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\det(\mathbf{A}) = 1(1) + 2(4+a) + 3(0-a)\)
+            marks:
+              - code: M1
+                note: Expands along any row or column with three \(2 \times 2\) determinants, or uses the rule of Sarrus. Condone sign slips.
+          - scheme: |
+              \(\phantom{\det(\mathbf{A})} = 9 - a\)
+            marks:
+              - code: A1
+      - part: b.i
+        rows:
+          - scheme: |
+              Minors: \(\begin{pmatrix}1 & a+4 & -a\\ -2 & 1-3a & 2a\\ -1 & -13 & 9\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Attempts the matrix of minors, each entry a \(2 \times 2\) determinant from the correct rows and columns. Condone arithmetic slips.
+          - scheme: |
+              \(\operatorname{adj}(\mathbf{A}) = \begin{pmatrix}1 & 2 & -1\\ -a-4 & 1-3a & 13\\ -a & -2a & 9\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Applies the alternating sign pattern to their minors and transposes, in either order.
+          - scheme: |
+              \(\mathbf{A}^{-1} = \frac{1}{9-a}\begin{pmatrix}1 & 2 & -1\\ -a-4 & 1-3a & 13\\ -a & -2a & 9\end{pmatrix}\)
+            marks:
+              - code: M1
+                note: Divides their adjugate by their determinant from (a).
+              - code: A1
+                note: Correct inverse oe, with \(\frac{1}{9-a}\) inside or outside the matrix.
+          - scheme: |
+              \(\begin{pmatrix}x\\ y\\ z\end{pmatrix} = \mathbf{A}^{-1}\begin{pmatrix}-6\\ 7\\ a-1\end{pmatrix} = \frac{1}{9-a}\begin{pmatrix}9-a\\ 18-2a\\ a-9\end{pmatrix}\)
+            marks:
+              - code: dM1
+                note: Multiplies their \(\mathbf{A}^{-1}\) by the column of constants, inverse on the left, attempting all three entries.
+          - scheme: |
+              \(x = 1,\ y = 2,\ z = -1\)
+            marks:
+              - code: A1
+                note: cso, from the product with \(9-a\) cancelled.
+      - part: b.ii
+        rows:
+          - scheme: |
+              \(a = 9\): \((9, 0, 1) = \lambda(1, -2, 3) + \mu(4, 1, -1)\)
+              \(\phantom{a = 9:} \Rightarrow \lambda = \ldots,\ \mu = \ldots\)
+            marks:
+              - code: M1
+                note: Substitutes \(a = 9\) and seeks a combination of the first two equations giving the third, or eliminates a variable between pairs.
+          - scheme: |
+              Third \(=\) first \(+\ 2 \times\) second, with \(8 = -6 + 2(7)\)
+            marks:
+              - code: A1
+                note: Correct combination, checked for the constants as well as the coefficients, oe by elimination giving consistent equations.
+          - scheme: |
+              Sheaf: three distinct planes meeting in a common line
+            marks:
+              - code: E1
+                note: States a sheaf, or three planes meeting in one common line, after the A1. Infinitely many solutions alone is not enough.
+      - part: c.i
+        rows:
+          - scheme: |
+              \(9 - a < 0 \Rightarrow a > 9\)
+            marks:
+              - code: B1
+      - part: c.ii
+        rows:
+          - scheme: |
+              \(12|9-a| < 12 \Rightarrow |9-a| < 1\)
+            marks:
+              - code: M1
+                note: Forms \(|\text{their } \det(\mathbf{A})| < 1\), or the equivalent for volumes, or considers both signs of the determinant.
+          - scheme: |
+              \(8 < a < 10\)
+            marks:
+              - code: A1
+                note: oe, such as \((8, 10)\). Condone \(a = 9\) excluded.
+  - q: 10
+    stamp: 6313b53a
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              Unique point of intersection
+              \(\iff \det\begin{pmatrix}1&2&-1\\3&k&2\\0&k&4\end{pmatrix} \neq 0\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(\det = 1(4k-2k) - 2(12) - 1(3k)\)
+            marks:
+              - code: M1
+                note: Expands the determinant of the coefficient matrix by any valid method to an expression in \(k\). Condone sign slips.
+          - scheme: |
+              \(\phantom{\det} = -(k+24)\)
+            marks:
+              - code: A1
+                note: oe, such as \(-k-24\).
+          - scheme: |
+              Unique point for all \(k\) except \(k = -24\)
+            marks:
+              - code: A1
+                note: cso. Needs the conclusion that \(k = -24\) is the only exception.
+      - part: b
+        rows:
+          - scheme: |
+              Second equation \(-\) third: \(3x - 2z = 7\)
+              \(3\times\) first \(-\) \((3x - 2z = 7)\): \(6y - z = 5\)
+            marks:
+              - code: M1
+                note: Combines the equations to eliminate \(k\), reaching two equations free of \(k\). Condone arithmetic slips.
+              - code: A1
+                note: Both correct, oe such as \(x = 4y - 1\) and \(z = 6y - 5\).
+          - scheme: |
+              \(ky + 4(6y - 5) = k + 4 \Rightarrow (k+24)y = k+24\)
+              \(k \neq -24 \Rightarrow y = \ldots\)
+            marks:
+              - code: dM1
+                note: Substitutes their equations into one containing \(k\) to reach one equation in one unknown, and divides by its coefficient, using \(k \neq -24\).
+          - scheme: |
+              \(y = 1\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(x = 3,\ z = 1\): the point \((3, 1, 1)\), independent of \(k\)
+            marks:
+              - code: A1
+                note: cso. Both values, with the point stated to be independent of \(k\); A0 if the conclusion is missing.

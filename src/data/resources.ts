@@ -408,6 +408,16 @@ const rawResources: Resource[] = [
     topic: 'Vectors',
   },
   {
+    id: 'fm-vectors-matrix-determinants-inverses-ms',
+    title: 'Matrix Determinants & Inverses',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/vectors/ms/_QBT___MS__Matrix_Determinants___Inverses.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-vectors-matrix-determinants-inverses',
+    topic: 'Vectors',
+  },
+  {
     id: 'fm-vectors-linear-transformations',
     title: 'Linear Transformations',
     description: '',

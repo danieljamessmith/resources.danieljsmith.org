@@ -80,6 +80,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/polar-coordinates/soln/_QBT___Solns__Tangents_to_Polar_Curves.pdf': '286dc8d4',
   '/tex/further-maths/core-pure/vectors/ms/_QBT___MS__Invariant_Points_and_Lines.pdf': 'af333612',
   '/tex/further-maths/core-pure/vectors/ms/_QBT___MS__Linear_Transformations.pdf': '6dd2d813',
+  '/tex/further-maths/core-pure/vectors/ms/_QBT___MS__Matrix_Determinants___Inverses.pdf': 'fc4f91ff',
   '/tex/further-maths/core-pure/vectors/ms/_QBT___MS__Plane_Intersections.pdf': '78fc59b4',
   '/tex/further-maths/core-pure/vectors/ms/_QBT___MS__Reflections_in_Planes.pdf': '1385a403',
   '/tex/further-maths/core-pure/vectors/ms/_QBT___MS__Vector_Product.pdf': 'a852b19f',
