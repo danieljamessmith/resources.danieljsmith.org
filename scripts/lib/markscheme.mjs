@@ -65,15 +65,17 @@ const MODEL_FLAG_KINDS = new Set(['solution_error', 'figure_missing']);
 
 /** The verbs an M1, dM1 or E1 note may open with (rule 18). */
 export const NOTE_VERBS = new Set(
-  `Adds Applies Argues Assumes Attempts Calculates Carries Checks Chooses
-  Clears Collects Combines Compares Completes Concludes Considers Constructs
-  Converts Deduces Defines Differentiates Divides Draws Eliminates Equates
-  Evaluates Expands Explains Expresses Factorises Finds Forms Gives
-  Identifies Integrates Interprets Justifies Lists Makes Marks Multiplies
-  Notes Obtains Pairs Proves Puts Rationalises Reaches Rearranges Recognises
-  Relates Replaces Resolves Rewrites Separates Sets Shows Simplifies Sketches
-  Solves Splits Squares States Subtracts Substitutes Sums Takes Tests
-  Translates Uses Verifies Writes`.split(/\s+/),
+  `Adds Applies Argues Assumes Attempts Begins Calculates Cancels Carries
+  Checks Chooses Clears Collects Combines Compares Completes Concludes
+  Conjugates Considers Constructs Converts Deduces Defines Differentiates
+  Divides Draws Eliminates Equates Evaluates Expands Explains Expresses
+  Factorises Finds Forms Gives Halves Identifies Integrates Interprets
+  Inverts Justifies Lets Links Lists Makes Marks Maximises Minimises
+  Multiplies Names Notes Obtains Pairs Postmultiplies Premultiplies Proves
+  Puts Raises Rationalises Reaches Rearranges Recognises Refers Reflects
+  Relates Replaces Resolves Rewrites Rotates Separates Sets Shows Simplifies
+  Sketches Solves Splits Squares States Substitutes Subtracts Sums Takes
+  Tests Translates Uses Verifies Works Writes`.split(/\s+/),
 );
 
 /** Board abbreviations the notes never use (rule 16), matched as words. */

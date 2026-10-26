@@ -705,6 +705,13 @@ describe('rules 15-19: notes', () => {
     expect(rules(run((s) => (note(s).note = 'Dependent on the previous method mark.')).warnings)).toEqual([18]);
   });
 
+  it('rule 18: the verbs of matrices, transformations and limits open a note too', () => {
+    for (const verb of ['Premultiplies', 'Postmultiplies', 'Reflects', 'Rotates', 'Inverts', 'Conjugates', 'Cancels', 'Minimises', 'Maximises', 'Links', 'Refers', 'Lets']) {
+      expect(run((s) => (note(s).note = `${verb} the integral.`)).warnings, verb).toEqual([]);
+    }
+    expect(rules(run((s) => (note(s).note = 'Requires the integral.')).warnings)).toEqual([18]);
+  });
+
   it('rule 19: a note of more than about 35 words (a warning)', () => {
     const long = `Uses ${'the method '.repeat(18)}here.`;
     const r = run((s) => (note(s).note = long));
