@@ -4,6 +4,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__Complex_Number_Basics.pdf': '998697cf',
   '/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__Complex_Roots_and_Geometry_Problems.pdf': '1277d62e',
   '/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__Complex_Series.pdf': 'b2f0dd4d',
+  '/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__De_Moivres_Theorem.pdf': '250957e8',
   '/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__Loci_and_Regions_in_the_Argand_Diagram.pdf': '2ef614f1',
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Number_Basics.pdf': '3d3ce2d9',
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Roots_and_Geometry_Problems.pdf': 'c40dadb4',

@@ -287,6 +287,16 @@ const rawResources: Resource[] = [
     topic: 'Complex Numbers',
   },
   {
+    id: 'fm-complex-de-moivres-theorem-ms',
+    title: "De Moivre's Theorem",
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__De_Moivres_Theorem.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-complex-de-moivres-theorem',
+    topic: 'Complex Numbers',
+  },
+  {
     id: 'fm-complex-loci-argand',
     title: 'Loci and Regions in the Argand Diagram',
     description: '',

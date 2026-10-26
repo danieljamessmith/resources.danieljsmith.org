@@ -1,0 +1,1162 @@
+format: 1
+pack: De Moivre's Theorem
+last_updated: 26 October 2026
+questions:
+  - q: 1
+    stamp: c10781b7
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(z - z^{-1} = 2i\sin\theta,\ z + z^{-1} = 2\cos\theta\)
+              \(\Rightarrow \sin\theta\cos^4\theta = \frac{1}{32i}(z-z^{-1})(z+z^{-1})^4\)
+            marks:
+              - code: B1
+                note: Both, stated or used.
+          - scheme: |
+              \((z-z^{-1})(z^4+4z^2+6+4z^{-2}+z^{-4})\)
+            marks:
+              - code: M1
+                note: Multiplies out \((z-z^{-1})(z+z^{-1})^4\) to a sum of powers of \(z\), in any order of multiplication. Condone coefficient and sign slips.
+          - scheme: |
+              \(= z^5+3z^3+2z-2z^{-1}-3z^{-3}-z^{-5}\)
+            marks:
+              - code: A1
+                note: Correct expansion, oe; the factor \(\frac{1}{32i}\) need not be shown here.
+          - scheme: |
+              \((z^5-z^{-5})+3(z^3-z^{-3})+2(z-z^{-1})\)
+              \(\phantom{(} = 2i\sin5\theta+6i\sin3\theta+4i\sin\theta\)
+            marks:
+              - code: M1
+                note: Pairs terms as \(z^n - z^{-n}\) and replaces each by \(2i\sin n\theta\), keeping their coefficients.
+          - scheme: |
+              \(A=\frac18,\ B=\frac{3}{16},\ C=\frac{1}{16}\)
+            marks:
+              - code: A1
+                note: cso; withhold if an \(i\) or the factor \(\frac{1}{32}\) is lost and recovered. Accept the identity written with these values.
+  - q: 2
+    stamp: 73a637c8
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(z^n = \cos n\theta + i\sin n\theta\)
+              \(z^{-n} = \cos(-n\theta) + i\sin(-n\theta)\)
+              \(\phantom{z^{-n}} = \cos n\theta - i\sin n\theta\)
+            marks:
+              - code: M1
+                note: Uses de Moivre's theorem to write both \(z^n\) and \(z^{-n}\) in terms of \(\cos n\theta\) and \(\sin n\theta\); \(z^{-n}\) may come from \(\frac{1}{z^n}\) by realising the denominator.
+          - scheme: |
+              \(z^n + \frac{1}{z^n} = 2\cos n\theta\)
+            marks:
+              - code: A1
+                note: From correct expressions for both powers, with \(\cos(-n\theta)\) and \(\sin(-n\theta)\) correctly simplified.
+          - scheme: |
+              \(z^n - \frac{1}{z^n} = (\cos n\theta + i\sin n\theta) - (\cos n\theta - i\sin n\theta)\)
+              \(\phantom{z^n - \frac{1}{z^n}} = 2i\sin n\theta\)
+            marks:
+              - code: A1 AG
+                note: Correct subtraction of the two expressions leading without error to the printed result.
+      - part: b
+        rows:
+          - scheme: |
+              \(\left(z+\frac1z\right)^3 = z^3+\frac{1}{z^3} + 3\left(z+\frac1z\right)\)
+              \(\Rightarrow 8\cos^3\theta = 2\cos3\theta + 6\cos\theta\)
+              \(\left(z-\frac1z\right)^3 = z^3-\frac{1}{z^3} - 3\left(z-\frac1z\right)\)
+              \(\Rightarrow -8i\sin^3\theta = 2i\sin3\theta - 6i\sin\theta\)
+            marks:
+              - code: M1
+                note: Expands both cubes binomially, groups into \(z^3 \pm z^{-3}\) and \(z \pm z^{-1}\), and replaces each by (a). Condone sign and coefficient slips.
+          - scheme: |
+              \(\cos3\theta = 4\cos^3\theta - 3\cos\theta\)
+              \(\sin3\theta = 3\sin\theta - 4\sin^3\theta\)
+            marks:
+              - code: A1
+                note: Both correct, from working with \((2i\sin\theta)^3 = -8i\sin^3\theta\) correct.
+          - scheme: |
+              \(\tan3\theta = \frac{3\sin\theta - 4\sin^3\theta}{4\cos^3\theta - 3\cos\theta}\)
+              \(\phantom{\tan3\theta} = \frac{3\tan\theta\sec^2\theta - 4\tan^3\theta}{4 - 3\sec^2\theta}\)
+            marks:
+              - code: M1
+                note: Writes \(\tan3\theta\) as their \(\sin3\theta\) over their \(\cos3\theta\), each a cubic in \(\sin\theta\) or \(\cos\theta\), and divides through by a power of \(\cos\theta\) to introduce \(\tan\theta\).
+          - scheme: |
+              \(\phantom{\tan3\theta} = \frac{3\tan\theta(1+\tan^2\theta) - 4\tan^3\theta}{4 - 3(1+\tan^2\theta)}\)
+              \(\phantom{\tan3\theta} = \frac{3\tan\theta - \tan^3\theta}{1 - 3\tan^2\theta}\)
+            marks:
+              - code: A1 AG
+                note: From correct expressions for \(\sin3\theta\) and \(\cos3\theta\), with \(\sec^2\theta = 1+\tan^2\theta\) oe used correctly, leading without error to the printed result.
+  - q: 3
+    stamp: 50e8c192
+    parts:
+      - part: ''
+        rows:
+          - scheme: |
+              \(\cos 6\theta + i\sin 6\theta = (\cos\theta + i\sin\theta)^6\)
+              \(\phantom{\cos 6\theta + i\sin 6\theta} = \cos^6\theta\,(1+it)^6\)
+            marks:
+              - code: M1
+                note: Applies de Moivre's theorem and equates \(\cos 6\theta + i\sin 6\theta\) to \(\cos^6\theta\,(1+it)^6\).
+          - scheme: |
+              \((1+it)^6 = 1 + 6(it) + 15(it)^2 + 20(it)^3\)
+              \(\phantom{(1+it)^6 =} + 15(it)^4 + 6(it)^5 + (it)^6\)
+            marks:
+              - code: M1
+                note: Expands with seven terms in powers of \(it\) and binomial coefficients; condone one coefficient slip.
+          - scheme: |
+              \(\phantom{(1+it)^6} = (1 - 15t^2 + 15t^4 - t^6)\)
+              \(\phantom{(1+it)^6 =} + i(6t - 20t^3 + 6t^5)\)
+            marks:
+              - code: A1
+                note: Correct, with powers of \(i\) simplified; need not be grouped into real and imaginary parts.
+          - scheme: |
+              \(\cos 6\theta = \cos^6\theta\,(1 - 15t^2 + 15t^4 - t^6)\)
+              \(\sin 6\theta = \cos^6\theta\,(6t - 20t^3 + 6t^5)\)
+            marks:
+              - code: M1
+                note: Equates real parts and imaginary parts of their two expressions for \((\cos\theta + i\sin\theta)^6\).
+              - code: A1
+                note: Both correct, including the factor \(\cos^6\theta\).
+          - scheme: |
+              \(\tan 6\theta = \frac{\sin 6\theta}{\cos 6\theta} = \frac{\cos^6\theta\,(6t - 20t^3 + 6t^5)}{\cos^6\theta\,(1 - 15t^2 + 15t^4 - t^6)}\)
+            marks:
+              - code: M1
+                note: Divides their \(\sin 6\theta\) by their \(\cos 6\theta\), or the imaginary part by the real part, and cancels \(\cos^6\theta\).
+          - scheme: |
+              \(\tan 6\theta = \frac{6\tan\theta - 20\tan^3\theta + 6\tan^5\theta}{1 - 15\tan^2\theta + 15\tan^4\theta - \tan^6\theta}\)
+            marks:
+              - code: A1 AG
+                note: 'cso: printed result from correct working with no errors in powers of \(i\) or signs. Condone the final line left in \(t\).'
+  - q: 4
+    stamp: 230202bb
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \((\cos x + i\sin x)^6 = \cos 6x + i\sin 6x\)
+              \(\phantom{(\cos x + i\sin x)^6} = \cos^6 x + 6i\cos^5 x\sin x\)
+              \(\phantom{(\cos x + i\sin x)^6 =} + 15i^2\cos^4 x\sin^2 x + \ldots\)
+            marks:
+              - code: M1
+                note: Applies de Moivre to \((\cos x + i\sin x)^6\) and expands binomially, at least the terms giving the imaginary part. Condone slips in coefficients or powers of \(i\).
+          - scheme: |
+              \(\sin 6x = 6\cos^5 x\sin x - 20\cos^3 x\sin^3 x\)
+              \(\phantom{\sin 6x =} + 6\cos x\sin^5 x\)
+            marks:
+              - code: A1
+                note: Equates imaginary parts correctly, oe.
+          - scheme: |
+              \(\sin 6x = 2\sin x\cos x\big(3\cos^4 x\)
+              \(\phantom{\sin 6x =} - 10\cos^2 x(1-\cos^2 x) + 3(1-\cos^2 x)^2\big)\)
+            marks:
+              - code: M1
+                note: Uses \(\sin^2 x + \cos^2 x = 1\) to write the bracket in powers of \(\cos x\) alone, by any route.
+          - scheme: |
+              \(\sin 6x = \sin 2x\,(\ldots\cos^4 x + \ldots\cos^2 x + \ldots)\)
+            marks:
+              - code: dM1
+                note: Expands and collects to a quartic in \(\cos x\), with \(2\sin x\cos x\) replaced by \(\sin 2x\). Condone arithmetic slips.
+          - scheme: |
+              \(\sin 6x = \sin 2x\,(16\cos^4 x - 16\cos^2 x + 3)\)
+              \(a = 16,\ b = -16,\ c = 3\)
+            marks:
+              - code: A1
+                note: cso. Correct identity or \(a\), \(b\), \(c\) stated.
+      - part: b
+        rows:
+          - scheme: |
+              \(\sin 2\theta(16\cos^4\theta - 16\cos^2\theta + 3) = \sin 2\theta\cos 2\theta\)
+              \(\Rightarrow 16\cos^4\theta - 16\cos^2\theta + 3 = 2\cos^2\theta - 1\)
+            marks:
+              - code: M1
+                note: Uses their identity of the form \(\sin 2\theta(a\cos^4\theta + b\cos^2\theta + c)\), cancels \(\sin 2\theta\) and writes \(\cos 2\theta\) as \(2\cos^2\theta - 1\). Condone sign slips.
+          - scheme: |
+              \(16\cos^4\theta - 18\cos^2\theta + 4 = 0\)
+            marks:
+              - code: A1
+                note: oe, such as \(8\cos^4\theta - 9\cos^2\theta + 2 = 0\).
+          - scheme: |
+              \(\cos^2\theta = \frac{9 \pm \sqrt{17}}{16} \Rightarrow \theta = \ldots\)
+            marks:
+              - code: M1
+                note: Solves their three-term quadratic in \(\cos^2\theta\) by any means, calculator allowed, and inverts to find at least one \(\theta\).
+          - scheme: |
+              \(\theta = 0.438,\ 0.986\)
+            marks:
+              - code: A1
+                note: Both, awrt 0.438 and 0.986, and no others in \(0 < \theta < \frac{\pi}{2}\).
+  - q: 5
+    stamp: acff6cf1
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \((z - z^{-1})^6 = (2i\sin\theta)^6 = -64\sin^6\theta\)
+            marks:
+              - code: B1
+          - scheme: |
+              \((z - z^{-1})^6\)
+              \(\phantom{A} = z^6 - 6z^4 + 15z^2 - 20 + 15z^{-2} - 6z^{-4} + z^{-6}\)
+            marks:
+              - code: M1
+                note: Expands using binomial coefficients 1, 6, 15, 20 with powers of \(z\) and \(z^{-1}\). Condone sign and power slips; need not be simplified.
+              - code: A1
+                note: All seven terms correct; powers need not be simplified.
+          - scheme: |
+              \((z^6 + z^{-6}) - 6(z^4 + z^{-4}) + 15(z^2 + z^{-2}) - 20\)
+              \(\phantom{A} = 2\cos 6\theta - 12\cos 4\theta + 30\cos 2\theta - 20\)
+            marks:
+              - code: M1
+                note: Pairs terms and uses \(z^n + z^{-n} = 2\cos n\theta\) for at least two pairs. Condone coefficient slips.
+          - scheme: |
+              \(-64\sin^6\theta = 2\cos 6\theta - 12\cos 4\theta + 30\cos 2\theta - 20\)
+              \(\Rightarrow \sin^6\theta = \frac{1}{32}(10 - 15\cos 2\theta + 6\cos 4\theta - \cos 6\theta)\)
+            marks:
+              - code: A1 AG
+                note: Equates the two expressions and reaches the printed identity without error; combined rearrangement accepted.
+      - part: b
+        rows:
+          - scheme: |
+              \(x = \tan\theta,\ \mathrm{d}x = \sec^2\theta\,\mathrm{d}\theta\)
+              \(\Rightarrow \int \frac{\tan^6\theta}{(\sec^2\theta)^4}\sec^2\theta\,\mathrm{d}\theta\)
+            marks:
+              - code: M1
+                note: 'Substitutes fully: \(\mathrm{d}x\) replaced by \(\sec^2\theta\,\mathrm{d}\theta\) and \(1 + x^2\) by \(\sec^2\theta\) or \(1 + \tan^2\theta\). Condone slips in powers.'
+          - scheme: |
+              \(\int_0^{\pi/4} \sin^6\theta\,\mathrm{d}\theta\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\frac{1}{32}\int_0^{\pi/4} (10 - 15\cos 2\theta + 6\cos 4\theta - \cos 6\theta)\,\mathrm{d}\theta\)
+              \(\phantom{A} = \frac{1}{32}\left[10\theta - \frac{15}{2}\sin 2\theta + \frac{3}{2}\sin 4\theta - \frac{1}{6}\sin 6\theta\right]_0^{\pi/4}\)
+            marks:
+              - code: M1
+                note: Replaces \(\sin^6\theta\) by the result of (a) and integrates to the form \(a\theta + \sum b_k \sin k\theta\). Condone sign and coefficient slips.
+              - code: A1
+                note: Correct integral; the factor \(\frac{1}{32}\) may be applied later.
+          - scheme: |
+              \(\frac{1}{32}\left(\frac{10\pi}{4} - \frac{15}{2} + 0 + \frac{1}{6}\right)\)
+            marks:
+              - code: dM1
+                note: Substitutes \(\frac{\pi}{4}\) and 0 into their integral and subtracts; the zero from the lower limit need not be shown.
+          - scheme: |
+              \(= \frac{15\pi - 44}{192}\)
+            marks:
+              - code: A1
+                note: Any exact equivalent, such as \(\frac{5\pi}{64} - \frac{11}{48}\).
+  - q: 6
+    stamp: 28e7ee03
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\cos5\theta + i\sin5\theta = (\cos\theta + i\sin\theta)^5\)
+              \(\phantom{\cos5\theta} = \cos^5\theta + 5i\cos^4\theta\sin\theta - 10\cos^3\theta\sin^2\theta + \ldots\)
+            marks:
+              - code: M1
+                note: Uses de Moivre with a binomial expansion of \((\cos\theta + i\sin\theta)^5\); at least the real terms, with binomial coefficients. Condone slips in powers of \(i\).
+          - scheme: |
+              \(\cos5\theta = \cos^5\theta - 10\cos^3\theta\sin^2\theta + 5\cos\theta\sin^4\theta\)
+            marks:
+              - code: A1
+                note: Equates real parts correctly.
+          - scheme: |
+              \(\phantom{\cos5\theta} = \cos^5\theta - 10\cos^3\theta(1-\cos^2\theta)\)
+              \(\phantom{\cos5\theta =} + 5\cos\theta(1-\cos^2\theta)^2\)
+            marks:
+              - code: M1
+                note: Replaces \(\sin^2\theta\) by \(1-\cos^2\theta\) in both terms containing \(\sin\theta\).
+          - scheme: |
+              \(\phantom{\cos5\theta} = \cos^5\theta - 10\cos^3\theta + 10\cos^5\theta\)
+              \(\phantom{\cos5\theta =} + 5\cos\theta - 10\cos^3\theta + 5\cos^5\theta\)
+            marks:
+              - code: dM1
+                note: Expands the brackets and collects to a form \(a\cos^5\theta + b\cos^3\theta + c\cos\theta\). Condone arithmetic slips.
+          - scheme: |
+              \(\cos5\theta = 16\cos^5\theta - 20\cos^3\theta + 5\cos\theta\)
+              \(2\cos5\theta = 32\cos^5\theta - 40\cos^3\theta + 10\cos\theta\)
+            marks:
+              - code: A1 AG
+                note: Correct real part, substituted and expanded without error to the printed identity, including the doubling; combined steps accepted.
+      - part: b
+        rows:
+          - scheme: |
+              \(x = 2\cos\theta \Rightarrow x^5 - 5x^3 + 5x\)
+              \(\phantom{x} = 32\cos^5\theta - 40\cos^3\theta + 10\cos\theta = 2\cos5\theta\)
+            marks:
+              - code: M1
+                note: Substitutes \(x = 2\cos\theta\) and uses (a) to write \(x^5 - 5x^3 + 5x\) as \(2\cos5\theta\).
+          - scheme: |
+              \(2\cos5\theta + 1 = 0 \Rightarrow \cos5\theta = -\frac12\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(5\theta = \frac{2\pi}{3}, \frac{4\pi}{3}, \frac{8\pi}{3}, \frac{10\pi}{3}, \frac{14\pi}{3} \Rightarrow \theta = \ldots\)
+            marks:
+              - code: M1
+                note: Finds at least two values of \(5\theta\) for their \(\cos5\theta = k\), \(|k| \le 1\), and divides by 5.
+          - scheme: |
+              \(x = 2\cos\frac{2\pi}{15}, 2\cos\frac{4\pi}{15}, 2\cos\frac{8\pi}{15}, 2\cos\frac{2\pi}{3}, 2\cos\frac{14\pi}{15}\)
+            marks:
+              - code: A1
+                note: All five, each as \(2\cos q\pi\) oe (e.g. \(2\cos\frac{16\pi}{15}\)), no repeated root. Decimals, \(-1\), or \(\theta\) values alone score A0.
+  - q: 7
+    stamp: 297a96dd
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(z^n = \cos n\theta + i\sin n\theta\)
+              \(z^{-n} = \cos(-n\theta) + i\sin(-n\theta)\)
+              \(\phantom{z^{-n}} = \cos n\theta - i\sin n\theta\)
+            marks:
+              - code: M1
+                note: Applies de Moivre to both \(z^n\) and \(z^{-n}\), or finds \(\frac{1}{z^n}\) from \(z^n\) using the conjugate. Simplification of \(\cos(-n\theta)\), \(\sin(-n\theta)\) not needed.
+          - scheme: |
+              \(z^n + \frac{1}{z^n} = 2\cos n\theta\)
+            marks:
+              - code: A1
+                note: From a correctly simplified \(\frac{1}{z^n}\).
+          - scheme: |
+              \(z^n - \frac{1}{z^n} = 2i\sin n\theta\)
+            marks:
+              - code: A1 AG
+                note: Correct subtraction leading without error to the printed result.
+      - part: b
+        rows:
+          - scheme: |
+              \((2\cos\theta)^3(2i\sin\theta)^2 = -32\sin^2\theta\cos^3\theta\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(\left(z^3+3z+\frac{3}{z}+\frac{1}{z^3}\right)\left(z^2-2+\frac{1}{z^2}\right) = \ldots\)
+            marks:
+              - code: M1
+                note: Multiplies out the product, by binomial expansions or otherwise, to a sum of powers of \(z\). Condone coefficient slips.
+          - scheme: |
+              \(z^5 + z^3 - 2z - \frac{2}{z} + \frac{1}{z^3} + \frac{1}{z^5}\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\left(z^5+\frac{1}{z^5}\right)+\left(z^3+\frac{1}{z^3}\right)-2\left(z+\frac{1}{z}\right)\)
+              \(\phantom{A} = 2\cos 5\theta + 2\cos 3\theta - 4\cos\theta\)
+            marks:
+              - code: M1
+                note: Pairs \(z^k\) with \(z^{-k}\) in their expansion and replaces each pair by \(2\cos k\theta\).
+          - scheme: |
+              \(A = -\frac{1}{16},\ B = -\frac{1}{16},\ C = \frac{1}{8}\)
+            marks:
+              - code: A1
+                note: cso, from equating with \(-32\sin^2\theta\cos^3\theta\). Accept the identity written with these values.
+  - q: 8
+    stamp: 7ce7f634
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \((1+i\tan\theta)^4 = \sec^4\theta(\cos\theta+i\sin\theta)^4\)
+            marks:
+              - code: B1
+                note: The given form raised to the fourth power, \(\sec^4\theta(\cos\theta+i\sin\theta)^4\) oe. Not for the given form alone.
+          - scheme: |
+              \(\phantom{(1+i\tan\theta)^4} = \sec^4\theta(\cos4\theta+i\sin4\theta)\)
+            marks:
+              - code: M1
+                note: Applies de Moivre's theorem to \((\cos\theta+i\sin\theta)^4\). Condone a slip in the power of \(\sec\theta\).
+          - scheme: |
+              \(\phantom{(1+i\tan\theta)^4} = \frac{\cos4\theta+i\sin4\theta}{\cos^4\theta}\)
+            marks:
+              - code: A1 AG
+                note: Printed result reached without error from the fourth power of the given form and de Moivre's theorem.
+      - part: b
+        rows:
+          - scheme: |
+              \((1+i\tan\theta)^4 = 1+4i\tan\theta+6i^2\tan^2\theta\)
+              \(\phantom{(1+i\tan\theta)^4 =} + 4i^3\tan^3\theta + i^4\tan^4\theta\)
+            marks:
+              - code: M1
+                note: Expands to five terms with coefficients 1, 4, 6, 4, 1 and powers of \(i\tan\theta\). Powers of \(i\) need not be simplified.
+          - scheme: |
+              \(= (1-6\tan^2\theta+\tan^4\theta)\)
+              \(\phantom{=} + i\,4\tan\theta(1-\tan^2\theta)\)
+            marks:
+              - code: A1
+                note: Correct real and imaginary parts, in any arrangement.
+          - scheme: |
+              Equates parts with (a):
+              \(\frac{\cos4\theta}{\cos^4\theta} = 1-6\tan^2\theta+\tan^4\theta\)
+              \(\cos^4\theta = \frac{1}{(1+\tan^2\theta)^2}\)
+            marks:
+              - code: M1
+                note: Equates real or imaginary parts with (a) and replaces \(\cos^4\theta\) using \(\sec^2\theta=1+\tan^2\theta\). Condone slips in their expansion.
+          - scheme: |
+              \(\cos4\theta = \frac{1-6\tan^2\theta+\tan^4\theta}{(1+\tan^2\theta)^2}\)
+              \(\sin4\theta = \frac{4\tan\theta(1-\tan^2\theta)}{(1+\tan^2\theta)^2}\)
+            marks:
+              - code: A1 AG
+                note: Both printed results, reached without error from correct real and imaginary parts.
+      - part: c
+        rows:
+          - scheme: |
+              \(\tan4\theta = \frac{\sin4\theta}{\cos4\theta}\)
+              \(\phantom{\tan4\theta} = \frac{4\tan\theta(1-\tan^2\theta)}{(1+\tan^2\theta)^2}\)
+              \(\phantom{\tan4\theta =} \div \frac{1-6\tan^2\theta+\tan^4\theta}{(1+\tan^2\theta)^2}\)
+            marks:
+              - code: M1
+                note: Divides their \(\sin4\theta\) by their \(\cos4\theta\) from (b), or the imaginary part of the expansion by the real part.
+          - scheme: |
+              \(\tan4\theta = \frac{4\tan\theta(1-\tan^2\theta)}{1-6\tan^2\theta+\tan^4\theta}\)
+            marks:
+              - code: A1 AG
+                note: Printed result from the correct quotient with no errors.
+  - q: 9
+    stamp: 39be7d00
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\cos 6\theta + i\sin 6\theta = (c + is)^6\)
+              \(\phantom{\cos} = c^6 + 6c^5(is) + 15c^4(is)^2 + \ldots + (is)^6\)
+            marks:
+              - code: M1
+                note: Equates \(\cos 6\theta + i\sin 6\theta\) to a binomial expansion of \((\cos\theta + i\sin\theta)^6\) with at least the real terms. Condone slips in coefficients or powers of \(i\).
+          - scheme: |
+              \(\cos 6\theta = c^6 - 15c^4s^2 + 15c^2s^4 - s^6\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\cos 6\theta = c^6 - 15c^4(1-c^2) + 15c^2(1-c^2)^2\)
+              \(\phantom{\cos 6\theta =} - (1-c^2)^3 = \ldots\)
+            marks:
+              - code: M1
+                note: Replaces every \(\sin^2\theta\) by \(1 - \cos^2\theta\) and expands to a polynomial in \(\cos\theta\). Condone expansion slips.
+          - scheme: |
+              \(\cos 6\theta = 32c^6 - 48c^4 + 18c^2 - 1\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\sec 6\theta = \dfrac{1}{32c^6 - 48c^4 + 18c^2 - 1} \times \dfrac{\sec^6\theta}{\sec^6\theta}\)
+            marks:
+              - code: M1
+                note: Takes the reciprocal of their polynomial in \(\cos\theta\) and multiplies numerator and denominator by \(\sec^6\theta\), or writes each \(\cos^n\theta\) as \(\sec^{-n}\theta\).
+          - scheme: |
+              \(\sec 6\theta = \dfrac{\sec^6\theta}{32 - 48\sec^2\theta + 18\sec^4\theta - \sec^6\theta}\)
+            marks:
+              - code: A1 AG
+                note: From the correct polynomial, reaches the printed result without error; a one-step multiplication is accepted.
+      - part: b
+        rows:
+          - scheme: |
+              \(x = \sec\theta\):
+              \(\sec^6\theta - 18\sec^4\theta + 48\sec^2\theta - 32 = 0\)
+              \(\Rightarrow 32 - 48\sec^2\theta + 18\sec^4\theta - \sec^6\theta = 0\)
+            marks:
+              - code: M1
+                note: Substitutes \(x = \sec\theta\) and identifies the equation as the denominator in (a) equal to zero, sign change allowed.
+          - scheme: |
+              \(\sec 6\theta\) undefined \(\Rightarrow \cos 6\theta = 0\)
+            marks:
+              - code: A1
+                note: oe such as \(\sec 6\theta\) undefined or infinite.
+          - scheme: |
+              \(6\theta = \frac{\pi}{2}, \frac{3\pi}{2}, \ldots \Rightarrow \theta = \ldots\)
+            marks:
+              - code: M1
+                note: Solves their \(\cos 6\theta = 0\) for at least two values of \(\theta\) giving distinct values of \(\sec\theta\).
+          - scheme: |
+              \(x = \sec\frac{\pi}{12}, \sec\frac{\pi}{4}, \sec\frac{5\pi}{12}, \sec\frac{7\pi}{12}, \sec\frac{3\pi}{4}, \sec\frac{11\pi}{12}\)
+            marks:
+              - code: A1
+                note: Six distinct roots in the form \(\sec q\pi\), no others; any equivalent \(q\). Decimals, or \(\pm\sqrt2\), in place of \(\sec q\pi\) score A0.
+  - q: 10
+    stamp: c38c7930
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\cos5\theta+i\sin5\theta=(\cos\theta+i\sin\theta)^5\)
+              \(\phantom{A}=\cos^5\theta+5i\cos^4\theta\sin\theta-10\cos^3\theta\sin^2\theta\)
+              \(\phantom{A=}-10i\cos^2\theta\sin^3\theta+5\cos\theta\sin^4\theta+i\sin^5\theta\)
+            marks:
+              - code: M1
+                note: Equates \(\cos5\theta+i\sin5\theta\) to \((\cos\theta+i\sin\theta)^5\) and attempts a binomial expansion with at least the three real terms. Condone coefficient or sign slips.
+          - scheme: |
+              \(\cos5\theta=\cos^5\theta-10\cos^3\theta\sin^2\theta+5\cos\theta\sin^4\theta\)
+            marks:
+              - code: A1
+                note: Correct real part; imaginary terms need not be seen.
+          - scheme: |
+              \(\cos5\theta=\cos^5\theta-10\cos^3\theta(1-\cos^2\theta)\)
+              \(\phantom{\cos5\theta=}+5\cos\theta(1-\cos^2\theta)^2\)
+            marks:
+              - code: M1
+                note: Substitutes \(\sin^2\theta=1-\cos^2\theta\) into their real part to give an expression in \(\cos\theta\) only.
+          - scheme: |
+              \(\phantom{A}=\cos^5\theta-10\cos^3\theta+10\cos^5\theta\)
+              \(\phantom{A=}+5\cos\theta-10\cos^3\theta+5\cos^5\theta\)
+            marks:
+              - code: dM1
+                note: Expands the brackets, including \((1-\cos^2\theta)^2\), and collects like powers of \(\cos\theta\). Condone slips.
+          - scheme: |
+              \(\cos5\theta=16\cos^5\theta-20\cos^3\theta+5\cos\theta\)
+            marks:
+              - code: A1 AG
+                note: Correct real part leading without error to the printed result with \(\cos5\theta\) as LHS; combined steps accepted.
+      - part: b
+        rows:
+          - scheme: |
+              \(\cos5\theta=\cos2\theta\)
+            marks:
+              - code: B1
+                note: Replaces the LHS by \(\cos5\theta\) using (a).
+          - scheme: |
+              \(5\theta=2n\pi\pm2\theta\Rightarrow\theta=\ldots\)
+            marks:
+              - code: M1
+                note: Solves by a general solution of \(\cos A=\cos B\) with both signs, a factor formula, or listing equal-cosine angles over a sufficient range, leading to \(\theta=\ldots\).
+          - scheme: |
+              \(\theta=\frac{2n\pi}{3}\)
+            marks:
+              - code: A1
+                note: Or its values \(0\) and \(\frac{2\pi}{3}\) in range.
+          - scheme: |
+              \(\theta=\frac{2n\pi}{7}\)
+            marks:
+              - code: A1
+                note: Or its values \(0\), \(\frac{2\pi}{7}\), \(\frac{4\pi}{7}\), \(\frac{6\pi}{7}\) in range.
+          - scheme: |
+              \(\theta=0,\ \frac{2\pi}{7},\ \frac{4\pi}{7},\ \frac{2\pi}{3},\ \frac{6\pi}{7}\)
+            marks:
+              - code: A1
+                note: All five exact values, including 0, and no others in \(0\le\theta\le\pi\).
+  - q: 11
+    stamp: 5dc16103
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \((\cos\theta+i\sin\theta)^6=\cos6\theta+i\sin6\theta\)
+              \(\phantom{(\cos\theta+i\sin\theta)^6}=\cos^6\theta+6i\cos^5\theta\sin\theta\)
+              \(\phantom{(\cos\theta+i\sin\theta)^6=}-15\cos^4\theta\sin^2\theta+\ldots\)
+            marks:
+              - code: M1
+                note: Equates \(\cos6\theta+i\sin6\theta\) to a binomial expansion of \((\cos\theta+i\sin\theta)^6\), at least its real terms, with powers of \(i\) applied. Condone coefficient and sign slips.
+          - scheme: |
+              \(\cos6\theta=\cos^6\theta-15\cos^4\theta\sin^2\theta\)
+              \(\phantom{\cos6\theta=}+15\cos^2\theta\sin^4\theta-\sin^6\theta\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(u=\sin^2\theta\): \(\cos6\theta=(1-u)^3-15(1-u)^2u\)
+              \(\phantom{u=\sin^2\theta: \cos6\theta=}+15(1-u)u^2-u^3\)
+            marks:
+              - code: M1
+                note: Replaces \(\cos^2\theta\) by \(1-\sin^2\theta\) throughout their real part.
+          - scheme: |
+              \(\phantom{\cos6\theta}=1-18u+48u^2-32u^3\)
+              \(\phantom{\cos6\theta}=(1-2u)(\ldots)\)
+            marks:
+              - code: dM1
+                note: Expands and collects into a cubic in \(\sin^2\theta\), then factorises it or expands the printed product to compare. Condone slips.
+          - scheme: |
+              \(\cos6\theta\equiv(1-2\sin^2\theta)(16\sin^4\theta\)
+              \(\phantom{\cos6\theta\equiv}-16\sin^2\theta+1)\)
+            marks:
+              - code: A1 AG
+                note: Correct substituted expression leading without error to the printed identity; matching the expanded printed RHS with a conclusion is accepted.
+      - part: b
+        rows:
+          - scheme: |
+              \((1-2u)(16u^2-16u+1)=0\Rightarrow u=\ldots\)
+            marks:
+              - code: M1
+                note: Sets each factor to zero and solves the quadratic in \(\sin^2\theta\) by formula with their values or completing the square.
+          - scheme: |
+              \(u=\frac12,\ \frac{2\pm\sqrt3}{4}\)
+            marks:
+              - code: A1
+                note: All three, oe such as \(\frac{16\pm8\sqrt3}{32}\).
+          - scheme: |
+              \(\cos\left(6\times\frac{\pi}{12}\right)=\cos\frac{\pi}{2}=0\)
+              \(0<\frac{\pi}{12}<\frac{\pi}{4}\Rightarrow\sin^2\frac{\pi}{12}<\frac12\)
+            marks:
+              - code: M1
+                note: Uses \(\theta=\frac{\pi}{12}\) as a solution of \(\cos6\theta=0\) and gives a reason rejecting \(\frac12\) and \(\frac{2+\sqrt3}{4}\), such as \(\sin^2\frac{\pi}{12}<\frac12\).
+          - scheme: |
+              \(\sin^2\left(\frac{\pi}{12}\right)=\frac{2-\sqrt3}{4}\)
+            marks:
+              - code: A1 AG
+                note: cso, with both other values rejected.
+      - part: c
+        rows:
+          - scheme: |
+              \(\sin^2\left(\frac{5\pi}{12}\right)=\frac{2+\sqrt3}{4}\)
+            marks:
+              - code: B1
+                note: Any exact form, here and below.
+          - scheme: |
+              \(\sin^2\left(\frac{7\pi}{12}\right)=\frac{2+\sqrt3}{4}\)
+            marks:
+              - code: B1
+          - scheme: |
+              \(\sin^2\left(\frac{11\pi}{12}\right)=\frac{2-\sqrt3}{4}\)
+            marks:
+              - code: B1
+  - q: 12
+    stamp: c86203ca
+    parts:
+      - part: i
+        rows:
+          - scheme: |
+              \(\cos 5\theta + i\sin 5\theta = (\cos\theta + i\sin\theta)^5\)
+              \(\phantom{\cos 5\theta} = \cos^5\theta + 5i\cos^4\theta\sin\theta\)
+              \(\phantom{\cos 5\theta =} - 10\cos^3\theta\sin^2\theta + \ldots\)
+            marks:
+              - code: M1
+                note: Uses de Moivre with a binomial expansion of \((\cos\theta + i\sin\theta)^5\), showing at least the real terms. Condone slips in powers of \(i\).
+          - scheme: |
+              \(\cos 5\theta = \cos^5\theta - 10\cos^3\theta\sin^2\theta\)
+              \(\phantom{\cos 5\theta =} + 5\cos\theta\sin^4\theta\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\cos 5\theta = \cos\theta\big((1-\sin^2\theta)^2\)
+              \(\phantom{\cos 5\theta =} - 10(1-\sin^2\theta)\sin^2\theta + 5\sin^4\theta\big)\)
+            marks:
+              - code: M1
+                note: Replaces \(\cos^2\theta\) by \(1 - \sin^2\theta\) in their real part, keeping a factor \(\cos\theta\).
+          - scheme: |
+              \(\phantom{\cos 5\theta} = \cos\theta\big(1 - 2\sin^2\theta + \sin^4\theta\)
+              \(\phantom{\cos 5\theta =} - 10\sin^2\theta + 15\sin^4\theta\big)\)
+            marks:
+              - code: dM1
+                note: Expands and collects into powers of \(\sin\theta\). Condone arithmetic slips.
+          - scheme: |
+              \(\cos 5\theta \equiv \cos\theta(1 - 12\sin^2\theta + 16\sin^4\theta)\)
+            marks:
+              - code: A1 AG
+                note: Correct substitution leading without error to the printed identity; expansion and collection may be combined.
+      - part: ii
+        rows:
+          - scheme: |
+              \(\frac{\cos 5\theta}{\cos\theta} = 1 - 12u + 16u^2\), \(u = \sin^2\theta\)
+            marks:
+              - code: M1
+                note: Divides the identity by \(\cos\theta\) and treats the result as a quadratic in \(\sin^2\theta\), any letter.
+          - scheme: |
+              \(0 \le u < 1\)
+            marks:
+              - code: B1
+                note: Strict inequality at 1 needed; equivalent statements in \(\sin\theta\) accepted.
+          - scheme: |
+              \(u = \frac{12}{2 \times 16}\ [= \tfrac38]\)
+            marks:
+              - code: M1
+                note: Finds the turning point of their quadratic by differentiation, completing the square or \(-\frac{b}{2a}\). Condone sign slips.
+          - scheme: |
+              \(1 - 12\left(\tfrac38\right) + 16\left(\tfrac38\right)^2 = -\tfrac54\)
+            marks:
+              - code: A1
+                note: \(-\frac54\) oe.
+          - scheme: |
+              \(u \to 1 \Rightarrow 1 - 12 + 16 = \ldots\)
+            marks:
+              - code: M1
+                note: Evaluates their quadratic at, or as \(u\) tends to, \(u = 1\).
+          - scheme: |
+              \(5\), not attained: \(u = 1 \Rightarrow \cos\theta = 0\)
+            marks:
+              - code: A1
+                note: 5 with the reason it is not attained. Solving \(f(u) = 5\) is not required.
+          - scheme: |
+              \(-\frac54 \le \frac{\cos 5\theta}{\cos\theta} < 5\)
+            marks:
+              - code: A1
+                note: Correct inequality at both ends; \(\left[-\frac54, 5\right)\) oe accepted.
+  - q: 13
+    stamp: 7127938c
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\cos5\theta + i\sin5\theta = (c+is)^5\)
+              \(\phantom{\cos5\theta} = c^5 + 5ic^4s - 10c^3s^2 - 10ic^2s^3\)
+              \(\phantom{\cos5\theta =} + 5cs^4 + is^5\)
+            marks:
+              - code: M1
+                note: Equates \(\cos5\theta + i\sin5\theta\) to a binomial expansion of \((c+is)^5\) showing at least the real terms. Condone sign slips from powers of \(i\).
+          - scheme: |
+              \(\cos5\theta = c^5 - 10c^3s^2 + 5cs^4\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\phantom{\cos5\theta} = c^5 - 10c^3(1-c^2) + 5c(1-c^2)^2\)
+            marks:
+              - code: M1
+                note: Replaces \(s^2\) by \(1-c^2\) throughout their real part, including \(s^4\) by \((1-c^2)^2\).
+          - scheme: |
+              \(\phantom{\cos5\theta} = c^5 - 10c^3 + 10c^5 + 5c - 10c^3 + 5c^5\)
+            marks:
+              - code: dM1
+                note: Multiplies out all brackets and collects like terms to a polynomial in \(\cos\theta\) only. Condone sign slips.
+          - scheme: |
+              \(\cos5\theta = 16\cos^5\theta - 20\cos^3\theta + 5\cos\theta\)
+            marks:
+              - code: A1 AG
+                note: 'cso: correct substituted real part leading without error to the printed identity; combined steps accepted.'
+      - part: b
+        rows:
+          - scheme: |
+              \(x = \cos\theta\):
+              \(4(16x^5 - 20x^3 + 5x) + 1 = 4\cos5\theta + 1 = 0\)
+            marks:
+              - code: M1
+                note: Substitutes \(x = \cos\theta\) and uses part (a) to reach an equation in \(\cos5\theta\). Roots found without the identity score nothing in this part.
+          - scheme: |
+              \(\cos5\theta = -\tfrac14\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(5\theta = 104.48^\circ,\ 255.52^\circ\)
+              \(\Rightarrow \theta = 20.90^\circ,\ 51.10^\circ \Rightarrow x = \cos\theta = \ldots\)
+            marks:
+              - code: M1
+                note: Finds \(\arccos\) of their \(\cos5\theta\) and a second solution such as \(360^\circ - \alpha\) (or \(2\pi - \alpha\)), divides by 5 and takes cosines.
+          - scheme: |
+              \(x = 0.934,\ 0.628\)
+            marks:
+              - code: A1
+                note: awrt 0.934 and 0.628, with no other positive roots given.
+  - q: 14
+    stamp: 1a4e7172
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(\cos4\theta + i\sin4\theta = (\cos\theta+i\sin\theta)^4\)
+              \(\phantom{A} = \cos^4\theta + 4i\cos^3\theta\sin\theta - 6\cos^2\theta\sin^2\theta\)
+              \(\phantom{A =} - 4i\cos\theta\sin^3\theta + \sin^4\theta\)
+            marks:
+              - code: M1
+                note: Equates \(\cos4\theta + i\sin4\theta\) to a binomial expansion of \((\cos\theta+i\sin\theta)^4\) showing at least the three real terms. Condone slips in coefficients or powers of \(i\).
+          - scheme: |
+              \(\cos4\theta = \cos^4\theta - 6\sin^2\theta\cos^2\theta + \sin^4\theta\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\cos4\theta = (\sin^2\theta+\cos^2\theta)^2 - 8\sin^2\theta\cos^2\theta\)
+            marks:
+              - code: M1
+                note: Uses \(\sin^2\theta+\cos^2\theta=1\) to rewrite the fourth powers, e.g. completing the square or substituting \(\cos^2\theta = 1-\sin^2\theta\).
+          - scheme: |
+              \(\cos4\theta = 1 - 8\sin^2\theta\cos^2\theta\)
+            marks:
+              - code: dM1
+                note: Collects to the form \(\cos4\theta = 1 - k\sin^2\theta\cos^2\theta\).
+          - scheme: |
+              \(\sin^2\theta\cos^2\theta = \frac18(1-\cos4\theta)\)
+            marks:
+              - code: A1 AG
+                note: Printed result reached without error from a correct real-part equation; combined steps accepted. Nothing for working back from the result.
+      - part: b
+        rows:
+          - scheme: |
+              \(e^{\int -2\tan\theta\,\mathrm{d}\theta} = e^{-2\ln\sec\theta} = \ldots\)
+            marks:
+              - code: M1
+                note: Forms \(e^{\int \pm 2\tan\theta\,\mathrm{d}\theta}\) and integrates to the form \(e^{k\ln\sec\theta}\) or \(e^{k\ln\cos\theta}\).
+          - scheme: |
+              \(\phantom{A} = \cos^2\theta\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\frac{\mathrm{d}}{\mathrm{d}\theta}(y\cos^2\theta) = \sin^2\theta\cos^2\theta = \frac18(1-\cos4\theta)\)
+              \(\Rightarrow y\cos^2\theta = \ldots\)
+            marks:
+              - code: dM1
+                note: Multiplies through by their integrating factor, writes LHS as \(\frac{\mathrm{d}}{\mathrm{d}\theta}(y \times\) their factor\()\) and integrates the RHS, using (a) or otherwise, with at least one term correct.
+          - scheme: |
+              \(y\cos^2\theta = \frac{\theta}{8} - \frac{\sin4\theta}{32} + c\)
+            marks:
+              - code: A1
+                note: oe; needs the constant.
+          - scheme: |
+              \(0 = \frac{\pi}{32} - \frac{\sin\pi}{32} + c \Rightarrow c = \ldots\ [= -\frac{\pi}{32}]\)
+            marks:
+              - code: M1
+                note: Substitutes \(\theta = \frac{\pi}{4}\), \(y = 0\) into their general solution containing a constant and solves for it.
+          - scheme: |
+              \(y = \frac{4\theta - \sin4\theta - \pi}{32\cos^2\theta}\)
+            marks:
+              - code: A1
+                note: oe; \(y\cos^2\theta = \frac{\theta}{8} - \frac{\sin4\theta}{32} - \frac{\pi}{32}\) accepted.
+  - q: 15
+    stamp: da558431
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \((z+z^{-1})^6 = 64\cos^6\theta\)
+            marks:
+              - code: B1
+          - scheme: |
+              \((z+z^{-1})^6 = z^6+6z^4+15z^2+20\)
+              \(\phantom{(z+z^{-1})^6 =} +15z^{-2}+6z^{-4}+z^{-6}\)
+            marks:
+              - code: M1
+                note: 'Attempts the binomial expansion: seven terms with binomial coefficients and powers of \(z\). Powers need not be simplified; condone one coefficient slip.'
+              - code: A1
+                note: Correct expansion with powers simplified.
+          - scheme: |
+              \(64\cos^6\theta = (z^6+z^{-6})+6(z^4+z^{-4})+\ldots\)
+              \(\phantom{64\cos^6\theta} = 2\cos6\theta+12\cos4\theta+30\cos2\theta+20\)
+            marks:
+              - code: M1
+                note: Pairs \(z^n\) with \(z^{-n}\) and replaces by \(2\cos n\theta\) for at least two pairs, with their coefficients.
+          - scheme: |
+              \(a=\frac{1}{32},\ b=\frac{3}{16},\ c=\frac{15}{32},\ d=\frac{5}{16}\)
+            marks:
+              - code: A1
+                note: All four, oe, stated or in the identity.
+      - part: b
+        rows:
+          - scheme: |
+              \(\frac{1}{32}\int_0^{\pi/4}(\cos6\theta+6\cos4\theta+15\cos2\theta+10)\,\mathrm{d}\theta\)
+              \(= \frac{1}{32}\left[\frac16\sin6\theta+\frac32\sin4\theta+\frac{15}{2}\sin2\theta+10\theta\right]_0^{\pi/4}\)
+            marks:
+              - code: M1
+                note: Integrates their part (a) identity term by term to the form \(p\sin6\theta+q\sin4\theta+r\sin2\theta+s\theta\). Condone sign and coefficient slips.
+              - code: A1
+                note: Correct integral, oe.
+          - scheme: |
+              \(= \frac{1}{32}\left(-\frac16+0+\frac{15}{2}+\frac{5\pi}{2}\right)-0\)
+              \(= \frac{11}{48}+\frac{5\pi}{64}\)
+            marks:
+              - code: dM1
+                note: Substitutes \(\theta=\frac{\pi}{4}\) and \(\theta=0\) and subtracts; the zero lower limit may be implied.
+              - code: A1 AG
+                note: Correct substituted expression with sine values evaluated, leading without error to the printed result; combined steps accepted.
+  - q: 16
+    stamp: 37ca0f2c
+    parts:
+      - part: i.A
+        rows:
+          - scheme: |
+              \((\cos\theta+i\sin\theta)^n = (e^{i\theta})^n = e^{in\theta}\)
+            marks:
+              - code: M1
+                note: Raises both sides of Euler's formula to the power \(n\) and writes \((e^{i\theta})^n = e^{in\theta}\).
+          - scheme: |
+              \(e^{in\theta} = \cos n\theta + i\sin n\theta\)
+            marks:
+              - code: A1 AG
+                note: Applies Euler's formula with \(n\theta\) to reach the printed result. Quoting de Moivre's theorem earns nothing.
+      - part: i.B
+        rows:
+          - scheme: |
+              \(e^{-i\theta} = \cos(-\theta)+i\sin(-\theta)\)
+              \(\phantom{e^{-i\theta}} = \cos\theta - i\sin\theta\)
+            marks:
+              - code: M1
+                note: Obtains \(e^{-i\theta}\) in terms of \(\cos\theta\) and \(\sin\theta\), e.g. by replacing \(\theta\) by \(-\theta\), and subtracts the two results. Condone sign slips.
+          - scheme: |
+              \(e^{i\theta}-e^{-i\theta} = 2i\sin\theta\)
+              \(\Rightarrow \sin\theta = \frac{1}{2i}(e^{i\theta}-e^{-i\theta})\)
+            marks:
+              - code: A1 AG
+                note: Correct \(e^{-i\theta} = \cos\theta - i\sin\theta\), with \(\cos(-\theta)=\cos\theta\) and \(\sin(-\theta)=-\sin\theta\) used, leading without error to the printed result.
+      - part: ii
+        rows:
+          - scheme: |
+              \(\cos 8\theta + i\sin 8\theta = (\cos\theta+i\sin\theta)^8\)
+              \(\phantom{\cos 8\theta} = \cos^8\theta + 8i\cos^7\theta\sin\theta\)
+              \(\phantom{\cos 8\theta =} - 28\cos^6\theta\sin^2\theta + \ldots\)
+            marks:
+              - code: M1
+                note: Uses de Moivre with \(n=8\) and expands \((\cos\theta+i\sin\theta)^8\) binomially, at least the real terms. Condone coefficient or sign slips.
+          - scheme: |
+              \(\cos 8\theta = \cos^8\theta - 28\cos^6\theta\sin^2\theta\)
+              \(\phantom{\cos 8\theta =} + 70\cos^4\theta\sin^4\theta - 28\cos^2\theta\sin^6\theta\)
+              \(\phantom{\cos 8\theta =} + \sin^8\theta\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\cos 8\theta = (1-\sin^2\theta)^4\)
+              \(\phantom{\cos 8\theta =} - 28(1-\sin^2\theta)^3\sin^2\theta + \ldots\)
+            marks:
+              - code: M1
+                note: Replaces every \(\cos^2\theta\) in their real part by \(1-\sin^2\theta\).
+          - scheme: |
+              \(\cos 8\theta = (1 - 4\sin^2\theta + 6\sin^4\theta - \ldots)\)
+              \(\phantom{\cos 8\theta =} - 28(\sin^2\theta - 3\sin^4\theta + \ldots) + \ldots\)
+            marks:
+              - code: dM1
+                note: Expands all the brackets and collects like powers of \(\sin\theta\). Condone sign and arithmetic slips.
+          - scheme: |
+              \(a=128,\ b=-256,\ c=160,\ d=-32,\ e=1\)
+            marks:
+              - code: A1
+                note: At least three of the five constants correct.
+              - code: A1
+                note: All five correct; the identity with these coefficients is accepted.
+      - part: iii
+        rows:
+          - scheme: |
+              \(\sin^8\theta = \frac{1}{(2i)^8}(e^{i\theta}-e^{-i\theta})^8\)
+              \(\phantom{\sin^8\theta} = \frac{1}{256}(e^{i\theta}-e^{-i\theta})^8\)
+            marks:
+              - code: B1
+                note: Needs \((2i)^8\) evaluated as 256.
+          - scheme: |
+              \(\phantom{\sin^8\theta} = \frac{1}{256}(e^{8i\theta} - 8e^{6i\theta} + 28e^{4i\theta} - 56e^{2i\theta} + 70\)
+              \(\phantom{\sin^8\theta =} - 56e^{-2i\theta} + 28e^{-4i\theta} - 8e^{-6i\theta} + e^{-8i\theta})\)
+            marks:
+              - code: M1
+                note: Expands the eighth power binomially with coefficients from row 8 of Pascal's triangle, combining powers of \(e^{i\theta}\). Accept \(z = e^{i\theta}\) notation. Condone sign slips.
+              - code: A1
+                note: All nine terms correct.
+          - scheme: |
+              \(\sin^8\theta = \frac{1}{256}(2\cos 8\theta - 16\cos 6\theta + 56\cos 4\theta\)
+              \(\phantom{\sin^8\theta =} - 112\cos 2\theta + 70)\)
+            marks:
+              - code: M1
+                note: Pairs \(e^{ik\theta}\) with \(e^{-ik\theta}\) as \(2\cos k\theta\) for at least two values of \(k\).
+          - scheme: |
+              \(P=\frac{1}{128},\ Q=-\frac{1}{16},\ R=\frac{7}{32},\)
+              \(S=-\frac{7}{16},\ T=\frac{35}{128}\)
+            marks:
+              - code: A1
+                note: At least three of the five constants correct.
+              - code: A1
+                note: All five correct, oe.
+      - part: iv
+        rows:
+          - scheme: |
+              \(\sin^8\frac{\pi}{8} = \frac{1}{128}\left(-1 - 8\left(-\frac{\sqrt2}{2}\right) + 28(0)\right.\)
+              \(\phantom{\sin^8\frac{\pi}{8} =} \left. - 56\left(\frac{\sqrt2}{2}\right) + 35\right)\)
+            marks:
+              - code: M1
+                note: Substitutes \(\theta=\frac{\pi}{8}\) into their identity of the form in (iii) and uses exact cosine values. Decimal cosines do not score.
+          - scheme: |
+              \(\sin^8\frac{\pi}{8} = \frac{34-24\sqrt2}{128} = \frac{17-12\sqrt2}{64}\)
+            marks:
+              - code: A1
+                note: cso, from correct constants in (iii).
+          - scheme: |
+              \(0<\frac{\pi}{8}<\frac{\pi}{2} \Rightarrow \sin\frac{\pi}{8}>0\)
+              \(\Rightarrow \sin\frac{\pi}{8} = \left(\frac{17-12\sqrt2}{64}\right)^{\frac18}\)
+            marks:
+              - code: A1 AG
+                note: Needs a reason for taking the positive real eighth root, such as \(\sin\frac{\pi}{8}>0\) or \(\frac{\pi}{8}\) acute.
+  - q: 17
+    stamp: 0a343444
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \((z-z^{-1})^4(z+z^{-1})^2 = (2i\sin\theta)^4(2\cos\theta)^2\)
+              \(\phantom{(z-z^{-1})^4(z+z^{-1})^2} = 64\sin^4\theta\cos^2\theta\)
+            marks:
+              - code: B1
+          - scheme: |
+              \((z-z^{-1})^4(z+z^{-1})^2 = (z^2-2+z^{-2})(z^4-2+z^{-4})\)
+              \(\phantom{(z-z^{-1})^4(z+z^{-1})^2} = \ldots\)
+            marks:
+              - code: M1
+                note: Attempts the full expansion of the product into powers of \(z\), in any order. Condone sign and coefficient slips.
+          - scheme: |
+              \(= z^6-2z^4-z^2+4-z^{-2}-2z^{-4}+z^{-6}\)
+            marks:
+              - code: A1
+                note: Correct seven-term expansion, oe.
+          - scheme: |
+              \(= (z^6+z^{-6})-2(z^4+z^{-4})-(z^2+z^{-2})+4\)
+              \(= 2\cos 6\theta-4\cos 4\theta-2\cos 2\theta+4\)
+            marks:
+              - code: M1
+                note: Pairs \(z^n\) with \(z^{-n}\) and replaces each pair by \(2\cos n\theta\).
+          - scheme: |
+              \(64\sin^4\theta\cos^2\theta = 2\cos 6\theta-4\cos 4\theta-2\cos 2\theta+4\)
+              \(\Rightarrow \sin^4\theta\cos^2\theta \equiv \frac{1}{32}(\cos 6\theta-2\cos 4\theta-\cos 2\theta+2)\)
+            marks:
+              - code: A1 AG
+                note: Correct expansion equated to \(64\sin^4\theta\cos^2\theta\), leading without error to the printed identity.
+        alt:
+          title: Double-angle formulae in \(\cos 2\theta\)
+          rows:
+            - scheme: |
+                \(\sin^4\theta\cos^2\theta = \left(\frac{1-\cos 2\theta}{2}\right)^2\left(\frac{1+\cos 2\theta}{2}\right) = \ldots\)
+              marks:
+                - code: M1
+                  note: Uses \(\sin^2\theta=\frac12(1-\cos 2\theta)\), \(\cos^2\theta=\frac12(1+\cos 2\theta)\) and expands to a polynomial in \(\cos 2\theta\). Condone sign slips.
+            - scheme: |
+                \(= \frac18(1-\cos 2\theta-\cos^2 2\theta+\cos^3 2\theta)\)
+              marks:
+                - code: A1
+            - scheme: |
+                \((\cos 2\theta+i\sin 2\theta)^3 = \cos 6\theta+i\sin 6\theta\)
+                \(\Rightarrow \cos 6\theta = \cos^3 2\theta-3\cos 2\theta\sin^2 2\theta = \ldots\)
+              marks:
+                - code: M1
+                  note: Expands \((\cos 2\theta+i\sin 2\theta)^3\) and equates real parts to express \(\cos 6\theta\) in powers of \(\cos 2\theta\); \(\cos 4\theta\) may come from a double-angle formula. Not for quoting the triple-angle formula.
+            - scheme: |
+                \(\cos^2 2\theta = \frac12(1+\cos 4\theta)\)
+                \(\cos^3 2\theta = \frac14(\cos 6\theta+3\cos 2\theta)\)
+              marks:
+                - code: A1
+                  note: Both, oe.
+            - scheme: |
+                \(\sin^4\theta\cos^2\theta = \frac18\left(1-\cos 2\theta-\frac{1+\cos 4\theta}{2}+\frac{\cos 6\theta+3\cos 2\theta}{4}\right)\)
+                \(\phantom{\sin^4\theta\cos^2\theta} \equiv \frac{1}{32}(\cos 6\theta-2\cos 4\theta-\cos 2\theta+2)\)
+              marks:
+                - code: A1 AG
+                  note: Correct substitution into the correct cubic, leading without error to the printed identity.
+      - part: b
+        rows:
+          - scheme: |
+              \(\sin^2\theta\cos^4\theta = \sin^4\alpha\cos^2\alpha\)
+              \(\phantom{\sin^2\theta\cos^4\theta} = \frac{1}{32}(\cos 6\alpha-2\cos 4\alpha-\cos 2\alpha+2)\)
+            marks:
+              - code: M1
+                note: Replaces \(\sin\theta\) by \(\cos\alpha\) and \(\cos\theta\) by \(\sin\alpha\) and applies the identity of (a) in \(\alpha\).
+          - scheme: |
+              \(\cos 2\alpha = -\cos 2\theta,\ \cos 4\alpha = \cos 4\theta,\ \cos 6\alpha = -\cos 6\theta\)
+            marks:
+              - code: M1
+                note: Uses \(n\alpha=\frac{n\pi}{2}-n\theta\) to write all three cosines in terms of \(\theta\). Condone sign slips.
+          - scheme: |
+              \(\sin^2\theta\cos^4\theta \equiv \frac{1}{32}(-\cos 6\theta-2\cos 4\theta+\cos 2\theta+2)\)
+            marks:
+              - code: A1
+                note: oe.
+      - part: c
+        rows:
+          - scheme: |
+              \(\frac{1}{32}(\cos 6\theta-2\cos 4\theta-\cos 2\theta+2)\)
+              \(\phantom{=} + \frac{2}{32}(-\cos 6\theta-2\cos 4\theta+\cos 2\theta+2)\)
+            marks:
+              - code: M1
+                note: Adds the identity from (a) to twice their identity from (b), of the form \(\frac{1}{32}(\)cosines of \(2\theta, 4\theta, 6\theta\) and a constant\()\).
+          - scheme: |
+              \(= \frac{1}{32}(-\cos 6\theta-6\cos 4\theta+\cos 2\theta+6)\)
+            marks:
+              - code: A1
+          - scheme: |
+              \(\frac{1}{32}\left[-\frac16\sin 6\theta-\frac32\sin 4\theta+\frac12\sin 2\theta+6\theta\right]_0^a\)
+            marks:
+              - code: M1
+                note: Integrates at least one cosine term to the form \(k\sin n\theta\) and substitutes the limits 0 and \(a\).
+          - scheme: |
+              \(\frac{1}{32}\left(6a+\frac12\sin 2a-\frac32\sin 4a-\frac16\sin 6a\right)\)
+              \(\phantom{=} = \frac{\pi}{32}-\frac{\sqrt3}{64}\)
+            marks:
+              - code: A1
+                note: Correct expression in \(a\), oe, equated to the given value.
+          - scheme: |
+              \(a = \frac{\pi}{6}\)
+            marks:
+              - code: A1
+                note: Exact; may be found by trial and checked by substitution. Uniqueness need not be shown.
+  - q: 18
+    stamp: 3e6d43ef
+    parts:
+      - part: a
+        rows:
+          - scheme: |
+              \(z = \cos\theta + i\sin\theta \Rightarrow (z + z^{-1})^5 = 32\cos^5\theta\)
+            marks:
+              - code: B1
+          - scheme: |
+              \((z + z^{-1})^5 = z^5 + 5z^3 + 10z + 10z^{-1}\)
+              \(\phantom{(z + z^{-1})^5 =} + 5z^{-3} + z^{-5}\)
+            marks:
+              - code: M1
+                note: Expands to six terms in \(z^5, z^3, \ldots, z^{-5}\) with binomial coefficients. Condone coefficient slips.
+              - code: A1
+                note: Correct expansion.
+          - scheme: |
+              \(\phantom{(z + z^{-1})^5} = 2\cos 5\theta + 10\cos 3\theta + 20\cos\theta\)
+            marks:
+              - code: M1
+                note: Pairs terms as \(z^n + z^{-n}\) and replaces each pair by \(2\cos n\theta\).
+          - scheme: |
+              \(A = \frac1{16},\ B = \frac5{16},\ C = \frac58\)
+            marks:
+              - code: A1
+                note: Values stated, or the identity written with them.
+        alt:
+          title: Multiple-angle polynomials
+          rows:
+            - scheme: |
+                \(\cos 5\theta = \mathrm{Re}(\cos\theta + i\sin\theta)^5\)
+                \(\phantom{\cos 5\theta} = \cos^5\theta - 10\cos^3\theta\sin^2\theta + 5\cos\theta\sin^4\theta\)
+                \(\cos 3\theta = \cos^3\theta - 3\cos\theta\sin^2\theta\)
+              marks:
+                - code: M1
+                  note: Expands \((\cos\theta + i\sin\theta)^n\) and equates real parts, for \(n = 5\) at least; \(\cos 3\theta = 4\cos^3\theta - 3\cos\theta\) may be quoted. Condone coefficient slips.
+            - scheme: |
+                \(\cos 5\theta = 16\cos^5\theta - 20\cos^3\theta + 5\cos\theta\)
+                \(\cos 3\theta = 4\cos^3\theta - 3\cos\theta\)
+              marks:
+                - code: A1
+                  note: Both correct, using \(\sin^2\theta = 1 - \cos^2\theta\).
+            - scheme: |
+                \(16A = 1,\ -20A + 4B = 0,\ 5A - 3B + C = 0\)
+              marks:
+                - code: M1
+                  note: Substitutes their polynomials into the identity and equates coefficients of at least two powers of \(\cos\theta\).
+            - scheme: |
+                \(A = \frac1{16},\ B = \frac5{16},\ C = \frac58\)
+              marks:
+                - code: dM1
+                  note: Solves their equations for \(A\), \(B\) and \(C\).
+                - code: A1
+                  note: All three correct.
+      - part: b
+        rows:
+          - scheme: |
+              \(\theta = \cos^{-1}(x^{1/6})\)
+              \(f'(x) = -(15\cos 5\theta + 75\cos 3\theta + 150\cos\theta)\frac{\mathrm{d}\theta}{\mathrm{d}x}\)
+            marks:
+              - code: M1
+                note: Differentiates each \(\sin k\theta\) to \(\pm k\cos k\theta\) times \(\frac{\mathrm{d}\theta}{\mathrm{d}x}\) or an inner derivative. Condone coefficient slips.
+              - code: A1
+                note: Correct outer derivatives; the inner derivative may be unevaluated or incorrect.
+          - scheme: |
+              \(\frac{\mathrm{d}\theta}{\mathrm{d}x} = -\frac{1}{\sqrt{1 - (x^{1/6})^2}} \times \frac16 x^{-5/6}\)
+            marks:
+              - code: M1
+                note: Uses \(\frac{\mathrm{d}}{\mathrm{d}u}\cos^{-1}u = \pm\frac{1}{\sqrt{1-u^2}}\) with \(\frac{\mathrm{d}u}{\mathrm{d}x} = kx^{-5/6}\), or differentiates \(\cos\theta = x^{1/6}\) implicitly.
+          - scheme: |
+              \(\phantom{\frac{\mathrm{d}\theta}{\mathrm{d}x}} = -\frac{x^{-5/6}}{6\sqrt{1 - x^{1/3}}}\)
+            marks:
+              - code: A1
+                note: oe, in terms of \(x\).
+          - scheme: |
+              \(15(\cos 5\theta + 5\cos 3\theta + 10\cos\theta) = 15 \times 16\cos^5\theta\)
+            marks:
+              - code: M1
+                note: Uses part (a) to replace the cosine sum by a multiple of \(\cos^5\theta\).
+          - scheme: |
+              \(f'(x) = 240x^{5/6} \times \frac{x^{-5/6}}{6\sqrt{1 - x^{1/3}}}\)
+              \(\phantom{f'(x)} = \frac{40}{\sqrt{1 - x^{1/3}}}\)
+            marks:
+              - code: A1 AG
+                note: Correct substituted expression with \(\cos^5\theta = x^{5/6}\), leading without error to the printed result.
+      - part: c
+        rows:
+          - scheme: |
+              Area \(= \frac1{40}\int_0^1 f'(x)\,\mathrm{d}x = \frac1{40}\big[f(x)\big]_0^1\)
+            marks:
+              - code: M1
+                note: Uses part (b) to write the area as \(\frac1{40}\) of \(f\) between 0 and 1. Limit notation at 1 need not be shown.
+          - scheme: |
+              \(x \to 1 \Rightarrow f(x) \to 0\); \(f(0) = -3 + 25 - 150 = -128\)
+              \(\Rightarrow \frac1{40}\big(0 - (-128)\big)\)
+            marks:
+              - code: dM1
+                note: Uses \(\cos^{-1}1 = 0\) and \(\cos^{-1}0 = \frac{\pi}{2}\) to evaluate \(f\) at both limits and subtracts in the correct order. Condone one sign slip in \(f(0)\).
+          - scheme: |
+              \(\frac{16}{5}\)
+            marks:
+              - code: A1
+                note: cso; 3.2 accepted.
