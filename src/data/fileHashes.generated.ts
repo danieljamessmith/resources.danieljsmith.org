@@ -13,7 +13,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Number_Basics.pdf': '4bb017fa',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Roots_and_Geometry_Problems.pdf': '5e5b4363',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Series.pdf': '5be9c3b0',
-  '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__De_Moivres_Theorem.pdf': 'd35463e7',
+  '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__De_Moivres_Theorem.pdf': '46d7279b',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Loci_and_Regions_in_the_Argand_Diagram.pdf': 'd4b4c409',
   '/tex/further-maths/core-pure/differential-equations/ms/_QBT___MS__2nd_Order_Differential_Equations.pdf': '6b5f3962',
   '/tex/further-maths/core-pure/differential-equations/ms/_QBT___MS__Integrating_Factor_Method.pdf': '01f7e2fd',
