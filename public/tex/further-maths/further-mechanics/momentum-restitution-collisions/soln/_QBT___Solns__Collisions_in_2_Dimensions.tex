@@ -5,7 +5,7 @@
 \djsSitePath{Further Mechanics}{Momentum \& Collisions}
 \djsMechanicsPack
 
-\djsLastUpdated{15 October 2026}
+\djsLastUpdated{27 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -50,9 +50,9 @@ So the velocity immediately after collision is
 10\times \frac{3\mathbf{i}+4\mathbf{j}}{5}=6\mathbf{i}+8\mathbf{j}
 \]
 
-For a collision with a fixed side-board, the coefficient of restitution is
+The coefficient of restitution is
 \[
-e=\frac{\text{speed of separation perpendicular to board}}{\text{speed of approach perpendicular to board}}
+e=\dfrac{\text{speed of separation perpendicular to the side-board}}{\text{speed of approach perpendicular to the side-board}}
 \]
 
 Before collision, the perpendicular component is $-12\mathbf{j}$, so the speed of approach is $12$.
@@ -167,19 +167,18 @@ By modelling the puck as a particle and the table and cushions as being smooth, 
 
   Before hitting $BC$, the speed is $10\,\mathrm{m\,s}^{-1}$, so
   \begin{align*}
-  \text{component perpendicular to }BC &= 10\sin\alpha = 10\cdot \frac35 = 6 \\
-  \text{component parallel to }BC &= 10\cos\alpha = 10\cdot \frac45 = 8
+  \text{component perpendicular to }BC &= 10\sin\alpha = 10\times \frac35 = 6 \\
+  \text{component parallel to }BC &= 10\cos\alpha = 10\times \frac45 = 8
   \end{align*}
 
-  Because the cushion is smooth, the component parallel to $BC$ is unchanged by the impact, so after hitting $BC$ it is still $8$.
+  The cushion $BC$ is smooth, so the component of velocity parallel to the cushion is unchanged, and the component perpendicular to the cushion is reversed and multiplied by $e$. So after hitting $BC$ the parallel component is still $8$.
 
-  Let the coefficient of restitution with $BC$ be $e$. Then
+  The coefficient of restitution is
   \[
-  \text{speed of separation perpendicular to }BC
-  = e \times \text{speed of approach perpendicular to }BC
+  e=\dfrac{\text{speed of separation perpendicular to the cushion}}{\text{speed of approach perpendicular to the cushion}}
   \]
 
-  so the perpendicular component after impact is
+  The speed of approach perpendicular to $BC$ is $6$, so the speed of separation perpendicular to $BC$ is
   \[
   6e
   \]
@@ -202,7 +201,7 @@ By modelling the puck as a particle and the table and cushions as being smooth, 
 
   \item From part (a), after hitting $BC$ the perpendicular component is
   \[
-  6e = 6\cdot \frac23 = 4
+  6e = 6\times \frac23 = 4
   \]
 
   and the parallel component is unchanged at
@@ -216,14 +215,14 @@ By modelling the puck as a particle and the table and cushions as being smooth, 
     \item perpendicular to $AB$: $8\,\mathrm{m\,s}^{-1}$.
   \end{itemize}
 
-  Now consider the impact with $AB$, where the coefficient of restitution is $\frac34$.
+  The cushion $AB$ is smooth, so the component of velocity parallel to the cushion is unchanged, and the component perpendicular to the cushion is reversed and multiplied by $\frac34$.
 
-  Since $AB$ is smooth, the component parallel to $AB$ is unchanged, so it remains
+  So after the impact the component parallel to $AB$ remains
   \[
   4\,\mathrm{m\,s}^{-1}
   \]
 
-  The perpendicular component reverses direction and is multiplied by $\frac34$, so after impact its magnitude is
+  and the perpendicular component has magnitude
   \[
   \frac34 \times 8 = 6\,\mathrm{m\,s}^{-1}
   \]
@@ -328,7 +327,7 @@ v=0.8u=\frac45u
 
 since \(v>0\).
 
-Since the incident and outgoing paths are perpendicular, and both angles are measured from the barrier,
+The incident and outgoing paths are perpendicular, and both angles are measured from the barrier, so
 \[
 \alpha+\theta=90^\circ
 \]
@@ -338,24 +337,28 @@ So
 \theta=90^\circ-\alpha
 \]
 
-The barrier is smooth, so the component of velocity parallel to the barrier is unchanged. Therefore
-\begin{align*}
-u\cos\alpha&=v\cos\theta =v\sin\alpha
-\end{align*}
+The barrier is smooth, so the component of velocity parallel to the barrier is unchanged, and the component perpendicular to the barrier is reversed and multiplied by \(e\). Equating the components parallel to the barrier gives
+\[
+u\cos\alpha=v\cos\theta =v\sin\alpha
+\]
 
 so
 \[
 \tan\alpha=\frac{u}{v}=\frac{u}{\frac45u}=\frac54
 \]
 
-For the coefficient of restitution, use the components perpendicular to the barrier:
+The coefficient of restitution is
 \[
-e=\frac{\text{speed of separation}}{\text{speed of approach}}
-=\frac{v\sin\theta}{u\sin\alpha}
+e=\dfrac{\text{speed of separation perpendicular to the barrier}}{\text{speed of approach perpendicular to the barrier}}
+\]
+
+The components perpendicular to the barrier are \(u\sin\alpha\) before the impact and \(v\sin\theta\) after it, so
+\[
+e=\frac{v\sin\theta}{u\sin\alpha}
 =\frac{v\cos\alpha}{u\sin\alpha}
 \]
 
-Using \(v=\frac45u\) and \(\tan\alpha=\frac54\),
+Using \(v=\frac45u\) and \(\tan\alpha=\frac54\):
 \[
 e=\frac{\frac45u}{u\tan\alpha}
 =\frac{\frac45}{\frac54}
@@ -461,7 +464,9 @@ The coefficient of restitution between the ball and the wall is $e$. \\
   AB \parallel (4\mathbf{i}-3\mathbf{j})
   \]
 
-  \item From part (a), a direction parallel to the wall is $4\mathbf{i}-3\mathbf{j}$, so a direction perpendicular to the wall is $3\mathbf{i}+4\mathbf{j}$.
+  \item The wall is smooth, so the component of velocity parallel to the wall is unchanged, and the component perpendicular to the wall is reversed and multiplied by $e$.
+
+  From part (a), a direction parallel to the wall is $4\mathbf{i}-3\mathbf{j}$, so a direction perpendicular to the wall is $3\mathbf{i}+4\mathbf{j}$.
 
   Take unit vectors
   \[
@@ -472,7 +477,7 @@ The coefficient of restitution between the ball and the wall is $e$. \\
 
   where $\hat{\mathbf{t}}$ is parallel to the wall and $\hat{\mathbf{n}}$ is perpendicular to the wall.
 
-  For the velocity before impact,
+  For the velocity before impact:
   \begin{align*}
   \mathbf{u}\cdot\hat{\mathbf{t}}
   &= (13\mathbf{i}+9\mathbf{j})\cdot \frac{1}{5}(4\mathbf{i}-3\mathbf{j}) \\
@@ -488,7 +493,7 @@ The coefficient of restitution between the ball and the wall is $e$. \\
 
   So before impact, the component parallel to the wall is $5$, and the component perpendicular to the wall is $15$ towards the wall.
 
-  For the velocity after impact,
+  For the velocity after impact:
   \begin{align*}
   \mathbf{v}\cdot\hat{\mathbf{t}}
   &= (-2\mathbf{i}-11\mathbf{j})\cdot \frac{1}{5}(4\mathbf{i}-3\mathbf{j}) \\
@@ -504,12 +509,12 @@ The coefficient of restitution between the ball and the wall is $e$. \\
 
   So after impact, the component parallel to the wall is still $5$, and the perpendicular component has reversed direction with speed $10$ away from the wall.
 
-  Since the wall is fixed,
+  The coefficient of restitution is
   \[
-  e=\frac{\text{speed of separation}}{\text{speed of approach}}
+  e=\dfrac{\text{speed of separation perpendicular to the wall}}{\text{speed of approach perpendicular to the wall}}
   \]
 
-  measured perpendicular to the wall. Therefore
+  so
   \[
   e=\frac{10}{15}=\frac{2}{3}
   \]
@@ -613,18 +618,11 @@ By modelling the disc as a particle, \\
   \mathbf{u}=10\hat{\mathbf{t}}+25\hat{\mathbf{n}}
   \]
 
-  Because the cushion is smooth, the component parallel to the cushion is unchanged in the impact.
+  The cushion is smooth, so the component of velocity parallel to the cushion is unchanged, and the component perpendicular to the cushion is reversed and multiplied by $\frac35$.
 
-  Hence after impact, the tangential component is still $10\hat{\mathbf{t}}$.
+  Hence after impact, the component parallel to the cushion is still $10\hat{\mathbf{t}}$.
 
-  The coefficient of restitution is $\frac35$, so
-  \[
-  \text{speed of separation along the normal}
-  =\frac35\times \text{speed of approach along the normal}
-  =\frac35\times 25=15
-  \]
-
-  Since the normal component reverses direction on impact, the normal component after impact is
+  The perpendicular component before impact is $25$, so after impact it has magnitude $\frac35\times 25=15$ and is reversed in direction:
   \[
   -15\hat{\mathbf{n}}
   \]
@@ -644,21 +642,21 @@ By modelling the disc as a particle, \\
   \end{align*}
 
 
-  \item The impulse exerted by the cushion on the disc is the change in momentum:
+  \item Using impulse \(=\) change in momentum:
   \[
-  \mathbf{J}=m(\mathbf{v}-\mathbf{u})
+  \mathbf{I}=m\mathbf{v}-m\mathbf{u}
   \]
 
   Here $m=0.2$, $\mathbf{v}=-6\mathbf{i}+17\mathbf{j}$ and $\mathbf{u}=26\mathbf{i}-7\mathbf{j}$, so
   \begin{align*}
-  \mathbf{J}
+  \mathbf{I}
   &=0.2\big[(-6-26)\mathbf{i}+(17-(-7))\mathbf{j}\big]\\
   &=0.2(-32\mathbf{i}+24\mathbf{j})
   \end{align*}
 
   Its magnitude is
   \begin{align*}
-  |\mathbf{J}|
+  |\mathbf{I}|
   &=0.2\sqrt{(-32)^2+24^2}\\
   &=0.2\sqrt{1024+576}\\
   &=0.2\sqrt{1600}\\
@@ -667,7 +665,7 @@ By modelling the disc as a particle, \\
 
   So the magnitude of the impulse is
   \[
-  8\ \mathrm{N\,s}
+  8\,\mathrm{N\,s}
   \]
 \end{enumerate}
 \end{djsSolution}
@@ -740,18 +738,16 @@ The coefficient of restitution between the ball and wall $BC$ is $\dfrac{1}{2}$.
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Since the walls are smooth, in each impact the component of velocity \emph{parallel} to the wall is unchanged, and the component \emph{perpendicular} to the wall is reversed and multiplied by the coefficient of restitution.
-
-  For the collision with the vertical wall \(BC\):
+  \item The wall \(BC\) is smooth, so the component of velocity parallel to the wall is unchanged, and the component perpendicular to the wall is reversed and multiplied by \(\frac12\).
 
   The ball approaches \(BC\) at \(45^\circ\) to \(BC\), so its velocity components are equal in magnitude:
   \[
   \text{perpendicular to }BC=\frac{u}{\sqrt{2}}, \qquad \text{parallel to }BC=\frac{u}{\sqrt{2}}
   \]
 
-  Given \(e_{BC}=\frac12\), after striking \(BC\),
+  So after striking \(BC\) the
   \[
-  \text{perpendicular component}=\frac12\cdot \frac{u}{\sqrt2}=\frac{u}{2\sqrt2}
+  \text{perpendicular component}=\frac12\times \frac{u}{\sqrt2}=\frac{u}{2\sqrt2}
   \]
 
   in the opposite direction, while
@@ -768,16 +764,21 @@ The coefficient of restitution between the ball and wall $BC$ is $\dfrac{1}{2}$.
   \frac{u}{\sqrt2} \text{ perpendicular to }AB
   \]
 
-  Let the coefficient of restitution with wall \(AB\) be \(e\).
+  Let the coefficient of restitution with wall \(AB\) be \(e\). The wall \(AB\) is smooth, so the component of velocity parallel to the wall is unchanged, and the component perpendicular to the wall is reversed and multiplied by \(e\).
 
-  At \(AB\), the component parallel to \(AB\) is unchanged, so after the impact it is still
+  So after the impact the component parallel to \(AB\) is still
   \[
   \frac{u}{2\sqrt2}
   \]
 
-  The perpendicular component is reversed and multiplied by \(e\), so after the impact its magnitude is
+  The coefficient of restitution is
   \[
-  e\cdot \frac{u}{\sqrt2}
+  e=\dfrac{\text{speed of separation perpendicular to the wall}}{\text{speed of approach perpendicular to the wall}}
+  \]
+
+  The speed of approach perpendicular to \(AB\) is \(\frac{u}{\sqrt2}\), so the speed of separation perpendicular to \(AB\) is
+  \[
+  \frac{eu}{\sqrt2}
   \]
 
   After striking \(AB\), the ball moves away at \(60^\circ\) to \(AB\). Therefore
@@ -791,7 +792,7 @@ The coefficient of restitution between the ball and wall $BC$ is $\dfrac{1}{2}$.
   2e
   \]
 
-  Since \(\tan 60^\circ=\sqrt3\),
+  \(\tan 60^\circ=\sqrt3\), so
   \[
   \sqrt3=2e
   \]
@@ -808,7 +809,7 @@ The coefficient of restitution between the ball and wall $BC$ is $\dfrac{1}{2}$.
   \[
   \frac{u}{2\sqrt2}
   \quad\text{and}\quad
-  \frac{\sqrt3}{2}\cdot \frac{u}{\sqrt2}
+  \frac{\sqrt3}{2}\times \frac{u}{\sqrt2}
   =
   \frac{\sqrt3\,u}{2\sqrt2}
   \]
@@ -842,7 +843,7 @@ The coefficient of restitution between the ball and wall $BC$ is $\dfrac{1}{2}$.
 
   Hence the final kinetic energy is \(50\%\) of the initial kinetic energy.
 
-  \item If the walls or floor are rough, friction may act during the motion or impacts, so there would be extra loss of kinetic energy and the tangential components might also change.
+  \item If the walls or floor are rough, friction may act during the motion or impacts, so there would be extra loss of kinetic energy and the components parallel to the walls might also change.
 
   Therefore the actual percentage of kinetic energy remaining would be less than \(50\%\).
 \end{enumerate}
@@ -886,7 +887,7 @@ and the velocity after the collision be
 
 A direction vector for the wall is \(2\mathbf{i}+\mathbf{j}\), so a unit vector parallel to the wall is
 \[
-\hat{\mathbf{d}}=\frac{2\mathbf{i}+\mathbf{j}}{\sqrt{5}}
+\hat{\mathbf{t}}=\frac{2\mathbf{i}+\mathbf{j}}{\sqrt{5}}
 \]
 
 A unit vector perpendicular to the wall is therefore
@@ -894,24 +895,24 @@ A unit vector perpendicular to the wall is therefore
 \hat{\mathbf{n}}=\frac{\mathbf{i}-2\mathbf{j}}{\sqrt{5}}
 \]
 
-For any velocity \(\mathbf{w}\), its scalar component in the direction of a unit vector \(\hat{\mathbf{a}}\) is
+For any velocity \(\mathbf{w}\), its component in the direction of a unit vector \(\hat{\mathbf{a}}\) is
 \[
 \mathbf{w}\cdot \hat{\mathbf{a}}
 \]
 
-Since the wall is smooth, the component parallel to the wall is unchanged.
+The wall is smooth, so the component of velocity parallel to the wall is unchanged, and the component perpendicular to the wall is reversed and multiplied by \(e\).
 
-Before the collision,
+Before the collision:
 \[
-\mathbf{u}\cdot \hat{\mathbf{d}}
+\mathbf{u}\cdot \hat{\mathbf{t}}
 =(7\mathbf{i}-4\mathbf{j})\cdot \frac{2\mathbf{i}+\mathbf{j}}{\sqrt{5}}
 =\frac{14-4}{\sqrt{5}}
 =2\sqrt{5}
 \]
 
-After the collision,
+After the collision:
 \[
-\mathbf{v}\cdot \hat{\mathbf{d}}
+\mathbf{v}\cdot \hat{\mathbf{t}}
 =(2\mathbf{i}+6\mathbf{j})\cdot \frac{2\mathbf{i}+\mathbf{j}}{\sqrt{5}}
 =\frac{4+6}{\sqrt{5}}
 =2\sqrt{5}
@@ -921,7 +922,7 @@ So the component parallel to the wall is indeed unchanged.
 
 Now consider the components perpendicular to the wall.
 
-Before the collision,
+Before the collision:
 \[
 \mathbf{u}\cdot \hat{\mathbf{n}}
 =(7\mathbf{i}-4\mathbf{j})\cdot \frac{\mathbf{i}-2\mathbf{j}}{\sqrt{5}}
@@ -929,7 +930,7 @@ Before the collision,
 =3\sqrt{5}
 \]
 
-After the collision,
+After the collision:
 \[
 \mathbf{v}\cdot \hat{\mathbf{n}}
 =(2\mathbf{i}+6\mathbf{j})\cdot \frac{\mathbf{i}-2\mathbf{j}}{\sqrt{5}}
@@ -939,10 +940,14 @@ After the collision,
 
 The negative sign shows that the perpendicular component has reversed direction after the collision.
 
-Therefore
+The coefficient of restitution is
 \[
-e=\frac{\text{speed of separation}}{\text{speed of approach}}
-=\frac{2\sqrt{5}}{3\sqrt{5}}
+e=\dfrac{\text{speed of separation perpendicular to the wall}}{\text{speed of approach perpendicular to the wall}}
+\]
+
+so
+\[
+e=\frac{2\sqrt{5}}{3\sqrt{5}}
 =\frac{2}{3}
 \]
 
@@ -954,7 +959,7 @@ e=\frac{\text{speed of separation}}{\text{speed of approach}}
 
 A direction vector for the second wall is \(\mathbf{i}-2\mathbf{j}\), so a unit vector parallel to the wall is
 \[
-\hat{\mathbf{d}}=\frac{\mathbf{i}-2\mathbf{j}}{\sqrt{5}}
+\hat{\mathbf{t}}=\frac{\mathbf{i}-2\mathbf{j}}{\sqrt{5}}
 \]
 
 A unit vector perpendicular to the wall is therefore
@@ -962,22 +967,22 @@ A unit vector perpendicular to the wall is therefore
 \hat{\mathbf{n}}=\frac{2\mathbf{i}+\mathbf{j}}{\sqrt{5}}
 \]
 
-The scalar component of \(\mathbf{u}\) parallel to the wall is
+The component of \(\mathbf{u}\) parallel to the wall is
 \[
-\mathbf{u}\cdot \hat{\mathbf{d}}
+\mathbf{u}\cdot \hat{\mathbf{t}}
 =(2\mathbf{i}+6\mathbf{j})\cdot \frac{\mathbf{i}-2\mathbf{j}}{\sqrt{5}}
 =\frac{2-12}{\sqrt{5}}
 =-2\sqrt{5}
 \]
 
-Hence the vector component of \(\mathbf{u}\) parallel to the wall is
+Hence, as a vector, the component of \(\mathbf{u}\) parallel to the wall is
 \[
-(-2\sqrt{5})\hat{\mathbf{d}}
+(-2\sqrt{5})\hat{\mathbf{t}}
 =(-2\sqrt{5})\frac{\mathbf{i}-2\mathbf{j}}{\sqrt{5}}
 =-2\mathbf{i}+4\mathbf{j}
 \]
 
-The scalar component of \(\mathbf{u}\) perpendicular to the wall is
+The component of \(\mathbf{u}\) perpendicular to the wall is
 \[
 \mathbf{u}\cdot \hat{\mathbf{n}}
 =(2\mathbf{i}+6\mathbf{j})\cdot \frac{2\mathbf{i}+\mathbf{j}}{\sqrt{5}}
@@ -985,16 +990,14 @@ The scalar component of \(\mathbf{u}\) perpendicular to the wall is
 =2\sqrt{5}
 \]
 
-Hence the vector component of \(\mathbf{u}\) perpendicular to the wall is
+Hence, as a vector, the component of \(\mathbf{u}\) perpendicular to the wall is
 \[
 (2\sqrt{5})\hat{\mathbf{n}}
 =(2\sqrt{5})\frac{2\mathbf{i}+\mathbf{j}}{\sqrt{5}}
 =4\mathbf{i}+2\mathbf{j}
 \]
 
-Since the wall is smooth, the parallel component is unchanged.
-
-The coefficient of restitution for the second wall is \(\frac12\), so the perpendicular component is reversed and multiplied by \(\frac12\).
+The second wall is smooth, so the component of velocity parallel to the wall is unchanged, and the component perpendicular to the wall is reversed and multiplied by \(\frac12\).
 
 Thus the perpendicular component after impact is
 \[
@@ -1040,12 +1043,12 @@ Therefore
 So
 \[
 \alpha=\cos^{-1}\left(\frac{1}{\sqrt{10}}\right)
-\approx 71.6^\circ
+\approx 71.6
 \]
 
-Therefore, to the nearest whole number,
+Therefore, to the nearest whole number:
 \[
-\alpha=72^\circ
+\alpha=72
 \]
 \end{enumerate}
 \end{djsSolution}
@@ -1089,11 +1092,11 @@ Therefore, to the nearest whole number,
 \draw[thick] (Rc) circle (\ballrad);
 
 \draw[-{Stealth[length=3mm]}, thick] (Wc) -- (Wtip)
-  node[pos=0.54, below right, yshift=4pt] {$\left(\sqrt{3}-1\right)\ \mathrm{m\,s^{-1}}$};
+  node[pos=0.54, below right, yshift=4pt] {$\left(\sqrt{3}-1\right)\,\mathrm{m\,s^{-1}}$};
 \draw[dashed, thick] (Wtip) -- (U);
 
 \draw[-{Stealth[length=3mm]}, thick] (Rc) -- (Rtip)
-  node[pos=0.52, below left] {$v\ \mathrm{m\,s^{-1}}$};
+  node[pos=0.52, below left] {$v\,\mathrm{m\,s^{-1}}$};
 \draw[dashed, thick] (Rtip) -- (V);
 
 \pic["$45^\circ$", draw, angle radius=6mm, angle eccentricity=1.55] {angle=A--U--Wtip};
@@ -1158,9 +1161,9 @@ Model the balls as particles and neglect any resistance. \\
 
   Now
   \begin{align*}
-  2\sin15^\circ &= 2\cdot \frac{\sqrt6-\sqrt2}{4}
+  2\sin15^\circ &= 2\times \frac{\sqrt6-\sqrt2}{4}
   = \frac{\sqrt6-\sqrt2}{2} \\
-  (\sqrt3-1)\sin45^\circ &= (\sqrt3-1)\cdot \frac{\sqrt2}{2}
+  (\sqrt3-1)\sin45^\circ &= (\sqrt3-1)\times \frac{\sqrt2}{2}
   = \frac{\sqrt6-\sqrt2}{2}
   \end{align*}
 
@@ -1174,7 +1177,7 @@ Model the balls as particles and neglect any resistance. \\
   (\sqrt3-1)\sin45^\circ = \frac{\sqrt6-\sqrt2}{2}
   \]
 
-  Therefore the red ball's perpendicular speed is twice the white ball's, and its perpendicular distance to travel is also twice as great.
+  Therefore the red ball's perpendicular speed is twice the white ball's, and its perpendicular distance to travel is also twice as great. The times taken to reach the sides are
   \[
   t_{\text{white}}=\frac{d}{(\sqrt6-\sqrt2)/2},
   \qquad
@@ -1194,12 +1197,12 @@ Model the balls as particles and neglect any resistance. \\
   \begin{align*}
   v\cos\theta
   &= 2\cos15^\circ - (\sqrt3-1)\cos45^\circ \\
-  &= 2\cdot \frac{\sqrt6+\sqrt2}{4} - (\sqrt3-1)\cdot \frac{\sqrt2}{2} \\
+  &= 2\times \frac{\sqrt6+\sqrt2}{4} - (\sqrt3-1)\times \frac{\sqrt2}{2} \\
   &= \frac{\sqrt6+\sqrt2}{2} - \frac{\sqrt6-\sqrt2}{2} \\
   &= \sqrt2
   \end{align*}
 
-  From part (a),
+  From part (a):
   \[
   v\sin\theta = \sqrt6-\sqrt2
   \]
@@ -1214,11 +1217,11 @@ Model the balls as particles and neglect any resistance. \\
 
   So
   \[
-  \theta=\tan^{-1}(\sqrt3-1)=36.2^\circ \text{ (to 1 d.p.)}
+  \theta=\tan^{-1}(\sqrt3-1)=36.2^\circ\qquad\text{(1 d.p.)}
   \]
 
 
-  \item Using the results from part (b),
+  \item Using the results from part (b):
   \[
   v\cos\theta=\sqrt2,
   \qquad
@@ -1235,14 +1238,9 @@ Model the balls as particles and neglect any resistance. \\
   &= 10-4\sqrt3
   \end{align*}
 
-  Hence
+  \(v>0\), so
   \[
-  v=\sqrt{10-4\sqrt3}\ \mathrm{m\,s^{-1}}
-  \]
-
-  Since speed is positive,
-  \[
-  v=\sqrt{10-4\sqrt3}\ \mathrm{m\,s^{-1}} \approx 1.75\ \mathrm{m\,s^{-1}}
+  v=\sqrt{10-4\sqrt3}\approx 1.75
   \]
 
   \item From part (a), both balls travel for the same time after the collision.
@@ -1254,7 +1252,7 @@ Model the balls as particles and neglect any resistance. \\
   s_{\text{red}}=vt
   \]
 
-  From part (c),
+  From part (c):
   \[
   v=\sqrt{10-4\sqrt3}\approx 1.75
   \]
@@ -1328,7 +1326,7 @@ Model the balls as particles and neglect any resistance. \\
 \node[below] at (B) {$B$};
 \node[above] at (C) {$C$};
 \node[above] at (D) {$D$};
-\node[left, yshift=-3pt] at ($(S)!0.48!(P)$) {$v\ \mathrm{m\,s^{-1}}$};
+\node[left, yshift=-3pt] at ($(S)!0.48!(P)$) {$v\,\mathrm{m\,s^{-1}}$};
 \end{tikzpicture}
 \end{figure}
 
@@ -1368,9 +1366,9 @@ The floor and the walls are modelled as being smooth. The ball is modelled as a 
   \text{perpendicular to }AB: \ v\sin\alpha
   \]
 
-  Since the wall is smooth, the component parallel to the wall is unchanged in the impact.
+  The wall \(AB\) is smooth, so the component of velocity parallel to the wall is unchanged, and the component perpendicular to the wall is reversed and multiplied by \(\frac35\).
 
-  The coefficient of restitution with wall \(AB\) is \(\frac35\), so the perpendicular component after impact has magnitude
+  So the perpendicular component after impact has magnitude
   \[
   \frac35 v\sin\alpha
   \]
@@ -1384,12 +1382,14 @@ The floor and the walls are modelled as being smooth. The ball is modelled as a 
 
   As \(AB\parallel CD\), these are also the components immediately before striking wall \(CD\).
 
-  Now the coefficient of restitution with wall \(CD\) is \(\frac12\), so after impact with \(CD\), the perpendicular component becomes
+  The wall \(CD\) is smooth, so the component of velocity parallel to the wall is unchanged, and the component perpendicular to the wall is reversed and multiplied by \(\frac12\).
+
+  So after impact with \(CD\) the perpendicular component becomes
   \[
   \frac12\left(\frac35 v\sin\alpha\right)=\frac3{10}v\sin\alpha
   \]
 
-  The component parallel to the wall is still unchanged, so after the second impact the components are
+  So after the second impact the components are
   \[
   \text{parallel to }CD: \ v\cos\alpha,
   \qquad
@@ -1433,9 +1433,9 @@ The floor and the walls are modelled as being smooth. The ball is modelled as a 
 
   Let the mass of the ball be \(m\).
 
-  Initially,
+  The initial kinetic energy is
   \[
-  \text{KE}_{\text{initial}}=\frac12 mv^2
+  \frac12 mv^2
   \]
 
   After the second impact, the velocity components are
@@ -1454,7 +1454,7 @@ The floor and the walls are modelled as being smooth. The ball is modelled as a 
 
   Hence
   \[
-  \frac{\text{KE}_{\text{final}}}{\text{KE}_{\text{initial}}}
+  \frac{\text{final KE}}{\text{initial KE}}
   = \cos^2\alpha+\frac9{100}\sin^2\alpha
   \]
 
@@ -1476,7 +1476,7 @@ The floor and the walls are modelled as being smooth. The ball is modelled as a 
 
   Hence the fraction of kinetic energy lost is
   \begin{align*}
-  \frac{91}{100}\cdot\frac4{13}
+  \frac{91}{100}\times\frac4{13}
   &= \frac{364}{1300} \\
   &= \frac7{25}
   \end{align*}
@@ -1531,14 +1531,14 @@ So, taking positive parallel to the plane upwards, and positive perpendicular to
 \text{before impact: }
 \begin{cases}
 \text{parallel component }=u\cos(45^\circ+\alpha) \\
-\text{normal component }=-u\sin(45^\circ+\alpha)
+\text{perpendicular component }=-u\sin(45^\circ+\alpha)
 \end{cases}
 \]
 \[
 \text{after impact: }
 \begin{cases}
 \text{parallel component }=v\cos(45^\circ-\alpha) \\
-\text{normal component }=v\sin(45^\circ-\alpha)
+\text{perpendicular component }=v\sin(45^\circ-\alpha)
 \end{cases}
 \]
 
@@ -1552,22 +1552,27 @@ Hence
 v=\frac{u\cos(45^\circ+\alpha)}{\cos(45^\circ-\alpha)}
 \]
 
-Using \(\cos(45^\circ+\alpha)=\sin(45^\circ-\alpha)\),
+Using \(\cos(45^\circ+\alpha)=\sin(45^\circ-\alpha)\):
 \[
 v=u\tan(45^\circ-\alpha)
 \]
 
-The impulse on \(P\) is perpendicular to the plane, so its magnitude is the change in normal momentum:
+The impulse on \(P\) is perpendicular to the plane. Using impulse \(=\) change in momentum:
 \[
-J=m\left(v\sin(45^\circ-\alpha)-(-u\sin(45^\circ+\alpha))\right)
+\mathbf{I}=m\mathbf{v}-m\mathbf{u}
+\]
+
+where \(\mathbf{u}\) and \(\mathbf{v}\) are the velocities of \(P\) before and after the impact. Taking components perpendicular to the plane, the magnitude of the impulse is
+\[
+I=m\left(v\sin(45^\circ-\alpha)-(-u\sin(45^\circ+\alpha))\right)
 \]
 \[
-J=m\left(v\sin(45^\circ-\alpha)+u\sin(45^\circ+\alpha)\right)
+I=m\left(v\sin(45^\circ-\alpha)+u\sin(45^\circ+\alpha)\right)
 \]
 
 Now use \(\sin(45^\circ+\alpha)=\cos(45^\circ-\alpha)\) and \(v=u\tan(45^\circ-\alpha)\):
 \begin{align*}
-J&=m\left(u\tan(45^\circ-\alpha)\sin(45^\circ-\alpha)+u\cos(45^\circ-\alpha)\right) \\
+I&=m\left(u\tan(45^\circ-\alpha)\sin(45^\circ-\alpha)+u\cos(45^\circ-\alpha)\right) \\
 &=mu\left(\frac{\sin^2(45^\circ-\alpha)}{\cos(45^\circ-\alpha)}+\cos(45^\circ-\alpha)\right) \\
 &=mu\left(\frac{\sin^2(45^\circ-\alpha)+\cos^2(45^\circ-\alpha)}{\cos(45^\circ-\alpha)}\right) \\
 &=mu\sec(45^\circ-\alpha)
@@ -1580,9 +1585,11 @@ Hence the magnitude of the impulse exerted on the plane by \(P\) is
 mu\sec(45^\circ-\alpha)
 \]
 
-\item The coefficient of restitution is
+\item The plane is smooth, so the component of velocity parallel to the plane is unchanged, and the component perpendicular to the plane is reversed and multiplied by \(e\).
+
+The coefficient of restitution is
 \[
-e=\frac{\text{speed of separation perpendicular to plane}}{\text{speed of approach perpendicular to plane}}
+e=\dfrac{\text{speed of separation perpendicular to the plane}}{\text{speed of approach perpendicular to the plane}}
 \]
 
 So
@@ -1595,16 +1602,16 @@ Hence
 v\sin(45^\circ-\alpha)=eu\sin(45^\circ+\alpha)
 \]
 
-Also, from the smoothness of the plane,
+Also, from part (a):
 \[
 v\cos(45^\circ-\alpha)=u\cos(45^\circ+\alpha)
 \]
 
 Now square both equations and add:
-\begin{align*}
+\[
 v^2\sin^2(45^\circ-\alpha)+v^2\cos^2(45^\circ-\alpha)
-&=e^2u^2\sin^2(45^\circ+\alpha)+u^2\cos^2(45^\circ+\alpha)
-\end{align*}
+=e^2u^2\sin^2(45^\circ+\alpha)+u^2\cos^2(45^\circ+\alpha)
+\]
 
 So
 \[
@@ -1612,7 +1619,7 @@ v^2\bigl(\sin^2(45^\circ-\alpha)+\cos^2(45^\circ-\alpha)\bigr)
 =u^2\left(\cos^2(45^\circ+\alpha)+e^2\sin^2(45^\circ+\alpha)\right)
 \]
 
-Since \(\sin^2\theta+\cos^2\theta=1\),
+\(\sin^2\theta+\cos^2\theta=1\), so
 \[
 v^2=u^2\left(\cos^2(45^\circ+\alpha)+e^2\sin^2(45^\circ+\alpha)\right)
 \]
@@ -1624,7 +1631,7 @@ as required.
 \frac12 mu^2-\frac12 mv^2=\frac12 m(u^2-v^2)
 \]
 
-Using part (b),
+Using part (b):
 \begin{align*}
 u^2-v^2
 &=u^2-u^2\left(\cos^2(45^\circ+\alpha)+e^2\sin^2(45^\circ+\alpha)\right) \\
@@ -1638,12 +1645,12 @@ Therefore the kinetic energy lost is
 \frac12 mu^2(1-e^2)\sin^2(45^\circ+\alpha)
 \]
 
-\item From part (a),
+\item From part (a):
 \[
 v=u\tan(45^\circ-\alpha)
 \]
 
-Using the restitution equation from part (b),
+Using the restitution equation from part (b):
 \[
 e=\frac{v\sin(45^\circ-\alpha)}{u\sin(45^\circ+\alpha)}
 \]
@@ -1660,12 +1667,12 @@ Hence
 e=\tan^2(45^\circ-\alpha)
 \]
 
-Also,
+Also
 \[
 \sin^2(45^\circ+\alpha)=\cos^2(45^\circ-\alpha)
 \]
 
-and since \(1+\tan^2\theta=\sec^2\theta\),
+and \(1+\tan^2\theta=\sec^2\theta\), so
 \[
 \cos^2\theta=\frac{1}{1+\tan^2\theta}
 \]
@@ -1679,7 +1686,7 @@ Substitute this into the result from part (c):
 \begin{align*}
 \text{KE lost}
 &=\frac12 mu^2(1-e^2)\sin^2(45^\circ+\alpha) \\
-&=\frac12 mu^2(1-e^2)\cdot \frac{1}{1+e} \\
+&=\frac12 mu^2(1-e^2)\times \frac{1}{1+e} \\
 &=\frac12 mu^2(1-e)
 \end{align*}
 
@@ -1749,20 +1756,20 @@ During the first impact the particle loses four times as much kinetic energy as 
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Take $AB$ to be horizontal and $BC$ vertical.
+  \item Take components parallel to $AB$, positive from $A$ to $B$, and parallel to $BC$, positive from $B$ to $C$.
 
-  Before the first impact, since the particle strikes $AB$ at angle $\alpha$ to the wall,
+  The particle strikes $AB$ at angle $\alpha$ to the wall, so before the first impact
   \[
   \text{component parallel to }AB=u\cos\alpha,\qquad
   \text{component perpendicular to }AB=u\sin\alpha
   \]
 
-  For impact with a smooth wall, the component parallel to the wall is unchanged, and the component perpendicular to the wall is reversed and multiplied by $e$.
+  The wall $AB$ is smooth, so the component of velocity parallel to the wall is unchanged, and the component perpendicular to the wall is reversed and multiplied by $e$.
 
-  So after rebounding from $AB$,
+  So after rebounding from $AB$:
   \[
-  \text{horizontal component}=u\cos\alpha,\qquad
-  \text{vertical component}=eu\sin\alpha
+  \text{component parallel to }AB=u\cos\alpha,\qquad
+  \text{component perpendicular to }AB=eu\sin\alpha
   \]
 
   At $BC$, the angle $\beta$ is measured with the wall $BC$, so
@@ -1782,11 +1789,7 @@ During the first impact the particle loses four times as much kinetic energy as 
   \begin{pmatrix}u\cos\alpha\\eu\sin\alpha\end{pmatrix}
   \]
 
-  On rebounding from the smooth wall $BC$:
-  \begin{itemize}
-    \item the component parallel to $BC$ is unchanged,
-    \item the component perpendicular to $BC$ is reversed and multiplied by $e$.
-  \end{itemize}
+  The wall $BC$ is smooth, so the component of velocity parallel to the wall is unchanged, and the component perpendicular to the wall is reversed and multiplied by $e$.
 
   So after the second impact, the velocity components are
   \[
@@ -1802,12 +1805,12 @@ During the first impact the particle loses four times as much kinetic energy as 
 
   Hence
   \[
-  \tan\gamma=\tan\left(\frac{\pi}{2}-\alpha\right)
+  \tan\gamma=\tan(90^\circ-\alpha)
   \]
 
-  Since $\gamma$ is an acute angle,
+  $\gamma$ is an acute angle, so
   \[
-  \gamma=\frac{\pi}{2}-\alpha
+  \gamma=90^\circ-\alpha
   \]
 
   Also, the initial velocity was
@@ -1834,12 +1837,12 @@ During the first impact the particle loses four times as much kinetic energy as 
   =e^2
   \]
 
-  Given that the final kinetic energy is $\frac{9}{25}$ of the initial kinetic energy,
+  The final kinetic energy is $\frac{9}{25}$ of the initial kinetic energy, so
   \[
   e^2=\frac{9}{25}
   \]
 
-  and since $0<e<1$,
+  and $0<e<1$, so
   \[
   e=\frac35
   \]
@@ -1879,7 +1882,7 @@ During the first impact the particle loses four times as much kinetic energy as 
   &=\frac12 mu^2(1-e^2)\cos^2\alpha
   \end{align*}
 
-  Given that the first loss is four times the second loss,
+  The first loss is four times the second loss, so
   \[
   \Delta E_1=4\Delta E_2
   \]
@@ -1900,7 +1903,7 @@ During the first impact the particle loses four times as much kinetic energy as 
   \tan^2\alpha=4
   \]
 
-  Since $\alpha$ is acute,
+  $\alpha$ is acute, so
   \[
   \tan\alpha=2
   \]
@@ -1991,11 +1994,7 @@ If instead $e_1=e_2$, the ball would not return to $A$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item At the first impact, the ball hits the side $BC$.
 
-  For a smooth side:
-  \begin{itemize}
-    \item the component of velocity \emph{parallel} to the side is unchanged,
-    \item the component of velocity \emph{perpendicular} to the side is reversed and multiplied by the coefficient of restitution.
-  \end{itemize}
+  The ball is smooth, so the component of its velocity parallel to the side is unchanged, and the component perpendicular to the side is reversed and multiplied by $e_1$.
 
   Resolve the velocity relative to $BC$.
 
@@ -2019,7 +2018,7 @@ If instead $e_1=e_2$, the ball would not return to $A$. \\
   V\sin\beta &= e_1U\sin\alpha
   \end{align*}
 
-  Dividing the second equation by the first,
+  Dividing the second equation by the first:
   \begin{align*}
   \frac{V\sin\beta}{V\cos\beta}
   &= \frac{e_1U\sin\alpha}{U\cos\alpha} \\
@@ -2028,6 +2027,8 @@ If instead $e_1=e_2$, the ball would not return to $A$. \\
 
 
   \item At the second impact, the ball hits the side $CD$.
+
+  The ball is smooth, so the component of its velocity parallel to the side is unchanged, and the component perpendicular to the side is reversed and multiplied by $e_2$.
 
   Resolve the velocity relative to $CD$.
 
@@ -2051,7 +2052,7 @@ If instead $e_1=e_2$, the ball would not return to $A$. \\
   W\sin\gamma &= e_2V\cos\beta
   \end{align*}
 
-  Dividing,
+  Dividing:
   \begin{align*}
   \tan\gamma
   &= \frac{e_2V\cos\beta}{V\sin\beta} \\
@@ -2099,7 +2100,7 @@ If instead $e_1=e_2$, the ball would not return to $A$. \\
   &= \alpha+\gamma-90^\circ
   \end{align*}
 
-  Since $\angle PAQ>0$,
+  $\angle PAQ>0$, so
   \begin{align*}
   \alpha+\gamma-90^\circ &> 0 \\
   \alpha+\gamma &> 90^\circ
@@ -2122,7 +2123,7 @@ If instead $e_1=e_2$, the ball would not return to $A$. \\
   \tan\alpha\tan\gamma > 1
   \]
 
-  From part (b),
+  From part (b):
   \[
   e_2 = e_1\tan\alpha\tan\gamma
   \]
@@ -2139,7 +2140,7 @@ If instead $e_1=e_2$, the ball would not return to $A$. \\
   \tan\alpha\tan\gamma = 1
   \]
 
-  Since $\alpha$ and $\gamma$ are acute,
+  $\alpha$ and $\gamma$ are acute, so
   \[
   \gamma = 90^\circ-\alpha
   \]
