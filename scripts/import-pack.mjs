@@ -342,12 +342,19 @@ export function schemeFileName(topicName) {
   return `(QBT) [MS] ${topicName}.yaml`;
 }
 
+/** The files in a pack folder named like a mark scheme, `(QBT) [MS] <name>.yaml`, sorted. */
+export function schemeCandidates(dir) {
+  return readdirSync(dir)
+    .filter((f) => /^\(QBT\) \[MS\] .+\.yaml$/.test(f))
+    .sort();
+}
+
 /**
  * The pack's mark scheme in a local folder: the file `pack.json` names
- * (`markscheme`), or, in a folder with no `pack.json`, `(QBT) [MS]
- * <Title>.yaml`. A `pack.json` without the key means the pack has none, so a
- * scheme file beside it (a draft not yet finished) is not taken. Null when
- * there is none.
+ * (`markscheme`). A `pack.json` that names no scheme means the pack has none.
+ * In a folder with no `pack.json`, `(QBT) [MS] <Title>.yaml`, else the only
+ * file named like a scheme, as the documents are found; more than one such
+ * file is refused. Null when there is none.
  * @param {string} dir
  * @param {string} topicName
  * @param {{ markscheme?: string } | null} manifest
@@ -363,7 +370,15 @@ export function findSchemeFile(dir, topicName, manifest) {
   }
   if (manifest) return null;
   const path = join(dir, schemeFileName(topicName));
-  return existsSync(path) ? path : null;
+  if (existsSync(path)) return path;
+  const candidates = schemeCandidates(dir);
+  if (candidates.length > 1) {
+    throw new Error(
+      `more than one mark scheme in ${basename(dir)}: ${candidates.join(', ')}. ` +
+        `Name it in ${PACK_MANIFEST} ("markscheme"), or keep only "${schemeFileName(topicName)}"`,
+    );
+  }
+  return candidates.length === 1 ? join(dir, candidates[0]) : null;
 }
 
 /**
@@ -1218,7 +1233,13 @@ export async function runImport(argv, deps = {}) {
         `  scheme:   left out (--no-markscheme)${schemeFound ? `: ${basename(schemeFound)} is not imported` : ''}`,
       );
     } else {
-      console.log(`  scheme:   none in ${basename(dir)}`);
+      const unnamed = manifest ? schemeCandidates(dir) : [];
+      console.log(
+        `  scheme:   none in ${basename(dir)}` +
+          (unnamed.length > 0
+            ? `: ${PACK_MANIFEST} names no scheme, so ${unnamed.join(', ')} ${unnamed.length > 1 ? 'are' : 'is'} ignored`
+            : ''),
+      );
     }
     console.log(`  rows go:  ${ctx.siblingId ? `after ${ctx.siblingId}` : `at the end of the ${strand.title} rows, as the section's first pack`}`);
     if (prepared.synced.length > 0) {

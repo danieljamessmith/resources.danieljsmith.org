@@ -696,9 +696,30 @@ describe('findSchemeFile', () => {
     try {
       expect(findSchemeFile(dir, 'Polar Coordinates', null)).toBe(join(dir, NAME));
       expect(findSchemeFile(dir, 'Polar Coordinates', { topic: 'Polar Coordinates' })).toBeNull();
-      expect(findSchemeFile(dir, 'Other Title', null)).toBeNull();
+      expect(findSchemeFile(dir, 'Other Title', null)).toBe(join(dir, NAME));
     } finally {
       rmSync(dir, { recursive: true, force: true });
+    }
+    const none = packFolder({ files: { 'notes.yaml': 'format: 1\n' } });
+    try {
+      expect(findSchemeFile(none, 'Polar Coordinates', null)).toBeNull();
+    } finally {
+      rmSync(none, { recursive: true, force: true });
+    }
+  });
+
+  it('without pack.json, takes the only file named like a scheme, and refuses more than one', () => {
+    const one = packFolder({ files: { '(QBT) [MS] Old Title.yaml': 'format: 1\n' } });
+    const two = packFolder({ files: { '(QBT) [MS] A.yaml': '', '(QBT) [MS] B.yaml': '' } });
+    try {
+      expect(findSchemeFile(one, 'Polar Coordinates', null)).toBe(join(one, '(QBT) [MS] Old Title.yaml'));
+      expect(() => findSchemeFile(two, 'Polar Coordinates', null)).toThrow(
+        /more than one mark scheme in .*: \(QBT\) \[MS\] A\.yaml, \(QBT\) \[MS\] B\.yaml/,
+      );
+      expect(findSchemeFile(two, 'A', null)).toBe(join(two, '(QBT) [MS] A.yaml'));
+    } finally {
+      rmSync(one, { recursive: true, force: true });
+      rmSync(two, { recursive: true, force: true });
     }
   });
 });
@@ -1233,6 +1254,21 @@ describe('runImport', () => {
       }
     });
 
+    it("refuses, in a folder with no pack.json, a --title that disagrees with the only scheme's pack", async () => {
+      const byName = packDir(undefined, { scheme: schemeFor(), byName: true });
+      try {
+        const stand = standIns();
+        const before = treeState(root);
+        await expect(runImport(args(byName, { title: 'Other Pack' }), { root, journalPath, ...stand })).rejects.toThrow(
+          /\(QBT\) \[MS\] Test Pack\.yaml can't be imported:\n  its pack is "Test Pack", but the pack's title is "Other Pack"/,
+        );
+        expect(treeState(root)).toEqual(before);
+        expect(stand.calls).toEqual({ compile: 0, regenerate: 0 });
+      } finally {
+        rmSync(byName, { recursive: true, force: true });
+      }
+    });
+
     it('takes no scheme when pack.json names none, leaving a scheme file in the folder alone', async () => {
       const unnamed = packDir(undefined, { scheme: schemeFor(), unnamed: true });
       try {
@@ -1244,6 +1280,9 @@ describe('runImport', () => {
         expect(rows().some((e) => e.id === `${ID}-solns`)).toBe(true);
         expect(stand.calls).toEqual({ compile: 2, regenerate: 1 });
         expect(console.log).toHaveBeenCalledWith(expect.stringMatching(/scheme: +none in /));
+        expect(console.log).toHaveBeenCalledWith(
+          expect.stringMatching(/scheme: +none in .*: pack\.json names no scheme, so \(QBT\) \[MS\] Test Pack\.yaml is ignored$/),
+        );
         expect(readFileSync(join(unnamed, '(QBT) [MS] Test Pack.yaml'), 'utf8')).toBe(draft);
       } finally {
         rmSync(unnamed, { recursive: true, force: true });
@@ -1273,6 +1312,7 @@ describe('runImport', () => {
       expect(rows().some((e) => e.id === `${ID}-ms`)).toBe(false);
       expect(stand.calls).toEqual({ compile: 2, regenerate: 1 });
       expect(console.log).toHaveBeenCalledWith(expect.stringMatching(/scheme: +none in /));
+      expect(console.log).toHaveBeenCalledWith(expect.stringMatching(/^  scheme: +none in [^:]+$/));
     });
 
     describe('refuses before writing anything', () => {

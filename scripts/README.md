@@ -42,9 +42,11 @@ by file name (`(QBT) <Title>.tex` and `(QBT) [Solns] <Title>.tex`, falling back
 to the only document with `\begin{document}`; `SKIP_TEX_FILES` lists scratch
 files never taken for a pack document). It also holds the pack's mark scheme,
 its YAML (see Mark schemes): the file `pack.json` names in `markscheme`, or,
-in a folder with no `pack.json`, `(QBT) [MS] <Title>.yaml`. A `pack.json`
-without `markscheme` means the pack has no scheme, so a scheme file beside it
-is left alone. A folder with no scheme imports the two documents and their
+in a folder with no `pack.json`, `(QBT) [MS] <Title>.yaml`, falling back to
+the only `(QBT) [MS] *.yaml` (more than one is refused, naming them; a
+`--title` that disagrees with the scheme's `pack` is then refused by the
+check). A `pack.json` without `markscheme` means the pack has no scheme: a
+scheme file beside it is left alone, and the import says it is ignored. A folder with no scheme imports the two documents and their
 two rows alone. Other files in the folder are ignored.
 
 | Flag | Value |
