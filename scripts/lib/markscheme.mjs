@@ -1177,7 +1177,7 @@ function checkQuestionBody(question, packQ, report, { modelAnswer = false, codes
     }
   });
 
-  // Rules 6, 7 (titles and whys, and upright i and e), 16, 17 over the question's text.
+  // Rules 6, 7 (titles and whys, upright i and e, and straight quotes), 16, 17 over the question's text.
   for (const [text, field] of questionTexts(question)) {
     const where = field.where;
     for (const [ch, hint] of Object.entries(CONTROL_HINTS)) {
@@ -1195,6 +1195,9 @@ function checkQuestionBody(question, packQ, report, { modelAnswer = false, codes
     }
     for (const letter of new Set(Array.from(text.matchAll(UPRIGHT_LETTER_RE), (m) => m[1]))) {
       report.error(7, where, q, `\\mathrm{${letter}} in the ${field.name}: write ${UPRIGHT_LETTERS[letter]} as a plain ${letter}`);
+    }
+    if (text.includes('"')) {
+      report.error(7, where, q, `a straight " in the ${field.name}, which prints as a closing quote: write their value as \\their{...} and quoted words as \`\`...''`);
     }
     if (PROSE_FIELDS.has(field.name)) {
       const prose = proseOf(text);

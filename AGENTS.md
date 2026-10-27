@@ -150,6 +150,10 @@ the optional `djsSolutionFigure` environment, and the legacy colored-cancel
   checker's rules. Notes may use LHS, RHS, KE, GPE and EPE without an
   abbreviation warning. As in the packs, the imaginary unit and the
   exponential are plain `i` and `e`, never `\mathrm{i}` or `\mathrm{e}`.
+  A student's value from earlier working is quoted with `\their{...}`
+  (`\(\their{1654} - \their{98}\)`), which the scheme preamble defines, and
+  words quoted in a note take ` `` ` and `''`; a straight `"` prints as a
+  closing quote, and the checker refuses it.
 
 - **The mark schemes' guard:** the pre-commit's `check-markschemes` reads
   the git index, so it checks the schemes and packs as they are about to be
@@ -176,7 +180,8 @@ the optional `djsSolutionFigure` environment, and the legacy colored-cancel
   adds only the scheme's own: equal 0.8in side margins (the footers follow
   the text's right edge), `tabularray` and `adjustbox`, the colours `msGrid`
   and `msTint`, the header `Mark scheme - <Pack title>` on every page, the
-  booklet label `Mark scheme`, and the table. The pages: the front page (the
+  booklet label `Mark scheme`, the table, and `\their` for quoted values.
+  The pages: the front page (the
   packs' contents-page heading, its counts set by the renderer, then a
   contents table linking each question to its first page); the conventions
   pages, `\input` from `_shared/markscheme_conventions.tex`, so the

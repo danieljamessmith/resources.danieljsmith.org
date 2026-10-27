@@ -534,6 +534,19 @@ describe('rules 5-7: rows and strings', () => {
     const plain = run((s) => (part(s, 1, 'b').rows[0].marks[0].note = 'Uses \\(e^{i\\theta}\\) and \\(\\int x\\,\\mathrm{d}x\\), \\(\\mathrm{Im}(z)\\).'));
     expect(plain.errors).toEqual([]);
   });
+
+  it('rule 7: no straight double quote; their values in \\their{}, quoted words in `` and \'\'', () => {
+    const value = run((s) => (part(s, 1, 'b').rows[1].scheme = '\\(\\text{"}3\\text{"} + 1\\)\n'));
+    expect(rules(value.errors)).toEqual([7]);
+    expect(value.errors[0].message).toMatch(/^a straight " in the Scheme column, which prints as a closing quote: write their value as \\their\{\.\.\.\}/);
+    expect(rules(run((s) => (part(s, 1, 'b').rows[0].marks[0].note = 'Not for "true" alone.')).errors)).toEqual([7]);
+    expect(rules(run((s) => (part(s, 3, 'a.i').alt.title = 'Using "their" root')).errors)).toEqual([7]);
+    const quoted = run((s) => {
+      part(s, 1, 'b').rows[1].scheme = '\\(\\their{3} + 1\\)\n';
+      part(s, 1, 'b').rows[0].marks[0].note = "Uses their value. Not for ``true'' alone.";
+    });
+    expect(quoted.errors).toEqual([]);
+  });
 });
 
 describe('rules 8-13: totals and codes', () => {
