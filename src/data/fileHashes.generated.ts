@@ -112,7 +112,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/further-mechanics/centre-of-mass/qbt/_QBT__Centre_of_Mass_of_Laminae_by_Integration.pdf': 'a4a054f9',
   '/tex/further-maths/further-mechanics/centre-of-mass/qbt/_QBT__Centre_of_Mass_of_Polygonal_Laminae.pdf': '1aa880c6',
   '/tex/further-maths/further-mechanics/centre-of-mass/qbt/_QBT__Centre_of_Mass_of_Systems_of_Particles.pdf': '10c77f46',
-  '/tex/further-maths/further-mechanics/centre-of-mass/soln/_QBT___Solns__Centre_of_Mass_of_Circular_Laminae.pdf': 'f28853ae',
+  '/tex/further-maths/further-mechanics/centre-of-mass/soln/_QBT___Solns__Centre_of_Mass_of_Circular_Laminae.pdf': 'b0704b1c',
   '/tex/further-maths/further-mechanics/centre-of-mass/soln/_QBT___Solns__Centre_of_Mass_of_Composite_Solids.pdf': '8557bca4',
   '/tex/further-maths/further-mechanics/centre-of-mass/soln/_QBT___Solns__Centre_of_Mass_of_Laminae_by_Integration.pdf': '20bf9d6b',
   '/tex/further-maths/further-mechanics/centre-of-mass/soln/_QBT___Solns__Centre_of_Mass_of_Polygonal_Laminae.pdf': 'ecb31f10',
