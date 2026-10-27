@@ -690,12 +690,12 @@ describe('findSchemeFile', () => {
     }
   });
 
-  it('falls back to the file name, with or without pack.json, and is null without one', () => {
+  it('falls back to the file name only without pack.json, and is null without one', () => {
     expect(schemeFileName('Polar Coordinates')).toBe(NAME);
     const dir = packFolder({ files: { [NAME]: 'format: 1\n' } });
     try {
       expect(findSchemeFile(dir, 'Polar Coordinates', null)).toBe(join(dir, NAME));
-      expect(findSchemeFile(dir, 'Polar Coordinates', { topic: 'Polar Coordinates' })).toBe(join(dir, NAME));
+      expect(findSchemeFile(dir, 'Polar Coordinates', { topic: 'Polar Coordinates' })).toBeNull();
       expect(findSchemeFile(dir, 'Other Title', null)).toBeNull();
     } finally {
       rmSync(dir, { recursive: true, force: true });
@@ -975,17 +975,22 @@ function scratchSite() {
   return root;
 }
 
-function packDir(raw = describedDiagramPack(), { scheme = null, schemeByName = false } = {}) {
+/**
+ * A pack folder. `scheme` is written as the file `pack.json` names; with
+ * `byName` the folder has no `pack.json`, and every file is found by name; with
+ * `unnamed` the scheme sits under its discovery name and `pack.json` names none.
+ */
+function packDir(raw = describedDiagramPack(), { scheme = null, byName = false, unnamed = false } = {}) {
   const dir = mkdtempSync(join(tmpdir(), 'import-pack-'));
   const manifest = { format: 1, topic: 'Test Pack', questions: 'Questions.tex', solutions: 'Solutions.tex' };
   if (scheme !== null) {
-    const name = schemeByName ? '(QBT) [MS] Test Pack.yaml' : 'Scheme.yaml';
-    if (!schemeByName) manifest.markscheme = name;
+    const name = byName || unnamed ? '(QBT) [MS] Test Pack.yaml' : 'Scheme.yaml';
+    if (!byName && !unnamed) manifest.markscheme = name;
     writeFileSync(join(dir, name), scheme);
   }
-  writeFileSync(join(dir, PACK_MANIFEST), JSON.stringify(manifest));
-  writeFileSync(join(dir, 'Questions.tex'), raw.qbt);
-  writeFileSync(join(dir, 'Solutions.tex'), raw.soln);
+  if (!byName) writeFileSync(join(dir, PACK_MANIFEST), JSON.stringify(manifest));
+  writeFileSync(join(dir, byName ? '(QBT) Test Pack.tex' : 'Questions.tex'), raw.qbt);
+  writeFileSync(join(dir, byName ? '(QBT) [Solns] Test Pack.tex' : 'Solutions.tex'), raw.soln);
   writeFileSync(join(dir, 'preamble.tex'), '% the bundled preamble\n');
   return dir;
 }
@@ -1217,14 +1222,31 @@ describe('runImport', () => {
       }
     });
 
-    it('finds the scheme by its file name when pack.json names none', async () => {
-      const byName = packDir(undefined, { scheme: schemeFor(), schemeByName: true });
+    it('finds the scheme by its file name in a folder with no pack.json', async () => {
+      const byName = packDir(undefined, { scheme: schemeFor(), byName: true });
       try {
         await runImport(args(byName), { root, journalPath, ...standIns() });
         expect(existsSync(msPath('yaml'))).toBe(true);
         expect(rows().some((e) => e.id === `${ID}-ms`)).toBe(true);
       } finally {
         rmSync(byName, { recursive: true, force: true });
+      }
+    });
+
+    it('takes no scheme when pack.json names none, leaving a scheme file in the folder alone', async () => {
+      const unnamed = packDir(undefined, { scheme: schemeFor(), unnamed: true });
+      try {
+        const draft = readFileSync(join(unnamed, '(QBT) [MS] Test Pack.yaml'), 'utf8');
+        const stand = standIns();
+        await runImport(args(unnamed), { root, journalPath, ...stand });
+        expect(existsSync(join(root, SECTION, 'ms'))).toBe(false);
+        expect(rows().some((e) => e.id === `${ID}-ms`)).toBe(false);
+        expect(rows().some((e) => e.id === `${ID}-solns`)).toBe(true);
+        expect(stand.calls).toEqual({ compile: 2, regenerate: 1 });
+        expect(console.log).toHaveBeenCalledWith(expect.stringMatching(/scheme: +none in /));
+        expect(readFileSync(join(unnamed, '(QBT) [MS] Test Pack.yaml'), 'utf8')).toBe(draft);
+      } finally {
+        rmSync(unnamed, { recursive: true, force: true });
       }
     });
 

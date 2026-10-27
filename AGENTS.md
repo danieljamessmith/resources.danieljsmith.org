@@ -455,8 +455,8 @@ CI never runs `latexmk`, so whatever `.pdf` is committed is what ships to GitHub
 
 `npm run import-pack` adds a pack to the site from a local folder holding its
 questions and solutions documents and its mark scheme's YAML (named by
-`pack.json` when there is one; the scheme otherwise by `(QBT) [MS]
-<Title>.yaml`). It places them under
+`pack.json` when there is one, its `markscheme` key naming the scheme;
+without one, the scheme is found by `(QBT) [MS] <Title>.yaml`). It places them under
 `public/tex/further-maths/<strand>/<section>/`, sets the header title and
 `\djsSitePath`, strips comments, checks the scheme against the documents as
 placed (no flag, no query, every stamp present and current) and renders it,

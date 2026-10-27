@@ -41,9 +41,11 @@ folder holds the questions and solutions documents: those `pack.json` names
 by file name (`(QBT) <Title>.tex` and `(QBT) [Solns] <Title>.tex`, falling back
 to the only document with `\begin{document}`; `SKIP_TEX_FILES` lists scratch
 files never taken for a pack document). It also holds the pack's mark scheme,
-its YAML (see Mark schemes): the file `pack.json` names in `markscheme`, or
-else `(QBT) [MS] <Title>.yaml`. A folder with no scheme imports the two
-documents and their two rows alone. Other files in the folder are ignored.
+its YAML (see Mark schemes): the file `pack.json` names in `markscheme`, or,
+in a folder with no `pack.json`, `(QBT) [MS] <Title>.yaml`. A `pack.json`
+without `markscheme` means the pack has no scheme, so a scheme file beside it
+is left alone. A folder with no scheme imports the two documents and their
+two rows alone. Other files in the folder are ignored.
 
 | Flag | Value |
 |------|-------|

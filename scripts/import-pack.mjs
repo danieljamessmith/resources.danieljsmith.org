@@ -344,7 +344,10 @@ export function schemeFileName(topicName) {
 
 /**
  * The pack's mark scheme in a local folder: the file `pack.json` names
- * (`markscheme`), or else `(QBT) [MS] <Title>.yaml`. Null when there is none.
+ * (`markscheme`), or, in a folder with no `pack.json`, `(QBT) [MS]
+ * <Title>.yaml`. A `pack.json` without the key means the pack has none, so a
+ * scheme file beside it (a draft not yet finished) is not taken. Null when
+ * there is none.
  * @param {string} dir
  * @param {string} topicName
  * @param {{ markscheme?: string } | null} manifest
@@ -358,6 +361,7 @@ export function findSchemeFile(dir, topicName, manifest) {
     }
     return path;
   }
+  if (manifest) return null;
   const path = join(dir, schemeFileName(topicName));
   return existsSync(path) ? path : null;
 }
