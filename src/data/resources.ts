@@ -610,6 +610,37 @@ const rawResources: Resource[] = [
     paperId: 'fm-vectors-reflections-in-planes',
     topic: 'Vectors',
   },
+  {
+    id: 'fm-vectors-eigenvalues-eigenvectors-diagonalisation',
+    title: 'Eigenvalues, Eigenvectors and Diagonalisation',
+    description: '',
+    file: '/tex/further-maths/core-pure/vectors/qbt/_QBT__Eigenvalues__Eigenvectors_and_Diagonalisation.pdf',
+    category: FM_CP,
+    type: 'questions',
+    pairId: 'fm-vectors-eigenvalues-eigenvectors-diagonalisation-solns',
+    topic: 'Vectors',
+    boards: ['aqa', 'cie-9231'],
+  },
+  {
+    id: 'fm-vectors-eigenvalues-eigenvectors-diagonalisation-solns',
+    title: 'Eigenvalues, Eigenvectors and Diagonalisation',
+    description: 'Full worked solutions',
+    file: '/tex/further-maths/core-pure/vectors/soln/_QBT___Solns__Eigenvalues__Eigenvectors_and_Diagonalisation.pdf',
+    category: FM_CP,
+    type: 'solutions',
+    pairId: 'fm-vectors-eigenvalues-eigenvectors-diagonalisation',
+    topic: 'Vectors',
+  },
+  {
+    id: 'fm-vectors-eigenvalues-eigenvectors-diagonalisation-ms',
+    title: 'Eigenvalues, Eigenvectors and Diagonalisation',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/vectors/ms/_QBT___MS__Eigenvalues__Eigenvectors_and_Diagonalisation.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-vectors-eigenvalues-eigenvectors-diagonalisation',
+    topic: 'Vectors',
+  },
 
   // --- A-level Further Maths: Further Calculus (notes → pairs in teaching order) ---
   {

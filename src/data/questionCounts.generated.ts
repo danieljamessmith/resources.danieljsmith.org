@@ -29,6 +29,7 @@ export const questionCounts: Record<string, number> = {
   '/tex/further-maths/core-pure/polar-coordinates/qbt/_QBT__Integration_of_Polar_Curves.pdf': 12,
   '/tex/further-maths/core-pure/polar-coordinates/qbt/_QBT__Polar_Coordinates_Basics.pdf': 10,
   '/tex/further-maths/core-pure/polar-coordinates/qbt/_QBT__Tangents_to_Polar_Curves.pdf': 8,
+  '/tex/further-maths/core-pure/vectors/qbt/_QBT__Eigenvalues__Eigenvectors_and_Diagonalisation.pdf': 14,
   '/tex/further-maths/core-pure/vectors/qbt/_QBT__Invariant_Points_and_Lines.pdf': 9,
   '/tex/further-maths/core-pure/vectors/qbt/_QBT__Linear_Transformations.pdf': 11,
   '/tex/further-maths/core-pure/vectors/qbt/_QBT__Matrix_Determinants___Inverses.pdf': 10,

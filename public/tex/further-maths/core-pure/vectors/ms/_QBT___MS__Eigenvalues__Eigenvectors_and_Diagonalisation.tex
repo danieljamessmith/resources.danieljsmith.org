@@ -1,0 +1,400 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/markscheme_preamble.tex}
+
+\djsSchemeHeader{Eigenvalues, Eigenvectors and Diagonalisation}
+\djsSitePath{Core Pure}{Vectors, Matrices \& Linear Transformations}
+
+\djsLastUpdated{27 October 2026}
+\begin{document}
+\djsSetQuestionCount{14}
+\djsAddMarks{1}{6}
+\djsAddMarks{2}{6}
+\djsAddMarks{3}{11}
+\djsAddMarks{4}{6}
+\djsAddMarks{5}{10}
+\djsAddMarks{6}{15}
+\djsAddMarks{7}{13}
+\djsAddMarks{8}{12}
+\djsAddMarks{9}{13}
+\djsAddMarks{10}{12}
+\djsAddMarks{11}{12}
+\djsAddMarks{12}{13}
+\djsAddMarks{13}{14}
+\djsAddMarks{14}{19}
+\vspace*{6pt}
+\djsContentsTitle
+\vspace{30pt}
+\msContentsHeading
+\begin{mscontents}{}
+Question & Marks by part & Marks & Page \\
+\msContentsQuestion{1} & & 6 & \msContentsPage{1} \\
+\msContentsQuestion{2} & (a)\,1\msSep (b)\,3\msSep (c)\,2 & 6 & \msContentsPage{2} \\
+\msContentsQuestion{3} & (a)\,6\msSep (b)(i)\,2\msSep (b)(ii)\,3 & 11 & \msContentsPage{3} \\
+\msContentsQuestion{4} & (a)\,4\msSep (b)\,2 & 6 & \msContentsPage{4} \\
+\msContentsQuestion{5} & (a)(i)\,1\msSep (a)(ii)\,2\msSep (b)\,4\msSep (c)\,3 & 10 & \msContentsPage{5} \\
+\msContentsQuestion{6} & (a)\,4\msSep (b)\,11 & 15 & \msContentsPage{6} \\
+\msContentsQuestion{7} & (a)\,5\msSep (b)\,1\msSep (c)\,5\msSep (d)\,2 & 13 & \msContentsPage{7} \\
+\msContentsQuestion{8} & (a)\,4\msSep (b)\,5\msSep (c)\,3 & 12 & \msContentsPage{8} \\
+\msContentsQuestion{9} & (a)\,3\msSep (b)\,2\msSep (c)\,4\msSep (d)\,4 & 13 & \msContentsPage{9} \\
+\msContentsQuestion{10} & (a)\,3\msSep (b)\,4\msSep (c)\,5 & 12 & \msContentsPage{10} \\
+\msContentsQuestion{11} & (a)\,3\msSep (b)\,1\msSep (c)\,2\msSep (d)\,2\msSep (e)\,4 & 12 & \msContentsPage{11} \\
+\msContentsQuestion{12} & (a)(i)\,3\msSep (a)(ii)\,3\msSep (b)\,2\msSep (c)(i)\,2\msSep (c)(ii)\,2\msSep (c)(iii)\,1 & 13 & \msContentsPage{12} \\
+\msContentsQuestion{13} & (a)\,5\msSep (b)\,6\msSep (c)\,3 & 14 & \msContentsPage{13} \\
+\msContentsQuestion{14} & (a)(i)\,1\msSep (a)(ii)\,2\msSep (a)(iii)\,7\msSep (b)\,1\msSep (c)(i)\,2\msSep (c)(ii)\,4\msSep (c)(iii)\,2 & 19 & \msContentsPage{14} \\
+\SetCell[c=2]{r} Total & & 162 & \\
+\end{mscontents}
+\newpage
+\input{../../../../_shared/markscheme_conventions.tex}
+
+\msQuestion{1}
+\begin{msscheme}{
+  hline{3-7} = {2-Z}{0.4pt, msGrid},
+  hline{8} = {0.4pt, msGrid},
+  row{8} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+1 & {\((3-\lambda)(-2-\lambda)-2k=0\)\\[4pt] \(\lambda=4 \Rightarrow 6-2k=0\)} & M1 & {Forms \(\det(\mathbf{A}-\lambda\mathbf{I})=0\) with \(\lambda=4\) substituted at any stage, or uses \(\mathbf{A}\mathbf{v}=4\mathbf{v}\), to reach an equation in \(k\). Condone sign slips.} \\
+& {\(k=3\)} & A1 & \\
+& {\(\lambda^2-\lambda-12=0 \Rightarrow \lambda=\ldots\)} & M1 & {Solves the characteristic equation with their \(k\) by any means, calculator allowed, or uses sum of eigenvalues \(=\) trace.} \\
+& {\(\lambda=-3\)} & A1 & \\
+& {\(\lambda=4\): \(\begin{pmatrix}-1 & \their{3}\\ 2 & -6\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=\mathbf{0} \Rightarrow x=3y\)\\[4pt] \(\lambda=-3\): \(\begin{pmatrix}6 & \their{3}\\ 2 & 1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=\mathbf{0} \Rightarrow y=-2x\)} & M1 & {Forms \((\mathbf{A}-\lambda\mathbf{I})\mathbf{v}=\mathbf{0}\) or \(\mathbf{A}\mathbf{v}=\lambda\mathbf{v}\) with their \(k\) and one of their eigenvalues, reaching a relation between \(x\) and \(y\).} \\
+& {\(\begin{pmatrix}3\\1\end{pmatrix}\) for \(\lambda=4\), \(\begin{pmatrix}1\\-2\end{pmatrix}\) for \(\lambda=-3\)} & A1 & {Any non-zero multiples, each matched to its eigenvalue.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 1 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{2}
+\begin{msscheme}{
+  hline{3,5-7,9-10} = {2-Z}{0.4pt, msGrid},
+  hline{4,8,11} = {0.4pt, msGrid},
+  row{11} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+2(a) & {\(\lambda = 1,\ \lambda = -1\)} & B1 & {Both values, and no others.} \\
+\nopagebreak & & [1] & \\
+2(b) & {\((a-\lambda)(b-\lambda) - 0.6^2 = 0\)} & M1 & {Forms \(\det(\mathbf{M}-\lambda\mathbf{I}) = 0\) in \(a\), \(b\), \(\lambda\). Condone sign slips; need not be expanded.} \\
+& {\(\lambda^2 - (a+b)\lambda + ab - 0.36 \equiv \lambda^2 - 1\)\\[4pt] \(\Rightarrow a + b = 0,\ ab = -0.64 \Rightarrow a = \ldots\)} & dM1 & {Uses their eigenvalues, by comparing coefficients or substituting \(\lambda = \pm1\), to form two equations in \(a\), \(b\), and solves them simultaneously.} \\
+& {\(a = 0.8,\ b = -0.8\)} & A1 & {Both, oe. A0 if \(a = -0.8\), \(b = 0.8\) is not rejected.} \\
+\nopagebreak & & [3] & \\
+2(c) & {\(\begin{pmatrix}\their{-0.2} & 0.6\\ 0.6 & \their{-1.8}\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix} = \begin{pmatrix}0\\0\end{pmatrix}\)\\[4pt] \(\Rightarrow -0.2x + 0.6y = 0\)} & M1 & {Forms \((\mathbf{M}-\mathbf{I})\mathbf{v} = \mathbf{0}\) or \(\mathbf{M}\mathbf{v} = \mathbf{v}\) with their numerical \(a\), \(b\), reaching a relation between \(x\) and \(y\); or takes the perpendicular to an eigenvector for \(-1\).} \\
+& {\(y = \tfrac13 x\)} & A1 & {Any equivalent equation, such as \(x = 3y\). A direction vector alone scores A0.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 2 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{3}
+\begin{msscheme}{
+  hline{3-8,10-11,13-15} = {2-Z}{0.4pt, msGrid},
+  hline{9,12,16} = {0.4pt, msGrid},
+  row{16} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+3(a) & {\((2-\lambda)(5-\lambda)-k^2=0\), \(\lambda=1\):\\[4pt] \(4-k^2=0 \Rightarrow k=\ldots\)} & M1 & {Substitutes \(\lambda=1\) into \(\det(\mathbf{M}-\lambda\mathbf{I})=0\) and reaches an equation in \(k\). Condone sign slips.} \\
+& {\(k=-2\)} & A1 & {\(k=-2\) only; A0 for \(k=\pm2\) without selecting.} \\
+& {\(\lambda^2-7\lambda+6=0 \Rightarrow \lambda=\ldots\)} & M1 & {Obtains the other eigenvalue using their \(k\): solves their characteristic quadratic by any means, or uses the trace or determinant.} \\
+& {\(\lambda=6\)} & A1 & \\
+& {\((\mathbf{M}-\lambda\mathbf{I})\begin{pmatrix}x\\y\end{pmatrix}=\mathbf{0}\)\\[4pt] \(\lambda=1\): \(x-2y=0\); \(\lambda=6\): \(2x+y=0\)} & M1 & {Forms \((\mathbf{M}-\lambda\mathbf{I})\mathbf{v}=\mathbf{0}\) or \(\mathbf{M}\mathbf{v}=\lambda\mathbf{v}\) with their \(k\) and either eigenvalue, reaching a relation between \(x\) and \(y\).} \\
+& {\(\begin{pmatrix}2\\1\end{pmatrix}\), \(\begin{pmatrix}1\\-2\end{pmatrix}\)} & A1 & {Both correct, each any non-zero multiple, matched to its eigenvalue.} \\
+\nopagebreak & & [6] & \\
+3(b)(i) & {\(\their{\begin{pmatrix}2\\1\end{pmatrix}}\cdot\their{\begin{pmatrix}1\\-2\end{pmatrix}}=\ldots\)} & M1 & {Forms the scalar product of their two eigenvectors, or the product of the gradients of the two invariant lines.} \\
+& {\(=2-2=0\), so the invariant lines are perpendicular} & A1 & {Scalar product 0, or gradient product \(-1\), with the conclusion that the lines are perpendicular.} \\
+\nopagebreak & & [2] & \\
+3(b)(ii) & {One-way stretch} & B1 & {``Stretch'' alone accepted.} \\
+& {scale factor 6, parallel to \(y=-2x\)} & B1 & {Direction may be given as \(\begin{pmatrix}1\\-2\end{pmatrix}\) or as perpendicular to \(y=\frac12x\).} \\
+& {line of invariant points \(y=\frac12 x\)} & B1 & {Any equivalent equation, such as \(x=2y\).} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 3 & & 11 & \\
+\end{msscheme}
+
+\msQuestion{4}
+\begin{msscheme}{
+  hline{3-6,8-9} = {2-Z}{0.4pt, msGrid},
+  hline{7,10} = {0.4pt, msGrid},
+  row{10} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+4(a) & {\(\mathbf{P}=\begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 1 & 1 & 1 \end{pmatrix},\ \mathbf{D}=\begin{pmatrix} 2 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 1 \end{pmatrix}\)} & B1 & {Eigenvectors in any order as columns, or nonzero multiples of them, with eigenvalues on the diagonal of \(\mathbf{D}\) in the same order.} \\
+& {\(\mathbf{P}^{-1}=\frac{1}{\det\mathbf{P}}\operatorname{adj}\mathbf{P}=\ldots\)\\[4pt] \(\left[=\begin{pmatrix} 0 & -1 & 1 \\ -1 & 0 & 1 \\ 1 & 1 & -1 \end{pmatrix}\right]\)} & M1 & {Finds \(\mathbf{P}^{-1}\) for their \(\mathbf{P}\) by cofactors, row reduction or calculator. Condone one slip in a cofactor or sign.} \\
+& {\(\mathbf{A}=\mathbf{P}\mathbf{D}\their{\mathbf{P}^{-1}}\)\\[4pt] \(\phantom{\mathbf{A}}=\begin{pmatrix} 2 & 0 & 1 \\ 0 & -1 & 1 \\ 2 & -1 & 1 \end{pmatrix}\their{\mathbf{P}^{-1}}=\ldots\)} & M1 & {Multiplies their \(\mathbf{P}\), \(\mathbf{D}\) and \(\mathbf{P}^{-1}\) in that order to a \(3\times3\) matrix. Condone arithmetic slips.} \\
+& {\(\mathbf{A}=\begin{pmatrix} 1 & -1 & 1 \\ 2 & 1 & -2 \\ 2 & -1 & 0 \end{pmatrix}\)} & A1 & {cao. A correct \(\mathbf{A}\) without \(\mathbf{P}^{-1}\) and the product \(\mathbf{P}\mathbf{D}\mathbf{P}^{-1}\) seen scores B1 only.} \\
+\nopagebreak & & [4] & \\
+4(b) & {\(\mathbf{A}^4=\mathbf{P}\mathbf{D}^4\their{\mathbf{P}^{-1}}\)\\[4pt] \(\phantom{\mathbf{A}^4}=\begin{pmatrix} 16 & 0 & 1 \\ 0 & 1 & 1 \\ 16 & 1 & 1 \end{pmatrix}\their{\mathbf{P}^{-1}}=\ldots\)} & M1 & {Uses \(\mathbf{A}^4=\mathbf{P}\mathbf{D}^4\mathbf{P}^{-1}\) with their matrices, or multiplies their \(\mathbf{A}\) from (a), including repeated squaring. Condone arithmetic slips.} \\
+& {\(\mathbf{A}^4=\begin{pmatrix} 1 & -15 & 15 \\ 0 & 1 & 0 \\ 0 & -15 & 16 \end{pmatrix}\)} & A1 & {cao.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 4 & & 6 & \\
+\end{msscheme}
+
+\msQuestion{5}
+\begin{msscheme}{
+  hline{3,5-6,8-11,13-15} = {2-Z}{0.4pt, msGrid},
+  hline{4,7,12,16} = {0.4pt, msGrid},
+  row{16} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+5(a)(i) & {\(\mathbf{M}\mathbf{v}_1 = \begin{pmatrix}2\\a+10\\2b-8\end{pmatrix} = \lambda_1\begin{pmatrix}1\\2\\0\end{pmatrix}\)\\[4pt] \(\Rightarrow \lambda_1 = 2\)} & B1 & \\
+\nopagebreak & & [1] & \\
+5(a)(ii) & {\(a + 10 = 2 \times \their{2},\quad 2b - 8 = 0\)\\[4pt] \(\Rightarrow a = \ldots,\ b = \ldots\)} & M1 & {Equates at least one of the second and third components of \(\mathbf{M}\mathbf{v}_1\) with that of their \(\lambda_1\mathbf{v}_1\) and solves. Condone a slip in the product.} \\
+& {\(a = -6,\quad b = 4\)} & A1 & \\
+\nopagebreak & & [2] & \\
+5(b) & {\(\mathbf{M}\mathbf{v}_2 = \begin{pmatrix}4 & -1 & 1\\-6 & 5 & -6\\-8 & 4 & -5\end{pmatrix}\begin{pmatrix}0\\1\\1\end{pmatrix}\)\\[4pt] \(\phantom{\mathbf{M}\mathbf{v}_2} = \ldots\)} & M1 & {Multiplies \(\mathbf{M}\), with their \(a\) and \(b\), by \(\mathbf{v}_2\); or uses the trace or determinant with their other eigenvalues. Condone one slip.} \\
+& {\(\mathbf{M}\mathbf{v}_2 = \begin{pmatrix}0\\-1\\-1\end{pmatrix} \Rightarrow \lambda_2 = -1\)} & A1 & \\
+& {\(\begin{pmatrix}1 & -1 & 1\\-6 & 2 & -6\\-8 & 4 & -8\end{pmatrix}\begin{pmatrix}x\\y\\z\end{pmatrix} = \mathbf{0}\)\\[4pt] \(\Rightarrow x - y + z = 0,\ -6x + 2y - 6z = 0\)\\[4pt] \(\Rightarrow x : y : z = \ldots\)} & M1 & {Forms \((\mathbf{M}-3\mathbf{I})\mathbf{v} = \mathbf{0}\) or \(\mathbf{M}\mathbf{v} = 3\mathbf{v}\) with their \(a\), \(b\) and solves two equations for the component ratios, or takes a vector product of two rows. Condone one slip.} \\
+& {\(\mathbf{v}_3 = \begin{pmatrix}1\\0\\-1\end{pmatrix}\)} & A1 & {Any nonzero multiple.} \\
+\nopagebreak & & [4] & \\
+5(c) & {\(\mathbf{U} = \begin{pmatrix}1 & 0 & 1\\2 & 1 & 0\\0 & 1 & -1\end{pmatrix}\)\\[4pt] \(\mathbf{D} = \begin{pmatrix}2 & 0 & 0\\0 & -1 & 0\\0 & 0 & 3\end{pmatrix}\)} & B1 & {Columns of \(\mathbf{U}\) nonzero multiples of the three correct eigenvectors in any order, with the eigenvalues in \(\mathbf{D}\) in matching order.} \\
+& {\(\det\mathbf{U} = 1(-1) - 0 + 1(2) \ [= 1]\)\\[4pt] \(\mathbf{U}^{-1} = \frac{1}{\det\mathbf{U}}\,\mathrm{adj}\,\mathbf{U} = \ldots\)} & M1 & {Attempts the inverse of their \(3 \times 3\) \(\mathbf{U}\), e.g. determinant with matrix of cofactors transposed, or row reduction. Condone one slip; calculator inverse accepted.} \\
+& {\(\mathbf{U}^{-1} = \begin{pmatrix}-1 & 1 & -1\\2 & -1 & 2\\2 & -1 & 1\end{pmatrix}\)} & A1 & {Correct inverse of their correct \(\mathbf{U}\), whatever its ordering or scaling.} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 5 & & 10 & \\
+\end{msscheme}
+
+\msQuestion{6}
+\begin{msscheme}{
+  hline{3-6,8-18} = {2-Z}{0.4pt, msGrid},
+  hline{7,19} = {0.4pt, msGrid},
+  row{19} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+6(a) & {\(\det(\mathbf{M}+2\mathbf{I}) = \begin{vmatrix}3&-2&2\\-2&4&0\\2&0&2\end{vmatrix}\)\\[4pt] \(\phantom{\det(\mathbf{M}+2\mathbf{I})} = 3(8)+2(-4)+2(-8)\)} & M1 & {Evaluates \(\det(\mathbf{M}+2\mathbf{I})\) by any expansion, or their \(\det(\mathbf{M}-\lambda\mathbf{I})\) at \(\lambda=-2\), or shows \(\mathbf{Mv}=-2\mathbf{v}\) for a nonzero \(\mathbf{v}\).} \\
+& {\(= 0\), so \(-2\) is an eigenvalue} & A1 & {cso, with a conclusion. A0 if the conclusion is missing.} \\
+& {\(-2x+4y=0,\ 2x+2z=0 \Rightarrow \ldots\)} & M1 & {Forms at least two equations from \((\mathbf{M}+2\mathbf{I})\mathbf{v}=\mathbf{0}\) or \(\mathbf{Mv}=-2\mathbf{v}\) and solves for a nonzero vector.} \\
+& {\(\begin{pmatrix}2\\1\\-2\end{pmatrix}\)} & A1 & {Any nonzero multiple.} \\
+\nopagebreak & & [4] & \\
+6(b) & {\(\det(\mathbf{M}-\lambda\mathbf{I}) = (1-\lambda)(\lambda^2-2\lambda)\)\\[4pt] \(\phantom{\det(\mathbf{M}-\lambda\mathbf{I})} +4\lambda-4(2-\lambda)\)} & M1 & {Expands \(\det(\mathbf{M}-\lambda\mathbf{I})\) by any row or column to a cubic in \(\lambda\). Condone sign slips.} \\
+& {\(\lambda^3-3\lambda^2-6\lambda+8=0\)} & A1 & {oe, such as its negative, = 0 may be implied.} \\
+& {\((\lambda+2)(\lambda^2-5\lambda+4)=0 \Rightarrow \lambda=\ldots\)} & M1 & {Obtains a quadratic factor of their cubic using \(\lambda+2\) and solves it. Correct roots from a correct cubic imply the mark.} \\
+& {\(\lambda = 1,\ 4\)} & A1 & \\
+& {\(\lambda=1\): \(-2y+2z=0,\ -2x+y=0 \Rightarrow \ldots\)} & M1 & {Forms at least two equations from \((\mathbf{M}-\lambda\mathbf{I})\mathbf{v}=\mathbf{0}\) with their eigenvalue in place of 1 and solves for a nonzero vector.} \\
+& {\(\begin{pmatrix}1\\2\\2\end{pmatrix}\)} & A1 & {Any nonzero multiple.} \\
+& {\(\lambda=4\): \(-2x-2y=0,\ 2x-4z=0 \Rightarrow \ldots\)} & M1 & {Forms at least two equations from \((\mathbf{M}-\lambda\mathbf{I})\mathbf{v}=\mathbf{0}\) with their eigenvalue in place of 4 and solves for a nonzero vector.} \\
+& {\(\begin{pmatrix}2\\-2\\1\end{pmatrix}\)} & A1 & {Any nonzero multiple.} \\
+& {Divides each by its length:\\[4pt] \(\sqrt{4+1+4} = \sqrt{1+4+4} = \sqrt{4+4+1} = 3\)} & M1 & {Divides each of their three eigenvectors by its magnitude \(\sqrt{x^2+y^2+z^2}\).} \\
+& {\(\mathbf{U}=\dfrac{1}{3}\begin{pmatrix} 2 & 1 & 2 \\ 1 & 2 & -2 \\ -2 & 2 & 1 \end{pmatrix}\)} & A1 & {Columns in any order, any column negated; decimals awrt 3 s.f. accepted.} \\
+& {\(\mathbf{D}=\begin{pmatrix} -2 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 4 \end{pmatrix}\)} & B1 & {Diagonal entries \(-2\), 1, 4 ordered to match the eigenvectors in their \(\mathbf{U}\); zeros elsewhere.} \\
+\nopagebreak & & [11] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 6 & & 15 & \\
+\end{msscheme}
+
+\msQuestion{7}
+\begin{msscheme}{
+  hline{3-7,9,11-15,17-18} = {2-Z}{0.4pt, msGrid},
+  hline{8,10,16,19} = {0.4pt, msGrid},
+  row{19} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+7(a) & {\(\left(\tfrac38-\lambda\right)^2-\tfrac{5}{16}\times\tfrac54=0\)\\[4pt] \(\Rightarrow 4\lambda^2-3\lambda-1=0 \Rightarrow \lambda=\ldots\)} & M1 & {Forms \(\det(\mathbf{A}-\lambda\mathbf{I})=0\) as a quadratic and solves it by any means, calculator allowed. Condone sign slips in forming it.} \\
+& {\(\lambda=1,\ \lambda=-\tfrac14\)} & A1 & \\
+& {\(\lambda=1\): \(-\tfrac58x+\tfrac{5}{16}y=0 \Rightarrow y=\ldots\)} & M1 & {Uses \((\mathbf{A}-\lambda\mathbf{I})\mathbf{v}=\mathbf{0}\) or \(\mathbf{A}\mathbf{v}=\lambda\mathbf{v}\) with one of their eigenvalues to obtain a relation between \(x\) and \(y\).} \\
+& {\(\begin{pmatrix}1\\2\end{pmatrix}\)} & A1 & {Any nonzero multiple, paired with \(\lambda=1\).} \\
+& {\(\lambda=-\tfrac14\): \(\tfrac58x+\tfrac{5}{16}y=0 \Rightarrow \begin{pmatrix}1\\-2\end{pmatrix}\)} & A1 & {Any nonzero multiple, paired with \(\lambda=-\frac14\).} \\
+\nopagebreak & & [5] & \\
+7(b) & {\(\mathbf{P}=\begin{pmatrix}1&1\\2&-2\end{pmatrix},\ \mathbf{D}=\begin{pmatrix}1&0\\0&-\frac14\end{pmatrix}\)} & B1ft & {ft their eigenvalues and eigenvectors, with the columns of \(\mathbf{P}\) in the same order as the eigenvalues in \(\mathbf{D}\).} \\
+\nopagebreak & & [1] & \\
+7(c) & {\(\mathbf{A}^n=\mathbf{P}\mathbf{D}^n\mathbf{P}^{-1}\), \(\mathbf{D}^n=\begin{pmatrix}1&0\\0&\left(-\frac14\right)^n\end{pmatrix}\)} & M1 & {Uses \(\mathbf{A}^n=\mathbf{P}\mathbf{D}^n\mathbf{P}^{-1}\) with their \(\mathbf{P}\) and \(\mathbf{D}\), raising the diagonal entries of \(\mathbf{D}\) to the power \(n\).} \\
+& {\(\mathbf{P}^{-1}=-\tfrac14\begin{pmatrix}-2&-1\\-2&1\end{pmatrix}\)\\[4pt] \(\mathbf{A}^n=\their{\mathbf{P}}\mathbf{D}^n\their{\mathbf{P}^{-1}}=\ldots\)} & dM1 & {Finds their \(\mathbf{P}^{-1}\) by any method and multiplies the three matrices in the correct order to a single matrix. Condone arithmetic slips.} \\
+& {\(\mathbf{A}^n=\begin{pmatrix}\frac12+\frac12\left(-\frac14\right)^n&\frac14-\frac14\left(-\frac14\right)^n\\1-\left(-\frac14\right)^n&\frac12+\frac12\left(-\frac14\right)^n\end{pmatrix}\)} & A1 & {oe, such as \((-1)^n4^{-n}\) for \(\left(-\frac14\right)^n\).} \\
+& {\(\left|-\tfrac14\right|<1 \Rightarrow \left(-\tfrac14\right)^n\to0\)} & E1 & {States \(\left(-\frac14\right)^n\to0\) because its modulus is less than 1, or oe. Not for ``\(n\) is large'' alone.} \\
+& {\(\mathbf{L}=\begin{pmatrix}\frac12&\frac14\\1&\frac12\end{pmatrix}\)} & A1ft & {ft their \(\mathbf{A}^n\) with each \(\left(-\frac14\right)^n\) term set to 0.} \\
+\nopagebreak & & [5] & \\
+7(d) & {\(\their{\mathbf{L}}\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}\frac12x+\frac14y\\x+\frac12y\end{pmatrix}\)} & M1 & {Finds the image of a general point \((x,y)\) under their \(\mathbf{L}\), or uses the columns of their \(\mathbf{L}\) as image directions.} \\
+& {\(y=2x\)} & A1 & {oe, such as \(2x-y=0\).} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 7 & & 13 & \\
+\end{msscheme}
+
+\msQuestion{8}
+\begin{msscheme}{
+  hline{3-6,8-12,14-16} = {2-Z}{0.4pt, msGrid},
+  hline{7,13,17} = {0.4pt, msGrid},
+  row{17} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+8(a) & {\(\det(\mathbf{A}-\lambda\mathbf{I})\)\\[4pt] \(= (-4-\lambda)[(-7-\lambda)(16-\lambda)+132]\)\\[4pt] \(\phantom{=}+13[-6(16-\lambda)+72]\)\\[4pt] \(\phantom{=}+8[132-12(7+\lambda)]\)} & M1 & {Expands \(\det(\mathbf{A}-\lambda\mathbf{I})\) along any row or column, each of three terms an element times its \(2\times2\) minor, or by Sarrus' rule. Condone sign and arithmetic slips.} \\
+& {\(-\lambda^3+5\lambda^2-2\lambda-8=0\)\\[4pt] \(\Rightarrow \lambda^3-5\lambda^2+2\lambda+8=0\)} & A1 & {Printed equation from a correct expansion without error; collected steps accepted.} \\
+& {\(\lambda=-1\): \(-1-5-2+8=0\)\\[4pt] \((\lambda+1)(\lambda^2-6\lambda+8)=0 \Rightarrow \lambda=\ldots\)} & M1 & {Shows a root by substitution and obtains a quadratic factor, by division or comparing coefficients, with an attempt to solve it. Condone coefficient slips.} \\
+& {\(\lambda=-1,\ 2,\ 4\)} & A1 & \\
+\nopagebreak & & [4] & \\
+8(b) & {\(\lambda=-1\): \(-3x-13y+8z=0\), \(-6x-6y+6z=0\)\\[4pt] \(\Rightarrow x:y:z=\ldots\)} & M1 & {Forms \((\mathbf{A}-\lambda\mathbf{I})\mathbf{v}=\mathbf{0}\) for one of their eigenvalues and solves two equations to a ratio \(x:y:z\), or takes a vector product of two rows. Condone arithmetic slips.} \\
+& {\(\lambda=-1\): \(\begin{pmatrix}1\\1\\2\end{pmatrix}\)} & A1 & {Each A1: any nonzero multiple; eigenvectors in any order.} \\
+& {\(\lambda=2\): \(\begin{pmatrix}1\\2\\4\end{pmatrix}\)} & A1 & \\
+& {\(\lambda=4\): \(\begin{pmatrix}1\\0\\1\end{pmatrix}\)} & A1 & \\
+& {\(\mathbf{P}=\begin{pmatrix}1&1&1\\1&2&0\\2&4&1\end{pmatrix}\), \(\mathbf{D}=\begin{pmatrix}-1&0&0\\0&2&0\\0&0&4\end{pmatrix}\)} & B1ft & {ft their eigenvalues and eigenvectors: eigenvectors as the columns of \(\mathbf{P}\), eigenvalues in the same order on the diagonal of \(\mathbf{D}\).} \\
+\nopagebreak & & [5] & \\
+8(c) & {\(\mathbf{A}^n=\mathbf{P}\mathbf{D}^n\mathbf{P}^{-1}\)\\[4pt] \(\mathbf{D}^n=\begin{pmatrix}(-1)^n&0&0\\0&2^n&0\\0&0&4^n\end{pmatrix}\)} & M1 & {Uses \(\mathbf{A}^n=\mathbf{P}\mathbf{D}^n\mathbf{P}^{-1}\) with their diagonal \(\mathbf{D}\) raised to the power \(n\) entrywise. No proof of the result needed.} \\
+& {\(\mathbf{P}^{-1}=\begin{pmatrix}2&3&-2\\-1&-1&1\\0&-2&1\end{pmatrix}\)} & B1 & {Correct inverse of their valid \(\mathbf{P}\).} \\
+& {\((-1)^n\times2+2^n\times(-1)+4^n\times0\)\\[4pt] \(\phantom{(}=2(-1)^n-2^n\)} & A1~AG & {Correct substituted sum of three products from valid \(\mathbf{P}\), \(\mathbf{D}^n\), \(\mathbf{P}^{-1}\), leading without error to \(2(-1)^n-2^n\); full matrix product accepted.} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 8 & & 12 & \\
+\end{msscheme}
+
+\msQuestion{9}
+\begin{msscheme}{
+  hline{3-5,7-8,10-13,15-18} = {2-Z}{0.4pt, msGrid},
+  hline{6,9,14,19} = {0.4pt, msGrid},
+  row{19} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+9(a) & {\(\det(\mathbf{M}-\lambda\mathbf{I})\)\\[4pt] \(= (3-\lambda)[(3-\lambda)(-2-\lambda)+4]\)\\[4pt] \(\phantom{=} -4[(-2-\lambda)+1]-4[4-(3-\lambda)]\)} & M1 & {Expands \(\det(\mathbf{M}-\lambda\mathbf{I})\) or \(\det(\lambda\mathbf{I}-\mathbf{M})\) along any row or column, with three terms each a 2\(\times\)2 cofactor. Condone sign slips.} \\
+& {\(= (3-\lambda)(\lambda^2-\lambda-2)-4(-1-\lambda)-4(1+\lambda)\)} & A1 & {Correct expansion, need not be simplified.} \\
+& {\(-\lambda^3+4\lambda^2-\lambda-6=0\)\\[4pt] \(\Rightarrow \lambda^3-4\lambda^2+\lambda+6=0\)} & A1~AG & {Correct expansion simplified without error to the printed equation, set equal to zero; combined steps accepted.} \\
+\nopagebreak & & [3] & \\
+9(b) & {\(f(-1)=-1-4-1+6=0\)\\[4pt] \(\Rightarrow (\lambda+1)(\lambda^2-5\lambda+6)=0 \Rightarrow \lambda=\ldots\)} & M1 & {Shows a root of the cubic and factorises to a linear factor times a quadratic, by inspection, division or comparing coefficients, then solves the quadratic.} \\
+& {\(\lambda=-1,\ 2,\ 3\)} & A1 & \\
+\nopagebreak & & [2] & \\
+9(c) & {\((\mathbf{M}-\lambda\mathbf{I})\mathbf{v}=\mathbf{0}\), e.g. \(\lambda=-1\):\\[4pt] \(x+y-z=0,\ x+4y-z=0 \Rightarrow x:y:z=\ldots\)} & M1 & {Forms \((\mathbf{M}-\lambda\mathbf{I})\mathbf{v}=\mathbf{0}\) or \(\mathbf{M}\mathbf{v}=\lambda\mathbf{v}\) for one of their eigenvalues and solves for a ratio \(x:y:z\), or takes the vector product of two rows. Condone arithmetic slips.} \\
+& {\(\lambda=-1\): \(\begin{pmatrix}1\\0\\1\end{pmatrix}\)} & A1 & {Any one correct eigenvector, any nonzero multiple. The three A1s may be earned in any order.} \\
+& {\(\lambda=2\): \(\begin{pmatrix}0\\1\\1\end{pmatrix}\)} & A1 & \\
+& {\(\lambda=3\): \(\begin{pmatrix}1\\1\\1\end{pmatrix}\)} & A1 & \\
+\nopagebreak & & [4] & \\
+9(d) & {\(\mathbf{P}=\begin{pmatrix}1&0&1\\0&1&1\\1&1&1\end{pmatrix},\ \mathbf{D}=\begin{pmatrix}-1&0&0\\0&2&0\\0&0&3\end{pmatrix}\)} & B1ft & {ft their eigenvalues and eigenvectors: eigenvectors as columns of \(\mathbf{P}\), eigenvalues on the diagonal of \(\mathbf{D}\) in the same order.} \\
+& {\(\mathbf{M}^n=\mathbf{P}\mathbf{D}^n\mathbf{P}^{-1}\)\\[4pt] \(\mathbf{D}^n=\begin{pmatrix}(-1)^n&0&0\\0&2^n&0\\0&0&3^n\end{pmatrix},\ \mathbf{P}^{-1}=\begin{pmatrix}0&-1&1\\-1&0&1\\1&1&-1\end{pmatrix}\)} & M1 & {Uses \(\mathbf{M}^n=\mathbf{P}\mathbf{D}^n\mathbf{P}^{-1}\) with \(\mathbf{D}^n\) the diagonal of powers of their eigenvalues and an attempt at the inverse of their \(\mathbf{P}\). Condone one slip in \(\mathbf{P}^{-1}\).} \\
+& {\(\mathbf{P}\mathbf{D}^n=\begin{pmatrix}(-1)^n&0&3^n\\0&2^n&3^n\\(-1)^n&2^n&3^n\end{pmatrix}\)\\[4pt] \(\Rightarrow \mathbf{M}^n=\their{\mathbf{P}\mathbf{D}^n}\their{\mathbf{P}^{-1}}=\ldots\)} & dM1 & {Multiplies their \(\mathbf{P}\), \(\mathbf{D}^n\) and \(\mathbf{P}^{-1}\) in that order to a single 3\(\times\)3 matrix. Condone arithmetic slips.} \\
+& {\(\mathbf{M}^n=\begin{pmatrix}3^n&3^n-(-1)^n&(-1)^n-3^n\\3^n-2^n&3^n&2^n-3^n\\3^n-2^n&3^n-(-1)^n&(-1)^n+2^n-3^n\end{pmatrix}\)} & A1 & {oe, e.g. \((-1)^{n+1}\) for \(-(-1)^n\).} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 9 & & 13 & \\
+\end{msscheme}
+
+\msQuestion{10}
+\begin{msscheme}{
+  hline{3-5,7-10,12-16} = {2-Z}{0.4pt, msGrid},
+  hline{6,11,17} = {0.4pt, msGrid},
+  row{17} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+10(a) & {\(\mathbf{B}(\mathbf{M}^{-1}\mathbf{e}) = \mathbf{M}^{-1}\mathbf{A}\mathbf{M}\mathbf{M}^{-1}\mathbf{e}\)} & M1 & {Replaces \(\mathbf{B}\) by \(\mathbf{M}^{-1}\mathbf{A}\mathbf{M}\) in \(\mathbf{B}\mathbf{M}^{-1}\mathbf{e}\), or premultiplies \(\mathbf{A}\mathbf{e}=\lambda\mathbf{e}\) by \(\mathbf{M}^{-1}\) and inserts \(\mathbf{M}\mathbf{M}^{-1}\). Matrix order must be correct.} \\
+& {\(\phantom{\mathbf{B}(\mathbf{M}^{-1}\mathbf{e})} = \mathbf{M}^{-1}\mathbf{A}\mathbf{e} = \mathbf{M}^{-1}(\lambda\mathbf{e})\)} & A1 & {Uses both \(\mathbf{M}\mathbf{M}^{-1}=\mathbf{I}\) and \(\mathbf{A}\mathbf{e}=\lambda\mathbf{e}\); combined steps accepted.} \\
+& {\(\phantom{\mathbf{B}(\mathbf{M}^{-1}\mathbf{e})} = \lambda(\mathbf{M}^{-1}\mathbf{e})\)\\[4pt] \(\mathbf{e}\neq\mathbf{0}\), \(\mathbf{M}\) non-singular \(\Rightarrow \mathbf{M}^{-1}\mathbf{e}\neq\mathbf{0}\)} & A1~AG & {\(\lambda(\mathbf{M}^{-1}\mathbf{e})\) reached without error, and \(\mathbf{M}^{-1}\mathbf{e}\neq\mathbf{0}\) stated with a reason. Nothing for working backwards from the result.} \\
+\nopagebreak & & [3] & \\
+10(b) & {\(\lambda = 3,\ -2,\ 1\)} & B1 & \\
+& {\(\lambda=3\): \(x-5y=0,\ 2x+5y-2z=0 \Rightarrow \mathbf{v}=\ldots\)} & M1 & {Forms \((\mathbf{A}-\lambda\mathbf{I})\mathbf{v}=\mathbf{0}\) or \(\mathbf{A}\mathbf{v}=\lambda\mathbf{v}\) with one of their eigenvalues and attempts a non-zero solution. Condone arithmetic slips.} \\
+& {\(\lambda=3\): \(\begin{pmatrix}10\\2\\15\end{pmatrix}\); \(\lambda=-2\): \(\begin{pmatrix}0\\3\\-5\end{pmatrix}\)} & A1 & {Any two correct, each paired with its eigenvalue; any non-zero multiples.} \\
+& {\(\lambda=1\): \(\begin{pmatrix}0\\0\\1\end{pmatrix}\)} & A1 & {All three correct, each paired with its eigenvalue; any non-zero multiples.} \\
+\nopagebreak & & [4] & \\
+10(c) & {\(\det\mathbf{M}=1\), cofactors \(\begin{pmatrix}1&0&0\\-1&1&-2\\0&0&1\end{pmatrix}\)} & M1 & {Finds \(\det\mathbf{M}\) and attempts the cofactor matrix, transposing and dividing; condone sign slips. Any valid method, e.g. row reduction. Implied by correct \(\mathbf{M}^{-1}\).} \\
+& {\(\mathbf{M}^{-1}=\begin{pmatrix}1&-1&0\\0&1&0\\0&-2&1\end{pmatrix}\)} & A1 & \\
+& {Eigenvalues of \(\mathbf{B}\): \(3,\ -2,\ 1\)} & B1 & {Not if found from \(\mathbf{B}\) explicitly.} \\
+& {\(\their{\mathbf{M}^{-1}}\their{\begin{pmatrix}10\\2\\15\end{pmatrix}} = \ldots\), etc.} & M1 & {Multiplies their \(3\times3\) \(\mathbf{M}^{-1}\) by at least one of their non-zero eigenvectors of \(\mathbf{A}\). Not for eigenvectors found from \(\mathbf{B}\) explicitly.} \\
+& {\(3\): \(\begin{pmatrix}8\\2\\11\end{pmatrix}\); \(-2\): \(\begin{pmatrix}-3\\3\\-11\end{pmatrix}\); \(1\): \(\begin{pmatrix}0\\0\\1\end{pmatrix}\)} & A1 & {All three correct, each paired with its eigenvalue; any non-zero multiples.} \\
+\nopagebreak & & [5] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 10 & & 12 & \\
+\end{msscheme}
+
+\msQuestion{11}
+\begin{msscheme}{
+  hline{3-5,7,9-10,12-13,15-18} = {2-Z}{0.4pt, msGrid},
+  hline{6,8,11,14,19} = {0.4pt, msGrid},
+  row{19} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+11(a) & {\(\mathbf{A}^2\mathbf{e} = \mathbf{A}(\lambda\mathbf{e})\)\\[4pt] \(\mathbf{A}^{-1}\mathbf{A}\mathbf{e} = \lambda\mathbf{A}^{-1}\mathbf{e}\)} & M1 & {Premultiplies \(\mathbf{Ae}=\lambda\mathbf{e}\) by \(\mathbf{A}\) or \(\mathbf{A}^{-1}\) to start either proof. Not for stating the results alone.} \\
+& {\(\mathbf{A}^2\mathbf{e} = \lambda\mathbf{A}\mathbf{e} = \lambda^2\mathbf{e}\)} & A1 & {One complete correct proof, for \(\mathbf{A}^2\) or \(\mathbf{A}^{-1}\), identifying eigenvalue and eigenvector; for the inverse, justify \(\lambda\ne0\) before dividing.} \\
+& {\(\mathbf{A}\) non-singular, \(\mathbf{e} \neq \mathbf{0} \Rightarrow \lambda \neq 0\)\\[4pt] \(\mathbf{e} = \lambda\mathbf{A}^{-1}\mathbf{e} \Rightarrow \mathbf{A}^{-1}\mathbf{e} = \lambda^{-1}\mathbf{e}\)} & A1~AG & {Both proofs complete without error, identifying eigenvalues and eigenvector. Needs \(\lambda\ne0\) justified from \(\mathbf{A}\) non-singular and \(\mathbf{e}\ne\mathbf{0}\) before dividing.} \\
+\nopagebreak & & [3] & \\
+11(b) & {\((\mathbf{A}^2+2\mathbf{A}^{-1})\mathbf{e} = \lambda^2\mathbf{e}+2\lambda^{-1}\mathbf{e}\)\\[4pt] \(\phantom{(\mathbf{A}^2+2\mathbf{A}^{-1})\mathbf{e}} = (\lambda^2+2\lambda^{-1})\mathbf{e}\)} & B1 & {Applies the matrix to \(\mathbf{e}\), uses both results of (a) and factorises, with a conclusion.} \\
+\nopagebreak & & [1] & \\
+11(c) & {\(\begin{pmatrix}3&1&-1\\3&3&-3\\3&1&-1\end{pmatrix}\begin{pmatrix}x\\y\\z\end{pmatrix} = \mathbf{0}\)\\[4pt] \(3x+y-z=0,\ x+y-z=0 \Rightarrow \ldots\)} & M1 & {Forms equations from \((\mathbf{A}+\mathbf{I})\mathbf{v}=\mathbf{0}\) or \(\mathbf{A}\mathbf{v}=-\mathbf{v}\) and eliminates to relate the components, or crosses two rows of \(\mathbf{A}+\mathbf{I}\). Condone one arithmetic slip.} \\
+& {\(\begin{pmatrix}0\\1\\1\end{pmatrix}\)} & A1 & {Any non-zero multiple.} \\
+\nopagebreak & & [2] & \\
+11(d) & {\(\mathbf{A}\begin{pmatrix}1\\0\\1\end{pmatrix} = \begin{pmatrix}1\\0\\1\end{pmatrix}\), \(\mathbf{A}\begin{pmatrix}1\\1\\1\end{pmatrix} = \begin{pmatrix}2\\2\\2\end{pmatrix}\)} & M1 & {Multiplies \(\mathbf{A}\) by each given vector and compares with a multiple of it. Condone one arithmetic slip.} \\
+& {Eigenvalues \(1\) and \(2\)} & A1 & {Each matched to its vector.} \\
+\nopagebreak & & [2] & \\
+11(e) & {\(\mu = \lambda^2+2\lambda^{-1}\), \(\lambda = -1, 1, 2 \Rightarrow \mu = \ldots\)} & M1 & {Substitutes at least two of their eigenvalues of \(\mathbf{A}\) from (c) and (d) into \(\lambda^2+2\lambda^{-1}\).} \\
+& {\(\mu = -1,\ 3,\ 5\)} & A1 & \\
+& {\(\their{-1}^2,\ \their{3}^2,\ \their{5}^2\ [=1,\ 9,\ 25]\)} & M1 & {Squares their eigenvalues of \(\mathbf{A}^2+2\mathbf{A}^{-1}\), or evaluates \((\lambda^2+2\lambda^{-1})^2\), for the diagonal of \(\mathbf{D}\).} \\
+& {\(\mathbf{P} = \begin{pmatrix}0&1&1\\1&0&1\\1&1&1\end{pmatrix}\), \(\mathbf{D} = \begin{pmatrix}1&0&0\\0&9&0\\0&0&25\end{pmatrix}\)} & A1 & {cso. Columns of \(\mathbf{P}\) any non-zero multiples of the three eigenvectors, with \(1, 9, 25\) in \(\mathbf{D}\) in matching order.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 11 & & 12 & \\
+\end{msscheme}
+
+\msQuestion{12}
+\begin{msscheme}{
+  hline{3-5,7-9,11-12,14-15,17-18,20} = {2-Z}{0.4pt, msGrid},
+  hline{6,10,13,16,19,21} = {0.4pt, msGrid},
+  row{21} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+12(a)(i) & {\(\det(\mathbf{M}-\lambda\mathbf{I})=\frac{1}{27}\big[(2-3\lambda)\big((2-3\lambda)^2+2\big)\)\\[4pt] \(\phantom{=}+\big(2(2-3\lambda)-1\big)+2\big(4+(2-3\lambda)\big)\big]\)} & M1 & {Expands the determinant of \(\mathbf{M}-\lambda\mathbf{I}\) or \(\lambda\mathbf{I}-\mathbf{M}\) along any row or column to a cubic in \(\lambda\). Condone sign slips and a lost factor \(\frac1{27}\).} \\
+& {\(\lambda^3-2\lambda^2+2\lambda-1=0\)} & A1 & {Must have leading coefficient 1 as printed; \(-\lambda^3+2\lambda^2-2\lambda+1=0\) alone scores A0.} \\
+& {\(1-2+2-1=0 \Rightarrow 1\) is an eigenvalue} & A1~AG & {Substitutes \(\lambda=1\) into the correct equation, shows it gives 0 and concludes 1 is an eigenvalue.} \\
+\nopagebreak & & [3] & \\
+12(a)(ii) & {\((\lambda-1)(\lambda^2-\lambda+1)=0 \Rightarrow \lambda=\ldots\)} & M1 & {Obtains a quadratic factor \(\lambda^2+b\lambda+c\) of their cubic and solves it by formula, completing the square or calculator. Condone slips in the factor.} \\
+& {\(\lambda=\frac12\pm\frac{\sqrt3}{2}i\)} & A1 & {Both; exact or awrt \(0.5\pm0.866i\).} \\
+& {\(b^2-4ac=-3<0\), so 1 is the only real eigenvalue} & E1 & {States the discriminant of the correct quadratic is negative, or its roots are non-real, and concludes 1 is the only real eigenvalue.} \\
+\nopagebreak & & [3] & \\
+12(b) & {Diagonal entries of \(\mathbf{D}\) are the eigenvalues of \(\mathbf{M}\):\\[4pt] \(1,\ \frac12\pm\frac{\sqrt3}{2}i\)} & E1 & {States the diagonal entries of \(\mathbf{D}\) are the eigenvalues of \(\mathbf{M}\), or that \(\mathbf{M}\) and \(\mathbf{D}\) share eigenvalues. No proof of this needed.} \\
+& {Two are not real, so \(\mathbf{D}\) cannot be real: the student is wrong} & E1 & {States two eigenvalues are non-real, so \(\mathbf{D}\) would have non-real entries, contradicting the claim.} \\
+\nopagebreak & & [2] & \\
+12(c)(i) & {\((\mathbf{M}-\mathbf{I})\mathbf{e}=\mathbf{0}\): \(-x-y+2z=0,\ 2x-y-z=0\)\\[4pt] \(\Rightarrow x:y:z=\ldots\)} & M1 & {Forms \((\mathbf{M}-\mathbf{I})\mathbf{e}=\mathbf{0}\) or \(\mathbf{Me}=\mathbf{e}\) and solves two equations for the ratio \(x:y:z\), or takes a vector product of two rows of \(\mathbf{M}-\mathbf{I}\). Condone slips.} \\
+& {\(\mathbf{e}=\begin{pmatrix}1\\1\\1\end{pmatrix}\)} & A1 & {Any non-zero multiple.} \\
+\nopagebreak & & [2] & \\
+12(c)(ii) & {\(\mathbf{Me}=\mathbf{e}\): every point on the line through \(O\) along \(\mathbf{e}\) is fixed, so this line is the axis} & E1 & {States that eigenvalue 1 means each point on the line along \(\mathbf{e}\) is fixed, not merely the line invariant, so that line is the axis.} \\
+& {\(\mathbf{r}=t\begin{pmatrix}1\\1\\1\end{pmatrix}\)} & B1ft & {ft their \(\mathbf{e}\) from (c)(i). Needs \(\mathbf{r}=\); any parameter.} \\
+\nopagebreak & & [2] & \\
+12(c)(iii) & {An eigenvector maps to a parallel vector; an acute rotation turns every vector off the axis to a non-parallel direction} & E1 & {States an eigenvector maps to a parallel vector, and that a rotation through an acute angle changes the direction of every vector not along the axis. An algebraic argument alone scores E0.} \\
+\nopagebreak & & [1] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 12 & & 13 & \\
+\end{msscheme}
+
+\msQuestion{13}
+\begin{msscheme}{
+  hline{3-7,9-14,16-18} = {2-Z}{0.4pt, msGrid},
+  hline{8,15,19} = {0.4pt, msGrid},
+  row{19} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+13(a) & {\(\det(\mathbf{A}-\lambda\mathbf{I}) = (6-\lambda)[(3-\lambda)(6-\lambda)-4]\)\\[4pt] \(\phantom{=}+2[-2(6-\lambda)-2]+[-4-(3-\lambda)]\)} & M1 & {Expands \(\det(\mathbf{A}-\lambda\mathbf{I})\) along any row or column as three terms with \(2\times2\) determinants. Condone sign slips.} \\
+& {\(\lambda^3-15\lambda^2+63\lambda-49=0\)} & A1 & {oe, such as \(-\lambda^3+15\lambda^2-63\lambda+49=0\).} \\
+& {\(\lambda=1:\ 1-15+63-49=0\), so 1 is an eigenvalue} & B1 & {Substituted terms shown equal to 0, with a conclusion.} \\
+& {\(\lambda^3-15\lambda^2+63\lambda-49=(\lambda-1)(\lambda^2-14\lambda+49)\)} & M1 & {Divides their cubic by \(\lambda-1\) by any method, reaching a quadratic factor.} \\
+& {\(\phantom{\lambda^3} = (\lambda-1)(\lambda-7)^2\)\\[4pt] Repeated eigenvalue \(7\)} & A1 & {cso. Repeated root shown by \((\lambda-7)^2\) or a zero discriminant, and 7 stated.} \\
+\nopagebreak & & [5] & \\
+13(b) & {\(5x-2y+z=0,\ -2x+2y+2z=0 \Rightarrow \ldots\)} & M1 & {Forms \((\mathbf{A}-\mathbf{I})\mathbf{v}=\mathbf{0}\) and solves two equations for a non-zero vector, or takes the cross product of two rows. Condone sign slips.} \\
+& {\(\begin{pmatrix}1\\2\\-1\end{pmatrix}\)} & A1 & {Any non-zero multiple.} \\
+& {\(\mathbf{A}-7\mathbf{I}\): \(-x-2y+z=0\) (each row)\\[4pt] \(\Rightarrow x+2y-z=0\)} & M1 & {Forms \(\mathbf{A}-7\mathbf{I}\) and reduces its rows to a single equation in \(x\), \(y\), \(z\). Condone a sign slip.} \\
+& {e.g. \(\begin{pmatrix}1\\0\\1\end{pmatrix}\)} & A1 & {Any non-zero vector satisfying \(x+2y-z=0\).} \\
+& {\(p+2q-r=0,\ p+r=0 \Rightarrow \ldots\)} & M1 & {Solves their single equation from \(\mathbf{A}-7\mathbf{I}\) with a zero scalar product with their first eigenvector for 7; or crosses that eigenvector with the eigenvector for 1.} \\
+& {\(\begin{pmatrix}1\\-1\\-1\end{pmatrix}\)} & A1 & {Any non-zero vector satisfying \(x+2y-z=0\) and perpendicular to their correct first eigenvector for 7.} \\
+\nopagebreak & & [6] & \\
+13(c) & {\(\tfrac{1}{\sqrt6}\begin{pmatrix}1\\2\\-1\end{pmatrix},\ \tfrac{1}{\sqrt2}\begin{pmatrix}1\\0\\1\end{pmatrix},\ \tfrac{1}{\sqrt3}\begin{pmatrix}1\\-1\\-1\end{pmatrix}\)} & M1 & {Divides each of their three eigenvectors by its magnitude. Condone one magnitude slip.} \\
+& {\(\mathbf{P}=\begin{pmatrix} \tfrac{1}{\sqrt6} & \tfrac{1}{\sqrt2} & \tfrac{1}{\sqrt3} \\ \tfrac{2}{\sqrt6} & 0 & -\tfrac{1}{\sqrt3} \\ -\tfrac{1}{\sqrt6} & \tfrac{1}{\sqrt2} & -\tfrac{1}{\sqrt3} \end{pmatrix}\)} & A1 & {Columns are mutually perpendicular unit eigenvectors, in any order and with any signs.} \\
+& {\(\mathbf{D}=\begin{pmatrix} 1 & 0 & 0 \\ 0 & 7 & 0 \\ 0 & 0 & 7 \end{pmatrix}\)} & B1ft & {Eigenvalues on the diagonal in the order of the columns; ft their \(\mathbf{P}\).} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 13 & & 14 & \\
+\end{msscheme}
+
+\msQuestion{14}
+\begin{msscheme}{
+  hline{3,5-6,8-14,16,18-19,21-24,26-27} = {2-Z}{0.4pt, msGrid},
+  hline{4,7,15,17,20,25,28} = {0.4pt, msGrid},
+  row{28} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+14(a)(i) & {\(\lambda = 3\)} & B1 & \\
+\nopagebreak & & [1] & \\
+14(a)(ii) & {\(-2 + 4 - p = 3 \times 2\)} & M1 & {Equates the second component of \(\mathbf{A}\) times the eigenvector to 2 times their eigenvalue. Condone a slip in forming the component.} \\
+& {\(p = -4\)} & A1~AG & {Correct equation in \(p\) leading without error to \(p=-4\).} \\
+\nopagebreak & & [2] & \\
+14(a)(iii) & {\(\det(\mathbf{A}-\lambda\mathbf{I}) = (-3-\lambda)[(2-\lambda)(3-\lambda)-20]\)\\[4pt] \(\phantom{\det(\mathbf{A}-\lambda\mathbf{I})} - 2[-2(3-\lambda)+40]\)\\[4pt] \(\phantom{\det(\mathbf{A}-\lambda\mathbf{I})} - 2[10-10(2-\lambda)]\)} & M1 & {Expands \(\det(\mathbf{A}-\lambda\mathbf{I})\) with \(p=-4\) along any row or column, or by any valid method. Condone sign and arithmetic slips.} \\
+& {\(\lambda^3 - 2\lambda^2 - 5\lambda + 6 = 0\)} & A1 & {oe, such as the negated cubic.} \\
+& {\((\lambda - 3)(\lambda^2 + \lambda - 2) = 0 \Rightarrow \lambda = \ldots\)} & M1 & {Solves their cubic by any means, such as dividing by \(\lambda-3\) and solving the quadratic; a calculator is allowed.} \\
+& {\(\lambda = 1,\ \lambda = -2\)} & A1 & \\
+& {\(\lambda = 1\): \(-4\alpha + 2\beta - 2\gamma = 0\)\\[4pt] \(\phantom{\lambda = 1\text{: }} -2\alpha + \beta - 4\gamma = 0 \Rightarrow \ldots\)} & M1 & {Forms \((\mathbf{A}-\lambda\mathbf{I})\mathbf{v}=\mathbf{0}\) for one of their other eigenvalues and solves at least two equations, or takes a cross product of two rows.} \\
+& {\(\lambda = 1\): \((1,\,2,\,0)^{\mathrm{T}}\)} & A1 & {Or any non-zero multiple.} \\
+& {\(\lambda = -2\): \((0,\,1,\,1)^{\mathrm{T}}\)} & A1 & {Or any non-zero multiple.} \\
+\nopagebreak & & [7] & \\
+14(b) & {\(\mathbf{P}\) with columns \((1,2,-1)^{\mathrm{T}}, (1,2,0)^{\mathrm{T}}, (0,1,1)^{\mathrm{T}}\)\\[4pt] \(\mathbf{D} = \operatorname{diag}(3,\,1,\,-2)\)} & B1ft & {ft their eigenvectors and eigenvalues: columns of \(\mathbf{P}\) in the same order as the eigenvalues on the diagonal of \(\mathbf{D}\). Any order.} \\
+\nopagebreak & & [1] & \\
+14(c)(i) & {\(\int \frac{1}{u}\,\mathrm{d}u = \int k\,\mathrm{d}t \Rightarrow \ln|u| = kt + c\)} & M1 & {Separates the variables and integrates both sides, reaching \(\ln u\) or \(\ln|u|\).} \\
+& {\(u = Ke^{kt}\)} & A1 & {\(u=Ke^{kt}\), \(K\) any real constant, including zero; oe. \(u=e^{kt+c}\) alone is not the general solution.} \\
+\nopagebreak & & [2] & \\
+14(c)(ii) & {Uses \(\mathbf{P}^{-1}\mathbf{A}\mathbf{P} = \mathbf{D}\):\\[4pt] \(\dot{u} = 3u,\ \dot{v} = v,\ \dot{w} = -2w\)} & M1 & {Uses \(\mathbf{P}^{-1}\mathbf{A}\mathbf{P}=\mathbf{D}\) to reach three separate equations of the form \(\dot{u}=\lambda u\) with their eigenvalues.} \\
+& {\(u = C_1e^{3t},\ v = C_2e^{t},\ w = C_3e^{-2t}\)} & A1 & {Three distinct arbitrary constants; rates in an order consistent with their \(\mathbf{D}\).} \\
+& {\(x = u + v,\ y = 2u + 2v + w,\ z = -u + w\)} & dM1 & {Multiplies their \(\mathbf{P}\) by their exponential \(u\), \(v\), \(w\) to obtain \(x\), \(y\), \(z\). Not for using \(\mathbf{P}^{-1}\).} \\
+& {\(x = C_1e^{3t} + C_2e^{t}\)\\[4pt] \(y = 2C_1e^{3t} + 2C_2e^{t} + C_3e^{-2t}\)\\[4pt] \(z = -C_1e^{3t} + C_3e^{-2t}\)} & A1 & {oe, including vector form; consistent with their order of eigenvectors.} \\
+\nopagebreak & & [4] & \\
+14(c)(iii) & {\(C_1 + C_2 = 3,\ 2C_1 + 2C_2 + C_3 = 7\)\\[4pt] \(-C_1 + C_3 = -1 \Rightarrow C_1 = \ldots\)} & M1 & {Sets \(t=0\) in their general solution with three constants, equates to \((3,7,-1)\) and solves; a calculator is allowed.} \\
+& {\(x = 2e^{3t} + e^{t}\)\\[4pt] \(y = 4e^{3t} + 2e^{t} + e^{-2t}\)\\[4pt] \(z = -2e^{3t} + e^{-2t}\)} & A1 & \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 14 & & 19 & \\
+\end{msscheme}
+
+\end{document}
