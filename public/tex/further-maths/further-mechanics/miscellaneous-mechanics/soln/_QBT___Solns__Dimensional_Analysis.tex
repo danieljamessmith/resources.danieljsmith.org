@@ -5,7 +5,7 @@
 \djsSitePath{Further Mechanics}{Miscellaneous Mechanics}
 \djsMechanicsPack
 
-\djsLastUpdated{15 October 2026}
+\djsLastUpdated{27 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -24,9 +24,9 @@
   \item State the dimensions of force. \marks{1} \\
   \item The braking distance of a vehicle can be modelled by the formula
   \[
-  d = m^a u^b R^c
+  d = m^{\alpha} u^{\beta} R^{\gamma}
   \] 
-  where, \\
+  where \\
 
   $m$ is the mass of the vehicle in $\mathrm{kg}$
 
@@ -34,7 +34,7 @@
 
   $R$ is the constant braking force in $\mathrm{N}$ \\
   
-  Use dimensional analysis to find the values of $a$, $b$ and $c$. \marks{4} \\
+  Use dimensional analysis to find the values of $\alpha$, $\beta$ and $\gamma$. \marks{4} \\
 \end{enumerate}
 
 \vspace*{10pt}
@@ -43,71 +43,67 @@
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
   \item Force is mass $\times$ acceleration, so
   \[
-  [F]=M\times LT^{-2}=MLT^{-2}
+  [F]=\mathrm{M}\times\mathrm{LT^{-2}}=\mathrm{MLT^{-2}}
   \]
 
   \item Write the dimensions of each quantity:
   \[
-  [d]=L,\qquad [m]=M,\qquad [u]=LT^{-1},\qquad [R]=MLT^{-2}
+  [d]=\mathrm{L},\qquad [m]=\mathrm{M},\qquad [u]=\mathrm{LT^{-1}},\qquad [R]=\mathrm{MLT^{-2}}
   \]
 
   Given
   \[
-  d=m^a u^b R^c
+  d=m^{\alpha} u^{\beta} R^{\gamma}
   \]
 
   the dimensions on the right-hand side are
   \begin{align*}
-  [m^a u^b R^c]
-  &=M^a(LT^{-1})^b(MLT^{-2})^c\\
-  &=M^aL^bT^{-b}\times M^cL^cT^{-2c}\\
-  &=M^{a+c}L^{b+c}T^{-b-2c}
+  [m^{\alpha} u^{\beta} R^{\gamma}]
+  &=\mathrm{M}^{\alpha}(\mathrm{LT^{-1}})^{\beta}(\mathrm{MLT^{-2}})^{\gamma}\\
+  &=\mathrm{M}^{\alpha}\mathrm{L}^{\beta}\mathrm{T}^{-\beta}\times\mathrm{M}^{\gamma}\mathrm{L}^{\gamma}\mathrm{T}^{-2\gamma}\\
+  &=\mathrm{M}^{\alpha+\gamma}\mathrm{L}^{\beta+\gamma}\mathrm{T}^{-\beta-2\gamma}
   \end{align*}
 
-  Since this must equal the dimensions of $d$,
+  This must equal the dimensions of $d$, so
   \[
-  M^{a+c}L^{b+c}T^{-b-2c}=L=M^0L^1T^0
+  \mathrm{M}^{\alpha+\gamma}\mathrm{L}^{\beta+\gamma}\mathrm{T}^{-\beta-2\gamma}=\mathrm{L}=\mathrm{M^0L^1T^0}
   \]
 
-  Equating powers of $M$, $L$ and $T$ gives
+  Equating powers of $\mathrm{M}$, $\mathrm{L}$ and $\mathrm{T}$ gives
   \[
-  a+c=0,\qquad b+c=1,\qquad -b-2c=0
+  \alpha+\gamma=0,\qquad \beta+\gamma=1,\qquad -\beta-2\gamma=0
   \]
 
-  From $-b-2c=0$,
+  The equation $-\beta-2\gamma=0$ gives
   \[
-  b=-2c
+  \beta=-2\gamma
   \]
 
-  Substitute into $b+c=1$:
-  \[
-  -2c+c=1
-  \]
-  \[
-  -c=1
-  \]
-  \[
-  c=-1
-  \]
+  Substitute into $\beta+\gamma=1$:
+  \begin{align*}
+  -2\gamma+\gamma&=1\\
+  -\gamma&=1\\
+  \gamma&=-1
+  \end{align*}
 
   Then
   \[
-  b=-2(-1)=2
+  \beta=-2(-1)=2
   \]
 
-  and from $a+c=0$,
+  and $\alpha+\gamma=0$ gives
   \[
-  a+(-1)=0
+  \alpha+(-1)=0
   \]
 
   so
   \[
-  a=1
+  \alpha=1
   \]
 
   Hence
   \[
-  a=1,\qquad b=2,\qquad c=-1
+  \alpha=1,\qquad \beta=2,\qquad \gamma=-1
   \]
 \end{enumerate}
 \end{djsSolution}
@@ -119,16 +115,16 @@
 \questionitem
 % [Source: _QBT___Solns__Dimensional_Analysis, Q2]
 
-A small satellite moves in a circular orbit of radius $r$ about the centre of a much more massive planet of mass $M$. It is suggested that the period $T$ of the orbit depends only on $G$, $M$ and $r$, and that \\
+A small satellite moves in a circular orbit of radius $r$ about the centre of a much more massive planet of mass $M$. It is suggested that the period $T$ of the orbit depends only on $G$, $M$ and $r$, and that
 \[
 T = kG^{\alpha} M^{\beta} r^{\gamma}
-\] \\
+\]
 where $k$ is a dimensionless constant. \\
 
 It is given that
 \[
 G = 6.67 \times 10^{-11}\,\mathrm{m}^3\,\mathrm{kg}^{-1}\,\mathrm{s}^{-2}
-\] \\
+\]
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
   \item Write down the dimensions of $G$. \marks{1} \\
   \item By using dimensional analysis, determine the values of $\alpha$, $\beta$ and $\gamma$. \marks{4} \\
@@ -145,33 +141,33 @@ G = 6.67 \times 10^{-11}\,\mathrm{m}^3\,\mathrm{kg}^{-1}\,\mathrm{s}^{-2}
 
   the dimensions of \(G\) are
   \[
-  [G]=M^{-1}L^3T^{-2}
+  [G]=\mathrm{M^{-1}L^3T^{-2}}
   \]
 
-  \item Since \(k\) is dimensionless,
+  \item The constant \(k\) is dimensionless, so
   \[
   [T]=[G]^\alpha[M]^\beta[r]^\gamma
   \]
 
   Now
   \[
-  [T]=T,\qquad [G]=M^{-1}L^3T^{-2},\qquad [r]=L
+  [T]=\mathrm{T},\qquad [G]=\mathrm{M^{-1}L^3T^{-2}},\qquad [M]=\mathrm{M},\qquad [r]=\mathrm{L}
   \]
 
   so
   \begin{align*}
-  T&=(M^{-1}L^3T^{-2})^\alpha M^\beta L^\gamma \\
-   &=M^{-\alpha+\beta}L^{3\alpha+\gamma}T^{-2\alpha}
+  \mathrm{T}&=(\mathrm{M^{-1}L^3T^{-2}})^\alpha\mathrm{M}^\beta\mathrm{L}^\gamma \\
+   &=\mathrm{M}^{-\alpha+\beta}\mathrm{L}^{3\alpha+\gamma}\mathrm{T}^{-2\alpha}
   \end{align*}
 
-  Equating powers of \(M\), \(L\) and \(T\) with \(M^0L^0T^1\):
+  Equating powers of \(\mathrm{M}\), \(\mathrm{L}\) and \(\mathrm{T}\) with \(\mathrm{M^0L^0T^1}\):
   \begin{align*}
   -\alpha+\beta&=0 \\
   3\alpha+\gamma&=0 \\
   -2\alpha&=1
   \end{align*}
 
-  From \(-2\alpha=1\),
+  The equation \(-2\alpha=1\) gives
   \[
   \alpha=-\frac12
   \]
@@ -232,12 +228,12 @@ W = m\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
 
   and since
   \[
-  [g]=LT^{-2},\qquad [r]=L
+  [g]=\mathrm{LT^{-2}},\qquad [r]=\mathrm{L}
   \]
 
   we have
   \[
-  [\Gamma]=[g][r^2]=LT^{-2}\times L^2=L^3T^{-2}
+  [\Gamma]=[g][r^2]=\mathrm{LT^{-2}}\times\mathrm{L^2}=\mathrm{L^3T^{-2}}
   \]
 
   \item In
@@ -247,25 +243,25 @@ W = m\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
 
   the dimensions of \(v^2\) and \(u^2\) are
   \[
-  [v^2]=[u^2]=(LT^{-1})^2=L^2T^{-2}
+  [v^2]=[u^2]=(\mathrm{LT^{-1}})^2=\mathrm{L^2T^{-2}}
   \]
 
   Also,
   \[
-  \left[\frac{1}{R}\right]=\left[\frac{1}{r}\right]=L^{-1}
+  \left[\frac{1}{R}\right]=\left[\frac{1}{r}\right]=\mathrm{L^{-1}}
   \]
 
   so
   \[
-  \left[\left(\frac{1}{R}-\frac{1}{r}\right)\right]=L^{-1}
+  \left[\left(\frac{1}{R}-\frac{1}{r}\right)\right]=\mathrm{L^{-1}}
   \]
 
-  Since \(2\) is dimensionless,
+  The factor \(2\) is dimensionless, so
   \[
-  \left[2\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)\right]=[\Gamma]L^{-1}=L^3T^{-2}\times L^{-1}=L^2T^{-2}
+  \left[2\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)\right]=[\Gamma]\mathrm{L^{-1}}=\mathrm{L^3T^{-2}}\times\mathrm{L^{-1}}=\mathrm{L^2T^{-2}}
   \]
 
-  Therefore every term in the equation has dimensions \(L^2T^{-2}\), so the equation is dimensionally consistent.
+  Therefore every term in the equation has dimensions \(\mathrm{L^2T^{-2}}\), so the equation is dimensionally consistent.
 
   \item Using
   \[
@@ -274,12 +270,12 @@ W = m\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
 
   with
   \[
-  [m]=M,\qquad [\Gamma]=L^3T^{-2},\qquad \left[\left(\frac{1}{R}-\frac{1}{r}\right)\right]=L^{-1}
+  [m]=\mathrm{M},\qquad [\Gamma]=\mathrm{L^3T^{-2}},\qquad \left[\left(\frac{1}{R}-\frac{1}{r}\right)\right]=\mathrm{L^{-1}}
   \]
 
   gives
   \[
-  [W]=M\times L^3T^{-2}\times L^{-1}=ML^2T^{-2}
+  [W]=\mathrm{M}\times\mathrm{L^3T^{-2}}\times\mathrm{L^{-1}}=\mathrm{ML^2T^{-2}}
   \]
 
   Its SI units are
@@ -301,7 +297,7 @@ W = m\Gamma\left(\frac{1}{R}-\frac{1}{r}\right)
 The increase in pressure $p$ pascals between the surface and the bottom of a liquid of depth $h$ metres and density $\rho\,\mathrm{kg\,m^{-3}}$ is modelled by
 \[
 p = k\rho^{\alpha}h^{\beta}g
-\] \\
+\]
 where $g\,\mathrm{m\,s^{-2}}$ is the acceleration due to gravity and $k$ is a dimensionless constant. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item State the dimensions of $p$. \marks{1} \\
@@ -314,9 +310,9 @@ where $g\,\mathrm{m\,s^{-2}}$ is the acceleration due to gravity and $k$ is a di
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
   \item Pressure is force per unit area.
 
-  Since \([\text{force}] = MLT^{-2}\) and \([\text{area}] = L^2\),
+  With \([\text{force}] = \mathrm{MLT^{-2}}\) and \([\text{area}] = \mathrm{L^2}\), this gives
   \[
-  [p] = \frac{MLT^{-2}}{L^2} = ML^{-1}T^{-2}
+  [p] = \frac{\mathrm{MLT^{-2}}}{\mathrm{L^2}} = \mathrm{ML^{-1}T^{-2}}
   \]
 
   \item Using
@@ -324,29 +320,29 @@ where $g\,\mathrm{m\,s^{-2}}$ is the acceleration due to gravity and $k$ is a di
   p = k\rho^{\alpha}h^{\beta}g
   \]
 
-  and noting that \(k\) is dimensionless,
+  and noting that \(k\) is dimensionless gives
   \[
   [p] = [\rho]^{\alpha}[h]^{\beta}[g]
   \]
 
   Now
   \[
-  [\rho] = ML^{-3}, \qquad [h] = L, \qquad [g] = LT^{-2}
+  [\rho] = \mathrm{ML^{-3}}, \qquad [h] = \mathrm{L}, \qquad [g] = \mathrm{LT^{-2}}
   \]
 
   So the dimensions of the right-hand side are
   \begin{align*}
-  (ML^{-3})^{\alpha}(L)^{\beta}(LT^{-2})
-  &= M^{\alpha}L^{-3\alpha}L^{\beta}LT^{-2} \\
-  &= M^{\alpha}L^{-3\alpha+\beta+1}T^{-2}
+  (\mathrm{ML^{-3}})^{\alpha}(\mathrm{L})^{\beta}(\mathrm{LT^{-2}})
+  &= \mathrm{M}^{\alpha}\mathrm{L}^{-3\alpha}\mathrm{L}^{\beta}\mathrm{LT^{-2}} \\
+  &= \mathrm{M}^{\alpha}\mathrm{L}^{-3\alpha+\beta+1}\mathrm{T^{-2}}
   \end{align*}
 
-  But from part \((a)\),
+  But part (a) gives
   \[
-  [p] = ML^{-1}T^{-2}
+  [p] = \mathrm{ML^{-1}T^{-2}}
   \]
 
-  Equating powers of \(M\), \(L\) and \(T\):
+  Equating powers of \(\mathrm{M}\), \(\mathrm{L}\) and \(\mathrm{T}\):
   \[
   \alpha = 1
   \]
@@ -356,7 +352,7 @@ where $g\,\mathrm{m\,s^{-2}}$ is the acceleration due to gravity and $k$ is a di
   -3\alpha + \beta + 1 = -1
   \]
 
-  Substituting \(\alpha=1\),
+  Substituting \(\alpha=1\):
   \begin{align*}
   -3(1) + \beta + 1 &= -1 \\
   \beta - 2 &= -1 \\
@@ -384,7 +380,7 @@ The force, $F$, exerted on a flat plate by a water jet is thought to depend on t
 A model of the force suggests the relationship
 \[
 F = \frac12 \rho^\alpha A^\beta v^\gamma
-\] \\
+\]
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item Explain whether or not it is possible to use dimensional analysis to verify that the constant $\frac12$ is correct. \marks{1} \\
   \item Use dimensional analysis to find the values of $\alpha$, $\beta$ and $\gamma$. \marks{4} \\
@@ -394,9 +390,9 @@ F = \frac12 \rho^\alpha A^\beta v^\gamma
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-  \item Density is mass per unit volume.
+  \item Density is mass per unit volume, so
 \[
-[\rho]=\frac{M}{L^3}=ML^{-3}
+[\rho]=\frac{\mathrm{M}}{\mathrm{L^3}}=\mathrm{ML^{-3}}
 \]
 
 
@@ -413,27 +409,27 @@ The factor \(\tfrac12\) is dimensionless, so it does not affect the dimensions.
 
 Now write the dimensions of each quantity:
 \[
-[F]=MLT^{-2},\qquad [\rho]=ML^{-3},\qquad [A]=L^2,\qquad [v]=LT^{-1}
+[F]=\mathrm{MLT^{-2}},\qquad [\rho]=\mathrm{ML^{-3}},\qquad [A]=\mathrm{L^2},\qquad [v]=\mathrm{LT^{-1}}
 \]
 
 So
 \[
-MLT^{-2}=(ML^{-3})^{\alpha}(L^2)^{\beta}(LT^{-1})^{\gamma}
+\mathrm{MLT^{-2}}=(\mathrm{ML^{-3}})^{\alpha}(\mathrm{L^2})^{\beta}(\mathrm{LT^{-1}})^{\gamma}
 \]
 
 Combining powers gives
 \[
-MLT^{-2}=M^{\alpha}L^{-3\alpha+2\beta+\gamma}T^{-\gamma}
+\mathrm{MLT^{-2}}=\mathrm{M}^{\alpha}\mathrm{L}^{-3\alpha+2\beta+\gamma}\mathrm{T}^{-\gamma}
 \]
 
-Equating powers of \(M\), \(L\) and \(T\):
+Equating powers of \(\mathrm{M}\), \(\mathrm{L}\) and \(\mathrm{T}\):
 \begin{align*}
-\text{For }M:&\qquad \alpha=1 \\
-\text{For }T:&\qquad -\gamma=-2 \Rightarrow \gamma=2 \\
-\text{For }L:&\qquad -3\alpha+2\beta+\gamma=1
+\text{For }\mathrm{M}:&\qquad \alpha=1 \\
+\text{For }\mathrm{T}:&\qquad -\gamma=-2\quad\Longrightarrow\quad\gamma=2 \\
+\text{For }\mathrm{L}:&\qquad -3\alpha+2\beta+\gamma=1
 \end{align*}
 
-Substitute \(\alpha=1\) and \(\gamma=2\) into the \(L\)-equation:
+Substitute \(\alpha=1\) and \(\gamma=2\) into the \(\mathrm{L}\)-equation:
 \begin{align*}
 -3(1)+2\beta+2&=1 \\
 -1+2\beta&=1 \\
@@ -460,11 +456,11 @@ F=\frac12\rho Av^2
 \questionitem
 % [Source: _QBT___Solns__Dimensional_Analysis, Q6]
 
-A motor pulls a crate of mass $m$ along a rough horizontal floor. The equation below is suggested to model the pulling force exerted by the motor, $F$, while the crate moves in a straight line. \\
+A motor pulls a crate of mass $m$ along a rough horizontal floor. The equation below is suggested to model the pulling force exerted by the motor, $F$, while the crate moves in a straight line.
 \[
 F = k_1 m v\dfrac{\mathrm{d}v}{\mathrm{d}x} + k_2 \mu mg + k_3 \dfrac{Q}{x}
-\] \\
-in which, \\
+\]
+in which \\
 
 $\bullet$ $v$ is the speed of the crate when it has travelled distance $x$
 
@@ -481,53 +477,53 @@ Determine whether the equation is dimensionally consistent. \marks{6} \\
 \vspace*{10pt}
 
 \begin{djsSolution}
-For the equation to be dimensionally consistent, every term must have the dimensions of force.
+For the equation to be dimensionally consistent, every term must have the dimensions of force:
 \[
-[F]=MLT^{-2}
+[F]=\mathrm{MLT^{-2}}
 \]
 
 Also, \(k_1\), \(k_2\) and \(k_3\) are dimensionless, and \(\mu\) is dimensionless.
 
-Now consider each term on the right-hand side.
+Now consider each term on the right-hand side:
 \[
-[v]=LT^{-1}, \qquad [x]=L
+[v]=\mathrm{LT^{-1}}, \qquad [x]=\mathrm{L}
 \]
 
 so
 \[
-\left[\frac{\mathrm{d}v}{\mathrm{d}x}\right]=\frac{[v]}{[x]}=\frac{LT^{-1}}{L}=T^{-1}
+\left[\frac{\mathrm{d}v}{\mathrm{d}x}\right]=\frac{[v]}{[x]}=\frac{\mathrm{LT^{-1}}}{\mathrm{L}}=\mathrm{T^{-1}}
 \]
 
-Hence for the first term,
+For the first term:
 \begin{align*}
 \left[k_1mv\frac{\mathrm{d}v}{\mathrm{d}x}\right]
 &=[m][v]\left[\frac{\mathrm{d}v}{\mathrm{d}x}\right] \\
-&=M\cdot LT^{-1}\cdot T^{-1} \\
-&=MLT^{-2}
+&=\mathrm{M}\times\mathrm{LT^{-1}}\times\mathrm{T^{-1}} \\
+&=\mathrm{MLT^{-2}}
 \end{align*}
 
-For the second term,
+For the second term:
 \begin{align*}
 \left[k_2\mu mg\right]
-&=[\mu][m][g] \\
-&=1\cdot M\cdot LT^{-2} \\
-&=MLT^{-2}
+&=[m][g] \\
+&=\mathrm{M}\times\mathrm{LT^{-2}} \\
+&=\mathrm{MLT^{-2}}
 \end{align*}
 
 For the third term, \(Q\) is thermal energy transferred, so it has the dimensions of energy:
 \[
-[Q]=ML^{2}T^{-2}
+[Q]=\mathrm{ML^{2}T^{-2}}
 \]
 
 Therefore
 \begin{align*}
 \left[k_3\frac{Q}{x}\right]
 &=\frac{[Q]}{[x]} \\
-&=\frac{ML^{2}T^{-2}}{L} \\
-&=MLT^{-2}
+&=\frac{\mathrm{ML^{2}T^{-2}}}{\mathrm{L}} \\
+&=\mathrm{MLT^{-2}}
 \end{align*}
 
-Each term on the right-hand side has dimensions \(MLT^{-2}\), the same as force.
+Each term on the right-hand side has dimensions \(\mathrm{MLT^{-2}}\), the same as force.
 
 Therefore the equation is dimensionally consistent.
 \end{djsSolution}
@@ -543,7 +539,7 @@ The speed of a particle falling vertically through a resistive medium is modelle
 \[
 v=\dfrac{mg}{k}\left(1-e^{-kt/m}\right)
 \] 
-where, \\
+where \\
 
 $v$ is the speed of the particle
 
@@ -574,7 +570,7 @@ In particular, the exponent of an exponential must have no dimensions, so
 
 Using
 \[
-[t]=T,\qquad [m]=M
+[t]=\mathrm{T},\qquad [m]=\mathrm{M}
 \]
 
 we get
@@ -584,23 +580,15 @@ we get
 
 so
 \[
-\frac{[k]T}{M}=1
+\frac{[k]\mathrm{T}}{\mathrm{M}}=1
 \]
 
 Hence
 \[
-[k]=MT^{-1}
+[k]=\mathrm{MT^{-1}}
 \]
 
-
-As a check,
-\[
-\left[\frac{mg}{k}\right]=\frac{M\cdot LT^{-2}}{MT^{-1}}=LT^{-1}
-\]
-
-which is the dimension of speed, as required.
-
-Therefore \(k\) has dimensions \(MT^{-1}\), with SI unit \(\mathrm{kg\,s^{-1}}\).
+so the SI unit of \(k\) is \(\mathrm{kg\,s^{-1}}\).
 \end{djsSolution}
 
 
@@ -615,11 +603,11 @@ A comet of mass $m$ measured in $\mathrm{kg}$ follows an elliptical orbit around
 A constant $\mu$ associated with the planet is defined by
 \[
 T^2 = \frac{4\pi^2 a^3}{\mu}
-\] \\
+\]
 and the angular momentum of the comet is given by
 \[
 H = m\sqrt{\mu a(1-e^2)}
-\] \\
+\]
 By using dimensional analysis, find the dimensions of:
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
@@ -631,24 +619,24 @@ By using dimensional analysis, find the dimensions of:
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-  \item From
+  \item In
   \[
   T^2=\frac{4\pi^2a^3}{\mu}
   \]
 
-  and since \(4\pi^2\) is dimensionless,
+  the factor \(4\pi^2\) is dimensionless, so
   \[
   [T]^2=\frac{[a]^3}{[\mu]}
   \]
 
-  Using \([T]=T\) and \([a]=L\),
+  Using \([T]=\mathrm{T}\) and \([a]=\mathrm{L}\) gives
   \[
-  T^2=\frac{L^3}{[\mu]}
+  \mathrm{T^2}=\frac{\mathrm{L^3}}{[\mu]}
   \]
 
   so
   \[
-  [\mu]=\frac{L^3}{T^2}=L^3T^{-2}
+  [\mu]=\frac{\mathrm{L^3}}{\mathrm{T^2}}=\mathrm{L^3T^{-2}}
   \]
 
   \item The angular momentum is
@@ -656,18 +644,18 @@ By using dimensional analysis, find the dimensions of:
   H=m\sqrt{\mu a(1-e^2)}
   \]
 
-  Here \([m]=M\), and since \(e\) is dimensionless, \((1-e^2)\) is also dimensionless.
+  Here \([m]=\mathrm{M}\), and since \(e\) is dimensionless, \((1-e^2)\) is also dimensionless.
 
   Therefore
   \[
   [H]=[m]\sqrt{[\mu][a]}
   \]
 
-  Using \([\mu]=L^3T^{-2}\) from part (a) and \([a]=L\),
+  Using \([\mu]=\mathrm{L^3T^{-2}}\) from part (a) and \([a]=\mathrm{L}\) gives
   \begin{align*}
-  [H] &= M\sqrt{(L^3T^{-2})(L)} \\
-       &= M\sqrt{L^4T^{-2}} \\
-       &= ML^2T^{-1}
+  [H] &= \mathrm{M}\sqrt{(\mathrm{L^3T^{-2}})(\mathrm{L})} \\
+       &= \mathrm{M}\sqrt{\mathrm{L^4T^{-2}}} \\
+       &= \mathrm{ML^2T^{-1}}
   \end{align*}
 \end{enumerate}
 \end{djsSolution}
@@ -686,7 +674,7 @@ A small ball of mass $m\,\mathrm{kg}$ is projected vertically upwards with speed
 The greatest height reached by the ball is $H\,\mathrm{m}$. A formula approximating $H$ is
 \[
 H = \dfrac{u^2}{2g} - \dfrac{ku^4}{4mg^2} + \dfrac{1}{6}k^2 m^\alpha u^\beta g^\gamma
-\] \\
+\]
 where $g\,\mathrm{m\,s^{-2}}$ is the acceleration due to gravity. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item Use dimensional analysis to find $\alpha$, $\beta$ and $\gamma$. \marks{4} \\
@@ -696,22 +684,22 @@ where $g\,\mathrm{m\,s^{-2}}$ is the acceleration due to gravity. \\
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-  \item The air resistance has magnitude \(kv^2\), and this is a force.
+  \item The air resistance has magnitude \(kv^2\), and this is a force, so
 \[
 [k][v]^2=[F]
 \]
 
 Now
 \[
-[F]=MLT^{-2}, \qquad [v]=LT^{-1}
+[F]=\mathrm{MLT^{-2}}, \qquad [v]=\mathrm{LT^{-1}}
 \]
 
 So
 \begin{align*}
 [k] &= \frac{[F]}{[v]^2}\\
-&= \frac{MLT^{-2}}{(LT^{-1})^2}\\
-&= \frac{MLT^{-2}}{L^2T^{-2}}\\
-&= ML^{-1}
+&= \frac{\mathrm{MLT^{-2}}}{(\mathrm{LT^{-1}})^2}\\
+&= \frac{\mathrm{MLT^{-2}}}{\mathrm{L^2T^{-2}}}\\
+&= \mathrm{ML^{-1}}
 \end{align*}
 
 
@@ -719,7 +707,7 @@ Hence the SI unit of \(k\) is \(\mathrm{kg\,m^{-1}}\).
 
   \item Since \(H\) is a height,
 \[
-[H]=L
+[H]=\mathrm{L}
 \]
 
 Therefore each term in
@@ -731,34 +719,34 @@ must have dimensions of length.
 
 So the third term must satisfy
 \[
-[k^2m^\alpha u^\beta g^\gamma]=L
+[k^2m^\alpha u^\beta g^\gamma]=\mathrm{L}
 \]
 
 Using
 \[
-[k]=ML^{-1}, \qquad [m]=M, \qquad [u]=LT^{-1}, \qquad [g]=LT^{-2}
+[k]=\mathrm{ML^{-1}}, \qquad [m]=\mathrm{M}, \qquad [u]=\mathrm{LT^{-1}}, \qquad [g]=\mathrm{LT^{-2}}
 \]
 
 we get
 \begin{align*}
 [k^2m^\alpha u^\beta g^\gamma]
-&=(ML^{-1})^2(M)^\alpha(LT^{-1})^\beta(LT^{-2})^\gamma \\
-&= M^{2+\alpha}L^{-2+\beta+\gamma}T^{-\beta-2\gamma}
+&=(\mathrm{ML^{-1}})^2(\mathrm{M})^\alpha(\mathrm{LT^{-1}})^\beta(\mathrm{LT^{-2}})^\gamma \\
+&= \mathrm{M}^{2+\alpha}\mathrm{L}^{-2+\beta+\gamma}\mathrm{T}^{-\beta-2\gamma}
 \end{align*}
 
-This must equal \(M^0L^1T^0\), so equating powers gives
+This must equal \(\mathrm{M^0L^1T^0}\), so equating powers gives
 \begin{align*}
 2+\alpha &= 0 \\
 -2+\beta+\gamma &= 1 \\
 -\beta-2\gamma &= 0
 \end{align*}
 
-From the first equation,
+The first equation gives
 \[
 \alpha=-2
 \]
 
-From the third equation,
+The third equation gives
 \[
 \beta=-2\gamma
 \]
@@ -818,7 +806,7 @@ Hence
   plot (\x, {\Height+\TanA*\x-\Coeff*\x*\x});
 
 \draw[-{Stealth[length=3mm]}, thick] (O) -- (V)
-  node[pos=0.65, above] {$v$};
+  node[pos=0.65, above] {$u$};
 
 \pic["$\theta$", draw, angle radius=7mm, angle eccentricity=1.35]
   {angle=Href--O--V};
@@ -840,52 +828,52 @@ Hence
 \end{figure}
 
 
-A particle is projected with speed $v$ from a point $O$ at the top of a cliff of height $h$ above horizontal ground. The angle of projection is $\theta$ above the horizontal. The particle lands at the point $A$ on the ground, and $B$ is the foot of the cliff, so that $BA = R$, as shown in the diagram. \\
+A particle is projected with speed $u$ from a point $O$ at the top of a cliff of height $h$ above horizontal ground. The angle of projection is $\theta$ above the horizontal. The particle lands at the point $A$ on the ground, and $B$ is the foot of the cliff, so that $BA = R$, as shown in the diagram. \\
 
 You are given that
 \[
-R = \frac{v^\alpha \cos\theta}{g^\beta}\left(v^\gamma\sin\theta + \sqrt{v^\delta\sin^2\theta + 2gh}\right)
-\] \\
+R = \frac{u^\alpha \cos\theta}{g^\beta}\left(u^\gamma\sin\theta + \sqrt{u^\delta\sin^2\theta + 2gh}\right)
+\]
 Use dimensional analysis to find $\alpha$, $\beta$, $\gamma$ and $\delta$. \marks{4} \\
 
 \vspace*{10pt}
 
 \begin{djsSolution}
-Using dimensions,
+The dimensions of the quantities are
 \[
-[R]=L,\qquad [v]=LT^{-1},\qquad [g]=LT^{-2},\qquad [h]=L
+[R]=\mathrm{L},\qquad [u]=\mathrm{LT^{-1}},\qquad [g]=\mathrm{LT^{-2}},\qquad [h]=\mathrm{L}
 \]
 
 and \(\sin\theta\) and \(\cos\theta\) are dimensionless.
 
-First look at the expression inside the square root. Since terms being added must have the same dimensions,
+First look at the expression inside the square root. Terms being added must have the same dimensions, so
 \[
-[v^\delta\sin^2\theta]=[2gh]
+[u^\delta\sin^2\theta]=[2gh]
 \]
 
 Now
 \[
-[2gh]=[g][h]=(LT^{-2})(L)=L^2T^{-2}
+[2gh]=[g][h]=(\mathrm{LT^{-2}})(\mathrm{L})=\mathrm{L^2T^{-2}}
 \]
 
 So
 \[
-(LT^{-1})^\delta=L^2T^{-2}
+(\mathrm{LT^{-1}})^\delta=\mathrm{L^2T^{-2}}
 \]
 
-Comparing powers of \(L\) and \(T\),
+Equating powers of \(\mathrm{L}\) and \(\mathrm{T}\) gives
 \[
 \delta=2
 \]
 
 Hence the whole square-root term has dimensions
 \[
-\sqrt{L^2T^{-2}}=LT^{-1}
+\sqrt{\mathrm{L^2T^{-2}}}=\mathrm{LT^{-1}}
 \]
 
-Therefore \(v^\gamma\sin\theta\) must also have dimensions \(LT^{-1}\), so
+Therefore \(u^\gamma\sin\theta\) must also have dimensions \(\mathrm{LT^{-1}}\), so
 \[
-(LT^{-1})^\gamma=LT^{-1}
+(\mathrm{LT^{-1}})^\gamma=\mathrm{LT^{-1}}
 \]
 
 which gives
@@ -895,24 +883,24 @@ which gives
 
 Now the bracket
 \[
-v^\gamma\sin\theta+\sqrt{v^\delta\sin^2\theta+2gh}
+u^\gamma\sin\theta+\sqrt{u^\delta\sin^2\theta+2gh}
 \]
 
-has dimensions \(LT^{-1}\). So
+has dimensions \(\mathrm{LT^{-1}}\). So
 \begin{align*}
 [R]
-&=\left[\frac{v^\alpha\cos\theta}{g^\beta}\right]\left[ v^\gamma\sin\theta+\sqrt{v^\delta\sin^2\theta+2gh}\right] \\
-L
-&=\frac{(LT^{-1})^\alpha}{(LT^{-2})^\beta}(LT^{-1}) \\
-&=L^{\alpha-\beta+1}T^{-\alpha+2\beta-1}
+&=\left[\frac{u^\alpha\cos\theta}{g^\beta}\right]\left[ u^\gamma\sin\theta+\sqrt{u^\delta\sin^2\theta+2gh}\right] \\
+\mathrm{L}
+&=\frac{(\mathrm{LT^{-1}})^\alpha}{(\mathrm{LT^{-2}})^\beta}(\mathrm{LT^{-1}}) \\
+&=\mathrm{L}^{\alpha-\beta+1}\mathrm{T}^{-\alpha+2\beta-1}
 \end{align*}
 
-Comparing powers with \(L^1T^0\),
+Equating powers of \(\mathrm{L}\) and \(\mathrm{T}\) with \(\mathrm{L^1T^0}\):
 \[
 \alpha-\beta+1=1,\qquad -\alpha+2\beta-1=0
 \]
 
-From the first equation,
+The first equation gives
 \[
 \alpha=\beta
 \]
