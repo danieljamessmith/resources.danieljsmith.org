@@ -4,7 +4,7 @@
 \djsSolnHeader{Centre of Mass of Circular Laminae}
 \djsSitePath{Further Mechanics}{Centre of Mass}
 \djsMechanicsPack
-\djsLastUpdated{15 October 2026}
+\djsLastUpdated{27 October 2026}
 
 \begin{document}
 \djsFrontMatter
@@ -69,14 +69,14 @@ The remaining lamina is freely suspended from $B$ and hangs in equilibrium. \\
 
 Determine the acute angle that $AB$ makes with the vertical, giving your answer to the nearest $0.1^\circ$. \\
 
-You may use the result that the centre of mass of a uniform semicircular lamina of radius $R$ is on its axis of symmetry at a distance $\frac{4R}{3\pi}$ from its diameter. \marks{9} \\
+You may use the result that the centre of mass of a uniform semicircular lamina of radius $r$ is on its axis of symmetry at a distance $\frac{4r}{3\pi}$ from its diameter. \marks{9} \\
 
 \vspace*{10pt}
 
 \begin{djsSolution}
 Take \(O\) as the origin, with the \(x\)-axis along \(OB\) and the \(y\)-axis perpendicular to \(AB\), towards the semicircle. Measure coordinates in centimetres, so \(B=(12,0)\) and \(C=(4,4)\).
 
-For a uniform semicircular lamina of radius \(R\), the centre of mass lies on its axis of symmetry at distance \(\frac{4R}{3\pi}\) from the diameter. Thus the centre of mass of the complete semicircle has coordinates
+The centre of mass of a uniform semicircular lamina of radius \(r\) lies on its axis of symmetry, a distance \(\frac{4r}{3\pi}\) from its diameter. Thus the centre of mass of the complete semicircle has coordinates
 \[
 \left(0,\dfrac{4\times12}{3\pi}\right)=\left(0,\dfrac{16}{\pi}\right)
 \]
@@ -88,17 +88,24 @@ Let \(\mathcal{A}_s\), \(\mathcal{A}_h\) and \(\mathcal{A}\) denote the areas of
 \mathcal{A}&=72\pi-9\pi=63\pi\,\mathrm{cm^2}
 \end{align*}
 
-Let the remaining lamina have centre of mass \(G\), with coordinates \((\bar{x},\bar{y})\). Since the density is uniform, masses are proportional to areas. The moments of the remaining lamina and the removed circle together equal those of the complete semicircle. Taking moments about the \(y\)-axis:
+Let the remaining lamina have centre of mass \(G\), with coordinates \((\bar{x},\bar{y})\). The lamina is uniform, so areas can be used as weights. If piece \(i\) has area \(\mathcal{A}_i\) and centre of mass \((x_i,y_i)\), then
+\[
+\mathcal{A}\bar{x}=\sum\mathcal{A}_ix_i,\qquad \mathcal{A}\bar{y}=\sum\mathcal{A}_iy_i
+\]
+
+where \(\mathcal{A}=\sum\mathcal{A}_i\), with the area of a removed piece counted as negative.
+
+Taking moments about the \(y\)-axis:
 \begin{align*}
-63\pi\bar{x}+9\pi\times4&=72\pi\times0\\
-63\pi\bar{x}&=-36\pi\\
+63\pi\bar{x}&=72\pi\times0-9\pi\times4\\
+&=-36\pi\\
 \bar{x}&=-\dfrac47\,\mathrm{cm}
 \end{align*}
 
 Taking moments about the \(x\)-axis:
 \begin{align*}
-63\pi\bar{y}+9\pi\times4&=72\pi\times\dfrac{16}{\pi}\\
-63\pi\bar{y}&=1152-36\pi\\
+63\pi\bar{y}&=72\pi\times\dfrac{16}{\pi}-9\pi\times4\\
+&=1152-36\pi\\
 \bar{y}&=\dfrac{128-4\pi}{7\pi}\,\mathrm{cm}
 \end{align*}
 
@@ -171,27 +178,34 @@ You may use the result that the centre of mass of a uniform semicircular lamina 
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
 \item
 \begin{enumerate}[label=(\roman*), start=1]
-\item Take coordinate axes through \(D\), with the \(x\)-axis along \(DC\) and the \(y\)-axis along \(DA\). Let the centre of mass of the remaining lamina be \(G(\bar{x},\bar{y})\).
+\item Take \(D\) as the origin, with the \(x\)-axis along \(DC\) and the \(y\)-axis along \(DA\). Let the centre of mass of the remaining lamina be \(G(\bar{x},\bar{y})\).
 
-The area \(S\) of the remaining lamina is
+The area \(\mathcal{A}\) of the remaining lamina is
 \[
-S=(6a)(4a)-\dfrac12\pi a^2=\dfrac{48-\pi}{2}a^2
+\mathcal{A}=(6a)(4a)-\dfrac12\pi a^2=\dfrac{48-\pi}{2}a^2
 \]
 
 The rectangle has its centre of mass at \(x=3a\). By symmetry, the removed semicircle has its centre of mass on the line through \(E\) perpendicular to \(AB\), so its \(x\)-coordinate is \(4a\).
 
-Since the lamina is uniform, masses are proportional to areas. The moments of the remaining lamina and the removed semicircle together equal the moment of the original rectangle. Taking moments about \(AD\):
+The lamina is uniform, so areas can be used as weights. If piece \(i\) has area \(\mathcal{A}_i\) and centre of mass \((x_i,y_i)\), then
+\[
+\mathcal{A}\bar{x}=\sum\mathcal{A}_ix_i,\qquad \mathcal{A}\bar{y}=\sum\mathcal{A}_iy_i
+\]
+
+where \(\mathcal{A}=\sum\mathcal{A}_i\), with the area of a removed piece counted as negative.
+
+Taking moments about \(AD\):
 \begin{align*}
-S\bar{x}+\dfrac{\pi a^2}{2}(4a)&=24a^2(3a)\\
+\mathcal{A}\bar{x}&=24a^2(3a)-\dfrac{\pi a^2}{2}(4a)\\
 \dfrac{48-\pi}{2}a^2\bar{x}&=(72-2\pi)a^3\\
 \bar{x}&=\dfrac{4(36-\pi)}{48-\pi}a
 \end{align*}
 
-\item For a uniform semicircular lamina of radius \(r\), its centre of mass lies on its axis of symmetry, a distance \(\frac{4r}{3\pi}\) from its diameter towards the curved boundary.
+\item The centre of mass of a uniform semicircular lamina of radius \(r\) lies on its axis of symmetry, a distance \(\frac{4r}{3\pi}\) from its diameter.
 
 Thus the removed semicircle has its centre of mass at height \(4a-\frac{4a}{3\pi}\) above \(DC\). The original rectangle has its centre of mass at height \(2a\). Taking moments about \(DC\):
 \begin{align*}
-S\bar{y}+\dfrac{\pi a^2}{2}\left(4a-\dfrac{4a}{3\pi}\right)&=24a^2(2a)\\
+\mathcal{A}\bar{y}&=24a^2(2a)-\dfrac{\pi a^2}{2}\left(4a-\dfrac{4a}{3\pi}\right)\\
 \dfrac{48-\pi}{2}a^2\bar{y}&=48a^3-2\pi a^3+\dfrac23a^3\\
 \bar{y}&=\dfrac{292-12\pi}{3(48-\pi)}a
 \end{align*}
@@ -279,36 +293,41 @@ The angle between $AO$ and the downward vertical is $\alpha$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
 \item
 \begin{enumerate}[label=(\roman*), start=1]
-\item Let the centre of mass be \(G\), at distances \(\bar{x}\) from \(OE\) and \(\bar{y}\) from \(OA\). Since the lamina is uniform, masses are proportional to areas, and the removed disc contributes a negative moment.
+\item Let the centre of mass be \(G\), at distances \(\bar{x}\) from \(OE\) and \(\bar{y}\) from \(OA\). The lamina is uniform, so areas can be used as weights. If piece \(i\) has area \(\mathcal{A}_i\) and its centre of mass is at distances \(x_i\) from \(OE\) and \(y_i\) from \(OA\), then
+\[
+\mathcal{A}\bar{x}=\sum\mathcal{A}_ix_i,\qquad \mathcal{A}\bar{y}=\sum\mathcal{A}_iy_i
+\]
 
-The semicircle has radius \(2a\), so the remaining area \(S\) is
+where \(\mathcal{A}=\sum\mathcal{A}_i\), with the area of a removed piece counted as negative.
+
+The semicircle has radius \(2a\), so the remaining area \(\mathcal{A}\) is
 \begin{align*}
-S&=(4a)(3a)+\dfrac12\pi(2a)^2-\pi\left(\dfrac a2\right)^2\\
+\mathcal{A}&=(4a)(3a)+\dfrac12\pi(2a)^2-\pi\left(\dfrac a2\right)^2\\
 &=\dfrac{a^2(48+7\pi)}4
 \end{align*}
 
 The rectangle and semicircle each have their centre of mass at distance \(2a\) from \(OE\); the removed disc has its centre at distance \(a\). Taking moments about \(OE\):
 \begin{align*}
-S\bar{x}&=12a^2(2a)+2\pi a^2(2a)-\dfrac{\pi a^2}{4}(a)\\
+\mathcal{A}\bar{x}&=12a^2(2a)+2\pi a^2(2a)-\dfrac{\pi a^2}{4}(a)\\
 &=\dfrac{a^3(96+15\pi)}4\\
 \bar{x}&=\dfrac{a(96+15\pi)}{48+7\pi}
 \end{align*}
 
-\item The centre of mass of a uniform semicircular lamina of radius \(r\) is a distance \(\frac{4r}{3\pi}\) from its diameter, on its axis of symmetry. Here the diameter is \(3a\) above \(OA\), so the semicircle's centre of mass is at distance
+\item The centre of mass of a uniform semicircular lamina of radius \(r\) lies on its axis of symmetry, a distance \(\frac{4r}{3\pi}\) from its diameter. Here the diameter is \(3a\) above \(OA\), so the semicircle's centre of mass is at distance
 \[
 3a+\dfrac{4(2a)}{3\pi}=3a+\dfrac{8a}{3\pi}
 \]
 
 from \(OA\). The rectangle's centre is at distance \(\frac{3a}{2}\), and the removed disc's centre is at distance \(a\). Taking moments about \(OA\):
 \begin{align*}
-S\bar{y}&=12a^2\left(\dfrac{3a}{2}\right)+2\pi a^2\left(3a+\dfrac{8a}{3\pi}\right)-\dfrac{\pi a^2}{4}(a)\\
+\mathcal{A}\bar{y}&=12a^2\left(\dfrac{3a}{2}\right)+2\pi a^2\left(3a+\dfrac{8a}{3\pi}\right)-\dfrac{\pi a^2}{4}(a)\\
 &=a^3\left(18+6\pi+\dfrac{16}{3}-\dfrac{\pi}{4}\right)\\
 &=\dfrac{a^3(280+69\pi)}{12}\\
 \bar{y}&=\dfrac{a(280+69\pi)}{3(48+7\pi)}
 \end{align*}
 
 \end{enumerate}
-\item In equilibrium, \(G\) lies vertically below \(A\), so \(\alpha\) is the angle between \(AO\) and \(AG\). Relative to the original diagram, the distances from \(A\) to \(G\) parallel and perpendicular to \(AO\) are \(4a-\bar{x}\) and \(\bar{y}\), respectively.
+\item In equilibrium, \(G\) lies vertically below \(A\), so \(\alpha\) is the angle between \(AO\) and \(AG\). Relative to the original diagram, the distances from \(A\) to \(G\) parallel and perpendicular to \(AO\) are \(4a-\bar{x}\) and \(\bar{y}\), respectively. Then
 \begin{align*}
 4a-\bar{x}&=4a-\dfrac{a(96+15\pi)}{48+7\pi}\\
 &=\dfrac{a(96+13\pi)}{48+7\pi}\\
@@ -374,9 +393,9 @@ Its centre $H$ is the midpoint of $DC$, its diameter lies on $DC$, and the semic
 \begin{enumerate}[label=\textbf{(\alph*)}]
 \item Find the distances of the centre of mass of $T$ from $AD$ and from $DC$, giving both answers exactly in terms of $a$ and $\pi$. \marks{6} \\
 \end{enumerate}
-The template is now suspended freely from $A$ and hangs in equilibrium in a vertical plane. \\
+The template is now freely suspended from $A$ and hangs in equilibrium in a vertical plane. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
-\item Find the acute angle between $AD$ and the vertical, giving your answer in degrees to one decimal place. \marks{3} \\
+\item Find the acute angle between $AD$ and the vertical, giving your answer to the nearest $0.1^\circ$. \marks{3} \\
 \end{enumerate}
 
 \vspace*{10pt}
@@ -386,18 +405,13 @@ The template is now suspended freely from $A$ and hangs in equilibrium in a vert
 \item
 Take \(D\) as the origin, with the positive \(x\)-axis along \(DC\) and the positive \(y\)-axis along \(DA\). Then \(\bar{x}\) and \(\bar{y}\) are the required distances from \(AD\) and \(DC\), respectively.
 
-The centre of mass of a uniform triangular lamina is the average of its three vertex coordinates:
-\[
-\left(\dfrac{x_1+x_2+x_3}{3},\dfrac{y_1+y_2+y_3}{3}\right)
-\]
-
-Here \(E(3a,6a)\), \(B(6a,6a)\) and \(F(6a,4a)\), so the triangle's centre of mass is
+The centre of mass of a uniform triangular lamina is \(\frac23\) of the way along a median from the vertex, so its coordinates are the means of the vertices' coordinates. Here \(E(3a,6a)\), \(B(6a,6a)\) and \(F(6a,4a)\), so the triangle's centre of mass is
 \[
 \left(\dfrac{3a+6a+6a}{3},\dfrac{6a+6a+4a}{3}\right)
 =\left(5a,\dfrac{16a}{3}\right)
 \]
 
-For a uniform semicircular lamina of radius \(r\), the centre of mass lies on its axis of symmetry, at distance \(\frac{4r}{3\pi}\) from its diameter. Thus the areas and centre-of-mass coordinates are
+The centre of mass of a uniform semicircular lamina of radius \(r\) lies on its axis of symmetry, a distance \(\frac{4r}{3\pi}\) from its diameter. Thus the areas and centre-of-mass coordinates are
 \[
 \renewcommand{\arraystretch}{1.5}
 \setlength{\arraycolsep}{8pt}
@@ -409,12 +423,19 @@ For a uniform semicircular lamina of radius \(r\), the centre of mass lies on it
 \end{array}
 \]
 
-Since the lamina is uniform, masses are proportional to areas. The remaining area is
+The lamina is uniform, so areas can be used as weights. If piece \(i\) has area \(\mathcal{A}_i\) and centre of mass \((x_i,y_i)\), then
 \[
-\mathcal{A}_T=36a^2-3a^2-2\pi a^2=(33-2\pi)a^2
+\mathcal{A}\bar{x}=\sum\mathcal{A}_ix_i,\qquad \mathcal{A}\bar{y}=\sum\mathcal{A}_iy_i
 \]
 
-Subtracting the moments of the removed portions from those of the square:
+where \(\mathcal{A}=\sum\mathcal{A}_i\), with the area of a removed piece counted as negative.
+
+The remaining area is
+\[
+\mathcal{A}=36a^2-3a^2-2\pi a^2=(33-2\pi)a^2
+\]
+
+Taking moments about \(AD\) and about \(DC\):
 \begin{align*}
 (33-2\pi)a^2\bar{x}
 &=36a^2(3a)-3a^2(5a)-2\pi a^2(3a)\\
@@ -504,7 +525,7 @@ Take $O$ as the origin, with the positive $x$-axis directed towards $R$ and the 
 \end{enumerate}
 The mass of $L$ is $M$. \\
 A particle of mass $kM$ is attached at $P$. \\
-The system is suspended from $R$ and hangs freely in equilibrium, with $P$ below $R$ and the diameter $PR$ making an acute angle of $\arctan\left(\frac{1}{6}\right)$ with the downward vertical through $R$. \\
+The system is freely suspended from $R$ and hangs in equilibrium, with $P$ below $R$ and the diameter $PR$ making an acute angle of $\arctan\left(\frac{1}{6}\right)$ with the downward vertical through $R$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
 \item Find the exact value of $k$ and the magnitude of the supporting force at $R$ in terms of $M$ and $g$. \marks{6} \\
 \end{enumerate}
@@ -513,7 +534,7 @@ The system is suspended from $R$ and hangs freely in equilibrium, with $P$ below
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-\item For a uniform semicircular lamina of radius \(r\), the centre of mass lies on its axis of symmetry, a distance \(\frac{4r}{3\pi}\) from the centre of the circle.
+\item The centre of mass of a uniform semicircular lamina of radius \(r\) lies on its axis of symmetry, a distance \(\frac{4r}{3\pi}\) from its diameter.
 
 Thus the original semicircle has area and centre of mass
 \[
@@ -527,7 +548,14 @@ The removed disc has area \(\pi a^2\) and centre of mass \(A(2a,2a)\). Therefore
 18\pi a^2-\pi a^2=17\pi a^2
 \]
 
-Let the centre of mass of \(L\) be \((\bar{x},\bar{y})\). Since the lamina is uniform, masses are proportional to areas. Subtracting the moments of the removed disc:
+Let the centre of mass of \(L\) be \((\bar{x},\bar{y})\). The lamina is uniform, so areas can be used as weights. If piece \(i\) has area \(\mathcal{A}_i\) and centre of mass \((x_i,y_i)\), then
+\[
+\mathcal{A}\bar{x}=\sum\mathcal{A}_ix_i,\qquad \mathcal{A}\bar{y}=\sum\mathcal{A}_iy_i
+\]
+
+where \(\mathcal{A}=\sum\mathcal{A}_i\), with the area of a removed piece counted as negative.
+
+Taking moments about the \(y\)-axis and about the \(x\)-axis:
 \begin{align*}
 17\pi a^2\bar{x}
 &=18\pi a^2(0)-\pi a^2(2a)
@@ -616,7 +644,7 @@ A uniform semicircular lamina has radius $4a$ and diameter $AB$, whose midpoint 
 A circular hole of radius $a$ is cut from the lamina. \\
 In the orientation shown above, take $O$ as the origin, the positive $x$-direction along $OB$ and the positive $y$-direction perpendicular to $AB$ towards the semicircular arc. \\
 The centre $C$ of the hole has coordinates $(a,2a)$. \\
-\begin{enumerate}[label=\textbf{(\roman*)}]
+\begin{enumerate}[label=\textbf{(\alph*)}]
 \item Show that the centre of mass $G$ of the remaining lamina has coordinates
 \[
 \left(-\dfrac{a}{7},\ \dfrac{(128-6\pi)a}{21\pi}\right)
@@ -655,7 +683,7 @@ The string lies in the plane of the lamina and makes an angle of $30^\circ$ belo
 \end{figure}
 
 
-\begin{enumerate}[label=\textbf{(\roman*)}, resume]
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
 \item Calculate the tension in the string. \marks{3} \\
 \item Find the magnitude of the force exerted on the lamina by the pivot at $A$ and the angle this force makes with the upward vertical, stating on which side of the vertical it acts. \marks{5} \\
 \end{enumerate}
@@ -663,31 +691,38 @@ The string lies in the plane of the lamina and makes an angle of $30^\circ$ belo
 \vspace*{10pt}
 
 \begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\roman*)}, start=1]
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
 \item
-For a uniform semicircular lamina of radius \(r\), the centre of mass lies on its axis of symmetry, at distance \(\frac{4r}{3\pi}\) from the centre of the circle towards the arc. Thus the original lamina has centre of mass
+The centre of mass of a uniform semicircular lamina of radius \(r\) lies on its axis of symmetry, a distance \(\frac{4r}{3\pi}\) from its diameter. Thus the original lamina has centre of mass
 \[
 \left(0,\dfrac{4(4a)}{3\pi}\right)=\left(0,\dfrac{16a}{3\pi}\right)
 \]
 
-The areas of the original semicircle and the removed circle are
+The areas of the original semicircle and the removed disc are
 \[
 \dfrac12\pi(4a)^2=8\pi a^2,
 \qquad \pi a^2
 \]
 
-Since the lamina is uniform, mass is proportional to area. Let the removed circle have mass \(m\). The original semicircle then has mass \(8m\), and the remaining lamina has mass \(7m\).
+so the remaining lamina has area \(7\pi a^2\).
 
-Let the centre of mass of the remaining lamina be \(G(\bar{x},\bar{y})\). Combining the remaining lamina with the removed circle restores the original semicircle. Taking moments about the \(y\)-axis gives
+Let the centre of mass of the remaining lamina be \(G(\bar{x},\bar{y})\). The lamina is uniform, so areas can be used as weights. If piece \(i\) has area \(\mathcal{A}_i\) and centre of mass \((x_i,y_i)\), then
+\[
+\mathcal{A}\bar{x}=\sum\mathcal{A}_ix_i,\qquad \mathcal{A}\bar{y}=\sum\mathcal{A}_iy_i
+\]
+
+where \(\mathcal{A}=\sum\mathcal{A}_i\), with the area of a removed piece counted as negative.
+
+Taking moments about the \(y\)-axis gives
 \begin{align*}
-7m\bar{x}+ma&=8m(0)\\
+7\pi a^2\bar{x}&=8\pi a^2(0)-\pi a^2(a)\\
 7\bar{x}&=-a\\
 \bar{x}&=-\dfrac{a}{7}
 \end{align*}
 
 Similarly, taking moments about the \(x\)-axis gives
 \begin{align*}
-7m\bar{y}+m(2a)&=8m\left(\dfrac{16a}{3\pi}\right)\\
+7\pi a^2\bar{y}&=8\pi a^2\left(\dfrac{16a}{3\pi}\right)-\pi a^2(2a)\\
 7\bar{y}&=\dfrac{128a}{3\pi}-2a\\
 \bar{y}&=\dfrac{(128-6\pi)a}{21\pi}
 \end{align*}
@@ -698,16 +733,16 @@ Hence \(G\) has coordinates
 \]
 
 \end{enumerate}
-\begin{enumerate}[label=\textbf{(\roman*)}, start=2]
+\begin{enumerate}[label=\textbf{(\alph*)}, start=2]
 \item
 The lamina has been turned through \(90^\circ\) clockwise, so the original \(y\)-coordinate of \(G\) is now its horizontal distance to the right of \(AB\).
 
 The tension \(T\) has horizontal component \(T\cos30^\circ\), acting at \(B\), where \(AB=8a\). Its vertical component acts along \(AB\), so has no moment about \(A\).
 
-Taking moments about \(A\), and using part (i):
+Taking moments about \(A\), and using part (a):
 \begin{align*}
 8aT\cos30^\circ&=7g\left(\dfrac{(128-6\pi)a}{21\pi}\right)\\
-T&=\dfrac{7g}{8\cos30^\circ}\cdot\dfrac{128-6\pi}{21\pi}
+T&=\dfrac{7g}{8\cos30^\circ}\times\dfrac{128-6\pi}{21\pi}
 \end{align*}
 
 Using \(g=9.8\,\mathrm{m\,s^{-2}}\), the tension is
@@ -741,7 +776,7 @@ Let \(\theta\) be the angle the force makes with the upward vertical. Then
 \end{align*}
 
 \end{enumerate}
-\par\medskip\noindent\textbf{Final answers with \(g = 10\):} (ii) \(16.7\,\mathrm{N}\);\quad (iii) magnitude \(79.7\,\mathrm{N}\)
+\par\medskip\noindent\textbf{Final answers with \(g = 10\):} (b) \(16.7\,\mathrm{N}\);\quad (c) magnitude \(79.7\,\mathrm{N}\)
 \end{djsSolution}
 
 \newpage
@@ -782,11 +817,11 @@ The semicircular tab has radius $3\,\mathrm{cm}$.
 \end{figure}
 
 
-\begin{enumerate}[label=\textbf{(\roman*)}]
+\begin{enumerate}[label=\textbf{(\alph*)}]
 \item Consider the semicircular tab $EFG$ on its own. Using the standard centre-of-mass result for a uniform semicircular lamina, show that its centre of mass is $1.27\,\mathrm{cm}$ from the diameter $EG$, correct to $3$ significant figures. State the exact distance. \marks{2}
 
 \item For the complete lamina, find
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\roman*)]
 \item the distance from $AB$ to its centre of mass, giving your answer exactly, \marks{4}
 \item the distance from $AD$ to its centre of mass, giving your answer exactly. \marks{3}
 \end{enumerate}
@@ -839,16 +874,22 @@ Calculate $\theta$, giving your answer to $3$ significant figures. \marks{6}
 \vspace*{10pt}
 
 \begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\roman*)}, start=1]
-\item Consider only the semicircular tab \(EFG\). For a uniform semicircular lamina of radius \(r\), the centre of mass lies on its axis of symmetry at distance \(\frac{4r}{3\pi}\) from the diameter. Here \(r=3\,\mathrm{cm}\), so the distance from \(EG\) is
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
+\item Consider only the semicircular tab \(EFG\). The centre of mass of a uniform semicircular lamina of radius \(r\) lies on its axis of symmetry, a distance \(\frac{4r}{3\pi}\) from its diameter. Here \(r=3\,\mathrm{cm}\), so the distance from \(EG\) is
 \[
 \dfrac{4\times3}{3\pi}=\dfrac{4}{\pi}\,\mathrm{cm}\approx1.27\,\mathrm{cm}\qquad\text{(3 s.f.)}
 \]
 
 \item
-Since both components have the same mass per unit area, their masses are proportional to their areas.
-\begin{enumerate}[label=(\alph*), start=1]
-\item Let \(\bar{x}\) be the distance of the complete lamina's centre of mass from \(AB\). The component areas and centre-of-mass distances are
+The lamina is uniform, so areas can be used as weights. Let the centre of mass of the complete lamina be at distances \(\bar{x}\) from \(AB\) and \(\bar{y}\) from \(AD\). If piece \(i\) has area \(\mathcal{A}_i\) and its centre of mass is at distances \(x_i\) from \(AB\) and \(y_i\) from \(AD\), then
+\[
+\mathcal{A}\bar{x}=\sum\mathcal{A}_ix_i,\qquad \mathcal{A}\bar{y}=\sum\mathcal{A}_iy_i
+\]
+
+where \(\mathcal{A}=\sum\mathcal{A}_i\).
+
+\begin{enumerate}[label=(\roman*), start=1]
+\item The component areas and centre-of-mass distances are
 \[
 \renewcommand{\arraystretch}{1.5}
 \setlength{\arraycolsep}{8pt}
@@ -860,7 +901,7 @@ Since both components have the same mass per unit area, their masses are proport
 \end{array}
 \]
 
-Taking moments of mass about \(AB\), with the common mass per unit area cancelling:
+Taking moments about \(AB\):
 \begin{align*}
 \left(108+\dfrac{9\pi}{2}\right)\bar{x}
 &=108\times9+\dfrac{9\pi}{2}\times6\\
@@ -868,12 +909,12 @@ Taking moments of mass about \(AB\), with the common mass per unit area cancelli
 &=\dfrac{216+6\pi}{24+\pi}\,\mathrm{cm}
 \end{align*}
 
-\item Let \(\bar{y}\) be the distance of the complete lamina's centre of mass from \(AD\). The rectangle's centre of mass is \(3\,\mathrm{cm}\) from \(AD\). Using part (i), the semicircle's centre of mass is at distance
+\item The rectangle's centre of mass is \(3\,\mathrm{cm}\) from \(AD\). Using part (a), the semicircle's centre of mass is at distance
 \[
 \left(6+\dfrac{4}{\pi}\right)\,\mathrm{cm}
 \]
 
-Taking moments of mass about \(AD\):
+Taking moments about \(AD\):
 \begin{align*}
 \left(108+\dfrac{9\pi}{2}\right)\bar{y}
 &=108\times3+\dfrac{9\pi}{2}\left(6+\dfrac{4}{\pi}\right)\\
@@ -912,7 +953,7 @@ Expanding the compound angles and collecting terms:
 \tan\theta&=\dfrac{\frac{12\bar{x}}{5}-9-3\sqrt3}{9\sqrt3-3+\frac{12\bar{y}}{5}}
 \end{align*}
 
-Using the exact values from parts (ii)(a) and (ii)(b), and \(0^\circ<\theta<45^\circ\), gives
+Using the exact values from parts (b)(i) and (b)(ii), and \(0^\circ<\theta<45^\circ\), gives
 \[
 \theta\approx17.4^\circ\qquad\text{(3 s.f.)}
 \]
