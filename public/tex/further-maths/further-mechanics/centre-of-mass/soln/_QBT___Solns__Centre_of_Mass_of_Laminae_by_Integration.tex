@@ -4,7 +4,7 @@
 \djsSolnHeader{Centre of Mass of Laminae by Integration}
 \djsSitePath{Further Mechanics}{Centre of Mass}
 \djsMechanicsPack
-\djsLastUpdated{15 October 2026}
+\djsLastUpdated{27 October 2026}
 
 \begin{document}
 \djsFrontMatter
@@ -91,19 +91,19 @@ Using subscript \(1\) for the region under the parabola:
 A_1&=\int_0^5(6x-x^2)\,\mathrm{d}x
 =\left[3x^2-\frac{x^3}{3}\right]_0^5
 =\frac{100}{3}\,\mathrm{cm^2}\\
-A_1\bar{x}_1&=\int_0^5(6x^2-x^3)\,\mathrm{d}x
+A_1x_1&=\int_0^5(6x^2-x^3)\,\mathrm{d}x
 =\left[2x^3-\frac{x^4}{4}\right]_0^5
 =\frac{375}{4}\,\mathrm{cm^3}\\
-A_1\bar{y}_1&=\frac12\int_0^5(36x^2-12x^3+x^4)\,\mathrm{d}x\\
+A_1y_1&=\frac12\int_0^5(36x^2-12x^3+x^4)\,\mathrm{d}x\\
 &=\frac12\left[12x^3-3x^4+\frac{x^5}{5}\right]_0^5
 =125\,\mathrm{cm^3}
 \end{align*}
 
-The removed triangle has vertices \((0,0)\), \((5,0)\) and \((5,5)\). Its centroid coordinates are the means of the vertex coordinates, so
+The removed triangle has vertices \((0,0)\), \((5,0)\) and \((5,5)\). The centre of mass of a uniform triangular lamina is \(\frac23\) of the way along a median from the vertex, so its coordinates are the means of the vertices' coordinates. Hence
 \[
 A_2=\frac12(5)(5)=\frac{25}{2}\,\mathrm{cm^2},\qquad
-\bar{x}_2=\frac{0+5+5}{3}=\frac{10}{3}\,\mathrm{cm},\qquad
-\bar{y}_2=\frac{0+0+5}{3}=\frac53\,\mathrm{cm}
+x_2=\frac{0+5+5}{3}=\frac{10}{3}\,\mathrm{cm},\qquad
+y_2=\frac{0+0+5}{3}=\frac53\,\mathrm{cm}
 \]
 
 Hence the area of the lamina is
@@ -111,26 +111,22 @@ Hence the area of the lamina is
 A=A_1-A_2=\frac{100}{3}-\frac{25}{2}=\frac{125}{6}\,\mathrm{cm^2}
 \]
 
-For a uniform lamina made of pieces, the centre of mass formulae are
+The lamina is uniform, so areas can be used as weights. For a lamina made of pieces, the centre of mass formulae are
 \[
-\bar{x}=\dfrac{\sum A_i\bar{x}_i}{\sum A_i},\qquad
-\bar{y}=\dfrac{\sum A_i\bar{y}_i}{\sum A_i}
+A\bar{x}=\sum A_ix_i,\qquad
+A\bar{y}=\sum A_iy_i
 \]
 
-with the area of a removed piece counted as negative. Here this gives
-\[
-\bar{x}=\frac{A_1\bar{x}_1-A_2\bar{x}_2}{A_1-A_2},\qquad
-\bar{y}=\frac{A_1\bar{y}_1-A_2\bar{y}_2}{A_1-A_2}
-\]
-
-Therefore
+where \(A=\sum A_i\), with the area of a removed piece counted as negative. Here this gives
 \begin{align*}
-\bar{x}&=\frac{\frac{375}{4}-\frac{25}{2}\times\frac{10}{3}}{\frac{125}{6}}
-=\frac{\frac{625}{12}}{\frac{125}{6}}
-=\frac52\,\mathrm{cm}\\
-\bar{y}&=\frac{125-\frac{25}{2}\times\frac53}{\frac{125}{6}}
-=\frac{\frac{625}{6}}{\frac{125}{6}}
-=5\,\mathrm{cm}
+A\bar{x}&=A_1x_1-A_2x_2\\
+\frac{125}{6}\bar{x}&=\frac{375}{4}-\frac{25}{2}\times\frac{10}{3}
+=\frac{625}{12}\,\mathrm{cm^3}\\
+\bar{x}&=\frac52\,\mathrm{cm}\\
+A\bar{y}&=A_1y_1-A_2y_2\\
+\frac{125}{6}\bar{y}&=125-\frac{25}{2}\times\frac53
+=\frac{625}{6}\,\mathrm{cm^3}\\
+\bar{y}&=5\,\mathrm{cm}
 \end{align*}
 
 The centre of mass is \(G\left(\frac52,5\right)\), with coordinates in centimetres.
@@ -219,9 +215,15 @@ A=\int_0^{\pi/2}(2+3\cos x)\,\mathrm{d}x
 =\pi+3
 \]
 
-For the term involving \(x\cos x\), use integration by parts with \(u=x\) and \(\frac{\mathrm{d}v}{\mathrm{d}x}=\cos x\), so \(\frac{\mathrm{d}u}{\mathrm{d}x}=1\) and \(v=\sin x\). This gives
+For the term involving \(x\cos x\), use integration by parts:
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x=uv-\int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
+\]
+
+Take \(u=x\) and \(\frac{\mathrm{d}v}{\mathrm{d}x}=\cos x\), so \(\frac{\mathrm{d}u}{\mathrm{d}x}=1\) and \(v=\sin x\). This gives
 \begin{align*}
 \int_0^{\pi/2}x(2+3\cos x)\,\mathrm{d}x
+&=\left[x^2+3x\sin x\right]_0^{\pi/2}-\int_0^{\pi/2}3\sin x\,\mathrm{d}x\\
 &=\left[x^2+3x\sin x+3\cos x\right]_0^{\pi/2}\\
 &=\frac{\pi^2}{4}+\frac{3\pi}{2}-3
 \end{align*}
@@ -343,31 +345,31 @@ The areas are
 \mathcal{A}_L&=\mathcal{A}_R-\mathcal{A}_T=\frac{63}{4}-\frac92=\frac{45}{4}\,\mathrm{cm^2}
 \end{align*}
 
-Writing the centre of mass of \(R\) as \((\bar{x}_R,\bar{y}_R)\), we obtain
+Writing the centre of mass of \(R\) as \((x_R,y_R)\), we obtain
 \begin{align*}
-\bar{y}_R
+y_R
 &=\frac{1}{2(63/4)}\int_0^3\left(6-\frac{x^3}{9}\right)^2\,\mathrm{d}x\\
 &=\frac{2}{63}\int_0^3\left(36-\frac{4x^3}{3}+\frac{x^6}{81}\right)\,\mathrm{d}x\\
 &=\frac{2}{63}\left[36x-\frac{x^4}{3}+\frac{x^7}{567}\right]_0^3
 =\frac{132}{49}\,\mathrm{cm}
 \end{align*}
 
-The centroid of \(T\) has coordinates equal to the means of its vertex coordinates, so
+The centre of mass of a uniform triangular lamina is \(\frac23\) of the way along a median from the vertex, so its coordinates are the means of the vertices' coordinates. For \(T\) this gives
 \[
-\bar{y}_T=\frac{0+0+3}{3}=1\,\mathrm{cm}
+y_T=\frac{0+0+3}{3}=1\,\mathrm{cm}
 \]
 
-For a uniform lamina made of pieces, the centre of mass formula is
+The lamina is uniform, so areas can be used as weights. For a lamina made of pieces, the centre of mass formula is
 \[
-\bar{y}=\dfrac{\sum\mathcal{A}_i\bar{y}_i}{\sum\mathcal{A}_i}
+\mathcal{A}\bar{y}=\sum\mathcal{A}_iy_i
 \]
 
-with the area of a removed piece counted as negative. Hence
+where \(\mathcal{A}=\sum\mathcal{A}_i\), with the area of a removed piece counted as negative. Hence
 \begin{align*}
-\bar{y}
-&=\frac{\mathcal{A}_R\bar{y}_R-\mathcal{A}_T\bar{y}_T}{\mathcal{A}_R-\mathcal{A}_T}\\
-&=\frac{\frac{63}{4}\times\frac{132}{49}-\frac92\times1}{\frac{45}{4}}
-=\frac{118}{35}\,\mathrm{cm}
+\mathcal{A}_L\bar{y}&=\mathcal{A}_Ry_R-\mathcal{A}_Ty_T\\
+\frac{45}{4}\bar{y}&=\frac{63}{4}\times\frac{132}{49}-\frac92\times1
+=\frac{531}{14}\,\mathrm{cm^3}\\
+\bar{y}&=\frac{118}{35}\,\mathrm{cm}
 \end{align*}
 
 \item
@@ -378,7 +380,7 @@ We first find \(\bar{x}\). For a uniform lamina under a curve, the centre of mas
 
 Applying this to \(R\):
 \begin{align*}
-\bar{x}_R
+x_R
 &=\frac{1}{63/4}\int_0^3 x\left(6-\frac{x^3}{9}\right)\,\mathrm{d}x\\
 &=\frac{4}{63}\left[3x^2-\frac{x^5}{45}\right]_0^3
 =\frac{48}{35}\,\mathrm{cm}
@@ -386,20 +388,20 @@ Applying this to \(R\):
 
 For the triangle \(T\), averaging the vertex coordinates gives
 \[
-\bar{x}_T=\frac{0+3+3}{3}=2\,\mathrm{cm}
+x_T=\frac{0+3+3}{3}=2\,\mathrm{cm}
 \]
 
-For a uniform lamina made of pieces, the centre of mass formula is
+The lamina is uniform, so areas can be used as weights. For a lamina made of pieces, the centre of mass formula is
 \[
-\bar{x}=\dfrac{\sum\mathcal{A}_i\bar{x}_i}{\sum\mathcal{A}_i}
+\mathcal{A}\bar{x}=\sum\mathcal{A}_ix_i
 \]
 
-with the area of a removed piece counted as negative. Hence
+where \(\mathcal{A}=\sum\mathcal{A}_i\), with the area of a removed piece counted as negative. Hence
 \begin{align*}
-\bar{x}
-&=\frac{\mathcal{A}_R\bar{x}_R-\mathcal{A}_T\bar{x}_T}{\mathcal{A}_R-\mathcal{A}_T}\\
-&=\frac{\frac{63}{4}\times\frac{48}{35}-\frac92\times2}{\frac{45}{4}}
-=\frac{28}{25}\,\mathrm{cm}
+\mathcal{A}_L\bar{x}&=\mathcal{A}_Rx_R-\mathcal{A}_Tx_T\\
+\frac{45}{4}\bar{x}&=\frac{63}{4}\times\frac{48}{35}-\frac92\times2
+=\frac{63}{5}\,\mathrm{cm^3}\\
+\bar{x}&=\frac{28}{25}\,\mathrm{cm}
 \end{align*}
 
 Thus the centre of mass is \(G\left(\frac{28}{25},\frac{118}{35}\right)\). When the lamina hangs in equilibrium, \(G\) lies vertically below the suspension point \(B\). The required angle is therefore \(\angle OBG\).
@@ -523,23 +525,23 @@ The areas of \(S\), \(T\) and \(R\) are therefore
 
 The vertical coordinate of the centre of mass of \(S\) is
 \begin{align*}
-\bar{y}_S
+y_S
 &=\frac{1}{2(4)}\int_0^{\ln3}4e^{2x}\,\mathrm{d}x\\
 &=\frac18\left[2e^{2x}\right]_0^{\ln3}
 =2\,\mathrm{m}
 \end{align*}
 
-The rectangle has \(\bar{y}_T=\frac12\,\mathrm{m}\). For a uniform lamina made of pieces, the centre of mass formula is
+The rectangle has \(y_T=\frac12\,\mathrm{m}\). The lamina is uniform, so areas can be used as weights. For a lamina made of pieces, the centre of mass formula is
 \[
-\bar{y}=\dfrac{\sum\mathcal{A}_i\bar{y}_i}{\sum\mathcal{A}_i}
+\mathcal{A}\bar{y}=\sum\mathcal{A}_iy_i
 \]
 
-with the area of a removed piece counted as negative. Hence
+where \(\mathcal{A}=\sum\mathcal{A}_i\), with the area of a removed piece counted as negative. Hence
 \begin{align*}
-\bar{y}
-&=\frac{\mathcal{A}_S\bar{y}_S-\mathcal{A}_T\bar{y}_T}{\mathcal{A}_S-\mathcal{A}_T}\\
-&=\frac{4(2)-(\ln3)\left(\frac12\right)}{4-\ln3}\\
-&=\frac{16-\ln3}{8-2\ln3}\,\mathrm{m}
+\mathcal{A}\bar{y}&=\mathcal{A}_Sy_S-\mathcal{A}_Ty_T\\
+(4-\ln3)\bar{y}&=4(2)-(\ln3)\left(\frac12\right)
+=\left(8-\frac12\ln3\right)\,\mathrm{m^3}\\
+\bar{y}&=\frac{16-\ln3}{8-2\ln3}\,\mathrm{m}
 \end{align*}
 
 \item For a uniform lamina under a curve, the centre of mass formula is
@@ -547,25 +549,30 @@ with the area of a removed piece counted as negative. Hence
 \bar{x}=\frac{1}{\mathcal{A}}\int_a^b xy\,\mathrm{d}x
 \]
 
-For \(S\), integrate by parts, taking \(u=x\) and \(\frac{\mathrm{d}v}{\mathrm{d}x}=2e^x\), so that \(\frac{\mathrm{d}u}{\mathrm{d}x}=1\) and \(v=2e^x\):
+For \(S\), use integration by parts:
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x=uv-\int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
+\]
+
+Take \(u=x\) and \(\frac{\mathrm{d}v}{\mathrm{d}x}=2e^x\), so that \(\frac{\mathrm{d}u}{\mathrm{d}x}=1\) and \(v=2e^x\):
 \begin{align*}
-\mathcal{A}_S\bar{x}_S
+\mathcal{A}_Sx_S
 &=\int_0^{\ln3}2xe^x\,\mathrm{d}x\\
 &=\left[2xe^x\right]_0^{\ln3}-\int_0^{\ln3}2e^x\,\mathrm{d}x\\
 &=\left[2(x-1)e^x\right]_0^{\ln3}\\
 &=(6\ln3-4)\,\mathrm{m^3}
 \end{align*}
 
-The rectangle has \(\bar{x}_T=\frac{\ln3}{2}\,\mathrm{m}\). For a uniform lamina made of pieces, the centre of mass formula is
+The rectangle has \(x_T=\frac{\ln3}{2}\,\mathrm{m}\). The lamina is uniform, so areas can be used as weights. For a lamina made of pieces, the centre of mass formula is
 \[
-\bar{x}=\dfrac{\sum\mathcal{A}_i\bar{x}_i}{\sum\mathcal{A}_i}
+\mathcal{A}\bar{x}=\sum\mathcal{A}_ix_i
 \]
 
-with the area of a removed piece counted as negative. Hence
+where \(\mathcal{A}=\sum\mathcal{A}_i\), with the area of a removed piece counted as negative. Hence
 \begin{align*}
-\bar{x}
-&=\frac{\mathcal{A}_S\bar{x}_S-\mathcal{A}_T\bar{x}_T}{\mathcal{A}_S-\mathcal{A}_T}\\
-&=\frac{6\ln3-4-\frac12(\ln3)^2}{4-\ln3}\\
+\mathcal{A}\bar{x}&=\mathcal{A}_Sx_S-\mathcal{A}_Tx_T\\
+(4-\ln3)\bar{x}&=\left(6\ln3-4-\frac12(\ln3)^2\right)\,\mathrm{m^3}\\
+\bar{x}&=\frac{6\ln3-4-\frac12(\ln3)^2}{4-\ln3}\\
 &=\frac{12\ln3-8-(\ln3)^2}{8-2\ln3}\,\mathrm{m}
 \end{align*}
 
@@ -603,7 +610,7 @@ y=\dfrac{k}{x+1}
 \] \\
 the $x$-axis and the vertical lines $x=0$ and $x=3$, where $k$ is a positive constant. \\
 
-\begin{enumerate}[label=\textbf{(\roman*)}]
+\begin{enumerate}[label=\textbf{(\alph*)}]
   \item Find the exact $x$-coordinate of the centre of mass of the lamina. \marks{5} \\
   \item The centre of mass lies on the line $y=x$. \\
   Find the exact value of $k$ and hence the exact area of the lamina. \marks{5} \\
@@ -612,7 +619,7 @@ the $x$-axis and the vertical lines $x=0$ and $x=3$, where $k$ is a positive con
 \vspace*{10pt}
 
 \begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\roman*)}, start=1]
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
 \item A schematic diagram of the lamina is:\par\nopagebreak
 
 \begin{tikzpicture}[x=1.6cm,y=1cm]
@@ -635,7 +642,7 @@ A=\int_a^b y\,\mathrm{d}x,
 \bar{x}=\frac{1}{A}\int_a^b xy\,\mathrm{d}x
 \]
 
-The area of this lamina is
+Since \(x+1>0\) for \(0\leq x\leq3\), no modulus signs are needed in the logarithms. The area of this lamina is
 \begin{align*}
 A&=\int_0^3 \dfrac{k}{x+1}\,\mathrm{d}x\\
 &=k\left[\ln(x+1)\right]_0^3\\
@@ -662,7 +669,7 @@ Therefore
 \bar{y}=\frac{1}{2A}\int_a^b y^2\,\mathrm{d}x
 \]
 
-Using \(A=k\ln4\) from part (i):
+Using \(A=k\ln4\) from part (a):
 \begin{align*}
 \bar{y}
 &=\dfrac{1}{2k\ln4}\int_0^3\dfrac{k^2}{(x+1)^2}\,\mathrm{d}x\\
@@ -742,7 +749,7 @@ A uniform lamina occupies $R$. \\
 x=4-\frac{y^2}{4}
 \]
 
-For a uniform lamina against the \(y\)-axis, the centre of mass formulae are
+For a uniform lamina between a curve and the \(y\)-axis, the centre of mass formulae are
 \[
 A=\int_a^b x\,\mathrm{d}y,
 \qquad
@@ -797,7 +804,7 @@ k=2(\sqrt{5}-1)
 % [Source: _QBT___Solns__Centre_of_Mass_of_Laminae_by_Integration, Q7]
 
 A uniform lamina occupies the region between the curve $y=4e^{-x/2}$ and the line $y=1$, for $0\leq x\leq 2\ln 2$. \\
-\begin{enumerate}[label=\textbf{(\roman*)}]
+\begin{enumerate}[label=\textbf{(\alph*)}]
 \item Using integration, find the exact area of this lamina and the exact $y$-coordinate of its centre of mass. \marks{5} \\
 \end{enumerate}
 
@@ -849,14 +856,14 @@ f(x)=\begin{cases}
 \end{cases}
 \] \\
 Its left-hand boundary lies on the $y$-axis. \\
-\begin{enumerate}[label=\textbf{(\roman*)}, resume]
-\item Using your area from part (i), find the exact $x$-coordinate of the centre of mass of the resulting lamina. \marks{7} \\
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
+\item Using your area from part (a), find the exact $x$-coordinate of the centre of mass of the resulting lamina. \marks{7} \\
 \end{enumerate}
 
 \vspace*{10pt}
 
 \begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\roman*)}, start=1]
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
 \item Regard the lamina as the region under \(y=4e^{-x/2}\) down to the \(x\)-axis, with a rectangle removed. Denote these two regions by \(C\) and \(R\), respectively.
 
 For a uniform lamina under a curve, the centre of mass formulae are
@@ -880,21 +887,22 @@ A=A_C-A_R=4-2\ln 2
 
 Applying the centre of mass formula to \(C\):
 \begin{align*}
-\bar y_C&=\dfrac{1}{2(4)}\int_0^{2\ln 2}16e^{-x}\,\mathrm{d}x\\
+y_C&=\dfrac{1}{2(4)}\int_0^{2\ln 2}16e^{-x}\,\mathrm{d}x\\
 &=\dfrac18\left[-16e^{-x}\right]_0^{2\ln 2}\\
 &=\dfrac18(-4+16)=\dfrac32
 \end{align*}
 
-The rectangle has \(\bar{y}_R=\frac12\). For a uniform lamina made of pieces, the centre of mass formula is
+The rectangle has \(y_R=\frac12\). The lamina is uniform, so areas can be used as weights. For a lamina made of pieces, the centre of mass formula is
 \[
-\bar{y}=\dfrac{\sum A_i\bar{y}_i}{\sum A_i}
+A\bar{y}=\sum A_iy_i
 \]
 
-with the area of a removed piece counted as negative. Hence
+where \(A=\sum A_i\), with the area of a removed piece counted as negative. Hence
 \begin{align*}
-\bar y&=\dfrac{A_C\bar y_C-A_R\bar y_R}{A_C-A_R}\\
-&=\dfrac{4\left(\frac32\right)-(2\ln 2)\left(\frac12\right)}{4-2\ln 2}\\
-&=\dfrac{6-\ln 2}{4-2\ln 2}
+A\bar{y}&=A_Cy_C-A_Ry_R\\
+(4-2\ln 2)\bar{y}&=4\left(\frac32\right)-(2\ln 2)\left(\frac12\right)
+=6-\ln 2\\
+\bar{y}&=\dfrac{6-\ln 2}{4-2\ln 2}
 \end{align*}
 
 \item First find the horizontal position of the centre of mass of the original lamina, using the same regions \(C\) and \(R\).
@@ -904,9 +912,14 @@ For a uniform lamina under a curve, the centre of mass formula is
 \bar{x}=\frac{1}{A}\int_a^b xy\,\mathrm{d}x
 \]
 
-To integrate \(4xe^{-x/2}\) by parts, take \(u=x\) and \(\frac{\mathrm{d}v}{\mathrm{d}x}=4e^{-x/2}\), so \(\frac{\mathrm{d}u}{\mathrm{d}x}=1\) and \(v=-8e^{-x/2}\). Thus
+To integrate \(4xe^{-x/2}\), use integration by parts:
+\[
+\int u\frac{\mathrm{d}v}{\mathrm{d}x}\,\mathrm{d}x=uv-\int v\frac{\mathrm{d}u}{\mathrm{d}x}\,\mathrm{d}x
+\]
+
+Take \(u=x\) and \(\frac{\mathrm{d}v}{\mathrm{d}x}=4e^{-x/2}\), so \(\frac{\mathrm{d}u}{\mathrm{d}x}=1\) and \(v=-8e^{-x/2}\). Thus
 \begin{align*}
-A_C\bar x_C&=\int_0^{2\ln 2}4xe^{-x/2}\,\mathrm{d}x\\
+A_Cx_C&=\int_0^{2\ln 2}4xe^{-x/2}\,\mathrm{d}x\\
 &=\left[-8xe^{-x/2}\right]_0^{2\ln 2}
 +8\int_0^{2\ln 2}e^{-x/2}\,\mathrm{d}x\\
 &=\left[-8(x+2)e^{-x/2}\right]_0^{2\ln 2}\\
@@ -914,30 +927,32 @@ A_C\bar x_C&=\int_0^{2\ln 2}4xe^{-x/2}\,\mathrm{d}x\\
 &=8-8\ln 2
 \end{align*}
 
-The rectangle has \(\bar{x}_R=\ln 2\). For a uniform lamina made of pieces, the centre of mass formula is
+The rectangle has \(x_R=\ln 2\). The lamina is uniform, so areas can be used as weights. For a lamina made of pieces, the centre of mass formula is
 \[
-\bar{x}=\dfrac{\sum A_i\bar{x}_i}{\sum A_i}
+A\bar{x}=\sum A_ix_i
 \]
 
-with the area of a removed piece counted as negative. Using the area \(A=4-2\ln 2\) from part (i), the original lamina therefore has
+where \(A=\sum A_i\), with the area of a removed piece counted as negative. Using the area \(A=4-2\ln 2\) from part (a), the original lamina's centre of mass has \(x\)-coordinate \(x_0\), where
 \begin{align*}
-\bar x_0&=\dfrac{A_C\bar x_C-A_R\bar x_R}{A}\\
-&=\dfrac{8-8\ln 2-(2\ln 2)(\ln 2)}{4-2\ln 2}\\
-&=\dfrac{8-8\ln 2-2(\ln 2)^2}{4-2\ln 2}
+Ax_0&=A_Cx_C-A_Rx_R\\
+(4-2\ln 2)x_0&=8-8\ln 2-(2\ln 2)(\ln 2)
+=8-8\ln 2-2(\ln 2)^2\\
+x_0&=\dfrac{8-8\ln 2-2(\ln 2)^2}{4-2\ln 2}
 \end{align*}
 
-The attached triangle has base \(3\) and height \(1\). Its centroid's \(x\)-coordinate is the mean of its vertices' \(x\)-coordinates, so
+The attached triangle has base \(3\) and height \(1\). The centre of mass of a uniform triangular lamina is \(\frac23\) of the way along a median from the vertex, so its coordinates are the means of the vertices' coordinates. Hence
 \[
 A_T=\dfrac12(3)(1)=\dfrac32,
 \qquad
-\bar x_T=\dfrac{2\ln 2+2\ln 2+(2\ln 2+3)}{3}=2\ln 2+1
+x_T=\dfrac{2\ln 2+2\ln 2+(2\ln 2+3)}{3}=2\ln 2+1
 \]
 
-Since both pieces have the same uniform mass per unit area, the same formula applies to the original lamina and the attached triangle:
+Since both pieces have the same uniform mass per unit area, the same formula applies to the original lamina and the attached triangle, whose total area is \(A+A_T\):
 \begin{align*}
-\bar x&=\dfrac{A\bar x_0+A_T\bar x_T}{A+A_T}\\
-&=\dfrac{8-8\ln 2-2(\ln 2)^2+\frac32(2\ln 2+1)}{4-2\ln 2+\frac32}\\
-&=\dfrac{\frac{19}{2}-5\ln 2-2(\ln 2)^2}{\frac{11}{2}-2\ln 2}\\
+(A+A_T)\bar{x}&=Ax_0+A_Tx_T\\
+\left(4-2\ln 2+\frac32\right)\bar{x}&=8-8\ln 2-2(\ln 2)^2+\frac32(2\ln 2+1)
+=\frac{19}{2}-5\ln 2-2(\ln 2)^2\\
+\bar{x}&=\dfrac{\frac{19}{2}-5\ln 2-2(\ln 2)^2}{\frac{11}{2}-2\ln 2}\\
 &=\dfrac{19-10\ln 2-4(\ln 2)^2}{11-4\ln 2}
 \end{align*}
 
@@ -1020,7 +1035,7 @@ The area \(\mathcal{A}\) is therefore
 &=\dfrac{5}{6}\left(4\pi-3\sqrt{3}\right)\,\mathrm{m}^2
 \end{align*}
 
-\item A thin vertical strip has area \(y\,\mathrm{d}x\) and its centre is at \(\left(x,\frac{y}{2}\right)\). For a uniform lamina under a curve, the centre of mass formulae are
+\item For a uniform lamina under a curve, the centre of mass formulae are
 \[
 \bar{x}=\frac{1}{\mathcal{A}}\int_a^b xy\,\mathrm{d}x,
 \qquad
@@ -1122,7 +1137,7 @@ h=a\sin\left(\frac{\pi}{3}\right)=\frac{\sqrt{3}a}{2}
 
 Consider the region \(R_1\) between the curve \(x=\sqrt{a^2-y^2}\), the \(y\)-axis and the lines \(y=0\) and \(y=h\). The upper half of the plate is obtained by removing the rectangle \(R_2\), of width \(\frac{a}{2}\) and height \(h\), from \(R_1\).
 
-For a region between a curve and the \(y\)-axis, the area formula gives
+For a uniform lamina between a curve and the \(y\)-axis, the area formula gives
 \[
 \mathcal A_1=\int_0^h x\,\mathrm{d}y
 =\int_0^h\sqrt{a^2-y^2}\,\mathrm{d}y
@@ -1147,31 +1162,30 @@ M&=2\sigma(\mathcal A_1-\mathcal A_2)\\
 \item
 The plate is symmetric about the \(x\)-axis, so its centre of mass lies on that axis and \(\bar y=0\).
 
-For a uniform lamina against the \(y\)-axis, the centre of mass formula is
+For a uniform lamina between a curve and the \(y\)-axis, the centre of mass formula is
 \[
 \bar{x}=\frac{1}{2\mathcal{A}}\int_c^d x^2\,\mathrm{d}y
 \]
 
-The rectangle \(R_2\) has \(\bar{x}_2=\frac{a}{4}\). For a uniform lamina made of pieces, the centre of mass formula is
+The rectangle \(R_2\) has \(x_2=\frac{a}{4}\). The lamina is uniform, so areas can be used as weights. For a lamina made of pieces, the centre of mass formula is
 \[
-\bar{x}=\dfrac{\sum\mathcal{A}_i\bar{x}_i}{\sum\mathcal{A}_i}
+\mathcal{A}\bar{x}=\sum\mathcal{A}_ix_i
 \]
 
-with the area of a removed piece counted as negative. Multiplied by \(\sigma\), its numerator is the first moment about the \(y\)-axis. Applying the formula for a lamina against the \(y\)-axis to \(R_1\), subtracting the rectangle's contribution and doubling to include the lower half gives
+where \(\mathcal{A}=\sum\mathcal{A}_i\), with the area of a removed piece counted as negative. Multiplied by \(\sigma\), each side is the first moment about the \(y\)-axis, \(M\bar{x}\). Applying the formula for a lamina between a curve and the \(y\)-axis to \(R_1\), subtracting the rectangle's contribution and doubling to include the lower half gives
 \begin{align*}
-Q_y
-&=2\sigma\left(\mathcal A_1\bar x_1-\mathcal A_2\bar x_2\right)\\
-&=2\sigma\left(\frac12\int_0^h(a^2-y^2)\,\mathrm{d}y-\frac{ah}{2}\cdot\frac{a}{4}\right)\\
+M\bar{x}
+&=2\sigma\left(\mathcal A_1x_1-\mathcal A_2x_2\right)\\
+&=2\sigma\left(\frac12\int_0^h(a^2-y^2)\,\mathrm{d}y-\frac{ah}{2}\times\frac{a}{4}\right)\\
 &=\sigma\left[a^2y-\frac{y^3}{3}\right]_0^h-\frac{\sigma a^2h}{4}\\
 &=\sigma\left(\frac{3a^2h}{4}-\frac{h^3}{3}\right)\\
 &=\sigma\left(\frac{3\sqrt{3}a^3}{8}-\frac{\sqrt{3}a^3}{8}\right)\\
 &=\frac{\sqrt{3}\sigma a^3}{4}
 \end{align*}
 
-Since the plate lies to the right of \(O\), the required distance is \(\bar x\). Using the mass from part (a):
+Since the plate lies to the right of \(O\), the required distance is \(\bar x\). Dividing by the mass from part (a):
 \[
-\bar x=\frac{Q_y}{M}
-=\frac{\dfrac{\sqrt{3}\sigma a^3}{4}}{\dfrac{\sigma a^2(4\pi-3\sqrt{3})}{12}}
+\bar x=\frac{\dfrac{\sqrt{3}\sigma a^3}{4}}{\dfrac{\sigma a^2(4\pi-3\sqrt{3})}{12}}
 =\frac{3\sqrt{3}a}{4\pi-3\sqrt{3}}
 \]
 
@@ -1232,41 +1246,41 @@ Since the plate lies to the right of \(O\), the required distance is \(\bar x\).
 
 
 A uniform lamina occupies the region bounded by the curve $y=kx^2$, the $x$-axis and the line $x=2$, where $k>0$, as shown in the first diagram above. \\
-\begin{enumerate}[label=\textbf{(\roman*)}]
+\begin{enumerate}[label=\textbf{(\alph*)}]
 \item Use integration to find both coordinates of the centre of mass of this lamina in terms of $k$. \marks{8} \\
 \end{enumerate}
-A sign is made from a uniform sheet by joining a square $ABCD$ of side length $2$ to a curved piece having the shape of the lamina in part (i). \\
+A sign is made from a uniform sheet by joining a square $ABCD$ of side length $2$ to a curved piece having the shape of the lamina in part (a). \\
 The sheet has the same thickness and density throughout. \\
 
 For the sign, take $C$ as the origin, with $CB$ along the positive $x$-axis and $CD$ along the positive $y$-axis. \\
 Thus $A=(2,2)$, $B=(2,0)$ and $D=(0,2)$. \\
-The curved piece is obtained by reflecting the lamina in part (i) in the line $y=x$ and then translating it $2$ units to the right. \\
+The curved piece is obtained by reflecting the lamina in part (a) in the line $y=x$ and then translating it $2$ units to the right. \\
 Its curved edge therefore has equation
 \[
 x=2+ky^2,\qquad 0\leq y\leq2
 \] \\
 The complete sign is shown in the second diagram above. \\
-\begin{enumerate}[label=\textbf{(\roman*)}, resume]
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
 \item Find both coordinates of the centre of mass of the sign in terms of $k$. \marks{5} \\
 \end{enumerate}
 The sign is held in equilibrium in a vertical plane by two vertical wires attached at $A$ and $D$. \\
 The tension in the wire at $A$ is twice the tension in the wire at $D$. \\
-\begin{enumerate}[label=\textbf{(\roman*)}, resume]
+\begin{enumerate}[label=\textbf{(\alph*)}, resume]
 \item Find the exact value of $k$. \marks{5} \\
 \end{enumerate}
 
 \vspace*{10pt}
 
 \begin{djsSolution}
-\begin{enumerate}[label=\textbf{(\roman*)}, start=1]
+\begin{enumerate}[label=\textbf{(\alph*)}, start=1]
 \item
-A vertical strip of width \(\mathrm{d}x\) under the curve has area \(y\,\mathrm{d}x\) and centre at \(\left(x,\frac12 y\right)\). For a uniform lamina under a curve, the centre of mass formulae are
+For a uniform lamina under a curve, the centre of mass formulae are
 \[
 \mathcal{A}=\int_a^b y\,\mathrm{d}x,
 \qquad
-\bar{x}_L=\frac{1}{\mathcal{A}}\int_a^b xy\,\mathrm{d}x,
+\bar{x}=\frac{1}{\mathcal{A}}\int_a^b xy\,\mathrm{d}x,
 \qquad
-\bar{y}_L=\frac{1}{2\mathcal{A}}\int_a^b y^2\,\mathrm{d}x
+\bar{y}=\frac{1}{2\mathcal{A}}\int_a^b y^2\,\mathrm{d}x
 \]
 
 Here \(y=kx^2\), with \(0\leq x\leq2\). The area is
@@ -1277,7 +1291,7 @@ Here \(y=kx^2\), with \(0\leq x\leq2\). The area is
 =\dfrac{8k}{3}
 \end{align*}
 
-Applying the centre of mass formulae:
+Writing the centre of mass of this lamina as \((\bar{x}_L,\bar{y}_L)\), the formulae give
 \begin{align*}
 \bar{x}_L
 &=\dfrac{1}{8k/3}\int_0^2 kx^3\,\mathrm{d}x\\
@@ -1285,36 +1299,38 @@ Applying the centre of mass formulae:
 =\dfrac{4k}{8k/3}
 =\dfrac32\\
 \bar{y}_L
-&=\dfrac{1}{8k/3}\cdot\dfrac12\int_0^2 k^2x^4\,\mathrm{d}x\\
+&=\dfrac{1}{8k/3}\times\dfrac12\int_0^2 k^2x^4\,\mathrm{d}x\\
 &=\dfrac{k^2}{2(8k/3)}\left[\dfrac{x^5}{5}\right]_0^2
 =\dfrac{16k^2/5}{8k/3}
 =\dfrac{6k}{5}
 \end{align*}
 
 \item
-Reflection in \(y=x\) interchanges the centre's coordinates, and translation \(2\) units to the right adds \(2\) to its \(x\)-coordinate. Using part (i), the curved piece has area and centre
+Reflection in \(y=x\) interchanges the centre's coordinates, and translation \(2\) units to the right adds \(2\) to its \(x\)-coordinate. Using part (a), the curved piece has area and centre
 \[
 \mathcal A_p=\dfrac{8k}{3},
 \qquad
-(\bar{x}_p,\bar{y}_p)=\left(2+\dfrac{6k}{5},\dfrac32\right)
+(x_p,y_p)=\left(2+\dfrac{6k}{5},\dfrac32\right)
 \]
 
-The square has area \(\mathcal A_s=4\) and centre \((\bar{x}_s,\bar{y}_s)=(1,1)\). Since the thickness and density are the same throughout, masses are proportional to areas. For a uniform lamina made of pieces, the centre of mass formulae are
+The square has area \(\mathcal A_s=4\) and centre \((x_s,y_s)=(1,1)\). The lamina is uniform, so areas can be used as weights. For a lamina made of pieces, the centre of mass formulae are
 \[
-\bar{x}=\dfrac{\sum\mathcal{A}_i\bar{x}_i}{\sum\mathcal{A}_i},
+\mathcal{A}\bar{x}=\sum\mathcal{A}_ix_i,
 \qquad
-\bar{y}=\dfrac{\sum\mathcal{A}_i\bar{y}_i}{\sum\mathcal{A}_i}
+\mathcal{A}\bar{y}=\sum\mathcal{A}_iy_i
 \]
 
-Summing over the square and the curved piece:
+where \(\mathcal{A}=\sum\mathcal{A}_i\). Summing over the square and the curved piece:
 \begin{align*}
-\bar{x}
-&=\dfrac{4+\dfrac{8k}{3}\left(2+\dfrac{6k}{5}\right)}{4+\dfrac{8k}{3}}\\
-&=\dfrac{4+\dfrac{16k}{3}+\dfrac{16k^2}{5}}{4+\dfrac{8k}{3}}
+(\mathcal{A}_s+\mathcal{A}_p)\bar{x}&=\mathcal{A}_sx_s+\mathcal{A}_px_p\\
+\left(4+\dfrac{8k}{3}\right)\bar{x}&=4+\dfrac{8k}{3}\left(2+\dfrac{6k}{5}\right)
+=4+\dfrac{16k}{3}+\dfrac{16k^2}{5}\\
+\bar{x}&=\dfrac{4+\dfrac{16k}{3}+\dfrac{16k^2}{5}}{4+\dfrac{8k}{3}}
 =\dfrac{12k^2+20k+15}{10k+15}\\
-\bar{y}
-&=\dfrac{4+\dfrac{8k}{3}\cdot\dfrac32}{4+\dfrac{8k}{3}}
-=\dfrac{4+4k}{4+\dfrac{8k}{3}}
+(\mathcal{A}_s+\mathcal{A}_p)\bar{y}&=\mathcal{A}_sy_s+\mathcal{A}_py_p\\
+\left(4+\dfrac{8k}{3}\right)\bar{y}&=4+\dfrac{8k}{3}\times\dfrac32
+=4+4k\\
+\bar{y}&=\dfrac{4+4k}{4+\dfrac{8k}{3}}
 =\dfrac{3(k+1)}{2k+3}
 \end{align*}
 
@@ -1331,7 +1347,7 @@ W(2-\bar{x})&=2T_D\\
 \bar{x}&=\dfrac43
 \end{align*}
 
-Using the \(x\)-coordinate from part (ii):
+Using the \(x\)-coordinate from part (b):
 \begin{align*}
 \dfrac{12k^2+20k+15}{10k+15}&=\dfrac43\\
 3(12k^2+20k+15)&=4(10k+15)\\
