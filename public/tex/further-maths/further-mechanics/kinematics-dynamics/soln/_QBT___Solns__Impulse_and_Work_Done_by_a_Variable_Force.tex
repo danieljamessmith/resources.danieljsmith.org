@@ -4,7 +4,7 @@
 \djsSolnHeader{Impulse and Work Done by a Variable Force}
 \djsSitePath{Further Mechanics}{Kinematics \& Dynamics}
 \djsMechanicsPack
-\djsLastUpdated{15 October 2026}
+\djsLastUpdated{27 October 2026}
 
 \begin{document}
 \djsFrontMatter
@@ -140,7 +140,7 @@ To find the maximum force, differentiate with respect to \(t\):
 \frac{\mathrm{d}F}{\mathrm{d}t}=0&\quad\Longrightarrow\quad t=\frac{T}{2}=0.1\,\mathrm{s}
 \end{align*}
 
-Since \(\frac{\mathrm{d}^2F}{\mathrm{d}t^2}=-36\,000<0\), this gives the maximum force:
+Since \(F=0\) at \(t=0\) and \(t=T\), and \(F>0\) between, this stationary point gives the maximum force:
 \[
 F_{\max}=18\,000(0.1)(0.2-0.1)=180\,\mathrm{N}
 \]
@@ -169,7 +169,7 @@ Model the sled as a particle. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Find, in terms of $A$, the work done against the buffer during this compression. \marks{3} \\
-  \item Using work and energy, find the exact value of $A$, taking account of the work done by gravity. \marks{3} \\
+  \item Using work and energy, find the exact value of $A$, taking account of the change in gravitational potential energy. \marks{3} \\
 \end{enumerate}
 
 \vspace*{10pt}
@@ -181,14 +181,14 @@ Model the sled as a particle. \\
 W=\int_{x_0}^{x_1}F\,\mathrm{d}x
 \]
 
-The buffer force opposes the motion, so the work done against it is this integral of its magnitude \(F\). Substituting the buffer force and compression limits:
+The buffer force opposes the motion, so the work done against it is this integral of its magnitude \(F\). Substituting the buffer force and compression limits, with \(1+2x>0\) for \(0\leq x\leq0.5\):
 \begin{align*}
 W&=\int_0^{0.5}\left(\frac{A}{1+2x}+200x\right)\,\mathrm{d}x\\
 &=\left[\frac{A}{2}\ln(1+2x)+100x^2\right]_0^{0.5}\\
 &=\left(\frac{A}{2}\ln 2+25\right)\,\mathrm{J}
 \end{align*}
 
-\item Take \(g=9.8\,\mathrm{m\,s^{-2}}\) and the final position as the zero level for gravitational potential energy. The work--energy principle is
+\item Take \(g=9.8\,\mathrm{m\,s^{-2}}\). Take the final position as the zero level for gravitational potential energy. The work--energy principle is
 \[
 KE_0+GPE_0+\sum W_{\text{other}}=KE_1+GPE_1
 \]
@@ -276,7 +276,7 @@ k&=300
 =300t(4-3t)
 \]
 
-The derivative is positive for \(0<t<\frac43\) and negative for \(\frac43<t<2\). Since \(F(0)=F(2)=0\), the maximum occurs at \(t=\frac43\,\mathrm{s}\):
+Since \(F(0)=F(2)=0\) and \(F>0\) between, the maximum occurs at the stationary point \(t=\frac43\,\mathrm{s}\):
 \[
 F_{\max}
 =300\left(\dfrac43\right)^2\left(2-\dfrac43\right)
@@ -298,7 +298,7 @@ A particle $P$ of mass $2\,\mathrm{kg}$ moves along a straight horizontal line. 
 Take the positive direction along the line to be the direction of its initial motion. \\
 
 At time $t=0$, the velocity of $P$ is $3\,\mathrm{m\,s^{-1}}$. \\
-For $0\leq t\leq 2$, the only horizontal force acting on $P$ has signed component
+For $0\leq t\leq 2$, the only horizontal force acting on $P$ has component
 \[
 F(t)=(3t^2-12t+9)\,\mathrm{N}
 \] \\
@@ -411,18 +411,21 @@ I&=\int_0^2(3t^2-12t)\,\mathrm{d}t\\
 
 The magnitude of the impulse is \(16\,\mathrm{N\,s}\).
 
-\item The impulse--momentum principle is
+\item Using Newton's second law, with acceleration \(a=\frac{\mathrm{d}v}{\mathrm{d}t}\):
 \[
-I=mv-mu
+4\frac{\mathrm{d}v}{\mathrm{d}t}=3t^2-12t
 \]
 
-Over the interval from \(0\) to \(t\), the impulse is \(\int_0^t F(\tau)\,\mathrm{d}\tau\), writing \(\tau\) for the variable of integration. Substituting \(m=4\) and \(u=4\):
+Integrating with respect to time:
 \begin{align*}
-4v-16&=\int_0^t(3\tau^2-12\tau)\,\mathrm{d}\tau\\
-&=\left[\tau^3-6\tau^2\right]_0^t\\
-&=t^3-6t^2\\
-4v&=16+t^3-6t^2
+4v&=\int(3t^2-12t)\,\mathrm{d}t\\
+&=t^3-6t^2+c
 \end{align*}
+
+Using \(v=4\) when \(t=0\) gives \(c=16\), so
+\[
+4v=16+t^3-6t^2
+\]
 
 At \(t=3\):
 \[
@@ -767,10 +770,10 @@ V^2&=\left(\dfrac{5\sqrt3}{4}\right)^2+\left(\dfrac52\right)^2
 =\dfrac{5\sqrt3/4}{5/2}=\dfrac{\sqrt3}{2}
 \end{align*}
 
-Hence the speed and angle, with the angle rounded to the nearest \(0.1^\circ\), are
+Hence the speed and angle are
 \[
 V=\dfrac{5\sqrt7}{4}\,\mathrm{m\,s^{-1}},
-\qquad \theta=\arctan\left(\dfrac{\sqrt3}{2}\right)\approx40.9^\circ
+\qquad \theta=\arctan\left(\dfrac{\sqrt3}{2}\right)\approx40.9^\circ\qquad\text{(1 d.p.)}
 \]
 
 \end{enumerate}
@@ -824,16 +827,18 @@ The resistance to motion has magnitude $2v^2\,\mathrm{N}$. \\
 
   The integrating factor is
   \[
-  e^{\int \frac{1}{200}\,\mathrm{d}x}=e^{x/200}
+  \mu(x)=e^{\int \frac{1}{200}\,\mathrm{d}x}=e^{x/200}
   \]
 
-  Multiplying the equation by this factor gives
-  \begin{align*}
-  e^{x/200}\dfrac{\mathrm{d}u}{\mathrm{d}x}+\dfrac{1}{200}e^{x/200}u
-  &=\dfrac92e^{x/200}+3\\
-  \dfrac{\mathrm{d}}{\mathrm{d}x}\left(ue^{x/200}\right)
-  &=\dfrac92e^{x/200}+3
-  \end{align*}
+  Multiplying the equation by \(\mu(x)\) gives
+  \[
+  e^{x/200}\dfrac{\mathrm{d}u}{\mathrm{d}x}+\dfrac{1}{200}e^{x/200}u=\dfrac92e^{x/200}+3
+  \]
+
+  The left-hand side is the derivative of \(\mu(x)u\), so
+  \[
+  \dfrac{\mathrm{d}}{\mathrm{d}x}\left(ue^{x/200}\right)=\dfrac92e^{x/200}+3
+  \]
 
   Integrating with respect to \(x\):
   \begin{align*}
@@ -874,7 +879,7 @@ The resistance to motion has magnitude $2v^2\,\mathrm{N}$. \\
   KE_0+GPE_0+\sum W_{\text{other}}=KE_1+GPE_1
   \]
 
-  Let \(W_R\) be the positive work done against resistance. The work done by resistance is \(-W_R\), and there is no change in gravitational potential energy on the horizontal road. Thus
+  Let \(W_R\) be the positive work done against resistance. The work done by resistance is \(-W_R\). There is no change in gravitational potential energy. Thus
   \begin{align*}
   \dfrac12(800)(20^2)+W_D-W_R
   &=\dfrac12(800)\left(900+\dfrac{100}{e}\right)\\
@@ -929,7 +934,7 @@ Its displacement from $O$ at time $t$ seconds is $x\,\mathrm{m}$. \\
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-\item Using Newton's second law, with acceleration \(a=v\frac{\mathrm{d}v}{\mathrm{d}x}\):
+\item Take the direction of increasing \(x\) as positive. Using Newton's second law, with acceleration \(a=v\frac{\mathrm{d}v}{\mathrm{d}x}\):
 \begin{align*}
 2v\frac{\mathrm{d}v}{\mathrm{d}x}&=\frac{27}{v}-3v \\
 \frac{\mathrm{d}x}{\mathrm{d}v}&=\frac{2v^2}{3(9-v^2)}
@@ -942,11 +947,11 @@ To integrate, rearrange and use partial fractions:
 &=-\frac23+\frac{1}{3-v}+\frac{1}{3+v}
 \end{align*}
 
-Separating variables and integrating:
+Separating variables and integrating, with \(3-v>0\) and \(3+v>0\) for \(1\leq v<3\):
 \begin{align*}
 \int \mathrm{d}x
 &=\int\left(-\frac23+\frac{1}{3-v}+\frac{1}{3+v}\right)\,\mathrm{d}v \\
-x&=-\frac23v-\ln|3-v|+\ln|3+v|+c
+x&=-\frac23v-\ln(3-v)+\ln(3+v)+c
 \end{align*}
 
 At \(O\), \(x=0\) and \(v=1\), so
@@ -995,7 +1000,7 @@ F_{\mathrm{av}}=\frac{3}{\ln\left(\frac52\right)-\frac23}\approx12.0\,\mathrm{N}
 2v\frac{\mathrm{d}v}{\mathrm{d}t}&=27-3v^2
 \end{align*}
 
-Separating variables and integrating, with \(1\leq v<3\):
+Separating variables and integrating, with \(9-v^2>0\) for \(1\leq v<3\):
 \begin{align*}
 \int\frac{2v}{9-v^2}\,\mathrm{d}v&=\int3\,\mathrm{d}t \\
 -\ln(9-v^2)&=3t+k
