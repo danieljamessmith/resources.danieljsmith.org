@@ -1243,6 +1243,7 @@ const rawResources: Resource[] = [
     type: 'questions',
     pairId: 'fm-misc-standard-summations-solns',
     topic: 'Miscellaneous Pure',
+    note: 'Σr, Σr² and Σr³',
   },
   {
     id: 'fm-misc-standard-summations-solns',
