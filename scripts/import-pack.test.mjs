@@ -30,8 +30,12 @@ import {
   PACK_MANIFEST,
   GENERATED_FILES,
   preparePackPair,
+  prepareScheme,
+  findSchemeFile,
+  schemeFileName,
   runImport,
 } from './import-pack.mjs';
+import { emitScheme, packModel } from './lib/markscheme.mjs';
 import { PACK_PREAMBLE_SITE_INPUT, readPackIdentity } from './lib/pack-preamble.mjs';
 import { bodyCommentViolations, isUnexpectedFullLineComment } from './check-tex.mjs';
 import { syncPair } from './lib/question-blocks.mjs';
@@ -583,7 +587,18 @@ describe('readPackManifest', () => {
     }
   });
 
+  it('returns the mark scheme file name when pack.json names one', () => {
+    const dir = packFolder({ manifest: { ...MANIFEST, markscheme: '(QBT) [MS] Polar Coordinates.yaml' } });
+    try {
+      expect(readPackManifest(dir)).toMatchObject({ markscheme: '(QBT) [MS] Polar Coordinates.yaml' });
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
   it.each([
+    [{ ...MANIFEST, markscheme: '' }, /"markscheme" must be a non-empty string/],
+    [{ ...MANIFEST, markscheme: 'ms/scheme.yaml' }, /"markscheme" must be a file name/],
     [{ ...MANIFEST, format: 2 }, /unsupported format/],
     [{ ...MANIFEST, topic: '' }, /"topic"/],
     [{ ...MANIFEST, questions: '../elsewhere.tex' }, /file name/],
@@ -654,6 +669,34 @@ describe('resolveTexPairFromDir', () => {
     const dir = packFolder({ files: { '(QBT) Topic.tex': DOC } });
     try {
       expect(resolveTexPairFromDir(dir, 'Topic', null).solnPath).toBeNull();
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+});
+
+describe('findSchemeFile', () => {
+  const NAME = '(QBT) [MS] Polar Coordinates.yaml';
+
+  it('takes the file pack.json names, and refuses one that is missing', () => {
+    const dir = packFolder({ files: { 'scheme.yaml': 'format: 1\n' } });
+    try {
+      expect(findSchemeFile(dir, 'Polar Coordinates', { markscheme: 'scheme.yaml' })).toBe(join(dir, 'scheme.yaml'));
+      expect(() => findSchemeFile(dir, 'Polar Coordinates', { markscheme: 'other.yaml' })).toThrow(
+        /other\.yaml is listed in pack\.json but missing/,
+      );
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('falls back to the file name, with or without pack.json, and is null without one', () => {
+    expect(schemeFileName('Polar Coordinates')).toBe(NAME);
+    const dir = packFolder({ files: { [NAME]: 'format: 1\n' } });
+    try {
+      expect(findSchemeFile(dir, 'Polar Coordinates', null)).toBe(join(dir, NAME));
+      expect(findSchemeFile(dir, 'Polar Coordinates', { topic: 'Polar Coordinates' })).toBe(join(dir, NAME));
+      expect(findSchemeFile(dir, 'Other Title', null)).toBeNull();
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }
@@ -796,6 +839,109 @@ describe('preparePackPair', () => {
 });
 
 // ---------------------------------------------------------------------------
+// prepareScheme: the mark scheme, checked against the placed documents
+// ---------------------------------------------------------------------------
+
+const TEST_WHERE = {
+  qbtRel: 'public/tex/further-maths/core-pure/polar-coordinates/qbt/_QBT__Test_Pack.tex',
+  solnRel: 'public/tex/further-maths/core-pure/polar-coordinates/soln/_QBT___Solns__Test_Pack.tex',
+  identity: { title: 'Test Pack', strand: 'Core Pure', section: 'Polar Coordinates' },
+};
+
+/**
+ * A scheme for `describedDiagramPack`, stamped against its documents as the
+ * import places them; `edit` changes the data before it is written.
+ */
+function schemeFor(raw = describedDiagramPack(), edit = (scheme) => scheme) {
+  const prepared = preparePackPair(raw, TEST_WHERE);
+  const pack = packModel(prepared.qbt, prepared.soln);
+  const scheme = {
+    format: 1,
+    pack: 'Test Pack',
+    last_updated: '1 October 2026',
+    questions: [
+      {
+        q: 1,
+        stamp: pack.questions[0].stamp,
+        parts: [
+          {
+            part: '',
+            rows: [
+              {
+                scheme: String.raw`\(\frac12 \times 2 \times 1\)` + '\n',
+                marks: [{ code: 'M1', note: 'Uses half the base times the height.' }, { code: 'A1' }],
+              },
+              { scheme: String.raw`\(1\)` + '\n', marks: [{ code: 'A1' }, { code: 'B1' }] },
+            ],
+          },
+        ],
+      },
+      {
+        q: 2,
+        stamp: pack.questions[1].stamp,
+        parts: [
+          {
+            part: '',
+            rows: [
+              {
+                scheme: String.raw`\(2^2 - 4 = 0\)` + '\n',
+                marks: [{ code: 'M1', note: String.raw`Substitutes \(x = 2\).` }, { code: 'A1 AG' }],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  };
+  return emitScheme(edit(scheme));
+}
+
+/** The scheme with question `i`'s first mark changed by `edit`. */
+const editFirstMark = (i, edit) => (scheme) => {
+  const mark = scheme.questions[i].parts[0].rows[0].marks[0];
+  scheme.questions[i].parts[0].rows[0].marks[0] = edit(mark);
+  return scheme;
+};
+
+describe('prepareScheme', () => {
+  const prepared = () => preparePackPair(describedDiagramPack(), TEST_WHERE);
+
+  it('passes a scheme stamped against the placed documents, and renders it', () => {
+    const yaml = schemeFor();
+    const out = prepareScheme(yaml, prepared());
+    expect(out.yaml).toBe(yaml);
+    expect(out.tex).toContain(String.raw`\input{../../../../_shared/markscheme_preamble.tex}`);
+    expect(out.tex).toContain(String.raw`\djsSchemeHeader{Test Pack}`);
+  });
+
+  it.each([
+    ['a pack field that disagrees with the title', (s) => ({ ...s, pack: 'Other Pack' }), /its pack is "Other Pack", but the pack's title is "Test Pack"/],
+    ['a flag', (s) => {
+      s.questions[1].parts[0] = { part: '', flag: { kind: 'not_drafted', why: 'Not yet drafted.' } };
+      return s;
+    }, /\[rule 24\] a committed scheme holds no flag/],
+    ['a query', editFirstMark(0, (m) => ({ ...m, query: { code: 'B1', why: 'May be a B mark.' } })), /\[rule 24\] a committed scheme holds no query/],
+    ['a stale stamp', (s) => {
+      s.questions[0].stamp = '00000000';
+      return s;
+    }, /Q1's stamp 00000000 does not match its statement and solution/],
+    ['an error of the other rules', editFirstMark(1, (m) => ({ code: m.code })), /\[rule 15\]/],
+  ])('refuses %s', (_name, edit, message) => {
+    expect(() => prepareScheme(schemeFor(undefined, edit), prepared())).toThrow(message);
+  });
+
+  it('refuses a missing stamp', () => {
+    const yaml = schemeFor().replace(/(  - q: 2\n)    stamp: [0-9a-f]+\n/, '$1');
+    expect(yaml).not.toBe(schemeFor());
+    expect(() => prepareScheme(yaml, prepared())).toThrow(/Q2 has no stamp/);
+  });
+
+  it('refuses YAML that does not parse', () => {
+    expect(() => prepareScheme('format: [1\n', prepared())).toThrow(/does not parse/);
+  });
+});
+
+// ---------------------------------------------------------------------------
 // runImport: a whole import against a scratch checkout
 // ---------------------------------------------------------------------------
 
@@ -829,12 +975,15 @@ function scratchSite() {
   return root;
 }
 
-function packDir(raw = describedDiagramPack()) {
+function packDir(raw = describedDiagramPack(), { scheme = null, schemeByName = false } = {}) {
   const dir = mkdtempSync(join(tmpdir(), 'import-pack-'));
-  writeFileSync(
-    join(dir, PACK_MANIFEST),
-    JSON.stringify({ format: 1, topic: 'Test Pack', questions: 'Questions.tex', solutions: 'Solutions.tex' }),
-  );
+  const manifest = { format: 1, topic: 'Test Pack', questions: 'Questions.tex', solutions: 'Solutions.tex' };
+  if (scheme !== null) {
+    const name = schemeByName ? '(QBT) [MS] Test Pack.yaml' : 'Scheme.yaml';
+    if (!schemeByName) manifest.markscheme = name;
+    writeFileSync(join(dir, name), scheme);
+  }
+  writeFileSync(join(dir, PACK_MANIFEST), JSON.stringify(manifest));
   writeFileSync(join(dir, 'Questions.tex'), raw.qbt);
   writeFileSync(join(dir, 'Solutions.tex'), raw.soln);
   writeFileSync(join(dir, 'preamble.tex'), '% the bundled preamble\n');
@@ -843,6 +992,7 @@ function packDir(raw = describedDiagramPack()) {
 
 /** Stand-ins for the compile and the generators, counting their calls. */
 function standIns({ failCompile = false, failRegenerate = null, onCompile } = {}) {
+  // `failCompile` is true, or a test of the `.tex` path for the one that fails.
   const calls = { compile: 0, regenerate: 0 };
   return {
     calls,
@@ -853,7 +1003,9 @@ function standIns({ failCompile = false, failRegenerate = null, onCompile } = {}
       const stem = basename(tex, '.tex');
       mkdirSync(join(build, 'aux'), { recursive: true });
       writeFileSync(join(build, 'aux', `${stem}.log`), 'log');
-      if (failCompile) return { ok: false, log: `${stem}.tex:3: Undefined control sequence.` };
+      if (typeof failCompile === 'function' ? failCompile(tex) : failCompile) {
+        return { ok: false, log: `${stem}.tex:3: Undefined control sequence.` };
+      }
       writeFileSync(join(build, `${stem}.pdf`), `pdf of ${stem}`);
       return { ok: true, pdf: join(build, `${stem}.pdf`) };
     },
@@ -867,7 +1019,7 @@ function standIns({ failCompile = false, failRegenerate = null, onCompile } = {}
 
 describe('runImport', () => {
   const ID = 'fm-polar-test-pack';
-  const args = (folder, overrides = {}) => {
+  const args = (folder, overrides = {}, { leaveOut = false } = {}) => {
     const flags = {
       folder,
       'site-path': 'core-pure/polar-coordinates',
@@ -876,7 +1028,11 @@ describe('runImport', () => {
       id: ID,
       ...overrides,
     };
-    return [...Object.entries(flags).flatMap(([k, v]) => [`--${k}`, v]), '--yes'];
+    return [
+      ...Object.entries(flags).flatMap(([k, v]) => [`--${k}`, v]),
+      ...(leaveOut ? ['--no-markscheme'] : []),
+      '--yes',
+    ];
   };
   const placed = (root, kind) =>
     join(
@@ -1020,6 +1176,191 @@ describe('runImport', () => {
     expect(readdirSync(join(root, 'src/data')).filter((n) => n.endsWith('.tmp'))).toEqual([]);
     expect(existsSync(placed(root, 'qbt'))).toBe(false);
     expect(existsSync(journalPath)).toBe(true);
+  });
+
+  describe('with its mark scheme', () => {
+    const SECTION = 'public/tex/further-maths/core-pure/polar-coordinates';
+    const msPath = (ext) => join(root, SECTION, 'ms', `_QBT___MS__Test_Pack.${ext}`);
+    const rows = () => parseResourcesEntries(readFileSync(join(root, 'src/data/resources.ts'), 'utf8'));
+
+    it('places the scheme beside the pack, rendered and compiled, with its row after the solutions row', async () => {
+      const yaml = schemeFor();
+      const withScheme = packDir(undefined, { scheme: yaml });
+      try {
+        const stand = standIns();
+        await runImport(args(withScheme), { root, journalPath, ...stand });
+        expect(readFileSync(msPath('yaml'), 'utf8')).toBe(yaml);
+        const tex = readFileSync(msPath('tex'), 'utf8');
+        const placedPack = { qbt: readFileSync(placed(root, 'qbt'), 'utf8'), soln: readFileSync(placed(root, 'soln'), 'utf8') };
+        expect(tex).toBe(prepareScheme(yaml, placedPack).tex);
+        expect(readFileSync(msPath('pdf'), 'utf8')).toBe('pdf of _QBT___MS__Test_Pack');
+        expect(stand.calls).toEqual({ compile: 3, regenerate: 1 });
+
+        const entries = rows();
+        const ids = entries.map((e) => e.id);
+        expect(ids.slice(ids.indexOf(ID), ids.indexOf(ID) + 3)).toEqual([ID, `${ID}-solns`, `${ID}-ms`]);
+        const ms = entries.find((e) => e.id === `${ID}-ms`);
+        expect(ms).toMatchObject({
+          title: 'Test Pack',
+          description: 'Mark scheme',
+          file: `/tex/further-maths/core-pure/polar-coordinates/ms/_QBT___MS__Test_Pack.pdf`,
+          category: 'FM - Core Pure',
+          type: 'markscheme',
+          paperId: ID,
+          topic: 'Polar Coordinates',
+        });
+        expect(ms.pairId).toBeUndefined();
+        expect(ms.boards).toBeUndefined();
+        expect(existsSync(journalPath)).toBe(false);
+      } finally {
+        rmSync(withScheme, { recursive: true, force: true });
+      }
+    });
+
+    it('finds the scheme by its file name when pack.json names none', async () => {
+      const byName = packDir(undefined, { scheme: schemeFor(), schemeByName: true });
+      try {
+        await runImport(args(byName), { root, journalPath, ...standIns() });
+        expect(existsSync(msPath('yaml'))).toBe(true);
+        expect(rows().some((e) => e.id === `${ID}-ms`)).toBe(true);
+      } finally {
+        rmSync(byName, { recursive: true, force: true });
+      }
+    });
+
+    it('with --no-markscheme, imports the two documents and says the scheme was left out', async () => {
+      const withScheme = packDir(undefined, { scheme: schemeFor() });
+      try {
+        const stand = standIns();
+        await runImport(args(withScheme, {}, { leaveOut: true }), { root, journalPath, ...stand });
+        expect(existsSync(join(root, SECTION, 'ms'))).toBe(false);
+        expect(rows().some((e) => e.id === `${ID}-ms`)).toBe(false);
+        expect(rows().some((e) => e.id === `${ID}-solns`)).toBe(true);
+        expect(stand.calls).toEqual({ compile: 2, regenerate: 1 });
+        expect(console.log).toHaveBeenCalledWith(expect.stringMatching(/left out \(--no-markscheme\): Scheme\.yaml is not imported/));
+        expect(console.log).toHaveBeenCalledWith(expect.stringMatching(/^The mark scheme was left out \(--no-markscheme\)/));
+      } finally {
+        rmSync(withScheme, { recursive: true, force: true });
+      }
+    });
+
+    it('imports the two documents alone from a folder with no scheme', async () => {
+      const stand = standIns();
+      await runImport(args(folder), { root, journalPath, ...stand });
+      expect(existsSync(join(root, SECTION, 'ms'))).toBe(false);
+      expect(rows().some((e) => e.id === `${ID}-ms`)).toBe(false);
+      expect(stand.calls).toEqual({ compile: 2, regenerate: 1 });
+      expect(console.log).toHaveBeenCalledWith(expect.stringMatching(/scheme: +none in /));
+    });
+
+    describe('refuses before writing anything', () => {
+      const cases = [
+        ['a scheme pack.json names but the folder lacks', () => {
+          const dir = packDir(undefined, { scheme: schemeFor() });
+          rmSync(join(dir, 'Scheme.yaml'));
+          return dir;
+        }, /Scheme\.yaml is listed in pack\.json but missing/],
+        ['a --title that disagrees with the scheme', () => packDir(undefined, { scheme: schemeFor() }), /its pack is "Test Pack", but the pack's title is "Other Pack"/, undefined, { title: 'Other Pack' }],
+        ['a pack field that disagrees with the title', () => packDir(undefined, { scheme: schemeFor(undefined, (s) => ({ ...s, pack: 'Other Pack' })) }), /its pack is "Other Pack"/],
+        ['a flag', () => packDir(undefined, {
+          scheme: schemeFor(undefined, (s) => {
+            s.questions[1].parts[0] = { part: '', flag: { kind: 'not_drafted', why: 'Not yet drafted.' } };
+            return s;
+          }),
+        }), /holds no flag/],
+        ['a query', () => packDir(undefined, {
+          scheme: schemeFor(undefined, editFirstMark(0, (m) => ({ ...m, query: { code: 'B1', why: 'May be a B mark.' } }))),
+        }), /holds no query/],
+        ['a stale stamp', () => packDir(undefined, {
+          scheme: schemeFor(undefined, (s) => {
+            s.questions[0].stamp = '00000000';
+            return s;
+          }),
+        }), /Q1's stamp 00000000 does not match/],
+        ['a missing stamp', () => packDir(undefined, {
+          scheme: schemeFor().replace(/(  - q: 2\n)    stamp: [0-9a-f]+\n/, '$1'),
+        }), /Q2 has no stamp/],
+        ['a mark scheme id already taken', () => packDir(undefined, { scheme: schemeFor() }), /the id 'fm-polar-test-pack-ms' is already in resources\.ts/, () => {
+          const resources = join(root, 'src/data/resources.ts');
+          const text = readFileSync(resources, 'utf8');
+          writeFileSync(resources, text.replace("id: 'fm-polar-tangents-polar-curves-ms'", `id: '${ID}-ms'`));
+        }],
+        ['a scheme already on the site', () => packDir(undefined, { scheme: schemeFor() }), /ms\/_QBT___MS__Test_Pack\.yaml already exists/, () => {
+          mkdirSync(join(root, SECTION, 'ms'), { recursive: true });
+          writeFileSync(msPath('yaml'), 'already here');
+        }],
+      ];
+      for (const [name, makeFolder, message, arrange, overrides] of cases) {
+        it(name, async () => {
+          arrange?.();
+          const dir = makeFolder();
+          try {
+            const stand = standIns();
+            const before = treeState(root);
+            await expect(runImport(args(dir, overrides), { root, journalPath, ...stand })).rejects.toThrow(message);
+            expect(treeState(root)).toEqual(before);
+            expect(stand.calls).toEqual({ compile: 0, regenerate: 0 });
+            expect(existsSync(journalPath)).toBe(false);
+          } finally {
+            rmSync(dir, { recursive: true, force: true });
+          }
+        });
+      }
+    });
+
+    it("puts everything back, the scheme's files, folder and build output included, when its compile fails", async () => {
+      const withScheme = packDir(undefined, { scheme: schemeFor() });
+      try {
+        const before = treeState(root);
+        const stand = standIns({ failCompile: (tex) => basename(tex).startsWith('_QBT___MS__') });
+        await expect(runImport(args(withScheme), { root, journalPath, ...stand })).rejects.toThrow(
+          /nothing was imported/,
+        );
+        expect(stand.calls.compile).toBe(3);
+        expect(treeState(root)).toEqual(before);
+        expect(existsSync(join(root, SECTION, 'ms'))).toBe(false);
+        expect(errors.find((e) => e.startsWith('\nimport-pack:'))).toMatch(/_QBT___MS__Test_Pack\.tex did not compile/);
+        expect(existsSync(journalPath)).toBe(false);
+      } finally {
+        rmSync(withScheme, { recursive: true, force: true });
+      }
+    });
+
+    it('is put back from the journal of a run killed part-way, scheme and row included', async () => {
+      const withScheme = packDir(undefined, { scheme: schemeFor() });
+      try {
+        // The journal as it stood when the generators started, as a run
+        // killed then would leave it.
+        let journal;
+        const first = standIns();
+        await runImport(args(withScheme), {
+          root,
+          journalPath,
+          ...first,
+          regenerate: (at) => {
+            journal = readFileSync(journalPath, 'utf8');
+            first.regenerate(at);
+          },
+        });
+        const after = treeState(root);
+        const recorded = JSON.parse(journal);
+        expect(recorded.files).toEqual(
+          expect.arrayContaining(['yaml', 'tex', 'pdf'].map((ext) => `${SECTION}/ms/_QBT___MS__Test_Pack.${ext}`)),
+        );
+        expect(recorded.dirs).toContain(`${SECTION}/ms`);
+        expect(recorded.builds).toContain(`${SECTION}/ms/_QBT___MS__Test_Pack.tex`);
+        writeFileSync(journalPath, journal);
+
+        const stand = standIns();
+        await runImport(args(withScheme), { root, journalPath, ...stand });
+        expect(console.log).toHaveBeenCalledWith(expect.stringMatching(/An earlier import stopped part-way/));
+        expect(stand.calls).toEqual({ compile: 3, regenerate: 2 });
+        expect(treeState(root)).toEqual(after);
+        expect(existsSync(journalPath)).toBe(false);
+      } finally {
+        rmSync(withScheme, { recursive: true, force: true });
+      }
+    });
   });
 
   describe('a run killed part-way', () => {

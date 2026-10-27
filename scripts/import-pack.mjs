@@ -1,18 +1,22 @@
 /**
  * Import a Further Maths pack into the site from a local folder holding its
- * questions and solutions documents (named by `pack.json` when there is one).
+ * questions and solutions documents and its mark scheme (named by `pack.json`
+ * when there is one).
  *
- * It places them under `public/tex/further-maths/<strand>/<section>/{qbt,soln}/`,
- * sets the header title and `\djsSitePath`, strips comments, compiles both
- * PDFs, writes the pack's two rows into `src/data/resources.ts` after the
+ * It places them under `public/tex/further-maths/<strand>/<section>/{qbt,soln,ms}/`,
+ * sets the header title and `\djsSitePath`, strips comments, checks the mark
+ * scheme against the documents as placed and renders it, compiles the three
+ * PDFs, writes the pack's three rows into `src/data/resources.ts` after the
  * section's last pack, and regenerates the generated data files. If any of
  * that fails, or the run is interrupted, everything it wrote is put back. A
  * run that is killed outright leaves a journal of what it wrote, and the next
- * run puts that back before it starts.
+ * run puts that back before it starts. A folder with no mark scheme, or a run
+ * with `--no-markscheme`, imports the two documents alone.
  *
  * Usage:
  *   npm run import-pack -- [--folder DIR] [--site-path STRAND/SECTION]
- *     [--section NAME] [--title TITLE] [--boards IDS|all] [--id ID] [--yes]
+ *     [--section NAME] [--title TITLE] [--boards IDS|all] [--id ID]
+ *     [--no-markscheme] [--yes]
  *
  * Without `--yes`, anything not given is asked. With `--yes` nothing is asked:
  * `--folder`, `--site-path`, `--title`, `--boards` and `--id` must all be
@@ -40,6 +44,8 @@ import { parseArgs } from 'node:util';
 import { stdin, stdout } from 'node:process';
 
 import { processContent } from './clean-tex.mjs';
+import { checkScheme, packModel, parseYaml, staleQuestions } from './lib/markscheme.mjs';
+import { renderScheme } from './lib/markscheme-render.mjs';
 import { syncPair } from './lib/question-blocks.mjs';
 import { listTreeShallow, pickSitePath } from './lib/site-tree.mjs';
 import {
@@ -57,6 +63,8 @@ import {
   findStrandTopic,
   loadResourcesEntries,
   loadStrands,
+  markSchemeFile,
+  markSchemeId,
   sitePathLabels,
   slugify,
 } from './lib/resources-derive.mjs';
@@ -295,10 +303,11 @@ export function parseSource(input) {
 export const PACK_MANIFEST = 'pack.json';
 
 /**
- * Read a local pack folder's `pack.json`: its topic and the file names of the
- * questions and solutions documents. Returns `null` when the folder has none.
+ * Read a local pack folder's `pack.json`: its topic, the file names of the
+ * questions and solutions documents and, when it names one, of the mark
+ * scheme (`markscheme`). Returns `null` when the folder has none.
  * @param {string} dir
- * @returns {{ topic: string, questions: string, solutions: string } | null}
+ * @returns {{ topic: string, questions: string, solutions: string, markscheme?: string } | null}
  */
 export function readPackManifest(dir) {
   const manifestPath = join(dir, PACK_MANIFEST);
@@ -316,7 +325,41 @@ export function readPackManifest(dir) {
       throw new Error(`${PACK_MANIFEST}: "${key}" must be a file name, not a path`);
     }
   }
-  return { topic: manifest.topic, questions: manifest.questions, solutions: manifest.solutions };
+  const out = { topic: manifest.topic, questions: manifest.questions, solutions: manifest.solutions };
+  if (manifest.markscheme !== undefined) {
+    const value = manifest.markscheme;
+    if (typeof value !== 'string' || !value.trim()) {
+      throw new Error(`${PACK_MANIFEST}: "markscheme" must be a non-empty string`);
+    }
+    if (basename(value) !== value) throw new Error(`${PACK_MANIFEST}: "markscheme" must be a file name, not a path`);
+    out.markscheme = value;
+  }
+  return out;
+}
+
+/** The mark scheme's file name in a pack folder, when `pack.json` names none. */
+export function schemeFileName(topicName) {
+  return `(QBT) [MS] ${topicName}.yaml`;
+}
+
+/**
+ * The pack's mark scheme in a local folder: the file `pack.json` names
+ * (`markscheme`), or else `(QBT) [MS] <Title>.yaml`. Null when there is none.
+ * @param {string} dir
+ * @param {string} topicName
+ * @param {{ markscheme?: string } | null} manifest
+ * @returns {string | null}
+ */
+export function findSchemeFile(dir, topicName, manifest) {
+  if (manifest?.markscheme) {
+    const path = join(dir, manifest.markscheme);
+    if (!existsSync(path)) {
+      throw new Error(`${manifest.markscheme} is listed in ${PACK_MANIFEST} but missing from the pack folder ${basename(dir)}`);
+    }
+    return path;
+  }
+  const path = join(dir, schemeFileName(topicName));
+  return existsSync(path) ? path : null;
 }
 
 /**
@@ -603,6 +646,46 @@ export function preparePackPair(raw, { qbtRel, solnRel, identity, initialDate = 
   return { qbt, soln: sync.newSolnText, synced: sync.changes.map((c) => c.n) };
 }
 
+/**
+ * The pack's mark scheme, checked against the two documents as they are
+ * placed on the site (`preparePackPair`), and its rendered `.tex`. Throws,
+ * listing every problem, unless the scheme is one the guard would let be
+ * committed: its `pack` is the pack's header title, every question has a
+ * stamp that matches its statement and solution as placed, and it passes
+ * rules 1-24, so it holds no flag and no query.
+ *
+ * @param {string} yaml - the scheme as read
+ * @param {{ qbt: string; soln: string }} prepared - the placed documents
+ * @returns {{ yaml: string; tex: string }}
+ */
+export function prepareScheme(yaml, prepared) {
+  const pack = packModel(prepared.qbt, prepared.soln);
+  const parsed = parseYaml(yaml);
+  if (parsed.errors.length > 0) {
+    throw new Error(`it does not parse: ${parsed.errors[0].message}`);
+  }
+  const scheme = parsed.value;
+  const problems = [];
+  if (scheme?.pack !== undefined && scheme.pack !== pack.title) {
+    problems.push(`its pack is ${JSON.stringify(scheme.pack)}, but the pack's title is ${JSON.stringify(pack.title)}`);
+  }
+  const questions = Array.isArray(scheme?.questions) ? scheme.questions : [];
+  const unstamped = questions.filter((q) => q && typeof q === 'object' && q.stamp === undefined).map((q) => `Q${q.q}`);
+  if (unstamped.length > 0) problems.push(`${unstamped.join(', ')} ${unstamped.length > 1 ? 'have' : 'has'} no stamp`);
+  for (const stale of staleQuestions(scheme, pack)) {
+    if (stale.stamp === undefined) continue;
+    problems.push(`Q${stale.q}'s stamp ${stale.stamp} does not match its statement and solution (${stale.now}): look at its scheme, then stamp it`);
+  }
+  const result = checkScheme(yaml, pack);
+  for (const p of result.errors) {
+    if (p.rule === 2) continue;
+    if (p.rule === 1 && /`stamp`/.test(p.message) && unstamped.length > 0) continue;
+    problems.push(`${p.where === 'file' ? '' : `${p.where}: `}[rule ${p.rule}] ${p.message}`);
+  }
+  if (problems.length > 0) throw new Error(problems.join('\n  '));
+  return { yaml, tex: renderScheme(result.scheme, pack) };
+}
+
 /** Warn when a document inputs a bundled `preamble.tex` that isn't beside it. */
 function warnMissingBundledPreamble(srcPath, raw) {
   if (usesOverleafPackInput(raw) && !existsSync(join(dirname(srcPath), 'preamble.tex'))) {
@@ -861,6 +944,7 @@ const OPTIONS = {
   title: { type: 'string' },
   boards: { type: 'string' },
   id: { type: 'string' },
+  'no-markscheme': { type: 'boolean', default: false },
   yes: { type: 'boolean', default: false },
 };
 
@@ -982,6 +1066,16 @@ export async function runImport(argv, deps = {}) {
       throw new ImportError(`could not find both questions and solutions .tex files in ${basename(dir)}`);
     }
 
+    // With --no-markscheme a scheme in the folder is only named, as left out.
+    const withoutScheme = opts['no-markscheme'];
+    let schemeFound = null;
+    try {
+      schemeFound = findSchemeFile(dir, title, manifest);
+    } catch (e) {
+      if (!withoutScheme) throw new ImportError(e.message);
+    }
+    const schemePath = withoutScheme ? null : schemeFound;
+
     // --- Where it goes ---------------------------------------------------
     const strands = loadStrands(paths.topics, paths.resources);
     const entries = loadResourcesEntries(paths.resources);
@@ -1047,7 +1141,7 @@ export async function runImport(argv, deps = {}) {
     }
     const idProblem = resourceIdProblem(id);
     if (idProblem) throw new ImportError(idProblem);
-    for (const taken of [id, solutionsId(id)]) {
+    for (const taken of [id, solutionsId(id), markSchemeId(solutionsId(id))]) {
       const row = entries.find((e) => e.id === taken);
       if (row) throw new ImportError(`the id '${taken}' is already in resources.ts (${row.file})`);
     }
@@ -1056,7 +1150,10 @@ export async function runImport(argv, deps = {}) {
     const sanitized = sanitizeTopic(title);
     const qbtTexDest = join(sectionDir, 'qbt', `_QBT__${sanitized}.tex`);
     const solnTexDest = join(sectionDir, 'soln', `_QBT___Solns__${sanitized}.tex`);
-    for (const dest of [qbtTexDest, solnTexDest]) {
+    const schemeDest = join(sectionDir, 'ms', `_QBT___MS__${sanitized}.yaml`);
+    const schemeTexDest = schemeDest.replace(/\.yaml$/, '.tex');
+    const schemeFiles = [schemeDest, schemeTexDest, schemeTexDest.replace(/\.tex$/, '.pdf')];
+    for (const dest of [qbtTexDest, solnTexDest, ...(schemePath ? schemeFiles : [])]) {
       if (existsSync(dest)) {
         throw new ImportError(`${relTo(root, dest)} already exists: this pack is on the site, so edit it there`);
       }
@@ -1088,17 +1185,37 @@ export async function runImport(argv, deps = {}) {
     warnMissingBundledPreamble(pair.qbtPath, qbtRaw);
     warnMissingBundledPreamble(pair.solnPath, solnRaw);
 
+    let scheme = null;
+    if (schemePath) {
+      try {
+        scheme = prepareScheme(readFileSync(schemePath, 'utf8'), prepared);
+      } catch (e) {
+        throw new ImportError(`the mark scheme ${basename(schemePath)} can't be imported:\n  ${e.message}`);
+      }
+    }
+
     const qbtFile = `/tex/${fullSitePath}/qbt/_QBT__${sanitized}.pdf`;
     const solnFile = `/tex/${fullSitePath}/soln/_QBT___Solns__${sanitized}.pdf`;
     const pack = { id, title, category: strand.category, topic, qbtFile, solnFile, boards };
+    if (scheme) pack.msFile = markSchemeFile(qbtFile);
 
     console.log('\nImport:');
     console.log(`  title:    ${title}`);
     console.log(`  section:  ${strand.title} / ${sectionTitle} (${sitePath})`);
     console.log(`  boards:   ${boards ? boards.join(', ') : 'all'}`);
-    console.log(`  ids:      ${id}, ${solutionsId(id)}`);
+    console.log(`  ids:      ${[id, solutionsId(id), ...(scheme ? [markSchemeId(solutionsId(id))] : [])].join(', ')}`);
     console.log(`  files:    ${relTo(root, qbtTexDest)}`);
     console.log(`            ${relTo(root, solnTexDest)}`);
+    if (scheme) {
+      console.log(`            ${relTo(root, schemeDest)}`);
+      console.log(`            ${relTo(root, schemeTexDest)}`);
+    } else if (withoutScheme) {
+      console.log(
+        `  scheme:   left out (--no-markscheme)${schemeFound ? `: ${basename(schemeFound)} is not imported` : ''}`,
+      );
+    } else {
+      console.log(`  scheme:   none in ${basename(dir)}`);
+    }
     console.log(`  rows go:  ${ctx.siblingId ? `after ${ctx.siblingId}` : `at the end of the ${strand.title} rows, as the section's first pack`}`);
     if (prepared.synced.length > 0) {
       console.log(
@@ -1120,6 +1237,8 @@ export async function runImport(argv, deps = {}) {
       prepared,
       qbtTexDest,
       solnTexDest,
+      scheme: scheme && { ...scheme, dest: schemeDest, texDest: schemeTexDest },
+      schemeLeftOut: withoutScheme,
       pack,
       insertion: ctx.siblingId
         ? { afterId: ctx.siblingId }
@@ -1135,9 +1254,10 @@ export async function runImport(argv, deps = {}) {
 }
 
 /**
- * Write the documents, PDFs, rows and generated files. On any failure, or a
- * SIGINT or SIGTERM, put back everything written. A journal records each
- * write before it happens, so a run killed outright is put back by the next.
+ * Write the documents, the mark scheme (its YAML and rendered `.tex`), PDFs,
+ * rows and generated files. On any failure, or a SIGINT or SIGTERM, put back
+ * everything written. A journal records each write before it happens, so a
+ * run killed outright is put back by the next.
  */
 async function place({
   paths,
@@ -1146,6 +1266,8 @@ async function place({
   prepared,
   qbtTexDest,
   solnTexDest,
+  scheme,
+  schemeLeftOut,
   pack,
   insertion,
   compile,
@@ -1161,7 +1283,7 @@ async function place({
   const journal = {
     files: [],
     dirs: [],
-    builds: [rel(qbtTexDest), rel(solnTexDest)],
+    builds: [qbtTexDest, solnTexDest, ...(scheme ? [scheme.texDest] : [])].map(rel),
     resources: { path: rel(paths.resources), before: resourcesBefore, wrote: null },
     regenerating: false,
   };
@@ -1188,21 +1310,26 @@ async function place({
   try {
     try {
       record();
-      for (const d of [dirname(qbtTexDest), dirname(solnTexDest)]) {
+      const writes = [
+        [prepared.qbt, qbtTexDest],
+        [prepared.soln, solnTexDest],
+        ...(scheme ? [[scheme.yaml, scheme.dest], [scheme.tex, scheme.texDest]] : []),
+      ];
+      for (const d of new Set(writes.map(([, dest]) => dirname(dest)))) {
         if (!existsSync(d)) {
           journal.dirs.push(rel(d));
           record();
           mkdirSync(d, { recursive: true });
         }
       }
-      for (const [text, dest] of [[prepared.qbt, qbtTexDest], [prepared.soln, solnTexDest]]) {
+      for (const [text, dest] of writes) {
         journal.files.push(rel(dest));
         record();
         writeFileSync(dest, text, 'utf8');
       }
       await checkStopped();
 
-      for (const tex of [qbtTexDest, solnTexDest]) {
+      for (const tex of [qbtTexDest, solnTexDest, ...(scheme ? [scheme.texDest] : [])]) {
         process.stdout.write(`Compiling ${basename(tex, '.tex')}... `);
         const result = compile(tex);
         await checkStopped();
@@ -1275,11 +1402,16 @@ async function place({
   }
 
   console.log('\nImported:');
-  for (const f of [qbtTexDest, qbtTexDest.replace(/\.tex$/, '.pdf'), solnTexDest, solnTexDest.replace(/\.tex$/, '.pdf')]) {
+  const pdf = (tex) => tex.replace(/\.tex$/, '.pdf');
+  const placed = [qbtTexDest, pdf(qbtTexDest), solnTexDest, pdf(solnTexDest)];
+  if (scheme) placed.push(scheme.dest, scheme.texDest, pdf(scheme.texDest));
+  for (const f of placed) {
     if (existsSync(f)) console.log(`  ${rel(f)}`);
   }
-  console.log(`  src/data/resources.ts: ${pack.id}, ${solutionsId(pack.id)}`);
+  const ids = [pack.id, solutionsId(pack.id), ...(scheme ? [markSchemeId(solutionsId(pack.id))] : [])];
+  console.log(`  src/data/resources.ts: ${ids.join(', ')}`);
   console.log('  src/data/*.generated.ts regenerated');
+  if (schemeLeftOut) console.log('The mark scheme was left out (--no-markscheme): the pack has its questions and solutions only.');
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

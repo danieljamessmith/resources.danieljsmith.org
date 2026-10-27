@@ -129,6 +129,8 @@ the optional `djsSolutionFigure` environment, and the legacy colored-cancel
   and topic are the pack's; its description is `'Mark scheme'`; its file is
   `<section>/ms/_QBT___MS__<stem>.pdf`; it has no `pairId` or `boards` (the
   questions row's boards apply). A pack without one keeps its two rows.
+  `import-pack` writes the row with the pack's other two when it imports
+  the pack with its scheme.
   `getPaperFamily` finds all three from any one of them, the strand page and
   the viewer list Questions | Mark scheme | Solutions, side by side pairs the
   scheme with its questions, and the download is named `<Title> - Mark
@@ -452,11 +454,18 @@ CI never runs `latexmk`, so whatever `.pdf` is committed is what ships to GitHub
 ### Importing a pack
 
 `npm run import-pack` adds a pack to the site from a local folder holding its
-questions and solutions documents (named by `pack.json` when there is one).
-It places them under `public/tex/further-maths/<strand>/<section>/`, sets the
-header title and `\djsSitePath`, strips comments, compiles both PDFs, writes
-the pack's two rows into `src/data/resources.ts` after the section's last
-pack (and its mark scheme row, if it has one), and regenerates the generated data files. With `--yes` it asks
+questions and solutions documents and its mark scheme's YAML (named by
+`pack.json` when there is one; the scheme otherwise by `(QBT) [MS]
+<Title>.yaml`). It places them under
+`public/tex/further-maths/<strand>/<section>/`, sets the header title and
+`\djsSitePath`, strips comments, checks the scheme against the documents as
+placed (no flag, no query, every stamp present and current) and renders it,
+compiles the three PDFs, writes the pack's three rows into
+`src/data/resources.ts` after the section's last pack (and its mark scheme
+row, if it has one), and regenerates the generated data files. It refuses a
+`--title` that disagrees with the scheme's `pack`. A folder with no scheme
+imports the two documents and their two rows alone, and `--no-markscheme`
+does the same for a folder that has one, saying the scheme was left out. With `--yes` it asks
 nothing, and `--folder`, `--site-path`, `--title`, `--boards` and `--id` must
 all be given, with `--section` for a section folder that holds no pack yet.
 The section must already exist in `src/data/topics.ts`. Packs are

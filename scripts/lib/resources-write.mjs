@@ -1,5 +1,6 @@
 /**
- * Write a Further Maths pack's two rows into `src/data/resources.ts`.
+ * Write a Further Maths pack's rows into `src/data/resources.ts`: its
+ * questions and solutions, and its mark scheme when it has one.
  *
  * The file is hand-written and the scripts read it with regexes
  * (`resources-derive.mjs`), so new rows are spliced in as text, in exactly the
@@ -9,6 +10,7 @@
 
 import {
   findRawResources,
+  markSchemeId,
   maskStringsAndComments,
   normalizeCategoryToken,
   parseResourcesEntries,
@@ -28,6 +30,9 @@ export const CATEGORY_CONSTANTS = new Map([
  * @property {string} topic      - the site section (`Resource.topic`)
  * @property {string} qbtFile    - `/tex/...` path of the questions PDF
  * @property {string} solnFile   - `/tex/...` path of the solutions PDF
+ * @property {string} [msFile]   - `/tex/...` path of the mark scheme PDF, for a
+ *   pack imported with its mark scheme; its row's id is the solutions id
+ *   with `-ms` for `-solns` (`markSchemeId`)
  * @property {string[] | null} boards - exam board ids; null for all boards
  */
 
@@ -49,8 +54,10 @@ export function tsTitle(value) {
 }
 
 /**
- * The questions and solutions rows, one field per line. `boards` goes on the
- * questions row only, and is left out for all boards.
+ * The questions and solutions rows, one field per line, then the mark scheme
+ * row when the pack has one (`msFile`). `boards` goes on the questions row
+ * only, and is left out for all boards. The mark scheme names its pack by
+ * `paperId`, with no `pairId` or `boards`.
  *
  * @param {PackRows} pack
  * @param {string} [indent] - indentation of each row's braces
@@ -85,6 +92,18 @@ export function renderPackRows(pack, indent = '  ', eol = '\n') {
       `pairId: ${q(pack.id)}`,
       `topic: ${q(pack.topic)}`,
     ]),
+    ...(pack.msFile
+      ? row([
+          `id: ${q(markSchemeId(solns))}`,
+          `title: ${tsTitle(pack.title)}`,
+          `description: 'Mark scheme'`,
+          `file: ${q(pack.msFile)}`,
+          `category: ${constant}`,
+          `type: 'markscheme'`,
+          `paperId: ${q(pack.id)}`,
+          `topic: ${q(pack.topic)}`,
+        ])
+      : []),
   ].join(eol);
 }
 
@@ -133,7 +152,7 @@ function detectEol(text) {
 }
 
 /**
- * `source` with the pack's two rows added.
+ * `source` with the pack's rows added.
  *
  * - With `afterId` (the section's last pack row), the rows go straight after
  *   that row.
@@ -184,8 +203,8 @@ export function insertPackRows(source, pack, { afterId, sectionComment }) {
 
 /**
  * What is wrong with the pack's rows in `source`, read back with the parser
- * the other scripts use: an empty list when both rows are there with the
- * expected fields. Given `before`, the text the rows were added to, every
+ * the other scripts use: an empty list when every row (the mark scheme's too,
+ * with `msFile`) is there with the expected fields. Given `before`, the text the rows were added to, every
  * other row must also read back as it did, so an insertion can't swallow a
  * neighbouring row.
  *
@@ -197,11 +216,14 @@ export function insertPackRows(source, pack, { afterId, sectionComment }) {
 export function verifyPackRows(source, pack, before) {
   const entries = parseResourcesEntries(source);
   const solns = solutionsId(pack.id);
-  const problems = before === undefined ? [] : otherRowProblems(before, entries, [pack.id, solns]);
   const expected = [
     { id: pack.id, file: pack.qbtFile, type: 'questions', pairId: solns, boards: pack.boards ?? undefined },
     { id: solns, file: pack.solnFile, type: 'solutions', pairId: pack.id, boards: undefined },
+    ...(pack.msFile
+      ? [{ id: markSchemeId(solns), description: 'Mark scheme', file: pack.msFile, type: 'markscheme', paperId: pack.id, boards: undefined }]
+      : []),
   ];
+  const problems = before === undefined ? [] : otherRowProblems(before, entries, expected.map((w) => w.id));
   for (const want of expected) {
     const found = entries.filter((e) => e.id === want.id);
     if (found.length !== 1) {
@@ -215,8 +237,10 @@ export function verifyPackRows(source, pack, before) {
       category: [got.category, pack.category],
       type: [got.type, want.type],
       pairId: [got.pairId, want.pairId],
+      paperId: [got.paperId, want.paperId],
       topic: [got.topic, pack.topic],
       boards: [JSON.stringify(got.boards), JSON.stringify(want.boards)],
+      ...(want.description !== undefined ? { description: [got.description, want.description] } : {}),
     };
     for (const [name, [have, wanted]] of Object.entries(fields)) {
       if (have !== wanted) {

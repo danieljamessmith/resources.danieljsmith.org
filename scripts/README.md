@@ -40,7 +40,10 @@ folder holds the questions and solutions documents: those `pack.json` names
 (`format: 1`, with `topic`, `questions` and `solutions`), or else the two found
 by file name (`(QBT) <Title>.tex` and `(QBT) [Solns] <Title>.tex`, falling back
 to the only document with `\begin{document}`; `SKIP_TEX_FILES` lists scratch
-files never taken for a pack document). Other files in the folder are ignored.
+files never taken for a pack document). It also holds the pack's mark scheme,
+its YAML (see Mark schemes): the file `pack.json` names in `markscheme`, or
+else `(QBT) [MS] <Title>.yaml`. A folder with no scheme imports the two
+documents and their two rows alone. Other files in the folder are ignored.
 
 | Flag | Value |
 |------|-------|
@@ -49,7 +52,8 @@ files never taken for a pack document). Other files in the folder are ignored.
 | `--section NAME` | The site section, by its `topic` or its heading in `topics.ts`. Needed only for a section folder that holds no pack yet; otherwise the section comes from the packs filed there, and a `--section` that disagrees is refused. Folder names need not match section names |
 | `--title TITLE` | The pack title: the header topic, the rows' `title` and the file names (`sanitizeTopic`) |
 | `--boards IDS\|all` | Board ids separated by commas or spaces, each from the strand's own list (`EXAM_BOARDS` for Core Pure, `FM_MECH_EXAM_BOARDS` for Further Mechanics), or `all`, which leaves `boards` out of the row |
-| `--id ID` | The questions row's id, lowercase kebab-case; the solutions row's is `<ID>-solns`. The default offered takes its prefix from the section's questions rows |
+| `--id ID` | The questions row's id, lowercase kebab-case; the solutions row's is `<ID>-solns` and the mark scheme's `<ID>-ms`. The default offered takes its prefix from the section's questions rows |
+| `--no-markscheme` | Import the questions and solutions alone, with their two rows. A scheme in the folder is named as left out, and the run ends by saying the scheme was left out |
 | `--yes` | Ask nothing: `--folder`, `--site-path`, `--title`, `--boards` and `--id` must all be given, with `--section` for a section folder with no pack yet, and a failed compile is an error |
 
 Without `--yes`, anything not given is asked, and the section folder is picked
@@ -59,9 +63,11 @@ without `--yes` and without a terminal fails rather than waiting.
 What it does, in order:
 
 1. Refuses a pack it can't import: an id or file already on the site (a pack
-   on the site is edited there), a document using `\includegraphics` (packs
-   are TikZ-only), or `\djsMechanicsPack` in a Further Mechanics pack's
-   preambles missing, or present in any other pack.
+   on the site is edited there; the mark scheme's id and `ms/` files
+   included), a document using `\includegraphics` (packs are TikZ-only),
+   `\djsMechanicsPack` in a Further Mechanics pack's preambles missing, or
+   present in any other pack, or a scheme `pack.json` names that the folder
+   lacks.
 2. Prepares both documents (`prepareImportedTex`): the shared-preamble wrapper
    (`\input{preamble.tex}` and old inline preambles are rewritten), the header
    title and `\djsSitePath`, `\djsMechanicsPack` kept, an existing
@@ -69,11 +75,22 @@ What it does, in order:
    full-line comment removed except the question delimiters and source hints,
    preamble included. A test pins that last point on `prepareImportedTex`
    itself, not as a side effect of `clean-tex`.
-3. Writes them to `<section>/qbt/_QBT__<Title>.tex` and
-   `<section>/soln/_QBT___Solns__<Title>.tex`, compiles each with the editor's
-   latexmk arguments into its `build/` folder and copies the PDF up. A failed
-   compile prints the LaTeX errors from the log.
-4. Writes the two rows into `src/data/resources.ts`
+3. Checks the mark scheme against the two documents as step 2 prepared them,
+   not as they are in the folder (`prepareScheme`), since preparing them can
+   change a statement's text and so its stamp. It refuses the scheme, listing
+   every problem, unless the guard would let it be committed: its `pack` is
+   the pack's header title as written (`\&` included), so a `--title` that
+   disagrees with it is refused, every question has a
+   stamp and each matches its statement and solution, and it passes rules
+   1-24, so it holds no flag and no query. Then it renders the scheme's
+   `.tex`, as `render` does.
+4. Writes the documents to `<section>/qbt/_QBT__<Title>.tex` and
+   `<section>/soln/_QBT___Solns__<Title>.tex`, and the scheme's YAML, as it
+   is in the folder, and its rendered `.tex` to
+   `<section>/ms/_QBT___MS__<Title>.yaml` and `.tex`. It compiles each `.tex`
+   with the editor's latexmk arguments into its `build/` folder and copies
+   the PDF up. A failed compile prints the LaTeX errors from the log.
+5. Writes the rows into `src/data/resources.ts`
    (`scripts/lib/resources-write.mjs`) after the section's last pack (after
    that pack's mark scheme row when it has one, so a pack's rows stay
    together), or, for a
@@ -81,9 +98,13 @@ What it does, in order:
    `// --- A-level Further Maths: <strand> - <section> ---` line. The rows take
    the existing shape: `id` first; `id`, `file`, `type`, `pairId` and `topic`
    single-quoted; `category` as the constant; `title` double-quoted when it
-   holds an apostrophe; `boards` on the questions row only. The file is parsed
-   again, and the import fails unless both rows read back with those fields.
-5. Runs `count-questions` and `hash-assets`, so the generated files are
+   holds an apostrophe; `boards` on the questions row only. With a scheme, its
+   row follows the solutions row, as AGENTS.md's Mark scheme rows describe:
+   `type: 'markscheme'`, `paperId` naming the questions row, the solutions id
+   with `-ms` for `-solns`, description `'Mark scheme'`, no `pairId` or
+   `boards`. The file is parsed again, and the import fails unless every row
+   reads back with those fields.
+6. Runs `count-questions` and `hash-assets`, so the generated files are
    current. The other checks are not run, and can still fail on what was
    imported (an extra `\usepackage`, a solution layout slip): run them, or
    `npm run build`, before committing.
@@ -102,9 +123,9 @@ folder, so a section with no pack yet has no folder in a fresh clone; make
 first import, and give `--section`.
 
 If any step after the first write fails, or the run gets SIGINT or SIGTERM
-(Ctrl+C), everything written is put back: the documents, the PDFs and their
-`build/` output, and the bytes `resources.ts` and the generated files had
-before. Each rollback step runs on its own, and the failure that stopped the
+(Ctrl+C), everything written is put back: the documents, the scheme's YAML
+and `.tex`, the PDFs and their `build/` output, an `ms/` folder the import
+made, and the bytes `resources.ts` and the generated files had before. Each rollback step runs on its own, and the failure that stopped the
 import is reported first. Before each write the importer records it in a
 journal in the checkout's git folder (`.git/import-pack-journal.json`), so a
 run killed outright is put back by the next run before it starts. That puts
@@ -307,7 +328,7 @@ rules 1-24 and stale stamps on the working tree.
 
 | Path | Purpose |
 |------|---------|
-| `scripts/import-pack.mjs` | Pack import from a local folder: checks, document preparation, compile, `resources.ts` rows, generators; flags for unattended runs |
+| `scripts/import-pack.mjs` | Pack import from a local folder: checks, document preparation, the mark scheme's check and render, compile, `resources.ts` rows, generators; flags for unattended runs |
 | `scripts/compile-tex.mjs` | Bulk `latexmk` over `further-maths` or `all` (never TMUA); `--deploy` promotes built PDFs beside source |
 | `scripts/check-tex.mjs` | Read-only body-comment hygiene check |
 | `scripts/check-solution-layout.mjs` | Read-only *Solution source layout* check over Further Maths soln packs |
@@ -341,7 +362,7 @@ rules 1-24 and stale stamps on the working tree.
 | `scripts/lib/solution-layout.mjs` | Pure display/paragraph tokenizer and layout rules behind `check-solution-layout` |
 | `scripts/lib/site-tree.mjs` | Interactive section-folder picker for `import-pack` |
 | `scripts/lib/resources-derive.mjs` | Regex-based introspection of `src/data/resources.ts` (rows, every `id:` key, board lists) and `src/data/topics.ts` (strands, their folders, sections and boards) for the importer and validation; a pack's mark scheme id and file (`markSchemeId`, `markSchemeFile`) |
-| `scripts/lib/resources-write.mjs` | Renders a pack's two rows, splices them into `resources.ts` as text and reads them back |
+| `scripts/lib/resources-write.mjs` | Renders a pack's rows (its mark scheme's too, when it has one), splices them into `resources.ts` as text and reads them back |
 | `scripts/lib/resources-check.mjs` | Pure resource catalogue invariant checker |
 
 ## Script conventions

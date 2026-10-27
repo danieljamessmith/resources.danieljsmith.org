@@ -140,6 +140,23 @@ describe('renderPackRows', () => {
     expect(tsTitle('Matrix Determinants & Inverses')).toBe("'Matrix Determinants & Inverses'");
   });
 
+  it('adds the mark scheme row after the solutions row, naming its pack by paperId', () => {
+    const msFile = '/tex/further-maths/core-pure/polar-coordinates/ms/_QBT___MS__Polar_B.pdf';
+    const out = renderPackRows(pack({ msFile, boards: ['aqa'] }));
+    expect(out.split('\n').slice(21)).toEqual([
+      '  {',
+      "    id: 'fm-polar-b-ms',",
+      "    title: 'Polar B',",
+      "    description: 'Mark scheme',",
+      `    file: '${msFile}',`,
+      '    category: FM_CP,',
+      "    type: 'markscheme',",
+      "    paperId: 'fm-polar-b',",
+      "    topic: 'Polar Coordinates',",
+      '  },',
+    ]);
+  });
+
   it('refuses a category without a constant', () => {
     expect(() => renderPackRows(pack({ category: 'TMUA' }))).toThrow(/category constant/);
   });
@@ -254,6 +271,26 @@ describe('insertPackRows', () => {
 
   it('refuses an anchor row that is not there', () => {
     expect(() => insertPackRows(CATALOGUE, pack(), { afterId: 'fm-nope' })).toThrow(/fm-nope/);
+  });
+});
+
+describe('insertPackRows with a mark scheme', () => {
+  const msFile = '/tex/further-maths/core-pure/polar-coordinates/ms/_QBT___MS__Polar_B.pdf';
+
+  it('writes the three rows together, and they read back', () => {
+    const p = pack({ msFile });
+    const out = insertPackRows(CATALOGUE, p, { afterId: 'fm-polar-a-solns' });
+    expect(ids(out).slice(1, 6)).toEqual(['fm-polar-a', 'fm-polar-a-solns', 'fm-polar-b', 'fm-polar-b-solns', 'fm-polar-b-ms']);
+    expect(verifyPackRows(out, p, CATALOGUE)).toEqual([]);
+    const row = parseResourcesEntries(out).find((e) => e.id === 'fm-polar-b-ms');
+    expect(row).toMatchObject({ type: 'markscheme', paperId: 'fm-polar-b', file: msFile, description: 'Mark scheme' });
+    expect(row.pairId).toBeUndefined();
+    expect(row.boards).toBeUndefined();
+  });
+
+  it('reports a mark scheme row that is missing', () => {
+    const out = insertPackRows(CATALOGUE, pack(), { afterId: 'fm-polar-a-solns' });
+    expect(verifyPackRows(out, pack({ msFile }))).toEqual(["row 'fm-polar-b-ms' parses 0 times, not once"]);
   });
 });
 
