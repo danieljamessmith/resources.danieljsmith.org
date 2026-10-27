@@ -5,7 +5,7 @@
 \djsSitePath{Further Mechanics}{Centre of Mass}
 \djsMechanicsPack
 
-\djsLastUpdated{15 October 2026}
+\djsLastUpdated{27 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -59,7 +59,7 @@ A uniform plane lamina is in the shape of the pentagon $ABCDE$, as shown shaded 
   \item triangle $ABE$ is isosceles with perpendicular height $2a$
 \end{itemize}
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Show that the distance of the centre of mass of the lamina from $CD$ is $\dfrac{14a}{9}$. \marks{4} \\
+  \item Show that the distance of the centre of mass of the lamina from $CD$ is $\frac{14a}{9}$. \marks{4} \\
 \end{enumerate}
 The mass of the lamina is $M$. \\
 
@@ -76,11 +76,16 @@ The lamina hangs freely in equilibrium, with $DE$ horizontal. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
   \item Split the lamina into rectangle $BCDE$ and triangle $ABE$.
 
-Because the density is constant and the materials are the same, we can use areas as weights.
-
 Let $\bar y$ be the distance of the centre of mass from $CD$.
 
-For rectangle $BCDE$,
+The lamina is uniform, so areas can be used as weights. If piece $i$ has area $\mathcal{A}_i$ and its centre of mass is a distance $y_i$ from $CD$, then
+\[
+\mathcal{A}\bar y=\sum\mathcal{A}_iy_i
+\]
+
+where $\mathcal{A}=\sum\mathcal{A}_i$.
+
+For rectangle $BCDE$:
 \[
 \text{area}=BE\times DE=4a\times 2a=8a^2
 \]
@@ -90,12 +95,12 @@ Its centre of mass is halfway up the rectangle, so its distance from $CD$ is
 a
 \]
 
-For triangle $ABE$,
+For triangle $ABE$:
 \[
 \text{area}=\frac12\times 4a\times 2a=4a^2
 \]
 
-The centre of mass of a triangle is $\frac13$ of the perpendicular height from the base.
+The centre of mass of a uniform triangular lamina is $\frac23$ of the way along a median from the vertex, so it is $\frac13$ of the perpendicular height from the opposite side.
 So its distance above $BE$ is
 \[
 \frac13(2a)=\frac{2a}{3}
@@ -106,7 +111,7 @@ Hence its distance from $CD$ is
 2a+\frac{2a}{3}=\frac{8a}{3}
 \]
 
-Now use moments of area about $CD$:
+Taking moments about $CD$:
 \begin{align*}
 (8a^2+4a^2)\bar y&=8a^2(a)+4a^2\left(\frac{8a}{3}\right)\\
 12a^2\bar y&=8a^3+\frac{32a^3}{3}\\
@@ -193,9 +198,9 @@ The lamina is freely suspended from the point $B$. \\
 
   \item Let \(M\) be the midpoint of \(CD\), so \(AM\) is the line of symmetry.
 
-For rectangle \(BCDE\),
+For rectangle \(BCDE\):
 \[
-\text{area} = 0.8 \times 0.6 = 0.48
+\text{area} = 0.8 \times 0.6 = 0.48\,\mathrm{m^2}
 \]
 
 and its centre is halfway up the rectangle, so it is
@@ -220,27 +225,29 @@ AN &= \sqrt{AB^2-BN^2} \\
 
 So the area of the triangle is
 \[
-\frac12 \times 0.8 \times 0.3 = 0.12
+\frac12 \times 0.8 \times 0.3 = 0.12\,\mathrm{m^2}
 \]
 
-The centre of mass of a triangle is one-third of the height from its base, so the triangle's centre of mass is
+The centre of mass of a uniform triangular lamina is \(\frac23\) of the way along a median from the vertex, so it is \(\frac13\) of the perpendicular height from the opposite side. So the triangle's centre of mass is
 \[
 0.6 + \frac{0.3}{3} = 0.7\,\mathrm{m}
 \]
 
 above \(CD\).
 
-Because the density is constant and the materials are the same, we can use areas as weights:
+Let \(\bar y\) be the distance of \(G\) above \(CD\). The lamina is uniform, so areas can be used as weights. If piece \(i\) has area \(\mathcal{A}_i\) and its centre of mass is a distance \(y_i\) above \(CD\), then
 \[
-A\bar y = A_1y_1 + A_2y_2
+\mathcal{A}\bar y=\sum\mathcal{A}_iy_i
 \]
+
+where \(\mathcal{A}=\sum\mathcal{A}_i\).
 
 So
 \begin{align*}
 (0.48+0.12)\bar y &= 0.48(0.3)+0.12(0.7) \\
 0.6\bar y &= 0.144+0.084 \\
 0.6\bar y &= 0.228 \\
-\bar y &= 0.38
+\bar y &= 0.38\,\mathrm{m}
 \end{align*}
 
 So the perpendicular distance of \(G\) from \(CD\) is \(0.38\,\mathrm{m}\).
@@ -266,14 +273,14 @@ When the lamina is freely suspended from \(B\), the centre of mass \(G\) hangs v
 
 Hence
 \[
-\theta = \tan^{-1}\left(\frac{20}{11}\right) \approx 61.2^\circ
+\theta = \arctan\left(\frac{20}{11}\right) \approx 61.2^\circ
 \]
 
 Since \(G\) is to the left of \(B\), the lamina turns anticlockwise until \(G\) is vertically below \(B\), so \(D\) swings down and \(C\) is higher than \(D\).
 
 So the acute angle that \(CD\) makes with the horizontal is
 \[
-\tan^{-1}\left(\frac{20}{11}\right) \approx 61.2^\circ
+\arctan\left(\frac{20}{11}\right) \approx 61.2^\circ
 \]
 
 with \(C\) higher than \(D\).
@@ -373,17 +380,22 @@ Using the model, \\
 \endgroup
 \]
 
-  Because the density is constant and the material is the same, we can use areas as weights.
+  Let the centre of mass of the letter be \((\bar x,\bar y)\). The lamina is uniform, so areas can be used as weights. If piece \(i\) has area \(\mathcal{A}_i\) and centre of mass \((x_i,y_i)\), then
+  \[
+  \mathcal{A}\bar x=\sum\mathcal{A}_ix_i,\qquad\mathcal{A}\bar y=\sum\mathcal{A}_iy_i
+  \]
+
+  where \(\mathcal{A}=\sum\mathcal{A}_i\).
 
   The total area is
   \[
-  A=5a^2+3a^2+a^2=9a^2
+  \mathcal{A}=5a^2+3a^2+a^2=9a^2
   \]
 
   \begin{enumerate}[label=\textbf{(\roman*)}, start=1]
-    \item If the centre of mass is \((\bar x,\bar y)\), then the distance from \(OS\) is \(\bar x\).
+    \item The distance from \(OS\) is \(\bar x\). Taking moments about \(OS\):
     \begin{align*}
-    A\bar x
+    \mathcal{A}\bar x
     &=5a^2\left(\frac{a}{2}\right)+3a^2\left(\frac{5a}{2}\right)+a^2\left(\frac{3a}{2}\right)\\
     &=\frac{5a^3}{2}+\frac{15a^3}{2}+\frac{3a^3}{2}\\
     &=\frac{23a^3}{2}
@@ -396,9 +408,9 @@ Using the model, \\
 
     Hence the distance of the centre of mass from \(OS\) is \(\frac{23a}{18}\).
 
-    \item The distance from \(OA\) is \(\bar y\).
+    \item The distance from \(OA\) is \(\bar y\). Taking moments about \(OA\):
     \begin{align*}
-    A\bar y
+    \mathcal{A}\bar y
     &=5a^2\left(\frac{5a}{2}\right)+3a^2\left(\frac{9a}{2}\right)+a^2\left(\frac{5a}{2}\right)\\
     &=\frac{25a^3}{2}+\frac{27a^3}{2}+\frac{5a^3}{2}\\
     &=\frac{57a^3}{2}
@@ -416,7 +428,7 @@ Using the model, \\
 
   When the lamina is freely suspended from \(O\), it hangs with \(G\) vertically below \(O\). So the downward vertical is the line \(OG\).
 
-  Therefore \(\alpha\) is the angle between \(OS\) and \(OG\). Using the coordinates of \(G\) found in part (a),
+  Therefore \(\alpha\) is the angle between \(OS\) and \(OG\). Using the coordinates of \(G\) found in part (a):
   \[
   \tan\alpha=\frac{\text{distance of }G\text{ from }OS}{\text{distance of }G\text{ from }OA}
   =\frac{\bar x}{\bar y}
@@ -429,8 +441,6 @@ Using the model, \\
   &=\frac{23a}{18}\times\frac{6}{19a}\\
   &=\frac{23}{57}
   \end{align*}
-
-  So the exact value is \(\tan\alpha=\frac{23}{57}\).
 \end{enumerate}
 \end{djsSolution}
 
@@ -487,7 +497,7 @@ The uniform plane lamina shown in the diagram is formed from the rectangle $OABC
 
 In part (a) you may use, without proof, any of the centre of mass formulae given in the formulae booklet. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Show that the distance of the centre of mass of triangle $ABG$ from $AB$ is $\dfrac{2a}{3}$. \marks{3} \\
+  \item Show that the distance of the centre of mass of triangle $ABG$ from $AB$ is $\frac{2a}{3}$. \marks{3} \\
   \item Find the coordinates of the centre of mass of the lamina. \marks{6} \\
 \end{enumerate}
 The lamina is freely suspended from $F$ and hangs in equilibrium with $FC$ at an angle $\theta^\circ$ to the downward vertical. \\
@@ -501,7 +511,7 @@ The lamina is freely suspended from $F$ and hangs in equilibrium with $FC$ at an
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
   \item Let the centre of mass of triangle $ABG$ be $T$.
 
-For a triangular lamina, the centroid has coordinates equal to the mean of the coordinates of its vertices.
+The centre of mass of a uniform triangular lamina is $\frac23$ of the way along a median from the vertex, so its coordinates are the means of the vertices' coordinates. Hence
 \[
 T=\left(\frac{4a+4a+6a}{3},\frac{0+2a+0}{3}\right)=\left(\frac{14a}{3},\frac{2a}{3}\right)
 \]
@@ -516,7 +526,12 @@ Hence the distance of the centre of mass of triangle $ABG$ from $AB$ is $\frac{2
 
   \item Let the centre of mass of the whole lamina be $(\bar{x},\bar{y})$.
 
-Because the density is constant and the materials are the same, areas can be used as weights.
+The lamina is uniform, so areas can be used as weights. If piece $i$ has area $\mathcal{A}_i$ and centre of mass $(x_i,y_i)$, then
+\[
+\mathcal{A}\bar{x}=\sum\mathcal{A}_ix_i,\qquad\mathcal{A}\bar{y}=\sum\mathcal{A}_iy_i
+\]
+
+where $\mathcal{A}=\sum\mathcal{A}_i$.
 
 For the three parts:
 \[
@@ -537,7 +552,7 @@ So the total area is
 8a^2+4a^2+2a^2=14a^2
 \]
 
-Using $A\bar{x}=A_1x_1+A_2x_2+A_3x_3$,
+Taking moments about the $y$-axis:
 \begin{align*}
 14a^2\bar{x} &= 8a^2(2a)+4a^2(a)+2a^2\left(\frac{14a}{3}\right) \\
 &= 16a^3+4a^3+\frac{28a^3}{3} \\
@@ -549,7 +564,7 @@ Hence
 \bar{x}=\frac{88a^3/3}{14a^2}=\frac{44a}{21}
 \]
 
-Using $A\bar{y}=A_1y_1+A_2y_2+A_3y_3$,
+Taking moments about the $x$-axis:
 \begin{align*}
 14a^2\bar{y} &= 8a^2(a)+4a^2(3a)+2a^2\left(\frac{2a}{3}\right) \\
 &= 8a^3+12a^3+\frac{4a^3}{3} \\
@@ -584,7 +599,7 @@ Hence
 The line $FC$ is vertical in the lamina, so after turning through angle $\theta$, it makes angle $\theta$ with the downward vertical.
 Therefore $\theta$ is the angle between $FC$ and $FM$.
 
-Using the horizontal and vertical components of $FM$,
+Using the horizontal and vertical components of $FM$:
 \[
 \tan\theta=\frac{44a/21}{52a/21}=\frac{11}{13}
 \]
@@ -593,8 +608,6 @@ So
 \[
 \theta=\arctan\left(\frac{11}{13}\right)\approx 40.2
 \]
-
-Hence the value of $\theta$ is $\arctan\left(\frac{11}{13}\right)$, which is approximately $40.2$.
 \end{enumerate}
 \end{djsSolution}
 
@@ -692,18 +705,20 @@ Given that $x=2$ and that $\theta$ is the angle that $PQ$ makes with the horizon
 
 Since the template is symmetrical about the line through $O$ perpendicular to $SR$, the point $G$ lies on this line.
 
-Take distances from $SR$, positive downwards.
+Take distances from $SR$, positive downwards, and let $\bar y$ be the distance of $G$ from $SR$.
 
-Because the density is constant and the materials are the same, we can use areas as weights in
+The lamina is uniform, so areas can be used as weights. If piece $i$ has area $A_i$ and its centre of mass is a distance $y_i$ from $SR$, then
 \[
-A\bar y=A_1y_1+A_2y_2+A_3y_3
+A\bar y=\sum A_iy_i
 \]
+
+where $A=\sum A_i$.
 
 For the three rectangles:
 \begin{align*}
-\text{upper rectangle: }&A_1=12\times 2=24, &&y_1=-1 \\
-\text{middle rectangle: }&A_2=4\times 2x=8x, &&y_2=x \\
-\text{lower rectangle: }&A_3=8\times 2=16, &&y_3=2x+1
+\text{upper rectangle: }&A_1=12\times 2=24\,\mathrm{cm^2}, &&y_1=-1\,\mathrm{cm} \\
+\text{middle rectangle: }&A_2=4\times 2x=8x\,\mathrm{cm^2}, &&y_2=x\,\mathrm{cm} \\
+\text{lower rectangle: }&A_3=8\times 2=16\,\mathrm{cm^2}, &&y_3=(2x+1)\,\mathrm{cm}
 \end{align*}
 
 So
@@ -714,7 +729,7 @@ So
 &=8(x^2+4x-1)
 \end{align*}
 
-Also,
+Also
 \[
 24+8x+16=8x+40=8(x+5)
 \]
@@ -733,12 +748,12 @@ Therefore the centre of mass is
 
 below $SR$.
 
-  \item From part (a), when $x=2$,
+  \item From part (a), when $x=2$:
 \[
 OG=\frac{2^2+4(2)-1}{2+5}=\frac{11}{7}\,\mathrm{cm}
 \]
 
-So $G$ is $\frac{11}{7}$ cm below $SR$ on the line of symmetry through $O$.
+So $G$ is $\frac{11}{7}\,\mathrm{cm}$ below $SR$ on the line of symmetry through $O$.
 
 The horizontal distance from $P$ to this line is half of $PQ$, so
 \[
@@ -826,7 +841,14 @@ The lamina is placed vertically on its edge $AE$ on a horizontal plane. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
   \item Let the centre of mass of the remaining lamina be \((\bar x,\bar y)\), where \(\bar x\) is the distance from \(AD\) and \(\bar y\) is the distance from \(AB\).
 
-Because the density is constant and the materials are the same, areas can be used as weights.
+The lamina is uniform, so areas can be used as weights. If piece \(i\) has area \(\mathcal{A}_i\) and its centre of mass is a distance \(x_i\) from \(AD\) and \(y_i\) from \(AB\), then
+\[
+\mathcal{A}\bar x=\sum\mathcal{A}_ix_i,\qquad\mathcal{A}\bar y=\sum\mathcal{A}_iy_i
+\]
+
+where \(\mathcal{A}=\sum\mathcal{A}_i\), with the area of a removed piece counted as negative.
+
+For the two squares:
 \[
 \text{area of }ABCD=4a^2, \qquad \text{centre }(a,a)
 \]
@@ -839,7 +861,7 @@ So the area of the remaining lamina is
 4a^2-h^2
 \]
 
-For the distance from \(AD\), use areas as weights:
+Taking moments about \(AD\):
 \[
 (4a^2-h^2)\bar x=4a^2(a)-h^2\left(2a-\frac h2\right)
 \]
@@ -849,7 +871,7 @@ For the distance from \(AD\), use areas as weights:
 &=a-\frac{h^2}{2(2a+h)}
 \end{align*}
 
-For the distance from \(AB\):
+Taking moments about \(AB\):
 \[
 (4a^2-h^2)\bar y=4a^2(a)-h^2\left(\frac h2\right)
 \]
@@ -959,7 +981,7 @@ A uniform lamina is formed from the right-angled triangle $ABC$ by removing the 
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Taking $A$ as the origin, with $AC$ as the $x$-axis and $AB$ as the $y$-axis, find the coordinates of the centre of mass of the remaining lamina $DBCE$ in terms of $a$ and $k$. \marks{6} \\
 \end{enumerate}
-When the lamina $DBCE$ is freely suspended from $C$, the edge $CE$ makes an angle $\theta$ with the downward vertical, where $\tan\theta=\dfrac{21}{52}$. \\
+When the lamina $DBCE$ is freely suspended from $C$, the edge $CE$ makes an angle $\theta$ with the downward vertical, where $\tan\theta=\frac{21}{52}$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item Find the value of $k$. \marks{3} \\
 \end{enumerate}
@@ -1000,11 +1022,11 @@ and therefore
 E=\left(\frac{4a}{k},0\right)
 \]
 
-For a uniform triangular lamina, the centre of mass is at the centroid, so it is the average of the vertex coordinates.
+The centre of mass of a uniform triangular lamina is \(\frac23\) of the way along a median from the vertex, so its coordinates are the means of the vertices' coordinates.
 
 For \(\triangle ABC\):
 \[
-A_1=\frac12(3a)(4a)=6a^2
+\mathcal{A}_1=\frac12(3a)(4a)=6a^2
 \]
 
 and its centre of mass is
@@ -1014,7 +1036,7 @@ and its centre of mass is
 
 For \(\triangle ADE\):
 \[
-A_2=\frac12\left(\frac{3a}{k}\right)\left(\frac{4a}{k}\right)=\frac{6a^2}{k^2}
+\mathcal{A}_2=\frac12\left(\frac{3a}{k}\right)\left(\frac{4a}{k}\right)=\frac{6a^2}{k^2}
 \]
 
 and its centre of mass is
@@ -1022,38 +1044,43 @@ and its centre of mass is
 \left(\frac{0+0+\frac{4a}{k}}{3},\frac{0+\frac{3a}{k}+0}{3}\right)=\left(\frac{4a}{3k},\frac{a}{k}\right)
 \]
 
-Because the density is constant and the material is the same,
+The lamina is uniform, so areas can be used as weights. If piece \(i\) has area \(\mathcal{A}_i\) and centre of mass \((x_i,y_i)\), then
 \[
-A_R\bar x=A_1x_1-A_2x_2,
-\qquad
-A_R\bar y=A_1y_1-A_2y_2
+\mathcal{A}\bar x=\sum\mathcal{A}_ix_i,\qquad\mathcal{A}\bar y=\sum\mathcal{A}_iy_i
 \]
 
-where \(A_R\) is the area of the remaining lamina.
+where \(\mathcal{A}=\sum\mathcal{A}_i\), with the area of a removed piece counted as negative.
 
-Now
+For the two triangles this gives
 \[
-A_R=6a^2-\frac{6a^2}{k^2}=6a^2\left(1-\frac{1}{k^2}\right)
+\mathcal{A}\bar x=\mathcal{A}_1x_1-\mathcal{A}_2x_2,
+\qquad
+\mathcal{A}\bar y=\mathcal{A}_1y_1-\mathcal{A}_2y_2
+\]
+
+The area of the remaining lamina is
+\[
+\mathcal{A}=6a^2-\frac{6a^2}{k^2}=6a^2\left(1-\frac{1}{k^2}\right)
 \]
 
 So
 \begin{align*}
 \bar x
-&=\frac{6a^2\cdot \frac{4a}{3}-\frac{6a^2}{k^2}\cdot \frac{4a}{3k}}
+&=\frac{6a^2\left(\frac{4a}{3}\right)-\frac{6a^2}{k^2}\left(\frac{4a}{3k}\right)}
 {6a^2\left(1-\frac{1}{k^2}\right)} \\
 &=\frac{\frac{4a}{3}\left(1-\frac{1}{k^3}\right)}{1-\frac{1}{k^2}} \\
-&=\frac{4a}{3}\cdot \frac{k^3-1}{k(k^2-1)} \\
-&=\frac{4a}{3}\cdot \frac{(k-1)(k^2+k+1)}{k(k-1)(k+1)} \\
+&=\frac{4a}{3}\times\frac{k^3-1}{k(k^2-1)} \\
+&=\frac{4a}{3}\times\frac{(k-1)(k^2+k+1)}{k(k-1)(k+1)} \\
 &=\frac{4a(k^2+k+1)}{3k(k+1)}
 \end{align*}
 
 and
 \begin{align*}
 \bar y
-&=\frac{6a^2\cdot a-\frac{6a^2}{k^2}\cdot \frac{a}{k}}
+&=\frac{6a^2(a)-\frac{6a^2}{k^2}\left(\frac{a}{k}\right)}
 {6a^2\left(1-\frac{1}{k^2}\right)} \\
 &=\frac{a\left(1-\frac{1}{k^3}\right)}{1-\frac{1}{k^2}} \\
-&=a\cdot \frac{k^3-1}{k(k^2-1)} \\
+&=a\times\frac{k^3-1}{k(k^2-1)} \\
 &=\frac{a(k^2+k+1)}{k(k+1)}
 \end{align*}
 
@@ -1069,7 +1096,7 @@ The angle between \(CE\) and \(CG\) is unchanged when the lamina rotates. In the
 \tan\theta=\frac{\bar y}{4a-\bar x}
 \]
 
-Using the result from part (a),
+Using the result from part (a):
 \begin{align*}
 4a-\bar x
 &=4a-\frac{4a(k^2+k+1)}{3k(k+1)} \\
@@ -1084,7 +1111,7 @@ Hence
 &=\frac{3(k^2+k+1)}{4(2k^2+2k-1)}
 \end{align*}
 
-Given that \(\tan\theta=\frac{21}{52}\),
+Given that \(\tan\theta=\frac{21}{52}\):
 \begin{align*}
 \frac{3(k^2+k+1)}{4(2k^2+2k-1)}&=\frac{21}{52} \\
 156(k^2+k+1)&=84(2k^2+2k-1) \\
@@ -1151,7 +1178,7 @@ $ABCD$ is a uniform rectangular lamina with $AB=10a$ and $BC=6a$. Point $E$ lies
   \]
   and find a corresponding expression for the distance of the centre of mass from $AB$. \marks{6} \\
 \end{enumerate}
-When the lamina is suspended from the point $D$, the edge $DA$ makes an angle $\theta$ with the downward vertical, where $\tan\theta=\tfrac{13}{12}$. \\
+When the lamina is suspended from the point $D$, the edge $DA$ makes an angle $\theta$ with the downward vertical, where $\tan\theta=\frac{13}{12}$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item Find, in terms of $a$, the two possible values of $h$. \marks{3} \\
 \end{enumerate}
@@ -1179,14 +1206,19 @@ When the lamina is suspended from the point $D$, the edge $DA$ makes an angle $\
   \left(10a-\frac{h}{2},\frac{9a}{2}\right)
   \]
 
-  Because the density is constant and the material is the same, areas can be used as weights.
+  Let the centre of mass of the remaining lamina be $(\bar x,\bar y)$. The lamina is uniform, so areas can be used as weights. If piece $i$ has area $\mathcal{A}_i$ and centre of mass $(x_i,y_i)$, then
+  \[
+  \mathcal{A}\bar x=\sum\mathcal{A}_ix_i,\qquad\mathcal{A}\bar y=\sum\mathcal{A}_iy_i
+  \]
 
-  So the area of the remaining lamina is
+  where $\mathcal{A}=\sum\mathcal{A}_i$, with the area of a removed piece counted as negative.
+
+  The area of the remaining lamina is
   \[
   60a^2-3ah=3a(20a-h)
   \]
 
-  If the centre of mass of the remaining lamina is $(\bar x,\bar y)$, then
+  Taking moments about $AD$:
   \[
   (60a^2-3ah)\bar x=60a^2(5a)-3ah\left(10a-\frac{h}{2}\right)
   \]
@@ -1206,7 +1238,7 @@ When the lamina is suspended from the point $D$, the edge $DA$ makes an angle $\
   \frac{h^2-20ah+200a^2}{2(20a-h)}
   \]
 
-  Similarly,
+  Taking moments about $AB$:
   \[
   (60a^2-3ah)\bar y=60a^2(3a)-3ah\left(\frac{9a}{2}\right)
   \]
@@ -1313,11 +1345,11 @@ The centre of mass of the lamina lies at $(\bar{x},\bar{y})$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Use symmetry to write down $\bar{x}$ and show that $\bar{y}=40$. \marks{5} \\
 \end{enumerate}
-The lamina is placed horizontally so that it rests on three supports, whose points of contact are at $D$, $E$ and $G$, where $G$ lies on the edge $AB$ and has coordinates $(g,0)$. \\
+The lamina is placed horizontally so that it rests on three supports, whose points of contact are at $D$, $E$ and $G$, where $G$ lies on the edge $AB$ and has coordinates $(p,0)$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
-  \item Determine the range of values of $g$ for the lamina to rest in equilibrium. \marks{3} \\
+  \item Determine the range of values of $p$ for the lamina to rest in equilibrium. \marks{3} \\
 \end{enumerate}
-It is now given that $g=8$, and that the lamina has weight $100\,\mathrm{N}$. \\
+It is now given that $p=8$, and that the lamina has weight $100\,\mathrm{N}$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}, resume]
   \item Determine the forces exerted on the lamina by each of the supports at $D$, $E$ and $G$. \marks{4} \\
 \end{enumerate}
@@ -1333,45 +1365,52 @@ It is now given that $g=8$, and that the lamina has weight $100\,\mathrm{N}$. \\
 
 To find \(\bar{y}\), take the lamina as a \(240\times 100\) rectangle with two identical right-angled triangles removed.
 
-Because the density is constant and the material is the same, areas can be used as weights.
-
-For the rectangle,
+The lamina is uniform, so areas can be used as weights. If piece \(i\) has area \(\mathcal{A}_i\) and the \(y\)-coordinate of its centre of mass is \(y_i\), then
 \[
-A_1=240\times 100=24000,
+\mathcal{A}\bar{y}=\sum\mathcal{A}_iy_i
+\]
+
+where \(\mathcal{A}=\sum\mathcal{A}_i\), with the area of a removed piece counted as negative.
+
+For the rectangle:
+\[
+\mathcal{A}_1=240\times 100=24\,000,
 \qquad y_1=50
 \]
 
-For each removed triangle,
+For each removed triangle:
 \[
-A_2=\frac12\times 100\times 60=3000
+\mathcal{A}_2=\frac12\times 100\times 60=3000
 \]
 
-and its centroid is \(\frac13\) of the height down from the top edge \(y=100\), so
+The centre of mass of a uniform triangular lamina is \(\frac23\) of the way along a median from the vertex, so it is \(\frac13\) of the perpendicular height from the opposite side.
+
+Each removed triangle has a side along the top edge \(y=100\), and its perpendicular height from that side is \(60\), so
 \[
 y_2=100-\frac{60}{3}=80
 \]
 
 Hence the area of the hexagon is
 \[
-A=24000-2(3000)=18000
+\mathcal{A}=24\,000-2(3000)=18\,000
 \]
 
 Now take moments about the \(x\)-axis:
 \[
-A\bar{y}=A_1y_1-2A_2y_2
+\mathcal{A}\bar{y}=\mathcal{A}_1y_1-2\mathcal{A}_2y_2
 \]
 
 so
 \begin{align*}
-18000\bar{y}
-&=24000(50)-2(3000)(80)\\
-&=1200000-480000\\
-&=720000
+18\,000\bar{y}
+&=24\,000(50)-2(3000)(80)\\
+&=1\,200\,000-480\,000\\
+&=720\,000
 \end{align*}
 
 Therefore
 \[
-\bar{y}=\frac{720000}{18000}=40
+\bar{y}=\frac{720\,000}{18\,000}=40
 \]
 
 So the centre of mass is
@@ -1383,52 +1422,52 @@ So the centre of mass is
 
 From part (a), the centre of mass is at \((0,40)\). So we need the point \((0,40)\) to lie inside or on triangle \(DEG\).
 
-First find where the line \(DG\) has height \(y=40\). Using coordinates \(D(20,100)\) and \(G(g,0)\),
+First find where the line \(DG\) has height \(y=40\). Using coordinates \(D(20,100)\) and \(G(p,0)\):
 \[
-\frac{40-0}{100-0}=\frac{x-g}{20-g}
+\frac{40-0}{100-0}=\frac{x-p}{20-p}
 \]
 
 Hence
 \begin{align*}
-\frac{2}{5}&=\frac{x-g}{20-g}\\
-x-g&=\frac{2}{5}(20-g)\\
-x&=8+\frac{3g}{5}
+\frac{2}{5}&=\frac{x-p}{20-p}\\
+x-p&=\frac{2}{5}(20-p)\\
+x&=8+\frac{3p}{5}
 \end{align*}
 
 Now do the same for line \(EG\), where \(E(-20,100)\):
 \[
-\frac{40-0}{100-0}=\frac{x-g}{-20-g}
+\frac{40-0}{100-0}=\frac{x-p}{-20-p}
 \]
 
 Hence
 \begin{align*}
-\frac{2}{5}&=\frac{x-g}{-20-g}\\
-x-g&=\frac{2}{5}(-20-g)\\
-x&=-8+\frac{3g}{5}
+\frac{2}{5}&=\frac{x-p}{-20-p}\\
+x-p&=\frac{2}{5}(-20-p)\\
+x&=-8+\frac{3p}{5}
 \end{align*}
 
 So at height \(y=40\), triangle \(DEG\) runs from
 \[
-x=-8+\frac{3g}{5}
+x=-8+\frac{3p}{5}
 \quad \text{to} \quad
-x=8+\frac{3g}{5}
+x=8+\frac{3p}{5}
 \]
 
-For \((0,40)\) to lie on or between these values,
+For \((0,40)\) to lie on or between these values:
 \[
--8+\frac{3g}{5}\le 0 \le 8+\frac{3g}{5}
+-8+\frac{3p}{5}\le 0 \le 8+\frac{3p}{5}
 \]
 
 This gives
 \[
-g\le \frac{40}{3}
+p\le \frac{40}{3}
 \qquad \text{and} \qquad
-g\ge -\frac{40}{3}
+p\ge -\frac{40}{3}
 \]
 
 Therefore the required range is
 \[
--\frac{40}{3}\le g\le \frac{40}{3}
+-\frac{40}{3}\le p\le \frac{40}{3}
 \]
 
 \item Let the upward support forces at \(D\), \(E\) and \(G\) be \(R_D\), \(R_E\) and \(R_G\) respectively.
@@ -1440,9 +1479,9 @@ So
 R_D+R_E+R_G=100
 \]
 
-Using the \(y\)-coordinates of the supports,
+Taking moments about \(AB\):
 \[
-100\times 40=100R_D+100R_E+0\cdot R_G
+100\times 40=100R_D+100R_E+0\times R_G
 \]
 
 so
@@ -1455,7 +1494,7 @@ Hence
 R_G=100-40=60
 \]
 
-Now use the \(x\)-coordinates of the supports. Since the resultant acts through \(x=0\),
+Taking moments about the \(y\)-axis, through which the resultant acts:
 \[
 100\times 0=20R_D+(-20)R_E+8R_G
 \]
@@ -1559,18 +1598,23 @@ Determine the range of values of $k$ for which the centre of mass of $R$ lies in
 \vspace*{10pt}
 
 \begin{djsSolution}
-Let the outer rectangle be $R_1$ and the rectangular hole be $R_2$.
+Let the outer rectangle be $R_1$ and the rectangular hole be $R_2$, and let the centre of mass of $R$ be $(\bar x,\bar y)$.
 
-Because the density is constant and the materials are the same, areas can be used as weights.
+The lamina is uniform, so areas can be used as weights. If piece $i$ has area $A_i$ and centre of mass $(x_i,y_i)$, then
+\[
+A\bar x=\sum A_ix_i,\qquad A\bar y=\sum A_iy_i
+\]
 
-For $R_1$,
+where $A=\sum A_i$, with the area of a removed piece counted as negative.
+
+For $R_1$:
 \[
 A_1=(k+4)(k+3)a^2,
 \qquad
 \left(x_1,y_1\right)=\left(\frac{(k+4)a}{2},\frac{(k+3)a}{2}\right)
 \]
 
-For the hole $R_2$,
+For the hole $R_2$:
 \[
 A_2=\bigl((k+2)a-a\bigr)\bigl((k+1)a-a\bigr)=k(k+1)a^2
 \]
@@ -1585,7 +1629,7 @@ So the area of the remaining lamina $R$ is
 A=A_1-A_2=\bigl((k+4)(k+3)-k(k+1)\bigr)a^2=6(k+2)a^2
 \]
 
-Using subtraction of moments,
+For $R_1$ and the hole $R_2$ this gives
 \[
 A\bar x=A_1x_1-A_2x_2,
 \qquad
@@ -1595,7 +1639,7 @@ A\bar y=A_1y_1-A_2y_2
 Hence
 \begin{align*}
 \bar x
-&=\frac{(k+4)(k+3)a^2\cdot \frac{(k+4)a}{2}-k(k+1)a^2\cdot \frac{(k+3)a}{2}}{6(k+2)a^2}\\
+&=\frac{(k+4)(k+3)a^2\left(\frac{(k+4)a}{2}\right)-k(k+1)a^2\left(\frac{(k+3)a}{2}\right)}{6(k+2)a^2}\\
 &=\frac{a(k+3)\bigl((k+4)^2-k(k+1)\bigr)}{12(k+2)}\\
 &=\frac{a(k+3)(7k+16)}{12(k+2)}
 \end{align*}
@@ -1603,7 +1647,7 @@ Hence
 and
 \begin{align*}
 \bar y
-&=\frac{(k+4)(k+3)a^2\cdot \frac{(k+3)a}{2}-k(k+1)a^2\cdot \frac{(k+2)a}{2}}{6(k+2)a^2}\\
+&=\frac{(k+4)(k+3)a^2\left(\frac{(k+3)a}{2}\right)-k(k+1)a^2\left(\frac{(k+2)a}{2}\right)}{6(k+2)a^2}\\
 &=\frac{a\bigl((k+4)(k+3)^2-k(k+1)(k+2)\bigr)}{12(k+2)}\\
 &=\frac{a(7k^2+31k+36)}{12(k+2)}
 \end{align*}
@@ -1617,7 +1661,7 @@ a<\bar y<(k+1)a
 
 Since $a>0$ and $k>0$, we can divide through by $a$.
 
-First, for the $x$-coordinate,
+First, for the $x$-coordinate:
 \begin{align*}
 \bar x>a
 &\iff \frac{(k+3)(7k+16)}{12(k+2)}>1\\
@@ -1627,7 +1671,7 @@ First, for the $x$-coordinate,
 
 which is true for all $k>0$.
 
-Also,
+Also
 \begin{align*}
 \bar x<(k+2)a
 &\iff \frac{(k+3)(7k+16)}{12(k+2)}<k+2\\
@@ -1637,7 +1681,7 @@ Also,
 
 which is also true for all $k>0$.
 
-Now for the $y$-coordinate,
+Now for the $y$-coordinate:
 \begin{align*}
 \bar y>a
 &\iff \frac{7k^2+31k+36}{12(k+2)}>1\\
@@ -1647,7 +1691,7 @@ Now for the $y$-coordinate,
 
 which is true for all $k>0$.
 
-Finally,
+Finally
 \begin{align*}
 \bar y<(k+1)a
 &\iff \frac{7k^2+31k+36}{12(k+2)}<k+1\\
@@ -1655,7 +1699,7 @@ Finally,
 &\iff 5k^2+5k-12>0
 \end{align*}
 
-Solving $5k^2+5k-12=0$,
+Solving $5k^2+5k-12=0$:
 \[
 k=\frac{-5\pm\sqrt{25+240}}{10}=\frac{-5\pm\sqrt{265}}{10}
 \]
