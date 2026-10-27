@@ -1255,6 +1255,16 @@ const rawResources: Resource[] = [
     topic: 'Miscellaneous Pure',
   },
   {
+    id: 'fm-misc-standard-summations-ms',
+    title: 'Standard Summations',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/misc-pure/ms/_QBT___MS__Standard_Summations.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-misc-standard-summations',
+    topic: 'Miscellaneous Pure',
+  },
+  {
     id: 'fm-misc-method-of-differences',
     title: 'Method of Differences',
     description: '',

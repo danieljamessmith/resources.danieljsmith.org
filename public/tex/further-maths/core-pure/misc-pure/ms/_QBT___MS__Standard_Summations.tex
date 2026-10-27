@@ -1,0 +1,333 @@
+\documentclass[leqno]{article}
+\input{../../../../_shared/markscheme_preamble.tex}
+
+\djsSchemeHeader{Standard Summations}
+\djsSitePath{Core Pure}{Miscellaneous Pure}
+
+\djsLastUpdated{27 October 2026}
+\begin{document}
+\djsSetQuestionCount{15}
+\djsAddMarks{1}{4}
+\djsAddMarks{2}{4}
+\djsAddMarks{3}{4}
+\djsAddMarks{4}{4}
+\djsAddMarks{5}{7}
+\djsAddMarks{6}{7}
+\djsAddMarks{7}{9}
+\djsAddMarks{8}{10}
+\djsAddMarks{9}{9}
+\djsAddMarks{10}{8}
+\djsAddMarks{11}{10}
+\djsAddMarks{12}{9}
+\djsAddMarks{13}{9}
+\djsAddMarks{14}{13}
+\djsAddMarks{15}{13}
+\vspace*{6pt}
+\djsContentsTitle
+\vspace{30pt}
+\msContentsHeading
+\begin{mscontents}{}
+Question & Marks by part & Marks & Page \\
+\msContentsQuestion{1} & & 4 & \msContentsPage{1} \\
+\msContentsQuestion{2} & & 4 & \msContentsPage{2} \\
+\msContentsQuestion{3} & & 4 & \msContentsPage{3} \\
+\msContentsQuestion{4} & & 4 & \msContentsPage{4} \\
+\msContentsQuestion{5} & (a)\,5\msSep (b)\,2 & 7 & \msContentsPage{5} \\
+\msContentsQuestion{6} & (a)\,5\msSep (b)\,2 & 7 & \msContentsPage{6} \\
+\msContentsQuestion{7} & (a)\,5\msSep (b)\,4 & 9 & \msContentsPage{7} \\
+\msContentsQuestion{8} & (a)\,4\msSep (b)\,6 & 10 & \msContentsPage{8} \\
+\msContentsQuestion{9} & (a)\,4\msSep (b)\,5 & 9 & \msContentsPage{9} \\
+\msContentsQuestion{10} & (i)\,5\msSep (ii)\,3 & 8 & \msContentsPage{10} \\
+\msContentsQuestion{11} & (a)\,5\msSep (b)\,5 & 10 & \msContentsPage{11} \\
+\msContentsQuestion{12} & (a)\,5\msSep (b)\,4 & 9 & \msContentsPage{12} \\
+\msContentsQuestion{13} & (a)\,5\msSep (b)\,4 & 9 & \msContentsPage{13} \\
+\msContentsQuestion{14} & (a)\,4\msSep (b)\,3\msSep (c)\,6 & 13 & \msContentsPage{14} \\
+\msContentsQuestion{15} & (a)\,2\msSep (b)\,4\msSep (c)\,3\msSep (d)\,4 & 13 & \msContentsPage{15} \\
+\SetCell[c=2]{r} Total & & 120 & \\
+\end{mscontents}
+\newpage
+\input{../../../../_shared/markscheme_conventions.tex}
+
+\msQuestion{1}
+\begin{msscheme}{
+  hline{3-4} = {2-Z}{0.4pt, msGrid},
+  hline{5} = {0.4pt, msGrid},
+  row{5} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+1 & {\((2r-1)(r+3) = 2r^2 + 5r - 3\)\\[4pt] \(\sum_{r=1}^{n} = \tfrac13 n(n+1)(2n+1) + \tfrac52 n(n+1) - 3n\)} & M1 A1 & {\msNote{M1}{Expands to a quadratic in \(r\) and substitutes the standard results for \(\sum r^2\) and \(\sum r\), with general or numerical \(n\). Condone slips in the expansion.}\\ \msNote{A1}{Correct in any form, need not be simplified, including \(-3n\). Also for correct substituted expressions at both \(n=12\) and \(n=4\).}} \\
+& {\(\sum_{r=5}^{12} = \sum_{r=1}^{12} - \sum_{r=1}^{4}\)\\[4pt] \(\phantom{\sum_{r=5}^{12}} = \text{"}1654\text{"} - \text{"}98\text{"}\)} & M1 & {Subtracts their sum to 4 from their sum to 12, both from the standard results. Not for subtracting the sum to 5.} \\
+& {\(= 1556\)} & A1~AG & {Correct values for both sums from the formulae, leading without error to 1556.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 1 & & 4 & \\
+\end{msscheme}
+
+\msQuestion{2}
+\begin{msscheme}{
+  hline{3-5} = {2-Z}{0.4pt, msGrid},
+  hline{6} = {0.4pt, msGrid},
+  row{6} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+2 & {\(\sum(3r^2+5r-2)\)\\[4pt] \(\phantom{\sum} = \tfrac36 n(n+1)(2n+1)+\tfrac52 n(n+1)-2n\)} & M1 & {Expands and replaces the \(r^2\) and \(r\) terms by standard results, with general \(n\) or the limits directly. Condone a slip in the expansion or the constant term.} \\
+& {\(\phantom{\sum} = n(n^2+4n+1)\)} & A1 & {oe, need not be factorised; or implied by correct sums to 60 and to 20.} \\
+& {\(\text{"}60(60^2+240+1)\text{"}-\text{"}20(20^2+80+1)\text{"}\)} & M1 & {Subtracts their sum to 20 from their sum to 60, from the same expression. Not for subtracting the sum to 21.} \\
+& {\(= 220\,840\)} & A1 & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 2 & & 4 & \\
+\end{msscheme}
+
+\msQuestion{3}
+\begin{msscheme}{
+  hline{3-4} = {2-Z}{0.4pt, msGrid},
+  hline{5} = {0.4pt, msGrid},
+  row{5} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+3 & {\(r(r-3)(r+3) = r^3 - 9r\)\\[4pt] \(\sum_{r=1}^{n}(r^3-9r) = \frac14 n^2(n+1)^2 - \frac92 n(n+1)\)} & M1 A1 & {\msNote{M1}{Expands to a polynomial in \(r\) and replaces each term by its standard result. Condone a slip in the expansion.}\\ \msNote{A1}{Correct, oe, need not be simplified; implied by correct values for \(n = 40\) and \(n = 10\).}} \\
+& {Their sum to 40 minus their sum to 10:\\[4pt] \(\text{"}665\,020\text{"} - \text{"}2530\text{"}\)} & M1 & {Substitutes \(n = 40\) and \(n = 10\) into their expression for a sum from \(r = 1\) to \(n\) and subtracts. Not for \(n = 11\).} \\
+& {\(662\,490\)} & A1 & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 3 & & 4 & \\
+\end{msscheme}
+
+\msQuestion{4}
+\begin{msscheme}{
+  hline{3-5} = {2-Z}{0.4pt, msGrid},
+  hline{6} = {0.4pt, msGrid},
+  row{6} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+4 & {\(6\times\tfrac16 k(k+1)(2k+1) - k\times k^2\)} & M1 & {Uses \(\frac16k(k+1)(2k+1)\) for \(\sum r^2\) and sums \(k^2\) as \(k^3\). Not for \(\sum k^2\) taken as \(k^2\) or as \(\sum r^2\).} \\
+& {\(k^3+3k^2+k-205=0\)} & A1 & {oe, such as \(k^3+3k^2+k=205\).} \\
+& {\(k=5\) is a root \(\Rightarrow (k-5)(k^2+8k+41)=0\)\\[4pt] \(8^2-4\times1\times41 = \ldots\)} & dM1 & {Shows \(k=5\) is a root, then tests the quadratic factor by discriminant or completing the square, or argues the cubic increasing or the factor positive for \(k>0\). Condone slips.} \\
+& {\(-100<0\) so no real roots \(\Rightarrow k=5\) only} & A1 & {cso. Needs the correct negative discriminant oe, or a correct increasing or positivity argument, and a conclusion that \(k=5\) is the only value. \(k=5\) by trial alone earns neither mark.} \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 4 & & 4 & \\
+\end{msscheme}
+
+\msQuestion{5}
+\begin{msscheme}{
+  hline{3-6,8-9} = {2-Z}{0.4pt, msGrid},
+  hline{7,10} = {0.4pt, msGrid},
+  row{10} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+5(a) & {\((2r-1)^3 = 8r^3-12r^2+6r-1\)\\[4pt] \(\sum(2r-1)^3 = 8\sum r^3-12\sum r^2+6\sum r-\sum 1\)} & M1 & {Expands to four terms and writes the sum as multiples of \(\sum r^3\), \(\sum r^2\), \(\sum r\) and \(\sum 1\). Condone one coefficient slip.} \\
+& {\(= 8\times\tfrac14 n^2(n+1)^2-12\times\tfrac16 n(n+1)(2n+1)\)\\[4pt] \(\phantom{=} +6\times\tfrac12 n(n+1)-n\)} & M1 A1 & {\msNote{M1}{Substitutes standard results for \(\sum r^3\), \(\sum r^2\) and \(\sum r\) into their split sum. Condone \(\sum 1\) taken as 1, or one slip in a formula.}\\ \msNote{A1}{Correct expression; need not be simplified.}} \\
+& {\(= n\big[2n^3+4n^2+2n-4n^2-6n-2\)\\[4pt] \(\phantom{= n\big[} +3n+3-1\big]\)\\[4pt] \(\phantom{=} = \ldots\)} & dM1 & {Expands their expression and collects like terms, with or without a common factor taken out. Condone slips.} \\
+& {\(= n(2n^3-n) = n^2(2n^2-1)\)} & A1~AG & {Printed result reached without error from a correct substituted expression; combined steps accepted. Nothing for working backwards from the result.} \\
+\nopagebreak & & [5] & \\
+5(b) & {\(\frac{1}{n^2}\sum_{r=1}^{n}(2r-1)^3 = 2n^2-1\)\\[4pt] \(n=5 \Rightarrow 2\times5^2-1 = \ldots\)} & M1 & {Evaluates the expression for an integer \(n \geq 5\), via \(2n^2-1\) or summing directly.} \\
+& {\(49 = 7\times7\), not prime, so the statement is false} & A1 & {Any counterexample, with a factor shown and a conclusion that the statement is false.} \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 5 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{6}
+\begin{msscheme}{
+  hline{3-6,8-9} = {2-Z}{0.4pt, msGrid},
+  hline{7,10} = {0.4pt, msGrid},
+  row{10} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+6(a) & {\(r(r+1)(r+3) = r^3 + 4r^2 + 3r\)} & B1 & \\
+& {\(V = \tfrac14 n^2(n+1)^2 + 4\cdot\tfrac16 n(n+1)(2n+1)\)\\[4pt] \(\phantom{V =} + 3\cdot\tfrac12 n(n+1)\)} & M1 A1 & {\msNote{M1}{Replaces each sum in their expansion by a standard result, at least two quoted correctly. Condone coefficient slips.}\\ \msNote{A1}{Correct expression, unsimplified.}} \\
+& {\(V = \frac{n(n+1)}{12}\left[3n(n+1) + 8(2n+1) + 18\right]\)\\[4pt] \(\phantom{V} = \frac{n(n+1)}{12}\left(3n^2 + 19n + 26\right)\)} & dM1 & {Takes out a factor \(n(n+1)\), or a multiple, and collects the rest into a quadratic; or expands fully to a quartic. Condone arithmetic slips.} \\
+& {\(V = \frac{n}{12}(n+1)(n+2)(3n+13)\)} & A1~AG & {From a correct expression for \(V\), reaches the printed result with no errors. Expanding both forms to the same quartic, with a conclusion, is accepted.} \\
+\nopagebreak & & [5] & \\
+6(b) & {\(n = 10: V = 4730 < 5000\)\\[4pt] \(n = 11: V = 6578 > 5000\)} & M1 & {Evaluates \(V\) at consecutive \(n\) whose volumes lie either side of 5000 (\(n = 10, 11\)), or solves \(V = 5000\) numerically.} \\
+& {\(11\) blocks} & A1 & \\
+\nopagebreak & & [2] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 6 & & 7 & \\
+\end{msscheme}
+
+\msQuestion{7}
+\begin{msscheme}{
+  hline{3-6,8-10} = {2-Z}{0.4pt, msGrid},
+  hline{7,11} = {0.4pt, msGrid},
+  row{11} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+7(a) & {\(r(2r-1)^2 = 4r^3 - 4r^2 + r\)} & B1 & \\
+& {\(4\times\frac14 n^2(n+1)^2 - 4\times\frac16 n(n+1)(2n+1)\)\\[4pt] \(\phantom{4\times} + \frac12 n(n+1)\)} & M1 A1 & {\msNote{M1}{Replaces each sum in their three-term expansion by its standard result. Condone one slip in a quoted result or coefficient.}\\ \msNote{A1}{Any correct unsimplified equivalent.}} \\
+& {\(\frac16 n(n+1)\left[6n(n+1) - 4(2n+1) + 3\right]\)} & dM1 & {Takes out \(\frac16 n(n+1)\) or \(n(n+1)\) and expands their bracket to a quadratic; expanding fully then factorising also accepted.} \\
+& {\(\frac16 n(n+1)\left(6n^2 - 2n - 1\right)\)} & A1 & {cso. The expression in the required form, or \(a=6\), \(b=-2\), \(c=-1\) stated.} \\
+\nopagebreak & & [5] & \\
+7(b) & {\(\frac16 k(k+1)\left(6k^2-2k-1\right) = 193\times\frac12 k(k+1)\)} & M1 A1 & {\msNote{M1}{Equates their result from (a) to 193 times the standard result for \(\sum r\). Condone \(n\) for \(k\).}\\ \msNote{A1}{Correct equation in \(k\), oe.}} \\
+& {\(6k^2-2k-1 = 579\)\\[4pt] \(\Rightarrow 3k^2-k-290 = 0 \Rightarrow k = \ldots\)} & dM1 & {Cancels \(k(k+1)\), or a factor of it, to a three-term quadratic and solves it by any means, including a calculator.} \\
+& {\(k = 10\)} & A1 & {\(k=10\) only; A0 if \(-\frac{29}{3}\) is kept as an answer.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 7 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{8}
+\begin{msscheme}{
+  hline{3-5,7-12} = {2-Z}{0.4pt, msGrid},
+  hline{6,13} = {0.4pt, msGrid},
+  row{13} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+8(a) & {\(\sum r^3 + 3\sum r^2\)\\[4pt] \(\phantom{\sum} = \frac14 n^2(n+1)^2 + 3\times\frac16 n(n+1)(2n+1)\)} & M1 A1 & {\msNote{M1}{Writes the sum as \(\sum r^3 + 3\sum r^2\) and substitutes standard results for both. Condone a slip in one result.}\\ \msNote{A1}{Any correct unsimplified form.}} \\
+& {\(= \frac14 n(n+1)\left[n(n+1) + 2(2n+1)\right]\)} & dM1 & {Simplifies their expression to a multiple of \(n(n+1)\) times a quadratic, by taking out the common factor or otherwise. Condone arithmetic slips in the quadratic.} \\
+& {\(= \frac14 n(n+1)(n^2+5n+2)\)} & A1 & {cso. Any equivalent with rational \(k\) and integer \(a\), \(b\), \(c\), e.g. \(\frac18 n(n+1)(2n^2+10n+4)\).} \\
+\nopagebreak & & [4] & \\
+8(b) & {\(\sum r(r+1) = \frac16 n(n+1)(2n+1) + \frac12 n(n+1)\)} & M1 & {Writes \(\sum r(r+1)\) as \(\sum r^2 + \sum r\) and substitutes both standard results. Condone a slip in one result.} \\
+& {\(= \frac13 n(n+1)(n+2)\)} & A1 & {Correct expression oe, e.g. \(\frac13 n(n+1)(n+2)\); implied by a correct quadratic.} \\
+& {\(\frac12 n(n+1)(n^2+5n+2) = \frac{19}{3} n(n+1)(n+2)\)\\[4pt] \(\Rightarrow \frac12(n^2+5n+2) = \frac{19}{3}(n+2)\)} & M1 & {Forms the equation from part (a) and their \(\sum r(r+1)\), and divides by \(n(n+1)\) or otherwise reduces it to a quadratic. Condone slips in constants.} \\
+& {\(3n^2 - 23n - 70 = 0\)} & A1 & {Any equivalent quadratic \(= 0\).} \\
+& {\((3n+7)(n-10) = 0 \Rightarrow n = \ldots\)} & dM1 & {Solves their three-term quadratic by factorising (product of constants equal to the constant term), the formula or completing the square, to \(n = \ldots\); a calculator is allowed if both roots are stated.} \\
+& {\(n = 10\) \(\left(n \neq -\frac73\right)\)} & A1 & {cso. \(n = 10\) only, with \(-\frac73\) rejected as not a positive integer. A0 without the rejection.} \\
+\nopagebreak & & [6] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 8 & & 10 & \\
+\end{msscheme}
+
+\msQuestion{9}
+\begin{msscheme}{
+  hline{3-5,7-11} = {2-Z}{0.4pt, msGrid},
+  hline{6,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+9(a) & {\(\sum(r^2+2r-3)\)\\[4pt] \(\phantom{\sum} = \frac16(2m)(2m+1)(4m+1)\)\\[4pt] \(\phantom{\sum =} + 2\times\frac12(2m)(2m+1) - 6m\)} & M1 A1 & {\msNote{M1}{Expands and uses the standard results for \(\sum r^2\) and \(\sum r\) with \(n=2m\). Condone slips in the constant term.}\\ \msNote{A1}{Correct expression, oe, unsimplified.}} \\
+& {\(= \frac13 m\left[(8m^2+6m+1)+6(2m+1)-18\right]\)} & dM1 & {Takes out \(\frac13 m\) and expands to a quadratic in the bracket. Condone arithmetic slips.} \\
+& {\(= \frac13 m(8m^2+18m-11)\)\\[4pt] \(a=8,\ b=18,\ c=-11\)} & A1 & {Expression in the required form, or the three values stated.} \\
+\nopagebreak & & [4] & \\
+9(b) & {\(\sum_{r=1}^{4m} = \frac13(2m)\left(8(2m)^2+18(2m)-11\right)\)} & M1 & {Replaces \(m\) by \(2m\) in their (a) result of the form \(\frac13 m(am^2+bm+c)\), or applies the standard results with \(n=4m\).} \\
+& {\(\sum_{r=2m+1}^{4m} = \text{"}\frac13 m(64m^2+72m-22)\text{"}\)\\[4pt] \(\phantom{\sum_{r=2m+1}^{4m} =} - \text{"}\frac13 m(8m^2+18m-11)\text{"}\)} & dM1 & {Subtracts their sum to \(2m\) from their sum to \(4m\).} \\
+& {\(= \frac13 m(56m^2+54m-11)\)} & A1~AG & {Correct expressions for both sums, subtracted to reach the printed result without error.} \\
+& {\(2m+1=21 \Rightarrow m=10\)} & B1 & \\
+& {\(\frac{10}{3}(5600+540-11) = 20430\)} & B1 & {From substituting \(m=10\) in the printed result.} \\
+\nopagebreak & & [5] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 9 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{10}
+\begin{msscheme}{
+  hline{3-6,8-10} = {2-Z}{0.4pt, msGrid},
+  hline{7,11} = {0.4pt, msGrid},
+  row{11} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+10(i) & {\(r(r+1)(4r-k) = 4r^3 + (4-k)r^2 - kr\)} & B1 & {oe, e.g. \(4r^3 + 4r^2 - kr^2 - kr\).} \\
+& {\(4\cdot\tfrac14 n^2(n+1)^2 + (4-k)\cdot\tfrac16 n(n+1)(2n+1)\)\\[4pt] \(\phantom{4} - k\cdot\tfrac12 n(n+1)\)} & M1 A1 & {\msNote{M1}{Applies the standard results to their expansion in powers of \(r\), with at least two formulas correct. Condone coefficient slips.}\\ \msNote{A1}{Correct expression; need not be simplified.}} \\
+& {\(= \tfrac16 n(n+1)\left[6n^2 + 14n - 2kn + 4 - 4k\right]\)} & dM1 & {Takes out \(n(n+1)\), or a multiple, and collects the rest into a quadratic in \(n\); or expands both sides fully to compare. Condone slips.} \\
+& {\(= \tfrac13 n(n+1)(n+2)(3n+1-k)\)} & A1~AG & {cso. Quadratic shown equal to \((n+2)(3n+1-k)\), by factorising or expanding the product, or full expansions shown equal. Working back from the printed result scores A0.} \\
+\nopagebreak & & [5] & \\
+10(ii) & {\(\tfrac13(2n)(2n+1)(2n+2)(6n) - \tfrac13 n(n+1)(n+2)(3n)\)} & M1 & {Uses \(k = 1\) and subtracts the sum to \(n\) from the result of (i) with \(n\) replaced by \(2n\). Not for subtracting the sum to \(n+1\).} \\
+& {\(= n^2(n+1)\left[8(2n+1) - (n+2)\right]\)} & dM1 & {Takes out a common factor including \(n^2(n+1)\), or expands and factorises with at least that factor. Condone slips in the bracket.} \\
+& {\(= 3n^2(n+1)(5n+2)\)} & A1 & {cao. \(n^2(n+1)(15n+6)\) is not fully factorised and scores A0.} \\
+\nopagebreak & & [3] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 10 & & 8 & \\
+\end{msscheme}
+
+\msQuestion{11}
+\begin{msscheme}{
+  hline{3-6,8-12} = {2-Z}{0.4pt, msGrid},
+  hline{7,13} = {0.4pt, msGrid},
+  row{13} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+11(a) & {\((2r-1)^3 = 8r^3 - 12r^2 + 6r - 1\)\\[4pt] \(\sum = 8\sum r^3 - 12\sum r^2 + 6\sum r - \sum 1\)} & M1 & {Expands the cube to four terms and writes the sum as separate sums. Condone one coefficient slip.} \\
+& {\(= 8\times\frac14 n^2(n+1)^2 - 12\times\frac16 n(n+1)(2n+1)\)\\[4pt] \(\phantom{=} + 6\times\frac12 n(n+1) - n\)} & M1 A1 & {\msNote{M1}{Substitutes the standard results for every sum in their expansion. Condone \(\sum 1\) taken as 1, or one slip in a formula.}\\ \msNote{A1}{Correct expression, unsimplified.}} \\
+& {\(= (2n^4+4n^3+2n^2) - (4n^3+6n^2+2n)\)\\[4pt] \(\phantom{=} + (3n^2+3n) - n\)} & dM1 & {Expands the brackets and collects like terms to a polynomial in \(n\). Condone sign slips.} \\
+& {\(= 2n^4 - n^2 = n^2(2n^2-1)\)} & A1~AG & {Correct substituted expression leading without error to \(n^2(2n^2-1)\); combined expansion steps accepted.} \\
+\nopagebreak & & [5] & \\
+11(b) & {\(\sum_{r=n+1}^{2n} = (2n)^2\left(2(2n)^2-1\right) - n^2(2n^2-1)\)} & M1 & {Replaces \(n\) by \(2n\) in the result of (a) and subtracts the result of (a) for \(n\). Not for subtracting the sum to \(n+1\).} \\
+& {\(= 30n^4 - 3n^2\)} & A1 & \\
+& {\(\sum_{r=1}^{\infty} 240\left(\frac35\right)^r = \dfrac{144}{1-\frac35} = 360\)} & B1 & \\
+& {\(30n^4 - 3n^2 = 29n^4 - 34n^2 + 360\)\\[4pt] \(\Rightarrow n^4 + 31n^2 - 360 = 0 \Rightarrow n^2 = \ldots\)} & M1 & {Equates their LHS of the form \(an^4+bn^2\) to the RHS with their sum to infinity, collects to three terms and solves as a quadratic in \(n^2\); calculator allowed.} \\
+& {\(n^2 = 9\ (n^2 \neq -40) \Rightarrow n = 3\)} & A1 & {\(n = 3\) only; \(n=-3\) and \(n^2=-40\) rejected or not given.} \\
+\nopagebreak & & [5] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 11 & & 10 & \\
+\end{msscheme}
+
+\msQuestion{12}
+\begin{msscheme}{
+  hline{3-6,8-11} = {2-Z}{0.4pt, msGrid},
+  hline{7,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+12(a) & {\(r(r+1)(2r+1) = 2r^3 + 3r^2 + r\)} & B1 & \\
+& {\(2\times\tfrac14 n^2(n+1)^2 + 3\times\tfrac16 n(n+1)(2n+1)\)\\[4pt] \(\phantom{2} + \tfrac12 n(n+1)\)} & M1 A1 & {\msNote{M1}{Replaces each sum in their expansion by its standard result, with at least two results correct. Condone coefficient slips.}} \\
+& {\(\tfrac12 n(n+1)(n^2+3n+2)\)\\[4pt] \(\phantom{\tfrac12} = \tfrac12 n(n+1)(n+1)(n+2)\)} & dM1 & {Takes out \(\tfrac12 n(n+1)\) and factorises their quadratic, or expands fully and compares coefficients with \(\tfrac12 n(n+a)^2(n+b)\).} \\
+& {\(\tfrac12 n(n+1)^2(n+2)\): \(a = 1\), \(b = 2\)} & A1 & {cso. Values stated or the factorised form shown.} \\
+\nopagebreak & & [5] & \\
+12(b) & {\(\tfrac12 n(n+1)^2(n+2) - \tfrac12\times10\times11^2\times12\)\\[4pt] \(\phantom{\tfrac12} = 17\,940\)} & M1 & {Subtracts their (a) result at \(n = 10\) from their result in \(n\) and equates to \(17\,940\).} \\
+& {\(n(n+1)^2(n+2) = 50\,400\)} & A1 & {oe, e.g. \(\tfrac12 n(n+1)^2(n+2) = 25\,200\) or an expanded quartic.} \\
+& {\(\left((n+1)^2 - 1\right)(n+1)^2 = 50\,400\)\\[4pt] \(\Rightarrow (n+1)^2 = \ldots\)} & dM1 & {Forms a three-term quadratic in \((n+1)^2\), or another valid substitution, and solves it by factorising, formula or completing the square. Not for trial or a calculator-solved quartic.} \\
+& {\((n+1)^2 = 225 \Rightarrow n = 14\)} & A1 & {cso. \(n = 14\) only, other roots rejected or not given. Without the algebraic method, at most M1 A1.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 12 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{13}
+\begin{msscheme}{
+  hline{3-7,9-11} = {2-Z}{0.4pt, msGrid},
+  hline{8,12} = {0.4pt, msGrid},
+  row{12} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+13(a) & {\(\sum_{r=1}^{n}\left[(2r-1)^3-(2r)^3\right]\)} & M1 & {Writes the LHS as a sum over \(r\) of an odd cube minus the next even cube, oe; or as \(\sum_{r=1}^{2n} r^3 - 16\sum_{r=1}^{n} r^3\).} \\
+& {\((2r-1)^3-(2r)^3=-12r^2+6r-1\)} & A1 & {On the \(\sum r^3\) route, for \(n^2(2n+1)^2 - 4n^2(n+1)^2\) oe.} \\
+& {\(-12\times\frac16 n(n+1)(2n+1)+6\times\frac12 n(n+1)-n\)} & M1 & {Substitutes the standard results for \(\sum r^2\) and \(\sum r\) into their quadratic general term, or for \(\sum r^3\) at \(2n\) and \(n\). Condone coefficient slips.} \\
+& {\(=n\left[-2\left(2n^2+3n+1\right)+3n+3-1\right]\)} & dM1 & {Takes out a factor of \(n\), or expands fully, and collects terms towards a cubic in \(n\).} \\
+& {\(=n\left(-4n^2-3n\right)=-n^2(4n+3)\)} & A1~AG & {Correct substituted expression leading without error to the printed result; combined steps accepted.} \\
+\nopagebreak & & [5] & \\
+13(b) & {Smallest \(2m+1\):\\[4pt] \(-(m+5)^2(4m+23)+m^2(4m+3)=-3725\)} & M1 A1 & {\msNote{M1}{Takes the smallest as \(2m+1\) oe, in any letter, and subtracts the result of (a) at \(n=m\) from that at \(n=m+5\), oe. Condone a sign slip.}\\ \msNote{A1}{Correct equation, oe.}} \\
+& {\(2m^2+11m-105=0\Rightarrow m=\ldots\)} & dM1 & {Expands to a three-term quadratic and solves it by factorising, formula or completing the square; a calculator is allowed.} \\
+& {\(m=5\Rightarrow\) smallest integer \(11\)} & A1 & {cso, with the negative root rejected or ignored. 11 by trial, without using part (a), scores nothing.} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 13 & & 9 & \\
+\end{msscheme}
+
+\msQuestion{14}
+\begin{msscheme}{
+  hline{3-5,7-9,11-16} = {2-Z}{0.4pt, msGrid},
+  hline{6,10,17} = {0.4pt, msGrid},
+  row{17} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+14(a) & {\(6\cdot\tfrac16 n(n+1)(2n+1) + 2\cdot\tfrac12 n(n+1) - 8n\)} & M1 A1 & {\msNote{M1}{Uses both standard formulae and replaces \(\sum 8\) by \(8n\). Condone a slip in one coefficient.}\\ \msNote{A1}{Correct expression, simplified or not.}} \\
+& {\(= 2n\left[(n+1)^2 - 4\right]\)\\[4pt] \(\phantom{=} = 2n(n-1)(n+3)\)} & dM1 & {Takes out a factor \(n\) and factorises the remaining quadratic into linear factors, by difference of two squares or any method.} \\
+& {\(a = 2,\ b = 1,\ c = 3\)} & A1 & {cso. Accept \(2n(n-1)(n+3)\) as the final form.} \\
+\nopagebreak & & [4] & \\
+14(b) & {\(\sin(90r)^\circ = 1, 0, -1, 0\) for \(r = 1, 2, 3, 4\),\\[4pt] repeating every four terms} & B1 & {Pattern and its repetition; may be implied by \(1 + 0 - 3 + 0 + 5 + 0 - 7 + \cdots\).} \\
+& {\((4m+1) - (4m+3) = -2\) per block of four\\[4pt] \(\Rightarrow\) first \(4k\) terms: \(-2k\); last term \(4k+1\)} & M1 & {Splits the terms into repeating blocks or pairs, finds a general block total, counts the blocks and accounts for any leftover term.} \\
+& {\(-2k + (4k+1) = 2k+1\)} & A1~AG & {Final term shown to be \(4k+1\); printed result reached without error from a general block or pair sum. Checks for particular \(k\) earn nothing.} \\
+\nopagebreak & & [3] & \\
+14(c) & {\(2n(n-1)(n+3) - (6+2-8) - (24+4-8)\)} & M1 & {Subtracts the \(r=1\) and \(r=2\) terms, or their (a) expression at \(n=2\), from their (a) expression.} \\
+& {\(= 2n(n-1)(n+3) - 20\)} & A1 & {oe, such as \(2n^3 + 4n^2 - 6n - 20\).} \\
+& {\(k = n\): \((2n+1) - 1\sin 90^\circ - 2\sin 180^\circ\)} & M1 & {Uses (b) with \(k = n\) and subtracts the \(r=1\) and \(r=2\) terms.} \\
+& {\(= 2n \Rightarrow\) RHS \(= 3(2n)^2 = 12n^2\)} & A1 & \\
+& {\(2n(n-1)(n+3) - 20 = 12n^2\)\\[4pt] \(\Rightarrow n^3 - 4n^2 - 3n - 10 = 0\)\\[4pt] \((n-5)(n^2+n+2) = 0\)} & M1 & {Equates their sides to form a cubic and attempts to solve it, with a root by trial, the factor theorem or a calculator, then a quadratic factor. Condone arithmetic slips.} \\
+& {\(n = 5\)\\[4pt] \(n^2+n+2\): \(1^2 - 4(1)(2) = -7 < 0\), no real roots} & A1 & {cso. Needs the discriminant, or \((n+\frac12)^2 + \frac74 > 0\), or \(n^2+n+2>0\) for \(n>0\), with a conclusion of no other roots. A calculator statement alone is not enough.} \\
+\nopagebreak & & [6] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 14 & & 13 & \\
+\end{msscheme}
+
+\msQuestion{15}
+\begin{msscheme}{
+  hline{3-4,6-9,11-13,15-18} = {2-Z}{0.4pt, msGrid},
+  hline{5,10,14,19} = {0.4pt, msGrid},
+  row{19} = {font=\bfseries},
+}
+Question & Scheme & Marks & Notes \\
+15(a) & {\((-1)^r = -1\) for odd \(r\), \((-1)^r = 1\) for even \(r\)} & B1 & \\
+& {Pairs \(r = 2k-1\) and \(r = 2k\), \(k = 1, \ldots, n\):\\[4pt] \((-1)^{2k-1}f(2k-1) + (-1)^{2k}f(2k)\)\\[4pt] \(\phantom{A} = f(2k) - f(2k-1)\)} & E1 & {Pairs each odd term with the next even term, giving \(n\) pairs each \(f(2r)-f(2r-1)\), summed for \(r=1\) to \(n\). Condone not renaming the index.} \\
+\nopagebreak & & [2] & \\
+15(b) & {\(f(2r) - f(2r-1) = (2r)^2(2r+1) - (2r-1)^2(2r)\)} & M1 & {Substitutes \(2r\) and \(2r-1\) for \(r\) in \(r^2(r+1)\), subtracts in that order and expands.} \\
+& {\(\phantom{A} = 12r^2 - 2r\)} & A1 & \\
+& {\(\sum_{r=1}^{n}\left(12r^2-2r\right)\)\\[4pt] \(\phantom{A} = 12\times\tfrac16 n(n+1)(2n+1) - 2\times\tfrac12 n(n+1)\)} & M1 & {Sums their \(f(2r)-f(2r-1)\), a polynomial in \(r\), from 1 to \(n\), using the correct standard result for each power.} \\
+& {\(\phantom{A} = n(n+1)(4n+2-1) = n(n+1)(4n+1)\)} & A1~AG & {Correct substituted expression leading without error to the printed result; both sides expanded to \(4n^3+5n^2+n\) with a conclusion accepted.} \\
+\nopagebreak & & [4] & \\
+15(c) & {\((-1)^r r^2(r+1) + 3(r^2+r)\)\\[4pt] \(3\sum_{r=1}^{2n}(r^2+r)\)\\[4pt] \(\phantom{A} = 3\left[\tfrac16(2n)(2n+1)(4n+1) + \tfrac12(2n)(2n+1)\right]\)} & M1 & {Splits the term into \((-1)^r r^2(r+1)\) and \(3(r^2+r)\), applying both standard results with \(n\) replaced by \(2n\).} \\
+& {\(\phantom{A} = 4n(n+1)(2n+1)\)} & A1 & {oe, such as \(8n^3+12n^2+4n\).} \\
+& {\(n(n+1)(4n+1) + 4n(n+1)(2n+1)\)\\[4pt] \(\phantom{A} = n(n+1)(12n+5)\)} & A1~AG & {Adds the part (b) result to a correct sum, reaching the printed result without error.} \\
+\nopagebreak & & [3] & \\
+15(d) & {Sum to \(r=40\), plus the \(r=41\) term, minus sum to \(r=10\), using part (c) with \(n = 20\) and \(n = 5\)} & M1 & {Subtracts the sum to \(r=10\) from the sum to \(r=41\), found as sum to 40 plus the \(r=41\) term, or sum to 42 minus the \(r=42\) term.} \\
+& {\(20\times21\times245 = 102\,900\), \(5\times6\times65 = 1950\)} & A1 & {Or sum to 42 \(= 118\,734\) with 1950.} \\
+& {\(41\times42\times(-41+3) = -65\,436\)} & B1 & {Or the \(r=42\) term, \(81\,270\), on the sum-to-42 route.} \\
+& {\(102\,900 - 65\,436 - 1950 = 35\,514\)} & A1 & {cao} \\
+\nopagebreak & & [4] & \\
+\nopagebreak \SetCell[c=2]{r} Total for Question 15 & & 13 & \\
+\end{msscheme}
+
+\end{document}
