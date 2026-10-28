@@ -5,7 +5,7 @@
 \djsSitePath{Further Mechanics}{Work, Energy and Power}
 \djsMechanicsPack
 
-\djsLastUpdated{27 October 2026}
+\djsLastUpdated{28 October 2026}
 \begin{document}
 \djsFrontMatter
 \begin{enumerate}[
@@ -265,7 +265,7 @@ The coefficient of friction between $P$ and the plane is $\dfrac{1}{\sqrt{3}}$. 
 
 The particle is projected up the plane, away from $O$, with speed $\sqrt{\dfrac{3ga}{2}}$. \\
 
-Find the greatest extension of the string during the subsequent motion. \marks{5} \\
+Find the greatest extension of the string during the subsequent motion. \marks{6} \\
 
 \vspace*{10pt}
 
@@ -511,7 +511,7 @@ A light elastic string has natural length $3a$ and modulus of elasticity $9mg$. 
 One end of the string is attached to a fixed point $O$. A particle $P$ of mass $m$ is attached to the other end. \\
 The particle hangs freely in equilibrium at the point $E$, vertically below $O$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
-  \item Find the length $OE$. \marks{4} \\
+  \item Find the length $OE$. \marks{3} \\
 \end{enumerate}
 The particle is then pulled vertically downwards from $E$ to a point $A$, where $OA = \dfrac{16a}{3}$, and released from rest. \\
 The resistance to the motion of $P$ is a constant force of magnitude $\dfrac{1}{4}mg$. \\
@@ -897,10 +897,7 @@ By modelling $P$ as a particle, \\
     \centering
 \begin{tikzpicture}[scale=1.1]
 \def\surfL{-0.5}
-\def\surfR{10.2}
-\def\wallx{9.2}
-\def\wallw{0.18}
-\def\wallh{1.6}
+\def\surfR{7.2}
 \def\anchory{0.26}
 \def\blockx{3.1}
 \def\bw{1.2}
@@ -921,18 +918,11 @@ By modelling $P$ as a particle, \\
 \coordinate (P) at ($(TL)!0.75!(TR)$);
 \coordinate (H) at ($(P)+(\reflen,0)$);
 \coordinate (F) at ($(P)+(\forceang:\forcelen)$);
-\coordinate (WBL) at (\wallx,0);
-\coordinate (WBR) at ($(WBL)+(\wallw,0)$);
-\coordinate (WTL) at ($(WBL)+(0,\wallh)$);
-\coordinate (WTR) at ($(WBR)+(0,\wallh)$);
 
 \draw[thick] (S0) -- (S1);
 \draw[thick] (A0) -- (O);
 \draw[thick] (O) -- (Attach);
 \draw[thick, fill=gray!30] (BL) rectangle (TR);
-
-\fill[pattern=north east lines] (WBL) rectangle (WTR);
-\draw[thick] (WBL) -- (WTL) -- (WTR) -- (WBR);
 
 \draw[dashed] (P) -- (H);
 \draw[-{Stealth[length=3mm]}, thick] (P) -- (F) node[below] {$80\,\mathrm{N}$};
@@ -940,7 +930,6 @@ By modelling $P$ as a particle, \\
   {angle=F--P--H};
 
 \node[left] at (O) {$O$};
-\node[above] at ($(WTL)!0.5!(WTR)$) {Wall};
 \end{tikzpicture}
 \end{figure}
 
@@ -950,9 +939,9 @@ A block of mass $6\,\mathrm{kg}$ rests on a rough horizontal surface and is atta
 The elastic string has natural length $2\,\mathrm{m}$ and modulus of elasticity $80\,\mathrm{N}$. \\
 
 The coefficient of friction between the block and the surface is $0.25$. \\
-A force of magnitude $80\,\mathrm{N}$ is applied to the block towards a vertical wall. The force acts at an angle of $20^\circ$ below the horizontal, as shown in the diagram. \\
+A force of magnitude $80\,\mathrm{N}$ is applied to the block at an angle of $20^\circ$ below the horizontal, with its horizontal component directed away from $O$, as shown in the diagram. \\
 
-The block moves in a straight line perpendicular to the wall, and the wall is sufficiently far away that the block does not reach it during the motion considered. \\
+The block moves in a straight line directly away from $O$. \\
 In this question, take $g = 9.8\,\mathrm{m\,s^{-2}}$. \\
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Show that the block has moved $0.94\,\mathrm{m}$, correct to 2 significant figures, when the forces acting on it are in equilibrium. \marks{4} \\
@@ -964,7 +953,7 @@ In this question, take $g = 9.8\,\mathrm{m\,s^{-2}}$. \\
 
 \begin{djsSolution}
 \begin{enumerate}[label=\textbf{(\alph*)}, start=1]
-  \item Let the block move a distance \(x\,\mathrm{m}\) towards the wall.
+  \item Let the block move a distance \(x\,\mathrm{m}\) away from \(O\).
 
   The string length is then \(2.4+x\), so its extension is
   \[
@@ -1459,6 +1448,8 @@ A stunt performer is attached to two identical light elastic cords. One end of e
 The performer has mass $80\,\mathrm{kg}$ and is modelled as a particle. Initially the performer is held at rest at the centre of the shaft, $7\,\mathrm{m}$ above the floor. The shaft is $52\,\mathrm{m}$ deep and $48\,\mathrm{m}$ wide. Each elastic cord has natural length $30\,\mathrm{m}$ and modulus of elasticity $3150\,\mathrm{N}$. \\
 
 The performer is released from rest. \\
+
+Air resistance is modelled as negligible. \\
 
 \begin{enumerate}[label=\textbf{(\alph*)}]
   \item Show that the speed of the performer when the cords first become slack is $25\,\mathrm{m\,s^{-1}}$ correct to two significant figures. \marks{6} \\
