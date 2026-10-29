@@ -63,6 +63,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/induction/soln/_QBT___Solns__Proof_by_Induction___Matrices.pdf': '6a75a297',
   '/tex/further-maths/core-pure/induction/soln/_QBT___Solns__Proof_by_Induction___Series.pdf': '209dc5bc',
   '/tex/further-maths/core-pure/misc-pure/ms/_QBT___MS__Hyperbolic_Functions.pdf': '9b6701f7',
+  '/tex/further-maths/core-pure/misc-pure/ms/_QBT___MS__Rational_Functions.pdf': 'e87a624b',
   '/tex/further-maths/core-pure/misc-pure/ms/_QBT___MS__Roots_of_Polynomials.pdf': '59199d30',
   '/tex/further-maths/core-pure/misc-pure/ms/_QBT___MS__Series___Method_of_Differences.pdf': 'c1e7790c',
   '/tex/further-maths/core-pure/misc-pure/ms/_QBT___MS__Standard_Summations.pdf': '6fe7bfe5',

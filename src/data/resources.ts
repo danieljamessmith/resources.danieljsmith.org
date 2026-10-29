@@ -1347,6 +1347,16 @@ const rawResources: Resource[] = [
     pairId: 'fm-misc-rational-functions',
     topic: 'Miscellaneous Pure',
   },
+  {
+    id: 'fm-misc-rational-functions-ms',
+    title: 'Rational Functions',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/core-pure/misc-pure/ms/_QBT___MS__Rational_Functions.pdf',
+    category: FM_CP,
+    type: 'markscheme',
+    paperId: 'fm-misc-rational-functions',
+    topic: 'Miscellaneous Pure',
+  },
 
   // --- A-level Further Maths: Further Mechanics — Momentum & Collisions ---
   {
