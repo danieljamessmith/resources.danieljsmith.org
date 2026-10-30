@@ -127,6 +127,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/further-mechanics/kinematics-dynamics/soln/_QBT___Solns__Impulse_and_Work_Done_by_a_Variable_Force.pdf': '65459d25',
   '/tex/further-maths/further-mechanics/kinematics-dynamics/soln/_QBT___Solns__Motion_Under_a_Variable_Force.pdf': '4563af48',
   '/tex/further-maths/further-mechanics/kinematics-dynamics/soln/_QBT___Solns__Projectile_Motion.pdf': 'c2fcc2ce',
+  '/tex/further-maths/further-mechanics/miscellaneous-mechanics/ms/_QBT___MS__Dimensional_Analysis.pdf': 'd5b624c9',
   '/tex/further-maths/further-mechanics/miscellaneous-mechanics/qbt/_QBT__Dimensional_Analysis.pdf': 'b7f20f5f',
   '/tex/further-maths/further-mechanics/miscellaneous-mechanics/soln/_QBT___Solns__Dimensional_Analysis.pdf': 'd44c178b',
   '/tex/further-maths/further-mechanics/momentum-restitution-collisions/qbt/_QBT__Collisions_in_1_Dimension.pdf': 'c48a7cbc',

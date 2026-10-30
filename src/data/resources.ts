@@ -1607,6 +1607,16 @@ const rawResources: Resource[] = [
     pairId: 'further-maths-further-mechanics-miscellaneous-mechanics-dimensional-analysis',
     topic: 'Miscellaneous Mechanics',
   },
+  {
+    id: 'further-maths-further-mechanics-miscellaneous-mechanics-dimensional-analysis-ms',
+    title: 'Dimensional Analysis',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/further-mechanics/miscellaneous-mechanics/ms/_QBT___MS__Dimensional_Analysis.pdf',
+    category: FM_MECH,
+    type: 'markscheme',
+    paperId: 'further-maths-further-mechanics-miscellaneous-mechanics-dimensional-analysis',
+    topic: 'Miscellaneous Mechanics',
+  },
 
   // --- A-level Further Maths: Further Mechanics - Centre of Mass ---
   {
