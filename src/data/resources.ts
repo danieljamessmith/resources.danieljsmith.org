@@ -1499,6 +1499,16 @@ const rawResources: Resource[] = [
     topic: 'Work, Energy and Power',
   },
   {
+    id: 'further-maths-further-mechanics-work-energy-power-work-energy-principle-ms',
+    title: 'Work-Energy Principle',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/further-mechanics/work-energy-power/ms/_QBT___MS__Work_Energy_Principle.pdf',
+    category: FM_MECH,
+    type: 'markscheme',
+    paperId: 'further-maths-further-mechanics-work-energy-power-work-energy-principle',
+    topic: 'Work, Energy and Power',
+  },
+  {
     id: 'further-maths-further-mechanics-work-energy-power-work-energy-elastic-potential-energy',
     title: 'Elastic Potential Energy',
     description: '',
