@@ -1467,6 +1467,16 @@ const rawResources: Resource[] = [
     topic: 'Work, Energy and Power',
   },
   {
+    id: 'further-maths-further-mechanics-work-energy-power-work-energy-power-and-driving-force-ms',
+    title: 'Power and Driving Force',
+    description: 'Mark scheme',
+    file: '/tex/further-maths/further-mechanics/work-energy-power/ms/_QBT___MS___Power_and_Driving_Force_.pdf',
+    category: FM_MECH,
+    type: 'markscheme',
+    paperId: 'further-maths-further-mechanics-work-energy-power-work-energy-power-and-driving-force',
+    topic: 'Work, Energy and Power',
+  },
+  {
     id: 'further-maths-further-mechanics-work-energy-power-work-energy-principle',
     title: 'Work-Energy Principle',
     description: '',
