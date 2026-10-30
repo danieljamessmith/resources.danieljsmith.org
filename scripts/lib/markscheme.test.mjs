@@ -702,9 +702,11 @@ describe('rules 15-19: notes', () => {
     expect(rules(run((s) => (part(s, 2, '').rows[1].scheme = 'By www\n')).errors)).toEqual([16]);
   });
 
-  it('rule 17: no special case anywhere', () => {
-    expect(rules(run((s) => (note(s).note = 'Uses it. SC B1 for the answer.')).errors)).toEqual([17]);
-    expect(rules(run((s) => (part(s, 3, 'a.i').alt.title = 'Special case')).errors)).toEqual([17]);
+  it('rule 17 is retired: a special case passes', () => {
+    const r = run((s) => (note(s).note = 'Uses it. SC B1 for the answer.'));
+    expect(r.errors).toEqual([]);
+    expect(r.warnings).toEqual([]);
+    expect(run((s) => (part(s, 3, 'a.i').alt.title = 'Special case')).errors).toEqual([]);
   });
 
   it('rule 18: an M1, dM1 or E1 note opens with a verb (a warning)', () => {

@@ -222,7 +222,7 @@ halves of 6 and 16) are reported.
 14. With `--codes` only: a part's main codes, in order, are those given, and so are its `alt`'s.
 15. The required notes are there.
 16. Outside maths, no `bod`, `www`, `rot`, `PI`, `BC`, `DR`, `dep`, `indep`, `ACF`, `AWFW`, `NMS` or `CWO`, in any case. Any other word of two to five capitals but `AG`, `SC`, `LHS`, `RHS`, `KE`, `GPE` and `EPE` warns.
-17. No `SC` or "special case" anywhere.
+17. (Retired: special cases are allowed.)
 18. An `M1`, `dM1` or `E1` note opens with a verb from `NOTE_VERBS` (warning).
 19. A note of more than 35 words, maths counting as one, warns.
 20. `figure: N` names a counted picture of the question's solution box.

@@ -1177,7 +1177,7 @@ function checkQuestionBody(question, packQ, report, { modelAnswer = false, codes
     }
   });
 
-  // Rules 6, 7 (titles and whys, upright i and e, and straight quotes), 16, 17 over the question's text.
+  // Rules 6, 7 (titles and whys, upright i and e, and straight quotes) and 16 over the question's text.
   for (const [text, field] of questionTexts(question)) {
     const where = field.where;
     for (const [ch, hint] of Object.entries(CONTROL_HINTS)) {
@@ -1211,12 +1211,6 @@ function checkQuestionBody(question, packQ, report, { modelAnswer = false, codes
         if (ALLOWED_CAPITALS.has(m[0]) || banned.has(m[0])) continue;
         report.warn(16, where, q, `"${m[0]}" in the ${field.name}: an abbreviation the conventions pages don't define?`);
       }
-    }
-    if (
-      (PROSE_FIELDS.has(field.name) || field.name === 'why') &&
-      (/(?<![A-Za-z])SC(?![A-Za-z])/.test(text) || /special case/i.test(text))
-    ) {
-      report.error(17, where, q, `a special case in the ${field.name}: there are no special cases in this version`);
     }
   }
 }
