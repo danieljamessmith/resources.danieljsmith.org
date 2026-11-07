@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, relative, isAbsolute, sep } from 'node:path';
 import {
   findPdfFiles,
   hashFile,
@@ -78,6 +78,14 @@ describe('hashFile + computeFileHashes', () => {
       '/tex/topic-a/qbt/b.pdf',
     ]);
     expect(entries.every(([, h]) => /^[0-9a-f]{8}$/.test(h))).toBe(true);
+  });
+
+  it('computeFileHashes gives the same /tex/ keys however the public dir is spelt', () => {
+    const rel = relative(process.cwd(), workdir);
+    const dotted = isAbsolute(rel) ? rel : `.${sep}${rel}`;
+    for (const spelling of [`${workdir}${sep}`, dotted]) {
+      expect(computeFileHashes(spelling)).toEqual(computeFileHashes(workdir));
+    }
   });
 });
 
