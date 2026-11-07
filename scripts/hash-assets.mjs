@@ -18,24 +18,30 @@ const publicDir = join(repoRoot, 'public');
 
 /**
  * Recursively finds all deployed `.pdf` files under `dir`, skipping
- * `build/` and `aux/` directories (latexmk staging output).
+ * `build/` and `aux/` directories (latexmk staging output). A missing `dir`
+ * holds none; any other error reading it, or a folder under it, is thrown,
+ * so a hashes file is never written from a tree that could not be read.
  *
  * @param {string} dir
  * @returns {string[]}
  */
 export function findPdfFiles(dir) {
-  const results = [];
-  let entries;
   try {
-    entries = readdirSync(dir, { withFileTypes: true });
-  } catch {
-    return results;
+    return walkPdfFiles(dir);
+  } catch (err) {
+    if (err?.code === 'ENOENT' && err.path === dir) return [];
+    throw err;
   }
-  for (const entry of entries) {
+}
+
+/** @param {string} dir @returns {string[]} */
+function walkPdfFiles(dir) {
+  const results = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
     const full = join(dir, entry.name);
     if (entry.isDirectory()) {
       if (entry.name === 'build' || entry.name === 'aux') continue;
-      results.push(...findPdfFiles(full));
+      results.push(...walkPdfFiles(full));
     } else if (entry.name.endsWith('.pdf')) {
       results.push(full);
     }
