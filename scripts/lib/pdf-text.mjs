@@ -227,7 +227,7 @@ export function pdfText(buf) {
     if (s.slice(Math.max(0, m.index - 3), m.index) === 'end') continue;
     const dict = dictionaryBefore(s, m.index);
     const start = m.index + m[0].length;
-    const length = Number(/\/Length\s+(\d+)(?!\s+\d+\s+R)/.exec(dict)?.[1]);
+    const length = Number(/\/Length\s+(\d+)(?!\d|\s+\d+\s+R)/.exec(dict)?.[1]);
     const end = Number.isFinite(length) && length > 0 ? start + length : s.indexOf('endstream', start);
     if (end < start) break;
     syntax.push(s.slice(pos, m.index));

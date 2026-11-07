@@ -61,6 +61,16 @@ describe('pdfText', () => {
     expect(text).not.toContain('hiddenterm');
   });
 
+  it('reads a stream whose length is an indirect reference', () => {
+    const bytes = deflateSync(Buffer.from('BT (indirectword) Tj ET', 'latin1'));
+    const pdf = Buffer.concat([
+      Buffer.from('%PDF-1.5\n4 0 obj\n<< /Length 12 0 R /Filter /FlateDecode >>\nstream\n', 'latin1'),
+      bytes,
+      Buffer.from(`\nendstream\nendobj\n12 0 obj\n${bytes.length}\nendobj\n%%EOF\n`, 'latin1'),
+    ]);
+    expect(pdfText(pdf)).toContain('indirectword');
+  });
+
   it('decodes UTF-16 strings', () => {
     const text = pdfText(samplePdf({ content: 'BT ET', bookmark: '<FEFF0051002D0031>' }));
     expect(text).toContain('Q-1');
