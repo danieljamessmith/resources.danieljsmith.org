@@ -8,10 +8,11 @@ import {
   familyInOrder,
   getResourceDisplayDescription,
   getResourceMetaDescription,
+  FM_PREFIX,
   TMUA_SHARE_IMAGE,
 } from '~/data/resources';
 import { resourceContents } from '~/data/resourceContents';
-import { getStrandHrefForResource } from '~/data/topics';
+import { getStrand, getStrandHrefForResource } from '~/data/topics';
 
 export function getStaticPaths() {
   return resources.map((resource) => ({
@@ -36,29 +37,19 @@ type BreadcrumbNav =
       sectionLabel: string;
     };
 
-const categoryBreadcrumb: Record<string, BreadcrumbNav> = {
-  TMUA: { mode: 'single', href: '/tmua/', label: 'TMUA', aria: 'Back to TMUA resources' },
-  'FM - Core Pure': {
-    mode: 'fm',
-    parentLabel: 'All resources',
-    parentHref: '/',
-    sectionLabel: 'Core Pure',
-    sectionHref: '/further-maths/core-pure/',
-  },
-  'FM - Further Mechanics': {
-    mode: 'fm',
-    parentLabel: 'All resources',
-    parentHref: '/',
-    sectionLabel: 'Further Mechanics',
-    sectionHref: '/further-maths/further-mechanics/',
-  },
-};
-const baseBreadcrumb = categoryBreadcrumb[resource.category] ?? {
-  mode: 'single' as const,
-  href: '/',
-  label: 'Home',
-  aria: 'All resources',
-};
+// A Further Maths strand's title and page come from `topics.json`.
+const strand = getStrand(resource.category);
+const baseBreadcrumb: BreadcrumbNav = strand
+  ? {
+      mode: 'fm',
+      parentLabel: 'All resources',
+      parentHref: '/',
+      sectionLabel: strand.title,
+      sectionHref: strand.href,
+    }
+  : resource.category === 'TMUA'
+    ? { mode: 'single', href: '/tmua/', label: 'TMUA', aria: 'Back to TMUA resources' }
+    : { mode: 'single', href: '/', label: 'Home', aria: 'All resources' };
 // Return readers to the booklet's own topic section rather than the top of the strand page.
 const topicHref = getStrandHrefForResource(resource);
 const breadcrumb =
@@ -74,7 +65,7 @@ const resourceKinds: Partial<Record<ResourceType, string>> = {
   markscheme: 'Mark scheme',
 };
 const resourceKind = (resource.type && resourceKinds[resource.type]) ?? 'Notes';
-const pageTitle = resource.category.startsWith('FM - ')
+const pageTitle = resource.category.startsWith(FM_PREFIX)
   ? `${resource.title}: ${resourceKind} | A-level Further Maths`
   : resource.type === 'solutions' || resource.type === 'answers'
     ? `${resource.title}: ${resourceKind} | TMUA-Style Practice`
