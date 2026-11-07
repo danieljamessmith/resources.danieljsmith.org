@@ -1,12 +1,12 @@
 ---
-import { EXAM_BOARDS, type ExamBoardEntry } from '~/data/resources';
+import type { ExamBoardEntry } from '~/data/resources';
 
 interface Props {
   variant?: 'sidebar' | 'mobile';
-  boards?: ExamBoardEntry[];
+  boards: ExamBoardEntry[];
 }
 
-const { variant = 'sidebar', boards = EXAM_BOARDS } = Astro.props;
+const { variant = 'sidebar', boards } = Astro.props;
 
 // Each board shows its code beside its label. The chosen board's breadcrumb
 // (awarding body, then qualification or paper) is shown by the filter status

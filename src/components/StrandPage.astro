@@ -14,11 +14,9 @@ interface Props {
   strand: Strand;
   title: string;
   description: string;
-  /** Optional one-line notice shown under the introduction. */
-  notice?: string;
 }
 
-const { strand, title, description, notice } = Astro.props;
+const { strand, title, description } = Astro.props;
 
 type Pair = { questions: Resource; markscheme: Resource | undefined; solutions: Resource };
 const sections = strand.topics.map((topic) => {
@@ -48,7 +46,6 @@ const navTopics = strand.topics.map((t) => ({ id: t.id, label: t.navLabel }));
           </nav>
           <h1 class="page-title">{strand.title}</h1>
           <p class="page-intro">Questions by topic with worked solutions. Filter by exam board. Exam board labels correspond to content coverage and are not a promise of matching style.</p>
-          {notice && <p class="page-notice">{notice}</p>}
           <p class="filter-status" data-filter-status hidden>
             <span data-filter-status-text></span>
             <button type="button" data-filter-clear>Show all boards</button>

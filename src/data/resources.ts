@@ -100,8 +100,6 @@ export const resources: Resource[] = rawResources.map((r) => {
   };
 });
 
-export const categories = [...new Set(resources.map((r) => r.category))];
-
 export function getResourceDisplayDescription(resource: Resource): string {
   if (
     resource.category.startsWith(FM_PREFIX) &&
@@ -138,13 +136,6 @@ export function getResourceMetaDescription(resource: Resource): string {
   return getResourceDisplayDescription(resource) || `${resource.title}: free maths resource with worked solutions.`;
 }
 
-/** Question count for one category (e.g. one Further Maths strand). */
-export function getQuestionCountByCategory(cat: string): number {
-  return resources
-    .filter((r) => r.category === cat && r.type === 'questions')
-    .reduce((sum, r) => sum + (r.questionCount ?? 0), 0);
-}
-
 export interface TmuaStats {
   sets: number;
   papers: number;
@@ -174,29 +165,9 @@ export function getTmuaStats(): TmuaStats {
   };
 }
 
-/** Distinct-topic count for one category (e.g. one Further Maths strand). */
-export function getTopicCountByCategory(cat: string): number {
-  const topics = new Set<string>();
-  for (const r of resources) {
-    if (r.category === cat && r.topic) topics.add(r.topic);
-  }
-  return topics.size;
-}
-
 /** Worksheet (question-sheet) count for one category; solutions aren't counted separately. */
 export function getWorksheetCountByCategory(cat: string): number {
   return resources.filter((r) => r.category === cat && r.type === 'questions').length;
-}
-
-export function getFurtherMathsTotalQuestionCount(): number {
-  return resources
-    .filter((r) => r.category.startsWith(FM_PREFIX) && r.type === 'questions')
-    .reduce((sum, r) => sum + (r.questionCount ?? 0), 0);
-}
-
-/** Rounded down to nearest 10; use for marketing line when >= 10. */
-export function getFurtherMathsQuestionTotalRoundedDownTen(): number {
-  return Math.floor(getFurtherMathsTotalQuestionCount() / 10) * 10;
 }
 
 export function getResourceById(id: string): Resource | undefined {
@@ -294,12 +265,9 @@ export function getResourcesByTopic(category: string, topic: string): Resource[]
   return resources.filter((r) => r.category === category && r.topic === topic);
 }
 
-export function getResourcePairs(category: string, topic?: string) {
+export function getResourcePairs(category: string, topic: string) {
   const questions = resources.filter(
-    (r) =>
-      r.category === category &&
-      r.type === 'questions' &&
-      (topic === undefined || r.topic === topic),
+    (r) => r.category === category && r.type === 'questions' && r.topic === topic,
   );
   return questions.map((q) => ({
     questions: q,

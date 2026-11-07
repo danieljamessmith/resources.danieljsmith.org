@@ -4,11 +4,11 @@ interface Props {
   title: string;
   /** Number of booklets listed; shown on the right of the heading. */
   count?: number;
-  /** Singular form of the label; pluralised automatically when count !== 1. */
-  countLabel?: string;
 }
 
-const { id, title, count, countLabel = 'booklet' } = Astro.props;
+const { id, title, count } = Astro.props;
+/** Singular form of the count's label; pluralised when count !== 1. */
+const countLabel = 'booklet';
 
 const countText =
   count !== undefined && count > 0 ? `${count} ${countLabel}${count === 1 ? '' : 's'}` : null;
