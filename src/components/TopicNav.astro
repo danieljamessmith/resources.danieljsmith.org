@@ -59,8 +59,13 @@ const { variant = 'sidebar', topics } = Astro.props;
       (parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0) + 8;
 
     function hashId(): string | null {
-      const id = decodeURIComponent(window.location.hash.slice(1));
-      return validIds.has(id) ? id : null;
+      try {
+        const id = decodeURIComponent(window.location.hash.slice(1));
+        return validIds.has(id) ? id : null;
+      } catch {
+        // A malformed fragment (such as `#%`) names no topic.
+        return null;
+      }
     }
 
     function keepLinkVisible(link: HTMLElement) {
