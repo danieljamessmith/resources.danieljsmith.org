@@ -114,12 +114,7 @@ export function getResourceDisplayDescription(resource: Resource): string {
 /** Search-result description for a viewer page; fuller than the on-page display copy. */
 export function getResourceMetaDescription(resource: Resource): string {
   if (resource.category.startsWith(FM_PREFIX)) {
-    const questions = resource.type === 'solutions' && resource.pairId
-      ? getResourceById(resource.pairId)
-      : resource.type === 'markscheme' && resource.paperId
-        ? getResourceById(resource.paperId)
-        : resource;
-    const count = questions?.questionCount;
+    const count = getPaperFamily(resource).questions?.questionCount;
     const subject = `A-level Further Maths questions on ${resource.title}`;
     if (resource.type === 'questions') {
       return count != null
