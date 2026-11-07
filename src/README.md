@@ -12,7 +12,7 @@ The home page contains the Further Maths strand picker at `/#further-maths`, lin
 
 Below 1024px, Further Maths pages use labelled native exam-board and topic selects; the desktop sidebar controls remain synchronised. The board options keep their plain labels (a code would cut the closed select short); the chosen board's code follows the select's "Exam board" label, inside the pinned bar, and its breadcrumb ends the status line. Board selection dims non-matching booklets, preserves the topic fragment, and persists per strand. Topic selection updates the fragment and focuses the destination heading.
 
-Below 768px a pack card's document links sit on their own line under its title and pills, 44px tall; below 360px they tighten so Questions | Mark scheme | Solutions still fit one line at 320px, and narrower still they wrap rather than scroll the page sideways. Below 768px, resource links marked `data-mobile-same-tab` use the current tab; `Layout.astro` updates their targets on load and viewport changes. Resource-row clicks in `src/scripts/board-filter.ts` follow the same breakpoint. Desktop links retain the new-tab workflow. Mobile header tuition navigation is available in the footer; the theme toggle uses its accessible label with a compact icon.
+Below 768px a pack card's document links sit on their own line under its title and pills, 44px tall; below 360px they tighten so Questions | Mark scheme | Solutions still fit one line at 320px, and narrower still they wrap rather than scroll the page sideways. Mobile header tuition navigation is available in the footer; the theme toggle uses its accessible label with a compact icon.
 
 ## Search metadata
 
