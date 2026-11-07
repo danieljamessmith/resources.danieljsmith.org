@@ -267,6 +267,6 @@ export function getResourcePairs(category: string, topic: string) {
   return questions.map((q) => ({
     questions: q,
     markscheme: getMarkScheme(q.id),
-    solutions: resources.find((r) => r.id === q.pairId),
+    solutions: q.pairId ? getResourceById(q.pairId) : undefined,
   }));
 }
