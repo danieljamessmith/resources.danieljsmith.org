@@ -73,7 +73,7 @@ export function computeFileHashes(publicDirArg = publicDir) {
     const rel = pdfPath.slice(publicDirArg.length).replace(/\\/g, '/');
     hashes[rel] = hashFile(pdfPath);
   }
-  return Object.entries(hashes).sort(([a], [b]) => a.localeCompare(b));
+  return Object.entries(hashes).sort(([a], [b]) => a.localeCompare(b, 'en'));
 }
 
 /**
