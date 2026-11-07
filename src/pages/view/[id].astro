@@ -66,32 +66,27 @@ const breadcrumb =
 // TMUA descriptions stay in search metadata only; on the page they repeat the contents list below.
 const displayDescription = resource.category === 'TMUA' ? '' : getResourceDisplayDescription(resource);
 const contents = resourceContents[resource.id];
-const resourceKind =
-  resource.type === 'solutions'
-    ? 'Worked solutions'
-    : resource.type === 'questions'
-      ? 'Questions'
-      : resource.type === 'answers'
-        ? 'Answer key'
-        : resource.type === 'markscheme'
-          ? 'Mark scheme'
-          : 'Notes';
+type ResourceType = NonNullable<typeof resource.type>;
+const resourceKinds: Partial<Record<ResourceType, string>> = {
+  solutions: 'Worked solutions',
+  questions: 'Questions',
+  answers: 'Answer key',
+  markscheme: 'Mark scheme',
+};
+const resourceKind = (resource.type && resourceKinds[resource.type]) ?? 'Notes';
 const pageTitle = resource.category.startsWith('FM - ')
   ? `${resource.title}: ${resourceKind} | A-level Further Maths`
   : resource.type === 'solutions' || resource.type === 'answers'
     ? `${resource.title}: ${resourceKind} | TMUA-Style Practice`
     : `${resource.title} | TMUA-Style Practice`;
 
-const paneLabel = (type: string | undefined): string =>
-  type === 'questions'
-    ? 'Questions'
-    : type === 'solutions'
-      ? 'Solutions'
-      : type === 'answers'
-        ? 'Answer key'
-        : type === 'markscheme'
-          ? 'Mark scheme'
-          : 'Document';
+const paneLabels: Partial<Record<ResourceType, string>> = {
+  questions: 'Questions',
+  solutions: 'Solutions',
+  answers: 'Answer key',
+  markscheme: 'Mark scheme',
+};
+const paneLabel = (type: ResourceType | undefined): string => (type && paneLabels[type]) ?? 'Document';
 
 // The document each family member pairs with: questions with their solutions, and an answer key
 // or mark scheme with its paper. On phones its link is the one that carries `?page`.
