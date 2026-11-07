@@ -2,7 +2,7 @@
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
-import { FM_CP, FM_MECH, getResourcesByCategory } from '~/data/resources';
+import { FM_CP, FM_MECH, getWorksheetCountByCategory } from '~/data/resources';
 import { getStrand } from '~/data/topics';
 
 const strands = [
@@ -10,9 +10,9 @@ const strands = [
   { category: FM_MECH, description: 'Optional Mechanics topics for A-level Further Mathematics. Collisions, Work and Energy, Centre of Mass and more.' },
 ].map(strand => {
   const { title, href } = getStrand(strand.category)!;
-  return { ...strand, title, href, count: getResourcesByCategory(strand.category).filter(r => r.type === 'questions').length };
+  return { ...strand, title, href, count: getWorksheetCountByCategory(strand.category) };
 });
-const tmuaPaperCount = getResourcesByCategory('TMUA').filter(r => r.type === 'questions').length;
+const tmuaPaperCount = getWorksheetCountByCategory('TMUA');
 ---
 <Layout title="Free Further Maths & TMUA Practice with Worked Solutions" description="Free A-level Further Maths questions by topic and TMUA practice papers, all with full worked solutions. Edexcel, AQA, OCR A, OCR MEI and CIE style.">
   <div class="min-h-screen flex flex-col">
