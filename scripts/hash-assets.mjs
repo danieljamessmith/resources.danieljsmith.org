@@ -9,7 +9,7 @@
 
 import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
-import { join, resolve, dirname } from 'node:path';
+import { join, relative, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -70,7 +70,7 @@ export function computeFileHashes(publicDirArg = publicDir) {
   const pdfFiles = findPdfFiles(join(publicDirArg, 'tex'));
   const hashes = {};
   for (const pdfPath of pdfFiles) {
-    const rel = pdfPath.slice(publicDirArg.length).replace(/\\/g, '/');
+    const rel = `/${relative(publicDirArg, pdfPath).replace(/\\/g, '/')}`;
     hashes[rel] = hashFile(pdfPath);
   }
   return Object.entries(hashes).sort(([a], [b]) => a.localeCompare(b, 'en'));
