@@ -94,6 +94,15 @@ export function contentStreamText(s) {
   let operands = [];
   /** @type {(string | number)[] | null} */
   let array = null;
+  // Depth inside an inline dictionary (`<< ... >>`, as in `/Span << /ActualText (...) >> BDC`),
+  // whose strings are kept apart, one per line, and added after the page text.
+  let dictDepth = 0;
+  /** @type {string[]} */
+  const dictStrings = [];
+  const pushString = (str) => {
+    if (dictDepth > 0) dictStrings.push(str);
+    else (array ?? operands).push(str);
+  };
   const breakLine = () => {
     if (out && !out.endsWith('\n')) out += out.endsWith('-') ? '' : '\n';
   };
@@ -115,12 +124,18 @@ export function contentStreamText(s) {
       while (i < s.length && s[i] !== '\n' && s[i] !== '\r') i++;
     } else if (ch === '(') {
       const end = literalEnd(s, i);
-      (array ?? operands).push(stringText(literalBytes(s.slice(i + 1, end - 1))));
+      pushString(stringText(literalBytes(s.slice(i + 1, end - 1))));
       i = end;
-    } else if (ch === '<' && s[i + 1] !== '<') {
+    } else if (ch === '<' && s[i + 1] === '<') {
+      dictDepth++;
+      i += 2;
+    } else if (ch === '>' && s[i + 1] === '>') {
+      if (dictDepth > 0) dictDepth--;
+      i += 2;
+    } else if (ch === '<') {
       const end = s.indexOf('>', i);
       const stop = end < 0 ? s.length : end;
-      (array ?? operands).push(stringText(hexBytes(s.slice(i + 1, stop))));
+      pushString(stringText(hexBytes(s.slice(i + 1, stop))));
       i = stop + 1;
     } else if (ch === '[') {
       array = [];
@@ -159,7 +174,7 @@ export function contentStreamText(s) {
       }
       operands = [];
     } else {
-      // Names, dictionaries and anything else: their operands don't matter here.
+      // Names and anything else: their operands don't matter here.
       if (ch === '/') {
         const m = /^\/[^\s/<>[\]()%{}]*/.exec(s.slice(i, i + 128));
         i += m[0].length;
@@ -168,7 +183,9 @@ export function contentStreamText(s) {
       }
     }
   }
-  return out.replace(/-\n/g, '-');
+  const text = out.replace(/-\n/g, '-');
+  if (dictStrings.length === 0) return text;
+  return `${text}${text && !text.endsWith('\n') ? '\n' : ''}${dictStrings.map((d) => `${d}\n`).join('')}`;
 }
 
 /**

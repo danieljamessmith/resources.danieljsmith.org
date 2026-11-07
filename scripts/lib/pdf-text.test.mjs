@@ -46,6 +46,12 @@ describe('contentStreamText', () => {
     );
   });
 
+  it('reads the strings in an inline dictionary, literal or hex, and keeps the shown text whole', () => {
+    expect(
+      contentStreamText('BT /Span << /ActualText (spoken) /Alt <FEFF0041006C0074> >> BDC [(sho)(wn)]TJ EMC ET'),
+    ).toBe('shown\nspoken\nAlt\n');
+  });
+
   it('reads hex strings and ignores graphics', () => {
     expect(contentStreamText('q 1 0 0 1 2 3 cm 0 0 m 5 5 l S Q BT <48656c6c6f> Tj ET')).toBe('Hello\n');
   });
