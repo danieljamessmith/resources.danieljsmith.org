@@ -63,3 +63,21 @@ export function looksBinary(buf) {
   }
   return false;
 }
+
+/**
+ * A file's text, or null if it looks binary. UTF-16 with a byte-order mark
+ * (what Windows PowerShell 5 writes by default) is decoded as text before
+ * the binary sniff, which its NUL bytes would otherwise fail; anything else
+ * is read as UTF-8.
+ *
+ * @param {Buffer} buf
+ * @returns {string | null}
+ */
+export function textOf(buf) {
+  if (buf[0] === 0xff && buf[1] === 0xfe) return buf.subarray(2).toString('utf16le');
+  if (buf[0] === 0xfe && buf[1] === 0xff) {
+    const body = Buffer.from(buf.subarray(2, buf.length - (buf.length % 2)));
+    return body.swap16().toString('utf16le');
+  }
+  return looksBinary(buf) ? null : buf.toString('utf8');
+}

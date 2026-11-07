@@ -23,7 +23,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 
-import { parseTermList, findTermHits, looksBinary } from './lib/private-terms.mjs';
+import { parseTermList, findTermHits, textOf } from './lib/private-terms.mjs';
 import { pdfText } from './lib/pdf-text.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -110,8 +110,9 @@ function main() {
     for (const { path: rel, buf } of candidateFiles(repoRoot)) {
       if (rel.toLowerCase().endsWith('.pdf')) {
         targets.push({ label: rel, text: pdfText(buf), lines: false });
-      } else if (!looksBinary(buf)) {
-        targets.push({ label: rel, text: buf.toString('utf8'), lines: true });
+      } else {
+        const text = textOf(buf);
+        if (text !== null) targets.push({ label: rel, text, lines: true });
       }
     }
   }

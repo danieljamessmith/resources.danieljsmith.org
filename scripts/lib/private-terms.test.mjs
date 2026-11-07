@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseTermList, findTermHits, looksBinary } from './private-terms.mjs';
+import { parseTermList, findTermHits, looksBinary, textOf } from './private-terms.mjs';
 
 describe('parseTermList', () => {
   it('reads one term per line, skipping comments and blanks', () => {
@@ -55,5 +55,25 @@ describe('looksBinary', () => {
 
   it('treats plain text as non-binary', () => {
     expect(looksBinary(new TextEncoder().encode('hello\nworld'))).toBe(false);
+  });
+});
+
+describe('textOf', () => {
+  it('reads UTF-8 text as it is', () => {
+    expect(textOf(Buffer.from('alpha\nbéta\n', 'utf8'))).toBe('alpha\nbéta\n');
+  });
+
+  it('reads UTF-16 text with a byte-order mark, either way round', () => {
+    const le = Buffer.concat([Buffer.from([0xff, 0xfe]), Buffer.from('alpha\r\nbeta', 'utf16le')]);
+    const be = Buffer.from(le);
+    be[0] = 0xfe;
+    be[1] = 0xff;
+    for (let i = 2; i + 1 < be.length; i += 2) [be[i], be[i + 1]] = [le[i + 1], le[i]];
+    expect(textOf(le)).toBe('alpha\r\nbeta');
+    expect(textOf(be)).toBe('alpha\r\nbeta');
+  });
+
+  it('returns null for binary data', () => {
+    expect(textOf(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x00, 0x01]))).toBeNull();
   });
 });
