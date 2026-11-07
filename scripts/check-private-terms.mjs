@@ -1,8 +1,8 @@
 /**
- * Read-only check that no private term appears in tracked (or new, unignored)
- * files, or in a commit message. Text files are read as they are; PDFs by the
- * text their pages show and the strings they carry (`lib/pdf-text.mjs`).
- * Other binary files are skipped.
+ * Read-only check that no private term appears in tracked files as they are
+ * staged, in new, unignored files, or in a commit message. Text files are
+ * read as they are; PDFs by the text their pages show and the strings they
+ * carry (`lib/pdf-text.mjs`). Other binary files are skipped.
  *
  * The term list is deliberately kept out of the repo. It is read from, in
  * order:
@@ -45,14 +45,50 @@ function loadTerms() {
   return terms.length > 0 ? { terms } : { problem: `the term list holds no terms: ${sources}` };
 }
 
-/** @returns {string[]} repo-relative paths */
-function listCandidateFiles() {
-  const out = execFileSync(
-    'git',
-    ['ls-files', '--cached', '--others', '--exclude-standard', '-z'],
-    { cwd: repoRoot, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 },
-  );
-  return out.split('\0').filter(Boolean);
+/**
+ * Every tracked or new, unignored file under `cwd` as it would be committed:
+ * repo-relative path and bytes. A tracked file is read as it is staged in the
+ * index (so an unstaged edit can neither hide nor add a hit), a new file from
+ * disk. Git's own environment, `GIT_INDEX_FILE` included, is respected.
+ *
+ * @param {string} cwd
+ * @param {NodeJS.ProcessEnv} [env]
+ * @returns {{ path: string, buf: Buffer }[]}
+ */
+export function candidateFiles(cwd, env = process.env) {
+  const maxBuffer = 1024 * 1024 * 1024;
+  const git = (args, input) => execFileSync('git', args, { cwd, env, input, maxBuffer });
+
+  /** @type {Map<string, string>} path -> blob id, one entry per path */
+  const staged = new Map();
+  for (const entry of git(['ls-files', '-s', '-z']).toString('utf8').split('\0')) {
+    const m = /^(\d+) ([0-9a-f]+) \d+\t(.+)$/s.exec(entry);
+    // Submodules (mode 160000) have no blob here.
+    if (m && m[1] !== '160000' && !staged.has(m[3])) staged.set(m[3], m[2]);
+  }
+
+  /** @type {{ path: string, buf: Buffer }[]} */
+  const files = [];
+  if (staged.size > 0) {
+    const paths = [...staged.keys()];
+    const out = git(['cat-file', '--batch'], paths.map((p) => `${staged.get(p)}\n`).join(''));
+    let at = 0;
+    for (const path of paths) {
+      const headerEnd = out.indexOf(0x0a, at);
+      const [, type, sizeText] = out.toString('latin1', at, headerEnd).split(' ');
+      if (type !== 'blob') throw new Error(`check-private-terms: cannot read the staged ${path}`);
+      const size = Number(sizeText);
+      files.push({ path, buf: out.subarray(headerEnd + 1, headerEnd + 1 + size) });
+      at = headerEnd + 1 + size + 1;
+    }
+  }
+
+  const untracked = git(['ls-files', '--others', '--exclude-standard', '-z']).toString('utf8');
+  for (const rel of untracked.split('\0').filter(Boolean)) {
+    const abs = join(cwd, rel);
+    if (existsSync(abs)) files.push({ path: rel, buf: readFileSync(abs) });
+  }
+  return files;
 }
 
 function main() {
@@ -71,10 +107,7 @@ function main() {
     const msgFile = process.argv[msgIdx + 1];
     targets.push({ label: 'commit message', text: readFileSync(msgFile, 'utf8'), lines: true });
   } else {
-    for (const rel of listCandidateFiles()) {
-      const abs = join(repoRoot, rel);
-      if (!existsSync(abs)) continue;
-      const buf = readFileSync(abs);
+    for (const { path: rel, buf } of candidateFiles(repoRoot)) {
       if (rel.toLowerCase().endsWith('.pdf')) {
         targets.push({ label: rel, text: pdfText(buf), lines: false });
       } else if (!looksBinary(buf)) {
