@@ -1,0 +1,12 @@
+---
+import sourceIds from '~/data/source-redirects.json';
+
+// The old source pages. Each address that once had one now sends the reader
+// to the document's viewer page, so old links keep working.
+export function getStaticPaths() {
+  return sourceIds.map((id) => ({ params: { id } }));
+}
+
+const { id } = Astro.params;
+return Astro.redirect(`/view/${id}/`, 301);
+---

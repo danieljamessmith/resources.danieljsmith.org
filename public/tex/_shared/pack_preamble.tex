@@ -1,0 +1,364 @@
+% Shared QBT/Soln pack preamble for resources.danieljsmith.org.
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mleftright}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{tensor}
+\usepackage{fancyhdr}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{dirtytalk}
+\usepackage{marginnote}
+\usepackage{microtype}
+\usepackage[
+  a4paper,
+  left=0.8in,
+  right=1in,
+  top=1in,
+  bottom=0.5in,
+  headheight=14pt,
+  headsep=0.4in
+]{geometry}
+\setlength{\parindent}{0cm}
+
+% TikZ / PGFPlots
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween, polar}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+
+% Links and contents. The contents follow the TMUA papers: compact entries,
+% no dot leaders, and each question's mark total in grey after its label.
+\usepackage{tocloft}
+\tocloftpagestyle{fancy}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftsubsecindent}{1.5em}
+\setlength{\cftsubsecnumwidth}{0pt}
+\renewcommand{\cftsubsecfont}{\small\color{black}}
+\renewcommand{\cftsubsecpagefont}{\small\color{black}}
+\renewcommand{\cftsubsecleader}{\hfill}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=magenta,urlcolor=black]{hyperref}%
+\urlstyle{same}
+
+% Pack macros
+% \marks also adds its value to the current question's total in the .aux
+% file, so the contents show each total from the second pass. The write
+% happens at shipout, so a box typeset more than once counts once. The
+% pack's mark total for the contents-page title is summed the same way.
+\makeatletter
+\newcount\djs@totalmarks
+\newcommand{\djsAddMarks}[2]{%
+  \global\advance\djs@totalmarks#2\relax
+  \@ifundefined{djs@marks@#1}%
+    {\expandafter\xdef\csname djs@marks@#1\endcsname{#2}}%
+    {\expandafter\xdef\csname djs@marks@#1\endcsname
+      {\the\numexpr\csname djs@marks@#1\endcsname+#2\relax}}}
+\RenewDocumentCommand{\marks}{o m}{%
+  \protected@write\@auxout{}{\string\djsAddMarks{\number\value{enumi}}{#2}}%
+  \IfValueTF{#1}%
+    {\marginnote{\raggedright\textbf{[#2]}}[#1]}%
+    {\marginnote{\raggedright\textbf{[#2]}}}%
+}
+\makeatother
+
+\newcommand{\vspacerule}[2]{%
+  \par\vspace*{#1}%
+  \noindent\hrulefill\par
+  \vspace*{#2}%
+}
+
+\definecolor{scarlet}{RGB}{205, 40, 75}
+% Site colours for the contents-page title: the accent, the rule colour, a
+% stronger rule colour for the path separator, and the muted text colour.
+\definecolor{djsBurgundy}{RGB}{118, 59, 67}
+\definecolor{djsHairline}{RGB}{216, 213, 205}
+\definecolor{djsSlash}{RGB}{170, 166, 158}
+\definecolor{djsMuted}{RGB}{96, 101, 106}
+
+% Worked-solution box, adapted from the TMUA worked-solutions box. A white breakable box with a left scarlet rule and no surrounding
+% frame or tint. A part that breaks fills the rest of its page, so the rule
+% runs to the bottom margin; the unbroken or last part ends in a short
+% horizontal foot rule so a solution visibly stops. Unlike the TMUA box there
+% is no answer label. The box does not grow to the left, so the rule sits at
+% the text edge; growing to the right keeps the usable line width close to the
+% old tcolorbox Solution box.
+% Spacing inside the box: paragraphs are 6pt apart, so source blank lines show
+% (solutions put one after each display and none between a lead-in and its
+% display). Every display gets 6pt above and 10pt below, whatever the length
+% of its lead-in line; align rows are spread by an 8pt \jot; solution parts
+% are 14pt apart and sub-parts 8pt; \left and \right space like ordinary
+% brackets (mleftright); no single line is stranded at a page break; and
+% neither the Solution label nor the line before a list ends a page. No
+% skip can shrink, so full pages are not squeezed.
+\newtcolorbox{djsSolution}{%
+  enhanced, breakable, frame hidden, sharp corners, colback=white,
+  height fixed for=first and middle, height fill,
+  extras unbroken and last={natural height},
+  borderline west={2.2pt}{0pt}{scarlet},
+  left=11pt, right=0pt, top=5pt, bottom=13pt,
+  before skip=13pt, after skip=4pt,
+  grow to right by=10mm,
+  overlay unbroken and last={%
+    \fill[scarlet] (frame.south west)
+      rectangle ([xshift=3.5cm, yshift=2.2pt]frame.south west);},
+  before upper={{\color{scarlet}\bfseries Solution}\par\nobreak\vspace{4pt}%
+    \setlength{\parskip}{6pt plus 2pt}%
+    \setlength{\abovedisplayskip}{6pt plus 2pt}%
+    \setlength{\abovedisplayshortskip}{6pt plus 2pt}%
+    \setlength{\belowdisplayskip}{10pt plus 2pt}%
+    \setlength{\belowdisplayshortskip}{10pt plus 2pt}%
+    \setlength{\jot}{8pt}%
+    \setlist{parsep=6pt plus 2pt, topsep=6pt plus 2pt, beginpenalty=10000}%
+    \setlist[enumerate,1]{itemsep=14pt plus 2pt}%
+    \setlist[enumerate,2]{itemsep=8pt plus 2pt}%
+    \mleftright
+    \clubpenalty=10000 \widowpenalty=10000 \displaywidowpenalty=10000\relax}}
+
+% Optional smaller figure inside a solution box. \scalebox shrinks node text
+% with the drawing. Not applied to existing figures.
+\newcommand{\SolnFigureScale}{0.85}
+\newsavebox{\djsSolnFigureBox}
+\newenvironment{djsSolutionFigure}
+  {\par\vspace{4pt}\begin{center}\begin{lrbox}{\djsSolnFigureBox}}
+  {\end{lrbox}\scalebox{\SolnFigureScale}{\usebox{\djsSolnFigureBox}}%
+   \end{center}\vspace{2pt}\par}
+
+\newcommand{\cxl}[2]{%
+  \tikz[baseline=(X.base)]{%
+    \node[inner sep=0pt, outer sep=0pt, text=#1] (X) {$#2$};
+    \draw[#1, line width=0.4pt] (X.south west)--(X.north east);
+  }%
+}
+
+% Page-style hook run at the contents page and each question's opening page.
+% A no-op for QBT packs; \djsSolnHeader points it at the fancy header.
+\newcommand{\djsQuestionPageStyle}{}
+
+% A contents entry: "Question N" in a box wide enough for two digits, so the
+% mark totals line up, then the total in grey. Bookmarks keep "Question N".
+\makeatletter
+\newlength{\djsTocLabelWidth}
+\newcommand{\djsTocMarks}[1]{%
+  \@ifundefined{djs@marks@#1}{}{%
+    {\footnotesize\itshape\color{black!45}%
+     \csname djs@marks@#1\endcsname~mark%
+     \ifnum\csname djs@marks@#1\endcsname=1 \else s\fi}}}
+\newcommand{\djsTocEntry}[1]{%
+  \texorpdfstring
+    {\settowidth{\djsTocLabelWidth}{Question 00}%
+     \makebox[\dimexpr\djsTocLabelWidth+0.9em\relax][l]{Question #1}%
+     \djsTocMarks{#1}}%
+    {Question #1}}
+\makeatother
+
+% The question count for the contents-page title is written to the .aux at
+% the end of the document, so it also appears from the second pass.
+\newcounter{djsQuestions}
+\newcommand{\questionitem}{%
+  \djsQuestionPageStyle
+  \item\phantomsection
+  \stepcounter{djsQuestions}%
+  \addcontentsline{toc}{subsection}{\protect\djsTocEntry{\number\value{enumi}}}%
+}
+\makeatletter
+\newcommand{\djsSetQuestionCount}[1]{\gdef\djs@questioncount{#1}}
+\AtEndDocument{\immediate\write\@auxout
+  {\string\djsSetQuestionCount{\number\value{djsQuestions}}}}
+\makeatother
+
+\renewcommand{\contentsname}{Questions}
+
+% \djsPackHeader[<link content tag>]{<left header>}; the tag says which
+% document a click on the header link came from.
+\newcommand{\djsPackHeader}[2][questions]{%
+  \pagestyle{fancy}%
+  \fancyhead{}%
+  \fancyfoot{}%
+  \renewcommand{\headrulewidth}{0.9pt}%
+  \lhead{#2}%
+  \chead{}%
+  \rhead{\href{https://danieljsmith.org/?utm_source=pdf&utm_campaign=further-maths&utm_content=#1}{danieljsmith.org}}%
+}
+
+% The header's topic is also the contents-page title, under which a label
+% says which booklet this is.
+\newcommand{\djsPackTitle}{}
+\newcommand{\djsBookletLabel}{}
+\newcommand{\djsQbtHeader}[1]{%
+  \djsPackHeader{#1}%
+  \renewcommand{\djsPackTitle}{#1}%
+  \renewcommand{\djsBookletLabel}{Questions by topic}%
+}
+
+% The colophon at the foot of page one, independent of the page style: the
+% contents-page title's accent rule (the same \djs@accentrule, so the two
+% always match), then the date on the left and a link to the site on the
+% right, all inside the bottom margin. Every later page carries its number
+% over the page count at the bottom right, under the header's link. The count
+% is the kernel's \PreviousTotalPages, which every run already records in the
+% .aux file. Sizes are fixed, so these footers match the TMUA papers'. The
+% document supplies the date; recompiling never changes it.
+\makeatletter
+\newcommand{\djsLastUpdated}[1]{%
+  \AtBeginDocument{\AddToHookNext{shipout/foreground}{\djs@colophon{#1}}}}
+\newcommand{\djs@footR}[1]{%
+  \put(\dimexpr\paperwidth-1in\relax,-\dimexpr\paperheight-0.32in\relax){%
+    \makebox[0pt][r]{#1}}}
+\newcommand{\djs@colophon}[1]{%
+  \put(0.8in,-\dimexpr\paperheight-0.47in\relax){%
+    \makebox[0pt][l]{\djs@accentrule{\textwidth}}}%
+  \put(0.8in,-\dimexpr\paperheight-0.32in\relax){\makebox[0pt][l]{%
+    \fontsize{9}{11}\selectfont Last updated #1}}%
+  \djs@footR{\fontsize{7}{8.5}\selectfont\color{djsMuted}%
+    Latest version at \href{https://resources.danieljsmith.org/}%
+      {\color{black}resources.danieljsmith.org}}}
+\AddToHook{shipout/foreground}{%
+  \ifnum\value{page}>1
+    \djs@footR{{\fontsize{9}{11}\selectfont\thepage}%
+      {\fontsize{7}{8.5}\selectfont\color{djsMuted}%
+        \hspace{0.3em}/\hspace{0.3em}\PreviousTotalPages}}%
+  \fi}
+\makeatother
+
+% Solutions packs show the header only on the contents page and each
+% question's opening page, so it never appears part-way through a solution.
+% \thispagestyle marks the next page shipped out, which is the question's
+% page because every solution question starts after a \newpage.
+\newcommand{\djsSolnHeader}[1]{%
+  \djsPackHeader[solutions]{\textit{Solutions} - #1}%
+  \pagestyle{empty}%
+  \renewcommand{\djsQuestionPageStyle}{\thispagestyle{fancy}}%
+  \renewcommand{\djsPackTitle}{#1}%
+  \renewcommand{\djsBookletLabel}{Worked solutions}%
+}
+
+% \djsSitePath{<strand>}{<topic>}, called once after the header, names where
+% the pack sits on the site; the contents-page title prints it above the pack
+% title, e.g. CORE PURE / FURTHER CALCULUS. Without it the line is left out.
+\makeatletter
+\newif\ifdjs@sitepath
+\newcommand{\djs@strand}{}
+\newcommand{\djs@section}{}
+\newcommand{\djsSitePath}[2]{%
+  \djs@sitepathtrue
+  \renewcommand{\djs@strand}{#1}%
+  \renewcommand{\djs@section}{#2}%
+}
+\makeatother
+
+% \djsBoards{\djsBoard{<label>}{<code>}...}, called once after \djsSitePath,
+% lists the pack's exam boards (every board in its strand for a pack for all
+% boards); the contents-page title prints them under the booklet label, after
+% a burgundy EXAM BOARDS key. A board's label and code never break across
+% lines: a line break falls only between boards, where it replaces the
+% separating dot.
+\makeatletter
+\newif\ifdjs@boards
+\newif\ifdjs@firstboard
+\newcommand{\djs@boardlist}{}
+\newcommand{\djsBoards}[1]{%
+  \djs@boardstrue
+  \renewcommand{\djs@boardlist}{#1}%
+}
+\newcommand{\djsBoard}[2]{%
+  \ifdjs@firstboard\global\djs@firstboardfalse\else
+    \discretionary{}{}{\kern0.45em\textperiodcentered\kern0.45em}%
+  \fi
+  \mbox{#1 {\color{djsMuted}#2}}}
+\newlength{\djs@boardkeywd}
+\newcommand{\djs@boardkey}{{\color{djsBurgundy}\scriptsize\bfseries\djs@caps{Exam boards}}}
+\newcommand{\djs@boardsline}{%
+  \ifdjs@boards
+    \vspace{16pt}%
+    \settowidth{\djs@boardkeywd}{\djs@boardkey}%
+    \noindent\makebox[\dimexpr\djs@boardkeywd+1.1em\relax][l]{\djs@boardkey}%
+    \parbox[t]{\dimexpr\linewidth-\djs@boardkeywd-1.1em\relax}{%
+      \raggedright\small\global\djs@firstboardtrue\djs@boardlist}\par
+  \fi}
+\makeatother
+
+% Further Mechanics packs call \djsMechanicsPack in their preamble, so that
+% \djsFrontMatter prints the default value of g above the contents. The box
+% keeps its own space above it (before skip is the whole gap below the title,
+% not an addition to it). Without the box, \djsGravityNote is just extra space
+% before the contents heading, bringing the gap above it close to the gap
+% between the box and the heading on Further Mechanics pages.
+\newcommand{\djsGravityNote}{\vspace{14pt}}
+\newcommand{\djsMechanicsPack}{%
+  \renewcommand{\djsGravityNote}{%
+    \begin{tcolorbox}[sharp corners, colback=white, colframe=black,
+      boxrule=1pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+      before skip=20pt]
+    {\bfseries Instructions}\par\vspace{4pt}
+    Unless a question states otherwise, take $g = 9.8\,\mathrm{m\,s^{-2}}$
+    wherever a numerical value of $g$ is required. Solutions also give final
+    answers for $g = 10\,\mathrm{m\,s^{-2}}$ where these differ.
+    \end{tcolorbox}%
+    \vspace{16pt}}%
+}
+
+% Contents-page title: the site path in spaced burgundy capitals, the pack
+% title, a hairline led by a short scarlet rule (the solution box's foot rule),
+% then the booklet label with the question and mark counts, and the exam
+% boards line when the pack has one. The counts come from the .aux, so they
+% appear from the second pass.
+\makeatletter
+\newsavebox{\djs@eyebrowbox}
+\newcommand{\djs@caps}[1]{\textls[180]{\MakeUppercase{#1}}}
+\newcommand{\djs@eyebrow}{%
+  \color{djsBurgundy}\footnotesize\bfseries
+  \djs@caps{\djs@strand}%
+  {\color{djsSlash}\hspace{0.55em}/\hspace{0.55em}}%
+  \djs@caps{\djs@section}}
+\newcommand{\djs@dot}{\hspace{0.45em}\textperiodcentered\hspace{0.45em}}
+\newcommand{\djs@counts}{%
+  \@ifundefined{djs@questioncount}{}{%
+    \djs@questioncount~question\ifnum\djs@questioncount=1 \else s\fi
+    \ifnum\djs@totalmarks>0
+      \djs@dot\the\djs@totalmarks~mark\ifnum\djs@totalmarks=1 \else s\fi
+    \fi}}
+% The accent rule: a hairline of the given width, led by a short scarlet rule
+% (the solution box's foot rule). The contents-page title and the colophon
+% both draw it, so their weights are always the same.
+\newcommand{\djs@accentrule}[1]{%
+  \makebox[0pt][l]{\color{djsHairline}\rule[0.9pt]{#1}{0.6pt}}%
+  {\color{scarlet}\rule{3.5cm}{2.2pt}}}
+\newcommand{\djsContentsTitle}{%
+  \ifdjs@sitepath
+    \sbox\djs@eyebrowbox{\djs@eyebrow}%
+    \ifdim\wd\djs@eyebrowbox>\linewidth
+      \@latex@warning@no@line{The \string\djsSitePath\space line is wider
+        than the text, so it wraps. Shorten its topic}%
+    \fi
+    {\raggedright\djs@eyebrow\par}%
+    \vspace{7pt}%
+  \fi
+  {\raggedright\fontsize{24.88}{28}\selectfont\djsPackTitle\par}%
+  \vspace{9pt}%
+  \noindent\djs@accentrule{\linewidth}\par
+  \vspace{5pt}%
+  {\small\color{djsMuted}\djsBookletLabel\hfill\djs@counts\par}%
+  \djs@boardsline
+  \vspace{8pt}%
+}
+\makeatother
+
+\newcommand{\djsFrontMatter}{%
+  \djsQuestionPageStyle
+  \vspace*{6pt}%
+  \djsContentsTitle
+  \djsGravityNote
+  \tableofcontents
+  \newpage
+}

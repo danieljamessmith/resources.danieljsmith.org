@@ -1,0 +1,64 @@
+---
+import { EXAM_BOARDS, type ExamBoardEntry } from '~/data/resources';
+
+interface Props {
+  variant?: 'sidebar' | 'mobile';
+  boards?: ExamBoardEntry[];
+}
+
+const { variant = 'sidebar', boards = EXAM_BOARDS } = Astro.props;
+
+// Each board shows its code beside its label. The chosen board's breadcrumb
+// (awarding body, then qualification or paper) is shown by the filter status
+// line, not here. Pills elsewhere show the label only.
+const filterItems = [
+  { id: 'all' as const, label: 'All boards', code: '', crumbs: [] as string[] },
+  ...boards.map((b) => ({ id: b.id, label: b.label, code: b.code, crumbs: b.crumbs })),
+];
+---
+
+{
+  variant === 'sidebar' ? (
+    <div role="group" aria-labelledby="board-filter-heading">
+      <p id="board-filter-heading" class="sidebar-heading">Exam board</p>
+      <ul role="list">
+        {filterItems.map((item) => (
+          <li>
+            <button
+              type="button"
+              class="sidebar-link"
+              data-board-filter={item.id}
+              data-board-label={item.label}
+              data-board-code={item.code || undefined}
+              data-board-crumb={item.crumbs.length ? item.crumbs.join(' › ') : undefined}
+              aria-pressed={item.id === 'all' ? 'true' : 'false'}
+            >
+              <span class="board-row">
+                <span>{item.label}</span>
+                {item.code && <span class="board-code">{item.code}</span>}
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ) : (
+    <div class="mobile-selector">
+      <label for="mobile-exam-board">
+        <span>Exam board</span>
+        <span class="board-code" data-board-code-label></span>
+      </label>
+      <select id="mobile-exam-board" data-board-select>
+        {filterItems.map((item) => (
+          <option
+            value={item.id}
+            data-board-code={item.code || undefined}
+            data-board-crumb={item.crumbs.length ? item.crumbs.join(' › ') : undefined}
+          >
+            {item.label}
+          </option>
+        ))}
+      </select>
+    </div>
+  )
+}

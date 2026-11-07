@@ -1,0 +1,409 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import ThemeToggle from '~/components/ThemeToggle.astro';
+import {
+  resources,
+  getResourceById,
+  getPaperFamily,
+  familyInOrder,
+  getResourceDisplayDescription,
+  getResourceMetaDescription,
+  TMUA_SHARE_IMAGE,
+} from '~/data/resources';
+import { resourceContents } from '~/data/resourceContents';
+import { getStrandHrefForResource } from '~/data/topics';
+
+export function getStaticPaths() {
+  return resources.map((resource) => ({
+    params: { id: resource.id },
+  }));
+}
+
+const { id } = Astro.params;
+const resource = getResourceById(id);
+
+if (!resource) {
+  return Astro.redirect('/404');
+}
+
+type BreadcrumbNav =
+  | { mode: 'single'; href: string; label: string; aria: string }
+  | {
+      mode: 'fm';
+      parentHref: string;
+      parentLabel: string;
+      sectionHref: string;
+      sectionLabel: string;
+    };
+
+const categoryBreadcrumb: Record<string, BreadcrumbNav> = {
+  TMUA: { mode: 'single', href: '/tmua/', label: 'TMUA', aria: 'Back to TMUA resources' },
+  'FM - Core Pure': {
+    mode: 'fm',
+    parentLabel: 'All resources',
+    parentHref: '/',
+    sectionLabel: 'Core Pure',
+    sectionHref: '/further-maths/core-pure/',
+  },
+  'FM - Further Mechanics': {
+    mode: 'fm',
+    parentLabel: 'All resources',
+    parentHref: '/',
+    sectionLabel: 'Further Mechanics',
+    sectionHref: '/further-maths/further-mechanics/',
+  },
+};
+const baseBreadcrumb = categoryBreadcrumb[resource.category] ?? {
+  mode: 'single' as const,
+  href: '/',
+  label: 'Home',
+  aria: 'All resources',
+};
+// Return readers to the booklet's own topic section rather than the top of the strand page.
+const topicHref = getStrandHrefForResource(resource);
+const breadcrumb =
+  baseBreadcrumb.mode === 'fm' && topicHref ? { ...baseBreadcrumb, sectionHref: topicHref } : baseBreadcrumb;
+// TMUA descriptions stay in search metadata only; on the page they repeat the contents list below.
+const displayDescription = resource.category === 'TMUA' ? '' : getResourceDisplayDescription(resource);
+const contents = resourceContents[resource.id];
+const resourceKind =
+  resource.type === 'solutions'
+    ? 'Worked solutions'
+    : resource.type === 'questions'
+      ? 'Questions'
+      : resource.type === 'answers'
+        ? 'Answer key'
+        : resource.type === 'markscheme'
+          ? 'Mark scheme'
+          : 'Notes';
+const pageTitle = resource.category.startsWith('FM - ')
+  ? `${resource.title}: ${resourceKind} | A-level Further Maths`
+  : resource.type === 'solutions' || resource.type === 'answers'
+    ? `${resource.title}: ${resourceKind} | TMUA-Style Practice`
+    : `${resource.title} | TMUA-Style Practice`;
+
+const paneLabel = (type: string | undefined): string =>
+  type === 'questions'
+    ? 'Questions'
+    : type === 'solutions'
+      ? 'Solutions'
+      : type === 'answers'
+        ? 'Answer key'
+        : type === 'markscheme'
+          ? 'Mark scheme'
+          : 'Document';
+
+// The document each family member pairs with: questions with their solutions, and an answer key
+// or mark scheme with its paper. On phones its link is the one that carries `?page`.
+const family = getPaperFamily(resource);
+const partnerResource =
+  resource.type === 'answers' || resource.type === 'markscheme'
+    ? (family.questions ?? null)
+    : resource.pairId && (resource.type === 'questions' || resource.type === 'solutions')
+      ? (getResourceById(resource.pairId) ?? null)
+      : null;
+
+// The rest of the resource's family, always in the order questions, answer key or mark scheme,
+// solutions. Used by the phone page.
+const familyLinks = familyInOrder(family)
+  .filter((r) => r.id !== resource.id)
+  .map((r) => ({
+    href: `/view/${r.id}/`,
+    label: paneLabel(r.type),
+    aria: `Open ${paneLabel(r.type).toLowerCase()}`,
+    partner: r.id === partnerResource?.id,
+  }));
+
+// Every document in the pack, in listing order, each with its own iframe. From 1024px any two can
+// be shown side by side (src/scripts/viewer.ts); a resource outside a family is shown alone.
+const familyDocs = familyInOrder(family);
+const docs = (familyDocs.length >= 2 ? familyDocs : [resource]).map((r) => ({
+  id: r.id,
+  type: r.type ?? 'notes',
+  label: paneLabel(r.type),
+  href: `/view/${r.id}/`,
+  file: r.file,
+  downloadName: r.downloadName,
+  title: r.title,
+  current: r.id === resource.id,
+  partner: r.id === partnerResource?.id,
+}));
+const canSplit = docs.length >= 2;
+const splitTitle = 'Show two documents side by side';
+
+/*
+  PDF open param #view=FitH: Firefox fits width as intended. Chromium (Chrome/Edge PDFium)
+  over-zooms inside iframes. Plain URL + full-width iframe keeps Chromium readable; we only
+  append FitH on Firefox. A PDF.js embed would avoid UA branching but is heavier.
+*/
+---
+
+<Layout title={pageTitle} description={getResourceMetaDescription(resource)} shareImage={resource.category === 'TMUA' ? TMUA_SHARE_IMAGE : undefined}>
+  <div class="min-h-screen flex flex-col" data-viewer-root>
+    <header class="bg-surface border-b border-rule sticky top-0 z-10">
+      <div class="page-container py-2 flex items-center justify-between gap-3">
+        {/*
+          One slim row: breadcrumb chain ending with the sheet title, then the frequent actions
+          (the pack's documents, side by side, download, full screen). Rarer actions live in the
+          "More" menu. In side by side each pane has its own picker and buttons instead.
+        */}
+        <nav class="flex items-center gap-2 text-sm min-w-0 flex-1" aria-label="Breadcrumb">
+          {breadcrumb.mode === 'single' ? (
+            <>
+              <a
+                href={breadcrumb.href}
+                class="inline-flex items-center gap-1.5 shrink-0 p-1 -ml-1 rounded-xs text-muted hover:text-accent hover:bg-surface-overlay transition-colors"
+                aria-label={breadcrumb.aria}
+                title={breadcrumb.aria}
+              >
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                <span class="md:hidden text-ink text-sm font-medium">{breadcrumb.label}</span>
+              </a>
+              <a href={breadcrumb.href} class="hidden md:inline text-ink hover:text-accent transition-colors shrink-0">
+                {breadcrumb.label}
+              </a>
+              <span class="hidden md:inline text-muted shrink-0" aria-hidden="true">/</span>
+            </>
+          ) : (
+            <>
+              <a
+                href={breadcrumb.sectionHref}
+                class="inline-flex items-center gap-1.5 shrink-0 p-1 -ml-1 rounded-xs text-muted hover:text-accent hover:bg-surface-overlay transition-colors"
+                aria-label={`Back to ${breadcrumb.sectionLabel}`}
+                title={`Back to ${breadcrumb.sectionLabel}`}
+              >
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                <span class="md:hidden text-ink text-sm font-medium">{breadcrumb.sectionLabel}</span>
+              </a>
+              <a href={breadcrumb.parentHref} class="hidden 2xl:inline text-ink hover:text-accent transition-colors shrink-0">
+                {breadcrumb.parentLabel}
+              </a>
+              <span class="hidden 2xl:inline text-muted shrink-0" aria-hidden="true">/</span>
+              <a href={breadcrumb.sectionHref} class="hidden md:inline text-ink hover:text-accent transition-colors shrink-0">
+                {breadcrumb.sectionLabel}
+              </a>
+              <span class="hidden md:inline text-muted shrink-0" aria-hidden="true">/</span>
+            </>
+          )}
+          {/* Title is shown only at md+; on mobile the "Open PDF" landing already renders a large title (and, outside TMUA, a description). */}
+          <h1 class="hidden md:block text-base font-semibold text-ink truncate min-w-[6rem] flex-1" title={resource.title}>
+            {resource.title}
+          </h1>
+        </nav>
+        <div class="hidden md:flex shrink-0 items-center gap-2">
+          {canSplit && (
+            <nav class="viewer-seg" aria-label="Documents in this pack" data-single-only>
+              {docs.map((doc) => (
+                <a
+                  href={doc.href}
+                  class="viewer-seg-item"
+                  aria-current={doc.current ? 'page' : undefined}
+                  data-pair-link={doc.partner ? '' : undefined}
+                  title={doc.current ? undefined : `Open ${doc.label.toLowerCase()}`}
+                >
+                  {doc.label}
+                </a>
+              ))}
+            </nav>
+          )}
+          {canSplit && (
+            <button
+              type="button"
+              data-split-toggle
+              aria-pressed="false"
+              title={splitTitle}
+              class="viewer-btn viewer-btn--split"
+            >
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 4.5v15m6-15v15M4.125 19.5h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+              </svg>
+              <span data-split-label>Side by side</span>
+            </button>
+          )}
+          <a
+            href={resource.file}
+            download={resource.downloadName}
+            aria-label="Download PDF"
+            title="Download PDF"
+            data-single-only
+            class:list={['viewer-btn viewer-btn--collapsible', { 'viewer-btn--primary': !canSplit }]}
+          >
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            <span class="viewer-btn-label">Download</span>
+          </a>
+          <button type="button" class="viewer-btn viewer-btn--collapsible" data-fullscreen aria-label="Full screen" title="Full screen (Esc to exit)" hidden>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" />
+            </svg>
+            <span class="viewer-btn-label">Full screen</span>
+          </button>
+          <div class="relative" data-viewer-menu>
+            <button
+              type="button"
+              class="viewer-btn viewer-btn--icon"
+              aria-label="More options"
+              title="More options"
+              aria-expanded="false"
+              aria-controls="viewer-more"
+              data-menu-toggle
+            >
+              <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="5" cy="12" r="1.8" /><circle cx="12" cy="12" r="1.8" /><circle cx="19" cy="12" r="1.8" />
+              </svg>
+            </button>
+            <div id="viewer-more" class="viewer-menu" hidden>
+              <a href={resource.file} target="_blank" rel="noopener noreferrer" data-pdf-link class="viewer-menu-item">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                Open PDF in a new tab
+              </a>
+              <hr />
+              <ThemeToggle menuItem />
+            </div>
+          </div>
+        </div>
+        <div class="md:hidden"><ThemeToggle compact /></div>
+      </div>
+    </header>
+
+    <main id="main-content" tabindex="-1" class="flex-1 flex flex-col min-h-0">
+      <div
+        id="viewer-container"
+        class="hidden md:flex flex-1 bg-surface-raised min-h-[calc(100vh-51px)] relative"
+      >
+        <button type="button" class="viewer-btn viewer-exit-fs" data-exit-fullscreen>Exit full screen</button>
+        <div class="viewer-panes" data-panes data-page-type={resource.type ?? 'notes'}>
+          {canSplit && (['left', 'right'] as const).map((side) => (
+            <div class="viewer-pane-head" data-head={side}>
+              <div class="viewer-picker" role="radiogroup" aria-label={side === 'left' ? 'Left pane' : 'Right pane'}>
+                {docs.map((doc) => (
+                  <button type="button" role="radio" aria-checked="false" tabindex="-1" data-pick={doc.type}>
+                    {doc.label}<span class="viewer-picker-other" aria-hidden="true" data-other-marker></span>
+                  </button>
+                ))}
+              </div>
+              <div class="viewer-pane-tools">
+                <a href={resource.file} class="viewer-btn viewer-btn--icon viewer-btn--sm" data-tool="alone">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                  </svg>
+                </a>
+                <a href={resource.file} download class="viewer-btn viewer-btn--icon viewer-btn--sm" data-tool="download">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                </a>
+                <a href={resource.file} target="_blank" rel="noopener noreferrer" class="viewer-btn viewer-btn--icon viewer-btn--sm" data-tool="tab">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          ))}
+          {docs.map((doc) => (
+            <div
+              class="viewer-doc"
+              data-doc={doc.type}
+              data-slot={doc.current ? 'left' : 'hidden'}
+              data-label={doc.label}
+              data-href={doc.href}
+              data-file={doc.file}
+              data-download-name={doc.downloadName}
+            >
+              <iframe
+                data-src={doc.file}
+                src="about:blank"
+                class="absolute inset-0 w-full h-full border-0"
+                title={canSplit ? `${doc.title}: ${doc.label}` : doc.title}
+              />
+              <div
+                data-skeleton
+                class="pointer-events-none absolute inset-0 flex items-center justify-center bg-surface-raised text-muted text-sm transition-opacity duration-300"
+                aria-hidden="true"
+              >
+                <span class="inline-flex items-center gap-2">
+                  <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Loading PDF…
+                </span>
+              </div>
+            </div>
+          ))}
+          {canSplit && (
+            <button type="button" class="viewer-swap" data-swap aria-label="Swap panes" title="Swap panes">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h13l-4-4M17 17H4l4 4" />
+              </svg>
+            </button>
+          )}
+        </div>
+        <p class="sr-only" aria-live="polite" data-viewer-live></p>
+      </div>
+
+      <script>
+        import { initViewer } from '~/scripts/viewer';
+        initViewer();
+      </script>
+
+      <div class="flex md:hidden flex-1 items-center justify-center px-6 py-12">
+        <div class="mobile-document-actions w-full max-w-sm text-center space-y-6">
+          <div>
+            <h2 class="text-xl font-semibold text-ink">{resource.title}</h2>
+            {displayDescription && <p class="text-sm text-muted mt-1">{displayDescription}</p>}
+          </div>
+
+          <a
+            href={resource.file}
+            data-pdf-link
+            class="block w-full py-3 rounded-xs bg-action hover:bg-action/90 text-white text-base font-semibold transition-colors"
+          >
+            Open PDF
+          </a>
+
+          <div class="flex gap-3">
+            <a
+              href={resource.file}
+              download={resource.downloadName}
+              class="flex-1 py-2.5 rounded-xs border border-rule text-ink hover:bg-surface-raised text-sm font-medium transition-colors text-center"
+            >
+              Download
+            </a>
+
+            {familyLinks.map((link) => (
+              <a
+                href={link.href}
+                data-pair-link={link.partner ? '' : undefined}
+                class:list={[
+                  'flex-1 py-2.5 rounded-xs border text-sm font-medium transition-colors text-center',
+                  'border-rule text-accent hover:bg-tint hover:border-rule',
+                ]}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+      {contents && (
+        <section class="page-container viewer-contents" aria-labelledby="viewer-contents-heading">
+          <h2 id="viewer-contents-heading">Questions covered in {resource.title}</h2>
+          <ol>
+            {contents.map((item) => (
+              <li><span class="viewer-contents-area">{item.area}:</span> {item.summary}</li>
+            ))}
+          </ol>
+        </section>
+      )}
+    </main>
+  </div>
+</Layout>

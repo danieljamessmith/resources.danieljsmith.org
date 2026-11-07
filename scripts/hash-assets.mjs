@@ -1,0 +1,105 @@
+/**
+ * Hashes every deployed PDF under public/tex/ and writes
+ * src/data/fileHashes.ts, keyed by the /tex/... public URL path.
+ * Run automatically via npm lifecycle hooks before build/dev/check.
+ *
+ * The compute/render functions are exported pure (no side effects beyond
+ * reading the filesystem) so that they can be tested alone.
+ */
+
+import { createHash } from 'node:crypto';
+import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
+import { join, resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const repoRoot = resolve(__dirname, '..');
+const publicDir = join(repoRoot, 'public');
+
+/**
+ * Recursively finds all deployed `.pdf` files under `dir`, skipping
+ * `build/` and `aux/` directories (latexmk staging output).
+ *
+ * @param {string} dir
+ * @returns {string[]}
+ */
+export function findPdfFiles(dir) {
+  const results = [];
+  let entries;
+  try {
+    entries = readdirSync(dir, { withFileTypes: true });
+  } catch {
+    return results;
+  }
+  for (const entry of entries) {
+    const full = join(dir, entry.name);
+    if (entry.isDirectory()) {
+      if (entry.name === 'build' || entry.name === 'aux') continue;
+      results.push(...findPdfFiles(full));
+    } else if (entry.name.endsWith('.pdf')) {
+      results.push(full);
+    }
+  }
+  return results;
+}
+
+/**
+ * Computes the short md5 hash (first 8 hex chars) for a file's bytes.
+ *
+ * @param {string} filePath
+ * @returns {string}
+ */
+export function hashFile(filePath) {
+  return createHash('md5').update(readFileSync(filePath)).digest('hex').slice(0, 8);
+}
+
+/**
+ * Computes the sorted `[/tex/...pdf, hash][]` entries that the hashes
+ * file would contain. Pure (other than reading the filesystem).
+ *
+ * @param {string} [publicDirArg] - defaults to the repo's `public/` dir.
+ * @returns {[string, string][]}
+ */
+export function computeFileHashes(publicDirArg = publicDir) {
+  const pdfFiles = findPdfFiles(join(publicDirArg, 'tex'));
+  const hashes = {};
+  for (const pdfPath of pdfFiles) {
+    const rel = pdfPath.slice(publicDirArg.length).replace(/\\/g, '/');
+    hashes[rel] = hashFile(pdfPath);
+  }
+  return Object.entries(hashes).sort(([a], [b]) => a.localeCompare(b));
+}
+
+/**
+ * Renders the `fileHashes.ts` file body for a given set of entries.
+ * Pure — output is byte-stable for a given input.
+ *
+ * @param {[string, string][]} entries
+ * @returns {string}
+ */
+export function renderFileHashesModule(entries) {
+  const lines = [
+    '// Written by scripts/hash-assets.mjs — do not edit manually.',
+    '// Rewritten on every `npm run build`, `npm run dev`, and `npm run check`.',
+    'export const fileHashes: Record<string, string> = {',
+    ...entries.map(([path, hash]) => `  '${path}': '${hash}',`),
+    '};',
+    '',
+  ];
+  return lines.join('\n');
+}
+
+/** Path this script writes to. */
+export const HASHES_PATH = join(repoRoot, 'src', 'data', 'fileHashes.ts');
+
+function main() {
+  const entries = computeFileHashes();
+  writeFileSync(HASHES_PATH, renderFileHashesModule(entries), 'utf-8');
+  console.log(
+    `[hash-assets] ${entries.length} entries written to src/data/fileHashes.ts`,
+  );
+}
+
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main();
+}
