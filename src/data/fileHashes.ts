@@ -1,17 +1,17 @@
 // Written by scripts/hash-assets.mjs — do not edit manually.
 // Rewritten on every `npm run build`, `npm run dev`, and `npm run check`.
 export const fileHashes: Record<string, string> = {
-  '/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__Complex_Number_Basics.pdf': '384267b1',
+  '/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__Complex_Number_Basics.pdf': '412b2726',
   '/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__Complex_Roots_and_Geometry_Problems.pdf': '37b35e83',
   '/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__Complex_Series.pdf': '6ee535d5',
   '/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__De_Moivres_Theorem.pdf': '2f22a8a9',
   '/tex/further-maths/core-pure/complex-numbers/ms/_QBT___MS__Loci_and_Regions_in_the_Argand_Diagram.pdf': 'e163bded',
-  '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Number_Basics.pdf': '8c8b7cf3',
+  '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Number_Basics.pdf': 'f1c8af90',
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Roots_and_Geometry_Problems.pdf': 'f3569964',
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Complex_Series.pdf': 'ff13766f',
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__De_Moivres_Theorem.pdf': 'ff551496',
   '/tex/further-maths/core-pure/complex-numbers/qbt/_QBT__Loci_and_Regions_in_the_Argand_Diagram.pdf': 'ae27d854',
-  '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Number_Basics.pdf': 'f4225d81',
+  '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Number_Basics.pdf': 'af19fb0d',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Roots_and_Geometry_Problems.pdf': 'e185ed8e',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__Complex_Series.pdf': '3a0c913c',
   '/tex/further-maths/core-pure/complex-numbers/soln/_QBT___Solns__De_Moivres_Theorem.pdf': 'c5aabf51',
