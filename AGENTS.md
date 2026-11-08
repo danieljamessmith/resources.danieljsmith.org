@@ -1,14 +1,10 @@
 # AGENTS.md - resources.danieljsmith.org
 
-Agent onboarding document. Read this file before working in this repository.
+Read this file before working in this repository.
 
----
-
-## Instruction precedence
-
-`AGENTS.md` is the authoritative, tool-agnostic instruction file for AI agents working in this repo. If another agent-specific file or editor rule conflicts with this file, follow `AGENTS.md` unless the user explicitly says otherwise.
-
-Durable project instructions belong here first. Do not recreate editor-specific rule directories as a parallel AI-docs system.
+`AGENTS.md` is the one instruction file for agents here; durable rules go
+in it, not in editor-specific rule folders. `src/README.md` describes the
+site's presentation, and is read before changing anything under `src/`.
 
 ## Public repository
 
@@ -137,13 +133,3 @@ Vitest runs every `*.test.ts` and `*.test.mjs`:
 - `scripts/hash-assets.test.mjs`, `scripts/lib/*.test.mjs`: the PDF hashes, the term matching and the PDF text reader.
 
 When adding a pure helper to a tested module, add a test case beside it. Do not modify existing test assertions without explicit user approval.
-
----
-
-## Keeping instructions in sync
-
-When durable project conventions change, update `AGENTS.md` and the directly related files:
-
-- **The row fields or the rules the rows test enforces change:** update Rows and `src/data/resources.test.ts` together.
-- **npm scripts, hooks or workflows change:** update Tooling.
-- **Site presentation, mobile behaviour or search metadata change:** update `src/README.md`.
