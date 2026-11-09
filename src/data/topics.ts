@@ -1,6 +1,7 @@
 import strandRows from './topics.json';
-import type { Resource } from './resources';
+import { resources, type Resource } from './resources';
 import { boardsForStrand, type BoardStrandKey, type ExamBoardEntry } from './examBoards';
+import { shownStrands, shownTopics } from './shown';
 
 /** One topic section on a Further Maths strand page. */
 export interface StrandTopic {
@@ -41,6 +42,21 @@ export const STRANDS: Strand[] = (strandRows as StrandRow[]).map(({ boardsKey, .
 
 export function getStrand(category: string): Strand | undefined {
   return STRANDS.find((s) => s.category === category);
+}
+
+/** The strands the home page, the header and the 404 page list: those with a row. */
+export function getShownStrands(): Strand[] {
+  return shownStrands(STRANDS, resources);
+}
+
+/** Whether a strand has a row; its page is `noindex` until it does. */
+export function isStrandShown(strand: Strand): boolean {
+  return shownStrands([strand], resources).length > 0;
+}
+
+/** A strand's sections that its page and section menu list: those with a row. */
+export function getShownTopics(strand: Strand): StrandTopic[] {
+  return shownTopics(strand, resources);
 }
 
 /** Strand listing URL, deep-linked to the resource's topic section when known. */

@@ -2,6 +2,9 @@
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
+import { getShownStrands } from '~/data/topics';
+
+const strands = getShownStrands();
 ---
 <Layout noindex title="Page not found | resources.danieljsmith.org" description="This page could not be found.">
   <div class="min-h-screen flex flex-col">
@@ -14,8 +17,7 @@ import Footer from '~/components/Footer.astro';
       </div>
       <div class="home-directory">
         <div class="subject-list">
-          <a class="subject-row" href="/further-maths/core-pure/"><div><h2>Core Pure</h2><p>A-level Further Maths questions by topic.</p></div><span class="row-arrow" aria-hidden="true">&rarr;</span></a>
-          <a class="subject-row" href="/further-maths/further-mechanics/"><div><h2>Further Mechanics</h2><p>A-level Further Maths questions by topic.</p></div><span class="row-arrow" aria-hidden="true">&rarr;</span></a>
+          {strands.map(({ href, title }, i) => <>{i > 0 && ' '}<a class="subject-row" href={href}><div><h2>{title}</h2><p>A-level Further Maths questions by topic.</p></div><span class="row-arrow" aria-hidden="true">&rarr;</span></a></>)}
           <a class="subject-row" href="/tmua/"><div><h2>TMUA</h2><p>TMUA-style practice papers with answer keys.</p></div><span class="row-arrow" aria-hidden="true">&rarr;</span></a>
         </div>
       </div>

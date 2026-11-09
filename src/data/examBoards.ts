@@ -15,13 +15,16 @@ export const EXAM_BOARD_IDS = [
   'edexcel-fm2',
   'ocr-mei-mechanics-minor',
   'ocr-mei-mechanics-major',
+  'edexcel-fp1',
+  'edexcel-fp2',
+  'ocr-mei-extra-pure',
 ] as const;
 
 /** UK/international exam board or module filters for A-level Further Maths. */
 export type ExamBoard = (typeof EXAM_BOARD_IDS)[number];
 
 /** A strand's key in `exam-boards.json`: its folder under `public/tex/further-maths/`. */
-export type BoardStrandKey = 'core-pure' | 'further-mechanics';
+export type BoardStrandKey = 'core-pure' | 'further-mechanics' | 'additional-pure';
 
 interface CodeName {
   code: string;
@@ -45,12 +48,15 @@ export interface ExamBoardEntry {
   id: ExamBoard;
   /** Label for the pills and the board menu. */
   label: string;
-  /** The code the strand shows: its qualification's in Core Pure, its paper's in Further Mechanics. */
+  /**
+   * The code the strand shows: its qualification's in Core Pure, its paper's in
+   * Further Mechanics and Additional Pure.
+   */
   code: string;
   /**
    * The breadcrumb the filter status line shows for the chosen board: the
    * awarding body, then the qualification (Core Pure) or the paper, whose
-   * code already names the qualification (Further Mechanics).
+   * code already names the qualification (Further Mechanics, Additional Pure).
    */
   crumbs: string[];
 }
@@ -77,6 +83,6 @@ export function boardsForStrand(key: BoardStrandKey): ExamBoardEntry[] {
 
 /** Every board id `exam-boards.json` lists, in any strand. */
 export function examBoardJsonIds(): string[] {
-  const keys: BoardStrandKey[] = ['core-pure', 'further-mechanics'];
+  const keys: BoardStrandKey[] = ['core-pure', 'further-mechanics', 'additional-pure'];
   return [...new Set(keys.flatMap((k) => strandRecord(k).boards.map((b) => b.id)))];
 }

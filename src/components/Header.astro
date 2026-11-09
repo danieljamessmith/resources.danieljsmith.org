@@ -1,10 +1,10 @@
 ---
+import { getShownStrands } from '~/data/topics';
 import ThemeToggle from './ThemeToggle.astro';
 const path = Astro.url.pathname.replace(/\/?$/, '/');
 const links = [
   { href: '/', label: 'All resources' },
-  { href: '/further-maths/core-pure/', label: 'Core Pure' },
-  { href: '/further-maths/further-mechanics/', label: 'Further Mechanics' },
+  ...getShownStrands().map(({ href, title }) => ({ href, label: title })),
   { href: '/tmua/', label: 'TMUA' },
 ];
 ---

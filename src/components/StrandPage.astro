@@ -8,7 +8,7 @@ import TopicSection from '~/components/TopicSection.astro';
 import ResourcePairCard from '~/components/ResourcePairCard.astro';
 import NotesCard from '~/components/NotesCard.astro';
 import { getResourcePairs, getResourcesByTopic, type Resource } from '~/data/resources';
-import type { Strand } from '~/data/topics';
+import { getShownTopics, isStrandShown, type Strand } from '~/data/topics';
 
 interface Props {
   strand: Strand;
@@ -19,17 +19,19 @@ interface Props {
 const { strand, title, description } = Astro.props;
 
 type Pair = { questions: Resource; markscheme: Resource | undefined; solutions: Resource };
-const sections = strand.topics.map((topic) => {
+// Only sections with a pack are listed, and a strand with none is kept out of search.
+const topics = getShownTopics(strand);
+const sections = topics.map((topic) => {
   const notes = getResourcesByTopic(strand.category, topic.topic).filter((r) => r.type === 'notes');
   const pairs = getResourcePairs(strand.category, topic.topic).filter(
     (p): p is Pair => p.solutions !== undefined,
   );
   return { ...topic, notes, pairs };
 });
-const navTopics = strand.topics.map((t) => ({ id: t.id, label: t.navLabel }));
+const navTopics = topics.map((t) => ({ id: t.id, label: t.navLabel }));
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} noindex={!isStrandShown(strand)}>
   <div class="min-h-screen flex flex-col" data-board-storage-key={strand.boardStorageKey}>
     <Header />
     <main id="main-content" tabindex="-1" class="page-container listing-main">

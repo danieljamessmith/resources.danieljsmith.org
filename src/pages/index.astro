@@ -2,16 +2,22 @@
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
-import { FM_CP, FM_MECH, getWorksheetCountByCategory } from '~/data/resources';
-import { getStrand } from '~/data/topics';
+import { FM_AP, FM_CP, FM_MECH, getWorksheetCountByCategory } from '~/data/resources';
+import { getShownStrands } from '~/data/topics';
 
-const strands = [
-  { category: FM_CP, description: 'Compulsory topics for A-level Further Mathematics. Vectors, Differential equations, Complex numbers, Proof and more.' },
-  { category: FM_MECH, description: 'Optional Mechanics topics for A-level Further Mathematics. Collisions, Work and Energy, Centre of Mass and more.' },
-].map(strand => {
-  const { title, href } = getStrand(strand.category)!;
-  return { ...strand, title, href, count: getWorksheetCountByCategory(strand.category) };
-});
+// Each strand's line; a strand is listed only once it has a pack.
+const lines: Record<string, string> = {
+  [FM_CP]: 'Compulsory topics for A-level Further Mathematics. Vectors, Differential equations, Complex numbers, Proof and more.',
+  [FM_MECH]: 'Optional Mechanics topics for A-level Further Mathematics. Collisions, Work and Energy, Centre of Mass and more.',
+  [FM_AP]: 'Optional pure topics for A-level Further Mathematics. Conic sections, Number theory, Groups, Recurrence relations and more.',
+};
+const strands = getShownStrands().map(({ category, title, href }) => ({
+  category,
+  title,
+  href,
+  description: lines[category],
+  count: getWorksheetCountByCategory(category),
+}));
 const tmuaPaperCount = getWorksheetCountByCategory('TMUA');
 ---
 <Layout title="Free Further Maths & TMUA Practice with Worked Solutions" description="Free A-level Further Maths questions by topic and TMUA practice papers, all with full worked solutions. Edexcel, AQA, OCR A, OCR MEI and CIE style.">
