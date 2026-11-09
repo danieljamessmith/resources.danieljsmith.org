@@ -128,10 +128,7 @@ Each has an npm `pre*` hook that runs `node scripts/hash-assets.mjs`, which hash
 
 Vitest runs every `*.test.ts` and `*.test.mjs`:
 
-- `src/data/resources.test.ts`, the rows test: the data files are in their one written form; every row is well formed, has its own id and names a PDF that is there, and every deployed PDF has a row; pairs and papers point both ways; mark scheme rows follow their pack; every Further Maths row sits in a section of its strand, with its strand's boards; a `canonicalId` names a row of the same type and title in another strand, which has none itself, and no notes or TMUA row has one; the file is in teaching order; and the question counts cover the questions rows and nothing else.
-- `src/data/topics.test.ts`: the three strands, and Additional Pure's sections, boards and filter key.
-- `src/data/shown.test.ts`: which strands and sections are shown, and the strand pages the sitemap leaves out.
-- `src/data/canonical.test.ts`: a view page's canonical path, and the second publications' view pages the sitemap leaves out.
+- `src/data/resources.test.ts`, the rows test: the data files are in their one written form; every row is well formed, has its own id and names a PDF that is there, and every deployed PDF has a row; pairs and papers point both ways; mark scheme rows follow their pack; every Further Maths row sits in a section of its strand, with its strand's boards; the file is in teaching order; and the question counts cover the questions rows and nothing else.
 - `src/data/sourceRedirects.test.ts`: the redirect list is sorted, has each id once, and every id is a row.
 - `src/data/examBoards.test.ts`, `src/scripts/viewer.test.ts`: the board reference and the viewer's layout logic.
 - `scripts/hash-assets.test.mjs`, `scripts/lib/*.test.mjs`: the PDF hashes, the term matching and the PDF text reader.

@@ -19,7 +19,7 @@ interface Props {
 const { strand, title, description } = Astro.props;
 
 type Pair = { questions: Resource; markscheme: Resource | undefined; solutions: Resource };
-// Only sections with a pack are listed, and a strand with none is kept out of search.
+// Only sections with a row are listed, and a strand with none is kept out of search.
 const topics = getShownTopics(strand);
 const sections = topics.map((topic) => {
   const notes = getResourcesByTopic(strand.category, topic.topic).filter((r) => r.type === 'notes');

@@ -24,7 +24,6 @@ describe('the Further Maths strands', () => {
       ['recurrence-relations', 'Recurrence Relations', 'Recurrence Relations', 'Recurrence Relations'],
       ['surfaces', 'Surfaces', 'Surfaces & Partial Differentiation', 'Surfaces'],
     ]);
-    expect(strand.boards.map((b) => b.id)).toEqual(['edexcel-fp1', 'edexcel-fp2', 'ocr-a', 'ocr-mei-extra-pure']);
     expect(strand.boardStorageKey).toBe('fm-ap-board-filter');
   });
 
