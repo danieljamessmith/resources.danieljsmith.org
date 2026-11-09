@@ -55,13 +55,14 @@ Pages, layouts, styles, mobile behaviour and search metadata (including the rule
 
 ## Rows
 
-`resources.json` holds one row per PDF, with the fields of `Resource` in `resources.ts`: `id`, `title`, `description`, `file` (its `/tex/...` path), `category` (a strand's category or `TMUA`), `type`, and as needed `pairId`, `paperId`, `topic`, `boards`, `note`, and `order`.
+`resources.json` holds one row per PDF, with the fields of `Resource` in `resources.ts`: `id`, `title`, `description`, `file` (its `/tex/...` path), `category` (a strand's category or `TMUA`), `type`, and as needed `pairId`, `paperId`, `topic`, `boards`, `note`, `canonicalId`, and `order`.
 
 - **Order:** `order` is the row's teaching position within its topic section (TMUA: within its category). A paper's answer key, mark scheme and solutions take its value and follow it in the file. Pages list rows by `inTeachingOrder`.
 - **A Further Maths pack** has two or three rows: `questions` (with `pairId` naming its solutions, and `boards`), `solutions` (with `pairId` back), and, if it has one, its mark scheme.
 - **Mark scheme rows:** `type: 'markscheme'`, after the pack's solutions row, with `paperId` naming the pack's questions row; its id is the solutions id with `-ms` for `-solns`; its title and topic are the pack's; its description is `'Mark scheme'`; its file is `<section>/ms/_QBT___MS__<stem>.pdf`; it has no `pairId` or `boards` (the questions row's boards apply). `getPaperFamily` finds all three rows from any one of them, the strand page and the viewer list Questions | Mark scheme | Solutions, side by side pairs the scheme with its questions, and the download is named `<Title> - Mark Scheme.pdf`.
 - **TMUA papers** have up to three rows, in this order: `type: 'questions'` (with `pairId` once it has solutions), `type: 'answers'` with `paperId` naming the paper, and `type: 'solutions'`. Their descriptions are written by hand. The TMUA listing and the viewer link them in that order; side by side pairs the questions with the solutions, and an answer key with its paper.
 - **Notes** rows are `type: 'notes'`.
+- **Second publications:** a pack may also be published in a second strand, with rows, ids and files of its own there. Each of those rows carries `canonicalId`, the id of the home strand's row of the same type and title; its view page names `/view/<that id>/` as its canonical link and `og:url`, and the sitemap leaves it out (`src/data/canonical.ts`). Only `questions`, `solutions` and `markscheme` rows carry it, never notes or TMUA rows, and never a row that another row's `canonicalId` names.
 - **Boards:** only `questions` and `notes` rows carry `boards`; omitted means all boards. The pills under a pack show board labels only, never codes, and none for a pack for all boards. A `cie-9231` tag means the content is examined in 9231, or assumed by 9231 and examined in 9709 at the pack's depth.
 
 The PDFs print catalogue data: a pack's front page shows its strand and section titles from `topics.json` and its boards' codes from `exam-boards.json`. A change to either file that touches a published pack leaves that pack's PDFs out of date until they are replaced; tell the maintainer which packs it touches.
@@ -127,7 +128,10 @@ Each has an npm `pre*` hook that runs `node scripts/hash-assets.mjs`, which hash
 
 Vitest runs every `*.test.ts` and `*.test.mjs`:
 
-- `src/data/resources.test.ts`, the rows test: the data files are in their one written form; every row is well formed, has its own id and names a PDF that is there, and every deployed PDF has a row; pairs and papers point both ways; mark scheme rows follow their pack; every Further Maths row sits in a section of its strand, with its strand's boards; the file is in teaching order; and the question counts cover the questions rows and nothing else.
+- `src/data/resources.test.ts`, the rows test: the data files are in their one written form; every row is well formed, has its own id and names a PDF that is there, and every deployed PDF has a row; pairs and papers point both ways; mark scheme rows follow their pack; every Further Maths row sits in a section of its strand, with its strand's boards; a `canonicalId` names a row of the same type and title in another strand, which has none itself, and no notes or TMUA row has one; the file is in teaching order; and the question counts cover the questions rows and nothing else.
+- `src/data/topics.test.ts`: the three strands, and Additional Pure's sections, boards and filter key.
+- `src/data/shown.test.ts`: which strands and sections are shown, and the strand pages the sitemap leaves out.
+- `src/data/canonical.test.ts`: a view page's canonical path, and the second publications' view pages the sitemap leaves out.
 - `src/data/sourceRedirects.test.ts`: the redirect list is sorted, has each id once, and every id is a row.
 - `src/data/examBoards.test.ts`, `src/scripts/viewer.test.ts`: the board reference and the viewer's layout logic.
 - `scripts/hash-assets.test.mjs`, `scripts/lib/*.test.mjs`: the PDF hashes, the term matching and the PDF text reader.
