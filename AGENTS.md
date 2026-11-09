@@ -16,7 +16,7 @@ This repository is public. Never name or path-reference other local repositories
 
 A static resource-listing site built with Astro, Tailwind CSS and TypeScript, deployed to GitHub Pages. It serves PDFs and lists them:
 
-- **Pages** (`src/`): the home page, the two Further Maths strand pages, the TMUA listing and a viewer page per document. They are edited by hand here.
+- **Pages** (`src/`): the home page, the three Further Maths strand pages, the TMUA listing and a viewer page per document. They are edited by hand here.
 - **PDFs** (`public/tex/`): A-level Further Maths question-by-topic (QBT) packs, their worked solutions and mark schemes, two notes documents, and TMUA papers with answer keys and worked solutions. They are committed finished; the site builds no LaTeX, and CI never runs it.
 - **Rows** (`src/data/resources.json`): one row per PDF, which the pages list.
 - **Question counts** (`src/data/question-counts.json`): the questions in each questions PDF.
@@ -30,15 +30,15 @@ Do not edit the PDFs, the rows or the counts here unless the maintainer asks. Th
 | Path | Purpose |
 |------|---------|
 | `src/` | Astro site source (components, pages, layouts, styles) |
-| `src/pages/further-maths/` | Further Maths routes: legacy redirect (`index.astro`), `core-pure.astro`, `further-mechanics.astro` |
+| `src/pages/further-maths/` | Further Maths routes: legacy redirect (`index.astro`), `core-pure.astro`, `further-mechanics.astro`, `additional-pure.astro` |
 | `src/pages/tmua.astro`, `src/pages/view/[id].astro` | TMUA landing + per-document viewer |
 | `src/pages/source/[id].astro` | Redirect pages: each old `/source/<id>/` address sends the reader to `/view/<id>/` (see Redirects) |
 | `src/data/resources.json` | The rows (see Rows) |
 | `src/data/resources.ts` | Reads the rows, adds each PDF's hash, download name and question count, and holds the catalogue helpers (`getPaperFamily`, `familyInOrder`, the TMUA stats) |
 | `src/data/resources.test.ts` | The rows test (see Tests) |
 | `src/data/question-counts.json` | Questions per questions PDF, keyed by its `/tex/...` path, in path order |
-| `src/data/topics.json`, `src/data/topics.ts` | Further Maths strands: each strand's sections (id, topic, title, nav label) in page order, its boards key and its filter storage key; also drives the viewer's back-to-topic links |
-| `src/data/exam-boards.json` | The exam board reference: per strand (keyed by its folder, `core-pure` or `further-mechanics`), which code it shows (`qualification` or `paper`) and its boards in menu order, each with its label, awarding body, qualification code and name, and in Further Mechanics its paper code and name. `checked` is the date the codes were last checked against the boards' own documents. Read by `src/data/examBoards.ts` (the board menu and pills) |
+| `src/data/topics.json`, `src/data/topics.ts` | Further Maths strands: each strand's sections (id, topic, title, nav label) in page order, its boards key and its filter storage key; also drives the viewer's back-to-topic links. `src/data/shown.ts` decides from the rows which strands and sections are shown |
+| `src/data/exam-boards.json` | The exam board reference: per strand (keyed by its folder, `core-pure`, `further-mechanics` or `additional-pure`), which code it shows (`qualification` or `paper`) and its boards in menu order, each with its label, awarding body, qualification code and name, and in Further Mechanics and Additional Pure its paper code and name. `checked` is the date the codes were last checked against the boards' own documents. Read by `src/data/examBoards.ts` (the board menu and pills) |
 | `src/data/resourceContents.ts` | Per-question contents lists (topic + one-line summary) shown as crawlable text below the viewer, keyed by resource id. Hand-written |
 | `src/data/source-redirects.json` | The fixed list of ids that once had a `/source/<id>/` page |
 | `src/data/fileHashes.ts` | PDF hashes for cache-busting, written by `scripts/hash-assets.mjs` (npm pre-hook); never hand-edited |
@@ -49,7 +49,7 @@ Do not edit the PDFs, the rows or the counts here unless the maintainer asks. Th
 | `og-images/` | Source for link-preview images: TikZ diagram plus `build_tmua.py`, which writes `public/og/tmua.png` (Python + Pillow, run by hand; not part of the build) |
 | `.husky/pre-commit`, `.husky/commit-msg` | Pre-commit runs `npx vitest run` and `check-private-terms`; commit-msg runs `check-private-terms` on the message |
 
-Pages, layouts, styles, mobile behaviour and search metadata (including the rule that internal links end in `/`) are described in `src/README.md`: read it before changing anything under `src/` outside `src/data/`. Strand categories are named **`FM - Core Pure`** and **`FM - Further Mechanics`** (constants `FM_CP`, `FM_MECH` in `resources.ts`); helpers that aggregate across strands match the prefix `FM - ` (`FM_PREFIX`).
+Pages, layouts, styles, mobile behaviour and search metadata (including the rule that internal links end in `/`) are described in `src/README.md`: read it before changing anything under `src/` outside `src/data/`. Strand categories are named **`FM - Core Pure`**, **`FM - Further Mechanics`** and **`FM - Additional Pure`** (constants `FM_CP`, `FM_MECH`, `FM_AP` in `resources.ts`); helpers that aggregate across strands match the prefix `FM - ` (`FM_PREFIX`). Nothing empty is shown: a strand with no row is left off the home page, the header and the 404 page, and its page is `noindex` and out of the sitemap; a section with no row is left off its strand's page and its section menu. Rows are never retired, so what is shown once stays shown.
 
 ---
 
