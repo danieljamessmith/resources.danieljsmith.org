@@ -40,7 +40,7 @@ const STRANDS = strandRows as StrandRow[];
 const TYPES = ['questions', 'solutions', 'answers', 'markscheme', 'notes'] as const;
 const FIELDS = [
   'id', 'title', 'description', 'file', 'category', 'type',
-  'pairId', 'paperId', 'topic', 'boards', 'note', 'order',
+  'pairId', 'paperId', 'topic', 'boards', 'note', 'canonicalId', 'order',
 ] as const;
 
 const byId = new Map(ROWS.map((r) => [r.id, r]));
@@ -192,6 +192,93 @@ describe('strands, topics and boards', () => {
 
   it('keep boards to questions and notes rows', () => {
     expect(ROWS.filter((r) => r.boards && r.type !== 'questions' && r.type !== 'notes').map((r) => r.id)).toEqual([]);
+  });
+});
+
+/** The types of row a pack published in a second strand repeats there. */
+const SECOND_TYPES = ['questions', 'solutions', 'markscheme'];
+
+/**
+ * The faults in `rows`' `canonicalId`s, one line each: a `canonicalId` names a
+ * Further Maths row of the same type and title, in another strand, which has
+ * none itself; no notes, answers or TMUA row carries one.
+ */
+function canonicalIdFaults(rows: readonly Row[]): string[] {
+  const ids = new Map(rows.map((r) => [r.id, r]));
+  const faults: string[] = [];
+  for (const r of rows.filter((x) => x.canonicalId !== undefined)) {
+    if (!r.category.startsWith(FM_PREFIX) || !SECOND_TYPES.includes(r.type ?? '')) {
+      faults.push(`${r.id}: a ${r.category} ${r.type} row has no canonicalId`);
+      continue;
+    }
+    const home = ids.get(r.canonicalId!);
+    if (!home) {
+      faults.push(`${r.id}: canonicalId ${r.canonicalId} is not a row`);
+      continue;
+    }
+    if (home.type !== r.type) faults.push(`${r.id}: canonicalId ${home.id} is a ${home.type} row`);
+    if (home.title !== r.title) faults.push(`${r.id}: canonicalId ${home.id} has another title`);
+    if (home.category === r.category || !home.category.startsWith(FM_PREFIX)) {
+      faults.push(`${r.id}: canonicalId ${home.id} is not in another strand`);
+    }
+    if (home.canonicalId !== undefined) faults.push(`${r.id}: canonicalId ${home.id} has a canonicalId itself`);
+  }
+  return faults;
+}
+
+describe('second publications', () => {
+  const pack = (id: string, category: string, type: Row['type'], extra: Partial<Row> = {}): Row => ({
+    id,
+    title: 'Groups',
+    description: '',
+    file: `/tex/${id}.pdf`,
+    category,
+    type,
+    topic: 'Groups',
+    order: 1,
+    ...extra,
+  });
+  const HOME = [
+    pack('cp-groups', 'FM - Core Pure', 'questions'),
+    pack('cp-groups-solns', 'FM - Core Pure', 'solutions'),
+    pack('cp-groups-ms', 'FM - Core Pure', 'markscheme'),
+  ];
+  const SECOND = [
+    pack('fm-ap-groups', 'FM - Additional Pure', 'questions', { canonicalId: 'cp-groups' }),
+    pack('fm-ap-groups-solns', 'FM - Additional Pure', 'solutions', { canonicalId: 'cp-groups-solns' }),
+    pack('fm-ap-groups-ms', 'FM - Additional Pure', 'markscheme', { canonicalId: 'cp-groups-ms' }),
+  ];
+
+  it('accept a canonicalId naming the home row of the same type and title', () => {
+    expect(canonicalIdFaults([...HOME, ...SECOND])).toEqual([]);
+  });
+
+  it.each([
+    ['names no row', { canonicalId: 'cp-nothing' }],
+    ['names a row of another type', { canonicalId: 'cp-groups-solns' }],
+    ['names a row of another title', { title: 'Rings' }],
+    ['names a row of its own strand', { category: 'FM - Core Pure' }],
+    ['is not a string', { canonicalId: 7 as unknown as string }],
+  ])('refuse a canonicalId that %s', (_what, change) => {
+    const rows = [...HOME, { ...SECOND[0], ...change }];
+    expect(canonicalIdFaults(rows)).toHaveLength(1);
+  });
+
+  it('refuse a canonicalId naming a row that has one itself', () => {
+    const rows = [{ ...HOME[0], canonicalId: 'fm-ap-groups' }, ...HOME.slice(1), ...SECOND];
+    expect(canonicalIdFaults(rows).length).toBeGreaterThan(0);
+  });
+
+  it.each([
+    ['notes', pack('fm-ap-notes', 'FM - Additional Pure', 'notes', { canonicalId: 'cp-groups' })],
+    ['answers', pack('tmua-a', 'FM - Additional Pure', 'answers', { canonicalId: 'cp-groups' })],
+    ['TMUA', pack('tmua-q', 'TMUA', 'questions', { canonicalId: 'cp-groups' })],
+  ])('refuse a canonicalId on a %s row', (_what, row) => {
+    expect(canonicalIdFaults([...HOME, row])).toHaveLength(1);
+  });
+
+  it('hold for every row', () => {
+    expect(canonicalIdFaults(ROWS)).toEqual([]);
   });
 });
 

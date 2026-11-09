@@ -2,9 +2,10 @@
 import '~/styles/global.css';
 /** A wide (about 1.91:1) preview image; pages without one share the square logo. */
 export interface ShareImage { src: string; alt: string; width: number; height: number; }
-interface Props { title: string; description?: string; noindex?: boolean; shareImage?: ShareImage; }
-const { title, noindex = false, description = 'Free mathematics resources: practice papers, questions by topic and worked solutions.', shareImage: pageImage } = Astro.props;
-const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') + '/', Astro.site);
+/** `canonicalPath`: the page named as canonical and `og:url`, if not this one. */
+interface Props { title: string; description?: string; noindex?: boolean; shareImage?: ShareImage; canonicalPath?: string; }
+const { title, noindex = false, description = 'Free mathematics resources: practice papers, questions by topic and worked solutions.', shareImage: pageImage, canonicalPath } = Astro.props;
+const canonical = new URL((canonicalPath ?? Astro.url.pathname).replace(/\/$/, '') + '/', Astro.site);
 const image = pageImage ?? { src: '/favicon.png', alt: 'Daniel James Smith logo', width: 693, height: 695 };
 const shareImage = new URL(image.src, Astro.site);
 ---

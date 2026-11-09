@@ -12,6 +12,7 @@ import {
   TMUA_SHARE_IMAGE,
 } from '~/data/resources';
 import { resourceContents } from '~/data/resourceContents';
+import { canonicalViewPath } from '~/data/canonical';
 import { getStrand, getStrandHrefForResource } from '~/data/topics';
 
 export function getStaticPaths() {
@@ -123,7 +124,7 @@ const splitTitle = 'Show two documents side by side';
 */
 ---
 
-<Layout title={pageTitle} description={getResourceMetaDescription(resource)} shareImage={resource.category === 'TMUA' ? TMUA_SHARE_IMAGE : undefined}>
+<Layout title={pageTitle} description={getResourceMetaDescription(resource)} shareImage={resource.category === 'TMUA' ? TMUA_SHARE_IMAGE : undefined} canonicalPath={canonicalViewPath(resource)}>
   <div class="min-h-screen flex flex-col" data-viewer-root>
     <header class="bg-surface border-b border-rule sticky top-0 z-10">
       <div class="page-container py-2 flex items-center justify-between gap-3">

@@ -33,6 +33,11 @@ export interface Resource {
   /** Optional label shown after question count, e.g. "FM Level". */
   note?: string;
   /**
+   * Set on each row of a pack published in a second strand: the id of the home
+   * strand's row of the same type, which its view page names as canonical.
+   */
+  canonicalId?: string;
+  /**
    * Exam boards this pack is relevant for (typically set on `questions` and `notes` only).
    * Omitted or empty means all boards.
    */
