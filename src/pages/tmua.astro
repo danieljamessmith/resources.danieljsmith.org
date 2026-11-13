@@ -2,6 +2,7 @@
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
+import EnquiryCallout from '~/components/EnquiryCallout.astro';
 import { getResourcesByCategory, getPaperFamily, getTmuaStats, TMUA_SHARE_IMAGE } from '~/data/resources';
 const tmuaPapers = getResourcesByCategory('TMUA')
   .filter(r => r.type === 'questions')
@@ -40,6 +41,7 @@ const description = `${stats.questions} free TMUA-style questions in ${stats.set
           </div>
         ))}
       </section>
+      <EnquiryCallout topic="tmua" label="TMUA-style" />
     </main>
     <Footer />
   </div>

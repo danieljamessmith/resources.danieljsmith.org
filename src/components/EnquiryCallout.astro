@@ -1,0 +1,16 @@
+---
+import { resourcesEnquiryHref } from '~/data/enquiry';
+
+interface Props {
+  /** The contact form's name for the topic, e.g. 'tmua'. */
+  topic: string;
+  /** The resources as the reader sees them named, e.g. 'TMUA-style'. */
+  label: string;
+}
+const { topic, label } = Astro.props;
+---
+<aside class="enquiry-callout" aria-labelledby="enquiry-callout-title">
+  <h2 id="enquiry-callout-title">Personalised {label} resources</h2>
+  <p>Looking for something these papers don't cover? I write {label} resources to order, for individual students and for schools, colleges and other organisations.</p>
+  <a class="document-link" href={resourcesEnquiryHref(topic)} data-umami-event="enquiry-click" data-umami-event-topic={topic}>Enquire about personalised resources &rarr;</a>
+</aside>
