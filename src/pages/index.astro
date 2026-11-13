@@ -7,9 +7,9 @@ import { getShownStrands } from '~/data/topics';
 
 // Each strand's line; a strand is listed only once it has a pack.
 const lines: Record<string, string> = {
-  [FM_CP]: 'Compulsory topics for A-level Further Mathematics. Vectors, Differential equations, Complex numbers, Proof and more.',
-  [FM_MECH]: 'Optional Mechanics topics for A-level Further Mathematics. Collisions, Work and Energy, Centre of Mass and more.',
-  [FM_AP]: 'Optional pure topics for A-level Further Mathematics. Conic sections, Number theory, Groups, Recurrence relations and more.',
+  [FM_CP]: 'Exam-style questions on the compulsory pure content, including complex numbers, vectors, differential equations and proof.',
+  [FM_MECH]: 'Exam-style questions on the optional mechanics content, including collisions, work and energy, and centres of mass.',
+  [FM_AP]: 'Exam-style questions on the optional pure content, including conic sections, number theory, groups and recurrence relations.',
 };
 const strands = getShownStrands().map(({ category, title, href }) => ({
   category,
@@ -20,25 +20,25 @@ const strands = getShownStrands().map(({ category, title, href }) => ({
 }));
 const tmuaPaperCount = getWorksheetCountByCategory('TMUA');
 ---
-<Layout title="Free Further Maths & TMUA Practice with Worked Solutions" description="Free A-level Further Maths questions by topic and TMUA practice papers, all with full worked solutions. Edexcel, AQA, OCR A, OCR MEI and CIE style.">
+<Layout title="Free Further Maths & TMUA Practice with Worked Solutions" description="Free exam-style Further Maths questions by topic, with worked solutions and mark schemes, and TMUA practice papers. For Edexcel, AQA, OCR A, OCR MEI and CIE.">
   <div class="min-h-screen flex flex-col">
     <Header />
     <main id="main-content" tabindex="-1" class="page-container home-main">
       <div class="home-intro">
         <p class="eyebrow">For students and teachers</p>
         <h1>Mathematics resources</h1>
-        <p class="home-lede">Questions by topic, practice papers and worked solutions.</p>
+        <p class="home-lede">Free exam-style questions by topic and practice papers, with worked solutions and mark schemes.</p>
       </div>
       <div class="home-directory">
         <section id="further-maths" aria-labelledby="fm-heading">
           <div class="section-head">
             <h2 id="fm-heading" class="eyebrow">A-level Further Mathematics</h2>
-            <p class="section-note">Edexcel, AQA, OCR A, OCR MEI and CIE style</p>
+            <p class="section-note">For Edexcel, AQA, OCR A, OCR MEI and CIE</p>
           </div>
           <div class="subject-list">
             {strands.map(strand => (
               <a class="subject-row" href={strand.href}>
-                <div><h3>{strand.title}</h3><p>{strand.description}</p><span class="resource-count">{strand.count} question booklets &middot; Worked solutions</span></div>
+                <div><h3>{strand.title}</h3><p>{strand.description}</p><span class="resource-count">{strand.count} question booklets &middot; Mark schemes &middot; Worked solutions</span></div>
                 <span class="row-arrow" aria-hidden="true">&rarr;</span>
               </a>
             ))}
@@ -48,7 +48,7 @@ const tmuaPaperCount = getWorksheetCountByCategory('TMUA');
           <h2 id="admissions-heading" class="eyebrow">Admissions</h2>
           <div class="subject-list">
             <a class="subject-row" href="/tmua/">
-              <div><h3>TMUA</h3><p>Practice papers and worked answers in the style of the Test of Mathematics for University Admissions.</p><span class="resource-count">{tmuaPaperCount} practice papers &middot; Answer keys &middot; Worked solutions</span></div>
+              <div><h3>TMUA</h3><p>Original practice papers in the style of the Test of Mathematics for University Admission, with answer keys and worked solutions.</p><span class="resource-count">{tmuaPaperCount} practice papers &middot; Answer keys &middot; Worked solutions</span></div>
               <span class="row-arrow" aria-hidden="true">&rarr;</span>
             </a>
           </div>
