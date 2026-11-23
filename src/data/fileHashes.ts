@@ -67,6 +67,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/misc-pure/ms/_QBT___MS__Roots_of_Polynomials.pdf': '6f173b0b',
   '/tex/further-maths/core-pure/misc-pure/ms/_QBT___MS__Series___Method_of_Differences.pdf': 'e5a231cd',
   '/tex/further-maths/core-pure/misc-pure/ms/_QBT___MS__Standard_Summations.pdf': '4ec707ff',
+  '/tex/further-maths/core-pure/misc-pure/notes/_Notes__Odd_and_Even_Functions.pdf': '55f9b25d',
   '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Hyperbolic_Functions.pdf': 'c44a4b9f',
   '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Rational_Functions.pdf': '13362fa5',
   '/tex/further-maths/core-pure/misc-pure/qbt/_QBT__Roots_of_Polynomials.pdf': '3d096502',
