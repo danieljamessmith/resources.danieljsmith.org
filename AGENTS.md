@@ -17,7 +17,7 @@ This repository is public. Never name or path-reference other local repositories
 A static resource-listing site built with Astro, Tailwind CSS and TypeScript, deployed to GitHub Pages. It serves PDFs and lists them:
 
 - **Pages** (`src/`): the home page, the three Further Maths strand pages, the TMUA listing and a viewer page per document. They are edited by hand here.
-- **PDFs** (`public/tex/`): A-level Further Maths question-by-topic (QBT) packs, their worked solutions and mark schemes, two notes documents, and TMUA papers with answer keys and worked solutions. They are committed finished; the site builds no LaTeX, and CI never runs it.
+- **PDFs** (`public/tex/`): A-level Further Maths question-by-topic (QBT) packs, their worked solutions and mark schemes, notes documents, and TMUA papers with answer keys and worked solutions. They are committed finished; the site builds no LaTeX, and CI never runs it.
 - **Rows** (`src/data/resources.json`): one row per PDF, which the pages list.
 - **Question counts** (`src/data/question-counts.json`): the questions in each questions PDF.
 
