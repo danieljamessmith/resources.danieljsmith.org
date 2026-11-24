@@ -37,7 +37,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/further-calculus/ms/_QBT___MS__Integration_with_Inverse_Trig.pdf': 'f7b0070f',
   '/tex/further-maths/core-pure/further-calculus/ms/_QBT___MS__Maclaurin_Series.pdf': '0c2ea737',
   '/tex/further-maths/core-pure/further-calculus/ms/_QBT___MS__Volumes_of_Revolution.pdf': 'acf34dc3',
-  '/tex/further-maths/core-pure/further-calculus/notes/_Notes__Tabular_Method_for_IBP.pdf': 'cbd048aa',
+  '/tex/further-maths/core-pure/further-calculus/notes/_Notes__Tabular_Method_for_IBP.pdf': 'be07a868',
   '/tex/further-maths/core-pure/further-calculus/qbt/_QBT__Improper_Integrals_and_Mean_Values.pdf': '3244145d',
   '/tex/further-maths/core-pure/further-calculus/qbt/_QBT__Integration_by_Parts__FM_Level_.pdf': 'f90a89f4',
   '/tex/further-maths/core-pure/further-calculus/qbt/_QBT__Integration_by_Substitution__FM_Level_.pdf': '76abd46f',
