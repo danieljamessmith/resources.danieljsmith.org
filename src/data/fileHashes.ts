@@ -95,7 +95,7 @@ export const fileHashes: Record<string, string> = {
   '/tex/further-maths/core-pure/vectors/ms/_QBT___MS__Reflections_in_Planes.pdf': '921876cf',
   '/tex/further-maths/core-pure/vectors/ms/_QBT___MS__Vector_Product.pdf': '802d484d',
   '/tex/further-maths/core-pure/vectors/ms/_QBT___MS__Vectors___Shortest_Distances.pdf': 'e3fd2405',
-  '/tex/further-maths/core-pure/vectors/notes/_Notes__Vectors_Formulae.pdf': '4a6e0252',
+  '/tex/further-maths/core-pure/vectors/notes/_Notes__Vectors_Formulae.pdf': 'cbcf85e2',
   '/tex/further-maths/core-pure/vectors/qbt/_QBT__Eigenvalues__Eigenvectors_and_Diagonalisation.pdf': '61bb3383',
   '/tex/further-maths/core-pure/vectors/qbt/_QBT__Invariant_Points_and_Lines.pdf': '119ced00',
   '/tex/further-maths/core-pure/vectors/qbt/_QBT__Linear_Transformations.pdf': '652986d6',
