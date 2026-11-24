@@ -25,7 +25,6 @@ const tmuaPaperCount = getWorksheetCountByCategory('TMUA');
     <Header />
     <main id="main-content" tabindex="-1" class="page-container home-main">
       <div class="home-intro">
-        <p class="eyebrow">For students and teachers</p>
         <h1>Mathematics resources</h1>
         <p class="home-lede">Free exam-style questions by topic and practice papers, with worked solutions and mark schemes.</p>
       </div>
@@ -38,8 +37,7 @@ const tmuaPaperCount = getWorksheetCountByCategory('TMUA');
           <div class="subject-list">
             {strands.map(strand => (
               <a class="subject-row" href={strand.href}>
-                <div><h3>{strand.title}</h3><p>{strand.description}</p><span class="resource-count">{strand.count} question booklets &middot; Mark schemes &middot; Worked solutions</span></div>
-                <span class="row-arrow" aria-hidden="true">&rarr;</span>
+                <div><h3>{strand.title}</h3><p>{strand.description}</p><span class="resource-count">{strand.count} question booklets, with mark schemes and worked solutions</span></div>
               </a>
             ))}
           </div>
@@ -48,8 +46,7 @@ const tmuaPaperCount = getWorksheetCountByCategory('TMUA');
           <h2 id="admissions-heading" class="eyebrow">Admissions</h2>
           <div class="subject-list">
             <a class="subject-row" href="/tmua/">
-              <div><h3>TMUA</h3><p>Original practice papers in the style of the Test of Mathematics for University Admission, with answer keys and worked solutions.</p><span class="resource-count">{tmuaPaperCount} practice papers &middot; Answer keys &middot; Worked solutions</span></div>
-              <span class="row-arrow" aria-hidden="true">&rarr;</span>
+              <div><h3>TMUA</h3><p>Original practice papers in the style of the Test of Mathematics for University Admission, with answer keys and worked solutions.</p><span class="resource-count">{tmuaPaperCount} practice papers, with answer keys and worked solutions</span></div>
             </a>
           </div>
         </section>
