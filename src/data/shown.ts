@@ -52,11 +52,15 @@ export function hiddenStrandHrefs(
   return strands.filter((s) => !shown.has(s)).map((s) => s.href);
 }
 
-/** An admissions test: the category its rows carry, its name and its page. */
+/**
+ * An admissions test: the category its rows carry, its name, its page and the
+ * line under its name in the Admissions tests menu (its papers or modules).
+ */
 export interface AdmissionsTest {
   category: string;
   title: string;
   href: string;
+  papers: string;
 }
 
 /**
@@ -65,8 +69,8 @@ export interface AdmissionsTest {
  * the sitemap, and the home page, the menus and the 404 page leave it out.
  */
 export const ADMISSIONS_TESTS: readonly AdmissionsTest[] = [
-  { category: 'TMUA', title: 'TMUA', href: '/tmua/' },
-  { category: 'ESAT', title: 'ESAT', href: '/esat/' },
+  { category: 'TMUA', title: 'TMUA', href: '/tmua/', papers: 'Paper 1, Paper 2' },
+  { category: 'ESAT', title: 'ESAT', href: '/esat/', papers: 'Maths 1, Maths 2, Physics' },
 ];
 
 /** The admissions tests with at least one row, in the site's order. */

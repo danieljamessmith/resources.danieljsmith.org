@@ -68,6 +68,10 @@ describe('the admissions tests', () => {
     ]);
   });
 
+  it('gives each test the line under its name in the menu', () => {
+    expect(ADMISSIONS_TESTS.map((t) => t.papers)).toEqual(['Paper 1, Paper 2', 'Maths 1, Maths 2, Physics']);
+  });
+
   it('leaves out a test with no row, and hides its page', () => {
     expect(shownTests(ROWS).map((t) => t.category)).toEqual(['TMUA']);
     expect(hiddenTestHrefs(ROWS)).toEqual(['/esat/']);

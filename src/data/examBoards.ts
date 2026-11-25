@@ -81,6 +81,33 @@ export function boardsForStrand(key: BoardStrandKey): ExamBoardEntry[] {
   return strand.boards.map((b) => toEntry(strand, b));
 }
 
+/**
+ * A strand's boards as the Further Maths menu names them: each by the family
+ * board (a Core Pure board) whose id is its own or begins it, so Edexcel FM1
+ * and FM2 are both "Edexcel", and each name once, in the strand's order. A
+ * board no family board begins keeps its own label.
+ */
+export function boardFamilyNames(
+  boards: readonly { id: string; label: string }[],
+  families: readonly { id: string; label: string }[],
+): string[] {
+  const names = boards.map((b) => {
+    const family = families
+      .filter((f) => b.id === f.id || b.id.startsWith(`${f.id}-`))
+      .sort((x, y) => y.id.length - x.id.length)[0];
+    return family ? family.label : b.label;
+  });
+  return [...new Set(names)];
+}
+
+/**
+ * The line under a strand's name in the Further Maths menu, from its boards in
+ * `exam-boards.json`: "Edexcel, AQA, OCR A, OCR MEI, CIE".
+ */
+export function boardsLine(boards: readonly { id: string; label: string }[]): string {
+  return boardFamilyNames(boards, strandRecord('core-pure').boards).join(', ');
+}
+
 /** Every board id `exam-boards.json` lists, in any strand. */
 export function examBoardJsonIds(): string[] {
   const keys: BoardStrandKey[] = ['core-pure', 'further-mechanics', 'additional-pure'];

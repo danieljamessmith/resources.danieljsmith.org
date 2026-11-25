@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { boardsForStrand, EXAM_BOARD_IDS, examBoardJsonIds } from './examBoards';
+import { boardFamilyNames, boardsForStrand, boardsLine, EXAM_BOARD_IDS, examBoardJsonIds } from './examBoards';
 
 describe('exam-boards.json', () => {
   it('lists exactly the ExamBoard ids', () => {
@@ -43,5 +43,44 @@ describe('exam-boards.json', () => {
         crumbs: ['OCR', 'Y435 Extra Pure'],
       },
     ]);
+  });
+});
+
+describe('the Further Maths menu line', () => {
+  const FAMILIES = [
+    { id: 'edexcel', label: 'Edexcel' },
+    { id: 'aqa', label: 'AQA' },
+    { id: 'ocr-a', label: 'OCR A' },
+    { id: 'ocr-mei', label: 'OCR MEI' },
+    { id: 'cie-9231', label: 'CIE' },
+  ];
+
+  it('names each board by the family board whose id begins its own, once, in order', () => {
+    const boards = [
+      { id: 'edexcel-fm1', label: 'Edexcel FM1' },
+      { id: 'edexcel-fm2', label: 'Edexcel FM2' },
+      { id: 'aqa', label: 'AQA' },
+      { id: 'ocr-a', label: 'OCR A' },
+      { id: 'ocr-mei-mechanics-minor', label: 'OCR MEI Mech Minor' },
+      { id: 'ocr-mei-mechanics-major', label: 'OCR MEI Mech Major' },
+      { id: 'cie-9231', label: 'CIE' },
+    ];
+    expect(boardFamilyNames(boards, FAMILIES)).toEqual(['Edexcel', 'AQA', 'OCR A', 'OCR MEI', 'CIE']);
+    expect(boardFamilyNames(boards.slice(5), FAMILIES)).toEqual(['OCR MEI', 'CIE']);
+  });
+
+  it('matches whole id parts, and keeps the label of a board no family begins', () => {
+    const boards = [
+      { id: 'ocr-mei-extra-pure', label: 'OCR MEI Extra Pure' },
+      { id: 'ocr-another', label: 'OCR Another' },
+      { id: 'aqa2', label: 'AQA 2' },
+    ];
+    expect(boardFamilyNames(boards, FAMILIES)).toEqual(['OCR MEI', 'OCR Another', 'AQA 2']);
+  });
+
+  it('gives each strand its line from its boards', () => {
+    expect(boardsLine(boardsForStrand('core-pure'))).toBe('Edexcel, AQA, OCR A, OCR MEI, CIE');
+    expect(boardsLine(boardsForStrand('further-mechanics'))).toBe('Edexcel, AQA, OCR A, OCR MEI, CIE');
+    expect(boardsLine(boardsForStrand('additional-pure'))).toBe('Edexcel, OCR A, OCR MEI');
   });
 });

@@ -16,8 +16,8 @@ This repository is public. Never name or path-reference other local repositories
 
 A static resource-listing site built with Astro, Tailwind CSS and TypeScript, deployed to GitHub Pages. It serves PDFs and lists them:
 
-- **Pages** (`src/`): the home page, the three Further Maths strand pages, the TMUA listing and a viewer page per document. They are edited by hand here.
-- **PDFs** (`public/tex/`): A-level Further Maths question-by-topic (QBT) packs, their worked solutions and mark schemes, notes documents, and TMUA papers with answer keys and worked solutions. They are committed finished; the site builds no LaTeX, and CI never runs it.
+- **Pages** (`src/`): the home page, the three Further Maths strand pages, the TMUA and ESAT listings and a viewer page per document. They are edited by hand here.
+- **PDFs** (`public/tex/`): A-level Further Maths question-by-topic (QBT) packs, their worked solutions and mark schemes, notes documents, TMUA papers with answer keys and worked solutions, and ESAT papers with answer keys. They are committed finished; the site builds no LaTeX, and CI never runs it.
 - **Rows** (`src/data/resources.json`): one row per PDF, which the pages list.
 - **Question counts** (`src/data/question-counts.json`): the questions in each questions PDF.
 
@@ -31,7 +31,7 @@ Do not edit the PDFs, the rows or the counts here unless the maintainer asks. Th
 |------|---------|
 | `src/` | Astro site source (components, pages, layouts, styles) |
 | `src/pages/further-maths/` | Further Maths routes: legacy redirect (`index.astro`), `core-pure.astro`, `further-mechanics.astro`, `additional-pure.astro` |
-| `src/pages/tmua.astro`, `src/pages/view/[id].astro` | TMUA landing + per-document viewer |
+| `src/pages/tmua.astro`, `src/pages/esat.astro`, `src/pages/view/[id].astro` | TMUA and ESAT landings + per-document viewer |
 | `src/pages/source/[id].astro` | Redirect pages: each old `/source/<id>/` address sends the reader to `/view/<id>/` (see Redirects) |
 | `src/data/resources.json` | The rows (see Rows) |
 | `src/data/resources.ts` | Reads the rows, adds each PDF's hash, download name and question count, and holds the catalogue helpers (`getPaperFamily`, `familyInOrder`, the TMUA stats) |
@@ -46,7 +46,7 @@ Do not edit the PDFs, the rows or the counts here unless the maintainer asks. Th
 | `public/tex/` | The deployed PDFs (see File names) |
 | `scripts/hash-assets.mjs` | Hashes every PDF under `public/tex/` into `fileHashes.ts` |
 | `scripts/check-private-terms.mjs`, `scripts/lib/` | The private-terms check, and the PDF text reader it uses |
-| `og-images/` | Source for link-preview images: TikZ diagram plus `build_tmua.py`, which writes `public/og/tmua.png` (Python + Pillow, run by hand; not part of the build) |
+| `og-images/` | Source for link-preview images: TikZ diagrams plus `build_tmua.py` and `build_esat.py`, which write `public/og/tmua.png` and `public/og/esat.png` (Python + Pillow, run by hand; not part of the build) |
 | `.husky/pre-commit`, `.husky/commit-msg` | Pre-commit runs `npx vitest run` and `check-private-terms`; commit-msg runs `check-private-terms` on the message |
 
 Pages, layouts, styles, mobile behaviour and search metadata (including the rule that internal links end in `/`) are described in `src/README.md`: read it before changing anything under `src/` outside `src/data/`. Strand categories are named **`FM - Core Pure`**, **`FM - Further Mechanics`** and **`FM - Additional Pure`** (constants `FM_CP`, `FM_MECH`, `FM_AP` in `resources.ts`); helpers that aggregate across strands match the prefix `FM - ` (`FM_PREFIX`). Nothing empty is shown: a strand with no row is left off the home page, the header and the 404 page, and its page is `noindex` and out of the sitemap; a section with no row is left off its strand's page and its section menu. Rows are never retired, so what is shown once stays shown.
@@ -55,14 +55,15 @@ Pages, layouts, styles, mobile behaviour and search metadata (including the rule
 
 ## Rows
 
-`resources.json` holds one row per PDF, with the fields of `Resource` in `resources.ts`: `id`, `title`, `description`, `file` (its `/tex/...` path), `category` (a strand's category or `TMUA`), `type`, and as needed `pairId`, `paperId`, `topic`, `boards`, `note`, `canonicalId`, and `order`.
+`resources.json` holds one row per PDF, with the fields of `Resource` in `resources.ts`: `id`, `title`, `description`, `file` (its `/tex/...` path), `category` (a strand's category, `TMUA` or `ESAT`), `type`, and as needed `pairId`, `paperId`, `topic`, `boards`, `note`, `canonicalId`, and `order`.
 
-- **Order:** `order` is the row's teaching position within its topic section (TMUA: within its category). A paper's answer key, mark scheme and solutions take its value and follow it in the file. Pages list rows by `inTeachingOrder`.
+- **Order:** `order` is the row's teaching position within its topic section (TMUA and ESAT: within their category). A paper's answer key, mark scheme and solutions take its value and follow it in the file. Pages list rows by `inTeachingOrder`.
 - **A Further Maths pack** has two or three rows: `questions` (with `pairId` naming its solutions, and `boards`), `solutions` (with `pairId` back), and, if it has one, its mark scheme.
 - **Mark scheme rows:** `type: 'markscheme'`, after the pack's solutions row, with `paperId` naming the pack's questions row; its id is the solutions id with `-ms` for `-solns`; its title and topic are the pack's; its description is `'Mark scheme'`; its file is `<section>/ms/_QBT___MS__<stem>.pdf`; it has no `pairId` or `boards` (the questions row's boards apply). `getPaperFamily` finds all three rows from any one of them, the strand page and the viewer list Questions | Mark scheme | Solutions, side by side pairs the scheme with its questions, and the download is named `<Title> - Mark Scheme.pdf`.
 - **TMUA papers** have up to three rows, in this order: `type: 'questions'` (with `pairId` once it has solutions), `type: 'answers'` with `paperId` naming the paper, and `type: 'solutions'`. Their descriptions are written by hand. The TMUA listing and the viewer link them in that order; side by side pairs the questions with the solutions, and an answer key with its paper.
+- **ESAT papers** have rows of the same types, in the same order and linked the same way: `type: 'questions'` (with `pairId` once it has solutions), `type: 'answers'` with `paperId` naming the paper, and `type: 'solutions'` once there are worked solutions. A paper's title is `ESAT Set <X> <Maths 1|Maths 2|Physics>`, from which the ESAT listing takes its set and paper; its id is `esat-set<X>-<maths1|maths2|physics>`, with `-answers` and `-solns` for the answer key and solutions. Their descriptions are written by hand.
 - **Notes** rows are `type: 'notes'`.
-- **Second publications:** a pack may also be published in a second strand, with rows, ids and files of its own there. Each of those rows carries `canonicalId`, the id of the home strand's row of the same type and title; its view page names `/view/<that id>/` as its canonical link and `og:url`, and the sitemap leaves it out (`src/data/canonical.ts`). Only `questions`, `solutions` and `markscheme` rows carry it, never notes or TMUA rows, and never a row that another row's `canonicalId` names.
+- **Second publications:** a pack may also be published in a second strand, with rows, ids and files of its own there. Each of those rows carries `canonicalId`, the id of the home strand's row of the same type and title; its view page names `/view/<that id>/` as its canonical link and `og:url`, and the sitemap leaves it out (`src/data/canonical.ts`). Only `questions`, `solutions` and `markscheme` rows carry it, never notes, TMUA or ESAT rows, and never a row that another row's `canonicalId` names.
 - **Boards:** only `questions` and `notes` rows carry `boards`; omitted means all boards. The pills under a pack show board labels only, never codes, and none for a pack for all boards. A `cie-9231` tag means the content is examined in 9231, or assumed by 9231 and examined in 9709 at the pack's depth.
 
 The PDFs print catalogue data: a pack's front page shows its strand and section titles from `topics.json` and its boards' codes from `exam-boards.json`. A change to either file that touches a published pack leaves that pack's PDFs out of date until they are replaced; tell the maintainer which packs it touches.
@@ -80,8 +81,9 @@ These paths are public URLs and never move:
 | `/tex/further-maths/<strand>/<section>/ms/_QBT___MS__<Stem>.pdf` | Its mark scheme |
 | `/tex/further-maths/<strand>/<section>/notes/_Notes__<Title>.pdf` | Notes |
 | `/tex/tmua/TMUA_Set<X>_Paper<N>{,_Answers,_Solutions}.pdf` | A TMUA paper, its answer key, its worked solutions |
+| `/tex/esat/ESAT_Set<X>_<Maths1\|Maths2\|Physics>{,_Answers,_Solutions}.pdf` | An ESAT paper, its answer key, its worked solutions |
 
-`<Stem>` is the pack's title with every non-alphanumeric character replaced by an underscore, as first published; it stays when a title changes. Section folders are not always the section ids in `topics.json` (`induction` holds `proof-by-induction`). Nor do the page URLs move: `/view/<id>/`, the strand pages' topic anchors (`/further-maths/<strand>/#<section id>`), `/tmua/` and `/og/tmua.png`.
+`<Stem>` is the pack's title with every non-alphanumeric character replaced by an underscore, as first published; it stays when a title changes. Section folders are not always the section ids in `topics.json` (`induction` holds `proof-by-induction`). Nor do the page URLs move: `/view/<id>/`, the strand pages' topic anchors (`/further-maths/<strand>/#<section id>`), `/tmua/`, `/esat/`, `/og/tmua.png` and `/og/esat.png`.
 
 ### Redirects
 

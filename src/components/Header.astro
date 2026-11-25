@@ -1,18 +1,42 @@
 ---
 import { getShownStrands } from '~/data/topics';
+import { getShownTests } from '~/data/resources';
+import { boardsLine } from '~/data/examBoards';
 import ThemeToggle from './ThemeToggle.astro';
 const path = Astro.url.pathname.replace(/\/?$/, '/');
-const links = [
-  { href: '/', label: 'All resources' },
-  ...getShownStrands().map(({ href, title }) => ({ href, label: title })),
-  { href: '/tmua/', label: 'TMUA' },
-];
+// "All resources", then a menu of the shown strands and one of the shown tests;
+// each entry has a line under its name. An empty menu is left out.
+const menus = [
+  {
+    label: 'Further Maths',
+    entries: getShownStrands().map((s) => ({ href: s.href, title: s.title, line: boardsLine(s.boards) })),
+  },
+  {
+    label: 'Admissions tests',
+    entries: getShownTests().map((t) => ({ href: t.href, title: t.title, line: t.papers })),
+  },
+]
+  .filter((m) => m.entries.length > 0)
+  .map((m) => ({ ...m, current: m.entries.some((e) => e.href === path) }));
 ---
 <header class="site-header">
   <div class="page-container header-bar">
     <a href="/" class="site-name">resources.danieljsmith.org</a>
     <nav class="primary-nav" aria-label="Main navigation">
-      {links.map(({ href, label }) => <a href={href} aria-current={path === href ? 'page' : undefined}>{label}</a>)}
+      <a href="/" aria-current={path === '/' ? 'page' : undefined}>All resources</a>
+      {menus.map(({ label, entries, current }) => (
+        <details class:list={['nav-group', { 'is-current': current }]} name="nav-menu" data-nav-menu>
+          <summary class="nav-group-btn">
+            {label}
+            <svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+          </summary>
+          <div class="nav-menu">
+            {entries.map(({ href, title, line }) => (
+              <a href={href} aria-current={path === href ? 'page' : undefined}>{title}<small>{line}</small></a>
+            ))}
+          </div>
+        </details>
+      ))}
     </nav>
     <div class="header-actions">
       <ThemeToggle />
@@ -20,3 +44,8 @@ const links = [
     </div>
   </div>
 </header>
+
+<script>
+  import { initNavMenus } from '~/scripts/nav-menus';
+  initNavMenus();
+</script>
