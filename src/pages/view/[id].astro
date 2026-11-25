@@ -9,6 +9,8 @@ import {
   getResourceDisplayDescription,
   getResourceMetaDescription,
   FM_PREFIX,
+  ESAT,
+  ESAT_SHARE_IMAGE,
   TMUA_SHARE_IMAGE,
 } from '~/data/resources';
 import { resourceContents } from '~/data/resourceContents';
@@ -38,6 +40,12 @@ type BreadcrumbNav =
       sectionLabel: string;
     };
 
+// An admissions test's listing, name and share image: TMUA and ESAT are treated alike.
+const tests: Record<string, { href: string; label: string; shareImage: typeof TMUA_SHARE_IMAGE }> = {
+  TMUA: { href: '/tmua/', label: 'TMUA', shareImage: TMUA_SHARE_IMAGE },
+  [ESAT]: { href: '/esat/', label: 'ESAT', shareImage: ESAT_SHARE_IMAGE },
+};
+const test = tests[resource.category];
 // A Further Maths strand's title and page come from `topics.json`.
 const strand = getStrand(resource.category);
 const baseBreadcrumb: BreadcrumbNav = strand
@@ -48,15 +56,15 @@ const baseBreadcrumb: BreadcrumbNav = strand
       sectionLabel: strand.title,
       sectionHref: strand.href,
     }
-  : resource.category === 'TMUA'
-    ? { mode: 'single', href: '/tmua/', label: 'TMUA', aria: 'Back to TMUA resources' }
+  : test
+    ? { mode: 'single', href: test.href, label: test.label, aria: `Back to ${test.label} resources` }
     : { mode: 'single', href: '/', label: 'Home', aria: 'All resources' };
 // Return readers to the booklet's own topic section rather than the top of the strand page.
 const topicHref = getStrandHrefForResource(resource);
 const breadcrumb =
   baseBreadcrumb.mode === 'fm' && topicHref ? { ...baseBreadcrumb, sectionHref: topicHref } : baseBreadcrumb;
-// TMUA descriptions stay in search metadata only; on the page they repeat the contents list below.
-const displayDescription = resource.category === 'TMUA' ? '' : getResourceDisplayDescription(resource);
+// An admissions test paper's description stays in search metadata only; on the page it repeats the contents list below.
+const displayDescription = test ? '' : getResourceDisplayDescription(resource);
 const contents = resourceContents[resource.id];
 type ResourceType = NonNullable<typeof resource.type>;
 const resourceKinds: Partial<Record<ResourceType, string>> = {
@@ -66,11 +74,12 @@ const resourceKinds: Partial<Record<ResourceType, string>> = {
   markscheme: 'Mark scheme',
 };
 const resourceKind = (resource.type && resourceKinds[resource.type]) ?? 'Notes';
+const practice = `${resource.category === ESAT ? 'ESAT' : 'TMUA'}-Style Practice`;
 const pageTitle = resource.category.startsWith(FM_PREFIX)
   ? `${resource.title}: ${resourceKind} | A-level Further Maths`
   : resource.type === 'solutions' || resource.type === 'answers'
-    ? `${resource.title}: ${resourceKind} | TMUA-Style Practice`
-    : `${resource.title} | TMUA-Style Practice`;
+    ? `${resource.title}: ${resourceKind} | ${practice}`
+    : `${resource.title} | ${practice}`;
 
 const paneLabels: Partial<Record<ResourceType, string>> = {
   questions: 'Questions',
@@ -124,7 +133,7 @@ const splitTitle = 'Show two documents side by side';
 */
 ---
 
-<Layout title={pageTitle} description={getResourceMetaDescription(resource)} shareImage={resource.category === 'TMUA' ? TMUA_SHARE_IMAGE : undefined} canonicalPath={canonicalViewPath(resource)}>
+<Layout title={pageTitle} description={getResourceMetaDescription(resource)} shareImage={test?.shareImage} canonicalPath={canonicalViewPath(resource)}>
   <div class="min-h-screen flex flex-col" data-viewer-root>
     <header class="bg-surface border-b border-rule sticky top-0 z-10">
       <div class="page-container py-2 flex items-center justify-between gap-3">

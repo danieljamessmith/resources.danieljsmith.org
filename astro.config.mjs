@@ -2,14 +2,17 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { readFileSync } from 'node:fs';
-import { hiddenStrandHrefs } from './src/data/shown.ts';
+import { hiddenStrandHrefs, hiddenTestHrefs } from './src/data/shown.ts';
 import { secondViewHrefs } from './src/data/canonical.ts';
 
 /** A data file under `src/data/`, read as the site reads it. */
 const readData = (name) => JSON.parse(readFileSync(new URL(`./src/data/${name}`, import.meta.url), 'utf8'));
-// A strand page with no pack yet is left out, like the redirect and 404 pages.
+// A strand or admissions test page with no row yet is left out, like the redirect and 404 pages.
 const hiddenStrandPaths = new Set(
-  hiddenStrandHrefs(readData('topics.json'), readData('resources.json')).map((href) => href.replace(/\/$/, '')),
+  [
+    ...hiddenStrandHrefs(readData('topics.json'), readData('resources.json')),
+    ...hiddenTestHrefs(readData('resources.json')),
+  ].map((href) => href.replace(/\/$/, '')),
 );
 // A second publication's view page is left out; its canonical is the home row's.
 const secondViewPaths = new Set(secondViewHrefs(readData('resources.json')).map((href) => href.replace(/\/$/, '')));

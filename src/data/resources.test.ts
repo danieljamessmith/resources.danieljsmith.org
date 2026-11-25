@@ -7,7 +7,17 @@ import counts from './question-counts.json';
 import strandRows from './topics.json';
 import examBoards from './exam-boards.json';
 import { EXAM_BOARD_IDS } from './examBoards';
-import { FM_PREFIX, inTeachingOrder, orderGroup, type Resource } from './resources';
+import {
+  FM_PREFIX,
+  esatDescription,
+  esatHomeCount,
+  esatPaperName,
+  esatSets,
+  esatStats,
+  inTeachingOrder,
+  orderGroup,
+  type Resource,
+} from './resources';
 
 /**
  * The rows test: `resources.json`, `topics.json` and `question-counts.json`
@@ -94,7 +104,7 @@ describe('every row', () => {
     expect(TYPES).toContain(r.type);
     expect(Number.isInteger(r.order)).toBe(true);
     if (r.note !== undefined) expect(typeof r.note).toBe('string');
-    const categories = ['TMUA', ...STRANDS.map((s) => s.category)];
+    const categories = ['TMUA', 'ESAT', ...STRANDS.map((s) => s.category)];
     expect(categories).toContain(r.category);
   });
 
@@ -302,7 +312,7 @@ describe('teaching order', () => {
 describe('question counts', () => {
   it('give every counted questions row its count, and nothing else one', () => {
     const counted = ROWS.filter(
-      (r) => r.type === 'questions' && (r.category === 'TMUA' || /\/qbt\//.test(r.file)),
+      (r) => r.type === 'questions' && (r.category === 'TMUA' || r.category === 'ESAT' || /\/qbt\//.test(r.file)),
     ).map((r) => r.file);
     expect(Object.keys(COUNTS).sort()).toEqual([...counted].sort());
   });
@@ -311,5 +321,74 @@ describe('question counts', () => {
     for (const [file, n] of Object.entries(COUNTS)) {
       expect(Number.isInteger(n) && n > 0, file).toBe(true);
     }
+  });
+});
+
+describe('the ESAT papers', () => {
+  const paper = (title: string, extra: Partial<Row> = {}): Row => ({
+    id: title.toLowerCase().replace(/\s+/g, '-'),
+    title,
+    description: '',
+    file: `/tex/esat/${title.replace(/\s+/g, '_')}.pdf`,
+    category: 'ESAT',
+    type: 'questions',
+    order: 1,
+    questionCount: 27,
+    ...extra,
+  });
+  const answers = (of: Row): Row => ({ ...of, id: `${of.id}-answers`, type: 'answers', paperId: of.id });
+  const A1 = paper('ESAT Set A Maths 1');
+  const A2 = paper('ESAT Set A Maths 2');
+  const AP = paper('ESAT Set A Physics');
+  const B1 = paper('ESAT Set B Maths 1');
+  const TMUA = paper('TMUA Set A Paper 1', { category: 'TMUA', questionCount: 20 });
+
+  it.each([
+    ['ESAT Set A Maths 1', 'Set A', 'Maths 1'],
+    ['ESAT Set C Physics', 'Set C', 'Physics'],
+    ['ESAT Set B Maths 2', 'Set B', 'Maths 2'],
+  ])('take their set and paper from the title %s', (title, set, name) => {
+    expect(esatPaperName(title)).toEqual({ set, paper: name });
+  });
+
+  it('keep a title of another form whole, as the paper', () => {
+    expect(esatPaperName('Something else')).toEqual({ set: '', paper: 'Something else' });
+  });
+
+  it('group the papers by set, in the order of the rows, leaving out answer keys and other tests', () => {
+    const rows = [A1, answers(A1), A2, AP, TMUA, B1, answers(B1)];
+    expect(esatSets(rows).map((s) => [s.set, s.papers.map((p) => p.paper)])).toEqual([
+      ['Set A', ['Maths 1', 'Maths 2', 'Physics']],
+      ['Set B', ['Maths 1']],
+    ]);
+    expect(esatSets([B1, A1]).map((s) => s.set)).toEqual(['Set B', 'Set A']);
+  });
+
+  it('count their sets, papers and questions, and the questions with worked solutions', () => {
+    const solved = { ...B1, pairId: 'esat-set-b-maths-1-solns' };
+    expect(esatStats([A1, answers(A1), A2, AP, TMUA, solved])).toEqual({
+      sets: 2,
+      papers: 4,
+      questions: 108,
+      solvedQuestions: 27,
+    });
+    expect(esatStats([TMUA])).toEqual({ sets: 0, papers: 0, questions: 0, solvedQuestions: 0 });
+  });
+
+  it('describe the page from the live counts', () => {
+    const stats = { sets: 3, papers: 9, questions: 243, solvedQuestions: 0 };
+    expect(esatDescription(stats)).toBe(
+      '243 free ESAT-style questions in 9 practice papers for Mathematics 1, Mathematics 2 and Physics, with answer keys.',
+    );
+    expect(esatDescription({ ...stats, solvedQuestions: 27 })).toContain('worked solutions to 27 of them');
+    expect(esatDescription({ ...stats, solvedQuestions: 243 })).toContain('worked solutions for every question');
+    expect(esatDescription({ sets: 1, papers: 1, questions: 1, solvedQuestions: 0 })).toMatch(/^1 free ESAT-style question in 1 practice paper /);
+  });
+
+  it("give the home page's row its count, naming worked solutions once every paper has them", () => {
+    const stats = { sets: 3, papers: 9, questions: 243, solvedQuestions: 0 };
+    expect(esatHomeCount(stats)).toBe('9 practice papers, with answer keys');
+    expect(esatHomeCount({ ...stats, solvedQuestions: 216 })).toBe('9 practice papers, with answer keys');
+    expect(esatHomeCount({ ...stats, solvedQuestions: 243 })).toBe('9 practice papers, with answer keys and worked solutions');
   });
 });

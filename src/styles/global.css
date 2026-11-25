@@ -290,6 +290,14 @@ a { text-underline-offset: .2em; }
 .tmua-row h2 { font-size: 17px; font-weight: 600; color: rgb(var(--accent)); }
 .tmua-row:hover { background: rgb(var(--surface-overlay)); }
 .tmua-row:hover h2 { text-decoration: underline; }
+/* ESAT: one block per set, its name at the left and its papers as TMUA-style rows beside it. */
+.esat-sets { margin-top: 24px; border-top: 1px solid rgb(var(--rule-strong)); }
+.esat-set { display: grid; grid-template-columns: 200px minmax(0, 1fr); border-bottom: 1px solid rgb(var(--rule-strong)); }
+.esat-set-name { font: 700 21px/1.3 var(--font-head); color: rgb(var(--ink)); padding: 14px 8px; }
+.esat-set .tmua-row { padding: 12px 8px; }
+.esat-set .tmua-row:last-child { border-bottom: 0; }
+.esat-set .tmua-row h3 { font-size: 17px; font-weight: 600; color: rgb(var(--accent)); }
+.esat-set .tmua-row:hover h3 { text-decoration: underline; }
 .document-link { color: rgb(var(--accent)); font-size: 14px; white-space: nowrap; text-decoration: underline; }
 /* A note under a listing, pointing to the enquiry form. */
 .enquiry-callout { margin-top: 40px; padding: 20px 24px; max-width: 640px; border-left: 3px solid rgb(var(--accent)); background: rgb(var(--tint)); }
@@ -302,6 +310,10 @@ a { text-underline-offset: .2em; }
   .tmua-row { align-items: flex-start; flex-direction: column; gap: 10px; }
   .tmua-row-actions { justify-content: flex-start; }
   .tmua-row-action { min-height: 44px; display: inline-flex; align-items: center; }
+  /* A set's name sits above its papers, each paper on one line. */
+  .esat-set { grid-template-columns: minmax(0, 1fr); }
+  .esat-set-name { padding: 14px 8px 0; }
+  .esat-set .tmua-row { flex-direction: row; align-items: center; justify-content: space-between; padding: 0 8px; }
 }
 
 /* ---------- Document viewer ---------- */

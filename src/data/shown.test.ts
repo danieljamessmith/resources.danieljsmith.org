@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { hiddenStrandHrefs, shownStrands, shownTopics } from './shown';
+import { ADMISSIONS_TESTS, hiddenStrandHrefs, hiddenTestHrefs, shownStrands, shownTests, shownTopics } from './shown';
 
 /** Three strands: two with packs, one (the last) with none yet. */
 const STRANDS = [
@@ -57,5 +57,25 @@ describe('hiddenStrandHrefs', () => {
   it('names the pages of the strands with no row', () => {
     expect(hiddenStrandHrefs(STRANDS, ROWS)).toEqual(['/further-maths/three/']);
     expect(hiddenStrandHrefs(STRANDS, [...ROWS, { category: 'FM - Three', topic: 'A' }])).toEqual([]);
+  });
+});
+
+describe('the admissions tests', () => {
+  it('lists TMUA then ESAT', () => {
+    expect(ADMISSIONS_TESTS.map((t) => [t.category, t.href])).toEqual([
+      ['TMUA', '/tmua/'],
+      ['ESAT', '/esat/'],
+    ]);
+  });
+
+  it('leaves out a test with no row, and hides its page', () => {
+    expect(shownTests(ROWS).map((t) => t.category)).toEqual(['TMUA']);
+    expect(hiddenTestHrefs(ROWS)).toEqual(['/esat/']);
+  });
+
+  it('shows a test once it has a row, in the site order', () => {
+    const rows = [{ category: 'ESAT' }, ...ROWS];
+    expect(shownTests(rows).map((t) => t.category)).toEqual(['TMUA', 'ESAT']);
+    expect(hiddenTestHrefs(rows)).toEqual([]);
   });
 });

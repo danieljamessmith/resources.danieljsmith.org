@@ -1,0 +1,58 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+import EnquiryCallout from '~/components/EnquiryCallout.astro';
+import {
+  resources,
+  getPaperFamily,
+  esatSets,
+  esatDescription,
+  getEsatStats,
+  isEsatShown,
+  ESAT_SHARE_IMAGE,
+} from '~/data/resources';
+
+// One block per set, its papers in teaching order; a paper's set and name come from its title.
+const sets = esatSets(resources).map(({ set, papers }) => ({
+  set,
+  papers: papers.map(({ paper, row }) => ({ name: paper, paper: row, ...getPaperFamily(row) })),
+}));
+---
+<Layout title="Free ESAT Practice Papers for Maths 1, Maths 2 and Physics" description={esatDescription(getEsatStats())} shareImage={ESAT_SHARE_IMAGE} noindex={!isEsatShown()}>
+  <div class="min-h-screen flex flex-col">
+    <Header />
+    <main id="main-content" tabindex="-1" class="page-container listing-main">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">All resources</a><span aria-hidden="true">/</span><span aria-current="page">ESAT</span></nav>
+      <h1 class="page-title">ESAT practice papers</h1>
+      <p class="page-intro">Original practice papers for the Mathematics 1, Mathematics 2 and Physics modules, written in the style of the Engineering and Science Admissions Test (ESAT) and free to view and download. These papers are an independent publication and are not affiliated with or endorsed by UAT-UK or the universities that use the test.</p>
+      {sets.length > 0 && (
+        <section class="esat-sets" aria-label="Practice papers">
+          {sets.map(({ set, papers }) => (
+            <div class="esat-set">
+              <h2 class="esat-set-name">{set}</h2>
+              <div class="esat-set-rows">
+                {papers.map(({ name, paper, answers, solutions }) => (
+                  <div class="tmua-row">
+                    <div><h3><a class="tmua-row-link" href={`/view/${paper.id}/`}><span class="sr-only">ESAT {set} </span>{name}</a></h3></div>
+                    <div class="tmua-row-actions">
+                      <span class="document-link" aria-hidden="true">View paper</span>
+                      {answers && (
+                        <a class="document-link tmua-row-action" href={`/view/${answers.id}/`}><span class="sr-only">{paper.title} </span>Answer key</a>
+                      )}
+                      {solutions && (
+                        <a class="document-link tmua-row-action" href={`/view/${solutions.id}/`}><span class="sr-only">{paper.title} </span>Worked solutions</a>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </section>
+      )}
+      <EnquiryCallout topic="esat" label="ESAT-style" />
+    </main>
+    <Footer />
+  </div>
+</Layout>

@@ -1,6 +1,6 @@
 /**
- * What the site shows: a Further Maths strand or section appears only once it
- * has at least one row in `resources.json`. A strand with none is left off the
+ * What the site shows: a Further Maths strand or section, or an admissions
+ * test, appears only once it has at least one row in `resources.json`. A strand with none is left off the
  * home page, the header and the 404 page, and its page is `noindex` and out of
  * the sitemap; a section with none is left off its strand's page and section
  * menu. Rows are never retired, so what is shown once stays shown.
@@ -40,11 +40,41 @@ export function shownTopics<T extends { topic: string }>(
   return strand.topics.filter((t) => topics.has(t.topic));
 }
 
-/** The pages (`href`) of the strands with no row, which the sitemap leaves out. */
+/**
+ * The pages (`href`) of the strands, or admissions tests, with no row, which
+ * the sitemap leaves out.
+ */
 export function hiddenStrandHrefs(
   strands: readonly Pick<ShownStrand, 'category' | 'href'>[],
   rows: readonly ShownRow[],
 ): string[] {
   const shown = new Set(shownStrands(strands, rows));
   return strands.filter((s) => !shown.has(s)).map((s) => s.href);
+}
+
+/** An admissions test: the category its rows carry, its name and its page. */
+export interface AdmissionsTest {
+  category: string;
+  title: string;
+  href: string;
+}
+
+/**
+ * The admissions tests, in the order the site lists them. Each is shown, like a
+ * strand, only once it has a row: until then its page is `noindex` and out of
+ * the sitemap, and the home page, the menus and the 404 page leave it out.
+ */
+export const ADMISSIONS_TESTS: readonly AdmissionsTest[] = [
+  { category: 'TMUA', title: 'TMUA', href: '/tmua/' },
+  { category: 'ESAT', title: 'ESAT', href: '/esat/' },
+];
+
+/** The admissions tests with at least one row, in the site's order. */
+export function shownTests(rows: readonly ShownRow[], tests: readonly AdmissionsTest[] = ADMISSIONS_TESTS): AdmissionsTest[] {
+  return shownStrands(tests, rows);
+}
+
+/** The pages (`href`) of the admissions tests with no row, which the sitemap leaves out. */
+export function hiddenTestHrefs(rows: readonly ShownRow[], tests: readonly AdmissionsTest[] = ADMISSIONS_TESTS): string[] {
+  return hiddenStrandHrefs(tests, rows);
 }

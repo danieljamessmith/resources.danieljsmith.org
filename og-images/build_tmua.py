@@ -23,11 +23,12 @@ W, H = 1200, 630
 SURFACE, INK, MUTED, ACCENT, RULE = (250, 249, 246), (37, 42, 48), (96, 101, 106), (118, 59, 67), (216, 213, 205)
 
 
-def render_diagram(tmp: Path) -> Image.Image:
-    shutil.copy(HERE / "tmua-diagram.tex", tmp)
-    subprocess.run(["pdflatex", "-interaction=nonstopmode", "tmua-diagram.tex"], cwd=tmp, check=True, capture_output=True)
-    subprocess.run(["pdftoppm", "-r", "300", "-png", "-singlefile", "tmua-diagram.pdf", "tmua-diagram"], cwd=tmp, check=True)
-    return Image.open(tmp / "tmua-diagram.png").convert("RGB")
+def render_diagram(tmp: Path, stem: str = "tmua-diagram") -> Image.Image:
+    """Compiles og-images/<stem>.tex in `tmp` and returns it as an image."""
+    shutil.copy(HERE / f"{stem}.tex", tmp)
+    subprocess.run(["pdflatex", "-interaction=nonstopmode", f"{stem}.tex"], cwd=tmp, check=True, capture_output=True)
+    subprocess.run(["pdftoppm", "-r", "300", "-png", "-singlefile", f"{stem}.pdf", stem], cwd=tmp, check=True)
+    return Image.open(tmp / f"{stem}.png").convert("RGB")
 
 
 def font(name: str, size: int) -> ImageFont.FreeTypeFont:

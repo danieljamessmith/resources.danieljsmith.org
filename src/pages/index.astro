@@ -2,7 +2,15 @@
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
-import { FM_AP, FM_CP, FM_MECH, getWorksheetCountByCategory } from '~/data/resources';
+import {
+  FM_AP,
+  FM_CP,
+  FM_MECH,
+  esatHomeCount,
+  getEsatStats,
+  getWorksheetCountByCategory,
+  isEsatShown,
+} from '~/data/resources';
 import { getShownStrands } from '~/data/topics';
 
 // Each strand's line; a strand is listed only once it has a pack.
@@ -19,8 +27,15 @@ const strands = getShownStrands().map(({ category, title, href }) => ({
   count: getWorksheetCountByCategory(category),
 }));
 const tmuaPaperCount = getWorksheetCountByCategory('TMUA');
+// ESAT is listed, and named in the search title and description, once it has a row.
+const esatShown = isEsatShown();
+const esatCount = esatHomeCount(getEsatStats());
+const title = esatShown
+  ? 'Free Further Maths, TMUA & ESAT Practice with Worked Solutions'
+  : 'Free Further Maths & TMUA Practice with Worked Solutions';
+const description = `Free exam-style Further Maths questions by topic, with worked solutions and mark schemes, and ${esatShown ? 'TMUA and ESAT' : 'TMUA'} practice papers. For Edexcel, AQA, OCR A, OCR MEI and CIE.`;
 ---
-<Layout title="Free Further Maths & TMUA Practice with Worked Solutions" description="Free exam-style Further Maths questions by topic, with worked solutions and mark schemes, and TMUA practice papers. For Edexcel, AQA, OCR A, OCR MEI and CIE.">
+<Layout title={title} description={description}>
   <div class="min-h-screen flex flex-col">
     <Header />
     <main id="main-content" tabindex="-1" class="page-container home-main">
@@ -43,11 +58,16 @@ const tmuaPaperCount = getWorksheetCountByCategory('TMUA');
           </div>
         </section>
         <section aria-labelledby="admissions-heading">
-          <h2 id="admissions-heading" class="eyebrow">Admissions</h2>
+          <h2 id="admissions-heading" class="eyebrow">Admissions tests</h2>
           <div class="subject-list">
             <a class="subject-row" href="/tmua/">
               <div><h3>TMUA</h3><p>Original practice papers in the style of the Test of Mathematics for University Admission, with answer keys and worked solutions.</p><span class="resource-count">{tmuaPaperCount} practice papers, with answer keys and worked solutions</span></div>
             </a>
+            {esatShown && (
+              <a class="subject-row" href="/esat/">
+                <div><h3>ESAT</h3><p>Original practice papers in the style of the Engineering and Science Admissions Test, for Mathematics 1, Mathematics 2 and Physics.</p><span class="resource-count">{esatCount}</span></div>
+              </a>
+            )}
           </div>
         </section>
       </div>

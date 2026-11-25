@@ -2,6 +2,7 @@ import rows from './resources.json';
 import counts from './question-counts.json';
 import { fileHashes } from './fileHashes';
 import { boardsForStrand, type ExamBoard, type ExamBoardEntry } from './examBoards';
+import { shownTests, type AdmissionsTest } from './shown';
 
 export type { ExamBoard, ExamBoardEntry } from './examBoards';
 
@@ -167,6 +168,91 @@ export function getTmuaStats(): TmuaStats {
     questions: count(papers),
     solvedQuestions: count(papers.filter((r) => r.pairId)),
   };
+}
+
+/** The category of the ESAT papers' rows. */
+export const ESAT = 'ESAT';
+
+/** Link-preview image for ESAT pages; drawn from `og-images/`. */
+export const ESAT_SHARE_IMAGE = {
+  src: '/og/esat.png',
+  alt: 'Free ESAT practice papers for Maths 1, Maths 2 and Physics, with answer keys, beside a velocity-time graph',
+  width: 1200,
+  height: 630,
+};
+
+/** An ESAT paper's set and paper, from its title: "ESAT Set A Maths 1" is "Set A", "Maths 1". */
+export function esatPaperName(title: string): { set: string; paper: string } {
+  const m = /^ESAT\s+(Set\s+\S+)\s+(.+)$/.exec(title.trim());
+  return m ? { set: m[1], paper: m[2] } : { set: '', paper: title };
+}
+
+/** One set of ESAT papers: its name and its papers, each with its questions row. */
+export interface EsatSet<T> {
+  set: string;
+  papers: { paper: string; row: T }[];
+}
+
+/**
+ * The ESAT papers (`questions` rows) grouped by set, sets and papers in the
+ * order the rows give them (their teaching order).
+ */
+export function esatSets<T extends Pick<Resource, 'title' | 'category' | 'type'>>(rows: readonly T[]): EsatSet<T>[] {
+  const sets = new Map<string, EsatSet<T>>();
+  for (const row of rows) {
+    if (row.category !== ESAT || row.type !== 'questions') continue;
+    const { set, paper } = esatPaperName(row.title);
+    if (!sets.has(set)) sets.set(set, { set, papers: [] });
+    sets.get(set)!.papers.push({ paper, row });
+  }
+  return [...sets.values()];
+}
+
+/** Live ESAT totals: the same shape as TMUA's. */
+export function esatStats(
+  rows: readonly Pick<Resource, 'title' | 'category' | 'type' | 'questionCount' | 'pairId'>[],
+): TmuaStats {
+  const sets = esatSets(rows);
+  const papers = sets.flatMap((s) => s.papers.map((p) => p.row));
+  const count = (rs: typeof papers) => rs.reduce((sum, r) => sum + (r.questionCount ?? 0), 0);
+  return {
+    sets: sets.length,
+    papers: papers.length,
+    questions: count(papers),
+    solvedQuestions: count(papers.filter((r) => r.pairId)),
+  };
+}
+
+/** Live ESAT totals for listing copy and search descriptions. */
+export function getEsatStats(): TmuaStats {
+  return esatStats(resources);
+}
+
+const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
+
+/** The ESAT page's search description, from its live totals. */
+export function esatDescription(stats: TmuaStats): string {
+  const solved =
+    stats.solvedQuestions === 0 ? 'answer keys'
+    : stats.solvedQuestions === stats.questions ? 'answer keys and step-by-step worked solutions for every question'
+    : `answer keys and step-by-step worked solutions to ${stats.solvedQuestions} of them`;
+  return `${plural(stats.questions, 'free ESAT-style question', 'free ESAT-style questions')} in ${plural(stats.papers, 'practice paper', 'practice papers')} for Mathematics 1, Mathematics 2 and Physics, with ${solved}.`;
+}
+
+/** The ESAT row's count on the home page, from its live totals. */
+export function esatHomeCount(stats: TmuaStats): string {
+  const solved = stats.questions > 0 && stats.solvedQuestions === stats.questions;
+  return `${plural(stats.papers, 'practice paper', 'practice papers')}, with answer keys${solved ? ' and worked solutions' : ''}`;
+}
+
+/** The admissions tests with a row, in the site's order; the others are shown nowhere. */
+export function getShownTests(): AdmissionsTest[] {
+  return shownTests(resources);
+}
+
+/** Whether ESAT has a row; until it does, its page is `noindex` and nothing links to it. */
+export function isEsatShown(): boolean {
+  return getShownTests().some((t) => t.category === ESAT);
 }
 
 /** Worksheet (question-sheet) count for one category; solutions aren't counted separately. */

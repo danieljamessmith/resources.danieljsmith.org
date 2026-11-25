@@ -3,8 +3,10 @@ import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
 import { getShownStrands } from '~/data/topics';
+import { isEsatShown } from '~/data/resources';
 
 const strands = getShownStrands();
+const esatShown = isEsatShown();
 ---
 <Layout noindex title="Page not found | resources.danieljsmith.org" description="This page could not be found.">
   <div class="min-h-screen flex flex-col">
@@ -19,6 +21,7 @@ const strands = getShownStrands();
         <div class="subject-list">
           {strands.map(({ href, title }, i) => <>{i > 0 && ' '}<a class="subject-row" href={href}><div><h2>{title}</h2><p>A-level Further Maths questions by topic.</p></div></a></>)}
           <a class="subject-row" href="/tmua/"><div><h2>TMUA</h2><p>TMUA-style practice papers with answer keys.</p></div></a>
+          {esatShown && <> <a class="subject-row" href="/esat/"><div><h2>ESAT</h2><p>ESAT-style practice papers with answer keys.</p></div></a></>}
         </div>
       </div>
     </main>
