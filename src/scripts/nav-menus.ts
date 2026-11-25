@@ -40,7 +40,8 @@ export function initNavMenus(root: ParentNode = document): void {
     menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => (menu.open = false)));
   }
 
-  document.addEventListener('click', (e) => {
+  // pointerdown, not click: iOS Safari sends no click for a tap on content that is not clickable.
+  document.addEventListener('pointerdown', (e) => {
     openOutside(menus, e.target as Node | null).forEach((m) => (m.open = false));
   });
   document.addEventListener('focusin', (e) => {

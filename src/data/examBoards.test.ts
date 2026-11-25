@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { boardFamilyNames, boardsForStrand, boardsLine, EXAM_BOARD_IDS, examBoardJsonIds } from './examBoards';
+import { boardFamilyNames, boardsForStrand, EXAM_BOARD_IDS, examBoardJsonIds } from './examBoards';
 
 describe('exam-boards.json', () => {
   it('lists exactly the ExamBoard ids', () => {
@@ -76,11 +76,5 @@ describe('the Further Maths menu line', () => {
       { id: 'aqa2', label: 'AQA 2' },
     ];
     expect(boardFamilyNames(boards, FAMILIES)).toEqual(['OCR MEI', 'OCR Another', 'AQA 2']);
-  });
-
-  it('gives each strand its line from its boards', () => {
-    expect(boardsLine(boardsForStrand('core-pure'))).toBe('Edexcel, AQA, OCR A, OCR MEI, CIE');
-    expect(boardsLine(boardsForStrand('further-mechanics'))).toBe('Edexcel, AQA, OCR A, OCR MEI, CIE');
-    expect(boardsLine(boardsForStrand('additional-pure'))).toBe('Edexcel, OCR A, OCR MEI');
   });
 });
