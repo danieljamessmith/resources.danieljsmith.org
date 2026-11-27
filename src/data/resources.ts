@@ -12,8 +12,8 @@ export const EXAM_BOARDS: ExamBoardEntry[] = boardsForStrand('core-pure');
 /** Further Mechanics' exam boards (papers), from `exam-boards.json`. */
 export const FM_MECH_EXAM_BOARDS: ExamBoardEntry[] = boardsForStrand('further-mechanics');
 
-/** Additional Pure's exam boards (papers), from `exam-boards.json`. */
-export const FM_AP_EXAM_BOARDS: ExamBoardEntry[] = boardsForStrand('additional-pure');
+/** Optional Pure's exam boards (papers), from `exam-boards.json`. */
+export const FM_OP_EXAM_BOARDS: ExamBoardEntry[] = boardsForStrand('optional-pure');
 
 export interface Resource {
   id: string;
@@ -81,7 +81,7 @@ const questionCounts: Record<string, number> = counts;
 /** Further Maths strand categories; prefix used for combined totals across strands. */
 export const FM_CP = 'FM - Core Pure';
 export const FM_MECH = 'FM - Further Mechanics';
-export const FM_AP = 'FM - Additional Pure';
+export const FM_OP = 'FM - Optional Pure';
 export const FM_PREFIX = 'FM - ';
 
 /**
@@ -333,7 +333,7 @@ export function boardsToDataAttributeValue(boards: ExamBoard[] | undefined): str
 }
 
 export function getExamBoardLabel(id: ExamBoard): string {
-  return [...EXAM_BOARDS, ...FM_MECH_EXAM_BOARDS, ...FM_AP_EXAM_BOARDS].find((b) => b.id === id)?.label ?? id;
+  return [...EXAM_BOARDS, ...FM_MECH_EXAM_BOARDS, ...FM_OP_EXAM_BOARDS].find((b) => b.id === id)?.label ?? id;
 }
 
 export function getDisplayExamBoards(boards: ExamBoard[] | undefined): ExamBoard[] | undefined {

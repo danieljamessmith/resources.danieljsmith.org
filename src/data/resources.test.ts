@@ -254,9 +254,9 @@ describe('second publications', () => {
     pack('cp-groups-ms', 'FM - Core Pure', 'markscheme'),
   ];
   const SECOND = [
-    pack('fm-ap-groups', 'FM - Additional Pure', 'questions', { canonicalId: 'cp-groups' }),
-    pack('fm-ap-groups-solns', 'FM - Additional Pure', 'solutions', { canonicalId: 'cp-groups-solns' }),
-    pack('fm-ap-groups-ms', 'FM - Additional Pure', 'markscheme', { canonicalId: 'cp-groups-ms' }),
+    pack('fm-op-groups', 'FM - Optional Pure', 'questions', { canonicalId: 'cp-groups' }),
+    pack('fm-op-groups-solns', 'FM - Optional Pure', 'solutions', { canonicalId: 'cp-groups-solns' }),
+    pack('fm-op-groups-ms', 'FM - Optional Pure', 'markscheme', { canonicalId: 'cp-groups-ms' }),
   ];
 
   it('accept a canonicalId naming the home row of the same type and title', () => {
@@ -275,13 +275,13 @@ describe('second publications', () => {
   });
 
   it('refuse a canonicalId naming a row that has one itself', () => {
-    const rows = [{ ...HOME[0], canonicalId: 'fm-ap-groups' }, ...HOME.slice(1), ...SECOND];
+    const rows = [{ ...HOME[0], canonicalId: 'fm-op-groups' }, ...HOME.slice(1), ...SECOND];
     expect(canonicalIdFaults(rows).length).toBeGreaterThan(0);
   });
 
   it.each([
-    ['notes', pack('fm-ap-notes', 'FM - Additional Pure', 'notes', { canonicalId: 'cp-groups' })],
-    ['answers', pack('tmua-a', 'FM - Additional Pure', 'answers', { canonicalId: 'cp-groups' })],
+    ['notes', pack('fm-op-notes', 'FM - Optional Pure', 'notes', { canonicalId: 'cp-groups' })],
+    ['answers', pack('tmua-a', 'FM - Optional Pure', 'answers', { canonicalId: 'cp-groups' })],
     ['TMUA', pack('tmua-q', 'TMUA', 'questions', { canonicalId: 'cp-groups' })],
   ])('refuse a canonicalId on a %s row', (_what, row) => {
     expect(canonicalIdFaults([...HOME, row])).toHaveLength(1);

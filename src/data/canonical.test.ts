@@ -5,8 +5,8 @@ import { canonicalViewPath, secondViewHrefs } from './canonical';
 const ROWS = [
   { id: 'cp-groups' },
   { id: 'cp-groups-solns' },
-  { id: 'fm-ap-groups', canonicalId: 'cp-groups' },
-  { id: 'fm-ap-groups-solns', canonicalId: 'cp-groups-solns' },
+  { id: 'fm-op-groups', canonicalId: 'cp-groups' },
+  { id: 'fm-op-groups-solns', canonicalId: 'cp-groups-solns' },
 ];
 
 describe('canonicalViewPath', () => {
@@ -22,7 +22,7 @@ describe('canonicalViewPath', () => {
 
 describe('secondViewHrefs', () => {
   it('names the view pages of the rows with a canonicalId, which the sitemap leaves out', () => {
-    expect(secondViewHrefs(ROWS)).toEqual(['/view/fm-ap-groups/', '/view/fm-ap-groups-solns/']);
+    expect(secondViewHrefs(ROWS)).toEqual(['/view/fm-op-groups/', '/view/fm-op-groups-solns/']);
   });
 
   it('names none when no row has one', () => {

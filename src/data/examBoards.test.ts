@@ -21,8 +21,8 @@ describe('exam-boards.json', () => {
     });
   });
 
-  it('gives Additional Pure its four boards, in menu order, with paper codes', () => {
-    expect(boardsForStrand('additional-pure')).toEqual([
+  it('gives Optional Pure its four boards, in menu order, with paper codes', () => {
+    expect(boardsForStrand('optional-pure')).toEqual([
       {
         id: 'edexcel-fp1',
         label: 'Edexcel FP1',

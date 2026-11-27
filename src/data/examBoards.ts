@@ -24,7 +24,7 @@ export const EXAM_BOARD_IDS = [
 export type ExamBoard = (typeof EXAM_BOARD_IDS)[number];
 
 /** A strand's key in `exam-boards.json`: its folder under `public/tex/further-maths/`. */
-export type BoardStrandKey = 'core-pure' | 'further-mechanics' | 'additional-pure';
+export type BoardStrandKey = 'core-pure' | 'further-mechanics' | 'optional-pure';
 
 interface CodeName {
   code: string;
@@ -50,13 +50,13 @@ export interface ExamBoardEntry {
   label: string;
   /**
    * The code the strand shows: its qualification's in Core Pure, its paper's in
-   * Further Mechanics and Additional Pure.
+   * Further Mechanics and Optional Pure.
    */
   code: string;
   /**
    * The breadcrumb the filter status line shows for the chosen board: the
    * awarding body, then the qualification (Core Pure) or the paper, whose
-   * code already names the qualification (Further Mechanics, Additional Pure).
+   * code already names the qualification (Further Mechanics, Optional Pure).
    */
   crumbs: string[];
 }
@@ -110,6 +110,6 @@ export function boardsLine(boards: readonly { id: string; label: string }[]): st
 
 /** Every board id `exam-boards.json` lists, in any strand. */
 export function examBoardJsonIds(): string[] {
-  const keys: BoardStrandKey[] = ['core-pure', 'further-mechanics', 'additional-pure'];
+  const keys: BoardStrandKey[] = ['core-pure', 'further-mechanics', 'optional-pure'];
   return [...new Set(keys.flatMap((k) => strandRecord(k).boards.map((b) => b.id)))];
 }
