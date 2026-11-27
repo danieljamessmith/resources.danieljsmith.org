@@ -3,11 +3,11 @@ import { getStrand, STRANDS } from './topics';
 import { getExamBoardLabel } from './resources';
 
 describe('the Further Maths strands', () => {
-  it('are Core Pure, Further Mechanics and Optional Pure, in that order', () => {
+  it('are Core Pure, Optional Pure and Further Mechanics, in that order', () => {
     expect(STRANDS.map((s) => [s.category, s.title, s.href])).toEqual([
       ['FM - Core Pure', 'Core Pure', '/further-maths/core-pure/'],
-      ['FM - Further Mechanics', 'Further Mechanics', '/further-maths/further-mechanics/'],
       ['FM - Optional Pure', 'Optional Pure', '/further-maths/optional-pure/'],
+      ['FM - Further Mechanics', 'Further Mechanics', '/further-maths/further-mechanics/'],
     ]);
   });
 
